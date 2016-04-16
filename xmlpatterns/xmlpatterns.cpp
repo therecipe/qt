@@ -126,8 +126,20 @@ void* QAbstractXmlNodeModel_DocumentUri(void* ptr, void* n){
 	return new QUrl(static_cast<QAbstractXmlNodeModel*>(ptr)->documentUri(*static_cast<QXmlNodeModelIndex*>(n)));
 }
 
+void* QAbstractXmlNodeModel_ElementById(void* ptr, void* id){
+	return new QXmlNodeModelIndex(static_cast<QAbstractXmlNodeModel*>(ptr)->elementById(*static_cast<QXmlName*>(id)));
+}
+
 int QAbstractXmlNodeModel_Kind(void* ptr, void* ni){
 	return static_cast<QAbstractXmlNodeModel*>(ptr)->kind(*static_cast<QXmlNodeModelIndex*>(ni));
+}
+
+void* QAbstractXmlNodeModel_Root(void* ptr, void* n){
+	return new QXmlNodeModelIndex(static_cast<QAbstractXmlNodeModel*>(ptr)->root(*static_cast<QXmlNodeModelIndex*>(n)));
+}
+
+void* QAbstractXmlNodeModel_SourceLocation(void* ptr, void* index){
+	return new QSourceLocation(static_cast<QAbstractXmlNodeModel*>(ptr)->sourceLocation(*static_cast<QXmlNodeModelIndex*>(index)));
 }
 
 char* QAbstractXmlNodeModel_StringValue(void* ptr, void* n){
@@ -232,6 +244,14 @@ public:
 
 void* QSimpleXmlNodeModel_BaseUri(void* ptr, void* node){
 	return new QUrl(static_cast<QSimpleXmlNodeModel*>(ptr)->baseUri(*static_cast<QXmlNodeModelIndex*>(node)));
+}
+
+void* QSimpleXmlNodeModel_ElementById(void* ptr, void* id){
+	return new QXmlNodeModelIndex(static_cast<QSimpleXmlNodeModel*>(ptr)->elementById(*static_cast<QXmlName*>(id)));
+}
+
+void* QSimpleXmlNodeModel_NamePool(void* ptr){
+	return new QXmlNamePool(static_cast<QSimpleXmlNodeModel*>(ptr)->namePool());
 }
 
 char* QSimpleXmlNodeModel_StringValue(void* ptr, void* node){
@@ -419,6 +439,10 @@ int QXmlItem_IsNull(void* ptr){
 	return static_cast<QXmlItem*>(ptr)->isNull();
 }
 
+void* QXmlItem_ToNodeModelIndex(void* ptr){
+	return new QXmlNodeModelIndex(static_cast<QXmlItem*>(ptr)->toNodeModelIndex());
+}
+
 void QXmlItem_DestroyQXmlItem(void* ptr){
 	static_cast<QXmlItem*>(ptr)->~QXmlItem();
 }
@@ -543,6 +567,10 @@ void* QXmlQuery_MessageHandler(void* ptr){
 	return static_cast<QXmlQuery*>(ptr)->messageHandler();
 }
 
+void* QXmlQuery_NamePool(void* ptr){
+	return new QXmlNamePool(static_cast<QXmlQuery*>(ptr)->namePool());
+}
+
 void* QXmlQuery_NetworkAccessManager(void* ptr){
 	return static_cast<QXmlQuery*>(ptr)->networkAccessManager();
 }
@@ -619,8 +647,16 @@ void* QXmlResultItems_NewQXmlResultItems(){
 	return new MyQXmlResultItems();
 }
 
+void* QXmlResultItems_Current(void* ptr){
+	return new QXmlItem(static_cast<QXmlResultItems*>(ptr)->current());
+}
+
 int QXmlResultItems_HasError(void* ptr){
 	return static_cast<QXmlResultItems*>(ptr)->hasError();
+}
+
+void* QXmlResultItems_Next(void* ptr){
+	return new QXmlItem(static_cast<QXmlResultItems*>(ptr)->next());
 }
 
 void QXmlResultItems_DestroyQXmlResultItems(void* ptr){
@@ -660,8 +696,8 @@ int QXmlSchema_Load2(void* ptr, void* source, void* documentUri){
 	return static_cast<QXmlSchema*>(ptr)->load(static_cast<QIODevice*>(source), *static_cast<QUrl*>(documentUri));
 }
 
-int QXmlSchema_Load3(void* ptr, void* data, void* documentUri){
-	return static_cast<QXmlSchema*>(ptr)->load(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(documentUri));
+int QXmlSchema_Load3(void* ptr, char* data, void* documentUri){
+	return static_cast<QXmlSchema*>(ptr)->load(QByteArray(data), *static_cast<QUrl*>(documentUri));
 }
 
 int QXmlSchema_Load(void* ptr, void* source){
@@ -670,6 +706,10 @@ int QXmlSchema_Load(void* ptr, void* source){
 
 void* QXmlSchema_MessageHandler(void* ptr){
 	return static_cast<QXmlSchema*>(ptr)->messageHandler();
+}
+
+void* QXmlSchema_NamePool(void* ptr){
+	return new QXmlNamePool(static_cast<QXmlSchema*>(ptr)->namePool());
 }
 
 void* QXmlSchema_NetworkAccessManager(void* ptr){
@@ -708,8 +748,16 @@ void* QXmlSchemaValidator_MessageHandler(void* ptr){
 	return static_cast<QXmlSchemaValidator*>(ptr)->messageHandler();
 }
 
+void* QXmlSchemaValidator_NamePool(void* ptr){
+	return new QXmlNamePool(static_cast<QXmlSchemaValidator*>(ptr)->namePool());
+}
+
 void* QXmlSchemaValidator_NetworkAccessManager(void* ptr){
 	return static_cast<QXmlSchemaValidator*>(ptr)->networkAccessManager();
+}
+
+void* QXmlSchemaValidator_Schema(void* ptr){
+	return new QXmlSchema(static_cast<QXmlSchemaValidator*>(ptr)->schema());
 }
 
 void QXmlSchemaValidator_SetMessageHandler(void* ptr, void* handler){
@@ -736,8 +784,8 @@ int QXmlSchemaValidator_Validate2(void* ptr, void* source, void* documentUri){
 	return static_cast<QXmlSchemaValidator*>(ptr)->validate(static_cast<QIODevice*>(source), *static_cast<QUrl*>(documentUri));
 }
 
-int QXmlSchemaValidator_Validate3(void* ptr, void* data, void* documentUri){
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(documentUri));
+int QXmlSchemaValidator_Validate3(void* ptr, char* data, void* documentUri){
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(QByteArray(data), *static_cast<QUrl*>(documentUri));
 }
 
 int QXmlSchemaValidator_Validate(void* ptr, void* source){

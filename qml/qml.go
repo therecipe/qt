@@ -786,11 +786,11 @@ func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
 	}
 }
 
-func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArray_ITF, url core.QUrl_ITF) {
+func (ptr *QQmlApplicationEngine) LoadData(data string, url core.QUrl_ITF) {
 	defer qt.Recovering("QQmlApplicationEngine::loadData")
 
 	if ptr.Pointer() != nil {
-		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
+		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), C.CString(data), core.PointerFromQUrl(url))
 	}
 }
 
@@ -1251,11 +1251,11 @@ func (ptr *QQmlComponent) ProgressChanged(progress float64) {
 	}
 }
 
-func (ptr *QQmlComponent) SetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
+func (ptr *QQmlComponent) SetData(data string, url core.QUrl_ITF) {
 	defer qt.Recovering("QQmlComponent::setData")
 
 	if ptr.Pointer() != nil {
-		C.QQmlComponent_SetData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
+		C.QQmlComponent_SetData(ptr.Pointer(), C.CString(data), core.PointerFromQUrl(url))
 	}
 }
 
@@ -2424,6 +2424,15 @@ func (ptr *QQmlExpression) Engine() *QQmlEngine {
 
 	if ptr.Pointer() != nil {
 		return NewQQmlEngineFromPointer(C.QQmlExpression_Engine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQmlExpression) Error() *QQmlError {
+	defer qt.Recovering("QQmlExpression::error")
+
+	if ptr.Pointer() != nil {
+		return NewQQmlErrorFromPointer(C.QQmlExpression_Error(ptr.Pointer()))
 	}
 	return nil
 }

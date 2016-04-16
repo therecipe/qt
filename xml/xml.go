@@ -70,6 +70,15 @@ func (ptr *QDomAttr) NodeType() QDomNode__NodeType {
 	return 0
 }
 
+func (ptr *QDomAttr) OwnerElement() *QDomElement {
+	defer qt.Recovering("QDomAttr::ownerElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomAttr_OwnerElement(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDomAttr) SetValue(v string) {
 	defer qt.Recovering("QDomAttr::setValue")
 
@@ -341,6 +350,159 @@ func NewQDomDocument2(name string) *QDomDocument {
 	return newQDomDocumentFromPointer(C.QDomDocument_NewQDomDocument2(C.CString(name)))
 }
 
+func (ptr *QDomDocument) CreateAttribute(name string) *QDomAttr {
+	defer qt.Recovering("QDomDocument::createAttribute")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomDocument_CreateAttribute(ptr.Pointer(), C.CString(name)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateAttributeNS(nsURI string, qName string) *QDomAttr {
+	defer qt.Recovering("QDomDocument::createAttributeNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomDocument_CreateAttributeNS(ptr.Pointer(), C.CString(nsURI), C.CString(qName)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateCDATASection(value string) *QDomCDATASection {
+	defer qt.Recovering("QDomDocument::createCDATASection")
+
+	if ptr.Pointer() != nil {
+		return NewQDomCDATASectionFromPointer(C.QDomDocument_CreateCDATASection(ptr.Pointer(), C.CString(value)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateComment(value string) *QDomComment {
+	defer qt.Recovering("QDomDocument::createComment")
+
+	if ptr.Pointer() != nil {
+		return NewQDomCommentFromPointer(C.QDomDocument_CreateComment(ptr.Pointer(), C.CString(value)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateDocumentFragment() *QDomDocumentFragment {
+	defer qt.Recovering("QDomDocument::createDocumentFragment")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentFragmentFromPointer(C.QDomDocument_CreateDocumentFragment(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateElement(tagName string) *QDomElement {
+	defer qt.Recovering("QDomDocument::createElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomDocument_CreateElement(ptr.Pointer(), C.CString(tagName)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateElementNS(nsURI string, qName string) *QDomElement {
+	defer qt.Recovering("QDomDocument::createElementNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomDocument_CreateElementNS(ptr.Pointer(), C.CString(nsURI), C.CString(qName)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateEntityReference(name string) *QDomEntityReference {
+	defer qt.Recovering("QDomDocument::createEntityReference")
+
+	if ptr.Pointer() != nil {
+		return NewQDomEntityReferenceFromPointer(C.QDomDocument_CreateEntityReference(ptr.Pointer(), C.CString(name)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateProcessingInstruction(target string, data string) *QDomProcessingInstruction {
+	defer qt.Recovering("QDomDocument::createProcessingInstruction")
+
+	if ptr.Pointer() != nil {
+		return NewQDomProcessingInstructionFromPointer(C.QDomDocument_CreateProcessingInstruction(ptr.Pointer(), C.CString(target), C.CString(data)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) CreateTextNode(value string) *QDomText {
+	defer qt.Recovering("QDomDocument::createTextNode")
+
+	if ptr.Pointer() != nil {
+		return NewQDomTextFromPointer(C.QDomDocument_CreateTextNode(ptr.Pointer(), C.CString(value)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) Doctype() *QDomDocumentType {
+	defer qt.Recovering("QDomDocument::doctype")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentTypeFromPointer(C.QDomDocument_Doctype(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) DocumentElement() *QDomElement {
+	defer qt.Recovering("QDomDocument::documentElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomDocument_DocumentElement(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) ElementById(elementId string) *QDomElement {
+	defer qt.Recovering("QDomDocument::elementById")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomDocument_ElementById(ptr.Pointer(), C.CString(elementId)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) ElementsByTagName(tagname string) *QDomNodeList {
+	defer qt.Recovering("QDomDocument::elementsByTagName")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagName(ptr.Pointer(), C.CString(tagname)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) ElementsByTagNameNS(nsURI string, localName string) *QDomNodeList {
+	defer qt.Recovering("QDomDocument::elementsByTagNameNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeListFromPointer(C.QDomDocument_ElementsByTagNameNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName)))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) Implementation() *QDomImplementation {
+	defer qt.Recovering("QDomDocument::implementation")
+
+	if ptr.Pointer() != nil {
+		return NewQDomImplementationFromPointer(C.QDomDocument_Implementation(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomDocument) ImportNode(importedNode QDomNode_ITF, deep bool) *QDomNode {
+	defer qt.Recovering("QDomDocument::importNode")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomDocument_ImportNode(ptr.Pointer(), PointerFromQDomNode(importedNode), C.int(qt.GoBoolToInt(deep))))
+	}
+	return nil
+}
+
 func (ptr *QDomDocument) NodeType() QDomNode__NodeType {
 	defer qt.Recovering("QDomDocument::nodeType")
 
@@ -386,20 +548,20 @@ func (ptr *QDomDocument) SetContent4(source QXmlInputSource_ITF, namespaceProces
 	return false
 }
 
-func (ptr *QDomDocument) SetContent6(buffer core.QByteArray_ITF, errorMsg string, errorLine int, errorColumn int) bool {
+func (ptr *QDomDocument) SetContent6(buffer string, errorMsg string, errorLine int, errorColumn int) bool {
 	defer qt.Recovering("QDomDocument::setContent")
 
 	if ptr.Pointer() != nil {
-		return C.QDomDocument_SetContent6(ptr.Pointer(), core.PointerFromQByteArray(buffer), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
+		return C.QDomDocument_SetContent6(ptr.Pointer(), C.CString(buffer), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
 	}
 	return false
 }
 
-func (ptr *QDomDocument) SetContent(data core.QByteArray_ITF, namespaceProcessing bool, errorMsg string, errorLine int, errorColumn int) bool {
+func (ptr *QDomDocument) SetContent(data string, namespaceProcessing bool, errorMsg string, errorLine int, errorColumn int) bool {
 	defer qt.Recovering("QDomDocument::setContent")
 
 	if ptr.Pointer() != nil {
-		return C.QDomDocument_SetContent(ptr.Pointer(), core.PointerFromQByteArray(data), C.int(qt.GoBoolToInt(namespaceProcessing)), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
+		return C.QDomDocument_SetContent(ptr.Pointer(), C.CString(data), C.int(qt.GoBoolToInt(namespaceProcessing)), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
 	}
 	return false
 }
@@ -422,13 +584,13 @@ func (ptr *QDomDocument) SetContent2(text string, namespaceProcessing bool, erro
 	return false
 }
 
-func (ptr *QDomDocument) ToByteArray(indent int) *core.QByteArray {
+func (ptr *QDomDocument) ToByteArray(indent int) string {
 	defer qt.Recovering("QDomDocument::toByteArray")
 
 	if ptr.Pointer() != nil {
-		return core.NewQByteArrayFromPointer(C.QDomDocument_ToByteArray(ptr.Pointer(), C.int(indent)))
+		return C.GoString(C.QDomDocument_ToByteArray(ptr.Pointer(), C.int(indent)))
 	}
-	return nil
+	return ""
 }
 
 func (ptr *QDomDocument) ToString(indent int) string {
@@ -543,6 +705,15 @@ func NewQDomDocumentType2(n QDomDocumentType_ITF) *QDomDocumentType {
 	return newQDomDocumentTypeFromPointer(C.QDomDocumentType_NewQDomDocumentType2(PointerFromQDomDocumentType(n)))
 }
 
+func (ptr *QDomDocumentType) Entities() *QDomNamedNodeMap {
+	defer qt.Recovering("QDomDocumentType::entities")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNamedNodeMapFromPointer(C.QDomDocumentType_Entities(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDomDocumentType) InternalSubset() string {
 	defer qt.Recovering("QDomDocumentType::internalSubset")
 
@@ -568,6 +739,15 @@ func (ptr *QDomDocumentType) NodeType() QDomNode__NodeType {
 		return QDomNode__NodeType(C.QDomDocumentType_NodeType(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QDomDocumentType) Notations() *QDomNamedNodeMap {
+	defer qt.Recovering("QDomDocumentType::notations")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNamedNodeMapFromPointer(C.QDomDocumentType_Notations(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDomDocumentType) PublicId() string {
@@ -649,6 +829,51 @@ func (ptr *QDomElement) AttributeNS(nsURI string, localName string, defValue str
 	return ""
 }
 
+func (ptr *QDomElement) AttributeNode(name string) *QDomAttr {
+	defer qt.Recovering("QDomElement::attributeNode")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomElement_AttributeNode(ptr.Pointer(), C.CString(name)))
+	}
+	return nil
+}
+
+func (ptr *QDomElement) AttributeNodeNS(nsURI string, localName string) *QDomAttr {
+	defer qt.Recovering("QDomElement::attributeNodeNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomElement_AttributeNodeNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName)))
+	}
+	return nil
+}
+
+func (ptr *QDomElement) Attributes() *QDomNamedNodeMap {
+	defer qt.Recovering("QDomElement::attributes")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNamedNodeMapFromPointer(C.QDomElement_Attributes(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomElement) ElementsByTagName(tagname string) *QDomNodeList {
+	defer qt.Recovering("QDomElement::elementsByTagName")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagName(ptr.Pointer(), C.CString(tagname)))
+	}
+	return nil
+}
+
+func (ptr *QDomElement) ElementsByTagNameNS(nsURI string, localName string) *QDomNodeList {
+	defer qt.Recovering("QDomElement::elementsByTagNameNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeListFromPointer(C.QDomElement_ElementsByTagNameNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName)))
+	}
+	return nil
+}
+
 func (ptr *QDomElement) HasAttribute(name string) bool {
 	defer qt.Recovering("QDomElement::hasAttribute")
 
@@ -692,6 +917,15 @@ func (ptr *QDomElement) RemoveAttributeNS(nsURI string, localName string) {
 	}
 }
 
+func (ptr *QDomElement) RemoveAttributeNode(oldAttr QDomAttr_ITF) *QDomAttr {
+	defer qt.Recovering("QDomElement::removeAttributeNode")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomElement_RemoveAttributeNode(ptr.Pointer(), PointerFromQDomAttr(oldAttr)))
+	}
+	return nil
+}
+
 func (ptr *QDomElement) SetAttribute(name string, value string) {
 	defer qt.Recovering("QDomElement::setAttribute")
 
@@ -722,6 +956,24 @@ func (ptr *QDomElement) SetAttributeNS2(nsURI string, qName string, value int) {
 	if ptr.Pointer() != nil {
 		C.QDomElement_SetAttributeNS2(ptr.Pointer(), C.CString(nsURI), C.CString(qName), C.int(value))
 	}
+}
+
+func (ptr *QDomElement) SetAttributeNode(newAttr QDomAttr_ITF) *QDomAttr {
+	defer qt.Recovering("QDomElement::setAttributeNode")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomElement_SetAttributeNode(ptr.Pointer(), PointerFromQDomAttr(newAttr)))
+	}
+	return nil
+}
+
+func (ptr *QDomElement) SetAttributeNodeNS(newAttr QDomAttr_ITF) *QDomAttr {
+	defer qt.Recovering("QDomElement::setAttributeNodeNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomElement_SetAttributeNodeNS(ptr.Pointer(), PointerFromQDomAttr(newAttr)))
+	}
+	return nil
 }
 
 func (ptr *QDomElement) SetTagName(name string) {
@@ -940,6 +1192,24 @@ func NewQDomImplementation2(x QDomImplementation_ITF) *QDomImplementation {
 	return newQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation2(PointerFromQDomImplementation(x)))
 }
 
+func (ptr *QDomImplementation) CreateDocument(nsURI string, qName string, doctype QDomDocumentType_ITF) *QDomDocument {
+	defer qt.Recovering("QDomImplementation::createDocument")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentFromPointer(C.QDomImplementation_CreateDocument(ptr.Pointer(), C.CString(nsURI), C.CString(qName), PointerFromQDomDocumentType(doctype)))
+	}
+	return nil
+}
+
+func (ptr *QDomImplementation) CreateDocumentType(qName string, publicId string, systemId string) *QDomDocumentType {
+	defer qt.Recovering("QDomImplementation::createDocumentType")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentTypeFromPointer(C.QDomImplementation_CreateDocumentType(ptr.Pointer(), C.CString(qName), C.CString(publicId), C.CString(systemId)))
+	}
+	return nil
+}
+
 func (ptr *QDomImplementation) HasFeature(feature string, version string) bool {
 	defer qt.Recovering("QDomImplementation::hasFeature")
 
@@ -1055,6 +1325,15 @@ func (ptr *QDomNamedNodeMap) IsEmpty() bool {
 	return false
 }
 
+func (ptr *QDomNamedNodeMap) Item(index int) *QDomNode {
+	defer qt.Recovering("QDomNamedNodeMap::item")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNamedNodeMap_Item(ptr.Pointer(), C.int(index)))
+	}
+	return nil
+}
+
 func (ptr *QDomNamedNodeMap) Length() int {
 	defer qt.Recovering("QDomNamedNodeMap::length")
 
@@ -1062,6 +1341,60 @@ func (ptr *QDomNamedNodeMap) Length() int {
 		return int(C.QDomNamedNodeMap_Length(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QDomNamedNodeMap) NamedItem(name string) *QDomNode {
+	defer qt.Recovering("QDomNamedNodeMap::namedItem")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItem(ptr.Pointer(), C.CString(name)))
+	}
+	return nil
+}
+
+func (ptr *QDomNamedNodeMap) NamedItemNS(nsURI string, localName string) *QDomNode {
+	defer qt.Recovering("QDomNamedNodeMap::namedItemNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNamedNodeMap_NamedItemNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName)))
+	}
+	return nil
+}
+
+func (ptr *QDomNamedNodeMap) RemoveNamedItem(name string) *QDomNode {
+	defer qt.Recovering("QDomNamedNodeMap::removeNamedItem")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItem(ptr.Pointer(), C.CString(name)))
+	}
+	return nil
+}
+
+func (ptr *QDomNamedNodeMap) RemoveNamedItemNS(nsURI string, localName string) *QDomNode {
+	defer qt.Recovering("QDomNamedNodeMap::removeNamedItemNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNamedNodeMap_RemoveNamedItemNS(ptr.Pointer(), C.CString(nsURI), C.CString(localName)))
+	}
+	return nil
+}
+
+func (ptr *QDomNamedNodeMap) SetNamedItem(newNode QDomNode_ITF) *QDomNode {
+	defer qt.Recovering("QDomNamedNodeMap::setNamedItem")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNamedNodeMap_SetNamedItem(ptr.Pointer(), PointerFromQDomNode(newNode)))
+	}
+	return nil
+}
+
+func (ptr *QDomNamedNodeMap) SetNamedItemNS(newNode QDomNode_ITF) *QDomNode {
+	defer qt.Recovering("QDomNamedNodeMap::setNamedItemNS")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNamedNodeMap_SetNamedItemNS(ptr.Pointer(), PointerFromQDomNode(newNode)))
+	}
+	return nil
 }
 
 func (ptr *QDomNamedNodeMap) Size() int {
@@ -1159,12 +1492,48 @@ func NewQDomNode2(n QDomNode_ITF) *QDomNode {
 	return newQDomNodeFromPointer(C.QDomNode_NewQDomNode2(PointerFromQDomNode(n)))
 }
 
+func (ptr *QDomNode) AppendChild(newChild QDomNode_ITF) *QDomNode {
+	defer qt.Recovering("QDomNode::appendChild")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_AppendChild(ptr.Pointer(), PointerFromQDomNode(newChild)))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) Attributes() *QDomNamedNodeMap {
+	defer qt.Recovering("QDomNode::attributes")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNamedNodeMapFromPointer(C.QDomNode_Attributes(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ChildNodes() *QDomNodeList {
+	defer qt.Recovering("QDomNode::childNodes")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeListFromPointer(C.QDomNode_ChildNodes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDomNode) Clear() {
 	defer qt.Recovering("QDomNode::clear")
 
 	if ptr.Pointer() != nil {
 		C.QDomNode_Clear(ptr.Pointer())
 	}
+}
+
+func (ptr *QDomNode) CloneNode(deep bool) *QDomNode {
+	defer qt.Recovering("QDomNode::cloneNode")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_CloneNode(ptr.Pointer(), C.int(qt.GoBoolToInt(deep))))
+	}
+	return nil
 }
 
 func (ptr *QDomNode) ColumnNumber() int {
@@ -1174,6 +1543,24 @@ func (ptr *QDomNode) ColumnNumber() int {
 		return int(C.QDomNode_ColumnNumber(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QDomNode) FirstChild() *QDomNode {
+	defer qt.Recovering("QDomNode::firstChild")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_FirstChild(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) FirstChildElement(tagName string) *QDomElement {
+	defer qt.Recovering("QDomNode::firstChildElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomNode_FirstChildElement(ptr.Pointer(), C.CString(tagName)))
+	}
+	return nil
 }
 
 func (ptr *QDomNode) HasAttributes() bool {
@@ -1192,6 +1579,24 @@ func (ptr *QDomNode) HasChildNodes() bool {
 		return C.QDomNode_HasChildNodes(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QDomNode) InsertAfter(newChild QDomNode_ITF, refChild QDomNode_ITF) *QDomNode {
+	defer qt.Recovering("QDomNode::insertAfter")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_InsertAfter(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(refChild)))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) InsertBefore(newChild QDomNode_ITF, refChild QDomNode_ITF) *QDomNode {
+	defer qt.Recovering("QDomNode::insertBefore")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_InsertBefore(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(refChild)))
+	}
+	return nil
 }
 
 func (ptr *QDomNode) IsAttr() bool {
@@ -1329,6 +1734,24 @@ func (ptr *QDomNode) IsText() bool {
 	return false
 }
 
+func (ptr *QDomNode) LastChild() *QDomNode {
+	defer qt.Recovering("QDomNode::lastChild")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_LastChild(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) LastChildElement(tagName string) *QDomElement {
+	defer qt.Recovering("QDomNode::lastChildElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomNode_LastChildElement(ptr.Pointer(), C.CString(tagName)))
+	}
+	return nil
+}
+
 func (ptr *QDomNode) LineNumber() int {
 	defer qt.Recovering("QDomNode::lineNumber")
 
@@ -1347,6 +1770,15 @@ func (ptr *QDomNode) LocalName() string {
 	return ""
 }
 
+func (ptr *QDomNode) NamedItem(name string) *QDomNode {
+	defer qt.Recovering("QDomNode::namedItem")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_NamedItem(ptr.Pointer(), C.CString(name)))
+	}
+	return nil
+}
+
 func (ptr *QDomNode) NamespaceURI() string {
 	defer qt.Recovering("QDomNode::namespaceURI")
 
@@ -1354,6 +1786,24 @@ func (ptr *QDomNode) NamespaceURI() string {
 		return C.GoString(C.QDomNode_NamespaceURI(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QDomNode) NextSibling() *QDomNode {
+	defer qt.Recovering("QDomNode::nextSibling")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_NextSibling(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) NextSiblingElement(tagName string) *QDomElement {
+	defer qt.Recovering("QDomNode::nextSiblingElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomNode_NextSiblingElement(ptr.Pointer(), C.CString(tagName)))
+	}
+	return nil
 }
 
 func (ptr *QDomNode) NodeName() string {
@@ -1391,6 +1841,24 @@ func (ptr *QDomNode) Normalize() {
 	}
 }
 
+func (ptr *QDomNode) OwnerDocument() *QDomDocument {
+	defer qt.Recovering("QDomNode::ownerDocument")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentFromPointer(C.QDomNode_OwnerDocument(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ParentNode() *QDomNode {
+	defer qt.Recovering("QDomNode::parentNode")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_ParentNode(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDomNode) Prefix() string {
 	defer qt.Recovering("QDomNode::prefix")
 
@@ -1398,6 +1866,42 @@ func (ptr *QDomNode) Prefix() string {
 		return C.GoString(C.QDomNode_Prefix(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QDomNode) PreviousSibling() *QDomNode {
+	defer qt.Recovering("QDomNode::previousSibling")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_PreviousSibling(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) PreviousSiblingElement(tagName string) *QDomElement {
+	defer qt.Recovering("QDomNode::previousSiblingElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomNode_PreviousSiblingElement(ptr.Pointer(), C.CString(tagName)))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) RemoveChild(oldChild QDomNode_ITF) *QDomNode {
+	defer qt.Recovering("QDomNode::removeChild")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_RemoveChild(ptr.Pointer(), PointerFromQDomNode(oldChild)))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ReplaceChild(newChild QDomNode_ITF, oldChild QDomNode_ITF) *QDomNode {
+	defer qt.Recovering("QDomNode::replaceChild")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNode_ReplaceChild(ptr.Pointer(), PointerFromQDomNode(newChild), PointerFromQDomNode(oldChild)))
+	}
+	return nil
 }
 
 func (ptr *QDomNode) Save(stream core.QTextStream_ITF, indent int, encodingPolicy QDomNode__EncodingPolicy) {
@@ -1422,6 +1926,123 @@ func (ptr *QDomNode) SetPrefix(pre string) {
 	if ptr.Pointer() != nil {
 		C.QDomNode_SetPrefix(ptr.Pointer(), C.CString(pre))
 	}
+}
+
+func (ptr *QDomNode) ToAttr() *QDomAttr {
+	defer qt.Recovering("QDomNode::toAttr")
+
+	if ptr.Pointer() != nil {
+		return NewQDomAttrFromPointer(C.QDomNode_ToAttr(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToCDATASection() *QDomCDATASection {
+	defer qt.Recovering("QDomNode::toCDATASection")
+
+	if ptr.Pointer() != nil {
+		return NewQDomCDATASectionFromPointer(C.QDomNode_ToCDATASection(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToCharacterData() *QDomCharacterData {
+	defer qt.Recovering("QDomNode::toCharacterData")
+
+	if ptr.Pointer() != nil {
+		return NewQDomCharacterDataFromPointer(C.QDomNode_ToCharacterData(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToComment() *QDomComment {
+	defer qt.Recovering("QDomNode::toComment")
+
+	if ptr.Pointer() != nil {
+		return NewQDomCommentFromPointer(C.QDomNode_ToComment(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToDocument() *QDomDocument {
+	defer qt.Recovering("QDomNode::toDocument")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentFromPointer(C.QDomNode_ToDocument(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToDocumentFragment() *QDomDocumentFragment {
+	defer qt.Recovering("QDomNode::toDocumentFragment")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentFragmentFromPointer(C.QDomNode_ToDocumentFragment(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToDocumentType() *QDomDocumentType {
+	defer qt.Recovering("QDomNode::toDocumentType")
+
+	if ptr.Pointer() != nil {
+		return NewQDomDocumentTypeFromPointer(C.QDomNode_ToDocumentType(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToElement() *QDomElement {
+	defer qt.Recovering("QDomNode::toElement")
+
+	if ptr.Pointer() != nil {
+		return NewQDomElementFromPointer(C.QDomNode_ToElement(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToEntity() *QDomEntity {
+	defer qt.Recovering("QDomNode::toEntity")
+
+	if ptr.Pointer() != nil {
+		return NewQDomEntityFromPointer(C.QDomNode_ToEntity(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToEntityReference() *QDomEntityReference {
+	defer qt.Recovering("QDomNode::toEntityReference")
+
+	if ptr.Pointer() != nil {
+		return NewQDomEntityReferenceFromPointer(C.QDomNode_ToEntityReference(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToNotation() *QDomNotation {
+	defer qt.Recovering("QDomNode::toNotation")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNotationFromPointer(C.QDomNode_ToNotation(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToProcessingInstruction() *QDomProcessingInstruction {
+	defer qt.Recovering("QDomNode::toProcessingInstruction")
+
+	if ptr.Pointer() != nil {
+		return NewQDomProcessingInstructionFromPointer(C.QDomNode_ToProcessingInstruction(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDomNode) ToText() *QDomText {
+	defer qt.Recovering("QDomNode::toText")
+
+	if ptr.Pointer() != nil {
+		return NewQDomTextFromPointer(C.QDomNode_ToText(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QDomNode) DestroyQDomNode() {
@@ -1482,6 +2103,15 @@ func NewQDomNodeList2(n QDomNodeList_ITF) *QDomNodeList {
 	return newQDomNodeListFromPointer(C.QDomNodeList_NewQDomNodeList2(PointerFromQDomNodeList(n)))
 }
 
+func (ptr *QDomNodeList) At(index int) *QDomNode {
+	defer qt.Recovering("QDomNodeList::at")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNodeList_At(ptr.Pointer(), C.int(index)))
+	}
+	return nil
+}
+
 func (ptr *QDomNodeList) Count() int {
 	defer qt.Recovering("QDomNodeList::count")
 
@@ -1498,6 +2128,15 @@ func (ptr *QDomNodeList) IsEmpty() bool {
 		return C.QDomNodeList_IsEmpty(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QDomNodeList) Item(index int) *QDomNode {
+	defer qt.Recovering("QDomNodeList::item")
+
+	if ptr.Pointer() != nil {
+		return NewQDomNodeFromPointer(C.QDomNodeList_Item(ptr.Pointer(), C.int(index)))
+	}
+	return nil
 }
 
 func (ptr *QDomNodeList) Length() int {
@@ -1724,6 +2363,15 @@ func (ptr *QDomText) NodeType() QDomNode__NodeType {
 		return QDomNode__NodeType(C.QDomText_NodeType(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QDomText) SplitText(offset int) *QDomText {
+	defer qt.Recovering("QDomText::splitText")
+
+	if ptr.Pointer() != nil {
+		return NewQDomTextFromPointer(C.QDomText_SplitText(ptr.Pointer(), C.int(offset)))
+	}
+	return nil
 }
 
 type QXmlAttributes struct {
@@ -2968,11 +3616,11 @@ func (ptr *QXmlInputSource) FetchDataDefault() {
 	}
 }
 
-func (ptr *QXmlInputSource) FromRawData(data core.QByteArray_ITF, beginning bool) string {
+func (ptr *QXmlInputSource) FromRawData(data string, beginning bool) string {
 	defer qt.Recovering("QXmlInputSource::fromRawData")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QXmlInputSource_FromRawData(ptr.Pointer(), core.PointerFromQByteArray(data), C.int(qt.GoBoolToInt(beginning))))
+		return C.GoString(C.QXmlInputSource_FromRawData(ptr.Pointer(), C.CString(data), C.int(qt.GoBoolToInt(beginning))))
 	}
 	return ""
 }

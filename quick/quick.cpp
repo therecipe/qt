@@ -33,6 +33,7 @@
 #include <QOpenGLFramebufferObject>
 #include <QPaintEvent>
 #include <QPainter>
+#include <QPixmap>
 #include <QPoint>
 #include <QPointF>
 #include <QQmlEngine>
@@ -383,6 +384,14 @@ int QQuickImageProvider_ImageType(void* ptr){
 	return static_cast<QQuickImageProvider*>(ptr)->imageType();
 }
 
+void* QQuickImageProvider_RequestImage(void* ptr, char* id, void* size, void* requestedSize){
+	return new QImage(static_cast<QQuickImageProvider*>(ptr)->requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickImageProvider_RequestPixmap(void* ptr, char* id, void* size, void* requestedSize){
+	return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
 void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr){
 	static_cast<QQuickImageProvider*>(ptr)->~QQuickImageProvider();
 }
@@ -663,6 +672,10 @@ void QQuickItem_ComponentCompleteDefault(void* ptr){
 
 int QQuickItem_Contains(void* ptr, void* point){
 	return static_cast<QQuickItem*>(ptr)->contains(*static_cast<QPointF*>(point));
+}
+
+void* QQuickItem_Cursor(void* ptr){
+	return new QCursor(static_cast<QQuickItem*>(ptr)->cursor());
 }
 
 void QQuickItem_DragEnterEvent(void* ptr, void* event){
@@ -1004,6 +1017,10 @@ public:
 	void childEvent(QChildEvent * event) { callbackQQuickItemGrabResultChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQQuickItemGrabResultCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void* QQuickItemGrabResult_Image(void* ptr){
+	return new QImage(static_cast<QQuickItemGrabResult*>(ptr)->image());
+}
 
 void* QQuickItemGrabResult_Url(void* ptr){
 	return new QUrl(static_cast<QQuickItemGrabResult*>(ptr)->url());
@@ -1454,6 +1471,10 @@ void* QQuickRenderControl_NewQQuickRenderControl(void* parent){
 	return new MyQQuickRenderControl(static_cast<QObject*>(parent));
 }
 
+void* QQuickRenderControl_Grab(void* ptr){
+	return new QImage(static_cast<QQuickRenderControl*>(ptr)->grab());
+}
+
 void QQuickRenderControl_Initialize(void* ptr, void* gl){
 	static_cast<QQuickRenderControl*>(ptr)->initialize(static_cast<QOpenGLContext*>(gl));
 }
@@ -1576,6 +1597,10 @@ public:
 	void childEvent(QChildEvent * event) { callbackQQuickTextureFactoryChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQQuickTextureFactoryCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void* QQuickTextureFactory_Image(void* ptr){
+	return new QImage(static_cast<QQuickTextureFactory*>(ptr)->image());
+}
 
 void* QQuickTextureFactory_CreateTexture(void* ptr, void* window){
 	return static_cast<QQuickTextureFactory*>(ptr)->createTexture(static_cast<QQuickWindow*>(window));
@@ -1978,6 +2003,14 @@ void* QQuickWidget_Engine(void* ptr){
 
 int QQuickWidget_Event(void* ptr, void* e){
 	return static_cast<QQuickWidget*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+void* QQuickWidget_Format(void* ptr){
+	return new QSurfaceFormat(static_cast<QQuickWidget*>(ptr)->format());
+}
+
+void* QQuickWidget_GrabFramebuffer(void* ptr){
+	return new QImage(static_cast<QQuickWidget*>(ptr)->grabFramebuffer());
 }
 
 void QQuickWidget_HideEvent(void* ptr, void* v){
@@ -2439,6 +2472,10 @@ void QQuickWindow_DisconnectFrameSwapped(void* ptr){
 
 void QQuickWindow_FrameSwapped(void* ptr){
 	static_cast<QQuickWindow*>(ptr)->frameSwapped();
+}
+
+void* QQuickWindow_GrabWindow(void* ptr){
+	return new QImage(static_cast<QQuickWindow*>(ptr)->grabWindow());
 }
 
 int QQuickWindow_QQuickWindow_HasDefaultAlphaBuffer(){

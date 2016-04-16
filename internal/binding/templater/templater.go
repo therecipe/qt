@@ -11,7 +11,7 @@ import (
 )
 
 func isSupportedFunction(c *parser.Class, f *parser.Function) bool {
-	return (f.Access == "public" || (f.Access == "protected" && strings.Contains(f.Virtual, "impure"))) && f.Status != "obsolete" && isNotAbstractConstructor(c, f) && isNotAtomic(f) && !isBlocked(f) && !(strings.Contains(f.Virtual, "impure") && f.Overload)
+	return (f.Access == "public" || (f.Access == "protected" && strings.Contains(f.Virtual, "impure"))) && f.Status != "obsolete" && f.Status != "compat" && isNotAbstractConstructor(c, f) && isNotAtomic(f) && !isBlocked(f) && !(strings.Contains(f.Virtual, "impure") && f.Overload)
 }
 
 func isNotAbstractConstructor(c *parser.Class, f *parser.Function) bool {
@@ -73,20 +73,27 @@ func classHasRealFunctionFromFile(c string, n string) bool {
 
 	switch runtime.GOOS {
 	case "darwin":
-		fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+		{
+			fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+		}
 
 	case "windows":
-		fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+		{
+			fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+		}
 
 	case "linux":
-		switch runtime.GOARCH {
-		case "amd64":
-			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
-			}
-		case "386":
-			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+		{
+			switch runtime.GOARCH {
+			case "amd64":
+				{
+					fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+				}
+
+			case "386":
+				{
+					fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)))
+				}
 			}
 		}
 	}
@@ -202,7 +209,7 @@ func isSupportedClass(c *parser.Class) bool {
 }
 
 func isBlockedClass(c *parser.Class) bool {
-	for _, n := range []string{"QException", "QPlaceContentRequest", "QPlaceContentReply", "QPlaceContent", "QPlaceContactDetail", "QPlaceCategory", "QPlaceAttribute", "QPlace", "QGeoCodingManagerEngine", "QGeoCodingManager", "QHash", "QGenericMatrix", "QContiguousCache", "QStringList", "QCache", "QString", "QItemEditorCreator", "QImageIOPlugin", "QImageIOHandler", "QIconEnginePlugin", "QGraphicsTransform", "QGraphicsLayoutItem", "QGraphicsLayout", "QGraphicsItem", "QGraphicsEffect", "QGestureRecognizer", "QGenericPlugin", "QDebug", "QAnimationGroup", "QAccessiblePlugin", "QOpenGLFunctions_ES2", "Qt", "QSharedDataPointer", "QScopedValueRollback", "QScopedArrayPointer", "QQueue", "QMultiMap", "QWinEventNotifier", "QWeakPointer", "QVarLengthArray", "QThreadStorage", "QSharedPointer", "QScopedPointer", "QMutableHashIterator", "QMultiHash", "QMapIterator", "QListIterator", "QLinkedListIterator", "QHashIterator", "QGlobalStatic", "QFutureWatcher", "QFutureSynchronizer", "QFutureIterator", "QFuture", "QEnableSharedFromThis", "QExplicitlySharedDataPointer", "QFlags"} {
+	for _, n := range []string{"QException", "QPlaceContentRequest", "QPlaceContentReply", "QPlaceContent", "QPlaceContactDetail", "QPlaceCategory", "QPlaceAttribute", "QPlace", "QGeoCodingManagerEngine", "QGeoCodingManager", "QHash", "QGenericMatrix", "QContiguousCache", "QStringList", "QCache", "QString", "QByteArray", "QItemEditorCreator", "QImageIOPlugin", "QImageIOHandler", "QIconEnginePlugin", "QGraphicsTransform", "QGraphicsLayoutItem", "QGraphicsLayout", "QGraphicsItem", "QGraphicsEffect", "QGestureRecognizer", "QGenericPlugin", "QDebug", "QAnimationGroup", "QAccessiblePlugin", "QOpenGLFunctions_ES2", "Qt", "QSharedDataPointer", "QScopedValueRollback", "QScopedArrayPointer", "QQueue", "QMultiMap", "QWinEventNotifier", "QWeakPointer", "QVarLengthArray", "QThreadStorage", "QSharedPointer", "QScopedPointer", "QMutableHashIterator", "QMultiHash", "QMapIterator", "QListIterator", "QLinkedListIterator", "QHashIterator", "QGlobalStatic", "QFutureWatcher", "QFutureSynchronizer", "QFutureIterator", "QFuture", "QEnableSharedFromThis", "QExplicitlySharedDataPointer", "QFlags"} {
 		if c.Name == n || strings.Contains(c.Name, "Iterator") {
 			return true
 		}

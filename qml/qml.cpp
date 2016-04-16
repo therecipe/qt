@@ -310,8 +310,8 @@ void QQmlApplicationEngine_Load(void* ptr, void* url){
 	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
-void QQmlApplicationEngine_LoadData(void* ptr, void* data, void* url){
-	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+void QQmlApplicationEngine_LoadData(void* ptr, char* data, void* url){
+	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, QByteArray(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlApplicationEngine_ConnectObjectCreated(void* ptr){
@@ -461,8 +461,8 @@ void QQmlComponent_ProgressChanged(void* ptr, double progress){
 	static_cast<QQmlComponent*>(ptr)->progressChanged(static_cast<double>(progress));
 }
 
-void QQmlComponent_SetData(void* ptr, void* data, void* url){
-	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+void QQmlComponent_SetData(void* ptr, char* data, void* url){
+	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, QByteArray(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlComponent_ConnectStatusChanged(void* ptr){
@@ -856,6 +856,10 @@ void* QQmlExpression_Context(void* ptr){
 
 void* QQmlExpression_Engine(void* ptr){
 	return static_cast<QQmlExpression*>(ptr)->engine();
+}
+
+void* QQmlExpression_Error(void* ptr){
+	return new QQmlError(static_cast<QQmlExpression*>(ptr)->error());
 }
 
 void* QQmlExpression_Evaluate(void* ptr, int valueIsUndefined){

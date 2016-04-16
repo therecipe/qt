@@ -200,6 +200,7 @@
 class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout {
 public:
 	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayoutPageCountChanged(this, this->objectName().toUtf8().data(), newPages); };
+	void Signal_UpdateBlock(const QTextBlock & block) { callbackQAbstractTextDocumentLayoutUpdateBlock(this, this->objectName().toUtf8().data(), new QTextBlock(block)); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTextDocumentLayoutTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractTextDocumentLayoutChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQAbstractTextDocumentLayoutCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -247,6 +248,18 @@ void QAbstractTextDocumentLayout_SetPaintDevice(void* ptr, void* device){
 
 void QAbstractTextDocumentLayout_UnregisterHandler(void* ptr, int objectType, void* component){
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QObject*>(component));
+}
+
+void QAbstractTextDocumentLayout_ConnectUpdateBlock(void* ptr){
+	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QTextBlock &)>(&QAbstractTextDocumentLayout::updateBlock), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QTextBlock &)>(&MyQAbstractTextDocumentLayout::Signal_UpdateBlock));;
+}
+
+void QAbstractTextDocumentLayout_DisconnectUpdateBlock(void* ptr){
+	QObject::disconnect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QTextBlock &)>(&QAbstractTextDocumentLayout::updateBlock), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QTextBlock &)>(&MyQAbstractTextDocumentLayout::Signal_UpdateBlock));;
+}
+
+void QAbstractTextDocumentLayout_UpdateBlock(void* ptr, void* block){
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->updateBlock(*static_cast<QTextBlock*>(block));
 }
 
 void QAbstractTextDocumentLayout_TimerEvent(void* ptr, void* event){
@@ -1160,6 +1173,10 @@ void QBrush_SetColor(void* ptr, void* color){
 	static_cast<QBrush*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
 
+void* QBrush_Texture(void* ptr){
+	return new QPixmap(static_cast<QBrush*>(ptr)->texture());
+}
+
 void* QBrush_NewQBrush(){
 	return new QBrush();
 }
@@ -1236,6 +1253,10 @@ void QBrush_Swap(void* ptr, void* other){
 	static_cast<QBrush*>(ptr)->swap(*static_cast<QBrush*>(other));
 }
 
+void* QBrush_TextureImage(void* ptr){
+	return new QImage(static_cast<QBrush*>(ptr)->textureImage());
+}
+
 void QBrush_DestroyQBrush(void* ptr){
 	static_cast<QBrush*>(ptr)->~QBrush();
 }
@@ -1299,6 +1320,10 @@ void QClipboard_FindBufferChanged(void* ptr){
 	static_cast<QClipboard*>(ptr)->findBufferChanged();
 }
 
+void* QClipboard_Image(void* ptr, int mode){
+	return new QImage(static_cast<QClipboard*>(ptr)->image(static_cast<QClipboard::Mode>(mode)));
+}
+
 int QClipboard_OwnsClipboard(void* ptr){
 	return static_cast<QClipboard*>(ptr)->ownsClipboard();
 }
@@ -1309,6 +1334,10 @@ int QClipboard_OwnsFindBuffer(void* ptr){
 
 int QClipboard_OwnsSelection(void* ptr){
 	return static_cast<QClipboard*>(ptr)->ownsSelection();
+}
+
+void* QClipboard_Pixmap(void* ptr, int mode){
+	return new QPixmap(static_cast<QClipboard*>(ptr)->pixmap(static_cast<QClipboard::Mode>(mode)));
 }
 
 void QClipboard_ConnectSelectionChanged(void* ptr){
@@ -1815,6 +1844,10 @@ void* QCursor_Mask(void* ptr){
 	return const_cast<QBitmap*>(static_cast<QCursor*>(ptr)->mask());
 }
 
+void* QCursor_Pixmap(void* ptr){
+	return new QPixmap(static_cast<QCursor*>(ptr)->pixmap());
+}
+
 void QCursor_QCursor_SetPos4(void* screen, void* p){
 	QCursor::setPos(static_cast<QScreen*>(screen), *static_cast<QPoint*>(p));
 }
@@ -1928,6 +1961,10 @@ void QDrag_ActionChanged(void* ptr, int action){
 	static_cast<QDrag*>(ptr)->actionChanged(static_cast<Qt::DropAction>(action));
 }
 
+void* QDrag_DragCursor(void* ptr, int action){
+	return new QPixmap(static_cast<QDrag*>(ptr)->dragCursor(static_cast<Qt::DropAction>(action)));
+}
+
 int QDrag_Exec(void* ptr, int supportedActions){
 	return static_cast<QDrag*>(ptr)->exec(static_cast<Qt::DropAction>(supportedActions));
 }
@@ -1942,6 +1979,10 @@ void* QDrag_HotSpot(void* ptr){
 
 void* QDrag_MimeData(void* ptr){
 	return static_cast<QDrag*>(ptr)->mimeData();
+}
+
+void* QDrag_Pixmap(void* ptr){
+	return new QPixmap(static_cast<QDrag*>(ptr)->pixmap());
 }
 
 void QDrag_SetDragCursor(void* ptr, void* cursor, int action){
@@ -2296,6 +2337,10 @@ void QFont_QFont_RemoveSubstitutions(char* familyName){
 	QFont::removeSubstitutions(QString(familyName));
 }
 
+void* QFont_Resolve(void* ptr, void* other){
+	return new QFont(static_cast<QFont*>(ptr)->resolve(*static_cast<QFont*>(other)));
+}
+
 void QFont_SetBold(void* ptr, int enable){
 	static_cast<QFont*>(ptr)->setBold(enable != 0);
 }
@@ -2472,8 +2517,8 @@ int QFontDatabase_QFontDatabase_AddApplicationFont(char* fileName){
 	return QFontDatabase::addApplicationFont(QString(fileName));
 }
 
-int QFontDatabase_QFontDatabase_AddApplicationFontFromData(void* fontData){
-	return QFontDatabase::addApplicationFontFromData(*static_cast<QByteArray*>(fontData));
+int QFontDatabase_QFontDatabase_AddApplicationFontFromData(char* fontData){
+	return QFontDatabase::addApplicationFontFromData(QByteArray(fontData));
 }
 
 char* QFontDatabase_QFontDatabase_ApplicationFontFamilies(int id){
@@ -2486,6 +2531,10 @@ int QFontDatabase_Bold(void* ptr, char* family, char* style){
 
 char* QFontDatabase_Families(void* ptr, int writingSystem){
 	return static_cast<QFontDatabase*>(ptr)->families(static_cast<QFontDatabase::WritingSystem>(writingSystem)).join("|").toUtf8().data();
+}
+
+void* QFontDatabase_Font(void* ptr, char* family, char* style, int pointSize){
+	return new QFont(static_cast<QFontDatabase*>(ptr)->font(QString(family), QString(style), pointSize));
 }
 
 int QFontDatabase_IsBitmapScalable(void* ptr, char* family, char* style){
@@ -2522,6 +2571,10 @@ char* QFontDatabase_StyleString2(void* ptr, void* fontInfo){
 
 char* QFontDatabase_Styles(void* ptr, char* family){
 	return static_cast<QFontDatabase*>(ptr)->styles(QString(family)).join("|").toUtf8().data();
+}
+
+void* QFontDatabase_QFontDatabase_SystemFont(int ty){
+	return new QFont(QFontDatabase::systemFont(static_cast<QFontDatabase::SystemFont>(ty)));
 }
 
 int QFontDatabase_Weight(void* ptr, char* family, char* style){
@@ -2864,6 +2917,10 @@ int QGlyphRun_Overline(void* ptr){
 	return static_cast<QGlyphRun*>(ptr)->overline();
 }
 
+void* QGlyphRun_RawFont(void* ptr){
+	return new QRawFont(static_cast<QGlyphRun*>(ptr)->rawFont());
+}
+
 void QGlyphRun_SetBoundingRect(void* ptr, void* boundingRect){
 	static_cast<QGlyphRun*>(ptr)->setBoundingRect(*static_cast<QRectF*>(boundingRect));
 }
@@ -2945,6 +3002,7 @@ public:
 	void Signal_FontDatabaseChanged() { callbackQGuiApplicationFontDatabaseChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_LastWindowClosed() { callbackQGuiApplicationLastWindowClosed(this, this->objectName().toUtf8().data()); };
 	void Signal_LayoutDirectionChanged(Qt::LayoutDirection direction) { callbackQGuiApplicationLayoutDirectionChanged(this, this->objectName().toUtf8().data(), direction); };
+	void Signal_PaletteChanged(const QPalette & palette) { callbackQGuiApplicationPaletteChanged(this, this->objectName().toUtf8().data(), new QPalette(palette)); };
 	void Signal_ScreenAdded(QScreen * screen) { callbackQGuiApplicationScreenAdded(this, this->objectName().toUtf8().data(), screen); };
 	void Signal_ScreenRemoved(QScreen * screen) { callbackQGuiApplicationScreenRemoved(this, this->objectName().toUtf8().data(), screen); };
 	void timerEvent(QTimerEvent * event) { callbackQGuiApplicationTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -3102,6 +3160,10 @@ void QGuiApplication_FocusWindowChanged(void* ptr, void* focusWindow){
 	static_cast<QGuiApplication*>(ptr)->focusWindowChanged(static_cast<QWindow*>(focusWindow));
 }
 
+void* QGuiApplication_QGuiApplication_Font(){
+	return new QFont(QGuiApplication::font());
+}
+
 void QGuiApplication_ConnectFontDatabaseChanged(void* ptr){
 	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)()>(&QGuiApplication::fontDatabaseChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)()>(&MyQGuiApplication::Signal_FontDatabaseChanged));;
 }
@@ -3164,6 +3226,22 @@ int QGuiApplication_QGuiApplication_MouseButtons(){
 
 int QGuiApplication_Notify(void* ptr, void* object, void* event){
 	return static_cast<QGuiApplication*>(ptr)->notify(static_cast<QObject*>(object), static_cast<QEvent*>(event));
+}
+
+void* QGuiApplication_QGuiApplication_Palette(){
+	return new QPalette(QGuiApplication::palette());
+}
+
+void QGuiApplication_ConnectPaletteChanged(void* ptr){
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(const QPalette &)>(&QGuiApplication::paletteChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(const QPalette &)>(&MyQGuiApplication::Signal_PaletteChanged));;
+}
+
+void QGuiApplication_DisconnectPaletteChanged(void* ptr){
+	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(const QPalette &)>(&QGuiApplication::paletteChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(const QPalette &)>(&MyQGuiApplication::Signal_PaletteChanged));;
+}
+
+void QGuiApplication_PaletteChanged(void* ptr, void* palette){
+	static_cast<QGuiApplication*>(ptr)->paletteChanged(*static_cast<QPalette*>(palette));
 }
 
 void* QGuiApplication_QGuiApplication_PrimaryScreen(){
@@ -3358,6 +3436,22 @@ void QIcon_Paint2(void* ptr, void* painter, int x, int y, int w, int h, int alig
 	static_cast<QIcon*>(ptr)->paint(static_cast<QPainter*>(painter), x, y, w, h, static_cast<Qt::AlignmentFlag>(alignment), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
+void* QIcon_Pixmap2(void* ptr, void* window, void* size, int mode, int state){
+	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(static_cast<QWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+}
+
+void* QIcon_Pixmap(void* ptr, void* size, int mode, int state){
+	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(*static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+}
+
+void* QIcon_Pixmap4(void* ptr, int extent, int mode, int state){
+	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(extent, static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+}
+
+void* QIcon_Pixmap3(void* ptr, int w, int h, int mode, int state){
+	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(w, h, static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+}
+
 void QIcon_QIcon_SetThemeName(char* name){
 	QIcon::setThemeName(QString(name));
 }
@@ -3392,6 +3486,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void addFile(const QString & fileName, const QSize & size, QIcon::Mode mode, QIcon::State state) { callbackQIconEngineAddFile(this, this->objectNameAbs().toUtf8().data(), fileName.toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height()), mode, state); };
+	void addPixmap(const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state) { callbackQIconEngineAddPixmap(this, this->objectNameAbs().toUtf8().data(), new QPixmap(pixmap), mode, state); };
 	void virtual_hook(int id, void * data) { callbackQIconEngineVirtual_hook(this, this->objectNameAbs().toUtf8().data(), id, data); };
 };
 
@@ -3405,6 +3500,14 @@ void QIconEngine_AddFile(void* ptr, char* fileName, void* size, int mode, int st
 
 void QIconEngine_AddFileDefault(void* ptr, char* fileName, void* size, int mode, int state){
 	static_cast<QIconEngine*>(ptr)->QIconEngine::addFile(QString(fileName), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
+}
+
+void QIconEngine_AddPixmap(void* ptr, void* pixmap, int mode, int state){
+	static_cast<MyQIconEngine*>(ptr)->addPixmap(*static_cast<QPixmap*>(pixmap), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
+}
+
+void QIconEngine_AddPixmapDefault(void* ptr, void* pixmap, int mode, int state){
+	static_cast<QIconEngine*>(ptr)->QIconEngine::addPixmap(*static_cast<QPixmap*>(pixmap), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
 void* QIconEngine_Clone(void* ptr){
@@ -3421,6 +3524,10 @@ char* QIconEngine_Key(void* ptr){
 
 void QIconEngine_Paint(void* ptr, void* painter, void* rect, int mode, int state){
 	static_cast<QIconEngine*>(ptr)->paint(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
+}
+
+void* QIconEngine_Pixmap(void* ptr, void* size, int mode, int state){
+	return new QPixmap(static_cast<QIconEngine*>(ptr)->pixmap(*static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
 }
 
 int QIconEngine_Read(void* ptr, void* in){
@@ -3460,6 +3567,10 @@ int QImage_ColorCount(void* ptr){
 	return static_cast<QImage*>(ptr)->colorCount();
 }
 
+void* QImage_Copy(void* ptr, void* rectangle){
+	return new QImage(static_cast<QImage*>(ptr)->copy(*static_cast<QRect*>(rectangle)));
+}
+
 void QImage_Fill2(void* ptr, int color){
 	static_cast<QImage*>(ptr)->fill(static_cast<Qt::GlobalColor>(color));
 }
@@ -3482,6 +3593,18 @@ void* QImage_Offset(void* ptr){
 
 void* QImage_Rect(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QImage*>(ptr)->rect()).x(), static_cast<QRect>(static_cast<QImage*>(ptr)->rect()).y(), static_cast<QRect>(static_cast<QImage*>(ptr)->rect()).width(), static_cast<QRect>(static_cast<QImage*>(ptr)->rect()).height());
+}
+
+void* QImage_Scaled(void* ptr, void* size, int aspectRatioMode, int transformMode){
+	return new QImage(static_cast<QImage*>(ptr)->scaled(*static_cast<QSize*>(size), static_cast<Qt::AspectRatioMode>(aspectRatioMode), static_cast<Qt::TransformationMode>(transformMode)));
+}
+
+void* QImage_ScaledToHeight(void* ptr, int height, int mode){
+	return new QImage(static_cast<QImage*>(ptr)->scaledToHeight(height, static_cast<Qt::TransformationMode>(mode)));
+}
+
+void* QImage_ScaledToWidth(void* ptr, int width, int mode){
+	return new QImage(static_cast<QImage*>(ptr)->scaledToWidth(width, static_cast<Qt::TransformationMode>(mode)));
 }
 
 void QImage_SetOffset(void* ptr, void* offset){
@@ -3544,6 +3667,18 @@ long long QImage_CacheKey(void* ptr){
 	return static_cast<long long>(static_cast<QImage*>(ptr)->cacheKey());
 }
 
+void* QImage_Copy2(void* ptr, int x, int y, int width, int height){
+	return new QImage(static_cast<QImage*>(ptr)->copy(x, y, width, height));
+}
+
+void* QImage_CreateAlphaMask(void* ptr, int flags){
+	return new QImage(static_cast<QImage*>(ptr)->createAlphaMask(static_cast<Qt::ImageConversionFlag>(flags)));
+}
+
+void* QImage_CreateHeuristicMask(void* ptr, int clipTight){
+	return new QImage(static_cast<QImage*>(ptr)->createHeuristicMask(clipTight != 0));
+}
+
 int QImage_Depth(void* ptr){
 	return static_cast<QImage*>(ptr)->depth();
 }
@@ -3562,6 +3697,10 @@ int QImage_DotsPerMeterY(void* ptr){
 
 int QImage_Format(void* ptr){
 	return static_cast<QImage*>(ptr)->format();
+}
+
+void* QImage_QImage_FromData2(char* data, char* format){
+	return new QImage(QImage::fromData(QByteArray(data), const_cast<const char*>(format)));
 }
 
 int QImage_HasAlphaChannel(void* ptr){
@@ -3584,8 +3723,8 @@ int QImage_Load(void* ptr, char* fileName, char* format){
 	return static_cast<QImage*>(ptr)->load(QString(fileName), const_cast<const char*>(format));
 }
 
-int QImage_LoadFromData2(void* ptr, void* data, char* format){
-	return static_cast<QImage*>(ptr)->loadFromData(*static_cast<QByteArray*>(data), const_cast<const char*>(format));
+int QImage_LoadFromData2(void* ptr, char* data, char* format){
+	return static_cast<QImage*>(ptr)->loadFromData(QByteArray(data), const_cast<const char*>(format));
 }
 
 int QImage_PixelIndex(void* ptr, void* position){
@@ -3602,6 +3741,10 @@ int QImage_Save2(void* ptr, void* device, char* format, int quality){
 
 int QImage_Save(void* ptr, char* fileName, char* format, int quality){
 	return static_cast<QImage*>(ptr)->save(QString(fileName), const_cast<const char*>(format), quality);
+}
+
+void* QImage_Scaled2(void* ptr, int width, int height, int aspectRatioMode, int transformMode){
+	return new QImage(static_cast<QImage*>(ptr)->scaled(width, height, static_cast<Qt::AspectRatioMode>(aspectRatioMode), static_cast<Qt::TransformationMode>(transformMode)));
 }
 
 void QImage_SetColorCount(void* ptr, int colorCount){
@@ -3636,6 +3779,10 @@ int QImage_QImage_ToImageFormat(void* format){
 	return QImage::toImageFormat(*static_cast<QPixelFormat*>(format));
 }
 
+void* QImage_Transformed2(void* ptr, void* matrix, int mode){
+	return new QImage(static_cast<QImage*>(ptr)->transformed(*static_cast<QTransform*>(matrix), static_cast<Qt::TransformationMode>(mode)));
+}
+
 int QImage_Valid(void* ptr, void* pos){
 	return static_cast<QImage*>(ptr)->valid(*static_cast<QPoint*>(pos));
 }
@@ -3648,16 +3795,28 @@ void QImage_DestroyQImage(void* ptr){
 	static_cast<QImage*>(ptr)->~QImage();
 }
 
+void* QImage_ConvertToFormat(void* ptr, int format, int flags){
+	return new QImage(static_cast<QImage*>(ptr)->convertToFormat(static_cast<QImage::Format>(format), static_cast<Qt::ImageConversionFlag>(flags)));
+}
+
+void* QImage_Mirrored(void* ptr, int horizontal, int vertical){
+	return new QImage(static_cast<QImage*>(ptr)->mirrored(horizontal != 0, vertical != 0));
+}
+
+void* QImage_RgbSwapped(void* ptr){
+	return new QImage(static_cast<QImage*>(ptr)->rgbSwapped());
+}
+
 void* QImageReader_NewQImageReader(){
 	return new QImageReader();
 }
 
-void* QImageReader_NewQImageReader2(void* device, void* format){
-	return new QImageReader(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format));
+void* QImageReader_NewQImageReader2(void* device, char* format){
+	return new QImageReader(static_cast<QIODevice*>(device), QByteArray(format));
 }
 
-void* QImageReader_NewQImageReader3(char* fileName, void* format){
-	return new QImageReader(QString(fileName), *static_cast<QByteArray*>(format));
+void* QImageReader_NewQImageReader3(char* fileName, char* format){
+	return new QImageReader(QString(fileName), QByteArray(format));
 }
 
 int QImageReader_AutoDetectImageFormat(void* ptr){
@@ -3708,20 +3867,20 @@ char* QImageReader_FileName(void* ptr){
 	return static_cast<QImageReader*>(ptr)->fileName().toUtf8().data();
 }
 
-void* QImageReader_Format(void* ptr){
-	return new QByteArray(static_cast<QImageReader*>(ptr)->format());
+char* QImageReader_Format(void* ptr){
+	return QString(static_cast<QImageReader*>(ptr)->format()).toUtf8().data();
 }
 
 int QImageReader_ImageCount(void* ptr){
 	return static_cast<QImageReader*>(ptr)->imageCount();
 }
 
-void* QImageReader_QImageReader_ImageFormat3(void* device){
-	return new QByteArray(QImageReader::imageFormat(static_cast<QIODevice*>(device)));
+char* QImageReader_QImageReader_ImageFormat3(void* device){
+	return QString(QImageReader::imageFormat(static_cast<QIODevice*>(device))).toUtf8().data();
 }
 
-void* QImageReader_QImageReader_ImageFormat2(char* fileName){
-	return new QByteArray(QImageReader::imageFormat(QString(fileName)));
+char* QImageReader_QImageReader_ImageFormat2(char* fileName){
+	return QString(QImageReader::imageFormat(QString(fileName))).toUtf8().data();
 }
 
 int QImageReader_ImageFormat(void* ptr){
@@ -3746,6 +3905,10 @@ int QImageReader_NextImageDelay(void* ptr){
 
 int QImageReader_Quality(void* ptr){
 	return static_cast<QImageReader*>(ptr)->quality();
+}
+
+void* QImageReader_Read(void* ptr){
+	return new QImage(static_cast<QImageReader*>(ptr)->read());
 }
 
 int QImageReader_Read2(void* ptr, void* image){
@@ -3788,8 +3951,8 @@ void QImageReader_SetFileName(void* ptr, char* fileName){
 	static_cast<QImageReader*>(ptr)->setFileName(QString(fileName));
 }
 
-void QImageReader_SetFormat(void* ptr, void* format){
-	static_cast<QImageReader*>(ptr)->setFormat(*static_cast<QByteArray*>(format));
+void QImageReader_SetFormat(void* ptr, char* format){
+	static_cast<QImageReader*>(ptr)->setFormat(QByteArray(format));
 }
 
 void QImageReader_SetQuality(void* ptr, int quality){
@@ -3808,8 +3971,8 @@ void* QImageReader_Size(void* ptr){
 	return new QSize(static_cast<QSize>(static_cast<QImageReader*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QImageReader*>(ptr)->size()).height());
 }
 
-void* QImageReader_SubType(void* ptr){
-	return new QByteArray(static_cast<QImageReader*>(ptr)->subType());
+char* QImageReader_SubType(void* ptr){
+	return QString(static_cast<QImageReader*>(ptr)->subType()).toUtf8().data();
 }
 
 int QImageReader_SupportsAnimation(void* ptr){
@@ -3840,12 +4003,12 @@ void* QImageWriter_NewQImageWriter(){
 	return new QImageWriter();
 }
 
-void* QImageWriter_NewQImageWriter2(void* device, void* format){
-	return new QImageWriter(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format));
+void* QImageWriter_NewQImageWriter2(void* device, char* format){
+	return new QImageWriter(static_cast<QIODevice*>(device), QByteArray(format));
 }
 
-void* QImageWriter_NewQImageWriter3(char* fileName, void* format){
-	return new QImageWriter(QString(fileName), *static_cast<QByteArray*>(format));
+void* QImageWriter_NewQImageWriter3(char* fileName, char* format){
+	return new QImageWriter(QString(fileName), QByteArray(format));
 }
 
 int QImageWriter_CanWrite(void* ptr){
@@ -3872,8 +4035,8 @@ char* QImageWriter_FileName(void* ptr){
 	return static_cast<QImageWriter*>(ptr)->fileName().toUtf8().data();
 }
 
-void* QImageWriter_Format(void* ptr){
-	return new QByteArray(static_cast<QImageWriter*>(ptr)->format());
+char* QImageWriter_Format(void* ptr){
+	return QString(static_cast<QImageWriter*>(ptr)->format()).toUtf8().data();
 }
 
 int QImageWriter_OptimizedWrite(void* ptr){
@@ -3900,8 +4063,8 @@ void QImageWriter_SetFileName(void* ptr, char* fileName){
 	static_cast<QImageWriter*>(ptr)->setFileName(QString(fileName));
 }
 
-void QImageWriter_SetFormat(void* ptr, void* format){
-	static_cast<QImageWriter*>(ptr)->setFormat(*static_cast<QByteArray*>(format));
+void QImageWriter_SetFormat(void* ptr, char* format){
+	static_cast<QImageWriter*>(ptr)->setFormat(QByteArray(format));
 }
 
 void QImageWriter_SetOptimizedWrite(void* ptr, int optimize){
@@ -3916,8 +4079,8 @@ void QImageWriter_SetQuality(void* ptr, int quality){
 	static_cast<QImageWriter*>(ptr)->setQuality(quality);
 }
 
-void QImageWriter_SetSubType(void* ptr, void* ty){
-	static_cast<QImageWriter*>(ptr)->setSubType(*static_cast<QByteArray*>(ty));
+void QImageWriter_SetSubType(void* ptr, char* ty){
+	static_cast<QImageWriter*>(ptr)->setSubType(QByteArray(ty));
 }
 
 void QImageWriter_SetText(void* ptr, char* key, char* text){
@@ -3928,8 +4091,8 @@ void QImageWriter_SetTransformation(void* ptr, int transform){
 	static_cast<QImageWriter*>(ptr)->setTransformation(static_cast<QImageIOHandler::Transformation>(transform));
 }
 
-void* QImageWriter_SubType(void* ptr){
-	return new QByteArray(static_cast<QImageWriter*>(ptr)->subType());
+char* QImageWriter_SubType(void* ptr){
+	return QString(static_cast<QImageWriter*>(ptr)->subType()).toUtf8().data();
 }
 
 int QImageWriter_SupportsOption(void* ptr, int option){
@@ -3975,6 +4138,10 @@ int QInputMethod_IsAnimating(void* ptr){
 
 int QInputMethod_IsVisible(void* ptr){
 	return static_cast<QInputMethod*>(ptr)->isVisible();
+}
+
+void* QInputMethod_Locale(void* ptr){
+	return new QLocale(static_cast<QInputMethod*>(ptr)->locale());
 }
 
 void QInputMethod_ConnectAnimatingChanged(void* ptr){
@@ -4275,12 +4442,20 @@ int QKeySequence_Count(void* ptr){
 	return static_cast<QKeySequence*>(ptr)->count();
 }
 
+void* QKeySequence_QKeySequence_FromString(char* str, int format){
+	return new QKeySequence(QKeySequence::fromString(QString(str), static_cast<QKeySequence::SequenceFormat>(format)));
+}
+
 int QKeySequence_IsEmpty(void* ptr){
 	return static_cast<QKeySequence*>(ptr)->isEmpty();
 }
 
 int QKeySequence_Matches(void* ptr, void* seq){
 	return static_cast<QKeySequence*>(ptr)->matches(*static_cast<QKeySequence*>(seq));
+}
+
+void* QKeySequence_QKeySequence_Mnemonic(char* text){
+	return new QKeySequence(QKeySequence::mnemonic(QString(text)));
 }
 
 void QKeySequence_Swap(void* ptr, void* other){
@@ -4485,16 +4660,16 @@ int QMovie_Speed(void* ptr){
 	return static_cast<QMovie*>(ptr)->speed();
 }
 
-void* QMovie_NewQMovie2(void* device, void* format, void* parent){
-	return new QMovie(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format), static_cast<QObject*>(parent));
+void* QMovie_NewQMovie2(void* device, char* format, void* parent){
+	return new QMovie(static_cast<QIODevice*>(device), QByteArray(format), static_cast<QObject*>(parent));
 }
 
 void* QMovie_NewQMovie(void* parent){
 	return new QMovie(static_cast<QObject*>(parent));
 }
 
-void* QMovie_NewQMovie3(char* fileName, void* format, void* parent){
-	return new QMovie(QString(fileName), *static_cast<QByteArray*>(format), static_cast<QObject*>(parent));
+void* QMovie_NewQMovie3(char* fileName, char* format, void* parent){
+	return new QMovie(QString(fileName), QByteArray(format), static_cast<QObject*>(parent));
 }
 
 void* QMovie_BackgroundColor(void* ptr){
@@ -4503,6 +4678,14 @@ void* QMovie_BackgroundColor(void* ptr){
 
 int QMovie_CurrentFrameNumber(void* ptr){
 	return static_cast<QMovie*>(ptr)->currentFrameNumber();
+}
+
+void* QMovie_CurrentImage(void* ptr){
+	return new QImage(static_cast<QMovie*>(ptr)->currentImage());
+}
+
+void* QMovie_CurrentPixmap(void* ptr){
+	return new QPixmap(static_cast<QMovie*>(ptr)->currentPixmap());
 }
 
 void* QMovie_Device(void* ptr){
@@ -4537,8 +4720,8 @@ void QMovie_Finished(void* ptr){
 	static_cast<QMovie*>(ptr)->finished();
 }
 
-void* QMovie_Format(void* ptr){
-	return new QByteArray(static_cast<QMovie*>(ptr)->format());
+char* QMovie_Format(void* ptr){
+	return QString(static_cast<QMovie*>(ptr)->format()).toUtf8().data();
 }
 
 void QMovie_ConnectFrameChanged(void* ptr){
@@ -4609,8 +4792,8 @@ void QMovie_SetFileName(void* ptr, char* fileName){
 	static_cast<QMovie*>(ptr)->setFileName(QString(fileName));
 }
 
-void QMovie_SetFormat(void* ptr, void* format){
-	static_cast<QMovie*>(ptr)->setFormat(*static_cast<QByteArray*>(format));
+void QMovie_SetFormat(void* ptr, char* format){
+	static_cast<QMovie*>(ptr)->setFormat(QByteArray(format));
 }
 
 void QMovie_SetPaused(void* ptr, int paused){
@@ -4734,8 +4917,16 @@ void QOffscreenSurface_Destroy(void* ptr){
 	static_cast<QOffscreenSurface*>(ptr)->destroy();
 }
 
+void* QOffscreenSurface_Format(void* ptr){
+	return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->format());
+}
+
 int QOffscreenSurface_IsValid(void* ptr){
 	return static_cast<QOffscreenSurface*>(ptr)->isValid();
+}
+
+void* QOffscreenSurface_RequestedFormat(void* ptr){
+	return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->requestedFormat());
 }
 
 void* QOffscreenSurface_Screen(void* ptr){
@@ -4832,6 +5023,10 @@ int QPageLayout_Mode(void* ptr){
 
 int QPageLayout_Orientation(void* ptr){
 	return static_cast<QPageLayout*>(ptr)->orientation();
+}
+
+void* QPageLayout_PageSize(void* ptr){
+	return new QPageSize(static_cast<QPageLayout*>(ptr)->pageSize());
 }
 
 void* QPageLayout_PaintRectPixels(void* ptr, int resolution){
@@ -5011,6 +5206,10 @@ public:
 
 int QPagedPaintDevice_NewPage(void* ptr){
 	return static_cast<QPagedPaintDevice*>(ptr)->newPage();
+}
+
+void* QPagedPaintDevice_PageLayout(void* ptr){
+	return new QPageLayout(static_cast<QPagedPaintDevice*>(ptr)->pageLayout());
 }
 
 int QPagedPaintDevice_PageSize(void* ptr){
@@ -5337,6 +5536,7 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void drawPolygon(const QPointF * points, int pointCount, QPaintEngine::PolygonDrawMode mode) { callbackQPaintEngineDrawPolygon(this, this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount, mode); };
 	void drawLines(const QLineF * lines, int lineCount) { callbackQPaintEngineDrawLines(this, this->objectNameAbs().toUtf8().data(), const_cast<QLineF*>(lines), lineCount); };
+	void drawPath(const QPainterPath & path) { callbackQPaintEngineDrawPath(this, this->objectNameAbs().toUtf8().data(), new QPainterPath(path)); };
 	void drawPoints(const QPointF * points, int pointCount) { callbackQPaintEngineDrawPoints(this, this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount); };
 	void drawRects(const QRectF * rects, int rectCount) { callbackQPaintEngineDrawRects(this, this->objectNameAbs().toUtf8().data(), const_cast<QRectF*>(rects), rectCount); };
 };
@@ -5359,6 +5559,14 @@ void QPaintEngine_DrawLines(void* ptr, void* lines, int lineCount){
 
 void QPaintEngine_DrawLinesDefault(void* ptr, void* lines, int lineCount){
 	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawLines(static_cast<QLineF*>(lines), lineCount);
+}
+
+void QPaintEngine_DrawPath(void* ptr, void* path){
+	static_cast<MyQPaintEngine*>(ptr)->drawPath(*static_cast<QPainterPath*>(path));
+}
+
+void QPaintEngine_DrawPathDefault(void* ptr, void* path){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawPath(*static_cast<QPainterPath*>(path));
 }
 
 void QPaintEngine_DrawPixmap(void* ptr, void* r, void* pm, void* sr){
@@ -5450,12 +5658,20 @@ int QPaintEngineState_ClipOperation(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->clipOperation();
 }
 
+void* QPaintEngineState_ClipPath(void* ptr){
+	return new QPainterPath(static_cast<QPaintEngineState*>(ptr)->clipPath());
+}
+
 void* QPaintEngineState_ClipRegion(void* ptr){
 	return new QRegion(static_cast<QPaintEngineState*>(ptr)->clipRegion());
 }
 
 int QPaintEngineState_CompositionMode(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->compositionMode();
+}
+
+void* QPaintEngineState_Font(void* ptr){
+	return new QFont(static_cast<QPaintEngineState*>(ptr)->font());
 }
 
 int QPaintEngineState_IsClipEnabled(void* ptr){
@@ -5468,6 +5684,10 @@ double QPaintEngineState_Opacity(void* ptr){
 
 void* QPaintEngineState_Painter(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->painter();
+}
+
+void* QPaintEngineState_Pen(void* ptr){
+	return new QPen(static_cast<QPaintEngineState*>(ptr)->pen());
 }
 
 int QPaintEngineState_PenNeedsResolving(void* ptr){
@@ -5676,6 +5896,10 @@ void* QPainter_Brush(void* ptr){
 
 void* QPainter_BrushOrigin(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QPainter*>(ptr)->brushOrigin()).x(), static_cast<QPoint>(static_cast<QPainter*>(ptr)->brushOrigin()).y());
+}
+
+void* QPainter_ClipPath(void* ptr){
+	return new QPainterPath(static_cast<QPainter*>(ptr)->clipPath());
 }
 
 void* QPainter_ClipRegion(void* ptr){
@@ -6010,6 +6234,18 @@ void QPainter_FillRect9(void* ptr, int x, int y, int width, int height, void* co
 	static_cast<QPainter*>(ptr)->fillRect(x, y, width, height, *static_cast<QColor*>(color));
 }
 
+void* QPainter_Font(void* ptr){
+	return new QFont(static_cast<QPainter*>(ptr)->font());
+}
+
+void* QPainter_FontInfo(void* ptr){
+	return new QFontInfo(static_cast<QPainter*>(ptr)->fontInfo());
+}
+
+void* QPainter_FontMetrics(void* ptr){
+	return new QFontMetrics(static_cast<QPainter*>(ptr)->fontMetrics());
+}
+
 int QPainter_HasClipping(void* ptr){
 	return static_cast<QPainter*>(ptr)->hasClipping();
 }
@@ -6028,6 +6264,10 @@ double QPainter_Opacity(void* ptr){
 
 void* QPainter_PaintEngine(void* ptr){
 	return static_cast<QPainter*>(ptr)->paintEngine();
+}
+
+void* QPainter_Pen(void* ptr){
+	return new QPen(static_cast<QPainter*>(ptr)->pen());
 }
 
 int QPainter_RenderHints(void* ptr){
@@ -6326,6 +6566,10 @@ int QPainterPath_FillRule(void* ptr){
 	return static_cast<QPainterPath*>(ptr)->fillRule();
 }
 
+void* QPainterPath_Intersected(void* ptr, void* p){
+	return new QPainterPath(static_cast<QPainterPath*>(ptr)->intersected(*static_cast<QPainterPath*>(p)));
+}
+
 int QPainterPath_Intersects2(void* ptr, void* p){
 	return static_cast<QPainterPath*>(ptr)->intersects(*static_cast<QPainterPath*>(p));
 }
@@ -6350,12 +6594,28 @@ void QPainterPath_QuadTo2(void* ptr, double cx, double cy, double endPointX, dou
 	static_cast<QPainterPath*>(ptr)->quadTo(static_cast<double>(cx), static_cast<double>(cy), static_cast<double>(endPointX), static_cast<double>(endPointY));
 }
 
+void* QPainterPath_Simplified(void* ptr){
+	return new QPainterPath(static_cast<QPainterPath*>(ptr)->simplified());
+}
+
 double QPainterPath_SlopeAtPercent(void* ptr, double t){
 	return static_cast<double>(static_cast<QPainterPath*>(ptr)->slopeAtPercent(static_cast<double>(t)));
 }
 
+void* QPainterPath_Subtracted(void* ptr, void* p){
+	return new QPainterPath(static_cast<QPainterPath*>(ptr)->subtracted(*static_cast<QPainterPath*>(p)));
+}
+
 void QPainterPath_Swap(void* ptr, void* other){
 	static_cast<QPainterPath*>(ptr)->swap(*static_cast<QPainterPath*>(other));
+}
+
+void* QPainterPath_ToFillPolygon(void* ptr, void* matrix){
+	return new QPolygonF(static_cast<QPainterPath*>(ptr)->toFillPolygon(*static_cast<QTransform*>(matrix)));
+}
+
+void* QPainterPath_ToReversed(void* ptr){
+	return new QPainterPath(static_cast<QPainterPath*>(ptr)->toReversed());
 }
 
 void QPainterPath_Translate2(void* ptr, void* offset){
@@ -6364,6 +6624,18 @@ void QPainterPath_Translate2(void* ptr, void* offset){
 
 void QPainterPath_Translate(void* ptr, double dx, double dy){
 	static_cast<QPainterPath*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy));
+}
+
+void* QPainterPath_Translated2(void* ptr, void* offset){
+	return new QPainterPath(static_cast<QPainterPath*>(ptr)->translated(*static_cast<QPointF*>(offset)));
+}
+
+void* QPainterPath_Translated(void* ptr, double dx, double dy){
+	return new QPainterPath(static_cast<QPainterPath*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy)));
+}
+
+void* QPainterPath_United(void* ptr, void* p){
+	return new QPainterPath(static_cast<QPainterPath*>(ptr)->united(*static_cast<QPainterPath*>(p)));
 }
 
 void QPainterPath_DestroyQPainterPath(void* ptr){
@@ -6380,6 +6652,10 @@ void* QPainterPathStroker_NewQPainterPathStroker2(void* pen){
 
 int QPainterPathStroker_CapStyle(void* ptr){
 	return static_cast<QPainterPathStroker*>(ptr)->capStyle();
+}
+
+void* QPainterPathStroker_CreateStroke(void* ptr, void* path){
+	return new QPainterPath(static_cast<QPainterPathStroker*>(ptr)->createStroke(*static_cast<QPainterPath*>(path)));
 }
 
 double QPainterPathStroker_CurveThreshold(void* ptr){
@@ -6558,6 +6834,10 @@ void* QPalette_Midlight(void* ptr){
 	return new QBrush(static_cast<QPalette*>(ptr)->midlight());
 }
 
+void* QPalette_Resolve(void* ptr, void* other){
+	return new QPalette(static_cast<QPalette*>(ptr)->resolve(*static_cast<QPalette*>(other)));
+}
+
 void QPalette_SetBrush(void* ptr, int role, void* brush){
 	static_cast<QPalette*>(ptr)->setBrush(static_cast<QPalette::ColorRole>(role), *static_cast<QBrush*>(brush));
 }
@@ -6633,6 +6913,10 @@ char* QPdfWriter_Creator(void* ptr){
 
 int QPdfWriter_NewPage(void* ptr){
 	return static_cast<QPdfWriter*>(ptr)->newPage();
+}
+
+void* QPdfWriter_PageLayout(void* ptr){
+	return new QPageLayout(static_cast<QPdfWriter*>(ptr)->pageLayout());
 }
 
 void* QPdfWriter_PaintEngine(void* ptr){
@@ -6929,8 +7213,20 @@ void* QPixmap_NewQPixmap3(int width, int height){
 	return new QPixmap(width, height);
 }
 
+void* QPixmap_Copy(void* ptr, void* rectangle){
+	return new QPixmap(static_cast<QPixmap*>(ptr)->copy(*static_cast<QRect*>(rectangle)));
+}
+
 int QPixmap_Depth(void* ptr){
 	return static_cast<QPixmap*>(ptr)->depth();
+}
+
+void* QPixmap_QPixmap_FromImage(void* image, int flags){
+	return new QPixmap(QPixmap::fromImage(*static_cast<QImage*>(image), static_cast<Qt::ImageConversionFlag>(flags)));
+}
+
+void* QPixmap_QPixmap_FromImageReader(void* imageReader, int flags){
+	return new QPixmap(QPixmap::fromImageReader(static_cast<QImageReader*>(imageReader), static_cast<Qt::ImageConversionFlag>(flags)));
 }
 
 int QPixmap_Height(void* ptr){
@@ -6947,6 +7243,18 @@ int QPixmap_IsQBitmap(void* ptr){
 
 void* QPixmap_Rect(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).x(), static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).y(), static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).width(), static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).height());
+}
+
+void* QPixmap_Scaled(void* ptr, void* size, int aspectRatioMode, int transformMode){
+	return new QPixmap(static_cast<QPixmap*>(ptr)->scaled(*static_cast<QSize*>(size), static_cast<Qt::AspectRatioMode>(aspectRatioMode), static_cast<Qt::TransformationMode>(transformMode)));
+}
+
+void* QPixmap_ScaledToHeight(void* ptr, int height, int mode){
+	return new QPixmap(static_cast<QPixmap*>(ptr)->scaledToHeight(height, static_cast<Qt::TransformationMode>(mode)));
+}
+
+void* QPixmap_ScaledToWidth(void* ptr, int width, int mode){
+	return new QPixmap(static_cast<QPixmap*>(ptr)->scaledToWidth(width, static_cast<Qt::TransformationMode>(mode)));
 }
 
 void* QPixmap_Size(void* ptr){
@@ -6981,6 +7289,10 @@ int QPixmap_ConvertFromImage(void* ptr, void* image, int flags){
 	return static_cast<QPixmap*>(ptr)->convertFromImage(*static_cast<QImage*>(image), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
+void* QPixmap_Copy2(void* ptr, int x, int y, int width, int height){
+	return new QPixmap(static_cast<QPixmap*>(ptr)->copy(x, y, width, height));
+}
+
 int QPixmap_QPixmap_DefaultDepth(){
 	return QPixmap::defaultDepth();
 }
@@ -6997,6 +7309,10 @@ void QPixmap_Fill(void* ptr, void* color){
 	static_cast<QPixmap*>(ptr)->fill(*static_cast<QColor*>(color));
 }
 
+void* QPixmap_QPixmap_FromImage2(void* image, int flags){
+	return new QPixmap(QPixmap::fromImage(*static_cast<QImage*>(image), static_cast<Qt::ImageConversionFlag>(flags)));
+}
+
 int QPixmap_HasAlpha(void* ptr){
 	return static_cast<QPixmap*>(ptr)->hasAlpha();
 }
@@ -7009,8 +7325,8 @@ int QPixmap_Load(void* ptr, char* fileName, char* format, int flags){
 	return static_cast<QPixmap*>(ptr)->load(QString(fileName), const_cast<const char*>(format), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
-int QPixmap_LoadFromData2(void* ptr, void* data, char* format, int flags){
-	return static_cast<QPixmap*>(ptr)->loadFromData(*static_cast<QByteArray*>(data), const_cast<const char*>(format), static_cast<Qt::ImageConversionFlag>(flags));
+int QPixmap_LoadFromData2(void* ptr, char* data, char* format, int flags){
+	return static_cast<QPixmap*>(ptr)->loadFromData(QByteArray(data), const_cast<const char*>(format), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
 int QPixmap_Save2(void* ptr, void* device, char* format, int quality){
@@ -7019,6 +7335,10 @@ int QPixmap_Save2(void* ptr, void* device, char* format, int quality){
 
 int QPixmap_Save(void* ptr, char* fileName, char* format, int quality){
 	return static_cast<QPixmap*>(ptr)->save(QString(fileName), const_cast<const char*>(format), quality);
+}
+
+void* QPixmap_Scaled2(void* ptr, int width, int height, int aspectRatioMode, int transformMode){
+	return new QPixmap(static_cast<QPixmap*>(ptr)->scaled(width, height, static_cast<Qt::AspectRatioMode>(aspectRatioMode), static_cast<Qt::TransformationMode>(transformMode)));
 }
 
 void QPixmap_Scroll2(void* ptr, int dx, int dy, void* rect, void* exposed){
@@ -7039,6 +7359,14 @@ void QPixmap_SetMask(void* ptr, void* mask){
 
 void QPixmap_Swap(void* ptr, void* other){
 	static_cast<QPixmap*>(ptr)->swap(*static_cast<QPixmap*>(other));
+}
+
+void* QPixmap_ToImage(void* ptr){
+	return new QImage(static_cast<QPixmap*>(ptr)->toImage());
+}
+
+void* QPixmap_Transformed(void* ptr, void* transform, int mode){
+	return new QPixmap(static_cast<QPixmap*>(ptr)->transformed(*static_cast<QTransform*>(transform), static_cast<Qt::TransformationMode>(mode)));
 }
 
 void QPixmap_DestroyQPixmap(void* ptr){
@@ -7093,6 +7421,10 @@ void* QPolygon_BoundingRect(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QPolygon*>(ptr)->boundingRect()).x(), static_cast<QRect>(static_cast<QPolygon*>(ptr)->boundingRect()).y(), static_cast<QRect>(static_cast<QPolygon*>(ptr)->boundingRect()).width(), static_cast<QRect>(static_cast<QPolygon*>(ptr)->boundingRect()).height());
 }
 
+void* QPolygon_Intersected(void* ptr, void* r){
+	return new QPolygon(static_cast<QPolygon*>(ptr)->intersected(*static_cast<QPolygon*>(r)));
+}
+
 void* QPolygon_Point2(void* ptr, int index){
 	return new QPoint(static_cast<QPoint>(static_cast<QPolygon*>(ptr)->point(index)).x(), static_cast<QPoint>(static_cast<QPolygon*>(ptr)->point(index)).y());
 }
@@ -7113,6 +7445,10 @@ void QPolygon_SetPoints(void* ptr, int nPoints, int points){
 	static_cast<QPolygon*>(ptr)->setPoints(nPoints, &points);
 }
 
+void* QPolygon_Subtracted(void* ptr, void* r){
+	return new QPolygon(static_cast<QPolygon*>(ptr)->subtracted(*static_cast<QPolygon*>(r)));
+}
+
 void QPolygon_Swap(void* ptr, void* other){
 	static_cast<QPolygon*>(ptr)->swap(*static_cast<QPolygon*>(other));
 }
@@ -7123,6 +7459,18 @@ void QPolygon_Translate2(void* ptr, void* offset){
 
 void QPolygon_Translate(void* ptr, int dx, int dy){
 	static_cast<QPolygon*>(ptr)->translate(dx, dy);
+}
+
+void* QPolygon_Translated2(void* ptr, void* offset){
+	return new QPolygon(static_cast<QPolygon*>(ptr)->translated(*static_cast<QPoint*>(offset)));
+}
+
+void* QPolygon_Translated(void* ptr, int dx, int dy){
+	return new QPolygon(static_cast<QPolygon*>(ptr)->translated(dx, dy));
+}
+
+void* QPolygon_United(void* ptr, void* r){
+	return new QPolygon(static_cast<QPolygon*>(ptr)->united(*static_cast<QPolygon*>(r)));
 }
 
 void QPolygon_DestroyQPolygon(void* ptr){
@@ -7153,12 +7501,24 @@ void* QPolygonF_NewQPolygonF2(int size){
 	return new QPolygonF(size);
 }
 
+void* QPolygonF_Intersected(void* ptr, void* r){
+	return new QPolygonF(static_cast<QPolygonF*>(ptr)->intersected(*static_cast<QPolygonF*>(r)));
+}
+
 int QPolygonF_IsClosed(void* ptr){
 	return static_cast<QPolygonF*>(ptr)->isClosed();
 }
 
+void* QPolygonF_Subtracted(void* ptr, void* r){
+	return new QPolygonF(static_cast<QPolygonF*>(ptr)->subtracted(*static_cast<QPolygonF*>(r)));
+}
+
 void QPolygonF_Swap(void* ptr, void* other){
 	static_cast<QPolygonF*>(ptr)->swap(*static_cast<QPolygonF*>(other));
+}
+
+void* QPolygonF_ToPolygon(void* ptr){
+	return new QPolygon(static_cast<QPolygonF*>(ptr)->toPolygon());
 }
 
 void QPolygonF_Translate(void* ptr, void* offset){
@@ -7167,6 +7527,18 @@ void QPolygonF_Translate(void* ptr, void* offset){
 
 void QPolygonF_Translate2(void* ptr, double dx, double dy){
 	static_cast<QPolygonF*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy));
+}
+
+void* QPolygonF_Translated(void* ptr, void* offset){
+	return new QPolygonF(static_cast<QPolygonF*>(ptr)->translated(*static_cast<QPointF*>(offset)));
+}
+
+void* QPolygonF_Translated2(void* ptr, double dx, double dy){
+	return new QPolygonF(static_cast<QPolygonF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy)));
+}
+
+void* QPolygonF_United(void* ptr, void* r){
+	return new QPolygonF(static_cast<QPolygonF*>(ptr)->united(*static_cast<QPolygonF*>(r)));
 }
 
 void QPolygonF_DestroyQPolygonF(void* ptr){
@@ -7437,8 +7809,8 @@ void* QRawFont_NewQRawFont(){
 	return new QRawFont();
 }
 
-void* QRawFont_NewQRawFont3(void* fontData, double pixelSize, int hintingPreference){
-	return new QRawFont(*static_cast<QByteArray*>(fontData), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
+void* QRawFont_NewQRawFont3(char* fontData, double pixelSize, int hintingPreference){
+	return new QRawFont(QByteArray(fontData), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
 }
 
 void* QRawFont_NewQRawFont4(void* other){
@@ -7465,8 +7837,12 @@ char* QRawFont_FamilyName(void* ptr){
 	return static_cast<QRawFont*>(ptr)->familyName().toUtf8().data();
 }
 
-void* QRawFont_FontTable(void* ptr, char* tagName){
-	return new QByteArray(static_cast<QRawFont*>(ptr)->fontTable(const_cast<const char*>(tagName)));
+char* QRawFont_FontTable(void* ptr, char* tagName){
+	return QString(static_cast<QRawFont*>(ptr)->fontTable(const_cast<const char*>(tagName))).toUtf8().data();
+}
+
+void* QRawFont_QRawFont_FromFont(void* font, int writingSystem){
+	return new QRawFont(QRawFont::fromFont(*static_cast<QFont*>(font), static_cast<QFontDatabase::WritingSystem>(writingSystem)));
 }
 
 int QRawFont_HintingPreference(void* ptr){
@@ -7485,8 +7861,8 @@ double QRawFont_LineThickness(void* ptr){
 	return static_cast<double>(static_cast<QRawFont*>(ptr)->lineThickness());
 }
 
-void QRawFont_LoadFromData(void* ptr, void* fontData, double pixelSize, int hintingPreference){
-	static_cast<QRawFont*>(ptr)->loadFromData(*static_cast<QByteArray*>(fontData), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
+void QRawFont_LoadFromData(void* ptr, char* fontData, double pixelSize, int hintingPreference){
+	static_cast<QRawFont*>(ptr)->loadFromData(QByteArray(fontData), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
 }
 
 void QRawFont_LoadFromFile(void* ptr, char* fileName, double pixelSize, int hintingPreference){
@@ -7903,6 +8279,10 @@ void QScreen_GeometryChanged(void* ptr, void* geometry){
 	static_cast<QScreen*>(ptr)->geometryChanged(*static_cast<QRect*>(geometry));
 }
 
+void* QScreen_GrabWindow(void* ptr, unsigned long long window, int x, int y, int width, int height){
+	return new QPixmap(static_cast<QScreen*>(ptr)->grabWindow(static_cast<unsigned long long>(window), x, y, width, height));
+}
+
 int QScreen_IsLandscape(void* ptr, int o){
 	return static_cast<QScreen*>(ptr)->isLandscape(static_cast<Qt::ScreenOrientation>(o));
 }
@@ -8151,6 +8531,10 @@ int QShortcutEvent_IsAmbiguous(void* ptr){
 	return static_cast<QShortcutEvent*>(ptr)->isAmbiguous();
 }
 
+void* QShortcutEvent_Key(void* ptr){
+	return new QKeySequence(static_cast<QShortcutEvent*>(ptr)->key());
+}
+
 int QShortcutEvent_ShortcutId(void* ptr){
 	return static_cast<QShortcutEvent*>(ptr)->shortcutId();
 }
@@ -8235,6 +8619,10 @@ int QStandardItem_Flags(void* ptr){
 	return static_cast<QStandardItem*>(ptr)->flags();
 }
 
+void* QStandardItem_Font(void* ptr){
+	return new QFont(static_cast<QStandardItem*>(ptr)->font());
+}
+
 void* QStandardItem_Foreground(void* ptr){
 	return new QBrush(static_cast<QStandardItem*>(ptr)->foreground());
 }
@@ -8245,10 +8633,6 @@ int QStandardItem_HasChildren(void* ptr){
 
 void* QStandardItem_Icon(void* ptr){
 	return new QIcon(static_cast<QStandardItem*>(ptr)->icon());
-}
-
-void* QStandardItem_Index(void* ptr){
-	return new QModelIndex(static_cast<QStandardItem*>(ptr)->index());
 }
 
 void QStandardItem_InsertColumns(void* ptr, int column, int count){
@@ -8490,7 +8874,6 @@ public:
 	MyQStandardItemModel(int rows, int columns, QObject *parent) : QStandardItemModel(rows, columns, parent) {};
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModelItemChanged(this, this->objectName().toUtf8().data(), item); };
 	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void fetchMore(const QModelIndex & parent) { callbackQStandardItemModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQStandardItemModelRevert(this, this->objectName().toUtf8().data())) { QStandardItemModel::revert(); }; };
 	void timerEvent(QTimerEvent * event) { callbackQStandardItemModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStandardItemModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -8549,14 +8932,6 @@ void* QStandardItemModel_HorizontalHeaderItem(void* ptr, int column){
 	return static_cast<QStandardItemModel*>(ptr)->horizontalHeaderItem(column);
 }
 
-void* QStandardItemModel_Index(void* ptr, int row, int column, void* parent){
-	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
-}
-
-void* QStandardItemModel_IndexFromItem(void* ptr, void* item){
-	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->indexFromItem(static_cast<QStandardItem*>(item)));
-}
-
 int QStandardItemModel_InsertColumn2(void* ptr, int column, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->insertColumn(column, *static_cast<QModelIndex*>(parent));
 }
@@ -8607,10 +8982,6 @@ void* QStandardItemModel_ItemPrototype(void* ptr){
 
 char* QStandardItemModel_MimeTypes(void* ptr){
 	return static_cast<QStandardItemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
-}
-
-void* QStandardItemModel_Parent(void* ptr, void* child){
-	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
 }
 
 int QStandardItemModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -8669,10 +9040,6 @@ void QStandardItemModel_SetVerticalHeaderLabels(void* ptr, char* labels){
 	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
-void* QStandardItemModel_Sibling(void* ptr, int row, int column, void* idx){
-	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
-}
-
 void QStandardItemModel_Sort(void* ptr, int column, int order){
 	static_cast<MyQStandardItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
@@ -8703,14 +9070,6 @@ void* QStandardItemModel_VerticalHeaderItem(void* ptr, int row){
 
 void QStandardItemModel_DestroyQStandardItemModel(void* ptr){
 	static_cast<QStandardItemModel*>(ptr)->~QStandardItemModel();
-}
-
-void QStandardItemModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQStandardItemModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QStandardItemModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QStandardItemModel_Revert(void* ptr){
@@ -8795,6 +9154,10 @@ char* QStaticText_Text(void* ptr){
 
 int QStaticText_TextFormat(void* ptr){
 	return static_cast<QStaticText*>(ptr)->textFormat();
+}
+
+void* QStaticText_TextOption(void* ptr){
+	return new QTextOption(static_cast<QStaticText*>(ptr)->textOption());
 }
 
 double QStaticText_TextWidth(void* ptr){
@@ -8976,6 +9339,10 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 };
 
+void* QSurface_Format(void* ptr){
+	return new QSurfaceFormat(static_cast<QSurface*>(ptr)->format());
+}
+
 void* QSurface_Size(void* ptr){
 	return new QSize(static_cast<QSize>(static_cast<QSurface*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QSurface*>(ptr)->size()).height());
 }
@@ -9027,6 +9394,10 @@ int QSurfaceFormat_AlphaBufferSize(void* ptr){
 
 int QSurfaceFormat_BlueBufferSize(void* ptr){
 	return static_cast<QSurfaceFormat*>(ptr)->blueBufferSize();
+}
+
+void* QSurfaceFormat_QSurfaceFormat_DefaultFormat(){
+	return new QSurfaceFormat(QSurfaceFormat::defaultFormat());
 }
 
 int QSurfaceFormat_DepthBufferSize(void* ptr){
@@ -9348,8 +9719,16 @@ int QTextBlock_LineCount(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->lineCount();
 }
 
+void* QTextBlock_Next(void* ptr){
+	return new QTextBlock(static_cast<QTextBlock*>(ptr)->next());
+}
+
 int QTextBlock_Position(void* ptr){
 	return static_cast<QTextBlock*>(ptr)->position();
+}
+
+void* QTextBlock_Previous(void* ptr){
+	return new QTextBlock(static_cast<QTextBlock*>(ptr)->previous());
 }
 
 int QTextBlock_Revision(void* ptr){
@@ -9494,10 +9873,37 @@ double QTextBlockFormat_TopMargin(void* ptr){
 
 class MyQTextBlockGroup: public QTextBlockGroup {
 public:
+	void blockFormatChanged(const QTextBlock & block) { callbackQTextBlockGroupBlockFormatChanged(this, this->objectName().toUtf8().data(), new QTextBlock(block)); };
+	void blockInserted(const QTextBlock & block) { callbackQTextBlockGroupBlockInserted(this, this->objectName().toUtf8().data(), new QTextBlock(block)); };
+	void blockRemoved(const QTextBlock & block) { callbackQTextBlockGroupBlockRemoved(this, this->objectName().toUtf8().data(), new QTextBlock(block)); };
 	void timerEvent(QTimerEvent * event) { callbackQTextBlockGroupTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQTextBlockGroupChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQTextBlockGroupCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void QTextBlockGroup_BlockFormatChanged(void* ptr, void* block){
+	static_cast<MyQTextBlockGroup*>(ptr)->blockFormatChanged(*static_cast<QTextBlock*>(block));
+}
+
+void QTextBlockGroup_BlockFormatChangedDefault(void* ptr, void* block){
+	static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::blockFormatChanged(*static_cast<QTextBlock*>(block));
+}
+
+void QTextBlockGroup_BlockInserted(void* ptr, void* block){
+	static_cast<MyQTextBlockGroup*>(ptr)->blockInserted(*static_cast<QTextBlock*>(block));
+}
+
+void QTextBlockGroup_BlockInsertedDefault(void* ptr, void* block){
+	static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::blockInserted(*static_cast<QTextBlock*>(block));
+}
+
+void QTextBlockGroup_BlockRemoved(void* ptr, void* block){
+	static_cast<MyQTextBlockGroup*>(ptr)->blockRemoved(*static_cast<QTextBlock*>(block));
+}
+
+void QTextBlockGroup_BlockRemovedDefault(void* ptr, void* block){
+	static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::blockRemoved(*static_cast<QTextBlock*>(block));
+}
 
 void QTextBlockGroup_TimerEvent(void* ptr, void* event){
 	static_cast<MyQTextBlockGroup*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -9565,6 +9971,10 @@ void QTextCharFormat_SetUnderlineStyle(void* ptr, int style){
 
 char* QTextCharFormat_AnchorHref(void* ptr){
 	return static_cast<QTextCharFormat*>(ptr)->anchorHref().toUtf8().data();
+}
+
+void* QTextCharFormat_Font(void* ptr){
+	return new QFont(static_cast<QTextCharFormat*>(ptr)->font());
 }
 
 int QTextCharFormat_FontCapitalization(void* ptr){
@@ -9743,6 +10153,10 @@ void QTextCharFormat_SetVerticalAlignment(void* ptr, int alignment){
 	static_cast<QTextCharFormat*>(ptr)->setVerticalAlignment(static_cast<QTextCharFormat::VerticalAlignment>(alignment));
 }
 
+void* QTextCharFormat_TextOutline(void* ptr){
+	return new QPen(static_cast<QTextCharFormat*>(ptr)->textOutline());
+}
+
 char* QTextCharFormat_ToolTip(void* ptr){
 	return static_cast<QTextCharFormat*>(ptr)->toolTip().toUtf8().data();
 }
@@ -9821,6 +10235,10 @@ int QTextCursor_AtStart(void* ptr){
 
 void QTextCursor_BeginEditBlock(void* ptr){
 	static_cast<QTextCursor*>(ptr)->beginEditBlock();
+}
+
+void* QTextCursor_Block(void* ptr){
+	return new QTextBlock(static_cast<QTextCursor*>(ptr)->block());
 }
 
 int QTextCursor_BlockNumber(void* ptr){
@@ -9979,6 +10397,10 @@ char* QTextCursor_SelectedText(void* ptr){
 	return static_cast<QTextCursor*>(ptr)->selectedText().toUtf8().data();
 }
 
+void* QTextCursor_Selection(void* ptr){
+	return new QTextDocumentFragment(static_cast<QTextCursor*>(ptr)->selection());
+}
+
 int QTextCursor_SelectionEnd(void* ptr){
 	return static_cast<QTextCursor*>(ptr)->selectionEnd();
 }
@@ -10040,6 +10462,7 @@ public:
 	void clear() { callbackQTextDocumentClear(this, this->objectName().toUtf8().data()); };
 	void Signal_ContentsChange(int position, int charsRemoved, int charsAdded) { callbackQTextDocumentContentsChange(this, this->objectName().toUtf8().data(), position, charsRemoved, charsAdded); };
 	void Signal_ContentsChanged() { callbackQTextDocumentContentsChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_CursorPositionChanged(const QTextCursor & cursor) { callbackQTextDocumentCursorPositionChanged(this, this->objectName().toUtf8().data(), new QTextCursor(cursor)); };
 	void Signal_DocumentLayoutChanged() { callbackQTextDocumentDocumentLayoutChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_ModificationChanged(bool changed) { callbackQTextDocumentModificationChanged(this, this->objectName().toUtf8().data(), changed); };
 	void Signal_RedoAvailable(bool available) { callbackQTextDocumentRedoAvailable(this, this->objectName().toUtf8().data(), available); };
@@ -10170,6 +10593,10 @@ void QTextDocument_BaseUrlChanged(void* ptr, void* url){
 	static_cast<QTextDocument*>(ptr)->baseUrlChanged(*static_cast<QUrl*>(url));
 }
 
+void* QTextDocument_Begin(void* ptr){
+	return new QTextBlock(static_cast<QTextDocument*>(ptr)->begin());
+}
+
 void QTextDocument_ConnectBlockCountChanged(void* ptr){
 	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(int)>(&QTextDocument::blockCountChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(int)>(&MyQTextDocument::Signal_BlockCountChanged));;
 }
@@ -10226,8 +10653,28 @@ void QTextDocument_ContentsChanged(void* ptr){
 	static_cast<QTextDocument*>(ptr)->contentsChanged();
 }
 
+void QTextDocument_ConnectCursorPositionChanged(void* ptr){
+	QObject::connect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(const QTextCursor &)>(&QTextDocument::cursorPositionChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(const QTextCursor &)>(&MyQTextDocument::Signal_CursorPositionChanged));;
+}
+
+void QTextDocument_DisconnectCursorPositionChanged(void* ptr){
+	QObject::disconnect(static_cast<QTextDocument*>(ptr), static_cast<void (QTextDocument::*)(const QTextCursor &)>(&QTextDocument::cursorPositionChanged), static_cast<MyQTextDocument*>(ptr), static_cast<void (MyQTextDocument::*)(const QTextCursor &)>(&MyQTextDocument::Signal_CursorPositionChanged));;
+}
+
+void QTextDocument_CursorPositionChanged(void* ptr, void* cursor){
+	static_cast<QTextDocument*>(ptr)->cursorPositionChanged(*static_cast<QTextCursor*>(cursor));
+}
+
 int QTextDocument_DefaultCursorMoveStyle(void* ptr){
 	return static_cast<QTextDocument*>(ptr)->defaultCursorMoveStyle();
+}
+
+void* QTextDocument_DefaultFont(void* ptr){
+	return new QFont(static_cast<QTextDocument*>(ptr)->defaultFont());
+}
+
+void* QTextDocument_DefaultTextOption(void* ptr){
+	return new QTextOption(static_cast<QTextDocument*>(ptr)->defaultTextOption());
 }
 
 void* QTextDocument_DocumentLayout(void* ptr){
@@ -10250,6 +10697,26 @@ void QTextDocument_DrawContents(void* ptr, void* p, void* rect){
 	static_cast<QTextDocument*>(ptr)->drawContents(static_cast<QPainter*>(p), *static_cast<QRectF*>(rect));
 }
 
+void* QTextDocument_End(void* ptr){
+	return new QTextBlock(static_cast<QTextDocument*>(ptr)->end());
+}
+
+void* QTextDocument_FindBlock(void* ptr, int pos){
+	return new QTextBlock(static_cast<QTextDocument*>(ptr)->findBlock(pos));
+}
+
+void* QTextDocument_FindBlockByLineNumber(void* ptr, int lineNumber){
+	return new QTextBlock(static_cast<QTextDocument*>(ptr)->findBlockByLineNumber(lineNumber));
+}
+
+void* QTextDocument_FindBlockByNumber(void* ptr, int blockNumber){
+	return new QTextBlock(static_cast<QTextDocument*>(ptr)->findBlockByNumber(blockNumber));
+}
+
+void* QTextDocument_FirstBlock(void* ptr){
+	return new QTextBlock(static_cast<QTextDocument*>(ptr)->firstBlock());
+}
+
 double QTextDocument_IdealWidth(void* ptr){
 	return static_cast<double>(static_cast<QTextDocument*>(ptr)->idealWidth());
 }
@@ -10264,6 +10731,10 @@ int QTextDocument_IsRedoAvailable(void* ptr){
 
 int QTextDocument_IsUndoAvailable(void* ptr){
 	return static_cast<QTextDocument*>(ptr)->isUndoAvailable();
+}
+
+void* QTextDocument_LastBlock(void* ptr){
+	return new QTextBlock(static_cast<QTextDocument*>(ptr)->lastBlock());
 }
 
 int QTextDocument_LineCount(void* ptr){
@@ -10370,8 +10841,8 @@ void QTextDocument_SetPlainText(void* ptr, char* text){
 	static_cast<QTextDocument*>(ptr)->setPlainText(QString(text));
 }
 
-char* QTextDocument_ToHtml(void* ptr, void* encoding){
-	return static_cast<QTextDocument*>(ptr)->toHtml(*static_cast<QByteArray*>(encoding)).toUtf8().data();
+char* QTextDocument_ToHtml(void* ptr, char* encoding){
+	return static_cast<QTextDocument*>(ptr)->toHtml(QByteArray(encoding)).toUtf8().data();
 }
 
 char* QTextDocument_ToPlainText(void* ptr){
@@ -10442,6 +10913,14 @@ void* QTextDocumentFragment_NewQTextDocumentFragment4(void* other){
 	return new QTextDocumentFragment(*static_cast<QTextDocumentFragment*>(other));
 }
 
+void* QTextDocumentFragment_QTextDocumentFragment_FromHtml(char* text){
+	return new QTextDocumentFragment(QTextDocumentFragment::fromHtml(QString(text)));
+}
+
+void* QTextDocumentFragment_QTextDocumentFragment_FromHtml2(char* text, void* resourceProvider){
+	return new QTextDocumentFragment(QTextDocumentFragment::fromHtml(QString(text), static_cast<QTextDocument*>(resourceProvider)));
+}
+
 void* QTextDocumentFragment_NewQTextDocumentFragment(){
 	return new QTextDocumentFragment();
 }
@@ -10454,12 +10933,16 @@ void* QTextDocumentFragment_NewQTextDocumentFragment2(void* document){
 	return new QTextDocumentFragment(static_cast<QTextDocument*>(document));
 }
 
+void* QTextDocumentFragment_QTextDocumentFragment_FromPlainText(char* plainText){
+	return new QTextDocumentFragment(QTextDocumentFragment::fromPlainText(QString(plainText)));
+}
+
 int QTextDocumentFragment_IsEmpty(void* ptr){
 	return static_cast<QTextDocumentFragment*>(ptr)->isEmpty();
 }
 
-char* QTextDocumentFragment_ToHtml(void* ptr, void* encoding){
-	return static_cast<QTextDocumentFragment*>(ptr)->toHtml(*static_cast<QByteArray*>(encoding)).toUtf8().data();
+char* QTextDocumentFragment_ToHtml(void* ptr, char* encoding){
+	return static_cast<QTextDocumentFragment*>(ptr)->toHtml(QByteArray(encoding)).toUtf8().data();
 }
 
 char* QTextDocumentFragment_ToPlainText(void* ptr){
@@ -10474,12 +10957,12 @@ void* QTextDocumentWriter_NewQTextDocumentWriter(){
 	return new QTextDocumentWriter();
 }
 
-void* QTextDocumentWriter_NewQTextDocumentWriter2(void* device, void* format){
-	return new QTextDocumentWriter(static_cast<QIODevice*>(device), *static_cast<QByteArray*>(format));
+void* QTextDocumentWriter_NewQTextDocumentWriter2(void* device, char* format){
+	return new QTextDocumentWriter(static_cast<QIODevice*>(device), QByteArray(format));
 }
 
-void* QTextDocumentWriter_NewQTextDocumentWriter3(char* fileName, void* format){
-	return new QTextDocumentWriter(QString(fileName), *static_cast<QByteArray*>(format));
+void* QTextDocumentWriter_NewQTextDocumentWriter3(char* fileName, char* format){
+	return new QTextDocumentWriter(QString(fileName), QByteArray(format));
 }
 
 void* QTextDocumentWriter_Codec(void* ptr){
@@ -10494,8 +10977,8 @@ char* QTextDocumentWriter_FileName(void* ptr){
 	return static_cast<QTextDocumentWriter*>(ptr)->fileName().toUtf8().data();
 }
 
-void* QTextDocumentWriter_Format(void* ptr){
-	return new QByteArray(static_cast<QTextDocumentWriter*>(ptr)->format());
+char* QTextDocumentWriter_Format(void* ptr){
+	return QString(static_cast<QTextDocumentWriter*>(ptr)->format()).toUtf8().data();
 }
 
 void QTextDocumentWriter_SetCodec(void* ptr, void* codec){
@@ -10510,8 +10993,8 @@ void QTextDocumentWriter_SetFileName(void* ptr, char* fileName){
 	static_cast<QTextDocumentWriter*>(ptr)->setFileName(QString(fileName));
 }
 
-void QTextDocumentWriter_SetFormat(void* ptr, void* format){
-	static_cast<QTextDocumentWriter*>(ptr)->setFormat(*static_cast<QByteArray*>(format));
+void QTextDocumentWriter_SetFormat(void* ptr, char* format){
+	static_cast<QTextDocumentWriter*>(ptr)->setFormat(QByteArray(format));
 }
 
 int QTextDocumentWriter_Write(void* ptr, void* document){
@@ -10638,6 +11121,10 @@ int QTextFormat_ObjectType(void* ptr){
 	return static_cast<QTextFormat*>(ptr)->objectType();
 }
 
+void* QTextFormat_PenProperty(void* ptr, int propertyId){
+	return new QPen(static_cast<QTextFormat*>(ptr)->penProperty(propertyId));
+}
+
 void* QTextFormat_Property(void* ptr, int propertyId){
 	return new QVariant(static_cast<QTextFormat*>(ptr)->property(propertyId));
 }
@@ -10718,8 +11205,16 @@ void* QTextFrame_NewQTextFrame(void* document){
 	return new QTextFrame(static_cast<QTextDocument*>(document));
 }
 
+void* QTextFrame_FirstCursorPosition(void* ptr){
+	return new QTextCursor(static_cast<QTextFrame*>(ptr)->firstCursorPosition());
+}
+
 int QTextFrame_FirstPosition(void* ptr){
 	return static_cast<QTextFrame*>(ptr)->firstPosition();
+}
+
+void* QTextFrame_LastCursorPosition(void* ptr){
+	return new QTextCursor(static_cast<QTextFrame*>(ptr)->lastCursorPosition());
 }
 
 int QTextFrame_LastPosition(void* ptr){
@@ -10914,6 +11409,10 @@ double QTextInlineObject_Descent(void* ptr){
 	return static_cast<double>(static_cast<QTextInlineObject*>(ptr)->descent());
 }
 
+void* QTextInlineObject_Format(void* ptr){
+	return new QTextFormat(static_cast<QTextInlineObject*>(ptr)->format());
+}
+
 int QTextInlineObject_FormatIndex(void* ptr){
 	return static_cast<QTextInlineObject*>(ptr)->formatIndex();
 }
@@ -10956,6 +11455,10 @@ double QTextItem_Ascent(void* ptr){
 
 double QTextItem_Descent(void* ptr){
 	return static_cast<double>(static_cast<QTextItem*>(ptr)->descent());
+}
+
+void* QTextItem_Font(void* ptr){
+	return new QFont(static_cast<QTextItem*>(ptr)->font());
 }
 
 int QTextItem_RenderFlags(void* ptr){
@@ -11012,6 +11515,10 @@ int QTextLayout_CursorMoveStyle(void* ptr){
 
 void QTextLayout_EndLayout(void* ptr){
 	static_cast<QTextLayout*>(ptr)->endLayout();
+}
+
+void* QTextLayout_Font(void* ptr){
+	return new QFont(static_cast<QTextLayout*>(ptr)->font());
 }
 
 int QTextLayout_IsValidCursorPosition(void* ptr, int pos){
@@ -11084,6 +11591,10 @@ void QTextLayout_SetTextOption(void* ptr, void* option){
 
 char* QTextLayout_Text(void* ptr){
 	return static_cast<QTextLayout*>(ptr)->text().toUtf8().data();
+}
+
+void* QTextLayout_TextOption(void* ptr){
+	return new QTextOption(static_cast<QTextLayout*>(ptr)->textOption());
 }
 
 void QTextLayout_DestroyQTextLayout(void* ptr){
@@ -11218,12 +11729,40 @@ int QTextList_Count(void* ptr){
 	return static_cast<QTextList*>(ptr)->count();
 }
 
+void* QTextList_Item(void* ptr, int i){
+	return new QTextBlock(static_cast<QTextList*>(ptr)->item(i));
+}
+
 void QTextList_RemoveItem(void* ptr, int i){
 	static_cast<QTextList*>(ptr)->removeItem(i);
 }
 
 void QTextList_SetFormat(void* ptr, void* format){
 	static_cast<QTextList*>(ptr)->setFormat(*static_cast<QTextListFormat*>(format));
+}
+
+void QTextList_BlockFormatChanged(void* ptr, void* block){
+	static_cast<QTextList*>(ptr)->blockFormatChanged(*static_cast<QTextBlock*>(block));
+}
+
+void QTextList_BlockFormatChangedDefault(void* ptr, void* block){
+	static_cast<QTextList*>(ptr)->QTextList::blockFormatChanged(*static_cast<QTextBlock*>(block));
+}
+
+void QTextList_BlockInserted(void* ptr, void* block){
+	static_cast<QTextList*>(ptr)->blockInserted(*static_cast<QTextBlock*>(block));
+}
+
+void QTextList_BlockInsertedDefault(void* ptr, void* block){
+	static_cast<QTextList*>(ptr)->QTextList::blockInserted(*static_cast<QTextBlock*>(block));
+}
+
+void QTextList_BlockRemoved(void* ptr, void* block){
+	static_cast<QTextList*>(ptr)->blockRemoved(*static_cast<QTextBlock*>(block));
+}
+
+void QTextList_BlockRemovedDefault(void* ptr, void* block){
+	static_cast<QTextList*>(ptr)->QTextList::blockRemoved(*static_cast<QTextBlock*>(block));
 }
 
 void QTextList_TimerEvent(void* ptr, void* event){
@@ -11292,6 +11831,10 @@ int QTextListFormat_Style(void* ptr){
 
 void* QTextObject_Document(void* ptr){
 	return static_cast<QTextObject*>(ptr)->document();
+}
+
+void* QTextObject_Format(void* ptr){
+	return new QTextFormat(static_cast<QTextObject*>(ptr)->format());
 }
 
 int QTextObject_FormatIndex(void* ptr){
@@ -11418,6 +11961,14 @@ void QTextOption_DestroyQTextOption(void* ptr){
 	static_cast<QTextOption*>(ptr)->~QTextOption();
 }
 
+void* QTextTable_CellAt3(void* ptr, void* cursor){
+	return new QTextTableCell(static_cast<QTextTable*>(ptr)->cellAt(*static_cast<QTextCursor*>(cursor)));
+}
+
+void* QTextTable_CellAt(void* ptr, int row, int column){
+	return new QTextTableCell(static_cast<QTextTable*>(ptr)->cellAt(row, column));
+}
+
 void QTextTable_InsertColumns(void* ptr, int index, int columns){
 	static_cast<QTextTable*>(ptr)->insertColumns(index, columns);
 }
@@ -11438,6 +11989,14 @@ void QTextTable_Resize(void* ptr, int rows, int columns){
 	static_cast<QTextTable*>(ptr)->resize(rows, columns);
 }
 
+void* QTextTable_RowEnd(void* ptr, void* cursor){
+	return new QTextCursor(static_cast<QTextTable*>(ptr)->rowEnd(*static_cast<QTextCursor*>(cursor)));
+}
+
+void* QTextTable_RowStart(void* ptr, void* cursor){
+	return new QTextCursor(static_cast<QTextTable*>(ptr)->rowStart(*static_cast<QTextCursor*>(cursor)));
+}
+
 void QTextTable_SetFormat(void* ptr, void* format){
 	static_cast<QTextTable*>(ptr)->setFormat(*static_cast<QTextTableFormat*>(format));
 }
@@ -11448,6 +12007,10 @@ void QTextTable_AppendColumns(void* ptr, int count){
 
 void QTextTable_AppendRows(void* ptr, int count){
 	static_cast<QTextTable*>(ptr)->appendRows(count);
+}
+
+void* QTextTable_CellAt2(void* ptr, int position){
+	return new QTextTableCell(static_cast<QTextTable*>(ptr)->cellAt(position));
 }
 
 int QTextTable_Columns(void* ptr){
@@ -11510,8 +12073,16 @@ int QTextTableCell_ColumnSpan(void* ptr){
 	return static_cast<QTextTableCell*>(ptr)->columnSpan();
 }
 
+void* QTextTableCell_FirstCursorPosition(void* ptr){
+	return new QTextCursor(static_cast<QTextTableCell*>(ptr)->firstCursorPosition());
+}
+
 int QTextTableCell_IsValid(void* ptr){
 	return static_cast<QTextTableCell*>(ptr)->isValid();
+}
+
+void* QTextTableCell_LastCursorPosition(void* ptr){
+	return new QTextCursor(static_cast<QTextTableCell*>(ptr)->lastCursorPosition());
 }
 
 int QTextTableCell_Row(void* ptr){
@@ -11698,12 +12269,24 @@ void* QTransform_Map3(void* ptr, void* point){
 	return new QPoint(static_cast<QPoint>(static_cast<QTransform*>(ptr)->map(*static_cast<QPoint*>(point))).x(), static_cast<QPoint>(static_cast<QTransform*>(ptr)->map(*static_cast<QPoint*>(point))).y());
 }
 
+void* QTransform_Map7(void* ptr, void* polygon){
+	return new QPolygon(static_cast<QTransform*>(ptr)->map(*static_cast<QPolygon*>(polygon)));
+}
+
+void* QTransform_Map6(void* ptr, void* polygon){
+	return new QPolygonF(static_cast<QTransform*>(ptr)->map(*static_cast<QPolygonF*>(polygon)));
+}
+
 void* QTransform_Map8(void* ptr, void* region){
 	return new QRegion(static_cast<QTransform*>(ptr)->map(*static_cast<QRegion*>(region)));
 }
 
 void* QTransform_MapRect2(void* ptr, void* rectangle){
 	return new QRect(static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).height());
+}
+
+void* QTransform_MapToPolygon(void* ptr, void* rectangle){
+	return new QPolygon(static_cast<QTransform*>(ptr)->mapToPolygon(*static_cast<QRect*>(rectangle)));
 }
 
 int QTransform_QTransform_QuadToSquare(void* quad, void* trans){
@@ -11786,6 +12369,10 @@ double QTransform_M33(void* ptr){
 	return static_cast<double>(static_cast<QTransform*>(ptr)->m33());
 }
 
+void* QTransform_Map9(void* ptr, void* path){
+	return new QPainterPath(static_cast<QTransform*>(ptr)->map(*static_cast<QPainterPath*>(path)));
+}
+
 void QTransform_Map10(void* ptr, int x, int y, int tx, int ty){
 	static_cast<QTransform*>(ptr)->map(x, y, &tx, &ty);
 }
@@ -11828,6 +12415,10 @@ void QValidator_DisconnectChanged(void* ptr){
 
 void QValidator_Changed(void* ptr){
 	static_cast<QValidator*>(ptr)->changed();
+}
+
+void* QValidator_Locale(void* ptr){
+	return new QLocale(static_cast<QValidator*>(ptr)->locale());
 }
 
 void QValidator_SetLocale(void* ptr, void* locale){
@@ -12209,6 +12800,10 @@ void QWindow_Create(void* ptr){
 	static_cast<QWindow*>(ptr)->create();
 }
 
+void* QWindow_Cursor(void* ptr){
+	return new QCursor(static_cast<QWindow*>(ptr)->cursor());
+}
+
 void QWindow_Destroy(void* ptr){
 	static_cast<QWindow*>(ptr)->destroy();
 }
@@ -12263,6 +12858,10 @@ void QWindow_FocusOutEvent(void* ptr, void* ev){
 
 void QWindow_FocusOutEventDefault(void* ptr, void* ev){
 	static_cast<QWindow*>(ptr)->QWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
+}
+
+void* QWindow_Format(void* ptr){
+	return new QSurfaceFormat(static_cast<QWindow*>(ptr)->format());
 }
 
 void* QWindow_FrameGeometry(void* ptr){
@@ -12511,6 +13110,10 @@ void QWindow_RequestActivate(void* ptr){
 
 void QWindow_RequestUpdate(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "requestUpdate");
+}
+
+void* QWindow_RequestedFormat(void* ptr){
+	return new QSurfaceFormat(static_cast<QWindow*>(ptr)->requestedFormat());
 }
 
 void QWindow_Resize(void* ptr, void* newSize){

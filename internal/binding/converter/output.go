@@ -19,7 +19,7 @@ func goOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("strings.Split(%v, \"|\")", goOutput(name, "QString", f))
 		}
 
-	case "uchar", "char", "QString":
+	case "uchar", "char", "QString", "QByteArray":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
@@ -127,7 +127,7 @@ func goOutputFailed(value string, f *parser.Function) string {
 			return "0"
 		}
 
-	case "uchar", "char", "QString":
+	case "uchar", "char", "QString", "QByteArray":
 		{
 			return "\"\""
 		}
@@ -200,7 +200,7 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("strings.Split(%v, \"|\")", cgoOutput(name, "QString", f))
 		}
 
-	case "uchar", "char", "QString":
+	case "uchar", "char", "QString", "QByteArray":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
@@ -283,6 +283,11 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.toUtf8().data()", name)
 		}
 
+	case "QByteArray":
+		{
+			return cppOutput(fmt.Sprintf("QString(%v)", name), "QString", f)
+		}
+
 	case "bool", "int", "void", "", "T", "JavaVM", "jclass", "jobject":
 		{
 			if value == "void" {
@@ -329,11 +334,6 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			}
 
 			switch value {
-			case "QModelIndex", "QMediaContent", "QIcon", "QUrl", "QJSValue", "QScriptValue", "QVariant", "QStringRef", "QDateTime", "QTimeZone", "QRegularExpressionMatchIterator", "QRegularExpressionMatch", "QRegularExpression", "QDir", "QByteArray", "QEasingCurve", "QCommandLineOption", "QRegExp", "QJsonObject", "QJsonArray", "QJsonDocument", "QRegion", "QBrush", "QColor":
-				{
-					return fmt.Sprintf("new %v(%v)", value, name)
-				}
-
 			case "QAndroidJniObject":
 				{
 					return fmt.Sprintf("new %v(%v.object())", value, name)
@@ -352,6 +352,16 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			case "QRect":
 				{
 					return fmt.Sprintf("new %v(static_cast<%v>(%v).x(), static_cast<%v>(%v).y(), static_cast<%v>(%v).width(), static_cast<%v>(%v).height())", value, value, name, value, name, value, name, value, name)
+				}
+			}
+
+			for _, f := range parser.ClassMap[value].Functions {
+				if f.Meta == "constructor" {
+					if len(f.Parameters) == 1 {
+						if cleanValue(f.Parameters[0].Value) == value {
+							return fmt.Sprintf("new %v(%v)", value, name)
+						}
+					}
 				}
 			}
 		}

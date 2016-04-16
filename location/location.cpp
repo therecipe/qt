@@ -47,6 +47,10 @@ int QGeoManeuver_IsValid(void* ptr){
 	return static_cast<QGeoManeuver*>(ptr)->isValid();
 }
 
+void* QGeoManeuver_Position(void* ptr){
+	return new QGeoCoordinate(static_cast<QGeoManeuver*>(ptr)->position());
+}
+
 void QGeoManeuver_SetDirection(void* ptr, int direction){
 	static_cast<QGeoManeuver*>(ptr)->setDirection(static_cast<QGeoManeuver::InstructionDirection>(direction));
 }
@@ -75,6 +79,10 @@ int QGeoManeuver_TimeToNextInstruction(void* ptr){
 	return static_cast<QGeoManeuver*>(ptr)->timeToNextInstruction();
 }
 
+void* QGeoManeuver_Waypoint(void* ptr){
+	return new QGeoCoordinate(static_cast<QGeoManeuver*>(ptr)->waypoint());
+}
+
 void QGeoManeuver_DestroyQGeoManeuver(void* ptr){
 	static_cast<QGeoManeuver*>(ptr)->~QGeoManeuver();
 }
@@ -87,8 +95,20 @@ void* QGeoRoute_NewQGeoRoute2(void* other){
 	return new QGeoRoute(*static_cast<QGeoRoute*>(other));
 }
 
+void* QGeoRoute_Bounds(void* ptr){
+	return new QGeoRectangle(static_cast<QGeoRoute*>(ptr)->bounds());
+}
+
 double QGeoRoute_Distance(void* ptr){
 	return static_cast<double>(static_cast<QGeoRoute*>(ptr)->distance());
+}
+
+void* QGeoRoute_FirstRouteSegment(void* ptr){
+	return new QGeoRouteSegment(static_cast<QGeoRoute*>(ptr)->firstRouteSegment());
+}
+
+void* QGeoRoute_Request(void* ptr){
+	return new QGeoRouteRequest(static_cast<QGeoRoute*>(ptr)->request());
 }
 
 char* QGeoRoute_RouteId(void* ptr){
@@ -192,6 +212,10 @@ void QGeoRouteReply_Finished(void* ptr){
 
 int QGeoRouteReply_IsFinished(void* ptr){
 	return static_cast<QGeoRouteReply*>(ptr)->isFinished();
+}
+
+void* QGeoRouteReply_Request(void* ptr){
+	return new QGeoRouteRequest(static_cast<QGeoRouteReply*>(ptr)->request());
 }
 
 void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr){
@@ -298,6 +322,14 @@ int QGeoRouteSegment_IsValid(void* ptr){
 	return static_cast<QGeoRouteSegment*>(ptr)->isValid();
 }
 
+void* QGeoRouteSegment_Maneuver(void* ptr){
+	return new QGeoManeuver(static_cast<QGeoRouteSegment*>(ptr)->maneuver());
+}
+
+void* QGeoRouteSegment_NextRouteSegment(void* ptr){
+	return new QGeoRouteSegment(static_cast<QGeoRouteSegment*>(ptr)->nextRouteSegment());
+}
+
 void QGeoRouteSegment_SetDistance(void* ptr, double distance){
 	static_cast<QGeoRouteSegment*>(ptr)->setDistance(static_cast<double>(distance));
 }
@@ -357,6 +389,10 @@ void QGeoRoutingManager_DisconnectFinished(void* ptr){
 
 void QGeoRoutingManager_Finished(void* ptr, void* reply){
 	static_cast<QGeoRoutingManager*>(ptr)->finished(static_cast<QGeoRouteReply*>(reply));
+}
+
+void* QGeoRoutingManager_Locale(void* ptr){
+	return new QLocale(static_cast<QGeoRoutingManager*>(ptr)->locale());
 }
 
 char* QGeoRoutingManager_ManagerName(void* ptr){
@@ -470,6 +506,10 @@ void QGeoRoutingManagerEngine_DisconnectFinished(void* ptr){
 
 void QGeoRoutingManagerEngine_Finished(void* ptr, void* reply){
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->finished(static_cast<QGeoRouteReply*>(reply));
+}
+
+void* QGeoRoutingManagerEngine_Locale(void* ptr){
+	return new QLocale(static_cast<QGeoRoutingManagerEngine*>(ptr)->locale());
 }
 
 char* QGeoRoutingManagerEngine_ManagerName(void* ptr){

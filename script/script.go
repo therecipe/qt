@@ -666,6 +666,12 @@ func (ptr *QScriptEngine) AvailableExtensions() []string {
 	return make([]string, 0)
 }
 
+func QScriptEngine_CheckSyntax(program string) *QScriptSyntaxCheckResult {
+	defer qt.Recovering("QScriptEngine::checkSyntax")
+
+	return NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(C.CString(program)))
+}
+
 func (ptr *QScriptEngine) ClearExceptions() {
 	defer qt.Recovering("QScriptEngine::clearExceptions")
 
@@ -977,6 +983,15 @@ func (ptr *QScriptEngine) ToObject(value QScriptValue_ITF) *QScriptValue {
 
 	if ptr.Pointer() != nil {
 		return NewQScriptValueFromPointer(C.QScriptEngine_ToObject(ptr.Pointer(), PointerFromQScriptValue(value)))
+	}
+	return nil
+}
+
+func (ptr *QScriptEngine) ToStringHandle(str string) *QScriptString {
+	defer qt.Recovering("QScriptEngine::toStringHandle")
+
+	if ptr.Pointer() != nil {
+		return NewQScriptStringFromPointer(C.QScriptEngine_ToStringHandle(ptr.Pointer(), C.CString(str)))
 	}
 	return nil
 }

@@ -1451,8 +1451,8 @@ int QSensor_Error(void* ptr){
 	return static_cast<QSensor*>(ptr)->error();
 }
 
-void* QSensor_Identifier(void* ptr){
-	return new QByteArray(static_cast<QSensor*>(ptr)->identifier());
+char* QSensor_Identifier(void* ptr){
+	return QString(static_cast<QSensor*>(ptr)->identifier()).toUtf8().data();
 }
 
 int QSensor_IsActive(void* ptr){
@@ -1503,8 +1503,8 @@ void QSensor_SetDataRate(void* ptr, int rate){
 	static_cast<QSensor*>(ptr)->setDataRate(rate);
 }
 
-void QSensor_SetIdentifier(void* ptr, void* identifier){
-	static_cast<QSensor*>(ptr)->setIdentifier(*static_cast<QByteArray*>(identifier));
+void QSensor_SetIdentifier(void* ptr, char* identifier){
+	static_cast<QSensor*>(ptr)->setIdentifier(QByteArray(identifier));
 }
 
 void QSensor_SetOutputRange(void* ptr, int index){
@@ -1519,16 +1519,16 @@ int QSensor_SkipDuplicates(void* ptr){
 	return static_cast<QSensor*>(ptr)->skipDuplicates();
 }
 
-void* QSensor_Type(void* ptr){
-	return new QByteArray(static_cast<QSensor*>(ptr)->type());
+char* QSensor_Type(void* ptr){
+	return QString(static_cast<QSensor*>(ptr)->type()).toUtf8().data();
 }
 
 int QSensor_UserOrientation(void* ptr){
 	return static_cast<QSensor*>(ptr)->userOrientation();
 }
 
-void* QSensor_NewQSensor(void* ty, void* parent){
-	return new MyQSensor(*static_cast<QByteArray*>(ty), static_cast<QObject*>(parent));
+void* QSensor_NewQSensor(char* ty, void* parent){
+	return new MyQSensor(QByteArray(ty), static_cast<QObject*>(parent));
 }
 
 void QSensor_ConnectActiveChanged(void* ptr){
@@ -1635,8 +1635,8 @@ void QSensor_DataRateChanged(void* ptr){
 	static_cast<QSensor*>(ptr)->dataRateChanged();
 }
 
-void* QSensor_QSensor_DefaultSensorForType(void* ty){
-	return new QByteArray(QSensor::defaultSensorForType(*static_cast<QByteArray*>(ty)));
+char* QSensor_QSensor_DefaultSensorForType(char* ty){
+	return QString(QSensor::defaultSensorForType(QByteArray(ty))).toUtf8().data();
 }
 
 void QSensor_ConnectEfficientBufferSizeChanged(void* ptr){
@@ -2116,20 +2116,20 @@ void* QSensorManager_QSensorManager_CreateBackend(void* sensor){
 	return QSensorManager::createBackend(static_cast<QSensor*>(sensor));
 }
 
-int QSensorManager_QSensorManager_IsBackendRegistered(void* ty, void* identifier){
-	return QSensorManager::isBackendRegistered(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(identifier));
+int QSensorManager_QSensorManager_IsBackendRegistered(char* ty, char* identifier){
+	return QSensorManager::isBackendRegistered(QByteArray(ty), QByteArray(identifier));
 }
 
-void QSensorManager_QSensorManager_RegisterBackend(void* ty, void* identifier, void* factory){
-	QSensorManager::registerBackend(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(identifier), static_cast<QSensorBackendFactory*>(factory));
+void QSensorManager_QSensorManager_RegisterBackend(char* ty, char* identifier, void* factory){
+	QSensorManager::registerBackend(QByteArray(ty), QByteArray(identifier), static_cast<QSensorBackendFactory*>(factory));
 }
 
-void QSensorManager_QSensorManager_SetDefaultBackend(void* ty, void* identifier){
-	QSensorManager::setDefaultBackend(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(identifier));
+void QSensorManager_QSensorManager_SetDefaultBackend(char* ty, char* identifier){
+	QSensorManager::setDefaultBackend(QByteArray(ty), QByteArray(identifier));
 }
 
-void QSensorManager_QSensorManager_UnregisterBackend(void* ty, void* identifier){
-	QSensorManager::unregisterBackend(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(identifier));
+void QSensorManager_QSensorManager_UnregisterBackend(char* ty, char* identifier){
+	QSensorManager::unregisterBackend(QByteArray(ty), QByteArray(identifier));
 }
 
 void QSensorPluginInterface_RegisterSensors(void* ptr){

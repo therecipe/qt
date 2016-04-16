@@ -573,10 +573,10 @@ func NewQSvgRenderer4(contents core.QXmlStreamReader_ITF, parent core.QObject_IT
 	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer4(core.PointerFromQXmlStreamReader(contents), core.PointerFromQObject(parent)))
 }
 
-func NewQSvgRenderer3(contents core.QByteArray_ITF, parent core.QObject_ITF) *QSvgRenderer {
+func NewQSvgRenderer3(contents string, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(core.PointerFromQByteArray(contents), core.PointerFromQObject(parent)))
+	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(C.CString(contents), core.PointerFromQObject(parent)))
 }
 
 func NewQSvgRenderer2(filename string, parent core.QObject_ITF) *QSvgRenderer {
@@ -630,11 +630,11 @@ func (ptr *QSvgRenderer) Load3(contents core.QXmlStreamReader_ITF) bool {
 	return false
 }
 
-func (ptr *QSvgRenderer) Load2(contents core.QByteArray_ITF) bool {
+func (ptr *QSvgRenderer) Load2(contents string) bool {
 	defer qt.Recovering("QSvgRenderer::load")
 
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Load2(ptr.Pointer(), core.PointerFromQByteArray(contents)) != 0
+		return C.QSvgRenderer_Load2(ptr.Pointer(), C.CString(contents)) != 0
 	}
 	return false
 }
@@ -907,11 +907,11 @@ func NewQSvgWidget2(file string, parent widgets.QWidget_ITF) *QSvgWidget {
 	return newQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(C.CString(file), widgets.PointerFromQWidget(parent)))
 }
 
-func (ptr *QSvgWidget) Load2(contents core.QByteArray_ITF) {
+func (ptr *QSvgWidget) Load2(contents string) {
 	defer qt.Recovering("QSvgWidget::load")
 
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_Load2(ptr.Pointer(), core.PointerFromQByteArray(contents))
+		C.QSvgWidget_Load2(ptr.Pointer(), C.CString(contents))
 	}
 }
 

@@ -239,6 +239,10 @@ char* QScriptEngine_AvailableExtensions(void* ptr){
 	return static_cast<QScriptEngine*>(ptr)->availableExtensions().join("|").toUtf8().data();
 }
 
+void* QScriptEngine_QScriptEngine_CheckSyntax(char* program){
+	return new QScriptSyntaxCheckResult(QScriptEngine::checkSyntax(QString(program)));
+}
+
 void QScriptEngine_ClearExceptions(void* ptr){
 	static_cast<QScriptEngine*>(ptr)->clearExceptions();
 }
@@ -377,6 +381,10 @@ void QScriptEngine_SignalHandlerException(void* ptr, void* exception){
 
 void* QScriptEngine_ToObject(void* ptr, void* value){
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->toObject(*static_cast<QScriptValue*>(value)));
+}
+
+void* QScriptEngine_ToStringHandle(void* ptr, char* str){
+	return new QScriptString(static_cast<QScriptEngine*>(ptr)->toStringHandle(QString(str)));
 }
 
 void* QScriptEngine_UncaughtException(void* ptr){

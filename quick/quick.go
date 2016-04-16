@@ -1389,6 +1389,24 @@ func (ptr *QQuickImageProvider) ImageType() qml.QQmlImageProviderBase__ImageType
 	return 0
 }
 
+func (ptr *QQuickImageProvider) RequestImage(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
+	defer qt.Recovering("QQuickImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImage(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickImageProvider) RequestPixmap(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
+	defer qt.Recovering("QQuickImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmap(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
 func (ptr *QQuickImageProvider) DestroyQQuickImageProvider() {
 	defer qt.Recovering("QQuickImageProvider::~QQuickImageProvider")
 
@@ -2046,6 +2064,15 @@ func (ptr *QQuickItem) Contains(point core.QPointF_ITF) bool {
 		return C.QQuickItem_Contains(ptr.Pointer(), core.PointerFromQPointF(point)) != 0
 	}
 	return false
+}
+
+func (ptr *QQuickItem) Cursor() *gui.QCursor {
+	defer qt.Recovering("QQuickItem::cursor")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQCursorFromPointer(C.QQuickItem_Cursor(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQuickItem) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
@@ -3493,6 +3520,15 @@ func newQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResul
 
 func (ptr *QQuickItemGrabResult) QQuickItemGrabResult_PTR() *QQuickItemGrabResult {
 	return ptr
+}
+
+func (ptr *QQuickItemGrabResult) Image() *gui.QImage {
+	defer qt.Recovering("QQuickItemGrabResult::image")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickItemGrabResult_Image(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQuickItemGrabResult) Url() *core.QUrl {
@@ -5328,6 +5364,15 @@ func NewQQuickRenderControl(parent core.QObject_ITF) *QQuickRenderControl {
 	return newQQuickRenderControlFromPointer(C.QQuickRenderControl_NewQQuickRenderControl(core.PointerFromQObject(parent)))
 }
 
+func (ptr *QQuickRenderControl) Grab() *gui.QImage {
+	defer qt.Recovering("QQuickRenderControl::grab")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickRenderControl_Grab(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickRenderControl) Initialize(gl gui.QOpenGLContext_ITF) {
 	defer qt.Recovering("QQuickRenderControl::initialize")
 
@@ -5824,6 +5869,15 @@ func newQQuickTextureFactoryFromPointer(ptr unsafe.Pointer) *QQuickTextureFactor
 
 func (ptr *QQuickTextureFactory) QQuickTextureFactory_PTR() *QQuickTextureFactory {
 	return ptr
+}
+
+func (ptr *QQuickTextureFactory) Image() *gui.QImage {
+	defer qt.Recovering("QQuickTextureFactory::image")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickTextureFactory_Image(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQuickTextureFactory) CreateTexture(window QQuickWindow_ITF) *QSGTexture {
@@ -7428,6 +7482,24 @@ func (ptr *QQuickWidget) Event(e core.QEvent_ITF) bool {
 		return C.QQuickWidget_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
+}
+
+func (ptr *QQuickWidget) Format() *gui.QSurfaceFormat {
+	defer qt.Recovering("QQuickWidget::format")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQSurfaceFormatFromPointer(C.QQuickWidget_Format(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickWidget) GrabFramebuffer() *gui.QImage {
+	defer qt.Recovering("QQuickWidget::grabFramebuffer")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickWidget_GrabFramebuffer(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QQuickWidget) ConnectHideEvent(f func(v *gui.QHideEvent)) {
@@ -9284,6 +9356,15 @@ func (ptr *QQuickWindow) FrameSwapped() {
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_FrameSwapped(ptr.Pointer())
 	}
+}
+
+func (ptr *QQuickWindow) GrabWindow() *gui.QImage {
+	defer qt.Recovering("QQuickWindow::grabWindow")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickWindow_GrabWindow(ptr.Pointer()))
+	}
+	return nil
 }
 
 func QQuickWindow_HasDefaultAlphaBuffer() bool {

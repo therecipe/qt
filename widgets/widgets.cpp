@@ -68,6 +68,7 @@
 #include <QFontComboBox>
 #include <QFontDatabase>
 #include <QFontDialog>
+#include <QFontInfo>
 #include <QFontMetrics>
 #include <QFormLayout>
 #include <QFrame>
@@ -410,6 +411,10 @@ void QAbstractButton_SetShortcut(void* ptr, void* key){
 
 void QAbstractButton_SetText(void* ptr, char* text){
 	static_cast<QAbstractButton*>(ptr)->setText(QString(text));
+}
+
+void* QAbstractButton_Shortcut(void* ptr){
+	return new QKeySequence(static_cast<QAbstractButton*>(ptr)->shortcut());
 }
 
 char* QAbstractButton_Text(void* ptr){
@@ -763,6 +768,14 @@ int QAbstractGraphicsShapeItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QAbstractGraphicsShapeItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QAbstractGraphicsShapeItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QAbstractGraphicsShapeItem*>(ptr)->opaqueArea());
+}
+
+void* QAbstractGraphicsShapeItem_Pen(void* ptr){
+	return new QPen(static_cast<QAbstractGraphicsShapeItem*>(ptr)->pen());
+}
+
 void QAbstractGraphicsShapeItem_SetBrush(void* ptr, void* brush){
 	static_cast<QAbstractGraphicsShapeItem*>(ptr)->setBrush(*static_cast<QBrush*>(brush));
 }
@@ -792,10 +805,6 @@ class MyQAbstractItemDelegate: public QAbstractItemDelegate {
 public:
 	void Signal_CloseEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQAbstractItemDelegateCloseEditor(this, this->objectName().toUtf8().data(), editor, hint); };
 	void Signal_CommitData(QWidget * editor) { callbackQAbstractItemDelegateCommitData(this, this->objectName().toUtf8().data(), editor); };
-	void destroyEditor(QWidget * editor, const QModelIndex & index) const { callbackQAbstractItemDelegateDestroyEditor(const_cast<MyQAbstractItemDelegate*>(this), this->objectName().toUtf8().data(), editor, new QModelIndex(index)); };
-	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQAbstractItemDelegateSetEditorData(const_cast<MyQAbstractItemDelegate*>(this), this->objectName().toUtf8().data(), editor, new QModelIndex(index)); };
-	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQAbstractItemDelegateSetModelData(const_cast<MyQAbstractItemDelegate*>(this), this->objectName().toUtf8().data(), editor, model, new QModelIndex(index)); };
-	void Signal_SizeHintChanged(const QModelIndex & index) { callbackQAbstractItemDelegateSizeHintChanged(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemDelegateTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractItemDelegateChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQAbstractItemDelegateCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -829,14 +838,6 @@ void* QAbstractItemDelegate_CreateEditor(void* ptr, void* parent, void* option, 
 	return static_cast<QAbstractItemDelegate*>(ptr)->createEditor(static_cast<QWidget*>(parent), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_DestroyEditor(void* ptr, void* editor, void* index){
-	static_cast<MyQAbstractItemDelegate*>(ptr)->destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
-void QAbstractItemDelegate_DestroyEditorDefault(void* ptr, void* editor, void* index){
-	static_cast<QAbstractItemDelegate*>(ptr)->QAbstractItemDelegate::destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
 int QAbstractItemDelegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index){
 	return static_cast<QAbstractItemDelegate*>(ptr)->editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
@@ -849,36 +850,8 @@ void QAbstractItemDelegate_Paint(void* ptr, void* painter, void* option, void* i
 	static_cast<QAbstractItemDelegate*>(ptr)->paint(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemDelegate_SetEditorData(void* ptr, void* editor, void* index){
-	static_cast<MyQAbstractItemDelegate*>(ptr)->setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
-void QAbstractItemDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index){
-	static_cast<QAbstractItemDelegate*>(ptr)->QAbstractItemDelegate::setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
-void QAbstractItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index){
-	static_cast<MyQAbstractItemDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
-}
-
-void QAbstractItemDelegate_SetModelDataDefault(void* ptr, void* editor, void* model, void* index){
-	static_cast<QAbstractItemDelegate*>(ptr)->QAbstractItemDelegate::setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
-}
-
 void* QAbstractItemDelegate_SizeHint(void* ptr, void* option, void* index){
 	return new QSize(static_cast<QSize>(static_cast<QAbstractItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractItemDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index))).height());
-}
-
-void QAbstractItemDelegate_ConnectSizeHintChanged(void* ptr){
-	QObject::connect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(const QModelIndex &)>(&QAbstractItemDelegate::sizeHintChanged), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(const QModelIndex &)>(&MyQAbstractItemDelegate::Signal_SizeHintChanged));;
-}
-
-void QAbstractItemDelegate_DisconnectSizeHintChanged(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemDelegate*>(ptr), static_cast<void (QAbstractItemDelegate::*)(const QModelIndex &)>(&QAbstractItemDelegate::sizeHintChanged), static_cast<MyQAbstractItemDelegate*>(ptr), static_cast<void (MyQAbstractItemDelegate::*)(const QModelIndex &)>(&MyQAbstractItemDelegate::Signal_SizeHintChanged));;
-}
-
-void QAbstractItemDelegate_SizeHintChanged(void* ptr, void* index){
-	static_cast<QAbstractItemDelegate*>(ptr)->sizeHintChanged(*static_cast<QModelIndex*>(index));
 }
 
 void QAbstractItemDelegate_DestroyQAbstractItemDelegate(void* ptr){
@@ -912,17 +885,12 @@ void QAbstractItemDelegate_CustomEventDefault(void* ptr, void* event){
 class MyQAbstractItemView: public QAbstractItemView {
 public:
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQAbstractItemViewDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
-	void Signal_Activated(const QModelIndex & index) { callbackQAbstractItemViewActivated(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
-	void Signal_Clicked(const QModelIndex & index) { callbackQAbstractItemViewClicked(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQAbstractItemViewCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QAbstractItemView::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQAbstractItemViewCommitData(this, this->objectName().toUtf8().data(), editor)) { QAbstractItemView::commitData(editor); }; };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQAbstractItemViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QAbstractItemView::currentChanged(current, previous); }; };
-	void Signal_DoubleClicked(const QModelIndex & index) { callbackQAbstractItemViewDoubleClicked(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQAbstractItemViewDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQAbstractItemViewDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void dropEvent(QDropEvent * event) { callbackQAbstractItemViewDropEvent(this, this->objectName().toUtf8().data(), event); };
 	void editorDestroyed(QObject * editor) { if (!callbackQAbstractItemViewEditorDestroyed(this, this->objectName().toUtf8().data(), editor)) { QAbstractItemView::editorDestroyed(editor); }; };
-	void Signal_Entered(const QModelIndex & index) { callbackQAbstractItemViewEntered(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void focusInEvent(QFocusEvent * event) { callbackQAbstractItemViewFocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQAbstractItemViewFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
 	void Signal_IconSizeChanged(const QSize & size) { callbackQAbstractItemViewIconSizeChanged(this, this->objectName().toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height())); };
@@ -933,14 +901,10 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQAbstractItemViewMouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQAbstractItemViewMousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQAbstractItemViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	void Signal_Pressed(const QModelIndex & index) { callbackQAbstractItemViewPressed(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void reset() { if (!callbackQAbstractItemViewReset(this, this->objectName().toUtf8().data())) { QAbstractItemView::reset(); }; };
 	void resizeEvent(QResizeEvent * event) { callbackQAbstractItemViewResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQAbstractItemViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QAbstractItemView::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQAbstractItemViewRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QAbstractItemView::rowsInserted(parent, start, end); }; };
 	void selectAll() { if (!callbackQAbstractItemViewSelectAll(this, this->objectName().toUtf8().data())) { QAbstractItemView::selectAll(); }; };
 	void setModel(QAbstractItemModel * model) { callbackQAbstractItemViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQAbstractItemViewSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QAbstractItemView::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQAbstractItemViewSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQAbstractItemViewStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemViewTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1107,32 +1071,8 @@ int QAbstractItemView_ViewportEvent(void* ptr, void* event){
 	return static_cast<QAbstractItemView*>(ptr)->viewportEvent(static_cast<QEvent*>(event));
 }
 
-void QAbstractItemView_ConnectActivated(void* ptr){
-	QObject::connect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::activated), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Activated));;
-}
-
-void QAbstractItemView_DisconnectActivated(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::activated), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Activated));;
-}
-
-void QAbstractItemView_Activated(void* ptr, void* index){
-	static_cast<QAbstractItemView*>(ptr)->activated(*static_cast<QModelIndex*>(index));
-}
-
 void QAbstractItemView_ClearSelection(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "clearSelection");
-}
-
-void QAbstractItemView_ConnectClicked(void* ptr){
-	QObject::connect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::clicked), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Clicked));;
-}
-
-void QAbstractItemView_DisconnectClicked(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::clicked), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Clicked));;
-}
-
-void QAbstractItemView_Clicked(void* ptr, void* index){
-	static_cast<QAbstractItemView*>(ptr)->clicked(*static_cast<QModelIndex*>(index));
 }
 
 void QAbstractItemView_CloseEditor(void* ptr, void* editor, int hint){
@@ -1153,30 +1093,6 @@ void QAbstractItemView_CommitData(void* ptr, void* editor){
 
 void QAbstractItemView_CommitDataDefault(void* ptr, void* editor){
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "commitData", Q_ARG(QWidget*, static_cast<QWidget*>(editor)));
-}
-
-void QAbstractItemView_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQAbstractItemView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QAbstractItemView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void* QAbstractItemView_CurrentIndex(void* ptr){
-	return new QModelIndex(static_cast<QAbstractItemView*>(ptr)->currentIndex());
-}
-
-void QAbstractItemView_ConnectDoubleClicked(void* ptr){
-	QObject::connect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::doubleClicked), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_DoubleClicked));;
-}
-
-void QAbstractItemView_DisconnectDoubleClicked(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::doubleClicked), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_DoubleClicked));;
-}
-
-void QAbstractItemView_DoubleClicked(void* ptr, void* index){
-	static_cast<QAbstractItemView*>(ptr)->doubleClicked(*static_cast<QModelIndex*>(index));
 }
 
 void QAbstractItemView_DragEnterEvent(void* ptr, void* event){
@@ -1215,18 +1131,6 @@ void QAbstractItemView_EditorDestroyedDefault(void* ptr, void* editor){
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "editorDestroyed", Q_ARG(QObject*, static_cast<QObject*>(editor)));
 }
 
-void QAbstractItemView_ConnectEntered(void* ptr){
-	QObject::connect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::entered), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Entered));;
-}
-
-void QAbstractItemView_DisconnectEntered(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::entered), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Entered));;
-}
-
-void QAbstractItemView_Entered(void* ptr, void* index){
-	static_cast<QAbstractItemView*>(ptr)->entered(*static_cast<QModelIndex*>(index));
-}
-
 int QAbstractItemView_Event(void* ptr, void* event){
 	return static_cast<QAbstractItemView*>(ptr)->event(static_cast<QEvent*>(event));
 }
@@ -1261,10 +1165,6 @@ void QAbstractItemView_DisconnectIconSizeChanged(void* ptr){
 
 void QAbstractItemView_IconSizeChanged(void* ptr, void* size){
 	static_cast<QAbstractItemView*>(ptr)->iconSizeChanged(*static_cast<QSize*>(size));
-}
-
-void* QAbstractItemView_IndexAt(void* ptr, void* point){
-	return new QModelIndex(static_cast<QAbstractItemView*>(ptr)->indexAt(*static_cast<QPoint*>(point)));
 }
 
 void* QAbstractItemView_IndexWidget(void* ptr, void* index){
@@ -1355,18 +1255,6 @@ void QAbstractItemView_OpenPersistentEditor(void* ptr, void* index){
 	static_cast<QAbstractItemView*>(ptr)->openPersistentEditor(*static_cast<QModelIndex*>(index));
 }
 
-void QAbstractItemView_ConnectPressed(void* ptr){
-	QObject::connect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::pressed), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Pressed));;
-}
-
-void QAbstractItemView_DisconnectPressed(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemView*>(ptr), static_cast<void (QAbstractItemView::*)(const QModelIndex &)>(&QAbstractItemView::pressed), static_cast<MyQAbstractItemView*>(ptr), static_cast<void (MyQAbstractItemView::*)(const QModelIndex &)>(&MyQAbstractItemView::Signal_Pressed));;
-}
-
-void QAbstractItemView_Pressed(void* ptr, void* index){
-	static_cast<QAbstractItemView*>(ptr)->pressed(*static_cast<QModelIndex*>(index));
-}
-
 void QAbstractItemView_Reset(void* ptr){
 	QMetaObject::invokeMethod(static_cast<MyQAbstractItemView*>(ptr), "reset");
 }
@@ -1381,26 +1269,6 @@ void QAbstractItemView_ResizeEvent(void* ptr, void* event){
 
 void QAbstractItemView_ResizeEventDefault(void* ptr, void* event){
 	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::resizeEvent(static_cast<QResizeEvent*>(event));
-}
-
-void* QAbstractItemView_RootIndex(void* ptr){
-	return new QModelIndex(static_cast<QAbstractItemView*>(ptr)->rootIndex());
-}
-
-void QAbstractItemView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQAbstractItemView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QAbstractItemView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QAbstractItemView_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQAbstractItemView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QAbstractItemView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QAbstractItemView_ScrollTo(void* ptr, void* index, int hint){
@@ -1459,14 +1327,6 @@ void QAbstractItemView_SetModelDefault(void* ptr, void* model){
 	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setModel(static_cast<QAbstractItemModel*>(model));
 }
 
-void QAbstractItemView_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQAbstractItemView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QAbstractItemView_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
 void QAbstractItemView_SetSelectionModel(void* ptr, void* selectionModel){
 	static_cast<MyQAbstractItemView*>(ptr)->setSelectionModel(static_cast<QItemSelectionModel*>(selectionModel));
 }
@@ -1513,6 +1373,10 @@ void QAbstractItemView_UpdateGeometries(void* ptr){
 
 void QAbstractItemView_UpdateGeometriesDefault(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "updateGeometries");
+}
+
+void* QAbstractItemView_ViewOptions(void* ptr){
+	return new QStyleOptionViewItem(static_cast<QAbstractItemView*>(ptr)->viewOptions());
 }
 
 void QAbstractItemView_ConnectViewportEntered(void* ptr){
@@ -3132,6 +2996,10 @@ int QAction_AutoRepeat(void* ptr){
 	return static_cast<QAction*>(ptr)->autoRepeat();
 }
 
+void* QAction_Font(void* ptr){
+	return new QFont(static_cast<QAction*>(ptr)->font());
+}
+
 void* QAction_Icon(void* ptr){
 	return new QIcon(static_cast<QAction*>(ptr)->icon());
 }
@@ -3352,6 +3220,10 @@ void QAction_SetShortcuts2(void* ptr, int key){
 	static_cast<QAction*>(ptr)->setShortcuts(static_cast<QKeySequence::StandardKey>(key));
 }
 
+void* QAction_Shortcut(void* ptr){
+	return new QKeySequence(static_cast<QAction*>(ptr)->shortcut());
+}
+
 int QAction_ShowStatusText(void* ptr, void* widget){
 	return static_cast<QAction*>(ptr)->showStatusText(static_cast<QWidget*>(widget));
 }
@@ -3570,6 +3442,10 @@ int QApplication_QApplication_KeyboardInputInterval(){
 	return QApplication::keyboardInputInterval();
 }
 
+void* QApplication_QApplication_Palette(void* widget){
+	return new QPalette(QApplication::palette(static_cast<QWidget*>(widget)));
+}
+
 void QApplication_QApplication_SetActiveWindow(void* active){
 	QApplication::setActiveWindow(static_cast<QWidget*>(active));
 }
@@ -3712,8 +3588,28 @@ void* QApplication_QApplication_FocusWidget(){
 	return QApplication::focusWidget();
 }
 
+void* QApplication_QApplication_Font(){
+	return new QFont(QApplication::font());
+}
+
+void* QApplication_QApplication_Font2(void* widget){
+	return new QFont(QApplication::font(static_cast<QWidget*>(widget)));
+}
+
+void* QApplication_QApplication_Font3(char* className){
+	return new QFont(QApplication::font(const_cast<const char*>(className)));
+}
+
+void* QApplication_QApplication_FontMetrics(){
+	return new QFontMetrics(QApplication::fontMetrics());
+}
+
 int QApplication_Notify(void* ptr, void* receiver, void* e){
 	return static_cast<QApplication*>(ptr)->notify(static_cast<QObject*>(receiver), static_cast<QEvent*>(e));
+}
+
+void* QApplication_QApplication_Palette2(char* className){
+	return new QPalette(QApplication::palette(const_cast<const char*>(className)));
 }
 
 void QApplication_QApplication_SetColorSpec(int spec){
@@ -5378,6 +5274,10 @@ int QColormap_Depth(void* ptr){
 	return static_cast<QColormap*>(ptr)->depth();
 }
 
+void* QColormap_QColormap_Instance(int screen){
+	return new QColormap(QColormap::instance(screen));
+}
+
 int QColormap_Mode(void* ptr){
 	return static_cast<QColormap*>(ptr)->mode();
 }
@@ -5393,17 +5293,12 @@ void QColormap_DestroyQColormap(void* ptr){
 class MyQColumnView: public QColumnView {
 public:
 	MyQColumnView(QWidget *parent) : QColumnView(parent) {};
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQColumnViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QColumnView::currentChanged(current, previous); }; };
 	void resizeEvent(QResizeEvent * event) { callbackQColumnViewResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQColumnViewRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QColumnView::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { callbackQColumnViewScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
-	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQColumnViewScrollTo(this, this->objectName().toUtf8().data(), new QModelIndex(index), hint); };
 	void selectAll() { if (!callbackQColumnViewSelectAll(this, this->objectName().toUtf8().data())) { QColumnView::selectAll(); }; };
 	void setModel(QAbstractItemModel * model) { callbackQColumnViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQColumnViewSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QColumnView::setRootIndex(index); }; };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQColumnViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void setSelectionModel(QItemSelectionModel * newSelectionModel) { callbackQColumnViewSetSelectionModel(this, this->objectName().toUtf8().data(), newSelectionModel); };
-	void Signal_UpdatePreviewWidget(const QModelIndex & index) { callbackQColumnViewUpdatePreviewWidget(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQColumnViewDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { if (!callbackQColumnViewCloseEditor(this, this->objectName().toUtf8().data(), editor, hint)) { QColumnView::closeEditor(editor, hint); }; };
 	void commitData(QWidget * editor) { if (!callbackQColumnViewCommitData(this, this->objectName().toUtf8().data(), editor)) { QColumnView::commitData(editor); }; };
@@ -5421,7 +5316,6 @@ public:
 	void mousePressEvent(QMouseEvent * event) { callbackQColumnViewMousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQColumnViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void reset() { if (!callbackQColumnViewReset(this, this->objectName().toUtf8().data())) { QColumnView::reset(); }; };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQColumnViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QColumnView::rowsAboutToBeRemoved(parent, start, end); }; };
 	void startDrag(Qt::DropActions supportedActions) { callbackQColumnViewStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void timerEvent(QTimerEvent * event) { callbackQColumnViewTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateGeometries() { if (!callbackQColumnViewUpdateGeometries(this, this->objectName().toUtf8().data())) { QColumnView::updateGeometries(); }; };
@@ -5461,28 +5355,12 @@ void* QColumnView_CreateColumn(void* ptr, void* index){
 	return static_cast<QColumnView*>(ptr)->createColumn(*static_cast<QModelIndex*>(index));
 }
 
-void QColumnView_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QColumnView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 int QColumnView_HorizontalOffset(void* ptr){
 	return static_cast<QColumnView*>(ptr)->horizontalOffset();
 }
 
-void* QColumnView_IndexAt(void* ptr, void* point){
-	return new QModelIndex(static_cast<QColumnView*>(ptr)->indexAt(*static_cast<QPoint*>(point)));
-}
-
 int QColumnView_IsIndexHidden(void* ptr, void* index){
 	return static_cast<QColumnView*>(ptr)->isIndexHidden(*static_cast<QModelIndex*>(index));
-}
-
-void* QColumnView_MoveCursor(void* ptr, int cursorAction, int modifiers){
-	return new QModelIndex(static_cast<QColumnView*>(ptr)->moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifier>(modifiers)));
 }
 
 void* QColumnView_PreviewWidget(void* ptr){
@@ -5497,28 +5375,12 @@ void QColumnView_ResizeEventDefault(void* ptr, void* event){
 	static_cast<QColumnView*>(ptr)->QColumnView::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
-void QColumnView_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QColumnView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
 void QColumnView_ScrollContentsBy(void* ptr, int dx, int dy){
 	static_cast<MyQColumnView*>(ptr)->scrollContentsBy(dx, dy);
 }
 
 void QColumnView_ScrollContentsByDefault(void* ptr, int dx, int dy){
 	static_cast<QColumnView*>(ptr)->QColumnView::scrollContentsBy(dx, dy);
-}
-
-void QColumnView_ScrollTo(void* ptr, void* index, int hint){
-	static_cast<MyQColumnView*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
-}
-
-void QColumnView_ScrollToDefault(void* ptr, void* index, int hint){
-	static_cast<QColumnView*>(ptr)->QColumnView::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
 void QColumnView_SelectAll(void* ptr){
@@ -5541,14 +5403,6 @@ void QColumnView_SetPreviewWidget(void* ptr, void* widget){
 	static_cast<QColumnView*>(ptr)->setPreviewWidget(static_cast<QWidget*>(widget));
 }
 
-void QColumnView_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QColumnView_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
 void QColumnView_SetSelection(void* ptr, void* rect, int command){
 	static_cast<MyQColumnView*>(ptr)->setSelection(*static_cast<QRect*>(rect), static_cast<QItemSelectionModel::SelectionFlag>(command));
 }
@@ -5567,18 +5421,6 @@ void QColumnView_SetSelectionModelDefault(void* ptr, void* newSelectionModel){
 
 void* QColumnView_SizeHint(void* ptr){
 	return new QSize(static_cast<QSize>(static_cast<QColumnView*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QColumnView*>(ptr)->sizeHint()).height());
-}
-
-void QColumnView_ConnectUpdatePreviewWidget(void* ptr){
-	QObject::connect(static_cast<QColumnView*>(ptr), static_cast<void (QColumnView::*)(const QModelIndex &)>(&QColumnView::updatePreviewWidget), static_cast<MyQColumnView*>(ptr), static_cast<void (MyQColumnView::*)(const QModelIndex &)>(&MyQColumnView::Signal_UpdatePreviewWidget));;
-}
-
-void QColumnView_DisconnectUpdatePreviewWidget(void* ptr){
-	QObject::disconnect(static_cast<QColumnView*>(ptr), static_cast<void (QColumnView::*)(const QModelIndex &)>(&QColumnView::updatePreviewWidget), static_cast<MyQColumnView*>(ptr), static_cast<void (MyQColumnView::*)(const QModelIndex &)>(&MyQColumnView::Signal_UpdatePreviewWidget));;
-}
-
-void QColumnView_UpdatePreviewWidget(void* ptr, void* index){
-	static_cast<QColumnView*>(ptr)->updatePreviewWidget(*static_cast<QModelIndex*>(index));
 }
 
 int QColumnView_VerticalOffset(void* ptr){
@@ -5731,14 +5573,6 @@ void QColumnView_Reset(void* ptr){
 
 void QColumnView_ResetDefault(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "reset");
-}
-
-void QColumnView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQColumnView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QColumnView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QColumnView_StartDrag(void* ptr, int supportedActions){
@@ -6359,10 +6193,6 @@ void QComboBox_ResizeEventDefault(void* ptr, void* e){
 	static_cast<QComboBox*>(ptr)->QComboBox::resizeEvent(static_cast<QResizeEvent*>(e));
 }
 
-void* QComboBox_RootModelIndex(void* ptr){
-	return new QModelIndex(static_cast<QComboBox*>(ptr)->rootModelIndex());
-}
-
 void QComboBox_SetEditText(void* ptr, char* text){
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setEditText", Q_ARG(QString, QString(text)));
 }
@@ -6924,8 +6754,10 @@ public:
 	void drawControl(QStyle::ControlElement element, const QStyleOption * opt, QPainter * p, const QWidget * widget) const { callbackQCommonStyleDrawControl(const_cast<MyQCommonStyle*>(this), this->objectName().toUtf8().data(), element, const_cast<QStyleOption*>(opt), p, const_cast<QWidget*>(widget)); };
 	void drawPrimitive(QStyle::PrimitiveElement pe, const QStyleOption * opt, QPainter * p, const QWidget * widget) const { callbackQCommonStyleDrawPrimitive(const_cast<MyQCommonStyle*>(this), this->objectName().toUtf8().data(), pe, const_cast<QStyleOption*>(opt), p, const_cast<QWidget*>(widget)); };
 	void drawComplexControl(QStyle::ComplexControl cc, const QStyleOptionComplex * opt, QPainter * p, const QWidget * widget) const { callbackQCommonStyleDrawComplexControl(const_cast<MyQCommonStyle*>(this), this->objectName().toUtf8().data(), cc, const_cast<QStyleOptionComplex*>(opt), p, const_cast<QWidget*>(widget)); };
+	void polish(QPalette & pal) { callbackQCommonStylePolish(this, this->objectName().toUtf8().data(), new QPalette(pal)); };
 	void unpolish(QWidget * widget) { callbackQCommonStyleUnpolish(this, this->objectName().toUtf8().data(), widget); };
-	void polish(QWidget * widget) { callbackQCommonStylePolish(this, this->objectName().toUtf8().data(), widget); };
+	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQCommonStyleDrawItemPixmap(const_cast<MyQCommonStyle*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rectangle).x(), static_cast<QRect>(rectangle).y(), static_cast<QRect>(rectangle).width(), static_cast<QRect>(rectangle).height()), alignment, new QPixmap(pixmap)); };
+	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { callbackQCommonStyleDrawItemText(const_cast<MyQCommonStyle*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rectangle).x(), static_cast<QRect>(rectangle).y(), static_cast<QRect>(rectangle).width(), static_cast<QRect>(rectangle).height()), alignment, new QPalette(palette), enabled, text.toUtf8().data(), textRole); };
 	void timerEvent(QTimerEvent * event) { callbackQCommonStyleTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQCommonStyleChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQCommonStyleCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -6955,6 +6787,10 @@ void QCommonStyle_DrawComplexControlDefault(void* ptr, int cc, void* opt, void* 
 	static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawComplexControl(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), static_cast<QPainter*>(p), static_cast<QWidget*>(widget));
 }
 
+void* QCommonStyle_GeneratedIconPixmap(void* ptr, int iconMode, void* pixmap, void* opt){
+	return new QPixmap(static_cast<QCommonStyle*>(ptr)->generatedIconPixmap(static_cast<QIcon::Mode>(iconMode), *static_cast<QPixmap*>(pixmap), static_cast<QStyleOption*>(opt)));
+}
+
 int QCommonStyle_HitTestComplexControl(void* ptr, int cc, void* opt, void* pt, void* widget){
 	return static_cast<QCommonStyle*>(ptr)->hitTestComplexControl(static_cast<QStyle::ComplexControl>(cc), static_cast<QStyleOptionComplex*>(opt), *static_cast<QPoint*>(pt), static_cast<QWidget*>(widget));
 }
@@ -6967,8 +6803,20 @@ int QCommonStyle_PixelMetric(void* ptr, int m, void* opt, void* widget){
 	return static_cast<QCommonStyle*>(ptr)->pixelMetric(static_cast<QStyle::PixelMetric>(m), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget));
 }
 
+void QCommonStyle_Polish(void* ptr, void* pal){
+	static_cast<MyQCommonStyle*>(ptr)->polish(*static_cast<QPalette*>(pal));
+}
+
+void QCommonStyle_PolishDefault(void* ptr, void* pal){
+	static_cast<QCommonStyle*>(ptr)->QCommonStyle::polish(*static_cast<QPalette*>(pal));
+}
+
 void* QCommonStyle_SizeFromContents(void* ptr, int ct, void* opt, void* csz, void* widget){
 	return new QSize(static_cast<QSize>(static_cast<QCommonStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ct), static_cast<QStyleOption*>(opt), *static_cast<QSize*>(csz), static_cast<QWidget*>(widget))).width(), static_cast<QSize>(static_cast<QCommonStyle*>(ptr)->sizeFromContents(static_cast<QStyle::ContentsType>(ct), static_cast<QStyleOption*>(opt), *static_cast<QSize*>(csz), static_cast<QWidget*>(widget))).height());
+}
+
+void* QCommonStyle_StandardPixmap(void* ptr, int sp, void* option, void* widget){
+	return new QPixmap(static_cast<QCommonStyle*>(ptr)->standardPixmap(static_cast<QStyle::StandardPixmap>(sp), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget)));
 }
 
 int QCommonStyle_StyleHint(void* ptr, int sh, void* opt, void* widget, void* hret){
@@ -6995,12 +6843,20 @@ void QCommonStyle_DestroyQCommonStyle(void* ptr){
 	static_cast<QCommonStyle*>(ptr)->~QCommonStyle();
 }
 
-void QCommonStyle_Polish(void* ptr, void* widget){
-	static_cast<MyQCommonStyle*>(ptr)->polish(static_cast<QWidget*>(widget));
+void QCommonStyle_DrawItemPixmap(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap){
+	static_cast<MyQCommonStyle*>(ptr)->drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
 }
 
-void QCommonStyle_PolishDefault(void* ptr, void* widget){
-	static_cast<QCommonStyle*>(ptr)->QCommonStyle::polish(static_cast<QWidget*>(widget));
+void QCommonStyle_DrawItemPixmapDefault(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap){
+	static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
+}
+
+void QCommonStyle_DrawItemText(void* ptr, void* painter, void* rectangle, int alignment, void* palette, int enabled, char* text, int textRole){
+	static_cast<MyQCommonStyle*>(ptr)->drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+}
+
+void QCommonStyle_DrawItemTextDefault(void* ptr, void* painter, void* rectangle, int alignment, void* palette, int enabled, char* text, int textRole){
+	static_cast<QCommonStyle*>(ptr)->QCommonStyle::drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
 }
 
 void QCommonStyle_TimerEvent(void* ptr, void* event){
@@ -7032,9 +6888,7 @@ public:
 	MyQCompleter(QAbstractItemModel *model, QObject *parent) : QCompleter(model, parent) {};
 	MyQCompleter(QObject *parent) : QCompleter(parent) {};
 	MyQCompleter(const QStringList &list, QObject *parent) : QCompleter(list, parent) {};
-	void Signal_Activated2(const QModelIndex & index) { callbackQCompleterActivated2(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void Signal_Activated(const QString & text) { callbackQCompleterActivated(this, this->objectName().toUtf8().data(), text.toUtf8().data()); };
-	void Signal_Highlighted2(const QModelIndex & index) { callbackQCompleterHighlighted2(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void Signal_Highlighted(const QString & text) { callbackQCompleterHighlighted(this, this->objectName().toUtf8().data(), text.toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQCompleterTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQCompleterChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -7125,18 +6979,6 @@ void* QCompleter_NewQCompleter3(char* list, void* parent){
 	return new MyQCompleter(QString(list).split("|", QString::SkipEmptyParts), static_cast<QObject*>(parent));
 }
 
-void QCompleter_ConnectActivated2(void* ptr){
-	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Activated2));;
-}
-
-void QCompleter_DisconnectActivated2(void* ptr){
-	QObject::disconnect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Activated2));;
-}
-
-void QCompleter_Activated2(void* ptr, void* index){
-	static_cast<QCompleter*>(ptr)->activated(*static_cast<QModelIndex*>(index));
-}
-
 void QCompleter_ConnectActivated(void* ptr){
 	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QString &)>(&QCompleter::activated), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QString &)>(&MyQCompleter::Signal_Activated));;
 }
@@ -7165,10 +7007,6 @@ char* QCompleter_CurrentCompletion(void* ptr){
 	return static_cast<QCompleter*>(ptr)->currentCompletion().toUtf8().data();
 }
 
-void* QCompleter_CurrentIndex(void* ptr){
-	return new QModelIndex(static_cast<QCompleter*>(ptr)->currentIndex());
-}
-
 int QCompleter_CurrentRow(void* ptr){
 	return static_cast<QCompleter*>(ptr)->currentRow();
 }
@@ -7179,18 +7017,6 @@ int QCompleter_Event(void* ptr, void* ev){
 
 int QCompleter_EventFilter(void* ptr, void* o, void* e){
 	return static_cast<QCompleter*>(ptr)->eventFilter(static_cast<QObject*>(o), static_cast<QEvent*>(e));
-}
-
-void QCompleter_ConnectHighlighted2(void* ptr){
-	QObject::connect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::highlighted), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Highlighted2));;
-}
-
-void QCompleter_DisconnectHighlighted2(void* ptr){
-	QObject::disconnect(static_cast<QCompleter*>(ptr), static_cast<void (QCompleter::*)(const QModelIndex &)>(&QCompleter::highlighted), static_cast<MyQCompleter*>(ptr), static_cast<void (MyQCompleter::*)(const QModelIndex &)>(&MyQCompleter::Signal_Highlighted2));;
-}
-
-void QCompleter_Highlighted2(void* ptr, void* index){
-	static_cast<QCompleter*>(ptr)->highlighted(*static_cast<QModelIndex*>(index));
 }
 
 void QCompleter_ConnectHighlighted(void* ptr){
@@ -7315,8 +7141,8 @@ void QDataWidgetMapper_AddMapping(void* ptr, void* widget, int section){
 	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section);
 }
 
-void QDataWidgetMapper_AddMapping2(void* ptr, void* widget, int section, void* propertyName){
-	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section, *static_cast<QByteArray*>(propertyName));
+void QDataWidgetMapper_AddMapping2(void* ptr, void* widget, int section, char* propertyName){
+	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section, QByteArray(propertyName));
 }
 
 void QDataWidgetMapper_ClearMapping(void* ptr){
@@ -7339,8 +7165,8 @@ void* QDataWidgetMapper_ItemDelegate(void* ptr){
 	return static_cast<QDataWidgetMapper*>(ptr)->itemDelegate();
 }
 
-void* QDataWidgetMapper_MappedPropertyName(void* ptr, void* widget){
-	return new QByteArray(static_cast<QDataWidgetMapper*>(ptr)->mappedPropertyName(static_cast<QWidget*>(widget)));
+char* QDataWidgetMapper_MappedPropertyName(void* ptr, void* widget){
+	return QString(static_cast<QDataWidgetMapper*>(ptr)->mappedPropertyName(static_cast<QWidget*>(widget))).toUtf8().data();
 }
 
 int QDataWidgetMapper_MappedSection(void* ptr, void* widget){
@@ -7361,10 +7187,6 @@ void QDataWidgetMapper_RemoveMapping(void* ptr, void* widget){
 
 void QDataWidgetMapper_Revert(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QDataWidgetMapper*>(ptr), "revert");
-}
-
-void* QDataWidgetMapper_RootIndex(void* ptr){
-	return new QModelIndex(static_cast<QDataWidgetMapper*>(ptr)->rootIndex());
 }
 
 void QDataWidgetMapper_SetCurrentModelIndex(void* ptr, void* index){
@@ -11167,12 +10989,12 @@ void* QFileDialog_ProxyModel(void* ptr){
 	return static_cast<QFileDialog*>(ptr)->proxyModel();
 }
 
-int QFileDialog_RestoreState(void* ptr, void* state){
-	return static_cast<QFileDialog*>(ptr)->restoreState(*static_cast<QByteArray*>(state));
+int QFileDialog_RestoreState(void* ptr, char* state){
+	return static_cast<QFileDialog*>(ptr)->restoreState(QByteArray(state));
 }
 
-void* QFileDialog_SaveState(void* ptr){
-	return new QByteArray(static_cast<QFileDialog*>(ptr)->saveState());
+char* QFileDialog_SaveState(void* ptr){
+	return QString(static_cast<QFileDialog*>(ptr)->saveState()).toUtf8().data();
 }
 
 void QFileDialog_SelectFile(void* ptr, char* filename){
@@ -11568,7 +11390,6 @@ class MyQFileSystemModel: public QFileSystemModel {
 public:
 	MyQFileSystemModel(QObject *parent) : QFileSystemModel(parent) {};
 	void Signal_DirectoryLoaded(const QString & path) { callbackQFileSystemModelDirectoryLoaded(this, this->objectName().toUtf8().data(), path.toUtf8().data()); };
-	void fetchMore(const QModelIndex & parent) { callbackQFileSystemModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void Signal_FileRenamed(const QString & path, const QString & oldName, const QString & newName) { callbackQFileSystemModelFileRenamed(this, this->objectName().toUtf8().data(), path.toUtf8().data(), oldName.toUtf8().data(), newName.toUtf8().data()); };
 	void Signal_RootPathChanged(const QString & newPath) { callbackQFileSystemModelRootPathChanged(this, this->objectName().toUtf8().data(), newPath.toUtf8().data()); };
 	void sort(int column, Qt::SortOrder order) { callbackQFileSystemModelSort(this, this->objectName().toUtf8().data(), column, order); };
@@ -11654,16 +11475,12 @@ int QFileSystemModel_Event(void* ptr, void* event){
 	return static_cast<QFileSystemModel*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
-void QFileSystemModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQFileSystemModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QFileSystemModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
 void* QFileSystemModel_FileIcon(void* ptr, void* index){
 	return new QIcon(static_cast<QFileSystemModel*>(ptr)->fileIcon(*static_cast<QModelIndex*>(index)));
+}
+
+void* QFileSystemModel_FileInfo(void* ptr, void* index){
+	return new QFileInfo(static_cast<QFileSystemModel*>(ptr)->fileInfo(*static_cast<QModelIndex*>(index)));
 }
 
 char* QFileSystemModel_FileName(void* ptr, void* index){
@@ -11706,14 +11523,6 @@ void* QFileSystemModel_IconProvider(void* ptr){
 	return static_cast<QFileSystemModel*>(ptr)->iconProvider();
 }
 
-void* QFileSystemModel_Index2(void* ptr, char* path, int column){
-	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->index(QString(path), column));
-}
-
-void* QFileSystemModel_Index(void* ptr, int row, int column, void* parent){
-	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
-}
-
 int QFileSystemModel_IsDir(void* ptr, void* index){
 	return static_cast<QFileSystemModel*>(ptr)->isDir(*static_cast<QModelIndex*>(index));
 }
@@ -11726,20 +11535,12 @@ char* QFileSystemModel_MimeTypes(void* ptr){
 	return static_cast<QFileSystemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
-void* QFileSystemModel_Mkdir(void* ptr, void* parent, char* name){
-	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->mkdir(*static_cast<QModelIndex*>(parent), QString(name)));
-}
-
 void* QFileSystemModel_MyComputer(void* ptr, int role){
 	return new QVariant(static_cast<QFileSystemModel*>(ptr)->myComputer(role));
 }
 
 char* QFileSystemModel_NameFilters(void* ptr){
 	return static_cast<QFileSystemModel*>(ptr)->nameFilters().join("|").toUtf8().data();
-}
-
-void* QFileSystemModel_Parent(void* ptr, void* index){
-	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
 void* QFileSystemModel_RootDirectory(void* ptr){
@@ -11780,10 +11581,6 @@ void QFileSystemModel_SetIconProvider(void* ptr, void* provider){
 
 void QFileSystemModel_SetNameFilters(void* ptr, char* filters){
 	static_cast<QFileSystemModel*>(ptr)->setNameFilters(QString(filters).split("|", QString::SkipEmptyParts));
-}
-
-void* QFileSystemModel_SetRootPath(void* ptr, char* newPath){
-	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->setRootPath(QString(newPath)));
 }
 
 long long QFileSystemModel_Size(void* ptr, void* index){
@@ -12153,6 +11950,7 @@ void QFocusFrame_CustomEventDefault(void* ptr, void* event){
 class MyQFontComboBox: public QFontComboBox {
 public:
 	MyQFontComboBox(QWidget *parent) : QFontComboBox(parent) {};
+	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontComboBoxCurrentFontChanged(this, this->objectName().toUtf8().data(), new QFont(font)); };
 	void changeEvent(QEvent * e) { callbackQFontComboBoxChangeEvent(this, this->objectName().toUtf8().data(), e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQFontComboBoxContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
 	void focusInEvent(QFocusEvent * e) { callbackQFontComboBoxFocusInEvent(this, this->objectName().toUtf8().data(), e); };
@@ -12188,6 +11986,10 @@ public:
 	void customEvent(QEvent * event) { callbackQFontComboBoxCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
+void* QFontComboBox_CurrentFont(void* ptr){
+	return new QFont(static_cast<QFontComboBox*>(ptr)->currentFont());
+}
+
 int QFontComboBox_FontFilters(void* ptr){
 	return static_cast<QFontComboBox*>(ptr)->fontFilters();
 }
@@ -12210,6 +12012,18 @@ int QFontComboBox_WritingSystem(void* ptr){
 
 void* QFontComboBox_NewQFontComboBox(void* parent){
 	return new MyQFontComboBox(static_cast<QWidget*>(parent));
+}
+
+void QFontComboBox_ConnectCurrentFontChanged(void* ptr){
+	QObject::connect(static_cast<QFontComboBox*>(ptr), static_cast<void (QFontComboBox::*)(const QFont &)>(&QFontComboBox::currentFontChanged), static_cast<MyQFontComboBox*>(ptr), static_cast<void (MyQFontComboBox::*)(const QFont &)>(&MyQFontComboBox::Signal_CurrentFontChanged));;
+}
+
+void QFontComboBox_DisconnectCurrentFontChanged(void* ptr){
+	QObject::disconnect(static_cast<QFontComboBox*>(ptr), static_cast<void (QFontComboBox::*)(const QFont &)>(&QFontComboBox::currentFontChanged), static_cast<MyQFontComboBox*>(ptr), static_cast<void (MyQFontComboBox::*)(const QFont &)>(&MyQFontComboBox::Signal_CurrentFontChanged));;
+}
+
+void QFontComboBox_CurrentFontChanged(void* ptr, void* font){
+	static_cast<QFontComboBox*>(ptr)->currentFontChanged(*static_cast<QFont*>(font));
 }
 
 int QFontComboBox_Event(void* ptr, void* e){
@@ -12493,7 +12307,9 @@ public:
 	MyQFontDialog(QWidget *parent) : QFontDialog(parent) {};
 	MyQFontDialog(const QFont &initial, QWidget *parent) : QFontDialog(initial, parent) {};
 	void changeEvent(QEvent * e) { callbackQFontDialogChangeEvent(this, this->objectName().toUtf8().data(), e); };
+	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontDialogCurrentFontChanged(this, this->objectName().toUtf8().data(), new QFont(font)); };
 	void done(int result) { if (!callbackQFontDialogDone(this, this->objectName().toUtf8().data(), result)) { QFontDialog::done(result); }; };
+	void Signal_FontSelected(const QFont & font) { callbackQFontDialogFontSelected(this, this->objectName().toUtf8().data(), new QFont(font)); };
 	void setVisible(bool visible) { if (!callbackQFontDialogSetVisible(this, this->objectName().toUtf8().data(), visible)) { QFontDialog::setVisible(visible); }; };
 	void accept() { if (!callbackQFontDialogAccept(this, this->objectName().toUtf8().data())) { QFontDialog::accept(); }; };
 	void closeEvent(QCloseEvent * e) { callbackQFontDialogCloseEvent(this, this->objectName().toUtf8().data(), e); };
@@ -12552,6 +12368,22 @@ void QFontDialog_ChangeEventDefault(void* ptr, void* e){
 	static_cast<QFontDialog*>(ptr)->QFontDialog::changeEvent(static_cast<QEvent*>(e));
 }
 
+void* QFontDialog_CurrentFont(void* ptr){
+	return new QFont(static_cast<QFontDialog*>(ptr)->currentFont());
+}
+
+void QFontDialog_ConnectCurrentFontChanged(void* ptr){
+	QObject::connect(static_cast<QFontDialog*>(ptr), static_cast<void (QFontDialog::*)(const QFont &)>(&QFontDialog::currentFontChanged), static_cast<MyQFontDialog*>(ptr), static_cast<void (MyQFontDialog::*)(const QFont &)>(&MyQFontDialog::Signal_CurrentFontChanged));;
+}
+
+void QFontDialog_DisconnectCurrentFontChanged(void* ptr){
+	QObject::disconnect(static_cast<QFontDialog*>(ptr), static_cast<void (QFontDialog::*)(const QFont &)>(&QFontDialog::currentFontChanged), static_cast<MyQFontDialog*>(ptr), static_cast<void (MyQFontDialog::*)(const QFont &)>(&MyQFontDialog::Signal_CurrentFontChanged));;
+}
+
+void QFontDialog_CurrentFontChanged(void* ptr, void* font){
+	static_cast<QFontDialog*>(ptr)->currentFontChanged(*static_cast<QFont*>(font));
+}
+
 void QFontDialog_Done(void* ptr, int result){
 	QMetaObject::invokeMethod(static_cast<MyQFontDialog*>(ptr), "done", Q_ARG(int, result));
 }
@@ -12560,8 +12392,32 @@ void QFontDialog_DoneDefault(void* ptr, int result){
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "done", Q_ARG(int, result));
 }
 
+void QFontDialog_ConnectFontSelected(void* ptr){
+	QObject::connect(static_cast<QFontDialog*>(ptr), static_cast<void (QFontDialog::*)(const QFont &)>(&QFontDialog::fontSelected), static_cast<MyQFontDialog*>(ptr), static_cast<void (MyQFontDialog::*)(const QFont &)>(&MyQFontDialog::Signal_FontSelected));;
+}
+
+void QFontDialog_DisconnectFontSelected(void* ptr){
+	QObject::disconnect(static_cast<QFontDialog*>(ptr), static_cast<void (QFontDialog::*)(const QFont &)>(&QFontDialog::fontSelected), static_cast<MyQFontDialog*>(ptr), static_cast<void (MyQFontDialog::*)(const QFont &)>(&MyQFontDialog::Signal_FontSelected));;
+}
+
+void QFontDialog_FontSelected(void* ptr, void* font){
+	static_cast<QFontDialog*>(ptr)->fontSelected(*static_cast<QFont*>(font));
+}
+
+void* QFontDialog_QFontDialog_GetFont2(int ok, void* parent){
+	return new QFont(QFontDialog::getFont(NULL, static_cast<QWidget*>(parent)));
+}
+
+void* QFontDialog_QFontDialog_GetFont(int ok, void* initial, void* parent, char* title, int options){
+	return new QFont(QFontDialog::getFont(NULL, *static_cast<QFont*>(initial), static_cast<QWidget*>(parent), QString(title), static_cast<QFontDialog::FontDialogOption>(options)));
+}
+
 void QFontDialog_Open(void* ptr, void* receiver, char* member){
 	static_cast<QFontDialog*>(ptr)->open(static_cast<QObject*>(receiver), const_cast<const char*>(member));
+}
+
+void* QFontDialog_SelectedFont(void* ptr){
+	return new QFont(static_cast<QFontDialog*>(ptr)->selectedFont());
 }
 
 void QFontDialog_SetCurrentFont(void* ptr, void* font){
@@ -13944,6 +13800,10 @@ int QGraphicsEllipseItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsEllipseItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QGraphicsEllipseItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsEllipseItem*>(ptr)->opaqueArea());
+}
+
 void QGraphicsEllipseItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsEllipseItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
@@ -13966,6 +13826,10 @@ void QGraphicsEllipseItem_SetSpanAngle(void* ptr, int angle){
 
 void QGraphicsEllipseItem_SetStartAngle(void* ptr, int angle){
 	static_cast<QGraphicsEllipseItem*>(ptr)->setStartAngle(angle);
+}
+
+void* QGraphicsEllipseItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsEllipseItem*>(ptr)->shape());
 }
 
 int QGraphicsEllipseItem_SpanAngle(void* ptr){
@@ -14225,6 +14089,10 @@ int QGraphicsItemGroup_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsItemGroup*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QGraphicsItemGroup_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsItemGroup*>(ptr)->opaqueArea());
+}
+
 void QGraphicsItemGroup_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsItemGroup*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
@@ -14289,12 +14157,20 @@ int QGraphicsLineItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsLineItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QGraphicsLineItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsLineItem*>(ptr)->opaqueArea());
+}
+
 void QGraphicsLineItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsLineItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
 void QGraphicsLineItem_PaintDefault(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void* QGraphicsLineItem_Pen(void* ptr){
+	return new QPen(static_cast<QGraphicsLineItem*>(ptr)->pen());
 }
 
 void QGraphicsLineItem_SetLine(void* ptr, void* line){
@@ -14307,6 +14183,10 @@ void QGraphicsLineItem_SetLine2(void* ptr, double x1, double y1, double x2, doub
 
 void QGraphicsLineItem_SetPen(void* ptr, void* pen){
 	static_cast<QGraphicsLineItem*>(ptr)->setPen(*static_cast<QPen*>(pen));
+}
+
+void* QGraphicsLineItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsLineItem*>(ptr)->shape());
 }
 
 int QGraphicsLineItem_Type(void* ptr){
@@ -14712,6 +14592,10 @@ int QGraphicsPathItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsPathItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QGraphicsPathItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsPathItem*>(ptr)->opaqueArea());
+}
+
 void QGraphicsPathItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsPathItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
@@ -14720,8 +14604,16 @@ void QGraphicsPathItem_PaintDefault(void* ptr, void* painter, void* option, void
 	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
+void* QGraphicsPathItem_Path(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsPathItem*>(ptr)->path());
+}
+
 void QGraphicsPathItem_SetPath(void* ptr, void* path){
 	static_cast<QGraphicsPathItem*>(ptr)->setPath(*static_cast<QPainterPath*>(path));
+}
+
+void* QGraphicsPathItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsPathItem*>(ptr)->shape());
 }
 
 int QGraphicsPathItem_Type(void* ptr){
@@ -14771,12 +14663,20 @@ int QGraphicsPixmapItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QGraphicsPixmapItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsPixmapItem*>(ptr)->opaqueArea());
+}
+
 void QGraphicsPixmapItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsPixmapItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
 void QGraphicsPixmapItem_PaintDefault(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void* QGraphicsPixmapItem_Pixmap(void* ptr){
+	return new QPixmap(static_cast<QGraphicsPixmapItem*>(ptr)->pixmap());
 }
 
 void QGraphicsPixmapItem_SetOffset(void* ptr, void* offset){
@@ -14797,6 +14697,10 @@ void QGraphicsPixmapItem_SetShapeMode(void* ptr, int mode){
 
 void QGraphicsPixmapItem_SetTransformationMode(void* ptr, int mode){
 	static_cast<QGraphicsPixmapItem*>(ptr)->setTransformationMode(static_cast<Qt::TransformationMode>(mode));
+}
+
+void* QGraphicsPixmapItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsPixmapItem*>(ptr)->shape());
 }
 
 int QGraphicsPixmapItem_ShapeMode(void* ptr){
@@ -14848,6 +14752,10 @@ int QGraphicsPolygonItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsPolygonItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QGraphicsPolygonItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsPolygonItem*>(ptr)->opaqueArea());
+}
+
 void QGraphicsPolygonItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsPolygonItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
@@ -14856,12 +14764,20 @@ void QGraphicsPolygonItem_PaintDefault(void* ptr, void* painter, void* option, v
 	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
+void* QGraphicsPolygonItem_Polygon(void* ptr){
+	return new QPolygonF(static_cast<QGraphicsPolygonItem*>(ptr)->polygon());
+}
+
 void QGraphicsPolygonItem_SetFillRule(void* ptr, int rule){
 	static_cast<QGraphicsPolygonItem*>(ptr)->setFillRule(static_cast<Qt::FillRule>(rule));
 }
 
 void QGraphicsPolygonItem_SetPolygon(void* ptr, void* polygon){
 	static_cast<QGraphicsPolygonItem*>(ptr)->setPolygon(*static_cast<QPolygonF*>(polygon));
+}
+
+void* QGraphicsPolygonItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsPolygonItem*>(ptr)->shape());
 }
 
 int QGraphicsPolygonItem_Type(void* ptr){
@@ -15278,6 +15194,10 @@ int QGraphicsRectItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsRectItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
 }
 
+void* QGraphicsRectItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsRectItem*>(ptr)->opaqueArea());
+}
+
 void QGraphicsRectItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsRectItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
@@ -15288,6 +15208,10 @@ void QGraphicsRectItem_PaintDefault(void* ptr, void* painter, void* option, void
 
 void QGraphicsRectItem_SetRect2(void* ptr, double x, double y, double width, double height){
 	static_cast<QGraphicsRectItem*>(ptr)->setRect(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height));
+}
+
+void* QGraphicsRectItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsRectItem*>(ptr)->shape());
 }
 
 int QGraphicsRectItem_Type(void* ptr){
@@ -15597,6 +15521,10 @@ int QGraphicsScene_BspTreeDepth(void* ptr){
 	return static_cast<QGraphicsScene*>(ptr)->bspTreeDepth();
 }
 
+void* QGraphicsScene_Font(void* ptr){
+	return new QFont(static_cast<QGraphicsScene*>(ptr)->font());
+}
+
 void* QGraphicsScene_ForegroundBrush(void* ptr){
 	return new QBrush(static_cast<QGraphicsScene*>(ptr)->foregroundBrush());
 }
@@ -15611,6 +15539,10 @@ int QGraphicsScene_ItemIndexMethod(void* ptr){
 
 double QGraphicsScene_MinimumRenderSize(void* ptr){
 	return static_cast<double>(static_cast<QGraphicsScene*>(ptr)->minimumRenderSize());
+}
+
+void* QGraphicsScene_Palette(void* ptr){
+	return new QPalette(static_cast<QGraphicsScene*>(ptr)->palette());
 }
 
 void QGraphicsScene_SetBackgroundBrush(void* ptr, void* brush){
@@ -15945,6 +15877,10 @@ void QGraphicsScene_Render(void* ptr, void* painter, void* target, void* source,
 	static_cast<QGraphicsScene*>(ptr)->render(static_cast<QPainter*>(painter), *static_cast<QRectF*>(target), *static_cast<QRectF*>(source), static_cast<Qt::AspectRatioMode>(aspectRatioMode));
 }
 
+void* QGraphicsScene_SelectionArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsScene*>(ptr)->selectionArea());
+}
+
 void QGraphicsScene_ConnectSelectionChanged(void* ptr){
 	QObject::connect(static_cast<QGraphicsScene*>(ptr), static_cast<void (QGraphicsScene::*)()>(&QGraphicsScene::selectionChanged), static_cast<MyQGraphicsScene*>(ptr), static_cast<void (MyQGraphicsScene::*)()>(&MyQGraphicsScene::Signal_SelectionChanged));;
 }
@@ -16225,8 +16161,16 @@ int QGraphicsSimpleTextItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsSimpleTextItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
 
+void* QGraphicsSimpleTextItem_Font(void* ptr){
+	return new QFont(static_cast<QGraphicsSimpleTextItem*>(ptr)->font());
+}
+
 int QGraphicsSimpleTextItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsSimpleTextItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
+}
+
+void* QGraphicsSimpleTextItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsSimpleTextItem*>(ptr)->opaqueArea());
 }
 
 void QGraphicsSimpleTextItem_Paint(void* ptr, void* painter, void* option, void* widget){
@@ -16243,6 +16187,10 @@ void QGraphicsSimpleTextItem_SetFont(void* ptr, void* font){
 
 void QGraphicsSimpleTextItem_SetText(void* ptr, char* text){
 	static_cast<QGraphicsSimpleTextItem*>(ptr)->setText(QString(text));
+}
+
+void* QGraphicsSimpleTextItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsSimpleTextItem*>(ptr)->shape());
 }
 
 char* QGraphicsSimpleTextItem_Text(void* ptr){
@@ -16307,6 +16255,10 @@ void QGraphicsTextItem_SetOpenExternalLinks(void* ptr, int open){
 
 void QGraphicsTextItem_SetTextCursor(void* ptr, void* cursor){
 	static_cast<QGraphicsTextItem*>(ptr)->setTextCursor(*static_cast<QTextCursor*>(cursor));
+}
+
+void* QGraphicsTextItem_TextCursor(void* ptr){
+	return new QTextCursor(static_cast<QGraphicsTextItem*>(ptr)->textCursor());
 }
 
 void QGraphicsTextItem_AdjustSize(void* ptr){
@@ -16379,6 +16331,10 @@ void QGraphicsTextItem_FocusOutEvent(void* ptr, void* event){
 
 void QGraphicsTextItem_FocusOutEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void* QGraphicsTextItem_Font(void* ptr){
+	return new QFont(static_cast<QGraphicsTextItem*>(ptr)->font());
 }
 
 void QGraphicsTextItem_HoverEnterEvent(void* ptr, void* event){
@@ -16493,6 +16449,10 @@ void QGraphicsTextItem_MouseReleaseEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
 }
 
+void* QGraphicsTextItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsTextItem*>(ptr)->opaqueArea());
+}
+
 void QGraphicsTextItem_Paint(void* ptr, void* painter, void* option, void* widget){
 	static_cast<MyQGraphicsTextItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
@@ -16535,6 +16495,10 @@ void QGraphicsTextItem_SetTextInteractionFlags(void* ptr, int flags){
 
 void QGraphicsTextItem_SetTextWidth(void* ptr, double width){
 	static_cast<QGraphicsTextItem*>(ptr)->setTextWidth(static_cast<double>(width));
+}
+
+void* QGraphicsTextItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsTextItem*>(ptr)->shape());
 }
 
 int QGraphicsTextItem_TabChangesFocus(void* ptr){
@@ -16880,12 +16844,44 @@ void QGraphicsView_KeyReleaseEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsView*>(ptr)->QGraphicsView::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 }
 
+void* QGraphicsView_MapFromScene4(void* ptr, void* path){
+	return new QPainterPath(static_cast<QGraphicsView*>(ptr)->mapFromScene(*static_cast<QPainterPath*>(path)));
+}
+
 void* QGraphicsView_MapFromScene(void* ptr, void* point){
 	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(*static_cast<QPointF*>(point))).x(), static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(*static_cast<QPointF*>(point))).y());
 }
 
 void* QGraphicsView_MapFromScene5(void* ptr, double x, double y){
 	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPoint>(static_cast<QGraphicsView*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y))).y());
+}
+
+void* QGraphicsView_MapFromScene3(void* ptr, void* polygon){
+	return new QPolygon(static_cast<QGraphicsView*>(ptr)->mapFromScene(*static_cast<QPolygonF*>(polygon)));
+}
+
+void* QGraphicsView_MapFromScene2(void* ptr, void* rect){
+	return new QPolygon(static_cast<QGraphicsView*>(ptr)->mapFromScene(*static_cast<QRectF*>(rect)));
+}
+
+void* QGraphicsView_MapFromScene6(void* ptr, double x, double y, double w, double h){
+	return new QPolygon(static_cast<QGraphicsView*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h)));
+}
+
+void* QGraphicsView_MapToScene4(void* ptr, void* path){
+	return new QPainterPath(static_cast<QGraphicsView*>(ptr)->mapToScene(*static_cast<QPainterPath*>(path)));
+}
+
+void* QGraphicsView_MapToScene3(void* ptr, void* polygon){
+	return new QPolygonF(static_cast<QGraphicsView*>(ptr)->mapToScene(*static_cast<QPolygon*>(polygon)));
+}
+
+void* QGraphicsView_MapToScene2(void* ptr, void* rect){
+	return new QPolygonF(static_cast<QGraphicsView*>(ptr)->mapToScene(*static_cast<QRect*>(rect)));
+}
+
+void* QGraphicsView_MapToScene6(void* ptr, int x, int y, int w, int h){
+	return new QPolygonF(static_cast<QGraphicsView*>(ptr)->mapToScene(x, y, w, h));
 }
 
 void QGraphicsView_MouseDoubleClickEvent(void* ptr, void* event){
@@ -17184,8 +17180,16 @@ int QGraphicsWidget_FocusPolicy(void* ptr){
 	return static_cast<QGraphicsWidget*>(ptr)->focusPolicy();
 }
 
+void* QGraphicsWidget_Font(void* ptr){
+	return new QFont(static_cast<QGraphicsWidget*>(ptr)->font());
+}
+
 int QGraphicsWidget_LayoutDirection(void* ptr){
 	return static_cast<QGraphicsWidget*>(ptr)->layoutDirection();
+}
+
+void* QGraphicsWidget_Palette(void* ptr){
+	return new QPalette(static_cast<QGraphicsWidget*>(ptr)->palette());
 }
 
 void QGraphicsWidget_Resize(void* ptr, void* size){
@@ -17462,6 +17466,10 @@ void QGraphicsWidget_QGraphicsWidget_SetTabOrder(void* first, void* second){
 
 void QGraphicsWidget_SetWindowFrameMargins(void* ptr, double left, double top, double right, double bottom){
 	static_cast<QGraphicsWidget*>(ptr)->setWindowFrameMargins(static_cast<double>(left), static_cast<double>(top), static_cast<double>(right), static_cast<double>(bottom));
+}
+
+void* QGraphicsWidget_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsWidget*>(ptr)->shape());
 }
 
 void QGraphicsWidget_ShowEvent(void* ptr, void* event){
@@ -18193,7 +18201,6 @@ void QHBoxLayout_CustomEventDefault(void* ptr, void* event){
 class MyQHeaderView: public QHeaderView {
 public:
 	MyQHeaderView(Qt::Orientation orientation, QWidget *parent) : QHeaderView(orientation, parent) {};
-	void currentChanged(const QModelIndex & current, const QModelIndex & old) { if (!callbackQHeaderViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(old))) { QHeaderView::currentChanged(current, old); }; };
 	void Signal_GeometriesChanged() { callbackQHeaderViewGeometriesChanged(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * e) { callbackQHeaderViewMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), e); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQHeaderViewMouseMoveEvent(this, this->objectName().toUtf8().data(), e); };
@@ -18227,10 +18234,7 @@ public:
 	void keyPressEvent(QKeyEvent * event) { callbackQHeaderViewKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
 	void keyboardSearch(const QString & search) { callbackQHeaderViewKeyboardSearch(this, this->objectName().toUtf8().data(), search.toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQHeaderViewResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQHeaderViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QHeaderView::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQHeaderViewRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QHeaderView::rowsInserted(parent, start, end); }; };
 	void selectAll() { if (!callbackQHeaderViewSelectAll(this, this->objectName().toUtf8().data())) { QHeaderView::selectAll(); }; };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQHeaderViewSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QHeaderView::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQHeaderViewSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHeaderViewStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void timerEvent(QTimerEvent * event) { callbackQHeaderViewTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -18336,14 +18340,6 @@ void* QHeaderView_NewQHeaderView(int orientation, void* parent){
 
 int QHeaderView_Count(void* ptr){
 	return static_cast<QHeaderView*>(ptr)->count();
-}
-
-void QHeaderView_CurrentChanged(void* ptr, void* current, void* old){
-	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(old)));
-}
-
-void QHeaderView_CurrentChangedDefault(void* ptr, void* current, void* old){
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(old)));
 }
 
 int QHeaderView_Event(void* ptr, void* e){
@@ -18478,12 +18474,12 @@ void QHeaderView_ResizeSections(void* ptr, int mode){
 	static_cast<QHeaderView*>(ptr)->resizeSections(static_cast<QHeaderView::ResizeMode>(mode));
 }
 
-int QHeaderView_RestoreState(void* ptr, void* state){
-	return static_cast<QHeaderView*>(ptr)->restoreState(*static_cast<QByteArray*>(state));
+int QHeaderView_RestoreState(void* ptr, char* state){
+	return static_cast<QHeaderView*>(ptr)->restoreState(QByteArray(state));
 }
 
-void* QHeaderView_SaveState(void* ptr){
-	return new QByteArray(static_cast<QHeaderView*>(ptr)->saveState());
+char* QHeaderView_SaveState(void* ptr){
+	return QString(static_cast<QHeaderView*>(ptr)->saveState()).toUtf8().data();
 }
 
 void QHeaderView_ConnectSectionClicked(void* ptr){
@@ -18842,36 +18838,12 @@ void QHeaderView_ResizeEventDefault(void* ptr, void* event){
 	static_cast<QHeaderView*>(ptr)->QHeaderView::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
-void QHeaderView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QHeaderView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QHeaderView_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QHeaderView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
 void QHeaderView_SelectAll(void* ptr){
 	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "selectAll");
 }
 
 void QHeaderView_SelectAllDefault(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "selectAll");
-}
-
-void QHeaderView_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQHeaderView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QHeaderView_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QHeaderView_SetSelectionModel(void* ptr, void* selectionModel){
@@ -19568,9 +19540,10 @@ void QInputDialog_CustomEventDefault(void* ptr, void* event){
 class MyQItemDelegate: public QItemDelegate {
 public:
 	MyQItemDelegate(QObject *parent) : QItemDelegate(parent) {};
-	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQItemDelegateSetEditorData(const_cast<MyQItemDelegate*>(this), this->objectName().toUtf8().data(), editor, new QModelIndex(index)); };
-	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQItemDelegateSetModelData(const_cast<MyQItemDelegate*>(this), this->objectName().toUtf8().data(), editor, model, new QModelIndex(index)); };
-	void destroyEditor(QWidget * editor, const QModelIndex & index) const { callbackQItemDelegateDestroyEditor(const_cast<MyQItemDelegate*>(this), this->objectName().toUtf8().data(), editor, new QModelIndex(index)); };
+	void drawCheck(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, Qt::CheckState state) const { callbackQItemDelegateDrawCheck(const_cast<MyQItemDelegate*>(this), this->objectName().toUtf8().data(), painter, new QStyleOptionViewItem(option), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), state); };
+	void drawDecoration(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QPixmap & pixmap) const { callbackQItemDelegateDrawDecoration(const_cast<MyQItemDelegate*>(this), this->objectName().toUtf8().data(), painter, new QStyleOptionViewItem(option), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), new QPixmap(pixmap)); };
+	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { callbackQItemDelegateDrawDisplay(const_cast<MyQItemDelegate*>(this), this->objectName().toUtf8().data(), painter, new QStyleOptionViewItem(option), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), text.toUtf8().data()); };
+	void drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const { callbackQItemDelegateDrawFocus(const_cast<MyQItemDelegate*>(this), this->objectName().toUtf8().data(), painter, new QStyleOptionViewItem(option), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
 	void timerEvent(QTimerEvent * event) { callbackQItemDelegateTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQItemDelegateChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQItemDelegateCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -19596,6 +19569,38 @@ void* QItemDelegate_CreateEditor(void* ptr, void* parent, void* option, void* in
 	return static_cast<QItemDelegate*>(ptr)->createEditor(static_cast<QWidget*>(parent), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
+void QItemDelegate_DrawCheck(void* ptr, void* painter, void* option, void* rect, int state){
+	static_cast<MyQItemDelegate*>(ptr)->drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
+}
+
+void QItemDelegate_DrawCheckDefault(void* ptr, void* painter, void* option, void* rect, int state){
+	static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
+}
+
+void QItemDelegate_DrawDecoration(void* ptr, void* painter, void* option, void* rect, void* pixmap){
+	static_cast<MyQItemDelegate*>(ptr)->drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
+}
+
+void QItemDelegate_DrawDecorationDefault(void* ptr, void* painter, void* option, void* rect, void* pixmap){
+	static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
+}
+
+void QItemDelegate_DrawDisplay(void* ptr, void* painter, void* option, void* rect, char* text){
+	static_cast<MyQItemDelegate*>(ptr)->drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+}
+
+void QItemDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, char* text){
+	static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+}
+
+void QItemDelegate_DrawFocus(void* ptr, void* painter, void* option, void* rect){
+	static_cast<MyQItemDelegate*>(ptr)->drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
+}
+
+void QItemDelegate_DrawFocusDefault(void* ptr, void* painter, void* option, void* rect){
+	static_cast<QItemDelegate*>(ptr)->QItemDelegate::drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
+}
+
 int QItemDelegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index){
 	return static_cast<QItemDelegate*>(ptr)->editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
@@ -19604,24 +19609,8 @@ void* QItemDelegate_ItemEditorFactory(void* ptr){
 	return static_cast<QItemDelegate*>(ptr)->itemEditorFactory();
 }
 
-void QItemDelegate_SetEditorData(void* ptr, void* editor, void* index){
-	static_cast<MyQItemDelegate*>(ptr)->setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
-void QItemDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index){
-	static_cast<QItemDelegate*>(ptr)->QItemDelegate::setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
 void QItemDelegate_SetItemEditorFactory(void* ptr, void* factory){
 	static_cast<QItemDelegate*>(ptr)->setItemEditorFactory(static_cast<QItemEditorFactory*>(factory));
-}
-
-void QItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index){
-	static_cast<MyQItemDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
-}
-
-void QItemDelegate_SetModelDataDefault(void* ptr, void* editor, void* model, void* index){
-	static_cast<QItemDelegate*>(ptr)->QItemDelegate::setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
 }
 
 void* QItemDelegate_SizeHint(void* ptr, void* option, void* index){
@@ -19630,14 +19619,6 @@ void* QItemDelegate_SizeHint(void* ptr, void* option, void* index){
 
 void QItemDelegate_DestroyQItemDelegate(void* ptr){
 	static_cast<QItemDelegate*>(ptr)->~QItemDelegate();
-}
-
-void QItemDelegate_DestroyEditor(void* ptr, void* editor, void* index){
-	static_cast<MyQItemDelegate*>(ptr)->destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
-void QItemDelegate_DestroyEditorDefault(void* ptr, void* editor, void* index){
-	static_cast<QItemDelegate*>(ptr)->QItemDelegate::destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
 }
 
 void QItemDelegate_TimerEvent(void* ptr, void* event){
@@ -19679,8 +19660,8 @@ void* QItemEditorCreatorBase_CreateWidget(void* ptr, void* parent){
 	return static_cast<QItemEditorCreatorBase*>(ptr)->createWidget(static_cast<QWidget*>(parent));
 }
 
-void* QItemEditorCreatorBase_ValuePropertyName(void* ptr){
-	return new QByteArray(static_cast<QItemEditorCreatorBase*>(ptr)->valuePropertyName());
+char* QItemEditorCreatorBase_ValuePropertyName(void* ptr){
+	return QString(static_cast<QItemEditorCreatorBase*>(ptr)->valuePropertyName()).toUtf8().data();
 }
 
 char* QItemEditorCreatorBase_ObjectNameAbs(void* ptr){
@@ -19724,8 +19705,8 @@ void QItemEditorFactory_QItemEditorFactory_SetDefaultFactory(void* factory){
 	QItemEditorFactory::setDefaultFactory(static_cast<QItemEditorFactory*>(factory));
 }
 
-void* QItemEditorFactory_ValuePropertyName(void* ptr, int userType){
-	return new QByteArray(static_cast<QItemEditorFactory*>(ptr)->valuePropertyName(userType));
+char* QItemEditorFactory_ValuePropertyName(void* ptr, int userType){
+	return QString(static_cast<QItemEditorFactory*>(ptr)->valuePropertyName(userType)).toUtf8().data();
 }
 
 void QItemEditorFactory_DestroyQItemEditorFactory(void* ptr){
@@ -19826,6 +19807,7 @@ public:
 	void Signal_EditingFinished() { callbackQKeySequenceEditEditingFinished(this, this->objectName().toUtf8().data()); };
 	void keyPressEvent(QKeyEvent * e) { callbackQKeySequenceEditKeyPressEvent(this, this->objectName().toUtf8().data(), e); };
 	void keyReleaseEvent(QKeyEvent * e) { callbackQKeySequenceEditKeyReleaseEvent(this, this->objectName().toUtf8().data(), e); };
+	void Signal_KeySequenceChanged(const QKeySequence & keySequence) { callbackQKeySequenceEditKeySequenceChanged(this, this->objectName().toUtf8().data(), new QKeySequence(keySequence)); };
 	void timerEvent(QTimerEvent * e) { callbackQKeySequenceEditTimerEvent(this, this->objectName().toUtf8().data(), e); };
 	void actionEvent(QActionEvent * event) { callbackQKeySequenceEditActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQKeySequenceEditDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
@@ -19856,6 +19838,10 @@ public:
 	void childEvent(QChildEvent * event) { callbackQKeySequenceEditChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQKeySequenceEditCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void* QKeySequenceEdit_KeySequence(void* ptr){
+	return new QKeySequence(static_cast<QKeySequenceEdit*>(ptr)->keySequence());
+}
 
 void QKeySequenceEdit_SetKeySequence(void* ptr, void* keySequence){
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setKeySequence", Q_ARG(QKeySequence, *static_cast<QKeySequence*>(keySequence)));
@@ -19903,6 +19889,18 @@ void QKeySequenceEdit_KeyReleaseEvent(void* ptr, void* e){
 
 void QKeySequenceEdit_KeyReleaseEventDefault(void* ptr, void* e){
 	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::keyReleaseEvent(static_cast<QKeyEvent*>(e));
+}
+
+void QKeySequenceEdit_ConnectKeySequenceChanged(void* ptr){
+	QObject::connect(static_cast<QKeySequenceEdit*>(ptr), static_cast<void (QKeySequenceEdit::*)(const QKeySequence &)>(&QKeySequenceEdit::keySequenceChanged), static_cast<MyQKeySequenceEdit*>(ptr), static_cast<void (MyQKeySequenceEdit::*)(const QKeySequence &)>(&MyQKeySequenceEdit::Signal_KeySequenceChanged));;
+}
+
+void QKeySequenceEdit_DisconnectKeySequenceChanged(void* ptr){
+	QObject::disconnect(static_cast<QKeySequenceEdit*>(ptr), static_cast<void (QKeySequenceEdit::*)(const QKeySequence &)>(&QKeySequenceEdit::keySequenceChanged), static_cast<MyQKeySequenceEdit*>(ptr), static_cast<void (MyQKeySequenceEdit::*)(const QKeySequence &)>(&MyQKeySequenceEdit::Signal_KeySequenceChanged));;
+}
+
+void QKeySequenceEdit_KeySequenceChanged(void* ptr, void* keySequence){
+	static_cast<QKeySequenceEdit*>(ptr)->keySequenceChanged(*static_cast<QKeySequence*>(keySequence));
 }
 
 void QKeySequenceEdit_TimerEvent(void* ptr, void* e){
@@ -21909,7 +21907,6 @@ void QLineEdit_CustomEventDefault(void* ptr, void* event){
 class MyQListView: public QListView {
 public:
 	MyQListView(QWidget *parent) : QListView(parent) {};
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQListViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QListView::currentChanged(current, previous); }; };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQListViewDragLeaveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQListViewDragMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dropEvent(QDropEvent * e) { callbackQListViewDropEvent(this, this->objectName().toUtf8().data(), e); };
@@ -21917,9 +21914,6 @@ public:
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQListViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), e); };
 	void paintEvent(QPaintEvent * e) { callbackQListViewPaintEvent(this, this->objectName().toUtf8().data(), e); };
 	void resizeEvent(QResizeEvent * e) { callbackQListViewResizeEvent(this, this->objectName().toUtf8().data(), e); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQListViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QListView::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQListViewRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QListView::rowsInserted(parent, start, end); }; };
-	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQListViewScrollTo(this, this->objectName().toUtf8().data(), new QModelIndex(index), hint); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQListViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQListViewStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void timerEvent(QTimerEvent * e) { callbackQListViewTimerEvent(this, this->objectName().toUtf8().data(), e); };
@@ -21938,7 +21932,6 @@ public:
 	void reset() { if (!callbackQListViewReset(this, this->objectName().toUtf8().data())) { QListView::reset(); }; };
 	void selectAll() { if (!callbackQListViewSelectAll(this, this->objectName().toUtf8().data())) { QListView::selectAll(); }; };
 	void setModel(QAbstractItemModel * model) { callbackQListViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQListViewSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QListView::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQListViewSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQListViewContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
 	void scrollContentsBy(int dx, int dy) { callbackQListViewScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
@@ -22072,14 +22065,6 @@ void QListView_ClearPropertyFlags(void* ptr){
 	static_cast<QListView*>(ptr)->clearPropertyFlags();
 }
 
-void QListView_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QListView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 void QListView_DragLeaveEvent(void* ptr, void* e){
 	static_cast<MyQListView*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(e));
 }
@@ -22112,10 +22097,6 @@ int QListView_HorizontalOffset(void* ptr){
 	return static_cast<QListView*>(ptr)->horizontalOffset();
 }
 
-void* QListView_IndexAt(void* ptr, void* p){
-	return new QModelIndex(static_cast<QListView*>(ptr)->indexAt(*static_cast<QPoint*>(p)));
-}
-
 int QListView_IsIndexHidden(void* ptr, void* index){
 	return static_cast<QListView*>(ptr)->isIndexHidden(*static_cast<QModelIndex*>(index));
 }
@@ -22140,10 +22121,6 @@ void QListView_MouseReleaseEventDefault(void* ptr, void* e){
 	static_cast<QListView*>(ptr)->QListView::mouseReleaseEvent(static_cast<QMouseEvent*>(e));
 }
 
-void* QListView_MoveCursor(void* ptr, int cursorAction, int modifiers){
-	return new QModelIndex(static_cast<QListView*>(ptr)->moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifier>(modifiers)));
-}
-
 void QListView_PaintEvent(void* ptr, void* e){
 	static_cast<MyQListView*>(ptr)->paintEvent(static_cast<QPaintEvent*>(e));
 }
@@ -22158,30 +22135,6 @@ void QListView_ResizeEvent(void* ptr, void* e){
 
 void QListView_ResizeEventDefault(void* ptr, void* e){
 	static_cast<QListView*>(ptr)->QListView::resizeEvent(static_cast<QResizeEvent*>(e));
-}
-
-void QListView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListView_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListView_ScrollTo(void* ptr, void* index, int hint){
-	static_cast<MyQListView*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
-}
-
-void QListView_ScrollToDefault(void* ptr, void* index, int hint){
-	static_cast<QListView*>(ptr)->QListView::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
 void QListView_SetRowHidden(void* ptr, int row, int hide){
@@ -22222,6 +22175,10 @@ void QListView_UpdateGeometriesDefault(void* ptr){
 
 int QListView_VerticalOffset(void* ptr){
 	return static_cast<QListView*>(ptr)->verticalOffset();
+}
+
+void* QListView_ViewOptions(void* ptr){
+	return new QStyleOptionViewItem(static_cast<QListView*>(ptr)->viewOptions());
 }
 
 void* QListView_ViewportSizeHint(void* ptr){
@@ -22350,14 +22307,6 @@ void QListView_SetModel(void* ptr, void* model){
 
 void QListView_SetModelDefault(void* ptr, void* model){
 	static_cast<QListView*>(ptr)->QListView::setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QListView_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQListView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QListView_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QListView_SetSelectionModel(void* ptr, void* selectionModel){
@@ -22526,16 +22475,12 @@ public:
 	void Signal_ItemEntered(QListWidgetItem * item) { callbackQListWidgetItemEntered(this, this->objectName().toUtf8().data(), item); };
 	void Signal_ItemPressed(QListWidgetItem * item) { callbackQListWidgetItemPressed(this, this->objectName().toUtf8().data(), item); };
 	void Signal_ItemSelectionChanged() { callbackQListWidgetItemSelectionChanged(this, this->objectName().toUtf8().data()); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQListWidgetCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QListWidget::currentChanged(current, previous); }; };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQListWidgetDragLeaveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQListWidgetDragMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQListWidgetMouseMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQListWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), e); };
 	void paintEvent(QPaintEvent * e) { callbackQListWidgetPaintEvent(this, this->objectName().toUtf8().data(), e); };
 	void resizeEvent(QResizeEvent * e) { callbackQListWidgetResizeEvent(this, this->objectName().toUtf8().data(), e); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQListWidgetRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QListWidget::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQListWidgetRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QListWidget::rowsInserted(parent, start, end); }; };
-	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQListWidgetScrollTo(this, this->objectName().toUtf8().data(), new QModelIndex(index), hint); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQListWidgetSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQListWidgetStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void timerEvent(QTimerEvent * e) { callbackQListWidgetTimerEvent(this, this->objectName().toUtf8().data(), e); };
@@ -22553,7 +22498,6 @@ public:
 	void mousePressEvent(QMouseEvent * event) { callbackQListWidgetMousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void reset() { if (!callbackQListWidgetReset(this, this->objectName().toUtf8().data())) { QListWidget::reset(); }; };
 	void selectAll() { if (!callbackQListWidgetSelectAll(this, this->objectName().toUtf8().data())) { QListWidget::selectAll(); }; };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQListWidgetSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QListWidget::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQListWidgetSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQListWidgetContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
 	void scrollContentsBy(int dx, int dy) { callbackQListWidgetScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
@@ -22847,14 +22791,6 @@ void QListWidget_DestroyQListWidget(void* ptr){
 	static_cast<QListWidget*>(ptr)->~QListWidget();
 }
 
-void QListWidget_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QListWidget_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 void QListWidget_DragLeaveEvent(void* ptr, void* e){
 	static_cast<MyQListWidget*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(e));
 }
@@ -22901,30 +22837,6 @@ void QListWidget_ResizeEvent(void* ptr, void* e){
 
 void QListWidget_ResizeEventDefault(void* ptr, void* e){
 	static_cast<QListWidget*>(ptr)->QListWidget::resizeEvent(static_cast<QResizeEvent*>(e));
-}
-
-void QListWidget_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListWidget_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListWidget_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListWidget_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QListWidget_ScrollTo(void* ptr, void* index, int hint){
-	static_cast<MyQListWidget*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
-}
-
-void QListWidget_ScrollToDefault(void* ptr, void* index, int hint){
-	static_cast<QListWidget*>(ptr)->QListWidget::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
 void QListWidget_SetSelection(void* ptr, void* rect, int command){
@@ -23061,14 +22973,6 @@ void QListWidget_SelectAll(void* ptr){
 
 void QListWidget_SelectAllDefault(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "selectAll");
-}
-
-void QListWidget_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQListWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QListWidget_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QListWidget_SetSelectionModel(void* ptr, void* selectionModel){
@@ -23273,6 +23177,10 @@ void* QListWidgetItem_Data(void* ptr, int role){
 
 int QListWidgetItem_Flags(void* ptr){
 	return static_cast<QListWidgetItem*>(ptr)->flags();
+}
+
+void* QListWidgetItem_Font(void* ptr){
+	return new QFont(static_cast<QListWidgetItem*>(ptr)->font());
 }
 
 void* QListWidgetItem_Foreground(void* ptr){
@@ -24192,12 +24100,12 @@ int QMainWindow_RestoreDockWidget(void* ptr, void* dockwidget){
 	return static_cast<QMainWindow*>(ptr)->restoreDockWidget(static_cast<QDockWidget*>(dockwidget));
 }
 
-int QMainWindow_RestoreState(void* ptr, void* state, int version){
-	return static_cast<QMainWindow*>(ptr)->restoreState(*static_cast<QByteArray*>(state), version);
+int QMainWindow_RestoreState(void* ptr, char* state, int version){
+	return static_cast<QMainWindow*>(ptr)->restoreState(QByteArray(state), version);
 }
 
-void* QMainWindow_SaveState(void* ptr, int version){
-	return new QByteArray(static_cast<QMainWindow*>(ptr)->saveState(version));
+char* QMainWindow_SaveState(void* ptr, int version){
+	return QString(static_cast<QMainWindow*>(ptr)->saveState(version)).toUtf8().data();
 }
 
 void QMainWindow_SetCentralWidget(void* ptr, void* widget){
@@ -26321,6 +26229,10 @@ int QMessageBox_Icon(void* ptr){
 	return static_cast<QMessageBox*>(ptr)->icon();
 }
 
+void* QMessageBox_IconPixmap(void* ptr){
+	return new QPixmap(static_cast<QMessageBox*>(ptr)->iconPixmap());
+}
+
 char* QMessageBox_InformativeText(void* ptr){
 	return static_cast<QMessageBox*>(ptr)->informativeText().toUtf8().data();
 }
@@ -26801,6 +26713,10 @@ int QMouseEventTransition_Button(void* ptr){
 
 int QMouseEventTransition_EventTest(void* ptr, void* event){
 	return static_cast<QMouseEventTransition*>(ptr)->eventTest(static_cast<QEvent*>(event));
+}
+
+void* QMouseEventTransition_HitTestPath(void* ptr){
+	return new QPainterPath(static_cast<QMouseEventTransition*>(ptr)->hitTestPath());
 }
 
 int QMouseEventTransition_ModifierMask(void* ptr){
@@ -27317,6 +27233,10 @@ void* QPlainTextEdit_CreateStandardContextMenu2(void* ptr, void* position){
 	return static_cast<QPlainTextEdit*>(ptr)->createStandardContextMenu(*static_cast<QPoint*>(position));
 }
 
+void* QPlainTextEdit_CursorForPosition(void* ptr, void* pos){
+	return new QTextCursor(static_cast<QPlainTextEdit*>(ptr)->cursorForPosition(*static_cast<QPoint*>(pos)));
+}
+
 void QPlainTextEdit_ConnectCursorPositionChanged(void* ptr){
 	QObject::connect(static_cast<QPlainTextEdit*>(ptr), static_cast<void (QPlainTextEdit::*)()>(&QPlainTextEdit::cursorPositionChanged), static_cast<MyQPlainTextEdit*>(ptr), static_cast<void (MyQPlainTextEdit::*)()>(&MyQPlainTextEdit::Signal_CursorPositionChanged));;
 }
@@ -27615,6 +27535,10 @@ void QPlainTextEdit_DisconnectTextChanged(void* ptr){
 
 void QPlainTextEdit_TextChanged(void* ptr){
 	static_cast<QPlainTextEdit*>(ptr)->textChanged();
+}
+
+void* QPlainTextEdit_TextCursor(void* ptr){
+	return new QTextCursor(static_cast<QPlainTextEdit*>(ptr)->textCursor());
 }
 
 char* QPlainTextEdit_ToPlainText(void* ptr){
@@ -28607,6 +28531,8 @@ class MyQProxyStyle: public QProxyStyle {
 public:
 	void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const { callbackQProxyStyleDrawComplexControl(const_cast<MyQProxyStyle*>(this), this->objectName().toUtf8().data(), control, const_cast<QStyleOptionComplex*>(option), painter, const_cast<QWidget*>(widget)); };
 	void drawControl(QStyle::ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQProxyStyleDrawControl(const_cast<MyQProxyStyle*>(this), this->objectName().toUtf8().data(), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
+	void drawItemPixmap(QPainter * painter, const QRect & rect, int alignment, const QPixmap & pixmap) const { callbackQProxyStyleDrawItemPixmap(const_cast<MyQProxyStyle*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), alignment, new QPixmap(pixmap)); };
+	void drawItemText(QPainter * painter, const QRect & rect, int flags, const QPalette & pal, bool enabled, const QString & text, QPalette::ColorRole textRole) const { callbackQProxyStyleDrawItemText(const_cast<MyQProxyStyle*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags, new QPalette(pal), enabled, text.toUtf8().data(), textRole); };
 	void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQProxyStyleDrawPrimitive(const_cast<MyQProxyStyle*>(this), this->objectName().toUtf8().data(), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
 	void polish(QWidget * widget) { callbackQProxyStylePolish(this, this->objectName().toUtf8().data(), widget); };
 	void unpolish(QWidget * widget) { callbackQProxyStyleUnpolish(this, this->objectName().toUtf8().data(), widget); };
@@ -28635,6 +28561,22 @@ void QProxyStyle_DrawControlDefault(void* ptr, int element, void* option, void* 
 	static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawControl(static_cast<QStyle::ControlElement>(element), static_cast<QStyleOption*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
 }
 
+void QProxyStyle_DrawItemPixmap(void* ptr, void* painter, void* rect, int alignment, void* pixmap){
+	static_cast<MyQProxyStyle*>(ptr)->drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), alignment, *static_cast<QPixmap*>(pixmap));
+}
+
+void QProxyStyle_DrawItemPixmapDefault(void* ptr, void* painter, void* rect, int alignment, void* pixmap){
+	static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), alignment, *static_cast<QPixmap*>(pixmap));
+}
+
+void QProxyStyle_DrawItemText(void* ptr, void* painter, void* rect, int flags, void* pal, int enabled, char* text, int textRole){
+	static_cast<MyQProxyStyle*>(ptr)->drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), flags, *static_cast<QPalette*>(pal), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+}
+
+void QProxyStyle_DrawItemTextDefault(void* ptr, void* painter, void* rect, int flags, void* pal, int enabled, char* text, int textRole){
+	static_cast<QProxyStyle*>(ptr)->QProxyStyle::drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), flags, *static_cast<QPalette*>(pal), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+}
+
 void QProxyStyle_DrawPrimitive(void* ptr, int element, void* option, void* painter, void* widget){
 	static_cast<MyQProxyStyle*>(ptr)->drawPrimitive(static_cast<QStyle::PrimitiveElement>(element), static_cast<QStyleOption*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
 }
@@ -28645,6 +28587,10 @@ void QProxyStyle_DrawPrimitiveDefault(void* ptr, int element, void* option, void
 
 int QProxyStyle_Event(void* ptr, void* e){
 	return static_cast<QProxyStyle*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+void* QProxyStyle_GeneratedIconPixmap(void* ptr, int iconMode, void* pixmap, void* opt){
+	return new QPixmap(static_cast<QProxyStyle*>(ptr)->generatedIconPixmap(static_cast<QIcon::Mode>(iconMode), *static_cast<QPixmap*>(pixmap), static_cast<QStyleOption*>(opt)));
 }
 
 int QProxyStyle_HitTestComplexControl(void* ptr, int control, void* option, void* pos, void* widget){
@@ -28685,6 +28631,14 @@ void* QProxyStyle_SizeFromContents(void* ptr, int ty, void* option, void* size, 
 
 void* QProxyStyle_StandardIcon(void* ptr, int standardIcon, void* option, void* widget){
 	return new QIcon(static_cast<QProxyStyle*>(ptr)->standardIcon(static_cast<QStyle::StandardPixmap>(standardIcon), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget)));
+}
+
+void* QProxyStyle_StandardPalette(void* ptr){
+	return new QPalette(static_cast<QProxyStyle*>(ptr)->standardPalette());
+}
+
+void* QProxyStyle_StandardPixmap(void* ptr, int standardPixmap, void* opt, void* widget){
+	return new QPixmap(static_cast<QProxyStyle*>(ptr)->standardPixmap(static_cast<QStyle::StandardPixmap>(standardPixmap), static_cast<QStyleOption*>(opt), static_cast<QWidget*>(widget)));
 }
 
 int QProxyStyle_StyleHint(void* ptr, int hint, void* option, void* widget, void* returnData){
@@ -30444,11 +30398,16 @@ void QScrollBar_CustomEventDefault(void* ptr, void* event){
 
 class MyQScroller: public QScroller {
 public:
+	void Signal_ScrollerPropertiesChanged(const QScrollerProperties & newProperties) { callbackQScrollerScrollerPropertiesChanged(this, this->objectName().toUtf8().data(), new QScrollerProperties(newProperties)); };
 	void Signal_StateChanged(QScroller::State newState) { callbackQScrollerStateChanged(this, this->objectName().toUtf8().data(), newState); };
 	void timerEvent(QTimerEvent * event) { callbackQScrollerTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQScrollerChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQScrollerCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void* QScroller_ScrollerProperties(void* ptr){
+	return new QScrollerProperties(static_cast<QScroller*>(ptr)->scrollerProperties());
+}
 
 void QScroller_SetScrollerProperties(void* ptr, void* prop){
 	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "setScrollerProperties", Q_ARG(QScrollerProperties, *static_cast<QScrollerProperties*>(prop)));
@@ -30500,6 +30459,18 @@ void* QScroller_QScroller_Scroller(void* target){
 
 void* QScroller_QScroller_Scroller2(void* target){
 	return const_cast<QScroller*>(QScroller::scroller(static_cast<QObject*>(target)));
+}
+
+void QScroller_ConnectScrollerPropertiesChanged(void* ptr){
+	QObject::connect(static_cast<QScroller*>(ptr), static_cast<void (QScroller::*)(const QScrollerProperties &)>(&QScroller::scrollerPropertiesChanged), static_cast<MyQScroller*>(ptr), static_cast<void (MyQScroller::*)(const QScrollerProperties &)>(&MyQScroller::Signal_ScrollerPropertiesChanged));;
+}
+
+void QScroller_DisconnectScrollerPropertiesChanged(void* ptr){
+	QObject::disconnect(static_cast<QScroller*>(ptr), static_cast<void (QScroller::*)(const QScrollerProperties &)>(&QScroller::scrollerPropertiesChanged), static_cast<MyQScroller*>(ptr), static_cast<void (MyQScroller::*)(const QScrollerProperties &)>(&MyQScroller::Signal_ScrollerPropertiesChanged));;
+}
+
+void QScroller_ScrollerPropertiesChanged(void* ptr, void* newProperties){
+	static_cast<QScroller*>(ptr)->scrollerPropertiesChanged(*static_cast<QScrollerProperties*>(newProperties));
 }
 
 void QScroller_SetSnapPositionsX2(void* ptr, double first, double interval){
@@ -30627,6 +30598,10 @@ int QShortcut_Context(void* ptr){
 
 int QShortcut_IsEnabled(void* ptr){
 	return static_cast<QShortcut*>(ptr)->isEnabled();
+}
+
+void* QShortcut_Key(void* ptr){
+	return new QKeySequence(static_cast<QShortcut*>(ptr)->key());
 }
 
 void QShortcut_SetAutoRepeat(void* ptr, int on){
@@ -32021,6 +31996,10 @@ void QSplashScreen_MousePressEventDefault(void* ptr, void* v){
 	static_cast<QSplashScreen*>(ptr)->QSplashScreen::mousePressEvent(static_cast<QMouseEvent*>(v));
 }
 
+void* QSplashScreen_Pixmap(void* ptr){
+	return new QPixmap(static_cast<QSplashScreen*>(ptr)->pixmap());
+}
+
 void QSplashScreen_Repaint(void* ptr){
 	static_cast<QSplashScreen*>(ptr)->repaint();
 }
@@ -32423,12 +32402,12 @@ void QSplitter_ResizeEventDefault(void* ptr, void* v){
 	static_cast<QSplitter*>(ptr)->QSplitter::resizeEvent(static_cast<QResizeEvent*>(v));
 }
 
-int QSplitter_RestoreState(void* ptr, void* state){
-	return static_cast<QSplitter*>(ptr)->restoreState(*static_cast<QByteArray*>(state));
+int QSplitter_RestoreState(void* ptr, char* state){
+	return static_cast<QSplitter*>(ptr)->restoreState(QByteArray(state));
 }
 
-void* QSplitter_SaveState(void* ptr){
-	return new QByteArray(static_cast<QSplitter*>(ptr)->saveState());
+char* QSplitter_SaveState(void* ptr){
+	return QString(static_cast<QSplitter*>(ptr)->saveState()).toUtf8().data();
 }
 
 void QSplitter_SetCollapsible(void* ptr, int index, int collapse){
@@ -33883,6 +33862,8 @@ void QStatusBar_CustomEventDefault(void* ptr, void* event){
 
 class MyQStyle: public QStyle {
 public:
+	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQStyleDrawItemPixmap(const_cast<MyQStyle*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rectangle).x(), static_cast<QRect>(rectangle).y(), static_cast<QRect>(rectangle).width(), static_cast<QRect>(rectangle).height()), alignment, new QPixmap(pixmap)); };
+	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { callbackQStyleDrawItemText(const_cast<MyQStyle*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rectangle).x(), static_cast<QRect>(rectangle).y(), static_cast<QRect>(rectangle).width(), static_cast<QRect>(rectangle).height()), alignment, new QPalette(palette), enabled, text.toUtf8().data(), textRole); };
 	void polish(QWidget * widget) { callbackQStylePolish(this, this->objectName().toUtf8().data(), widget); };
 	void unpolish(QWidget * widget) { callbackQStyleUnpolish(this, this->objectName().toUtf8().data(), widget); };
 	void timerEvent(QTimerEvent * event) { callbackQStyleTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -34706,6 +34687,22 @@ int QStyle_SE_ToolBarHandle_Type(){
 	return QStyle::SE_ToolBarHandle;
 }
 
+void QStyle_DrawItemPixmap(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap){
+	static_cast<MyQStyle*>(ptr)->drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
+}
+
+void QStyle_DrawItemPixmapDefault(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap){
+	static_cast<QStyle*>(ptr)->QStyle::drawItemPixmap(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap));
+}
+
+void QStyle_DrawItemText(void* ptr, void* painter, void* rectangle, int alignment, void* palette, int enabled, char* text, int textRole){
+	static_cast<MyQStyle*>(ptr)->drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+}
+
+void QStyle_DrawItemTextDefault(void* ptr, void* painter, void* rectangle, int alignment, void* palette, int enabled, char* text, int textRole){
+	static_cast<QStyle*>(ptr)->QStyle::drawItemText(static_cast<QPainter*>(painter), *static_cast<QRect*>(rectangle), alignment, *static_cast<QPalette*>(palette), enabled != 0, QString(text), static_cast<QPalette::ColorRole>(textRole));
+}
+
 void* QStyle_ItemPixmapRect(void* ptr, void* rectangle, int alignment, void* pixmap){
 	return new QRect(static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).x(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).y(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).width(), static_cast<QRect>(static_cast<QStyle*>(ptr)->itemPixmapRect(*static_cast<QRect*>(rectangle), alignment, *static_cast<QPixmap*>(pixmap))).height());
 }
@@ -34750,6 +34747,10 @@ void QStyle_DrawPrimitive(void* ptr, int element, void* option, void* painter, v
 	static_cast<QStyle*>(ptr)->drawPrimitive(static_cast<QStyle::PrimitiveElement>(element), static_cast<QStyleOption*>(option), static_cast<QPainter*>(painter), static_cast<QWidget*>(widget));
 }
 
+void* QStyle_GeneratedIconPixmap(void* ptr, int iconMode, void* pixmap, void* option){
+	return new QPixmap(static_cast<QStyle*>(ptr)->generatedIconPixmap(static_cast<QIcon::Mode>(iconMode), *static_cast<QPixmap*>(pixmap), static_cast<QStyleOption*>(option)));
+}
+
 int QStyle_HitTestComplexControl(void* ptr, int control, void* option, void* position, void* widget){
 	return static_cast<QStyle*>(ptr)->hitTestComplexControl(static_cast<QStyle::ComplexControl>(control), static_cast<QStyleOptionComplex*>(option), *static_cast<QPoint*>(position), static_cast<QWidget*>(widget));
 }
@@ -34780,6 +34781,10 @@ int QStyle_QStyle_SliderPositionFromValue(int min, int max, int logicalValue, in
 
 void* QStyle_StandardIcon(void* ptr, int standardIcon, void* option, void* widget){
 	return new QIcon(static_cast<QStyle*>(ptr)->standardIcon(static_cast<QStyle::StandardPixmap>(standardIcon), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget)));
+}
+
+void* QStyle_StandardPalette(void* ptr){
+	return new QPalette(static_cast<QStyle*>(ptr)->standardPalette());
 }
 
 int QStyle_StyleHint(void* ptr, int hint, void* option, void* widget, void* returnData){
@@ -35181,10 +35186,6 @@ void QStylePlugin_CustomEventDefault(void* ptr, void* event){
 class MyQStyledItemDelegate: public QStyledItemDelegate {
 public:
 	MyQStyledItemDelegate(QObject *parent) : QStyledItemDelegate(parent) {};
-	void initStyleOption(QStyleOptionViewItem * option, const QModelIndex & index) const { callbackQStyledItemDelegateInitStyleOption(const_cast<MyQStyledItemDelegate*>(this), this->objectName().toUtf8().data(), option, new QModelIndex(index)); };
-	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQStyledItemDelegateSetEditorData(const_cast<MyQStyledItemDelegate*>(this), this->objectName().toUtf8().data(), editor, new QModelIndex(index)); };
-	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQStyledItemDelegateSetModelData(const_cast<MyQStyledItemDelegate*>(this), this->objectName().toUtf8().data(), editor, model, new QModelIndex(index)); };
-	void destroyEditor(QWidget * editor, const QModelIndex & index) const { callbackQStyledItemDelegateDestroyEditor(const_cast<MyQStyledItemDelegate*>(this), this->objectName().toUtf8().data(), editor, new QModelIndex(index)); };
 	void timerEvent(QTimerEvent * event) { callbackQStyledItemDelegateTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStyledItemDelegateChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQStyledItemDelegateCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -35210,36 +35211,12 @@ int QStyledItemDelegate_EditorEvent(void* ptr, void* event, void* model, void* o
 	return static_cast<QStyledItemDelegate*>(ptr)->editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-void QStyledItemDelegate_InitStyleOption(void* ptr, void* option, void* index){
-	static_cast<MyQStyledItemDelegate*>(ptr)->initStyleOption(static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
-}
-
-void QStyledItemDelegate_InitStyleOptionDefault(void* ptr, void* option, void* index){
-	static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::initStyleOption(static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
-}
-
 void* QStyledItemDelegate_ItemEditorFactory(void* ptr){
 	return static_cast<QStyledItemDelegate*>(ptr)->itemEditorFactory();
 }
 
-void QStyledItemDelegate_SetEditorData(void* ptr, void* editor, void* index){
-	static_cast<MyQStyledItemDelegate*>(ptr)->setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
-void QStyledItemDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index){
-	static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
 void QStyledItemDelegate_SetItemEditorFactory(void* ptr, void* factory){
 	static_cast<QStyledItemDelegate*>(ptr)->setItemEditorFactory(static_cast<QItemEditorFactory*>(factory));
-}
-
-void QStyledItemDelegate_SetModelData(void* ptr, void* editor, void* model, void* index){
-	static_cast<MyQStyledItemDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
-}
-
-void QStyledItemDelegate_SetModelDataDefault(void* ptr, void* editor, void* model, void* index){
-	static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
 }
 
 void* QStyledItemDelegate_SizeHint(void* ptr, void* option, void* index){
@@ -35248,14 +35225,6 @@ void* QStyledItemDelegate_SizeHint(void* ptr, void* option, void* index){
 
 void QStyledItemDelegate_DestroyQStyledItemDelegate(void* ptr){
 	static_cast<QStyledItemDelegate*>(ptr)->~QStyledItemDelegate();
-}
-
-void QStyledItemDelegate_DestroyEditor(void* ptr, void* editor, void* index){
-	static_cast<MyQStyledItemDelegate*>(ptr)->destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
-}
-
-void QStyledItemDelegate_DestroyEditorDefault(void* ptr, void* editor, void* index){
-	static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
 }
 
 void QStyledItemDelegate_TimerEvent(void* ptr, void* event){
@@ -36627,10 +36596,8 @@ class MyQTableView: public QTableView {
 public:
 	MyQTableView(QWidget *parent) : QTableView(parent) {};
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { callbackQTableViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTableViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QTableView::currentChanged(current, previous); }; };
 	void paintEvent(QPaintEvent * event) { callbackQTableViewPaintEvent(this, this->objectName().toUtf8().data(), event); };
 	void setModel(QAbstractItemModel * model) { callbackQTableViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQTableViewSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QTableView::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTableViewSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void timerEvent(QTimerEvent * event) { callbackQTableViewTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateGeometries() { if (!callbackQTableViewUpdateGeometries(this, this->objectName().toUtf8().data())) { QTableView::updateGeometries(); }; };
@@ -36652,8 +36619,6 @@ public:
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTableViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void reset() { if (!callbackQTableViewReset(this, this->objectName().toUtf8().data())) { QTableView::reset(); }; };
 	void resizeEvent(QResizeEvent * event) { callbackQTableViewResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQTableViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTableView::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQTableViewRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTableView::rowsInserted(parent, start, end); }; };
 	void selectAll() { if (!callbackQTableViewSelectAll(this, this->objectName().toUtf8().data())) { QTableView::selectAll(); }; };
 	void startDrag(Qt::DropActions supportedActions) { callbackQTableViewStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQTableViewContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -36686,10 +36651,6 @@ int QTableView_IsCornerButtonEnabled(void* ptr){
 
 int QTableView_IsSortingEnabled(void* ptr){
 	return static_cast<QTableView*>(ptr)->isSortingEnabled();
-}
-
-void* QTableView_MoveCursor(void* ptr, int cursorAction, int modifiers){
-	return new QModelIndex(static_cast<QTableView*>(ptr)->moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifier>(modifiers)));
 }
 
 void QTableView_SetCornerButtonEnabled(void* ptr, int enable){
@@ -36752,14 +36713,6 @@ int QTableView_ColumnWidth(void* ptr, int column){
 	return static_cast<QTableView*>(ptr)->columnWidth(column);
 }
 
-void QTableView_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQTableView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QTableView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 void QTableView_HideColumn(void* ptr, int column){
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "hideColumn", Q_ARG(int, column));
 }
@@ -36774,10 +36727,6 @@ void* QTableView_HorizontalHeader(void* ptr){
 
 int QTableView_HorizontalOffset(void* ptr){
 	return static_cast<QTableView*>(ptr)->horizontalOffset();
-}
-
-void* QTableView_IndexAt(void* ptr, void* pos){
-	return new QModelIndex(static_cast<QTableView*>(ptr)->indexAt(*static_cast<QPoint*>(pos)));
 }
 
 int QTableView_IsColumnHidden(void* ptr, int column){
@@ -36860,14 +36809,6 @@ void QTableView_SetModelDefault(void* ptr, void* model){
 	static_cast<QTableView*>(ptr)->QTableView::setModel(static_cast<QAbstractItemModel*>(model));
 }
 
-void QTableView_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQTableView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QTableView_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
 void QTableView_SetRowHeight(void* ptr, int row, int height){
 	static_cast<QTableView*>(ptr)->setRowHeight(row, height);
 }
@@ -36934,6 +36875,10 @@ void* QTableView_VerticalHeader(void* ptr){
 
 int QTableView_VerticalOffset(void* ptr){
 	return static_cast<QTableView*>(ptr)->verticalOffset();
+}
+
+void* QTableView_ViewOptions(void* ptr){
+	return new QStyleOptionViewItem(static_cast<QTableView*>(ptr)->viewOptions());
 }
 
 void* QTableView_ViewportSizeHint(void* ptr){
@@ -37086,22 +37031,6 @@ void QTableView_ResizeEvent(void* ptr, void* event){
 
 void QTableView_ResizeEventDefault(void* ptr, void* event){
 	static_cast<QTableView*>(ptr)->QTableView::resizeEvent(static_cast<QResizeEvent*>(event));
-}
-
-void QTableView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTableView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTableView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTableView_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTableView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTableView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTableView_SelectAll(void* ptr){
@@ -37285,9 +37214,7 @@ public:
 	void Signal_ItemPressed(QTableWidgetItem * item) { callbackQTableWidgetItemPressed(this, this->objectName().toUtf8().data(), item); };
 	void Signal_ItemSelectionChanged() { callbackQTableWidgetItemSelectionChanged(this, this->objectName().toUtf8().data()); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags flags) { callbackQTableWidgetSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), flags); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTableWidgetCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QTableWidget::currentChanged(current, previous); }; };
 	void paintEvent(QPaintEvent * event) { callbackQTableWidgetPaintEvent(this, this->objectName().toUtf8().data(), event); };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQTableWidgetSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QTableWidget::setRootIndex(index); }; };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTableWidgetSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void timerEvent(QTimerEvent * event) { callbackQTableWidgetTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateGeometries() { if (!callbackQTableWidgetUpdateGeometries(this, this->objectName().toUtf8().data())) { QTableWidget::updateGeometries(); }; };
@@ -37308,8 +37235,6 @@ public:
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTableWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void reset() { if (!callbackQTableWidgetReset(this, this->objectName().toUtf8().data())) { QTableWidget::reset(); }; };
 	void resizeEvent(QResizeEvent * event) { callbackQTableWidgetResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQTableWidgetRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTableWidget::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQTableWidgetRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTableWidget::rowsInserted(parent, start, end); }; };
 	void selectAll() { if (!callbackQTableWidgetSelectAll(this, this->objectName().toUtf8().data())) { QTableWidget::selectAll(); }; };
 	void startDrag(Qt::DropActions supportedActions) { callbackQTableWidgetStartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQTableWidgetContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
@@ -37740,28 +37665,12 @@ void QTableWidget_SetSelectionDefault(void* ptr, void* rect, int flags){
 	static_cast<QTableWidget*>(ptr)->QTableWidget::setSelection(*static_cast<QRect*>(rect), static_cast<QItemSelectionModel::SelectionFlag>(flags));
 }
 
-void QTableWidget_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQTableWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QTableWidget_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 void QTableWidget_PaintEvent(void* ptr, void* event){
 	static_cast<MyQTableWidget*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
 }
 
 void QTableWidget_PaintEventDefault(void* ptr, void* event){
 	static_cast<QTableWidget*>(ptr)->QTableWidget::paintEvent(static_cast<QPaintEvent*>(event));
-}
-
-void QTableWidget_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQTableWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QTableWidget_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTableWidget_SetSelectionModel(void* ptr, void* selectionModel){
@@ -37922,22 +37831,6 @@ void QTableWidget_ResizeEvent(void* ptr, void* event){
 
 void QTableWidget_ResizeEventDefault(void* ptr, void* event){
 	static_cast<QTableWidget*>(ptr)->QTableWidget::resizeEvent(static_cast<QResizeEvent*>(event));
-}
-
-void QTableWidget_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTableWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTableWidget_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTableWidget_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTableWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTableWidget_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
 }
 
 void QTableWidget_SelectAll(void* ptr){
@@ -38154,6 +38047,10 @@ void* QTableWidgetItem_Data(void* ptr, int role){
 
 int QTableWidgetItem_Flags(void* ptr){
 	return static_cast<QTableWidgetItem*>(ptr)->flags();
+}
+
+void* QTableWidgetItem_Font(void* ptr){
+	return new QFont(static_cast<QTableWidgetItem*>(ptr)->font());
 }
 
 void* QTableWidgetItem_Foreground(void* ptr){
@@ -39166,6 +39063,14 @@ void* QTextEdit_CreateStandardContextMenu2(void* ptr, void* position){
 	return static_cast<QTextEdit*>(ptr)->createStandardContextMenu(*static_cast<QPoint*>(position));
 }
 
+void* QTextEdit_CurrentFont(void* ptr){
+	return new QFont(static_cast<QTextEdit*>(ptr)->currentFont());
+}
+
+void* QTextEdit_CursorForPosition(void* ptr, void* pos){
+	return new QTextCursor(static_cast<QTextEdit*>(ptr)->cursorForPosition(*static_cast<QPoint*>(pos)));
+}
+
 void QTextEdit_ConnectCursorPositionChanged(void* ptr){
 	QObject::connect(static_cast<QTextEdit*>(ptr), static_cast<void (QTextEdit::*)()>(&QTextEdit::cursorPositionChanged), static_cast<MyQTextEdit*>(ptr), static_cast<void (MyQTextEdit::*)()>(&MyQTextEdit::Signal_CursorPositionChanged));;
 }
@@ -39500,6 +39405,10 @@ void QTextEdit_TextChanged(void* ptr){
 
 void* QTextEdit_TextColor(void* ptr){
 	return new QColor(static_cast<QTextEdit*>(ptr)->textColor());
+}
+
+void* QTextEdit_TextCursor(void* ptr){
+	return new QTextCursor(static_cast<QTextEdit*>(ptr)->textCursor());
 }
 
 char* QTextEdit_ToPlainText(void* ptr){
@@ -41225,12 +41134,20 @@ void QToolButton_CustomEventDefault(void* ptr, void* event){
 	static_cast<QToolButton*>(ptr)->QToolButton::customEvent(static_cast<QEvent*>(event));
 }
 
+void* QToolTip_QToolTip_Font(){
+	return new QFont(QToolTip::font());
+}
+
 void QToolTip_QToolTip_HideText(){
 	QToolTip::hideText();
 }
 
 int QToolTip_QToolTip_IsVisible(){
 	return QToolTip::isVisible();
+}
+
+void* QToolTip_QToolTip_Palette(){
+	return new QPalette(QToolTip::palette());
 }
 
 void QToolTip_QToolTip_SetFont(void* font){
@@ -41260,11 +41177,7 @@ char* QToolTip_QToolTip_Text(){
 class MyQTreeView: public QTreeView {
 public:
 	MyQTreeView(QWidget *parent) : QTreeView(parent) {};
-	void Signal_Collapsed(const QModelIndex & index) { callbackQTreeViewCollapsed(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTreeViewCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QTreeView::currentChanged(current, previous); }; };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQTreeViewDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeViewDrawBranches(const_cast<MyQTreeView*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), new QModelIndex(index)); };
-	void Signal_Expanded(const QModelIndex & index) { callbackQTreeViewExpanded(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQTreeViewKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
 	void keyboardSearch(const QString & search) { callbackQTreeViewKeyboardSearch(this, this->objectName().toUtf8().data(), search.toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTreeViewMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
@@ -41273,13 +41186,9 @@ public:
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTreeViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void paintEvent(QPaintEvent * event) { callbackQTreeViewPaintEvent(this, this->objectName().toUtf8().data(), event); };
 	void reset() { if (!callbackQTreeViewReset(this, this->objectName().toUtf8().data())) { QTreeView::reset(); }; };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQTreeViewRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTreeView::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQTreeViewRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTreeView::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { callbackQTreeViewScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
-	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQTreeViewScrollTo(this, this->objectName().toUtf8().data(), new QModelIndex(index), hint); };
 	void selectAll() { if (!callbackQTreeViewSelectAll(this, this->objectName().toUtf8().data())) { QTreeView::selectAll(); }; };
 	void setModel(QAbstractItemModel * model) { callbackQTreeViewSetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQTreeViewSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QTreeView::setRootIndex(index); }; };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQTreeViewSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTreeViewSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void timerEvent(QTimerEvent * event) { callbackQTreeViewTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -41426,18 +41335,6 @@ void QTreeView_CollapseAll(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "collapseAll");
 }
 
-void QTreeView_ConnectCollapsed(void* ptr){
-	QObject::connect(static_cast<QTreeView*>(ptr), static_cast<void (QTreeView::*)(const QModelIndex &)>(&QTreeView::collapsed), static_cast<MyQTreeView*>(ptr), static_cast<void (MyQTreeView::*)(const QModelIndex &)>(&MyQTreeView::Signal_Collapsed));;
-}
-
-void QTreeView_DisconnectCollapsed(void* ptr){
-	QObject::disconnect(static_cast<QTreeView*>(ptr), static_cast<void (QTreeView::*)(const QModelIndex &)>(&QTreeView::collapsed), static_cast<MyQTreeView*>(ptr), static_cast<void (MyQTreeView::*)(const QModelIndex &)>(&MyQTreeView::Signal_Collapsed));;
-}
-
-void QTreeView_Collapsed(void* ptr, void* index){
-	static_cast<QTreeView*>(ptr)->collapsed(*static_cast<QModelIndex*>(index));
-}
-
 int QTreeView_ColumnAt(void* ptr, int x){
 	return static_cast<QTreeView*>(ptr)->columnAt(x);
 }
@@ -41450,14 +41347,6 @@ int QTreeView_ColumnWidth(void* ptr, int column){
 	return static_cast<QTreeView*>(ptr)->columnWidth(column);
 }
 
-void QTreeView_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QTreeView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 void QTreeView_DragMoveEvent(void* ptr, void* event){
 	static_cast<MyQTreeView*>(ptr)->dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 }
@@ -41466,32 +41355,12 @@ void QTreeView_DragMoveEventDefault(void* ptr, void* event){
 	static_cast<QTreeView*>(ptr)->QTreeView::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 }
 
-void QTreeView_DrawBranches(void* ptr, void* painter, void* rect, void* index){
-	static_cast<MyQTreeView*>(ptr)->drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
-}
-
-void QTreeView_DrawBranchesDefault(void* ptr, void* painter, void* rect, void* index){
-	static_cast<QTreeView*>(ptr)->QTreeView::drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
-}
-
 void QTreeView_ExpandAll(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "expandAll");
 }
 
 void QTreeView_ExpandToDepth(void* ptr, int depth){
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "expandToDepth", Q_ARG(int, depth));
-}
-
-void QTreeView_ConnectExpanded(void* ptr){
-	QObject::connect(static_cast<QTreeView*>(ptr), static_cast<void (QTreeView::*)(const QModelIndex &)>(&QTreeView::expanded), static_cast<MyQTreeView*>(ptr), static_cast<void (MyQTreeView::*)(const QModelIndex &)>(&MyQTreeView::Signal_Expanded));;
-}
-
-void QTreeView_DisconnectExpanded(void* ptr){
-	QObject::disconnect(static_cast<QTreeView*>(ptr), static_cast<void (QTreeView::*)(const QModelIndex &)>(&QTreeView::expanded), static_cast<MyQTreeView*>(ptr), static_cast<void (MyQTreeView::*)(const QModelIndex &)>(&MyQTreeView::Signal_Expanded));;
-}
-
-void QTreeView_Expanded(void* ptr, void* index){
-	static_cast<QTreeView*>(ptr)->expanded(*static_cast<QModelIndex*>(index));
 }
 
 void* QTreeView_Header(void* ptr){
@@ -41504,18 +41373,6 @@ void QTreeView_HideColumn(void* ptr, int column){
 
 int QTreeView_HorizontalOffset(void* ptr){
 	return static_cast<QTreeView*>(ptr)->horizontalOffset();
-}
-
-void* QTreeView_IndexAbove(void* ptr, void* index){
-	return new QModelIndex(static_cast<QTreeView*>(ptr)->indexAbove(*static_cast<QModelIndex*>(index)));
-}
-
-void* QTreeView_IndexAt(void* ptr, void* point){
-	return new QModelIndex(static_cast<QTreeView*>(ptr)->indexAt(*static_cast<QPoint*>(point)));
-}
-
-void* QTreeView_IndexBelow(void* ptr, void* index){
-	return new QModelIndex(static_cast<QTreeView*>(ptr)->indexBelow(*static_cast<QModelIndex*>(index)));
 }
 
 int QTreeView_IsColumnHidden(void* ptr, int column){
@@ -41582,10 +41439,6 @@ void QTreeView_MouseReleaseEventDefault(void* ptr, void* event){
 	static_cast<QTreeView*>(ptr)->QTreeView::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-void* QTreeView_MoveCursor(void* ptr, int cursorAction, int modifiers){
-	return new QModelIndex(static_cast<QTreeView*>(ptr)->moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifier>(modifiers)));
-}
-
 void QTreeView_PaintEvent(void* ptr, void* event){
 	static_cast<MyQTreeView*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
 }
@@ -41606,36 +41459,12 @@ void QTreeView_ResizeColumnToContents(void* ptr, int column){
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "resizeColumnToContents", Q_ARG(int, column));
 }
 
-void QTreeView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTreeView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTreeView_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTreeView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
 void QTreeView_ScrollContentsBy(void* ptr, int dx, int dy){
 	static_cast<MyQTreeView*>(ptr)->scrollContentsBy(dx, dy);
 }
 
 void QTreeView_ScrollContentsByDefault(void* ptr, int dx, int dy){
 	static_cast<QTreeView*>(ptr)->QTreeView::scrollContentsBy(dx, dy);
-}
-
-void QTreeView_ScrollTo(void* ptr, void* index, int hint){
-	static_cast<MyQTreeView*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
-}
-
-void QTreeView_ScrollToDefault(void* ptr, void* index, int hint){
-	static_cast<QTreeView*>(ptr)->QTreeView::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
 void QTreeView_SelectAll(void* ptr){
@@ -41672,14 +41501,6 @@ void QTreeView_SetModel(void* ptr, void* model){
 
 void QTreeView_SetModelDefault(void* ptr, void* model){
 	static_cast<QTreeView*>(ptr)->QTreeView::setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QTreeView_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQTreeView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QTreeView_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeView_SetRowHidden(void* ptr, int row, void* parent, int hide){
@@ -42001,9 +41822,7 @@ public:
 	void Signal_ItemPressed(QTreeWidgetItem * item, int column) { callbackQTreeWidgetItemPressed(this, this->objectName().toUtf8().data(), item, column); };
 	void Signal_ItemSelectionChanged() { callbackQTreeWidgetItemSelectionChanged(this, this->objectName().toUtf8().data()); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQTreeWidgetSetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { if (!callbackQTreeWidgetCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous))) { QTreeWidget::currentChanged(current, previous); }; };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQTreeWidgetDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQTreeWidgetDrawBranches(const_cast<MyQTreeWidget*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), new QModelIndex(index)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQTreeWidgetKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
 	void keyboardSearch(const QString & search) { callbackQTreeWidgetKeyboardSearch(this, this->objectName().toUtf8().data(), search.toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTreeWidgetMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
@@ -42012,12 +41831,8 @@ public:
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTreeWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void paintEvent(QPaintEvent * event) { callbackQTreeWidgetPaintEvent(this, this->objectName().toUtf8().data(), event); };
 	void reset() { if (!callbackQTreeWidgetReset(this, this->objectName().toUtf8().data())) { QTreeWidget::reset(); }; };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { if (!callbackQTreeWidgetRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTreeWidget::rowsAboutToBeRemoved(parent, start, end); }; };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { if (!callbackQTreeWidgetRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end)) { QTreeWidget::rowsInserted(parent, start, end); }; };
 	void scrollContentsBy(int dx, int dy) { callbackQTreeWidgetScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
-	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQTreeWidgetScrollTo(this, this->objectName().toUtf8().data(), new QModelIndex(index), hint); };
 	void selectAll() { if (!callbackQTreeWidgetSelectAll(this, this->objectName().toUtf8().data())) { QTreeWidget::selectAll(); }; };
-	void setRootIndex(const QModelIndex & index) { if (!callbackQTreeWidgetSetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index))) { QTreeWidget::setRootIndex(index); }; };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQTreeWidgetSetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
 	void timerEvent(QTimerEvent * event) { callbackQTreeWidgetTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateGeometries() { if (!callbackQTreeWidgetUpdateGeometries(this, this->objectName().toUtf8().data())) { QTreeWidget::updateGeometries(); }; };
@@ -42358,28 +42173,12 @@ void QTreeWidget_DestroyQTreeWidget(void* ptr){
 	static_cast<QTreeWidget*>(ptr)->~QTreeWidget();
 }
 
-void QTreeWidget_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QTreeWidget_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 void QTreeWidget_DragMoveEvent(void* ptr, void* event){
 	static_cast<MyQTreeWidget*>(ptr)->dragMoveEvent(static_cast<QDragMoveEvent*>(event));
 }
 
 void QTreeWidget_DragMoveEventDefault(void* ptr, void* event){
 	static_cast<QTreeWidget*>(ptr)->QTreeWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-}
-
-void QTreeWidget_DrawBranches(void* ptr, void* painter, void* rect, void* index){
-	static_cast<MyQTreeWidget*>(ptr)->drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
-}
-
-void QTreeWidget_DrawBranchesDefault(void* ptr, void* painter, void* rect, void* index){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::drawBranches(static_cast<QPainter*>(painter), *static_cast<QRect*>(rect), *static_cast<QModelIndex*>(index));
 }
 
 void QTreeWidget_KeyPressEvent(void* ptr, void* event){
@@ -42446,22 +42245,6 @@ void QTreeWidget_ResetDefault(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "reset");
 }
 
-void QTreeWidget_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTreeWidget_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTreeWidget_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QTreeWidget_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
 void QTreeWidget_ScrollContentsBy(void* ptr, int dx, int dy){
 	static_cast<MyQTreeWidget*>(ptr)->scrollContentsBy(dx, dy);
 }
@@ -42470,28 +42253,12 @@ void QTreeWidget_ScrollContentsByDefault(void* ptr, int dx, int dy){
 	static_cast<QTreeWidget*>(ptr)->QTreeWidget::scrollContentsBy(dx, dy);
 }
 
-void QTreeWidget_ScrollTo(void* ptr, void* index, int hint){
-	static_cast<MyQTreeWidget*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
-}
-
-void QTreeWidget_ScrollToDefault(void* ptr, void* index, int hint){
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
-}
-
 void QTreeWidget_SelectAll(void* ptr){
 	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "selectAll");
 }
 
 void QTreeWidget_SelectAllDefault(void* ptr){
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "selectAll");
-}
-
-void QTreeWidget_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<MyQTreeWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QTreeWidget_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QTreeWidget_SetSelection(void* ptr, void* rect, int command){
@@ -42829,6 +42596,10 @@ void* QTreeWidgetItem_Data(void* ptr, int column, int role){
 
 void* QTreeWidgetItem_Clone(void* ptr){
 	return static_cast<QTreeWidgetItem*>(ptr)->clone();
+}
+
+void* QTreeWidgetItem_Font(void* ptr, int column){
+	return new QFont(static_cast<QTreeWidgetItem*>(ptr)->font(column));
 }
 
 void* QTreeWidgetItem_Foreground(void* ptr, int column){
@@ -43531,14 +43302,6 @@ void QUndoView_DestroyQUndoView(void* ptr){
 	static_cast<QUndoView*>(ptr)->~QUndoView();
 }
 
-void QUndoView_CurrentChanged(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
-void QUndoView_CurrentChangedDefault(void* ptr, void* current, void* previous){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "currentChanged", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(current)), Q_ARG(QModelIndex, *static_cast<QModelIndex*>(previous)));
-}
-
 void QUndoView_DragLeaveEvent(void* ptr, void* e){
 	static_cast<QUndoView*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(e));
 }
@@ -43593,30 +43356,6 @@ void QUndoView_ResizeEvent(void* ptr, void* e){
 
 void QUndoView_ResizeEventDefault(void* ptr, void* e){
 	static_cast<QUndoView*>(ptr)->QUndoView::resizeEvent(static_cast<QResizeEvent*>(e));
-}
-
-void QUndoView_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QUndoView_RowsAboutToBeRemovedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsAboutToBeRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QUndoView_RowsInserted(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QUndoView_RowsInsertedDefault(void* ptr, void* parent, int start, int end){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "rowsInserted", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
-}
-
-void QUndoView_ScrollTo(void* ptr, void* index, int hint){
-	static_cast<QUndoView*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
-}
-
-void QUndoView_ScrollToDefault(void* ptr, void* index, int hint){
-	static_cast<QUndoView*>(ptr)->QUndoView::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
 void QUndoView_SetSelection(void* ptr, void* rect, int command){
@@ -43761,14 +43500,6 @@ void QUndoView_SetModel(void* ptr, void* model){
 
 void QUndoView_SetModelDefault(void* ptr, void* model){
 	static_cast<QUndoView*>(ptr)->QUndoView::setModel(static_cast<QAbstractItemModel*>(model));
-}
-
-void QUndoView_SetRootIndex(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
-}
-
-void QUndoView_SetRootIndexDefault(void* ptr, void* index){
-	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setRootIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
 void QUndoView_SetSelectionModel(void* ptr, void* selectionModel){
@@ -44095,6 +43826,10 @@ int QWidget_ContextMenuPolicy(void* ptr){
 	return static_cast<QWidget*>(ptr)->contextMenuPolicy();
 }
 
+void* QWidget_Cursor(void* ptr){
+	return new QCursor(static_cast<QWidget*>(ptr)->cursor());
+}
+
 void QWidget_DragEnterEvent(void* ptr, void* event){
 	static_cast<MyQWidget*>(ptr)->dragEnterEvent(static_cast<QDragEnterEvent*>(event));
 }
@@ -44227,6 +43962,10 @@ void QWidget_LeaveEventDefault(void* ptr, void* event){
 	static_cast<QWidget*>(ptr)->QWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+void* QWidget_Locale(void* ptr){
+	return new QLocale(static_cast<QWidget*>(ptr)->locale());
+}
+
 void* QWidget_MapFromGlobal(void* ptr, void* pos){
 	return new QPoint(static_cast<QPoint>(static_cast<QWidget*>(ptr)->mapFromGlobal(*static_cast<QPoint*>(pos))).x(), static_cast<QPoint>(static_cast<QWidget*>(ptr)->mapFromGlobal(*static_cast<QPoint*>(pos))).y());
 }
@@ -44281,6 +44020,10 @@ void QWidget_PaintEvent(void* ptr, void* event){
 
 void QWidget_PaintEventDefault(void* ptr, void* event){
 	static_cast<QWidget*>(ptr)->QWidget::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void* QWidget_Palette(void* ptr){
+	return new QPalette(static_cast<QWidget*>(ptr)->palette());
 }
 
 void* QWidget_Pos(void* ptr){
@@ -44643,6 +44386,18 @@ void* QWidget_FocusWidget(void* ptr){
 	return static_cast<QWidget*>(ptr)->focusWidget();
 }
 
+void* QWidget_Font(void* ptr){
+	return new QFont(static_cast<QWidget*>(ptr)->font());
+}
+
+void* QWidget_FontInfo(void* ptr){
+	return new QFontInfo(static_cast<QWidget*>(ptr)->fontInfo());
+}
+
+void* QWidget_FontMetrics(void* ptr){
+	return new QFontMetrics(static_cast<QWidget*>(ptr)->fontMetrics());
+}
+
 int QWidget_ForegroundRole(void* ptr){
 	return static_cast<QWidget*>(ptr)->foregroundRole();
 }
@@ -44653,6 +44408,10 @@ void* QWidget_Geometry(void* ptr){
 
 void QWidget_GetContentsMargins(void* ptr, int left, int top, int right, int bottom){
 	static_cast<QWidget*>(ptr)->getContentsMargins(&left, &top, &right, &bottom);
+}
+
+void* QWidget_Grab(void* ptr, void* rectangle){
+	return new QPixmap(static_cast<QWidget*>(ptr)->grab(*static_cast<QRect*>(rectangle)));
 }
 
 void QWidget_GrabGesture(void* ptr, int gesture, int flags){
@@ -44915,12 +44674,12 @@ void QWidget_ResizeEventDefault(void* ptr, void* event){
 	static_cast<QWidget*>(ptr)->QWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
-int QWidget_RestoreGeometry(void* ptr, void* geometry){
-	return static_cast<QWidget*>(ptr)->restoreGeometry(*static_cast<QByteArray*>(geometry));
+int QWidget_RestoreGeometry(void* ptr, char* geometry){
+	return static_cast<QWidget*>(ptr)->restoreGeometry(QByteArray(geometry));
 }
 
-void* QWidget_SaveGeometry(void* ptr){
-	return new QByteArray(static_cast<QWidget*>(ptr)->saveGeometry());
+char* QWidget_SaveGeometry(void* ptr){
+	return QString(static_cast<QWidget*>(ptr)->saveGeometry()).toUtf8().data();
 }
 
 void QWidget_Scroll(void* ptr, int dx, int dy){
@@ -45642,6 +45401,10 @@ void QWizard_PaintEventDefault(void* ptr, void* event){
 	static_cast<QWizard*>(ptr)->QWizard::paintEvent(static_cast<QPaintEvent*>(event));
 }
 
+void* QWizard_Pixmap(void* ptr, int which){
+	return new QPixmap(static_cast<QWizard*>(ptr)->pixmap(static_cast<QWizard::WizardPixmap>(which)));
+}
+
 void QWizard_RemovePage(void* ptr, int id){
 	static_cast<QWizard*>(ptr)->removePage(id);
 }
@@ -46067,6 +45830,10 @@ int QWizardPage_IsFinalPage(void* ptr){
 
 int QWizardPage_NextId(void* ptr){
 	return static_cast<QWizardPage*>(ptr)->nextId();
+}
+
+void* QWizardPage_Pixmap(void* ptr, int which){
+	return new QPixmap(static_cast<QWizardPage*>(ptr)->pixmap(static_cast<QWizard::WizardPixmap>(which)));
 }
 
 void QWizardPage_SetButtonText(void* ptr, int which, char* text){

@@ -2,7 +2,7 @@ import QtQuick 2.5
 
 Rectangle
 {
-	width: 320
+	width: 160
 	height: 240
 
 	Rectangle

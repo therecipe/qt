@@ -668,6 +668,15 @@ func (ptr *QAbstractVideoSurface) NativeResolutionChanged(resolution core.QSize_
 	}
 }
 
+func (ptr *QAbstractVideoSurface) NearestFormat(format QVideoSurfaceFormat_ITF) *QVideoSurfaceFormat {
+	defer qt.Recovering("QAbstractVideoSurface::nearestFormat")
+
+	if ptr.Pointer() != nil {
+		return NewQVideoSurfaceFormatFromPointer(C.QAbstractVideoSurface_NearestFormat(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format)))
+	}
+	return nil
+}
+
 func (ptr *QAbstractVideoSurface) Present(frame QVideoFrame_ITF) bool {
 	defer qt.Recovering("QAbstractVideoSurface::present")
 
@@ -764,6 +773,51 @@ func (ptr *QAbstractVideoSurface) SupportedFormatsChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoSurface_SupportedFormatsChanged(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractVideoSurface) SurfaceFormat() *QVideoSurfaceFormat {
+	defer qt.Recovering("QAbstractVideoSurface::surfaceFormat")
+
+	if ptr.Pointer() != nil {
+		return NewQVideoSurfaceFormatFromPointer(C.QAbstractVideoSurface_SurfaceFormat(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAbstractVideoSurface) ConnectSurfaceFormatChanged(f func(format *QVideoSurfaceFormat)) {
+	defer qt.Recovering("connect QAbstractVideoSurface::surfaceFormatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_ConnectSurfaceFormatChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "surfaceFormatChanged", f)
+	}
+}
+
+func (ptr *QAbstractVideoSurface) DisconnectSurfaceFormatChanged() {
+	defer qt.Recovering("disconnect QAbstractVideoSurface::surfaceFormatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_DisconnectSurfaceFormatChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "surfaceFormatChanged")
+	}
+}
+
+//export callbackQAbstractVideoSurfaceSurfaceFormatChanged
+func callbackQAbstractVideoSurfaceSurfaceFormatChanged(ptr unsafe.Pointer, ptrName *C.char, format unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractVideoSurface::surfaceFormatChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "surfaceFormatChanged"); signal != nil {
+		signal.(func(*QVideoSurfaceFormat))(NewQVideoSurfaceFormatFromPointer(format))
+	}
+
+}
+
+func (ptr *QAbstractVideoSurface) SurfaceFormatChanged(format QVideoSurfaceFormat_ITF) {
+	defer qt.Recovering("QAbstractVideoSurface::surfaceFormatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoSurface_SurfaceFormatChanged(ptr.Pointer(), PointerFromQVideoSurfaceFormat(format))
 	}
 }
 
@@ -990,10 +1044,10 @@ func NewQAudioBuffer3(other QAudioBuffer_ITF) *QAudioBuffer {
 	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer3(PointerFromQAudioBuffer(other)))
 }
 
-func NewQAudioBuffer4(data core.QByteArray_ITF, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
+func NewQAudioBuffer4(data string, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
 	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
-	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer4(core.PointerFromQByteArray(data), PointerFromQAudioFormat(format), C.longlong(startTime)))
+	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer4(C.CString(data), PointerFromQAudioFormat(format), C.longlong(startTime)))
 }
 
 func NewQAudioBuffer5(numFrames int, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
@@ -1045,6 +1099,15 @@ func (ptr *QAudioBuffer) Duration() int64 {
 		return int64(C.QAudioBuffer_Duration(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QAudioBuffer) Format() *QAudioFormat {
+	defer qt.Recovering("QAudioBuffer::format")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioFormatFromPointer(C.QAudioBuffer_Format(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAudioBuffer) FrameCount() int {
@@ -1166,6 +1229,15 @@ func NewQAudioDecoder(parent core.QObject_ITF) *QAudioDecoder {
 	defer qt.Recovering("QAudioDecoder::QAudioDecoder")
 
 	return newQAudioDecoderFromPointer(C.QAudioDecoder_NewQAudioDecoder(core.PointerFromQObject(parent)))
+}
+
+func (ptr *QAudioDecoder) AudioFormat() *QAudioFormat {
+	defer qt.Recovering("QAudioDecoder::audioFormat")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioFormatFromPointer(C.QAudioDecoder_AudioFormat(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAudioDecoder) BufferAvailable() bool {
@@ -1375,6 +1447,42 @@ func (ptr *QAudioDecoder) Finished() {
 	}
 }
 
+func (ptr *QAudioDecoder) ConnectFormatChanged(f func(format *QAudioFormat)) {
+	defer qt.Recovering("connect QAudioDecoder::formatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioDecoder_ConnectFormatChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "formatChanged", f)
+	}
+}
+
+func (ptr *QAudioDecoder) DisconnectFormatChanged() {
+	defer qt.Recovering("disconnect QAudioDecoder::formatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioDecoder_DisconnectFormatChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "formatChanged")
+	}
+}
+
+//export callbackQAudioDecoderFormatChanged
+func callbackQAudioDecoderFormatChanged(ptr unsafe.Pointer, ptrName *C.char, format unsafe.Pointer) {
+	defer qt.Recovering("callback QAudioDecoder::formatChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "formatChanged"); signal != nil {
+		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(format))
+	}
+
+}
+
+func (ptr *QAudioDecoder) FormatChanged(format QAudioFormat_ITF) {
+	defer qt.Recovering("QAudioDecoder::formatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioDecoder_FormatChanged(ptr.Pointer(), PointerFromQAudioFormat(format))
+	}
+}
+
 func QAudioDecoder_HasSupport(mimeType string, codecs []string) QMultimedia__SupportEstimate {
 	defer qt.Recovering("QAudioDecoder::hasSupport")
 
@@ -1424,6 +1532,15 @@ func (ptr *QAudioDecoder) PositionChanged(position int64) {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_PositionChanged(ptr.Pointer(), C.longlong(position))
 	}
+}
+
+func (ptr *QAudioDecoder) Read() *QAudioBuffer {
+	defer qt.Recovering("QAudioDecoder::read")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioBufferFromPointer(C.QAudioDecoder_Read(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAudioDecoder) SetAudioFormat(format QAudioFormat_ITF) {
@@ -1779,6 +1896,15 @@ func (ptr *QAudioDecoderControl) QAudioDecoderControl_PTR() *QAudioDecoderContro
 	return ptr
 }
 
+func (ptr *QAudioDecoderControl) AudioFormat() *QAudioFormat {
+	defer qt.Recovering("QAudioDecoderControl::audioFormat")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioFormatFromPointer(C.QAudioDecoderControl_AudioFormat(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAudioDecoderControl) BufferAvailable() bool {
 	defer qt.Recovering("QAudioDecoderControl::bufferAvailable")
 
@@ -1977,6 +2103,42 @@ func (ptr *QAudioDecoderControl) Finished() {
 	}
 }
 
+func (ptr *QAudioDecoderControl) ConnectFormatChanged(f func(format *QAudioFormat)) {
+	defer qt.Recovering("connect QAudioDecoderControl::formatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioDecoderControl_ConnectFormatChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "formatChanged", f)
+	}
+}
+
+func (ptr *QAudioDecoderControl) DisconnectFormatChanged() {
+	defer qt.Recovering("disconnect QAudioDecoderControl::formatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioDecoderControl_DisconnectFormatChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "formatChanged")
+	}
+}
+
+//export callbackQAudioDecoderControlFormatChanged
+func callbackQAudioDecoderControlFormatChanged(ptr unsafe.Pointer, ptrName *C.char, format unsafe.Pointer) {
+	defer qt.Recovering("callback QAudioDecoderControl::formatChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "formatChanged"); signal != nil {
+		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(format))
+	}
+
+}
+
+func (ptr *QAudioDecoderControl) FormatChanged(format QAudioFormat_ITF) {
+	defer qt.Recovering("QAudioDecoderControl::formatChanged")
+
+	if ptr.Pointer() != nil {
+		C.QAudioDecoderControl_FormatChanged(ptr.Pointer(), PointerFromQAudioFormat(format))
+	}
+}
+
 func (ptr *QAudioDecoderControl) Position() int64 {
 	defer qt.Recovering("QAudioDecoderControl::position")
 
@@ -2020,6 +2182,15 @@ func (ptr *QAudioDecoderControl) PositionChanged(position int64) {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoderControl_PositionChanged(ptr.Pointer(), C.longlong(position))
 	}
+}
+
+func (ptr *QAudioDecoderControl) Read() *QAudioBuffer {
+	defer qt.Recovering("QAudioDecoderControl::read")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioBufferFromPointer(C.QAudioDecoderControl_Read(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAudioDecoderControl) SetAudioFormat(format QAudioFormat_ITF) {
@@ -2355,6 +2526,18 @@ func NewQAudioDeviceInfo2(other QAudioDeviceInfo_ITF) *QAudioDeviceInfo {
 	return newQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_NewQAudioDeviceInfo2(PointerFromQAudioDeviceInfo(other)))
 }
 
+func QAudioDeviceInfo_DefaultInputDevice() *QAudioDeviceInfo {
+	defer qt.Recovering("QAudioDeviceInfo::defaultInputDevice")
+
+	return NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_QAudioDeviceInfo_DefaultInputDevice())
+}
+
+func QAudioDeviceInfo_DefaultOutputDevice() *QAudioDeviceInfo {
+	defer qt.Recovering("QAudioDeviceInfo::defaultOutputDevice")
+
+	return NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_QAudioDeviceInfo_DefaultOutputDevice())
+}
+
 func (ptr *QAudioDeviceInfo) DeviceName() string {
 	defer qt.Recovering("QAudioDeviceInfo::deviceName")
 
@@ -2380,6 +2563,24 @@ func (ptr *QAudioDeviceInfo) IsNull() bool {
 		return C.QAudioDeviceInfo_IsNull(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QAudioDeviceInfo) NearestFormat(settings QAudioFormat_ITF) *QAudioFormat {
+	defer qt.Recovering("QAudioDeviceInfo::nearestFormat")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioFormatFromPointer(C.QAudioDeviceInfo_NearestFormat(ptr.Pointer(), PointerFromQAudioFormat(settings)))
+	}
+	return nil
+}
+
+func (ptr *QAudioDeviceInfo) PreferredFormat() *QAudioFormat {
+	defer qt.Recovering("QAudioDeviceInfo::preferredFormat")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioFormatFromPointer(C.QAudioDeviceInfo_PreferredFormat(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAudioDeviceInfo) SupportedCodecs() []string {
@@ -2617,6 +2818,15 @@ func newQAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncod
 
 func (ptr *QAudioEncoderSettingsControl) QAudioEncoderSettingsControl_PTR() *QAudioEncoderSettingsControl {
 	return ptr
+}
+
+func (ptr *QAudioEncoderSettingsControl) AudioSettings() *QAudioEncoderSettings {
+	defer qt.Recovering("QAudioEncoderSettingsControl::audioSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioEncoderSettingsFromPointer(C.QAudioEncoderSettingsControl_AudioSettings(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAudioEncoderSettingsControl) CodecDescription(codec string) string {
@@ -3065,6 +3275,15 @@ func (ptr *QAudioInput) Error() QAudio__Error {
 		return QAudio__Error(C.QAudioInput_Error(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QAudioInput) Format() *QAudioFormat {
+	defer qt.Recovering("QAudioInput::format")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioFormatFromPointer(C.QAudioInput_Format(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QAudioInput) ConnectNotify(f func()) {
@@ -3777,6 +3996,15 @@ func (ptr *QAudioOutput) Error() QAudio__Error {
 	return 0
 }
 
+func (ptr *QAudioOutput) Format() *QAudioFormat {
+	defer qt.Recovering("QAudioOutput::format")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioFormatFromPointer(C.QAudioOutput_Format(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAudioOutput) ConnectNotify(f func()) {
 	defer qt.Recovering("connect QAudioOutput::notify")
 
@@ -4442,6 +4670,42 @@ func NewQAudioProbe(parent core.QObject_ITF) *QAudioProbe {
 	defer qt.Recovering("QAudioProbe::QAudioProbe")
 
 	return newQAudioProbeFromPointer(C.QAudioProbe_NewQAudioProbe(core.PointerFromQObject(parent)))
+}
+
+func (ptr *QAudioProbe) ConnectAudioBufferProbed(f func(buffer *QAudioBuffer)) {
+	defer qt.Recovering("connect QAudioProbe::audioBufferProbed")
+
+	if ptr.Pointer() != nil {
+		C.QAudioProbe_ConnectAudioBufferProbed(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "audioBufferProbed", f)
+	}
+}
+
+func (ptr *QAudioProbe) DisconnectAudioBufferProbed() {
+	defer qt.Recovering("disconnect QAudioProbe::audioBufferProbed")
+
+	if ptr.Pointer() != nil {
+		C.QAudioProbe_DisconnectAudioBufferProbed(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "audioBufferProbed")
+	}
+}
+
+//export callbackQAudioProbeAudioBufferProbed
+func callbackQAudioProbeAudioBufferProbed(ptr unsafe.Pointer, ptrName *C.char, buffer unsafe.Pointer) {
+	defer qt.Recovering("callback QAudioProbe::audioBufferProbed")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "audioBufferProbed"); signal != nil {
+		signal.(func(*QAudioBuffer))(NewQAudioBufferFromPointer(buffer))
+	}
+
+}
+
+func (ptr *QAudioProbe) AudioBufferProbed(buffer QAudioBuffer_ITF) {
+	defer qt.Recovering("QAudioProbe::audioBufferProbed")
+
+	if ptr.Pointer() != nil {
+		C.QAudioProbe_AudioBufferProbed(ptr.Pointer(), PointerFromQAudioBuffer(buffer))
+	}
 }
 
 func (ptr *QAudioProbe) ConnectFlush(f func()) {
@@ -5123,10 +5387,10 @@ func NewQCamera(parent core.QObject_ITF) *QCamera {
 	return newQCameraFromPointer(C.QCamera_NewQCamera(core.PointerFromQObject(parent)))
 }
 
-func NewQCamera2(deviceName core.QByteArray_ITF, parent core.QObject_ITF) *QCamera {
+func NewQCamera2(deviceName string, parent core.QObject_ITF) *QCamera {
 	defer qt.Recovering("QCamera::QCamera")
 
-	return newQCameraFromPointer(C.QCamera_NewQCamera2(core.PointerFromQByteArray(deviceName), core.PointerFromQObject(parent)))
+	return newQCameraFromPointer(C.QCamera_NewQCamera2(C.CString(deviceName), core.PointerFromQObject(parent)))
 }
 
 func NewQCamera3(cameraInfo QCameraInfo_ITF, parent core.QObject_ITF) *QCamera {
@@ -5608,6 +5872,15 @@ func (ptr *QCamera) Unlock2(locks QCamera__LockType) {
 	if ptr.Pointer() != nil {
 		C.QCamera_Unlock2(ptr.Pointer(), C.int(locks))
 	}
+}
+
+func (ptr *QCamera) ViewfinderSettings() *QCameraViewfinderSettings {
+	defer qt.Recovering("QCamera::viewfinderSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQCameraViewfinderSettingsFromPointer(C.QCamera_ViewfinderSettings(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QCamera) DestroyQCamera() {
@@ -9301,6 +9574,15 @@ func (ptr *QCameraImageCapture) CaptureDestinationChanged(destination QCameraIma
 	}
 }
 
+func (ptr *QCameraImageCapture) EncodingSettings() *QImageEncoderSettings {
+	defer qt.Recovering("QCameraImageCapture::encodingSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQImageEncoderSettingsFromPointer(C.QCameraImageCapture_EncodingSettings(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCameraImageCapture) ConnectError2(f func(id int, error QCameraImageCapture__Error, errorString string)) {
 	defer qt.Recovering("connect QCameraImageCapture::error")
 
@@ -9353,6 +9635,78 @@ func (ptr *QCameraImageCapture) ErrorString() string {
 		return C.GoString(C.QCameraImageCapture_ErrorString(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QCameraImageCapture) ConnectImageAvailable(f func(id int, buffer *QVideoFrame)) {
+	defer qt.Recovering("connect QCameraImageCapture::imageAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ConnectImageAvailable(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "imageAvailable", f)
+	}
+}
+
+func (ptr *QCameraImageCapture) DisconnectImageAvailable() {
+	defer qt.Recovering("disconnect QCameraImageCapture::imageAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_DisconnectImageAvailable(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "imageAvailable")
+	}
+}
+
+//export callbackQCameraImageCaptureImageAvailable
+func callbackQCameraImageCaptureImageAvailable(ptr unsafe.Pointer, ptrName *C.char, id C.int, buffer unsafe.Pointer) {
+	defer qt.Recovering("callback QCameraImageCapture::imageAvailable")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "imageAvailable"); signal != nil {
+		signal.(func(int, *QVideoFrame))(int(id), NewQVideoFrameFromPointer(buffer))
+	}
+
+}
+
+func (ptr *QCameraImageCapture) ImageAvailable(id int, buffer QVideoFrame_ITF) {
+	defer qt.Recovering("QCameraImageCapture::imageAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ImageAvailable(ptr.Pointer(), C.int(id), PointerFromQVideoFrame(buffer))
+	}
+}
+
+func (ptr *QCameraImageCapture) ConnectImageCaptured(f func(id int, preview *gui.QImage)) {
+	defer qt.Recovering("connect QCameraImageCapture::imageCaptured")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ConnectImageCaptured(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "imageCaptured", f)
+	}
+}
+
+func (ptr *QCameraImageCapture) DisconnectImageCaptured() {
+	defer qt.Recovering("disconnect QCameraImageCapture::imageCaptured")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_DisconnectImageCaptured(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "imageCaptured")
+	}
+}
+
+//export callbackQCameraImageCaptureImageCaptured
+func callbackQCameraImageCaptureImageCaptured(ptr unsafe.Pointer, ptrName *C.char, id C.int, preview unsafe.Pointer) {
+	defer qt.Recovering("callback QCameraImageCapture::imageCaptured")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "imageCaptured"); signal != nil {
+		signal.(func(int, *gui.QImage))(int(id), gui.NewQImageFromPointer(preview))
+	}
+
+}
+
+func (ptr *QCameraImageCapture) ImageCaptured(id int, preview gui.QImage_ITF) {
+	defer qt.Recovering("QCameraImageCapture::imageCaptured")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_ImageCaptured(ptr.Pointer(), C.int(id), gui.PointerFromQImage(preview))
+	}
 }
 
 func (ptr *QCameraImageCapture) ImageCodecDescription(codec string) string {
@@ -9814,6 +10168,78 @@ func (ptr *QCameraImageCaptureControl) Error(id int, error int, errorString stri
 
 	if ptr.Pointer() != nil {
 		C.QCameraImageCaptureControl_Error(ptr.Pointer(), C.int(id), C.int(error), C.CString(errorString))
+	}
+}
+
+func (ptr *QCameraImageCaptureControl) ConnectImageAvailable(f func(requestId int, buffer *QVideoFrame)) {
+	defer qt.Recovering("connect QCameraImageCaptureControl::imageAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCaptureControl_ConnectImageAvailable(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "imageAvailable", f)
+	}
+}
+
+func (ptr *QCameraImageCaptureControl) DisconnectImageAvailable() {
+	defer qt.Recovering("disconnect QCameraImageCaptureControl::imageAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCaptureControl_DisconnectImageAvailable(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "imageAvailable")
+	}
+}
+
+//export callbackQCameraImageCaptureControlImageAvailable
+func callbackQCameraImageCaptureControlImageAvailable(ptr unsafe.Pointer, ptrName *C.char, requestId C.int, buffer unsafe.Pointer) {
+	defer qt.Recovering("callback QCameraImageCaptureControl::imageAvailable")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "imageAvailable"); signal != nil {
+		signal.(func(int, *QVideoFrame))(int(requestId), NewQVideoFrameFromPointer(buffer))
+	}
+
+}
+
+func (ptr *QCameraImageCaptureControl) ImageAvailable(requestId int, buffer QVideoFrame_ITF) {
+	defer qt.Recovering("QCameraImageCaptureControl::imageAvailable")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCaptureControl_ImageAvailable(ptr.Pointer(), C.int(requestId), PointerFromQVideoFrame(buffer))
+	}
+}
+
+func (ptr *QCameraImageCaptureControl) ConnectImageCaptured(f func(requestId int, preview *gui.QImage)) {
+	defer qt.Recovering("connect QCameraImageCaptureControl::imageCaptured")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCaptureControl_ConnectImageCaptured(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "imageCaptured", f)
+	}
+}
+
+func (ptr *QCameraImageCaptureControl) DisconnectImageCaptured() {
+	defer qt.Recovering("disconnect QCameraImageCaptureControl::imageCaptured")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCaptureControl_DisconnectImageCaptured(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "imageCaptured")
+	}
+}
+
+//export callbackQCameraImageCaptureControlImageCaptured
+func callbackQCameraImageCaptureControlImageCaptured(ptr unsafe.Pointer, ptrName *C.char, requestId C.int, preview unsafe.Pointer) {
+	defer qt.Recovering("callback QCameraImageCaptureControl::imageCaptured")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "imageCaptured"); signal != nil {
+		signal.(func(int, *gui.QImage))(int(requestId), gui.NewQImageFromPointer(preview))
+	}
+
+}
+
+func (ptr *QCameraImageCaptureControl) ImageCaptured(requestId int, preview gui.QImage_ITF) {
+	defer qt.Recovering("QCameraImageCaptureControl::imageCaptured")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageCaptureControl_ImageCaptured(ptr.Pointer(), C.int(requestId), gui.PointerFromQImage(preview))
 	}
 }
 
@@ -10740,10 +11166,10 @@ func (ptr *QCameraInfo) QCameraInfo_PTR() *QCameraInfo {
 	return ptr
 }
 
-func NewQCameraInfo(name core.QByteArray_ITF) *QCameraInfo {
+func NewQCameraInfo(name string) *QCameraInfo {
 	defer qt.Recovering("QCameraInfo::QCameraInfo")
 
-	return newQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo(core.PointerFromQByteArray(name)))
+	return newQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo(C.CString(name)))
 }
 
 func NewQCameraInfo2(camera QCamera_ITF) *QCameraInfo {
@@ -10756,6 +11182,12 @@ func NewQCameraInfo3(other QCameraInfo_ITF) *QCameraInfo {
 	defer qt.Recovering("QCameraInfo::QCameraInfo")
 
 	return newQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo3(PointerFromQCameraInfo(other)))
+}
+
+func QCameraInfo_DefaultCamera() *QCameraInfo {
+	defer qt.Recovering("QCameraInfo::defaultCamera")
+
+	return NewQCameraInfoFromPointer(C.QCameraInfo_QCameraInfo_DefaultCamera())
 }
 
 func (ptr *QCameraInfo) Description() string {
@@ -11689,6 +12121,15 @@ func (ptr *QCameraViewfinderSettingsControl2) SetViewfinderSettings(settings QCa
 	}
 }
 
+func (ptr *QCameraViewfinderSettingsControl2) ViewfinderSettings() *QCameraViewfinderSettings {
+	defer qt.Recovering("QCameraViewfinderSettingsControl2::viewfinderSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettingsControl2_ViewfinderSettings(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsControl2() {
 	defer qt.Recovering("QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
 
@@ -12332,6 +12773,15 @@ func (ptr *QImageEncoderControl) ImageCodecDescription(codec string) string {
 	return ""
 }
 
+func (ptr *QImageEncoderControl) ImageSettings() *QImageEncoderSettings {
+	defer qt.Recovering("QImageEncoderControl::imageSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQImageEncoderSettingsFromPointer(C.QImageEncoderControl_ImageSettings(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImageEncoderControl) SetImageSettings(settings QImageEncoderSettings_ITF) {
 	defer qt.Recovering("QImageEncoderControl::setImageSettings")
 
@@ -12668,6 +13118,42 @@ func newQMediaAudioProbeControlFromPointer(ptr unsafe.Pointer) *QMediaAudioProbe
 
 func (ptr *QMediaAudioProbeControl) QMediaAudioProbeControl_PTR() *QMediaAudioProbeControl {
 	return ptr
+}
+
+func (ptr *QMediaAudioProbeControl) ConnectAudioBufferProbed(f func(buffer *QAudioBuffer)) {
+	defer qt.Recovering("connect QMediaAudioProbeControl::audioBufferProbed")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_ConnectAudioBufferProbed(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "audioBufferProbed", f)
+	}
+}
+
+func (ptr *QMediaAudioProbeControl) DisconnectAudioBufferProbed() {
+	defer qt.Recovering("disconnect QMediaAudioProbeControl::audioBufferProbed")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_DisconnectAudioBufferProbed(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "audioBufferProbed")
+	}
+}
+
+//export callbackQMediaAudioProbeControlAudioBufferProbed
+func callbackQMediaAudioProbeControlAudioBufferProbed(ptr unsafe.Pointer, ptrName *C.char, buffer unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaAudioProbeControl::audioBufferProbed")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "audioBufferProbed"); signal != nil {
+		signal.(func(*QAudioBuffer))(NewQAudioBufferFromPointer(buffer))
+	}
+
+}
+
+func (ptr *QMediaAudioProbeControl) AudioBufferProbed(buffer QAudioBuffer_ITF) {
+	defer qt.Recovering("QMediaAudioProbeControl::audioBufferProbed")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_AudioBufferProbed(ptr.Pointer(), PointerFromQAudioBuffer(buffer))
+	}
 }
 
 func (ptr *QMediaAudioProbeControl) ConnectFlush(f func()) {
@@ -13435,6 +13921,24 @@ func NewQMediaContent2(url core.QUrl_ITF) *QMediaContent {
 	return newQMediaContentFromPointer(C.QMediaContent_NewQMediaContent2(core.PointerFromQUrl(url)))
 }
 
+func (ptr *QMediaContent) CanonicalRequest() *network.QNetworkRequest {
+	defer qt.Recovering("QMediaContent::canonicalRequest")
+
+	if ptr.Pointer() != nil {
+		return network.NewQNetworkRequestFromPointer(C.QMediaContent_CanonicalRequest(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMediaContent) CanonicalResource() *QMediaResource {
+	defer qt.Recovering("QMediaContent::canonicalResource")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaResourceFromPointer(C.QMediaContent_CanonicalResource(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaContent) CanonicalUrl() *core.QUrl {
 	defer qt.Recovering("QMediaContent::canonicalUrl")
 
@@ -14009,6 +14513,51 @@ func newQMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetwork
 
 func (ptr *QMediaNetworkAccessControl) QMediaNetworkAccessControl_PTR() *QMediaNetworkAccessControl {
 	return ptr
+}
+
+func (ptr *QMediaNetworkAccessControl) ConnectConfigurationChanged(f func(configuration *network.QNetworkConfiguration)) {
+	defer qt.Recovering("connect QMediaNetworkAccessControl::configurationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_ConnectConfigurationChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "configurationChanged", f)
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) DisconnectConfigurationChanged() {
+	defer qt.Recovering("disconnect QMediaNetworkAccessControl::configurationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_DisconnectConfigurationChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "configurationChanged")
+	}
+}
+
+//export callbackQMediaNetworkAccessControlConfigurationChanged
+func callbackQMediaNetworkAccessControlConfigurationChanged(ptr unsafe.Pointer, ptrName *C.char, configuration unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaNetworkAccessControl::configurationChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "configurationChanged"); signal != nil {
+		signal.(func(*network.QNetworkConfiguration))(network.NewQNetworkConfigurationFromPointer(configuration))
+	}
+
+}
+
+func (ptr *QMediaNetworkAccessControl) ConfigurationChanged(configuration network.QNetworkConfiguration_ITF) {
+	defer qt.Recovering("QMediaNetworkAccessControl::configurationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_ConfigurationChanged(ptr.Pointer(), network.PointerFromQNetworkConfiguration(configuration))
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) CurrentConfiguration() *network.QNetworkConfiguration {
+	defer qt.Recovering("QMediaNetworkAccessControl::currentConfiguration")
+
+	if ptr.Pointer() != nil {
+		return network.NewQNetworkConfigurationFromPointer(C.QMediaNetworkAccessControl_CurrentConfiguration(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControl() {
@@ -15068,6 +15617,15 @@ func (ptr *QMediaPlayer) CurrentMediaChanged(media QMediaContent_ITF) {
 	}
 }
 
+func (ptr *QMediaPlayer) CurrentNetworkConfiguration() *network.QNetworkConfiguration {
+	defer qt.Recovering("QMediaPlayer::currentNetworkConfiguration")
+
+	if ptr.Pointer() != nil {
+		return network.NewQNetworkConfigurationFromPointer(C.QMediaPlayer_CurrentNetworkConfiguration(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaPlayer) ConnectDurationChanged(f func(duration int64)) {
 	defer qt.Recovering("connect QMediaPlayer::durationChanged")
 
@@ -15269,6 +15827,42 @@ func (ptr *QMediaPlayer) MutedChanged(muted bool) {
 
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_MutedChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(muted)))
+	}
+}
+
+func (ptr *QMediaPlayer) ConnectNetworkConfigurationChanged(f func(configuration *network.QNetworkConfiguration)) {
+	defer qt.Recovering("connect QMediaPlayer::networkConfigurationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_ConnectNetworkConfigurationChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "networkConfigurationChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayer) DisconnectNetworkConfigurationChanged() {
+	defer qt.Recovering("disconnect QMediaPlayer::networkConfigurationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_DisconnectNetworkConfigurationChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "networkConfigurationChanged")
+	}
+}
+
+//export callbackQMediaPlayerNetworkConfigurationChanged
+func callbackQMediaPlayerNetworkConfigurationChanged(ptr unsafe.Pointer, ptrName *C.char, configuration unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaPlayer::networkConfigurationChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "networkConfigurationChanged"); signal != nil {
+		signal.(func(*network.QNetworkConfiguration))(network.NewQNetworkConfigurationFromPointer(configuration))
+	}
+
+}
+
+func (ptr *QMediaPlayer) NetworkConfigurationChanged(configuration network.QNetworkConfiguration_ITF) {
+	defer qt.Recovering("QMediaPlayer::networkConfigurationChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_NetworkConfigurationChanged(ptr.Pointer(), network.PointerFromQNetworkConfiguration(configuration))
 	}
 }
 
@@ -15784,6 +16378,51 @@ func (ptr *QMediaPlayerControl) AudioAvailableChanged(audio bool) {
 
 	if ptr.Pointer() != nil {
 		C.QMediaPlayerControl_AudioAvailableChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(audio)))
+	}
+}
+
+func (ptr *QMediaPlayerControl) AvailablePlaybackRanges() *QMediaTimeRange {
+	defer qt.Recovering("QMediaPlayerControl::availablePlaybackRanges")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaTimeRangeFromPointer(C.QMediaPlayerControl_AvailablePlaybackRanges(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QMediaPlayerControl) ConnectAvailablePlaybackRangesChanged(f func(ranges *QMediaTimeRange)) {
+	defer qt.Recovering("connect QMediaPlayerControl::availablePlaybackRangesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_ConnectAvailablePlaybackRangesChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "availablePlaybackRangesChanged", f)
+	}
+}
+
+func (ptr *QMediaPlayerControl) DisconnectAvailablePlaybackRangesChanged() {
+	defer qt.Recovering("disconnect QMediaPlayerControl::availablePlaybackRangesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_DisconnectAvailablePlaybackRangesChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "availablePlaybackRangesChanged")
+	}
+}
+
+//export callbackQMediaPlayerControlAvailablePlaybackRangesChanged
+func callbackQMediaPlayerControlAvailablePlaybackRangesChanged(ptr unsafe.Pointer, ptrName *C.char, ranges unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaPlayerControl::availablePlaybackRangesChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "availablePlaybackRangesChanged"); signal != nil {
+		signal.(func(*QMediaTimeRange))(NewQMediaTimeRangeFromPointer(ranges))
+	}
+
+}
+
+func (ptr *QMediaPlayerControl) AvailablePlaybackRangesChanged(ranges QMediaTimeRange_ITF) {
+	defer qt.Recovering("QMediaPlayerControl::availablePlaybackRangesChanged")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlayerControl_AvailablePlaybackRangesChanged(ptr.Pointer(), PointerFromQMediaTimeRange(ranges))
 	}
 }
 
@@ -17573,6 +18212,15 @@ func (ptr *QMediaRecorder) AudioCodecDescription(codec string) string {
 	return ""
 }
 
+func (ptr *QMediaRecorder) AudioSettings() *QAudioEncoderSettings {
+	defer qt.Recovering("QMediaRecorder::audioSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQAudioEncoderSettingsFromPointer(C.QMediaRecorder_AudioSettings(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaRecorder) Availability() QMultimedia__AvailabilityStatus {
 	defer qt.Recovering("QMediaRecorder::availability")
 
@@ -18166,6 +18814,15 @@ func (ptr *QMediaRecorder) VideoCodecDescription(codec string) string {
 		return C.GoString(C.QMediaRecorder_VideoCodecDescription(ptr.Pointer(), C.CString(codec)))
 	}
 	return ""
+}
+
+func (ptr *QMediaRecorder) VideoSettings() *QVideoEncoderSettings {
+	defer qt.Recovering("QMediaRecorder::videoSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQVideoEncoderSettingsFromPointer(C.QMediaRecorder_VideoSettings(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMediaRecorder) ConnectVolumeChanged(f func(volume float64)) {
@@ -18998,6 +19655,15 @@ func (ptr *QMediaResource) MimeType() string {
 	return ""
 }
 
+func (ptr *QMediaResource) Request() *network.QNetworkRequest {
+	defer qt.Recovering("QMediaResource::request")
+
+	if ptr.Pointer() != nil {
+		return network.NewQNetworkRequestFromPointer(C.QMediaResource_Request(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaResource) Resolution() *core.QSize {
 	defer qt.Recovering("QMediaResource::resolution")
 
@@ -19376,20 +20042,20 @@ func (ptr *QMediaServiceCameraInfoInterface) QMediaServiceCameraInfoInterface_PT
 	return ptr
 }
 
-func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device core.QByteArray_ITF) int {
+func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device string) int {
 	defer qt.Recovering("QMediaServiceCameraInfoInterface::cameraOrientation")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMediaServiceCameraInfoInterface_CameraOrientation(ptr.Pointer(), core.PointerFromQByteArray(device)))
+		return int(C.QMediaServiceCameraInfoInterface_CameraOrientation(ptr.Pointer(), C.CString(device)))
 	}
 	return 0
 }
 
-func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device core.QByteArray_ITF) QCamera__Position {
+func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device string) QCamera__Position {
 	defer qt.Recovering("QMediaServiceCameraInfoInterface::cameraPosition")
 
 	if ptr.Pointer() != nil {
-		return QCamera__Position(C.QMediaServiceCameraInfoInterface_CameraPosition(ptr.Pointer(), core.PointerFromQByteArray(device)))
+		return QCamera__Position(C.QMediaServiceCameraInfoInterface_CameraPosition(ptr.Pointer(), C.CString(device)))
 	}
 	return 0
 }
@@ -19460,13 +20126,13 @@ func (ptr *QMediaServiceDefaultDeviceInterface) QMediaServiceDefaultDeviceInterf
 	return ptr
 }
 
-func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service core.QByteArray_ITF) *core.QByteArray {
+func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service string) string {
 	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::defaultDevice")
 
 	if ptr.Pointer() != nil {
-		return core.NewQByteArrayFromPointer(C.QMediaServiceDefaultDeviceInterface_DefaultDevice(ptr.Pointer(), core.PointerFromQByteArray(service)))
+		return C.GoString(C.QMediaServiceDefaultDeviceInterface_DefaultDevice(ptr.Pointer(), C.CString(service)))
 	}
-	return nil
+	return ""
 }
 
 func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterface() {
@@ -19787,11 +20453,11 @@ func (ptr *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevices
 	return ptr
 }
 
-func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service core.QByteArray_ITF, device core.QByteArray_ITF) string {
+func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service string, device string) string {
 	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::deviceDescription")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(ptr.Pointer(), core.PointerFromQByteArray(service), core.PointerFromQByteArray(device)))
+		return C.GoString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(ptr.Pointer(), C.CString(service), C.CString(device)))
 	}
 	return ""
 }
@@ -20293,6 +20959,15 @@ func (ptr *QMediaTimeInterval) IsNormal() bool {
 	return false
 }
 
+func (ptr *QMediaTimeInterval) Normalized() *QMediaTimeInterval {
+	defer qt.Recovering("QMediaTimeInterval::normalized")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_Normalized(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaTimeInterval) Start() int64 {
 	defer qt.Recovering("QMediaTimeInterval::start")
 
@@ -20300,6 +20975,15 @@ func (ptr *QMediaTimeInterval) Start() int64 {
 		return int64(C.QMediaTimeInterval_Start(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QMediaTimeInterval) Translated(offset int64) *QMediaTimeInterval {
+	defer qt.Recovering("QMediaTimeInterval::translated")
+
+	if ptr.Pointer() != nil {
+		return NewQMediaTimeIntervalFromPointer(C.QMediaTimeInterval_Translated(ptr.Pointer(), C.longlong(offset)))
+	}
+	return nil
 }
 
 type QMediaTimeRange struct {
@@ -20540,6 +21224,42 @@ func (ptr *QMediaVideoProbeControl) Flush() {
 
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_Flush(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaVideoProbeControl) ConnectVideoFrameProbed(f func(frame *QVideoFrame)) {
+	defer qt.Recovering("connect QMediaVideoProbeControl::videoFrameProbed")
+
+	if ptr.Pointer() != nil {
+		C.QMediaVideoProbeControl_ConnectVideoFrameProbed(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "videoFrameProbed", f)
+	}
+}
+
+func (ptr *QMediaVideoProbeControl) DisconnectVideoFrameProbed() {
+	defer qt.Recovering("disconnect QMediaVideoProbeControl::videoFrameProbed")
+
+	if ptr.Pointer() != nil {
+		C.QMediaVideoProbeControl_DisconnectVideoFrameProbed(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "videoFrameProbed")
+	}
+}
+
+//export callbackQMediaVideoProbeControlVideoFrameProbed
+func callbackQMediaVideoProbeControlVideoFrameProbed(ptr unsafe.Pointer, ptrName *C.char, frame unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaVideoProbeControl::videoFrameProbed")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "videoFrameProbed"); signal != nil {
+		signal.(func(*QVideoFrame))(NewQVideoFrameFromPointer(frame))
+	}
+
+}
+
+func (ptr *QMediaVideoProbeControl) VideoFrameProbed(frame QVideoFrame_ITF) {
+	defer qt.Recovering("QMediaVideoProbeControl::videoFrameProbed")
+
+	if ptr.Pointer() != nil {
+		C.QMediaVideoProbeControl_VideoFrameProbed(ptr.Pointer(), PointerFromQVideoFrame(frame))
 	}
 }
 
@@ -25744,6 +26464,15 @@ func (ptr *QVideoEncoderSettingsControl) VideoCodecDescription(codec string) str
 	return ""
 }
 
+func (ptr *QVideoEncoderSettingsControl) VideoSettings() *QVideoEncoderSettings {
+	defer qt.Recovering("QVideoEncoderSettingsControl::videoSettings")
+
+	if ptr.Pointer() != nil {
+		return NewQVideoEncoderSettingsFromPointer(C.QVideoEncoderSettingsControl_VideoSettings(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControl() {
 	defer qt.Recovering("QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
 
@@ -25932,6 +26661,15 @@ type QVideoFilterRunnable__RunFlag int64
 const (
 	QVideoFilterRunnable__LastInChain = QVideoFilterRunnable__RunFlag(0x01)
 )
+
+func (ptr *QVideoFilterRunnable) Run(input QVideoFrame_ITF, surfaceFormat QVideoSurfaceFormat_ITF, flags QVideoFilterRunnable__RunFlag) *QVideoFrame {
+	defer qt.Recovering("QVideoFilterRunnable::run")
+
+	if ptr.Pointer() != nil {
+		return NewQVideoFrameFromPointer(C.QVideoFilterRunnable_Run(ptr.Pointer(), PointerFromQVideoFrame(input), PointerFromQVideoSurfaceFormat(surfaceFormat), C.int(flags)))
+	}
+	return nil
+}
 
 type QVideoFrame struct {
 	ptr unsafe.Pointer
@@ -26392,6 +27130,42 @@ func (ptr *QVideoProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
 		return C.QVideoProbe_SetSource2(ptr.Pointer(), PointerFromQMediaRecorder(mediaRecorder)) != 0
 	}
 	return false
+}
+
+func (ptr *QVideoProbe) ConnectVideoFrameProbed(f func(frame *QVideoFrame)) {
+	defer qt.Recovering("connect QVideoProbe::videoFrameProbed")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_ConnectVideoFrameProbed(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "videoFrameProbed", f)
+	}
+}
+
+func (ptr *QVideoProbe) DisconnectVideoFrameProbed() {
+	defer qt.Recovering("disconnect QVideoProbe::videoFrameProbed")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_DisconnectVideoFrameProbed(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "videoFrameProbed")
+	}
+}
+
+//export callbackQVideoProbeVideoFrameProbed
+func callbackQVideoProbeVideoFrameProbed(ptr unsafe.Pointer, ptrName *C.char, frame unsafe.Pointer) {
+	defer qt.Recovering("callback QVideoProbe::videoFrameProbed")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "videoFrameProbed"); signal != nil {
+		signal.(func(*QVideoFrame))(NewQVideoFrameFromPointer(frame))
+	}
+
+}
+
+func (ptr *QVideoProbe) VideoFrameProbed(frame QVideoFrame_ITF) {
+	defer qt.Recovering("QVideoProbe::videoFrameProbed")
+
+	if ptr.Pointer() != nil {
+		C.QVideoProbe_VideoFrameProbed(ptr.Pointer(), PointerFromQVideoFrame(frame))
+	}
 }
 
 func (ptr *QVideoProbe) DestroyQVideoProbe() {

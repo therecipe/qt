@@ -3,7 +3,6 @@
 #include "dbus.h"
 #include "_cgo_export.h"
 
-#include <QByteArray>
 #include <QChildEvent>
 #include <QDBusAbstractAdaptor>
 #include <QDBusAbstractInterface>
@@ -66,6 +65,18 @@ public:
 	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterfaceChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQDBusAbstractInterfaceCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void* QDBusAbstractInterface_AsyncCall(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8){
+	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCall(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
+}
+
+void* QDBusAbstractInterface_Call(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8){
+	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->call(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
+}
+
+void* QDBusAbstractInterface_Connection(void* ptr){
+	return new QDBusConnection(static_cast<QDBusAbstractInterface*>(ptr)->connection());
+}
 
 char* QDBusAbstractInterface_Interface(void* ptr){
 	return static_cast<QDBusAbstractInterface*>(ptr)->interface().toUtf8().data();
@@ -207,6 +218,14 @@ void QDBusArgument_DestroyQDBusArgument(void* ptr){
 	static_cast<QDBusArgument*>(ptr)->~QDBusArgument();
 }
 
+void* QDBusConnection_QDBusConnection_SessionBus(){
+	return new QDBusConnection(QDBusConnection::sessionBus());
+}
+
+void* QDBusConnection_QDBusConnection_SystemBus(){
+	return new QDBusConnection(QDBusConnection::systemBus());
+}
+
 void* QDBusConnection_NewQDBusConnection2(void* other){
 	return new QDBusConnection(*static_cast<QDBusConnection*>(other));
 }
@@ -217,6 +236,18 @@ void* QDBusConnection_NewQDBusConnection(char* name){
 
 char* QDBusConnection_BaseService(void* ptr){
 	return static_cast<QDBusConnection*>(ptr)->baseService().toUtf8().data();
+}
+
+void* QDBusConnection_QDBusConnection_ConnectToBus(int ty, char* name){
+	return new QDBusConnection(QDBusConnection::connectToBus(static_cast<QDBusConnection::BusType>(ty), QString(name)));
+}
+
+void* QDBusConnection_QDBusConnection_ConnectToBus2(char* address, char* name){
+	return new QDBusConnection(QDBusConnection::connectToBus(QString(address), QString(name)));
+}
+
+void* QDBusConnection_AsyncCall(void* ptr, void* message, int timeout){
+	return new QDBusPendingCall(static_cast<QDBusConnection*>(ptr)->asyncCall(*static_cast<QDBusMessage*>(message), timeout));
 }
 
 int QDBusConnection_CallWithCallback(void* ptr, void* message, void* receiver, char* returnMethod, char* errorMethod, int timeout){
@@ -233,6 +264,10 @@ int QDBusConnection_Connect2(void* ptr, char* service, char* path, char* interfa
 
 int QDBusConnection_Connect3(void* ptr, char* service, char* path, char* interfa, char* name, char* argumentMatch, char* signature, void* receiver, char* slot){
 	return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split("|", QString::SkipEmptyParts), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+}
+
+void* QDBusConnection_QDBusConnection_ConnectToPeer(char* address, char* name){
+	return new QDBusConnection(QDBusConnection::connectToPeer(QString(address), QString(name)));
 }
 
 int QDBusConnection_ConnectionCapabilities(void* ptr){
@@ -255,8 +290,8 @@ int QDBusConnection_IsConnected(void* ptr){
 	return static_cast<QDBusConnection*>(ptr)->isConnected();
 }
 
-void* QDBusConnection_QDBusConnection_LocalMachineId(){
-	return new QByteArray(QDBusConnection::localMachineId());
+char* QDBusConnection_QDBusConnection_LocalMachineId(){
+	return QString(QDBusConnection::localMachineId()).toUtf8().data();
 }
 
 char* QDBusConnection_Name(void* ptr){
@@ -360,8 +395,16 @@ int QDBusContext_CalledFromDBus(void* ptr){
 	return static_cast<QDBusContext*>(ptr)->calledFromDBus();
 }
 
+void* QDBusContext_Connection(void* ptr){
+	return new QDBusConnection(static_cast<QDBusContext*>(ptr)->connection());
+}
+
 int QDBusContext_IsDelayedReply(void* ptr){
 	return static_cast<QDBusContext*>(ptr)->isDelayedReply();
+}
+
+void* QDBusContext_Message(void* ptr){
+	return new QDBusMessage(static_cast<QDBusContext*>(ptr)->message());
 }
 
 void QDBusContext_SendErrorReply2(void* ptr, int ty, char* msg){
@@ -432,6 +475,10 @@ void QDBusInterface_CustomEventDefault(void* ptr, void* event){
 	static_cast<QDBusInterface*>(ptr)->QDBusInterface::customEvent(static_cast<QEvent*>(event));
 }
 
+void* QDBusMessage_CreateErrorReply3(void* ptr, int ty, char* msg){
+	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(static_cast<QDBusError::ErrorType>(ty), QString(msg)));
+}
+
 void* QDBusMessage_NewQDBusMessage(){
 	return new QDBusMessage();
 }
@@ -442,6 +489,38 @@ void* QDBusMessage_NewQDBusMessage2(void* other){
 
 int QDBusMessage_AutoStartService(void* ptr){
 	return static_cast<QDBusMessage*>(ptr)->autoStartService();
+}
+
+void* QDBusMessage_QDBusMessage_CreateError3(int ty, char* msg){
+	return new QDBusMessage(QDBusMessage::createError(static_cast<QDBusError::ErrorType>(ty), QString(msg)));
+}
+
+void* QDBusMessage_QDBusMessage_CreateError2(void* error){
+	return new QDBusMessage(QDBusMessage::createError(*static_cast<QDBusError*>(error)));
+}
+
+void* QDBusMessage_QDBusMessage_CreateError(char* name, char* msg){
+	return new QDBusMessage(QDBusMessage::createError(QString(name), QString(msg)));
+}
+
+void* QDBusMessage_CreateErrorReply2(void* ptr, void* error){
+	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(*static_cast<QDBusError*>(error)));
+}
+
+void* QDBusMessage_CreateErrorReply(void* ptr, char* name, char* msg){
+	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createErrorReply(QString(name), QString(msg)));
+}
+
+void* QDBusMessage_QDBusMessage_CreateMethodCall(char* service, char* path, char* interfa, char* method){
+	return new QDBusMessage(QDBusMessage::createMethodCall(QString(service), QString(path), QString(interfa), QString(method)));
+}
+
+void* QDBusMessage_CreateReply2(void* ptr, void* argument){
+	return new QDBusMessage(static_cast<QDBusMessage*>(ptr)->createReply(*static_cast<QVariant*>(argument)));
+}
+
+void* QDBusMessage_QDBusMessage_CreateSignal(char* path, char* interfa, char* name){
+	return new QDBusMessage(QDBusMessage::createSignal(QString(path), QString(interfa), QString(name)));
 }
 
 char* QDBusMessage_ErrorMessage(void* ptr){
@@ -524,6 +603,14 @@ void* QDBusPendingCall_NewQDBusPendingCall(void* other){
 	return new QDBusPendingCall(*static_cast<QDBusPendingCall*>(other));
 }
 
+void* QDBusPendingCall_QDBusPendingCall_FromCompletedCall(void* msg){
+	return new QDBusPendingCall(QDBusPendingCall::fromCompletedCall(*static_cast<QDBusMessage*>(msg)));
+}
+
+void* QDBusPendingCall_QDBusPendingCall_FromError(void* error){
+	return new QDBusPendingCall(QDBusPendingCall::fromError(*static_cast<QDBusError*>(error)));
+}
+
 void QDBusPendingCall_Swap(void* ptr, void* other){
 	static_cast<QDBusPendingCall*>(ptr)->swap(*static_cast<QDBusPendingCall*>(other));
 }
@@ -596,6 +683,7 @@ class MyQDBusServer: public QDBusServer {
 public:
 	MyQDBusServer(QObject *parent) : QDBusServer(parent) {};
 	MyQDBusServer(const QString &address, QObject *parent) : QDBusServer(address, parent) {};
+	void Signal_NewConnection(const QDBusConnection & connection) { callbackQDBusServerNewConnection(this, this->objectName().toUtf8().data(), new QDBusConnection(connection)); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusServerTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQDBusServerChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQDBusServerCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -619,6 +707,18 @@ int QDBusServer_IsAnonymousAuthenticationAllowed(void* ptr){
 
 int QDBusServer_IsConnected(void* ptr){
 	return static_cast<QDBusServer*>(ptr)->isConnected();
+}
+
+void QDBusServer_ConnectNewConnection(void* ptr){
+	QObject::connect(static_cast<QDBusServer*>(ptr), static_cast<void (QDBusServer::*)(const QDBusConnection &)>(&QDBusServer::newConnection), static_cast<MyQDBusServer*>(ptr), static_cast<void (MyQDBusServer::*)(const QDBusConnection &)>(&MyQDBusServer::Signal_NewConnection));;
+}
+
+void QDBusServer_DisconnectNewConnection(void* ptr){
+	QObject::disconnect(static_cast<QDBusServer*>(ptr), static_cast<void (QDBusServer::*)(const QDBusConnection &)>(&QDBusServer::newConnection), static_cast<MyQDBusServer*>(ptr), static_cast<void (MyQDBusServer::*)(const QDBusConnection &)>(&MyQDBusServer::Signal_NewConnection));;
+}
+
+void QDBusServer_NewConnection(void* ptr, void* connection){
+	static_cast<QDBusServer*>(ptr)->newConnection(*static_cast<QDBusConnection*>(connection));
 }
 
 void QDBusServer_SetAnonymousAuthenticationAllowed(void* ptr, int value){
@@ -681,6 +781,10 @@ void* QDBusServiceWatcher_NewQDBusServiceWatcher2(char* service, void* connectio
 
 void QDBusServiceWatcher_AddWatchedService(void* ptr, char* newService){
 	static_cast<QDBusServiceWatcher*>(ptr)->addWatchedService(QString(newService));
+}
+
+void* QDBusServiceWatcher_Connection(void* ptr){
+	return new QDBusConnection(static_cast<QDBusServiceWatcher*>(ptr)->connection());
 }
 
 int QDBusServiceWatcher_RemoveWatchedService(void* ptr, char* service){

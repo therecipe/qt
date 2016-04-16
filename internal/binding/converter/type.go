@@ -13,7 +13,7 @@ func goType(f *parser.Function, value string) string {
 	value = cleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString":
+	case "uchar", "char", "QString", "QByteArray":
 		{
 			if strings.Contains(vOld, "**") {
 				return "[]string"
@@ -129,7 +129,7 @@ func cgoType(f *parser.Function, value string) string {
 	value = cleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QStringList":
+	case "uchar", "char", "QString", "QByteArray", "QStringList":
 		{
 			return "*C.char"
 		}
@@ -180,7 +180,7 @@ func cppType(f *parser.Function, value string) string {
 	value = cleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QStringList":
+	case "uchar", "char", "QString", "QByteArray", "QStringList":
 		{
 			return "char*"
 		}

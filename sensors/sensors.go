@@ -6832,13 +6832,13 @@ func (ptr *QSensor) Error() int {
 	return 0
 }
 
-func (ptr *QSensor) Identifier() *core.QByteArray {
+func (ptr *QSensor) Identifier() string {
 	defer qt.Recovering("QSensor::identifier")
 
 	if ptr.Pointer() != nil {
-		return core.NewQByteArrayFromPointer(C.QSensor_Identifier(ptr.Pointer()))
+		return C.GoString(C.QSensor_Identifier(ptr.Pointer()))
 	}
-	return nil
+	return ""
 }
 
 func (ptr *QSensor) IsActive() bool {
@@ -6944,11 +6944,11 @@ func (ptr *QSensor) SetDataRate(rate int) {
 	}
 }
 
-func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
+func (ptr *QSensor) SetIdentifier(identifier string) {
 	defer qt.Recovering("QSensor::setIdentifier")
 
 	if ptr.Pointer() != nil {
-		C.QSensor_SetIdentifier(ptr.Pointer(), core.PointerFromQByteArray(identifier))
+		C.QSensor_SetIdentifier(ptr.Pointer(), C.CString(identifier))
 	}
 }
 
@@ -6977,13 +6977,13 @@ func (ptr *QSensor) SkipDuplicates() bool {
 	return false
 }
 
-func (ptr *QSensor) Type() *core.QByteArray {
+func (ptr *QSensor) Type() string {
 	defer qt.Recovering("QSensor::type")
 
 	if ptr.Pointer() != nil {
-		return core.NewQByteArrayFromPointer(C.QSensor_Type(ptr.Pointer()))
+		return C.GoString(C.QSensor_Type(ptr.Pointer()))
 	}
-	return nil
+	return ""
 }
 
 func (ptr *QSensor) UserOrientation() int {
@@ -6995,10 +6995,10 @@ func (ptr *QSensor) UserOrientation() int {
 	return 0
 }
 
-func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
+func NewQSensor(ty string, parent core.QObject_ITF) *QSensor {
 	defer qt.Recovering("QSensor::QSensor")
 
-	return newQSensorFromPointer(C.QSensor_NewQSensor(core.PointerFromQByteArray(ty), core.PointerFromQObject(parent)))
+	return newQSensorFromPointer(C.QSensor_NewQSensor(C.CString(ty), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSensor) ConnectActiveChanged(f func()) {
@@ -7306,10 +7306,10 @@ func (ptr *QSensor) DataRateChanged() {
 	}
 }
 
-func QSensor_DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
+func QSensor_DefaultSensorForType(ty string) string {
 	defer qt.Recovering("QSensor::defaultSensorForType")
 
-	return core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
+	return C.GoString(C.QSensor_QSensor_DefaultSensorForType(C.CString(ty)))
 }
 
 func (ptr *QSensor) ConnectEfficientBufferSizeChanged(f func(efficientBufferSize int)) {
@@ -9028,28 +9028,28 @@ func QSensorManager_CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 	return NewQSensorBackendFromPointer(C.QSensorManager_QSensorManager_CreateBackend(PointerFromQSensor(sensor)))
 }
 
-func QSensorManager_IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
+func QSensorManager_IsBackendRegistered(ty string, identifier string) bool {
 	defer qt.Recovering("QSensorManager::isBackendRegistered")
 
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier)) != 0
+	return C.QSensorManager_QSensorManager_IsBackendRegistered(C.CString(ty), C.CString(identifier)) != 0
 }
 
-func QSensorManager_RegisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF, factory QSensorBackendFactory_ITF) {
+func QSensorManager_RegisterBackend(ty string, identifier string, factory QSensorBackendFactory_ITF) {
 	defer qt.Recovering("QSensorManager::registerBackend")
 
-	C.QSensorManager_QSensorManager_RegisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier), PointerFromQSensorBackendFactory(factory))
+	C.QSensorManager_QSensorManager_RegisterBackend(C.CString(ty), C.CString(identifier), PointerFromQSensorBackendFactory(factory))
 }
 
-func QSensorManager_SetDefaultBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+func QSensorManager_SetDefaultBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::setDefaultBackend")
 
-	C.QSensorManager_QSensorManager_SetDefaultBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
+	C.QSensorManager_QSensorManager_SetDefaultBackend(C.CString(ty), C.CString(identifier))
 }
 
-func QSensorManager_UnregisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+func QSensorManager_UnregisterBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::unregisterBackend")
 
-	C.QSensorManager_QSensorManager_UnregisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
+	C.QSensorManager_QSensorManager_UnregisterBackend(C.CString(ty), C.CString(identifier))
 }
 
 type QSensorPluginInterface struct {

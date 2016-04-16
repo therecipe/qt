@@ -445,6 +445,15 @@ func (ptr *QAbstractXmlNodeModel) DocumentUri(n QXmlNodeModelIndex_ITF) *core.QU
 	return nil
 }
 
+func (ptr *QAbstractXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
+	defer qt.Recovering("QAbstractXmlNodeModel::elementById")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
+	}
+	return nil
+}
+
 func (ptr *QAbstractXmlNodeModel) Kind(ni QXmlNodeModelIndex_ITF) QXmlNodeModelIndex__NodeKind {
 	defer qt.Recovering("QAbstractXmlNodeModel::kind")
 
@@ -452,6 +461,24 @@ func (ptr *QAbstractXmlNodeModel) Kind(ni QXmlNodeModelIndex_ITF) QXmlNodeModelI
 		return QXmlNodeModelIndex__NodeKind(C.QAbstractXmlNodeModel_Kind(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
 	}
 	return 0
+}
+
+func (ptr *QAbstractXmlNodeModel) Root(n QXmlNodeModelIndex_ITF) *QXmlNodeModelIndex {
+	defer qt.Recovering("QAbstractXmlNodeModel::root")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_Root(ptr.Pointer(), PointerFromQXmlNodeModelIndex(n)))
+	}
+	return nil
+}
+
+func (ptr *QAbstractXmlNodeModel) SourceLocation(index QXmlNodeModelIndex_ITF) *QSourceLocation {
+	defer qt.Recovering("QAbstractXmlNodeModel::sourceLocation")
+
+	if ptr.Pointer() != nil {
+		return NewQSourceLocationFromPointer(C.QAbstractXmlNodeModel_SourceLocation(ptr.Pointer(), PointerFromQXmlNodeModelIndex(index)))
+	}
+	return nil
 }
 
 func (ptr *QAbstractXmlNodeModel) StringValue(n QXmlNodeModelIndex_ITF) string {
@@ -690,6 +717,24 @@ func (ptr *QSimpleXmlNodeModel) BaseUri(node QXmlNodeModelIndex_ITF) *core.QUrl 
 
 	if ptr.Pointer() != nil {
 		return core.NewQUrlFromPointer(C.QSimpleXmlNodeModel_BaseUri(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+	}
+	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) ElementById(id QXmlName_ITF) *QXmlNodeModelIndex {
+	defer qt.Recovering("QSimpleXmlNodeModel::elementById")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_ElementById(ptr.Pointer(), PointerFromQXmlName(id)))
+	}
+	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) NamePool() *QXmlNamePool {
+	defer qt.Recovering("QSimpleXmlNodeModel::namePool")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNamePoolFromPointer(C.QSimpleXmlNodeModel_NamePool(ptr.Pointer()))
 	}
 	return nil
 }
@@ -1321,6 +1366,15 @@ func (ptr *QXmlItem) IsNull() bool {
 	return false
 }
 
+func (ptr *QXmlItem) ToNodeModelIndex() *QXmlNodeModelIndex {
+	defer qt.Recovering("QXmlItem::toNodeModelIndex")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNodeModelIndexFromPointer(C.QXmlItem_ToNodeModelIndex(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QXmlItem) DestroyQXmlItem() {
 	defer qt.Recovering("QXmlItem::~QXmlItem")
 
@@ -1744,6 +1798,15 @@ func (ptr *QXmlQuery) MessageHandler() *QAbstractMessageHandler {
 	return nil
 }
 
+func (ptr *QXmlQuery) NamePool() *QXmlNamePool {
+	defer qt.Recovering("QXmlQuery::namePool")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNamePoolFromPointer(C.QXmlQuery_NamePool(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QXmlQuery) NetworkAccessManager() *network.QNetworkAccessManager {
 	defer qt.Recovering("QXmlQuery::networkAccessManager")
 
@@ -1925,6 +1988,15 @@ func NewQXmlResultItems() *QXmlResultItems {
 	return newQXmlResultItemsFromPointer(C.QXmlResultItems_NewQXmlResultItems())
 }
 
+func (ptr *QXmlResultItems) Current() *QXmlItem {
+	defer qt.Recovering("QXmlResultItems::current")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlItemFromPointer(C.QXmlResultItems_Current(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QXmlResultItems) HasError() bool {
 	defer qt.Recovering("QXmlResultItems::hasError")
 
@@ -1932,6 +2004,15 @@ func (ptr *QXmlResultItems) HasError() bool {
 		return C.QXmlResultItems_HasError(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QXmlResultItems) Next() *QXmlItem {
+	defer qt.Recovering("QXmlResultItems::next")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlItemFromPointer(C.QXmlResultItems_Next(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QXmlResultItems) DestroyQXmlResultItems() {
@@ -2036,11 +2117,11 @@ func (ptr *QXmlSchema) Load2(source core.QIODevice_ITF, documentUri core.QUrl_IT
 	return false
 }
 
-func (ptr *QXmlSchema) Load3(data core.QByteArray_ITF, documentUri core.QUrl_ITF) bool {
+func (ptr *QXmlSchema) Load3(data string, documentUri core.QUrl_ITF) bool {
 	defer qt.Recovering("QXmlSchema::load")
 
 	if ptr.Pointer() != nil {
-		return C.QXmlSchema_Load3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri)) != 0
+		return C.QXmlSchema_Load3(ptr.Pointer(), C.CString(data), core.PointerFromQUrl(documentUri)) != 0
 	}
 	return false
 }
@@ -2059,6 +2140,15 @@ func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
 
 	if ptr.Pointer() != nil {
 		return NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlSchema) NamePool() *QXmlNamePool {
+	defer qt.Recovering("QXmlSchema::namePool")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNamePoolFromPointer(C.QXmlSchema_NamePool(ptr.Pointer()))
 	}
 	return nil
 }
@@ -2172,11 +2262,29 @@ func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
 	return nil
 }
 
+func (ptr *QXmlSchemaValidator) NamePool() *QXmlNamePool {
+	defer qt.Recovering("QXmlSchemaValidator::namePool")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlNamePoolFromPointer(C.QXmlSchemaValidator_NamePool(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessManager {
 	defer qt.Recovering("QXmlSchemaValidator::networkAccessManager")
 
 	if ptr.Pointer() != nil {
 		return network.NewQNetworkAccessManagerFromPointer(C.QXmlSchemaValidator_NetworkAccessManager(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlSchemaValidator) Schema() *QXmlSchema {
+	defer qt.Recovering("QXmlSchemaValidator::schema")
+
+	if ptr.Pointer() != nil {
+		return NewQXmlSchemaFromPointer(C.QXmlSchemaValidator_Schema(ptr.Pointer()))
 	}
 	return nil
 }
@@ -2231,11 +2339,11 @@ func (ptr *QXmlSchemaValidator) Validate2(source core.QIODevice_ITF, documentUri
 	return false
 }
 
-func (ptr *QXmlSchemaValidator) Validate3(data core.QByteArray_ITF, documentUri core.QUrl_ITF) bool {
+func (ptr *QXmlSchemaValidator) Validate3(data string, documentUri core.QUrl_ITF) bool {
 	defer qt.Recovering("QXmlSchemaValidator::validate")
 
 	if ptr.Pointer() != nil {
-		return C.QXmlSchemaValidator_Validate3(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(documentUri)) != 0
+		return C.QXmlSchemaValidator_Validate3(ptr.Pointer(), C.CString(data), core.PointerFromQUrl(documentUri)) != 0
 	}
 	return false
 }

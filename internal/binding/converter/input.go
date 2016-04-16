@@ -19,7 +19,7 @@ func goInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 		}
 
-	case "uchar", "char", "QString":
+	case "uchar", "char", "QString", "QByteArray":
 		{
 			if strings.Contains(vOld, "**") {
 				return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
@@ -127,7 +127,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.split(\"|\", QString::SkipEmptyParts)", cppInput(name, "QString", f))
 		}
 
-	case "QString":
+	case "QString", "QByteArray":
 		{
 			if strings.Contains(vOld, "&") {
 				if strings.Contains(vOld, "const") {

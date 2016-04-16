@@ -57,6 +57,10 @@ int QDomAttr_NodeType(void* ptr){
 	return static_cast<QDomAttr*>(ptr)->nodeType();
 }
 
+void* QDomAttr_OwnerElement(void* ptr){
+	return new QDomElement(static_cast<QDomAttr*>(ptr)->ownerElement());
+}
+
 void QDomAttr_SetValue(void* ptr, char* v){
 	static_cast<QDomAttr*>(ptr)->setValue(QString(v));
 }
@@ -137,6 +141,74 @@ void* QDomDocument_NewQDomDocument2(char* name){
 	return new QDomDocument(QString(name));
 }
 
+void* QDomDocument_CreateAttribute(void* ptr, char* name){
+	return new QDomAttr(static_cast<QDomDocument*>(ptr)->createAttribute(QString(name)));
+}
+
+void* QDomDocument_CreateAttributeNS(void* ptr, char* nsURI, char* qName){
+	return new QDomAttr(static_cast<QDomDocument*>(ptr)->createAttributeNS(QString(nsURI), QString(qName)));
+}
+
+void* QDomDocument_CreateCDATASection(void* ptr, char* value){
+	return new QDomCDATASection(static_cast<QDomDocument*>(ptr)->createCDATASection(QString(value)));
+}
+
+void* QDomDocument_CreateComment(void* ptr, char* value){
+	return new QDomComment(static_cast<QDomDocument*>(ptr)->createComment(QString(value)));
+}
+
+void* QDomDocument_CreateDocumentFragment(void* ptr){
+	return new QDomDocumentFragment(static_cast<QDomDocument*>(ptr)->createDocumentFragment());
+}
+
+void* QDomDocument_CreateElement(void* ptr, char* tagName){
+	return new QDomElement(static_cast<QDomDocument*>(ptr)->createElement(QString(tagName)));
+}
+
+void* QDomDocument_CreateElementNS(void* ptr, char* nsURI, char* qName){
+	return new QDomElement(static_cast<QDomDocument*>(ptr)->createElementNS(QString(nsURI), QString(qName)));
+}
+
+void* QDomDocument_CreateEntityReference(void* ptr, char* name){
+	return new QDomEntityReference(static_cast<QDomDocument*>(ptr)->createEntityReference(QString(name)));
+}
+
+void* QDomDocument_CreateProcessingInstruction(void* ptr, char* target, char* data){
+	return new QDomProcessingInstruction(static_cast<QDomDocument*>(ptr)->createProcessingInstruction(QString(target), QString(data)));
+}
+
+void* QDomDocument_CreateTextNode(void* ptr, char* value){
+	return new QDomText(static_cast<QDomDocument*>(ptr)->createTextNode(QString(value)));
+}
+
+void* QDomDocument_Doctype(void* ptr){
+	return new QDomDocumentType(static_cast<QDomDocument*>(ptr)->doctype());
+}
+
+void* QDomDocument_DocumentElement(void* ptr){
+	return new QDomElement(static_cast<QDomDocument*>(ptr)->documentElement());
+}
+
+void* QDomDocument_ElementById(void* ptr, char* elementId){
+	return new QDomElement(static_cast<QDomDocument*>(ptr)->elementById(QString(elementId)));
+}
+
+void* QDomDocument_ElementsByTagName(void* ptr, char* tagname){
+	return new QDomNodeList(static_cast<QDomDocument*>(ptr)->elementsByTagName(QString(tagname)));
+}
+
+void* QDomDocument_ElementsByTagNameNS(void* ptr, char* nsURI, char* localName){
+	return new QDomNodeList(static_cast<QDomDocument*>(ptr)->elementsByTagNameNS(QString(nsURI), QString(localName)));
+}
+
+void* QDomDocument_Implementation(void* ptr){
+	return new QDomImplementation(static_cast<QDomDocument*>(ptr)->implementation());
+}
+
+void* QDomDocument_ImportNode(void* ptr, void* importedNode, int deep){
+	return new QDomNode(static_cast<QDomDocument*>(ptr)->importNode(*static_cast<QDomNode*>(importedNode), deep != 0));
+}
+
 int QDomDocument_NodeType(void* ptr){
 	return static_cast<QDomDocument*>(ptr)->nodeType();
 }
@@ -157,12 +229,12 @@ int QDomDocument_SetContent4(void* ptr, void* source, int namespaceProcessing, c
 	return static_cast<QDomDocument*>(ptr)->setContent(static_cast<QXmlInputSource*>(source), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
 }
 
-int QDomDocument_SetContent6(void* ptr, void* buffer, char* errorMsg, int errorLine, int errorColumn){
-	return static_cast<QDomDocument*>(ptr)->setContent(*static_cast<QByteArray*>(buffer), new QString(errorMsg), &errorLine, &errorColumn);
+int QDomDocument_SetContent6(void* ptr, char* buffer, char* errorMsg, int errorLine, int errorColumn){
+	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray(buffer), new QString(errorMsg), &errorLine, &errorColumn);
 }
 
-int QDomDocument_SetContent(void* ptr, void* data, int namespaceProcessing, char* errorMsg, int errorLine, int errorColumn){
-	return static_cast<QDomDocument*>(ptr)->setContent(*static_cast<QByteArray*>(data), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
+int QDomDocument_SetContent(void* ptr, char* data, int namespaceProcessing, char* errorMsg, int errorLine, int errorColumn){
+	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray(data), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
 }
 
 int QDomDocument_SetContent5(void* ptr, char* text, char* errorMsg, int errorLine, int errorColumn){
@@ -173,8 +245,8 @@ int QDomDocument_SetContent2(void* ptr, char* text, int namespaceProcessing, cha
 	return static_cast<QDomDocument*>(ptr)->setContent(QString(text), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
 }
 
-void* QDomDocument_ToByteArray(void* ptr, int indent){
-	return new QByteArray(static_cast<QDomDocument*>(ptr)->toByteArray(indent));
+char* QDomDocument_ToByteArray(void* ptr, int indent){
+	return QString(static_cast<QDomDocument*>(ptr)->toByteArray(indent)).toUtf8().data();
 }
 
 char* QDomDocument_ToString(void* ptr, int indent){
@@ -205,6 +277,10 @@ void* QDomDocumentType_NewQDomDocumentType2(void* n){
 	return new QDomDocumentType(*static_cast<QDomDocumentType*>(n));
 }
 
+void* QDomDocumentType_Entities(void* ptr){
+	return new QDomNamedNodeMap(static_cast<QDomDocumentType*>(ptr)->entities());
+}
+
 char* QDomDocumentType_InternalSubset(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->internalSubset().toUtf8().data();
 }
@@ -215,6 +291,10 @@ char* QDomDocumentType_Name(void* ptr){
 
 int QDomDocumentType_NodeType(void* ptr){
 	return static_cast<QDomDocumentType*>(ptr)->nodeType();
+}
+
+void* QDomDocumentType_Notations(void* ptr){
+	return new QDomNamedNodeMap(static_cast<QDomDocumentType*>(ptr)->notations());
 }
 
 char* QDomDocumentType_PublicId(void* ptr){
@@ -241,6 +321,26 @@ char* QDomElement_AttributeNS(void* ptr, char* nsURI, char* localName, char* def
 	return static_cast<QDomElement*>(ptr)->attributeNS(QString(nsURI), QString(localName), QString(defValue)).toUtf8().data();
 }
 
+void* QDomElement_AttributeNode(void* ptr, char* name){
+	return new QDomAttr(static_cast<QDomElement*>(ptr)->attributeNode(QString(name)));
+}
+
+void* QDomElement_AttributeNodeNS(void* ptr, char* nsURI, char* localName){
+	return new QDomAttr(static_cast<QDomElement*>(ptr)->attributeNodeNS(QString(nsURI), QString(localName)));
+}
+
+void* QDomElement_Attributes(void* ptr){
+	return new QDomNamedNodeMap(static_cast<QDomElement*>(ptr)->attributes());
+}
+
+void* QDomElement_ElementsByTagName(void* ptr, char* tagname){
+	return new QDomNodeList(static_cast<QDomElement*>(ptr)->elementsByTagName(QString(tagname)));
+}
+
+void* QDomElement_ElementsByTagNameNS(void* ptr, char* nsURI, char* localName){
+	return new QDomNodeList(static_cast<QDomElement*>(ptr)->elementsByTagNameNS(QString(nsURI), QString(localName)));
+}
+
 int QDomElement_HasAttribute(void* ptr, char* name){
 	return static_cast<QDomElement*>(ptr)->hasAttribute(QString(name));
 }
@@ -261,6 +361,10 @@ void QDomElement_RemoveAttributeNS(void* ptr, char* nsURI, char* localName){
 	static_cast<QDomElement*>(ptr)->removeAttributeNS(QString(nsURI), QString(localName));
 }
 
+void* QDomElement_RemoveAttributeNode(void* ptr, void* oldAttr){
+	return new QDomAttr(static_cast<QDomElement*>(ptr)->removeAttributeNode(*static_cast<QDomAttr*>(oldAttr)));
+}
+
 void QDomElement_SetAttribute(void* ptr, char* name, char* value){
 	static_cast<QDomElement*>(ptr)->setAttribute(QString(name), QString(value));
 }
@@ -275,6 +379,14 @@ void QDomElement_SetAttributeNS(void* ptr, char* nsURI, char* qName, char* value
 
 void QDomElement_SetAttributeNS2(void* ptr, char* nsURI, char* qName, int value){
 	static_cast<QDomElement*>(ptr)->setAttributeNS(QString(nsURI), QString(qName), value);
+}
+
+void* QDomElement_SetAttributeNode(void* ptr, void* newAttr){
+	return new QDomAttr(static_cast<QDomElement*>(ptr)->setAttributeNode(*static_cast<QDomAttr*>(newAttr)));
+}
+
+void* QDomElement_SetAttributeNodeNS(void* ptr, void* newAttr){
+	return new QDomAttr(static_cast<QDomElement*>(ptr)->setAttributeNodeNS(*static_cast<QDomAttr*>(newAttr)));
 }
 
 void QDomElement_SetTagName(void* ptr, char* name){
@@ -333,6 +445,14 @@ void* QDomImplementation_NewQDomImplementation2(void* x){
 	return new QDomImplementation(*static_cast<QDomImplementation*>(x));
 }
 
+void* QDomImplementation_CreateDocument(void* ptr, char* nsURI, char* qName, void* doctype){
+	return new QDomDocument(static_cast<QDomImplementation*>(ptr)->createDocument(QString(nsURI), QString(qName), *static_cast<QDomDocumentType*>(doctype)));
+}
+
+void* QDomImplementation_CreateDocumentType(void* ptr, char* qName, char* publicId, char* systemId){
+	return new QDomDocumentType(static_cast<QDomImplementation*>(ptr)->createDocumentType(QString(qName), QString(publicId), QString(systemId)));
+}
+
 int QDomImplementation_HasFeature(void* ptr, char* feature, char* version){
 	return static_cast<QDomImplementation*>(ptr)->hasFeature(QString(feature), QString(version));
 }
@@ -373,8 +493,36 @@ int QDomNamedNodeMap_IsEmpty(void* ptr){
 	return static_cast<QDomNamedNodeMap*>(ptr)->isEmpty();
 }
 
+void* QDomNamedNodeMap_Item(void* ptr, int index){
+	return new QDomNode(static_cast<QDomNamedNodeMap*>(ptr)->item(index));
+}
+
 int QDomNamedNodeMap_Length(void* ptr){
 	return static_cast<QDomNamedNodeMap*>(ptr)->length();
+}
+
+void* QDomNamedNodeMap_NamedItem(void* ptr, char* name){
+	return new QDomNode(static_cast<QDomNamedNodeMap*>(ptr)->namedItem(QString(name)));
+}
+
+void* QDomNamedNodeMap_NamedItemNS(void* ptr, char* nsURI, char* localName){
+	return new QDomNode(static_cast<QDomNamedNodeMap*>(ptr)->namedItemNS(QString(nsURI), QString(localName)));
+}
+
+void* QDomNamedNodeMap_RemoveNamedItem(void* ptr, char* name){
+	return new QDomNode(static_cast<QDomNamedNodeMap*>(ptr)->removeNamedItem(QString(name)));
+}
+
+void* QDomNamedNodeMap_RemoveNamedItemNS(void* ptr, char* nsURI, char* localName){
+	return new QDomNode(static_cast<QDomNamedNodeMap*>(ptr)->removeNamedItemNS(QString(nsURI), QString(localName)));
+}
+
+void* QDomNamedNodeMap_SetNamedItem(void* ptr, void* newNode){
+	return new QDomNode(static_cast<QDomNamedNodeMap*>(ptr)->setNamedItem(*static_cast<QDomNode*>(newNode)));
+}
+
+void* QDomNamedNodeMap_SetNamedItemNS(void* ptr, void* newNode){
+	return new QDomNode(static_cast<QDomNamedNodeMap*>(ptr)->setNamedItemNS(*static_cast<QDomNode*>(newNode)));
 }
 
 int QDomNamedNodeMap_Size(void* ptr){
@@ -393,12 +541,36 @@ void* QDomNode_NewQDomNode2(void* n){
 	return new QDomNode(*static_cast<QDomNode*>(n));
 }
 
+void* QDomNode_AppendChild(void* ptr, void* newChild){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->appendChild(*static_cast<QDomNode*>(newChild)));
+}
+
+void* QDomNode_Attributes(void* ptr){
+	return new QDomNamedNodeMap(static_cast<QDomNode*>(ptr)->attributes());
+}
+
+void* QDomNode_ChildNodes(void* ptr){
+	return new QDomNodeList(static_cast<QDomNode*>(ptr)->childNodes());
+}
+
 void QDomNode_Clear(void* ptr){
 	static_cast<QDomNode*>(ptr)->clear();
 }
 
+void* QDomNode_CloneNode(void* ptr, int deep){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->cloneNode(deep != 0));
+}
+
 int QDomNode_ColumnNumber(void* ptr){
 	return static_cast<QDomNode*>(ptr)->columnNumber();
+}
+
+void* QDomNode_FirstChild(void* ptr){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->firstChild());
+}
+
+void* QDomNode_FirstChildElement(void* ptr, char* tagName){
+	return new QDomElement(static_cast<QDomNode*>(ptr)->firstChildElement(QString(tagName)));
 }
 
 int QDomNode_HasAttributes(void* ptr){
@@ -407,6 +579,14 @@ int QDomNode_HasAttributes(void* ptr){
 
 int QDomNode_HasChildNodes(void* ptr){
 	return static_cast<QDomNode*>(ptr)->hasChildNodes();
+}
+
+void* QDomNode_InsertAfter(void* ptr, void* newChild, void* refChild){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->insertAfter(*static_cast<QDomNode*>(newChild), *static_cast<QDomNode*>(refChild)));
+}
+
+void* QDomNode_InsertBefore(void* ptr, void* newChild, void* refChild){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->insertBefore(*static_cast<QDomNode*>(newChild), *static_cast<QDomNode*>(refChild)));
 }
 
 int QDomNode_IsAttr(void* ptr){
@@ -469,6 +649,14 @@ int QDomNode_IsText(void* ptr){
 	return static_cast<QDomNode*>(ptr)->isText();
 }
 
+void* QDomNode_LastChild(void* ptr){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->lastChild());
+}
+
+void* QDomNode_LastChildElement(void* ptr, char* tagName){
+	return new QDomElement(static_cast<QDomNode*>(ptr)->lastChildElement(QString(tagName)));
+}
+
 int QDomNode_LineNumber(void* ptr){
 	return static_cast<QDomNode*>(ptr)->lineNumber();
 }
@@ -477,8 +665,20 @@ char* QDomNode_LocalName(void* ptr){
 	return static_cast<QDomNode*>(ptr)->localName().toUtf8().data();
 }
 
+void* QDomNode_NamedItem(void* ptr, char* name){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->namedItem(QString(name)));
+}
+
 char* QDomNode_NamespaceURI(void* ptr){
 	return static_cast<QDomNode*>(ptr)->namespaceURI().toUtf8().data();
+}
+
+void* QDomNode_NextSibling(void* ptr){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->nextSibling());
+}
+
+void* QDomNode_NextSiblingElement(void* ptr, char* tagName){
+	return new QDomElement(static_cast<QDomNode*>(ptr)->nextSiblingElement(QString(tagName)));
 }
 
 char* QDomNode_NodeName(void* ptr){
@@ -497,8 +697,32 @@ void QDomNode_Normalize(void* ptr){
 	static_cast<QDomNode*>(ptr)->normalize();
 }
 
+void* QDomNode_OwnerDocument(void* ptr){
+	return new QDomDocument(static_cast<QDomNode*>(ptr)->ownerDocument());
+}
+
+void* QDomNode_ParentNode(void* ptr){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->parentNode());
+}
+
 char* QDomNode_Prefix(void* ptr){
 	return static_cast<QDomNode*>(ptr)->prefix().toUtf8().data();
+}
+
+void* QDomNode_PreviousSibling(void* ptr){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->previousSibling());
+}
+
+void* QDomNode_PreviousSiblingElement(void* ptr, char* tagName){
+	return new QDomElement(static_cast<QDomNode*>(ptr)->previousSiblingElement(QString(tagName)));
+}
+
+void* QDomNode_RemoveChild(void* ptr, void* oldChild){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->removeChild(*static_cast<QDomNode*>(oldChild)));
+}
+
+void* QDomNode_ReplaceChild(void* ptr, void* newChild, void* oldChild){
+	return new QDomNode(static_cast<QDomNode*>(ptr)->replaceChild(*static_cast<QDomNode*>(newChild), *static_cast<QDomNode*>(oldChild)));
 }
 
 void QDomNode_Save(void* ptr, void* stream, int indent, int encodingPolicy){
@@ -513,6 +737,58 @@ void QDomNode_SetPrefix(void* ptr, char* pre){
 	static_cast<QDomNode*>(ptr)->setPrefix(QString(pre));
 }
 
+void* QDomNode_ToAttr(void* ptr){
+	return new QDomAttr(static_cast<QDomNode*>(ptr)->toAttr());
+}
+
+void* QDomNode_ToCDATASection(void* ptr){
+	return new QDomCDATASection(static_cast<QDomNode*>(ptr)->toCDATASection());
+}
+
+void* QDomNode_ToCharacterData(void* ptr){
+	return new QDomCharacterData(static_cast<QDomNode*>(ptr)->toCharacterData());
+}
+
+void* QDomNode_ToComment(void* ptr){
+	return new QDomComment(static_cast<QDomNode*>(ptr)->toComment());
+}
+
+void* QDomNode_ToDocument(void* ptr){
+	return new QDomDocument(static_cast<QDomNode*>(ptr)->toDocument());
+}
+
+void* QDomNode_ToDocumentFragment(void* ptr){
+	return new QDomDocumentFragment(static_cast<QDomNode*>(ptr)->toDocumentFragment());
+}
+
+void* QDomNode_ToDocumentType(void* ptr){
+	return new QDomDocumentType(static_cast<QDomNode*>(ptr)->toDocumentType());
+}
+
+void* QDomNode_ToElement(void* ptr){
+	return new QDomElement(static_cast<QDomNode*>(ptr)->toElement());
+}
+
+void* QDomNode_ToEntity(void* ptr){
+	return new QDomEntity(static_cast<QDomNode*>(ptr)->toEntity());
+}
+
+void* QDomNode_ToEntityReference(void* ptr){
+	return new QDomEntityReference(static_cast<QDomNode*>(ptr)->toEntityReference());
+}
+
+void* QDomNode_ToNotation(void* ptr){
+	return new QDomNotation(static_cast<QDomNode*>(ptr)->toNotation());
+}
+
+void* QDomNode_ToProcessingInstruction(void* ptr){
+	return new QDomProcessingInstruction(static_cast<QDomNode*>(ptr)->toProcessingInstruction());
+}
+
+void* QDomNode_ToText(void* ptr){
+	return new QDomText(static_cast<QDomNode*>(ptr)->toText());
+}
+
 void QDomNode_DestroyQDomNode(void* ptr){
 	static_cast<QDomNode*>(ptr)->~QDomNode();
 }
@@ -525,12 +801,20 @@ void* QDomNodeList_NewQDomNodeList2(void* n){
 	return new QDomNodeList(*static_cast<QDomNodeList*>(n));
 }
 
+void* QDomNodeList_At(void* ptr, int index){
+	return new QDomNode(static_cast<QDomNodeList*>(ptr)->at(index));
+}
+
 int QDomNodeList_Count(void* ptr){
 	return static_cast<QDomNodeList*>(ptr)->count();
 }
 
 int QDomNodeList_IsEmpty(void* ptr){
 	return static_cast<QDomNodeList*>(ptr)->isEmpty();
+}
+
+void* QDomNodeList_Item(void* ptr, int index){
+	return new QDomNode(static_cast<QDomNodeList*>(ptr)->item(index));
 }
 
 int QDomNodeList_Length(void* ptr){
@@ -599,6 +883,10 @@ void* QDomText_NewQDomText2(void* x){
 
 int QDomText_NodeType(void* ptr){
 	return static_cast<QDomText*>(ptr)->nodeType();
+}
+
+void* QDomText_SplitText(void* ptr, int offset){
+	return new QDomText(static_cast<QDomText*>(ptr)->splitText(offset));
 }
 
 class MyQXmlAttributes: public QXmlAttributes {
@@ -1088,8 +1376,8 @@ void QXmlInputSource_FetchDataDefault(void* ptr){
 	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fetchData();
 }
 
-char* QXmlInputSource_FromRawData(void* ptr, void* data, int beginning){
-	return static_cast<QXmlInputSource*>(ptr)->fromRawData(*static_cast<QByteArray*>(data), beginning != 0).toUtf8().data();
+char* QXmlInputSource_FromRawData(void* ptr, char* data, int beginning){
+	return static_cast<QXmlInputSource*>(ptr)->fromRawData(QByteArray(data), beginning != 0).toUtf8().data();
 }
 
 void QXmlInputSource_Reset(void* ptr){

@@ -246,8 +246,8 @@ void* QSvgRenderer_NewQSvgRenderer4(void* contents, void* parent){
 	return new QSvgRenderer(static_cast<QXmlStreamReader*>(contents), static_cast<QObject*>(parent));
 }
 
-void* QSvgRenderer_NewQSvgRenderer3(void* contents, void* parent){
-	return new QSvgRenderer(*static_cast<QByteArray*>(contents), static_cast<QObject*>(parent));
+void* QSvgRenderer_NewQSvgRenderer3(char* contents, void* parent){
+	return new QSvgRenderer(QByteArray(contents), static_cast<QObject*>(parent));
 }
 
 void* QSvgRenderer_NewQSvgRenderer2(char* filename, void* parent){
@@ -274,8 +274,8 @@ int QSvgRenderer_Load3(void* ptr, void* contents){
 	return QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_ARG(QXmlStreamReader*, static_cast<QXmlStreamReader*>(contents)));
 }
 
-int QSvgRenderer_Load2(void* ptr, void* contents){
-	return QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_ARG(QByteArray, *static_cast<QByteArray*>(contents)));
+int QSvgRenderer_Load2(void* ptr, char* contents){
+	return QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_ARG(QByteArray, QByteArray(contents)));
 }
 
 int QSvgRenderer_Load(void* ptr, char* filename){
@@ -383,8 +383,8 @@ void* QSvgWidget_NewQSvgWidget2(char* file, void* parent){
 	return new MyQSvgWidget(QString(file), static_cast<QWidget*>(parent));
 }
 
-void QSvgWidget_Load2(void* ptr, void* contents){
-	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QByteArray, *static_cast<QByteArray*>(contents)));
+void QSvgWidget_Load2(void* ptr, char* contents){
+	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QByteArray, QByteArray(contents)));
 }
 
 void QSvgWidget_Load(void* ptr, char* file){

@@ -453,36 +453,15 @@ void QAbstractEventDispatcher_CustomEventDefault(void* ptr, void* event){
 
 class MyQAbstractItemModel: public QAbstractItemModel {
 public:
-	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQAbstractItemModelColumnsAboutToBeMoved(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceStart, sourceEnd, new QModelIndex(destinationParent), destinationColumn); };
-	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQAbstractItemModelColumnsMoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end, new QModelIndex(destination), column); };
-	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelColumnsRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractItemModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQAbstractItemModelHeaderDataChanged(this, this->objectName().toUtf8().data(), orientation, first, last); };
 	void Signal_ModelAboutToBeReset() { callbackQAbstractItemModelModelAboutToBeReset(this, this->objectName().toUtf8().data()); };
 	void Signal_ModelReset() { callbackQAbstractItemModelModelReset(this, this->objectName().toUtf8().data()); };
 	void revert() { if (!callbackQAbstractItemModelRevert(this, this->objectName().toUtf8().data())) { QAbstractItemModel::revert(); }; };
-	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQAbstractItemModelRowsAboutToBeInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
-	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQAbstractItemModelRowsAboutToBeMoved(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceStart, sourceEnd, new QModelIndex(destinationParent), destinationRow); };
-	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQAbstractItemModelRowsMoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end, new QModelIndex(destination), row); };
-	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModelRowsRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractItemModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractItemModelChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQAbstractItemModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
-
-void* QAbstractItemModel_Sibling(void* ptr, int row, int column, void* index){
-	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(index)));
-}
-
-void* QAbstractItemModel_Buddy(void* ptr, void* index){
-	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)));
-}
 
 int QAbstractItemModel_CanDropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QAbstractItemModel*>(ptr)->canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
@@ -496,68 +475,12 @@ int QAbstractItemModel_ColumnCount(void* ptr, void* parent){
 	return static_cast<QAbstractItemModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-void QAbstractItemModel_ConnectColumnsAboutToBeInserted(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsAboutToBeInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsAboutToBeInserted));;
-}
-
-void QAbstractItemModel_DisconnectColumnsAboutToBeInserted(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsAboutToBeInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsAboutToBeInserted));;
-}
-
-void QAbstractItemModel_ConnectColumnsAboutToBeMoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsAboutToBeMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_ColumnsAboutToBeMoved));;
-}
-
-void QAbstractItemModel_DisconnectColumnsAboutToBeMoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsAboutToBeMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_ColumnsAboutToBeMoved));;
-}
-
-void QAbstractItemModel_ConnectColumnsAboutToBeRemoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsAboutToBeRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsAboutToBeRemoved));;
-}
-
-void QAbstractItemModel_DisconnectColumnsAboutToBeRemoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsAboutToBeRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsAboutToBeRemoved));;
-}
-
-void QAbstractItemModel_ConnectColumnsInserted(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsInserted));;
-}
-
-void QAbstractItemModel_DisconnectColumnsInserted(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsInserted));;
-}
-
-void QAbstractItemModel_ConnectColumnsMoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_ColumnsMoved));;
-}
-
-void QAbstractItemModel_DisconnectColumnsMoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_ColumnsMoved));;
-}
-
-void QAbstractItemModel_ConnectColumnsRemoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsRemoved));;
-}
-
-void QAbstractItemModel_DisconnectColumnsRemoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::columnsRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_ColumnsRemoved));;
-}
-
 void* QAbstractItemModel_Data(void* ptr, void* index, int role){
 	return new QVariant(static_cast<QAbstractItemModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
 
 int QAbstractItemModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QAbstractItemModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-}
-
-void QAbstractItemModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQAbstractItemModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QAbstractItemModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 int QAbstractItemModel_Flags(void* ptr, void* index){
@@ -586,10 +509,6 @@ void QAbstractItemModel_DisconnectHeaderDataChanged(void* ptr){
 
 void QAbstractItemModel_HeaderDataChanged(void* ptr, int orientation, int first, int last){
 	static_cast<QAbstractItemModel*>(ptr)->headerDataChanged(static_cast<Qt::Orientation>(orientation), first, last);
-}
-
-void* QAbstractItemModel_Index(void* ptr, int row, int column, void* parent){
-	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 int QAbstractItemModel_InsertColumn(void* ptr, int column, void* parent){
@@ -644,10 +563,6 @@ int QAbstractItemModel_MoveRows(void* ptr, void* sourceParent, int sourceRow, in
 	return static_cast<QAbstractItemModel*>(ptr)->moveRows(*static_cast<QModelIndex*>(sourceParent), sourceRow, count, *static_cast<QModelIndex*>(destinationParent), destinationChild);
 }
 
-void* QAbstractItemModel_Parent(void* ptr, void* index){
-	return new QModelIndex(static_cast<QAbstractItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
 int QAbstractItemModel_RemoveColumn(void* ptr, int column, void* parent){
 	return static_cast<QAbstractItemModel*>(ptr)->removeColumn(column, *static_cast<QModelIndex*>(parent));
 }
@@ -674,54 +589,6 @@ void QAbstractItemModel_RevertDefault(void* ptr){
 
 int QAbstractItemModel_RowCount(void* ptr, void* parent){
 	return static_cast<QAbstractItemModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-void QAbstractItemModel_ConnectRowsAboutToBeInserted(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsAboutToBeInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsAboutToBeInserted));;
-}
-
-void QAbstractItemModel_DisconnectRowsAboutToBeInserted(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsAboutToBeInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsAboutToBeInserted));;
-}
-
-void QAbstractItemModel_ConnectRowsAboutToBeMoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsAboutToBeMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_RowsAboutToBeMoved));;
-}
-
-void QAbstractItemModel_DisconnectRowsAboutToBeMoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsAboutToBeMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_RowsAboutToBeMoved));;
-}
-
-void QAbstractItemModel_ConnectRowsAboutToBeRemoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsAboutToBeRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsAboutToBeRemoved));;
-}
-
-void QAbstractItemModel_DisconnectRowsAboutToBeRemoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsAboutToBeRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsAboutToBeRemoved));;
-}
-
-void QAbstractItemModel_ConnectRowsInserted(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsInserted));;
-}
-
-void QAbstractItemModel_DisconnectRowsInserted(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsInserted, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsInserted));;
-}
-
-void QAbstractItemModel_ConnectRowsMoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_RowsMoved));;
-}
-
-void QAbstractItemModel_DisconnectRowsMoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsMoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int, const QModelIndex &, int)>(&MyQAbstractItemModel::Signal_RowsMoved));;
-}
-
-void QAbstractItemModel_ConnectRowsRemoved(void* ptr){
-	QObject::connect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsRemoved));;
-}
-
-void QAbstractItemModel_DisconnectRowsRemoved(void* ptr){
-	QObject::disconnect(static_cast<QAbstractItemModel*>(ptr), &QAbstractItemModel::rowsRemoved, static_cast<MyQAbstractItemModel*>(ptr), static_cast<void (MyQAbstractItemModel::*)(const QModelIndex &, int, int)>(&MyQAbstractItemModel::Signal_RowsRemoved));;
 }
 
 int QAbstractItemModel_SetData(void* ptr, void* index, void* value, int role){
@@ -786,17 +653,12 @@ void QAbstractItemModel_CustomEventDefault(void* ptr, void* event){
 
 class MyQAbstractListModel: public QAbstractListModel {
 public:
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractListModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQAbstractListModelRevert(this, this->objectName().toUtf8().data())) { QAbstractListModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractListModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractListModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractListModelChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQAbstractListModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
-
-void* QAbstractListModel_Index(void* ptr, int row, int column, void* parent){
-	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
-}
 
 int QAbstractListModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QAbstractListModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
@@ -806,20 +668,8 @@ int QAbstractListModel_Flags(void* ptr, void* index){
 	return static_cast<QAbstractListModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
 }
 
-void* QAbstractListModel_Sibling(void* ptr, int row, int column, void* idx){
-	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
-}
-
 void QAbstractListModel_DestroyQAbstractListModel(void* ptr){
 	static_cast<QAbstractListModel*>(ptr)->~QAbstractListModel();
-}
-
-void QAbstractListModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQAbstractListModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QAbstractListModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QAbstractListModel_Revert(void* ptr){
@@ -888,7 +738,6 @@ void QAbstractNativeEventFilter_SetObjectNameAbs(void* ptr, char* name){
 
 class MyQAbstractProxyModel: public QAbstractProxyModel {
 public:
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractProxyModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQAbstractProxyModelRevert(this, this->objectName().toUtf8().data())) { QAbstractProxyModel::revert(); }; };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQAbstractProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
@@ -897,10 +746,6 @@ public:
 	void childEvent(QChildEvent * event) { callbackQAbstractProxyModelChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQAbstractProxyModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
-
-void* QAbstractProxyModel_Buddy(void* ptr, void* index){
-	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)));
-}
 
 int QAbstractProxyModel_CanDropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QAbstractProxyModel*>(ptr)->canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
@@ -918,14 +763,6 @@ int QAbstractProxyModel_DropMimeData(void* ptr, void* data, int action, int row,
 	return static_cast<QAbstractProxyModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-void QAbstractProxyModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQAbstractProxyModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QAbstractProxyModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
 int QAbstractProxyModel_Flags(void* ptr, void* index){
 	return static_cast<QAbstractProxyModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
 }
@@ -936,14 +773,6 @@ int QAbstractProxyModel_HasChildren(void* ptr, void* parent){
 
 void* QAbstractProxyModel_HeaderData(void* ptr, int section, int orientation, int role){
 	return new QVariant(static_cast<QAbstractProxyModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
-}
-
-void* QAbstractProxyModel_MapFromSource(void* ptr, void* sourceIndex){
-	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)));
-}
-
-void* QAbstractProxyModel_MapToSource(void* ptr, void* proxyIndex){
-	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
 }
 
 char* QAbstractProxyModel_MimeTypes(void* ptr){
@@ -972,10 +801,6 @@ void QAbstractProxyModel_SetSourceModel(void* ptr, void* sourceModel){
 
 void QAbstractProxyModel_SetSourceModelDefault(void* ptr, void* sourceModel){
 	static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::setSourceModel(static_cast<QAbstractItemModel*>(sourceModel));
-}
-
-void* QAbstractProxyModel_Sibling(void* ptr, int row, int column, void* idx){
-	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QAbstractProxyModel_Sort(void* ptr, int column, int order){
@@ -1126,17 +951,12 @@ void QAbstractState_CustomEventDefault(void* ptr, void* event){
 
 class MyQAbstractTableModel: public QAbstractTableModel {
 public:
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractTableModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQAbstractTableModelRevert(this, this->objectName().toUtf8().data())) { QAbstractTableModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractTableModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTableModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractTableModelChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQAbstractTableModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
-
-void* QAbstractTableModel_Index(void* ptr, int row, int column, void* parent){
-	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
-}
 
 int QAbstractTableModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QAbstractTableModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
@@ -1146,20 +966,8 @@ int QAbstractTableModel_Flags(void* ptr, void* index){
 	return static_cast<QAbstractTableModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
 }
 
-void* QAbstractTableModel_Sibling(void* ptr, int row, int column, void* idx){
-	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
-}
-
 void QAbstractTableModel_DestroyQAbstractTableModel(void* ptr){
 	static_cast<QAbstractTableModel*>(ptr)->~QAbstractTableModel();
-}
-
-void QAbstractTableModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQAbstractTableModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QAbstractTableModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QAbstractTableModel_Revert(void* ptr){
@@ -1430,8 +1238,8 @@ public:
 	void customEvent(QEvent * event) { callbackQBufferCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
-void* QBuffer_NewQBuffer2(void* byteArray, void* parent){
-	return new MyQBuffer(static_cast<QByteArray*>(byteArray), static_cast<QObject*>(parent));
+void* QBuffer_NewQBuffer2(char* byteArray, void* parent){
+	return new MyQBuffer(new QByteArray(byteArray), static_cast<QObject*>(parent));
 }
 
 void* QBuffer_NewQBuffer(void* parent){
@@ -1442,12 +1250,12 @@ int QBuffer_AtEnd(void* ptr){
 	return static_cast<QBuffer*>(ptr)->atEnd();
 }
 
-void* QBuffer_Buffer(void* ptr){
-	return new QByteArray(static_cast<QBuffer*>(ptr)->buffer());
+char* QBuffer_Buffer(void* ptr){
+	return QString(static_cast<QBuffer*>(ptr)->buffer()).toUtf8().data();
 }
 
-void* QBuffer_Buffer2(void* ptr){
-	return new QByteArray(static_cast<QBuffer*>(ptr)->buffer());
+char* QBuffer_Buffer2(void* ptr){
+	return QString(static_cast<QBuffer*>(ptr)->buffer()).toUtf8().data();
 }
 
 int QBuffer_CanReadLine(void* ptr){
@@ -1462,8 +1270,8 @@ void QBuffer_CloseDefault(void* ptr){
 	static_cast<QBuffer*>(ptr)->QBuffer::close();
 }
 
-void* QBuffer_Data(void* ptr){
-	return new QByteArray(static_cast<QBuffer*>(ptr)->data());
+char* QBuffer_Data(void* ptr){
+	return QString(static_cast<QBuffer*>(ptr)->data()).toUtf8().data();
 }
 
 int QBuffer_Open(void* ptr, int flags){
@@ -1482,12 +1290,12 @@ int QBuffer_Seek(void* ptr, long long pos){
 	return static_cast<QBuffer*>(ptr)->seek(static_cast<long long>(pos));
 }
 
-void QBuffer_SetBuffer(void* ptr, void* byteArray){
-	static_cast<QBuffer*>(ptr)->setBuffer(static_cast<QByteArray*>(byteArray));
+void QBuffer_SetBuffer(void* ptr, char* byteArray){
+	static_cast<QBuffer*>(ptr)->setBuffer(new QByteArray(byteArray));
 }
 
-void QBuffer_SetData(void* ptr, void* data){
-	static_cast<QBuffer*>(ptr)->setData(*static_cast<QByteArray*>(data));
+void QBuffer_SetData(void* ptr, char* data){
+	static_cast<QBuffer*>(ptr)->setData(QByteArray(data));
 }
 
 void QBuffer_SetData2(void* ptr, char* data, int size){
@@ -1530,332 +1338,24 @@ void QBuffer_CustomEventDefault(void* ptr, void* event){
 	static_cast<QBuffer*>(ptr)->QBuffer::customEvent(static_cast<QEvent*>(event));
 }
 
-void QByteArray_Clear(void* ptr){
-	static_cast<QByteArray*>(ptr)->clear();
+char* QByteArrayList_Join(void* ptr){
+	return QString(static_cast<QByteArrayList*>(ptr)->join()).toUtf8().data();
 }
 
-int QByteArray_IndexOf3(void* ptr, char* str, int from){
-	return static_cast<QByteArray*>(ptr)->indexOf(const_cast<const char*>(str), from);
+char* QByteArrayList_Join3(void* ptr, char* separator){
+	return QString(static_cast<QByteArrayList*>(ptr)->join(*separator)).toUtf8().data();
 }
 
-int QByteArray_IsNull(void* ptr){
-	return static_cast<QByteArray*>(ptr)->isNull();
-}
-
-int QByteArray_LastIndexOf(void* ptr, void* ba, int from){
-	return static_cast<QByteArray*>(ptr)->lastIndexOf(*static_cast<QByteArray*>(ba), from);
-}
-
-int QByteArray_LastIndexOf3(void* ptr, char* str, int from){
-	return static_cast<QByteArray*>(ptr)->lastIndexOf(const_cast<const char*>(str), from);
-}
-
-void* QByteArray_NewQByteArray(){
-	return new QByteArray();
-}
-
-void* QByteArray_NewQByteArray6(void* other){
-	return new QByteArray(*static_cast<QByteArray*>(other));
-}
-
-void* QByteArray_NewQByteArray5(void* other){
-	return new QByteArray(*static_cast<QByteArray*>(other));
-}
-
-void* QByteArray_NewQByteArray2(char* data, int size){
-	return new QByteArray(const_cast<const char*>(data), size);
-}
-
-void* QByteArray_NewQByteArray3(int size, char* ch){
-	return new QByteArray(size, *ch);
-}
-
-void* QByteArray_Append5(void* ptr, char* ch){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->append(*ch));
-}
-
-void* QByteArray_Append(void* ptr, void* ba){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->append(*static_cast<QByteArray*>(ba)));
-}
-
-void* QByteArray_Append2(void* ptr, char* str){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->append(QString(str)));
-}
-
-void* QByteArray_Append3(void* ptr, char* str){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->append(const_cast<const char*>(str)));
-}
-
-void* QByteArray_Append4(void* ptr, char* str, int len){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->append(const_cast<const char*>(str), len));
-}
-
-int QByteArray_Capacity(void* ptr){
-	return static_cast<QByteArray*>(ptr)->capacity();
-}
-
-void QByteArray_Chop(void* ptr, int n){
-	static_cast<QByteArray*>(ptr)->chop(n);
-}
-
-int QByteArray_Contains3(void* ptr, char* ch){
-	return static_cast<QByteArray*>(ptr)->contains(*ch);
-}
-
-int QByteArray_Contains(void* ptr, void* ba){
-	return static_cast<QByteArray*>(ptr)->contains(*static_cast<QByteArray*>(ba));
-}
-
-int QByteArray_Contains2(void* ptr, char* str){
-	return static_cast<QByteArray*>(ptr)->contains(const_cast<const char*>(str));
-}
-
-int QByteArray_Count4(void* ptr){
-	return static_cast<QByteArray*>(ptr)->count();
-}
-
-int QByteArray_Count3(void* ptr, char* ch){
-	return static_cast<QByteArray*>(ptr)->count(*ch);
-}
-
-int QByteArray_Count(void* ptr, void* ba){
-	return static_cast<QByteArray*>(ptr)->count(*static_cast<QByteArray*>(ba));
-}
-
-int QByteArray_Count2(void* ptr, char* str){
-	return static_cast<QByteArray*>(ptr)->count(const_cast<const char*>(str));
-}
-
-int QByteArray_EndsWith3(void* ptr, char* ch){
-	return static_cast<QByteArray*>(ptr)->endsWith(*ch);
-}
-
-int QByteArray_EndsWith(void* ptr, void* ba){
-	return static_cast<QByteArray*>(ptr)->endsWith(*static_cast<QByteArray*>(ba));
-}
-
-int QByteArray_EndsWith2(void* ptr, char* str){
-	return static_cast<QByteArray*>(ptr)->endsWith(const_cast<const char*>(str));
-}
-
-void* QByteArray_Fill(void* ptr, char* ch, int size){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->fill(*ch, size));
-}
-
-void* QByteArray_QByteArray_FromBase64(void* base64){
-	return new QByteArray(QByteArray::fromBase64(*static_cast<QByteArray*>(base64)));
-}
-
-void* QByteArray_QByteArray_FromBase642(void* base64, int options){
-	return new QByteArray(QByteArray::fromBase64(*static_cast<QByteArray*>(base64), static_cast<QByteArray::Base64Option>(options)));
-}
-
-void* QByteArray_QByteArray_FromHex(void* hexEncoded){
-	return new QByteArray(QByteArray::fromHex(*static_cast<QByteArray*>(hexEncoded)));
-}
-
-void* QByteArray_QByteArray_FromPercentEncoding(void* input, char* percent){
-	return new QByteArray(QByteArray::fromPercentEncoding(*static_cast<QByteArray*>(input), *percent));
-}
-
-void* QByteArray_QByteArray_FromRawData(char* data, int size){
-	return new QByteArray(QByteArray::fromRawData(const_cast<const char*>(data), size));
-}
-
-int QByteArray_IndexOf4(void* ptr, char* ch, int from){
-	return static_cast<QByteArray*>(ptr)->indexOf(*ch, from);
-}
-
-int QByteArray_IndexOf(void* ptr, void* ba, int from){
-	return static_cast<QByteArray*>(ptr)->indexOf(*static_cast<QByteArray*>(ba), from);
-}
-
-int QByteArray_IndexOf2(void* ptr, char* str, int from){
-	return static_cast<QByteArray*>(ptr)->indexOf(QString(str), from);
-}
-
-int QByteArray_IsEmpty(void* ptr){
-	return static_cast<QByteArray*>(ptr)->isEmpty();
-}
-
-int QByteArray_LastIndexOf4(void* ptr, char* ch, int from){
-	return static_cast<QByteArray*>(ptr)->lastIndexOf(*ch, from);
-}
-
-int QByteArray_LastIndexOf2(void* ptr, char* str, int from){
-	return static_cast<QByteArray*>(ptr)->lastIndexOf(QString(str), from);
-}
-
-void* QByteArray_Left(void* ptr, int len){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->left(len));
-}
-
-void* QByteArray_LeftJustified(void* ptr, int width, char* fill, int truncate){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->leftJustified(width, *fill, truncate != 0));
-}
-
-int QByteArray_Length(void* ptr){
-	return static_cast<QByteArray*>(ptr)->length();
-}
-
-void* QByteArray_Mid(void* ptr, int pos, int len){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->mid(pos, len));
-}
-
-void* QByteArray_QByteArray_Number(int n, int base){
-	return new QByteArray(QByteArray::number(n, base));
-}
-
-void* QByteArray_Prepend4(void* ptr, char* ch){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->prepend(*ch));
-}
-
-void* QByteArray_Prepend(void* ptr, void* ba){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->prepend(*static_cast<QByteArray*>(ba)));
-}
-
-void* QByteArray_Prepend2(void* ptr, char* str){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->prepend(const_cast<const char*>(str)));
-}
-
-void* QByteArray_Prepend3(void* ptr, char* str, int len){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->prepend(const_cast<const char*>(str), len));
-}
-
-void QByteArray_Push_back3(void* ptr, char* ch){
-	static_cast<QByteArray*>(ptr)->push_back(*ch);
-}
-
-void QByteArray_Push_back(void* ptr, void* other){
-	static_cast<QByteArray*>(ptr)->push_back(*static_cast<QByteArray*>(other));
-}
-
-void QByteArray_Push_back2(void* ptr, char* str){
-	static_cast<QByteArray*>(ptr)->push_back(const_cast<const char*>(str));
-}
-
-void QByteArray_Push_front3(void* ptr, char* ch){
-	static_cast<QByteArray*>(ptr)->push_front(*ch);
-}
-
-void QByteArray_Push_front(void* ptr, void* other){
-	static_cast<QByteArray*>(ptr)->push_front(*static_cast<QByteArray*>(other));
-}
-
-void QByteArray_Push_front2(void* ptr, char* str){
-	static_cast<QByteArray*>(ptr)->push_front(const_cast<const char*>(str));
-}
-
-void* QByteArray_Repeated(void* ptr, int times){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->repeated(times));
-}
-
-void QByteArray_Reserve(void* ptr, int size){
-	static_cast<QByteArray*>(ptr)->reserve(size);
-}
-
-void QByteArray_Resize(void* ptr, int size){
-	static_cast<QByteArray*>(ptr)->resize(size);
-}
-
-void* QByteArray_Right(void* ptr, int len){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->right(len));
-}
-
-void* QByteArray_RightJustified(void* ptr, int width, char* fill, int truncate){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->rightJustified(width, *fill, truncate != 0));
-}
-
-void* QByteArray_SetNum(void* ptr, int n, int base){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->setNum(n, base));
-}
-
-int QByteArray_Size(void* ptr){
-	return static_cast<QByteArray*>(ptr)->size();
-}
-
-void QByteArray_Squeeze(void* ptr){
-	static_cast<QByteArray*>(ptr)->squeeze();
-}
-
-int QByteArray_StartsWith3(void* ptr, char* ch){
-	return static_cast<QByteArray*>(ptr)->startsWith(*ch);
-}
-
-int QByteArray_StartsWith(void* ptr, void* ba){
-	return static_cast<QByteArray*>(ptr)->startsWith(*static_cast<QByteArray*>(ba));
-}
-
-int QByteArray_StartsWith2(void* ptr, char* str){
-	return static_cast<QByteArray*>(ptr)->startsWith(const_cast<const char*>(str));
-}
-
-void QByteArray_Swap(void* ptr, void* other){
-	static_cast<QByteArray*>(ptr)->swap(*static_cast<QByteArray*>(other));
-}
-
-void* QByteArray_ToBase64(void* ptr){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->toBase64());
-}
-
-void* QByteArray_ToBase642(void* ptr, int options){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->toBase64(static_cast<QByteArray::Base64Option>(options)));
-}
-
-void* QByteArray_ToHex(void* ptr){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->toHex());
-}
-
-int QByteArray_ToInt(void* ptr, int ok, int base){
-	return static_cast<QByteArray*>(ptr)->toInt(NULL, base);
-}
-
-void* QByteArray_ToPercentEncoding(void* ptr, void* exclude, void* include, char* percent){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->toPercentEncoding(*static_cast<QByteArray*>(exclude), *static_cast<QByteArray*>(include), *percent));
-}
-
-void QByteArray_Truncate(void* ptr, int pos){
-	static_cast<QByteArray*>(ptr)->truncate(pos);
-}
-
-void QByteArray_DestroyQByteArray(void* ptr){
-	static_cast<QByteArray*>(ptr)->~QByteArray();
-}
-
-void* QByteArray_Simplified(void* ptr){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->simplified());
-}
-
-void* QByteArray_ToLower(void* ptr){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->toLower());
-}
-
-void* QByteArray_ToUpper(void* ptr){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->toUpper());
-}
-
-void* QByteArray_Trimmed(void* ptr){
-	return new QByteArray(static_cast<QByteArray*>(ptr)->trimmed());
-}
-
-void* QByteArrayList_Join(void* ptr){
-	return new QByteArray(static_cast<QByteArrayList*>(ptr)->join());
-}
-
-void* QByteArrayList_Join3(void* ptr, char* separator){
-	return new QByteArray(static_cast<QByteArrayList*>(ptr)->join(*separator));
-}
-
-void* QByteArrayList_Join2(void* ptr, void* separator){
-	return new QByteArray(static_cast<QByteArrayList*>(ptr)->join(*static_cast<QByteArray*>(separator)));
+char* QByteArrayList_Join2(void* ptr, char* separator){
+	return QString(static_cast<QByteArrayList*>(ptr)->join(QByteArray(separator))).toUtf8().data();
 }
 
 void* QByteArrayMatcher_NewQByteArrayMatcher(){
 	return new QByteArrayMatcher();
 }
 
-void* QByteArrayMatcher_NewQByteArrayMatcher2(void* pattern){
-	return new QByteArrayMatcher(*static_cast<QByteArray*>(pattern));
+void* QByteArrayMatcher_NewQByteArrayMatcher2(char* pattern){
+	return new QByteArrayMatcher(QByteArray(pattern));
 }
 
 void* QByteArrayMatcher_NewQByteArrayMatcher4(void* other){
@@ -1866,20 +1366,20 @@ void* QByteArrayMatcher_NewQByteArrayMatcher3(char* pattern, int length){
 	return new QByteArrayMatcher(const_cast<const char*>(pattern), length);
 }
 
-int QByteArrayMatcher_IndexIn(void* ptr, void* ba, int from){
-	return static_cast<QByteArrayMatcher*>(ptr)->indexIn(*static_cast<QByteArray*>(ba), from);
+int QByteArrayMatcher_IndexIn(void* ptr, char* ba, int from){
+	return static_cast<QByteArrayMatcher*>(ptr)->indexIn(QByteArray(ba), from);
 }
 
 int QByteArrayMatcher_IndexIn2(void* ptr, char* str, int len, int from){
 	return static_cast<QByteArrayMatcher*>(ptr)->indexIn(const_cast<const char*>(str), len, from);
 }
 
-void* QByteArrayMatcher_Pattern(void* ptr){
-	return new QByteArray(static_cast<QByteArrayMatcher*>(ptr)->pattern());
+char* QByteArrayMatcher_Pattern(void* ptr){
+	return QString(static_cast<QByteArrayMatcher*>(ptr)->pattern()).toUtf8().data();
 }
 
-void QByteArrayMatcher_SetPattern(void* ptr, void* pattern){
-	static_cast<QByteArrayMatcher*>(ptr)->setPattern(*static_cast<QByteArray*>(pattern));
+void QByteArrayMatcher_SetPattern(void* ptr, char* pattern){
+	static_cast<QByteArrayMatcher*>(ptr)->setPattern(QByteArray(pattern));
 }
 
 void QByteArrayMatcher_DestroyQByteArrayMatcher(void* ptr){
@@ -2070,6 +1570,10 @@ void* QCollator_NewQCollator(void* locale){
 	return new QCollator(*static_cast<QLocale*>(locale));
 }
 
+void* QCollator_Locale(void* ptr){
+	return new QLocale(static_cast<QCollator*>(ptr)->locale());
+}
+
 void QCollator_SetLocale(void* ptr, void* locale){
 	static_cast<QCollator*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
 }
@@ -2092,6 +1596,10 @@ int QCollator_Compare(void* ptr, char* s1, char* s2){
 
 int QCollator_Compare2(void* ptr, void* s1, void* s2){
 	return static_cast<QCollator*>(ptr)->compare(*static_cast<QStringRef*>(s1), *static_cast<QStringRef*>(s2));
+}
+
+void* QCollator_SortKey(void* ptr, char* stri){
+	return new QCollatorSortKey(static_cast<QCollator*>(ptr)->sortKey(QString(stri)));
 }
 
 void* QCollatorSortKey_NewQCollatorSortKey(void* other){
@@ -2513,32 +2021,32 @@ int QCryptographicHash_AddData2(void* ptr, void* device){
 	return static_cast<QCryptographicHash*>(ptr)->addData(static_cast<QIODevice*>(device));
 }
 
-void QCryptographicHash_AddData3(void* ptr, void* data){
-	static_cast<QCryptographicHash*>(ptr)->addData(*static_cast<QByteArray*>(data));
+void QCryptographicHash_AddData3(void* ptr, char* data){
+	static_cast<QCryptographicHash*>(ptr)->addData(QByteArray(data));
 }
 
 void QCryptographicHash_AddData(void* ptr, char* data, int length){
 	static_cast<QCryptographicHash*>(ptr)->addData(const_cast<const char*>(data), length);
 }
 
-void* QCryptographicHash_QCryptographicHash_Hash(void* data, int method){
-	return new QByteArray(QCryptographicHash::hash(*static_cast<QByteArray*>(data), static_cast<QCryptographicHash::Algorithm>(method)));
+char* QCryptographicHash_QCryptographicHash_Hash(char* data, int method){
+	return QString(QCryptographicHash::hash(QByteArray(data), static_cast<QCryptographicHash::Algorithm>(method))).toUtf8().data();
 }
 
 void QCryptographicHash_Reset(void* ptr){
 	static_cast<QCryptographicHash*>(ptr)->reset();
 }
 
-void* QCryptographicHash_Result(void* ptr){
-	return new QByteArray(static_cast<QCryptographicHash*>(ptr)->result());
+char* QCryptographicHash_Result(void* ptr){
+	return QString(static_cast<QCryptographicHash*>(ptr)->result()).toUtf8().data();
 }
 
 void QCryptographicHash_DestroyQCryptographicHash(void* ptr){
 	static_cast<QCryptographicHash*>(ptr)->~QCryptographicHash();
 }
 
-void* QDataStream_NewQDataStream3(void* a, int mode){
-	return new QDataStream(static_cast<QByteArray*>(a), static_cast<QIODevice::OpenModeFlag>(mode));
+void* QDataStream_NewQDataStream3(char* a, int mode){
+	return new QDataStream(new QByteArray(a), static_cast<QIODevice::OpenModeFlag>(mode));
 }
 
 int QDataStream_AtEnd(void* ptr){
@@ -2553,8 +2061,8 @@ void* QDataStream_NewQDataStream2(void* d){
 	return new QDataStream(static_cast<QIODevice*>(d));
 }
 
-void* QDataStream_NewQDataStream4(void* a){
-	return new QDataStream(*static_cast<QByteArray*>(a));
+void* QDataStream_NewQDataStream4(char* a){
+	return new QDataStream(QByteArray(a));
 }
 
 int QDataStream_ByteOrder(void* ptr){
@@ -3125,12 +2633,12 @@ void QDir_DestroyQDir(void* ptr){
 	static_cast<QDir*>(ptr)->~QDir();
 }
 
-void* QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(void* name){
-	return new QDynamicPropertyChangeEvent(*static_cast<QByteArray*>(name));
+void* QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(char* name){
+	return new QDynamicPropertyChangeEvent(QByteArray(name));
 }
 
-void* QDynamicPropertyChangeEvent_PropertyName(void* ptr){
-	return new QByteArray(static_cast<QDynamicPropertyChangeEvent*>(ptr)->propertyName());
+char* QDynamicPropertyChangeEvent_PropertyName(void* ptr){
+	return QString(static_cast<QDynamicPropertyChangeEvent*>(ptr)->propertyName()).toUtf8().data();
 }
 
 void* QEasingCurve_NewQEasingCurve3(void* other){
@@ -3503,16 +3011,16 @@ int QFile_Copy(void* ptr, char* newName){
 	return static_cast<QFile*>(ptr)->copy(QString(newName));
 }
 
-char* QFile_QFile_DecodeName(void* localFileName){
-	return QFile::decodeName(*static_cast<QByteArray*>(localFileName)).toUtf8().data();
+char* QFile_QFile_DecodeName(char* localFileName){
+	return QFile::decodeName(QByteArray(localFileName)).toUtf8().data();
 }
 
 char* QFile_QFile_DecodeName2(char* localFileName){
 	return QFile::decodeName(const_cast<const char*>(localFileName)).toUtf8().data();
 }
 
-void* QFile_QFile_EncodeName(char* fileName){
-	return new QByteArray(QFile::encodeName(QString(fileName)));
+char* QFile_QFile_EncodeName(char* fileName){
+	return QString(QFile::encodeName(QString(fileName))).toUtf8().data();
 }
 
 int QFile_QFile_Exists(char* fileName){
@@ -4347,8 +3855,8 @@ int QIODevice_OpenMode(void* ptr){
 	return static_cast<QIODevice*>(ptr)->openMode();
 }
 
-void* QIODevice_Peek2(void* ptr, long long maxSize){
-	return new QByteArray(static_cast<QIODevice*>(ptr)->peek(static_cast<long long>(maxSize)));
+char* QIODevice_Peek2(void* ptr, long long maxSize){
+	return QString(static_cast<QIODevice*>(ptr)->peek(static_cast<long long>(maxSize))).toUtf8().data();
 }
 
 long long QIODevice_Peek(void* ptr, char* data, long long maxSize){
@@ -4359,16 +3867,16 @@ long long QIODevice_Pos(void* ptr){
 	return static_cast<long long>(static_cast<QIODevice*>(ptr)->pos());
 }
 
-void* QIODevice_Read2(void* ptr, long long maxSize){
-	return new QByteArray(static_cast<QIODevice*>(ptr)->read(static_cast<long long>(maxSize)));
+char* QIODevice_Read2(void* ptr, long long maxSize){
+	return QString(static_cast<QIODevice*>(ptr)->read(static_cast<long long>(maxSize))).toUtf8().data();
 }
 
 long long QIODevice_Read(void* ptr, char* data, long long maxSize){
 	return static_cast<long long>(static_cast<QIODevice*>(ptr)->read(data, static_cast<long long>(maxSize)));
 }
 
-void* QIODevice_ReadAll(void* ptr){
-	return new QByteArray(static_cast<QIODevice*>(ptr)->readAll());
+char* QIODevice_ReadAll(void* ptr){
+	return QString(static_cast<QIODevice*>(ptr)->readAll()).toUtf8().data();
 }
 
 void QIODevice_ConnectReadChannelFinished(void* ptr){
@@ -4383,8 +3891,8 @@ void QIODevice_ReadChannelFinished(void* ptr){
 	static_cast<QIODevice*>(ptr)->readChannelFinished();
 }
 
-void* QIODevice_ReadLine2(void* ptr, long long maxSize){
-	return new QByteArray(static_cast<QIODevice*>(ptr)->readLine(static_cast<long long>(maxSize)));
+char* QIODevice_ReadLine2(void* ptr, long long maxSize){
+	return QString(static_cast<QIODevice*>(ptr)->readLine(static_cast<long long>(maxSize))).toUtf8().data();
 }
 
 long long QIODevice_ReadLine(void* ptr, char* data, long long maxSize){
@@ -4435,8 +3943,8 @@ int QIODevice_WaitForReadyRead(void* ptr, int msecs){
 	return static_cast<QIODevice*>(ptr)->waitForReadyRead(msecs);
 }
 
-long long QIODevice_Write3(void* ptr, void* byteArray){
-	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(*static_cast<QByteArray*>(byteArray)));
+long long QIODevice_Write3(void* ptr, char* byteArray){
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(QByteArray(byteArray)));
 }
 
 long long QIODevice_Write2(void* ptr, char* data){
@@ -4479,7 +3987,6 @@ class MyQIdentityProxyModel: public QIdentityProxyModel {
 public:
 	MyQIdentityProxyModel(QObject *parent) : QIdentityProxyModel(parent) {};
 	void setSourceModel(QAbstractItemModel * newSourceModel) { callbackQIdentityProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), newSourceModel); };
-	void fetchMore(const QModelIndex & parent) { callbackQIdentityProxyModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQIdentityProxyModelRevert(this, this->objectName().toUtf8().data())) { QIdentityProxyModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQIdentityProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void timerEvent(QTimerEvent * event) { callbackQIdentityProxyModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4503,28 +4010,12 @@ void* QIdentityProxyModel_HeaderData(void* ptr, int section, int orientation, in
 	return new QVariant(static_cast<QIdentityProxyModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
-void* QIdentityProxyModel_Index(void* ptr, int row, int column, void* parent){
-	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
-}
-
 int QIdentityProxyModel_InsertColumns(void* ptr, int column, int count, void* parent){
 	return static_cast<QIdentityProxyModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
 int QIdentityProxyModel_InsertRows(void* ptr, int row, int count, void* parent){
 	return static_cast<QIdentityProxyModel*>(ptr)->insertRows(row, count, *static_cast<QModelIndex*>(parent));
-}
-
-void* QIdentityProxyModel_MapFromSource(void* ptr, void* sourceIndex){
-	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)));
-}
-
-void* QIdentityProxyModel_MapToSource(void* ptr, void* proxyIndex){
-	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
-}
-
-void* QIdentityProxyModel_Parent(void* ptr, void* child){
-	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
 }
 
 int QIdentityProxyModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -4547,20 +4038,8 @@ void QIdentityProxyModel_SetSourceModelDefault(void* ptr, void* newSourceModel){
 	static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::setSourceModel(static_cast<QAbstractItemModel*>(newSourceModel));
 }
 
-void* QIdentityProxyModel_Sibling(void* ptr, int row, int column, void* idx){
-	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
-}
-
 void QIdentityProxyModel_DestroyQIdentityProxyModel(void* ptr){
 	static_cast<QIdentityProxyModel*>(ptr)->~QIdentityProxyModel();
-}
-
-void QIdentityProxyModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQIdentityProxyModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QIdentityProxyModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QIdentityProxyModel_Revert(void* ptr){
@@ -4633,13 +4112,8 @@ public:
 	MyQItemSelectionModel(QAbstractItemModel *model, QObject *parent) : QItemSelectionModel(model, parent) {};
 	void clear() { if (!callbackQItemSelectionModelClear(this, this->objectName().toUtf8().data())) { QItemSelectionModel::clear(); }; };
 	void clearCurrentIndex() { if (!callbackQItemSelectionModelClearCurrentIndex(this, this->objectName().toUtf8().data())) { QItemSelectionModel::clearCurrentIndex(); }; };
-	void Signal_CurrentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
-	void Signal_CurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentColumnChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
-	void Signal_CurrentRowChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModelCurrentRowChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
 	void Signal_ModelChanged(QAbstractItemModel * model) { callbackQItemSelectionModelModelChanged(this, this->objectName().toUtf8().data(), model); };
 	void reset() { if (!callbackQItemSelectionModelReset(this, this->objectName().toUtf8().data())) { QItemSelectionModel::reset(); }; };
-	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSelect(this, this->objectName().toUtf8().data(), new QModelIndex(index), command)) { QItemSelectionModel::select(index, command); }; };
-	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { if (!callbackQItemSelectionModelSetCurrentIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index), command)) { QItemSelectionModel::setCurrentIndex(index, command); }; };
 	void timerEvent(QTimerEvent * event) { callbackQItemSelectionModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQItemSelectionModelChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQItemSelectionModelCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4675,46 +4149,6 @@ void QItemSelectionModel_ClearSelection(void* ptr){
 
 int QItemSelectionModel_ColumnIntersectsSelection(void* ptr, int column, void* parent){
 	return static_cast<QItemSelectionModel*>(ptr)->columnIntersectsSelection(column, *static_cast<QModelIndex*>(parent));
-}
-
-void QItemSelectionModel_ConnectCurrentChanged(void* ptr){
-	QObject::connect(static_cast<QItemSelectionModel*>(ptr), static_cast<void (QItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&QItemSelectionModel::currentChanged), static_cast<MyQItemSelectionModel*>(ptr), static_cast<void (MyQItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&MyQItemSelectionModel::Signal_CurrentChanged));;
-}
-
-void QItemSelectionModel_DisconnectCurrentChanged(void* ptr){
-	QObject::disconnect(static_cast<QItemSelectionModel*>(ptr), static_cast<void (QItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&QItemSelectionModel::currentChanged), static_cast<MyQItemSelectionModel*>(ptr), static_cast<void (MyQItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&MyQItemSelectionModel::Signal_CurrentChanged));;
-}
-
-void QItemSelectionModel_CurrentChanged(void* ptr, void* current, void* previous){
-	static_cast<QItemSelectionModel*>(ptr)->currentChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
-}
-
-void QItemSelectionModel_ConnectCurrentColumnChanged(void* ptr){
-	QObject::connect(static_cast<QItemSelectionModel*>(ptr), static_cast<void (QItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&QItemSelectionModel::currentColumnChanged), static_cast<MyQItemSelectionModel*>(ptr), static_cast<void (MyQItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&MyQItemSelectionModel::Signal_CurrentColumnChanged));;
-}
-
-void QItemSelectionModel_DisconnectCurrentColumnChanged(void* ptr){
-	QObject::disconnect(static_cast<QItemSelectionModel*>(ptr), static_cast<void (QItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&QItemSelectionModel::currentColumnChanged), static_cast<MyQItemSelectionModel*>(ptr), static_cast<void (MyQItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&MyQItemSelectionModel::Signal_CurrentColumnChanged));;
-}
-
-void QItemSelectionModel_CurrentColumnChanged(void* ptr, void* current, void* previous){
-	static_cast<QItemSelectionModel*>(ptr)->currentColumnChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
-}
-
-void* QItemSelectionModel_CurrentIndex(void* ptr){
-	return new QModelIndex(static_cast<QItemSelectionModel*>(ptr)->currentIndex());
-}
-
-void QItemSelectionModel_ConnectCurrentRowChanged(void* ptr){
-	QObject::connect(static_cast<QItemSelectionModel*>(ptr), static_cast<void (QItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&QItemSelectionModel::currentRowChanged), static_cast<MyQItemSelectionModel*>(ptr), static_cast<void (MyQItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&MyQItemSelectionModel::Signal_CurrentRowChanged));;
-}
-
-void QItemSelectionModel_DisconnectCurrentRowChanged(void* ptr){
-	QObject::disconnect(static_cast<QItemSelectionModel*>(ptr), static_cast<void (QItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&QItemSelectionModel::currentRowChanged), static_cast<MyQItemSelectionModel*>(ptr), static_cast<void (MyQItemSelectionModel::*)(const QModelIndex &, const QModelIndex &)>(&MyQItemSelectionModel::Signal_CurrentRowChanged));;
-}
-
-void QItemSelectionModel_CurrentRowChanged(void* ptr, void* current, void* previous){
-	static_cast<QItemSelectionModel*>(ptr)->currentRowChanged(*static_cast<QModelIndex*>(current), *static_cast<QModelIndex*>(previous));
 }
 
 int QItemSelectionModel_HasSelection(void* ptr){
@@ -4765,22 +4199,6 @@ int QItemSelectionModel_RowIntersectsSelection(void* ptr, int row, void* parent)
 	return static_cast<QItemSelectionModel*>(ptr)->rowIntersectsSelection(row, *static_cast<QModelIndex*>(parent));
 }
 
-void QItemSelectionModel_Select(void* ptr, void* index, int command){
-	QMetaObject::invokeMethod(static_cast<MyQItemSelectionModel*>(ptr), "select", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
-}
-
-void QItemSelectionModel_SelectDefault(void* ptr, void* index, int command){
-	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "select", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
-}
-
-void QItemSelectionModel_SetCurrentIndex(void* ptr, void* index, int command){
-	QMetaObject::invokeMethod(static_cast<MyQItemSelectionModel*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
-}
-
-void QItemSelectionModel_SetCurrentIndexDefault(void* ptr, void* index, int command){
-	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)), Q_ARG(QItemSelectionModel::SelectionFlag, static_cast<QItemSelectionModel::SelectionFlag>(command)));
-}
-
 void QItemSelectionModel_SetModel(void* ptr, void* model){
 	static_cast<QItemSelectionModel*>(ptr)->setModel(static_cast<QAbstractItemModel*>(model));
 }
@@ -4813,6 +4231,10 @@ void QItemSelectionModel_CustomEventDefault(void* ptr, void* event){
 	static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::customEvent(static_cast<QEvent*>(event));
 }
 
+void* QItemSelectionRange_Intersected(void* ptr, void* other){
+	return new QItemSelectionRange(static_cast<QItemSelectionRange*>(ptr)->intersected(*static_cast<QItemSelectionRange*>(other)));
+}
+
 int QItemSelectionRange_Intersects(void* ptr, void* other){
 	return static_cast<QItemSelectionRange*>(ptr)->intersects(*static_cast<QItemSelectionRange*>(other));
 }
@@ -4835,6 +4257,10 @@ void* QItemSelectionRange_NewQItemSelectionRange3(void* topLeft, void* bottomRig
 
 int QItemSelectionRange_Bottom(void* ptr){
 	return static_cast<QItemSelectionRange*>(ptr)->bottom();
+}
+
+void* QItemSelectionRange_BottomRight(void* ptr){
+	return new QPersistentModelIndex(static_cast<QItemSelectionRange*>(ptr)->bottomRight());
 }
 
 int QItemSelectionRange_Contains(void* ptr, void* index){
@@ -4865,10 +4291,6 @@ void* QItemSelectionRange_Model(void* ptr){
 	return const_cast<QAbstractItemModel*>(static_cast<QItemSelectionRange*>(ptr)->model());
 }
 
-void* QItemSelectionRange_Parent(void* ptr){
-	return new QModelIndex(static_cast<QItemSelectionRange*>(ptr)->parent());
-}
-
 int QItemSelectionRange_Right(void* ptr){
 	return static_cast<QItemSelectionRange*>(ptr)->right();
 }
@@ -4877,12 +4299,20 @@ int QItemSelectionRange_Top(void* ptr){
 	return static_cast<QItemSelectionRange*>(ptr)->top();
 }
 
+void* QItemSelectionRange_TopLeft(void* ptr){
+	return new QPersistentModelIndex(static_cast<QItemSelectionRange*>(ptr)->topLeft());
+}
+
 int QItemSelectionRange_Width(void* ptr){
 	return static_cast<QItemSelectionRange*>(ptr)->width();
 }
 
 void QJsonArray_Append(void* ptr, void* value){
 	static_cast<QJsonArray*>(ptr)->append(*static_cast<QJsonValue*>(value));
+}
+
+void* QJsonArray_At(void* ptr, int i){
+	return new QJsonValue(static_cast<QJsonArray*>(ptr)->at(i));
 }
 
 int QJsonArray_Contains(void* ptr, void* value){
@@ -4897,12 +4327,20 @@ int QJsonArray_Empty(void* ptr){
 	return static_cast<QJsonArray*>(ptr)->empty();
 }
 
+void* QJsonArray_First(void* ptr){
+	return new QJsonValue(static_cast<QJsonArray*>(ptr)->first());
+}
+
 void* QJsonArray_QJsonArray_FromStringList(char* list){
 	return new QJsonArray(QJsonArray::fromStringList(QString(list).split("|", QString::SkipEmptyParts)));
 }
 
 int QJsonArray_IsEmpty(void* ptr){
 	return static_cast<QJsonArray*>(ptr)->isEmpty();
+}
+
+void* QJsonArray_Last(void* ptr){
+	return new QJsonValue(static_cast<QJsonArray*>(ptr)->last());
 }
 
 void QJsonArray_Pop_back(void* ptr){
@@ -4941,6 +4379,10 @@ int QJsonArray_Size(void* ptr){
 	return static_cast<QJsonArray*>(ptr)->size();
 }
 
+void* QJsonArray_TakeAt(void* ptr, int i){
+	return new QJsonValue(static_cast<QJsonArray*>(ptr)->takeAt(i));
+}
+
 void QJsonArray_DestroyQJsonArray(void* ptr){
 	static_cast<QJsonArray*>(ptr)->~QJsonArray();
 }
@@ -4965,12 +4407,12 @@ void* QJsonDocument_Array(void* ptr){
 	return new QJsonArray(static_cast<QJsonDocument*>(ptr)->array());
 }
 
-void* QJsonDocument_QJsonDocument_FromBinaryData(void* data, int validation){
-	return new QJsonDocument(QJsonDocument::fromBinaryData(*static_cast<QByteArray*>(data), static_cast<QJsonDocument::DataValidation>(validation)));
+void* QJsonDocument_QJsonDocument_FromBinaryData(char* data, int validation){
+	return new QJsonDocument(QJsonDocument::fromBinaryData(QByteArray(data), static_cast<QJsonDocument::DataValidation>(validation)));
 }
 
-void* QJsonDocument_QJsonDocument_FromJson(void* json, void* error){
-	return new QJsonDocument(QJsonDocument::fromJson(*static_cast<QByteArray*>(json), static_cast<QJsonParseError*>(error)));
+void* QJsonDocument_QJsonDocument_FromJson(char* json, void* error){
+	return new QJsonDocument(QJsonDocument::fromJson(QByteArray(json), static_cast<QJsonParseError*>(error)));
 }
 
 void* QJsonDocument_QJsonDocument_FromRawData(char* data, int size, int validation){
@@ -5009,12 +4451,12 @@ void QJsonDocument_SetObject(void* ptr, void* object){
 	static_cast<QJsonDocument*>(ptr)->setObject(*static_cast<QJsonObject*>(object));
 }
 
-void* QJsonDocument_ToBinaryData(void* ptr){
-	return new QByteArray(static_cast<QJsonDocument*>(ptr)->toBinaryData());
+char* QJsonDocument_ToBinaryData(void* ptr){
+	return QString(static_cast<QJsonDocument*>(ptr)->toBinaryData()).toUtf8().data();
 }
 
-void* QJsonDocument_ToJson(void* ptr, int format){
-	return new QByteArray(static_cast<QJsonDocument*>(ptr)->toJson(static_cast<QJsonDocument::JsonFormat>(format)));
+char* QJsonDocument_ToJson(void* ptr, int format){
+	return QString(static_cast<QJsonDocument*>(ptr)->toJson(static_cast<QJsonDocument::JsonFormat>(format))).toUtf8().data();
 }
 
 void* QJsonDocument_ToVariant(void* ptr){
@@ -5051,6 +4493,14 @@ int QJsonObject_Length(void* ptr){
 
 int QJsonObject_Size(void* ptr){
 	return static_cast<QJsonObject*>(ptr)->size();
+}
+
+void* QJsonObject_Take(void* ptr, char* key){
+	return new QJsonValue(static_cast<QJsonObject*>(ptr)->take(QString(key)));
+}
+
+void* QJsonObject_Value(void* ptr, char* key){
+	return new QJsonValue(static_cast<QJsonObject*>(ptr)->value(QString(key)));
 }
 
 void QJsonObject_DestroyQJsonObject(void* ptr){
@@ -5099,6 +4549,10 @@ void* QJsonValue_NewQJsonValue12(int n){
 
 void* QJsonValue_NewQJsonValue13(long long n){
 	return new QJsonValue(static_cast<long long>(n));
+}
+
+void* QJsonValue_QJsonValue_FromVariant(void* variant){
+	return new QJsonValue(QJsonValue::fromVariant(*static_cast<QVariant*>(variant)));
 }
 
 int QJsonValue_IsArray(void* ptr){
@@ -5173,8 +4627,8 @@ void* QLatin1Char_NewQLatin1Char(char* c){
 	return new QLatin1Char(*c);
 }
 
-void* QLatin1String_NewQLatin1String3(void* str){
-	return new QLatin1String(*static_cast<QByteArray*>(str));
+void* QLatin1String_NewQLatin1String3(char* str){
+	return new QLatin1String(QByteArray(str));
 }
 
 void* QLatin1String_NewQLatin1String(char* str){
@@ -5485,6 +4939,10 @@ char* QLocale_Bcp47Name(void* ptr){
 	return static_cast<QLocale*>(ptr)->bcp47Name().toUtf8().data();
 }
 
+void* QLocale_QLocale_C(){
+	return new QLocale(QLocale::c());
+}
+
 int QLocale_Country(void* ptr){
 	return static_cast<QLocale*>(ptr)->country();
 }
@@ -5583,6 +5041,10 @@ char* QLocale_StandaloneDayName(void* ptr, int day, int ty){
 
 char* QLocale_StandaloneMonthName(void* ptr, int month, int ty){
 	return static_cast<QLocale*>(ptr)->standaloneMonthName(month, static_cast<QLocale::FormatType>(ty)).toUtf8().data();
+}
+
+void* QLocale_QLocale_System(){
+	return new QLocale(QLocale::system());
 }
 
 int QLocale_TextDirection(void* ptr){
@@ -5821,36 +5283,36 @@ double QMarginsF_Top(void* ptr){
 	return static_cast<double>(static_cast<QMarginsF*>(ptr)->top());
 }
 
-void* QMessageAuthenticationCode_NewQMessageAuthenticationCode(int method, void* key){
-	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), *static_cast<QByteArray*>(key));
+void* QMessageAuthenticationCode_NewQMessageAuthenticationCode(int method, char* key){
+	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), QByteArray(key));
 }
 
 int QMessageAuthenticationCode_AddData2(void* ptr, void* device){
 	return static_cast<QMessageAuthenticationCode*>(ptr)->addData(static_cast<QIODevice*>(device));
 }
 
-void QMessageAuthenticationCode_AddData3(void* ptr, void* data){
-	static_cast<QMessageAuthenticationCode*>(ptr)->addData(*static_cast<QByteArray*>(data));
+void QMessageAuthenticationCode_AddData3(void* ptr, char* data){
+	static_cast<QMessageAuthenticationCode*>(ptr)->addData(QByteArray(data));
 }
 
 void QMessageAuthenticationCode_AddData(void* ptr, char* data, int length){
 	static_cast<QMessageAuthenticationCode*>(ptr)->addData(const_cast<const char*>(data), length);
 }
 
-void* QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(void* message, void* key, int method){
-	return new QByteArray(QMessageAuthenticationCode::hash(*static_cast<QByteArray*>(message), *static_cast<QByteArray*>(key), static_cast<QCryptographicHash::Algorithm>(method)));
+char* QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(char* message, char* key, int method){
+	return QString(QMessageAuthenticationCode::hash(QByteArray(message), QByteArray(key), static_cast<QCryptographicHash::Algorithm>(method))).toUtf8().data();
 }
 
 void QMessageAuthenticationCode_Reset(void* ptr){
 	static_cast<QMessageAuthenticationCode*>(ptr)->reset();
 }
 
-void* QMessageAuthenticationCode_Result(void* ptr){
-	return new QByteArray(static_cast<QMessageAuthenticationCode*>(ptr)->result());
+char* QMessageAuthenticationCode_Result(void* ptr){
+	return QString(static_cast<QMessageAuthenticationCode*>(ptr)->result()).toUtf8().data();
 }
 
-void QMessageAuthenticationCode_SetKey(void* ptr, void* key){
-	static_cast<QMessageAuthenticationCode*>(ptr)->setKey(*static_cast<QByteArray*>(key));
+void QMessageAuthenticationCode_SetKey(void* ptr, char* key){
+	static_cast<QMessageAuthenticationCode*>(ptr)->setKey(QByteArray(key));
 }
 
 void QMessageAuthenticationCode_DestroyQMessageAuthenticationCode(void* ptr){
@@ -5867,6 +5329,38 @@ void* QMessageLogger_NewQMessageLogger2(char* file, int line, char* function){
 
 void* QMessageLogger_NewQMessageLogger3(char* file, int line, char* function, char* category){
 	return new QMessageLogger(const_cast<const char*>(file), line, const_cast<const char*>(function), const_cast<const char*>(category));
+}
+
+void* QMessageLogger_Critical4(void* ptr){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->critical());
+}
+
+void* QMessageLogger_Critical5(void* ptr, void* cat){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->critical(*static_cast<QLoggingCategory*>(cat)));
+}
+
+void* QMessageLogger_Debug4(void* ptr){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->debug());
+}
+
+void* QMessageLogger_Debug5(void* ptr, void* cat){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->debug(*static_cast<QLoggingCategory*>(cat)));
+}
+
+void* QMessageLogger_Info3(void* ptr){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->info());
+}
+
+void* QMessageLogger_Info4(void* ptr, void* cat){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->info(*static_cast<QLoggingCategory*>(cat)));
+}
+
+void* QMessageLogger_Warning4(void* ptr){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->warning());
+}
+
+void* QMessageLogger_Warning5(void* ptr, void* cat){
+	return new QDebug(static_cast<QMessageLogger*>(ptr)->warning(*static_cast<QLoggingCategory*>(cat)));
 }
 
 int QMetaEnum_IsFlag(void* ptr){
@@ -5893,8 +5387,8 @@ int QMetaEnum_Value(void* ptr, int index){
 	return static_cast<QMetaEnum*>(ptr)->value(index);
 }
 
-void* QMetaEnum_ValueToKeys(void* ptr, int value){
-	return new QByteArray(static_cast<QMetaEnum*>(ptr)->valueToKeys(value));
+char* QMetaEnum_ValueToKeys(void* ptr, int value){
+	return QString(static_cast<QMetaEnum*>(ptr)->valueToKeys(value)).toUtf8().data();
 }
 
 int QMetaMethod_Access(void* ptr){
@@ -5933,16 +5427,16 @@ int QMetaMethod_MethodIndex(void* ptr){
 	return static_cast<QMetaMethod*>(ptr)->methodIndex();
 }
 
-void* QMetaMethod_MethodSignature(void* ptr){
-	return new QByteArray(static_cast<QMetaMethod*>(ptr)->methodSignature());
+char* QMetaMethod_MethodSignature(void* ptr){
+	return QString(static_cast<QMetaMethod*>(ptr)->methodSignature()).toUtf8().data();
 }
 
 int QMetaMethod_MethodType(void* ptr){
 	return static_cast<QMetaMethod*>(ptr)->methodType();
 }
 
-void* QMetaMethod_Name(void* ptr){
-	return new QByteArray(static_cast<QMetaMethod*>(ptr)->name());
+char* QMetaMethod_Name(void* ptr){
+	return QString(static_cast<QMetaMethod*>(ptr)->name()).toUtf8().data();
 }
 
 int QMetaMethod_ParameterCount(void* ptr){
@@ -6049,12 +5543,12 @@ void* QMetaObject_NewInstance(void* ptr, void* val0, void* val1, void* val2, voi
 	return static_cast<QMetaObject*>(ptr)->newInstance(*static_cast<QGenericArgument*>(val0), *static_cast<QGenericArgument*>(val1), *static_cast<QGenericArgument*>(val2), *static_cast<QGenericArgument*>(val3), *static_cast<QGenericArgument*>(val4), *static_cast<QGenericArgument*>(val5), *static_cast<QGenericArgument*>(val6), *static_cast<QGenericArgument*>(val7), *static_cast<QGenericArgument*>(val8), *static_cast<QGenericArgument*>(val9));
 }
 
-void* QMetaObject_QMetaObject_NormalizedSignature(char* method){
-	return new QByteArray(QMetaObject::normalizedSignature(const_cast<const char*>(method)));
+char* QMetaObject_QMetaObject_NormalizedSignature(char* method){
+	return QString(QMetaObject::normalizedSignature(const_cast<const char*>(method))).toUtf8().data();
 }
 
-void* QMetaObject_QMetaObject_NormalizedType(char* ty){
-	return new QByteArray(QMetaObject::normalizedType(const_cast<const char*>(ty)));
+char* QMetaObject_QMetaObject_NormalizedType(char* ty){
+	return QString(QMetaObject::normalizedType(const_cast<const char*>(ty))).toUtf8().data();
 }
 
 int QMetaObject_PropertyCount(void* ptr){
@@ -6253,8 +5747,8 @@ int QMetaType_SizeOf2(void* ptr){
 	return static_cast<QMetaType*>(ptr)->sizeOf();
 }
 
-int QMetaType_QMetaType_Type2(void* typeName){
-	return QMetaType::type(*static_cast<QByteArray*>(typeName));
+int QMetaType_QMetaType_Type2(char* typeName){
+	return QMetaType::type(QByteArray(typeName));
 }
 
 int QMetaType_QMetaType_Type(char* typeName){
@@ -6289,8 +5783,8 @@ void* QMimeData_ColorData(void* ptr){
 	return new QVariant(static_cast<QMimeData*>(ptr)->colorData());
 }
 
-void* QMimeData_Data(void* ptr, char* mimeType){
-	return new QByteArray(static_cast<QMimeData*>(ptr)->data(QString(mimeType)));
+char* QMimeData_Data(void* ptr, char* mimeType){
+	return QString(static_cast<QMimeData*>(ptr)->data(QString(mimeType))).toUtf8().data();
 }
 
 char* QMimeData_Formats(void* ptr){
@@ -6337,8 +5831,8 @@ void QMimeData_SetColorData(void* ptr, void* color){
 	static_cast<QMimeData*>(ptr)->setColorData(*static_cast<QVariant*>(color));
 }
 
-void QMimeData_SetData(void* ptr, char* mimeType, void* data){
-	static_cast<QMimeData*>(ptr)->setData(QString(mimeType), *static_cast<QByteArray*>(data));
+void QMimeData_SetData(void* ptr, char* mimeType, char* data){
+	static_cast<QMimeData*>(ptr)->setData(QString(mimeType), QByteArray(data));
 }
 
 void QMimeData_SetHtml(void* ptr, char* html){
@@ -6389,8 +5883,40 @@ void* QMimeDatabase_NewQMimeDatabase(){
 	return new QMimeDatabase();
 }
 
+void* QMimeDatabase_MimeTypeForName(void* ptr, char* nameOrAlias){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForName(QString(nameOrAlias)));
+}
+
 void QMimeDatabase_DestroyQMimeDatabase(void* ptr){
 	static_cast<QMimeDatabase*>(ptr)->~QMimeDatabase();
+}
+
+void* QMimeDatabase_MimeTypeForData2(void* ptr, void* device){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForData(static_cast<QIODevice*>(device)));
+}
+
+void* QMimeDatabase_MimeTypeForData(void* ptr, char* data){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForData(QByteArray(data)));
+}
+
+void* QMimeDatabase_MimeTypeForFile(void* ptr, void* fileInfo, int mode){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForFile(*static_cast<QFileInfo*>(fileInfo), static_cast<QMimeDatabase::MatchMode>(mode)));
+}
+
+void* QMimeDatabase_MimeTypeForFile2(void* ptr, char* fileName, int mode){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForFile(QString(fileName), static_cast<QMimeDatabase::MatchMode>(mode)));
+}
+
+void* QMimeDatabase_MimeTypeForFileNameAndData(void* ptr, char* fileName, void* device){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForFileNameAndData(QString(fileName), static_cast<QIODevice*>(device)));
+}
+
+void* QMimeDatabase_MimeTypeForFileNameAndData2(void* ptr, char* fileName, char* data){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForFileNameAndData(QString(fileName), QByteArray(data)));
+}
+
+void* QMimeDatabase_MimeTypeForUrl(void* ptr, void* url){
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForUrl(*static_cast<QUrl*>(url)));
 }
 
 char* QMimeDatabase_SuffixForFileName(void* ptr, char* fileName){
@@ -6473,10 +5999,6 @@ void* QModelIndex_NewQModelIndex(){
 	return new QModelIndex();
 }
 
-void* QModelIndex_Child(void* ptr, int row, int column){
-	return new QModelIndex(static_cast<QModelIndex*>(ptr)->child(row, column));
-}
-
 int QModelIndex_Column(void* ptr){
 	return static_cast<QModelIndex*>(ptr)->column();
 }
@@ -6501,16 +6023,8 @@ void* QModelIndex_Model(void* ptr){
 	return const_cast<QAbstractItemModel*>(static_cast<QModelIndex*>(ptr)->model());
 }
 
-void* QModelIndex_Parent(void* ptr){
-	return new QModelIndex(static_cast<QModelIndex*>(ptr)->parent());
-}
-
 int QModelIndex_Row(void* ptr){
 	return static_cast<QModelIndex*>(ptr)->row();
-}
-
-void* QModelIndex_Sibling(void* ptr, int row, int column){
-	return new QModelIndex(static_cast<QModelIndex*>(ptr)->sibling(row, column));
 }
 
 void QMutex_Lock(void* ptr){
@@ -6937,10 +6451,6 @@ void* QPersistentModelIndex_NewQPersistentModelIndex(void* index){
 	return new QPersistentModelIndex(*static_cast<QModelIndex*>(index));
 }
 
-void* QPersistentModelIndex_Child(void* ptr, int row, int column){
-	return new QModelIndex(static_cast<QPersistentModelIndex*>(ptr)->child(row, column));
-}
-
 void* QPersistentModelIndex_Data(void* ptr, int role){
 	return new QVariant(static_cast<QPersistentModelIndex*>(ptr)->data(role));
 }
@@ -6951,14 +6461,6 @@ int QPersistentModelIndex_Flags(void* ptr){
 
 void* QPersistentModelIndex_Model(void* ptr){
 	return const_cast<QAbstractItemModel*>(static_cast<QPersistentModelIndex*>(ptr)->model());
-}
-
-void* QPersistentModelIndex_Parent(void* ptr){
-	return new QModelIndex(static_cast<QPersistentModelIndex*>(ptr)->parent());
-}
-
-void* QPersistentModelIndex_Sibling(void* ptr, int row, int column){
-	return new QModelIndex(static_cast<QPersistentModelIndex*>(ptr)->sibling(row, column));
 }
 
 void QPersistentModelIndex_Swap(void* ptr, void* other){
@@ -7261,6 +6763,10 @@ int QProcess_ProcessChannelMode(void* ptr){
 	return static_cast<QProcess*>(ptr)->processChannelMode();
 }
 
+void* QProcess_ProcessEnvironment(void* ptr){
+	return new QProcessEnvironment(static_cast<QProcess*>(ptr)->processEnvironment());
+}
+
 long long QProcess_ProcessId(void* ptr){
 	return static_cast<long long>(static_cast<QProcess*>(ptr)->processId());
 }
@@ -7269,12 +6775,12 @@ char* QProcess_Program(void* ptr){
 	return static_cast<QProcess*>(ptr)->program().toUtf8().data();
 }
 
-void* QProcess_ReadAllStandardError(void* ptr){
-	return new QByteArray(static_cast<QProcess*>(ptr)->readAllStandardError());
+char* QProcess_ReadAllStandardError(void* ptr){
+	return QString(static_cast<QProcess*>(ptr)->readAllStandardError()).toUtf8().data();
 }
 
-void* QProcess_ReadAllStandardOutput(void* ptr){
-	return new QByteArray(static_cast<QProcess*>(ptr)->readAllStandardOutput());
+char* QProcess_ReadAllStandardOutput(void* ptr){
+	return QString(static_cast<QProcess*>(ptr)->readAllStandardOutput()).toUtf8().data();
 }
 
 int QProcess_ReadChannel(void* ptr){
@@ -7489,6 +6995,10 @@ void QProcessEnvironment_DestroyQProcessEnvironment(void* ptr){
 	static_cast<QProcessEnvironment*>(ptr)->~QProcessEnvironment();
 }
 
+void* QProcessEnvironment_QProcessEnvironment_SystemEnvironment(){
+	return new QProcessEnvironment(QProcessEnvironment::systemEnvironment());
+}
+
 class MyQPropertyAnimation: public QPropertyAnimation {
 public:
 	MyQPropertyAnimation(QObject *parent) : QPropertyAnimation(parent) {};
@@ -7502,12 +7012,12 @@ public:
 	void customEvent(QEvent * event) { callbackQPropertyAnimationCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
-void* QPropertyAnimation_PropertyName(void* ptr){
-	return new QByteArray(static_cast<QPropertyAnimation*>(ptr)->propertyName());
+char* QPropertyAnimation_PropertyName(void* ptr){
+	return QString(static_cast<QPropertyAnimation*>(ptr)->propertyName()).toUtf8().data();
 }
 
-void QPropertyAnimation_SetPropertyName(void* ptr, void* propertyName){
-	static_cast<QPropertyAnimation*>(ptr)->setPropertyName(*static_cast<QByteArray*>(propertyName));
+void QPropertyAnimation_SetPropertyName(void* ptr, char* propertyName){
+	static_cast<QPropertyAnimation*>(ptr)->setPropertyName(QByteArray(propertyName));
 }
 
 void QPropertyAnimation_SetTargetObject(void* ptr, void* target){
@@ -7522,8 +7032,8 @@ void* QPropertyAnimation_NewQPropertyAnimation(void* parent){
 	return new MyQPropertyAnimation(static_cast<QObject*>(parent));
 }
 
-void* QPropertyAnimation_NewQPropertyAnimation2(void* target, void* propertyName, void* parent){
-	return new MyQPropertyAnimation(static_cast<QObject*>(target), *static_cast<QByteArray*>(propertyName), static_cast<QObject*>(parent));
+void* QPropertyAnimation_NewQPropertyAnimation2(void* target, char* propertyName, void* parent){
+	return new MyQPropertyAnimation(static_cast<QObject*>(target), QByteArray(propertyName), static_cast<QObject*>(parent));
 }
 
 int QPropertyAnimation_Event(void* ptr, void* event){
@@ -8406,6 +7916,10 @@ int QResource_IsValid(void* ptr){
 	return static_cast<QResource*>(ptr)->isValid();
 }
 
+void* QResource_Locale(void* ptr){
+	return new QLocale(static_cast<QResource*>(ptr)->locale());
+}
+
 void QResource_SetFileName(void* ptr, char* file){
 	static_cast<QResource*>(ptr)->setFileName(QString(file));
 }
@@ -9166,12 +8680,12 @@ void QSignalTransition_SetSenderObject(void* ptr, void* sender){
 	static_cast<QSignalTransition*>(ptr)->setSenderObject(static_cast<QObject*>(sender));
 }
 
-void QSignalTransition_SetSignal(void* ptr, void* signal){
-	static_cast<QSignalTransition*>(ptr)->setSignal(*static_cast<QByteArray*>(signal));
+void QSignalTransition_SetSignal(void* ptr, char* signal){
+	static_cast<QSignalTransition*>(ptr)->setSignal(QByteArray(signal));
 }
 
-void* QSignalTransition_Signal(void* ptr){
-	return new QByteArray(static_cast<QSignalTransition*>(ptr)->signal());
+char* QSignalTransition_Signal(void* ptr){
+	return QString(static_cast<QSignalTransition*>(ptr)->signal()).toUtf8().data();
 }
 
 void QSignalTransition_ConnectSignalChanged(void* ptr){
@@ -9413,7 +8927,6 @@ void QSocketNotifier_CustomEventDefault(void* ptr, void* event){
 class MyQSortFilterProxyModel: public QSortFilterProxyModel {
 public:
 	MyQSortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent) {};
-	void fetchMore(const QModelIndex & parent) { callbackQSortFilterProxyModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQSortFilterProxyModelSetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
 	void sort(int column, Qt::SortOrder order) { callbackQSortFilterProxyModelSort(this, this->objectName().toUtf8().data(), column, order); };
 	void revert() { if (!callbackQSortFilterProxyModelRevert(this, this->objectName().toUtf8().data())) { QSortFilterProxyModel::revert(); }; };
@@ -9490,10 +9003,6 @@ void* QSortFilterProxyModel_NewQSortFilterProxyModel(void* parent){
 	return new MyQSortFilterProxyModel(static_cast<QObject*>(parent));
 }
 
-void* QSortFilterProxyModel_Buddy(void* ptr, void* index){
-	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->buddy(*static_cast<QModelIndex*>(index)));
-}
-
 int QSortFilterProxyModel_CanFetchMore(void* ptr, void* parent){
 	return static_cast<QSortFilterProxyModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
 }
@@ -9508,14 +9017,6 @@ void* QSortFilterProxyModel_Data(void* ptr, void* index, int role){
 
 int QSortFilterProxyModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent){
 	return static_cast<QSortFilterProxyModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-}
-
-void QSortFilterProxyModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQSortFilterProxyModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QSortFilterProxyModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 int QSortFilterProxyModel_FilterAcceptsColumn(void* ptr, int source_column, void* source_parent){
@@ -9538,10 +9039,6 @@ void* QSortFilterProxyModel_HeaderData(void* ptr, int section, int orientation, 
 	return new QVariant(static_cast<QSortFilterProxyModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
-void* QSortFilterProxyModel_Index(void* ptr, int row, int column, void* parent){
-	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
-}
-
 int QSortFilterProxyModel_InsertColumns(void* ptr, int column, int count, void* parent){
 	return static_cast<QSortFilterProxyModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
@@ -9558,20 +9055,8 @@ int QSortFilterProxyModel_LessThan(void* ptr, void* source_left, void* source_ri
 	return static_cast<QSortFilterProxyModel*>(ptr)->lessThan(*static_cast<QModelIndex*>(source_left), *static_cast<QModelIndex*>(source_right));
 }
 
-void* QSortFilterProxyModel_MapFromSource(void* ptr, void* sourceIndex){
-	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->mapFromSource(*static_cast<QModelIndex*>(sourceIndex)));
-}
-
-void* QSortFilterProxyModel_MapToSource(void* ptr, void* proxyIndex){
-	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
-}
-
 char* QSortFilterProxyModel_MimeTypes(void* ptr){
 	return static_cast<QSortFilterProxyModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
-}
-
-void* QSortFilterProxyModel_Parent(void* ptr, void* child){
-	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
 }
 
 int QSortFilterProxyModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -9612,10 +9097,6 @@ void QSortFilterProxyModel_SetSourceModel(void* ptr, void* sourceModel){
 
 void QSortFilterProxyModel_SetSourceModelDefault(void* ptr, void* sourceModel){
 	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setSourceModel(static_cast<QAbstractItemModel*>(sourceModel));
-}
-
-void* QSortFilterProxyModel_Sibling(void* ptr, int row, int column, void* idx){
-	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
 void QSortFilterProxyModel_Sort(void* ptr, int column, int order){
@@ -10072,16 +9553,16 @@ long long QStorageInfo_BytesTotal(void* ptr){
 	return static_cast<long long>(static_cast<QStorageInfo*>(ptr)->bytesTotal());
 }
 
-void* QStorageInfo_Device(void* ptr){
-	return new QByteArray(static_cast<QStorageInfo*>(ptr)->device());
+char* QStorageInfo_Device(void* ptr){
+	return QString(static_cast<QStorageInfo*>(ptr)->device()).toUtf8().data();
 }
 
 char* QStorageInfo_DisplayName(void* ptr){
 	return static_cast<QStorageInfo*>(ptr)->displayName().toUtf8().data();
 }
 
-void* QStorageInfo_FileSystemType(void* ptr){
-	return new QByteArray(static_cast<QStorageInfo*>(ptr)->fileSystemType());
+char* QStorageInfo_FileSystemType(void* ptr){
+	return QString(static_cast<QStorageInfo*>(ptr)->fileSystemType()).toUtf8().data();
 }
 
 int QStorageInfo_IsReadOnly(void* ptr){
@@ -10108,6 +9589,10 @@ void QStorageInfo_Refresh(void* ptr){
 	static_cast<QStorageInfo*>(ptr)->refresh();
 }
 
+void* QStorageInfo_QStorageInfo_Root(){
+	return new QStorageInfo(QStorageInfo::root());
+}
+
 char* QStorageInfo_RootPath(void* ptr){
 	return static_cast<QStorageInfo*>(ptr)->rootPath().toUtf8().data();
 }
@@ -10127,7 +9612,6 @@ void QStorageInfo_DestroyQStorageInfo(void* ptr){
 class MyQStringListModel: public QStringListModel {
 public:
 	void sort(int column, Qt::SortOrder order) { callbackQStringListModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void fetchMore(const QModelIndex & parent) { callbackQStringListModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQStringListModelRevert(this, this->objectName().toUtf8().data())) { QStringListModel::revert(); }; };
 	void timerEvent(QTimerEvent * event) { callbackQStringListModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStringListModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -10162,10 +9646,6 @@ void QStringListModel_SetStringList(void* ptr, char* strin){
 	static_cast<QStringListModel*>(ptr)->setStringList(QString(strin).split("|", QString::SkipEmptyParts));
 }
 
-void* QStringListModel_Sibling(void* ptr, int row, int column, void* idx){
-	return new QModelIndex(static_cast<QStringListModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
-}
-
 void QStringListModel_Sort(void* ptr, int column, int order){
 	static_cast<MyQStringListModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
@@ -10180,14 +9660,6 @@ char* QStringListModel_StringList(void* ptr){
 
 int QStringListModel_SupportedDropActions(void* ptr){
 	return static_cast<QStringListModel*>(ptr)->supportedDropActions();
-}
-
-void QStringListModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQStringListModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QStringListModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QStringListModel*>(ptr)->QStringListModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QStringListModel_Revert(void* ptr){
@@ -10474,20 +9946,20 @@ int QStringRef_ToInt(void* ptr, int ok, int base){
 	return static_cast<QStringRef*>(ptr)->toInt(NULL, base);
 }
 
-void* QStringRef_ToLatin1(void* ptr){
-	return new QByteArray(static_cast<QStringRef*>(ptr)->toLatin1());
+char* QStringRef_ToLatin1(void* ptr){
+	return QString(static_cast<QStringRef*>(ptr)->toLatin1()).toUtf8().data();
 }
 
-void* QStringRef_ToLocal8Bit(void* ptr){
-	return new QByteArray(static_cast<QStringRef*>(ptr)->toLocal8Bit());
+char* QStringRef_ToLocal8Bit(void* ptr){
+	return QString(static_cast<QStringRef*>(ptr)->toLocal8Bit()).toUtf8().data();
 }
 
 char* QStringRef_ToString(void* ptr){
 	return static_cast<QStringRef*>(ptr)->toString().toUtf8().data();
 }
 
-void* QStringRef_ToUtf8(void* ptr){
-	return new QByteArray(static_cast<QStringRef*>(ptr)->toUtf8());
+char* QStringRef_ToUtf8(void* ptr){
+	return QString(static_cast<QStringRef*>(ptr)->toUtf8()).toUtf8().data();
 }
 
 void* QStringRef_Trimmed(void* ptr){
@@ -10837,12 +10309,12 @@ int QTextCodec_CanEncode2(void* ptr, char* s){
 	return static_cast<QTextCodec*>(ptr)->canEncode(QString(s));
 }
 
-void* QTextCodec_QTextCodec_CodecForHtml2(void* ba){
-	return QTextCodec::codecForHtml(*static_cast<QByteArray*>(ba));
+void* QTextCodec_QTextCodec_CodecForHtml2(char* ba){
+	return QTextCodec::codecForHtml(QByteArray(ba));
 }
 
-void* QTextCodec_QTextCodec_CodecForHtml(void* ba, void* defaultCodec){
-	return QTextCodec::codecForHtml(*static_cast<QByteArray*>(ba), static_cast<QTextCodec*>(defaultCodec));
+void* QTextCodec_QTextCodec_CodecForHtml(char* ba, void* defaultCodec){
+	return QTextCodec::codecForHtml(QByteArray(ba), static_cast<QTextCodec*>(defaultCodec));
 }
 
 void* QTextCodec_QTextCodec_CodecForLocale(){
@@ -10853,24 +10325,24 @@ void* QTextCodec_QTextCodec_CodecForMib(int mib){
 	return QTextCodec::codecForMib(mib);
 }
 
-void* QTextCodec_QTextCodec_CodecForName(void* name){
-	return QTextCodec::codecForName(*static_cast<QByteArray*>(name));
+void* QTextCodec_QTextCodec_CodecForName(char* name){
+	return QTextCodec::codecForName(QByteArray(name));
 }
 
 void* QTextCodec_QTextCodec_CodecForName2(char* name){
 	return QTextCodec::codecForName(const_cast<const char*>(name));
 }
 
-void* QTextCodec_QTextCodec_CodecForUtfText2(void* ba){
-	return QTextCodec::codecForUtfText(*static_cast<QByteArray*>(ba));
+void* QTextCodec_QTextCodec_CodecForUtfText2(char* ba){
+	return QTextCodec::codecForUtfText(QByteArray(ba));
 }
 
-void* QTextCodec_QTextCodec_CodecForUtfText(void* ba, void* defaultCodec){
-	return QTextCodec::codecForUtfText(*static_cast<QByteArray*>(ba), static_cast<QTextCodec*>(defaultCodec));
+void* QTextCodec_QTextCodec_CodecForUtfText(char* ba, void* defaultCodec){
+	return QTextCodec::codecForUtfText(QByteArray(ba), static_cast<QTextCodec*>(defaultCodec));
 }
 
-void* QTextCodec_FromUnicode(void* ptr, char* str){
-	return new QByteArray(static_cast<QTextCodec*>(ptr)->fromUnicode(QString(str)));
+char* QTextCodec_FromUnicode(void* ptr, char* str){
+	return QString(static_cast<QTextCodec*>(ptr)->fromUnicode(QString(str))).toUtf8().data();
 }
 
 void* QTextCodec_MakeDecoder(void* ptr, int flags){
@@ -10885,8 +10357,8 @@ int QTextCodec_MibEnum(void* ptr){
 	return static_cast<QTextCodec*>(ptr)->mibEnum();
 }
 
-void* QTextCodec_Name(void* ptr){
-	return new QByteArray(static_cast<QTextCodec*>(ptr)->name());
+char* QTextCodec_Name(void* ptr){
+	return QString(static_cast<QTextCodec*>(ptr)->name()).toUtf8().data();
 }
 
 void QTextCodec_QTextCodec_SetCodecForLocale(void* c){
@@ -10930,12 +10402,12 @@ void* QTextEncoder_NewQTextEncoder2(void* codec, int flags){
 	return new QTextEncoder(static_cast<QTextCodec*>(codec), static_cast<QTextCodec::ConversionFlag>(flags));
 }
 
-void* QTextEncoder_FromUnicode2(void* ptr, void* uc, int len){
-	return new QByteArray(static_cast<QTextEncoder*>(ptr)->fromUnicode(static_cast<QChar*>(uc), len));
+char* QTextEncoder_FromUnicode2(void* ptr, void* uc, int len){
+	return QString(static_cast<QTextEncoder*>(ptr)->fromUnicode(static_cast<QChar*>(uc), len)).toUtf8().data();
 }
 
-void* QTextEncoder_FromUnicode(void* ptr, char* str){
-	return new QByteArray(static_cast<QTextEncoder*>(ptr)->fromUnicode(QString(str)));
+char* QTextEncoder_FromUnicode(void* ptr, char* str){
+	return QString(static_cast<QTextEncoder*>(ptr)->fromUnicode(QString(str))).toUtf8().data();
 }
 
 void QTextEncoder_DestroyQTextEncoder(void* ptr){
@@ -10983,6 +10455,10 @@ int QTextStream_GenerateByteOrderMark(void* ptr){
 
 int QTextStream_IntegerBase(void* ptr){
 	return static_cast<QTextStream*>(ptr)->integerBase();
+}
+
+void* QTextStream_Locale(void* ptr){
+	return new QLocale(static_cast<QTextStream*>(ptr)->locale());
 }
 
 int QTextStream_NumberFlags(void* ptr){
@@ -11605,12 +11081,12 @@ void* QTimeZone_NewQTimeZone(){
 	return new QTimeZone();
 }
 
-void* QTimeZone_NewQTimeZone2(void* ianaId){
-	return new QTimeZone(*static_cast<QByteArray*>(ianaId));
+void* QTimeZone_NewQTimeZone2(char* ianaId){
+	return new QTimeZone(QByteArray(ianaId));
 }
 
-void* QTimeZone_NewQTimeZone4(void* ianaId, int offsetSeconds, char* name, char* abbreviation, int country, char* comment){
-	return new QTimeZone(*static_cast<QByteArray*>(ianaId), offsetSeconds, QString(name), QString(abbreviation), static_cast<QLocale::Country>(country), QString(comment));
+void* QTimeZone_NewQTimeZone4(char* ianaId, int offsetSeconds, char* name, char* abbreviation, int country, char* comment){
+	return new QTimeZone(QByteArray(ianaId), offsetSeconds, QString(name), QString(abbreviation), static_cast<QLocale::Country>(country), QString(comment));
 }
 
 void* QTimeZone_NewQTimeZone5(void* other){
@@ -11653,20 +11129,20 @@ int QTimeZone_HasTransitions(void* ptr){
 	return static_cast<QTimeZone*>(ptr)->hasTransitions();
 }
 
-void* QTimeZone_QTimeZone_IanaIdToWindowsId(void* ianaId){
-	return new QByteArray(QTimeZone::ianaIdToWindowsId(*static_cast<QByteArray*>(ianaId)));
+char* QTimeZone_QTimeZone_IanaIdToWindowsId(char* ianaId){
+	return QString(QTimeZone::ianaIdToWindowsId(QByteArray(ianaId))).toUtf8().data();
 }
 
-void* QTimeZone_Id(void* ptr){
-	return new QByteArray(static_cast<QTimeZone*>(ptr)->id());
+char* QTimeZone_Id(void* ptr){
+	return QString(static_cast<QTimeZone*>(ptr)->id()).toUtf8().data();
 }
 
 int QTimeZone_IsDaylightTime(void* ptr, void* atDateTime){
 	return static_cast<QTimeZone*>(ptr)->isDaylightTime(*static_cast<QDateTime*>(atDateTime));
 }
 
-int QTimeZone_QTimeZone_IsTimeZoneIdAvailable(void* ianaId){
-	return QTimeZone::isTimeZoneIdAvailable(*static_cast<QByteArray*>(ianaId));
+int QTimeZone_QTimeZone_IsTimeZoneIdAvailable(char* ianaId){
+	return QTimeZone::isTimeZoneIdAvailable(QByteArray(ianaId));
 }
 
 int QTimeZone_IsValid(void* ptr){
@@ -11689,20 +11165,20 @@ void* QTimeZone_QTimeZone_SystemTimeZone(){
 	return new QTimeZone(QTimeZone::systemTimeZone());
 }
 
-void* QTimeZone_QTimeZone_SystemTimeZoneId(){
-	return new QByteArray(QTimeZone::systemTimeZoneId());
+char* QTimeZone_QTimeZone_SystemTimeZoneId(){
+	return QString(QTimeZone::systemTimeZoneId()).toUtf8().data();
 }
 
 void* QTimeZone_QTimeZone_Utc(){
 	return new QTimeZone(QTimeZone::utc());
 }
 
-void* QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(void* windowsId){
-	return new QByteArray(QTimeZone::windowsIdToDefaultIanaId(*static_cast<QByteArray*>(windowsId)));
+char* QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(char* windowsId){
+	return QString(QTimeZone::windowsIdToDefaultIanaId(QByteArray(windowsId))).toUtf8().data();
 }
 
-void* QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(void* windowsId, int country){
-	return new QByteArray(QTimeZone::windowsIdToDefaultIanaId(*static_cast<QByteArray*>(windowsId), static_cast<QLocale::Country>(country)));
+char* QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(char* windowsId, int country){
+	return QString(QTimeZone::windowsIdToDefaultIanaId(QByteArray(windowsId), static_cast<QLocale::Country>(country))).toUtf8().data();
 }
 
 void QTimeZone_DestroyQTimeZone(void* ptr){
@@ -11878,8 +11354,8 @@ void QTranslator_CustomEventDefault(void* ptr, void* event){
 	static_cast<QTranslator*>(ptr)->QTranslator::customEvent(static_cast<QEvent*>(event));
 }
 
-void* QUrl_QUrl_FromEncoded(void* input, int parsingMode){
-	return new QUrl(QUrl::fromEncoded(*static_cast<QByteArray*>(input), static_cast<QUrl::ParsingMode>(parsingMode)));
+void* QUrl_QUrl_FromEncoded(char* input, int parsingMode){
+	return new QUrl(QUrl::fromEncoded(QByteArray(input), static_cast<QUrl::ParsingMode>(parsingMode)));
 }
 
 void* QUrl_NewQUrl(){
@@ -11922,16 +11398,16 @@ char* QUrl_Fragment(void* ptr, int options){
 	return static_cast<QUrl*>(ptr)->fragment(static_cast<QUrl::ComponentFormattingOption>(options)).toUtf8().data();
 }
 
-char* QUrl_QUrl_FromAce(void* domain){
-	return QUrl::fromAce(*static_cast<QByteArray*>(domain)).toUtf8().data();
+char* QUrl_QUrl_FromAce(char* domain){
+	return QUrl::fromAce(QByteArray(domain)).toUtf8().data();
 }
 
 void* QUrl_QUrl_FromLocalFile(char* localFile){
 	return new QUrl(QUrl::fromLocalFile(QString(localFile)));
 }
 
-char* QUrl_QUrl_FromPercentEncoding(void* input){
-	return QUrl::fromPercentEncoding(*static_cast<QByteArray*>(input)).toUtf8().data();
+char* QUrl_QUrl_FromPercentEncoding(char* input){
+	return QUrl::fromPercentEncoding(QByteArray(input)).toUtf8().data();
 }
 
 void* QUrl_QUrl_FromUserInput(char* userInput){
@@ -12062,24 +11538,24 @@ void QUrl_Swap(void* ptr, void* other){
 	static_cast<QUrl*>(ptr)->swap(*static_cast<QUrl*>(other));
 }
 
-void* QUrl_QUrl_ToAce(char* domain){
-	return new QByteArray(QUrl::toAce(QString(domain)));
+char* QUrl_QUrl_ToAce(char* domain){
+	return QString(QUrl::toAce(QString(domain))).toUtf8().data();
 }
 
 char* QUrl_ToDisplayString(void* ptr, int options){
 	return static_cast<QUrl*>(ptr)->toDisplayString(static_cast<QUrl::UrlFormattingOption>(options)).toUtf8().data();
 }
 
-void* QUrl_ToEncoded(void* ptr, int options){
-	return new QByteArray(static_cast<QUrl*>(ptr)->toEncoded(static_cast<QUrl::UrlFormattingOption>(options)));
+char* QUrl_ToEncoded(void* ptr, int options){
+	return QString(static_cast<QUrl*>(ptr)->toEncoded(static_cast<QUrl::UrlFormattingOption>(options))).toUtf8().data();
 }
 
 char* QUrl_ToLocalFile(void* ptr){
 	return static_cast<QUrl*>(ptr)->toLocalFile().toUtf8().data();
 }
 
-void* QUrl_QUrl_ToPercentEncoding(char* input, void* exclude, void* include){
-	return new QByteArray(QUrl::toPercentEncoding(QString(input), *static_cast<QByteArray*>(exclude), *static_cast<QByteArray*>(include)));
+char* QUrl_QUrl_ToPercentEncoding(char* input, char* exclude, char* include){
+	return QString(QUrl::toPercentEncoding(QString(input), QByteArray(exclude), QByteArray(include))).toUtf8().data();
 }
 
 char* QUrl_ToString(void* ptr, int options){
@@ -12182,8 +11658,8 @@ void* QUuid_NewQUuid(){
 	return new QUuid();
 }
 
-void* QUuid_NewQUuid5(void* text){
-	return new QUuid(*static_cast<QByteArray*>(text));
+void* QUuid_NewQUuid5(char* text){
+	return new QUuid(QByteArray(text));
 }
 
 void* QUuid_NewQUuid3(char* text){
@@ -12194,12 +11670,12 @@ int QUuid_IsNull(void* ptr){
 	return static_cast<QUuid*>(ptr)->isNull();
 }
 
-void* QUuid_ToByteArray(void* ptr){
-	return new QByteArray(static_cast<QUuid*>(ptr)->toByteArray());
+char* QUuid_ToByteArray(void* ptr){
+	return QString(static_cast<QUuid*>(ptr)->toByteArray()).toUtf8().data();
 }
 
-void* QUuid_ToRfc4122(void* ptr){
-	return new QByteArray(static_cast<QUuid*>(ptr)->toRfc4122());
+char* QUuid_ToRfc4122(void* ptr){
+	return QString(static_cast<QUuid*>(ptr)->toRfc4122()).toUtf8().data();
 }
 
 char* QUuid_ToString(void* ptr){
@@ -12222,8 +11698,8 @@ void* QVariant_NewQVariant16(void* val){
 	return new QVariant(*static_cast<QBitArray*>(val));
 }
 
-void* QVariant_NewQVariant15(void* val){
-	return new QVariant(*static_cast<QByteArray*>(val));
+void* QVariant_NewQVariant15(char* val){
+	return new QVariant(QByteArray(val));
 }
 
 void* QVariant_NewQVariant21(void* val){
@@ -12342,8 +11818,8 @@ void* QVariant_NewQVariant7(int val){
 	return new QVariant(val);
 }
 
-void* QVariant_ToByteArray(void* ptr){
-	return new QByteArray(static_cast<QVariant*>(ptr)->toByteArray());
+char* QVariant_ToByteArray(void* ptr){
+	return QString(static_cast<QVariant*>(ptr)->toByteArray()).toUtf8().data();
 }
 
 void* QVariant_ToDateTime(void* ptr){
@@ -12352,6 +11828,10 @@ void* QVariant_ToDateTime(void* ptr){
 
 void* QVariant_ToEasingCurve(void* ptr){
 	return new QEasingCurve(static_cast<QVariant*>(ptr)->toEasingCurve());
+}
+
+void* QVariant_ToLocale(void* ptr){
+	return new QLocale(static_cast<QVariant*>(ptr)->toLocale());
 }
 
 void* QVariant_ToPoint(void* ptr){
@@ -12418,6 +11898,10 @@ void QVariant_Swap(void* ptr, void* other){
 	static_cast<QVariant*>(ptr)->swap(*static_cast<QVariant*>(other));
 }
 
+void* QVariant_ToBitArray(void* ptr){
+	return new QBitArray(static_cast<QVariant*>(ptr)->toBitArray());
+}
+
 int QVariant_ToBool(void* ptr){
 	return static_cast<QVariant*>(ptr)->toBool();
 }
@@ -12438,8 +11922,12 @@ void* QVariant_ToJsonObject(void* ptr){
 	return new QJsonObject(static_cast<QVariant*>(ptr)->toJsonObject());
 }
 
-void* QVariant_ToModelIndex(void* ptr){
-	return new QModelIndex(static_cast<QVariant*>(ptr)->toModelIndex());
+void* QVariant_ToJsonValue(void* ptr){
+	return new QJsonValue(static_cast<QVariant*>(ptr)->toJsonValue());
+}
+
+void* QVariant_ToPersistentModelIndex(void* ptr){
+	return new QPersistentModelIndex(static_cast<QVariant*>(ptr)->toPersistentModelIndex());
 }
 
 double QVariant_ToReal(void* ptr, int ok){
@@ -12843,8 +12331,8 @@ void* QXmlStreamReader_NewQXmlStreamReader2(void* device){
 	return new QXmlStreamReader(static_cast<QIODevice*>(device));
 }
 
-void* QXmlStreamReader_NewQXmlStreamReader3(void* data){
-	return new QXmlStreamReader(*static_cast<QByteArray*>(data));
+void* QXmlStreamReader_NewQXmlStreamReader3(char* data){
+	return new QXmlStreamReader(QByteArray(data));
 }
 
 void* QXmlStreamReader_NewQXmlStreamReader4(char* data){
@@ -12855,8 +12343,8 @@ void* QXmlStreamReader_NewQXmlStreamReader5(char* data){
 	return new QXmlStreamReader(const_cast<const char*>(data));
 }
 
-void QXmlStreamReader_AddData(void* ptr, void* data){
-	static_cast<QXmlStreamReader*>(ptr)->addData(*static_cast<QByteArray*>(data));
+void QXmlStreamReader_AddData(void* ptr, char* data){
+	static_cast<QXmlStreamReader*>(ptr)->addData(QByteArray(data));
 }
 
 void QXmlStreamReader_AddData2(void* ptr, char* data){

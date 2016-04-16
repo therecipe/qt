@@ -29,12 +29,24 @@
 #include <QTimerEvent>
 #include <QVariant>
 
+void* QSqlDatabase_QSqlDatabase_AddDatabase2(void* driver, char* connectionName){
+	return new QSqlDatabase(QSqlDatabase::addDatabase(static_cast<QSqlDriver*>(driver), QString(connectionName)));
+}
+
+void* QSqlDatabase_QSqlDatabase_AddDatabase(char* ty, char* connectionName){
+	return new QSqlDatabase(QSqlDatabase::addDatabase(QString(ty), QString(connectionName)));
+}
+
 void* QSqlDatabase_NewQSqlDatabase(){
 	return new QSqlDatabase();
 }
 
 void* QSqlDatabase_NewQSqlDatabase2(void* other){
 	return new QSqlDatabase(*static_cast<QSqlDatabase*>(other));
+}
+
+void* QSqlDatabase_QSqlDatabase_CloneDatabase(void* other, char* connectionName){
+	return new QSqlDatabase(QSqlDatabase::cloneDatabase(*static_cast<QSqlDatabase*>(other), QString(connectionName)));
 }
 
 void QSqlDatabase_Close(void* ptr){
@@ -61,6 +73,10 @@ int QSqlDatabase_QSqlDatabase_Contains(char* connectionName){
 	return QSqlDatabase::contains(QString(connectionName));
 }
 
+void* QSqlDatabase_QSqlDatabase_Database(char* connectionName, int open){
+	return new QSqlDatabase(QSqlDatabase::database(QString(connectionName), open != 0));
+}
+
 char* QSqlDatabase_DatabaseName(void* ptr){
 	return static_cast<QSqlDatabase*>(ptr)->databaseName().toUtf8().data();
 }
@@ -75,6 +91,10 @@ char* QSqlDatabase_DriverName(void* ptr){
 
 char* QSqlDatabase_QSqlDatabase_Drivers(){
 	return QSqlDatabase::drivers().join("|").toUtf8().data();
+}
+
+void* QSqlDatabase_Exec(void* ptr, char* query){
+	return new QSqlQuery(static_cast<QSqlDatabase*>(ptr)->exec(QString(query)));
 }
 
 char* QSqlDatabase_HostName(void* ptr){
@@ -97,6 +117,10 @@ int QSqlDatabase_IsValid(void* ptr){
 	return static_cast<QSqlDatabase*>(ptr)->isValid();
 }
 
+void* QSqlDatabase_LastError(void* ptr){
+	return new QSqlError(static_cast<QSqlDatabase*>(ptr)->lastError());
+}
+
 int QSqlDatabase_Open(void* ptr){
 	return static_cast<QSqlDatabase*>(ptr)->open();
 }
@@ -111,6 +135,14 @@ char* QSqlDatabase_Password(void* ptr){
 
 int QSqlDatabase_Port(void* ptr){
 	return static_cast<QSqlDatabase*>(ptr)->port();
+}
+
+void* QSqlDatabase_PrimaryIndex(void* ptr, char* tablename){
+	return new QSqlIndex(static_cast<QSqlDatabase*>(ptr)->primaryIndex(QString(tablename)));
+}
+
+void* QSqlDatabase_Record(void* ptr, char* tablename){
+	return new QSqlRecord(static_cast<QSqlDatabase*>(ptr)->record(QString(tablename)));
 }
 
 void QSqlDatabase_QSqlDatabase_RegisterSqlDriver(char* name, void* creator){
@@ -165,6 +197,7 @@ class MyQSqlDriver: public QSqlDriver {
 public:
 	void Signal_Notification(const QString & name) { callbackQSqlDriverNotification(this, this->objectName().toUtf8().data(), name.toUtf8().data()); };
 	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { callbackQSqlDriverNotification2(this, this->objectName().toUtf8().data(), name.toUtf8().data(), source, new QVariant(payload)); };
+	void setLastError(const QSqlError & error) { callbackQSqlDriverSetLastError(this, this->objectName().toUtf8().data(), new QSqlError(error)); };
 	void setOpen(bool open) { callbackQSqlDriverSetOpen(this, this->objectName().toUtf8().data(), open); };
 	void setOpenError(bool error) { callbackQSqlDriverSetOpenError(this, this->objectName().toUtf8().data(), error); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriverTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -220,6 +253,10 @@ int QSqlDriver_IsOpenError(void* ptr){
 	return static_cast<QSqlDriver*>(ptr)->isOpenError();
 }
 
+void* QSqlDriver_LastError(void* ptr){
+	return new QSqlError(static_cast<QSqlDriver*>(ptr)->lastError());
+}
+
 void QSqlDriver_ConnectNotification(void* ptr){
 	QObject::connect(static_cast<QSqlDriver*>(ptr), static_cast<void (QSqlDriver::*)(const QString &)>(&QSqlDriver::notification), static_cast<MyQSqlDriver*>(ptr), static_cast<void (MyQSqlDriver::*)(const QString &)>(&MyQSqlDriver::Signal_Notification));;
 }
@@ -248,8 +285,24 @@ int QSqlDriver_Open(void* ptr, char* db, char* user, char* password, char* host,
 	return static_cast<QSqlDriver*>(ptr)->open(QString(db), QString(user), QString(password), QString(host), port, QString(options));
 }
 
+void* QSqlDriver_PrimaryIndex(void* ptr, char* tableName){
+	return new QSqlIndex(static_cast<QSqlDriver*>(ptr)->primaryIndex(QString(tableName)));
+}
+
+void* QSqlDriver_Record(void* ptr, char* tableName){
+	return new QSqlRecord(static_cast<QSqlDriver*>(ptr)->record(QString(tableName)));
+}
+
 int QSqlDriver_RollbackTransaction(void* ptr){
 	return static_cast<QSqlDriver*>(ptr)->rollbackTransaction();
+}
+
+void QSqlDriver_SetLastError(void* ptr, void* error){
+	static_cast<MyQSqlDriver*>(ptr)->setLastError(*static_cast<QSqlError*>(error));
+}
+
+void QSqlDriver_SetLastErrorDefault(void* ptr, void* error){
+	static_cast<QSqlDriver*>(ptr)->QSqlDriver::setLastError(*static_cast<QSqlError*>(error));
 }
 
 void QSqlDriver_SetOpen(void* ptr, int open){
@@ -640,6 +693,10 @@ int QSqlQuery_Last(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->last();
 }
 
+void* QSqlQuery_LastError(void* ptr){
+	return new QSqlError(static_cast<QSqlQuery*>(ptr)->lastError());
+}
+
 void* QSqlQuery_LastInsertId(void* ptr){
 	return new QVariant(static_cast<QSqlQuery*>(ptr)->lastInsertId());
 }
@@ -666,6 +723,10 @@ int QSqlQuery_Prepare(void* ptr, char* query){
 
 int QSqlQuery_Previous(void* ptr){
 	return static_cast<QSqlQuery*>(ptr)->previous();
+}
+
+void* QSqlQuery_Record(void* ptr){
+	return new QSqlRecord(static_cast<QSqlQuery*>(ptr)->record());
 }
 
 void* QSqlQuery_Result(void* ptr){
@@ -699,7 +760,6 @@ void QSqlQuery_DestroyQSqlQuery(void* ptr){
 class MyQSqlQueryModel: public QSqlQueryModel {
 public:
 	void clear() { callbackQSqlQueryModelClear(this, this->objectName().toUtf8().data()); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlQueryModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void queryChange() { callbackQSqlQueryModelQueryChange(this, this->objectName().toUtf8().data()); };
 	void revert() { if (!callbackQSqlQueryModelRevert(this, this->objectName().toUtf8().data())) { QSqlQueryModel::revert(); }; };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlQueryModelSort(this, this->objectName().toUtf8().data(), column, order); };
@@ -732,24 +792,20 @@ int QSqlQueryModel_ColumnCount(void* ptr, void* index){
 	return static_cast<QSqlQueryModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(index));
 }
 
-void QSqlQueryModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQSqlQueryModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlQueryModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
 void* QSqlQueryModel_HeaderData(void* ptr, int section, int orientation, int role){
 	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
-void* QSqlQueryModel_IndexInQuery(void* ptr, void* item){
-	return new QModelIndex(static_cast<QSqlQueryModel*>(ptr)->indexInQuery(*static_cast<QModelIndex*>(item)));
-}
-
 int QSqlQueryModel_InsertColumns(void* ptr, int column, int count, void* parent){
 	return static_cast<QSqlQueryModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+void* QSqlQueryModel_LastError(void* ptr){
+	return new QSqlError(static_cast<QSqlQueryModel*>(ptr)->lastError());
+}
+
+void* QSqlQueryModel_Query(void* ptr){
+	return new QSqlQuery(static_cast<QSqlQueryModel*>(ptr)->query());
 }
 
 void QSqlQueryModel_QueryChange(void* ptr){
@@ -758,6 +814,14 @@ void QSqlQueryModel_QueryChange(void* ptr){
 
 void QSqlQueryModel_QueryChangeDefault(void* ptr){
 	static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::queryChange();
+}
+
+void* QSqlQueryModel_Record2(void* ptr){
+	return new QSqlRecord(static_cast<QSqlQueryModel*>(ptr)->record());
+}
+
+void* QSqlQueryModel_Record(void* ptr, int row){
+	return new QSqlRecord(static_cast<QSqlQueryModel*>(ptr)->record(row));
 }
 
 int QSqlQueryModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -848,6 +912,14 @@ int QSqlRecord_Count(void* ptr){
 	return static_cast<QSqlRecord*>(ptr)->count();
 }
 
+void* QSqlRecord_Field2(void* ptr, char* name){
+	return new QSqlField(static_cast<QSqlRecord*>(ptr)->field(QString(name)));
+}
+
+void* QSqlRecord_Field(void* ptr, int index){
+	return new QSqlField(static_cast<QSqlRecord*>(ptr)->field(index));
+}
+
 char* QSqlRecord_FieldName(void* ptr, int index){
 	return static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8().data();
 }
@@ -874,6 +946,10 @@ int QSqlRecord_IsNull(void* ptr, char* name){
 
 int QSqlRecord_IsNull2(void* ptr, int index){
 	return static_cast<QSqlRecord*>(ptr)->isNull(index);
+}
+
+void* QSqlRecord_KeyValues(void* ptr, void* keyFields){
+	return new QSqlRecord(static_cast<QSqlRecord*>(ptr)->keyValues(*static_cast<QSqlRecord*>(keyFields)));
 }
 
 void QSqlRecord_SetGenerated(void* ptr, char* name, int generated){
@@ -946,7 +1022,6 @@ public:
 	void setFilter(const QString & filter) { callbackQSqlRelationalTableModelSetFilter(this, this->objectName().toUtf8().data(), filter.toUtf8().data()); };
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModelSetSort(this, this->objectName().toUtf8().data(), column, order); };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlRelationalTableModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void queryChange() { callbackQSqlRelationalTableModelQueryChange(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlRelationalTableModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlRelationalTableModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1061,14 +1136,6 @@ void QSqlRelationalTableModel_SortDefault(void* ptr, int column, int order){
 	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::sort(column, static_cast<Qt::SortOrder>(order));
 }
 
-void QSqlRelationalTableModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQSqlRelationalTableModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlRelationalTableModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
 void QSqlRelationalTableModel_QueryChange(void* ptr){
 	static_cast<MyQSqlRelationalTableModel*>(ptr)->queryChange();
 }
@@ -1109,6 +1176,7 @@ public:
 	void setActive(bool active) { callbackQSqlResultSetActive(this, this->objectNameAbs().toUtf8().data(), active); };
 	void setAt(int index) { callbackQSqlResultSetAt(this, this->objectNameAbs().toUtf8().data(), index); };
 	void setForwardOnly(bool forward) { callbackQSqlResultSetForwardOnly(this, this->objectNameAbs().toUtf8().data(), forward); };
+	void setLastError(const QSqlError & error) { callbackQSqlResultSetLastError(this, this->objectNameAbs().toUtf8().data(), new QSqlError(error)); };
 	void setQuery(const QString & query) { callbackQSqlResultSetQuery(this, this->objectNameAbs().toUtf8().data(), query.toUtf8().data()); };
 };
 
@@ -1134,6 +1202,10 @@ void* QSqlResult_LastInsertId(void* ptr){
 
 int QSqlResult_Prepare(void* ptr, char* query){
 	return static_cast<QSqlResult*>(ptr)->prepare(QString(query));
+}
+
+void* QSqlResult_Record(void* ptr){
+	return new QSqlRecord(static_cast<QSqlResult*>(ptr)->record());
 }
 
 int QSqlResult_SavePrepare(void* ptr, char* query){
@@ -1164,6 +1236,14 @@ void QSqlResult_SetForwardOnlyDefault(void* ptr, int forward){
 	static_cast<QSqlResult*>(ptr)->QSqlResult::setForwardOnly(forward != 0);
 }
 
+void QSqlResult_SetLastError(void* ptr, void* error){
+	static_cast<MyQSqlResult*>(ptr)->setLastError(*static_cast<QSqlError*>(error));
+}
+
+void QSqlResult_SetLastErrorDefault(void* ptr, void* error){
+	static_cast<QSqlResult*>(ptr)->QSqlResult::setLastError(*static_cast<QSqlError*>(error));
+}
+
 void QSqlResult_SetQuery(void* ptr, char* query){
 	static_cast<MyQSqlResult*>(ptr)->setQuery(QString(query));
 }
@@ -1192,7 +1272,10 @@ void QSqlResult_SetObjectNameAbs(void* ptr, char* name){
 class MyQSqlTableModel: public QSqlTableModel {
 public:
 	void Signal_BeforeDelete(int row) { callbackQSqlTableModelBeforeDelete(this, this->objectName().toUtf8().data(), row); };
+	void Signal_BeforeInsert(QSqlRecord & record) { callbackQSqlTableModelBeforeInsert(this, this->objectName().toUtf8().data(), new QSqlRecord(record)); };
+	void Signal_BeforeUpdate(int row, QSqlRecord & record) { callbackQSqlTableModelBeforeUpdate(this, this->objectName().toUtf8().data(), row, new QSqlRecord(record)); };
 	void clear() { callbackQSqlTableModelClear(this, this->objectName().toUtf8().data()); };
+	void Signal_PrimeInsert(int row, QSqlRecord & record) { callbackQSqlTableModelPrimeInsert(this, this->objectName().toUtf8().data(), row, new QSqlRecord(record)); };
 	void revert() { if (!callbackQSqlTableModelRevert(this, this->objectName().toUtf8().data())) { QSqlTableModel::revert(); }; };
 	void revertRow(int row) { callbackQSqlTableModelRevertRow(this, this->objectName().toUtf8().data(), row); };
 	void setEditStrategy(QSqlTableModel::EditStrategy strategy) { callbackQSqlTableModelSetEditStrategy(this, this->objectName().toUtf8().data(), strategy); };
@@ -1200,7 +1283,6 @@ public:
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlTableModelSetSort(this, this->objectName().toUtf8().data(), column, order); };
 	void setTable(const QString & tableName) { callbackQSqlTableModelSetTable(this, this->objectName().toUtf8().data(), tableName.toUtf8().data()); };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlTableModelSort(this, this->objectName().toUtf8().data(), column, order); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlTableModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void queryChange() { callbackQSqlTableModelQueryChange(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlTableModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlTableModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1219,6 +1301,30 @@ void QSqlTableModel_BeforeDelete(void* ptr, int row){
 	static_cast<QSqlTableModel*>(ptr)->beforeDelete(row);
 }
 
+void QSqlTableModel_ConnectBeforeInsert(void* ptr){
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(QSqlRecord &)>(&QSqlTableModel::beforeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeInsert));;
+}
+
+void QSqlTableModel_DisconnectBeforeInsert(void* ptr){
+	QObject::disconnect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(QSqlRecord &)>(&QSqlTableModel::beforeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeInsert));;
+}
+
+void QSqlTableModel_BeforeInsert(void* ptr, void* record){
+	static_cast<QSqlTableModel*>(ptr)->beforeInsert(*static_cast<QSqlRecord*>(record));
+}
+
+void QSqlTableModel_ConnectBeforeUpdate(void* ptr){
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::beforeUpdate), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeUpdate));;
+}
+
+void QSqlTableModel_DisconnectBeforeUpdate(void* ptr){
+	QObject::disconnect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::beforeUpdate), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_BeforeUpdate));;
+}
+
+void QSqlTableModel_BeforeUpdate(void* ptr, int row, void* record){
+	static_cast<QSqlTableModel*>(ptr)->beforeUpdate(row, *static_cast<QSqlRecord*>(record));
+}
+
 void QSqlTableModel_Clear(void* ptr){
 	static_cast<MyQSqlTableModel*>(ptr)->clear();
 }
@@ -1229,6 +1335,10 @@ void QSqlTableModel_ClearDefault(void* ptr){
 
 void* QSqlTableModel_Data(void* ptr, void* index, int role){
 	return new QVariant(static_cast<QSqlTableModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
+}
+
+void* QSqlTableModel_Database(void* ptr){
+	return new QSqlDatabase(static_cast<QSqlTableModel*>(ptr)->database());
 }
 
 int QSqlTableModel_DeleteRowFromTable(void* ptr, int row){
@@ -1255,10 +1365,6 @@ void* QSqlTableModel_HeaderData(void* ptr, int section, int orientation, int rol
 	return new QVariant(static_cast<QSqlTableModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
-void* QSqlTableModel_IndexInQuery(void* ptr, void* item){
-	return new QModelIndex(static_cast<QSqlTableModel*>(ptr)->indexInQuery(*static_cast<QModelIndex*>(item)));
-}
-
 int QSqlTableModel_InsertRecord(void* ptr, int row, void* record){
 	return static_cast<QSqlTableModel*>(ptr)->insertRecord(row, *static_cast<QSqlRecord*>(record));
 }
@@ -1281,6 +1387,30 @@ int QSqlTableModel_IsDirty(void* ptr, void* index){
 
 char* QSqlTableModel_OrderByClause(void* ptr){
 	return static_cast<QSqlTableModel*>(ptr)->orderByClause().toUtf8().data();
+}
+
+void* QSqlTableModel_PrimaryKey(void* ptr){
+	return new QSqlIndex(static_cast<QSqlTableModel*>(ptr)->primaryKey());
+}
+
+void QSqlTableModel_ConnectPrimeInsert(void* ptr){
+	QObject::connect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::primeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_PrimeInsert));;
+}
+
+void QSqlTableModel_DisconnectPrimeInsert(void* ptr){
+	QObject::disconnect(static_cast<QSqlTableModel*>(ptr), static_cast<void (QSqlTableModel::*)(int, QSqlRecord &)>(&QSqlTableModel::primeInsert), static_cast<MyQSqlTableModel*>(ptr), static_cast<void (MyQSqlTableModel::*)(int, QSqlRecord &)>(&MyQSqlTableModel::Signal_PrimeInsert));;
+}
+
+void QSqlTableModel_PrimeInsert(void* ptr, int row, void* record){
+	static_cast<QSqlTableModel*>(ptr)->primeInsert(row, *static_cast<QSqlRecord*>(record));
+}
+
+void* QSqlTableModel_Record(void* ptr){
+	return new QSqlRecord(static_cast<QSqlTableModel*>(ptr)->record());
+}
+
+void* QSqlTableModel_Record2(void* ptr, int row){
+	return new QSqlRecord(static_cast<QSqlTableModel*>(ptr)->record(row));
 }
 
 int QSqlTableModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -1393,14 +1523,6 @@ int QSqlTableModel_UpdateRowInTable(void* ptr, int row, void* values){
 
 void QSqlTableModel_DestroyQSqlTableModel(void* ptr){
 	static_cast<QSqlTableModel*>(ptr)->~QSqlTableModel();
-}
-
-void QSqlTableModel_FetchMore(void* ptr, void* parent){
-	static_cast<MyQSqlTableModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlTableModel_FetchMoreDefault(void* ptr, void* parent){
-	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QSqlTableModel_QueryChange(void* ptr){

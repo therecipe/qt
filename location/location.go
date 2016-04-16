@@ -229,6 +229,15 @@ func (ptr *QGeoManeuver) IsValid() bool {
 	return false
 }
 
+func (ptr *QGeoManeuver) Position() *positioning.QGeoCoordinate {
+	defer qt.Recovering("QGeoManeuver::position")
+
+	if ptr.Pointer() != nil {
+		return positioning.NewQGeoCoordinateFromPointer(C.QGeoManeuver_Position(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoManeuver) SetDirection(direction QGeoManeuver__InstructionDirection) {
 	defer qt.Recovering("QGeoManeuver::setDirection")
 
@@ -284,6 +293,15 @@ func (ptr *QGeoManeuver) TimeToNextInstruction() int {
 		return int(C.QGeoManeuver_TimeToNextInstruction(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QGeoManeuver) Waypoint() *positioning.QGeoCoordinate {
+	defer qt.Recovering("QGeoManeuver::waypoint")
+
+	if ptr.Pointer() != nil {
+		return positioning.NewQGeoCoordinateFromPointer(C.QGeoManeuver_Waypoint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGeoManeuver) DestroyQGeoManeuver() {
@@ -344,6 +362,15 @@ func NewQGeoRoute2(other QGeoRoute_ITF) *QGeoRoute {
 	return newQGeoRouteFromPointer(C.QGeoRoute_NewQGeoRoute2(PointerFromQGeoRoute(other)))
 }
 
+func (ptr *QGeoRoute) Bounds() *positioning.QGeoRectangle {
+	defer qt.Recovering("QGeoRoute::bounds")
+
+	if ptr.Pointer() != nil {
+		return positioning.NewQGeoRectangleFromPointer(C.QGeoRoute_Bounds(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoRoute) Distance() float64 {
 	defer qt.Recovering("QGeoRoute::distance")
 
@@ -351,6 +378,24 @@ func (ptr *QGeoRoute) Distance() float64 {
 		return float64(C.QGeoRoute_Distance(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QGeoRoute) FirstRouteSegment() *QGeoRouteSegment {
+	defer qt.Recovering("QGeoRoute::firstRouteSegment")
+
+	if ptr.Pointer() != nil {
+		return NewQGeoRouteSegmentFromPointer(C.QGeoRoute_FirstRouteSegment(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoRoute) Request() *QGeoRouteRequest {
+	defer qt.Recovering("QGeoRoute::request")
+
+	if ptr.Pointer() != nil {
+		return NewQGeoRouteRequestFromPointer(C.QGeoRoute_Request(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGeoRoute) RouteId() string {
@@ -638,6 +683,15 @@ func (ptr *QGeoRouteReply) IsFinished() bool {
 		return C.QGeoRouteReply_IsFinished(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QGeoRouteReply) Request() *QGeoRouteRequest {
+	defer qt.Recovering("QGeoRouteReply::request")
+
+	if ptr.Pointer() != nil {
+		return NewQGeoRouteRequestFromPointer(C.QGeoRouteReply_Request(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
@@ -1075,6 +1129,24 @@ func (ptr *QGeoRouteSegment) IsValid() bool {
 	return false
 }
 
+func (ptr *QGeoRouteSegment) Maneuver() *QGeoManeuver {
+	defer qt.Recovering("QGeoRouteSegment::maneuver")
+
+	if ptr.Pointer() != nil {
+		return NewQGeoManeuverFromPointer(C.QGeoRouteSegment_Maneuver(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoRouteSegment) NextRouteSegment() *QGeoRouteSegment {
+	defer qt.Recovering("QGeoRouteSegment::nextRouteSegment")
+
+	if ptr.Pointer() != nil {
+		return NewQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NextRouteSegment(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoRouteSegment) SetDistance(distance float64) {
 	defer qt.Recovering("QGeoRouteSegment::setDistance")
 
@@ -1237,6 +1309,15 @@ func (ptr *QGeoRoutingManager) Finished(reply QGeoRouteReply_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManager_Finished(ptr.Pointer(), PointerFromQGeoRouteReply(reply))
 	}
+}
+
+func (ptr *QGeoRoutingManager) Locale() *core.QLocale {
+	defer qt.Recovering("QGeoRoutingManager::locale")
+
+	if ptr.Pointer() != nil {
+		return core.NewQLocaleFromPointer(C.QGeoRoutingManager_Locale(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGeoRoutingManager) ManagerName() string {
@@ -1602,6 +1683,15 @@ func (ptr *QGeoRoutingManagerEngine) Finished(reply QGeoRouteReply_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_Finished(ptr.Pointer(), PointerFromQGeoRouteReply(reply))
 	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) Locale() *core.QLocale {
+	defer qt.Recovering("QGeoRoutingManagerEngine::locale")
+
+	if ptr.Pointer() != nil {
+		return core.NewQLocaleFromPointer(C.QGeoRoutingManagerEngine_Locale(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGeoRoutingManagerEngine) ManagerName() string {

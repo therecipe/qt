@@ -236,19 +236,19 @@ func qmlHeader() string {
 
 	return fmt.Sprintf(`package main
 
-  	/*
-  	#cgo +build android,arm LDFLAGS: -L%v/Qt5.5.1/5.5/android_armv7/lib -lQt5Core
-		#cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.5.1/5.5/clang_64/lib -framework QtCore
+/*
+#cgo +build android,arm LDFLAGS: -L%v/Qt5.5.1/5.5/android_armv7/lib -lQt5Core
+#cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.5.1/5.5/clang_64/lib -framework QtCore
 
-	  #cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc_64/lib
-	  #cgo +build linux,amd64 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc_64/lib -lQt5Core
+#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc_64/lib
+#cgo +build linux,amd64 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc_64/lib -lQt5Core
 
-	  #cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc/lib
-	  #cgo +build linux,386 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc/lib -lQt5Core
+#cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc/lib
+#cgo +build linux,386 LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc/lib -lQt5Core
 
-	  #cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib -lQt5Core
-	  */
-	  import "C"`, hloc)
+#cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib -lQt5Core
+*/
+import "C"`, hloc)
 }
 
 func build() {
@@ -297,6 +297,7 @@ func build() {
 				}
 			}
 		}
+
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -354,9 +355,14 @@ func predeploy() {
 
 	switch runtime.GOOS {
 	case "windows":
-		copyCmd = "xcopy"
+		{
+			copyCmd = "xcopy"
+		}
+
 	default:
-		copyCmd = "cp"
+		{
+			copyCmd = "cp"
+		}
 	}
 
 	switch buildTarget {
@@ -515,6 +521,7 @@ func deploy() {
 					qtPrefix = "/usr/local"
 					androidPrefix = "/opt"
 				}
+
 			case "windows":
 				{
 					var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
@@ -555,6 +562,7 @@ func deploy() {
 				runCmd(deploy, "deploy")
 			}
 		}
+
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -627,6 +635,7 @@ func pastdeploy() {
 					copyCmd = "cp"
 					apkEnding = "apk"
 				}
+
 			case "windows":
 				{
 					copyCmd = "xcopy"
@@ -643,6 +652,7 @@ func pastdeploy() {
 			//TODO: copy manifest to android folder and change mindSdkVersion >= 16
 
 		}
+
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -675,9 +685,11 @@ func run() {
 		{
 			switch runtime.GOOS {
 			case "darwin", "linux":
-				runCmdOptional(exec.Command("killall", "adb"), "run.killadb")
-				//runCmdOptional(exec.Command("/opt/android-sdk/platform-tools/adb", "logcat", "-c"), "run.adblogcat")
-				exec.Command("/opt/android-sdk/platform-tools/adb", "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
+				{
+					runCmdOptional(exec.Command("killall", "adb"), "run.killadb")
+					//runCmdOptional(exec.Command("/opt/android-sdk/platform-tools/adb", "logcat", "-c"), "run.adblogcat")
+					exec.Command("/opt/android-sdk/platform-tools/adb", "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
+				}
 
 			case "windows":
 				{

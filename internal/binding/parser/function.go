@@ -43,6 +43,10 @@ func (f *Function) fix() {
 	if f.Fullname == "QThread::start" {
 		f.Parameters = make([]*Parameter, 0)
 	}
+
+	if f.Fullname == "QQuickImageProvider::requestImage" || f.Fullname == "QQuickImageProvider::requestPixmap" {
+		f.Parameters = f.Parameters[:len(f.Parameters)-1]
+	}
 }
 
 func (f *Function) fixOverload() {
