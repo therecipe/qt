@@ -10,7 +10,7 @@ extern "C" {
 void QmlBridge_ConnectSendToQml(void* ptr);
 void QmlBridge_DisconnectSendToQml(void* ptr);
 void QmlBridge_SendToQml(void* ptr, char* data);
-void QmlBridge_SendToGo(void* ptr, char* data);
+char* QmlBridge_SendToGo(void* ptr, char* data);
 void* QmlBridge_NewQmlBridge(void* parent);
 void QmlBridge_DestroyQmlBridge(void* ptr);
 void QmlBridge_TimerEvent(void* ptr, void* event);

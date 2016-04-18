@@ -19,8 +19,14 @@ func goFunction(f *parser.Function) string {
 					tmp += f.OverloadNumber
 				}
 				tmp += "\n"
+			} else {
+				f.TempOutput = f.Output
+				f.Output = "void"
 			}
 			tmp += fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f))
+			if signalMode != "callback" {
+				f.Output = f.TempOutput
+			}
 		}
 		f.SignalMode = ""
 
@@ -71,6 +77,9 @@ func goInterface(f *parser.Function) string {
 			if f.Meta == "slot" || isDerivedFromSlot(f) {
 				return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), "bool")
 			} else {
+				if parser.ClassMap[f.Class()].Module == "main" {
+					return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), converter.GoHeaderOutput(f))
+				}
 				return fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoHeaderInput(f))
 			}
 		}
@@ -114,7 +123,10 @@ func goFunctionBody(f *parser.Function) (o string) {
 	}
 
 	if converter.GoHeaderOutput(f) != "" {
-		o += "return "
+		if f.Meta == "signal" && parser.ClassMap[f.Class()].Module == "main" {
+		} else {
+			o += "return "
+		}
 	}
 
 	/*
@@ -127,7 +139,11 @@ func goFunctionBody(f *parser.Function) (o string) {
 
 		o += fmt.Sprintf("if signal := qt.GetSignal(C.GoString(ptrName), \"%v%v\"); signal != nil {\n", f.Name, cppFunctionSignalOverload(f))
 
-		o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
+		if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" {
+			o += fmt.Sprintf("return %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f)), f.TempOutput, f))
+		} else {
+			o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
+		}
 
 		if f.Virtual == "impure" {
 			if isDerivedFromPure(f) {
@@ -183,6 +199,10 @@ func goFunctionBody(f *parser.Function) (o string) {
 		if converter.GoHeaderOutput(f) != "" {
 			o += fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f))
 		}
+	}
+
+	if parser.ClassMap[f.Class()].Module == "main" && f.SignalMode == "callback" && f.TempOutput != "void" {
+		o += fmt.Sprintf("return %v", converter.GoInput(converter.GoBodyOutputFailed(f), f.TempOutput, f))
 	}
 
 	return o

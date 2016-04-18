@@ -2287,11 +2287,65 @@ func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
 	return 0
 }
 
+func (ptr *QSqlQueryModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlQueryModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QSqlQueryModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQSqlQueryModelFetchMore
+func callbackQSqlQueryModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlQueryModel::fetchMore")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QSqlQueryModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlQueryModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QSqlQueryModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlQueryModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
 func (ptr *QSqlQueryModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	defer qt.Recovering("QSqlQueryModel::headerData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlQueryModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) IndexInQuery(item core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QSqlQueryModel::indexInQuery")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QSqlQueryModel_IndexInQuery(ptr.Pointer(), core.PointerFromQModelIndex(item)))
 	}
 	return nil
 }
@@ -3537,6 +3591,51 @@ func (ptr *QSqlRelationalTableModel) SortDefault(column int, order core.Qt__Sort
 	}
 }
 
+func (ptr *QSqlRelationalTableModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQSqlRelationalTableModelFetchMore
+func callbackQSqlRelationalTableModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalTableModel::fetchMore")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQSqlRelationalTableModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalTableModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalTableModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
 func (ptr *QSqlRelationalTableModel) ConnectQueryChange(f func()) {
 	defer qt.Recovering("connect QSqlRelationalTableModel::queryChange")
 
@@ -4356,6 +4455,15 @@ func (ptr *QSqlTableModel) HeaderData(section int, orientation core.Qt__Orientat
 	return nil
 }
 
+func (ptr *QSqlTableModel) IndexInQuery(item core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QSqlTableModel::indexInQuery")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QSqlTableModel_IndexInQuery(ptr.Pointer(), core.PointerFromQModelIndex(item)))
+	}
+	return nil
+}
+
 func (ptr *QSqlTableModel) InsertRecord(row int, record QSqlRecord_ITF) bool {
 	defer qt.Recovering("QSqlTableModel::insertRecord")
 
@@ -4911,6 +5019,51 @@ func (ptr *QSqlTableModel) DestroyQSqlTableModel() {
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_DestroyQSqlTableModel(ptr.Pointer())
 		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlTableModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QSqlTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQSqlTableModelFetchMore
+func callbackQSqlTableModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlTableModel::fetchMore")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQSqlTableModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QSqlTableModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlTableModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QSqlTableModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlTableModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QSqlTableModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
 	}
 }
 

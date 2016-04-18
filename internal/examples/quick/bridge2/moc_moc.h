@@ -62,7 +62,7 @@ static const uint qt_meta_data_QmlBridge[] = {
     QMetaType::Void, QMetaType::QString,    3,
 
  // slots: parameters
-    QMetaType::Void, QMetaType::QString,    3,
+    QMetaType::QString, QMetaType::QString,    3,
 
        0        // eod
 };
@@ -74,7 +74,8 @@ void QmlBridge::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->sendToQml((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 1: _t->sendToGo((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 1: { QString _r = _t->sendToGo((*reinterpret_cast< QString(*)>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = _r; }  break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

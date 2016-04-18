@@ -74,7 +74,7 @@ func (ptr *QmlBridge) SendToQml(data string) {
 	}
 }
 
-func (ptr *QmlBridge) ConnectSendToGo(f func(data string)) {
+func (ptr *QmlBridge) ConnectSendToGo(f func(data string) string) {
 	defer qt.Recovering("connect QmlBridge::sendToGo")
 
 	if ptr.Pointer() != nil {
@@ -93,21 +93,22 @@ func (ptr *QmlBridge) DisconnectSendToGo() {
 }
 
 //export callbackQmlBridgeSendToGo
-func callbackQmlBridgeSendToGo(ptr unsafe.Pointer, ptrName *C.char, data *C.char) {
+func callbackQmlBridgeSendToGo(ptr unsafe.Pointer, ptrName *C.char, data *C.char) *C.char {
 	defer qt.Recovering("callback QmlBridge::sendToGo")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "sendToGo"); signal != nil {
-		signal.(func(string))(C.GoString(data))
+		return C.CString(signal.(func(string) string)(C.GoString(data)))
 	}
-
+	return C.CString("")
 }
 
-func (ptr *QmlBridge) SendToGo(data string) {
+func (ptr *QmlBridge) SendToGo(data string) string {
 	defer qt.Recovering("QmlBridge::sendToGo")
 
 	if ptr.Pointer() != nil {
-		C.QmlBridge_SendToGo(ptr.Pointer(), C.CString(data))
+		return C.GoString(C.QmlBridge_SendToGo(ptr.Pointer(), C.CString(data)))
 	}
+	return ""
 }
 
 func NewQmlBridge(parent core.QObject_ITF) *QmlBridge {

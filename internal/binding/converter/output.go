@@ -262,6 +262,10 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 	return f.Access
 }
 
+func CppOutput(name, value string, f *parser.Function) string {
+	return cppOutput(name, value, f)
+}
+
 func cppOutput(name string, value string, f *parser.Function) string {
 
 	var vOld = value
@@ -334,6 +338,11 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			}
 
 			switch value {
+			case "QModelIndex":
+				{
+					return fmt.Sprintf("new %v(%v)", value, name)
+				}
+
 			case "QAndroidJniObject":
 				{
 					return fmt.Sprintf("new %v(%v.object())", value, name)

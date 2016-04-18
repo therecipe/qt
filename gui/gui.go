@@ -26924,6 +26924,15 @@ func (ptr *QStandardItem) Icon() *QIcon {
 	return nil
 }
 
+func (ptr *QStandardItem) Index() *core.QModelIndex {
+	defer qt.Recovering("QStandardItem::index")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QStandardItem_Index(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QStandardItem) InsertColumns(column int, count int) {
 	defer qt.Recovering("QStandardItem::insertColumns")
 
@@ -27571,6 +27580,24 @@ func (ptr *QStandardItemModel) HorizontalHeaderItem(column int) *QStandardItem {
 	return nil
 }
 
+func (ptr *QStandardItemModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QStandardItemModel::index")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QStandardItemModel_Index(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
+	}
+	return nil
+}
+
+func (ptr *QStandardItemModel) IndexFromItem(item QStandardItem_ITF) *core.QModelIndex {
+	defer qt.Recovering("QStandardItemModel::indexFromItem")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QStandardItemModel_IndexFromItem(ptr.Pointer(), PointerFromQStandardItem(item)))
+	}
+	return nil
+}
+
 func (ptr *QStandardItemModel) InsertColumn2(column int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QStandardItemModel::insertColumn")
 
@@ -27696,6 +27723,15 @@ func (ptr *QStandardItemModel) MimeTypes() []string {
 	return make([]string, 0)
 }
 
+func (ptr *QStandardItemModel) Parent(child core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QStandardItemModel::parent")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QStandardItemModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(child)))
+	}
+	return nil
+}
+
 func (ptr *QStandardItemModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QStandardItemModel::removeColumns")
 
@@ -27813,6 +27849,15 @@ func (ptr *QStandardItemModel) SetVerticalHeaderLabels(labels []string) {
 	}
 }
 
+func (ptr *QStandardItemModel) Sibling(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QStandardItemModel::sibling")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QStandardItemModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(idx)))
+	}
+	return nil
+}
+
 func (ptr *QStandardItemModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
 	defer qt.Recovering("connect QStandardItemModel::sort")
 
@@ -27909,6 +27954,51 @@ func (ptr *QStandardItemModel) DestroyQStandardItemModel() {
 	if ptr.Pointer() != nil {
 		C.QStandardItemModel_DestroyQStandardItemModel(ptr.Pointer())
 		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QStandardItemModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
+	defer qt.Recovering("connect QStandardItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectFetchMore() {
+	defer qt.Recovering("disconnect QStandardItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
+	}
+}
+
+//export callbackQStandardItemModelFetchMore
+func callbackQStandardItemModelFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
+	defer qt.Recovering("callback QStandardItemModel::fetchMore")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
+		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
+	} else {
+		NewQStandardItemModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
+	}
+}
+
+func (ptr *QStandardItemModel) FetchMore(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QStandardItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QStandardItemModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
+	defer qt.Recovering("QStandardItemModel::fetchMore")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
 	}
 }
 

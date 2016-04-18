@@ -8635,6 +8635,10 @@ void* QStandardItem_Icon(void* ptr){
 	return new QIcon(static_cast<QStandardItem*>(ptr)->icon());
 }
 
+void* QStandardItem_Index(void* ptr){
+	return new QModelIndex(static_cast<QStandardItem*>(ptr)->index());
+}
+
 void QStandardItem_InsertColumns(void* ptr, int column, int count){
 	static_cast<QStandardItem*>(ptr)->insertColumns(column, count);
 }
@@ -8874,6 +8878,7 @@ public:
 	MyQStandardItemModel(int rows, int columns, QObject *parent) : QStandardItemModel(rows, columns, parent) {};
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModelItemChanged(this, this->objectName().toUtf8().data(), item); };
 	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModelSort(this, this->objectName().toUtf8().data(), column, order); };
+	void fetchMore(const QModelIndex & parent) { callbackQStandardItemModelFetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
 	void revert() { if (!callbackQStandardItemModelRevert(this, this->objectName().toUtf8().data())) { QStandardItemModel::revert(); }; };
 	void timerEvent(QTimerEvent * event) { callbackQStandardItemModelTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStandardItemModelChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -8932,6 +8937,14 @@ void* QStandardItemModel_HorizontalHeaderItem(void* ptr, int column){
 	return static_cast<QStandardItemModel*>(ptr)->horizontalHeaderItem(column);
 }
 
+void* QStandardItemModel_Index(void* ptr, int row, int column, void* parent){
+	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
+}
+
+void* QStandardItemModel_IndexFromItem(void* ptr, void* item){
+	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->indexFromItem(static_cast<QStandardItem*>(item)));
+}
+
 int QStandardItemModel_InsertColumn2(void* ptr, int column, void* parent){
 	return static_cast<QStandardItemModel*>(ptr)->insertColumn(column, *static_cast<QModelIndex*>(parent));
 }
@@ -8982,6 +8995,10 @@ void* QStandardItemModel_ItemPrototype(void* ptr){
 
 char* QStandardItemModel_MimeTypes(void* ptr){
 	return static_cast<QStandardItemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
+}
+
+void* QStandardItemModel_Parent(void* ptr, void* child){
+	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
 }
 
 int QStandardItemModel_RemoveColumns(void* ptr, int column, int count, void* parent){
@@ -9040,6 +9057,10 @@ void QStandardItemModel_SetVerticalHeaderLabels(void* ptr, char* labels){
 	static_cast<QStandardItemModel*>(ptr)->setVerticalHeaderLabels(QString(labels).split("|", QString::SkipEmptyParts));
 }
 
+void* QStandardItemModel_Sibling(void* ptr, int row, int column, void* idx){
+	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
+}
+
 void QStandardItemModel_Sort(void* ptr, int column, int order){
 	static_cast<MyQStandardItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
@@ -9070,6 +9091,14 @@ void* QStandardItemModel_VerticalHeaderItem(void* ptr, int row){
 
 void QStandardItemModel_DestroyQStandardItemModel(void* ptr){
 	static_cast<QStandardItemModel*>(ptr)->~QStandardItemModel();
+}
+
+void QStandardItemModel_FetchMore(void* ptr, void* parent){
+	static_cast<MyQStandardItemModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void QStandardItemModel_FetchMoreDefault(void* ptr, void* parent){
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QStandardItemModel_Revert(void* ptr){

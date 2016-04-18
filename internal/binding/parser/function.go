@@ -22,6 +22,7 @@ type Function struct {
 	Parameters     []*Parameter `xml:"parameter"`
 	SignalMode     string
 	TemplateMode   string
+	TempOutput     string
 }
 
 type Parameter struct {

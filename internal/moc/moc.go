@@ -105,6 +105,9 @@ func main() {
 												f    = &parser.Function{Access: "public", Fullname: class.Name + "::" + name, Meta: meta, Name: name, Output: "void", Status: "active", Virtual: virtual, Signature: "()"}
 											)
 											f.Parameters = getParameters(_type)
+											if f.Meta == "slot" {
+												f.Output = getCppTypeFromGoType(strings.TrimSpace(strings.Split(_type, ")")[1]))
+											}
 											class.Functions = append(class.Functions, f)
 										}
 									}
@@ -244,7 +247,7 @@ func getParameters(tag string) []*parser.Parameter {
 
 			if len(pairSplitted) == 1 {
 				p = &parser.Parameter{Name: fmt.Sprintf("v%v", i), Value: pairSplitted[0]}
-				if getCppTypeFromGoType(p.Value) == "unsupported_cppTypeFromGo" {
+				if getCppTypeFromGoType(p.Value) == "void" {
 					p.Name = p.Value
 					p.Value = lastValue
 				}
@@ -320,7 +323,7 @@ func getCppTypeFromGoType(t string) string {
 		return t + "*"
 	}
 
-	return "unsupported_cppTypeFromGo"
+	return "void"
 }
 
 func runCmd(cmd *exec.Cmd, n string) string {

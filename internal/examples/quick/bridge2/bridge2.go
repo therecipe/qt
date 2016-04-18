@@ -14,8 +14,8 @@ import (
 type QmlBridge struct {
 	core.QObject
 
-	_ func(data string) `signal:sendToQml`
-	_ func(data string) `slot:sendToGo`
+	_ func(data string)        `signal:sendToQml`
+	_ func(data string) string `slot:sendToGo`
 }
 
 func main() {
@@ -26,8 +26,9 @@ func main() {
 	view.SetResizeMode(quick.QQuickView__SizeRootObjectToView)
 
 	var qmlBridge = NewQmlBridge(nil)
-	qmlBridge.ConnectSendToGo(func(data string) {
-		fmt.Println("QmlBridge.sendToGo:", data)
+	qmlBridge.ConnectSendToGo(func(data string) string {
+		fmt.Println("go:", data)
+		return "hello from go"
 	})
 
 	view.RootContext().SetContextProperty("QmlBridge", qmlBridge)

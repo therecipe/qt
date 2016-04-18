@@ -26,6 +26,6 @@ Rectangle
 	{
 		anchors.fill: parent
 
-		onClicked: QmlBridge.sendToGo("hello world")
+		onClicked: console.log(QmlBridge.sendToGo("hello from qml"))
 	}
 }

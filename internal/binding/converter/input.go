@@ -7,6 +7,10 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
+func GoInput(name, value string, f *parser.Function) string {
+	return goInput(name, value, f)
+}
+
 func goInput(name string, value string, f *parser.Function) string {
 	var vOld = value
 
@@ -113,6 +117,10 @@ func goInput(name string, value string, f *parser.Function) string {
 
 	f.Access = "unsupported_goInput"
 	return f.Access
+}
+
+func CppInput(name, value string, f *parser.Function) string {
+	return cppInput(name, value, f)
 }
 
 func cppInput(name string, value string, f *parser.Function) string {

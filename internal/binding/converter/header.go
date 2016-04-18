@@ -59,6 +59,10 @@ func GoHeaderOutput(f *parser.Function) string {
 
 	var value = f.Output
 
+	if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" && f.SignalMode == "callback" {
+		return cgoType(f, f.TempOutput)
+	}
+
 	if f.Meta == "constructor" && f.Output == "" {
 		value = f.Name
 	}
@@ -127,6 +131,14 @@ func GoHeaderInput(f *parser.Function) (o string) {
 		o += ")"
 	}
 
+	if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" && f.SignalMode == "Connect" {
+		if isClass(goType(f, f.TempOutput)) {
+			o += " *" + goType(f, f.TempOutput)
+		} else {
+			o += " " + goType(f, f.TempOutput)
+		}
+	}
+
 	return
 }
 
@@ -150,6 +162,14 @@ func GoHeaderInputSignalFunction(f *parser.Function) (o string) {
 	o = strings.TrimSuffix(o, ", ")
 
 	o += ")"
+
+	if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" && f.SignalMode == "callback" {
+		if isClass(goType(f, f.TempOutput)) {
+			o += " *" + goType(f, f.TempOutput)
+		} else {
+			o += " " + goType(f, f.TempOutput)
+		}
+	}
 
 	return
 }

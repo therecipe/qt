@@ -26,6 +26,26 @@ func cppFunctionSignal(f *parser.Function) string {
 	}
 	originalInput = strings.TrimSuffix(originalInput, ", ")
 
+	if parser.ClassMap[f.Class()].Module == "main" {
+		if f.Meta == "slot" && f.Output != "void" {
+			var (
+				output                = f.Output
+				shouldBeValue         string
+				shouldBeNewListPrefix string
+				shouldBeNewListSuffix string
+			)
+			if f.Output == "QStringList" {
+				shouldBeNewListPrefix = "QStringList("
+				shouldBeNewListSuffix = ")"
+			}
+			if f.Output != "void*" && !isObjectSubClass(strings.TrimSuffix(f.Output, "*")) && strings.HasSuffix(f.Output, "*") {
+				output = strings.TrimSuffix(output, "*")
+				shouldBeValue = "*"
+			}
+			return fmt.Sprintf("%v Signal_%v%v(%v) { return %v%v%v%v; }", output, strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyInputCallback(f), shouldBeValue, shouldBeNewListPrefix, converter.CppInput(fmt.Sprintf("callback%v%v%v(%v)", f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f)), f.Output, f), shouldBeNewListSuffix)
+		}
+	}
+
 	if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
 		if isDerivedFromPure(f) {
 			return fmt.Sprintf("void %v(%v)%v { callback%v%v%v(%v); }", f.Name, converter.CppBodyInputCallback(f), constP, f.Class(), strings.Title(f.Name), cppFunctionSignalOverload(f), converter.CppBodyOutputCallback(f))
@@ -95,7 +115,10 @@ func cppFunctionBody(f *parser.Function) (o string) {
 	}
 
 	if converter.CppHeaderOutput(f) != "void" {
-		o += "return "
+		if f.Meta == "slot" && parser.ClassMap[f.Class()].Module == "main" {
+		} else {
+			o += "return "
+		}
 	}
 
 	var tmpMeta string
@@ -125,7 +148,17 @@ func cppFunctionBody(f *parser.Function) (o string) {
 			if f.Static {
 				o += fmt.Sprintf("QMetaObject::invokeMethod(%v::instance(), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
 			} else {
-				o += fmt.Sprintf("QMetaObject::invokeMethod(static_cast<%v*>(ptr), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
+				if f.Output != "void" && parser.ClassMap[f.Class()].Module == "main" {
+					var output = converter.CppBodyInputSlotValue(f, &parser.Parameter{Name: "returnArg", Value: f.Output})
+					if f.Output != "void*" && !isObjectSubClass(strings.TrimSuffix(output, "*")) && strings.HasSuffix(output, "*") {
+						output = strings.TrimSuffix(output, "*")
+					}
+					o += fmt.Sprintf("%v returnArg;\n", output)
+					o += fmt.Sprintf("\tQMetaObject::invokeMethod(static_cast<%v*>(ptr), \"%v\"%v%v);\n", f.Class(), f.Name, fmt.Sprintf(", Q_RETURN_ARG(%v, returnArg)", output), converter.CppBodyInput(f))
+					o += fmt.Sprintf("\treturn %v", converter.CppOutput("returnArg", output, f))
+				} else {
+					o += fmt.Sprintf("QMetaObject::invokeMethod(static_cast<%v*>(ptr), \"%v\"%v)", f.Class(), f.Name, converter.CppBodyInput(f))
+				}
 			}
 		}
 

@@ -23,7 +23,7 @@ public:
 signals:
 	void sendToQml(QString data);
 public slots:
-	void sendToGo(QString data) { callbackQmlBridgeSendToGo(this, this->objectName().toUtf8().data(), data.toUtf8().data()); };
+	QString sendToGo(QString data) { return QString(callbackQmlBridgeSendToGo(this, this->objectName().toUtf8().data(), data.toUtf8().data())); };
 };
 
 void QmlBridge_ConnectSendToQml(void* ptr){
@@ -38,8 +38,10 @@ void QmlBridge_SendToQml(void* ptr, char* data){
 	static_cast<QmlBridge*>(ptr)->sendToQml(QString(data));
 }
 
-void QmlBridge_SendToGo(void* ptr, char* data){
-	QMetaObject::invokeMethod(static_cast<QmlBridge*>(ptr), "sendToGo", Q_ARG(QString, QString(data)));
+char* QmlBridge_SendToGo(void* ptr, char* data){
+	QString returnArg;
+	QMetaObject::invokeMethod(static_cast<QmlBridge*>(ptr), "sendToGo", Q_RETURN_ARG(QString, returnArg), Q_ARG(QString, QString(data)));
+	return returnArg.toUtf8().data();
 }
 
 void* QmlBridge_NewQmlBridge(void* parent){
