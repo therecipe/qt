@@ -29,7 +29,7 @@ func main() {
 	runCmd(exec.Command("go", "build", "-o", filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
 	runCmd(exec.Command("go", "build", "-o", filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GetQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
 
-	for _, example := range []string{filepath.Join("widgets", "line_edits"), filepath.Join("widgets", "video_player"), filepath.Join("widgets", "graphicsscene"), filepath.Join("quick", "bridge"), filepath.Join("quick", "bridge2"), filepath.Join("quick", "calc"), filepath.Join("quick", "dialog"), filepath.Join("quick", "view"), filepath.Join("qml", "application"), filepath.Join("qml", "prop"), filepath.Join("uitools", "calculator")} {
+	for _, example := range []string{filepath.Join("widgets", "line_edits"), filepath.Join("widgets", "video_player"), filepath.Join("widgets", "graphicsscene"), filepath.Join("quick", "bridge"), filepath.Join("quick", "bridge2"), filepath.Join("quick", "calc"), filepath.Join("quick", "dialog"), filepath.Join("quick", "translate"), filepath.Join("quick", "view"), filepath.Join("qml", "application"), filepath.Join("qml", "prop"), filepath.Join("uitools", "calculator")} {
 		var before = time.Now()
 
 		fmt.Print(example)

@@ -26,7 +26,6 @@
 ## Desktop (Windows / Mac OS X / Linux)
 
 1. Install Go >= 1.5.2 and setup a proper [GOPATH](https://golang.org/doc/code.html#GOPATH)
-	* https://storage.googleapis.com/golang/go1.5.3.windows-386.msi
 	* https://storage.googleapis.com/golang/go1.5.3.windows-amd64.msi
 	* https://storage.googleapis.com/golang/go1.5.3.darwin-amd64.pkg
 	* https://storage.googleapis.com/golang/go1.5.3.linux-386.tar.gz
