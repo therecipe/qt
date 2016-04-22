@@ -92,6 +92,7 @@
 #include <QRadioTuner>
 #include <QRadioTunerControl>
 #include <QRect>
+#include <QRectF>
 #include <QSize>
 #include <QSound>
 #include <QSoundEffect>
@@ -2305,6 +2306,10 @@ void QCameraExposure_SetSpotMeteringPoint(void* ptr, void* point){
 	static_cast<QCameraExposure*>(ptr)->setSpotMeteringPoint(*static_cast<QPointF*>(point));
 }
 
+void* QCameraExposure_SpotMeteringPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QCameraExposure*>(ptr)->spotMeteringPoint()).x(), static_cast<QPointF>(static_cast<QCameraExposure*>(ptr)->spotMeteringPoint()).y());
+}
+
 void QCameraExposure_ConnectApertureChanged(void* ptr){
 	QObject::connect(static_cast<QCameraExposure*>(ptr), static_cast<void (QCameraExposure::*)(qreal)>(&QCameraExposure::apertureChanged), static_cast<MyQCameraExposure*>(ptr), static_cast<void (MyQCameraExposure::*)(qreal)>(&MyQCameraExposure::Signal_ApertureChanged));;
 }
@@ -2671,6 +2676,10 @@ public:
 	void customEvent(QEvent * event) { callbackQCameraFocusCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
+void* QCameraFocus_CustomFocusPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QCameraFocus*>(ptr)->customFocusPoint()).x(), static_cast<QPointF>(static_cast<QCameraFocus*>(ptr)->customFocusPoint()).y());
+}
+
 double QCameraFocus_DigitalZoom(void* ptr){
 	return static_cast<double>(static_cast<QCameraFocus*>(ptr)->digitalZoom());
 }
@@ -2809,6 +2818,7 @@ void QCameraFocus_CustomEventDefault(void* ptr, void* event){
 
 class MyQCameraFocusControl: public QCameraFocusControl {
 public:
+	void Signal_CustomFocusPointChanged(const QPointF & point) { callbackQCameraFocusControlCustomFocusPointChanged(this, this->objectName().toUtf8().data(), new QPointF(static_cast<QPointF>(point).x(), static_cast<QPointF>(point).y())); };
 	void Signal_FocusModeChanged(QCameraFocus::FocusModes mode) { callbackQCameraFocusControlFocusModeChanged(this, this->objectName().toUtf8().data(), mode); };
 	void Signal_FocusPointModeChanged(QCameraFocus::FocusPointMode mode) { callbackQCameraFocusControlFocusPointModeChanged(this, this->objectName().toUtf8().data(), mode); };
 	void Signal_FocusZonesChanged() { callbackQCameraFocusControlFocusZonesChanged(this, this->objectName().toUtf8().data()); };
@@ -2816,6 +2826,22 @@ public:
 	void childEvent(QChildEvent * event) { callbackQCameraFocusControlChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQCameraFocusControlCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void* QCameraFocusControl_CustomFocusPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QCameraFocusControl*>(ptr)->customFocusPoint()).x(), static_cast<QPointF>(static_cast<QCameraFocusControl*>(ptr)->customFocusPoint()).y());
+}
+
+void QCameraFocusControl_ConnectCustomFocusPointChanged(void* ptr){
+	QObject::connect(static_cast<QCameraFocusControl*>(ptr), static_cast<void (QCameraFocusControl::*)(const QPointF &)>(&QCameraFocusControl::customFocusPointChanged), static_cast<MyQCameraFocusControl*>(ptr), static_cast<void (MyQCameraFocusControl::*)(const QPointF &)>(&MyQCameraFocusControl::Signal_CustomFocusPointChanged));;
+}
+
+void QCameraFocusControl_DisconnectCustomFocusPointChanged(void* ptr){
+	QObject::disconnect(static_cast<QCameraFocusControl*>(ptr), static_cast<void (QCameraFocusControl::*)(const QPointF &)>(&QCameraFocusControl::customFocusPointChanged), static_cast<MyQCameraFocusControl*>(ptr), static_cast<void (MyQCameraFocusControl::*)(const QPointF &)>(&MyQCameraFocusControl::Signal_CustomFocusPointChanged));;
+}
+
+void QCameraFocusControl_CustomFocusPointChanged(void* ptr, void* point){
+	static_cast<QCameraFocusControl*>(ptr)->customFocusPointChanged(*static_cast<QPointF*>(point));
+}
 
 int QCameraFocusControl_FocusMode(void* ptr){
 	return static_cast<QCameraFocusControl*>(ptr)->focusMode();
@@ -2911,6 +2937,10 @@ void QCameraFocusControl_CustomEventDefault(void* ptr, void* event){
 
 void* QCameraFocusZone_NewQCameraFocusZone(void* other){
 	return new QCameraFocusZone(*static_cast<QCameraFocusZone*>(other));
+}
+
+void* QCameraFocusZone_Area(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QCameraFocusZone*>(ptr)->area()).x(), static_cast<QRectF>(static_cast<QCameraFocusZone*>(ptr)->area()).y(), static_cast<QRectF>(static_cast<QCameraFocusZone*>(ptr)->area()).width(), static_cast<QRectF>(static_cast<QCameraFocusZone*>(ptr)->area()).height());
 }
 
 int QCameraFocusZone_IsValid(void* ptr){

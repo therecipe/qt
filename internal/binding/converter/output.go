@@ -348,17 +348,17 @@ func cppOutput(name string, value string, f *parser.Function) string {
 					return fmt.Sprintf("new %v(%v.object())", value, name)
 				}
 
-			case "QPoint":
+			case "QPoint", "QPointF":
 				{
 					return fmt.Sprintf("new %v(static_cast<%v>(%v).x(), static_cast<%v>(%v).y())", value, value, name, value, name)
 				}
 
-			case "QSize":
+			case "QSize", "QSizeF":
 				{
 					return fmt.Sprintf("new %v(static_cast<%v>(%v).width(), static_cast<%v>(%v).height())", value, value, name, value, name)
 				}
 
-			case "QRect":
+			case "QRect", "QRectF":
 				{
 					return fmt.Sprintf("new %v(static_cast<%v>(%v).x(), static_cast<%v>(%v).y(), static_cast<%v>(%v).width(), static_cast<%v>(%v).height())", value, value, name, value, name, value, name, value, name)
 				}

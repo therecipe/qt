@@ -44,6 +44,15 @@ func (ptr *QGraphicsSvgItem) QGraphicsSvgItem_PTR() *QGraphicsSvgItem {
 	return ptr
 }
 
+func (ptr *QGraphicsSvgItem) BoundingRect() *core.QRectF {
+	defer qt.Recovering("QGraphicsSvgItem::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QGraphicsSvgItem_BoundingRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsSvgItem) ElementId() string {
 	defer qt.Recovering("QGraphicsSvgItem::elementId")
 
@@ -436,6 +445,15 @@ func (ptr *QSvgGenerator) Title() string {
 	return ""
 }
 
+func (ptr *QSvgGenerator) ViewBoxF() *core.QRectF {
+	defer qt.Recovering("QSvgGenerator::viewBoxF")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSvgGenerator_ViewBoxF(ptr.Pointer()))
+	}
+	return nil
+}
+
 func NewQSvgGenerator() *QSvgGenerator {
 	defer qt.Recovering("QSvgGenerator::QSvgGenerator")
 
@@ -561,6 +579,15 @@ func (ptr *QSvgRenderer) SetViewBox2(viewbox core.QRectF_ITF) {
 	}
 }
 
+func (ptr *QSvgRenderer) ViewBoxF() *core.QRectF {
+	defer qt.Recovering("QSvgRenderer::viewBoxF")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSvgRenderer_ViewBoxF(ptr.Pointer()))
+	}
+	return nil
+}
+
 func NewQSvgRenderer(parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
@@ -592,6 +619,15 @@ func (ptr *QSvgRenderer) Animated() bool {
 		return C.QSvgRenderer_Animated(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QSvgRenderer) BoundsOnElement(id string) *core.QRectF {
+	defer qt.Recovering("QSvgRenderer::boundsOnElement")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSvgRenderer_BoundsOnElement(ptr.Pointer(), C.CString(id)))
+	}
+	return nil
 }
 
 func (ptr *QSvgRenderer) DefaultSize() *core.QSize {

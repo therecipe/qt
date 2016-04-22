@@ -100,6 +100,7 @@ public:
 	void dropEvent(QDropEvent * event) { callbackQQuickFramebufferObjectDropEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusInEvent(QFocusEvent * event) { callbackQQuickFramebufferObjectFocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQQuickFramebufferObjectFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
+	void geometryChanged(const QRectF & newGeometry, const QRectF & oldGeometry) { callbackQQuickFramebufferObjectGeometryChanged(this, this->objectName().toUtf8().data(), new QRectF(static_cast<QRectF>(newGeometry).x(), static_cast<QRectF>(newGeometry).y(), static_cast<QRectF>(newGeometry).width(), static_cast<QRectF>(newGeometry).height()), new QRectF(static_cast<QRectF>(oldGeometry).x(), static_cast<QRectF>(oldGeometry).y(), static_cast<QRectF>(oldGeometry).width(), static_cast<QRectF>(oldGeometry).height())); };
 	void hoverEnterEvent(QHoverEvent * event) { callbackQQuickFramebufferObjectHoverEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void hoverLeaveEvent(QHoverEvent * event) { callbackQQuickFramebufferObjectHoverLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void hoverMoveEvent(QHoverEvent * event) { callbackQQuickFramebufferObjectHoverMoveEvent(this, this->objectName().toUtf8().data(), event); };
@@ -218,6 +219,14 @@ void QQuickFramebufferObject_FocusOutEvent(void* ptr, void* event){
 
 void QQuickFramebufferObject_FocusOutEventDefault(void* ptr, void* event){
 	static_cast<QQuickFramebufferObject*>(ptr)->QQuickFramebufferObject::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QQuickFramebufferObject_GeometryChanged(void* ptr, void* newGeometry, void* oldGeometry){
+	static_cast<MyQQuickFramebufferObject*>(ptr)->geometryChanged(*static_cast<QRectF*>(newGeometry), *static_cast<QRectF*>(oldGeometry));
+}
+
+void QQuickFramebufferObject_GeometryChangedDefault(void* ptr, void* newGeometry, void* oldGeometry){
+	static_cast<QQuickFramebufferObject*>(ptr)->QQuickFramebufferObject::geometryChanged(*static_cast<QRectF*>(newGeometry), *static_cast<QRectF*>(oldGeometry));
 }
 
 void QQuickFramebufferObject_HoverEnterEvent(void* ptr, void* event){
@@ -420,6 +429,7 @@ public:
 	void dropEvent(QDropEvent * event) { callbackQQuickItemDropEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusInEvent(QFocusEvent * event) { callbackQQuickItemFocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQQuickItemFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
+	void geometryChanged(const QRectF & newGeometry, const QRectF & oldGeometry) { callbackQQuickItemGeometryChanged(this, this->objectName().toUtf8().data(), new QRectF(static_cast<QRectF>(newGeometry).x(), static_cast<QRectF>(newGeometry).y(), static_cast<QRectF>(newGeometry).width(), static_cast<QRectF>(newGeometry).height()), new QRectF(static_cast<QRectF>(oldGeometry).x(), static_cast<QRectF>(oldGeometry).y(), static_cast<QRectF>(oldGeometry).width(), static_cast<QRectF>(oldGeometry).height())); };
 	void hoverEnterEvent(QHoverEvent * event) { callbackQQuickItemHoverEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void hoverLeaveEvent(QHoverEvent * event) { callbackQQuickItemHoverLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void hoverMoveEvent(QHoverEvent * event) { callbackQQuickItemHoverMoveEvent(this, this->objectName().toUtf8().data(), event); };
@@ -456,6 +466,10 @@ int QQuickItem_Antialiasing(void* ptr){
 
 double QQuickItem_BaselineOffset(void* ptr){
 	return static_cast<double>(static_cast<QQuickItem*>(ptr)->baselineOffset());
+}
+
+void* QQuickItem_ChildrenRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->childrenRect()).x(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->childrenRect()).y(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->childrenRect()).width(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->childrenRect()).height());
 }
 
 int QQuickItem_Clip(void* ptr){
@@ -746,6 +760,14 @@ void QQuickItem_ForceActiveFocus2(void* ptr, int reason){
 	static_cast<QQuickItem*>(ptr)->forceActiveFocus(static_cast<Qt::FocusReason>(reason));
 }
 
+void QQuickItem_GeometryChanged(void* ptr, void* newGeometry, void* oldGeometry){
+	static_cast<MyQQuickItem*>(ptr)->geometryChanged(*static_cast<QRectF*>(newGeometry), *static_cast<QRectF*>(oldGeometry));
+}
+
+void QQuickItem_GeometryChangedDefault(void* ptr, void* newGeometry, void* oldGeometry){
+	static_cast<QQuickItem*>(ptr)->QQuickItem::geometryChanged(*static_cast<QRectF*>(newGeometry), *static_cast<QRectF*>(oldGeometry));
+}
+
 void QQuickItem_GrabMouse(void* ptr){
 	static_cast<QQuickItem*>(ptr)->grabMouse();
 }
@@ -816,6 +838,38 @@ void QQuickItem_KeyReleaseEvent(void* ptr, void* event){
 
 void QQuickItem_KeyReleaseEventDefault(void* ptr, void* event){
 	static_cast<QQuickItem*>(ptr)->QQuickItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void* QQuickItem_MapFromItem(void* ptr, void* item, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromItem(static_cast<QQuickItem*>(item), *static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromItem(static_cast<QQuickItem*>(item), *static_cast<QPointF*>(point))).y());
+}
+
+void* QQuickItem_MapFromScene(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromScene(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromScene(*static_cast<QPointF*>(point))).y());
+}
+
+void* QQuickItem_MapRectFromItem(void* ptr, void* item, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).height());
+}
+
+void* QQuickItem_MapRectFromScene(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).height());
+}
+
+void* QQuickItem_MapRectToItem(void* ptr, void* item, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToItem(static_cast<QQuickItem*>(item), *static_cast<QRectF*>(rect))).height());
+}
+
+void* QQuickItem_MapRectToScene(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).height());
+}
+
+void* QQuickItem_MapToItem(void* ptr, void* item, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapToItem(static_cast<QQuickItem*>(item), *static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapToItem(static_cast<QQuickItem*>(item), *static_cast<QPointF*>(point))).y());
+}
+
+void* QQuickItem_MapToScene(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapToScene(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapToScene(*static_cast<QPointF*>(point))).y());
 }
 
 void QQuickItem_MouseDoubleClickEvent(void* ptr, void* event){
@@ -1081,6 +1135,7 @@ public:
 	void dropEvent(QDropEvent * event) { callbackQQuickPaintedItemDropEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusInEvent(QFocusEvent * event) { callbackQQuickPaintedItemFocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQQuickPaintedItemFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
+	void geometryChanged(const QRectF & newGeometry, const QRectF & oldGeometry) { callbackQQuickPaintedItemGeometryChanged(this, this->objectName().toUtf8().data(), new QRectF(static_cast<QRectF>(newGeometry).x(), static_cast<QRectF>(newGeometry).y(), static_cast<QRectF>(newGeometry).width(), static_cast<QRectF>(newGeometry).height()), new QRectF(static_cast<QRectF>(oldGeometry).x(), static_cast<QRectF>(oldGeometry).y(), static_cast<QRectF>(oldGeometry).width(), static_cast<QRectF>(oldGeometry).height())); };
 	void hoverEnterEvent(QHoverEvent * event) { callbackQQuickPaintedItemHoverEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void hoverLeaveEvent(QHoverEvent * event) { callbackQQuickPaintedItemHoverLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void hoverMoveEvent(QHoverEvent * event) { callbackQQuickPaintedItemHoverMoveEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1135,6 +1190,10 @@ void QQuickPaintedItem_SetRenderTarget(void* ptr, int target){
 
 int QQuickPaintedItem_Antialiasing(void* ptr){
 	return static_cast<QQuickPaintedItem*>(ptr)->antialiasing();
+}
+
+void* QQuickPaintedItem_ContentsBoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QQuickPaintedItem*>(ptr)->contentsBoundingRect()).x(), static_cast<QRectF>(static_cast<QQuickPaintedItem*>(ptr)->contentsBoundingRect()).y(), static_cast<QRectF>(static_cast<QQuickPaintedItem*>(ptr)->contentsBoundingRect()).width(), static_cast<QRectF>(static_cast<QQuickPaintedItem*>(ptr)->contentsBoundingRect()).height());
 }
 
 void QQuickPaintedItem_ConnectContentsScaleChanged(void* ptr){
@@ -1311,6 +1370,14 @@ void QQuickPaintedItem_FocusOutEvent(void* ptr, void* event){
 
 void QQuickPaintedItem_FocusOutEventDefault(void* ptr, void* event){
 	static_cast<QQuickPaintedItem*>(ptr)->QQuickPaintedItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QQuickPaintedItem_GeometryChanged(void* ptr, void* newGeometry, void* oldGeometry){
+	static_cast<MyQQuickPaintedItem*>(ptr)->geometryChanged(*static_cast<QRectF*>(newGeometry), *static_cast<QRectF*>(oldGeometry));
+}
+
+void QQuickPaintedItem_GeometryChangedDefault(void* ptr, void* newGeometry, void* oldGeometry){
+	static_cast<QQuickPaintedItem*>(ptr)->QQuickPaintedItem::geometryChanged(*static_cast<QRectF*>(newGeometry), *static_cast<QRectF*>(oldGeometry));
 }
 
 void QQuickPaintedItem_HoverEnterEvent(void* ptr, void* event){
@@ -2866,6 +2933,10 @@ void* QSGClipNode_NewQSGClipNode(){
 	return new QSGClipNode();
 }
 
+void* QSGClipNode_ClipRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QSGClipNode*>(ptr)->clipRect()).x(), static_cast<QRectF>(static_cast<QSGClipNode*>(ptr)->clipRect()).y(), static_cast<QRectF>(static_cast<QSGClipNode*>(ptr)->clipRect()).width(), static_cast<QRectF>(static_cast<QSGClipNode*>(ptr)->clipRect()).height());
+}
+
 int QSGClipNode_IsRectangular(void* ptr){
 	return static_cast<QSGClipNode*>(ptr)->isRectangular();
 }
@@ -3396,6 +3467,10 @@ void* QSGSimpleRectNode_Color(void* ptr){
 	return new QColor(static_cast<QSGSimpleRectNode*>(ptr)->color());
 }
 
+void* QSGSimpleRectNode_Rect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QSGSimpleRectNode*>(ptr)->rect()).x(), static_cast<QRectF>(static_cast<QSGSimpleRectNode*>(ptr)->rect()).y(), static_cast<QRectF>(static_cast<QSGSimpleRectNode*>(ptr)->rect()).width(), static_cast<QRectF>(static_cast<QSGSimpleRectNode*>(ptr)->rect()).height());
+}
+
 void QSGSimpleRectNode_SetColor(void* ptr, void* color){
 	static_cast<QSGSimpleRectNode*>(ptr)->setColor(*static_cast<QColor*>(color));
 }
@@ -3426,6 +3501,10 @@ int QSGSimpleTextureNode_Filtering(void* ptr){
 
 int QSGSimpleTextureNode_OwnsTexture(void* ptr){
 	return static_cast<QSGSimpleTextureNode*>(ptr)->ownsTexture();
+}
+
+void* QSGSimpleTextureNode_Rect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->rect()).x(), static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->rect()).y(), static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->rect()).width(), static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->rect()).height());
 }
 
 void QSGSimpleTextureNode_SetFiltering(void* ptr, int filtering){
@@ -3460,6 +3539,10 @@ void QSGSimpleTextureNode_SetTextureCoordinatesTransform(void* ptr, int mode){
 	static_cast<QSGSimpleTextureNode*>(ptr)->setTextureCoordinatesTransform(static_cast<QSGSimpleTextureNode::TextureCoordinatesTransformFlag>(mode));
 }
 
+void* QSGSimpleTextureNode_SourceRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->sourceRect()).x(), static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->sourceRect()).y(), static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->sourceRect()).width(), static_cast<QRectF>(static_cast<QSGSimpleTextureNode*>(ptr)->sourceRect()).height());
+}
+
 void* QSGSimpleTextureNode_Texture(void* ptr){
 	return static_cast<QSGSimpleTextureNode*>(ptr)->texture();
 }
@@ -3491,6 +3574,10 @@ void QSGTexture_Bind(void* ptr){
 	static_cast<QSGTexture*>(ptr)->bind();
 }
 
+void* QSGTexture_ConvertToNormalizedSourceRect(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->convertToNormalizedSourceRect(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->convertToNormalizedSourceRect(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->convertToNormalizedSourceRect(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->convertToNormalizedSourceRect(*static_cast<QRectF*>(rect))).height());
+}
+
 int QSGTexture_Filtering(void* ptr){
 	return static_cast<QSGTexture*>(ptr)->filtering();
 }
@@ -3513,6 +3600,10 @@ int QSGTexture_IsAtlasTexture(void* ptr){
 
 int QSGTexture_MipmapFiltering(void* ptr){
 	return static_cast<QSGTexture*>(ptr)->mipmapFiltering();
+}
+
+void* QSGTexture_NormalizedTextureSubRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->normalizedTextureSubRect()).x(), static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->normalizedTextureSubRect()).y(), static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->normalizedTextureSubRect()).width(), static_cast<QRectF>(static_cast<QSGTexture*>(ptr)->normalizedTextureSubRect()).height());
 }
 
 void* QSGTexture_RemovedFromAtlas(void* ptr){

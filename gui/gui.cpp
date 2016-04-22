@@ -199,7 +199,9 @@
 
 class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout {
 public:
+	void Signal_DocumentSizeChanged(const QSizeF & newSize) { callbackQAbstractTextDocumentLayoutDocumentSizeChanged(this, this->objectName().toUtf8().data(), new QSizeF(static_cast<QSizeF>(newSize).width(), static_cast<QSizeF>(newSize).height())); };
 	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayoutPageCountChanged(this, this->objectName().toUtf8().data(), newPages); };
+	void Signal_Update(const QRectF & rect) { callbackQAbstractTextDocumentLayoutUpdate(this, this->objectName().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 	void Signal_UpdateBlock(const QTextBlock & block) { callbackQAbstractTextDocumentLayoutUpdateBlock(this, this->objectName().toUtf8().data(), new QTextBlock(block)); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTextDocumentLayoutTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractTextDocumentLayoutChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -210,8 +212,32 @@ char* QAbstractTextDocumentLayout_AnchorAt(void* ptr, void* position){
 	return static_cast<QAbstractTextDocumentLayout*>(ptr)->anchorAt(*static_cast<QPointF*>(position)).toUtf8().data();
 }
 
+void* QAbstractTextDocumentLayout_BlockBoundingRect(void* ptr, void* block){
+	return new QRectF(static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).x(), static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).y(), static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).width(), static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).height());
+}
+
 void* QAbstractTextDocumentLayout_Document(void* ptr){
 	return static_cast<QAbstractTextDocumentLayout*>(ptr)->document();
+}
+
+void* QAbstractTextDocumentLayout_DocumentSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->documentSize()).width(), static_cast<QSizeF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->documentSize()).height());
+}
+
+void QAbstractTextDocumentLayout_ConnectDocumentSizeChanged(void* ptr){
+	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QSizeF &)>(&QAbstractTextDocumentLayout::documentSizeChanged), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QSizeF &)>(&MyQAbstractTextDocumentLayout::Signal_DocumentSizeChanged));;
+}
+
+void QAbstractTextDocumentLayout_DisconnectDocumentSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QSizeF &)>(&QAbstractTextDocumentLayout::documentSizeChanged), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QSizeF &)>(&MyQAbstractTextDocumentLayout::Signal_DocumentSizeChanged));;
+}
+
+void QAbstractTextDocumentLayout_DocumentSizeChanged(void* ptr, void* newSize){
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->documentSizeChanged(*static_cast<QSizeF*>(newSize));
+}
+
+void* QAbstractTextDocumentLayout_FrameBoundingRect(void* ptr, void* frame){
+	return new QRectF(static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(frame))).x(), static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(frame))).y(), static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(frame))).width(), static_cast<QRectF>(static_cast<QAbstractTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(frame))).height());
 }
 
 void* QAbstractTextDocumentLayout_HandlerForObject(void* ptr, int objectType){
@@ -248,6 +274,18 @@ void QAbstractTextDocumentLayout_SetPaintDevice(void* ptr, void* device){
 
 void QAbstractTextDocumentLayout_UnregisterHandler(void* ptr, int objectType, void* component){
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QObject*>(component));
+}
+
+void QAbstractTextDocumentLayout_ConnectUpdate(void* ptr){
+	QObject::connect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QRectF &)>(&QAbstractTextDocumentLayout::update), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QRectF &)>(&MyQAbstractTextDocumentLayout::Signal_Update));;
+}
+
+void QAbstractTextDocumentLayout_DisconnectUpdate(void* ptr){
+	QObject::disconnect(static_cast<QAbstractTextDocumentLayout*>(ptr), static_cast<void (QAbstractTextDocumentLayout::*)(const QRectF &)>(&QAbstractTextDocumentLayout::update), static_cast<MyQAbstractTextDocumentLayout*>(ptr), static_cast<void (MyQAbstractTextDocumentLayout::*)(const QRectF &)>(&MyQAbstractTextDocumentLayout::Signal_Update));;
+}
+
+void QAbstractTextDocumentLayout_Update(void* ptr, void* rect){
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->update(*static_cast<QRectF*>(rect));
 }
 
 void QAbstractTextDocumentLayout_ConnectUpdateBlock(void* ptr){
@@ -1740,6 +1778,10 @@ double QConicalGradient_Angle(void* ptr){
 	return static_cast<double>(static_cast<QConicalGradient*>(ptr)->angle());
 }
 
+void* QConicalGradient_Center(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QConicalGradient*>(ptr)->center()).x(), static_cast<QPointF>(static_cast<QConicalGradient*>(ptr)->center()).y());
+}
+
 void QConicalGradient_SetAngle(void* ptr, double angle){
 	static_cast<QConicalGradient*>(ptr)->setAngle(static_cast<double>(angle));
 }
@@ -2121,6 +2163,10 @@ void* QDropEvent_Pos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QDropEvent*>(ptr)->pos()).x(), static_cast<QPoint>(static_cast<QDropEvent*>(ptr)->pos()).y());
 }
 
+void* QDropEvent_PosF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QDropEvent*>(ptr)->posF()).x(), static_cast<QPointF>(static_cast<QDropEvent*>(ptr)->posF()).y());
+}
+
 int QDropEvent_PossibleActions(void* ptr){
 	return static_cast<QDropEvent*>(ptr)->possibleActions();
 }
@@ -2149,8 +2195,20 @@ int QEnterEvent_GlobalY(void* ptr){
 	return static_cast<QEnterEvent*>(ptr)->globalY();
 }
 
+void* QEnterEvent_LocalPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QEnterEvent*>(ptr)->localPos()).x(), static_cast<QPointF>(static_cast<QEnterEvent*>(ptr)->localPos()).y());
+}
+
 void* QEnterEvent_Pos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QEnterEvent*>(ptr)->pos()).x(), static_cast<QPoint>(static_cast<QEnterEvent*>(ptr)->pos()).y());
+}
+
+void* QEnterEvent_ScreenPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QEnterEvent*>(ptr)->screenPos()).x(), static_cast<QPointF>(static_cast<QEnterEvent*>(ptr)->screenPos()).y());
+}
+
+void* QEnterEvent_WindowPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QEnterEvent*>(ptr)->windowPos()).x(), static_cast<QPointF>(static_cast<QEnterEvent*>(ptr)->windowPos()).y());
 }
 
 int QEnterEvent_X(void* ptr){
@@ -2801,6 +2859,18 @@ double QFontMetricsF_AverageCharWidth(void* ptr){
 	return static_cast<double>(static_cast<QFontMetricsF*>(ptr)->averageCharWidth());
 }
 
+void* QFontMetricsF_BoundingRect2(void* ptr, void* ch){
+	return new QRectF(static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).x(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).y(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).width(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).height());
+}
+
+void* QFontMetricsF_BoundingRect3(void* ptr, void* rect, int flags, char* text, int tabStops, int tabArray){
+	return new QRectF(static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QRectF*>(rect), flags, QString(text), tabStops, &tabArray)).x(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QRectF*>(rect), flags, QString(text), tabStops, &tabArray)).y(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QRectF*>(rect), flags, QString(text), tabStops, &tabArray)).width(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(*static_cast<QRectF*>(rect), flags, QString(text), tabStops, &tabArray)).height());
+}
+
+void* QFontMetricsF_BoundingRect(void* ptr, char* text){
+	return new QRectF(static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(QString(text))).x(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(QString(text))).y(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(QString(text))).width(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->boundingRect(QString(text))).height());
+}
+
 double QFontMetricsF_Descent(void* ptr){
 	return static_cast<double>(static_cast<QFontMetricsF*>(ptr)->descent());
 }
@@ -2853,12 +2923,20 @@ double QFontMetricsF_RightBearing(void* ptr, void* ch){
 	return static_cast<double>(static_cast<QFontMetricsF*>(ptr)->rightBearing(*static_cast<QChar*>(ch)));
 }
 
+void* QFontMetricsF_Size(void* ptr, int flags, char* text, int tabStops, int tabArray){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QFontMetricsF*>(ptr)->size(flags, QString(text), tabStops, &tabArray)).width(), static_cast<QSizeF>(static_cast<QFontMetricsF*>(ptr)->size(flags, QString(text), tabStops, &tabArray)).height());
+}
+
 double QFontMetricsF_StrikeOutPos(void* ptr){
 	return static_cast<double>(static_cast<QFontMetricsF*>(ptr)->strikeOutPos());
 }
 
 void QFontMetricsF_Swap(void* ptr, void* other){
 	static_cast<QFontMetricsF*>(ptr)->swap(*static_cast<QFontMetricsF*>(other));
+}
+
+void* QFontMetricsF_TightBoundingRect(void* ptr, char* text){
+	return new QRectF(static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->tightBoundingRect(QString(text))).x(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->tightBoundingRect(QString(text))).y(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->tightBoundingRect(QString(text))).width(), static_cast<QRectF>(static_cast<QFontMetricsF*>(ptr)->tightBoundingRect(QString(text))).height());
 }
 
 double QFontMetricsF_UnderlinePos(void* ptr){
@@ -2895,6 +2973,10 @@ void* QGlyphRun_NewQGlyphRun(){
 
 void* QGlyphRun_NewQGlyphRun2(void* other){
 	return new QGlyphRun(*static_cast<QGlyphRun*>(other));
+}
+
+void* QGlyphRun_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGlyphRun*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGlyphRun*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGlyphRun*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGlyphRun*>(ptr)->boundingRect()).height());
 }
 
 void QGlyphRun_Clear(void* ptr){
@@ -3364,8 +3446,16 @@ void* QHoverEvent_OldPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QHoverEvent*>(ptr)->oldPos()).x(), static_cast<QPoint>(static_cast<QHoverEvent*>(ptr)->oldPos()).y());
 }
 
+void* QHoverEvent_OldPosF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QHoverEvent*>(ptr)->oldPosF()).x(), static_cast<QPointF>(static_cast<QHoverEvent*>(ptr)->oldPosF()).y());
+}
+
 void* QHoverEvent_Pos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QHoverEvent*>(ptr)->pos()).x(), static_cast<QPoint>(static_cast<QHoverEvent*>(ptr)->pos()).y());
+}
+
+void* QHoverEvent_PosF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QHoverEvent*>(ptr)->posF()).x(), static_cast<QPointF>(static_cast<QHoverEvent*>(ptr)->posF()).y());
 }
 
 void* QIcon_NewQIcon(){
@@ -4128,6 +4218,10 @@ public:
 	void customEvent(QEvent * event) { callbackQInputMethodCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
+void* QInputMethod_CursorRectangle(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).x(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).y(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).width(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).height());
+}
+
 int QInputMethod_InputDirection(void* ptr){
 	return static_cast<QInputMethod*>(ptr)->inputDirection();
 }
@@ -4138,6 +4232,10 @@ int QInputMethod_IsAnimating(void* ptr){
 
 int QInputMethod_IsVisible(void* ptr){
 	return static_cast<QInputMethod*>(ptr)->isVisible();
+}
+
+void* QInputMethod_KeyboardRectangle(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->keyboardRectangle()).x(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->keyboardRectangle()).y(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->keyboardRectangle()).width(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->keyboardRectangle()).height());
 }
 
 void* QInputMethod_Locale(void* ptr){
@@ -4186,6 +4284,10 @@ void QInputMethod_DisconnectInputDirectionChanged(void* ptr){
 
 void QInputMethod_InputDirectionChanged(void* ptr, int newDirection){
 	static_cast<QInputMethod*>(ptr)->inputDirectionChanged(static_cast<Qt::LayoutDirection>(newDirection));
+}
+
+void* QInputMethod_InputItemRectangle(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).x(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).y(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).width(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).height());
 }
 
 void QInputMethod_InvokeAction(void* ptr, int a, int cursorPosition){
@@ -4482,6 +4584,10 @@ void* QLinearGradient_NewQLinearGradient2(void* start, void* finalStop){
 	return new QLinearGradient(*static_cast<QPointF*>(start), *static_cast<QPointF*>(finalStop));
 }
 
+void* QLinearGradient_FinalStop(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QLinearGradient*>(ptr)->finalStop()).x(), static_cast<QPointF>(static_cast<QLinearGradient*>(ptr)->finalStop()).y());
+}
+
 void QLinearGradient_SetFinalStop(void* ptr, void* stop){
 	static_cast<QLinearGradient*>(ptr)->setFinalStop(*static_cast<QPointF*>(stop));
 }
@@ -4496,6 +4602,10 @@ void QLinearGradient_SetStart(void* ptr, void* start){
 
 void QLinearGradient_SetStart2(void* ptr, double x, double y){
 	static_cast<QLinearGradient*>(ptr)->setStart(static_cast<double>(x), static_cast<double>(y));
+}
+
+void* QLinearGradient_Start(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QLinearGradient*>(ptr)->start()).x(), static_cast<QPointF>(static_cast<QLinearGradient*>(ptr)->start()).y());
 }
 
 void* QMatrix4x4_NewQMatrix4x4(){
@@ -4522,8 +4632,16 @@ void* QMatrix4x4_Map(void* ptr, void* point){
 	return new QPoint(static_cast<QPoint>(static_cast<QMatrix4x4*>(ptr)->map(*static_cast<QPoint*>(point))).x(), static_cast<QPoint>(static_cast<QMatrix4x4*>(ptr)->map(*static_cast<QPoint*>(point))).y());
 }
 
+void* QMatrix4x4_Map2(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QMatrix4x4*>(ptr)->map(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QMatrix4x4*>(ptr)->map(*static_cast<QPointF*>(point))).y());
+}
+
 void* QMatrix4x4_MapRect(void* ptr, void* rect){
 	return new QRect(static_cast<QRect>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRect*>(rect))).x(), static_cast<QRect>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRect*>(rect))).y(), static_cast<QRect>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRect*>(rect))).width(), static_cast<QRect>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRect*>(rect))).height());
+}
+
+void* QMatrix4x4_MapRect2(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRectF*>(rect))).height());
 }
 
 void QMatrix4x4_Optimize(void* ptr){
@@ -4602,12 +4720,24 @@ int QMouseEvent_GlobalY(void* ptr){
 	return static_cast<QMouseEvent*>(ptr)->globalY();
 }
 
+void* QMouseEvent_LocalPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QMouseEvent*>(ptr)->localPos()).x(), static_cast<QPointF>(static_cast<QMouseEvent*>(ptr)->localPos()).y());
+}
+
 void* QMouseEvent_Pos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QMouseEvent*>(ptr)->pos()).x(), static_cast<QPoint>(static_cast<QMouseEvent*>(ptr)->pos()).y());
 }
 
+void* QMouseEvent_ScreenPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QMouseEvent*>(ptr)->screenPos()).x(), static_cast<QPointF>(static_cast<QMouseEvent*>(ptr)->screenPos()).y());
+}
+
 int QMouseEvent_Source(void* ptr){
 	return static_cast<QMouseEvent*>(ptr)->source();
+}
+
+void* QMouseEvent_WindowPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QMouseEvent*>(ptr)->windowPos()).x(), static_cast<QPointF>(static_cast<QMouseEvent*>(ptr)->windowPos()).y());
 }
 
 int QMouseEvent_X(void* ptr){
@@ -4888,12 +5018,24 @@ void* QNativeGestureEvent_GlobalPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QNativeGestureEvent*>(ptr)->globalPos()).x(), static_cast<QPoint>(static_cast<QNativeGestureEvent*>(ptr)->globalPos()).y());
 }
 
+void* QNativeGestureEvent_LocalPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->localPos()).x(), static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->localPos()).y());
+}
+
 void* QNativeGestureEvent_Pos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QNativeGestureEvent*>(ptr)->pos()).x(), static_cast<QPoint>(static_cast<QNativeGestureEvent*>(ptr)->pos()).y());
 }
 
+void* QNativeGestureEvent_ScreenPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->screenPos()).x(), static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->screenPos()).y());
+}
+
 double QNativeGestureEvent_Value(void* ptr){
 	return static_cast<double>(static_cast<QNativeGestureEvent*>(ptr)->value());
+}
+
+void* QNativeGestureEvent_WindowPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->windowPos()).x(), static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->windowPos()).y());
 }
 
 class MyQOffscreenSurface: public QOffscreenSurface {
@@ -5001,6 +5143,14 @@ void* QPageLayout_NewQPageLayout2(void* pageSize, int orientation, void* margins
 	return new QPageLayout(*static_cast<QPageSize*>(pageSize), static_cast<QPageLayout::Orientation>(orientation), *static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units), *static_cast<QMarginsF*>(minMargins));
 }
 
+void* QPageLayout_FullRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect()).x(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect()).y(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect()).width(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect()).height());
+}
+
+void* QPageLayout_FullRect2(void* ptr, int units){
+	return new QRectF(static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect(static_cast<QPageLayout::Unit>(units))).x(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect(static_cast<QPageLayout::Unit>(units))).y(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect(static_cast<QPageLayout::Unit>(units))).width(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->fullRect(static_cast<QPageLayout::Unit>(units))).height());
+}
+
 void* QPageLayout_FullRectPixels(void* ptr, int resolution){
 	return new QRect(static_cast<QRect>(static_cast<QPageLayout*>(ptr)->fullRectPixels(resolution)).x(), static_cast<QRect>(static_cast<QPageLayout*>(ptr)->fullRectPixels(resolution)).y(), static_cast<QRect>(static_cast<QPageLayout*>(ptr)->fullRectPixels(resolution)).width(), static_cast<QRect>(static_cast<QPageLayout*>(ptr)->fullRectPixels(resolution)).height());
 }
@@ -5027,6 +5177,14 @@ int QPageLayout_Orientation(void* ptr){
 
 void* QPageLayout_PageSize(void* ptr){
 	return new QPageSize(static_cast<QPageLayout*>(ptr)->pageSize());
+}
+
+void* QPageLayout_PaintRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect()).x(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect()).y(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect()).width(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect()).height());
+}
+
+void* QPageLayout_PaintRect2(void* ptr, int units){
+	return new QRectF(static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect(static_cast<QPageLayout::Unit>(units))).x(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect(static_cast<QPageLayout::Unit>(units))).y(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect(static_cast<QPageLayout::Unit>(units))).width(), static_cast<QRectF>(static_cast<QPageLayout*>(ptr)->paintRect(static_cast<QPageLayout::Unit>(units))).height());
 }
 
 void* QPageLayout_PaintRectPixels(void* ptr, int resolution){
@@ -5109,6 +5267,14 @@ void* QPageSize_NewQPageSize4(void* size, int units, char* name, int matchPolicy
 	return new QPageSize(*static_cast<QSizeF*>(size), static_cast<QPageSize::Unit>(units), QString(name), static_cast<QPageSize::SizeMatchPolicy>(matchPolicy));
 }
 
+void* QPageSize_QPageSize_DefinitionSize2(int pageSizeId){
+	return new QSizeF(static_cast<QSizeF>(QPageSize::definitionSize(static_cast<QPageSize::PageSizeId>(pageSizeId))).width(), static_cast<QSizeF>(QPageSize::definitionSize(static_cast<QPageSize::PageSizeId>(pageSizeId))).height());
+}
+
+void* QPageSize_DefinitionSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QPageSize*>(ptr)->definitionSize()).width(), static_cast<QSizeF>(static_cast<QPageSize*>(ptr)->definitionSize()).height());
+}
+
 int QPageSize_QPageSize_DefinitionUnits2(int pageSizeId){
 	return QPageSize::definitionUnits(static_cast<QPageSize::PageSizeId>(pageSizeId));
 }
@@ -5157,12 +5323,24 @@ char* QPageSize_Name(void* ptr){
 	return static_cast<QPageSize*>(ptr)->name().toUtf8().data();
 }
 
+void* QPageSize_Rect(void* ptr, int units){
+	return new QRectF(static_cast<QRectF>(static_cast<QPageSize*>(ptr)->rect(static_cast<QPageSize::Unit>(units))).x(), static_cast<QRectF>(static_cast<QPageSize*>(ptr)->rect(static_cast<QPageSize::Unit>(units))).y(), static_cast<QRectF>(static_cast<QPageSize*>(ptr)->rect(static_cast<QPageSize::Unit>(units))).width(), static_cast<QRectF>(static_cast<QPageSize*>(ptr)->rect(static_cast<QPageSize::Unit>(units))).height());
+}
+
 void* QPageSize_RectPixels(void* ptr, int resolution){
 	return new QRect(static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPixels(resolution)).x(), static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPixels(resolution)).y(), static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPixels(resolution)).width(), static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPixels(resolution)).height());
 }
 
 void* QPageSize_RectPoints(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPoints()).x(), static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPoints()).y(), static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPoints()).width(), static_cast<QRect>(static_cast<QPageSize*>(ptr)->rectPoints()).height());
+}
+
+void* QPageSize_QPageSize_Size2(int pageSizeId, int units){
+	return new QSizeF(static_cast<QSizeF>(QPageSize::size(static_cast<QPageSize::PageSizeId>(pageSizeId), static_cast<QPageSize::Unit>(units))).width(), static_cast<QSizeF>(QPageSize::size(static_cast<QPageSize::PageSizeId>(pageSizeId), static_cast<QPageSize::Unit>(units))).height());
+}
+
+void* QPageSize_Size(void* ptr, int units){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QPageSize*>(ptr)->size(static_cast<QPageSize::Unit>(units))).width(), static_cast<QSizeF>(static_cast<QPageSize*>(ptr)->size(static_cast<QPageSize::Unit>(units))).height());
 }
 
 void* QPageSize_QPageSize_SizePixels2(int pageSizeId, int resolution){
@@ -5214,6 +5392,10 @@ void* QPagedPaintDevice_PageLayout(void* ptr){
 
 int QPagedPaintDevice_PageSize(void* ptr){
 	return static_cast<QPagedPaintDevice*>(ptr)->pageSize();
+}
+
+void* QPagedPaintDevice_PageSizeMM(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QPagedPaintDevice*>(ptr)->pageSizeMM()).width(), static_cast<QSizeF>(static_cast<QPagedPaintDevice*>(ptr)->pageSizeMM()).height());
 }
 
 int QPagedPaintDevice_SetPageLayout(void* ptr, void* newPageLayout){
@@ -5534,12 +5716,31 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	void drawEllipse(const QRectF & rect) { callbackQPaintEngineDrawEllipse(this, this->objectNameAbs().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
+	void drawImage(const QRectF & rectangle, const QImage & image, const QRectF & sr, Qt::ImageConversionFlags flags) { callbackQPaintEngineDrawImage(this, this->objectNameAbs().toUtf8().data(), new QRectF(static_cast<QRectF>(rectangle).x(), static_cast<QRectF>(rectangle).y(), static_cast<QRectF>(rectangle).width(), static_cast<QRectF>(rectangle).height()), new QImage(image), new QRectF(static_cast<QRectF>(sr).x(), static_cast<QRectF>(sr).y(), static_cast<QRectF>(sr).width(), static_cast<QRectF>(sr).height()), flags); };
 	void drawPolygon(const QPointF * points, int pointCount, QPaintEngine::PolygonDrawMode mode) { callbackQPaintEngineDrawPolygon(this, this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount, mode); };
 	void drawLines(const QLineF * lines, int lineCount) { callbackQPaintEngineDrawLines(this, this->objectNameAbs().toUtf8().data(), const_cast<QLineF*>(lines), lineCount); };
 	void drawPath(const QPainterPath & path) { callbackQPaintEngineDrawPath(this, this->objectNameAbs().toUtf8().data(), new QPainterPath(path)); };
 	void drawPoints(const QPointF * points, int pointCount) { callbackQPaintEngineDrawPoints(this, this->objectNameAbs().toUtf8().data(), const_cast<QPointF*>(points), pointCount); };
 	void drawRects(const QRectF * rects, int rectCount) { callbackQPaintEngineDrawRects(this, this->objectNameAbs().toUtf8().data(), const_cast<QRectF*>(rects), rectCount); };
+	void drawTiledPixmap(const QRectF & rect, const QPixmap & pixmap, const QPointF & p) { callbackQPaintEngineDrawTiledPixmap(this, this->objectNameAbs().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height()), new QPixmap(pixmap), new QPointF(static_cast<QPointF>(p).x(), static_cast<QPointF>(p).y())); };
 };
+
+void QPaintEngine_DrawEllipse(void* ptr, void* rect){
+	static_cast<MyQPaintEngine*>(ptr)->drawEllipse(*static_cast<QRectF*>(rect));
+}
+
+void QPaintEngine_DrawEllipseDefault(void* ptr, void* rect){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawEllipse(*static_cast<QRectF*>(rect));
+}
+
+void QPaintEngine_DrawImage(void* ptr, void* rectangle, void* image, void* sr, int flags){
+	static_cast<MyQPaintEngine*>(ptr)->drawImage(*static_cast<QRectF*>(rectangle), *static_cast<QImage*>(image), *static_cast<QRectF*>(sr), static_cast<Qt::ImageConversionFlag>(flags));
+}
+
+void QPaintEngine_DrawImageDefault(void* ptr, void* rectangle, void* image, void* sr, int flags){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawImage(*static_cast<QRectF*>(rectangle), *static_cast<QImage*>(image), *static_cast<QRectF*>(sr), static_cast<Qt::ImageConversionFlag>(flags));
+}
 
 void QPaintEngine_DrawPolygon(void* ptr, void* points, int pointCount, int mode){
 	static_cast<MyQPaintEngine*>(ptr)->drawPolygon(static_cast<QPointF*>(points), pointCount, static_cast<QPaintEngine::PolygonDrawMode>(mode));
@@ -5587,6 +5788,14 @@ void QPaintEngine_DrawRects(void* ptr, void* rects, int rectCount){
 
 void QPaintEngine_DrawRectsDefault(void* ptr, void* rects, int rectCount){
 	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawRects(static_cast<QRectF*>(rects), rectCount);
+}
+
+void QPaintEngine_DrawTiledPixmap(void* ptr, void* rect, void* pixmap, void* p){
+	static_cast<MyQPaintEngine*>(ptr)->drawTiledPixmap(*static_cast<QRectF*>(rect), *static_cast<QPixmap*>(pixmap), *static_cast<QPointF*>(p));
+}
+
+void QPaintEngine_DrawTiledPixmapDefault(void* ptr, void* rect, void* pixmap, void* p){
+	static_cast<QPaintEngine*>(ptr)->QPaintEngine::drawTiledPixmap(*static_cast<QRectF*>(rect), *static_cast<QPixmap*>(pixmap), *static_cast<QPointF*>(p));
 }
 
 int QPaintEngine_End(void* ptr){
@@ -5652,6 +5861,10 @@ void* QPaintEngineState_Brush(void* ptr){
 
 int QPaintEngineState_BrushNeedsResolving(void* ptr){
 	return static_cast<QPaintEngineState*>(ptr)->brushNeedsResolving();
+}
+
+void* QPaintEngineState_BrushOrigin(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPaintEngineState*>(ptr)->brushOrigin()).x(), static_cast<QPointF>(static_cast<QPaintEngineState*>(ptr)->brushOrigin()).y());
 }
 
 int QPaintEngineState_ClipOperation(void* ptr){
@@ -5728,6 +5941,14 @@ int QPainter_Begin(void* ptr, void* device){
 
 void* QPainter_BoundingRect2(void* ptr, void* rectangle, int flags, char* text){
 	return new QRect(static_cast<QRect>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRect*>(rectangle), flags, QString(text))).x(), static_cast<QRect>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRect*>(rectangle), flags, QString(text))).y(), static_cast<QRect>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRect*>(rectangle), flags, QString(text))).width(), static_cast<QRect>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRect*>(rectangle), flags, QString(text))).height());
+}
+
+void* QPainter_BoundingRect4(void* ptr, void* rectangle, char* text, void* option){
+	return new QRectF(static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), QString(text), *static_cast<QTextOption*>(option))).x(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), QString(text), *static_cast<QTextOption*>(option))).y(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), QString(text), *static_cast<QTextOption*>(option))).width(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), QString(text), *static_cast<QTextOption*>(option))).height());
+}
+
+void* QPainter_BoundingRect(void* ptr, void* rectangle, int flags, char* text){
+	return new QRectF(static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), flags, QString(text))).x(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), flags, QString(text))).y(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), flags, QString(text))).width(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->boundingRect(*static_cast<QRectF*>(rectangle), flags, QString(text))).height());
 }
 
 void QPainter_DrawArc(void* ptr, void* rectangle, int startAngle, int spanAngle){
@@ -5896,6 +6117,10 @@ void* QPainter_Brush(void* ptr){
 
 void* QPainter_BrushOrigin(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QPainter*>(ptr)->brushOrigin()).x(), static_cast<QPoint>(static_cast<QPainter*>(ptr)->brushOrigin()).y());
+}
+
+void* QPainter_ClipBoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QPainter*>(ptr)->clipBoundingRect()).x(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->clipBoundingRect()).y(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->clipBoundingRect()).width(), static_cast<QRectF>(static_cast<QPainter*>(ptr)->clipBoundingRect()).height());
 }
 
 void* QPainter_ClipPath(void* ptr){
@@ -6466,6 +6691,10 @@ void QPainterPath_CubicTo(void* ptr, void* c1, void* c2, void* endPoint){
 	static_cast<QPainterPath*>(ptr)->cubicTo(*static_cast<QPointF*>(c1), *static_cast<QPointF*>(c2), *static_cast<QPointF*>(endPoint));
 }
 
+void* QPainterPath_CurrentPosition(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPainterPath*>(ptr)->currentPosition()).x(), static_cast<QPointF>(static_cast<QPainterPath*>(ptr)->currentPosition()).y());
+}
+
 int QPainterPath_ElementCount(void* ptr){
 	return static_cast<QPainterPath*>(ptr)->elementCount();
 }
@@ -6550,12 +6779,20 @@ void QPainterPath_ArcTo2(void* ptr, double x, double y, double width, double hei
 	static_cast<QPainterPath*>(ptr)->arcTo(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height), static_cast<double>(startAngle), static_cast<double>(sweepLength));
 }
 
+void* QPainterPath_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->boundingRect()).height());
+}
+
 void QPainterPath_CloseSubpath(void* ptr){
 	static_cast<QPainterPath*>(ptr)->closeSubpath();
 }
 
 int QPainterPath_Contains3(void* ptr, void* p){
 	return static_cast<QPainterPath*>(ptr)->contains(*static_cast<QPainterPath*>(p));
+}
+
+void* QPainterPath_ControlPointRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->controlPointRect()).x(), static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->controlPointRect()).y(), static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->controlPointRect()).width(), static_cast<QRectF>(static_cast<QPainterPath*>(ptr)->controlPointRect()).height());
 }
 
 void QPainterPath_CubicTo2(void* ptr, double c1X, double c1Y, double c2X, double c2Y, double endPointX, double endPointY){
@@ -6588,6 +6825,10 @@ void QPainterPath_MoveTo2(void* ptr, double x, double y){
 
 double QPainterPath_PercentAtLength(void* ptr, double len){
 	return static_cast<double>(static_cast<QPainterPath*>(ptr)->percentAtLength(static_cast<double>(len)));
+}
+
+void* QPainterPath_PointAtPercent(void* ptr, double t){
+	return new QPointF(static_cast<QPointF>(static_cast<QPainterPath*>(ptr)->pointAtPercent(static_cast<double>(t))).x(), static_cast<QPointF>(static_cast<QPainterPath*>(ptr)->pointAtPercent(static_cast<double>(t))).y());
 }
 
 void QPainterPath_QuadTo2(void* ptr, double cx, double cy, double endPointX, double endPointY){
@@ -7501,6 +7742,10 @@ void* QPolygonF_NewQPolygonF2(int size){
 	return new QPolygonF(size);
 }
 
+void* QPolygonF_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QPolygonF*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QPolygonF*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QPolygonF*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QPolygonF*>(ptr)->boundingRect()).height());
+}
+
 void* QPolygonF_Intersected(void* ptr, void* r){
 	return new QPolygonF(static_cast<QPolygonF*>(ptr)->intersected(*static_cast<QPolygonF*>(r)));
 }
@@ -7601,8 +7846,16 @@ void* QRadialGradient_NewQRadialGradient3(double cx, double cy, double radius, d
 	return new QRadialGradient(static_cast<double>(cx), static_cast<double>(cy), static_cast<double>(radius), static_cast<double>(fx), static_cast<double>(fy));
 }
 
+void* QRadialGradient_Center(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QRadialGradient*>(ptr)->center()).x(), static_cast<QPointF>(static_cast<QRadialGradient*>(ptr)->center()).y());
+}
+
 double QRadialGradient_CenterRadius(void* ptr){
 	return static_cast<double>(static_cast<QRadialGradient*>(ptr)->centerRadius());
+}
+
+void* QRadialGradient_FocalPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QRadialGradient*>(ptr)->focalPoint()).x(), static_cast<QPointF>(static_cast<QRadialGradient*>(ptr)->focalPoint()).y());
 }
 
 double QRadialGradient_FocalRadius(void* ptr){
@@ -8159,6 +8412,7 @@ public:
 	void Signal_LogicalDotsPerInchChanged(qreal dpi) { callbackQScreenLogicalDotsPerInchChanged(this, this->objectName().toUtf8().data(), static_cast<double>(dpi)); };
 	void Signal_OrientationChanged(Qt::ScreenOrientation orientation) { callbackQScreenOrientationChanged(this, this->objectName().toUtf8().data(), orientation); };
 	void Signal_PhysicalDotsPerInchChanged(qreal dpi) { callbackQScreenPhysicalDotsPerInchChanged(this, this->objectName().toUtf8().data(), static_cast<double>(dpi)); };
+	void Signal_PhysicalSizeChanged(const QSizeF & size) { callbackQScreenPhysicalSizeChanged(this, this->objectName().toUtf8().data(), new QSizeF(static_cast<QSizeF>(size).width(), static_cast<QSizeF>(size).height())); };
 	void Signal_PrimaryOrientationChanged(Qt::ScreenOrientation orientation) { callbackQScreenPrimaryOrientationChanged(this, this->objectName().toUtf8().data(), orientation); };
 	void Signal_RefreshRateChanged(qreal refreshRate) { callbackQScreenRefreshRateChanged(this, this->objectName().toUtf8().data(), static_cast<double>(refreshRate)); };
 	void Signal_VirtualGeometryChanged(const QRect & rect) { callbackQScreenVirtualGeometryChanged(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height())); };
@@ -8229,6 +8483,10 @@ double QScreen_PhysicalDotsPerInchX(void* ptr){
 
 double QScreen_PhysicalDotsPerInchY(void* ptr){
 	return static_cast<double>(static_cast<QScreen*>(ptr)->physicalDotsPerInchY());
+}
+
+void* QScreen_PhysicalSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QScreen*>(ptr)->physicalSize()).width(), static_cast<QSizeF>(static_cast<QScreen*>(ptr)->physicalSize()).height());
 }
 
 int QScreen_PrimaryOrientation(void* ptr){
@@ -8335,6 +8593,18 @@ void QScreen_PhysicalDotsPerInchChanged(void* ptr, double dpi){
 	static_cast<QScreen*>(ptr)->physicalDotsPerInchChanged(static_cast<double>(dpi));
 }
 
+void QScreen_ConnectPhysicalSizeChanged(void* ptr){
+	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QSizeF &)>(&QScreen::physicalSizeChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QSizeF &)>(&MyQScreen::Signal_PhysicalSizeChanged));;
+}
+
+void QScreen_DisconnectPhysicalSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(const QSizeF &)>(&QScreen::physicalSizeChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(const QSizeF &)>(&MyQScreen::Signal_PhysicalSizeChanged));;
+}
+
+void QScreen_PhysicalSizeChanged(void* ptr, void* size){
+	static_cast<QScreen*>(ptr)->physicalSizeChanged(*static_cast<QSizeF*>(size));
+}
+
 void QScreen_ConnectPrimaryOrientationChanged(void* ptr){
 	QObject::connect(static_cast<QScreen*>(ptr), static_cast<void (QScreen::*)(Qt::ScreenOrientation)>(&QScreen::primaryOrientationChanged), static_cast<MyQScreen*>(ptr), static_cast<void (MyQScreen::*)(Qt::ScreenOrientation)>(&MyQScreen::Signal_PrimaryOrientationChanged));;
 }
@@ -8407,6 +8677,14 @@ void* QScrollEvent_NewQScrollEvent(void* contentPos, void* overshootDistance, in
 	return new QScrollEvent(*static_cast<QPointF*>(contentPos), *static_cast<QPointF*>(overshootDistance), static_cast<QScrollEvent::ScrollState>(scrollState));
 }
 
+void* QScrollEvent_ContentPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QScrollEvent*>(ptr)->contentPos()).x(), static_cast<QPointF>(static_cast<QScrollEvent*>(ptr)->contentPos()).y());
+}
+
+void* QScrollEvent_OvershootDistance(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QScrollEvent*>(ptr)->overshootDistance()).x(), static_cast<QPointF>(static_cast<QScrollEvent*>(ptr)->overshootDistance()).y());
+}
+
 int QScrollEvent_ScrollState(void* ptr){
 	return static_cast<QScrollEvent*>(ptr)->scrollState();
 }
@@ -8419,6 +8697,14 @@ void* QScrollPrepareEvent_NewQScrollPrepareEvent(void* startPos){
 	return new QScrollPrepareEvent(*static_cast<QPointF*>(startPos));
 }
 
+void* QScrollPrepareEvent_ContentPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QScrollPrepareEvent*>(ptr)->contentPos()).x(), static_cast<QPointF>(static_cast<QScrollPrepareEvent*>(ptr)->contentPos()).y());
+}
+
+void* QScrollPrepareEvent_ContentPosRange(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QScrollPrepareEvent*>(ptr)->contentPosRange()).x(), static_cast<QRectF>(static_cast<QScrollPrepareEvent*>(ptr)->contentPosRange()).y(), static_cast<QRectF>(static_cast<QScrollPrepareEvent*>(ptr)->contentPosRange()).width(), static_cast<QRectF>(static_cast<QScrollPrepareEvent*>(ptr)->contentPosRange()).height());
+}
+
 void QScrollPrepareEvent_SetContentPos(void* ptr, void* pos){
 	static_cast<QScrollPrepareEvent*>(ptr)->setContentPos(*static_cast<QPointF*>(pos));
 }
@@ -8429,6 +8715,14 @@ void QScrollPrepareEvent_SetContentPosRange(void* ptr, void* rect){
 
 void QScrollPrepareEvent_SetViewportSize(void* ptr, void* size){
 	static_cast<QScrollPrepareEvent*>(ptr)->setViewportSize(*static_cast<QSizeF*>(size));
+}
+
+void* QScrollPrepareEvent_StartPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QScrollPrepareEvent*>(ptr)->startPos()).x(), static_cast<QPointF>(static_cast<QScrollPrepareEvent*>(ptr)->startPos()).y());
+}
+
+void* QScrollPrepareEvent_ViewportSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QScrollPrepareEvent*>(ptr)->viewportSize()).width(), static_cast<QSizeF>(static_cast<QScrollPrepareEvent*>(ptr)->viewportSize()).height());
 }
 
 void QScrollPrepareEvent_DestroyQScrollPrepareEvent(void* ptr){
@@ -9173,6 +9467,10 @@ void QStaticText_SetTextWidth(void* ptr, double textWidth){
 	static_cast<QStaticText*>(ptr)->setTextWidth(static_cast<double>(textWidth));
 }
 
+void* QStaticText_Size(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QStaticText*>(ptr)->size()).width(), static_cast<QSizeF>(static_cast<QStaticText*>(ptr)->size()).height());
+}
+
 void QStaticText_Swap(void* ptr, void* other){
 	static_cast<QStaticText*>(ptr)->swap(*static_cast<QStaticText*>(other));
 }
@@ -9636,6 +9934,10 @@ void* QTabletEvent_GlobalPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QTabletEvent*>(ptr)->globalPos()).x(), static_cast<QPoint>(static_cast<QTabletEvent*>(ptr)->globalPos()).y());
 }
 
+void* QTabletEvent_GlobalPosF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QTabletEvent*>(ptr)->globalPosF()).x(), static_cast<QPointF>(static_cast<QTabletEvent*>(ptr)->globalPosF()).y());
+}
+
 int QTabletEvent_GlobalX(void* ptr){
 	return static_cast<QTabletEvent*>(ptr)->globalX();
 }
@@ -9658,6 +9960,10 @@ int QTabletEvent_PointerType(void* ptr){
 
 void* QTabletEvent_Pos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QTabletEvent*>(ptr)->pos()).x(), static_cast<QPoint>(static_cast<QTabletEvent*>(ptr)->pos()).y());
+}
+
+void* QTabletEvent_PosF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QTabletEvent*>(ptr)->posF()).x(), static_cast<QPointF>(static_cast<QTabletEvent*>(ptr)->posF()).y());
 }
 
 double QTabletEvent_Pressure(void* ptr){
@@ -10542,6 +10848,10 @@ int QTextDocument_MaximumBlockCount(void* ptr){
 	return static_cast<QTextDocument*>(ptr)->maximumBlockCount();
 }
 
+void* QTextDocument_PageSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QTextDocument*>(ptr)->pageSize()).width(), static_cast<QSizeF>(static_cast<QTextDocument*>(ptr)->pageSize()).height());
+}
+
 void QTextDocument_SetBaseUrl(void* ptr, void* url){
 	static_cast<QTextDocument*>(ptr)->setBaseUrl(*static_cast<QUrl*>(url));
 }
@@ -10576,6 +10886,10 @@ void QTextDocument_SetUndoRedoEnabled(void* ptr, int enable){
 
 void QTextDocument_SetUseDesignMetrics(void* ptr, int b){
 	static_cast<QTextDocument*>(ptr)->setUseDesignMetrics(b != 0);
+}
+
+void* QTextDocument_Size(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QTextDocument*>(ptr)->size()).width(), static_cast<QSizeF>(static_cast<QTextDocument*>(ptr)->size()).height());
 }
 
 double QTextDocument_TextWidth(void* ptr){
@@ -11454,6 +11768,10 @@ int QTextInlineObject_IsValid(void* ptr){
 	return static_cast<QTextInlineObject*>(ptr)->isValid();
 }
 
+void* QTextInlineObject_Rect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QTextInlineObject*>(ptr)->rect()).x(), static_cast<QRectF>(static_cast<QTextInlineObject*>(ptr)->rect()).y(), static_cast<QRectF>(static_cast<QTextInlineObject*>(ptr)->rect()).width(), static_cast<QRectF>(static_cast<QTextInlineObject*>(ptr)->rect()).height());
+}
+
 void QTextInlineObject_SetAscent(void* ptr, double a){
 	static_cast<QTextInlineObject*>(ptr)->setAscent(static_cast<double>(a));
 }
@@ -11526,6 +11844,10 @@ void QTextLayout_BeginLayout(void* ptr){
 	static_cast<QTextLayout*>(ptr)->beginLayout();
 }
 
+void* QTextLayout_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QTextLayout*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QTextLayout*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QTextLayout*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QTextLayout*>(ptr)->boundingRect()).height());
+}
+
 int QTextLayout_CacheEnabled(void* ptr){
 	return static_cast<QTextLayout*>(ptr)->cacheEnabled();
 }
@@ -11572,6 +11894,10 @@ double QTextLayout_MinimumWidth(void* ptr){
 
 int QTextLayout_NextCursorPosition(void* ptr, int oldPos, int mode){
 	return static_cast<QTextLayout*>(ptr)->nextCursorPosition(oldPos, static_cast<QTextLayout::CursorMode>(mode));
+}
+
+void* QTextLayout_Position(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QTextLayout*>(ptr)->position()).x(), static_cast<QPointF>(static_cast<QTextLayout*>(ptr)->position()).y());
 }
 
 int QTextLayout_PreeditAreaPosition(void* ptr){
@@ -11698,8 +12024,20 @@ int QTextLine_LineNumber(void* ptr){
 	return static_cast<QTextLine*>(ptr)->lineNumber();
 }
 
+void* QTextLine_NaturalTextRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QTextLine*>(ptr)->naturalTextRect()).x(), static_cast<QRectF>(static_cast<QTextLine*>(ptr)->naturalTextRect()).y(), static_cast<QRectF>(static_cast<QTextLine*>(ptr)->naturalTextRect()).width(), static_cast<QRectF>(static_cast<QTextLine*>(ptr)->naturalTextRect()).height());
+}
+
 double QTextLine_NaturalTextWidth(void* ptr){
 	return static_cast<double>(static_cast<QTextLine*>(ptr)->naturalTextWidth());
+}
+
+void* QTextLine_Position(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QTextLine*>(ptr)->position()).x(), static_cast<QPointF>(static_cast<QTextLine*>(ptr)->position()).y());
+}
+
+void* QTextLine_Rect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QTextLine*>(ptr)->rect()).x(), static_cast<QRectF>(static_cast<QTextLine*>(ptr)->rect()).y(), static_cast<QRectF>(static_cast<QTextLine*>(ptr)->rect()).width(), static_cast<QRectF>(static_cast<QTextLine*>(ptr)->rect()).height());
 }
 
 void QTextLine_SetLeadingIncluded(void* ptr, int included){
@@ -11907,6 +12245,10 @@ public:
 
 void QTextObjectInterface_DrawObject(void* ptr, void* painter, void* rect, void* doc, int posInDocument, void* format){
 	static_cast<QTextObjectInterface*>(ptr)->drawObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void* QTextObjectInterface_IntrinsicSize(void* ptr, void* doc, int posInDocument, void* format){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QTextObjectInterface*>(ptr)->intrinsicSize(static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format))).width(), static_cast<QSizeF>(static_cast<QTextObjectInterface*>(ptr)->intrinsicSize(static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format))).height());
 }
 
 void QTextObjectInterface_DestroyQTextObjectInterface(void* ptr){
@@ -12314,6 +12656,10 @@ void* QTransform_MapRect2(void* ptr, void* rectangle){
 	return new QRect(static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRect*>(rectangle))).height());
 }
 
+void* QTransform_MapRect(void* ptr, void* rectangle){
+	return new QRectF(static_cast<QRectF>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRectF*>(rectangle))).x(), static_cast<QRectF>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRectF*>(rectangle))).y(), static_cast<QRectF>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRectF*>(rectangle))).width(), static_cast<QRectF>(static_cast<QTransform*>(ptr)->mapRect(*static_cast<QRectF*>(rectangle))).height());
+}
+
 void* QTransform_MapToPolygon(void* ptr, void* rectangle){
 	return new QPolygon(static_cast<QTransform*>(ptr)->mapToPolygon(*static_cast<QRect*>(rectangle)));
 }
@@ -12400,6 +12746,10 @@ double QTransform_M33(void* ptr){
 
 void* QTransform_Map9(void* ptr, void* path){
 	return new QPainterPath(static_cast<QTransform*>(ptr)->map(*static_cast<QPainterPath*>(path)));
+}
+
+void* QTransform_Map2(void* ptr, void* p){
+	return new QPointF(static_cast<QPointF>(static_cast<QTransform*>(ptr)->map(*static_cast<QPointF*>(p))).x(), static_cast<QPointF>(static_cast<QTransform*>(ptr)->map(*static_cast<QPointF*>(p))).y());
 }
 
 void QTransform_Map10(void* ptr, int x, int y, int tx, int ty){
@@ -12514,6 +12864,10 @@ void* QVector2D_ToPoint(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QVector2D*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QVector2D*>(ptr)->toPoint()).y());
 }
 
+void* QVector2D_ToPointF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QVector2D*>(ptr)->toPointF()).x(), static_cast<QPointF>(static_cast<QVector2D*>(ptr)->toPointF()).y());
+}
+
 void* QVector3D_NewQVector3D(){
 	return new QVector3D();
 }
@@ -12544,6 +12898,10 @@ void QVector3D_Normalize(void* ptr){
 
 void* QVector3D_ToPoint(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QVector3D*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QVector3D*>(ptr)->toPoint()).y());
+}
+
+void* QVector3D_ToPointF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QVector3D*>(ptr)->toPointF()).x(), static_cast<QPointF>(static_cast<QVector3D*>(ptr)->toPointF()).y());
 }
 
 void* QVector4D_NewQVector4D(){
@@ -12578,6 +12936,10 @@ void* QVector4D_ToPoint(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QVector4D*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QVector4D*>(ptr)->toPoint()).y());
 }
 
+void* QVector4D_ToPointF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QVector4D*>(ptr)->toPointF()).x(), static_cast<QPointF>(static_cast<QVector4D*>(ptr)->toPointF()).y());
+}
+
 void* QWhatsThisClickedEvent_NewQWhatsThisClickedEvent(char* href){
 	return new QWhatsThisClickedEvent(QString(href));
 }
@@ -12610,6 +12972,10 @@ void* QWheelEvent_GlobalPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->globalPos()).x(), static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->globalPos()).y());
 }
 
+void* QWheelEvent_GlobalPosF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->globalPosF()).x(), static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->globalPosF()).y());
+}
+
 int QWheelEvent_GlobalX(void* ptr){
 	return static_cast<QWheelEvent*>(ptr)->globalX();
 }
@@ -12628,6 +12994,10 @@ void* QWheelEvent_PixelDelta(void* ptr){
 
 void* QWheelEvent_Pos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->pos()).x(), static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->pos()).y());
+}
+
+void* QWheelEvent_PosF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->posF()).x(), static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->posF()).y());
 }
 
 int QWheelEvent_Source(void* ptr){

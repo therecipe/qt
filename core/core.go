@@ -16822,6 +16822,33 @@ func (ptr *QLineF) Length() float64 {
 	return 0
 }
 
+func (ptr *QLineF) P1() *QPointF {
+	defer qt.Recovering("QLineF::p1")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QLineF_P1(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLineF) P2() *QPointF {
+	defer qt.Recovering("QLineF::p2")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QLineF_P2(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLineF) PointAt(t float64) *QPointF {
+	defer qt.Recovering("QLineF::pointAt")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QLineF_PointAt(ptr.Pointer(), C.double(t)))
+	}
+	return nil
+}
+
 func (ptr *QLineF) SetAngle(angle float64) {
 	defer qt.Recovering("QLineF::setAngle")
 
@@ -26189,6 +26216,15 @@ func (ptr *QRectF) Adjust(dx1 float64, dy1 float64, dx2 float64, dy2 float64) {
 	}
 }
 
+func (ptr *QRectF) Adjusted(dx1 float64, dy1 float64, dx2 float64, dy2 float64) *QRectF {
+	defer qt.Recovering("QRectF::adjusted")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_Adjusted(ptr.Pointer(), C.double(dx1), C.double(dy1), C.double(dx2), C.double(dy2)))
+	}
+	return nil
+}
+
 func (ptr *QRectF) Bottom() float64 {
 	defer qt.Recovering("QRectF::bottom")
 
@@ -26196,6 +26232,33 @@ func (ptr *QRectF) Bottom() float64 {
 		return float64(C.QRectF_Bottom(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QRectF) BottomLeft() *QPointF {
+	defer qt.Recovering("QRectF::bottomLeft")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QRectF_BottomLeft(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRectF) BottomRight() *QPointF {
+	defer qt.Recovering("QRectF::bottomRight")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QRectF_BottomRight(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRectF) Center() *QPointF {
+	defer qt.Recovering("QRectF::center")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QRectF_Center(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QRectF) Contains2(x float64, y float64) bool {
@@ -26214,6 +26277,15 @@ func (ptr *QRectF) Height() float64 {
 		return float64(C.QRectF_Height(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QRectF) Intersected(rectangle QRectF_ITF) *QRectF {
+	defer qt.Recovering("QRectF::intersected")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_Intersected(ptr.Pointer(), PointerFromQRectF(rectangle)))
+	}
+	return nil
 }
 
 func (ptr *QRectF) IsEmpty() bool {
@@ -26250,6 +26322,24 @@ func (ptr *QRectF) Left() float64 {
 		return float64(C.QRectF_Left(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QRectF) MarginsAdded(margins QMarginsF_ITF) *QRectF {
+	defer qt.Recovering("QRectF::marginsAdded")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_MarginsAdded(ptr.Pointer(), PointerFromQMarginsF(margins)))
+	}
+	return nil
+}
+
+func (ptr *QRectF) MarginsRemoved(margins QMarginsF_ITF) *QRectF {
+	defer qt.Recovering("QRectF::marginsRemoved")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_MarginsRemoved(ptr.Pointer(), PointerFromQMarginsF(margins)))
+	}
+	return nil
 }
 
 func (ptr *QRectF) MoveBottom(y float64) {
@@ -26338,6 +26428,15 @@ func (ptr *QRectF) MoveTopRight(position QPointF_ITF) {
 	if ptr.Pointer() != nil {
 		C.QRectF_MoveTopRight(ptr.Pointer(), PointerFromQPointF(position))
 	}
+}
+
+func (ptr *QRectF) Normalized() *QRectF {
+	defer qt.Recovering("QRectF::normalized")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_Normalized(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QRectF) Right() float64 {
@@ -26469,6 +26568,15 @@ func (ptr *QRectF) SetY(y float64) {
 	}
 }
 
+func (ptr *QRectF) Size() *QSizeF {
+	defer qt.Recovering("QRectF::size")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFFromPointer(C.QRectF_Size(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QRectF) ToRect() *QRect {
 	defer qt.Recovering("QRectF::toRect")
 
@@ -26487,6 +26595,24 @@ func (ptr *QRectF) Top() float64 {
 	return 0
 }
 
+func (ptr *QRectF) TopLeft() *QPointF {
+	defer qt.Recovering("QRectF::topLeft")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QRectF_TopLeft(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QRectF) TopRight() *QPointF {
+	defer qt.Recovering("QRectF::topRight")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QRectF_TopRight(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QRectF) Translate2(offset QPointF_ITF) {
 	defer qt.Recovering("QRectF::translate")
 
@@ -26501,6 +26627,33 @@ func (ptr *QRectF) Translate(dx float64, dy float64) {
 	if ptr.Pointer() != nil {
 		C.QRectF_Translate(ptr.Pointer(), C.double(dx), C.double(dy))
 	}
+}
+
+func (ptr *QRectF) Translated2(offset QPointF_ITF) *QRectF {
+	defer qt.Recovering("QRectF::translated")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_Translated2(ptr.Pointer(), PointerFromQPointF(offset)))
+	}
+	return nil
+}
+
+func (ptr *QRectF) Translated(dx float64, dy float64) *QRectF {
+	defer qt.Recovering("QRectF::translated")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_Translated(ptr.Pointer(), C.double(dx), C.double(dy)))
+	}
+	return nil
+}
+
+func (ptr *QRectF) United(rectangle QRectF_ITF) *QRectF {
+	defer qt.Recovering("QRectF::united")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_United(ptr.Pointer(), PointerFromQRectF(rectangle)))
+	}
+	return nil
 }
 
 func (ptr *QRectF) Width() float64 {
@@ -30594,6 +30747,24 @@ func NewQSizeF3(width float64, height float64) *QSizeF {
 	return newQSizeFFromPointer(C.QSizeF_NewQSizeF3(C.double(width), C.double(height)))
 }
 
+func (ptr *QSizeF) BoundedTo(otherSize QSizeF_ITF) *QSizeF {
+	defer qt.Recovering("QSizeF::boundedTo")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFFromPointer(C.QSizeF_BoundedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
+	}
+	return nil
+}
+
+func (ptr *QSizeF) ExpandedTo(otherSize QSizeF_ITF) *QSizeF {
+	defer qt.Recovering("QSizeF::expandedTo")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFFromPointer(C.QSizeF_ExpandedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
+	}
+	return nil
+}
+
 func (ptr *QSizeF) Height() float64 {
 	defer qt.Recovering("QSizeF::height")
 
@@ -30664,6 +30835,24 @@ func (ptr *QSizeF) Scale(width float64, height float64, mode Qt__AspectRatioMode
 	}
 }
 
+func (ptr *QSizeF) Scaled2(s QSizeF_ITF, mode Qt__AspectRatioMode) *QSizeF {
+	defer qt.Recovering("QSizeF::scaled")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFFromPointer(C.QSizeF_Scaled2(ptr.Pointer(), PointerFromQSizeF(s), C.int(mode)))
+	}
+	return nil
+}
+
+func (ptr *QSizeF) Scaled(width float64, height float64, mode Qt__AspectRatioMode) *QSizeF {
+	defer qt.Recovering("QSizeF::scaled")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFFromPointer(C.QSizeF_Scaled(ptr.Pointer(), C.double(width), C.double(height), C.int(mode)))
+	}
+	return nil
+}
+
 func (ptr *QSizeF) SetHeight(height float64) {
 	defer qt.Recovering("QSizeF::setHeight")
 
@@ -30695,6 +30884,15 @@ func (ptr *QSizeF) Transpose() {
 	if ptr.Pointer() != nil {
 		C.QSizeF_Transpose(ptr.Pointer())
 	}
+}
+
+func (ptr *QSizeF) Transposed() *QSizeF {
+	defer qt.Recovering("QSizeF::transposed")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFFromPointer(C.QSizeF_Transposed(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSizeF) Width() float64 {
@@ -39854,11 +40052,29 @@ func (ptr *QVariant) ToPoint() *QPoint {
 	return nil
 }
 
+func (ptr *QVariant) ToPointF() *QPointF {
+	defer qt.Recovering("QVariant::toPointF")
+
+	if ptr.Pointer() != nil {
+		return NewQPointFFromPointer(C.QVariant_ToPointF(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVariant) ToRect() *QRect {
 	defer qt.Recovering("QVariant::toRect")
 
 	if ptr.Pointer() != nil {
 		return NewQRectFromPointer(C.QVariant_ToRect(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVariant) ToRectF() *QRectF {
+	defer qt.Recovering("QVariant::toRectF")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QVariant_ToRectF(ptr.Pointer()))
 	}
 	return nil
 }
@@ -39886,6 +40102,15 @@ func (ptr *QVariant) ToSize() *QSize {
 
 	if ptr.Pointer() != nil {
 		return NewQSizeFromPointer(C.QVariant_ToSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVariant) ToSizeF() *QSizeF {
+	defer qt.Recovering("QVariant::toSizeF")
+
+	if ptr.Pointer() != nil {
+		return NewQSizeFFromPointer(C.QVariant_ToSizeF(ptr.Pointer()))
 	}
 	return nil
 }

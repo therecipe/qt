@@ -7,6 +7,8 @@
 extern "C" {
 #endif
 
+void* QGraphicsSvgItem_BoundingRect(void* ptr);
+void* QGraphicsSvgItem_BoundingRectDefault(void* ptr);
 char* QGraphicsSvgItem_ElementId(void* ptr);
 void* QGraphicsSvgItem_MaximumCacheSize(void* ptr);
 void QGraphicsSvgItem_Paint(void* ptr, void* painter, void* option, void* widget);
@@ -37,6 +39,7 @@ void QSvgGenerator_SetViewBox(void* ptr, void* viewBox);
 void QSvgGenerator_SetViewBox2(void* ptr, void* viewBox);
 void* QSvgGenerator_Size(void* ptr);
 char* QSvgGenerator_Title(void* ptr);
+void* QSvgGenerator_ViewBoxF(void* ptr);
 void* QSvgGenerator_NewQSvgGenerator();
 int QSvgGenerator_Metric(void* ptr, int metric);
 int QSvgGenerator_MetricDefault(void* ptr, int metric);
@@ -50,11 +53,13 @@ int QSvgRenderer_FramesPerSecond(void* ptr);
 void QSvgRenderer_SetFramesPerSecond(void* ptr, int num);
 void QSvgRenderer_SetViewBox(void* ptr, void* viewbox);
 void QSvgRenderer_SetViewBox2(void* ptr, void* viewbox);
+void* QSvgRenderer_ViewBoxF(void* ptr);
 void* QSvgRenderer_NewQSvgRenderer(void* parent);
 void* QSvgRenderer_NewQSvgRenderer4(void* contents, void* parent);
 void* QSvgRenderer_NewQSvgRenderer3(char* contents, void* parent);
 void* QSvgRenderer_NewQSvgRenderer2(char* filename, void* parent);
 int QSvgRenderer_Animated(void* ptr);
+void* QSvgRenderer_BoundsOnElement(void* ptr, char* id);
 void* QSvgRenderer_DefaultSize(void* ptr);
 int QSvgRenderer_ElementExists(void* ptr, char* id);
 int QSvgRenderer_IsValid(void* ptr);

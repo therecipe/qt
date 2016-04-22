@@ -260,6 +260,7 @@
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QTextEdit>
+#include <QTextFrame>
 #include <QTextOption>
 #include <QTileRules>
 #include <QTime>
@@ -13574,6 +13575,10 @@ int QGesture_HasHotSpot(void* ptr){
 	return static_cast<QGesture*>(ptr)->hasHotSpot();
 }
 
+void* QGesture_HotSpot(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGesture*>(ptr)->hotSpot()).x(), static_cast<QPointF>(static_cast<QGesture*>(ptr)->hotSpot()).y());
+}
+
 void QGesture_SetGestureCancelPolicy(void* ptr, int policy){
 	static_cast<QGesture*>(ptr)->setGestureCancelPolicy(static_cast<QGesture::GestureCancelPolicy>(policy));
 }
@@ -13650,6 +13655,10 @@ int QGestureEvent_IsAccepted2(void* ptr, int gestureType){
 	return static_cast<QGestureEvent*>(ptr)->isAccepted(static_cast<Qt::GestureType>(gestureType));
 }
 
+void* QGestureEvent_MapToGraphicsScene(void* ptr, void* gesturePoint){
+	return new QPointF(static_cast<QPointF>(static_cast<QGestureEvent*>(ptr)->mapToGraphicsScene(*static_cast<QPointF*>(gesturePoint))).x(), static_cast<QPointF>(static_cast<QGestureEvent*>(ptr)->mapToGraphicsScene(*static_cast<QPointF*>(gesturePoint))).y());
+}
+
 void QGestureEvent_SetAccepted(void* ptr, void* gesture, int value){
 	static_cast<QGestureEvent*>(ptr)->setAccepted(static_cast<QGesture*>(gesture), value != 0);
 }
@@ -13722,6 +13731,7 @@ public:
 	MyQGraphicsAnchorLayout(QGraphicsLayoutItem *parent) : QGraphicsAnchorLayout(parent) {};
 	void invalidate() { callbackQGraphicsAnchorLayoutInvalidate(this, this->objectNameAbs().toUtf8().data()); };
 	void removeAt(int index) { callbackQGraphicsAnchorLayoutRemoveAt(this, this->objectNameAbs().toUtf8().data(), index); };
+	void setGeometry(const QRectF & geom) { callbackQGraphicsAnchorLayoutSetGeometry(this, this->objectNameAbs().toUtf8().data(), new QRectF(static_cast<QRectF>(geom).x(), static_cast<QRectF>(geom).y(), static_cast<QRectF>(geom).width(), static_cast<QRectF>(geom).height())); };
 };
 
 void* QGraphicsAnchorLayout_NewQGraphicsAnchorLayout(void* parent){
@@ -13772,6 +13782,14 @@ void QGraphicsAnchorLayout_RemoveAtDefault(void* ptr, int index){
 	static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::removeAt(index);
 }
 
+void QGraphicsAnchorLayout_SetGeometry(void* ptr, void* geom){
+	static_cast<MyQGraphicsAnchorLayout*>(ptr)->setGeometry(*static_cast<QRectF*>(geom));
+}
+
+void QGraphicsAnchorLayout_SetGeometryDefault(void* ptr, void* geom){
+	static_cast<QGraphicsAnchorLayout*>(ptr)->QGraphicsAnchorLayout::setGeometry(*static_cast<QRectF*>(geom));
+}
+
 void QGraphicsAnchorLayout_SetHorizontalSpacing(void* ptr, double spacing){
 	static_cast<QGraphicsAnchorLayout*>(ptr)->setHorizontalSpacing(static_cast<double>(spacing));
 }
@@ -13782,6 +13800,10 @@ void QGraphicsAnchorLayout_SetSpacing(void* ptr, double spacing){
 
 void QGraphicsAnchorLayout_SetVerticalSpacing(void* ptr, double spacing){
 	static_cast<QGraphicsAnchorLayout*>(ptr)->setVerticalSpacing(static_cast<double>(spacing));
+}
+
+void* QGraphicsAnchorLayout_SizeHint(void* ptr, int which, void* constraint){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsAnchorLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).width(), static_cast<QSizeF>(static_cast<QGraphicsAnchorLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).height());
 }
 
 double QGraphicsAnchorLayout_VerticalSpacing(void* ptr){
@@ -13857,6 +13879,10 @@ void QGraphicsBlurEffect_DisconnectBlurRadiusChanged(void* ptr){
 
 void QGraphicsBlurEffect_BlurRadiusChanged(void* ptr, double radius){
 	static_cast<QGraphicsBlurEffect*>(ptr)->blurRadiusChanged(static_cast<double>(radius));
+}
+
+void* QGraphicsBlurEffect_BoundingRectFor(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsBlurEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsBlurEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsBlurEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsBlurEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).height());
 }
 
 void QGraphicsBlurEffect_DestroyQGraphicsBlurEffect(void* ptr){
@@ -13974,6 +14000,7 @@ public:
 	MyQGraphicsDropShadowEffect(QObject *parent) : QGraphicsDropShadowEffect(parent) {};
 	void Signal_BlurRadiusChanged(qreal blurRadius) { callbackQGraphicsDropShadowEffectBlurRadiusChanged(this, this->objectName().toUtf8().data(), static_cast<double>(blurRadius)); };
 	void Signal_ColorChanged(const QColor & color) { callbackQGraphicsDropShadowEffectColorChanged(this, this->objectName().toUtf8().data(), new QColor(color)); };
+	void Signal_OffsetChanged(const QPointF & offset) { callbackQGraphicsDropShadowEffectOffsetChanged(this, this->objectName().toUtf8().data(), new QPointF(static_cast<QPointF>(offset).x(), static_cast<QPointF>(offset).y())); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsDropShadowEffectTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsDropShadowEffectChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQGraphicsDropShadowEffectCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -13985,6 +14012,10 @@ double QGraphicsDropShadowEffect_BlurRadius(void* ptr){
 
 void* QGraphicsDropShadowEffect_Color(void* ptr){
 	return new QColor(static_cast<QGraphicsDropShadowEffect*>(ptr)->color());
+}
+
+void* QGraphicsDropShadowEffect_Offset(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsDropShadowEffect*>(ptr)->offset()).x(), static_cast<QPointF>(static_cast<QGraphicsDropShadowEffect*>(ptr)->offset()).y());
 }
 
 void QGraphicsDropShadowEffect_SetBlurRadius(void* ptr, double blurRadius){
@@ -14015,6 +14046,10 @@ void QGraphicsDropShadowEffect_BlurRadiusChanged(void* ptr, double blurRadius){
 	static_cast<QGraphicsDropShadowEffect*>(ptr)->blurRadiusChanged(static_cast<double>(blurRadius));
 }
 
+void* QGraphicsDropShadowEffect_BoundingRectFor(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsDropShadowEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsDropShadowEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsDropShadowEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsDropShadowEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).height());
+}
+
 void QGraphicsDropShadowEffect_ConnectColorChanged(void* ptr){
 	QObject::connect(static_cast<QGraphicsDropShadowEffect*>(ptr), static_cast<void (QGraphicsDropShadowEffect::*)(const QColor &)>(&QGraphicsDropShadowEffect::colorChanged), static_cast<MyQGraphicsDropShadowEffect*>(ptr), static_cast<void (MyQGraphicsDropShadowEffect::*)(const QColor &)>(&MyQGraphicsDropShadowEffect::Signal_ColorChanged));;
 }
@@ -14025,6 +14060,18 @@ void QGraphicsDropShadowEffect_DisconnectColorChanged(void* ptr){
 
 void QGraphicsDropShadowEffect_ColorChanged(void* ptr, void* color){
 	static_cast<QGraphicsDropShadowEffect*>(ptr)->colorChanged(*static_cast<QColor*>(color));
+}
+
+void QGraphicsDropShadowEffect_ConnectOffsetChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsDropShadowEffect*>(ptr), static_cast<void (QGraphicsDropShadowEffect::*)(const QPointF &)>(&QGraphicsDropShadowEffect::offsetChanged), static_cast<MyQGraphicsDropShadowEffect*>(ptr), static_cast<void (MyQGraphicsDropShadowEffect::*)(const QPointF &)>(&MyQGraphicsDropShadowEffect::Signal_OffsetChanged));;
+}
+
+void QGraphicsDropShadowEffect_DisconnectOffsetChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsDropShadowEffect*>(ptr), static_cast<void (QGraphicsDropShadowEffect::*)(const QPointF &)>(&QGraphicsDropShadowEffect::offsetChanged), static_cast<MyQGraphicsDropShadowEffect*>(ptr), static_cast<void (MyQGraphicsDropShadowEffect::*)(const QPointF &)>(&MyQGraphicsDropShadowEffect::Signal_OffsetChanged));;
+}
+
+void QGraphicsDropShadowEffect_OffsetChanged(void* ptr, void* offset){
+	static_cast<QGraphicsDropShadowEffect*>(ptr)->offsetChanged(*static_cast<QPointF*>(offset));
 }
 
 void QGraphicsDropShadowEffect_SetOffset3(void* ptr, double d){
@@ -14087,6 +14134,10 @@ public:
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsEllipseItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 };
 
+void* QGraphicsEllipseItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->boundingRect()).height());
+}
+
 int QGraphicsEllipseItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsEllipseItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
@@ -14105,6 +14156,10 @@ void QGraphicsEllipseItem_Paint(void* ptr, void* painter, void* option, void* wi
 
 void QGraphicsEllipseItem_PaintDefault(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void* QGraphicsEllipseItem_Rect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->rect()).x(), static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->rect()).y(), static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->rect()).width(), static_cast<QRectF>(static_cast<QGraphicsEllipseItem*>(ptr)->rect()).height());
 }
 
 void QGraphicsEllipseItem_SetRect(void* ptr, void* rect){
@@ -14164,6 +14219,7 @@ public:
 	MyQGraphicsGridLayout(QGraphicsLayoutItem *parent) : QGraphicsGridLayout(parent) {};
 	void invalidate() { callbackQGraphicsGridLayoutInvalidate(this, this->objectNameAbs().toUtf8().data()); };
 	void removeAt(int index) { callbackQGraphicsGridLayoutRemoveAt(this, this->objectNameAbs().toUtf8().data(), index); };
+	void setGeometry(const QRectF & rect) { callbackQGraphicsGridLayoutSetGeometry(this, this->objectNameAbs().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 };
 
 void* QGraphicsGridLayout_NewQGraphicsGridLayout(void* parent){
@@ -14302,6 +14358,14 @@ void QGraphicsGridLayout_SetColumnStretchFactor(void* ptr, int column, int stret
 	static_cast<QGraphicsGridLayout*>(ptr)->setColumnStretchFactor(column, stretch);
 }
 
+void QGraphicsGridLayout_SetGeometry(void* ptr, void* rect){
+	static_cast<MyQGraphicsGridLayout*>(ptr)->setGeometry(*static_cast<QRectF*>(rect));
+}
+
+void QGraphicsGridLayout_SetGeometryDefault(void* ptr, void* rect){
+	static_cast<QGraphicsGridLayout*>(ptr)->QGraphicsGridLayout::setGeometry(*static_cast<QRectF*>(rect));
+}
+
 void QGraphicsGridLayout_SetHorizontalSpacing(void* ptr, double spacing){
 	static_cast<QGraphicsGridLayout*>(ptr)->setHorizontalSpacing(static_cast<double>(spacing));
 }
@@ -14342,6 +14406,10 @@ void QGraphicsGridLayout_SetVerticalSpacing(void* ptr, double spacing){
 	static_cast<QGraphicsGridLayout*>(ptr)->setVerticalSpacing(static_cast<double>(spacing));
 }
 
+void* QGraphicsGridLayout_SizeHint(void* ptr, int which, void* constraint){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsGridLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).width(), static_cast<QSizeF>(static_cast<QGraphicsGridLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).height());
+}
+
 double QGraphicsGridLayout_VerticalSpacing(void* ptr){
 	return static_cast<double>(static_cast<QGraphicsGridLayout*>(ptr)->verticalSpacing());
 }
@@ -14378,6 +14446,10 @@ void* QGraphicsItemGroup_NewQGraphicsItemGroup(void* parent){
 
 void QGraphicsItemGroup_AddToGroup(void* ptr, void* item){
 	static_cast<QGraphicsItemGroup*>(ptr)->addToGroup(static_cast<QGraphicsItem*>(item));
+}
+
+void* QGraphicsItemGroup_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItemGroup*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsItemGroup*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsItemGroup*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsItemGroup*>(ptr)->boundingRect()).height());
 }
 
 int QGraphicsItemGroup_IsObscuredBy(void* ptr, void* item){
@@ -14442,6 +14514,10 @@ void* QGraphicsLineItem_NewQGraphicsLineItem2(void* line, void* parent){
 
 void* QGraphicsLineItem_NewQGraphicsLineItem3(double x1, double y1, double x2, double y2, void* parent){
 	return new MyQGraphicsLineItem(static_cast<double>(x1), static_cast<double>(y1), static_cast<double>(x2), static_cast<double>(y2), static_cast<QGraphicsItem*>(parent));
+}
+
+void* QGraphicsLineItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsLineItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsLineItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsLineItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsLineItem*>(ptr)->boundingRect()).height());
 }
 
 int QGraphicsLineItem_Contains(void* ptr, void* point){
@@ -14514,6 +14590,7 @@ public:
 	MyQGraphicsLinearLayout(Qt::Orientation orientation, QGraphicsLayoutItem *parent) : QGraphicsLinearLayout(orientation, parent) {};
 	void invalidate() { callbackQGraphicsLinearLayoutInvalidate(this, this->objectNameAbs().toUtf8().data()); };
 	void removeAt(int index) { callbackQGraphicsLinearLayoutRemoveAt(this, this->objectNameAbs().toUtf8().data(), index); };
+	void setGeometry(const QRectF & rect) { callbackQGraphicsLinearLayoutSetGeometry(this, this->objectNameAbs().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 };
 
 void* QGraphicsLinearLayout_NewQGraphicsLinearLayout(void* parent){
@@ -14584,6 +14661,14 @@ void QGraphicsLinearLayout_SetAlignment(void* ptr, void* item, int alignment){
 	static_cast<QGraphicsLinearLayout*>(ptr)->setAlignment(static_cast<QGraphicsLayoutItem*>(item), static_cast<Qt::AlignmentFlag>(alignment));
 }
 
+void QGraphicsLinearLayout_SetGeometry(void* ptr, void* rect){
+	static_cast<MyQGraphicsLinearLayout*>(ptr)->setGeometry(*static_cast<QRectF*>(rect));
+}
+
+void QGraphicsLinearLayout_SetGeometryDefault(void* ptr, void* rect){
+	static_cast<QGraphicsLinearLayout*>(ptr)->QGraphicsLinearLayout::setGeometry(*static_cast<QRectF*>(rect));
+}
+
 void QGraphicsLinearLayout_SetItemSpacing(void* ptr, int index, double spacing){
 	static_cast<QGraphicsLinearLayout*>(ptr)->setItemSpacing(index, static_cast<double>(spacing));
 }
@@ -14598,6 +14683,10 @@ void QGraphicsLinearLayout_SetSpacing(void* ptr, double spacing){
 
 void QGraphicsLinearLayout_SetStretchFactor(void* ptr, void* item, int stretch){
 	static_cast<QGraphicsLinearLayout*>(ptr)->setStretchFactor(static_cast<QGraphicsLayoutItem*>(item), stretch);
+}
+
+void* QGraphicsLinearLayout_SizeHint(void* ptr, int which, void* constraint){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsLinearLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).width(), static_cast<QSizeF>(static_cast<QGraphicsLinearLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).height());
 }
 
 double QGraphicsLinearLayout_Spacing(void* ptr){
@@ -14879,6 +14968,10 @@ public:
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPathItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 };
 
+void* QGraphicsPathItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsPathItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsPathItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsPathItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsPathItem*>(ptr)->boundingRect()).height());
+}
+
 int QGraphicsPathItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsPathItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
@@ -14950,12 +15043,20 @@ void* QGraphicsPixmapItem_NewQGraphicsPixmapItem2(void* pixmap, void* parent){
 	return new MyQGraphicsPixmapItem(*static_cast<QPixmap*>(pixmap), static_cast<QGraphicsItem*>(parent));
 }
 
+void* QGraphicsPixmapItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsPixmapItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsPixmapItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsPixmapItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsPixmapItem*>(ptr)->boundingRect()).height());
+}
+
 int QGraphicsPixmapItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
 
 int QGraphicsPixmapItem_IsObscuredBy(void* ptr, void* item){
 	return static_cast<QGraphicsPixmapItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
+}
+
+void* QGraphicsPixmapItem_Offset(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsPixmapItem*>(ptr)->offset()).x(), static_cast<QPointF>(static_cast<QGraphicsPixmapItem*>(ptr)->offset()).y());
 }
 
 void* QGraphicsPixmapItem_OpaqueArea(void* ptr){
@@ -15034,6 +15135,10 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPolygonItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 };
+
+void* QGraphicsPolygonItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsPolygonItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsPolygonItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsPolygonItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsPolygonItem*>(ptr)->boundingRect()).height());
+}
 
 int QGraphicsPolygonItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsPolygonItem*>(ptr)->contains(*static_cast<QPointF*>(point));
@@ -15120,6 +15225,7 @@ public:
 	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsProxyWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsProxyWidgetPaint(this, this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	void resizeEvent(QGraphicsSceneResizeEvent * event) { callbackQGraphicsProxyWidgetResizeEvent(this, this->objectName().toUtf8().data(), event); };
+	void setGeometry(const QRectF & rect) { callbackQGraphicsProxyWidgetSetGeometry(this, this->objectName().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 	void showEvent(QShowEvent * event) { callbackQGraphicsProxyWidgetShowEvent(this, this->objectName().toUtf8().data(), event); };
 	void ungrabMouseEvent(QEvent * event) { callbackQGraphicsProxyWidgetUngrabMouseEvent(this, this->objectName().toUtf8().data(), event); };
 	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsProxyWidgetWheelEvent(this, this->objectName().toUtf8().data(), event); };
@@ -15333,6 +15439,14 @@ void QGraphicsProxyWidget_ResizeEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::resizeEvent(static_cast<QGraphicsSceneResizeEvent*>(event));
 }
 
+void QGraphicsProxyWidget_SetGeometry(void* ptr, void* rect){
+	static_cast<MyQGraphicsProxyWidget*>(ptr)->setGeometry(*static_cast<QRectF*>(rect));
+}
+
+void QGraphicsProxyWidget_SetGeometryDefault(void* ptr, void* rect){
+	static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::setGeometry(*static_cast<QRectF*>(rect));
+}
+
 void QGraphicsProxyWidget_SetWidget(void* ptr, void* widget){
 	static_cast<QGraphicsProxyWidget*>(ptr)->setWidget(static_cast<QWidget*>(widget));
 }
@@ -15343,6 +15457,14 @@ void QGraphicsProxyWidget_ShowEvent(void* ptr, void* event){
 
 void QGraphicsProxyWidget_ShowEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::showEvent(static_cast<QShowEvent*>(event));
+}
+
+void* QGraphicsProxyWidget_SizeHint(void* ptr, int which, void* constraint){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsProxyWidget*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).width(), static_cast<QSizeF>(static_cast<QGraphicsProxyWidget*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).height());
+}
+
+void* QGraphicsProxyWidget_SubWidgetRect(void* ptr, void* widget){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsProxyWidget*>(ptr)->subWidgetRect(static_cast<QWidget*>(widget))).x(), static_cast<QRectF>(static_cast<QGraphicsProxyWidget*>(ptr)->subWidgetRect(static_cast<QWidget*>(widget))).y(), static_cast<QRectF>(static_cast<QGraphicsProxyWidget*>(ptr)->subWidgetRect(static_cast<QWidget*>(widget))).width(), static_cast<QRectF>(static_cast<QGraphicsProxyWidget*>(ptr)->subWidgetRect(static_cast<QWidget*>(widget))).height());
 }
 
 int QGraphicsProxyWidget_Type(void* ptr){
@@ -15481,6 +15603,10 @@ void QGraphicsRectItem_SetRect(void* ptr, void* rectangle){
 	static_cast<QGraphicsRectItem*>(ptr)->setRect(*static_cast<QRectF*>(rectangle));
 }
 
+void* QGraphicsRectItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->boundingRect()).height());
+}
+
 int QGraphicsRectItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsRectItem*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
@@ -15499,6 +15625,10 @@ void QGraphicsRectItem_Paint(void* ptr, void* painter, void* option, void* widge
 
 void QGraphicsRectItem_PaintDefault(void* ptr, void* painter, void* option, void* widget){
 	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void* QGraphicsRectItem_Rect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->rect()).x(), static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->rect()).y(), static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->rect()).width(), static_cast<QRectF>(static_cast<QGraphicsRectItem*>(ptr)->rect()).height());
 }
 
 void QGraphicsRectItem_SetRect2(void* ptr, double x, double y, double width, double height){
@@ -15789,6 +15919,8 @@ public:
 	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSceneDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSceneDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSceneDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void drawBackground(QPainter * painter, const QRectF & rect) { callbackQGraphicsSceneDrawBackground(this, this->objectName().toUtf8().data(), painter, new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
+	void drawForeground(QPainter * painter, const QRectF & rect) { callbackQGraphicsSceneDrawForeground(this, this->objectName().toUtf8().data(), painter, new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSceneDropEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusInEvent(QFocusEvent * focusEvent) { callbackQGraphicsSceneFocusInEvent(this, this->objectName().toUtf8().data(), focusEvent); };
 	void Signal_FocusItemChanged(QGraphicsItem * newFocusItem, QGraphicsItem * oldFocusItem, Qt::FocusReason reason) { callbackQGraphicsSceneFocusItemChanged(this, this->objectName().toUtf8().data(), newFocusItem, oldFocusItem, reason); };
@@ -15801,6 +15933,7 @@ public:
 	void mouseMoveEvent(QGraphicsSceneMouseEvent * mouseEvent) { callbackQGraphicsSceneMouseMoveEvent(this, this->objectName().toUtf8().data(), mouseEvent); };
 	void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent) { callbackQGraphicsSceneMousePressEvent(this, this->objectName().toUtf8().data(), mouseEvent); };
 	void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent) { callbackQGraphicsSceneMouseReleaseEvent(this, this->objectName().toUtf8().data(), mouseEvent); };
+	void Signal_SceneRectChanged(const QRectF & rect) { callbackQGraphicsSceneSceneRectChanged(this, this->objectName().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 	void Signal_SelectionChanged() { callbackQGraphicsSceneSelectionChanged(this, this->objectName().toUtf8().data()); };
 	void wheelEvent(QGraphicsSceneWheelEvent * wheelEvent) { callbackQGraphicsSceneWheelEvent(this, this->objectName().toUtf8().data(), wheelEvent); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsSceneTimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -15838,6 +15971,10 @@ double QGraphicsScene_MinimumRenderSize(void* ptr){
 
 void* QGraphicsScene_Palette(void* ptr){
 	return new QPalette(static_cast<QGraphicsScene*>(ptr)->palette());
+}
+
+void* QGraphicsScene_SceneRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->sceneRect()).x(), static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->sceneRect()).y(), static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->sceneRect()).width(), static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->sceneRect()).height());
 }
 
 void QGraphicsScene_SetBackgroundBrush(void* ptr, void* brush){
@@ -16012,6 +16149,22 @@ void QGraphicsScene_DragMoveEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 }
 
+void QGraphicsScene_DrawBackground(void* ptr, void* painter, void* rect){
+	static_cast<MyQGraphicsScene*>(ptr)->drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsScene_DrawBackgroundDefault(void* ptr, void* painter, void* rect){
+	static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsScene_DrawForeground(void* ptr, void* painter, void* rect){
+	static_cast<MyQGraphicsScene*>(ptr)->drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsScene_DrawForegroundDefault(void* ptr, void* painter, void* rect){
+	static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
 void QGraphicsScene_DropEvent(void* ptr, void* event){
 	static_cast<MyQGraphicsScene*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
 }
@@ -16112,6 +16265,10 @@ void* QGraphicsScene_ItemAt3(void* ptr, double x, double y, void* deviceTransfor
 	return static_cast<QGraphicsScene*>(ptr)->itemAt(static_cast<double>(x), static_cast<double>(y), *static_cast<QTransform*>(deviceTransform));
 }
 
+void* QGraphicsScene_ItemsBoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->itemsBoundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->itemsBoundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->itemsBoundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsScene*>(ptr)->itemsBoundingRect()).height());
+}
+
 void QGraphicsScene_KeyPressEvent(void* ptr, void* keyEvent){
 	static_cast<MyQGraphicsScene*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(keyEvent));
 }
@@ -16170,6 +16327,18 @@ void QGraphicsScene_RemoveItem(void* ptr, void* item){
 
 void QGraphicsScene_Render(void* ptr, void* painter, void* target, void* source, int aspectRatioMode){
 	static_cast<QGraphicsScene*>(ptr)->render(static_cast<QPainter*>(painter), *static_cast<QRectF*>(target), *static_cast<QRectF*>(source), static_cast<Qt::AspectRatioMode>(aspectRatioMode));
+}
+
+void QGraphicsScene_ConnectSceneRectChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsScene*>(ptr), static_cast<void (QGraphicsScene::*)(const QRectF &)>(&QGraphicsScene::sceneRectChanged), static_cast<MyQGraphicsScene*>(ptr), static_cast<void (MyQGraphicsScene::*)(const QRectF &)>(&MyQGraphicsScene::Signal_SceneRectChanged));;
+}
+
+void QGraphicsScene_DisconnectSceneRectChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsScene*>(ptr), static_cast<void (QGraphicsScene::*)(const QRectF &)>(&QGraphicsScene::sceneRectChanged), static_cast<MyQGraphicsScene*>(ptr), static_cast<void (MyQGraphicsScene::*)(const QRectF &)>(&MyQGraphicsScene::Signal_SceneRectChanged));;
+}
+
+void QGraphicsScene_SceneRectChanged(void* ptr, void* rect){
+	static_cast<QGraphicsScene*>(ptr)->sceneRectChanged(*static_cast<QRectF*>(rect));
 }
 
 void* QGraphicsScene_SelectionArea(void* ptr){
@@ -16280,8 +16449,16 @@ int QGraphicsSceneContextMenuEvent_Modifiers(void* ptr){
 	return static_cast<QGraphicsSceneContextMenuEvent*>(ptr)->modifiers();
 }
 
+void* QGraphicsSceneContextMenuEvent_Pos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneContextMenuEvent*>(ptr)->pos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneContextMenuEvent*>(ptr)->pos()).y());
+}
+
 int QGraphicsSceneContextMenuEvent_Reason(void* ptr){
 	return static_cast<QGraphicsSceneContextMenuEvent*>(ptr)->reason();
+}
+
+void* QGraphicsSceneContextMenuEvent_ScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneContextMenuEvent*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneContextMenuEvent*>(ptr)->scenePos()).y());
 }
 
 void* QGraphicsSceneContextMenuEvent_ScreenPos(void* ptr){
@@ -16312,12 +16489,20 @@ int QGraphicsSceneDragDropEvent_Modifiers(void* ptr){
 	return static_cast<QGraphicsSceneDragDropEvent*>(ptr)->modifiers();
 }
 
+void* QGraphicsSceneDragDropEvent_Pos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneDragDropEvent*>(ptr)->pos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneDragDropEvent*>(ptr)->pos()).y());
+}
+
 int QGraphicsSceneDragDropEvent_PossibleActions(void* ptr){
 	return static_cast<QGraphicsSceneDragDropEvent*>(ptr)->possibleActions();
 }
 
 int QGraphicsSceneDragDropEvent_ProposedAction(void* ptr){
 	return static_cast<QGraphicsSceneDragDropEvent*>(ptr)->proposedAction();
+}
+
+void* QGraphicsSceneDragDropEvent_ScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneDragDropEvent*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneDragDropEvent*>(ptr)->scenePos()).y());
 }
 
 void* QGraphicsSceneDragDropEvent_ScreenPos(void* ptr){
@@ -16344,6 +16529,10 @@ void QGraphicsSceneEvent_DestroyQGraphicsSceneEvent(void* ptr){
 	static_cast<QGraphicsSceneEvent*>(ptr)->~QGraphicsSceneEvent();
 }
 
+void* QGraphicsSceneHelpEvent_ScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneHelpEvent*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneHelpEvent*>(ptr)->scenePos()).y());
+}
+
 void* QGraphicsSceneHelpEvent_ScreenPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsSceneHelpEvent*>(ptr)->screenPos()).x(), static_cast<QPoint>(static_cast<QGraphicsSceneHelpEvent*>(ptr)->screenPos()).y());
 }
@@ -16352,12 +16541,28 @@ void QGraphicsSceneHelpEvent_DestroyQGraphicsSceneHelpEvent(void* ptr){
 	static_cast<QGraphicsSceneHelpEvent*>(ptr)->~QGraphicsSceneHelpEvent();
 }
 
+void* QGraphicsSceneHoverEvent_LastPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->lastPos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->lastPos()).y());
+}
+
+void* QGraphicsSceneHoverEvent_LastScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->lastScenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->lastScenePos()).y());
+}
+
 void* QGraphicsSceneHoverEvent_LastScreenPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->lastScreenPos()).x(), static_cast<QPoint>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->lastScreenPos()).y());
 }
 
 int QGraphicsSceneHoverEvent_Modifiers(void* ptr){
 	return static_cast<QGraphicsSceneHoverEvent*>(ptr)->modifiers();
+}
+
+void* QGraphicsSceneHoverEvent_Pos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->pos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->pos()).y());
+}
+
+void* QGraphicsSceneHoverEvent_ScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneHoverEvent*>(ptr)->scenePos()).y());
 }
 
 void* QGraphicsSceneHoverEvent_ScreenPos(void* ptr){
@@ -16372,6 +16577,14 @@ int QGraphicsSceneMouseEvent_Button(void* ptr){
 	return static_cast<QGraphicsSceneMouseEvent*>(ptr)->button();
 }
 
+void* QGraphicsSceneMouseEvent_ButtonDownPos(void* ptr, int button){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->buttonDownPos(static_cast<Qt::MouseButton>(button))).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->buttonDownPos(static_cast<Qt::MouseButton>(button))).y());
+}
+
+void* QGraphicsSceneMouseEvent_ButtonDownScenePos(void* ptr, int button){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->buttonDownScenePos(static_cast<Qt::MouseButton>(button))).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->buttonDownScenePos(static_cast<Qt::MouseButton>(button))).y());
+}
+
 void* QGraphicsSceneMouseEvent_ButtonDownScreenPos(void* ptr, int button){
 	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->buttonDownScreenPos(static_cast<Qt::MouseButton>(button))).x(), static_cast<QPoint>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->buttonDownScreenPos(static_cast<Qt::MouseButton>(button))).y());
 }
@@ -16384,12 +16597,28 @@ int QGraphicsSceneMouseEvent_Flags(void* ptr){
 	return static_cast<QGraphicsSceneMouseEvent*>(ptr)->flags();
 }
 
+void* QGraphicsSceneMouseEvent_LastPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->lastPos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->lastPos()).y());
+}
+
+void* QGraphicsSceneMouseEvent_LastScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->lastScenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->lastScenePos()).y());
+}
+
 void* QGraphicsSceneMouseEvent_LastScreenPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->lastScreenPos()).x(), static_cast<QPoint>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->lastScreenPos()).y());
 }
 
 int QGraphicsSceneMouseEvent_Modifiers(void* ptr){
 	return static_cast<QGraphicsSceneMouseEvent*>(ptr)->modifiers();
+}
+
+void* QGraphicsSceneMouseEvent_Pos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->pos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->pos()).y());
+}
+
+void* QGraphicsSceneMouseEvent_ScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMouseEvent*>(ptr)->scenePos()).y());
 }
 
 void* QGraphicsSceneMouseEvent_ScreenPos(void* ptr){
@@ -16408,12 +16637,28 @@ void* QGraphicsSceneMoveEvent_NewQGraphicsSceneMoveEvent(){
 	return new QGraphicsSceneMoveEvent();
 }
 
+void* QGraphicsSceneMoveEvent_NewPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMoveEvent*>(ptr)->newPos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMoveEvent*>(ptr)->newPos()).y());
+}
+
+void* QGraphicsSceneMoveEvent_OldPos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneMoveEvent*>(ptr)->oldPos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneMoveEvent*>(ptr)->oldPos()).y());
+}
+
 void QGraphicsSceneMoveEvent_DestroyQGraphicsSceneMoveEvent(void* ptr){
 	static_cast<QGraphicsSceneMoveEvent*>(ptr)->~QGraphicsSceneMoveEvent();
 }
 
 void* QGraphicsSceneResizeEvent_NewQGraphicsSceneResizeEvent(){
 	return new QGraphicsSceneResizeEvent();
+}
+
+void* QGraphicsSceneResizeEvent_NewSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsSceneResizeEvent*>(ptr)->newSize()).width(), static_cast<QSizeF>(static_cast<QGraphicsSceneResizeEvent*>(ptr)->newSize()).height());
+}
+
+void* QGraphicsSceneResizeEvent_OldSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsSceneResizeEvent*>(ptr)->oldSize()).width(), static_cast<QSizeF>(static_cast<QGraphicsSceneResizeEvent*>(ptr)->oldSize()).height());
 }
 
 void QGraphicsSceneResizeEvent_DestroyQGraphicsSceneResizeEvent(void* ptr){
@@ -16436,6 +16681,14 @@ int QGraphicsSceneWheelEvent_Orientation(void* ptr){
 	return static_cast<QGraphicsSceneWheelEvent*>(ptr)->orientation();
 }
 
+void* QGraphicsSceneWheelEvent_Pos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneWheelEvent*>(ptr)->pos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneWheelEvent*>(ptr)->pos()).y());
+}
+
+void* QGraphicsSceneWheelEvent_ScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsSceneWheelEvent*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsSceneWheelEvent*>(ptr)->scenePos()).y());
+}
+
 void* QGraphicsSceneWheelEvent_ScreenPos(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QGraphicsSceneWheelEvent*>(ptr)->screenPos()).x(), static_cast<QPoint>(static_cast<QGraphicsSceneWheelEvent*>(ptr)->screenPos()).y());
 }
@@ -16451,6 +16704,10 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsSimpleTextItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 };
+
+void* QGraphicsSimpleTextItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsSimpleTextItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsSimpleTextItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsSimpleTextItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsSimpleTextItem*>(ptr)->boundingRect()).height());
+}
 
 int QGraphicsSimpleTextItem_Contains(void* ptr, void* point){
 	return static_cast<QGraphicsSimpleTextItem*>(ptr)->contains(*static_cast<QPointF*>(point));
@@ -16558,6 +16815,10 @@ void* QGraphicsTextItem_TextCursor(void* ptr){
 
 void QGraphicsTextItem_AdjustSize(void* ptr){
 	static_cast<QGraphicsTextItem*>(ptr)->adjustSize();
+}
+
+void* QGraphicsTextItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsTextItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsTextItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsTextItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsTextItem*>(ptr)->boundingRect()).height());
 }
 
 int QGraphicsTextItem_Contains(void* ptr, void* point){
@@ -16856,6 +17117,8 @@ public:
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQGraphicsViewDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQGraphicsViewDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQGraphicsViewDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void drawBackground(QPainter * painter, const QRectF & rect) { callbackQGraphicsViewDrawBackground(this, this->objectName().toUtf8().data(), painter, new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
+	void drawForeground(QPainter * painter, const QRectF & rect) { callbackQGraphicsViewDrawForeground(this, this->objectName().toUtf8().data(), painter, new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 	void dropEvent(QDropEvent * event) { callbackQGraphicsViewDropEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusInEvent(QFocusEvent * event) { callbackQGraphicsViewFocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsViewFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
@@ -16868,6 +17131,7 @@ public:
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQGraphicsViewMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void paintEvent(QPaintEvent * event) { callbackQGraphicsViewPaintEvent(this, this->objectName().toUtf8().data(), event); };
 	void resizeEvent(QResizeEvent * event) { callbackQGraphicsViewResizeEvent(this, this->objectName().toUtf8().data(), event); };
+	void Signal_RubberBandChanged(QRect rubberBandRect, QPointF fromScenePoint, QPointF toScenePoint) { callbackQGraphicsViewRubberBandChanged(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rubberBandRect).x(), static_cast<QRect>(rubberBandRect).y(), static_cast<QRect>(rubberBandRect).width(), static_cast<QRect>(rubberBandRect).height()), new QPointF(static_cast<QPointF>(fromScenePoint).x(), static_cast<QPointF>(fromScenePoint).y()), new QPointF(static_cast<QPointF>(toScenePoint).x(), static_cast<QPointF>(toScenePoint).y())); };
 	void scrollContentsBy(int dx, int dy) { callbackQGraphicsViewScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
 	void setupViewport(QWidget * widget) { if (!callbackQGraphicsViewSetupViewport(this, this->objectName().toUtf8().data(), widget)) { QGraphicsView::setupViewport(widget); }; };
 	void showEvent(QShowEvent * event) { callbackQGraphicsViewShowEvent(this, this->objectName().toUtf8().data(), event); };
@@ -16925,6 +17189,10 @@ int QGraphicsView_ResizeAnchor(void* ptr){
 
 int QGraphicsView_RubberBandSelectionMode(void* ptr){
 	return static_cast<QGraphicsView*>(ptr)->rubberBandSelectionMode();
+}
+
+void* QGraphicsView_SceneRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsView*>(ptr)->sceneRect()).x(), static_cast<QRectF>(static_cast<QGraphicsView*>(ptr)->sceneRect()).y(), static_cast<QRectF>(static_cast<QGraphicsView*>(ptr)->sceneRect()).width(), static_cast<QRectF>(static_cast<QGraphicsView*>(ptr)->sceneRect()).height());
 }
 
 void QGraphicsView_SetAlignment(void* ptr, int alignment){
@@ -17037,6 +17305,22 @@ void QGraphicsView_DragMoveEvent(void* ptr, void* event){
 
 void QGraphicsView_DragMoveEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsView*>(ptr)->QGraphicsView::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+}
+
+void QGraphicsView_DrawBackground(void* ptr, void* painter, void* rect){
+	static_cast<MyQGraphicsView*>(ptr)->drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsView_DrawBackgroundDefault(void* ptr, void* painter, void* rect){
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::drawBackground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsView_DrawForeground(void* ptr, void* painter, void* rect){
+	static_cast<MyQGraphicsView*>(ptr)->drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsView_DrawForegroundDefault(void* ptr, void* painter, void* rect){
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::drawForeground(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect));
 }
 
 void QGraphicsView_DropEvent(void* ptr, void* event){
@@ -17167,6 +17451,14 @@ void* QGraphicsView_MapToScene4(void* ptr, void* path){
 	return new QPainterPath(static_cast<QGraphicsView*>(ptr)->mapToScene(*static_cast<QPainterPath*>(path)));
 }
 
+void* QGraphicsView_MapToScene(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsView*>(ptr)->mapToScene(*static_cast<QPoint*>(point))).x(), static_cast<QPointF>(static_cast<QGraphicsView*>(ptr)->mapToScene(*static_cast<QPoint*>(point))).y());
+}
+
+void* QGraphicsView_MapToScene5(void* ptr, int x, int y){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsView*>(ptr)->mapToScene(x, y)).x(), static_cast<QPointF>(static_cast<QGraphicsView*>(ptr)->mapToScene(x, y)).y());
+}
+
 void* QGraphicsView_MapToScene3(void* ptr, void* polygon){
 	return new QPolygonF(static_cast<QGraphicsView*>(ptr)->mapToScene(*static_cast<QPolygon*>(polygon)));
 }
@@ -17245,6 +17537,18 @@ void QGraphicsView_ResizeEventDefault(void* ptr, void* event){
 
 void QGraphicsView_Rotate(void* ptr, double angle){
 	static_cast<QGraphicsView*>(ptr)->rotate(static_cast<double>(angle));
+}
+
+void QGraphicsView_ConnectRubberBandChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsView*>(ptr), static_cast<void (QGraphicsView::*)(QRect, QPointF, QPointF)>(&QGraphicsView::rubberBandChanged), static_cast<MyQGraphicsView*>(ptr), static_cast<void (MyQGraphicsView::*)(QRect, QPointF, QPointF)>(&MyQGraphicsView::Signal_RubberBandChanged));;
+}
+
+void QGraphicsView_DisconnectRubberBandChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsView*>(ptr), static_cast<void (QGraphicsView::*)(QRect, QPointF, QPointF)>(&QGraphicsView::rubberBandChanged), static_cast<MyQGraphicsView*>(ptr), static_cast<void (MyQGraphicsView::*)(QRect, QPointF, QPointF)>(&MyQGraphicsView::Signal_RubberBandChanged));;
+}
+
+void QGraphicsView_RubberBandChanged(void* ptr, void* rubberBandRect, void* fromScenePoint, void* toScenePoint){
+	static_cast<QGraphicsView*>(ptr)->rubberBandChanged(*static_cast<QRect*>(rubberBandRect), *static_cast<QPointF*>(fromScenePoint), *static_cast<QPointF*>(toScenePoint));
 }
 
 void* QGraphicsView_RubberBandRect(void* ptr){
@@ -17442,6 +17746,7 @@ void QGraphicsView_CustomEventDefault(void* ptr, void* event){
 class MyQGraphicsWidget: public QGraphicsWidget {
 public:
 	MyQGraphicsWidget(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QGraphicsWidget(parent, wFlags) {};
+	void setGeometry(const QRectF & rect) { callbackQGraphicsWidgetSetGeometry(this, this->objectName().toUtf8().data(), new QRectF(static_cast<QRectF>(rect).x(), static_cast<QRectF>(rect).y(), static_cast<QRectF>(rect).width(), static_cast<QRectF>(rect).height())); };
 	void changeEvent(QEvent * event) { callbackQGraphicsWidgetChangeEvent(this, this->objectName().toUtf8().data(), event); };
 	void closeEvent(QCloseEvent * event) { callbackQGraphicsWidgetCloseEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusInEvent(QFocusEvent * event) { callbackQGraphicsWidgetFocusInEvent(this, this->objectName().toUtf8().data(), event); };
@@ -17503,6 +17808,14 @@ void QGraphicsWidget_SetFont(void* ptr, void* font){
 	static_cast<QGraphicsWidget*>(ptr)->setFont(*static_cast<QFont*>(font));
 }
 
+void QGraphicsWidget_SetGeometry(void* ptr, void* rect){
+	static_cast<MyQGraphicsWidget*>(ptr)->setGeometry(*static_cast<QRectF*>(rect));
+}
+
+void QGraphicsWidget_SetGeometryDefault(void* ptr, void* rect){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::setGeometry(*static_cast<QRectF*>(rect));
+}
+
 void QGraphicsWidget_SetLayout(void* ptr, void* layout){
 	static_cast<QGraphicsWidget*>(ptr)->setLayout(static_cast<QGraphicsLayout*>(layout));
 }
@@ -17521,6 +17834,10 @@ void QGraphicsWidget_SetWindowFlags(void* ptr, int wFlags){
 
 void QGraphicsWidget_SetWindowTitle(void* ptr, char* title){
 	static_cast<QGraphicsWidget*>(ptr)->setWindowTitle(QString(title));
+}
+
+void* QGraphicsWidget_Size(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsWidget*>(ptr)->size()).width(), static_cast<QSizeF>(static_cast<QGraphicsWidget*>(ptr)->size()).height());
 }
 
 void QGraphicsWidget_UnsetLayoutDirection(void* ptr){
@@ -17545,6 +17862,10 @@ void QGraphicsWidget_AddAction(void* ptr, void* action){
 
 void QGraphicsWidget_AdjustSize(void* ptr){
 	static_cast<QGraphicsWidget*>(ptr)->adjustSize();
+}
+
+void* QGraphicsWidget_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->boundingRect()).height());
 }
 
 void QGraphicsWidget_ChangeEvent(void* ptr, void* event){
@@ -17707,6 +18028,10 @@ void QGraphicsWidget_PolishEventDefault(void* ptr){
 	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::polishEvent();
 }
 
+void* QGraphicsWidget_Rect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->rect()).x(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->rect()).y(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->rect()).width(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->rect()).height());
+}
+
 void QGraphicsWidget_ReleaseShortcut(void* ptr, int id){
 	static_cast<QGraphicsWidget*>(ptr)->releaseShortcut(id);
 }
@@ -17775,6 +18100,10 @@ void QGraphicsWidget_ShowEventDefault(void* ptr, void* event){
 	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::showEvent(static_cast<QShowEvent*>(event));
 }
 
+void* QGraphicsWidget_SizeHint(void* ptr, int which, void* constraint){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsWidget*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).width(), static_cast<QSizeF>(static_cast<QGraphicsWidget*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).height());
+}
+
 void* QGraphicsWidget_Style(void* ptr){
 	return static_cast<QGraphicsWidget*>(ptr)->style();
 }
@@ -17817,6 +18146,14 @@ void QGraphicsWidget_UpdateGeometryDefault(void* ptr){
 
 int QGraphicsWidget_WindowFrameEvent(void* ptr, void* event){
 	return static_cast<QGraphicsWidget*>(ptr)->windowFrameEvent(static_cast<QEvent*>(event));
+}
+
+void* QGraphicsWidget_WindowFrameGeometry(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameGeometry()).x(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameGeometry()).y(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameGeometry()).width(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameGeometry()).height());
+}
+
+void* QGraphicsWidget_WindowFrameRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameRect()).x(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameRect()).y(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameRect()).width(), static_cast<QRectF>(static_cast<QGraphicsWidget*>(ptr)->windowFrameRect()).height());
 }
 
 int QGraphicsWidget_WindowFrameSectionAt(void* ptr, void* pos){
@@ -27249,6 +27586,18 @@ double QPanGesture_Acceleration(void* ptr){
 	return static_cast<double>(static_cast<QPanGesture*>(ptr)->acceleration());
 }
 
+void* QPanGesture_Delta(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPanGesture*>(ptr)->delta()).x(), static_cast<QPointF>(static_cast<QPanGesture*>(ptr)->delta()).y());
+}
+
+void* QPanGesture_LastOffset(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPanGesture*>(ptr)->lastOffset()).x(), static_cast<QPointF>(static_cast<QPanGesture*>(ptr)->lastOffset()).y());
+}
+
+void* QPanGesture_Offset(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPanGesture*>(ptr)->offset()).x(), static_cast<QPointF>(static_cast<QPanGesture*>(ptr)->offset()).y());
+}
+
 void QPanGesture_SetAcceleration(void* ptr, double value){
 	static_cast<QPanGesture*>(ptr)->setAcceleration(static_cast<double>(value));
 }
@@ -27289,8 +27638,16 @@ void QPanGesture_CustomEventDefault(void* ptr, void* event){
 	static_cast<QPanGesture*>(ptr)->QPanGesture::customEvent(static_cast<QEvent*>(event));
 }
 
+void* QPinchGesture_CenterPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPinchGesture*>(ptr)->centerPoint()).x(), static_cast<QPointF>(static_cast<QPinchGesture*>(ptr)->centerPoint()).y());
+}
+
 int QPinchGesture_ChangeFlags(void* ptr){
 	return static_cast<QPinchGesture*>(ptr)->changeFlags();
+}
+
+void* QPinchGesture_LastCenterPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPinchGesture*>(ptr)->lastCenterPoint()).x(), static_cast<QPointF>(static_cast<QPinchGesture*>(ptr)->lastCenterPoint()).y());
 }
 
 double QPinchGesture_LastRotationAngle(void* ptr){
@@ -27351,6 +27708,10 @@ void QPinchGesture_SetTotalRotationAngle(void* ptr, double value){
 
 void QPinchGesture_SetTotalScaleFactor(void* ptr, double value){
 	static_cast<QPinchGesture*>(ptr)->setTotalScaleFactor(static_cast<double>(value));
+}
+
+void* QPinchGesture_StartCenterPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QPinchGesture*>(ptr)->startCenterPoint()).x(), static_cast<QPointF>(static_cast<QPinchGesture*>(ptr)->startCenterPoint()).y());
 }
 
 int QPinchGesture_TotalChangeFlags(void* ptr){
@@ -27414,6 +27775,10 @@ void* QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(void* document){
 	return new MyQPlainTextDocumentLayout(static_cast<QTextDocument*>(document));
 }
 
+void* QPlainTextDocumentLayout_BlockBoundingRect(void* ptr, void* block){
+	return new QRectF(static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).x(), static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).y(), static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).width(), static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block))).height());
+}
+
 void QPlainTextDocumentLayout_DocumentChanged(void* ptr, int from, int charsRemoved, int charsAdded){
 	static_cast<MyQPlainTextDocumentLayout*>(ptr)->documentChanged(from, charsRemoved, charsAdded);
 }
@@ -27422,8 +27787,16 @@ void QPlainTextDocumentLayout_DocumentChangedDefault(void* ptr, int from, int ch
 	static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::documentChanged(from, charsRemoved, charsAdded);
 }
 
+void* QPlainTextDocumentLayout_DocumentSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QPlainTextDocumentLayout*>(ptr)->documentSize()).width(), static_cast<QSizeF>(static_cast<QPlainTextDocumentLayout*>(ptr)->documentSize()).height());
+}
+
 void QPlainTextDocumentLayout_EnsureBlockLayout(void* ptr, void* block){
 	static_cast<QPlainTextDocumentLayout*>(ptr)->ensureBlockLayout(*static_cast<QTextBlock*>(block));
+}
+
+void* QPlainTextDocumentLayout_FrameBoundingRect(void* ptr, void* v){
+	return new QRectF(static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(v))).x(), static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(v))).y(), static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(v))).width(), static_cast<QRectF>(static_cast<QPlainTextDocumentLayout*>(ptr)->frameBoundingRect(static_cast<QTextFrame*>(v))).height());
 }
 
 int QPlainTextDocumentLayout_PageCount(void* ptr){
@@ -30899,6 +31272,10 @@ void QScroller_EnsureVisible2(void* ptr, void* rect, double xmargin, double ymar
 	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, static_cast<double>(xmargin)), Q_ARG(qreal, static_cast<double>(ymargin)), Q_ARG(int, scrollTime));
 }
 
+void* QScroller_FinalPosition(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QScroller*>(ptr)->finalPosition()).x(), static_cast<QPointF>(static_cast<QScroller*>(ptr)->finalPosition()).y());
+}
+
 int QScroller_QScroller_GrabGesture(void* target, int scrollGestureType){
 	return QScroller::grabGesture(static_cast<QObject*>(target), static_cast<QScroller::ScrollerGestureType>(scrollGestureType));
 }
@@ -30913,6 +31290,10 @@ int QScroller_HandleInput(void* ptr, int input, void* position, long long timest
 
 int QScroller_QScroller_HasScroller(void* target){
 	return QScroller::hasScroller(static_cast<QObject*>(target));
+}
+
+void* QScroller_PixelPerMeter(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QScroller*>(ptr)->pixelPerMeter()).x(), static_cast<QPointF>(static_cast<QScroller*>(ptr)->pixelPerMeter()).y());
 }
 
 void QScroller_ResendPrepareEvent(void* ptr){
@@ -30977,6 +31358,10 @@ void* QScroller_Target(void* ptr){
 
 void QScroller_QScroller_UngrabGesture(void* target){
 	QScroller::ungrabGesture(static_cast<QObject*>(target));
+}
+
+void* QScroller_Velocity(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QScroller*>(ptr)->velocity()).x(), static_cast<QPointF>(static_cast<QScroller*>(ptr)->velocity()).y());
 }
 
 void QScroller_TimerEvent(void* ptr, void* event){
@@ -38822,6 +39207,10 @@ void QTableWidgetSelectionRange_DestroyQTableWidgetSelectionRange(void* ptr){
 	static_cast<QTableWidgetSelectionRange*>(ptr)->~QTableWidgetSelectionRange();
 }
 
+void* QTapAndHoldGesture_Position(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QTapAndHoldGesture*>(ptr)->position()).x(), static_cast<QPointF>(static_cast<QTapAndHoldGesture*>(ptr)->position()).y());
+}
+
 void QTapAndHoldGesture_SetPosition(void* ptr, void* pos){
 	static_cast<QTapAndHoldGesture*>(ptr)->setPosition(*static_cast<QPointF*>(pos));
 }
@@ -38860,6 +39249,10 @@ void QTapAndHoldGesture_CustomEvent(void* ptr, void* event){
 
 void QTapAndHoldGesture_CustomEventDefault(void* ptr, void* event){
 	static_cast<QTapAndHoldGesture*>(ptr)->QTapAndHoldGesture::customEvent(static_cast<QEvent*>(event));
+}
+
+void* QTapGesture_Position(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QTapGesture*>(ptr)->position()).x(), static_cast<QPointF>(static_cast<QTapGesture*>(ptr)->position()).y());
 }
 
 void QTapGesture_SetPosition(void* ptr, void* pos){

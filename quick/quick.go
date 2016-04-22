@@ -521,6 +521,51 @@ func (ptr *QQuickFramebufferObject) FocusOutEventDefault(event gui.QFocusEvent_I
 	}
 }
 
+func (ptr *QQuickFramebufferObject) ConnectGeometryChanged(f func(newGeometry *core.QRectF, oldGeometry *core.QRectF)) {
+	defer qt.Recovering("connect QQuickFramebufferObject::geometryChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "geometryChanged", f)
+	}
+}
+
+func (ptr *QQuickFramebufferObject) DisconnectGeometryChanged() {
+	defer qt.Recovering("disconnect QQuickFramebufferObject::geometryChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "geometryChanged")
+	}
+}
+
+//export callbackQQuickFramebufferObjectGeometryChanged
+func callbackQQuickFramebufferObjectGeometryChanged(ptr unsafe.Pointer, ptrName *C.char, newGeometry unsafe.Pointer, oldGeometry unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickFramebufferObject::geometryChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "geometryChanged"); signal != nil {
+		signal.(func(*core.QRectF, *core.QRectF))(core.NewQRectFFromPointer(newGeometry), core.NewQRectFFromPointer(oldGeometry))
+	} else {
+		NewQQuickFramebufferObjectFromPointer(ptr).GeometryChangedDefault(core.NewQRectFFromPointer(newGeometry), core.NewQRectFFromPointer(oldGeometry))
+	}
+}
+
+func (ptr *QQuickFramebufferObject) GeometryChanged(newGeometry core.QRectF_ITF, oldGeometry core.QRectF_ITF) {
+	defer qt.Recovering("QQuickFramebufferObject::geometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_GeometryChanged(ptr.Pointer(), core.PointerFromQRectF(newGeometry), core.PointerFromQRectF(oldGeometry))
+	}
+}
+
+func (ptr *QQuickFramebufferObject) GeometryChangedDefault(newGeometry core.QRectF_ITF, oldGeometry core.QRectF_ITF) {
+	defer qt.Recovering("QQuickFramebufferObject::geometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_GeometryChangedDefault(ptr.Pointer(), core.PointerFromQRectF(newGeometry), core.PointerFromQRectF(oldGeometry))
+	}
+}
+
 func (ptr *QQuickFramebufferObject) ConnectHoverEnterEvent(f func(event *gui.QHoverEvent)) {
 	defer qt.Recovering("connect QQuickFramebufferObject::hoverEnterEvent")
 
@@ -1551,6 +1596,15 @@ func (ptr *QQuickItem) BaselineOffset() float64 {
 	return 0
 }
 
+func (ptr *QQuickItem) ChildrenRect() *core.QRectF {
+	defer qt.Recovering("QQuickItem::childrenRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QQuickItem_ChildrenRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickItem) Clip() bool {
 	defer qt.Recovering("QQuickItem::clip")
 
@@ -2388,6 +2442,51 @@ func (ptr *QQuickItem) ForceActiveFocus2(reason core.Qt__FocusReason) {
 	}
 }
 
+func (ptr *QQuickItem) ConnectGeometryChanged(f func(newGeometry *core.QRectF, oldGeometry *core.QRectF)) {
+	defer qt.Recovering("connect QQuickItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "geometryChanged", f)
+	}
+}
+
+func (ptr *QQuickItem) DisconnectGeometryChanged() {
+	defer qt.Recovering("disconnect QQuickItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "geometryChanged")
+	}
+}
+
+//export callbackQQuickItemGeometryChanged
+func callbackQQuickItemGeometryChanged(ptr unsafe.Pointer, ptrName *C.char, newGeometry unsafe.Pointer, oldGeometry unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickItem::geometryChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "geometryChanged"); signal != nil {
+		signal.(func(*core.QRectF, *core.QRectF))(core.NewQRectFFromPointer(newGeometry), core.NewQRectFFromPointer(oldGeometry))
+	} else {
+		NewQQuickItemFromPointer(ptr).GeometryChangedDefault(core.NewQRectFFromPointer(newGeometry), core.NewQRectFFromPointer(oldGeometry))
+	}
+}
+
+func (ptr *QQuickItem) GeometryChanged(newGeometry core.QRectF_ITF, oldGeometry core.QRectF_ITF) {
+	defer qt.Recovering("QQuickItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_GeometryChanged(ptr.Pointer(), core.PointerFromQRectF(newGeometry), core.PointerFromQRectF(oldGeometry))
+	}
+}
+
+func (ptr *QQuickItem) GeometryChangedDefault(newGeometry core.QRectF_ITF, oldGeometry core.QRectF_ITF) {
+	defer qt.Recovering("QQuickItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_GeometryChangedDefault(ptr.Pointer(), core.PointerFromQRectF(newGeometry), core.PointerFromQRectF(oldGeometry))
+	}
+}
+
 func (ptr *QQuickItem) GrabMouse() {
 	defer qt.Recovering("QQuickItem::grabMouse")
 
@@ -2709,6 +2808,78 @@ func (ptr *QQuickItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
+}
+
+func (ptr *QQuickItem) MapFromItem(item QQuickItem_ITF, point core.QPointF_ITF) *core.QPointF {
+	defer qt.Recovering("QQuickItem::mapFromItem")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QQuickItem_MapFromItem(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQPointF(point)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapFromScene(point core.QPointF_ITF) *core.QPointF {
+	defer qt.Recovering("QQuickItem::mapFromScene")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QQuickItem_MapFromScene(ptr.Pointer(), core.PointerFromQPointF(point)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapRectFromItem(item QQuickItem_ITF, rect core.QRectF_ITF) *core.QRectF {
+	defer qt.Recovering("QQuickItem::mapRectFromItem")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QQuickItem_MapRectFromItem(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQRectF(rect)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapRectFromScene(rect core.QRectF_ITF) *core.QRectF {
+	defer qt.Recovering("QQuickItem::mapRectFromScene")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QQuickItem_MapRectFromScene(ptr.Pointer(), core.PointerFromQRectF(rect)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapRectToItem(item QQuickItem_ITF, rect core.QRectF_ITF) *core.QRectF {
+	defer qt.Recovering("QQuickItem::mapRectToItem")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QQuickItem_MapRectToItem(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQRectF(rect)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapRectToScene(rect core.QRectF_ITF) *core.QRectF {
+	defer qt.Recovering("QQuickItem::mapRectToScene")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QQuickItem_MapRectToScene(ptr.Pointer(), core.PointerFromQRectF(rect)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapToItem(item QQuickItem_ITF, point core.QPointF_ITF) *core.QPointF {
+	defer qt.Recovering("QQuickItem::mapToItem")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QQuickItem_MapToItem(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQPointF(point)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapToScene(point core.QPointF_ITF) *core.QPointF {
+	defer qt.Recovering("QQuickItem::mapToScene")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QQuickItem_MapToScene(ptr.Pointer(), core.PointerFromQPointF(point)))
+	}
+	return nil
 }
 
 func (ptr *QQuickItem) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
@@ -3847,6 +4018,15 @@ func (ptr *QQuickPaintedItem) Antialiasing() bool {
 	return false
 }
 
+func (ptr *QQuickPaintedItem) ContentsBoundingRect() *core.QRectF {
+	defer qt.Recovering("QQuickPaintedItem::contentsBoundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QQuickPaintedItem_ContentsBoundingRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickPaintedItem) ConnectContentsScaleChanged(f func()) {
 	defer qt.Recovering("connect QQuickPaintedItem::contentsScaleChanged")
 
@@ -4511,6 +4691,51 @@ func (ptr *QQuickPaintedItem) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QQuickPaintedItem_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QQuickPaintedItem) ConnectGeometryChanged(f func(newGeometry *core.QRectF, oldGeometry *core.QRectF)) {
+	defer qt.Recovering("connect QQuickPaintedItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "geometryChanged", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectGeometryChanged() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "geometryChanged")
+	}
+}
+
+//export callbackQQuickPaintedItemGeometryChanged
+func callbackQQuickPaintedItemGeometryChanged(ptr unsafe.Pointer, ptrName *C.char, newGeometry unsafe.Pointer, oldGeometry unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickPaintedItem::geometryChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "geometryChanged"); signal != nil {
+		signal.(func(*core.QRectF, *core.QRectF))(core.NewQRectFFromPointer(newGeometry), core.NewQRectFFromPointer(oldGeometry))
+	} else {
+		NewQQuickPaintedItemFromPointer(ptr).GeometryChangedDefault(core.NewQRectFFromPointer(newGeometry), core.NewQRectFFromPointer(oldGeometry))
+	}
+}
+
+func (ptr *QQuickPaintedItem) GeometryChanged(newGeometry core.QRectF_ITF, oldGeometry core.QRectF_ITF) {
+	defer qt.Recovering("QQuickPaintedItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickPaintedItem_GeometryChanged(ptr.Pointer(), core.PointerFromQRectF(newGeometry), core.PointerFromQRectF(oldGeometry))
+	}
+}
+
+func (ptr *QQuickPaintedItem) GeometryChangedDefault(newGeometry core.QRectF_ITF, oldGeometry core.QRectF_ITF) {
+	defer qt.Recovering("QQuickPaintedItem::geometryChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickPaintedItem_GeometryChangedDefault(ptr.Pointer(), core.PointerFromQRectF(newGeometry), core.PointerFromQRectF(oldGeometry))
 	}
 }
 
@@ -10894,6 +11119,15 @@ func NewQSGClipNode() *QSGClipNode {
 	return newQSGClipNodeFromPointer(C.QSGClipNode_NewQSGClipNode())
 }
 
+func (ptr *QSGClipNode) ClipRect() *core.QRectF {
+	defer qt.Recovering("QSGClipNode::clipRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSGClipNode_ClipRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSGClipNode) IsRectangular() bool {
 	defer qt.Recovering("QSGClipNode::isRectangular")
 
@@ -12835,6 +13069,15 @@ func (ptr *QSGSimpleRectNode) Color() *gui.QColor {
 	return nil
 }
 
+func (ptr *QSGSimpleRectNode) Rect() *core.QRectF {
+	defer qt.Recovering("QSGSimpleRectNode::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSGSimpleRectNode_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSGSimpleRectNode) SetColor(color gui.QColor_ITF) {
 	defer qt.Recovering("QSGSimpleRectNode::setColor")
 
@@ -12968,6 +13211,15 @@ func (ptr *QSGSimpleTextureNode) OwnsTexture() bool {
 	return false
 }
 
+func (ptr *QSGSimpleTextureNode) Rect() *core.QRectF {
+	defer qt.Recovering("QSGSimpleTextureNode::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSGSimpleTextureNode_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSGSimpleTextureNode) SetFiltering(filtering QSGTexture__Filtering) {
 	defer qt.Recovering("QSGSimpleTextureNode::setFiltering")
 
@@ -13030,6 +13282,15 @@ func (ptr *QSGSimpleTextureNode) SetTextureCoordinatesTransform(mode QSGSimpleTe
 	if ptr.Pointer() != nil {
 		C.QSGSimpleTextureNode_SetTextureCoordinatesTransform(ptr.Pointer(), C.int(mode))
 	}
+}
+
+func (ptr *QSGSimpleTextureNode) SourceRect() *core.QRectF {
+	defer qt.Recovering("QSGSimpleTextureNode::sourceRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSGSimpleTextureNode_SourceRect(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSGSimpleTextureNode) Texture() *QSGTexture {
@@ -13162,6 +13423,15 @@ func (ptr *QSGTexture) Bind() {
 	}
 }
 
+func (ptr *QSGTexture) ConvertToNormalizedSourceRect(rect core.QRectF_ITF) *core.QRectF {
+	defer qt.Recovering("QSGTexture::convertToNormalizedSourceRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSGTexture_ConvertToNormalizedSourceRect(ptr.Pointer(), core.PointerFromQRectF(rect)))
+	}
+	return nil
+}
+
 func (ptr *QSGTexture) Filtering() QSGTexture__Filtering {
 	defer qt.Recovering("QSGTexture::filtering")
 
@@ -13214,6 +13484,15 @@ func (ptr *QSGTexture) MipmapFiltering() QSGTexture__Filtering {
 		return QSGTexture__Filtering(C.QSGTexture_MipmapFiltering(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QSGTexture) NormalizedTextureSubRect() *core.QRectF {
+	defer qt.Recovering("QSGTexture::normalizedTextureSubRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QSGTexture_NormalizedTextureSubRect(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSGTexture) RemovedFromAtlas() *QSGTexture {

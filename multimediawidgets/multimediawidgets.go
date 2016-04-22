@@ -1519,6 +1519,42 @@ func (ptr *QGraphicsVideoItem) QGraphicsVideoItem_PTR() *QGraphicsVideoItem {
 	return ptr
 }
 
+func (ptr *QGraphicsVideoItem) ConnectNativeSizeChanged(f func(size *core.QSizeF)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::nativeSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_ConnectNativeSizeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "nativeSizeChanged", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectNativeSizeChanged() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::nativeSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DisconnectNativeSizeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "nativeSizeChanged")
+	}
+}
+
+//export callbackQGraphicsVideoItemNativeSizeChanged
+func callbackQGraphicsVideoItemNativeSizeChanged(ptr unsafe.Pointer, ptrName *C.char, size unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::nativeSizeChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "nativeSizeChanged"); signal != nil {
+		signal.(func(*core.QSizeF))(core.NewQSizeFFromPointer(size))
+	}
+
+}
+
+func (ptr *QGraphicsVideoItem) NativeSizeChanged(size core.QSizeF_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::nativeSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_NativeSizeChanged(ptr.Pointer(), core.PointerFromQSizeF(size))
+	}
+}
+
 func NewQGraphicsVideoItem(parent widgets.QGraphicsItem_ITF) *QGraphicsVideoItem {
 	defer qt.Recovering("QGraphicsVideoItem::QGraphicsVideoItem")
 
@@ -1534,11 +1570,38 @@ func (ptr *QGraphicsVideoItem) AspectRatioMode() core.Qt__AspectRatioMode {
 	return 0
 }
 
+func (ptr *QGraphicsVideoItem) BoundingRect() *core.QRectF {
+	defer qt.Recovering("QGraphicsVideoItem::boundingRect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QGraphicsVideoItem_BoundingRect(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGraphicsVideoItem) MediaObject() *multimedia.QMediaObject {
 	defer qt.Recovering("QGraphicsVideoItem::mediaObject")
 
 	if ptr.Pointer() != nil {
 		return multimedia.NewQMediaObjectFromPointer(C.QGraphicsVideoItem_MediaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsVideoItem) NativeSize() *core.QSizeF {
+	defer qt.Recovering("QGraphicsVideoItem::nativeSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFFromPointer(C.QGraphicsVideoItem_NativeSize(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGraphicsVideoItem) Offset() *core.QPointF {
+	defer qt.Recovering("QGraphicsVideoItem::offset")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QGraphicsVideoItem_Offset(ptr.Pointer()))
 	}
 	return nil
 }
@@ -1610,6 +1673,15 @@ func (ptr *QGraphicsVideoItem) SetSize(size core.QSizeF_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_SetSize(ptr.Pointer(), core.PointerFromQSizeF(size))
 	}
+}
+
+func (ptr *QGraphicsVideoItem) Size() *core.QSizeF {
+	defer qt.Recovering("QGraphicsVideoItem::size")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFFromPointer(C.QGraphicsVideoItem_Size(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QGraphicsVideoItem) DestroyQGraphicsVideoItem() {

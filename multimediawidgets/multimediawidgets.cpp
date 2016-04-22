@@ -32,6 +32,8 @@
 #include <QPainter>
 #include <QPoint>
 #include <QPointF>
+#include <QRect>
+#include <QRectF>
 #include <QResizeEvent>
 #include <QShowEvent>
 #include <QSize>
@@ -351,11 +353,24 @@ void QCameraViewfinder_CustomEventDefault(void* ptr, void* event){
 class MyQGraphicsVideoItem: public QGraphicsVideoItem {
 public:
 	MyQGraphicsVideoItem(QGraphicsItem *parent) : QGraphicsVideoItem(parent) {};
+	void Signal_NativeSizeChanged(const QSizeF & size) { callbackQGraphicsVideoItemNativeSizeChanged(this, this->objectName().toUtf8().data(), new QSizeF(static_cast<QSizeF>(size).width(), static_cast<QSizeF>(size).height())); };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsVideoItemPaint(this, this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsVideoItemTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsVideoItemChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQGraphicsVideoItemCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
+
+void QGraphicsVideoItem_ConnectNativeSizeChanged(void* ptr){
+	QObject::connect(static_cast<QGraphicsVideoItem*>(ptr), static_cast<void (QGraphicsVideoItem::*)(const QSizeF &)>(&QGraphicsVideoItem::nativeSizeChanged), static_cast<MyQGraphicsVideoItem*>(ptr), static_cast<void (MyQGraphicsVideoItem::*)(const QSizeF &)>(&MyQGraphicsVideoItem::Signal_NativeSizeChanged));;
+}
+
+void QGraphicsVideoItem_DisconnectNativeSizeChanged(void* ptr){
+	QObject::disconnect(static_cast<QGraphicsVideoItem*>(ptr), static_cast<void (QGraphicsVideoItem::*)(const QSizeF &)>(&QGraphicsVideoItem::nativeSizeChanged), static_cast<MyQGraphicsVideoItem*>(ptr), static_cast<void (MyQGraphicsVideoItem::*)(const QSizeF &)>(&MyQGraphicsVideoItem::Signal_NativeSizeChanged));;
+}
+
+void QGraphicsVideoItem_NativeSizeChanged(void* ptr, void* size){
+	static_cast<QGraphicsVideoItem*>(ptr)->nativeSizeChanged(*static_cast<QSizeF*>(size));
+}
 
 void* QGraphicsVideoItem_NewQGraphicsVideoItem(void* parent){
 	return new MyQGraphicsVideoItem(static_cast<QGraphicsItem*>(parent));
@@ -365,8 +380,20 @@ int QGraphicsVideoItem_AspectRatioMode(void* ptr){
 	return static_cast<QGraphicsVideoItem*>(ptr)->aspectRatioMode();
 }
 
+void* QGraphicsVideoItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsVideoItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsVideoItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsVideoItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsVideoItem*>(ptr)->boundingRect()).height());
+}
+
 void* QGraphicsVideoItem_MediaObject(void* ptr){
 	return static_cast<QGraphicsVideoItem*>(ptr)->mediaObject();
+}
+
+void* QGraphicsVideoItem_NativeSize(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsVideoItem*>(ptr)->nativeSize()).width(), static_cast<QSizeF>(static_cast<QGraphicsVideoItem*>(ptr)->nativeSize()).height());
+}
+
+void* QGraphicsVideoItem_Offset(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsVideoItem*>(ptr)->offset()).x(), static_cast<QPointF>(static_cast<QGraphicsVideoItem*>(ptr)->offset()).y());
 }
 
 void QGraphicsVideoItem_Paint(void* ptr, void* painter, void* option, void* widget){
@@ -387,6 +414,10 @@ void QGraphicsVideoItem_SetOffset(void* ptr, void* offset){
 
 void QGraphicsVideoItem_SetSize(void* ptr, void* size){
 	static_cast<QGraphicsVideoItem*>(ptr)->setSize(*static_cast<QSizeF*>(size));
+}
+
+void* QGraphicsVideoItem_Size(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsVideoItem*>(ptr)->size()).width(), static_cast<QSizeF>(static_cast<QGraphicsVideoItem*>(ptr)->size()).height());
 }
 
 void QGraphicsVideoItem_DestroyQGraphicsVideoItem(void* ptr){

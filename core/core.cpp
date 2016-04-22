@@ -5149,6 +5149,18 @@ double QLineF_Length(void* ptr){
 	return static_cast<double>(static_cast<QLineF*>(ptr)->length());
 }
 
+void* QLineF_P1(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QLineF*>(ptr)->p1()).x(), static_cast<QPointF>(static_cast<QLineF*>(ptr)->p1()).y());
+}
+
+void* QLineF_P2(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QLineF*>(ptr)->p2()).x(), static_cast<QPointF>(static_cast<QLineF*>(ptr)->p2()).y());
+}
+
+void* QLineF_PointAt(void* ptr, double t){
+	return new QPointF(static_cast<QPointF>(static_cast<QLineF*>(ptr)->pointAt(static_cast<double>(t))).x(), static_cast<QPointF>(static_cast<QLineF*>(ptr)->pointAt(static_cast<double>(t))).y());
+}
+
 void QLineF_SetAngle(void* ptr, double angle){
 	static_cast<QLineF*>(ptr)->setAngle(static_cast<double>(angle));
 }
@@ -7766,8 +7778,24 @@ void QRectF_Adjust(void* ptr, double dx1, double dy1, double dx2, double dy2){
 	static_cast<QRectF*>(ptr)->adjust(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2));
 }
 
+void* QRectF_Adjusted(void* ptr, double dx1, double dy1, double dx2, double dy2){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).height());
+}
+
 double QRectF_Bottom(void* ptr){
 	return static_cast<double>(static_cast<QRectF*>(ptr)->bottom());
+}
+
+void* QRectF_BottomLeft(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomLeft()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomLeft()).y());
+}
+
+void* QRectF_BottomRight(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomRight()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomRight()).y());
+}
+
+void* QRectF_Center(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->center()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->center()).y());
 }
 
 int QRectF_Contains2(void* ptr, double x, double y){
@@ -7776,6 +7804,10 @@ int QRectF_Contains2(void* ptr, double x, double y){
 
 double QRectF_Height(void* ptr){
 	return static_cast<double>(static_cast<QRectF*>(ptr)->height());
+}
+
+void* QRectF_Intersected(void* ptr, void* rectangle){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).height());
 }
 
 int QRectF_IsEmpty(void* ptr){
@@ -7792,6 +7824,14 @@ int QRectF_IsValid(void* ptr){
 
 double QRectF_Left(void* ptr){
 	return static_cast<double>(static_cast<QRectF*>(ptr)->left());
+}
+
+void* QRectF_MarginsAdded(void* ptr, void* margins){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).height());
+}
+
+void* QRectF_MarginsRemoved(void* ptr, void* margins){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).height());
 }
 
 void QRectF_MoveBottom(void* ptr, double y){
@@ -7836,6 +7876,10 @@ void QRectF_MoveTopLeft(void* ptr, void* position){
 
 void QRectF_MoveTopRight(void* ptr, void* position){
 	static_cast<QRectF*>(ptr)->moveTopRight(*static_cast<QPointF*>(position));
+}
+
+void* QRectF_Normalized(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).height());
 }
 
 double QRectF_Right(void* ptr){
@@ -7902,6 +7946,10 @@ void QRectF_SetY(void* ptr, double y){
 	static_cast<QRectF*>(ptr)->setY(static_cast<double>(y));
 }
 
+void* QRectF_Size(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QRectF*>(ptr)->size()).width(), static_cast<QSizeF>(static_cast<QRectF*>(ptr)->size()).height());
+}
+
 void* QRectF_ToRect(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).x(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).y(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).width(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).height());
 }
@@ -7910,12 +7958,32 @@ double QRectF_Top(void* ptr){
 	return static_cast<double>(static_cast<QRectF*>(ptr)->top());
 }
 
+void* QRectF_TopLeft(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->topLeft()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->topLeft()).y());
+}
+
+void* QRectF_TopRight(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->topRight()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->topRight()).y());
+}
+
 void QRectF_Translate2(void* ptr, void* offset){
 	static_cast<QRectF*>(ptr)->translate(*static_cast<QPointF*>(offset));
 }
 
 void QRectF_Translate(void* ptr, double dx, double dy){
 	static_cast<QRectF*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy));
+}
+
+void* QRectF_Translated2(void* ptr, void* offset){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).height());
+}
+
+void* QRectF_Translated(void* ptr, double dx, double dy){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).height());
+}
+
+void* QRectF_United(void* ptr, void* rectangle){
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).height());
 }
 
 double QRectF_Width(void* ptr){
@@ -9122,6 +9190,14 @@ void* QSizeF_NewQSizeF3(double width, double height){
 	return new QSizeF(static_cast<double>(width), static_cast<double>(height));
 }
 
+void* QSizeF_BoundedTo(void* ptr, void* otherSize){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->boundedTo(*static_cast<QSizeF*>(otherSize))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->boundedTo(*static_cast<QSizeF*>(otherSize))).height());
+}
+
+void* QSizeF_ExpandedTo(void* ptr, void* otherSize){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->expandedTo(*static_cast<QSizeF*>(otherSize))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->expandedTo(*static_cast<QSizeF*>(otherSize))).height());
+}
+
 double QSizeF_Height(void* ptr){
 	return static_cast<double>(static_cast<QSizeF*>(ptr)->height());
 }
@@ -9154,6 +9230,14 @@ void QSizeF_Scale(void* ptr, double width, double height, int mode){
 	static_cast<QSizeF*>(ptr)->scale(static_cast<double>(width), static_cast<double>(height), static_cast<Qt::AspectRatioMode>(mode));
 }
 
+void* QSizeF_Scaled2(void* ptr, void* s, int mode){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(*static_cast<QSizeF*>(s), static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(*static_cast<QSizeF*>(s), static_cast<Qt::AspectRatioMode>(mode))).height());
+}
+
+void* QSizeF_Scaled(void* ptr, double width, double height, int mode){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(static_cast<double>(width), static_cast<double>(height), static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(static_cast<double>(width), static_cast<double>(height), static_cast<Qt::AspectRatioMode>(mode))).height());
+}
+
 void QSizeF_SetHeight(void* ptr, double height){
 	static_cast<QSizeF*>(ptr)->setHeight(static_cast<double>(height));
 }
@@ -9168,6 +9252,10 @@ void* QSizeF_ToSize(void* ptr){
 
 void QSizeF_Transpose(void* ptr){
 	static_cast<QSizeF*>(ptr)->transpose();
+}
+
+void* QSizeF_Transposed(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->transposed()).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->transposed()).height());
 }
 
 double QSizeF_Width(void* ptr){
@@ -12194,8 +12282,16 @@ void* QVariant_ToPoint(void* ptr){
 	return new QPoint(static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).y());
 }
 
+void* QVariant_ToPointF(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QVariant*>(ptr)->toPointF()).x(), static_cast<QPointF>(static_cast<QVariant*>(ptr)->toPointF()).y());
+}
+
 void* QVariant_ToRect(void* ptr){
 	return new QRect(static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).x(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).y(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).width(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).height());
+}
+
+void* QVariant_ToRectF(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).x(), static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).y(), static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).width(), static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).height());
 }
 
 void* QVariant_ToRegExp(void* ptr){
@@ -12208,6 +12304,10 @@ void* QVariant_ToRegularExpression(void* ptr){
 
 void* QVariant_ToSize(void* ptr){
 	return new QSize(static_cast<QSize>(static_cast<QVariant*>(ptr)->toSize()).width(), static_cast<QSize>(static_cast<QVariant*>(ptr)->toSize()).height());
+}
+
+void* QVariant_ToSizeF(void* ptr){
+	return new QSizeF(static_cast<QSizeF>(static_cast<QVariant*>(ptr)->toSizeF()).width(), static_cast<QSizeF>(static_cast<QVariant*>(ptr)->toSizeF()).height());
 }
 
 char* QVariant_ToStringList(void* ptr){

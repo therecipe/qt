@@ -57,6 +57,10 @@ public:
 	void customEvent(QEvent * event) { callbackQGraphicsSvgItemCustomEvent(this, this->objectName().toUtf8().data(), event); };
 };
 
+void* QGraphicsSvgItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsSvgItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsSvgItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsSvgItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsSvgItem*>(ptr)->boundingRect()).height());
+}
+
 char* QGraphicsSvgItem_ElementId(void* ptr){
 	return static_cast<QGraphicsSvgItem*>(ptr)->elementId().toUtf8().data();
 }
@@ -181,6 +185,10 @@ char* QSvgGenerator_Title(void* ptr){
 	return static_cast<QSvgGenerator*>(ptr)->title().toUtf8().data();
 }
 
+void* QSvgGenerator_ViewBoxF(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QSvgGenerator*>(ptr)->viewBoxF()).x(), static_cast<QRectF>(static_cast<QSvgGenerator*>(ptr)->viewBoxF()).y(), static_cast<QRectF>(static_cast<QSvgGenerator*>(ptr)->viewBoxF()).width(), static_cast<QRectF>(static_cast<QSvgGenerator*>(ptr)->viewBoxF()).height());
+}
+
 void* QSvgGenerator_NewQSvgGenerator(){
 	return new MyQSvgGenerator();
 }
@@ -238,6 +246,10 @@ void QSvgRenderer_SetViewBox2(void* ptr, void* viewbox){
 	static_cast<QSvgRenderer*>(ptr)->setViewBox(*static_cast<QRectF*>(viewbox));
 }
 
+void* QSvgRenderer_ViewBoxF(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->viewBoxF()).x(), static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->viewBoxF()).y(), static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->viewBoxF()).width(), static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->viewBoxF()).height());
+}
+
 void* QSvgRenderer_NewQSvgRenderer(void* parent){
 	return new QSvgRenderer(static_cast<QObject*>(parent));
 }
@@ -256,6 +268,10 @@ void* QSvgRenderer_NewQSvgRenderer2(char* filename, void* parent){
 
 int QSvgRenderer_Animated(void* ptr){
 	return static_cast<QSvgRenderer*>(ptr)->animated();
+}
+
+void* QSvgRenderer_BoundsOnElement(void* ptr, char* id){
+	return new QRectF(static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->boundsOnElement(QString(id))).x(), static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->boundsOnElement(QString(id))).y(), static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->boundsOnElement(QString(id))).width(), static_cast<QRectF>(static_cast<QSvgRenderer*>(ptr)->boundsOnElement(QString(id))).height());
 }
 
 void* QSvgRenderer_DefaultSize(void* ptr){

@@ -7150,6 +7150,15 @@ func (ptr *QCameraExposure) SetSpotMeteringPoint(point core.QPointF_ITF) {
 	}
 }
 
+func (ptr *QCameraExposure) SpotMeteringPoint() *core.QPointF {
+	defer qt.Recovering("QCameraExposure::spotMeteringPoint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QCameraExposure_SpotMeteringPoint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCameraExposure) ConnectApertureChanged(f func(value float64)) {
 	defer qt.Recovering("connect QCameraExposure::apertureChanged")
 
@@ -8517,6 +8526,15 @@ const (
 	QCameraFocus__FocusPointCustom        = QCameraFocus__FocusPointMode(3)
 )
 
+func (ptr *QCameraFocus) CustomFocusPoint() *core.QPointF {
+	defer qt.Recovering("QCameraFocus::customFocusPoint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QCameraFocus_CustomFocusPoint(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCameraFocus) DigitalZoom() float64 {
 	defer qt.Recovering("QCameraFocus::digitalZoom")
 
@@ -8979,6 +8997,51 @@ func (ptr *QCameraFocusControl) QCameraFocusControl_PTR() *QCameraFocusControl {
 	return ptr
 }
 
+func (ptr *QCameraFocusControl) CustomFocusPoint() *core.QPointF {
+	defer qt.Recovering("QCameraFocusControl::customFocusPoint")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QCameraFocusControl_CustomFocusPoint(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCameraFocusControl) ConnectCustomFocusPointChanged(f func(point *core.QPointF)) {
+	defer qt.Recovering("connect QCameraFocusControl::customFocusPointChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_ConnectCustomFocusPointChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "customFocusPointChanged", f)
+	}
+}
+
+func (ptr *QCameraFocusControl) DisconnectCustomFocusPointChanged() {
+	defer qt.Recovering("disconnect QCameraFocusControl::customFocusPointChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_DisconnectCustomFocusPointChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "customFocusPointChanged")
+	}
+}
+
+//export callbackQCameraFocusControlCustomFocusPointChanged
+func callbackQCameraFocusControlCustomFocusPointChanged(ptr unsafe.Pointer, ptrName *C.char, point unsafe.Pointer) {
+	defer qt.Recovering("callback QCameraFocusControl::customFocusPointChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customFocusPointChanged"); signal != nil {
+		signal.(func(*core.QPointF))(core.NewQPointFFromPointer(point))
+	}
+
+}
+
+func (ptr *QCameraFocusControl) CustomFocusPointChanged(point core.QPointF_ITF) {
+	defer qt.Recovering("QCameraFocusControl::customFocusPointChanged")
+
+	if ptr.Pointer() != nil {
+		C.QCameraFocusControl_CustomFocusPointChanged(ptr.Pointer(), core.PointerFromQPointF(point))
+	}
+}
+
 func (ptr *QCameraFocusControl) FocusMode() QCameraFocus__FocusMode {
 	defer qt.Recovering("QCameraFocusControl::focusMode")
 
@@ -9343,6 +9406,15 @@ func NewQCameraFocusZone(other QCameraFocusZone_ITF) *QCameraFocusZone {
 	defer qt.Recovering("QCameraFocusZone::QCameraFocusZone")
 
 	return newQCameraFocusZoneFromPointer(C.QCameraFocusZone_NewQCameraFocusZone(PointerFromQCameraFocusZone(other)))
+}
+
+func (ptr *QCameraFocusZone) Area() *core.QRectF {
+	defer qt.Recovering("QCameraFocusZone::area")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QCameraFocusZone_Area(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QCameraFocusZone) IsValid() bool {
