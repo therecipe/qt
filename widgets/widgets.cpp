@@ -759,6 +759,25 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	void advance(int phase) { callbackQAbstractGraphicsShapeItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQAbstractGraphicsShapeItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQAbstractGraphicsShapeItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQAbstractGraphicsShapeItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQAbstractGraphicsShapeItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQAbstractGraphicsShapeItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQAbstractGraphicsShapeItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQAbstractGraphicsShapeItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQAbstractGraphicsShapeItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQAbstractGraphicsShapeItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQAbstractGraphicsShapeItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQAbstractGraphicsShapeItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQAbstractGraphicsShapeItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQAbstractGraphicsShapeItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQAbstractGraphicsShapeItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQAbstractGraphicsShapeItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQAbstractGraphicsShapeItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQAbstractGraphicsShapeItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQAbstractGraphicsShapeItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QAbstractGraphicsShapeItem_Brush(void* ptr){
@@ -800,6 +819,158 @@ void QAbstractGraphicsShapeItem_SetObjectNameAbs(void* ptr, char* name){
 	if (dynamic_cast<MyQAbstractGraphicsShapeItem*>(static_cast<QAbstractGraphicsShapeItem*>(ptr))) {
 		static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->setObjectNameAbs(QString(name));
 	}
+}
+
+void QAbstractGraphicsShapeItem_Advance(void* ptr, int phase){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->advance(phase);
+}
+
+void QAbstractGraphicsShapeItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::advance(phase);
+}
+
+void QAbstractGraphicsShapeItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQAbstractGraphicsShapeItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QAbstractGraphicsShapeItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QAbstractGraphicsShapeItem*>(ptr)->QAbstractGraphicsShapeItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
 class MyQAbstractItemDelegate: public QAbstractItemDelegate {
@@ -14132,6 +14303,25 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsEllipseItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsEllipseItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsEllipseItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsEllipseItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsEllipseItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsEllipseItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsEllipseItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsEllipseItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsEllipseItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsEllipseItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsEllipseItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsEllipseItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsEllipseItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsEllipseItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsEllipseItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsEllipseItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsEllipseItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsEllipseItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsEllipseItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsEllipseItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QGraphicsEllipseItem_BoundingRect(void* ptr){
@@ -14209,6 +14399,158 @@ void QGraphicsEllipseItem_SetObjectNameAbs(void* ptr, char* name){
 	if (dynamic_cast<MyQGraphicsEllipseItem*>(static_cast<QGraphicsEllipseItem*>(ptr))) {
 		static_cast<MyQGraphicsEllipseItem*>(ptr)->setObjectNameAbs(QString(name));
 	}
+}
+
+void QGraphicsEllipseItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsEllipseItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::advance(phase);
+}
+
+void QGraphicsEllipseItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsEllipseItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsEllipseItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsEllipseItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsEllipseItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsEllipseItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsEllipseItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsEllipseItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsEllipseItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsEllipseItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsEllipseItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsEllipseItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsEllipseItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsEllipseItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsEllipseItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsEllipseItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsEllipseItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsEllipseItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsEllipseItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsEllipseItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsEllipseItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsEllipseItem*>(ptr)->QGraphicsEllipseItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
 class MyQGraphicsGridLayout: public QGraphicsGridLayout {
@@ -14431,6 +14773,881 @@ void QGraphicsGridLayout_SetObjectNameAbs(void* ptr, char* name){
 	}
 }
 
+class MyQGraphicsItem: public QGraphicsItem {
+public:
+	QString _objectName;
+	QString objectNameAbs() const { return this->_objectName; };
+	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	void advance(int phase) { callbackQGraphicsItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+};
+
+int QGraphicsItem_AcceptedMouseButtons(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->acceptedMouseButtons();
+}
+
+int QGraphicsItem_AcceptDrops(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->acceptDrops();
+}
+
+int QGraphicsItem_AcceptHoverEvents(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->acceptHoverEvents();
+}
+
+int QGraphicsItem_AcceptTouchEvents(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->acceptTouchEvents();
+}
+
+void QGraphicsItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::advance(phase);
+}
+
+void* QGraphicsItem_BoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->boundingRect()).height());
+}
+
+void* QGraphicsItem_BoundingRegion(void* ptr, void* itemToDeviceTransform){
+	return new QRegion(static_cast<QGraphicsItem*>(ptr)->boundingRegion(*static_cast<QTransform*>(itemToDeviceTransform)));
+}
+
+double QGraphicsItem_BoundingRegionGranularity(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->boundingRegionGranularity());
+}
+
+int QGraphicsItem_CacheMode(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->cacheMode();
+}
+
+void* QGraphicsItem_ChildrenBoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->childrenBoundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->childrenBoundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->childrenBoundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->childrenBoundingRect()).height());
+}
+
+void QGraphicsItem_ClearFocus(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->clearFocus();
+}
+
+void* QGraphicsItem_ClipPath(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->clipPath());
+}
+
+int QGraphicsItem_CollidesWithItem(void* ptr, void* other, int mode){
+	return static_cast<QGraphicsItem*>(ptr)->collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
+}
+
+int QGraphicsItem_CollidesWithPath(void* ptr, void* path, int mode){
+	return static_cast<QGraphicsItem*>(ptr)->collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
+}
+
+void* QGraphicsItem_CommonAncestorItem(void* ptr, void* other){
+	return static_cast<QGraphicsItem*>(ptr)->commonAncestorItem(static_cast<QGraphicsItem*>(other));
+}
+
+int QGraphicsItem_Contains(void* ptr, void* point){
+	return static_cast<QGraphicsItem*>(ptr)->contains(*static_cast<QPointF*>(point));
+}
+
+void QGraphicsItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void* QGraphicsItem_Cursor(void* ptr){
+	return new QCursor(static_cast<QGraphicsItem*>(ptr)->cursor());
+}
+
+void* QGraphicsItem_Data(void* ptr, int key){
+	return new QVariant(static_cast<QGraphicsItem*>(ptr)->data(key));
+}
+
+void QGraphicsItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+double QGraphicsItem_EffectiveOpacity(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->effectiveOpacity());
+}
+
+void QGraphicsItem_EnsureVisible(void* ptr, void* rect, int xmargin, int ymargin){
+	static_cast<QGraphicsItem*>(ptr)->ensureVisible(*static_cast<QRectF*>(rect), xmargin, ymargin);
+}
+
+void QGraphicsItem_EnsureVisible2(void* ptr, double x, double y, double w, double h, int xmargin, int ymargin){
+	static_cast<QGraphicsItem*>(ptr)->ensureVisible(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h), xmargin, ymargin);
+}
+
+void QGraphicsItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void* QGraphicsItem_FocusItem(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->focusItem();
+}
+
+void QGraphicsItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void* QGraphicsItem_FocusProxy(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->focusProxy();
+}
+
+int QGraphicsItem_FiltersChildEvents(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->filtersChildEvents();
+}
+
+int QGraphicsItem_Flags(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->flags();
+}
+
+void QGraphicsItem_GrabKeyboard(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->grabKeyboard();
+}
+
+void QGraphicsItem_GrabMouse(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->grabMouse();
+}
+
+void* QGraphicsItem_GraphicsEffect(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->graphicsEffect();
+}
+
+void* QGraphicsItem_Group(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->group();
+}
+
+int QGraphicsItem_HasCursor(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->hasCursor();
+}
+
+int QGraphicsItem_HasFocus(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->hasFocus();
+}
+
+void QGraphicsItem_Hide(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->hide();
+}
+
+void QGraphicsItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+int QGraphicsItem_InputMethodHints(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->inputMethodHints();
+}
+
+void* QGraphicsItem_InputMethodQuery(void* ptr, int query){
+	return new QVariant(static_cast<QGraphicsItem*>(ptr)->inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+}
+
+void QGraphicsItem_InstallSceneEventFilter(void* ptr, void* filterItem){
+	static_cast<QGraphicsItem*>(ptr)->installSceneEventFilter(static_cast<QGraphicsItem*>(filterItem));
+}
+
+int QGraphicsItem_IsActive(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isActive();
+}
+
+int QGraphicsItem_IsAncestorOf(void* ptr, void* child){
+	return static_cast<QGraphicsItem*>(ptr)->isAncestorOf(static_cast<QGraphicsItem*>(child));
+}
+
+int QGraphicsItem_IsClipped(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isClipped();
+}
+
+int QGraphicsItem_IsEnabled(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isEnabled();
+}
+
+int QGraphicsItem_IsObscured(void* ptr, void* rect){
+	return static_cast<QGraphicsItem*>(ptr)->isObscured(*static_cast<QRectF*>(rect));
+}
+
+int QGraphicsItem_IsObscured2(void* ptr, double x, double y, double w, double h){
+	return static_cast<QGraphicsItem*>(ptr)->isObscured(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h));
+}
+
+int QGraphicsItem_IsObscuredBy(void* ptr, void* item){
+	return static_cast<QGraphicsItem*>(ptr)->isObscuredBy(static_cast<QGraphicsItem*>(item));
+}
+
+int QGraphicsItem_IsPanel(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isPanel();
+}
+
+int QGraphicsItem_IsSelected(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isSelected();
+}
+
+int QGraphicsItem_IsUnderMouse(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isUnderMouse();
+}
+
+int QGraphicsItem_IsVisible(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isVisible();
+}
+
+int QGraphicsItem_IsVisibleTo(void* ptr, void* parent){
+	return static_cast<QGraphicsItem*>(ptr)->isVisibleTo(static_cast<QGraphicsItem*>(parent));
+}
+
+int QGraphicsItem_IsWidget(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isWidget();
+}
+
+int QGraphicsItem_IsWindow(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->isWindow();
+}
+
+void* QGraphicsItem_ItemChange(void* ptr, int change, void* value){
+	return new QVariant(static_cast<QGraphicsItem*>(ptr)->itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
+}
+
+void QGraphicsItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void* QGraphicsItem_MapFromItem4(void* ptr, void* item, void* path){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QPainterPath*>(path)));
+}
+
+void* QGraphicsItem_MapFromItem(void* ptr, void* item, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QPointF*>(point))).y());
+}
+
+void* QGraphicsItem_MapFromItem6(void* ptr, void* item, double x, double y){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y))).y());
+}
+
+void* QGraphicsItem_MapFromItem3(void* ptr, void* item, void* polygon){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QPolygonF*>(polygon)));
+}
+
+void* QGraphicsItem_MapFromItem2(void* ptr, void* item, void* rect){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect)));
+}
+
+void* QGraphicsItem_MapFromItem5(void* ptr, void* item, double x, double y, double w, double h){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h)));
+}
+
+void* QGraphicsItem_MapFromParent4(void* ptr, void* path){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->mapFromParent(*static_cast<QPainterPath*>(path)));
+}
+
+void* QGraphicsItem_MapFromParent(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromParent(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromParent(*static_cast<QPointF*>(point))).y());
+}
+
+void* QGraphicsItem_MapFromParent6(void* ptr, double x, double y){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromParent(static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromParent(static_cast<double>(x), static_cast<double>(y))).y());
+}
+
+void* QGraphicsItem_MapFromParent3(void* ptr, void* polygon){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromParent(*static_cast<QPolygonF*>(polygon)));
+}
+
+void* QGraphicsItem_MapFromParent2(void* ptr, void* rect){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromParent(*static_cast<QRectF*>(rect)));
+}
+
+void* QGraphicsItem_MapFromParent5(void* ptr, double x, double y, double w, double h){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h)));
+}
+
+void* QGraphicsItem_MapFromScene4(void* ptr, void* path){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->mapFromScene(*static_cast<QPainterPath*>(path)));
+}
+
+void* QGraphicsItem_MapFromScene(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromScene(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromScene(*static_cast<QPointF*>(point))).y());
+}
+
+void* QGraphicsItem_MapFromScene6(void* ptr, double x, double y){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y))).y());
+}
+
+void* QGraphicsItem_MapFromScene3(void* ptr, void* polygon){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromScene(*static_cast<QPolygonF*>(polygon)));
+}
+
+void* QGraphicsItem_MapFromScene2(void* ptr, void* rect){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromScene(*static_cast<QRectF*>(rect)));
+}
+
+void* QGraphicsItem_MapFromScene5(void* ptr, double x, double y, double w, double h){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapFromScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h)));
+}
+
+void* QGraphicsItem_MapRectFromItem(void* ptr, void* item, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).height());
+}
+
+void* QGraphicsItem_MapRectFromItem2(void* ptr, void* item, double x, double y, double w, double h){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).height());
+}
+
+void* QGraphicsItem_MapRectFromParent(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(*static_cast<QRectF*>(rect))).height());
+}
+
+void* QGraphicsItem_MapRectFromParent2(void* ptr, double x, double y, double w, double h){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).height());
+}
+
+void* QGraphicsItem_MapRectFromScene(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(*static_cast<QRectF*>(rect))).height());
+}
+
+void* QGraphicsItem_MapRectFromScene2(void* ptr, double x, double y, double w, double h){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectFromScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).height());
+}
+
+void* QGraphicsItem_MapRectToItem(void* ptr, void* item, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect))).height());
+}
+
+void* QGraphicsItem_MapRectToItem2(void* ptr, void* item, double x, double y, double w, double h){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).height());
+}
+
+void* QGraphicsItem_MapRectToParent(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(*static_cast<QRectF*>(rect))).height());
+}
+
+void* QGraphicsItem_MapRectToParent2(void* ptr, double x, double y, double w, double h){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).height());
+}
+
+void* QGraphicsItem_MapRectToScene(void* ptr, void* rect){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).height());
+}
+
+void* QGraphicsItem_MapRectToScene2(void* ptr, double x, double y, double w, double h){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->mapRectToScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h))).height());
+}
+
+void* QGraphicsItem_MapToItem4(void* ptr, void* item, void* path){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), *static_cast<QPainterPath*>(path)));
+}
+
+void* QGraphicsItem_MapToItem(void* ptr, void* item, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), *static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), *static_cast<QPointF*>(point))).y());
+}
+
+void* QGraphicsItem_MapToItem6(void* ptr, void* item, double x, double y){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y))).y());
+}
+
+void* QGraphicsItem_MapToItem3(void* ptr, void* item, void* polygon){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), *static_cast<QPolygonF*>(polygon)));
+}
+
+void* QGraphicsItem_MapToItem2(void* ptr, void* item, void* rect){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), *static_cast<QRectF*>(rect)));
+}
+
+void* QGraphicsItem_MapToItem5(void* ptr, void* item, double x, double y, double w, double h){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToItem(static_cast<QGraphicsItem*>(item), static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h)));
+}
+
+void* QGraphicsItem_MapToParent4(void* ptr, void* path){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->mapToParent(*static_cast<QPainterPath*>(path)));
+}
+
+void* QGraphicsItem_MapToParent(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToParent(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToParent(*static_cast<QPointF*>(point))).y());
+}
+
+void* QGraphicsItem_MapToParent6(void* ptr, double x, double y){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToParent(static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToParent(static_cast<double>(x), static_cast<double>(y))).y());
+}
+
+void* QGraphicsItem_MapToParent3(void* ptr, void* polygon){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToParent(*static_cast<QPolygonF*>(polygon)));
+}
+
+void* QGraphicsItem_MapToParent2(void* ptr, void* rect){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToParent(*static_cast<QRectF*>(rect)));
+}
+
+void* QGraphicsItem_MapToParent5(void* ptr, double x, double y, double w, double h){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToParent(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h)));
+}
+
+void* QGraphicsItem_MapToScene4(void* ptr, void* path){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->mapToScene(*static_cast<QPainterPath*>(path)));
+}
+
+void* QGraphicsItem_MapToScene(void* ptr, void* point){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToScene(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToScene(*static_cast<QPointF*>(point))).y());
+}
+
+void* QGraphicsItem_MapToScene6(void* ptr, double x, double y){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToScene(static_cast<double>(x), static_cast<double>(y))).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->mapToScene(static_cast<double>(x), static_cast<double>(y))).y());
+}
+
+void* QGraphicsItem_MapToScene3(void* ptr, void* polygon){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToScene(*static_cast<QPolygonF*>(polygon)));
+}
+
+void* QGraphicsItem_MapToScene2(void* ptr, void* rect){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToScene(*static_cast<QRectF*>(rect)));
+}
+
+void* QGraphicsItem_MapToScene5(void* ptr, double x, double y, double w, double h){
+	return new QPolygonF(static_cast<QGraphicsItem*>(ptr)->mapToScene(static_cast<double>(x), static_cast<double>(y), static_cast<double>(w), static_cast<double>(h)));
+}
+
+void QGraphicsItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItem_MoveBy(void* ptr, double dx, double dy){
+	static_cast<QGraphicsItem*>(ptr)->moveBy(static_cast<double>(dx), static_cast<double>(dy));
+}
+
+double QGraphicsItem_Opacity(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->opacity());
+}
+
+void* QGraphicsItem_OpaqueArea(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->opaqueArea());
+}
+
+void QGraphicsItem_Paint(void* ptr, void* painter, void* option, void* widget){
+	static_cast<QGraphicsItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+}
+
+void* QGraphicsItem_Panel(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->panel();
+}
+
+int QGraphicsItem_PanelModality(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->panelModality();
+}
+
+void* QGraphicsItem_ParentItem(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->parentItem();
+}
+
+void* QGraphicsItem_ParentObject(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->parentObject();
+}
+
+void* QGraphicsItem_ParentWidget(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->parentWidget();
+}
+
+void* QGraphicsItem_Pos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->pos()).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->pos()).y());
+}
+
+void QGraphicsItem_RemoveSceneEventFilter(void* ptr, void* filterItem){
+	static_cast<QGraphicsItem*>(ptr)->removeSceneEventFilter(static_cast<QGraphicsItem*>(filterItem));
+}
+
+void QGraphicsItem_ResetTransform(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->resetTransform();
+}
+
+double QGraphicsItem_Rotation(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->rotation());
+}
+
+double QGraphicsItem_Scale(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->scale());
+}
+
+void* QGraphicsItem_Scene(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->scene();
+}
+
+void* QGraphicsItem_SceneBoundingRect(void* ptr){
+	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->sceneBoundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->sceneBoundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->sceneBoundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsItem*>(ptr)->sceneBoundingRect()).height());
+}
+
+int QGraphicsItem_SceneEvent(void* ptr, void* event){
+	return static_cast<QGraphicsItem*>(ptr)->sceneEvent(static_cast<QEvent*>(event));
+}
+
+int QGraphicsItem_SceneEventFilter(void* ptr, void* watched, void* event){
+	return static_cast<QGraphicsItem*>(ptr)->sceneEventFilter(static_cast<QGraphicsItem*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QGraphicsItem_ScenePos(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->scenePos()).y());
+}
+
+void QGraphicsItem_Scroll(void* ptr, double dx, double dy, void* rect){
+	static_cast<QGraphicsItem*>(ptr)->scroll(static_cast<double>(dx), static_cast<double>(dy), *static_cast<QRectF*>(rect));
+}
+
+void QGraphicsItem_SetAcceptDrops(void* ptr, int on){
+	static_cast<QGraphicsItem*>(ptr)->setAcceptDrops(on != 0);
+}
+
+void QGraphicsItem_SetAcceptHoverEvents(void* ptr, int enabled){
+	static_cast<QGraphicsItem*>(ptr)->setAcceptHoverEvents(enabled != 0);
+}
+
+void QGraphicsItem_SetAcceptTouchEvents(void* ptr, int enabled){
+	static_cast<QGraphicsItem*>(ptr)->setAcceptTouchEvents(enabled != 0);
+}
+
+void QGraphicsItem_SetAcceptedMouseButtons(void* ptr, int buttons){
+	static_cast<QGraphicsItem*>(ptr)->setAcceptedMouseButtons(static_cast<Qt::MouseButton>(buttons));
+}
+
+void QGraphicsItem_SetActive(void* ptr, int active){
+	static_cast<QGraphicsItem*>(ptr)->setActive(active != 0);
+}
+
+void QGraphicsItem_SetBoundingRegionGranularity(void* ptr, double granularity){
+	static_cast<QGraphicsItem*>(ptr)->setBoundingRegionGranularity(static_cast<double>(granularity));
+}
+
+void QGraphicsItem_SetCacheMode(void* ptr, int mode, void* logicalCacheSize){
+	static_cast<QGraphicsItem*>(ptr)->setCacheMode(static_cast<QGraphicsItem::CacheMode>(mode), *static_cast<QSize*>(logicalCacheSize));
+}
+
+void QGraphicsItem_SetCursor(void* ptr, void* cursor){
+	static_cast<QGraphicsItem*>(ptr)->setCursor(*static_cast<QCursor*>(cursor));
+}
+
+void QGraphicsItem_SetData(void* ptr, int key, void* value){
+	static_cast<QGraphicsItem*>(ptr)->setData(key, *static_cast<QVariant*>(value));
+}
+
+void QGraphicsItem_SetEnabled(void* ptr, int enabled){
+	static_cast<QGraphicsItem*>(ptr)->setEnabled(enabled != 0);
+}
+
+void QGraphicsItem_SetFiltersChildEvents(void* ptr, int enabled){
+	static_cast<QGraphicsItem*>(ptr)->setFiltersChildEvents(enabled != 0);
+}
+
+void QGraphicsItem_SetFlag(void* ptr, int flag, int enabled){
+	static_cast<QGraphicsItem*>(ptr)->setFlag(static_cast<QGraphicsItem::GraphicsItemFlag>(flag), enabled != 0);
+}
+
+void QGraphicsItem_SetFlags(void* ptr, int flags){
+	static_cast<QGraphicsItem*>(ptr)->setFlags(static_cast<QGraphicsItem::GraphicsItemFlag>(flags));
+}
+
+void QGraphicsItem_SetFocus(void* ptr, int focusReason){
+	static_cast<QGraphicsItem*>(ptr)->setFocus(static_cast<Qt::FocusReason>(focusReason));
+}
+
+void QGraphicsItem_SetFocusProxy(void* ptr, void* item){
+	static_cast<QGraphicsItem*>(ptr)->setFocusProxy(static_cast<QGraphicsItem*>(item));
+}
+
+void QGraphicsItem_SetGraphicsEffect(void* ptr, void* effect){
+	static_cast<QGraphicsItem*>(ptr)->setGraphicsEffect(static_cast<QGraphicsEffect*>(effect));
+}
+
+void QGraphicsItem_SetGroup(void* ptr, void* group){
+	static_cast<QGraphicsItem*>(ptr)->setGroup(static_cast<QGraphicsItemGroup*>(group));
+}
+
+void QGraphicsItem_SetInputMethodHints(void* ptr, int hints){
+	static_cast<QGraphicsItem*>(ptr)->setInputMethodHints(static_cast<Qt::InputMethodHint>(hints));
+}
+
+void QGraphicsItem_SetOpacity(void* ptr, double opacity){
+	static_cast<QGraphicsItem*>(ptr)->setOpacity(static_cast<double>(opacity));
+}
+
+void QGraphicsItem_SetPanelModality(void* ptr, int panelModality){
+	static_cast<QGraphicsItem*>(ptr)->setPanelModality(static_cast<QGraphicsItem::PanelModality>(panelModality));
+}
+
+void QGraphicsItem_SetParentItem(void* ptr, void* newParent){
+	static_cast<QGraphicsItem*>(ptr)->setParentItem(static_cast<QGraphicsItem*>(newParent));
+}
+
+void QGraphicsItem_SetPos(void* ptr, void* pos){
+	static_cast<QGraphicsItem*>(ptr)->setPos(*static_cast<QPointF*>(pos));
+}
+
+void QGraphicsItem_SetPos2(void* ptr, double x, double y){
+	static_cast<QGraphicsItem*>(ptr)->setPos(static_cast<double>(x), static_cast<double>(y));
+}
+
+void QGraphicsItem_SetRotation(void* ptr, double angle){
+	static_cast<QGraphicsItem*>(ptr)->setRotation(static_cast<double>(angle));
+}
+
+void QGraphicsItem_SetScale(void* ptr, double factor){
+	static_cast<QGraphicsItem*>(ptr)->setScale(static_cast<double>(factor));
+}
+
+void QGraphicsItem_SetSelected(void* ptr, int selected){
+	static_cast<QGraphicsItem*>(ptr)->setSelected(selected != 0);
+}
+
+void QGraphicsItem_SetToolTip(void* ptr, char* toolTip){
+	static_cast<QGraphicsItem*>(ptr)->setToolTip(QString(toolTip));
+}
+
+void QGraphicsItem_SetTransform(void* ptr, void* matrix, int combine){
+	static_cast<QGraphicsItem*>(ptr)->setTransform(*static_cast<QTransform*>(matrix), combine != 0);
+}
+
+void QGraphicsItem_SetTransformOriginPoint(void* ptr, void* origin){
+	static_cast<QGraphicsItem*>(ptr)->setTransformOriginPoint(*static_cast<QPointF*>(origin));
+}
+
+void QGraphicsItem_SetTransformOriginPoint2(void* ptr, double x, double y){
+	static_cast<QGraphicsItem*>(ptr)->setTransformOriginPoint(static_cast<double>(x), static_cast<double>(y));
+}
+
+void QGraphicsItem_SetVisible(void* ptr, int visible){
+	static_cast<QGraphicsItem*>(ptr)->setVisible(visible != 0);
+}
+
+void QGraphicsItem_SetX(void* ptr, double x){
+	static_cast<QGraphicsItem*>(ptr)->setX(static_cast<double>(x));
+}
+
+void QGraphicsItem_SetY(void* ptr, double y){
+	static_cast<QGraphicsItem*>(ptr)->setY(static_cast<double>(y));
+}
+
+void QGraphicsItem_SetZValue(void* ptr, double z){
+	static_cast<QGraphicsItem*>(ptr)->setZValue(static_cast<double>(z));
+}
+
+void* QGraphicsItem_Shape(void* ptr){
+	return new QPainterPath(static_cast<QGraphicsItem*>(ptr)->shape());
+}
+
+void QGraphicsItem_Show(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->show();
+}
+
+void QGraphicsItem_StackBefore(void* ptr, void* sibling){
+	static_cast<QGraphicsItem*>(ptr)->stackBefore(static_cast<QGraphicsItem*>(sibling));
+}
+
+void* QGraphicsItem_ToGraphicsObject(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->toGraphicsObject();
+}
+
+void* QGraphicsItem_ToGraphicsObject2(void* ptr){
+	return const_cast<QGraphicsObject*>(static_cast<QGraphicsItem*>(ptr)->toGraphicsObject());
+}
+
+char* QGraphicsItem_ToolTip(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->toolTip().toUtf8().data();
+}
+
+void* QGraphicsItem_TopLevelItem(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->topLevelItem();
+}
+
+void* QGraphicsItem_TopLevelWidget(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->topLevelWidget();
+}
+
+void* QGraphicsItem_TransformOriginPoint(void* ptr){
+	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->transformOriginPoint()).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->transformOriginPoint()).y());
+}
+
+int QGraphicsItem_Type(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->type();
+}
+
+void QGraphicsItem_UngrabKeyboard(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->ungrabKeyboard();
+}
+
+void QGraphicsItem_UngrabMouse(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->ungrabMouse();
+}
+
+void QGraphicsItem_UnsetCursor(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->unsetCursor();
+}
+
+void QGraphicsItem_Update(void* ptr, void* rect){
+	static_cast<QGraphicsItem*>(ptr)->update(*static_cast<QRectF*>(rect));
+}
+
+void QGraphicsItem_Update2(void* ptr, double x, double y, double width, double height){
+	static_cast<QGraphicsItem*>(ptr)->update(static_cast<double>(x), static_cast<double>(y), static_cast<double>(width), static_cast<double>(height));
+}
+
+void QGraphicsItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void* QGraphicsItem_Window(void* ptr){
+	return static_cast<QGraphicsItem*>(ptr)->window();
+}
+
+double QGraphicsItem_X(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->x());
+}
+
+double QGraphicsItem_Y(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->y());
+}
+
+double QGraphicsItem_ZValue(void* ptr){
+	return static_cast<double>(static_cast<QGraphicsItem*>(ptr)->zValue());
+}
+
+void QGraphicsItem_DestroyQGraphicsItem(void* ptr){
+	static_cast<QGraphicsItem*>(ptr)->~QGraphicsItem();
+}
+
+char* QGraphicsItem_ObjectNameAbs(void* ptr){
+	if (dynamic_cast<MyQGraphicsItem*>(static_cast<QGraphicsItem*>(ptr))) {
+		return static_cast<MyQGraphicsItem*>(ptr)->objectNameAbs().toUtf8().data();
+	}
+	return QString("QGraphicsItem_BASE").toUtf8().data();
+}
+
+void QGraphicsItem_SetObjectNameAbs(void* ptr, char* name){
+	if (dynamic_cast<MyQGraphicsItem*>(static_cast<QGraphicsItem*>(ptr))) {
+		static_cast<MyQGraphicsItem*>(ptr)->setObjectNameAbs(QString(name));
+	}
+}
+
 class MyQGraphicsItemGroup: public QGraphicsItemGroup {
 public:
 	QString _objectName;
@@ -14438,6 +15655,25 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQGraphicsItemGroup(QGraphicsItem *parent) : QGraphicsItemGroup(parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsItemGroupPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsItemGroupAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsItemGroupContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemGroupDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemGroupDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemGroupDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsItemGroupDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsItemGroupFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsItemGroupFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsItemGroupHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsItemGroupHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsItemGroupHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsItemGroupInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsItemGroupKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsItemGroupKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemGroupMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemGroupMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemGroupMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsItemGroupMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsItemGroupWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QGraphicsItemGroup_NewQGraphicsItemGroup(void* parent){
@@ -14493,6 +15729,158 @@ void QGraphicsItemGroup_SetObjectNameAbs(void* ptr, char* name){
 	}
 }
 
+void QGraphicsItemGroup_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->advance(phase);
+}
+
+void QGraphicsItemGroup_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::advance(phase);
+}
+
+void QGraphicsItemGroup_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsItemGroup_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsItemGroup_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsItemGroup_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsItemGroup_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsItemGroup_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsItemGroup_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsItemGroup_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItemGroup_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItemGroup_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItemGroup_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItemGroup_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItemGroup_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsItemGroup_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsItemGroup_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsItemGroup_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsItemGroup_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsItemGroup_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsItemGroup_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsItemGroup_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsItemGroup_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsItemGroup*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsItemGroup_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsItemGroup*>(ptr)->QGraphicsItemGroup::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
 class MyQGraphicsLineItem: public QGraphicsLineItem {
 public:
 	QString _objectName;
@@ -14502,6 +15890,25 @@ public:
 	MyQGraphicsLineItem(const QLineF &line, QGraphicsItem *parent) : QGraphicsLineItem(line, parent) {};
 	MyQGraphicsLineItem(qreal x1, qreal y1, qreal x2, qreal y2, QGraphicsItem *parent) : QGraphicsLineItem(x1, y1, x2, y2, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsLineItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsLineItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsLineItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsLineItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsLineItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsLineItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsLineItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsLineItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsLineItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsLineItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsLineItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsLineItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsLineItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsLineItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsLineItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsLineItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsLineItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsLineItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsLineItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsLineItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QGraphicsLineItem_NewQGraphicsLineItem(void* parent){
@@ -14579,6 +15986,158 @@ void QGraphicsLineItem_SetObjectNameAbs(void* ptr, char* name){
 	if (dynamic_cast<MyQGraphicsLineItem*>(static_cast<QGraphicsLineItem*>(ptr))) {
 		static_cast<MyQGraphicsLineItem*>(ptr)->setObjectNameAbs(QString(name));
 	}
+}
+
+void QGraphicsLineItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsLineItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsLineItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::advance(phase);
+}
+
+void QGraphicsLineItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsLineItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsLineItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsLineItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsLineItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsLineItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsLineItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsLineItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsLineItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsLineItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsLineItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsLineItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsLineItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsLineItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsLineItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsLineItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsLineItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsLineItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsLineItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsLineItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsLineItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsLineItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsLineItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsLineItem*>(ptr)->QGraphicsLineItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
 class MyQGraphicsLinearLayout: public QGraphicsLinearLayout {
@@ -14725,6 +16284,25 @@ public:
 	void Signal_XChanged() { callbackQGraphicsObjectXChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_YChanged() { callbackQGraphicsObjectYChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_ZChanged() { callbackQGraphicsObjectZChanged(this, this->objectName().toUtf8().data()); };
+	void advance(int phase) { callbackQGraphicsObjectAdvance(this, this->objectName().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsObjectContextMenuEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsObjectDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsObjectDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsObjectDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsObjectDropEvent(this, this->objectName().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsObjectFocusInEvent(this, this->objectName().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsObjectFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsObjectHoverEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsObjectHoverLeaveEvent(this, this->objectName().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsObjectHoverMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsObjectInputMethodEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsObjectKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsObjectKeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsObjectMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsObjectMouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsObjectMousePressEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsObjectMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsObjectWheelEvent(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsObjectTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsObjectChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQGraphicsObjectCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -14854,6 +16432,158 @@ void QGraphicsObject_DestroyQGraphicsObject(void* ptr){
 	static_cast<QGraphicsObject*>(ptr)->~QGraphicsObject();
 }
 
+void QGraphicsObject_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsObject*>(ptr)->advance(phase);
+}
+
+void QGraphicsObject_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::advance(phase);
+}
+
+void QGraphicsObject_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsObject_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsObject_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsObject_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsObject_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsObject_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsObject_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsObject_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsObject_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsObject_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsObject_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsObject_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsObject_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsObject_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsObject_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsObject_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsObject_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsObject_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsObject_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsObject_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsObject_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsObject*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsObject_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
 void QGraphicsObject_TimerEvent(void* ptr, void* event){
 	static_cast<MyQGraphicsObject*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
@@ -14966,6 +16696,25 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPathItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsPathItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsPathItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPathItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPathItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPathItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPathItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsPathItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsPathItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPathItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPathItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPathItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsPathItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsPathItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsPathItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPathItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPathItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPathItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPathItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsPathItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QGraphicsPathItem_BoundingRect(void* ptr){
@@ -15025,6 +16774,158 @@ void QGraphicsPathItem_SetObjectNameAbs(void* ptr, char* name){
 	}
 }
 
+void QGraphicsPathItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsPathItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsPathItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::advance(phase);
+}
+
+void QGraphicsPathItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsPathItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsPathItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPathItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPathItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPathItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPathItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPathItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPathItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPathItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPathItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPathItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPathItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPathItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsPathItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsPathItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPathItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPathItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPathItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPathItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPathItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPathItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsPathItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPathItem*>(ptr)->QGraphicsPathItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
 class MyQGraphicsPixmapItem: public QGraphicsPixmapItem {
 public:
 	QString _objectName;
@@ -15033,6 +16934,25 @@ public:
 	MyQGraphicsPixmapItem(QGraphicsItem *parent) : QGraphicsPixmapItem(parent) {};
 	MyQGraphicsPixmapItem(const QPixmap &pixmap, QGraphicsItem *parent) : QGraphicsPixmapItem(pixmap, parent) {};
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPixmapItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsPixmapItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsPixmapItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPixmapItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPixmapItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPixmapItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPixmapItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsPixmapItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsPixmapItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPixmapItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPixmapItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPixmapItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsPixmapItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsPixmapItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsPixmapItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPixmapItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPixmapItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPixmapItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPixmapItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsPixmapItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QGraphicsPixmapItem_NewQGraphicsPixmapItem(void* parent){
@@ -15128,12 +17048,183 @@ void QGraphicsPixmapItem_SetObjectNameAbs(void* ptr, char* name){
 	}
 }
 
+void QGraphicsPixmapItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsPixmapItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::advance(phase);
+}
+
+void QGraphicsPixmapItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsPixmapItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPixmapItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPixmapItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPixmapItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPixmapItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPixmapItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPixmapItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPixmapItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPixmapItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPixmapItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPixmapItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPixmapItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsPixmapItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsPixmapItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPixmapItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPixmapItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPixmapItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPixmapItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPixmapItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsPixmapItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPixmapItem*>(ptr)->QGraphicsPixmapItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
 class MyQGraphicsPolygonItem: public QGraphicsPolygonItem {
 public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsPolygonItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsPolygonItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsPolygonItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPolygonItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPolygonItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPolygonItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsPolygonItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsPolygonItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsPolygonItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPolygonItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPolygonItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsPolygonItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsPolygonItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsPolygonItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsPolygonItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPolygonItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPolygonItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPolygonItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsPolygonItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsPolygonItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QGraphicsPolygonItem_BoundingRect(void* ptr){
@@ -15201,6 +17292,158 @@ void QGraphicsPolygonItem_SetObjectNameAbs(void* ptr, char* name){
 	}
 }
 
+void QGraphicsPolygonItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsPolygonItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::advance(phase);
+}
+
+void QGraphicsPolygonItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsPolygonItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsPolygonItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPolygonItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPolygonItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPolygonItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsPolygonItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPolygonItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPolygonItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPolygonItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPolygonItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPolygonItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsPolygonItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsPolygonItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsPolygonItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPolygonItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPolygonItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPolygonItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsPolygonItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsPolygonItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsPolygonItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsPolygonItem*>(ptr)->QGraphicsPolygonItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
 class MyQGraphicsProxyWidget: public QGraphicsProxyWidget {
 public:
 	MyQGraphicsProxyWidget(QGraphicsItem *parent, Qt::WindowFlags wFlags) : QGraphicsProxyWidget(parent, wFlags) {};
@@ -15238,6 +17481,7 @@ public:
 	void polishEvent() { callbackQGraphicsProxyWidgetPolishEvent(this, this->objectName().toUtf8().data()); };
 	void ungrabKeyboardEvent(QEvent * event) { callbackQGraphicsProxyWidgetUngrabKeyboardEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateGeometry() { callbackQGraphicsProxyWidgetUpdateGeometry(this, this->objectName().toUtf8().data()); };
+	void advance(int phase) { callbackQGraphicsProxyWidgetAdvance(this, this->objectName().toUtf8().data(), phase); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsProxyWidgetTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsProxyWidgetChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQGraphicsProxyWidgetCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -15567,6 +17811,14 @@ void QGraphicsProxyWidget_UpdateGeometryDefault(void* ptr){
 	static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::updateGeometry();
 }
 
+void QGraphicsProxyWidget_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsProxyWidget*>(ptr)->advance(phase);
+}
+
+void QGraphicsProxyWidget_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::advance(phase);
+}
+
 void QGraphicsProxyWidget_TimerEvent(void* ptr, void* event){
 	static_cast<MyQGraphicsProxyWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
@@ -15597,6 +17849,25 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsRectItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsRectItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsRectItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsRectItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsRectItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsRectItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsRectItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsRectItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsRectItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsRectItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsRectItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsRectItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsRectItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsRectItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsRectItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsRectItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsRectItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsRectItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsRectItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsRectItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void QGraphicsRectItem_SetRect(void* ptr, void* rectangle){
@@ -15658,6 +17929,158 @@ void QGraphicsRectItem_SetObjectNameAbs(void* ptr, char* name){
 	if (dynamic_cast<MyQGraphicsRectItem*>(static_cast<QGraphicsRectItem*>(ptr))) {
 		static_cast<MyQGraphicsRectItem*>(ptr)->setObjectNameAbs(QString(name));
 	}
+}
+
+void QGraphicsRectItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsRectItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsRectItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::advance(phase);
+}
+
+void QGraphicsRectItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsRectItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsRectItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsRectItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsRectItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsRectItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsRectItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsRectItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsRectItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsRectItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsRectItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsRectItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsRectItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsRectItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsRectItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsRectItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsRectItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsRectItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsRectItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsRectItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsRectItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsRectItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsRectItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsRectItem*>(ptr)->QGraphicsRectItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
 class MyQGraphicsRotation: public QGraphicsRotation {
@@ -16703,6 +19126,25 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsSimpleTextItemPaint(this, this->objectNameAbs().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsSimpleTextItemAdvance(this, this->objectNameAbs().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsSimpleTextItemContextMenuEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSimpleTextItemDragEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSimpleTextItemDragLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSimpleTextItemDragMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsSimpleTextItemDropEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsSimpleTextItemFocusInEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsSimpleTextItemFocusOutEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsSimpleTextItemHoverEnterEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsSimpleTextItemHoverLeaveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsSimpleTextItemHoverMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsSimpleTextItemInputMethodEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsSimpleTextItemKeyPressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsSimpleTextItemKeyReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsSimpleTextItemMouseDoubleClickEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsSimpleTextItemMouseMoveEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsSimpleTextItemMousePressEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsSimpleTextItemMouseReleaseEvent(this, this->objectNameAbs().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsSimpleTextItemWheelEvent(this, this->objectNameAbs().toUtf8().data(), event); };
 };
 
 void* QGraphicsSimpleTextItem_BoundingRect(void* ptr){
@@ -16770,6 +19212,158 @@ void QGraphicsSimpleTextItem_SetObjectNameAbs(void* ptr, char* name){
 	}
 }
 
+void QGraphicsSimpleTextItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsSimpleTextItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::advance(phase);
+}
+
+void QGraphicsSimpleTextItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsSimpleTextItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsSimpleTextItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
 class MyQGraphicsTextItem: public QGraphicsTextItem {
 public:
 	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsTextItemContextMenuEvent(this, this->objectName().toUtf8().data(), event); };
@@ -16792,6 +19386,8 @@ public:
 	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsTextItemMousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsTextItemMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsTextItemPaint(this, this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsTextItemAdvance(this, this->objectName().toUtf8().data(), phase); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsTextItemWheelEvent(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsTextItemTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsTextItemChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQGraphicsTextItemCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -17083,6 +19679,22 @@ int QGraphicsTextItem_Type(void* ptr){
 
 void QGraphicsTextItem_DestroyQGraphicsTextItem(void* ptr){
 	static_cast<QGraphicsTextItem*>(ptr)->~QGraphicsTextItem();
+}
+
+void QGraphicsTextItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsTextItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsTextItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::advance(phase);
+}
+
+void QGraphicsTextItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsTextItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsTextItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
 void QGraphicsTextItem_TimerEvent(void* ptr, void* event){
@@ -17767,6 +20379,21 @@ public:
 	void ungrabKeyboardEvent(QEvent * event) { callbackQGraphicsWidgetUngrabKeyboardEvent(this, this->objectName().toUtf8().data(), event); };
 	void ungrabMouseEvent(QEvent * event) { callbackQGraphicsWidgetUngrabMouseEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateGeometry() { callbackQGraphicsWidgetUpdateGeometry(this, this->objectName().toUtf8().data()); };
+	void advance(int phase) { callbackQGraphicsWidgetAdvance(this, this->objectName().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsWidgetContextMenuEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsWidgetDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsWidgetDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsWidgetDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsWidgetDropEvent(this, this->objectName().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsWidgetHoverEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsWidgetInputMethodEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsWidgetKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsWidgetKeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsWidgetMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsWidgetMouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsWidgetMousePressEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsWidgetMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsWidgetWheelEvent(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsWidgetTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsWidgetChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQGraphicsWidgetCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -18166,6 +20793,126 @@ int QGraphicsWidget_WindowType(void* ptr){
 
 void QGraphicsWidget_DestroyQGraphicsWidget(void* ptr){
 	static_cast<QGraphicsWidget*>(ptr)->~QGraphicsWidget();
+}
+
+void QGraphicsWidget_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsWidget*>(ptr)->advance(phase);
+}
+
+void QGraphicsWidget_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::advance(phase);
+}
+
+void QGraphicsWidget_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsWidget_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsWidget_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsWidget_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsWidget_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsWidget_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsWidget_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsWidget_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsWidget_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsWidget_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsWidget_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsWidget_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsWidget_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsWidget*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsWidget_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
 void QGraphicsWidget_TimerEvent(void* ptr, void* event){
@@ -31949,7 +34696,7 @@ public:
 	void paintEvent(QPaintEvent * ev) { callbackQSliderPaintEvent(this, this->objectName().toUtf8().data(), ev); };
 	void changeEvent(QEvent * ev) { callbackQSliderChangeEvent(this, this->objectName().toUtf8().data(), ev); };
 	void keyPressEvent(QKeyEvent * ev) { callbackQSliderKeyPressEvent(this, this->objectName().toUtf8().data(), ev); };
-	void sliderChange(QSlider::SliderChange change) { callbackQSliderSliderChange(this, this->objectName().toUtf8().data(), change); };
+	void sliderChange(QAbstractSlider::SliderChange change) { callbackQSliderSliderChange(this, this->objectName().toUtf8().data(), change); };
 	void timerEvent(QTimerEvent * e) { callbackQSliderTimerEvent(this, this->objectName().toUtf8().data(), e); };
 	void wheelEvent(QWheelEvent * e) { callbackQSliderWheelEvent(this, this->objectName().toUtf8().data(), e); };
 	void actionEvent(QActionEvent * event) { callbackQSliderActionEvent(this, this->objectName().toUtf8().data(), event); };

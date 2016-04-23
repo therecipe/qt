@@ -1693,6 +1693,861 @@ func (ptr *QGraphicsVideoItem) DestroyQGraphicsVideoItem() {
 	}
 }
 
+func (ptr *QGraphicsVideoItem) ConnectAdvance(f func(phase int)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::advance")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "advance", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectAdvance() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::advance")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "advance")
+	}
+}
+
+//export callbackQGraphicsVideoItemAdvance
+func callbackQGraphicsVideoItemAdvance(ptr unsafe.Pointer, ptrName *C.char, phase C.int) {
+	defer qt.Recovering("callback QGraphicsVideoItem::advance")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "advance"); signal != nil {
+		signal.(func(int))(int(phase))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).AdvanceDefault(int(phase))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) Advance(phase int) {
+	defer qt.Recovering("QGraphicsVideoItem::advance")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_Advance(ptr.Pointer(), C.int(phase))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) AdvanceDefault(phase int) {
+	defer qt.Recovering("QGraphicsVideoItem::advance")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_AdvanceDefault(ptr.Pointer(), C.int(phase))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectContextMenuEvent(f func(event *widgets.QGraphicsSceneContextMenuEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectContextMenuEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemContextMenuEvent
+func callbackQGraphicsVideoItemContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::contextMenuEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneContextMenuEvent))(widgets.NewQGraphicsSceneContextMenuEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).ContextMenuEventDefault(widgets.NewQGraphicsSceneContextMenuEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ContextMenuEvent(event widgets.QGraphicsSceneContextMenuEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_ContextMenuEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneContextMenuEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ContextMenuEventDefault(event widgets.QGraphicsSceneContextMenuEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_ContextMenuEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneContextMenuEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectDragEnterEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemDragEnterEvent
+func callbackQGraphicsVideoItemDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::dragEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).DragEnterEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DragEnterEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DragEnterEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DragEnterEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DragEnterEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectDragLeaveEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemDragLeaveEvent
+func callbackQGraphicsVideoItemDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::dragLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).DragLeaveEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DragLeaveEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DragLeaveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DragLeaveEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DragLeaveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectDragMoveEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemDragMoveEvent
+func callbackQGraphicsVideoItemDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::dragMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).DragMoveEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DragMoveEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DragMoveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DragMoveEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DragMoveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectDropEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemDropEvent
+func callbackQGraphicsVideoItemDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::dropEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).DropEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DropEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DropEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DropEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DropEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemFocusInEvent
+func callbackQGraphicsVideoItemFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemFocusOutEvent
+func callbackQGraphicsVideoItemFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectHoverEnterEvent(f func(event *widgets.QGraphicsSceneHoverEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverEnterEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectHoverEnterEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverEnterEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemHoverEnterEvent
+func callbackQGraphicsVideoItemHoverEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::hoverEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).HoverEnterEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) HoverEnterEvent(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_HoverEnterEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) HoverEnterEventDefault(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_HoverEnterEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectHoverLeaveEvent(f func(event *widgets.QGraphicsSceneHoverEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverLeaveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectHoverLeaveEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverLeaveEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemHoverLeaveEvent
+func callbackQGraphicsVideoItemHoverLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::hoverLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).HoverLeaveEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) HoverLeaveEvent(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_HoverLeaveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) HoverLeaveEventDefault(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_HoverLeaveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectHoverMoveEvent(f func(event *widgets.QGraphicsSceneHoverEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectHoverMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverMoveEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemHoverMoveEvent
+func callbackQGraphicsVideoItemHoverMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::hoverMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).HoverMoveEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) HoverMoveEvent(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_HoverMoveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) HoverMoveEventDefault(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_HoverMoveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemInputMethodEvent
+func callbackQGraphicsVideoItemInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::inputMethodEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemKeyPressEvent
+func callbackQGraphicsVideoItemKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::keyPressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemKeyReleaseEvent
+func callbackQGraphicsVideoItemKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::keyReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectMouseDoubleClickEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemMouseDoubleClickEvent
+func callbackQGraphicsVideoItemMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::mouseDoubleClickEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).MouseDoubleClickEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MouseDoubleClickEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MouseDoubleClickEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MouseDoubleClickEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MouseDoubleClickEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectMouseMoveEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemMouseMoveEvent
+func callbackQGraphicsVideoItemMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::mouseMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).MouseMoveEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MouseMoveEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MouseMoveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MouseMoveEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MouseMoveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectMousePressEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemMousePressEvent
+func callbackQGraphicsVideoItemMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::mousePressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).MousePressEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MousePressEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MousePressEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MousePressEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MousePressEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectMouseReleaseEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemMouseReleaseEvent
+func callbackQGraphicsVideoItemMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::mouseReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).MouseReleaseEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MouseReleaseEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MouseReleaseEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) MouseReleaseEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_MouseReleaseEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) ConnectWheelEvent(f func(event *widgets.QGraphicsSceneWheelEvent)) {
+	defer qt.Recovering("connect QGraphicsVideoItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QGraphicsVideoItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQGraphicsVideoItemWheelEvent
+func callbackQGraphicsVideoItemWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsVideoItem::wheelEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneWheelEvent))(widgets.NewQGraphicsSceneWheelEventFromPointer(event))
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).WheelEventDefault(widgets.NewQGraphicsSceneWheelEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) WheelEvent(event widgets.QGraphicsSceneWheelEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_WheelEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneWheelEvent(event))
+	}
+}
+
+func (ptr *QGraphicsVideoItem) WheelEventDefault(event widgets.QGraphicsSceneWheelEvent_ITF) {
+	defer qt.Recovering("QGraphicsVideoItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_WheelEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneWheelEvent(event))
+	}
+}
+
 func (ptr *QGraphicsVideoItem) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	defer qt.Recovering("connect QGraphicsVideoItem::timerEvent")
 

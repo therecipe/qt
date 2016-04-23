@@ -18,6 +18,12 @@
 #include <QEvent>
 #include <QFocusEvent>
 #include <QGraphicsItem>
+#include <QGraphicsScene>
+#include <QGraphicsSceneContextMenuEvent>
+#include <QGraphicsSceneDragDropEvent>
+#include <QGraphicsSceneHoverEvent>
+#include <QGraphicsSceneMouseEvent>
+#include <QGraphicsSceneWheelEvent>
 #include <QGraphicsVideoItem>
 #include <QHideEvent>
 #include <QInputMethod>
@@ -355,6 +361,25 @@ public:
 	MyQGraphicsVideoItem(QGraphicsItem *parent) : QGraphicsVideoItem(parent) {};
 	void Signal_NativeSizeChanged(const QSizeF & size) { callbackQGraphicsVideoItemNativeSizeChanged(this, this->objectName().toUtf8().data(), new QSizeF(static_cast<QSizeF>(size).width(), static_cast<QSizeF>(size).height())); };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsVideoItemPaint(this, this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	void advance(int phase) { callbackQGraphicsVideoItemAdvance(this, this->objectName().toUtf8().data(), phase); };
+	void contextMenuEvent(QGraphicsSceneContextMenuEvent * event) { callbackQGraphicsVideoItemContextMenuEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragEnterEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItemDragEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItemDragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItemDragMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsVideoItemDropEvent(this, this->objectName().toUtf8().data(), event); };
+	void focusInEvent(QFocusEvent * event) { callbackQGraphicsVideoItemFocusInEvent(this, this->objectName().toUtf8().data(), event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsVideoItemFocusOutEvent(this, this->objectName().toUtf8().data(), event); };
+	void hoverEnterEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsVideoItemHoverEnterEvent(this, this->objectName().toUtf8().data(), event); };
+	void hoverLeaveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsVideoItemHoverLeaveEvent(this, this->objectName().toUtf8().data(), event); };
+	void hoverMoveEvent(QGraphicsSceneHoverEvent * event) { callbackQGraphicsVideoItemHoverMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQGraphicsVideoItemInputMethodEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsVideoItemKeyPressEvent(this, this->objectName().toUtf8().data(), event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsVideoItemKeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItemMouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItemMouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
+	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItemMousePressEvent(this, this->objectName().toUtf8().data(), event); };
+	void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsVideoItemMouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
+	void wheelEvent(QGraphicsSceneWheelEvent * event) { callbackQGraphicsVideoItemWheelEvent(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsVideoItemTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsVideoItemChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQGraphicsVideoItemCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -422,6 +447,158 @@ void* QGraphicsVideoItem_Size(void* ptr){
 
 void QGraphicsVideoItem_DestroyQGraphicsVideoItem(void* ptr){
 	static_cast<QGraphicsVideoItem*>(ptr)->~QGraphicsVideoItem();
+}
+
+void QGraphicsVideoItem_Advance(void* ptr, int phase){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->advance(phase);
+}
+
+void QGraphicsVideoItem_AdvanceDefault(void* ptr, int phase){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::advance(phase);
+}
+
+void QGraphicsVideoItem_ContextMenuEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsVideoItem_ContextMenuEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::contextMenuEvent(static_cast<QGraphicsSceneContextMenuEvent*>(event));
+}
+
+void QGraphicsVideoItem_DragEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_DragEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_DragLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_DragLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dragLeaveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_DragMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_DragMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dragMoveEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_DropEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_DropEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::dropEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
+}
+
+void QGraphicsVideoItem_FocusInEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsVideoItem_FocusInEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsVideoItem_FocusOutEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsVideoItem_FocusOutEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void QGraphicsVideoItem_HoverEnterEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsVideoItem_HoverEnterEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::hoverEnterEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsVideoItem_HoverLeaveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsVideoItem_HoverLeaveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::hoverLeaveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsVideoItem_HoverMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsVideoItem_HoverMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::hoverMoveEvent(static_cast<QGraphicsSceneHoverEvent*>(event));
+}
+
+void QGraphicsVideoItem_InputMethodEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsVideoItem_InputMethodEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void QGraphicsVideoItem_KeyPressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsVideoItem_KeyPressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsVideoItem_KeyReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsVideoItem_KeyReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void QGraphicsVideoItem_MouseDoubleClickEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_MouseDoubleClickEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mouseDoubleClickEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_MouseMoveEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_MouseMoveEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mouseMoveEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_MousePressEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_MousePressEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mousePressEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_MouseReleaseEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_MouseReleaseEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::mouseReleaseEvent(static_cast<QGraphicsSceneMouseEvent*>(event));
+}
+
+void QGraphicsVideoItem_WheelEvent(void* ptr, void* event){
+	static_cast<MyQGraphicsVideoItem*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
+}
+
+void QGraphicsVideoItem_WheelEventDefault(void* ptr, void* event){
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
 void QGraphicsVideoItem_TimerEvent(void* ptr, void* event){

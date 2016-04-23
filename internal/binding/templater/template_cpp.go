@@ -252,11 +252,13 @@ func CppTemplate(module string) (o string) {
 					if bc, exists := parser.ClassMap[bcName]; exists {
 						for _, f := range bc.Functions {
 							if strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-								if i := cppFunctionSignal(f); isSupportedFunction(bc, f) && isSupportedClass(bc) {
+								var f = *f
+								f.Fullname = c.Name + "::" + f.Name
+								if i := cppFunctionSignal(&f); isSupportedFunction(bc, &f) && isSupportedClass(bc) {
 									if _, exists := virtuals[f.Name+f.OverloadNumber]; !exists {
 										virtuals[f.Name+f.OverloadNumber] = true
 										if !isBlockedVirtual(f.Name, c.Name) {
-											o += strings.Replace(fmt.Sprintf("\t%v;\n", i), bc.Name, c.Name, -1)
+											o += fmt.Sprintf("\t%v;\n", i)
 										}
 									}
 								}

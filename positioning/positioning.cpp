@@ -905,7 +905,7 @@ public:
 	void setUpdateInterval(int msec) { callbackQNmeaPositionInfoSourceSetUpdateInterval(this, this->objectName().toUtf8().data(), msec); };
 	void startUpdates() { if (!callbackQNmeaPositionInfoSourceStartUpdates(this, this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::startUpdates(); }; };
 	void stopUpdates() { if (!callbackQNmeaPositionInfoSourceStopUpdates(this, this->objectName().toUtf8().data())) { QNmeaPositionInfoSource::stopUpdates(); }; };
-	void setPreferredPositioningMethods(QNmeaPositionInfoSource::PositioningMethods methods) { callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods(this, this->objectName().toUtf8().data(), methods); };
+	void setPreferredPositioningMethods(QGeoPositionInfoSource::PositioningMethods methods) { callbackQNmeaPositionInfoSourceSetPreferredPositioningMethods(this, this->objectName().toUtf8().data(), methods); };
 	void timerEvent(QTimerEvent * event) { callbackQNmeaPositionInfoSourceTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQNmeaPositionInfoSourceChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQNmeaPositionInfoSourceCustomEvent(this, this->objectName().toUtf8().data(), event); };

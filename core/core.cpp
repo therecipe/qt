@@ -6658,8 +6658,8 @@ public:
 	MyQPauseAnimation(QObject *parent) : QPauseAnimation(parent) {};
 	MyQPauseAnimation(int msecs, QObject *parent) : QPauseAnimation(msecs, parent) {};
 	void updateCurrentTime(int v) { callbackQPauseAnimationUpdateCurrentTime(this, this->objectName().toUtf8().data(), v); };
-	void updateDirection(QPauseAnimation::Direction direction) { callbackQPauseAnimationUpdateDirection(this, this->objectName().toUtf8().data(), direction); };
-	void updateState(QPauseAnimation::State newState, QPauseAnimation::State oldState) { callbackQPauseAnimationUpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
+	void updateDirection(QAbstractAnimation::Direction direction) { callbackQPauseAnimationUpdateDirection(this, this->objectName().toUtf8().data(), direction); };
+	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQPauseAnimationUpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
 	void timerEvent(QTimerEvent * event) { callbackQPauseAnimationTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQPauseAnimationChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQPauseAnimationCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -7328,7 +7328,7 @@ public:
 	void updateCurrentValue(const QVariant & value) { callbackQPropertyAnimationUpdateCurrentValue(this, this->objectName().toUtf8().data(), new QVariant(value)); };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQPropertyAnimationUpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
 	void updateCurrentTime(int v) { callbackQPropertyAnimationUpdateCurrentTime(this, this->objectName().toUtf8().data(), v); };
-	void updateDirection(QPropertyAnimation::Direction direction) { callbackQPropertyAnimationUpdateDirection(this, this->objectName().toUtf8().data(), direction); };
+	void updateDirection(QAbstractAnimation::Direction direction) { callbackQPropertyAnimationUpdateDirection(this, this->objectName().toUtf8().data(), direction); };
 	void timerEvent(QTimerEvent * event) { callbackQPropertyAnimationTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQPropertyAnimationChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQPropertyAnimationCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -12409,7 +12409,7 @@ public:
 	void updateCurrentValue(const QVariant & value) { callbackQVariantAnimationUpdateCurrentValue(this, this->objectName().toUtf8().data(), new QVariant(value)); };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQVariantAnimationUpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
 	void Signal_ValueChanged(const QVariant & value) { callbackQVariantAnimationValueChanged(this, this->objectName().toUtf8().data(), new QVariant(value)); };
-	void updateDirection(QVariantAnimation::Direction direction) { callbackQVariantAnimationUpdateDirection(this, this->objectName().toUtf8().data(), direction); };
+	void updateDirection(QAbstractAnimation::Direction direction) { callbackQVariantAnimationUpdateDirection(this, this->objectName().toUtf8().data(), direction); };
 	void timerEvent(QTimerEvent * event) { callbackQVariantAnimationTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQVariantAnimationChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQVariantAnimationCustomEvent(this, this->objectName().toUtf8().data(), event); };

@@ -1,4 +1,5 @@
 .DS_Store
+**/dump/
 **/deploy/windows/
 **/deploy/darwin/
 **/deploy/linux/

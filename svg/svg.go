@@ -158,6 +158,861 @@ func (ptr *QGraphicsSvgItem) Type() int {
 	return 0
 }
 
+func (ptr *QGraphicsSvgItem) ConnectAdvance(f func(phase int)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::advance")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "advance", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectAdvance() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::advance")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "advance")
+	}
+}
+
+//export callbackQGraphicsSvgItemAdvance
+func callbackQGraphicsSvgItemAdvance(ptr unsafe.Pointer, ptrName *C.char, phase C.int) {
+	defer qt.Recovering("callback QGraphicsSvgItem::advance")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "advance"); signal != nil {
+		signal.(func(int))(int(phase))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).AdvanceDefault(int(phase))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) Advance(phase int) {
+	defer qt.Recovering("QGraphicsSvgItem::advance")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_Advance(ptr.Pointer(), C.int(phase))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) AdvanceDefault(phase int) {
+	defer qt.Recovering("QGraphicsSvgItem::advance")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_AdvanceDefault(ptr.Pointer(), C.int(phase))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectContextMenuEvent(f func(event *widgets.QGraphicsSceneContextMenuEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectContextMenuEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemContextMenuEvent
+func callbackQGraphicsSvgItemContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::contextMenuEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneContextMenuEvent))(widgets.NewQGraphicsSceneContextMenuEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).ContextMenuEventDefault(widgets.NewQGraphicsSceneContextMenuEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ContextMenuEvent(event widgets.QGraphicsSceneContextMenuEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_ContextMenuEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneContextMenuEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ContextMenuEventDefault(event widgets.QGraphicsSceneContextMenuEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::contextMenuEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_ContextMenuEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneContextMenuEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectDragEnterEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectDragEnterEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemDragEnterEvent
+func callbackQGraphicsSvgItemDragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::dragEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).DragEnterEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DragEnterEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DragEnterEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DragEnterEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DragEnterEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectDragLeaveEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectDragLeaveEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemDragLeaveEvent
+func callbackQGraphicsSvgItemDragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::dragLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).DragLeaveEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DragLeaveEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DragLeaveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DragLeaveEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DragLeaveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectDragMoveEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectDragMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemDragMoveEvent
+func callbackQGraphicsSvgItemDragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::dragMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).DragMoveEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DragMoveEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DragMoveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DragMoveEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DragMoveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectDropEvent(f func(event *widgets.QGraphicsSceneDragDropEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectDropEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemDropEvent
+func callbackQGraphicsSvgItemDropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::dropEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).DropEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DropEvent(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DropEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DropEventDefault(event widgets.QGraphicsSceneDragDropEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DropEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneDragDropEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemFocusInEvent
+func callbackQGraphicsSvgItemFocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemFocusOutEvent
+func callbackQGraphicsSvgItemFocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectHoverEnterEvent(f func(event *widgets.QGraphicsSceneHoverEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverEnterEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectHoverEnterEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverEnterEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemHoverEnterEvent
+func callbackQGraphicsSvgItemHoverEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::hoverEnterEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverEnterEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).HoverEnterEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) HoverEnterEvent(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_HoverEnterEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) HoverEnterEventDefault(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::hoverEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_HoverEnterEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectHoverLeaveEvent(f func(event *widgets.QGraphicsSceneHoverEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverLeaveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectHoverLeaveEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverLeaveEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemHoverLeaveEvent
+func callbackQGraphicsSvgItemHoverLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::hoverLeaveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverLeaveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).HoverLeaveEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) HoverLeaveEvent(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_HoverLeaveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) HoverLeaveEventDefault(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::hoverLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_HoverLeaveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectHoverMoveEvent(f func(event *widgets.QGraphicsSceneHoverEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "hoverMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectHoverMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "hoverMoveEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemHoverMoveEvent
+func callbackQGraphicsSvgItemHoverMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::hoverMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "hoverMoveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).HoverMoveEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) HoverMoveEvent(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_HoverMoveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) HoverMoveEventDefault(event widgets.QGraphicsSceneHoverEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::hoverMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_HoverMoveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneHoverEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectInputMethodEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemInputMethodEvent
+func callbackQGraphicsSvgItemInputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::inputMethodEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::inputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectKeyPressEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemKeyPressEvent
+func callbackQGraphicsSvgItemKeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::keyPressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) KeyPressEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::keyPressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectKeyReleaseEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemKeyReleaseEvent
+func callbackQGraphicsSvgItemKeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::keyReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::keyReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectMouseDoubleClickEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectMouseDoubleClickEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemMouseDoubleClickEvent
+func callbackQGraphicsSvgItemMouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::mouseDoubleClickEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).MouseDoubleClickEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MouseDoubleClickEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MouseDoubleClickEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MouseDoubleClickEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mouseDoubleClickEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MouseDoubleClickEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectMouseMoveEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectMouseMoveEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemMouseMoveEvent
+func callbackQGraphicsSvgItemMouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::mouseMoveEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).MouseMoveEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MouseMoveEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MouseMoveEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MouseMoveEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mouseMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MouseMoveEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectMousePressEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectMousePressEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemMousePressEvent
+func callbackQGraphicsSvgItemMousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::mousePressEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).MousePressEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MousePressEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MousePressEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MousePressEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mousePressEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MousePressEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectMouseReleaseEvent(f func(event *widgets.QGraphicsSceneMouseEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectMouseReleaseEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemMouseReleaseEvent
+func callbackQGraphicsSvgItemMouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::mouseReleaseEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).MouseReleaseEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MouseReleaseEvent(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MouseReleaseEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) MouseReleaseEventDefault(event widgets.QGraphicsSceneMouseEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::mouseReleaseEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_MouseReleaseEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneMouseEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) ConnectWheelEvent(f func(event *widgets.QGraphicsSceneWheelEvent)) {
+	defer qt.Recovering("connect QGraphicsSvgItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DisconnectWheelEvent() {
+	defer qt.Recovering("disconnect QGraphicsSvgItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+	}
+}
+
+//export callbackQGraphicsSvgItemWheelEvent
+func callbackQGraphicsSvgItemWheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QGraphicsSvgItem::wheelEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+		signal.(func(*widgets.QGraphicsSceneWheelEvent))(widgets.NewQGraphicsSceneWheelEventFromPointer(event))
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).WheelEventDefault(widgets.NewQGraphicsSceneWheelEventFromPointer(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) WheelEvent(event widgets.QGraphicsSceneWheelEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_WheelEvent(ptr.Pointer(), widgets.PointerFromQGraphicsSceneWheelEvent(event))
+	}
+}
+
+func (ptr *QGraphicsSvgItem) WheelEventDefault(event widgets.QGraphicsSceneWheelEvent_ITF) {
+	defer qt.Recovering("QGraphicsSvgItem::wheelEvent")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_WheelEventDefault(ptr.Pointer(), widgets.PointerFromQGraphicsSceneWheelEvent(event))
+	}
+}
+
 func (ptr *QGraphicsSvgItem) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 	defer qt.Recovering("connect QGraphicsSvgItem::timerEvent")
 

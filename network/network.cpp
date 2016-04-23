@@ -3550,7 +3550,7 @@ public:
 	void disconnectFromHost() { callbackQTcpSocketDisconnectFromHost(this, this->objectName().toUtf8().data()); };
 	void resume() { callbackQTcpSocketResume(this, this->objectName().toUtf8().data()); };
 	void setReadBufferSize(qint64 size) { callbackQTcpSocketSetReadBufferSize(this, this->objectName().toUtf8().data(), static_cast<long long>(size)); };
-	void setSocketOption(QTcpSocket::SocketOption option, const QVariant & value) { callbackQTcpSocketSetSocketOption(this, this->objectName().toUtf8().data(), option, new QVariant(value)); };
+	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQTcpSocketSetSocketOption(this, this->objectName().toUtf8().data(), option, new QVariant(value)); };
 	void timerEvent(QTimerEvent * event) { callbackQTcpSocketTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQTcpSocketChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQTcpSocketCustomEvent(this, this->objectName().toUtf8().data(), event); };
@@ -3635,7 +3635,7 @@ public:
 	void disconnectFromHost() { callbackQUdpSocketDisconnectFromHost(this, this->objectName().toUtf8().data()); };
 	void resume() { callbackQUdpSocketResume(this, this->objectName().toUtf8().data()); };
 	void setReadBufferSize(qint64 size) { callbackQUdpSocketSetReadBufferSize(this, this->objectName().toUtf8().data(), static_cast<long long>(size)); };
-	void setSocketOption(QUdpSocket::SocketOption option, const QVariant & value) { callbackQUdpSocketSetSocketOption(this, this->objectName().toUtf8().data(), option, new QVariant(value)); };
+	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQUdpSocketSetSocketOption(this, this->objectName().toUtf8().data(), option, new QVariant(value)); };
 	void timerEvent(QTimerEvent * event) { callbackQUdpSocketTimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQUdpSocketChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void customEvent(QEvent * event) { callbackQUdpSocketCustomEvent(this, this->objectName().toUtf8().data(), event); };

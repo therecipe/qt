@@ -1031,7 +1031,7 @@ public:
 	void revertRow(int row) { if (!callbackQSqlRelationalTableModelRevertRow(this, this->objectName().toUtf8().data(), row)) { QSqlRelationalTableModel::revertRow(row); }; };
 	void setTable(const QString & table) { callbackQSqlRelationalTableModelSetTable(this, this->objectName().toUtf8().data(), table.toUtf8().data()); };
 	void revert() { if (!callbackQSqlRelationalTableModelRevert(this, this->objectName().toUtf8().data())) { QSqlRelationalTableModel::revert(); }; };
-	void setEditStrategy(QSqlRelationalTableModel::EditStrategy strategy) { callbackQSqlRelationalTableModelSetEditStrategy(this, this->objectName().toUtf8().data(), strategy); };
+	void setEditStrategy(QSqlTableModel::EditStrategy strategy) { callbackQSqlRelationalTableModelSetEditStrategy(this, this->objectName().toUtf8().data(), strategy); };
 	void setFilter(const QString & filter) { callbackQSqlRelationalTableModelSetFilter(this, this->objectName().toUtf8().data(), filter.toUtf8().data()); };
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModelSetSort(this, this->objectName().toUtf8().data(), column, order); };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModelSort(this, this->objectName().toUtf8().data(), column, order); };
