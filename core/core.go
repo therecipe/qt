@@ -19611,16 +19611,16 @@ func QMetaObject_ConnectSlotsByName(object QObject_ITF) {
 	C.QMetaObject_QMetaObject_ConnectSlotsByName(PointerFromQObject(object))
 }
 
-func QMetaObject_CheckConnectArgs2(signal QMetaMethod_ITF, method QMetaMethod_ITF) bool {
+func QMetaObject_CheckConnectArgs2(sign QMetaMethod_ITF, method QMetaMethod_ITF) bool {
 	defer qt.Recovering("QMetaObject::checkConnectArgs")
 
-	return C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(signal), PointerFromQMetaMethod(method)) != 0
+	return C.QMetaObject_QMetaObject_CheckConnectArgs2(PointerFromQMetaMethod(sign), PointerFromQMetaMethod(method)) != 0
 }
 
-func QMetaObject_CheckConnectArgs(signal string, method string) bool {
+func QMetaObject_CheckConnectArgs(sign string, method string) bool {
 	defer qt.Recovering("QMetaObject::checkConnectArgs")
 
-	return C.QMetaObject_QMetaObject_CheckConnectArgs(C.CString(signal), C.CString(method)) != 0
+	return C.QMetaObject_QMetaObject_CheckConnectArgs(C.CString(sign), C.CString(method)) != 0
 }
 
 func (ptr *QMetaObject) ClassInfoCount() int {
@@ -19713,11 +19713,11 @@ func (ptr *QMetaObject) IndexOfProperty(name string) int {
 	return 0
 }
 
-func (ptr *QMetaObject) IndexOfSignal(signal string) int {
+func (ptr *QMetaObject) IndexOfSignal(sign string) int {
 	defer qt.Recovering("QMetaObject::indexOfSignal")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfSignal(ptr.Pointer(), C.CString(signal)))
+		return int(C.QMetaObject_IndexOfSignal(ptr.Pointer(), C.CString(sign)))
 	}
 	return 0
 }
@@ -30190,10 +30190,10 @@ func NewQSignalTransition(sourceState QState_ITF) *QSignalTransition {
 	return newQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition(PointerFromQState(sourceState)))
 }
 
-func NewQSignalTransition2(sender QObject_ITF, signal string, sourceState QState_ITF) *QSignalTransition {
+func NewQSignalTransition2(sender QObject_ITF, sign string, sourceState QState_ITF) *QSignalTransition {
 	defer qt.Recovering("QSignalTransition::QSignalTransition")
 
-	return newQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), C.CString(signal), PointerFromQState(sourceState)))
+	return newQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), C.CString(sign), PointerFromQState(sourceState)))
 }
 
 func (ptr *QSignalTransition) Event(e QEvent_ITF) bool {
@@ -30304,11 +30304,11 @@ func (ptr *QSignalTransition) SetSenderObject(sender QObject_ITF) {
 	}
 }
 
-func (ptr *QSignalTransition) SetSignal(signal string) {
+func (ptr *QSignalTransition) SetSignal(sign string) {
 	defer qt.Recovering("QSignalTransition::setSignal")
 
 	if ptr.Pointer() != nil {
-		C.QSignalTransition_SetSignal(ptr.Pointer(), C.CString(signal))
+		C.QSignalTransition_SetSignal(ptr.Pointer(), C.CString(sign))
 	}
 }
 
@@ -32155,11 +32155,11 @@ func (ptr *QState) AddTransition3(target QAbstractState_ITF) *QAbstractTransitio
 	return nil
 }
 
-func (ptr *QState) AddTransition2(sender QObject_ITF, signal string, target QAbstractState_ITF) *QSignalTransition {
+func (ptr *QState) AddTransition2(sender QObject_ITF, sign string, target QAbstractState_ITF) *QSignalTransition {
 	defer qt.Recovering("QState::addTransition")
 
 	if ptr.Pointer() != nil {
-		return NewQSignalTransitionFromPointer(C.QState_AddTransition2(ptr.Pointer(), PointerFromQObject(sender), C.CString(signal), PointerFromQAbstractState(target)))
+		return NewQSignalTransitionFromPointer(C.QState_AddTransition2(ptr.Pointer(), PointerFromQObject(sender), C.CString(sign), PointerFromQAbstractState(target)))
 	}
 	return nil
 }

@@ -256,8 +256,8 @@ void* QGeoAreaMonitorSource_PositionInfoSource(void* ptr){
 	return static_cast<QGeoAreaMonitorSource*>(ptr)->positionInfoSource();
 }
 
-int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* signal){
-	return static_cast<QGeoAreaMonitorSource*>(ptr)->requestUpdate(*static_cast<QGeoAreaMonitorInfo*>(monitor), const_cast<const char*>(signal));
+int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* sign){
+	return static_cast<QGeoAreaMonitorSource*>(ptr)->requestUpdate(*static_cast<QGeoAreaMonitorInfo*>(monitor), const_cast<const char*>(sign));
 }
 
 void QGeoAreaMonitorSource_SetPositionInfoSource(void* ptr, void* newSource){

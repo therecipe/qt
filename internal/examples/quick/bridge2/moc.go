@@ -216,6 +216,51 @@ func (ptr *QmlBridge) ChildEventDefault(event core.QChildEvent_ITF) {
 	}
 }
 
+func (ptr *QmlBridge) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
+	defer qt.Recovering("connect QmlBridge::connectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+	}
+}
+
+func (ptr *QmlBridge) DisconnectConnectNotify() {
+	defer qt.Recovering("disconnect QmlBridge::connectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+	}
+}
+
+//export callbackQmlBridgeConnectNotify
+func callbackQmlBridgeConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+	defer qt.Recovering("callback QmlBridge::connectNotify")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQmlBridgeFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QmlBridge) ConnectNotify(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QmlBridge::connectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QmlBridge_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QmlBridge) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QmlBridge::connectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QmlBridge_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
 func (ptr *QmlBridge) ConnectCustomEvent(f func(event *core.QEvent)) {
 	defer qt.Recovering("connect QmlBridge::customEvent")
 
@@ -258,5 +303,50 @@ func (ptr *QmlBridge) CustomEventDefault(event core.QEvent_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QmlBridge_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QmlBridge) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
+	defer qt.Recovering("connect QmlBridge::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+	}
+}
+
+func (ptr *QmlBridge) DisconnectDisconnectNotify() {
+	defer qt.Recovering("disconnect QmlBridge::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+	}
+}
+
+//export callbackQmlBridgeDisconnectNotify
+func callbackQmlBridgeDisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+	defer qt.Recovering("callback QmlBridge::disconnectNotify")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQmlBridgeFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QmlBridge) DisconnectNotify(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QmlBridge::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QmlBridge_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QmlBridge) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QmlBridge::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QmlBridge_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }

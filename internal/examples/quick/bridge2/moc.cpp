@@ -5,6 +5,7 @@
 
 #include <QChildEvent>
 #include <QEvent>
+#include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
 #include <QString>
@@ -68,12 +69,28 @@ void QmlBridge_ChildEventDefault(void* ptr, void* event){
 	static_cast<QObject*>(ptr)->QObject::childEvent(static_cast<QChildEvent*>(event));
 }
 
+void QmlBridge_ConnectNotify(void* ptr, void* sign){
+	static_cast<QmlBridge*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QmlBridge_ConnectNotifyDefault(void* ptr, void* sign){
+	static_cast<QObject*>(ptr)->QObject::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
 void QmlBridge_CustomEvent(void* ptr, void* event){
 	static_cast<QmlBridge*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QmlBridge_CustomEventDefault(void* ptr, void* event){
 	static_cast<QObject*>(ptr)->QObject::customEvent(static_cast<QEvent*>(event));
+}
+
+void QmlBridge_DisconnectNotify(void* ptr, void* sign){
+	static_cast<QmlBridge*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QmlBridge_DisconnectNotifyDefault(void* ptr, void* sign){
+	static_cast<QObject*>(ptr)->QObject::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 #include "moc_moc.h"

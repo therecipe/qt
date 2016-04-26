@@ -5757,12 +5757,12 @@ void QMetaObject_QMetaObject_ConnectSlotsByName(void* object){
 	QMetaObject::connectSlotsByName(static_cast<QObject*>(object));
 }
 
-int QMetaObject_QMetaObject_CheckConnectArgs2(void* signal, void* method){
-	return QMetaObject::checkConnectArgs(*static_cast<QMetaMethod*>(signal), *static_cast<QMetaMethod*>(method));
+int QMetaObject_QMetaObject_CheckConnectArgs2(void* sign, void* method){
+	return QMetaObject::checkConnectArgs(*static_cast<QMetaMethod*>(sign), *static_cast<QMetaMethod*>(method));
 }
 
-int QMetaObject_QMetaObject_CheckConnectArgs(char* signal, char* method){
-	return QMetaObject::checkConnectArgs(const_cast<const char*>(signal), const_cast<const char*>(method));
+int QMetaObject_QMetaObject_CheckConnectArgs(char* sign, char* method){
+	return QMetaObject::checkConnectArgs(const_cast<const char*>(sign), const_cast<const char*>(method));
 }
 
 int QMetaObject_ClassInfoCount(void* ptr){
@@ -5805,8 +5805,8 @@ int QMetaObject_IndexOfProperty(void* ptr, char* name){
 	return static_cast<QMetaObject*>(ptr)->indexOfProperty(const_cast<const char*>(name));
 }
 
-int QMetaObject_IndexOfSignal(void* ptr, char* signal){
-	return static_cast<QMetaObject*>(ptr)->indexOfSignal(const_cast<const char*>(signal));
+int QMetaObject_IndexOfSignal(void* ptr, char* sign){
+	return static_cast<QMetaObject*>(ptr)->indexOfSignal(const_cast<const char*>(sign));
 }
 
 int QMetaObject_IndexOfSlot(void* ptr, char* slot){
@@ -9022,8 +9022,8 @@ void* QSignalTransition_NewQSignalTransition(void* sourceState){
 	return new MyQSignalTransition(static_cast<QState*>(sourceState));
 }
 
-void* QSignalTransition_NewQSignalTransition2(void* sender, char* signal, void* sourceState){
-	return new MyQSignalTransition(static_cast<QObject*>(sender), const_cast<const char*>(signal), static_cast<QState*>(sourceState));
+void* QSignalTransition_NewQSignalTransition2(void* sender, char* sign, void* sourceState){
+	return new MyQSignalTransition(static_cast<QObject*>(sender), const_cast<const char*>(sign), static_cast<QState*>(sourceState));
 }
 
 int QSignalTransition_Event(void* ptr, void* e){
@@ -9058,8 +9058,8 @@ void QSignalTransition_SetSenderObject(void* ptr, void* sender){
 	static_cast<QSignalTransition*>(ptr)->setSenderObject(static_cast<QObject*>(sender));
 }
 
-void QSignalTransition_SetSignal(void* ptr, char* signal){
-	static_cast<QSignalTransition*>(ptr)->setSignal(QByteArray(signal));
+void QSignalTransition_SetSignal(void* ptr, char* sign){
+	static_cast<QSignalTransition*>(ptr)->setSignal(QByteArray(sign));
 }
 
 char* QSignalTransition_Signal(void* ptr){
@@ -9646,8 +9646,8 @@ void* QState_AddTransition3(void* ptr, void* target){
 	return static_cast<QState*>(ptr)->addTransition(static_cast<QAbstractState*>(target));
 }
 
-void* QState_AddTransition2(void* ptr, void* sender, char* signal, void* target){
-	return static_cast<QState*>(ptr)->addTransition(static_cast<QObject*>(sender), const_cast<const char*>(signal), static_cast<QAbstractState*>(target));
+void* QState_AddTransition2(void* ptr, void* sender, char* sign, void* target){
+	return static_cast<QState*>(ptr)->addTransition(static_cast<QObject*>(sender), const_cast<const char*>(sign), static_cast<QAbstractState*>(target));
 }
 
 void QState_AddTransition(void* ptr, void* transition){

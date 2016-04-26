@@ -17,8 +17,12 @@ void QmlBridge_TimerEvent(void* ptr, void* event);
 void QmlBridge_TimerEventDefault(void* ptr, void* event);
 void QmlBridge_ChildEvent(void* ptr, void* event);
 void QmlBridge_ChildEventDefault(void* ptr, void* event);
+void QmlBridge_ConnectNotify(void* ptr, void* sign);
+void QmlBridge_ConnectNotifyDefault(void* ptr, void* sign);
 void QmlBridge_CustomEvent(void* ptr, void* event);
 void QmlBridge_CustomEventDefault(void* ptr, void* event);
+void QmlBridge_DisconnectNotify(void* ptr, void* sign);
+void QmlBridge_DisconnectNotifyDefault(void* ptr, void* sign);
 
 #ifdef __cplusplus
 }

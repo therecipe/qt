@@ -62,7 +62,7 @@ void QGeoAreaMonitorSource_DisconnectMonitorExpired(void* ptr);
 void QGeoAreaMonitorSource_MonitorExpired(void* ptr, void* monitor);
 void* QGeoAreaMonitorSource_PositionInfoSource(void* ptr);
 void* QGeoAreaMonitorSource_PositionInfoSourceDefault(void* ptr);
-int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* signal);
+int QGeoAreaMonitorSource_RequestUpdate(void* ptr, void* monitor, char* sign);
 void QGeoAreaMonitorSource_SetPositionInfoSource(void* ptr, void* newSource);
 void QGeoAreaMonitorSource_SetPositionInfoSourceDefault(void* ptr, void* newSource);
 char* QGeoAreaMonitorSource_SourceName(void* ptr);

@@ -70,7 +70,8 @@ func cleanName(name string) string {
 		"interface",
 		"select",
 		"strings",
-		"new":
+		"new",
+		"signal":
 		{
 			return name[:len(name)-2]
 		}
