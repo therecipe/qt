@@ -19,12 +19,12 @@ type SubNamespace struct {
 
 func (m *Module) Prepare() {
 
-	//Register Namespace
+	//register namespace
 	for _, c := range m.Namespace.Classes {
 		c.register(m.Project)
 	}
 
-	//Register Subnamespace
+	//register subnamespace
 	if m.Project == "QtCore" || m.Project == "QtMultimedia" {
 		if m.Namespace.SubNamespace != nil {
 			for _, e := range m.Namespace.SubNamespace.Enums {
@@ -33,18 +33,17 @@ func (m *Module) Prepare() {
 		}
 	}
 
-	//Remove obsolete and private
+	//remove obsolete and private
 	m.removeClasses()
 	for _, c := range ClassMap {
 		if c.Module == m.Project {
+			c.fix()
 			c.removeFunctions()
 			c.removeEnums()
-			c.registerAbstact()
-			//TODO: register *Class in *Function
 		}
 	}
 
-	//Fixes for 5.6
+	//fixes for 5.6.0
 	for _, c := range ClassMap {
 		if c.Module == m.Project {
 			//c.fixBases()
@@ -63,7 +62,7 @@ func (m *Module) Prepare() {
 
 func (m *Module) removeClasses() {
 	for _, c := range ClassMap {
-		if c.Status == "obsolete" || !(c.Access == "public" || c.Access == "protected") || c.Name == "qoutputrange" {
+		if (c.Status == "obsolete" || c.Status == "compat") || !(c.Access == "public" || c.Access == "protected") || c.Name == "qoutputrange" {
 			delete(ClassMap, c.Name)
 		}
 	}

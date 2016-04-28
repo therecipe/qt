@@ -8,8 +8,26 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+const (
+	SIGNAL = "signal"
+	SLOT   = "slot"
+
+	IMPURE = "impure"
+	PURE   = "pure"
+
+	MOC         = "main"
+	PLAIN       = "plain"
+	CONSTRUCTOR = "constructor"
+	DESTRUCTOR  = "destructor"
+
+	CONNECT    = "Connect"
+	DISCONNECT = "Disconnect"
+	CALLBACK   = "callback"
+
+	VOID = "void"
+)
+
 var (
-	AbstractMap     = make(map[string]bool)
 	ClassMap        = make(map[string]*Class)
 	SubnamespaceMap = make(map[string]bool)
 )

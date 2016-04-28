@@ -1,4 +1,5 @@
 package main
+
 /*
 #cgo CPPFLAGS: -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC
 #cgo CPPFLAGS: -DQT_NO_DEBUG -DQT_CORE_LIB

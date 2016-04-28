@@ -37,10 +37,6 @@ func main() {
 		appPath = utils.GetAbsPath(appPath)
 	}
 
-	for _, module := range templater.GetLibs() {
-		parser.GetModule(strings.ToLower(module))
-	}
-
 	var module = &parser.Module{Project: "main", Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
 
 	var walkFunc = func(path string, info os.FileInfo, err error) error {
@@ -96,7 +92,7 @@ func main() {
 										}
 										if strings.Contains(tag, "slot:") {
 											meta = "slot"
-											virtual = "impure"
+											virtual = "non"
 										}
 
 										if meta != "" {
@@ -126,62 +122,59 @@ func main() {
 
 	filepath.Walk(appPath, walkFunc)
 
-	module.Prepare()
+	if len(module.Namespace.Classes) > 0 {
 
-	for _, c := range parser.ClassMap {
-		if c.Module == "main" {
-			for _, f := range c.Functions {
-				for _, p := range f.Parameters {
-					p.Value = getCppTypeFromGoType(p.Value)
+		for _, module := range templater.GetLibs() {
+			parser.GetModule(strings.ToLower(module))
+		}
+
+		module.Prepare()
+
+		for _, c := range parser.ClassMap {
+			if c.Module == "main" {
+				for _, f := range c.Functions {
+					for _, p := range f.Parameters {
+						p.Value = getCppTypeFromGoType(p.Value)
+					}
 				}
 			}
 		}
-	}
 
-	for i := 0; i <= len(module.Namespace.Classes); i++ {
-		for _, c := range module.Namespace.Classes {
-			if bc, exists := parser.ClassMap[c.Bases]; exists {
-				for _, bcf := range bc.Functions {
-					if bcf.Meta == "constructor" || bcf.Meta == "destructor" {
-						var f = *bcf
-						f.Fullname = strings.Replace(f.Fullname, bcf.Class(), c.Name, -1)
-						f.Name = strings.Replace(f.Name, bcf.Class(), c.Name, -1)
+		for i := 0; i <= len(module.Namespace.Classes); i++ {
+			for _, c := range module.Namespace.Classes {
+				if bc, exists := parser.ClassMap[c.Bases]; exists {
+					for _, bcf := range bc.Functions {
+						if bcf.Meta == "constructor" || bcf.Meta == "destructor" {
+							var f = *bcf
+							f.Fullname = strings.Replace(f.Fullname, bcf.Class(), c.Name, -1)
+							f.Name = strings.Replace(f.Name, bcf.Class(), c.Name, -1)
 
-						var exists bool
-						for _, cf := range c.Functions {
-							if cf.Fullname == f.Fullname {
-								exists = true
+							var exists bool
+							for _, cf := range c.Functions {
+								if cf.Fullname == f.Fullname {
+									exists = true
+								}
 							}
-						}
-						if !exists {
-							c.Functions = append(c.Functions, &f)
+							if !exists {
+								c.Functions = append(c.Functions, &f)
+							}
 						}
 					}
 				}
 			}
 		}
-	}
 
-	for _, c := range parser.ClassMap {
-		if c.Module == "main" {
-			if !c.IsQObjectSubClass() {
-				delete(parser.ClassMap, c.Name)
+		for _, c := range parser.ClassMap {
+			if c.Module == "main" {
+				if !c.IsQObjectSubClass() {
+					delete(parser.ClassMap, c.Name)
+				}
 			}
 		}
-	}
 
-	var countMainClasses int
-	for _, c := range parser.ClassMap {
-		if c.Module == "main" {
-			countMainClasses++
-		}
-	}
-
-	if countMainClasses > 0 {
-
-		utils.Save(filepath.Join(appPath, "moc.cpp"), templater.CppTemplate("main"))
-		utils.Save(filepath.Join(appPath, "moc.h"), templater.HTemplate("main"))
-		utils.Save(filepath.Join(appPath, "moc.go"), templater.GoTemplate("main", false))
+		utils.SaveBytes(filepath.Join(appPath, "moc.cpp"), templater.CppTemplate("main"))
+		utils.SaveBytes(filepath.Join(appPath, "moc.h"), templater.HTemplate("main"))
+		utils.SaveBytes(filepath.Join(appPath, "moc.go"), templater.GoTemplate("main", false))
 
 		var mocPath string
 

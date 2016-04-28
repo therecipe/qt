@@ -10,11 +10,7 @@ import (
 func GoHeaderName(f *parser.Function) (o string) {
 
 	if f.SignalMode == "callback" {
-		var tmp = fmt.Sprintf("callback%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
-		if f.Overload {
-			tmp += f.OverloadNumber
-		}
-		return tmp
+		return fmt.Sprintf("callback%v_%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1), f.OverloadNumber)
 	}
 
 	if f.Static {
@@ -35,15 +31,25 @@ func GoHeaderName(f *parser.Function) (o string) {
 
 	o += f.SignalMode
 
-	o += strings.Title(f.Name)
+	if f.TemplateMode == "String" || f.TemplateMode == "Object" {
 
-	o += f.TemplateMode
+		if strings.Contains(f.Name, "Object") {
+			if f.TemplateMode == "String" {
+				o += strings.Replace(strings.Title(f.Name), "Object", "", -1) + f.TemplateMode
+			} else {
+				o += strings.Title(f.Name)
+			}
+		}
+
+	} else {
+		o += strings.Title(f.Name) + f.TemplateMode
+	}
 
 	if f.Overload {
 		o += f.OverloadNumber
 	}
 
-	if strings.ContainsAny(o, "&<>=/!()[]{}-^|*+-") || strings.Contains(o, "Operator") {
+	if strings.ContainsAny(o, "&<>=/!()[]{}^|*+-") || strings.Contains(o, "Operator") {
 		f.Access = "unsupported_GoHeaderName"
 		return f.Access
 	}
@@ -57,11 +63,15 @@ func CppHeaderName(f *parser.Function) string {
 
 func GoHeaderOutput(f *parser.Function) string {
 
-	var value = f.Output
-
-	if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" && f.SignalMode == "callback" {
-		return cgoType(f, f.TempOutput)
+	if f.SignalMode == "callback" {
+		return cgoType(f, f.Output)
 	}
+
+	if f.SignalMode == "Connect" || f.SignalMode == "Disconnect" {
+		return ""
+	}
+
+	var value = f.Output
 
 	if f.Meta == "constructor" && f.Output == "" {
 		value = f.Name
@@ -91,13 +101,13 @@ func GoHeaderInput(f *parser.Function) (o string) {
 		o += "ptr unsafe.Pointer, ptrName *C.char"
 		for _, p := range f.Parameters {
 			if v := cgoType(f, p.Value); v != "" {
-				o += fmt.Sprintf(", %v %v", cleanName(p.Name), v)
+				o += fmt.Sprintf(", %v %v", cleanName(p.Name, p.Value), v)
 			}
 		}
 		return strings.TrimSuffix(o, ", ")
 	}
 
-	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode == "Connect" {
+	if f.SignalMode == "Connect" {
 		o += "f func ("
 	}
 
@@ -111,13 +121,13 @@ func GoHeaderInput(f *parser.Function) (o string) {
 	for _, p := range f.Parameters {
 		if v := goType(f, p.Value); v != "" {
 			if isClass(v) {
-				if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode == "Connect" {
-					o += fmt.Sprintf("%v *%v, ", cleanName(p.Name), v)
+				if f.SignalMode == "Connect" {
+					o += fmt.Sprintf("%v *%v, ", cleanName(p.Name, p.Value), v)
 				} else {
-					o += fmt.Sprintf("%v %v_ITF, ", cleanName(p.Name), v)
+					o += fmt.Sprintf("%v %v_ITF, ", cleanName(p.Name, p.Value), v)
 				}
 			} else {
-				o += fmt.Sprintf("%v %v, ", cleanName(p.Name), v)
+				o += fmt.Sprintf("%v %v, ", cleanName(p.Name, p.Value), v)
 			}
 		} else {
 			f.Access = "unsupported_GoHeaderInput"
@@ -127,15 +137,15 @@ func GoHeaderInput(f *parser.Function) (o string) {
 
 	o = strings.TrimSuffix(o, ", ")
 
-	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode == "Connect" {
+	if f.SignalMode == "Connect" {
 		o += ")"
 	}
 
-	if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" && f.SignalMode == "Connect" {
-		if isClass(goType(f, f.TempOutput)) {
-			o += " *" + goType(f, f.TempOutput)
+	if f.SignalMode == "Connect" {
+		if isClass(goType(f, f.Output)) {
+			o += " *" + goType(f, f.Output)
 		} else {
-			o += " " + goType(f, f.TempOutput)
+			o += " " + goType(f, f.Output)
 		}
 	}
 
@@ -163,11 +173,11 @@ func GoHeaderInputSignalFunction(f *parser.Function) (o string) {
 
 	o += ")"
 
-	if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" && f.SignalMode == "callback" {
-		if isClass(goType(f, f.TempOutput)) {
-			o += " *" + goType(f, f.TempOutput)
+	if f.SignalMode == "callback" {
+		if isClass(goType(f, f.Output)) {
+			o += " *" + goType(f, f.Output)
 		} else {
-			o += " " + goType(f, f.TempOutput)
+			o += " " + goType(f, f.Output)
 		}
 	}
 
@@ -185,7 +195,7 @@ func CppHeaderInput(f *parser.Function) (o string) {
 
 	for _, p := range f.Parameters {
 		if v := cppType(f, p.Value); !(v == "") {
-			o += fmt.Sprintf("%v %v, ", v, cleanName(p.Name))
+			o += fmt.Sprintf("%v %v, ", v, cleanName(p.Name, p.Value))
 		} else {
 			f.Access = "unsupported_CppHeaderInput"
 			return f.Access

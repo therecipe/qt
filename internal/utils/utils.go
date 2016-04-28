@@ -28,6 +28,13 @@ func Save(name, data string) {
 	}
 }
 
+func SaveBytes(name string, data []byte) {
+	var err = ioutil.WriteFile(name, data, 0777)
+	if err != nil {
+		fmt.Println("file.SaveBytes", err)
+	}
+}
+
 func Load(name string) string {
 	var b, err = ioutil.ReadFile(name)
 	if err != nil {

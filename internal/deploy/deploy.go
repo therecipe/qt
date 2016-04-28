@@ -74,17 +74,21 @@ func args() {
 		{
 			switch buildTarget {
 			case "desktop", "android":
+				{
+
+				}
 
 			default:
 				{
-					fmt.Println("usage:", "{ build | run | test }", "({ desktop | android })", "( dir )")
+					fmt.Println("usage:", "qtdeploy", "{ build | run | test }", "({ desktop | android })", "( dir )")
 					os.Exit(1)
 				}
 			}
 		}
+
 	default:
 		{
-			fmt.Println("usage:", "{ build | run | test }", "({ desktop | android })", "( dir )")
+			fmt.Println("usage:", "qtdeploy", "{ build | run | test }", "({ desktop | android })", "( dir )")
 			os.Exit(1)
 		}
 	}
@@ -451,7 +455,7 @@ func predeploy() {
 			}{
 				Qt:  filepath.Join(qtPrefix, "Qt5.5.1", "5.5", "android_armv7"),
 				Sdk: filepath.Join(androidPrefix, "android-sdk"),
-				SdkBuildToolsRevision: "23.0.2",
+				SdkBuildToolsRevision: "23.0.3",
 				Ndk:                           filepath.Join(androidPrefix, "android-ndk"),
 				Toolchainprefix:               "arm-linux-androideabi",
 				Toolprefix:                    "arm-linux-androideabi",

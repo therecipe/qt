@@ -8,6 +8,8 @@ extern "C" {
 #endif
 
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data);
+char* QAndroidActivityResultReceiver_ObjectNameAbs(void* ptr);
+void QAndroidActivityResultReceiver_SetObjectNameAbs(void* ptr, char* name);
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment();
 void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM();
 void QAndroidJniEnvironment_DestroyQAndroidJniEnvironment(void* ptr);
@@ -24,7 +26,9 @@ int QAndroidJniObject_CallMethodInt2(void* ptr, char* methodName, char* signatur
 int QAndroidJniObject_CallMethodBoolean2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void QAndroidJniObject_CallMethodVoid2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void* QAndroidJniObject_CallObjectMethod(void* ptr, char* methodName);
+void* QAndroidJniObject_CallMethodString(void* ptr, char* methodName);
 void* QAndroidJniObject_CallObjectMethod2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
+void* QAndroidJniObject_CallMethodString2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 int QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt(char* className, char* methodName);
 int QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean(char* className, char* methodName);
 void QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid(char* className, char* methodName);
@@ -38,22 +42,32 @@ int QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt4(void* clazz, char* 
 int QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void QAndroidJniObject_QAndroidJniObject_CallStaticMethodVoid4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod(char* className, char* methodName);
+void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString(char* className, char* methodName);
 void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod2(char* className, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
+void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString2(char* className, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod3(void* clazz, char* methodName);
+void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString3(void* clazz, char* methodName);
 void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
+void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void* QAndroidJniObject_QAndroidJniObject_FromString(char* stri);
 int QAndroidJniObject_GetFieldInt(void* ptr, char* fieldName);
 int QAndroidJniObject_GetFieldBoolean(void* ptr, char* fieldName);
 void* QAndroidJniObject_GetObjectField(void* ptr, char* fieldName);
+void* QAndroidJniObject_GetFieldString(void* ptr, char* fieldName);
 void* QAndroidJniObject_GetObjectField2(void* ptr, char* fieldName, char* signature);
+void* QAndroidJniObject_GetFieldString2(void* ptr, char* fieldName, char* signature);
 int QAndroidJniObject_QAndroidJniObject_GetStaticFieldInt(char* className, char* fieldName);
 int QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean(char* className, char* fieldName);
 int QAndroidJniObject_QAndroidJniObject_GetStaticFieldInt2(void* clazz, char* fieldName);
 int QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean2(void* clazz, char* fieldName);
 void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectField(char* className, char* fieldName);
+void* QAndroidJniObject_QAndroidJniObject_GetStaticFieldString(char* className, char* fieldName);
 void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectField2(char* className, char* fieldName, char* signature);
+void* QAndroidJniObject_QAndroidJniObject_GetStaticFieldString2(char* className, char* fieldName, char* signature);
 void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectField3(void* clazz, char* fieldName);
+void* QAndroidJniObject_QAndroidJniObject_GetStaticFieldString3(void* clazz, char* fieldName);
 void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectField4(void* clazz, char* fieldName, char* signature);
+void* QAndroidJniObject_QAndroidJniObject_GetStaticFieldString4(void* clazz, char* fieldName, char* signature);
 int QAndroidJniObject_QAndroidJniObject_IsClassAvailable(char* className);
 int QAndroidJniObject_IsValid(void* ptr);
 char* QAndroidJniObject_ToString(void* ptr);

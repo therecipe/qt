@@ -22,7 +22,7 @@ type Function struct {
 	Parameters     []*Parameter `xml:"parameter"`
 	SignalMode     string
 	TemplateMode   string
-	TempOutput     string
+	Default        bool
 }
 
 type Parameter struct {
@@ -45,8 +45,12 @@ func (f *Function) fix() {
 		f.Parameters = make([]*Parameter, 0)
 	}
 
-	if f.Fullname == "QQuickImageProvider::requestImage" || f.Fullname == "QQuickImageProvider::requestPixmap" {
+	if f.Fullname == "QQuickImageProvider::requestImage" || f.Fullname == "QQuickImageProvider::requestPixmap" || f.Fullname == "QQuickImageProvider::requestTexture" {
 		f.Parameters = f.Parameters[:len(f.Parameters)-1]
+	}
+
+	if f.Virtual == IMPURE || f.Virtual == PURE || f.Meta == SIGNAL || f.Meta == SLOT {
+		f.Static = false
 	}
 }
 

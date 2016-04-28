@@ -18,13 +18,13 @@ var (
 
 func init() { runtime.LockOSThread() }
 
-func ConnectSignal(name string, signal string, function interface{}) {
+func ConnectSignal(name, signal string, function interface{}) {
 	signalsMutex.Lock()
 	signals[name+":"+signal] = function
 	signalsMutex.Unlock()
 }
 
-func GetSignal(name string, signal string) interface{} {
+func GetSignal(name, signal string) interface{} {
 	if signal == "destroyed" {
 		defer DisconnectAllSignals(name)
 	}
@@ -35,7 +35,7 @@ func GetSignal(name string, signal string) interface{} {
 	return s
 }
 
-func DisconnectSignal(name string, signal string) {
+func DisconnectSignal(name, signal string) {
 	signalsMutex.Lock()
 	delete(signals, name+":"+signal)
 	signalsMutex.Unlock()

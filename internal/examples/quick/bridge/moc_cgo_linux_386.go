@@ -1,4 +1,5 @@
 package main
+
 /*
 #cgo CPPFLAGS: -pipe -O2 -Wall -W -D_REENTRANT
 #cgo CPPFLAGS: -DQT_NO_DEBUG -DQT_CORE_LIB

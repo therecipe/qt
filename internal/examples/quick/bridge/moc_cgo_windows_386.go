@@ -1,4 +1,5 @@
 package main
+
 /*
 #cgo CPPFLAGS: -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra
 #cgo CPPFLAGS: -DUNICODE -DQT_NO_DEBUG -DQT_CORE_LIB

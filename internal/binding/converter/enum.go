@@ -8,10 +8,14 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
+func EnumNeedsCppGlue(value string) bool {
+	return strings.ContainsAny(value, "()<>~+") || value == "" || value == "0x1FFFFFFFU"
+}
+
 func GoEnum(n string, v string, e *parser.Enum) string {
 	var _, err = strconv.Atoi(v)
 	switch {
-	case strings.ContainsAny(v, "()<>~+"), v == "", v == "0x1FFFFFFFU":
+	case EnumNeedsCppGlue(v):
 		{
 			e.NoConst = true
 			return fmt.Sprintf("C.%v_%v_Type()", strings.Split(e.Fullname, "::")[0], n)
@@ -32,12 +36,4 @@ func GoEnum(n string, v string, e *parser.Enum) string {
 	}
 
 	return v
-}
-
-func CppEnum(v *parser.Value, e *parser.Enum) string {
-	if strings.ContainsAny(v.Value, "()<>~+") || v.Value == "" {
-		return fmt.Sprintf("%v::%v", class(e), v.Name)
-	}
-
-	return v.Value
 }

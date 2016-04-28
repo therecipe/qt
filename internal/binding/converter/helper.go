@@ -2,9 +2,12 @@ package converter
 
 import (
 	"fmt"
+	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func module(input interface{}) string {
@@ -57,7 +60,7 @@ func cleanValue(value string) string {
 	return strings.TrimSpace(value)
 }
 
-func cleanName(name string) string {
+func cleanName(name, value string) string {
 	switch name {
 	case
 		"type",
@@ -71,14 +74,15 @@ func cleanName(name string) string {
 		"select",
 		"strings",
 		"new",
-		"signal":
+		"signal",
+		"ptr":
 		{
 			return name[:len(name)-2]
 		}
 
 	case "":
 		{
-			return "v"
+			return "v" + strings.Replace(strings.ToLower(cleanValue(value)[:2]), ".", "", -1)
 		}
 	}
 
@@ -105,7 +109,7 @@ func isEnum(class, value string) bool {
 
 func findEnum(className, value string, byValue bool) (string, string) {
 
-	//Look in given class
+	//look in given class
 	if c, exists := parser.ClassMap[class(value)]; exists {
 		for _, e := range c.Enums {
 			if outE, outT := findEnumH(e, value, byValue); outE != "" {
@@ -114,7 +118,7 @@ func findEnum(className, value string, byValue bool) (string, string) {
 		}
 	}
 
-	//Look in same class
+	//look in same class
 	if c, exists := parser.ClassMap[className]; exists {
 		for _, e := range c.Enums {
 			if outE, outT := findEnumH(e, value, byValue); outE != "" {
@@ -123,9 +127,9 @@ func findEnum(className, value string, byValue bool) (string, string) {
 		}
 	}
 
-	//Look in super classes
+	//look in super classes
 	if c, exists := parser.ClassMap[className]; exists {
-		for _, s := range c.GetAllBases([]string{}) {
+		for _, s := range c.GetAllBases() {
 			if sc, exists := parser.ClassMap[s]; exists {
 				for _, e := range sc.Enums {
 					if outE, outT := findEnumH(e, value, byValue); outE != "" {
@@ -136,7 +140,7 @@ func findEnum(className, value string, byValue bool) (string, string) {
 		}
 	}
 
-	//Look in namespaces
+	//look in namespaces
 	for m := range parser.SubnamespaceMap {
 		if c, exists := parser.ClassMap[m]; exists {
 			for _, e := range c.Enums {
@@ -241,7 +245,7 @@ func cppEnum(f *parser.Function, value string, exact bool) string {
 		return outE
 	}
 
-	f.Access = "unsupported_cppEnum"
+	f.Access = fmt.Sprintf("unsupported_cppEnum(%v)", value)
 	return f.Access
 }
 
@@ -256,4 +260,63 @@ func cppEnumExact(value, outE, outT string) string {
 		return outT
 	}
 	return outE
+}
+
+func IsPrivateSignal(f *parser.Function) bool {
+
+	if parser.ClassMap[f.Class()].Module == "QtCore" {
+
+		var (
+			fData string
+			fPath = strings.Replace(filepath.Base(f.Filepath), ".cpp", ".h", -1)
+		)
+		fPath = strings.Replace(fPath, ".mm", ".h", -1)
+
+		if strings.HasSuffix(fPath, "_win.h") {
+			fPath = strings.Replace(fPath, "_win.h", ".h", -1)
+		}
+
+		switch runtime.GOOS {
+		case "darwin":
+			{
+				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+			}
+
+		case "windows":
+			{
+				fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+			}
+
+		case "linux":
+			{
+				switch runtime.GOARCH {
+				case "amd64":
+					{
+						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+					}
+
+				case "386":
+					{
+						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+					}
+				}
+			}
+		}
+
+		if fData != "" {
+			if strings.Contains(fData, f.Name+"(") {
+
+				return strings.Contains(strings.Split(strings.Split(fData, f.Name+"(")[1], ")")[0], "QPrivateSignal")
+			}
+
+			if strings.Contains(fData, f.Name+" (") {
+				return strings.Contains(strings.Split(strings.Split(fData, f.Name+" (")[1], ")")[0], "QPrivateSignal")
+			}
+
+		}
+
+		fmt.Println("converter.IsPrivateSignal", f.Class())
+	}
+
+	return false
 }

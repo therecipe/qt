@@ -7,6 +7,7 @@
 extern "C" {
 #endif
 
+int QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav);
 char* QMacPasteboardMime_ConvertorName(void* ptr);
 int QMacPasteboardMime_Count(void* ptr, void* mimeData);
 int QMacPasteboardMime_CountDefault(void* ptr, void* mimeData);
@@ -27,8 +28,19 @@ void QMacToolBar_TimerEvent(void* ptr, void* event);
 void QMacToolBar_TimerEventDefault(void* ptr, void* event);
 void QMacToolBar_ChildEvent(void* ptr, void* event);
 void QMacToolBar_ChildEventDefault(void* ptr, void* event);
+void QMacToolBar_ConnectNotify(void* ptr, void* sign);
+void QMacToolBar_ConnectNotifyDefault(void* ptr, void* sign);
 void QMacToolBar_CustomEvent(void* ptr, void* event);
 void QMacToolBar_CustomEventDefault(void* ptr, void* event);
+void QMacToolBar_DeleteLater(void* ptr);
+void QMacToolBar_DisconnectNotify(void* ptr, void* sign);
+void QMacToolBar_DisconnectNotifyDefault(void* ptr, void* sign);
+int QMacToolBar_Event(void* ptr, void* e);
+int QMacToolBar_EventDefault(void* ptr, void* e);
+int QMacToolBar_EventFilter(void* ptr, void* watched, void* event);
+int QMacToolBar_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QMacToolBar_MetaObject(void* ptr);
+void* QMacToolBar_MetaObjectDefault(void* ptr);
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent);
 void QMacToolBarItem_ConnectActivated(void* ptr);
 void QMacToolBarItem_DisconnectActivated(void* ptr);
@@ -46,8 +58,19 @@ void QMacToolBarItem_TimerEvent(void* ptr, void* event);
 void QMacToolBarItem_TimerEventDefault(void* ptr, void* event);
 void QMacToolBarItem_ChildEvent(void* ptr, void* event);
 void QMacToolBarItem_ChildEventDefault(void* ptr, void* event);
+void QMacToolBarItem_ConnectNotify(void* ptr, void* sign);
+void QMacToolBarItem_ConnectNotifyDefault(void* ptr, void* sign);
 void QMacToolBarItem_CustomEvent(void* ptr, void* event);
 void QMacToolBarItem_CustomEventDefault(void* ptr, void* event);
+void QMacToolBarItem_DeleteLater(void* ptr);
+void QMacToolBarItem_DisconnectNotify(void* ptr, void* sign);
+void QMacToolBarItem_DisconnectNotifyDefault(void* ptr, void* sign);
+int QMacToolBarItem_Event(void* ptr, void* e);
+int QMacToolBarItem_EventDefault(void* ptr, void* e);
+int QMacToolBarItem_EventFilter(void* ptr, void* watched, void* event);
+int QMacToolBarItem_EventFilterDefault(void* ptr, void* watched, void* event);
+void* QMacToolBarItem_MetaObject(void* ptr);
+void* QMacToolBarItem_MetaObjectDefault(void* ptr);
 
 #ifdef __cplusplus
 }

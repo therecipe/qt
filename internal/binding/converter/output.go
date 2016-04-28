@@ -7,10 +7,10 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
-func goOutput(name string, value string, f *parser.Function) string {
+func goOutput(name, value string, f *parser.Function) string {
 	var vOld = value
 
-	name = cleanName(name)
+	name = cleanName(name, value)
 	value = cleanValue(value)
 
 	switch value {
@@ -24,7 +24,7 @@ func goOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
 
-	case "int":
+	case "int", "long":
 		{
 			return fmt.Sprintf("int(%v)", name)
 		}
@@ -103,11 +103,16 @@ func goOutput(name string, value string, f *parser.Function) string {
 			if f.Meta == "constructor" {
 				return fmt.Sprintf("new%vFromPointer(%v)", value, name)
 			}
+
+			if f.TemplateMode == "String" {
+				return fmt.Sprintf("New%vFromPointer(%v).ToString()", value, name)
+			}
+
 			return fmt.Sprintf("New%vFromPointer(%v)", value, name)
 		}
 	}
 
-	f.Access = "unsupported_goOutput"
+	f.Access = fmt.Sprintf("unsupported_goOutput(%v)", value)
 	return f.Access
 }
 
@@ -122,7 +127,7 @@ func goOutputFailed(value string, f *parser.Function) string {
 			return "false"
 		}
 
-	case "int", "qreal", "qint64", "WId":
+	case "int", "qreal", "qint64", "WId", "long":
 		{
 			return "0"
 		}
@@ -176,22 +181,23 @@ func goOutputFailed(value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
+			if f.TemplateMode == "String" {
+				return "\"\""
+			}
+
 			return "nil"
 		}
-
-	default:
-		{
-			f.Access = "unsupported_GoBodyOutputFailed"
-			return f.Access
-		}
 	}
+
+	f.Access = fmt.Sprintf("unsupported_goOutputFailed(%v)", value)
+	return f.Access
 }
 
-func cgoOutput(name string, value string, f *parser.Function) string {
+func cgoOutput(name, value string, f *parser.Function) string {
 
 	var vOld = value
 
-	name = cleanName(name)
+	name = cleanName(name, value)
 	value = cleanValue(value)
 
 	switch value {
@@ -205,7 +211,7 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
 
-	case "int":
+	case "int", "long":
 		{
 			return fmt.Sprintf("int(%v)", name)
 		}
@@ -231,6 +237,11 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 	case "qint64":
 		{
 			return fmt.Sprintf("int64(%v)", name)
+		}
+
+	case "WId":
+		{
+			return fmt.Sprintf("uintptr(%v)", name)
 		}
 	}
 
@@ -258,7 +269,7 @@ func cgoOutput(name string, value string, f *parser.Function) string {
 		}
 	}
 
-	f.Access = "unsupported_cgoOutput"
+	f.Access = fmt.Sprintf("unsupported_cgoOutput(%v)", value)
 	return f.Access
 }
 
@@ -266,11 +277,11 @@ func CppOutput(name, value string, f *parser.Function) string {
 	return cppOutput(name, value, f)
 }
 
-func cppOutput(name string, value string, f *parser.Function) string {
+func cppOutput(name, value string, f *parser.Function) string {
 
 	var vOld = value
 
-	name = cleanName(name)
+	name = cleanName(name, value)
 	value = cleanValue(value)
 
 	switch value {
@@ -287,12 +298,12 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.toUtf8().data()", name)
 		}
 
-	case "QByteArray":
+	case "QByteArray", "char":
 		{
 			return cppOutput(fmt.Sprintf("QString(%v)", name), "QString", f)
 		}
 
-	case "bool", "int", "void", "", "T", "JavaVM", "jclass", "jobject":
+	case "bool", "int", "long", "void", "", "T", "JavaVM", "jclass", "jobject":
 		{
 			if value == "void" {
 				if strings.Contains(vOld, "*") {
@@ -303,11 +314,31 @@ func cppOutput(name string, value string, f *parser.Function) string {
 				}
 			}
 
+			switch value {
+			case "bool", "int", "long":
+				{
+					if strings.Contains(vOld, "*") {
+						return fmt.Sprintf("*%v", name)
+					}
+				}
+			}
+
+			if value == "T" {
+				if strings.Contains(vOld, "*") {
+					if strings.Contains(vOld, "const") {
+						return fmt.Sprintf("const_cast<void*>(%v)", name)
+					}
+				}
+			}
+
 			return name
 		}
 
 	case "qreal":
 		{
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("*static_cast<double*>(%v)", name)
+			}
 			return fmt.Sprintf("static_cast<double>(%v)", name)
 		}
 
@@ -338,7 +369,7 @@ func cppOutput(name string, value string, f *parser.Function) string {
 			}
 
 			switch value {
-			case "QModelIndex":
+			case "QModelIndex", "QMetaMethod", "QItemSelection":
 				{
 					return fmt.Sprintf("new %v(%v)", value, name)
 				}
@@ -362,6 +393,16 @@ func cppOutput(name string, value string, f *parser.Function) string {
 				{
 					return fmt.Sprintf("new %v(static_cast<%v>(%v).x(), static_cast<%v>(%v).y(), static_cast<%v>(%v).width(), static_cast<%v>(%v).height())", value, value, name, value, name, value, name, value, name)
 				}
+
+			case "QLine", "QLineF":
+				{
+					return fmt.Sprintf("new %v(static_cast<%v>(%v).p1(), static_cast<%v>(%v).p2())", value, value, name, value, name)
+				}
+
+			case "QMargins", "QMarginsF":
+				{
+					return fmt.Sprintf("new %v(static_cast<%v>(%v).left(), static_cast<%v>(%v).top(), static_cast<%v>(%v).right(), static_cast<%v>(%v).bottom())", value, value, name, value, name, value, name, value, name)
+				}
 			}
 
 			for _, f := range parser.ClassMap[value].Functions {
@@ -376,6 +417,6 @@ func cppOutput(name string, value string, f *parser.Function) string {
 		}
 	}
 
-	f.Access = "unsupported_cppOutput"
+	f.Access = fmt.Sprintf("unsupported_cppOutput(%v)", value)
 	return f.Access
 }

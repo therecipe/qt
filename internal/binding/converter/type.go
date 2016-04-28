@@ -40,6 +40,11 @@ func goType(f *parser.Function, value string) string {
 			return value
 		}
 
+	case "long":
+		{
+			return "int"
+		}
+
 	case "T":
 		{
 			switch f.TemplateMode {
@@ -114,11 +119,16 @@ func goType(f *parser.Function, value string) string {
 				}
 				return m + "." + value
 			}
+
+			if f.TemplateMode == "String" {
+				return "string"
+			}
+
 			return value
 		}
 	}
 
-	f.Access = "unsupported_goType"
+	f.Access = fmt.Sprintf("unsupported_goType(%v)", value)
 	return f.Access
 }
 
@@ -139,6 +149,11 @@ func cgoType(f *parser.Function, value string) string {
 			return "C.int"
 		}
 
+	case "long":
+		{
+			return "C.long"
+		}
+
 	case "void", "":
 		{
 			if strings.Contains(vOld, "*") {
@@ -156,6 +171,11 @@ func cgoType(f *parser.Function, value string) string {
 		{
 			return "C.longlong"
 		}
+
+	case "WId":
+		{
+			return "C.ulonglong"
+		}
 	}
 
 	switch {
@@ -170,7 +190,7 @@ func cgoType(f *parser.Function, value string) string {
 		}
 	}
 
-	f.Access = "unsupported_cgoType"
+	f.Access = fmt.Sprintf("unsupported_cgoType(%v)", value)
 	return f.Access
 }
 
@@ -188,6 +208,11 @@ func cppType(f *parser.Function, value string) string {
 	case "bool", "int":
 		{
 			return "int"
+		}
+
+	case "long":
+		{
+			return "long"
 		}
 
 	case "void", "":
@@ -266,6 +291,6 @@ func cppType(f *parser.Function, value string) string {
 		}
 	}
 
-	f.Access = "unsupported_cppType"
+	f.Access = fmt.Sprintf("unsupported_cppType(%v)", value)
 	return f.Access
 }

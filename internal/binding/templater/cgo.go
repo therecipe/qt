@@ -6,6 +6,7 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -38,7 +39,7 @@ func createCgoDarwin(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wall -W -fPIC\n"
@@ -83,7 +84,7 @@ func createCgoDarwin(module string) {
 
 	tmp += fmt.Sprintf("import \"C\"\n")
 
-	if module == "main" {
+	if module == parser.MOC {
 		utils.Save(filepath.Join(AppPath, "moc_cgo_darwin_amd64.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_darwin_amd64.go"), tmp)
@@ -96,7 +97,7 @@ func createCgoWindows(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra\n"
@@ -136,7 +137,7 @@ func createCgoWindows(module string) {
 
 	tmp += fmt.Sprintf("import \"C\"\n")
 
-	if module == "main" {
+	if module == parser.MOC {
 		utils.Save(filepath.Join(AppPath, "moc_cgo_windows_386.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_windows_386.go"), tmp)
@@ -149,7 +150,7 @@ func createCgoLinux(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -pipe -O2 -Wall -W -D_REENTRANT\n"
@@ -189,7 +190,7 @@ func createCgoLinux(module string) {
 
 	tmp += fmt.Sprintf("import \"C\"\n")
 
-	if module == "main" {
+	if module == parser.MOC {
 		utils.Save(filepath.Join(AppPath, "moc_cgo_linux_386.go"), strings.Replace(tmp, "lib64", "lib", -1))
 		utils.Save(filepath.Join(AppPath, "moc_cgo_linux_amd64.go"), strings.Replace(tmp, "gcc", "gcc_64", -1))
 	} else {
@@ -204,7 +205,7 @@ func createCgoandroidDarwinAndLinux(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -Wno-psabi -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -ffunction-sections -funwind-tables -fstack-protector -fno-short-enums -DANDROID -Wa,--noexecstack -fno-builtin-memmove -Os -fomit-frame-pointer -fno-strict-aliasing -finline-limit=64 -mthumb -Wall -Wno-psabi -W -D_REENTRANT -fPIC\n"
@@ -238,7 +239,7 @@ func createCgoandroidDarwinAndLinux(module string) {
 
 	tmp += fmt.Sprintf("import \"C\"\n")
 
-	if module == "main" {
+	if module == parser.MOC {
 		utils.Save(filepath.Join(AppPath, "moc_cgo_android_arm.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_android_arm.go"), tmp)
@@ -251,7 +252,7 @@ func createCgoandroidWindows(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -Wno-psabi -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -ffunction-sections -funwind-tables -fstack-protector -fno-short-enums -DANDROID -Wa,--noexecstack -fno-builtin-memmove -Os -fomit-frame-pointer -fno-strict-aliasing -finline-limit=64 -mthumb -Wall -Wno-psabi -W -D_REENTRANT\n"
@@ -291,7 +292,7 @@ func createCgoandroidWindows(module string) {
 
 	tmp += fmt.Sprintf("import \"C\"\n")
 
-	if module == "main" {
+	if module == parser.MOC {
 		utils.Save(filepath.Join(AppPath, "moc_cgo_android_arm.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_android_arm.go"), tmp)
@@ -300,7 +301,7 @@ func createCgoandroidWindows(module string) {
 
 func cleanLibs(module string) []string {
 
-	if module == "main" {
+	if module == parser.MOC {
 		return LibDeps[module]
 	}
 

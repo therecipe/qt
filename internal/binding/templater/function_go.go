@@ -1,6 +1,7 @@
 package templater
 
 import (
+	"bytes"
 	"fmt"
 	"strings"
 
@@ -8,202 +9,211 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
-func goFunction(f *parser.Function) string {
-	if f.Meta == "signal" || strings.Contains(f.Virtual, "impure") && f.Output == "void" {
-		var tmp string
-		for _, signalMode := range []string{"Connect", "Disconnect", "callback"} {
-			f.SignalMode = signalMode
-			if signalMode == "callback" {
-				tmp += fmt.Sprintf("//export callback%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1))
-				if f.Overload {
-					tmp += f.OverloadNumber
-				}
-				tmp += "\n"
-			} else {
-				f.TempOutput = f.Output
-				f.Output = "void"
-			}
-			tmp += fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f))
-			if signalMode != "callback" {
-				f.Output = f.TempOutput
-			}
-		}
-		f.SignalMode = ""
-
-		var isPrivate bool
-		if f.Meta == "signal" {
-			isPrivate = converter.IsPrivateSignal(f)
-		}
-
-		var tmpMeta = f.Meta
-		f.Meta = "plain"
-		if !isPrivate {
-			tmp += fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f))
-			if tmpMeta != "signal" {
-				var tmpTmp = strings.Replace(fmt.Sprintf("%v{\n%v\n}\n\n", goFunctionHeader(f), goFunctionBody(f)), "_"+strings.Title(f.Name)+"(", "_"+strings.Title(f.Name)+"Default(", -1)
-				tmp += strings.Replace(tmpTmp, ")"+strings.Title(f.Name)+"(", ")"+strings.Title(f.Name)+"Default(", -1)
-			}
-		}
-		f.Meta = tmpMeta
-
-		return tmp
+func goFunction(function *parser.Function) string {
+	var output = fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(function), goFunctionBody(function))
+	if functionIsSupported(parser.ClassMap[function.Class()], function) {
+		return output
 	}
-
-	if isGeneric(f) {
-		var tmp string
-		for _, m := range jniGenericModes(f) {
-			f.TemplateMode = m
-			tmp += fmt.Sprintf("%v{\n%v\n}\n", goFunctionHeader(f), goFunctionBody(f))
-		}
-		f.TemplateMode = ""
-		return tmp
-	}
-
-	return fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(f), goFunctionBody(f))
+	return ""
 }
 
-func goFunctionHeader(f *parser.Function) string {
-	if f.Static || f.Meta == "constructor" || f.SignalMode == "callback" {
-		return fmt.Sprintf("func %v", goInterface(f))
-	}
-	return fmt.Sprintf("func (ptr *%v)%v", f.Class(), goInterface(f))
-}
-
-func goInterface(f *parser.Function) string {
-	if f.Virtual == "impure" && f.SignalMode == "callback" {
-		if isDerivedFromPure(f) {
-			return fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoHeaderInput(f))
-		} else {
-			if f.Meta == "slot" || isDerivedFromSlot(f) {
-				return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), "bool")
-			} else {
-				if parser.ClassMap[f.Class()].Module == "main" {
-					return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), converter.GoHeaderOutput(f))
-				}
-				return fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoHeaderInput(f))
+func goFunctionHeader(function *parser.Function) string {
+	return fmt.Sprintf("func %v %v%v(%v)%v",
+		func() string {
+			if function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK {
+				return ""
 			}
-		}
-	}
-	return fmt.Sprintf("%v(%v)%v", converter.GoHeaderName(f), converter.GoHeaderInput(f), converter.GoHeaderOutput(f))
+			return fmt.Sprintf("(ptr *%v)", function.Class())
+		}(),
+
+		converter.GoHeaderName(function),
+
+		func() string {
+			if function.Default {
+				return "Default"
+			}
+			return ""
+		}(),
+
+		converter.GoHeaderInput(function),
+
+		converter.GoHeaderOutput(function),
+	)
 }
 
-func goFunctionBody(f *parser.Function) (o string) {
+func goFunctionBody(function *parser.Function) string {
+	var bb = new(bytes.Buffer)
+	defer bb.Reset()
 
-	if parser.ClassMap[f.Class()].Stub {
-		if converter.GoHeaderOutput(f) != "" {
-			return fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f))
+	if parser.ClassMap[function.Class()].Stub {
+		if converter.GoHeaderOutput(function) != "" {
+			return fmt.Sprintf("\nreturn %v", converter.GoOutputParametersFromCFailed(function))
 		}
 		return ""
 	}
 
-	if f.SignalMode != "" {
-		o += fmt.Sprintf("defer qt.Recovering(\"%v %v\")\n\n", strings.ToLower(f.SignalMode), f.Fullname)
-	} else {
-		o += fmt.Sprintf("defer qt.Recovering(\"%v\")\n\n", f.Fullname)
-	}
-
-	//o += fmt.Sprintf("println(\"%v\")\n\n", f.Fullname)
-
-	if !f.Static && f.Meta != "constructor" && f.SignalMode != "callback" {
-		o += fmt.Sprintf("if ptr.Pointer() != nil {\n")
-	}
-
-	for _, p := range f.Parameters {
-		if p.Value == "..." {
-			for i := 0; i < 10; i++ {
-				o += fmt.Sprintf("var p%v,d%v = assertion(%v, v...)\n", i, i, i)
-				o += fmt.Sprintf("if d%v != nil {\ndefer d%v()\n}\n", i, i)
+	fmt.Fprintf(bb, "defer qt.Recovering(\"%v%v\")\n\n",
+		func() string {
+			if function.SignalMode != "" {
+				return strings.ToLower(function.SignalMode) + " "
 			}
-		}
+			return ""
+		}(),
 
-		if p.Value == "T" && parser.ClassMap[f.Class()].Module == "QtAndroidExtras" && f.TemplateMode == "" {
-			o += fmt.Sprintf("var p0,d0 = assertion(0, %v)\n", p.Name)
-			o += "if d0 != nil {\ndefer d0()\n}\n"
-		}
+		function.Fullname,
+	)
+
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK) {
+		fmt.Fprintf(bb, "if ptr.Pointer() != nil {\n")
 	}
 
-	if converter.GoHeaderOutput(f) != "" {
-		if f.Meta == "signal" && parser.ClassMap[f.Class()].Module == "main" {
-		} else {
-			o += "return "
-		}
-	}
-
-	/*
-		if (f.Meta == "destructor" && isObjectSubClass(f.Class())) || (f.Meta == "slot" && strings.Contains(f.Name, "deleteLater")) {
-			o += "getSignal(ptr.ObjectName(), \"destroyed\").(func(QObject, QObject))(ptr, ptr)\n"
-		}
-	*/
-
-	if f.SignalMode == "callback" {
-
-		o += fmt.Sprintf("if signal := qt.GetSignal(C.GoString(ptrName), \"%v%v\"); signal != nil {\n", f.Name, cppFunctionSignalOverload(f))
-
-		if parser.ClassMap[f.Class()].Module == "main" && f.TempOutput != "void" {
-			o += fmt.Sprintf("return %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f)), f.TempOutput, f))
-		} else {
-			o += fmt.Sprintf("\tsignal.(%v)(%v)\n", converter.GoHeaderInputSignalFunction(f), converter.GoBodyInputSignalValues(f))
-		}
-
-		if f.Virtual == "impure" {
-			if isDerivedFromPure(f) {
-				o += "}\n"
-			} else {
-				if f.Meta == "slot" || isDerivedFromSlot(f) {
-					o += fmt.Sprintf("\treturn true\n}\nreturn false\n")
+	for _, parameter := range function.Parameters {
+		if parameter.Value == "..." || (parameter.Value == "T" && parser.ClassMap[function.Class()].Module == "QtAndroidExtras" && function.TemplateMode == "") {
+			for i := 0; i < 10; i++ {
+				if parameter.Value == "T" {
+					fmt.Fprintf(bb, "var p%v, d%v = assertion(%v, %v)\n", i, i, i, parameter.Name)
 				} else {
-					if parser.ClassMap[f.Class()].Module == "main" {
-						if !classHasRealFunction(parser.ClassMap[f.Class()].Bases, f.Name) {
-							o += "}\n"
-						} else {
-							o += fmt.Sprintf("} else {\n\tNew%vFromPointer(ptr).%vDefault(%v)\n}", f.Class(), strings.Title(f.Name), converter.GoBodyInputSignalValues(f))
-						}
-					} else {
-						o += fmt.Sprintf("} else {\n\tNew%vFromPointer(ptr).%vDefault(%v)\n}", f.Class(), strings.Title(f.Name), converter.GoBodyInputSignalValues(f))
-					}
+					fmt.Fprintf(bb, "var p%v, d%v = assertion(%v, v...)\n", i, i, i)
+				}
+				fmt.Fprintf(bb, "if d%v != nil {\ndefer d%v()\n}\n", i, i)
+
+				if parameter.Value == "T" {
+					break
 				}
 			}
-		} else {
-			o += "}\n"
-		}
-
-	} else {
-		if strings.Contains(f.Virtual, "impure") && f.SignalMode != "" {
-		} else {
-			o += converter.GoBodyOutput(f, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(f), converter.GoBodyInput(f)))
 		}
 	}
 
-	if f.SignalMode == "Connect" {
-		if parser.ClassMap[f.Class()].IsQObjectSubClass() {
-			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectName(), \"%v%v\", f)", f.Name, cppFunctionSignalOverload(f))
-		} else {
-			o += fmt.Sprintf("\nqt.ConnectSignal(ptr.ObjectNameAbs(), \"%v%v\", f)", f.Name, cppFunctionSignalOverload(f))
+	if ((function.Meta == parser.PLAIN && function.SignalMode == "") ||
+		(function.Meta == parser.SLOT && function.SignalMode == "") ||
+		function.Meta == parser.CONSTRUCTOR || function.Meta == parser.DESTRUCTOR) ||
+		(function.Meta == parser.SIGNAL && (function.SignalMode == "" || function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT)) {
+
+		//TODO:
+		if functionIsSupported(parser.ClassMap[function.Class()], function) {
+			cppFunction(function)
+			if functionIsSupported(parser.ClassMap[function.Class()], function) {
+
+				fmt.Fprintf(bb, "%v%v",
+
+					func() string {
+						if converter.GoHeaderOutput(function) != "" {
+							return "return "
+						}
+						return ""
+					}(),
+
+					converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v%v(%v)",
+
+						converter.CppHeaderName(function),
+
+						func() string {
+							if function.Default {
+								return "Default"
+							}
+							return ""
+						}(),
+
+						converter.GoInputParametersForC(function))),
+				)
+
+			}
+			function.Access = "public"
+		}
+
+	}
+
+	switch function.SignalMode {
+	case parser.CALLBACK:
+		{
+
+			fmt.Fprintf(bb, "%vif signal := qt.GetSignal(C.GoString(ptrName), \"%v%v\"); signal != nil {\n",
+				func() string {
+					if function.Meta != parser.SLOT {
+						return "\n"
+					}
+					return ""
+				}(), function.Name, function.OverloadNumber)
+
+			if converter.GoHeaderOutput(function) == "" {
+				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
+			} else {
+				fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
+			}
+
+			fmt.Fprintf(bb, "\n}%v\n",
+				func() string {
+					if converter.GoHeaderOutput(function) == "" {
+						if function.Virtual == parser.IMPURE {
+							return "else{"
+						}
+					}
+					return ""
+				}(),
+			)
+
+			if converter.GoHeaderOutput(function) == "" {
+				if function.Virtual == parser.IMPURE {
+					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", function.Class(), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+				}
+			} else {
+				if function.Virtual == parser.IMPURE {
+					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", function.Class(), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+				} else {
+					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
+				}
+			}
+
+			fmt.Fprintf(bb, "%v",
+				func() string {
+					if converter.GoHeaderOutput(function) == "" {
+						if function.Virtual == parser.IMPURE {
+							return "\n}"
+						}
+					}
+					return ""
+				}(),
+			)
+
+		}
+
+	case parser.CONNECT, parser.DISCONNECT:
+		{
+			fmt.Fprintf(bb, "\nqt.%vSignal(ptr.ObjectName%v(), \"%v%v\"%v)",
+
+				function.SignalMode,
+
+				func() string {
+					if !parser.ClassMap[function.Class()].IsQObjectSubClass() {
+						return "Abs"
+					}
+					return ""
+				}(),
+
+				function.Name,
+
+				function.OverloadNumber,
+
+				func() string {
+					if function.SignalMode == parser.CONNECT {
+						return ", f"
+					}
+					return ""
+				}(),
+			)
 		}
 	}
 
-	if f.SignalMode == "Disconnect" {
-		if parser.ClassMap[f.Class()].IsQObjectSubClass() {
-			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectName(), \"%v%v\")", f.Name, cppFunctionSignalOverload(f))
-		} else {
-			o += fmt.Sprintf("\nqt.DisconnectSignal(ptr.ObjectNameAbs(), \"%v%v\")", f.Name, cppFunctionSignalOverload(f))
+	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater")) && function.SignalMode == "" {
+		fmt.Fprint(bb, "\nptr.SetPointer(nil)")
+	}
+
+	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK) {
+		fmt.Fprint(bb, "\n}")
+		if converter.GoHeaderOutput(function) != "" {
+			fmt.Fprintf(bb, "\nreturn %v", converter.GoOutputParametersFromCFailed(function))
 		}
 	}
 
-	if (f.Meta == "destructor" && isObjectSubClass(f.Class())) || (f.Meta == "slot" && strings.Contains(f.Name, "deleteLater")) {
-		o += "\nptr.SetPointer(nil)"
-	}
-
-	if !f.Static && f.Meta != "constructor" && f.SignalMode != "callback" {
-		o += "\n}"
-		if converter.GoHeaderOutput(f) != "" {
-			o += fmt.Sprintf("\nreturn %v", converter.GoBodyOutputFailed(f))
-		}
-	}
-
-	if parser.ClassMap[f.Class()].Module == "main" && f.SignalMode == "callback" && f.TempOutput != "void" {
-		o += fmt.Sprintf("return %v", converter.GoInput(converter.GoBodyOutputFailed(f), f.TempOutput, f))
-	}
-
-	return o
+	return bb.String()
 }

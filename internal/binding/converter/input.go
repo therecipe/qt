@@ -11,10 +11,10 @@ func GoInput(name, value string, f *parser.Function) string {
 	return goInput(name, value, f)
 }
 
-func goInput(name string, value string, f *parser.Function) string {
+func goInput(name, value string, f *parser.Function) string {
 	var vOld = value
 
-	name = cleanName(name)
+	name = cleanName(name, value)
 	value = cleanValue(value)
 
 	switch value {
@@ -25,6 +25,14 @@ func goInput(name string, value string, f *parser.Function) string {
 
 	case "uchar", "char", "QString", "QByteArray":
 		{
+			if strings.Contains(vOld, "&") {
+				if strings.Contains(vOld, "const") {
+					return fmt.Sprintf("C.CString(%v)", name)
+				}
+				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
+				return f.Access
+			}
+
 			if strings.Contains(vOld, "**") {
 				return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 			}
@@ -36,23 +44,38 @@ func goInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.int(qt.GoBoolToInt(%v))", name)
 		}
 
-	case "int":
+	case "int", "long":
 		{
-			return fmt.Sprintf("C.int(%v)", name)
+			return fmt.Sprintf("C.%v(%v)", value, name)
 		}
 
 	case "qreal":
 		{
+			if strings.Contains(vOld, "*") {
+				f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
+				return f.Access
+			}
+
 			return fmt.Sprintf("C.double(%v)", name)
 		}
 
 	case "qint64":
 		{
+			if strings.Contains(vOld, "*") {
+				f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
+				return f.Access
+			}
+
 			return fmt.Sprintf("C.longlong(%v)", name)
 		}
 
 	case "WId":
 		{
+			if strings.Contains(vOld, "*") {
+				f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
+				return f.Access
+			}
+
 			return fmt.Sprintf("C.ulonglong(%v)", name)
 		}
 
@@ -115,7 +138,7 @@ func goInput(name string, value string, f *parser.Function) string {
 		}
 	}
 
-	f.Access = "unsupported_goInput"
+	f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
 	return f.Access
 }
 
@@ -123,15 +146,18 @@ func CppInput(name, value string, f *parser.Function) string {
 	return cppInput(name, value, f)
 }
 
-func cppInput(name string, value string, f *parser.Function) string {
+func cppInput(name, value string, f *parser.Function) string {
 	var vOld = value
 
-	name = cleanName(name)
+	name = cleanName(name, value)
 	value = cleanValue(value)
 
 	switch value {
 	case "QStringList":
 		{
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("new QStringList(%v.split(\"|\", QString::SkipEmptyParts))", cppInput(name, "QString", f))
+			}
 			return fmt.Sprintf("%v.split(\"|\", QString::SkipEmptyParts)", cppInput(name, "QString", f))
 		}
 
@@ -141,7 +167,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 				if strings.Contains(vOld, "const") {
 					return fmt.Sprintf("%v(%v)", value, name)
 				}
-				f.Access = "unsupported_CppInput"
+				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
 				return f.Access
 			}
 
@@ -160,7 +186,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v != 0", name)
 		}
 
-	case "int":
+	case "int", "long":
 		{
 			if strings.Contains(vOld, "*") {
 				return fmt.Sprintf("&%v", name)
@@ -196,9 +222,8 @@ func cppInput(name string, value string, f *parser.Function) string {
 	case "qreal":
 		{
 			if strings.Contains(vOld, "*") {
-				f.Access = "unsupported_CppInput"
+				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
 				return f.Access
-				//return fmt.Sprintf("&static_cast<double>(%v)", name)
 			}
 
 			return fmt.Sprintf("static_cast<double>(%v)", name)
@@ -207,7 +232,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 	case "qint64":
 		{
 			if strings.Contains(vOld, "*") {
-				f.Access = "unsupported_CppInput"
+				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
 				return f.Access
 			}
 
@@ -217,7 +242,7 @@ func cppInput(name string, value string, f *parser.Function) string {
 	case "WId":
 		{
 			if strings.Contains(vOld, "*") {
-				f.Access = "unsupported_CppInput"
+				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
 				return f.Access
 			}
 
@@ -285,6 +310,6 @@ func cppInput(name string, value string, f *parser.Function) string {
 		}
 	}
 
-	f.Access = "unsupported_CppInput"
+	f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
 	return f.Access
 }

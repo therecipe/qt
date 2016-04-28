@@ -25,11 +25,11 @@
 
 ## Desktop (Windows / Mac OS X / Linux)
 
-1. Install Go >= 1.5.2 and setup a proper [GOPATH](https://golang.org/doc/code.html#GOPATH)
-	* https://storage.googleapis.com/golang/go1.5.3.windows-amd64.msi
-	* https://storage.googleapis.com/golang/go1.5.3.darwin-amd64.pkg
-	* https://storage.googleapis.com/golang/go1.5.3.linux-386.tar.gz
-	* https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz
+1. Install Go >= 1.6.2 and setup a proper [GOPATH](https://golang.org/doc/code.html#GOPATH)
+	* https://storage.googleapis.com/golang/go1.6.2.windows-amd64.msi
+	* https://storage.googleapis.com/golang/go1.6.2.darwin-amd64.pkg
+	* https://storage.googleapis.com/golang/go1.6.2.linux-386.tar.gz
+	* https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
 
 2. Install Qt 5.5.1 in `C:\Qt\Qt5.5.1\` or `/usr/local/Qt5.5.1/`
 	* https://download.qt.io/official_releases/qt/5.5/5.5.1/qt-opensource-windows-x86-android-5.5.1.exe
@@ -44,7 +44,7 @@
 			`C:\Qt\Qt5.5.1\Tools\mingw492_32\bin`
 
 	* Mac OS X
-		* Install Xcode >= 7.2
+		* Install Xcode >= 7.3
 
 	* Linux
 		* Install g++
@@ -80,7 +80,7 @@
 
 3. Install the SDK dependencies with `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
-		* Android SDK Build-tools (23.0.2)
+		* Android SDK Build-tools (23.0.3)
 	* Android 5.1.1 (API 22)
 		* SDK Platform
 	* Extras (Windows only)
