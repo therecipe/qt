@@ -168,6 +168,11 @@ void QScriptEngineDebugger_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScriptEngineDebugger*>(ptr), "deleteLater");
 }
 
+void QScriptEngineDebugger_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::deleteLater();
+}
+
 void QScriptEngineDebugger_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QScriptEngineDebugger*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));

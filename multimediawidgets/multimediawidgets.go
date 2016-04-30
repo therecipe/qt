@@ -173,8 +173,9 @@ func callbackQCameraViewfinder_SetAspectRatioMode(ptr unsafe.Pointer, ptrName *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setAspectRatioMode"); signal != nil {
 		signal.(func(core.Qt__AspectRatioMode))(core.Qt__AspectRatioMode(mode))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetAspectRatioModeDefault(core.Qt__AspectRatioMode(mode))
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetAspectRatioMode(f func(mode core.Qt__AspectRatioMode)) {
@@ -186,7 +187,7 @@ func (ptr *QCameraViewfinder) ConnectSetAspectRatioMode(f func(mode core.Qt__Asp
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetAspectRatioMode(mode core.Qt__AspectRatioMode) {
+func (ptr *QCameraViewfinder) DisconnectSetAspectRatioMode() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setAspectRatioMode")
 
 	if ptr.Pointer() != nil {
@@ -203,14 +204,23 @@ func (ptr *QCameraViewfinder) SetAspectRatioMode(mode core.Qt__AspectRatioMode) 
 	}
 }
 
+func (ptr *QCameraViewfinder) SetAspectRatioModeDefault(mode core.Qt__AspectRatioMode) {
+	defer qt.Recovering("QCameraViewfinder::setAspectRatioMode")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetAspectRatioModeDefault(ptr.Pointer(), C.int(mode))
+	}
+}
+
 //export callbackQCameraViewfinder_SetBrightness
 func callbackQCameraViewfinder_SetBrightness(ptr unsafe.Pointer, ptrName *C.char, brightness C.int) {
 	defer qt.Recovering("callback QCameraViewfinder::setBrightness")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setBrightness"); signal != nil {
 		signal.(func(int))(int(brightness))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetBrightnessDefault(int(brightness))
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetBrightness(f func(brightness int)) {
@@ -222,7 +232,7 @@ func (ptr *QCameraViewfinder) ConnectSetBrightness(f func(brightness int)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetBrightness(brightness int) {
+func (ptr *QCameraViewfinder) DisconnectSetBrightness() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setBrightness")
 
 	if ptr.Pointer() != nil {
@@ -239,14 +249,23 @@ func (ptr *QCameraViewfinder) SetBrightness(brightness int) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetBrightnessDefault(brightness int) {
+	defer qt.Recovering("QCameraViewfinder::setBrightness")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetBrightnessDefault(ptr.Pointer(), C.int(brightness))
+	}
+}
+
 //export callbackQCameraViewfinder_SetContrast
 func callbackQCameraViewfinder_SetContrast(ptr unsafe.Pointer, ptrName *C.char, contrast C.int) {
 	defer qt.Recovering("callback QCameraViewfinder::setContrast")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setContrast"); signal != nil {
 		signal.(func(int))(int(contrast))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetContrastDefault(int(contrast))
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetContrast(f func(contrast int)) {
@@ -258,7 +277,7 @@ func (ptr *QCameraViewfinder) ConnectSetContrast(f func(contrast int)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetContrast(contrast int) {
+func (ptr *QCameraViewfinder) DisconnectSetContrast() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setContrast")
 
 	if ptr.Pointer() != nil {
@@ -275,14 +294,23 @@ func (ptr *QCameraViewfinder) SetContrast(contrast int) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetContrastDefault(contrast int) {
+	defer qt.Recovering("QCameraViewfinder::setContrast")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetContrastDefault(ptr.Pointer(), C.int(contrast))
+	}
+}
+
 //export callbackQCameraViewfinder_SetFullScreen
 func callbackQCameraViewfinder_SetFullScreen(ptr unsafe.Pointer, ptrName *C.char, fullScreen C.int) {
 	defer qt.Recovering("callback QCameraViewfinder::setFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFullScreen"); signal != nil {
 		signal.(func(bool))(int(fullScreen) != 0)
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetFullScreenDefault(int(fullScreen) != 0)
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetFullScreen(f func(fullScreen bool)) {
@@ -294,7 +322,7 @@ func (ptr *QCameraViewfinder) ConnectSetFullScreen(f func(fullScreen bool)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetFullScreen(fullScreen bool) {
+func (ptr *QCameraViewfinder) DisconnectSetFullScreen() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setFullScreen")
 
 	if ptr.Pointer() != nil {
@@ -311,14 +339,23 @@ func (ptr *QCameraViewfinder) SetFullScreen(fullScreen bool) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetFullScreenDefault(fullScreen bool) {
+	defer qt.Recovering("QCameraViewfinder::setFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetFullScreenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(fullScreen)))
+	}
+}
+
 //export callbackQCameraViewfinder_SetHue
 func callbackQCameraViewfinder_SetHue(ptr unsafe.Pointer, ptrName *C.char, hue C.int) {
 	defer qt.Recovering("callback QCameraViewfinder::setHue")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHue"); signal != nil {
 		signal.(func(int))(int(hue))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetHueDefault(int(hue))
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetHue(f func(hue int)) {
@@ -330,7 +367,7 @@ func (ptr *QCameraViewfinder) ConnectSetHue(f func(hue int)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetHue(hue int) {
+func (ptr *QCameraViewfinder) DisconnectSetHue() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setHue")
 
 	if ptr.Pointer() != nil {
@@ -347,14 +384,23 @@ func (ptr *QCameraViewfinder) SetHue(hue int) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetHueDefault(hue int) {
+	defer qt.Recovering("QCameraViewfinder::setHue")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetHueDefault(ptr.Pointer(), C.int(hue))
+	}
+}
+
 //export callbackQCameraViewfinder_SetSaturation
 func callbackQCameraViewfinder_SetSaturation(ptr unsafe.Pointer, ptrName *C.char, saturation C.int) {
 	defer qt.Recovering("callback QCameraViewfinder::setSaturation")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setSaturation"); signal != nil {
 		signal.(func(int))(int(saturation))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetSaturationDefault(int(saturation))
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetSaturation(f func(saturation int)) {
@@ -366,7 +412,7 @@ func (ptr *QCameraViewfinder) ConnectSetSaturation(f func(saturation int)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetSaturation(saturation int) {
+func (ptr *QCameraViewfinder) DisconnectSetSaturation() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setSaturation")
 
 	if ptr.Pointer() != nil {
@@ -380,6 +426,14 @@ func (ptr *QCameraViewfinder) SetSaturation(saturation int) {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_SetSaturation(ptr.Pointer(), C.int(saturation))
+	}
+}
+
+func (ptr *QCameraViewfinder) SetSaturationDefault(saturation int) {
+	defer qt.Recovering("QCameraViewfinder::setSaturation")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetSaturationDefault(ptr.Pointer(), C.int(saturation))
 	}
 }
 
@@ -1254,8 +1308,9 @@ func callbackQCameraViewfinder_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, v
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetEnabled(f func(vbo bool)) {
@@ -1267,7 +1322,7 @@ func (ptr *QCameraViewfinder) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetEnabled(vbo bool) {
+func (ptr *QCameraViewfinder) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -1284,14 +1339,23 @@ func (ptr *QCameraViewfinder) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QCameraViewfinder::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQCameraViewfinder_SetStyleSheet
 func callbackQCameraViewfinder_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -1303,7 +1367,7 @@ func (ptr *QCameraViewfinder) ConnectSetStyleSheet(f func(styleSheet string)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QCameraViewfinder) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -1317,6 +1381,14 @@ func (ptr *QCameraViewfinder) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QCameraViewfinder) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QCameraViewfinder::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -1371,8 +1443,9 @@ func callbackQCameraViewfinder_SetWindowModified(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetWindowModified(f func(vbo bool)) {
@@ -1384,7 +1457,7 @@ func (ptr *QCameraViewfinder) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QCameraViewfinder) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -1401,14 +1474,23 @@ func (ptr *QCameraViewfinder) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QCameraViewfinder::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQCameraViewfinder_SetWindowTitle
 func callbackQCameraViewfinder_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetWindowTitle(f func(vqs string)) {
@@ -1420,7 +1502,7 @@ func (ptr *QCameraViewfinder) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QCameraViewfinder) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -1434,6 +1516,14 @@ func (ptr *QCameraViewfinder) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QCameraViewfinder) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QCameraViewfinder::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -1490,7 +1580,7 @@ func callbackQCameraViewfinder_Close(ptr unsafe.Pointer, ptrName *C.char) C.int 
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQCameraViewfinderFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QCameraViewfinder) ConnectClose(f func() bool) {
@@ -1516,6 +1606,15 @@ func (ptr *QCameraViewfinder) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QCameraViewfinder_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QCameraViewfinder) CloseDefault() bool {
+	defer qt.Recovering("QCameraViewfinder::close")
+
+	if ptr.Pointer() != nil {
+		return C.QCameraViewfinder_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -1757,8 +1856,9 @@ func callbackQCameraViewfinder_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectHide(f func()) {
@@ -1784,6 +1884,14 @@ func (ptr *QCameraViewfinder) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QCameraViewfinder) HideDefault() {
+	defer qt.Recovering("QCameraViewfinder::hide")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -2020,8 +2128,9 @@ func callbackQCameraViewfinder_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectLower(f func()) {
@@ -2047,6 +2156,14 @@ func (ptr *QCameraViewfinder) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QCameraViewfinder) LowerDefault() {
+	defer qt.Recovering("QCameraViewfinder::lower")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -2283,8 +2400,9 @@ func callbackQCameraViewfinder_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectRaise(f func()) {
@@ -2313,14 +2431,23 @@ func (ptr *QCameraViewfinder) Raise() {
 	}
 }
 
+func (ptr *QCameraViewfinder) RaiseDefault() {
+	defer qt.Recovering("QCameraViewfinder::raise")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_Repaint
 func callbackQCameraViewfinder_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectRepaint(f func()) {
@@ -2349,14 +2476,23 @@ func (ptr *QCameraViewfinder) Repaint() {
 	}
 }
 
+func (ptr *QCameraViewfinder) RepaintDefault() {
+	defer qt.Recovering("QCameraViewfinder::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_RepaintDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_SetDisabled
 func callbackQCameraViewfinder_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
 	defer qt.Recovering("callback QCameraViewfinder::setDisabled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetDisabled(f func(disable bool)) {
@@ -2368,7 +2504,7 @@ func (ptr *QCameraViewfinder) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetDisabled(disable bool) {
+func (ptr *QCameraViewfinder) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -2385,14 +2521,23 @@ func (ptr *QCameraViewfinder) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QCameraViewfinder::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQCameraViewfinder_SetFocus2
 func callbackQCameraViewfinder_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetFocus2(f func()) {
@@ -2421,14 +2566,23 @@ func (ptr *QCameraViewfinder) SetFocus2() {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetFocus2Default() {
+	defer qt.Recovering("QCameraViewfinder::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_SetHidden
 func callbackQCameraViewfinder_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QCameraViewfinder::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectSetHidden(f func(hidden bool)) {
@@ -2440,7 +2594,7 @@ func (ptr *QCameraViewfinder) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QCameraViewfinder) DisconnectSetHidden(hidden bool) {
+func (ptr *QCameraViewfinder) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QCameraViewfinder::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -2457,14 +2611,23 @@ func (ptr *QCameraViewfinder) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QCameraViewfinder) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QCameraViewfinder::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQCameraViewfinder_Show
 func callbackQCameraViewfinder_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectShow(f func()) {
@@ -2493,14 +2656,23 @@ func (ptr *QCameraViewfinder) Show() {
 	}
 }
 
+func (ptr *QCameraViewfinder) ShowDefault() {
+	defer qt.Recovering("QCameraViewfinder::show")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_ShowFullScreen
 func callbackQCameraViewfinder_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectShowFullScreen(f func()) {
@@ -2529,14 +2701,23 @@ func (ptr *QCameraViewfinder) ShowFullScreen() {
 	}
 }
 
+func (ptr *QCameraViewfinder) ShowFullScreenDefault() {
+	defer qt.Recovering("QCameraViewfinder::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_ShowMaximized
 func callbackQCameraViewfinder_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectShowMaximized(f func()) {
@@ -2565,14 +2746,23 @@ func (ptr *QCameraViewfinder) ShowMaximized() {
 	}
 }
 
+func (ptr *QCameraViewfinder) ShowMaximizedDefault() {
+	defer qt.Recovering("QCameraViewfinder::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_ShowMinimized
 func callbackQCameraViewfinder_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectShowMinimized(f func()) {
@@ -2601,14 +2791,23 @@ func (ptr *QCameraViewfinder) ShowMinimized() {
 	}
 }
 
+func (ptr *QCameraViewfinder) ShowMinimizedDefault() {
+	defer qt.Recovering("QCameraViewfinder::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_ShowNormal
 func callbackQCameraViewfinder_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectShowNormal(f func()) {
@@ -2634,6 +2833,14 @@ func (ptr *QCameraViewfinder) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QCameraViewfinder) ShowNormalDefault() {
+	defer qt.Recovering("QCameraViewfinder::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -2688,8 +2895,9 @@ func callbackQCameraViewfinder_Update(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectUpdate(f func()) {
@@ -2718,14 +2926,23 @@ func (ptr *QCameraViewfinder) Update() {
 	}
 }
 
+func (ptr *QCameraViewfinder) UpdateDefault() {
+	defer qt.Recovering("QCameraViewfinder::update")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_UpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraViewfinder_UpdateMicroFocus
 func callbackQCameraViewfinder_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCameraViewfinder::updateMicroFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectUpdateMicroFocus(f func()) {
@@ -2751,6 +2968,14 @@ func (ptr *QCameraViewfinder) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QCameraViewfinder) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QCameraViewfinder::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -2985,8 +3210,9 @@ func callbackQCameraViewfinder_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QCameraViewfinder) ConnectDeleteLater(f func()) {
@@ -3012,6 +3238,15 @@ func (ptr *QCameraViewfinder) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinder_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QCameraViewfinder) DeleteLaterDefault() {
+	defer qt.Recovering("QCameraViewfinder::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3463,7 +3698,7 @@ func callbackQGraphicsVideoItem_SetMediaObject(ptr unsafe.Pointer, ptrName *C.ch
 		return C.int(qt.GoBoolToInt(signal.(func(*multimedia.QMediaObject) bool)(multimedia.NewQMediaObjectFromPointer(object))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQGraphicsVideoItemFromPointer(ptr).SetMediaObjectDefault(multimedia.NewQMediaObjectFromPointer(object))))
 }
 
 func (ptr *QGraphicsVideoItem) ConnectSetMediaObject(f func(object *multimedia.QMediaObject) bool) {
@@ -3475,7 +3710,7 @@ func (ptr *QGraphicsVideoItem) ConnectSetMediaObject(f func(object *multimedia.Q
 	}
 }
 
-func (ptr *QGraphicsVideoItem) DisconnectSetMediaObject(object multimedia.QMediaObject_ITF) {
+func (ptr *QGraphicsVideoItem) DisconnectSetMediaObject() {
 	defer qt.Recovering("disconnect QGraphicsVideoItem::setMediaObject")
 
 	if ptr.Pointer() != nil {
@@ -3489,6 +3724,15 @@ func (ptr *QGraphicsVideoItem) SetMediaObject(object multimedia.QMediaObject_ITF
 
 	if ptr.Pointer() != nil {
 		return C.QGraphicsVideoItem_SetMediaObject(ptr.Pointer(), multimedia.PointerFromQMediaObject(object)) != 0
+	}
+	return false
+}
+
+func (ptr *QGraphicsVideoItem) SetMediaObjectDefault(object multimedia.QMediaObject_ITF) bool {
+	defer qt.Recovering("QGraphicsVideoItem::setMediaObject")
+
+	if ptr.Pointer() != nil {
+		return C.QGraphicsVideoItem_SetMediaObjectDefault(ptr.Pointer(), multimedia.PointerFromQMediaObject(object)) != 0
 	}
 	return false
 }
@@ -3546,8 +3790,9 @@ func callbackQGraphicsVideoItem_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QGraphicsVideoItem) ConnectUpdateMicroFocus(f func()) {
@@ -3573,6 +3818,14 @@ func (ptr *QGraphicsVideoItem) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsVideoItem) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QGraphicsVideoItem::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -5134,8 +5387,9 @@ func callbackQGraphicsVideoItem_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGraphicsVideoItemFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGraphicsVideoItem) ConnectDeleteLater(f func()) {
@@ -5161,6 +5415,15 @@ func (ptr *QGraphicsVideoItem) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DeleteLaterDefault() {
+	defer qt.Recovering("QGraphicsVideoItem::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsVideoItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6193,7 +6456,7 @@ func callbackQVideoWidget_SetMediaObject(ptr unsafe.Pointer, ptrName *C.char, ob
 		return C.int(qt.GoBoolToInt(signal.(func(*multimedia.QMediaObject) bool)(multimedia.NewQMediaObjectFromPointer(object))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQVideoWidgetFromPointer(ptr).SetMediaObjectDefault(multimedia.NewQMediaObjectFromPointer(object))))
 }
 
 func (ptr *QVideoWidget) ConnectSetMediaObject(f func(object *multimedia.QMediaObject) bool) {
@@ -6205,7 +6468,7 @@ func (ptr *QVideoWidget) ConnectSetMediaObject(f func(object *multimedia.QMediaO
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetMediaObject(object multimedia.QMediaObject_ITF) {
+func (ptr *QVideoWidget) DisconnectSetMediaObject() {
 	defer qt.Recovering("disconnect QVideoWidget::setMediaObject")
 
 	if ptr.Pointer() != nil {
@@ -6219,6 +6482,15 @@ func (ptr *QVideoWidget) SetMediaObject(object multimedia.QMediaObject_ITF) bool
 
 	if ptr.Pointer() != nil {
 		return C.QVideoWidget_SetMediaObject(ptr.Pointer(), multimedia.PointerFromQMediaObject(object)) != 0
+	}
+	return false
+}
+
+func (ptr *QVideoWidget) SetMediaObjectDefault(object multimedia.QMediaObject_ITF) bool {
+	defer qt.Recovering("QVideoWidget::setMediaObject")
+
+	if ptr.Pointer() != nil {
+		return C.QVideoWidget_SetMediaObjectDefault(ptr.Pointer(), multimedia.PointerFromQMediaObject(object)) != 0
 	}
 	return false
 }
@@ -6775,8 +7047,9 @@ func callbackQVideoWidget_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetEnabled(f func(vbo bool)) {
@@ -6788,7 +7061,7 @@ func (ptr *QVideoWidget) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetEnabled(vbo bool) {
+func (ptr *QVideoWidget) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QVideoWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -6805,14 +7078,23 @@ func (ptr *QVideoWidget) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QVideoWidget) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QVideoWidget::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQVideoWidget_SetStyleSheet
 func callbackQVideoWidget_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QVideoWidget::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -6824,7 +7106,7 @@ func (ptr *QVideoWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QVideoWidget) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QVideoWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -6838,6 +7120,14 @@ func (ptr *QVideoWidget) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QVideoWidget) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QVideoWidget::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -6892,8 +7182,9 @@ func callbackQVideoWidget_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char,
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetWindowModified(f func(vbo bool)) {
@@ -6905,7 +7196,7 @@ func (ptr *QVideoWidget) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QVideoWidget) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QVideoWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -6922,14 +7213,23 @@ func (ptr *QVideoWidget) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QVideoWidget) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QVideoWidget::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQVideoWidget_SetWindowTitle
 func callbackQVideoWidget_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QVideoWidget::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetWindowTitle(f func(vqs string)) {
@@ -6941,7 +7241,7 @@ func (ptr *QVideoWidget) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QVideoWidget) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QVideoWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -6955,6 +7255,14 @@ func (ptr *QVideoWidget) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QVideoWidget) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QVideoWidget::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -7011,7 +7319,7 @@ func callbackQVideoWidget_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQVideoWidgetFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QVideoWidget) ConnectClose(f func() bool) {
@@ -7037,6 +7345,15 @@ func (ptr *QVideoWidget) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QVideoWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QVideoWidget) CloseDefault() bool {
+	defer qt.Recovering("QVideoWidget::close")
+
+	if ptr.Pointer() != nil {
+		return C.QVideoWidget_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -7278,8 +7595,9 @@ func callbackQVideoWidget_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectHide(f func()) {
@@ -7305,6 +7623,14 @@ func (ptr *QVideoWidget) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QVideoWidget) HideDefault() {
+	defer qt.Recovering("QVideoWidget::hide")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -7541,8 +7867,9 @@ func callbackQVideoWidget_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectLower(f func()) {
@@ -7568,6 +7895,14 @@ func (ptr *QVideoWidget) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QVideoWidget) LowerDefault() {
+	defer qt.Recovering("QVideoWidget::lower")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -7804,8 +8139,9 @@ func callbackQVideoWidget_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectRaise(f func()) {
@@ -7834,14 +8170,23 @@ func (ptr *QVideoWidget) Raise() {
 	}
 }
 
+func (ptr *QVideoWidget) RaiseDefault() {
+	defer qt.Recovering("QVideoWidget::raise")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_Repaint
 func callbackQVideoWidget_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectRepaint(f func()) {
@@ -7870,14 +8215,23 @@ func (ptr *QVideoWidget) Repaint() {
 	}
 }
 
+func (ptr *QVideoWidget) RepaintDefault() {
+	defer qt.Recovering("QVideoWidget::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_RepaintDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_SetDisabled
 func callbackQVideoWidget_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
 	defer qt.Recovering("callback QVideoWidget::setDisabled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetDisabled(f func(disable bool)) {
@@ -7889,7 +8243,7 @@ func (ptr *QVideoWidget) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetDisabled(disable bool) {
+func (ptr *QVideoWidget) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QVideoWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -7906,14 +8260,23 @@ func (ptr *QVideoWidget) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QVideoWidget) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QVideoWidget::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQVideoWidget_SetFocus2
 func callbackQVideoWidget_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetFocus2(f func()) {
@@ -7942,14 +8305,23 @@ func (ptr *QVideoWidget) SetFocus2() {
 	}
 }
 
+func (ptr *QVideoWidget) SetFocus2Default() {
+	defer qt.Recovering("QVideoWidget::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_SetHidden
 func callbackQVideoWidget_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QVideoWidget::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetHidden(f func(hidden bool)) {
@@ -7961,7 +8333,7 @@ func (ptr *QVideoWidget) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetHidden(hidden bool) {
+func (ptr *QVideoWidget) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QVideoWidget::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -7978,14 +8350,23 @@ func (ptr *QVideoWidget) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QVideoWidget) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QVideoWidget::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQVideoWidget_Show
 func callbackQVideoWidget_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectShow(f func()) {
@@ -8014,14 +8395,23 @@ func (ptr *QVideoWidget) Show() {
 	}
 }
 
+func (ptr *QVideoWidget) ShowDefault() {
+	defer qt.Recovering("QVideoWidget::show")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_ShowFullScreen
 func callbackQVideoWidget_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectShowFullScreen(f func()) {
@@ -8050,14 +8440,23 @@ func (ptr *QVideoWidget) ShowFullScreen() {
 	}
 }
 
+func (ptr *QVideoWidget) ShowFullScreenDefault() {
+	defer qt.Recovering("QVideoWidget::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_ShowMaximized
 func callbackQVideoWidget_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectShowMaximized(f func()) {
@@ -8086,14 +8485,23 @@ func (ptr *QVideoWidget) ShowMaximized() {
 	}
 }
 
+func (ptr *QVideoWidget) ShowMaximizedDefault() {
+	defer qt.Recovering("QVideoWidget::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_ShowMinimized
 func callbackQVideoWidget_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectShowMinimized(f func()) {
@@ -8122,14 +8530,23 @@ func (ptr *QVideoWidget) ShowMinimized() {
 	}
 }
 
+func (ptr *QVideoWidget) ShowMinimizedDefault() {
+	defer qt.Recovering("QVideoWidget::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_ShowNormal
 func callbackQVideoWidget_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectShowNormal(f func()) {
@@ -8155,6 +8572,14 @@ func (ptr *QVideoWidget) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QVideoWidget) ShowNormalDefault() {
+	defer qt.Recovering("QVideoWidget::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -8209,8 +8634,9 @@ func callbackQVideoWidget_Update(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectUpdate(f func()) {
@@ -8239,14 +8665,23 @@ func (ptr *QVideoWidget) Update() {
 	}
 }
 
+func (ptr *QVideoWidget) UpdateDefault() {
+	defer qt.Recovering("QVideoWidget::update")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_UpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQVideoWidget_UpdateMicroFocus
 func callbackQVideoWidget_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QVideoWidget::updateMicroFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectUpdateMicroFocus(f func()) {
@@ -8272,6 +8707,14 @@ func (ptr *QVideoWidget) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QVideoWidget) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QVideoWidget::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -8506,8 +8949,9 @@ func callbackQVideoWidget_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectDeleteLater(f func()) {
@@ -8533,6 +8977,15 @@ func (ptr *QVideoWidget) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QVideoWidget) DeleteLaterDefault() {
+	defer qt.Recovering("QVideoWidget::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9586,8 +10039,9 @@ func callbackQVideoWidgetControl_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQVideoWidgetControlFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QVideoWidgetControl) ConnectDeleteLater(f func()) {
@@ -9613,6 +10067,15 @@ func (ptr *QVideoWidgetControl) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidgetControl_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QVideoWidgetControl) DeleteLaterDefault() {
+	defer qt.Recovering("QVideoWidgetControl::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

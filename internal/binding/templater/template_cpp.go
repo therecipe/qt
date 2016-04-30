@@ -266,20 +266,18 @@ func CppTemplate(module string) []byte {
 							implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = true
 
 							if functionIsSupported(parentClass, function) {
-								if (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
+								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
 
 									var function = *function
 									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
 									if function.Meta != parser.SLOT {
 										function.Meta = parser.PLAIN
 									}
-
 									fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-									if function.Virtual == parser.IMPURE {
-										function.Meta = parser.PLAIN
-										function.Default = true
-										fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-									}
+
+									function.Meta = parser.PLAIN
+									function.Default = true
+									fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
 
 								}
 							}

@@ -145,9 +145,19 @@ int QAccelerometer_Start(void* ptr)
 	return returnArg;
 }
 
+int QAccelerometer_StartDefault(void* ptr)
+{
+	return static_cast<QAccelerometer*>(ptr)->QAccelerometer::start();
+}
+
 void QAccelerometer_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAccelerometer*>(ptr), "stop");
+}
+
+void QAccelerometer_StopDefault(void* ptr)
+{
+	static_cast<QAccelerometer*>(ptr)->QAccelerometer::stop();
 }
 
 void QAccelerometer_TimerEvent(void* ptr, void* event)
@@ -193,6 +203,11 @@ void QAccelerometer_CustomEventDefault(void* ptr, void* event)
 void QAccelerometer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAccelerometer*>(ptr), "deleteLater");
+}
+
+void QAccelerometer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAccelerometer*>(ptr)->QAccelerometer::deleteLater();
 }
 
 void QAccelerometer_DisconnectNotify(void* ptr, void* sign)
@@ -339,6 +354,11 @@ void QAccelerometerReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAccelerometerReading*>(ptr), "deleteLater");
 }
 
+void QAccelerometerReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAccelerometerReading*>(ptr)->QAccelerometerReading::deleteLater();
+}
+
 void QAccelerometerReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAccelerometerReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -401,9 +421,19 @@ int QAltimeter_Start(void* ptr)
 	return returnArg;
 }
 
+int QAltimeter_StartDefault(void* ptr)
+{
+	return static_cast<QAltimeter*>(ptr)->QAltimeter::start();
+}
+
 void QAltimeter_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAltimeter*>(ptr), "stop");
+}
+
+void QAltimeter_StopDefault(void* ptr)
+{
+	static_cast<QAltimeter*>(ptr)->QAltimeter::stop();
 }
 
 void QAltimeter_TimerEvent(void* ptr, void* event)
@@ -449,6 +479,11 @@ void QAltimeter_CustomEventDefault(void* ptr, void* event)
 void QAltimeter_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAltimeter*>(ptr), "deleteLater");
+}
+
+void QAltimeter_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAltimeter*>(ptr)->QAltimeter::deleteLater();
 }
 
 void QAltimeter_DisconnectNotify(void* ptr, void* sign)
@@ -575,6 +610,11 @@ void QAltimeterReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAltimeterReading*>(ptr), "deleteLater");
 }
 
+void QAltimeterReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAltimeterReading*>(ptr)->QAltimeterReading::deleteLater();
+}
+
 void QAltimeterReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAltimeterReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -699,6 +739,11 @@ void QAmbientLightReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAmbientLightReading*>(ptr), "deleteLater");
 }
 
+void QAmbientLightReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAmbientLightReading*>(ptr)->QAmbientLightReading::deleteLater();
+}
+
 void QAmbientLightReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAmbientLightReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -778,9 +823,19 @@ int QAmbientLightSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QAmbientLightSensor_StartDefault(void* ptr)
+{
+	return static_cast<QAmbientLightSensor*>(ptr)->QAmbientLightSensor::start();
+}
+
 void QAmbientLightSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAmbientLightSensor*>(ptr), "stop");
+}
+
+void QAmbientLightSensor_StopDefault(void* ptr)
+{
+	static_cast<QAmbientLightSensor*>(ptr)->QAmbientLightSensor::stop();
 }
 
 void QAmbientLightSensor_TimerEvent(void* ptr, void* event)
@@ -826,6 +881,11 @@ void QAmbientLightSensor_CustomEventDefault(void* ptr, void* event)
 void QAmbientLightSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAmbientLightSensor*>(ptr), "deleteLater");
+}
+
+void QAmbientLightSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAmbientLightSensor*>(ptr)->QAmbientLightSensor::deleteLater();
 }
 
 void QAmbientLightSensor_DisconnectNotify(void* ptr, void* sign)
@@ -952,6 +1012,11 @@ void QAmbientTemperatureReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAmbientTemperatureReading*>(ptr), "deleteLater");
 }
 
+void QAmbientTemperatureReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAmbientTemperatureReading*>(ptr)->QAmbientTemperatureReading::deleteLater();
+}
+
 void QAmbientTemperatureReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAmbientTemperatureReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1014,9 +1079,19 @@ int QAmbientTemperatureSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QAmbientTemperatureSensor_StartDefault(void* ptr)
+{
+	return static_cast<QAmbientTemperatureSensor*>(ptr)->QAmbientTemperatureSensor::start();
+}
+
 void QAmbientTemperatureSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAmbientTemperatureSensor*>(ptr), "stop");
+}
+
+void QAmbientTemperatureSensor_StopDefault(void* ptr)
+{
+	static_cast<QAmbientTemperatureSensor*>(ptr)->QAmbientTemperatureSensor::stop();
 }
 
 void QAmbientTemperatureSensor_TimerEvent(void* ptr, void* event)
@@ -1062,6 +1137,11 @@ void QAmbientTemperatureSensor_CustomEventDefault(void* ptr, void* event)
 void QAmbientTemperatureSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAmbientTemperatureSensor*>(ptr), "deleteLater");
+}
+
+void QAmbientTemperatureSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAmbientTemperatureSensor*>(ptr)->QAmbientTemperatureSensor::deleteLater();
 }
 
 void QAmbientTemperatureSensor_DisconnectNotify(void* ptr, void* sign)
@@ -1143,9 +1223,19 @@ int QCompass_Start(void* ptr)
 	return returnArg;
 }
 
+int QCompass_StartDefault(void* ptr)
+{
+	return static_cast<QCompass*>(ptr)->QCompass::start();
+}
+
 void QCompass_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCompass*>(ptr), "stop");
+}
+
+void QCompass_StopDefault(void* ptr)
+{
+	static_cast<QCompass*>(ptr)->QCompass::stop();
 }
 
 void QCompass_TimerEvent(void* ptr, void* event)
@@ -1191,6 +1281,11 @@ void QCompass_CustomEventDefault(void* ptr, void* event)
 void QCompass_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCompass*>(ptr), "deleteLater");
+}
+
+void QCompass_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCompass*>(ptr)->QCompass::deleteLater();
 }
 
 void QCompass_DisconnectNotify(void* ptr, void* sign)
@@ -1327,6 +1422,11 @@ void QCompassReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCompassReading*>(ptr), "deleteLater");
 }
 
+void QCompassReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCompassReading*>(ptr)->QCompassReading::deleteLater();
+}
+
 void QCompassReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCompassReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1451,6 +1551,11 @@ void QDistanceReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDistanceReading*>(ptr), "deleteLater");
 }
 
+void QDistanceReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDistanceReading*>(ptr)->QDistanceReading::deleteLater();
+}
+
 void QDistanceReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QDistanceReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1513,9 +1618,19 @@ int QDistanceSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QDistanceSensor_StartDefault(void* ptr)
+{
+	return static_cast<QDistanceSensor*>(ptr)->QDistanceSensor::start();
+}
+
 void QDistanceSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDistanceSensor*>(ptr), "stop");
+}
+
+void QDistanceSensor_StopDefault(void* ptr)
+{
+	static_cast<QDistanceSensor*>(ptr)->QDistanceSensor::stop();
 }
 
 void QDistanceSensor_TimerEvent(void* ptr, void* event)
@@ -1561,6 +1676,11 @@ void QDistanceSensor_CustomEventDefault(void* ptr, void* event)
 void QDistanceSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDistanceSensor*>(ptr), "deleteLater");
+}
+
+void QDistanceSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDistanceSensor*>(ptr)->QDistanceSensor::deleteLater();
 }
 
 void QDistanceSensor_DisconnectNotify(void* ptr, void* sign)
@@ -1642,9 +1762,19 @@ int QGyroscope_Start(void* ptr)
 	return returnArg;
 }
 
+int QGyroscope_StartDefault(void* ptr)
+{
+	return static_cast<QGyroscope*>(ptr)->QGyroscope::start();
+}
+
 void QGyroscope_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGyroscope*>(ptr), "stop");
+}
+
+void QGyroscope_StopDefault(void* ptr)
+{
+	static_cast<QGyroscope*>(ptr)->QGyroscope::stop();
 }
 
 void QGyroscope_TimerEvent(void* ptr, void* event)
@@ -1690,6 +1820,11 @@ void QGyroscope_CustomEventDefault(void* ptr, void* event)
 void QGyroscope_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGyroscope*>(ptr), "deleteLater");
+}
+
+void QGyroscope_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGyroscope*>(ptr)->QGyroscope::deleteLater();
 }
 
 void QGyroscope_DisconnectNotify(void* ptr, void* sign)
@@ -1836,6 +1971,11 @@ void QGyroscopeReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGyroscopeReading*>(ptr), "deleteLater");
 }
 
+void QGyroscopeReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGyroscopeReading*>(ptr)->QGyroscopeReading::deleteLater();
+}
+
 void QGyroscopeReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGyroscopeReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1960,6 +2100,11 @@ void QHolsterReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHolsterReading*>(ptr), "deleteLater");
 }
 
+void QHolsterReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QHolsterReading*>(ptr)->QHolsterReading::deleteLater();
+}
+
 void QHolsterReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QHolsterReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2022,9 +2167,19 @@ int QHolsterSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QHolsterSensor_StartDefault(void* ptr)
+{
+	return static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::start();
+}
+
 void QHolsterSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHolsterSensor*>(ptr), "stop");
+}
+
+void QHolsterSensor_StopDefault(void* ptr)
+{
+	static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::stop();
 }
 
 void QHolsterSensor_TimerEvent(void* ptr, void* event)
@@ -2070,6 +2225,11 @@ void QHolsterSensor_CustomEventDefault(void* ptr, void* event)
 void QHolsterSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHolsterSensor*>(ptr), "deleteLater");
+}
+
+void QHolsterSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QHolsterSensor*>(ptr)->QHolsterSensor::deleteLater();
 }
 
 void QHolsterSensor_DisconnectNotify(void* ptr, void* sign)
@@ -2196,6 +2356,11 @@ void QIRProximityReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QIRProximityReading*>(ptr), "deleteLater");
 }
 
+void QIRProximityReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::deleteLater();
+}
+
 void QIRProximityReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QIRProximityReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2275,9 +2440,19 @@ int QIRProximitySensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QIRProximitySensor_StartDefault(void* ptr)
+{
+	return static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::start();
+}
+
 void QIRProximitySensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QIRProximitySensor*>(ptr), "stop");
+}
+
+void QIRProximitySensor_StopDefault(void* ptr)
+{
+	static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::stop();
 }
 
 void QIRProximitySensor_TimerEvent(void* ptr, void* event)
@@ -2323,6 +2498,11 @@ void QIRProximitySensor_CustomEventDefault(void* ptr, void* event)
 void QIRProximitySensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QIRProximitySensor*>(ptr), "deleteLater");
+}
+
+void QIRProximitySensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QIRProximitySensor*>(ptr)->QIRProximitySensor::deleteLater();
 }
 
 void QIRProximitySensor_DisconnectNotify(void* ptr, void* sign)
@@ -2449,6 +2629,11 @@ void QLightReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLightReading*>(ptr), "deleteLater");
 }
 
+void QLightReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLightReading*>(ptr)->QLightReading::deleteLater();
+}
+
 void QLightReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QLightReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2554,9 +2739,19 @@ int QLightSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QLightSensor_StartDefault(void* ptr)
+{
+	return static_cast<QLightSensor*>(ptr)->QLightSensor::start();
+}
+
 void QLightSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLightSensor*>(ptr), "stop");
+}
+
+void QLightSensor_StopDefault(void* ptr)
+{
+	static_cast<QLightSensor*>(ptr)->QLightSensor::stop();
 }
 
 void QLightSensor_TimerEvent(void* ptr, void* event)
@@ -2602,6 +2797,11 @@ void QLightSensor_CustomEventDefault(void* ptr, void* event)
 void QLightSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLightSensor*>(ptr), "deleteLater");
+}
+
+void QLightSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLightSensor*>(ptr)->QLightSensor::deleteLater();
 }
 
 void QLightSensor_DisconnectNotify(void* ptr, void* sign)
@@ -2709,9 +2909,19 @@ int QMagnetometer_Start(void* ptr)
 	return returnArg;
 }
 
+int QMagnetometer_StartDefault(void* ptr)
+{
+	return static_cast<QMagnetometer*>(ptr)->QMagnetometer::start();
+}
+
 void QMagnetometer_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMagnetometer*>(ptr), "stop");
+}
+
+void QMagnetometer_StopDefault(void* ptr)
+{
+	static_cast<QMagnetometer*>(ptr)->QMagnetometer::stop();
 }
 
 void QMagnetometer_TimerEvent(void* ptr, void* event)
@@ -2757,6 +2967,11 @@ void QMagnetometer_CustomEventDefault(void* ptr, void* event)
 void QMagnetometer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMagnetometer*>(ptr), "deleteLater");
+}
+
+void QMagnetometer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMagnetometer*>(ptr)->QMagnetometer::deleteLater();
 }
 
 void QMagnetometer_DisconnectNotify(void* ptr, void* sign)
@@ -2913,6 +3128,11 @@ void QMagnetometerReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMagnetometerReading*>(ptr), "deleteLater");
 }
 
+void QMagnetometerReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMagnetometerReading*>(ptr)->QMagnetometerReading::deleteLater();
+}
+
 void QMagnetometerReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMagnetometerReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3037,6 +3257,11 @@ void QOrientationReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QOrientationReading*>(ptr), "deleteLater");
 }
 
+void QOrientationReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QOrientationReading*>(ptr)->QOrientationReading::deleteLater();
+}
+
 void QOrientationReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QOrientationReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3116,9 +3341,19 @@ int QOrientationSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QOrientationSensor_StartDefault(void* ptr)
+{
+	return static_cast<QOrientationSensor*>(ptr)->QOrientationSensor::start();
+}
+
 void QOrientationSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QOrientationSensor*>(ptr), "stop");
+}
+
+void QOrientationSensor_StopDefault(void* ptr)
+{
+	static_cast<QOrientationSensor*>(ptr)->QOrientationSensor::stop();
 }
 
 void QOrientationSensor_TimerEvent(void* ptr, void* event)
@@ -3164,6 +3399,11 @@ void QOrientationSensor_CustomEventDefault(void* ptr, void* event)
 void QOrientationSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QOrientationSensor*>(ptr), "deleteLater");
+}
+
+void QOrientationSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QOrientationSensor*>(ptr)->QOrientationSensor::deleteLater();
 }
 
 void QOrientationSensor_DisconnectNotify(void* ptr, void* sign)
@@ -3300,6 +3540,11 @@ void QPressureReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPressureReading*>(ptr), "deleteLater");
 }
 
+void QPressureReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPressureReading*>(ptr)->QPressureReading::deleteLater();
+}
+
 void QPressureReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QPressureReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3362,9 +3607,19 @@ int QPressureSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QPressureSensor_StartDefault(void* ptr)
+{
+	return static_cast<QPressureSensor*>(ptr)->QPressureSensor::start();
+}
+
 void QPressureSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPressureSensor*>(ptr), "stop");
+}
+
+void QPressureSensor_StopDefault(void* ptr)
+{
+	static_cast<QPressureSensor*>(ptr)->QPressureSensor::stop();
 }
 
 void QPressureSensor_TimerEvent(void* ptr, void* event)
@@ -3410,6 +3665,11 @@ void QPressureSensor_CustomEventDefault(void* ptr, void* event)
 void QPressureSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPressureSensor*>(ptr), "deleteLater");
+}
+
+void QPressureSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPressureSensor*>(ptr)->QPressureSensor::deleteLater();
 }
 
 void QPressureSensor_DisconnectNotify(void* ptr, void* sign)
@@ -3536,6 +3796,11 @@ void QProximityReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProximityReading*>(ptr), "deleteLater");
 }
 
+void QProximityReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QProximityReading*>(ptr)->QProximityReading::deleteLater();
+}
+
 void QProximityReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QProximityReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3615,9 +3880,19 @@ int QProximitySensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QProximitySensor_StartDefault(void* ptr)
+{
+	return static_cast<QProximitySensor*>(ptr)->QProximitySensor::start();
+}
+
 void QProximitySensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProximitySensor*>(ptr), "stop");
+}
+
+void QProximitySensor_StopDefault(void* ptr)
+{
+	static_cast<QProximitySensor*>(ptr)->QProximitySensor::stop();
 }
 
 void QProximitySensor_TimerEvent(void* ptr, void* event)
@@ -3663,6 +3938,11 @@ void QProximitySensor_CustomEventDefault(void* ptr, void* event)
 void QProximitySensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProximitySensor*>(ptr), "deleteLater");
+}
+
+void QProximitySensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QProximitySensor*>(ptr)->QProximitySensor::deleteLater();
 }
 
 void QProximitySensor_DisconnectNotify(void* ptr, void* sign)
@@ -3799,6 +4079,11 @@ void QRotationReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRotationReading*>(ptr), "deleteLater");
 }
 
+void QRotationReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRotationReading*>(ptr)->QRotationReading::deleteLater();
+}
+
 void QRotationReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QRotationReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3904,9 +4189,19 @@ int QRotationSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QRotationSensor_StartDefault(void* ptr)
+{
+	return static_cast<QRotationSensor*>(ptr)->QRotationSensor::start();
+}
+
 void QRotationSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRotationSensor*>(ptr), "stop");
+}
+
+void QRotationSensor_StopDefault(void* ptr)
+{
+	static_cast<QRotationSensor*>(ptr)->QRotationSensor::stop();
 }
 
 void QRotationSensor_TimerEvent(void* ptr, void* event)
@@ -3952,6 +4247,11 @@ void QRotationSensor_CustomEventDefault(void* ptr, void* event)
 void QRotationSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRotationSensor*>(ptr), "deleteLater");
+}
+
+void QRotationSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRotationSensor*>(ptr)->QRotationSensor::deleteLater();
 }
 
 void QRotationSensor_DisconnectNotify(void* ptr, void* sign)
@@ -4477,6 +4777,11 @@ void QSensor_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSensor*>(ptr), "deleteLater");
 }
 
+void QSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSensor*>(ptr)->QSensor::deleteLater();
+}
+
 void QSensor_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSensor*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -4647,6 +4952,11 @@ void QSensorBackend_CustomEventDefault(void* ptr, void* event)
 void QSensorBackend_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSensorBackend*>(ptr), "deleteLater");
+}
+
+void QSensorBackend_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSensorBackend*>(ptr)->QSensorBackend::deleteLater();
 }
 
 void QSensorBackend_DisconnectNotify(void* ptr, void* sign)
@@ -4905,6 +5215,11 @@ void QSensorGesture_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSensorGesture*>(ptr), "deleteLater");
 }
 
+void QSensorGesture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSensorGesture*>(ptr)->QSensorGesture::deleteLater();
+}
+
 void QSensorGesture_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSensorGesture*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5049,6 +5364,11 @@ void QSensorGestureManager_CustomEventDefault(void* ptr, void* event)
 void QSensorGestureManager_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSensorGestureManager*>(ptr), "deleteLater");
+}
+
+void QSensorGestureManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSensorGestureManager*>(ptr)->QSensorGestureManager::deleteLater();
 }
 
 void QSensorGestureManager_DisconnectNotify(void* ptr, void* sign)
@@ -5267,6 +5587,11 @@ void QSensorGestureRecognizer_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSensorGestureRecognizer*>(ptr), "deleteLater");
 }
 
+void QSensorGestureRecognizer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSensorGestureRecognizer*>(ptr)->QSensorGestureRecognizer::deleteLater();
+}
+
 void QSensorGestureRecognizer_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSensorGestureRecognizer*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5416,6 +5741,11 @@ void QSensorReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSensorReading*>(ptr), "deleteLater");
 }
 
+void QSensorReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSensorReading*>(ptr)->QSensorReading::deleteLater();
+}
+
 void QSensorReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSensorReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5550,6 +5880,11 @@ void QTapReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTapReading*>(ptr), "deleteLater");
 }
 
+void QTapReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTapReading*>(ptr)->QTapReading::deleteLater();
+}
+
 void QTapReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTapReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5655,9 +5990,19 @@ int QTapSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QTapSensor_StartDefault(void* ptr)
+{
+	return static_cast<QTapSensor*>(ptr)->QTapSensor::start();
+}
+
 void QTapSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTapSensor*>(ptr), "stop");
+}
+
+void QTapSensor_StopDefault(void* ptr)
+{
+	static_cast<QTapSensor*>(ptr)->QTapSensor::stop();
 }
 
 void QTapSensor_TimerEvent(void* ptr, void* event)
@@ -5703,6 +6048,11 @@ void QTapSensor_CustomEventDefault(void* ptr, void* event)
 void QTapSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTapSensor*>(ptr), "deleteLater");
+}
+
+void QTapSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTapSensor*>(ptr)->QTapSensor::deleteLater();
 }
 
 void QTapSensor_DisconnectNotify(void* ptr, void* sign)
@@ -5839,6 +6189,11 @@ void QTiltReading_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTiltReading*>(ptr), "deleteLater");
 }
 
+void QTiltReading_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTiltReading*>(ptr)->QTiltReading::deleteLater();
+}
+
 void QTiltReading_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTiltReading*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5906,9 +6261,19 @@ int QTiltSensor_Start(void* ptr)
 	return returnArg;
 }
 
+int QTiltSensor_StartDefault(void* ptr)
+{
+	return static_cast<QTiltSensor*>(ptr)->QTiltSensor::start();
+}
+
 void QTiltSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTiltSensor*>(ptr), "stop");
+}
+
+void QTiltSensor_StopDefault(void* ptr)
+{
+	static_cast<QTiltSensor*>(ptr)->QTiltSensor::stop();
 }
 
 void QTiltSensor_TimerEvent(void* ptr, void* event)
@@ -5954,6 +6319,11 @@ void QTiltSensor_CustomEventDefault(void* ptr, void* event)
 void QTiltSensor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTiltSensor*>(ptr), "deleteLater");
+}
+
+void QTiltSensor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTiltSensor*>(ptr)->QTiltSensor::deleteLater();
 }
 
 void QTiltSensor_DisconnectNotify(void* ptr, void* sign)

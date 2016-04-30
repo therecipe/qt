@@ -583,6 +583,11 @@ void QScriptEngine_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScriptEngine*>(ptr), "deleteLater");
 }
 
+void QScriptEngine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QScriptEngine*>(ptr)->QScriptEngine::deleteLater();
+}
+
 void QScriptEngine_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QScriptEngine*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -868,6 +873,11 @@ void QScriptExtensionPlugin_CustomEventDefault(void* ptr, void* event)
 void QScriptExtensionPlugin_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScriptExtensionPlugin*>(ptr), "deleteLater");
+}
+
+void QScriptExtensionPlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QScriptExtensionPlugin*>(ptr)->QScriptExtensionPlugin::deleteLater();
 }
 
 void QScriptExtensionPlugin_DisconnectNotify(void* ptr, void* sign)

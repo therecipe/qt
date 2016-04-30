@@ -274,8 +274,9 @@ func callbackQDBusAbstractAdaptor_DeleteLater(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusAbstractAdaptorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusAbstractAdaptor) ConnectDeleteLater(f func()) {
@@ -301,6 +302,15 @@ func (ptr *QDBusAbstractAdaptor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusAbstractAdaptor) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusAbstractAdaptor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusAbstractAdaptor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -813,8 +823,9 @@ func callbackQDBusAbstractInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusAbstractInterfaceFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusAbstractInterface) ConnectDeleteLater(f func()) {
@@ -840,6 +851,15 @@ func (ptr *QDBusAbstractInterface) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusAbstractInterface) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusAbstractInterface::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusAbstractInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1979,8 +1999,9 @@ func callbackQDBusConnectionInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusConnectionInterfaceFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusConnectionInterface) ConnectDeleteLater(f func()) {
@@ -2006,6 +2027,15 @@ func (ptr *QDBusConnectionInterface) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusConnectionInterface) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusConnectionInterface::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2687,8 +2717,9 @@ func callbackQDBusInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusInterfaceFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusInterface) ConnectDeleteLater(f func()) {
@@ -2714,6 +2745,15 @@ func (ptr *QDBusInterface) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusInterface) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusInterface::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3668,8 +3708,9 @@ func callbackQDBusPendingCallWatcher_DeleteLater(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusPendingCallWatcherFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusPendingCallWatcher) ConnectDeleteLater(f func()) {
@@ -3695,6 +3736,15 @@ func (ptr *QDBusPendingCallWatcher) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusPendingCallWatcher) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusPendingCallWatcher::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4297,8 +4347,9 @@ func callbackQDBusServer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusServerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusServer) ConnectDeleteLater(f func()) {
@@ -4324,6 +4375,15 @@ func (ptr *QDBusServer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusServer) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusServer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4953,8 +5013,9 @@ func callbackQDBusServiceWatcher_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusServiceWatcherFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusServiceWatcher) ConnectDeleteLater(f func()) {
@@ -4980,6 +5041,15 @@ func (ptr *QDBusServiceWatcher) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusServiceWatcher) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusServiceWatcher::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServiceWatcher_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5766,8 +5836,9 @@ func callbackQDBusVirtualObject_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDBusVirtualObjectFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDBusVirtualObject) ConnectDeleteLater(f func()) {
@@ -5793,6 +5864,15 @@ func (ptr *QDBusVirtualObject) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusVirtualObject) DeleteLaterDefault() {
+	defer qt.Recovering("QDBusVirtualObject::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

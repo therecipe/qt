@@ -247,6 +247,11 @@ void QBluetoothDeviceDiscoveryAgent_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), "deleteLater");
 }
 
+void QBluetoothDeviceDiscoveryAgent_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::deleteLater();
+}
+
 void QBluetoothDeviceDiscoveryAgent_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -631,6 +636,11 @@ void QBluetoothLocalDevice_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBluetoothLocalDevice*>(ptr), "deleteLater");
 }
 
+void QBluetoothLocalDevice_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::deleteLater();
+}
+
 void QBluetoothLocalDevice_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QBluetoothLocalDevice*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -821,6 +831,11 @@ void QBluetoothServer_CustomEventDefault(void* ptr, void* event)
 void QBluetoothServer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothServer*>(ptr), "deleteLater");
+}
+
+void QBluetoothServer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBluetoothServer*>(ptr)->QBluetoothServer::deleteLater();
 }
 
 void QBluetoothServer_DisconnectNotify(void* ptr, void* sign)
@@ -1049,6 +1064,11 @@ void QBluetoothServiceDiscoveryAgent_CustomEventDefault(void* ptr, void* event)
 void QBluetoothServiceDiscoveryAgent_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), "deleteLater");
+}
+
+void QBluetoothServiceDiscoveryAgent_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::deleteLater();
 }
 
 void QBluetoothServiceDiscoveryAgent_DisconnectNotify(void* ptr, void* sign)
@@ -1601,6 +1621,11 @@ void QBluetoothSocket_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBluetoothSocket*>(ptr), "deleteLater");
 }
 
+void QBluetoothSocket_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::deleteLater();
+}
+
 void QBluetoothSocket_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QBluetoothSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1730,6 +1755,11 @@ void QBluetoothTransferManager_CustomEventDefault(void* ptr, void* event)
 void QBluetoothTransferManager_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothTransferManager*>(ptr), "deleteLater");
+}
+
+void QBluetoothTransferManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBluetoothTransferManager*>(ptr)->QBluetoothTransferManager::deleteLater();
 }
 
 void QBluetoothTransferManager_DisconnectNotify(void* ptr, void* sign)
@@ -1938,6 +1968,11 @@ void QBluetoothTransferReply_CustomEventDefault(void* ptr, void* event)
 void QBluetoothTransferReply_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothTransferReply*>(ptr), "deleteLater");
+}
+
+void QBluetoothTransferReply_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::deleteLater();
 }
 
 void QBluetoothTransferReply_DisconnectNotify(void* ptr, void* sign)
@@ -2351,6 +2386,11 @@ void QLowEnergyController_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLowEnergyController*>(ptr), "deleteLater");
 }
 
+void QLowEnergyController_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLowEnergyController*>(ptr)->QLowEnergyController::deleteLater();
+}
+
 void QLowEnergyController_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QLowEnergyController*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2670,6 +2710,11 @@ void QLowEnergyService_CustomEventDefault(void* ptr, void* event)
 void QLowEnergyService_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLowEnergyService*>(ptr), "deleteLater");
+}
+
+void QLowEnergyService_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::deleteLater();
 }
 
 void QLowEnergyService_DisconnectNotify(void* ptr, void* sign)

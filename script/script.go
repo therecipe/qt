@@ -1459,8 +1459,9 @@ func callbackQScriptEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQScriptEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QScriptEngine) ConnectDeleteLater(f func()) {
@@ -1486,6 +1487,15 @@ func (ptr *QScriptEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScriptEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QScriptEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2600,8 +2610,9 @@ func callbackQScriptExtensionPlugin_DeleteLater(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQScriptExtensionPluginFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QScriptExtensionPlugin) ConnectDeleteLater(f func()) {
@@ -2627,6 +2638,15 @@ func (ptr *QScriptExtensionPlugin) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QScriptExtensionPlugin_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScriptExtensionPlugin) DeleteLaterDefault() {
+	defer qt.Recovering("QScriptExtensionPlugin::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QScriptExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

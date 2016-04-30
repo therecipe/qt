@@ -340,6 +340,11 @@ void QGeoRouteReply_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGeoRouteReply*>(ptr), "deleteLater");
 }
 
+void QGeoRouteReply_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::deleteLater();
+}
+
 void QGeoRouteReply_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGeoRouteReply*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -681,6 +686,11 @@ void QGeoRoutingManager_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGeoRoutingManager*>(ptr), "deleteLater");
 }
 
+void QGeoRoutingManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::deleteLater();
+}
+
 void QGeoRoutingManager_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGeoRoutingManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -922,6 +932,11 @@ void QGeoRoutingManagerEngine_CustomEventDefault(void* ptr, void* event)
 void QGeoRoutingManagerEngine_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGeoRoutingManagerEngine*>(ptr), "deleteLater");
+}
+
+void QGeoRoutingManagerEngine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::deleteLater();
 }
 
 void QGeoRoutingManagerEngine_DisconnectNotify(void* ptr, void* sign)
@@ -1212,6 +1227,11 @@ void QGeoServiceProvider_CustomEventDefault(void* ptr, void* event)
 void QGeoServiceProvider_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGeoServiceProvider*>(ptr), "deleteLater");
+}
+
+void QGeoServiceProvider_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::deleteLater();
 }
 
 void QGeoServiceProvider_DisconnectNotify(void* ptr, void* sign)

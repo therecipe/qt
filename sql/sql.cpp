@@ -594,6 +594,11 @@ void QSqlDriver_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSqlDriver*>(ptr), "deleteLater");
 }
 
+void QSqlDriver_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSqlDriver*>(ptr)->QSqlDriver::deleteLater();
+}
+
 void QSqlDriver_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSqlDriver*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -742,6 +747,11 @@ void QSqlDriverPlugin_CustomEventDefault(void* ptr, void* event)
 void QSqlDriverPlugin_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlDriverPlugin*>(ptr), "deleteLater");
+}
+
+void QSqlDriverPlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSqlDriverPlugin*>(ptr)->QSqlDriverPlugin::deleteLater();
 }
 
 void QSqlDriverPlugin_DisconnectNotify(void* ptr, void* sign)
@@ -1522,6 +1532,11 @@ void* QSqlQueryModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QSqlQueryModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+void* QSqlQueryModel_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 int QSqlQueryModel_RemoveRows(void* ptr, int row, int count, void* parent)
 {
 	return static_cast<QSqlQueryModel*>(ptr)->removeRows(row, count, *static_cast<QModelIndex*>(parent));
@@ -1535,6 +1550,11 @@ int QSqlQueryModel_RemoveRowsDefault(void* ptr, int row, int count, void* parent
 void QSqlQueryModel_ResetInternalData(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlQueryModel*>(ptr), "resetInternalData");
+}
+
+void QSqlQueryModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::resetInternalData();
 }
 
 void QSqlQueryModel_Revert(void* ptr)
@@ -1652,6 +1672,11 @@ void QSqlQueryModel_CustomEventDefault(void* ptr, void* event)
 void QSqlQueryModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlQueryModel*>(ptr), "deleteLater");
+}
+
+void QSqlQueryModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::deleteLater();
 }
 
 void QSqlQueryModel_DisconnectNotify(void* ptr, void* sign)
@@ -2162,6 +2187,11 @@ void QSqlRelationalTableModel_RevertAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSqlRelationalTableModel*>(ptr), "revertAll");
 }
 
+void QSqlRelationalTableModel_RevertAllDefault(void* ptr)
+{
+	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::revertAll();
+}
+
 int QSqlRelationalTableModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QSqlRelationalTableModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
@@ -2241,6 +2271,11 @@ int QSqlRelationalTableModel_SubmitAll(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSqlRelationalTableModel*>(ptr), "submitAll", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSqlRelationalTableModel_SubmitAllDefault(void* ptr)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::submitAll();
 }
 
 int QSqlRelationalTableModel_CanFetchMore(void* ptr, void* parent)
@@ -2398,9 +2433,19 @@ void* QSqlRelationalTableModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QSqlRelationalTableModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+void* QSqlRelationalTableModel_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 void QSqlRelationalTableModel_ResetInternalData(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlRelationalTableModel*>(ptr), "resetInternalData");
+}
+
+void QSqlRelationalTableModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::resetInternalData();
 }
 
 void* QSqlRelationalTableModel_Span(void* ptr, void* index)
@@ -2476,6 +2521,11 @@ void QSqlRelationalTableModel_CustomEventDefault(void* ptr, void* event)
 void QSqlRelationalTableModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlRelationalTableModel*>(ptr), "deleteLater");
+}
+
+void QSqlRelationalTableModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::deleteLater();
 }
 
 void QSqlRelationalTableModel_DisconnectNotify(void* ptr, void* sign)
@@ -3473,9 +3523,19 @@ void* QSqlTableModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QSqlTableModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+void* QSqlTableModel_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 void QSqlTableModel_ResetInternalData(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "resetInternalData");
+}
+
+void QSqlTableModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::resetInternalData();
 }
 
 void* QSqlTableModel_Span(void* ptr, void* index)
@@ -3551,6 +3611,11 @@ void QSqlTableModel_CustomEventDefault(void* ptr, void* event)
 void QSqlTableModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "deleteLater");
+}
+
+void QSqlTableModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::deleteLater();
 }
 
 void QSqlTableModel_DisconnectNotify(void* ptr, void* sign)

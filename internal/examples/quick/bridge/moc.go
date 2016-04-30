@@ -396,8 +396,9 @@ func callbackQmlBridge_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQmlBridgeFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QmlBridge) ConnectDeleteLater(f func()) {
@@ -423,6 +424,15 @@ func (ptr *QmlBridge) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QmlBridge_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QmlBridge) DeleteLaterDefault() {
+	defer qt.Recovering("QmlBridge::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QmlBridge_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

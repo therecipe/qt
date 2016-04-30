@@ -102,6 +102,11 @@ void QAbstractMessageHandler_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractMessageHandler*>(ptr), "deleteLater");
 }
 
+void QAbstractMessageHandler_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractMessageHandler*>(ptr)->QAbstractMessageHandler::deleteLater();
+}
+
 void QAbstractMessageHandler_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractMessageHandler*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -216,6 +221,11 @@ void QAbstractUriResolver_CustomEventDefault(void* ptr, void* event)
 void QAbstractUriResolver_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractUriResolver*>(ptr), "deleteLater");
+}
+
+void QAbstractUriResolver_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractUriResolver*>(ptr)->QAbstractUriResolver::deleteLater();
 }
 
 void QAbstractUriResolver_DisconnectNotify(void* ptr, void* sign)
@@ -500,10 +510,14 @@ int QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2)
 	return static_cast<QSimpleXmlNodeModel*>(ptr)->compareOrder(*static_cast<QXmlNodeModelIndex*>(ni1), *static_cast<QXmlNodeModelIndex*>(ni2));
 }
 
+
+
 void* QSimpleXmlNodeModel_DocumentUri(void* ptr, void* n)
 {
 	return new QUrl(static_cast<QSimpleXmlNodeModel*>(ptr)->documentUri(*static_cast<QXmlNodeModelIndex*>(n)));
 }
+
+
 
 int QSimpleXmlNodeModel_Kind(void* ptr, void* ni)
 {
@@ -512,20 +526,30 @@ int QSimpleXmlNodeModel_Kind(void* ptr, void* ni)
 
 
 
+
+
+
+
 void* QSimpleXmlNodeModel_NextFromSimpleAxis(void* ptr, int axis, void* origin)
 {
 	return new QXmlNodeModelIndex(static_cast<QSimpleXmlNodeModel*>(ptr)->nextFromSimpleAxis(static_cast<QAbstractXmlNodeModel::SimpleAxis>(axis), *static_cast<QXmlNodeModelIndex*>(origin)));
 }
+
+
 
 void* QSimpleXmlNodeModel_Root(void* ptr, void* n)
 {
 	return new QXmlNodeModelIndex(static_cast<QSimpleXmlNodeModel*>(ptr)->root(*static_cast<QXmlNodeModelIndex*>(n)));
 }
 
+
+
 void* QSimpleXmlNodeModel_TypedValue(void* ptr, void* node)
 {
 	return new QVariant(static_cast<QSimpleXmlNodeModel*>(ptr)->typedValue(*static_cast<QXmlNodeModelIndex*>(node)));
 }
+
+
 
 void* QSourceLocation_NewQSourceLocation()
 {

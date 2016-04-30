@@ -90,14 +90,14 @@ func cppFunctionCallbackBody(function *parser.Function) string {
 
 func cppFunction(function *parser.Function) string {
 	var output = fmt.Sprintf("%v\n{\n%v\n}", cppFunctionHeader(function), cppFunctionBodyWithGuards(function))
-	if functionIsSupported(parser.ClassMap[function.Class()], function) {
+	if functionIsSupported(nil, function) {
 		return output
 	}
 	return ""
 }
 
 func cppFunctionHeader(function *parser.Function) string {
-	return fmt.Sprintf("%v %v%v(%v)",
+	var output = fmt.Sprintf("%v %v%v(%v)",
 		converter.CppHeaderOutput(function),
 
 		converter.CppHeaderName(function),
@@ -110,6 +110,11 @@ func cppFunctionHeader(function *parser.Function) string {
 		}(),
 
 		converter.CppHeaderInput(function))
+
+	if functionIsSupported(nil, function) {
+		return output
+	}
+	return ""
 }
 
 func cppFunctionBodyWithGuards(function *parser.Function) string {

@@ -1435,8 +1435,9 @@ func callbackQQuickFramebufferObject_Update(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickFramebufferObjectFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QQuickFramebufferObject) ConnectUpdate(f func()) {
@@ -1462,6 +1463,14 @@ func (ptr *QQuickFramebufferObject) Update() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickFramebufferObject_Update(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickFramebufferObject) UpdateDefault() {
+	defer qt.Recovering("QQuickFramebufferObject::update")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_UpdateDefault(ptr.Pointer())
 	}
 }
 
@@ -1741,8 +1750,9 @@ func callbackQQuickFramebufferObject_DeleteLater(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickFramebufferObjectFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickFramebufferObject) ConnectDeleteLater(f func()) {
@@ -1768,6 +1778,15 @@ func (ptr *QQuickFramebufferObject) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickFramebufferObject_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickFramebufferObject) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickFramebufferObject::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4754,8 +4773,9 @@ func callbackQQuickItem_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickItemFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickItem) ConnectDeleteLater(f func()) {
@@ -4781,6 +4801,15 @@ func (ptr *QQuickItem) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickItem) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickItem::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5220,8 +5249,9 @@ func callbackQQuickItemGrabResult_DeleteLater(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickItemGrabResultFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickItemGrabResult) ConnectDeleteLater(f func()) {
@@ -5247,6 +5277,15 @@ func (ptr *QQuickItemGrabResult) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickItemGrabResult_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickItemGrabResult) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickItemGrabResult::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickItemGrabResult_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7457,8 +7496,9 @@ func callbackQQuickPaintedItem_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickPaintedItemFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickPaintedItem) ConnectDeleteLater(f func()) {
@@ -7484,6 +7524,15 @@ func (ptr *QQuickPaintedItem) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickPaintedItem_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickPaintedItem::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickPaintedItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8064,8 +8113,9 @@ func callbackQQuickRenderControl_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickRenderControlFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickRenderControl) ConnectDeleteLater(f func()) {
@@ -8091,6 +8141,15 @@ func (ptr *QQuickRenderControl) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickRenderControl_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickRenderControl) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickRenderControl::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickRenderControl_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8529,8 +8588,9 @@ func callbackQQuickTextDocument_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickTextDocumentFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickTextDocument) ConnectDeleteLater(f func()) {
@@ -8556,6 +8616,15 @@ func (ptr *QQuickTextDocument) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickTextDocument_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickTextDocument) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickTextDocument::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextDocument_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9155,8 +9224,9 @@ func callbackQQuickTextureFactory_DeleteLater(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickTextureFactoryFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickTextureFactory) ConnectDeleteLater(f func()) {
@@ -9182,6 +9252,15 @@ func (ptr *QQuickTextureFactory) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickTextureFactory_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickTextureFactory) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickTextureFactory::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickTextureFactory_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -10157,8 +10236,9 @@ func callbackQQuickView_ReleaseResources(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "releaseResources"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).ReleaseResourcesDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectReleaseResources(f func()) {
@@ -10184,6 +10264,14 @@ func (ptr *QQuickView) ReleaseResources() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_ReleaseResources(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickView) ReleaseResourcesDefault() {
+	defer qt.Recovering("QQuickView::releaseResources")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_ReleaseResourcesDefault(ptr.Pointer())
 	}
 }
 
@@ -10283,8 +10371,9 @@ func callbackQQuickView_Update(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectUpdate(f func()) {
@@ -10310,6 +10399,14 @@ func (ptr *QQuickView) Update() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_Update(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickView) UpdateDefault() {
+	defer qt.Recovering("QQuickView::update")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_UpdateDefault(ptr.Pointer())
 	}
 }
 
@@ -10364,8 +10461,9 @@ func callbackQQuickView_SetHeight(ptr unsafe.Pointer, ptrName *C.char, arg C.int
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHeight"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetHeightDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetHeight(f func(arg int)) {
@@ -10377,7 +10475,7 @@ func (ptr *QQuickView) ConnectSetHeight(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetHeight(arg int) {
+func (ptr *QQuickView) DisconnectSetHeight() {
 	defer qt.Recovering("disconnect QQuickView::setHeight")
 
 	if ptr.Pointer() != nil {
@@ -10394,14 +10492,23 @@ func (ptr *QQuickView) SetHeight(arg int) {
 	}
 }
 
+func (ptr *QQuickView) SetHeightDefault(arg int) {
+	defer qt.Recovering("QQuickView::setHeight")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetHeightDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickView_SetMaximumHeight
 func callbackQQuickView_SetMaximumHeight(ptr unsafe.Pointer, ptrName *C.char, h C.int) {
 	defer qt.Recovering("callback QQuickView::setMaximumHeight")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMaximumHeight"); signal != nil {
 		signal.(func(int))(int(h))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetMaximumHeightDefault(int(h))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetMaximumHeight(f func(h int)) {
@@ -10413,7 +10520,7 @@ func (ptr *QQuickView) ConnectSetMaximumHeight(f func(h int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetMaximumHeight(h int) {
+func (ptr *QQuickView) DisconnectSetMaximumHeight() {
 	defer qt.Recovering("disconnect QQuickView::setMaximumHeight")
 
 	if ptr.Pointer() != nil {
@@ -10430,14 +10537,23 @@ func (ptr *QQuickView) SetMaximumHeight(h int) {
 	}
 }
 
+func (ptr *QQuickView) SetMaximumHeightDefault(h int) {
+	defer qt.Recovering("QQuickView::setMaximumHeight")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetMaximumHeightDefault(ptr.Pointer(), C.int(h))
+	}
+}
+
 //export callbackQQuickView_SetMaximumWidth
 func callbackQQuickView_SetMaximumWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) {
 	defer qt.Recovering("callback QQuickView::setMaximumWidth")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMaximumWidth"); signal != nil {
 		signal.(func(int))(int(w))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetMaximumWidthDefault(int(w))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetMaximumWidth(f func(w int)) {
@@ -10449,7 +10565,7 @@ func (ptr *QQuickView) ConnectSetMaximumWidth(f func(w int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetMaximumWidth(w int) {
+func (ptr *QQuickView) DisconnectSetMaximumWidth() {
 	defer qt.Recovering("disconnect QQuickView::setMaximumWidth")
 
 	if ptr.Pointer() != nil {
@@ -10466,14 +10582,23 @@ func (ptr *QQuickView) SetMaximumWidth(w int) {
 	}
 }
 
+func (ptr *QQuickView) SetMaximumWidthDefault(w int) {
+	defer qt.Recovering("QQuickView::setMaximumWidth")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetMaximumWidthDefault(ptr.Pointer(), C.int(w))
+	}
+}
+
 //export callbackQQuickView_SetMinimumHeight
 func callbackQQuickView_SetMinimumHeight(ptr unsafe.Pointer, ptrName *C.char, h C.int) {
 	defer qt.Recovering("callback QQuickView::setMinimumHeight")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMinimumHeight"); signal != nil {
 		signal.(func(int))(int(h))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetMinimumHeightDefault(int(h))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetMinimumHeight(f func(h int)) {
@@ -10485,7 +10610,7 @@ func (ptr *QQuickView) ConnectSetMinimumHeight(f func(h int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetMinimumHeight(h int) {
+func (ptr *QQuickView) DisconnectSetMinimumHeight() {
 	defer qt.Recovering("disconnect QQuickView::setMinimumHeight")
 
 	if ptr.Pointer() != nil {
@@ -10502,14 +10627,23 @@ func (ptr *QQuickView) SetMinimumHeight(h int) {
 	}
 }
 
+func (ptr *QQuickView) SetMinimumHeightDefault(h int) {
+	defer qt.Recovering("QQuickView::setMinimumHeight")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetMinimumHeightDefault(ptr.Pointer(), C.int(h))
+	}
+}
+
 //export callbackQQuickView_SetMinimumWidth
 func callbackQQuickView_SetMinimumWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) {
 	defer qt.Recovering("callback QQuickView::setMinimumWidth")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMinimumWidth"); signal != nil {
 		signal.(func(int))(int(w))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetMinimumWidthDefault(int(w))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetMinimumWidth(f func(w int)) {
@@ -10521,7 +10655,7 @@ func (ptr *QQuickView) ConnectSetMinimumWidth(f func(w int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetMinimumWidth(w int) {
+func (ptr *QQuickView) DisconnectSetMinimumWidth() {
 	defer qt.Recovering("disconnect QQuickView::setMinimumWidth")
 
 	if ptr.Pointer() != nil {
@@ -10538,14 +10672,23 @@ func (ptr *QQuickView) SetMinimumWidth(w int) {
 	}
 }
 
+func (ptr *QQuickView) SetMinimumWidthDefault(w int) {
+	defer qt.Recovering("QQuickView::setMinimumWidth")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetMinimumWidthDefault(ptr.Pointer(), C.int(w))
+	}
+}
+
 //export callbackQQuickView_SetTitle
 func callbackQQuickView_SetTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QQuickView::setTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetTitle(f func(vqs string)) {
@@ -10557,7 +10700,7 @@ func (ptr *QQuickView) ConnectSetTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetTitle(vqs string) {
+func (ptr *QQuickView) DisconnectSetTitle() {
 	defer qt.Recovering("disconnect QQuickView::setTitle")
 
 	if ptr.Pointer() != nil {
@@ -10574,14 +10717,23 @@ func (ptr *QQuickView) SetTitle(vqs string) {
 	}
 }
 
+func (ptr *QQuickView) SetTitleDefault(vqs string) {
+	defer qt.Recovering("QQuickView::setTitle")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetTitleDefault(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
 //export callbackQQuickView_SetVisible
 func callbackQQuickView_SetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QQuickView::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
+	} else {
+		NewQQuickViewFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetVisible(f func(visible bool)) {
@@ -10593,7 +10745,7 @@ func (ptr *QQuickView) ConnectSetVisible(f func(visible bool)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetVisible(visible bool) {
+func (ptr *QQuickView) DisconnectSetVisible() {
 	defer qt.Recovering("disconnect QQuickView::setVisible")
 
 	if ptr.Pointer() != nil {
@@ -10610,14 +10762,23 @@ func (ptr *QQuickView) SetVisible(visible bool) {
 	}
 }
 
+func (ptr *QQuickView) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QQuickView::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
 //export callbackQQuickView_SetWidth
 func callbackQQuickView_SetWidth(ptr unsafe.Pointer, ptrName *C.char, arg C.int) {
 	defer qt.Recovering("callback QQuickView::setWidth")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWidth"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetWidthDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetWidth(f func(arg int)) {
@@ -10629,7 +10790,7 @@ func (ptr *QQuickView) ConnectSetWidth(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetWidth(arg int) {
+func (ptr *QQuickView) DisconnectSetWidth() {
 	defer qt.Recovering("disconnect QQuickView::setWidth")
 
 	if ptr.Pointer() != nil {
@@ -10646,14 +10807,23 @@ func (ptr *QQuickView) SetWidth(arg int) {
 	}
 }
 
+func (ptr *QQuickView) SetWidthDefault(arg int) {
+	defer qt.Recovering("QQuickView::setWidth")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetWidthDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickView_SetX
 func callbackQQuickView_SetX(ptr unsafe.Pointer, ptrName *C.char, arg C.int) {
 	defer qt.Recovering("callback QQuickView::setX")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setX"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetXDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetX(f func(arg int)) {
@@ -10665,7 +10835,7 @@ func (ptr *QQuickView) ConnectSetX(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetX(arg int) {
+func (ptr *QQuickView) DisconnectSetX() {
 	defer qt.Recovering("disconnect QQuickView::setX")
 
 	if ptr.Pointer() != nil {
@@ -10682,14 +10852,23 @@ func (ptr *QQuickView) SetX(arg int) {
 	}
 }
 
+func (ptr *QQuickView) SetXDefault(arg int) {
+	defer qt.Recovering("QQuickView::setX")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetXDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickView_SetY
 func callbackQQuickView_SetY(ptr unsafe.Pointer, ptrName *C.char, arg C.int) {
 	defer qt.Recovering("callback QQuickView::setY")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setY"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetYDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetY(f func(arg int)) {
@@ -10701,7 +10880,7 @@ func (ptr *QQuickView) ConnectSetY(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetY(arg int) {
+func (ptr *QQuickView) DisconnectSetY() {
 	defer qt.Recovering("disconnect QQuickView::setY")
 
 	if ptr.Pointer() != nil {
@@ -10718,14 +10897,23 @@ func (ptr *QQuickView) SetY(arg int) {
 	}
 }
 
+func (ptr *QQuickView) SetYDefault(arg int) {
+	defer qt.Recovering("QQuickView::setY")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetYDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickView_Alert
 func callbackQQuickView_Alert(ptr unsafe.Pointer, ptrName *C.char, msec C.int) {
 	defer qt.Recovering("callback QQuickView::alert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "alert"); signal != nil {
 		signal.(func(int))(int(msec))
+	} else {
+		NewQQuickViewFromPointer(ptr).AlertDefault(int(msec))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectAlert(f func(msec int)) {
@@ -10737,7 +10925,7 @@ func (ptr *QQuickView) ConnectAlert(f func(msec int)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectAlert(msec int) {
+func (ptr *QQuickView) DisconnectAlert() {
 	defer qt.Recovering("disconnect QQuickView::alert")
 
 	if ptr.Pointer() != nil {
@@ -10754,6 +10942,14 @@ func (ptr *QQuickView) Alert(msec int) {
 	}
 }
 
+func (ptr *QQuickView) AlertDefault(msec int) {
+	defer qt.Recovering("QQuickView::alert")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_AlertDefault(ptr.Pointer(), C.int(msec))
+	}
+}
+
 //export callbackQQuickView_Close
 func callbackQQuickView_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QQuickView::close")
@@ -10762,7 +10958,7 @@ func callbackQQuickView_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQQuickViewFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QQuickView) ConnectClose(f func() bool) {
@@ -10788,6 +10984,15 @@ func (ptr *QQuickView) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QQuickView_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QQuickView) CloseDefault() bool {
+	defer qt.Recovering("QQuickView::close")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickView_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -10892,8 +11097,9 @@ func callbackQQuickView_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectHide(f func()) {
@@ -10922,14 +11128,23 @@ func (ptr *QQuickView) Hide() {
 	}
 }
 
+func (ptr *QQuickView) HideDefault() {
+	defer qt.Recovering("QQuickView::hide")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_HideDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_Lower
 func callbackQQuickView_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::lower")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectLower(f func()) {
@@ -10955,6 +11170,14 @@ func (ptr *QQuickView) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickView) LowerDefault() {
+	defer qt.Recovering("QQuickView::lower")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -11056,8 +11279,9 @@ func callbackQQuickView_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectRaise(f func()) {
@@ -11086,14 +11310,23 @@ func (ptr *QQuickView) Raise() {
 	}
 }
 
+func (ptr *QQuickView) RaiseDefault() {
+	defer qt.Recovering("QQuickView::raise")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_RequestActivate
 func callbackQQuickView_RequestActivate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::requestActivate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "requestActivate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).RequestActivateDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectRequestActivate(f func()) {
@@ -11122,14 +11355,23 @@ func (ptr *QQuickView) RequestActivate() {
 	}
 }
 
+func (ptr *QQuickView) RequestActivateDefault() {
+	defer qt.Recovering("QQuickView::requestActivate")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_RequestActivateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_RequestUpdate
 func callbackQQuickView_RequestUpdate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::requestUpdate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "requestUpdate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).RequestUpdateDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectRequestUpdate(f func()) {
@@ -11158,14 +11400,23 @@ func (ptr *QQuickView) RequestUpdate() {
 	}
 }
 
+func (ptr *QQuickView) RequestUpdateDefault() {
+	defer qt.Recovering("QQuickView::requestUpdate")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_RequestUpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_Show
 func callbackQQuickView_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectShow(f func()) {
@@ -11194,14 +11445,23 @@ func (ptr *QQuickView) Show() {
 	}
 }
 
+func (ptr *QQuickView) ShowDefault() {
+	defer qt.Recovering("QQuickView::show")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_ShowFullScreen
 func callbackQQuickView_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectShowFullScreen(f func()) {
@@ -11230,14 +11490,23 @@ func (ptr *QQuickView) ShowFullScreen() {
 	}
 }
 
+func (ptr *QQuickView) ShowFullScreenDefault() {
+	defer qt.Recovering("QQuickView::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_ShowMaximized
 func callbackQQuickView_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectShowMaximized(f func()) {
@@ -11266,14 +11535,23 @@ func (ptr *QQuickView) ShowMaximized() {
 	}
 }
 
+func (ptr *QQuickView) ShowMaximizedDefault() {
+	defer qt.Recovering("QQuickView::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_ShowMinimized
 func callbackQQuickView_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectShowMinimized(f func()) {
@@ -11302,14 +11580,23 @@ func (ptr *QQuickView) ShowMinimized() {
 	}
 }
 
+func (ptr *QQuickView) ShowMinimizedDefault() {
+	defer qt.Recovering("QQuickView::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickView_ShowNormal
 func callbackQQuickView_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectShowNormal(f func()) {
@@ -11335,6 +11622,14 @@ func (ptr *QQuickView) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickView) ShowNormalDefault() {
+	defer qt.Recovering("QQuickView::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -11708,8 +12003,9 @@ func callbackQQuickView_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickViewFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickView) ConnectDeleteLater(f func()) {
@@ -11735,6 +12031,15 @@ func (ptr *QQuickView) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickView) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickView::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickView_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -13286,8 +13591,9 @@ func callbackQQuickWidget_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetEnabled(f func(vbo bool)) {
@@ -13299,7 +13605,7 @@ func (ptr *QQuickWidget) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QQuickWidget) DisconnectSetEnabled(vbo bool) {
+func (ptr *QQuickWidget) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QQuickWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -13316,14 +13622,23 @@ func (ptr *QQuickWidget) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QQuickWidget) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QQuickWidget::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQQuickWidget_SetStyleSheet
 func callbackQQuickWidget_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QQuickWidget::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -13335,7 +13650,7 @@ func (ptr *QQuickWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 	}
 }
 
-func (ptr *QQuickWidget) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QQuickWidget) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QQuickWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -13349,6 +13664,14 @@ func (ptr *QQuickWidget) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QQuickWidget) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QQuickWidget::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -13403,8 +13726,9 @@ func callbackQQuickWidget_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char,
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetWindowModified(f func(vbo bool)) {
@@ -13416,7 +13740,7 @@ func (ptr *QQuickWidget) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QQuickWidget) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QQuickWidget) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QQuickWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -13433,14 +13757,23 @@ func (ptr *QQuickWidget) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QQuickWidget) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QQuickWidget::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQQuickWidget_SetWindowTitle
 func callbackQQuickWidget_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QQuickWidget::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetWindowTitle(f func(vqs string)) {
@@ -13452,7 +13785,7 @@ func (ptr *QQuickWidget) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QQuickWidget) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QQuickWidget) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QQuickWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -13466,6 +13799,14 @@ func (ptr *QQuickWidget) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QQuickWidget) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QQuickWidget::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -13569,7 +13910,7 @@ func callbackQQuickWidget_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQQuickWidgetFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QQuickWidget) ConnectClose(f func() bool) {
@@ -13595,6 +13936,15 @@ func (ptr *QQuickWidget) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QQuickWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QQuickWidget) CloseDefault() bool {
+	defer qt.Recovering("QQuickWidget::close")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickWidget_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -13836,8 +14186,9 @@ func callbackQQuickWidget_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectHide(f func()) {
@@ -13863,6 +14214,14 @@ func (ptr *QQuickWidget) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWidget) HideDefault() {
+	defer qt.Recovering("QQuickWidget::hide")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -14009,8 +14368,9 @@ func callbackQQuickWidget_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectLower(f func()) {
@@ -14036,6 +14396,14 @@ func (ptr *QQuickWidget) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWidget) LowerDefault() {
+	defer qt.Recovering("QQuickWidget::lower")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -14092,8 +14460,9 @@ func callbackQQuickWidget_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectRaise(f func()) {
@@ -14122,14 +14491,23 @@ func (ptr *QQuickWidget) Raise() {
 	}
 }
 
+func (ptr *QQuickWidget) RaiseDefault() {
+	defer qt.Recovering("QQuickWidget::raise")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWidget_Repaint
 func callbackQQuickWidget_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectRepaint(f func()) {
@@ -14155,6 +14533,14 @@ func (ptr *QQuickWidget) Repaint() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_Repaint(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWidget) RepaintDefault() {
+	defer qt.Recovering("QQuickWidget::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_RepaintDefault(ptr.Pointer())
 	}
 }
 
@@ -14209,8 +14595,9 @@ func callbackQQuickWidget_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disab
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetDisabled(f func(disable bool)) {
@@ -14222,7 +14609,7 @@ func (ptr *QQuickWidget) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QQuickWidget) DisconnectSetDisabled(disable bool) {
+func (ptr *QQuickWidget) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QQuickWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -14239,14 +14626,23 @@ func (ptr *QQuickWidget) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QQuickWidget) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QQuickWidget::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQQuickWidget_SetFocus2
 func callbackQQuickWidget_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetFocus2(f func()) {
@@ -14275,14 +14671,23 @@ func (ptr *QQuickWidget) SetFocus2() {
 	}
 }
 
+func (ptr *QQuickWidget) SetFocus2Default() {
+	defer qt.Recovering("QQuickWidget::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWidget_SetHidden
 func callbackQQuickWidget_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QQuickWidget::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetHidden(f func(hidden bool)) {
@@ -14294,7 +14699,7 @@ func (ptr *QQuickWidget) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QQuickWidget) DisconnectSetHidden(hidden bool) {
+func (ptr *QQuickWidget) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QQuickWidget::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -14311,14 +14716,23 @@ func (ptr *QQuickWidget) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QQuickWidget) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QQuickWidget::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQQuickWidget_Show
 func callbackQQuickWidget_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectShow(f func()) {
@@ -14347,14 +14761,23 @@ func (ptr *QQuickWidget) Show() {
 	}
 }
 
+func (ptr *QQuickWidget) ShowDefault() {
+	defer qt.Recovering("QQuickWidget::show")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWidget_ShowFullScreen
 func callbackQQuickWidget_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectShowFullScreen(f func()) {
@@ -14383,14 +14806,23 @@ func (ptr *QQuickWidget) ShowFullScreen() {
 	}
 }
 
+func (ptr *QQuickWidget) ShowFullScreenDefault() {
+	defer qt.Recovering("QQuickWidget::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWidget_ShowMaximized
 func callbackQQuickWidget_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectShowMaximized(f func()) {
@@ -14419,14 +14851,23 @@ func (ptr *QQuickWidget) ShowMaximized() {
 	}
 }
 
+func (ptr *QQuickWidget) ShowMaximizedDefault() {
+	defer qt.Recovering("QQuickWidget::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWidget_ShowMinimized
 func callbackQQuickWidget_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectShowMinimized(f func()) {
@@ -14455,14 +14896,23 @@ func (ptr *QQuickWidget) ShowMinimized() {
 	}
 }
 
+func (ptr *QQuickWidget) ShowMinimizedDefault() {
+	defer qt.Recovering("QQuickWidget::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWidget_ShowNormal
 func callbackQQuickWidget_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectShowNormal(f func()) {
@@ -14488,6 +14938,14 @@ func (ptr *QQuickWidget) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWidget) ShowNormalDefault() {
+	defer qt.Recovering("QQuickWidget::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -14542,8 +15000,9 @@ func callbackQQuickWidget_Update(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectUpdate(f func()) {
@@ -14572,14 +15031,23 @@ func (ptr *QQuickWidget) Update() {
 	}
 }
 
+func (ptr *QQuickWidget) UpdateDefault() {
+	defer qt.Recovering("QQuickWidget::update")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_UpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWidget_UpdateMicroFocus
 func callbackQQuickWidget_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWidget::updateMicroFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectUpdateMicroFocus(f func()) {
@@ -14605,6 +15073,14 @@ func (ptr *QQuickWidget) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWidget) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QQuickWidget::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -14794,8 +15270,9 @@ func callbackQQuickWidget_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWidgetFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectDeleteLater(f func()) {
@@ -14821,6 +15298,15 @@ func (ptr *QQuickWidget) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickWidget) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickWidget::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -16512,8 +16998,9 @@ func callbackQQuickWindow_SetHeight(ptr unsafe.Pointer, ptrName *C.char, arg C.i
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHeight"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetHeightDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetHeight(f func(arg int)) {
@@ -16525,7 +17012,7 @@ func (ptr *QQuickWindow) ConnectSetHeight(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetHeight(arg int) {
+func (ptr *QQuickWindow) DisconnectSetHeight() {
 	defer qt.Recovering("disconnect QQuickWindow::setHeight")
 
 	if ptr.Pointer() != nil {
@@ -16542,14 +17029,23 @@ func (ptr *QQuickWindow) SetHeight(arg int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetHeightDefault(arg int) {
+	defer qt.Recovering("QQuickWindow::setHeight")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetHeightDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickWindow_SetMaximumHeight
 func callbackQQuickWindow_SetMaximumHeight(ptr unsafe.Pointer, ptrName *C.char, h C.int) {
 	defer qt.Recovering("callback QQuickWindow::setMaximumHeight")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMaximumHeight"); signal != nil {
 		signal.(func(int))(int(h))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetMaximumHeightDefault(int(h))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetMaximumHeight(f func(h int)) {
@@ -16561,7 +17057,7 @@ func (ptr *QQuickWindow) ConnectSetMaximumHeight(f func(h int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetMaximumHeight(h int) {
+func (ptr *QQuickWindow) DisconnectSetMaximumHeight() {
 	defer qt.Recovering("disconnect QQuickWindow::setMaximumHeight")
 
 	if ptr.Pointer() != nil {
@@ -16578,14 +17074,23 @@ func (ptr *QQuickWindow) SetMaximumHeight(h int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetMaximumHeightDefault(h int) {
+	defer qt.Recovering("QQuickWindow::setMaximumHeight")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetMaximumHeightDefault(ptr.Pointer(), C.int(h))
+	}
+}
+
 //export callbackQQuickWindow_SetMaximumWidth
 func callbackQQuickWindow_SetMaximumWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) {
 	defer qt.Recovering("callback QQuickWindow::setMaximumWidth")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMaximumWidth"); signal != nil {
 		signal.(func(int))(int(w))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetMaximumWidthDefault(int(w))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetMaximumWidth(f func(w int)) {
@@ -16597,7 +17102,7 @@ func (ptr *QQuickWindow) ConnectSetMaximumWidth(f func(w int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetMaximumWidth(w int) {
+func (ptr *QQuickWindow) DisconnectSetMaximumWidth() {
 	defer qt.Recovering("disconnect QQuickWindow::setMaximumWidth")
 
 	if ptr.Pointer() != nil {
@@ -16614,14 +17119,23 @@ func (ptr *QQuickWindow) SetMaximumWidth(w int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetMaximumWidthDefault(w int) {
+	defer qt.Recovering("QQuickWindow::setMaximumWidth")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetMaximumWidthDefault(ptr.Pointer(), C.int(w))
+	}
+}
+
 //export callbackQQuickWindow_SetMinimumHeight
 func callbackQQuickWindow_SetMinimumHeight(ptr unsafe.Pointer, ptrName *C.char, h C.int) {
 	defer qt.Recovering("callback QQuickWindow::setMinimumHeight")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMinimumHeight"); signal != nil {
 		signal.(func(int))(int(h))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetMinimumHeightDefault(int(h))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetMinimumHeight(f func(h int)) {
@@ -16633,7 +17147,7 @@ func (ptr *QQuickWindow) ConnectSetMinimumHeight(f func(h int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetMinimumHeight(h int) {
+func (ptr *QQuickWindow) DisconnectSetMinimumHeight() {
 	defer qt.Recovering("disconnect QQuickWindow::setMinimumHeight")
 
 	if ptr.Pointer() != nil {
@@ -16650,14 +17164,23 @@ func (ptr *QQuickWindow) SetMinimumHeight(h int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetMinimumHeightDefault(h int) {
+	defer qt.Recovering("QQuickWindow::setMinimumHeight")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetMinimumHeightDefault(ptr.Pointer(), C.int(h))
+	}
+}
+
 //export callbackQQuickWindow_SetMinimumWidth
 func callbackQQuickWindow_SetMinimumWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) {
 	defer qt.Recovering("callback QQuickWindow::setMinimumWidth")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setMinimumWidth"); signal != nil {
 		signal.(func(int))(int(w))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetMinimumWidthDefault(int(w))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetMinimumWidth(f func(w int)) {
@@ -16669,7 +17192,7 @@ func (ptr *QQuickWindow) ConnectSetMinimumWidth(f func(w int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetMinimumWidth(w int) {
+func (ptr *QQuickWindow) DisconnectSetMinimumWidth() {
 	defer qt.Recovering("disconnect QQuickWindow::setMinimumWidth")
 
 	if ptr.Pointer() != nil {
@@ -16686,14 +17209,23 @@ func (ptr *QQuickWindow) SetMinimumWidth(w int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetMinimumWidthDefault(w int) {
+	defer qt.Recovering("QQuickWindow::setMinimumWidth")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetMinimumWidthDefault(ptr.Pointer(), C.int(w))
+	}
+}
+
 //export callbackQQuickWindow_SetTitle
 func callbackQQuickWindow_SetTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QQuickWindow::setTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetTitle(f func(vqs string)) {
@@ -16705,7 +17237,7 @@ func (ptr *QQuickWindow) ConnectSetTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetTitle(vqs string) {
+func (ptr *QQuickWindow) DisconnectSetTitle() {
 	defer qt.Recovering("disconnect QQuickWindow::setTitle")
 
 	if ptr.Pointer() != nil {
@@ -16722,14 +17254,23 @@ func (ptr *QQuickWindow) SetTitle(vqs string) {
 	}
 }
 
+func (ptr *QQuickWindow) SetTitleDefault(vqs string) {
+	defer qt.Recovering("QQuickWindow::setTitle")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetTitleDefault(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
 //export callbackQQuickWindow_SetVisible
 func callbackQQuickWindow_SetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
 	defer qt.Recovering("callback QQuickWindow::setVisible")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
 		signal.(func(bool))(int(visible) != 0)
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetVisible(f func(visible bool)) {
@@ -16741,7 +17282,7 @@ func (ptr *QQuickWindow) ConnectSetVisible(f func(visible bool)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetVisible(visible bool) {
+func (ptr *QQuickWindow) DisconnectSetVisible() {
 	defer qt.Recovering("disconnect QQuickWindow::setVisible")
 
 	if ptr.Pointer() != nil {
@@ -16758,14 +17299,23 @@ func (ptr *QQuickWindow) SetVisible(visible bool) {
 	}
 }
 
+func (ptr *QQuickWindow) SetVisibleDefault(visible bool) {
+	defer qt.Recovering("QQuickWindow::setVisible")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+	}
+}
+
 //export callbackQQuickWindow_SetWidth
 func callbackQQuickWindow_SetWidth(ptr unsafe.Pointer, ptrName *C.char, arg C.int) {
 	defer qt.Recovering("callback QQuickWindow::setWidth")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWidth"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetWidthDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetWidth(f func(arg int)) {
@@ -16777,7 +17327,7 @@ func (ptr *QQuickWindow) ConnectSetWidth(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetWidth(arg int) {
+func (ptr *QQuickWindow) DisconnectSetWidth() {
 	defer qt.Recovering("disconnect QQuickWindow::setWidth")
 
 	if ptr.Pointer() != nil {
@@ -16794,14 +17344,23 @@ func (ptr *QQuickWindow) SetWidth(arg int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetWidthDefault(arg int) {
+	defer qt.Recovering("QQuickWindow::setWidth")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetWidthDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickWindow_SetX
 func callbackQQuickWindow_SetX(ptr unsafe.Pointer, ptrName *C.char, arg C.int) {
 	defer qt.Recovering("callback QQuickWindow::setX")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setX"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetXDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetX(f func(arg int)) {
@@ -16813,7 +17372,7 @@ func (ptr *QQuickWindow) ConnectSetX(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetX(arg int) {
+func (ptr *QQuickWindow) DisconnectSetX() {
 	defer qt.Recovering("disconnect QQuickWindow::setX")
 
 	if ptr.Pointer() != nil {
@@ -16830,14 +17389,23 @@ func (ptr *QQuickWindow) SetX(arg int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetXDefault(arg int) {
+	defer qt.Recovering("QQuickWindow::setX")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetXDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickWindow_SetY
 func callbackQQuickWindow_SetY(ptr unsafe.Pointer, ptrName *C.char, arg C.int) {
 	defer qt.Recovering("callback QQuickWindow::setY")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setY"); signal != nil {
 		signal.(func(int))(int(arg))
+	} else {
+		NewQQuickWindowFromPointer(ptr).SetYDefault(int(arg))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectSetY(f func(arg int)) {
@@ -16849,7 +17417,7 @@ func (ptr *QQuickWindow) ConnectSetY(f func(arg int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectSetY(arg int) {
+func (ptr *QQuickWindow) DisconnectSetY() {
 	defer qt.Recovering("disconnect QQuickWindow::setY")
 
 	if ptr.Pointer() != nil {
@@ -16866,14 +17434,23 @@ func (ptr *QQuickWindow) SetY(arg int) {
 	}
 }
 
+func (ptr *QQuickWindow) SetYDefault(arg int) {
+	defer qt.Recovering("QQuickWindow::setY")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_SetYDefault(ptr.Pointer(), C.int(arg))
+	}
+}
+
 //export callbackQQuickWindow_Alert
 func callbackQQuickWindow_Alert(ptr unsafe.Pointer, ptrName *C.char, msec C.int) {
 	defer qt.Recovering("callback QQuickWindow::alert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "alert"); signal != nil {
 		signal.(func(int))(int(msec))
+	} else {
+		NewQQuickWindowFromPointer(ptr).AlertDefault(int(msec))
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectAlert(f func(msec int)) {
@@ -16885,7 +17462,7 @@ func (ptr *QQuickWindow) ConnectAlert(f func(msec int)) {
 	}
 }
 
-func (ptr *QQuickWindow) DisconnectAlert(msec int) {
+func (ptr *QQuickWindow) DisconnectAlert() {
 	defer qt.Recovering("disconnect QQuickWindow::alert")
 
 	if ptr.Pointer() != nil {
@@ -16902,6 +17479,14 @@ func (ptr *QQuickWindow) Alert(msec int) {
 	}
 }
 
+func (ptr *QQuickWindow) AlertDefault(msec int) {
+	defer qt.Recovering("QQuickWindow::alert")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_AlertDefault(ptr.Pointer(), C.int(msec))
+	}
+}
+
 //export callbackQQuickWindow_Close
 func callbackQQuickWindow_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QQuickWindow::close")
@@ -16910,7 +17495,7 @@ func callbackQQuickWindow_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQQuickWindowFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QQuickWindow) ConnectClose(f func() bool) {
@@ -16936,6 +17521,15 @@ func (ptr *QQuickWindow) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QQuickWindow_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QQuickWindow) CloseDefault() bool {
+	defer qt.Recovering("QQuickWindow::close")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickWindow_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -17040,8 +17634,9 @@ func callbackQQuickWindow_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectHide(f func()) {
@@ -17070,14 +17665,23 @@ func (ptr *QQuickWindow) Hide() {
 	}
 }
 
+func (ptr *QQuickWindow) HideDefault() {
+	defer qt.Recovering("QQuickWindow::hide")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_HideDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_Lower
 func callbackQQuickWindow_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::lower")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectLower(f func()) {
@@ -17103,6 +17707,14 @@ func (ptr *QQuickWindow) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWindow) LowerDefault() {
+	defer qt.Recovering("QQuickWindow::lower")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -17204,8 +17816,9 @@ func callbackQQuickWindow_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectRaise(f func()) {
@@ -17234,14 +17847,23 @@ func (ptr *QQuickWindow) Raise() {
 	}
 }
 
+func (ptr *QQuickWindow) RaiseDefault() {
+	defer qt.Recovering("QQuickWindow::raise")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_RequestActivate
 func callbackQQuickWindow_RequestActivate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::requestActivate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "requestActivate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).RequestActivateDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectRequestActivate(f func()) {
@@ -17270,14 +17892,23 @@ func (ptr *QQuickWindow) RequestActivate() {
 	}
 }
 
+func (ptr *QQuickWindow) RequestActivateDefault() {
+	defer qt.Recovering("QQuickWindow::requestActivate")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_RequestActivateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_RequestUpdate
 func callbackQQuickWindow_RequestUpdate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::requestUpdate")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "requestUpdate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).RequestUpdateDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectRequestUpdate(f func()) {
@@ -17306,14 +17937,23 @@ func (ptr *QQuickWindow) RequestUpdate() {
 	}
 }
 
+func (ptr *QQuickWindow) RequestUpdateDefault() {
+	defer qt.Recovering("QQuickWindow::requestUpdate")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_RequestUpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_Show
 func callbackQQuickWindow_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectShow(f func()) {
@@ -17342,14 +17982,23 @@ func (ptr *QQuickWindow) Show() {
 	}
 }
 
+func (ptr *QQuickWindow) ShowDefault() {
+	defer qt.Recovering("QQuickWindow::show")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_ShowFullScreen
 func callbackQQuickWindow_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectShowFullScreen(f func()) {
@@ -17378,14 +18027,23 @@ func (ptr *QQuickWindow) ShowFullScreen() {
 	}
 }
 
+func (ptr *QQuickWindow) ShowFullScreenDefault() {
+	defer qt.Recovering("QQuickWindow::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_ShowMaximized
 func callbackQQuickWindow_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectShowMaximized(f func()) {
@@ -17414,14 +18072,23 @@ func (ptr *QQuickWindow) ShowMaximized() {
 	}
 }
 
+func (ptr *QQuickWindow) ShowMaximizedDefault() {
+	defer qt.Recovering("QQuickWindow::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_ShowMinimized
 func callbackQQuickWindow_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectShowMinimized(f func()) {
@@ -17450,14 +18117,23 @@ func (ptr *QQuickWindow) ShowMinimized() {
 	}
 }
 
+func (ptr *QQuickWindow) ShowMinimizedDefault() {
+	defer qt.Recovering("QQuickWindow::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQQuickWindow_ShowNormal
 func callbackQQuickWindow_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickWindow::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectShowNormal(f func()) {
@@ -17483,6 +18159,14 @@ func (ptr *QQuickWindow) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWindow) ShowNormalDefault() {
+	defer qt.Recovering("QQuickWindow::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -17856,8 +18540,9 @@ func callbackQQuickWindow_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectDeleteLater(f func()) {
@@ -17883,6 +18568,15 @@ func (ptr *QQuickWindow) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickWindow) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickWindow::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -18404,8 +19098,9 @@ func callbackQSGAbstractRenderer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSGAbstractRendererFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSGAbstractRenderer) ConnectDeleteLater(f func()) {
@@ -18431,6 +19126,15 @@ func (ptr *QSGAbstractRenderer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSGAbstractRenderer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSGAbstractRenderer) DeleteLaterDefault() {
+	defer qt.Recovering("QSGAbstractRenderer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSGAbstractRenderer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -19068,8 +19772,9 @@ func callbackQSGDynamicTexture_Bind(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "bind"); signal != nil {
 		signal.(func())()
-	}
+	} else {
 
+	}
 }
 
 func (ptr *QSGDynamicTexture) ConnectBind(f func()) {
@@ -19577,8 +20282,9 @@ func callbackQSGDynamicTexture_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSGDynamicTextureFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSGDynamicTexture) ConnectDeleteLater(f func()) {
@@ -19604,6 +20310,15 @@ func (ptr *QSGDynamicTexture) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSGDynamicTexture_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSGDynamicTexture) DeleteLaterDefault() {
+	defer qt.Recovering("QSGDynamicTexture::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSGDynamicTexture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -20085,8 +20800,9 @@ func callbackQSGEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSGEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSGEngine) ConnectDeleteLater(f func()) {
@@ -20112,6 +20828,15 @@ func (ptr *QSGEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSGEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QSGEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSGEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -20424,7 +21149,7 @@ func callbackQSGFlatColorMaterial_CreateShader(ptr unsafe.Pointer, ptrName *C.ch
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(nil)
+	return PointerFromQSGMaterialShader(NewQSGFlatColorMaterialFromPointer(ptr).CreateShaderDefault())
 }
 
 func (ptr *QSGFlatColorMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -20454,6 +21179,15 @@ func (ptr *QSGFlatColorMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
+func (ptr *QSGFlatColorMaterial) CreateShaderDefault() *QSGMaterialShader {
+	defer qt.Recovering("QSGFlatColorMaterial::createShader")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialShaderFromPointer(C.QSGFlatColorMaterial_CreateShaderDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSGFlatColorMaterial_Type
 func callbackQSGFlatColorMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QSGFlatColorMaterial::type")
@@ -20462,7 +21196,7 @@ func callbackQSGFlatColorMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) unsa
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(nil)
+	return PointerFromQSGMaterialType(NewQSGFlatColorMaterialFromPointer(ptr).TypeDefault())
 }
 
 func (ptr *QSGFlatColorMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -20488,6 +21222,15 @@ func (ptr *QSGFlatColorMaterial) Type() *QSGMaterialType {
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGFlatColorMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGFlatColorMaterial) TypeDefault() *QSGMaterialType {
+	defer qt.Recovering("QSGFlatColorMaterial::type")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGFlatColorMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -22267,7 +23010,7 @@ func callbackQSGOpaqueTextureMaterial_CreateShader(ptr unsafe.Pointer, ptrName *
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(nil)
+	return PointerFromQSGMaterialShader(NewQSGOpaqueTextureMaterialFromPointer(ptr).CreateShaderDefault())
 }
 
 func (ptr *QSGOpaqueTextureMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -22297,6 +23040,15 @@ func (ptr *QSGOpaqueTextureMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
+func (ptr *QSGOpaqueTextureMaterial) CreateShaderDefault() *QSGMaterialShader {
+	defer qt.Recovering("QSGOpaqueTextureMaterial::createShader")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialShaderFromPointer(C.QSGOpaqueTextureMaterial_CreateShaderDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSGOpaqueTextureMaterial_Type
 func callbackQSGOpaqueTextureMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QSGOpaqueTextureMaterial::type")
@@ -22305,7 +23057,7 @@ func callbackQSGOpaqueTextureMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) 
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(nil)
+	return PointerFromQSGMaterialType(NewQSGOpaqueTextureMaterialFromPointer(ptr).TypeDefault())
 }
 
 func (ptr *QSGOpaqueTextureMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -22331,6 +23083,15 @@ func (ptr *QSGOpaqueTextureMaterial) Type() *QSGMaterialType {
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGOpaqueTextureMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGOpaqueTextureMaterial) TypeDefault() *QSGMaterialType {
+	defer qt.Recovering("QSGOpaqueTextureMaterial::type")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGOpaqueTextureMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -23570,8 +24331,9 @@ func callbackQSGTexture_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSGTextureFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSGTexture) ConnectDeleteLater(f func()) {
@@ -23597,6 +24359,15 @@ func (ptr *QSGTexture) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSGTexture_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSGTexture) DeleteLaterDefault() {
+	defer qt.Recovering("QSGTexture::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSGTexture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -23886,7 +24657,7 @@ func callbackQSGTextureMaterial_CreateShader(ptr unsafe.Pointer, ptrName *C.char
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(nil)
+	return PointerFromQSGMaterialShader(NewQSGTextureMaterialFromPointer(ptr).CreateShaderDefault())
 }
 
 func (ptr *QSGTextureMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -23916,6 +24687,15 @@ func (ptr *QSGTextureMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
+func (ptr *QSGTextureMaterial) CreateShaderDefault() *QSGMaterialShader {
+	defer qt.Recovering("QSGTextureMaterial::createShader")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialShaderFromPointer(C.QSGTextureMaterial_CreateShaderDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSGTextureMaterial_Type
 func callbackQSGTextureMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QSGTextureMaterial::type")
@@ -23924,7 +24704,7 @@ func callbackQSGTextureMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) unsafe
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(nil)
+	return PointerFromQSGMaterialType(NewQSGTextureMaterialFromPointer(ptr).TypeDefault())
 }
 
 func (ptr *QSGTextureMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -23950,6 +24730,15 @@ func (ptr *QSGTextureMaterial) Type() *QSGMaterialType {
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGTextureMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGTextureMaterial) TypeDefault() *QSGMaterialType {
+	defer qt.Recovering("QSGTextureMaterial::type")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGTextureMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -24261,8 +25050,9 @@ func callbackQSGTextureProvider_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSGTextureProviderFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSGTextureProvider) ConnectDeleteLater(f func()) {
@@ -24288,6 +25078,15 @@ func (ptr *QSGTextureProvider) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSGTextureProvider_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSGTextureProvider) DeleteLaterDefault() {
+	defer qt.Recovering("QSGTextureProvider::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSGTextureProvider_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -24742,7 +25541,7 @@ func callbackQSGVertexColorMaterial_CreateShader(ptr unsafe.Pointer, ptrName *C.
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(nil)
+	return PointerFromQSGMaterialShader(NewQSGVertexColorMaterialFromPointer(ptr).CreateShaderDefault())
 }
 
 func (ptr *QSGVertexColorMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -24772,6 +25571,15 @@ func (ptr *QSGVertexColorMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
+func (ptr *QSGVertexColorMaterial) CreateShaderDefault() *QSGMaterialShader {
+	defer qt.Recovering("QSGVertexColorMaterial::createShader")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialShaderFromPointer(C.QSGVertexColorMaterial_CreateShaderDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSGVertexColorMaterial_Type
 func callbackQSGVertexColorMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QSGVertexColorMaterial::type")
@@ -24780,7 +25588,7 @@ func callbackQSGVertexColorMaterial_Type(ptr unsafe.Pointer, ptrName *C.char) un
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(nil)
+	return PointerFromQSGMaterialType(NewQSGVertexColorMaterialFromPointer(ptr).TypeDefault())
 }
 
 func (ptr *QSGVertexColorMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -24806,6 +25614,15 @@ func (ptr *QSGVertexColorMaterial) Type() *QSGMaterialType {
 
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGVertexColorMaterial_Type(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGVertexColorMaterial) TypeDefault() *QSGMaterialType {
+	defer qt.Recovering("QSGVertexColorMaterial::type")
+
+	if ptr.Pointer() != nil {
+		return NewQSGMaterialTypeFromPointer(C.QSGVertexColorMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }

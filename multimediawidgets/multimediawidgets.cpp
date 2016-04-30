@@ -178,9 +178,19 @@ void QCameraViewfinder_SetAspectRatioMode(void* ptr, int mode)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setAspectRatioMode", Q_ARG(Qt::AspectRatioMode, static_cast<Qt::AspectRatioMode>(mode)));
 }
 
+void QCameraViewfinder_SetAspectRatioModeDefault(void* ptr, int mode)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
+}
+
 void QCameraViewfinder_SetBrightness(void* ptr, int brightness)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setBrightness", Q_ARG(int, brightness));
+}
+
+void QCameraViewfinder_SetBrightnessDefault(void* ptr, int brightness)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setBrightness(brightness);
 }
 
 void QCameraViewfinder_SetContrast(void* ptr, int contrast)
@@ -188,9 +198,19 @@ void QCameraViewfinder_SetContrast(void* ptr, int contrast)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setContrast", Q_ARG(int, contrast));
 }
 
+void QCameraViewfinder_SetContrastDefault(void* ptr, int contrast)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setContrast(contrast);
+}
+
 void QCameraViewfinder_SetFullScreen(void* ptr, int fullScreen)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setFullScreen", Q_ARG(bool, fullScreen != 0));
+}
+
+void QCameraViewfinder_SetFullScreenDefault(void* ptr, int fullScreen)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setFullScreen(fullScreen != 0);
 }
 
 void QCameraViewfinder_SetHue(void* ptr, int hue)
@@ -198,9 +218,19 @@ void QCameraViewfinder_SetHue(void* ptr, int hue)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setHue", Q_ARG(int, hue));
 }
 
+void QCameraViewfinder_SetHueDefault(void* ptr, int hue)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setHue(hue);
+}
+
 void QCameraViewfinder_SetSaturation(void* ptr, int saturation)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setSaturation", Q_ARG(int, saturation));
+}
+
+void QCameraViewfinder_SetSaturationDefault(void* ptr, int saturation)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setSaturation(saturation);
 }
 
 int QCameraViewfinder_Event(void* ptr, void* event)
@@ -398,9 +428,19 @@ void QCameraViewfinder_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QCameraViewfinder_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setEnabled(vbo != 0);
+}
+
 void QCameraViewfinder_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QCameraViewfinder_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setStyleSheet(QString(styleSheet));
 }
 
 void QCameraViewfinder_SetVisible(void* ptr, int visible)
@@ -418,9 +458,19 @@ void QCameraViewfinder_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QCameraViewfinder_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setWindowModified(vbo != 0);
+}
+
 void QCameraViewfinder_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QCameraViewfinder_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setWindowTitle(QString(vqs));
 }
 
 void QCameraViewfinder_ChangeEvent(void* ptr, void* event)
@@ -438,6 +488,11 @@ int QCameraViewfinder_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QCameraViewfinder_CloseDefault(void* ptr)
+{
+	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::close();
 }
 
 void QCameraViewfinder_CloseEvent(void* ptr, void* event)
@@ -495,6 +550,11 @@ void QCameraViewfinder_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "hide");
 }
 
+void QCameraViewfinder_HideDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::hide();
+}
+
 void QCameraViewfinder_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QCameraViewfinder*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -548,6 +608,11 @@ void QCameraViewfinder_KeyReleaseEventDefault(void* ptr, void* event)
 void QCameraViewfinder_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "lower");
+}
+
+void QCameraViewfinder_LowerDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::lower();
 }
 
 void QCameraViewfinder_MouseDoubleClickEvent(void* ptr, void* event)
@@ -605,9 +670,19 @@ void QCameraViewfinder_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "raise");
 }
 
+void QCameraViewfinder_RaiseDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::raise();
+}
+
 void QCameraViewfinder_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "repaint");
+}
+
+void QCameraViewfinder_RepaintDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::repaint();
 }
 
 void QCameraViewfinder_SetDisabled(void* ptr, int disable)
@@ -615,9 +690,19 @@ void QCameraViewfinder_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QCameraViewfinder_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setDisabled(disable != 0);
+}
+
 void QCameraViewfinder_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setFocus");
+}
+
+void QCameraViewfinder_SetFocus2Default(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setFocus();
 }
 
 void QCameraViewfinder_SetHidden(void* ptr, int hidden)
@@ -625,9 +710,19 @@ void QCameraViewfinder_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QCameraViewfinder_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setHidden(hidden != 0);
+}
+
 void QCameraViewfinder_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "show");
+}
+
+void QCameraViewfinder_ShowDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::show();
 }
 
 void QCameraViewfinder_ShowFullScreen(void* ptr)
@@ -635,9 +730,19 @@ void QCameraViewfinder_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "showFullScreen");
 }
 
+void QCameraViewfinder_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showFullScreen();
+}
+
 void QCameraViewfinder_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "showMaximized");
+}
+
+void QCameraViewfinder_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showMaximized();
 }
 
 void QCameraViewfinder_ShowMinimized(void* ptr)
@@ -645,9 +750,19 @@ void QCameraViewfinder_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "showMinimized");
 }
 
+void QCameraViewfinder_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showMinimized();
+}
+
 void QCameraViewfinder_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "showNormal");
+}
+
+void QCameraViewfinder_ShowNormalDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showNormal();
 }
 
 void QCameraViewfinder_TabletEvent(void* ptr, void* event)
@@ -665,9 +780,19 @@ void QCameraViewfinder_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "update");
 }
 
+void QCameraViewfinder_UpdateDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::update();
+}
+
 void QCameraViewfinder_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "updateMicroFocus");
+}
+
+void QCameraViewfinder_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::updateMicroFocus();
 }
 
 void QCameraViewfinder_WheelEvent(void* ptr, void* event)
@@ -723,6 +848,11 @@ void QCameraViewfinder_CustomEventDefault(void* ptr, void* event)
 void QCameraViewfinder_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "deleteLater");
+}
+
+void QCameraViewfinder_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::deleteLater();
 }
 
 void QCameraViewfinder_DisconnectNotify(void* ptr, void* sign)
@@ -901,6 +1031,11 @@ int QGraphicsVideoItem_SetMediaObject(void* ptr, void* object)
 	return static_cast<QGraphicsVideoItem*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
 }
 
+int QGraphicsVideoItem_SetMediaObjectDefault(void* ptr, void* object)
+{
+	return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::setMediaObject(static_cast<QMediaObject*>(object));
+}
+
 int QGraphicsVideoItem_Event(void* ptr, void* ev)
 {
 	return static_cast<QGraphicsVideoItem*>(ptr)->event(static_cast<QEvent*>(ev));
@@ -914,6 +1049,11 @@ int QGraphicsVideoItem_EventDefault(void* ptr, void* ev)
 void QGraphicsVideoItem_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsVideoItem*>(ptr), "updateMicroFocus");
+}
+
+void QGraphicsVideoItem_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::updateMicroFocus();
 }
 
 void QGraphicsVideoItem_Advance(void* ptr, int phase)
@@ -1261,6 +1401,11 @@ void QGraphicsVideoItem_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsVideoItem*>(ptr), "deleteLater");
 }
 
+void QGraphicsVideoItem_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::deleteLater();
+}
+
 void QGraphicsVideoItem_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGraphicsVideoItem*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1605,6 +1750,11 @@ int QVideoWidget_SetMediaObject(void* ptr, void* object)
 	return static_cast<QVideoWidget*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
 }
 
+int QVideoWidget_SetMediaObjectDefault(void* ptr, void* object)
+{
+	return static_cast<QVideoWidget*>(ptr)->QVideoWidget::setMediaObject(static_cast<QMediaObject*>(object));
+}
+
 void QVideoWidget_ActionEvent(void* ptr, void* event)
 {
 	static_cast<QVideoWidget*>(ptr)->actionEvent(static_cast<QActionEvent*>(event));
@@ -1730,9 +1880,19 @@ void QVideoWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QVideoWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::setEnabled(vbo != 0);
+}
+
 void QVideoWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QVideoWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QVideoWidget_SetVisible(void* ptr, int visible)
@@ -1750,9 +1910,19 @@ void QVideoWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QVideoWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::setWindowModified(vbo != 0);
+}
+
 void QVideoWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QVideoWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::setWindowTitle(QString(vqs));
 }
 
 void QVideoWidget_ChangeEvent(void* ptr, void* event)
@@ -1770,6 +1940,11 @@ int QVideoWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QVideoWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QVideoWidget*>(ptr)->QVideoWidget::close();
 }
 
 void QVideoWidget_CloseEvent(void* ptr, void* event)
@@ -1827,6 +2002,11 @@ void QVideoWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "hide");
 }
 
+void QVideoWidget_HideDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::hide();
+}
+
 void QVideoWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QVideoWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -1880,6 +2060,11 @@ void QVideoWidget_KeyReleaseEventDefault(void* ptr, void* event)
 void QVideoWidget_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "lower");
+}
+
+void QVideoWidget_LowerDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::lower();
 }
 
 void QVideoWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -1937,9 +2122,19 @@ void QVideoWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "raise");
 }
 
+void QVideoWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::raise();
+}
+
 void QVideoWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "repaint");
+}
+
+void QVideoWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::repaint();
 }
 
 void QVideoWidget_SetDisabled(void* ptr, int disable)
@@ -1947,9 +2142,19 @@ void QVideoWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QVideoWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::setDisabled(disable != 0);
+}
+
 void QVideoWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setFocus");
+}
+
+void QVideoWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::setFocus();
 }
 
 void QVideoWidget_SetHidden(void* ptr, int hidden)
@@ -1957,9 +2162,19 @@ void QVideoWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QVideoWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::setHidden(hidden != 0);
+}
+
 void QVideoWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "show");
+}
+
+void QVideoWidget_ShowDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::show();
 }
 
 void QVideoWidget_ShowFullScreen(void* ptr)
@@ -1967,9 +2182,19 @@ void QVideoWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "showFullScreen");
 }
 
+void QVideoWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::showFullScreen();
+}
+
 void QVideoWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "showMaximized");
+}
+
+void QVideoWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::showMaximized();
 }
 
 void QVideoWidget_ShowMinimized(void* ptr)
@@ -1977,9 +2202,19 @@ void QVideoWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "showMinimized");
 }
 
+void QVideoWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::showMinimized();
+}
+
 void QVideoWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "showNormal");
+}
+
+void QVideoWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::showNormal();
 }
 
 void QVideoWidget_TabletEvent(void* ptr, void* event)
@@ -1997,9 +2232,19 @@ void QVideoWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "update");
 }
 
+void QVideoWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::update();
+}
+
 void QVideoWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "updateMicroFocus");
+}
+
+void QVideoWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::updateMicroFocus();
 }
 
 void QVideoWidget_WheelEvent(void* ptr, void* event)
@@ -2055,6 +2300,11 @@ void QVideoWidget_CustomEventDefault(void* ptr, void* event)
 void QVideoWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "deleteLater");
+}
+
+void QVideoWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVideoWidget*>(ptr)->QVideoWidget::deleteLater();
 }
 
 void QVideoWidget_DisconnectNotify(void* ptr, void* sign)
@@ -2313,6 +2563,11 @@ void QVideoWidgetControl_CustomEventDefault(void* ptr, void* event)
 void QVideoWidgetControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWidgetControl*>(ptr), "deleteLater");
+}
+
+void QVideoWidgetControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVideoWidgetControl*>(ptr)->QVideoWidgetControl::deleteLater();
 }
 
 void QVideoWidgetControl_DisconnectNotify(void* ptr, void* sign)

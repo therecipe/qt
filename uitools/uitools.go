@@ -541,8 +541,9 @@ func callbackQUiLoader_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQUiLoaderFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QUiLoader) ConnectDeleteLater(f func()) {
@@ -568,6 +569,15 @@ func (ptr *QUiLoader) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QUiLoader) DeleteLaterDefault() {
+	defer qt.Recovering("QUiLoader::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QUiLoader_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

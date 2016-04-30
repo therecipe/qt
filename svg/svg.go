@@ -312,8 +312,9 @@ func callbackQGraphicsSvgItem_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QGraphicsSvgItem) ConnectUpdateMicroFocus(f func()) {
@@ -339,6 +340,14 @@ func (ptr *QGraphicsSvgItem) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSvgItem_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QGraphicsSvgItem) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QGraphicsSvgItem::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -1853,8 +1862,9 @@ func callbackQGraphicsSvgItem_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGraphicsSvgItemFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGraphicsSvgItem) ConnectDeleteLater(f func()) {
@@ -1880,6 +1890,15 @@ func (ptr *QGraphicsSvgItem) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGraphicsSvgItem_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGraphicsSvgItem) DeleteLaterDefault() {
+	defer qt.Recovering("QGraphicsSvgItem::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGraphicsSvgItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2952,8 +2971,9 @@ func callbackQSvgRenderer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgRendererFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSvgRenderer) ConnectDeleteLater(f func()) {
@@ -2979,6 +2999,15 @@ func (ptr *QSvgRenderer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSvgRenderer) DeleteLaterDefault() {
+	defer qt.Recovering("QSvgRenderer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSvgRenderer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4052,8 +4081,9 @@ func callbackQSvgWidget_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.in
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQSvgWidgetFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectSetEnabled(f func(vbo bool)) {
@@ -4065,7 +4095,7 @@ func (ptr *QSvgWidget) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QSvgWidget) DisconnectSetEnabled(vbo bool) {
+func (ptr *QSvgWidget) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QSvgWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -4082,14 +4112,23 @@ func (ptr *QSvgWidget) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QSvgWidget) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QSvgWidget::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQSvgWidget_SetStyleSheet
 func callbackQSvgWidget_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QSvgWidget::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQSvgWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -4101,7 +4140,7 @@ func (ptr *QSvgWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 	}
 }
 
-func (ptr *QSvgWidget) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QSvgWidget) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QSvgWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -4115,6 +4154,14 @@ func (ptr *QSvgWidget) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QSvgWidget) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QSvgWidget::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -4169,8 +4216,9 @@ func callbackQSvgWidget_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char, v
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQSvgWidgetFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectSetWindowModified(f func(vbo bool)) {
@@ -4182,7 +4230,7 @@ func (ptr *QSvgWidget) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QSvgWidget) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QSvgWidget) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QSvgWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -4199,14 +4247,23 @@ func (ptr *QSvgWidget) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QSvgWidget) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QSvgWidget::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQSvgWidget_SetWindowTitle
 func callbackQSvgWidget_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QSvgWidget::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQSvgWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectSetWindowTitle(f func(vqs string)) {
@@ -4218,7 +4275,7 @@ func (ptr *QSvgWidget) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QSvgWidget) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QSvgWidget) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QSvgWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -4232,6 +4289,14 @@ func (ptr *QSvgWidget) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QSvgWidget) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QSvgWidget::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -4333,7 +4398,7 @@ func callbackQSvgWidget_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQSvgWidgetFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QSvgWidget) ConnectClose(f func() bool) {
@@ -4359,6 +4424,15 @@ func (ptr *QSvgWidget) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QSvgWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSvgWidget) CloseDefault() bool {
+	defer qt.Recovering("QSvgWidget::close")
+
+	if ptr.Pointer() != nil {
+		return C.QSvgWidget_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -4647,8 +4721,9 @@ func callbackQSvgWidget_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectHide(f func()) {
@@ -4674,6 +4749,14 @@ func (ptr *QSvgWidget) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QSvgWidget) HideDefault() {
+	defer qt.Recovering("QSvgWidget::hide")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -4910,8 +4993,9 @@ func callbackQSvgWidget_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectLower(f func()) {
@@ -4937,6 +5021,14 @@ func (ptr *QSvgWidget) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QSvgWidget) LowerDefault() {
+	defer qt.Recovering("QSvgWidget::lower")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -5173,8 +5265,9 @@ func callbackQSvgWidget_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectRaise(f func()) {
@@ -5203,14 +5296,23 @@ func (ptr *QSvgWidget) Raise() {
 	}
 }
 
+func (ptr *QSvgWidget) RaiseDefault() {
+	defer qt.Recovering("QSvgWidget::raise")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSvgWidget_Repaint
 func callbackQSvgWidget_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectRepaint(f func()) {
@@ -5236,6 +5338,14 @@ func (ptr *QSvgWidget) Repaint() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_Repaint(ptr.Pointer())
+	}
+}
+
+func (ptr *QSvgWidget) RepaintDefault() {
+	defer qt.Recovering("QSvgWidget::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_RepaintDefault(ptr.Pointer())
 	}
 }
 
@@ -5290,8 +5400,9 @@ func callbackQSvgWidget_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQSvgWidgetFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectSetDisabled(f func(disable bool)) {
@@ -5303,7 +5414,7 @@ func (ptr *QSvgWidget) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QSvgWidget) DisconnectSetDisabled(disable bool) {
+func (ptr *QSvgWidget) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QSvgWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -5320,14 +5431,23 @@ func (ptr *QSvgWidget) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QSvgWidget) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QSvgWidget::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQSvgWidget_SetFocus2
 func callbackQSvgWidget_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectSetFocus2(f func()) {
@@ -5356,14 +5476,23 @@ func (ptr *QSvgWidget) SetFocus2() {
 	}
 }
 
+func (ptr *QSvgWidget) SetFocus2Default() {
+	defer qt.Recovering("QSvgWidget::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQSvgWidget_SetHidden
 func callbackQSvgWidget_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QSvgWidget::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQSvgWidgetFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectSetHidden(f func(hidden bool)) {
@@ -5375,7 +5504,7 @@ func (ptr *QSvgWidget) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QSvgWidget) DisconnectSetHidden(hidden bool) {
+func (ptr *QSvgWidget) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QSvgWidget::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -5392,14 +5521,23 @@ func (ptr *QSvgWidget) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QSvgWidget) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QSvgWidget::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQSvgWidget_Show
 func callbackQSvgWidget_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectShow(f func()) {
@@ -5428,14 +5566,23 @@ func (ptr *QSvgWidget) Show() {
 	}
 }
 
+func (ptr *QSvgWidget) ShowDefault() {
+	defer qt.Recovering("QSvgWidget::show")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSvgWidget_ShowFullScreen
 func callbackQSvgWidget_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectShowFullScreen(f func()) {
@@ -5464,14 +5611,23 @@ func (ptr *QSvgWidget) ShowFullScreen() {
 	}
 }
 
+func (ptr *QSvgWidget) ShowFullScreenDefault() {
+	defer qt.Recovering("QSvgWidget::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSvgWidget_ShowMaximized
 func callbackQSvgWidget_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectShowMaximized(f func()) {
@@ -5500,14 +5656,23 @@ func (ptr *QSvgWidget) ShowMaximized() {
 	}
 }
 
+func (ptr *QSvgWidget) ShowMaximizedDefault() {
+	defer qt.Recovering("QSvgWidget::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSvgWidget_ShowMinimized
 func callbackQSvgWidget_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectShowMinimized(f func()) {
@@ -5536,14 +5701,23 @@ func (ptr *QSvgWidget) ShowMinimized() {
 	}
 }
 
+func (ptr *QSvgWidget) ShowMinimizedDefault() {
+	defer qt.Recovering("QSvgWidget::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSvgWidget_ShowNormal
 func callbackQSvgWidget_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectShowNormal(f func()) {
@@ -5569,6 +5743,14 @@ func (ptr *QSvgWidget) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QSvgWidget) ShowNormalDefault() {
+	defer qt.Recovering("QSvgWidget::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -5623,8 +5805,9 @@ func callbackQSvgWidget_Update(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectUpdate(f func()) {
@@ -5653,14 +5836,23 @@ func (ptr *QSvgWidget) Update() {
 	}
 }
 
+func (ptr *QSvgWidget) UpdateDefault() {
+	defer qt.Recovering("QSvgWidget::update")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_UpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSvgWidget_UpdateMicroFocus
 func callbackQSvgWidget_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSvgWidget::updateMicroFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectUpdateMicroFocus(f func()) {
@@ -5686,6 +5878,14 @@ func (ptr *QSvgWidget) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QSvgWidget) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QSvgWidget::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -5920,8 +6120,9 @@ func callbackQSvgWidget_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSvgWidgetFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSvgWidget) ConnectDeleteLater(f func()) {
@@ -5947,6 +6148,15 @@ func (ptr *QSvgWidget) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgWidget_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSvgWidget) DeleteLaterDefault() {
+	defer qt.Recovering("QSvgWidget::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSvgWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

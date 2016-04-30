@@ -289,8 +289,9 @@ func callbackQMaskGenerator_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMaskGeneratorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QMaskGenerator) ConnectDeleteLater(f func()) {
@@ -316,6 +317,15 @@ func (ptr *QMaskGenerator) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMaskGenerator) DeleteLaterDefault() {
+	defer qt.Recovering("QMaskGenerator::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QMaskGenerator_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1515,8 +1525,9 @@ func callbackQWebSocket_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebSocketFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QWebSocket) ConnectDeleteLater(f func()) {
@@ -1542,6 +1553,15 @@ func (ptr *QWebSocket) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWebSocket) DeleteLaterDefault() {
+	defer qt.Recovering("QWebSocket::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2483,8 +2503,9 @@ func callbackQWebSocketServer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebSocketServerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QWebSocketServer) ConnectDeleteLater(f func()) {
@@ -2510,6 +2531,15 @@ func (ptr *QWebSocketServer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWebSocketServer) DeleteLaterDefault() {
+	defer qt.Recovering("QWebSocketServer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocketServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

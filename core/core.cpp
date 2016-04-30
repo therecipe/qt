@@ -433,6 +433,11 @@ void QAbstractAnimation_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractAnimation*>(ptr), "deleteLater");
 }
 
+void QAbstractAnimation_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractAnimation*>(ptr)->QAbstractAnimation::deleteLater();
+}
+
 void QAbstractAnimation_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractAnimation*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -664,6 +669,11 @@ void QAbstractEventDispatcher_CustomEventDefault(void* ptr, void* event)
 void QAbstractEventDispatcher_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractEventDispatcher*>(ptr), "deleteLater");
+}
+
+void QAbstractEventDispatcher_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractEventDispatcher*>(ptr)->QAbstractEventDispatcher::deleteLater();
 }
 
 void QAbstractEventDispatcher_DisconnectNotify(void* ptr, void* sign)
@@ -1363,6 +1373,11 @@ void QAbstractItemModel_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemModel*>(ptr), "deleteLater");
 }
 
+void QAbstractItemModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::deleteLater();
+}
+
 void QAbstractItemModel_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractItemModel*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1533,10 +1548,17 @@ int QAbstractListModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QAbstractListModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
+int QAbstractListModel_ColumnCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::columnCount(*static_cast<QModelIndex*>(parent));
+}
+
 void* QAbstractListModel_Data(void* ptr, void* index, int role)
 {
 	return new QVariant(static_cast<QAbstractListModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
+
+
 
 void QAbstractListModel_FetchMore(void* ptr, void* parent)
 {
@@ -1623,6 +1645,11 @@ void* QAbstractListModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+void* QAbstractListModel_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 int QAbstractListModel_RemoveColumns(void* ptr, int column, int count, void* parent)
 {
 	return static_cast<QAbstractListModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
@@ -1648,6 +1675,11 @@ void QAbstractListModel_ResetInternalData(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractListModel*>(ptr), "resetInternalData");
 }
 
+void QAbstractListModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::resetInternalData();
+}
+
 void QAbstractListModel_Revert(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractListModel*>(ptr), "revert");
@@ -1662,6 +1694,8 @@ int QAbstractListModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QAbstractListModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
+
+
 
 int QAbstractListModel_SetData(void* ptr, void* index, void* value, int role)
 {
@@ -1778,6 +1812,11 @@ void QAbstractListModel_CustomEventDefault(void* ptr, void* event)
 void QAbstractListModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractListModel*>(ptr), "deleteLater");
+}
+
+void QAbstractListModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::deleteLater();
 }
 
 void QAbstractListModel_DisconnectNotify(void* ptr, void* sign)
@@ -2176,10 +2215,14 @@ int QAbstractProxyModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QAbstractProxyModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
+
+
 void* QAbstractProxyModel_Index(void* ptr, int row, int column, void* parent)
 {
 	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
+
+
 
 int QAbstractProxyModel_InsertColumns(void* ptr, int column, int count, void* parent)
 {
@@ -2226,6 +2269,8 @@ void* QAbstractProxyModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+
+
 int QAbstractProxyModel_RemoveColumns(void* ptr, int column, int count, void* parent)
 {
 	return static_cast<QAbstractProxyModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
@@ -2250,6 +2295,8 @@ int QAbstractProxyModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QAbstractProxyModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
+
+
 
 void QAbstractProxyModel_TimerEvent(void* ptr, void* event)
 {
@@ -2294,6 +2341,11 @@ void QAbstractProxyModel_CustomEventDefault(void* ptr, void* event)
 void QAbstractProxyModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractProxyModel*>(ptr), "deleteLater");
+}
+
+void QAbstractProxyModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::deleteLater();
 }
 
 void QAbstractProxyModel_DisconnectNotify(void* ptr, void* sign)
@@ -2481,6 +2533,11 @@ void QAbstractState_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractState*>(ptr), "deleteLater");
 }
 
+void QAbstractState_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractState*>(ptr)->QAbstractState::deleteLater();
+}
+
 void QAbstractState_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractState*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2641,10 +2698,14 @@ int QAbstractTableModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QAbstractTableModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
+
+
 void* QAbstractTableModel_Data(void* ptr, void* index, int role)
 {
 	return new QVariant(static_cast<QAbstractTableModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
+
+
 
 void QAbstractTableModel_FetchMore(void* ptr, void* parent)
 {
@@ -2731,6 +2792,11 @@ void* QAbstractTableModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+void* QAbstractTableModel_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 int QAbstractTableModel_RemoveColumns(void* ptr, int column, int count, void* parent)
 {
 	return static_cast<QAbstractTableModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
@@ -2756,6 +2822,11 @@ void QAbstractTableModel_ResetInternalData(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractTableModel*>(ptr), "resetInternalData");
 }
 
+void QAbstractTableModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::resetInternalData();
+}
+
 void QAbstractTableModel_Revert(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractTableModel*>(ptr), "revert");
@@ -2770,6 +2841,8 @@ int QAbstractTableModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QAbstractTableModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
+
+
 
 int QAbstractTableModel_SetData(void* ptr, void* index, void* value, int role)
 {
@@ -2886,6 +2959,11 @@ void QAbstractTableModel_CustomEventDefault(void* ptr, void* event)
 void QAbstractTableModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractTableModel*>(ptr), "deleteLater");
+}
+
+void QAbstractTableModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::deleteLater();
 }
 
 void QAbstractTableModel_DisconnectNotify(void* ptr, void* sign)
@@ -3093,6 +3171,11 @@ void QAbstractTransition_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractTransition*>(ptr), "deleteLater");
 }
 
+void QAbstractTransition_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractTransition*>(ptr)->QAbstractTransition::deleteLater();
+}
+
 void QAbstractTransition_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractTransition*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3213,14 +3296,26 @@ void QAnimationGroup_SetCurrentTime(void* ptr, int msecs)
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "setCurrentTime", Q_ARG(int, msecs));
 }
 
+void QAnimationGroup_SetCurrentTimeDefault(void* ptr, int msecs)
+{
+	static_cast<QAnimationGroup*>(ptr)->QAnimationGroup::setCurrentTime(msecs);
+}
+
 int QAnimationGroup_Duration(void* ptr)
 {
 	return static_cast<QAnimationGroup*>(ptr)->duration();
 }
 
+
+
 void QAnimationGroup_Pause(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "pause");
+}
+
+void QAnimationGroup_PauseDefault(void* ptr)
+{
+	static_cast<QAnimationGroup*>(ptr)->QAnimationGroup::pause();
 }
 
 void QAnimationGroup_Resume(void* ptr)
@@ -3228,9 +3323,19 @@ void QAnimationGroup_Resume(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "resume");
 }
 
+void QAnimationGroup_ResumeDefault(void* ptr)
+{
+	static_cast<QAnimationGroup*>(ptr)->QAnimationGroup::resume();
+}
+
 void QAnimationGroup_SetPaused(void* ptr, int paused)
 {
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
+}
+
+void QAnimationGroup_SetPausedDefault(void* ptr, int paused)
+{
+	static_cast<QAnimationGroup*>(ptr)->QAnimationGroup::setPaused(paused != 0);
 }
 
 void QAnimationGroup_Start(void* ptr, int policy)
@@ -3238,15 +3343,27 @@ void QAnimationGroup_Start(void* ptr, int policy)
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "start", Q_ARG(QAbstractAnimation::DeletionPolicy, static_cast<QAbstractAnimation::DeletionPolicy>(policy)));
 }
 
+void QAnimationGroup_StartDefault(void* ptr, int policy)
+{
+	static_cast<QAnimationGroup*>(ptr)->QAnimationGroup::start(static_cast<QAbstractAnimation::DeletionPolicy>(policy));
+}
+
 void QAnimationGroup_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "stop");
+}
+
+void QAnimationGroup_StopDefault(void* ptr)
+{
+	static_cast<QAnimationGroup*>(ptr)->QAnimationGroup::stop();
 }
 
 void QAnimationGroup_UpdateCurrentTime(void* ptr, int currentTime)
 {
 	static_cast<QAnimationGroup*>(ptr)->updateCurrentTime(currentTime);
 }
+
+
 
 void QAnimationGroup_UpdateDirection(void* ptr, int direction)
 {
@@ -3311,6 +3428,11 @@ void QAnimationGroup_CustomEventDefault(void* ptr, void* event)
 void QAnimationGroup_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "deleteLater");
+}
+
+void QAnimationGroup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAnimationGroup*>(ptr)->QAnimationGroup::deleteLater();
 }
 
 void QAnimationGroup_DisconnectNotify(void* ptr, void* sign)
@@ -3762,6 +3884,11 @@ void QBuffer_CustomEventDefault(void* ptr, void* event)
 void QBuffer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBuffer*>(ptr), "deleteLater");
+}
+
+void QBuffer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBuffer*>(ptr)->QBuffer::deleteLater();
 }
 
 void QBuffer_DisconnectNotify(void* ptr, void* sign)
@@ -4670,6 +4797,11 @@ void QCoreApplication_CustomEventDefault(void* ptr, void* event)
 void QCoreApplication_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCoreApplication*>(ptr), "deleteLater");
+}
+
+void QCoreApplication_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCoreApplication*>(ptr)->QCoreApplication::deleteLater();
 }
 
 void QCoreApplication_DisconnectNotify(void* ptr, void* sign)
@@ -5892,6 +6024,11 @@ void QEventLoop_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QEventLoop*>(ptr), "deleteLater");
 }
 
+void QEventLoop_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QEventLoop*>(ptr)->QEventLoop::deleteLater();
+}
+
 void QEventLoop_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QEventLoop*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -6068,6 +6205,11 @@ void QEventTransition_CustomEventDefault(void* ptr, void* event)
 void QEventTransition_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QEventTransition*>(ptr), "deleteLater");
+}
+
+void QEventTransition_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QEventTransition*>(ptr)->QEventTransition::deleteLater();
 }
 
 void QEventTransition_DisconnectNotify(void* ptr, void* sign)
@@ -6491,6 +6633,11 @@ void QFile_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFile*>(ptr), "deleteLater");
 }
 
+void QFile_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFile*>(ptr)->QFile::deleteLater();
+}
+
 void QFile_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QFile*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -6822,6 +6969,11 @@ void QFileDevice_CustomEventDefault(void* ptr, void* event)
 void QFileDevice_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDevice*>(ptr), "deleteLater");
+}
+
+void QFileDevice_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFileDevice*>(ptr)->QFileDevice::deleteLater();
 }
 
 void QFileDevice_DisconnectNotify(void* ptr, void* sign)
@@ -7189,6 +7341,11 @@ void QFileSelector_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFileSelector*>(ptr), "deleteLater");
 }
 
+void QFileSelector_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFileSelector*>(ptr)->QFileSelector::deleteLater();
+}
+
 void QFileSelector_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QFileSelector*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7357,6 +7514,11 @@ void QFileSystemWatcher_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFileSystemWatcher*>(ptr), "deleteLater");
 }
 
+void QFileSystemWatcher_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFileSystemWatcher*>(ptr)->QFileSystemWatcher::deleteLater();
+}
+
 void QFileSystemWatcher_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QFileSystemWatcher*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7497,6 +7659,11 @@ void QFinalState_CustomEventDefault(void* ptr, void* event)
 void QFinalState_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFinalState*>(ptr), "deleteLater");
+}
+
+void QFinalState_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFinalState*>(ptr)->QFinalState::deleteLater();
 }
 
 void QFinalState_DisconnectNotify(void* ptr, void* sign)
@@ -7702,6 +7869,11 @@ void QHistoryState_CustomEventDefault(void* ptr, void* event)
 void QHistoryState_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHistoryState*>(ptr), "deleteLater");
+}
+
+void QHistoryState_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QHistoryState*>(ptr)->QHistoryState::deleteLater();
 }
 
 void QHistoryState_DisconnectNotify(void* ptr, void* sign)
@@ -8132,6 +8304,11 @@ void QIODevice_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QIODevice*>(ptr), "deleteLater");
 }
 
+void QIODevice_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QIODevice*>(ptr)->QIODevice::deleteLater();
+}
+
 void QIODevice_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QIODevice*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -8477,6 +8654,11 @@ void QIdentityProxyModel_ResetInternalData(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QIdentityProxyModel*>(ptr), "resetInternalData");
 }
 
+void QIdentityProxyModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::resetInternalData();
+}
+
 void QIdentityProxyModel_Revert(void* ptr)
 {
 	static_cast<QIdentityProxyModel*>(ptr)->revert();
@@ -8620,6 +8802,11 @@ void QIdentityProxyModel_CustomEventDefault(void* ptr, void* event)
 void QIdentityProxyModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QIdentityProxyModel*>(ptr), "deleteLater");
+}
+
+void QIdentityProxyModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::deleteLater();
 }
 
 void QIdentityProxyModel_DisconnectNotify(void* ptr, void* sign)
@@ -8978,6 +9165,11 @@ void QItemSelectionModel_CustomEventDefault(void* ptr, void* event)
 void QItemSelectionModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "deleteLater");
+}
+
+void QItemSelectionModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::deleteLater();
 }
 
 void QItemSelectionModel_DisconnectNotify(void* ptr, void* sign)
@@ -9718,6 +9910,11 @@ void QLibrary_CustomEventDefault(void* ptr, void* event)
 void QLibrary_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLibrary*>(ptr), "deleteLater");
+}
+
+void QLibrary_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLibrary*>(ptr)->QLibrary::deleteLater();
 }
 
 void QLibrary_DisconnectNotify(void* ptr, void* sign)
@@ -11367,6 +11564,11 @@ void QMimeData_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMimeData*>(ptr), "deleteLater");
 }
 
+void QMimeData_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMimeData*>(ptr)->QMimeData::deleteLater();
+}
+
 void QMimeData_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMimeData*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -12014,6 +12216,11 @@ void QObjectCleanupHandler_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QObjectCleanupHandler*>(ptr), "deleteLater");
 }
 
+void QObjectCleanupHandler_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QObjectCleanupHandler*>(ptr)->QObjectCleanupHandler::deleteLater();
+}
+
 void QObjectCleanupHandler_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QObjectCleanupHandler*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -12144,9 +12351,19 @@ void QParallelAnimationGroup_SetCurrentTime(void* ptr, int msecs)
 	QMetaObject::invokeMethod(static_cast<QParallelAnimationGroup*>(ptr), "setCurrentTime", Q_ARG(int, msecs));
 }
 
+void QParallelAnimationGroup_SetCurrentTimeDefault(void* ptr, int msecs)
+{
+	static_cast<QParallelAnimationGroup*>(ptr)->QParallelAnimationGroup::setCurrentTime(msecs);
+}
+
 void QParallelAnimationGroup_Pause(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QParallelAnimationGroup*>(ptr), "pause");
+}
+
+void QParallelAnimationGroup_PauseDefault(void* ptr)
+{
+	static_cast<QParallelAnimationGroup*>(ptr)->QParallelAnimationGroup::pause();
 }
 
 void QParallelAnimationGroup_Resume(void* ptr)
@@ -12154,9 +12371,19 @@ void QParallelAnimationGroup_Resume(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QParallelAnimationGroup*>(ptr), "resume");
 }
 
+void QParallelAnimationGroup_ResumeDefault(void* ptr)
+{
+	static_cast<QParallelAnimationGroup*>(ptr)->QParallelAnimationGroup::resume();
+}
+
 void QParallelAnimationGroup_SetPaused(void* ptr, int paused)
 {
 	QMetaObject::invokeMethod(static_cast<QParallelAnimationGroup*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
+}
+
+void QParallelAnimationGroup_SetPausedDefault(void* ptr, int paused)
+{
+	static_cast<QParallelAnimationGroup*>(ptr)->QParallelAnimationGroup::setPaused(paused != 0);
 }
 
 void QParallelAnimationGroup_Start(void* ptr, int policy)
@@ -12164,9 +12391,19 @@ void QParallelAnimationGroup_Start(void* ptr, int policy)
 	QMetaObject::invokeMethod(static_cast<QParallelAnimationGroup*>(ptr), "start", Q_ARG(QAbstractAnimation::DeletionPolicy, static_cast<QAbstractAnimation::DeletionPolicy>(policy)));
 }
 
+void QParallelAnimationGroup_StartDefault(void* ptr, int policy)
+{
+	static_cast<QParallelAnimationGroup*>(ptr)->QParallelAnimationGroup::start(static_cast<QAbstractAnimation::DeletionPolicy>(policy));
+}
+
 void QParallelAnimationGroup_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QParallelAnimationGroup*>(ptr), "stop");
+}
+
+void QParallelAnimationGroup_StopDefault(void* ptr)
+{
+	static_cast<QParallelAnimationGroup*>(ptr)->QParallelAnimationGroup::stop();
 }
 
 void QParallelAnimationGroup_TimerEvent(void* ptr, void* event)
@@ -12212,6 +12449,11 @@ void QParallelAnimationGroup_CustomEventDefault(void* ptr, void* event)
 void QParallelAnimationGroup_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QParallelAnimationGroup*>(ptr), "deleteLater");
+}
+
+void QParallelAnimationGroup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QParallelAnimationGroup*>(ptr)->QParallelAnimationGroup::deleteLater();
 }
 
 void QParallelAnimationGroup_DisconnectNotify(void* ptr, void* sign)
@@ -12325,9 +12567,19 @@ void QPauseAnimation_SetCurrentTime(void* ptr, int msecs)
 	QMetaObject::invokeMethod(static_cast<QPauseAnimation*>(ptr), "setCurrentTime", Q_ARG(int, msecs));
 }
 
+void QPauseAnimation_SetCurrentTimeDefault(void* ptr, int msecs)
+{
+	static_cast<QPauseAnimation*>(ptr)->QPauseAnimation::setCurrentTime(msecs);
+}
+
 void QPauseAnimation_Pause(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPauseAnimation*>(ptr), "pause");
+}
+
+void QPauseAnimation_PauseDefault(void* ptr)
+{
+	static_cast<QPauseAnimation*>(ptr)->QPauseAnimation::pause();
 }
 
 void QPauseAnimation_Resume(void* ptr)
@@ -12335,9 +12587,19 @@ void QPauseAnimation_Resume(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPauseAnimation*>(ptr), "resume");
 }
 
+void QPauseAnimation_ResumeDefault(void* ptr)
+{
+	static_cast<QPauseAnimation*>(ptr)->QPauseAnimation::resume();
+}
+
 void QPauseAnimation_SetPaused(void* ptr, int paused)
 {
 	QMetaObject::invokeMethod(static_cast<QPauseAnimation*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
+}
+
+void QPauseAnimation_SetPausedDefault(void* ptr, int paused)
+{
+	static_cast<QPauseAnimation*>(ptr)->QPauseAnimation::setPaused(paused != 0);
 }
 
 void QPauseAnimation_Start(void* ptr, int policy)
@@ -12345,9 +12607,19 @@ void QPauseAnimation_Start(void* ptr, int policy)
 	QMetaObject::invokeMethod(static_cast<QPauseAnimation*>(ptr), "start", Q_ARG(QAbstractAnimation::DeletionPolicy, static_cast<QAbstractAnimation::DeletionPolicy>(policy)));
 }
 
+void QPauseAnimation_StartDefault(void* ptr, int policy)
+{
+	static_cast<QPauseAnimation*>(ptr)->QPauseAnimation::start(static_cast<QAbstractAnimation::DeletionPolicy>(policy));
+}
+
 void QPauseAnimation_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPauseAnimation*>(ptr), "stop");
+}
+
+void QPauseAnimation_StopDefault(void* ptr)
+{
+	static_cast<QPauseAnimation*>(ptr)->QPauseAnimation::stop();
 }
 
 void QPauseAnimation_UpdateDirection(void* ptr, int direction)
@@ -12413,6 +12685,11 @@ void QPauseAnimation_CustomEventDefault(void* ptr, void* event)
 void QPauseAnimation_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPauseAnimation*>(ptr), "deleteLater");
+}
+
+void QPauseAnimation_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPauseAnimation*>(ptr)->QPauseAnimation::deleteLater();
 }
 
 void QPauseAnimation_DisconnectNotify(void* ptr, void* sign)
@@ -12618,6 +12895,11 @@ void QPluginLoader_CustomEventDefault(void* ptr, void* event)
 void QPluginLoader_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPluginLoader*>(ptr), "deleteLater");
+}
+
+void QPluginLoader_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPluginLoader*>(ptr)->QPluginLoader::deleteLater();
 }
 
 void QPluginLoader_DisconnectNotify(void* ptr, void* sign)
@@ -13320,6 +13602,11 @@ void QProcess_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProcess*>(ptr), "deleteLater");
 }
 
+void QProcess_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QProcess*>(ptr)->QProcess::deleteLater();
+}
+
 void QProcess_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QProcess*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -13558,9 +13845,19 @@ void QPropertyAnimation_SetCurrentTime(void* ptr, int msecs)
 	QMetaObject::invokeMethod(static_cast<QPropertyAnimation*>(ptr), "setCurrentTime", Q_ARG(int, msecs));
 }
 
+void QPropertyAnimation_SetCurrentTimeDefault(void* ptr, int msecs)
+{
+	static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::setCurrentTime(msecs);
+}
+
 void QPropertyAnimation_Pause(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPropertyAnimation*>(ptr), "pause");
+}
+
+void QPropertyAnimation_PauseDefault(void* ptr)
+{
+	static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::pause();
 }
 
 void QPropertyAnimation_Resume(void* ptr)
@@ -13568,9 +13865,19 @@ void QPropertyAnimation_Resume(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPropertyAnimation*>(ptr), "resume");
 }
 
+void QPropertyAnimation_ResumeDefault(void* ptr)
+{
+	static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::resume();
+}
+
 void QPropertyAnimation_SetPaused(void* ptr, int paused)
 {
 	QMetaObject::invokeMethod(static_cast<QPropertyAnimation*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
+}
+
+void QPropertyAnimation_SetPausedDefault(void* ptr, int paused)
+{
+	static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::setPaused(paused != 0);
 }
 
 void QPropertyAnimation_Start(void* ptr, int policy)
@@ -13578,9 +13885,19 @@ void QPropertyAnimation_Start(void* ptr, int policy)
 	QMetaObject::invokeMethod(static_cast<QPropertyAnimation*>(ptr), "start", Q_ARG(QAbstractAnimation::DeletionPolicy, static_cast<QAbstractAnimation::DeletionPolicy>(policy)));
 }
 
+void QPropertyAnimation_StartDefault(void* ptr, int policy)
+{
+	static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::start(static_cast<QAbstractAnimation::DeletionPolicy>(policy));
+}
+
 void QPropertyAnimation_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPropertyAnimation*>(ptr), "stop");
+}
+
+void QPropertyAnimation_StopDefault(void* ptr)
+{
+	static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::stop();
 }
 
 void QPropertyAnimation_UpdateDirection(void* ptr, int direction)
@@ -13636,6 +13953,11 @@ void QPropertyAnimation_CustomEventDefault(void* ptr, void* event)
 void QPropertyAnimation_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPropertyAnimation*>(ptr), "deleteLater");
+}
+
+void QPropertyAnimation_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPropertyAnimation*>(ptr)->QPropertyAnimation::deleteLater();
 }
 
 void QPropertyAnimation_DisconnectNotify(void* ptr, void* sign)
@@ -15164,6 +15486,11 @@ void QSaveFile_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSaveFile*>(ptr), "deleteLater");
 }
 
+void QSaveFile_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSaveFile*>(ptr)->QSaveFile::deleteLater();
+}
+
 void QSaveFile_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSaveFile*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -15360,9 +15687,19 @@ void QSequentialAnimationGroup_SetCurrentTime(void* ptr, int msecs)
 	QMetaObject::invokeMethod(static_cast<QSequentialAnimationGroup*>(ptr), "setCurrentTime", Q_ARG(int, msecs));
 }
 
+void QSequentialAnimationGroup_SetCurrentTimeDefault(void* ptr, int msecs)
+{
+	static_cast<QSequentialAnimationGroup*>(ptr)->QSequentialAnimationGroup::setCurrentTime(msecs);
+}
+
 void QSequentialAnimationGroup_Pause(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSequentialAnimationGroup*>(ptr), "pause");
+}
+
+void QSequentialAnimationGroup_PauseDefault(void* ptr)
+{
+	static_cast<QSequentialAnimationGroup*>(ptr)->QSequentialAnimationGroup::pause();
 }
 
 void QSequentialAnimationGroup_Resume(void* ptr)
@@ -15370,9 +15707,19 @@ void QSequentialAnimationGroup_Resume(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSequentialAnimationGroup*>(ptr), "resume");
 }
 
+void QSequentialAnimationGroup_ResumeDefault(void* ptr)
+{
+	static_cast<QSequentialAnimationGroup*>(ptr)->QSequentialAnimationGroup::resume();
+}
+
 void QSequentialAnimationGroup_SetPaused(void* ptr, int paused)
 {
 	QMetaObject::invokeMethod(static_cast<QSequentialAnimationGroup*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
+}
+
+void QSequentialAnimationGroup_SetPausedDefault(void* ptr, int paused)
+{
+	static_cast<QSequentialAnimationGroup*>(ptr)->QSequentialAnimationGroup::setPaused(paused != 0);
 }
 
 void QSequentialAnimationGroup_Start(void* ptr, int policy)
@@ -15380,9 +15727,19 @@ void QSequentialAnimationGroup_Start(void* ptr, int policy)
 	QMetaObject::invokeMethod(static_cast<QSequentialAnimationGroup*>(ptr), "start", Q_ARG(QAbstractAnimation::DeletionPolicy, static_cast<QAbstractAnimation::DeletionPolicy>(policy)));
 }
 
+void QSequentialAnimationGroup_StartDefault(void* ptr, int policy)
+{
+	static_cast<QSequentialAnimationGroup*>(ptr)->QSequentialAnimationGroup::start(static_cast<QAbstractAnimation::DeletionPolicy>(policy));
+}
+
 void QSequentialAnimationGroup_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSequentialAnimationGroup*>(ptr), "stop");
+}
+
+void QSequentialAnimationGroup_StopDefault(void* ptr)
+{
+	static_cast<QSequentialAnimationGroup*>(ptr)->QSequentialAnimationGroup::stop();
 }
 
 void QSequentialAnimationGroup_TimerEvent(void* ptr, void* event)
@@ -15428,6 +15785,11 @@ void QSequentialAnimationGroup_CustomEventDefault(void* ptr, void* event)
 void QSequentialAnimationGroup_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSequentialAnimationGroup*>(ptr), "deleteLater");
+}
+
+void QSequentialAnimationGroup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSequentialAnimationGroup*>(ptr)->QSequentialAnimationGroup::deleteLater();
 }
 
 void QSequentialAnimationGroup_DisconnectNotify(void* ptr, void* sign)
@@ -15734,6 +16096,11 @@ void QSettings_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSettings*>(ptr), "deleteLater");
 }
 
+void QSettings_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSettings*>(ptr)->QSettings::deleteLater();
+}
+
 void QSettings_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSettings*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -15912,6 +16279,11 @@ void QSharedMemory_CustomEventDefault(void* ptr, void* event)
 void QSharedMemory_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSharedMemory*>(ptr), "deleteLater");
+}
+
+void QSharedMemory_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSharedMemory*>(ptr)->QSharedMemory::deleteLater();
 }
 
 void QSharedMemory_DisconnectNotify(void* ptr, void* sign)
@@ -16170,6 +16542,11 @@ void QSignalMapper_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSignalMapper*>(ptr), "deleteLater");
 }
 
+void QSignalMapper_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSignalMapper*>(ptr)->QSignalMapper::deleteLater();
+}
+
 void QSignalMapper_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSignalMapper*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -16358,6 +16735,11 @@ void QSignalTransition_CustomEventDefault(void* ptr, void* event)
 void QSignalTransition_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSignalTransition*>(ptr), "deleteLater");
+}
+
+void QSignalTransition_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSignalTransition*>(ptr)->QSignalTransition::deleteLater();
 }
 
 void QSignalTransition_DisconnectNotify(void* ptr, void* sign)
@@ -16689,6 +17071,11 @@ void QSocketNotifier_CustomEventDefault(void* ptr, void* event)
 void QSocketNotifier_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSocketNotifier*>(ptr), "deleteLater");
+}
+
+void QSocketNotifier_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::deleteLater();
 }
 
 void QSocketNotifier_DisconnectNotify(void* ptr, void* sign)
@@ -17228,6 +17615,11 @@ void QSortFilterProxyModel_ResetInternalData(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "resetInternalData");
 }
 
+void QSortFilterProxyModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::resetInternalData();
+}
+
 void QSortFilterProxyModel_Revert(void* ptr)
 {
 	static_cast<QSortFilterProxyModel*>(ptr)->revert();
@@ -17321,6 +17713,11 @@ void QSortFilterProxyModel_CustomEventDefault(void* ptr, void* event)
 void QSortFilterProxyModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "deleteLater");
+}
+
+void QSortFilterProxyModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::deleteLater();
 }
 
 void QSortFilterProxyModel_DisconnectNotify(void* ptr, void* sign)
@@ -17616,6 +18013,11 @@ void QState_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QState*>(ptr), "deleteLater");
 }
 
+void QState_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QState*>(ptr)->QState::deleteLater();
+}
+
 void QState_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QState*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -17893,6 +18295,11 @@ void QStateMachine_CustomEventDefault(void* ptr, void* event)
 void QStateMachine_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStateMachine*>(ptr), "deleteLater");
+}
+
+void QStateMachine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStateMachine*>(ptr)->QStateMachine::deleteLater();
 }
 
 void QStateMachine_DisconnectNotify(void* ptr, void* sign)
@@ -18246,6 +18653,11 @@ int QStringListModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QStringListModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
+int QStringListModel_ColumnCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QStringListModel*>(ptr)->QStringListModel::columnCount(*static_cast<QModelIndex*>(parent));
+}
+
 void QStringListModel_FetchMore(void* ptr, void* parent)
 {
 	static_cast<QStringListModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
@@ -18321,6 +18733,11 @@ void* QStringListModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QStringListModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+void* QStringListModel_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<QStringListModel*>(ptr)->QStringListModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 int QStringListModel_RemoveColumns(void* ptr, int column, int count, void* parent)
 {
 	return static_cast<QStringListModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
@@ -18334,6 +18751,11 @@ int QStringListModel_RemoveColumnsDefault(void* ptr, int column, int count, void
 void QStringListModel_ResetInternalData(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStringListModel*>(ptr), "resetInternalData");
+}
+
+void QStringListModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QStringListModel*>(ptr)->QStringListModel::resetInternalData();
 }
 
 void QStringListModel_Revert(void* ptr)
@@ -18431,6 +18853,11 @@ void QStringListModel_CustomEventDefault(void* ptr, void* event)
 void QStringListModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStringListModel*>(ptr), "deleteLater");
+}
+
+void QStringListModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStringListModel*>(ptr)->QStringListModel::deleteLater();
 }
 
 void QStringListModel_DisconnectNotify(void* ptr, void* sign)
@@ -19390,6 +19817,11 @@ void QTemporaryFile_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTemporaryFile*>(ptr), "deleteLater");
 }
 
+void QTemporaryFile_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::deleteLater();
+}
+
 void QTemporaryFile_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTemporaryFile*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -20139,6 +20571,11 @@ void QThread_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QThread*>(ptr), "deleteLater");
 }
 
+void QThread_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QThread*>(ptr)->QThread::deleteLater();
+}
+
 void QThread_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QThread*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -20287,6 +20724,11 @@ void QThreadPool_CustomEventDefault(void* ptr, void* event)
 void QThreadPool_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QThreadPool*>(ptr), "deleteLater");
+}
+
+void QThreadPool_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QThreadPool*>(ptr)->QThreadPool::deleteLater();
 }
 
 void QThreadPool_DisconnectNotify(void* ptr, void* sign)
@@ -20690,6 +21132,11 @@ void QTimeLine_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "deleteLater");
 }
 
+void QTimeLine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTimeLine*>(ptr)->QTimeLine::deleteLater();
+}
+
 void QTimeLine_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTimeLine*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -21019,6 +21466,11 @@ void QTimer_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimer*>(ptr), "deleteLater");
 }
 
+void QTimer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTimer*>(ptr)->QTimer::deleteLater();
+}
+
 void QTimer_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTimer*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -21169,6 +21621,11 @@ void QTranslator_CustomEventDefault(void* ptr, void* event)
 void QTranslator_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTranslator*>(ptr), "deleteLater");
+}
+
+void QTranslator_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTranslator*>(ptr)->QTranslator::deleteLater();
 }
 
 void QTranslator_DisconnectNotify(void* ptr, void* sign)
@@ -22164,9 +22621,19 @@ void QVariantAnimation_SetCurrentTime(void* ptr, int msecs)
 	QMetaObject::invokeMethod(static_cast<QVariantAnimation*>(ptr), "setCurrentTime", Q_ARG(int, msecs));
 }
 
+void QVariantAnimation_SetCurrentTimeDefault(void* ptr, int msecs)
+{
+	static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::setCurrentTime(msecs);
+}
+
 void QVariantAnimation_Pause(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVariantAnimation*>(ptr), "pause");
+}
+
+void QVariantAnimation_PauseDefault(void* ptr)
+{
+	static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::pause();
 }
 
 void QVariantAnimation_Resume(void* ptr)
@@ -22174,9 +22641,19 @@ void QVariantAnimation_Resume(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QVariantAnimation*>(ptr), "resume");
 }
 
+void QVariantAnimation_ResumeDefault(void* ptr)
+{
+	static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::resume();
+}
+
 void QVariantAnimation_SetPaused(void* ptr, int paused)
 {
 	QMetaObject::invokeMethod(static_cast<QVariantAnimation*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
+}
+
+void QVariantAnimation_SetPausedDefault(void* ptr, int paused)
+{
+	static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::setPaused(paused != 0);
 }
 
 void QVariantAnimation_Start(void* ptr, int policy)
@@ -22184,9 +22661,19 @@ void QVariantAnimation_Start(void* ptr, int policy)
 	QMetaObject::invokeMethod(static_cast<QVariantAnimation*>(ptr), "start", Q_ARG(QAbstractAnimation::DeletionPolicy, static_cast<QAbstractAnimation::DeletionPolicy>(policy)));
 }
 
+void QVariantAnimation_StartDefault(void* ptr, int policy)
+{
+	static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::start(static_cast<QAbstractAnimation::DeletionPolicy>(policy));
+}
+
 void QVariantAnimation_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVariantAnimation*>(ptr), "stop");
+}
+
+void QVariantAnimation_StopDefault(void* ptr)
+{
+	static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::stop();
 }
 
 void QVariantAnimation_UpdateDirection(void* ptr, int direction)
@@ -22242,6 +22729,11 @@ void QVariantAnimation_CustomEventDefault(void* ptr, void* event)
 void QVariantAnimation_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVariantAnimation*>(ptr), "deleteLater");
+}
+
+void QVariantAnimation_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::deleteLater();
 }
 
 void QVariantAnimation_DisconnectNotify(void* ptr, void* sign)

@@ -66,11 +66,13 @@ extern "C" {
 					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE) && !strings.Contains(function.Meta, "structor"):
 						{
 							var function = *function
-							function.Meta = parser.PLAIN
+							if function.Meta != parser.SLOT {
+								function.Meta = parser.PLAIN
+							}
 
-							var functionHeader = cppFunctionHeader(&function)
-							fmt.Fprintf(bb, "%v;\n", functionHeader)
+							fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
 							if function.Virtual == parser.IMPURE {
+								function.Meta = parser.PLAIN
 								function.Default = true
 								fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
 							}
@@ -107,17 +109,19 @@ extern "C" {
 							implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = true
 
 							if functionIsSupported(parentClass, function) {
-								if (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
-									var function = *function
-									function.Meta = parser.PLAIN
-									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
+								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
 
-									var functionHeader = cppFunctionHeader(&function)
-									fmt.Fprintf(bb, "%v;\n", functionHeader)
-									if function.Virtual == parser.IMPURE {
-										function.Default = true
-										fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
+									var function = *function
+									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
+									if function.Meta != parser.SLOT {
+										function.Meta = parser.PLAIN
 									}
+									fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
+
+									function.Meta = parser.PLAIN
+									function.Default = true
+									fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
+
 								}
 							}
 

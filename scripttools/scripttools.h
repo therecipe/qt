@@ -34,6 +34,7 @@ void QScriptEngineDebugger_ConnectNotifyDefault(void* ptr, void* sign);
 void QScriptEngineDebugger_CustomEvent(void* ptr, void* event);
 void QScriptEngineDebugger_CustomEventDefault(void* ptr, void* event);
 void QScriptEngineDebugger_DeleteLater(void* ptr);
+void QScriptEngineDebugger_DeleteLaterDefault(void* ptr);
 void QScriptEngineDebugger_DisconnectNotify(void* ptr, void* sign);
 void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign);
 int QScriptEngineDebugger_Event(void* ptr, void* e);

@@ -1271,8 +1271,9 @@ func callbackQHelpContentModel_ResetInternalData(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resetInternalData"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentModelFromPointer(ptr).ResetInternalDataDefault()
 	}
-
 }
 
 func (ptr *QHelpContentModel) ConnectResetInternalData(f func()) {
@@ -1298,6 +1299,14 @@ func (ptr *QHelpContentModel) ResetInternalData() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ResetInternalData(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentModel) ResetInternalDataDefault() {
+	defer qt.Recovering("QHelpContentModel::resetInternalData")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_ResetInternalDataDefault(ptr.Pointer())
 	}
 }
 
@@ -1859,8 +1868,9 @@ func callbackQHelpContentModel_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentModelFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpContentModel) ConnectDeleteLater(f func()) {
@@ -1886,6 +1896,15 @@ func (ptr *QHelpContentModel) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpContentModel) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpContentModel::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2174,8 +2193,9 @@ func callbackQHelpContentWidget_Collapse(ptr unsafe.Pointer, ptrName *C.char, in
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "collapse"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).CollapseDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectCollapse(f func(index *core.QModelIndex)) {
@@ -2187,7 +2207,7 @@ func (ptr *QHelpContentWidget) ConnectCollapse(f func(index *core.QModelIndex)) 
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectCollapse(index core.QModelIndex_ITF) {
+func (ptr *QHelpContentWidget) DisconnectCollapse() {
 	defer qt.Recovering("disconnect QHelpContentWidget::collapse")
 
 	if ptr.Pointer() != nil {
@@ -2204,14 +2224,23 @@ func (ptr *QHelpContentWidget) Collapse(index core.QModelIndex_ITF) {
 	}
 }
 
+func (ptr *QHelpContentWidget) CollapseDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpContentWidget::collapse")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_CollapseDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
 //export callbackQHelpContentWidget_Expand
 func callbackQHelpContentWidget_Expand(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) {
 	defer qt.Recovering("callback QHelpContentWidget::expand")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "expand"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ExpandDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectExpand(f func(index *core.QModelIndex)) {
@@ -2223,7 +2252,7 @@ func (ptr *QHelpContentWidget) ConnectExpand(f func(index *core.QModelIndex)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectExpand(index core.QModelIndex_ITF) {
+func (ptr *QHelpContentWidget) DisconnectExpand() {
 	defer qt.Recovering("disconnect QHelpContentWidget::expand")
 
 	if ptr.Pointer() != nil {
@@ -2240,14 +2269,23 @@ func (ptr *QHelpContentWidget) Expand(index core.QModelIndex_ITF) {
 	}
 }
 
+func (ptr *QHelpContentWidget) ExpandDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpContentWidget::expand")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ExpandDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
 //export callbackQHelpContentWidget_CollapseAll
 func callbackQHelpContentWidget_CollapseAll(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::collapseAll")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "collapseAll"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).CollapseAllDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectCollapseAll(f func()) {
@@ -2276,14 +2314,23 @@ func (ptr *QHelpContentWidget) CollapseAll() {
 	}
 }
 
+func (ptr *QHelpContentWidget) CollapseAllDefault() {
+	defer qt.Recovering("QHelpContentWidget::collapseAll")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_CollapseAllDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ColumnCountChanged
 func callbackQHelpContentWidget_ColumnCountChanged(ptr unsafe.Pointer, ptrName *C.char, oldCount C.int, newCount C.int) {
 	defer qt.Recovering("callback QHelpContentWidget::columnCountChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnCountChanged"); signal != nil {
 		signal.(func(int, int))(int(oldCount), int(newCount))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ColumnCountChangedDefault(int(oldCount), int(newCount))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectColumnCountChanged(f func(oldCount int, newCount int)) {
@@ -2295,7 +2342,7 @@ func (ptr *QHelpContentWidget) ConnectColumnCountChanged(f func(oldCount int, ne
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectColumnCountChanged(oldCount int, newCount int) {
+func (ptr *QHelpContentWidget) DisconnectColumnCountChanged() {
 	defer qt.Recovering("disconnect QHelpContentWidget::columnCountChanged")
 
 	if ptr.Pointer() != nil {
@@ -2312,14 +2359,23 @@ func (ptr *QHelpContentWidget) ColumnCountChanged(oldCount int, newCount int) {
 	}
 }
 
+func (ptr *QHelpContentWidget) ColumnCountChangedDefault(oldCount int, newCount int) {
+	defer qt.Recovering("QHelpContentWidget::columnCountChanged")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ColumnCountChangedDefault(ptr.Pointer(), C.int(oldCount), C.int(newCount))
+	}
+}
+
 //export callbackQHelpContentWidget_ColumnMoved
 func callbackQHelpContentWidget_ColumnMoved(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::columnMoved")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnMoved"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ColumnMovedDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectColumnMoved(f func()) {
@@ -2348,14 +2404,23 @@ func (ptr *QHelpContentWidget) ColumnMoved() {
 	}
 }
 
+func (ptr *QHelpContentWidget) ColumnMovedDefault() {
+	defer qt.Recovering("QHelpContentWidget::columnMoved")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ColumnMovedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ColumnResized
 func callbackQHelpContentWidget_ColumnResized(ptr unsafe.Pointer, ptrName *C.char, column C.int, oldSize C.int, newSize C.int) {
 	defer qt.Recovering("callback QHelpContentWidget::columnResized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "columnResized"); signal != nil {
 		signal.(func(int, int, int))(int(column), int(oldSize), int(newSize))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ColumnResizedDefault(int(column), int(oldSize), int(newSize))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectColumnResized(f func(column int, oldSize int, newSize int)) {
@@ -2367,7 +2432,7 @@ func (ptr *QHelpContentWidget) ConnectColumnResized(f func(column int, oldSize i
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectColumnResized(column int, oldSize int, newSize int) {
+func (ptr *QHelpContentWidget) DisconnectColumnResized() {
 	defer qt.Recovering("disconnect QHelpContentWidget::columnResized")
 
 	if ptr.Pointer() != nil {
@@ -2381,6 +2446,14 @@ func (ptr *QHelpContentWidget) ColumnResized(column int, oldSize int, newSize in
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ColumnResized(ptr.Pointer(), C.int(column), C.int(oldSize), C.int(newSize))
+	}
+}
+
+func (ptr *QHelpContentWidget) ColumnResizedDefault(column int, oldSize int, newSize int) {
+	defer qt.Recovering("QHelpContentWidget::columnResized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ColumnResizedDefault(ptr.Pointer(), C.int(column), C.int(oldSize), C.int(newSize))
 	}
 }
 
@@ -2570,8 +2643,9 @@ func callbackQHelpContentWidget_ExpandAll(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "expandAll"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ExpandAllDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectExpandAll(f func()) {
@@ -2600,14 +2674,23 @@ func (ptr *QHelpContentWidget) ExpandAll() {
 	}
 }
 
+func (ptr *QHelpContentWidget) ExpandAllDefault() {
+	defer qt.Recovering("QHelpContentWidget::expandAll")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ExpandAllDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ExpandToDepth
 func callbackQHelpContentWidget_ExpandToDepth(ptr unsafe.Pointer, ptrName *C.char, depth C.int) {
 	defer qt.Recovering("callback QHelpContentWidget::expandToDepth")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "expandToDepth"); signal != nil {
 		signal.(func(int))(int(depth))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ExpandToDepthDefault(int(depth))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectExpandToDepth(f func(depth int)) {
@@ -2619,7 +2702,7 @@ func (ptr *QHelpContentWidget) ConnectExpandToDepth(f func(depth int)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectExpandToDepth(depth int) {
+func (ptr *QHelpContentWidget) DisconnectExpandToDepth() {
 	defer qt.Recovering("disconnect QHelpContentWidget::expandToDepth")
 
 	if ptr.Pointer() != nil {
@@ -2636,14 +2719,23 @@ func (ptr *QHelpContentWidget) ExpandToDepth(depth int) {
 	}
 }
 
+func (ptr *QHelpContentWidget) ExpandToDepthDefault(depth int) {
+	defer qt.Recovering("QHelpContentWidget::expandToDepth")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ExpandToDepthDefault(ptr.Pointer(), C.int(depth))
+	}
+}
+
 //export callbackQHelpContentWidget_HideColumn
 func callbackQHelpContentWidget_HideColumn(ptr unsafe.Pointer, ptrName *C.char, column C.int) {
 	defer qt.Recovering("callback QHelpContentWidget::hideColumn")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hideColumn"); signal != nil {
 		signal.(func(int))(int(column))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).HideColumnDefault(int(column))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectHideColumn(f func(column int)) {
@@ -2655,7 +2747,7 @@ func (ptr *QHelpContentWidget) ConnectHideColumn(f func(column int)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectHideColumn(column int) {
+func (ptr *QHelpContentWidget) DisconnectHideColumn() {
 	defer qt.Recovering("disconnect QHelpContentWidget::hideColumn")
 
 	if ptr.Pointer() != nil {
@@ -2669,6 +2761,14 @@ func (ptr *QHelpContentWidget) HideColumn(column int) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_HideColumn(ptr.Pointer(), C.int(column))
+	}
+}
+
+func (ptr *QHelpContentWidget) HideColumnDefault(column int) {
+	defer qt.Recovering("QHelpContentWidget::hideColumn")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_HideColumnDefault(ptr.Pointer(), C.int(column))
 	}
 }
 
@@ -3226,8 +3326,9 @@ func callbackQHelpContentWidget_ResizeColumnToContents(ptr unsafe.Pointer, ptrNa
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resizeColumnToContents"); signal != nil {
 		signal.(func(int))(int(column))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ResizeColumnToContentsDefault(int(column))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectResizeColumnToContents(f func(column int)) {
@@ -3239,7 +3340,7 @@ func (ptr *QHelpContentWidget) ConnectResizeColumnToContents(f func(column int))
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectResizeColumnToContents(column int) {
+func (ptr *QHelpContentWidget) DisconnectResizeColumnToContents() {
 	defer qt.Recovering("disconnect QHelpContentWidget::resizeColumnToContents")
 
 	if ptr.Pointer() != nil {
@@ -3253,6 +3354,14 @@ func (ptr *QHelpContentWidget) ResizeColumnToContents(column int) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ResizeColumnToContents(ptr.Pointer(), C.int(column))
+	}
+}
+
+func (ptr *QHelpContentWidget) ResizeColumnToContentsDefault(column int) {
+	defer qt.Recovering("QHelpContentWidget::resizeColumnToContents")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ResizeColumnToContentsDefault(ptr.Pointer(), C.int(column))
 	}
 }
 
@@ -3352,8 +3461,9 @@ func callbackQHelpContentWidget_RowsRemoved(ptr unsafe.Pointer, ptrName *C.char,
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "rowsRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(start), int(end))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).RowsRemovedDefault(core.NewQModelIndexFromPointer(parent), int(start), int(end))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectRowsRemoved(f func(parent *core.QModelIndex, start int, end int)) {
@@ -3365,7 +3475,7 @@ func (ptr *QHelpContentWidget) ConnectRowsRemoved(f func(parent *core.QModelInde
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectRowsRemoved(parent core.QModelIndex_ITF, start int, end int) {
+func (ptr *QHelpContentWidget) DisconnectRowsRemoved() {
 	defer qt.Recovering("disconnect QHelpContentWidget::rowsRemoved")
 
 	if ptr.Pointer() != nil {
@@ -3379,6 +3489,14 @@ func (ptr *QHelpContentWidget) RowsRemoved(parent core.QModelIndex_ITF, start in
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RowsRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QHelpContentWidget) RowsRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
+	defer qt.Recovering("QHelpContentWidget::rowsRemoved")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_RowsRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(start), C.int(end))
 	}
 }
 
@@ -3748,8 +3866,9 @@ func callbackQHelpContentWidget_ShowColumn(ptr unsafe.Pointer, ptrName *C.char, 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showColumn"); signal != nil {
 		signal.(func(int))(int(column))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ShowColumnDefault(int(column))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectShowColumn(f func(column int)) {
@@ -3761,7 +3880,7 @@ func (ptr *QHelpContentWidget) ConnectShowColumn(f func(column int)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectShowColumn(column int) {
+func (ptr *QHelpContentWidget) DisconnectShowColumn() {
 	defer qt.Recovering("disconnect QHelpContentWidget::showColumn")
 
 	if ptr.Pointer() != nil {
@@ -3775,6 +3894,14 @@ func (ptr *QHelpContentWidget) ShowColumn(column int) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowColumn(ptr.Pointer(), C.int(column))
+	}
+}
+
+func (ptr *QHelpContentWidget) ShowColumnDefault(column int) {
+	defer qt.Recovering("QHelpContentWidget::showColumn")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ShowColumnDefault(ptr.Pointer(), C.int(column))
 	}
 }
 
@@ -4201,8 +4328,9 @@ func callbackQHelpContentWidget_ClearSelection(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clearSelection"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ClearSelectionDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectClearSelection(f func()) {
@@ -4228,6 +4356,14 @@ func (ptr *QHelpContentWidget) ClearSelection() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ClearSelection(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentWidget) ClearSelectionDefault() {
+	defer qt.Recovering("QHelpContentWidget::clearSelection")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ClearSelectionDefault(ptr.Pointer())
 	}
 }
 
@@ -4417,8 +4553,9 @@ func callbackQHelpContentWidget_Edit(ptr unsafe.Pointer, ptrName *C.char, index 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "edit"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).EditDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectEdit(f func(index *core.QModelIndex)) {
@@ -4430,7 +4567,7 @@ func (ptr *QHelpContentWidget) ConnectEdit(f func(index *core.QModelIndex)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectEdit(index core.QModelIndex_ITF) {
+func (ptr *QHelpContentWidget) DisconnectEdit() {
 	defer qt.Recovering("disconnect QHelpContentWidget::edit")
 
 	if ptr.Pointer() != nil {
@@ -4444,6 +4581,14 @@ func (ptr *QHelpContentWidget) Edit(index core.QModelIndex_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Edit(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QHelpContentWidget) EditDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpContentWidget::edit")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_EditDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
@@ -4866,8 +5011,9 @@ func callbackQHelpContentWidget_ScrollToBottom(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollToBottom"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ScrollToBottomDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectScrollToBottom(f func()) {
@@ -4896,14 +5042,23 @@ func (ptr *QHelpContentWidget) ScrollToBottom() {
 	}
 }
 
+func (ptr *QHelpContentWidget) ScrollToBottomDefault() {
+	defer qt.Recovering("QHelpContentWidget::scrollToBottom")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ScrollToBottomDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ScrollToTop
 func callbackQHelpContentWidget_ScrollToTop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::scrollToTop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollToTop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ScrollToTopDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectScrollToTop(f func()) {
@@ -4929,6 +5084,14 @@ func (ptr *QHelpContentWidget) ScrollToTop() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollToTop(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentWidget) ScrollToTopDefault() {
+	defer qt.Recovering("QHelpContentWidget::scrollToTop")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ScrollToTopDefault(ptr.Pointer())
 	}
 }
 
@@ -4985,8 +5148,9 @@ func callbackQHelpContentWidget_SetCurrentIndex(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setCurrentIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetCurrentIndexDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetCurrentIndex(f func(index *core.QModelIndex)) {
@@ -4998,7 +5162,7 @@ func (ptr *QHelpContentWidget) ConnectSetCurrentIndex(f func(index *core.QModelI
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectSetCurrentIndex(index core.QModelIndex_ITF) {
+func (ptr *QHelpContentWidget) DisconnectSetCurrentIndex() {
 	defer qt.Recovering("disconnect QHelpContentWidget::setCurrentIndex")
 
 	if ptr.Pointer() != nil {
@@ -5012,6 +5176,14 @@ func (ptr *QHelpContentWidget) SetCurrentIndex(index core.QModelIndex_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetCurrentIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QHelpContentWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpContentWidget::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetCurrentIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
@@ -5113,8 +5285,9 @@ func callbackQHelpContentWidget_Update(ptr unsafe.Pointer, ptrName *C.char, inde
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).UpdateDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
@@ -5126,7 +5299,7 @@ func (ptr *QHelpContentWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectUpdate(index core.QModelIndex_ITF) {
+func (ptr *QHelpContentWidget) DisconnectUpdate() {
 	defer qt.Recovering("disconnect QHelpContentWidget::update")
 
 	if ptr.Pointer() != nil {
@@ -5140,6 +5313,14 @@ func (ptr *QHelpContentWidget) Update(index core.QModelIndex_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Update(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QHelpContentWidget) UpdateDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpContentWidget::update")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_UpdateDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
@@ -5789,8 +5970,9 @@ func callbackQHelpContentWidget_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetEnabled(f func(vbo bool)) {
@@ -5802,7 +5984,7 @@ func (ptr *QHelpContentWidget) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectSetEnabled(vbo bool) {
+func (ptr *QHelpContentWidget) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QHelpContentWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -5819,14 +6001,23 @@ func (ptr *QHelpContentWidget) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QHelpContentWidget) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QHelpContentWidget::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpContentWidget_SetStyleSheet
 func callbackQHelpContentWidget_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -5838,7 +6029,7 @@ func (ptr *QHelpContentWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QHelpContentWidget) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QHelpContentWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -5852,6 +6043,14 @@ func (ptr *QHelpContentWidget) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QHelpContentWidget) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QHelpContentWidget::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -5906,8 +6105,9 @@ func callbackQHelpContentWidget_SetWindowModified(ptr unsafe.Pointer, ptrName *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetWindowModified(f func(vbo bool)) {
@@ -5919,7 +6119,7 @@ func (ptr *QHelpContentWidget) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QHelpContentWidget) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QHelpContentWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -5936,14 +6136,23 @@ func (ptr *QHelpContentWidget) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QHelpContentWidget) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QHelpContentWidget::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpContentWidget_SetWindowTitle
 func callbackQHelpContentWidget_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetWindowTitle(f func(vqs string)) {
@@ -5955,7 +6164,7 @@ func (ptr *QHelpContentWidget) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QHelpContentWidget) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QHelpContentWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -5969,6 +6178,14 @@ func (ptr *QHelpContentWidget) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QHelpContentWidget) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QHelpContentWidget::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -6025,7 +6242,7 @@ func callbackQHelpContentWidget_Close(ptr unsafe.Pointer, ptrName *C.char) C.int
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QHelpContentWidget) ConnectClose(f func() bool) {
@@ -6051,6 +6268,15 @@ func (ptr *QHelpContentWidget) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QHelpContentWidget) CloseDefault() bool {
+	defer qt.Recovering("QHelpContentWidget::close")
+
+	if ptr.Pointer() != nil {
+		return C.QHelpContentWidget_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -6200,8 +6426,9 @@ func callbackQHelpContentWidget_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectHide(f func()) {
@@ -6227,6 +6454,14 @@ func (ptr *QHelpContentWidget) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentWidget) HideDefault() {
+	defer qt.Recovering("QHelpContentWidget::hide")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -6326,8 +6561,9 @@ func callbackQHelpContentWidget_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectLower(f func()) {
@@ -6353,6 +6589,14 @@ func (ptr *QHelpContentWidget) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentWidget) LowerDefault() {
+	defer qt.Recovering("QHelpContentWidget::lower")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -6409,8 +6653,9 @@ func callbackQHelpContentWidget_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectRaise(f func()) {
@@ -6439,14 +6684,23 @@ func (ptr *QHelpContentWidget) Raise() {
 	}
 }
 
+func (ptr *QHelpContentWidget) RaiseDefault() {
+	defer qt.Recovering("QHelpContentWidget::raise")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_Repaint
 func callbackQHelpContentWidget_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectRepaint(f func()) {
@@ -6475,14 +6729,23 @@ func (ptr *QHelpContentWidget) Repaint() {
 	}
 }
 
+func (ptr *QHelpContentWidget) RepaintDefault() {
+	defer qt.Recovering("QHelpContentWidget::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_RepaintDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_SetDisabled
 func callbackQHelpContentWidget_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
 	defer qt.Recovering("callback QHelpContentWidget::setDisabled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetDisabled(f func(disable bool)) {
@@ -6494,7 +6757,7 @@ func (ptr *QHelpContentWidget) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectSetDisabled(disable bool) {
+func (ptr *QHelpContentWidget) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QHelpContentWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -6511,14 +6774,23 @@ func (ptr *QHelpContentWidget) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QHelpContentWidget) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QHelpContentWidget::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQHelpContentWidget_SetFocus2
 func callbackQHelpContentWidget_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetFocus2(f func()) {
@@ -6547,14 +6819,23 @@ func (ptr *QHelpContentWidget) SetFocus2() {
 	}
 }
 
+func (ptr *QHelpContentWidget) SetFocus2Default() {
+	defer qt.Recovering("QHelpContentWidget::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_SetHidden
 func callbackQHelpContentWidget_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QHelpContentWidget::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectSetHidden(f func(hidden bool)) {
@@ -6566,7 +6847,7 @@ func (ptr *QHelpContentWidget) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QHelpContentWidget) DisconnectSetHidden(hidden bool) {
+func (ptr *QHelpContentWidget) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QHelpContentWidget::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -6583,14 +6864,23 @@ func (ptr *QHelpContentWidget) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QHelpContentWidget) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QHelpContentWidget::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQHelpContentWidget_Show
 func callbackQHelpContentWidget_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectShow(f func()) {
@@ -6619,14 +6909,23 @@ func (ptr *QHelpContentWidget) Show() {
 	}
 }
 
+func (ptr *QHelpContentWidget) ShowDefault() {
+	defer qt.Recovering("QHelpContentWidget::show")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ShowFullScreen
 func callbackQHelpContentWidget_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectShowFullScreen(f func()) {
@@ -6655,14 +6954,23 @@ func (ptr *QHelpContentWidget) ShowFullScreen() {
 	}
 }
 
+func (ptr *QHelpContentWidget) ShowFullScreenDefault() {
+	defer qt.Recovering("QHelpContentWidget::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ShowMaximized
 func callbackQHelpContentWidget_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectShowMaximized(f func()) {
@@ -6691,14 +6999,23 @@ func (ptr *QHelpContentWidget) ShowMaximized() {
 	}
 }
 
+func (ptr *QHelpContentWidget) ShowMaximizedDefault() {
+	defer qt.Recovering("QHelpContentWidget::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ShowMinimized
 func callbackQHelpContentWidget_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectShowMinimized(f func()) {
@@ -6727,14 +7044,23 @@ func (ptr *QHelpContentWidget) ShowMinimized() {
 	}
 }
 
+func (ptr *QHelpContentWidget) ShowMinimizedDefault() {
+	defer qt.Recovering("QHelpContentWidget::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpContentWidget_ShowNormal
 func callbackQHelpContentWidget_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpContentWidget::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectShowNormal(f func()) {
@@ -6760,6 +7086,14 @@ func (ptr *QHelpContentWidget) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentWidget) ShowNormalDefault() {
+	defer qt.Recovering("QHelpContentWidget::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -6814,8 +7148,9 @@ func callbackQHelpContentWidget_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectUpdateMicroFocus(f func()) {
@@ -6841,6 +7176,14 @@ func (ptr *QHelpContentWidget) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpContentWidget) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QHelpContentWidget::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -6985,8 +7328,9 @@ func callbackQHelpContentWidget_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpContentWidget) ConnectDeleteLater(f func()) {
@@ -7012,6 +7356,15 @@ func (ptr *QHelpContentWidget) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpContentWidget) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpContentWidget::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7448,8 +7801,9 @@ func callbackQHelpEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpEngine) ConnectDeleteLater(f func()) {
@@ -7475,6 +7829,15 @@ func (ptr *QHelpEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8321,8 +8684,9 @@ func callbackQHelpEngineCore_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpEngineCoreFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpEngineCore) ConnectDeleteLater(f func()) {
@@ -8348,6 +8712,15 @@ func (ptr *QHelpEngineCore) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpEngineCore) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpEngineCore::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngineCore_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9347,7 +9720,7 @@ func callbackQHelpIndexModel_ColumnCount(ptr unsafe.Pointer, ptrName *C.char, pa
 		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent)))
 	}
 
-	return C.int(0)
+	return C.int(NewQHelpIndexModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent)))
 }
 
 func (ptr *QHelpIndexModel) ConnectColumnCount(f func(parent *core.QModelIndex) int) {
@@ -9359,7 +9732,7 @@ func (ptr *QHelpIndexModel) ConnectColumnCount(f func(parent *core.QModelIndex) 
 	}
 }
 
-func (ptr *QHelpIndexModel) DisconnectColumnCount(parent core.QModelIndex_ITF) {
+func (ptr *QHelpIndexModel) DisconnectColumnCount() {
 	defer qt.Recovering("disconnect QHelpIndexModel::columnCount")
 
 	if ptr.Pointer() != nil {
@@ -9373,6 +9746,15 @@ func (ptr *QHelpIndexModel) ColumnCount(parent core.QModelIndex_ITF) int {
 
 	if ptr.Pointer() != nil {
 		return int(C.QHelpIndexModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
+	}
+	return 0
+}
+
+func (ptr *QHelpIndexModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
+	defer qt.Recovering("QHelpIndexModel::columnCount")
+
+	if ptr.Pointer() != nil {
+		return int(C.QHelpIndexModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
 	}
 	return 0
 }
@@ -9712,7 +10094,7 @@ func callbackQHelpIndexModel_Parent(ptr unsafe.Pointer, ptrName *C.char, index u
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(nil)
+	return core.PointerFromQModelIndex(NewQHelpIndexModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
 }
 
 func (ptr *QHelpIndexModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -9724,7 +10106,7 @@ func (ptr *QHelpIndexModel) ConnectParent(f func(index *core.QModelIndex) *core.
 	}
 }
 
-func (ptr *QHelpIndexModel) DisconnectParent(index core.QModelIndex_ITF) {
+func (ptr *QHelpIndexModel) DisconnectParent() {
 	defer qt.Recovering("disconnect QHelpIndexModel::parent")
 
 	if ptr.Pointer() != nil {
@@ -9738,6 +10120,15 @@ func (ptr *QHelpIndexModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
+func (ptr *QHelpIndexModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QHelpIndexModel::parent")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
 	return nil
 }
@@ -9795,8 +10186,9 @@ func callbackQHelpIndexModel_ResetInternalData(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resetInternalData"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexModelFromPointer(ptr).ResetInternalDataDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexModel) ConnectResetInternalData(f func()) {
@@ -9822,6 +10214,14 @@ func (ptr *QHelpIndexModel) ResetInternalData() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ResetInternalData(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpIndexModel) ResetInternalDataDefault() {
+	defer qt.Recovering("QHelpIndexModel::resetInternalData")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexModel_ResetInternalDataDefault(ptr.Pointer())
 	}
 }
 
@@ -10244,8 +10644,9 @@ func callbackQHelpIndexModel_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexModelFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexModel) ConnectDeleteLater(f func()) {
@@ -10271,6 +10672,15 @@ func (ptr *QHelpIndexModel) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpIndexModel) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpIndexModel::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -11859,8 +12269,9 @@ func callbackQHelpIndexWidget_ClearSelection(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "clearSelection"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ClearSelectionDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectClearSelection(f func()) {
@@ -11886,6 +12297,14 @@ func (ptr *QHelpIndexWidget) ClearSelection() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ClearSelection(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpIndexWidget) ClearSelectionDefault() {
+	defer qt.Recovering("QHelpIndexWidget::clearSelection")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ClearSelectionDefault(ptr.Pointer())
 	}
 }
 
@@ -12030,8 +12449,9 @@ func callbackQHelpIndexWidget_Edit(ptr unsafe.Pointer, ptrName *C.char, index un
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "edit"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).EditDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectEdit(f func(index *core.QModelIndex)) {
@@ -12043,7 +12463,7 @@ func (ptr *QHelpIndexWidget) ConnectEdit(f func(index *core.QModelIndex)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectEdit(index core.QModelIndex_ITF) {
+func (ptr *QHelpIndexWidget) DisconnectEdit() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::edit")
 
 	if ptr.Pointer() != nil {
@@ -12057,6 +12477,14 @@ func (ptr *QHelpIndexWidget) Edit(index core.QModelIndex_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Edit(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QHelpIndexWidget) EditDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpIndexWidget::edit")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_EditDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
@@ -12612,8 +13040,9 @@ func callbackQHelpIndexWidget_ScrollToBottom(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollToBottom"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ScrollToBottomDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectScrollToBottom(f func()) {
@@ -12642,14 +13071,23 @@ func (ptr *QHelpIndexWidget) ScrollToBottom() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) ScrollToBottomDefault() {
+	defer qt.Recovering("QHelpIndexWidget::scrollToBottom")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ScrollToBottomDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_ScrollToTop
 func callbackQHelpIndexWidget_ScrollToTop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::scrollToTop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "scrollToTop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ScrollToTopDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectScrollToTop(f func()) {
@@ -12675,6 +13113,14 @@ func (ptr *QHelpIndexWidget) ScrollToTop() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollToTop(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpIndexWidget) ScrollToTopDefault() {
+	defer qt.Recovering("QHelpIndexWidget::scrollToTop")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ScrollToTopDefault(ptr.Pointer())
 	}
 }
 
@@ -12776,8 +13222,9 @@ func callbackQHelpIndexWidget_SetCurrentIndex(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setCurrentIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetCurrentIndexDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetCurrentIndex(f func(index *core.QModelIndex)) {
@@ -12789,7 +13236,7 @@ func (ptr *QHelpIndexWidget) ConnectSetCurrentIndex(f func(index *core.QModelInd
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectSetCurrentIndex(index core.QModelIndex_ITF) {
+func (ptr *QHelpIndexWidget) DisconnectSetCurrentIndex() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::setCurrentIndex")
 
 	if ptr.Pointer() != nil {
@@ -12803,6 +13250,14 @@ func (ptr *QHelpIndexWidget) SetCurrentIndex(index core.QModelIndex_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetCurrentIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QHelpIndexWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpIndexWidget::setCurrentIndex")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetCurrentIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
@@ -13041,8 +13496,9 @@ func callbackQHelpIndexWidget_Update(ptr unsafe.Pointer, ptrName *C.char, index 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).UpdateDefault(core.NewQModelIndexFromPointer(index))
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
@@ -13054,7 +13510,7 @@ func (ptr *QHelpIndexWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectUpdate(index core.QModelIndex_ITF) {
+func (ptr *QHelpIndexWidget) DisconnectUpdate() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::update")
 
 	if ptr.Pointer() != nil {
@@ -13068,6 +13524,14 @@ func (ptr *QHelpIndexWidget) Update(index core.QModelIndex_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Update(ptr.Pointer(), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QHelpIndexWidget) UpdateDefault(index core.QModelIndex_ITF) {
+	defer qt.Recovering("QHelpIndexWidget::update")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_UpdateDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
@@ -13715,8 +14179,9 @@ func callbackQHelpIndexWidget_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vb
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetEnabled(f func(vbo bool)) {
@@ -13728,7 +14193,7 @@ func (ptr *QHelpIndexWidget) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectSetEnabled(vbo bool) {
+func (ptr *QHelpIndexWidget) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -13745,14 +14210,23 @@ func (ptr *QHelpIndexWidget) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QHelpIndexWidget) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QHelpIndexWidget::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpIndexWidget_SetStyleSheet
 func callbackQHelpIndexWidget_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -13764,7 +14238,7 @@ func (ptr *QHelpIndexWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QHelpIndexWidget) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -13778,6 +14252,14 @@ func (ptr *QHelpIndexWidget) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QHelpIndexWidget) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QHelpIndexWidget::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -13832,8 +14314,9 @@ func callbackQHelpIndexWidget_SetWindowModified(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetWindowModified(f func(vbo bool)) {
@@ -13845,7 +14328,7 @@ func (ptr *QHelpIndexWidget) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QHelpIndexWidget) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -13862,14 +14345,23 @@ func (ptr *QHelpIndexWidget) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QHelpIndexWidget) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QHelpIndexWidget::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpIndexWidget_SetWindowTitle
 func callbackQHelpIndexWidget_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetWindowTitle(f func(vqs string)) {
@@ -13881,7 +14373,7 @@ func (ptr *QHelpIndexWidget) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QHelpIndexWidget) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -13895,6 +14387,14 @@ func (ptr *QHelpIndexWidget) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QHelpIndexWidget) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QHelpIndexWidget::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -13951,7 +14451,7 @@ func callbackQHelpIndexWidget_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QHelpIndexWidget) ConnectClose(f func() bool) {
@@ -13977,6 +14477,15 @@ func (ptr *QHelpIndexWidget) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QHelpIndexWidget) CloseDefault() bool {
+	defer qt.Recovering("QHelpIndexWidget::close")
+
+	if ptr.Pointer() != nil {
+		return C.QHelpIndexWidget_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -14126,8 +14635,9 @@ func callbackQHelpIndexWidget_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectHide(f func()) {
@@ -14153,6 +14663,14 @@ func (ptr *QHelpIndexWidget) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpIndexWidget) HideDefault() {
+	defer qt.Recovering("QHelpIndexWidget::hide")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -14252,8 +14770,9 @@ func callbackQHelpIndexWidget_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectLower(f func()) {
@@ -14279,6 +14798,14 @@ func (ptr *QHelpIndexWidget) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpIndexWidget) LowerDefault() {
+	defer qt.Recovering("QHelpIndexWidget::lower")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -14335,8 +14862,9 @@ func callbackQHelpIndexWidget_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectRaise(f func()) {
@@ -14365,14 +14893,23 @@ func (ptr *QHelpIndexWidget) Raise() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) RaiseDefault() {
+	defer qt.Recovering("QHelpIndexWidget::raise")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_Repaint
 func callbackQHelpIndexWidget_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectRepaint(f func()) {
@@ -14401,14 +14938,23 @@ func (ptr *QHelpIndexWidget) Repaint() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) RepaintDefault() {
+	defer qt.Recovering("QHelpIndexWidget::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_RepaintDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_SetDisabled
 func callbackQHelpIndexWidget_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
 	defer qt.Recovering("callback QHelpIndexWidget::setDisabled")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetDisabled(f func(disable bool)) {
@@ -14420,7 +14966,7 @@ func (ptr *QHelpIndexWidget) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectSetDisabled(disable bool) {
+func (ptr *QHelpIndexWidget) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -14437,14 +14983,23 @@ func (ptr *QHelpIndexWidget) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QHelpIndexWidget) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QHelpIndexWidget::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQHelpIndexWidget_SetFocus2
 func callbackQHelpIndexWidget_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetFocus2(f func()) {
@@ -14473,14 +15028,23 @@ func (ptr *QHelpIndexWidget) SetFocus2() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) SetFocus2Default() {
+	defer qt.Recovering("QHelpIndexWidget::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_SetHidden
 func callbackQHelpIndexWidget_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QHelpIndexWidget::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetHidden(f func(hidden bool)) {
@@ -14492,7 +15056,7 @@ func (ptr *QHelpIndexWidget) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectSetHidden(hidden bool) {
+func (ptr *QHelpIndexWidget) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QHelpIndexWidget::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -14509,14 +15073,23 @@ func (ptr *QHelpIndexWidget) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QHelpIndexWidget) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QHelpIndexWidget::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQHelpIndexWidget_Show
 func callbackQHelpIndexWidget_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectShow(f func()) {
@@ -14545,14 +15118,23 @@ func (ptr *QHelpIndexWidget) Show() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) ShowDefault() {
+	defer qt.Recovering("QHelpIndexWidget::show")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_ShowFullScreen
 func callbackQHelpIndexWidget_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowFullScreen(f func()) {
@@ -14581,14 +15163,23 @@ func (ptr *QHelpIndexWidget) ShowFullScreen() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) ShowFullScreenDefault() {
+	defer qt.Recovering("QHelpIndexWidget::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_ShowMaximized
 func callbackQHelpIndexWidget_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowMaximized(f func()) {
@@ -14617,14 +15208,23 @@ func (ptr *QHelpIndexWidget) ShowMaximized() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) ShowMaximizedDefault() {
+	defer qt.Recovering("QHelpIndexWidget::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_ShowMinimized
 func callbackQHelpIndexWidget_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowMinimized(f func()) {
@@ -14653,14 +15253,23 @@ func (ptr *QHelpIndexWidget) ShowMinimized() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) ShowMinimizedDefault() {
+	defer qt.Recovering("QHelpIndexWidget::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_ShowNormal
 func callbackQHelpIndexWidget_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowNormal(f func()) {
@@ -14686,6 +15295,14 @@ func (ptr *QHelpIndexWidget) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpIndexWidget) ShowNormalDefault() {
+	defer qt.Recovering("QHelpIndexWidget::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -14740,8 +15357,9 @@ func callbackQHelpIndexWidget_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectUpdateMicroFocus(f func()) {
@@ -14767,6 +15385,14 @@ func (ptr *QHelpIndexWidget) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpIndexWidget) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QHelpIndexWidget::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -14911,8 +15537,9 @@ func callbackQHelpIndexWidget_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectDeleteLater(f func()) {
@@ -14938,6 +15565,15 @@ func (ptr *QHelpIndexWidget) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpIndexWidget) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpIndexWidget::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -15608,8 +16244,9 @@ func callbackQHelpSearchEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchEngine) ConnectDeleteLater(f func()) {
@@ -15635,6 +16272,15 @@ func (ptr *QHelpSearchEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpSearchEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpSearchEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -16702,8 +17348,9 @@ func callbackQHelpSearchQueryWidget_SetEnabled(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetEnabled(f func(vbo bool)) {
@@ -16715,7 +17362,7 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) DisconnectSetEnabled(vbo bool) {
+func (ptr *QHelpSearchQueryWidget) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -16732,14 +17379,23 @@ func (ptr *QHelpSearchQueryWidget) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_SetStyleSheet
 func callbackQHelpSearchQueryWidget_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -16751,7 +17407,7 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetStyleSheet(f func(styleSheet string
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QHelpSearchQueryWidget) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -16765,6 +17421,14 @@ func (ptr *QHelpSearchQueryWidget) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -16819,8 +17483,9 @@ func callbackQHelpSearchQueryWidget_SetWindowModified(ptr unsafe.Pointer, ptrNam
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetWindowModified(f func(vbo bool)) {
@@ -16832,7 +17497,7 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -16849,14 +17514,23 @@ func (ptr *QHelpSearchQueryWidget) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_SetWindowTitle
 func callbackQHelpSearchQueryWidget_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetWindowTitle(f func(vqs string)) {
@@ -16868,7 +17542,7 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -16882,6 +17556,14 @@ func (ptr *QHelpSearchQueryWidget) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -17030,7 +17712,7 @@ func callbackQHelpSearchQueryWidget_Close(ptr unsafe.Pointer, ptrName *C.char) C
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQHelpSearchQueryWidgetFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectClose(f func() bool) {
@@ -17056,6 +17738,15 @@ func (ptr *QHelpSearchQueryWidget) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QHelpSearchQueryWidget) CloseDefault() bool {
+	defer qt.Recovering("QHelpSearchQueryWidget::close")
+
+	if ptr.Pointer() != nil {
+		return C.QHelpSearchQueryWidget_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -17344,8 +18035,9 @@ func callbackQHelpSearchQueryWidget_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectHide(f func()) {
@@ -17371,6 +18063,14 @@ func (ptr *QHelpSearchQueryWidget) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) HideDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::hide")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -17607,8 +18307,9 @@ func callbackQHelpSearchQueryWidget_Lower(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectLower(f func()) {
@@ -17634,6 +18335,14 @@ func (ptr *QHelpSearchQueryWidget) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) LowerDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::lower")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -17870,8 +18579,9 @@ func callbackQHelpSearchQueryWidget_Raise(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectRaise(f func()) {
@@ -17900,14 +18610,23 @@ func (ptr *QHelpSearchQueryWidget) Raise() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) RaiseDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::raise")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_Repaint
 func callbackQHelpSearchQueryWidget_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectRepaint(f func()) {
@@ -17933,6 +18652,14 @@ func (ptr *QHelpSearchQueryWidget) Repaint() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Repaint(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) RepaintDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_RepaintDefault(ptr.Pointer())
 	}
 }
 
@@ -17987,8 +18714,9 @@ func callbackQHelpSearchQueryWidget_SetDisabled(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetDisabled(f func(disable bool)) {
@@ -18000,7 +18728,7 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) DisconnectSetDisabled(disable bool) {
+func (ptr *QHelpSearchQueryWidget) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -18017,14 +18745,23 @@ func (ptr *QHelpSearchQueryWidget) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_SetFocus2
 func callbackQHelpSearchQueryWidget_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetFocus2(f func()) {
@@ -18053,14 +18790,23 @@ func (ptr *QHelpSearchQueryWidget) SetFocus2() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) SetFocus2Default() {
+	defer qt.Recovering("QHelpSearchQueryWidget::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_SetHidden
 func callbackQHelpSearchQueryWidget_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetHidden(f func(hidden bool)) {
@@ -18072,7 +18818,7 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) DisconnectSetHidden(hidden bool) {
+func (ptr *QHelpSearchQueryWidget) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -18089,14 +18835,23 @@ func (ptr *QHelpSearchQueryWidget) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QHelpSearchQueryWidget::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_Show
 func callbackQHelpSearchQueryWidget_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShow(f func()) {
@@ -18125,14 +18880,23 @@ func (ptr *QHelpSearchQueryWidget) Show() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) ShowDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::show")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_ShowFullScreen
 func callbackQHelpSearchQueryWidget_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowFullScreen(f func()) {
@@ -18161,14 +18925,23 @@ func (ptr *QHelpSearchQueryWidget) ShowFullScreen() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) ShowFullScreenDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_ShowMaximized
 func callbackQHelpSearchQueryWidget_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowMaximized(f func()) {
@@ -18197,14 +18970,23 @@ func (ptr *QHelpSearchQueryWidget) ShowMaximized() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) ShowMaximizedDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_ShowMinimized
 func callbackQHelpSearchQueryWidget_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowMinimized(f func()) {
@@ -18233,14 +19015,23 @@ func (ptr *QHelpSearchQueryWidget) ShowMinimized() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) ShowMinimizedDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_ShowNormal
 func callbackQHelpSearchQueryWidget_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowNormal(f func()) {
@@ -18266,6 +19057,14 @@ func (ptr *QHelpSearchQueryWidget) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) ShowNormalDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -18320,8 +19119,9 @@ func callbackQHelpSearchQueryWidget_Update(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectUpdate(f func()) {
@@ -18350,14 +19150,23 @@ func (ptr *QHelpSearchQueryWidget) Update() {
 	}
 }
 
+func (ptr *QHelpSearchQueryWidget) UpdateDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::update")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_UpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchQueryWidget_UpdateMicroFocus
 func callbackQHelpSearchQueryWidget_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchQueryWidget::updateMicroFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectUpdateMicroFocus(f func()) {
@@ -18383,6 +19192,14 @@ func (ptr *QHelpSearchQueryWidget) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -18617,8 +19434,9 @@ func callbackQHelpSearchQueryWidget_DeleteLater(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchQueryWidgetFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDeleteLater(f func()) {
@@ -18644,6 +19462,15 @@ func (ptr *QHelpSearchQueryWidget) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpSearchQueryWidget) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpSearchQueryWidget::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQueryWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -19575,8 +20402,9 @@ func callbackQHelpSearchResultWidget_SetEnabled(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetEnabled(f func(vbo bool)) {
@@ -19588,7 +20416,7 @@ func (ptr *QHelpSearchResultWidget) ConnectSetEnabled(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) DisconnectSetEnabled(vbo bool) {
+func (ptr *QHelpSearchResultWidget) DisconnectSetEnabled() {
 	defer qt.Recovering("disconnect QHelpSearchResultWidget::setEnabled")
 
 	if ptr.Pointer() != nil {
@@ -19605,14 +20433,23 @@ func (ptr *QHelpSearchResultWidget) SetEnabled(vbo bool) {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) SetEnabledDefault(vbo bool) {
+	defer qt.Recovering("QHelpSearchResultWidget::setEnabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpSearchResultWidget_SetStyleSheet
 func callbackQHelpSearchResultWidget_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::setStyleSheet")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
@@ -19624,7 +20461,7 @@ func (ptr *QHelpSearchResultWidget) ConnectSetStyleSheet(f func(styleSheet strin
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) DisconnectSetStyleSheet(styleSheet string) {
+func (ptr *QHelpSearchResultWidget) DisconnectSetStyleSheet() {
 	defer qt.Recovering("disconnect QHelpSearchResultWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
@@ -19638,6 +20475,14 @@ func (ptr *QHelpSearchResultWidget) SetStyleSheet(styleSheet string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) SetStyleSheetDefault(styleSheet string) {
+	defer qt.Recovering("QHelpSearchResultWidget::setStyleSheet")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
 	}
 }
 
@@ -19692,8 +20537,9 @@ func callbackQHelpSearchResultWidget_SetWindowModified(ptr unsafe.Pointer, ptrNa
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
 		signal.(func(bool))(int(vbo) != 0)
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetWindowModified(f func(vbo bool)) {
@@ -19705,7 +20551,7 @@ func (ptr *QHelpSearchResultWidget) ConnectSetWindowModified(f func(vbo bool)) {
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) DisconnectSetWindowModified(vbo bool) {
+func (ptr *QHelpSearchResultWidget) DisconnectSetWindowModified() {
 	defer qt.Recovering("disconnect QHelpSearchResultWidget::setWindowModified")
 
 	if ptr.Pointer() != nil {
@@ -19722,14 +20568,23 @@ func (ptr *QHelpSearchResultWidget) SetWindowModified(vbo bool) {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) SetWindowModifiedDefault(vbo bool) {
+	defer qt.Recovering("QHelpSearchResultWidget::setWindowModified")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
 //export callbackQHelpSearchResultWidget_SetWindowTitle
 func callbackQHelpSearchResultWidget_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::setWindowTitle")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetWindowTitle(f func(vqs string)) {
@@ -19741,7 +20596,7 @@ func (ptr *QHelpSearchResultWidget) ConnectSetWindowTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) DisconnectSetWindowTitle(vqs string) {
+func (ptr *QHelpSearchResultWidget) DisconnectSetWindowTitle() {
 	defer qt.Recovering("disconnect QHelpSearchResultWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
@@ -19755,6 +20610,14 @@ func (ptr *QHelpSearchResultWidget) SetWindowTitle(vqs string) {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) SetWindowTitleDefault(vqs string) {
+	defer qt.Recovering("QHelpSearchResultWidget::setWindowTitle")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
 	}
 }
 
@@ -19903,7 +20766,7 @@ func callbackQHelpSearchResultWidget_Close(ptr unsafe.Pointer, ptrName *C.char) 
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQHelpSearchResultWidgetFromPointer(ptr).CloseDefault()))
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectClose(f func() bool) {
@@ -19929,6 +20792,15 @@ func (ptr *QHelpSearchResultWidget) Close() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QHelpSearchResultWidget) CloseDefault() bool {
+	defer qt.Recovering("QHelpSearchResultWidget::close")
+
+	if ptr.Pointer() != nil {
+		return C.QHelpSearchResultWidget_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -20217,8 +21089,9 @@ func callbackQHelpSearchResultWidget_Hide(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectHide(f func()) {
@@ -20244,6 +21117,14 @@ func (ptr *QHelpSearchResultWidget) Hide() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) HideDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::hide")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -20480,8 +21361,9 @@ func callbackQHelpSearchResultWidget_Lower(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectLower(f func()) {
@@ -20507,6 +21389,14 @@ func (ptr *QHelpSearchResultWidget) Lower() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) LowerDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::lower")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -20743,8 +21633,9 @@ func callbackQHelpSearchResultWidget_Raise(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectRaise(f func()) {
@@ -20773,14 +21664,23 @@ func (ptr *QHelpSearchResultWidget) Raise() {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) RaiseDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::raise")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchResultWidget_Repaint
 func callbackQHelpSearchResultWidget_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::repaint")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).RepaintDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectRepaint(f func()) {
@@ -20806,6 +21706,14 @@ func (ptr *QHelpSearchResultWidget) Repaint() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Repaint(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) RepaintDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::repaint")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_RepaintDefault(ptr.Pointer())
 	}
 }
 
@@ -20860,8 +21768,9 @@ func callbackQHelpSearchResultWidget_SetDisabled(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
 		signal.(func(bool))(int(disable) != 0)
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetDisabled(f func(disable bool)) {
@@ -20873,7 +21782,7 @@ func (ptr *QHelpSearchResultWidget) ConnectSetDisabled(f func(disable bool)) {
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) DisconnectSetDisabled(disable bool) {
+func (ptr *QHelpSearchResultWidget) DisconnectSetDisabled() {
 	defer qt.Recovering("disconnect QHelpSearchResultWidget::setDisabled")
 
 	if ptr.Pointer() != nil {
@@ -20890,14 +21799,23 @@ func (ptr *QHelpSearchResultWidget) SetDisabled(disable bool) {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) SetDisabledDefault(disable bool) {
+	defer qt.Recovering("QHelpSearchResultWidget::setDisabled")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+	}
+}
+
 //export callbackQHelpSearchResultWidget_SetFocus2
 func callbackQHelpSearchResultWidget_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::setFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetFocus2Default()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetFocus2(f func()) {
@@ -20926,14 +21844,23 @@ func (ptr *QHelpSearchResultWidget) SetFocus2() {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) SetFocus2Default() {
+	defer qt.Recovering("QHelpSearchResultWidget::setFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_SetFocus2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchResultWidget_SetHidden
 func callbackQHelpSearchResultWidget_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::setHidden")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
 		signal.(func(bool))(int(hidden) != 0)
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetHidden(f func(hidden bool)) {
@@ -20945,7 +21872,7 @@ func (ptr *QHelpSearchResultWidget) ConnectSetHidden(f func(hidden bool)) {
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) DisconnectSetHidden(hidden bool) {
+func (ptr *QHelpSearchResultWidget) DisconnectSetHidden() {
 	defer qt.Recovering("disconnect QHelpSearchResultWidget::setHidden")
 
 	if ptr.Pointer() != nil {
@@ -20962,14 +21889,23 @@ func (ptr *QHelpSearchResultWidget) SetHidden(hidden bool) {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) SetHiddenDefault(hidden bool) {
+	defer qt.Recovering("QHelpSearchResultWidget::setHidden")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+	}
+}
+
 //export callbackQHelpSearchResultWidget_Show
 func callbackQHelpSearchResultWidget_Show(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::show")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShow(f func()) {
@@ -20998,14 +21934,23 @@ func (ptr *QHelpSearchResultWidget) Show() {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) ShowDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::show")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchResultWidget_ShowFullScreen
 func callbackQHelpSearchResultWidget_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::showFullScreen")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowFullScreen(f func()) {
@@ -21034,14 +21979,23 @@ func (ptr *QHelpSearchResultWidget) ShowFullScreen() {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) ShowFullScreenDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::showFullScreen")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchResultWidget_ShowMaximized
 func callbackQHelpSearchResultWidget_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::showMaximized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowMaximized(f func()) {
@@ -21070,14 +22024,23 @@ func (ptr *QHelpSearchResultWidget) ShowMaximized() {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) ShowMaximizedDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::showMaximized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchResultWidget_ShowMinimized
 func callbackQHelpSearchResultWidget_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::showMinimized")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowMinimized(f func()) {
@@ -21106,14 +22069,23 @@ func (ptr *QHelpSearchResultWidget) ShowMinimized() {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) ShowMinimizedDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::showMinimized")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchResultWidget_ShowNormal
 func callbackQHelpSearchResultWidget_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::showNormal")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowNormal(f func()) {
@@ -21139,6 +22111,14 @@ func (ptr *QHelpSearchResultWidget) ShowNormal() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) ShowNormalDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::showNormal")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_ShowNormalDefault(ptr.Pointer())
 	}
 }
 
@@ -21193,8 +22173,9 @@ func callbackQHelpSearchResultWidget_Update(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectUpdate(f func()) {
@@ -21223,14 +22204,23 @@ func (ptr *QHelpSearchResultWidget) Update() {
 	}
 }
 
+func (ptr *QHelpSearchResultWidget) UpdateDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::update")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_UpdateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchResultWidget_UpdateMicroFocus
 func callbackQHelpSearchResultWidget_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpSearchResultWidget::updateMicroFocus")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).UpdateMicroFocusDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectUpdateMicroFocus(f func()) {
@@ -21256,6 +22246,14 @@ func (ptr *QHelpSearchResultWidget) UpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_UpdateMicroFocus(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) UpdateMicroFocusDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::updateMicroFocus")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
 }
 
@@ -21490,8 +22488,9 @@ func callbackQHelpSearchResultWidget_DeleteLater(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchResultWidgetFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectDeleteLater(f func()) {
@@ -21517,6 +22516,15 @@ func (ptr *QHelpSearchResultWidget) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpSearchResultWidget) DeleteLaterDefault() {
+	defer qt.Recovering("QHelpSearchResultWidget::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchResultWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

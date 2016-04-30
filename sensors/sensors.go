@@ -150,7 +150,7 @@ func callbackQAccelerometer_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQAccelerometerFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QAccelerometer) ConnectStart(f func() bool) {
@@ -180,14 +180,24 @@ func (ptr *QAccelerometer) Start() bool {
 	return false
 }
 
+func (ptr *QAccelerometer) StartDefault() bool {
+	defer qt.Recovering("QAccelerometer::start")
+
+	if ptr.Pointer() != nil {
+		return C.QAccelerometer_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQAccelerometer_Stop
 func callbackQAccelerometer_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAccelerometer::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAccelerometerFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QAccelerometer) ConnectStop(f func()) {
@@ -213,6 +223,14 @@ func (ptr *QAccelerometer) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QAccelerometer) StopDefault() {
+	defer qt.Recovering("QAccelerometer::stop")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -402,8 +420,9 @@ func callbackQAccelerometer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAccelerometerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAccelerometer) ConnectDeleteLater(f func()) {
@@ -429,6 +448,15 @@ func (ptr *QAccelerometer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccelerometer) DeleteLaterDefault() {
+	defer qt.Recovering("QAccelerometer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1005,8 +1033,9 @@ func callbackQAccelerometerReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAccelerometerReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAccelerometerReading) ConnectDeleteLater(f func()) {
@@ -1032,6 +1061,15 @@ func (ptr *QAccelerometerReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometerReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccelerometerReading) DeleteLaterDefault() {
+	defer qt.Recovering("QAccelerometerReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometerReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1301,7 +1339,7 @@ func callbackQAltimeter_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQAltimeterFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QAltimeter) ConnectStart(f func() bool) {
@@ -1331,14 +1369,24 @@ func (ptr *QAltimeter) Start() bool {
 	return false
 }
 
+func (ptr *QAltimeter) StartDefault() bool {
+	defer qt.Recovering("QAltimeter::start")
+
+	if ptr.Pointer() != nil {
+		return C.QAltimeter_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQAltimeter_Stop
 func callbackQAltimeter_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAltimeter::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAltimeterFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QAltimeter) ConnectStop(f func()) {
@@ -1364,6 +1412,14 @@ func (ptr *QAltimeter) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeter_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QAltimeter) StopDefault() {
+	defer qt.Recovering("QAltimeter::stop")
+
+	if ptr.Pointer() != nil {
+		C.QAltimeter_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -1553,8 +1609,9 @@ func callbackQAltimeter_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAltimeterFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAltimeter) ConnectDeleteLater(f func()) {
@@ -1580,6 +1637,15 @@ func (ptr *QAltimeter) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeter_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAltimeter) DeleteLaterDefault() {
+	defer qt.Recovering("QAltimeter::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAltimeter_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2122,8 +2188,9 @@ func callbackQAltimeterReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAltimeterReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAltimeterReading) ConnectDeleteLater(f func()) {
@@ -2149,6 +2216,15 @@ func (ptr *QAltimeterReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeterReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAltimeterReading) DeleteLaterDefault() {
+	defer qt.Recovering("QAltimeterReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAltimeterReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2703,8 +2779,9 @@ func callbackQAmbientLightReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAmbientLightReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAmbientLightReading) ConnectDeleteLater(f func()) {
@@ -2730,6 +2807,15 @@ func (ptr *QAmbientLightReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientLightReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAmbientLightReading) DeleteLaterDefault() {
+	defer qt.Recovering("QAmbientLightReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientLightReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2999,7 +3085,7 @@ func callbackQAmbientLightSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.in
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQAmbientLightSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QAmbientLightSensor) ConnectStart(f func() bool) {
@@ -3029,14 +3115,24 @@ func (ptr *QAmbientLightSensor) Start() bool {
 	return false
 }
 
+func (ptr *QAmbientLightSensor) StartDefault() bool {
+	defer qt.Recovering("QAmbientLightSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QAmbientLightSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQAmbientLightSensor_Stop
 func callbackQAmbientLightSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAmbientLightSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAmbientLightSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QAmbientLightSensor) ConnectStop(f func()) {
@@ -3062,6 +3158,14 @@ func (ptr *QAmbientLightSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientLightSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QAmbientLightSensor) StopDefault() {
+	defer qt.Recovering("QAmbientLightSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientLightSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -3251,8 +3355,9 @@ func callbackQAmbientLightSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAmbientLightSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAmbientLightSensor) ConnectDeleteLater(f func()) {
@@ -3278,6 +3383,15 @@ func (ptr *QAmbientLightSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientLightSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAmbientLightSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QAmbientLightSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientLightSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3820,8 +3934,9 @@ func callbackQAmbientTemperatureReading_DeleteLater(ptr unsafe.Pointer, ptrName 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAmbientTemperatureReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAmbientTemperatureReading) ConnectDeleteLater(f func()) {
@@ -3847,6 +3962,15 @@ func (ptr *QAmbientTemperatureReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAmbientTemperatureReading) DeleteLaterDefault() {
+	defer qt.Recovering("QAmbientTemperatureReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4116,7 +4240,7 @@ func callbackQAmbientTemperatureSensor_Start(ptr unsafe.Pointer, ptrName *C.char
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQAmbientTemperatureSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QAmbientTemperatureSensor) ConnectStart(f func() bool) {
@@ -4146,14 +4270,24 @@ func (ptr *QAmbientTemperatureSensor) Start() bool {
 	return false
 }
 
+func (ptr *QAmbientTemperatureSensor) StartDefault() bool {
+	defer qt.Recovering("QAmbientTemperatureSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QAmbientTemperatureSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQAmbientTemperatureSensor_Stop
 func callbackQAmbientTemperatureSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QAmbientTemperatureSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAmbientTemperatureSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QAmbientTemperatureSensor) ConnectStop(f func()) {
@@ -4179,6 +4313,14 @@ func (ptr *QAmbientTemperatureSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) StopDefault() {
+	defer qt.Recovering("QAmbientTemperatureSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -4368,8 +4510,9 @@ func callbackQAmbientTemperatureSensor_DeleteLater(ptr unsafe.Pointer, ptrName *
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAmbientTemperatureSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAmbientTemperatureSensor) ConnectDeleteLater(f func()) {
@@ -4395,6 +4538,15 @@ func (ptr *QAmbientTemperatureSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAmbientTemperatureSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QAmbientTemperatureSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientTemperatureSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4664,7 +4816,7 @@ func callbackQCompass_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQCompassFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QCompass) ConnectStart(f func() bool) {
@@ -4694,14 +4846,24 @@ func (ptr *QCompass) Start() bool {
 	return false
 }
 
+func (ptr *QCompass) StartDefault() bool {
+	defer qt.Recovering("QCompass::start")
+
+	if ptr.Pointer() != nil {
+		return C.QCompass_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQCompass_Stop
 func callbackQCompass_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QCompass::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCompassFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QCompass) ConnectStop(f func()) {
@@ -4727,6 +4889,14 @@ func (ptr *QCompass) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QCompass_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QCompass) StopDefault() {
+	defer qt.Recovering("QCompass::stop")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -4916,8 +5086,9 @@ func callbackQCompass_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCompassFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QCompass) ConnectDeleteLater(f func()) {
@@ -4943,6 +5114,15 @@ func (ptr *QCompass) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QCompass_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QCompass) DeleteLaterDefault() {
+	defer qt.Recovering("QCompass::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5502,8 +5682,9 @@ func callbackQCompassReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCompassReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QCompassReading) ConnectDeleteLater(f func()) {
@@ -5529,6 +5710,15 @@ func (ptr *QCompassReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QCompassReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QCompassReading) DeleteLaterDefault() {
+	defer qt.Recovering("QCompassReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QCompassReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6071,8 +6261,9 @@ func callbackQDistanceReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDistanceReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDistanceReading) ConnectDeleteLater(f func()) {
@@ -6098,6 +6289,15 @@ func (ptr *QDistanceReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDistanceReading) DeleteLaterDefault() {
+	defer qt.Recovering("QDistanceReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDistanceReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6367,7 +6567,7 @@ func callbackQDistanceSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQDistanceSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QDistanceSensor) ConnectStart(f func() bool) {
@@ -6397,14 +6597,24 @@ func (ptr *QDistanceSensor) Start() bool {
 	return false
 }
 
+func (ptr *QDistanceSensor) StartDefault() bool {
+	defer qt.Recovering("QDistanceSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QDistanceSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQDistanceSensor_Stop
 func callbackQDistanceSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QDistanceSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDistanceSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QDistanceSensor) ConnectStop(f func()) {
@@ -6430,6 +6640,14 @@ func (ptr *QDistanceSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QDistanceSensor) StopDefault() {
+	defer qt.Recovering("QDistanceSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QDistanceSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -6619,8 +6837,9 @@ func callbackQDistanceSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDistanceSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDistanceSensor) ConnectDeleteLater(f func()) {
@@ -6646,6 +6865,15 @@ func (ptr *QDistanceSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDistanceSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QDistanceSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDistanceSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -6915,7 +7143,7 @@ func callbackQGyroscope_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQGyroscopeFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QGyroscope) ConnectStart(f func() bool) {
@@ -6945,14 +7173,24 @@ func (ptr *QGyroscope) Start() bool {
 	return false
 }
 
+func (ptr *QGyroscope) StartDefault() bool {
+	defer qt.Recovering("QGyroscope::start")
+
+	if ptr.Pointer() != nil {
+		return C.QGyroscope_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQGyroscope_Stop
 func callbackQGyroscope_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QGyroscope::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGyroscopeFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QGyroscope) ConnectStop(f func()) {
@@ -6978,6 +7216,14 @@ func (ptr *QGyroscope) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QGyroscope_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QGyroscope) StopDefault() {
+	defer qt.Recovering("QGyroscope::stop")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscope_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -7167,8 +7413,9 @@ func callbackQGyroscope_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGyroscopeFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGyroscope) ConnectDeleteLater(f func()) {
@@ -7194,6 +7441,15 @@ func (ptr *QGyroscope) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGyroscope_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGyroscope) DeleteLaterDefault() {
+	defer qt.Recovering("QGyroscope::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscope_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7770,8 +8026,9 @@ func callbackQGyroscopeReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGyroscopeReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGyroscopeReading) ConnectDeleteLater(f func()) {
@@ -7797,6 +8054,15 @@ func (ptr *QGyroscopeReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGyroscopeReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGyroscopeReading) DeleteLaterDefault() {
+	defer qt.Recovering("QGyroscopeReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscopeReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8339,8 +8605,9 @@ func callbackQHolsterReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHolsterReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHolsterReading) ConnectDeleteLater(f func()) {
@@ -8366,6 +8633,15 @@ func (ptr *QHolsterReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHolsterReading) DeleteLaterDefault() {
+	defer qt.Recovering("QHolsterReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8635,7 +8911,7 @@ func callbackQHolsterSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQHolsterSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QHolsterSensor) ConnectStart(f func() bool) {
@@ -8665,14 +8941,24 @@ func (ptr *QHolsterSensor) Start() bool {
 	return false
 }
 
+func (ptr *QHolsterSensor) StartDefault() bool {
+	defer qt.Recovering("QHolsterSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QHolsterSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQHolsterSensor_Stop
 func callbackQHolsterSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHolsterSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHolsterSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QHolsterSensor) ConnectStop(f func()) {
@@ -8698,6 +8984,14 @@ func (ptr *QHolsterSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QHolsterSensor) StopDefault() {
+	defer qt.Recovering("QHolsterSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -8887,8 +9181,9 @@ func callbackQHolsterSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHolsterSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHolsterSensor) ConnectDeleteLater(f func()) {
@@ -8914,6 +9209,15 @@ func (ptr *QHolsterSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHolsterSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QHolsterSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHolsterSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9456,8 +9760,9 @@ func callbackQIRProximityReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQIRProximityReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QIRProximityReading) ConnectDeleteLater(f func()) {
@@ -9483,6 +9788,15 @@ func (ptr *QIRProximityReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QIRProximityReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QIRProximityReading) DeleteLaterDefault() {
+	defer qt.Recovering("QIRProximityReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximityReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9752,7 +10066,7 @@ func callbackQIRProximitySensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQIRProximitySensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QIRProximitySensor) ConnectStart(f func() bool) {
@@ -9782,14 +10096,24 @@ func (ptr *QIRProximitySensor) Start() bool {
 	return false
 }
 
+func (ptr *QIRProximitySensor) StartDefault() bool {
+	defer qt.Recovering("QIRProximitySensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QIRProximitySensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQIRProximitySensor_Stop
 func callbackQIRProximitySensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QIRProximitySensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQIRProximitySensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QIRProximitySensor) ConnectStop(f func()) {
@@ -9815,6 +10139,14 @@ func (ptr *QIRProximitySensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QIRProximitySensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QIRProximitySensor) StopDefault() {
+	defer qt.Recovering("QIRProximitySensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximitySensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -10004,8 +10336,9 @@ func callbackQIRProximitySensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQIRProximitySensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QIRProximitySensor) ConnectDeleteLater(f func()) {
@@ -10031,6 +10364,15 @@ func (ptr *QIRProximitySensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QIRProximitySensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QIRProximitySensor) DeleteLaterDefault() {
+	defer qt.Recovering("QIRProximitySensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximitySensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -10573,8 +10915,9 @@ func callbackQLightReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQLightReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QLightReading) ConnectDeleteLater(f func()) {
@@ -10600,6 +10943,15 @@ func (ptr *QLightReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QLightReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QLightReading) DeleteLaterDefault() {
+	defer qt.Recovering("QLightReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QLightReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -10922,7 +11274,7 @@ func callbackQLightSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQLightSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QLightSensor) ConnectStart(f func() bool) {
@@ -10952,14 +11304,24 @@ func (ptr *QLightSensor) Start() bool {
 	return false
 }
 
+func (ptr *QLightSensor) StartDefault() bool {
+	defer qt.Recovering("QLightSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QLightSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQLightSensor_Stop
 func callbackQLightSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QLightSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQLightSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QLightSensor) ConnectStop(f func()) {
@@ -10985,6 +11347,14 @@ func (ptr *QLightSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QLightSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QLightSensor) StopDefault() {
+	defer qt.Recovering("QLightSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -11174,8 +11544,9 @@ func callbackQLightSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQLightSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QLightSensor) ConnectDeleteLater(f func()) {
@@ -11201,6 +11572,15 @@ func (ptr *QLightSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QLightSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QLightSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QLightSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -11523,7 +11903,7 @@ func callbackQMagnetometer_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQMagnetometerFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QMagnetometer) ConnectStart(f func() bool) {
@@ -11553,14 +11933,24 @@ func (ptr *QMagnetometer) Start() bool {
 	return false
 }
 
+func (ptr *QMagnetometer) StartDefault() bool {
+	defer qt.Recovering("QMagnetometer::start")
+
+	if ptr.Pointer() != nil {
+		return C.QMagnetometer_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQMagnetometer_Stop
 func callbackQMagnetometer_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QMagnetometer::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMagnetometerFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QMagnetometer) ConnectStop(f func()) {
@@ -11586,6 +11976,14 @@ func (ptr *QMagnetometer) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QMagnetometer) StopDefault() {
+	defer qt.Recovering("QMagnetometer::stop")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometer_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -11775,8 +12173,9 @@ func callbackQMagnetometer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMagnetometerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QMagnetometer) ConnectDeleteLater(f func()) {
@@ -11802,6 +12201,15 @@ func (ptr *QMagnetometer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMagnetometer) DeleteLaterDefault() {
+	defer qt.Recovering("QMagnetometer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -12395,8 +12803,9 @@ func callbackQMagnetometerReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMagnetometerReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QMagnetometerReading) ConnectDeleteLater(f func()) {
@@ -12422,6 +12831,15 @@ func (ptr *QMagnetometerReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometerReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMagnetometerReading) DeleteLaterDefault() {
+	defer qt.Recovering("QMagnetometerReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometerReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -12977,8 +13395,9 @@ func callbackQOrientationReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQOrientationReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QOrientationReading) ConnectDeleteLater(f func()) {
@@ -13004,6 +13423,15 @@ func (ptr *QOrientationReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QOrientationReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QOrientationReading) DeleteLaterDefault() {
+	defer qt.Recovering("QOrientationReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -13273,7 +13701,7 @@ func callbackQOrientationSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQOrientationSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QOrientationSensor) ConnectStart(f func() bool) {
@@ -13303,14 +13731,24 @@ func (ptr *QOrientationSensor) Start() bool {
 	return false
 }
 
+func (ptr *QOrientationSensor) StartDefault() bool {
+	defer qt.Recovering("QOrientationSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QOrientationSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQOrientationSensor_Stop
 func callbackQOrientationSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QOrientationSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQOrientationSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QOrientationSensor) ConnectStop(f func()) {
@@ -13336,6 +13774,14 @@ func (ptr *QOrientationSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QOrientationSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QOrientationSensor) StopDefault() {
+	defer qt.Recovering("QOrientationSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -13525,8 +13971,9 @@ func callbackQOrientationSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQOrientationSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QOrientationSensor) ConnectDeleteLater(f func()) {
@@ -13552,6 +13999,15 @@ func (ptr *QOrientationSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QOrientationSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QOrientationSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QOrientationSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -14111,8 +14567,9 @@ func callbackQPressureReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPressureReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QPressureReading) ConnectDeleteLater(f func()) {
@@ -14138,6 +14595,15 @@ func (ptr *QPressureReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QPressureReading) DeleteLaterDefault() {
+	defer qt.Recovering("QPressureReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QPressureReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -14407,7 +14873,7 @@ func callbackQPressureSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQPressureSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QPressureSensor) ConnectStart(f func() bool) {
@@ -14437,14 +14903,24 @@ func (ptr *QPressureSensor) Start() bool {
 	return false
 }
 
+func (ptr *QPressureSensor) StartDefault() bool {
+	defer qt.Recovering("QPressureSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QPressureSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQPressureSensor_Stop
 func callbackQPressureSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QPressureSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPressureSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QPressureSensor) ConnectStop(f func()) {
@@ -14470,6 +14946,14 @@ func (ptr *QPressureSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QPressureSensor) StopDefault() {
+	defer qt.Recovering("QPressureSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QPressureSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -14659,8 +15143,9 @@ func callbackQPressureSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPressureSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QPressureSensor) ConnectDeleteLater(f func()) {
@@ -14686,6 +15171,15 @@ func (ptr *QPressureSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QPressureSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QPressureSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QPressureSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -15228,8 +15722,9 @@ func callbackQProximityReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQProximityReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QProximityReading) ConnectDeleteLater(f func()) {
@@ -15255,6 +15750,15 @@ func (ptr *QProximityReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QProximityReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QProximityReading) DeleteLaterDefault() {
+	defer qt.Recovering("QProximityReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QProximityReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -15524,7 +16028,7 @@ func callbackQProximitySensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQProximitySensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QProximitySensor) ConnectStart(f func() bool) {
@@ -15554,14 +16058,24 @@ func (ptr *QProximitySensor) Start() bool {
 	return false
 }
 
+func (ptr *QProximitySensor) StartDefault() bool {
+	defer qt.Recovering("QProximitySensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QProximitySensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQProximitySensor_Stop
 func callbackQProximitySensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QProximitySensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQProximitySensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QProximitySensor) ConnectStop(f func()) {
@@ -15587,6 +16101,14 @@ func (ptr *QProximitySensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QProximitySensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QProximitySensor) StopDefault() {
+	defer qt.Recovering("QProximitySensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -15776,8 +16298,9 @@ func callbackQProximitySensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQProximitySensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QProximitySensor) ConnectDeleteLater(f func()) {
@@ -15803,6 +16326,15 @@ func (ptr *QProximitySensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QProximitySensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QProximitySensor) DeleteLaterDefault() {
+	defer qt.Recovering("QProximitySensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -16363,8 +16895,9 @@ func callbackQRotationReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRotationReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QRotationReading) ConnectDeleteLater(f func()) {
@@ -16390,6 +16923,15 @@ func (ptr *QRotationReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QRotationReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QRotationReading) DeleteLaterDefault() {
+	defer qt.Recovering("QRotationReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QRotationReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -16712,7 +17254,7 @@ func callbackQRotationSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQRotationSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QRotationSensor) ConnectStart(f func() bool) {
@@ -16742,14 +17284,24 @@ func (ptr *QRotationSensor) Start() bool {
 	return false
 }
 
+func (ptr *QRotationSensor) StartDefault() bool {
+	defer qt.Recovering("QRotationSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QRotationSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQRotationSensor_Stop
 func callbackQRotationSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QRotationSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRotationSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QRotationSensor) ConnectStop(f func()) {
@@ -16775,6 +17327,14 @@ func (ptr *QRotationSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QRotationSensor) StopDefault() {
+	defer qt.Recovering("QRotationSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -16964,8 +17524,9 @@ func callbackQRotationSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRotationSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QRotationSensor) ConnectDeleteLater(f func()) {
@@ -16991,6 +17552,15 @@ func (ptr *QRotationSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QRotationSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QRotationSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -18335,8 +18905,9 @@ func callbackQSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSensor) ConnectDeleteLater(f func()) {
@@ -18362,6 +18933,15 @@ func (ptr *QSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -18986,8 +19566,9 @@ func callbackQSensorBackend_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSensorBackendFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSensorBackend) ConnectDeleteLater(f func()) {
@@ -19013,6 +19594,15 @@ func (ptr *QSensorBackend) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSensorBackend_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorBackend) DeleteLaterDefault() {
+	defer qt.Recovering("QSensorBackend::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSensorBackend_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -19849,8 +20439,9 @@ func callbackQSensorGesture_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSensorGestureFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSensorGesture) ConnectDeleteLater(f func()) {
@@ -19876,6 +20467,15 @@ func (ptr *QSensorGesture) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSensorGesture_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorGesture) DeleteLaterDefault() {
+	defer qt.Recovering("QSensorGesture::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGesture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -20389,8 +20989,9 @@ func callbackQSensorGestureManager_DeleteLater(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSensorGestureManagerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSensorGestureManager) ConnectDeleteLater(f func()) {
@@ -20416,6 +21017,15 @@ func (ptr *QSensorGestureManager) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureManager_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorGestureManager) DeleteLaterDefault() {
+	defer qt.Recovering("QSensorGestureManager::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -21259,8 +21869,9 @@ func callbackQSensorGestureRecognizer_DeleteLater(ptr unsafe.Pointer, ptrName *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSensorGestureRecognizerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSensorGestureRecognizer) ConnectDeleteLater(f func()) {
@@ -21286,6 +21897,15 @@ func (ptr *QSensorGestureRecognizer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) DeleteLaterDefault() {
+	defer qt.Recovering("QSensorGestureRecognizer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -21929,8 +22549,9 @@ func callbackQSensorReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSensorReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSensorReading) ConnectDeleteLater(f func()) {
@@ -21956,6 +22577,15 @@ func (ptr *QSensorReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSensorReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorReading) DeleteLaterDefault() {
+	defer qt.Recovering("QSensorReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSensorReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -22534,8 +23164,9 @@ func callbackQTapReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTapReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QTapReading) ConnectDeleteLater(f func()) {
@@ -22561,6 +23192,15 @@ func (ptr *QTapReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTapReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTapReading) DeleteLaterDefault() {
+	defer qt.Recovering("QTapReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QTapReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -22883,7 +23523,7 @@ func callbackQTapSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQTapSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QTapSensor) ConnectStart(f func() bool) {
@@ -22913,14 +23553,24 @@ func (ptr *QTapSensor) Start() bool {
 	return false
 }
 
+func (ptr *QTapSensor) StartDefault() bool {
+	defer qt.Recovering("QTapSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QTapSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQTapSensor_Stop
 func callbackQTapSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTapSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTapSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QTapSensor) ConnectStop(f func()) {
@@ -22946,6 +23596,14 @@ func (ptr *QTapSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QTapSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QTapSensor) StopDefault() {
+	defer qt.Recovering("QTapSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -23135,8 +23793,9 @@ func callbackQTapSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTapSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QTapSensor) ConnectDeleteLater(f func()) {
@@ -23162,6 +23821,15 @@ func (ptr *QTapSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTapSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTapSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QTapSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -23721,8 +24389,9 @@ func callbackQTiltReading_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTiltReadingFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QTiltReading) ConnectDeleteLater(f func()) {
@@ -23748,6 +24417,15 @@ func (ptr *QTiltReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltReading_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTiltReading) DeleteLaterDefault() {
+	defer qt.Recovering("QTiltReading::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QTiltReading_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -24025,7 +24703,7 @@ func callbackQTiltSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQTiltSensorFromPointer(ptr).StartDefault()))
 }
 
 func (ptr *QTiltSensor) ConnectStart(f func() bool) {
@@ -24055,14 +24733,24 @@ func (ptr *QTiltSensor) Start() bool {
 	return false
 }
 
+func (ptr *QTiltSensor) StartDefault() bool {
+	defer qt.Recovering("QTiltSensor::start")
+
+	if ptr.Pointer() != nil {
+		return C.QTiltSensor_StartDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQTiltSensor_Stop
 func callbackQTiltSensor_Stop(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QTiltSensor::stop")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTiltSensorFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QTiltSensor) ConnectStop(f func()) {
@@ -24088,6 +24776,14 @@ func (ptr *QTiltSensor) Stop() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QTiltSensor) StopDefault() {
+	defer qt.Recovering("QTiltSensor::stop")
+
+	if ptr.Pointer() != nil {
+		C.QTiltSensor_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -24277,8 +24973,9 @@ func callbackQTiltSensor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTiltSensorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QTiltSensor) ConnectDeleteLater(f func()) {
@@ -24304,6 +25001,15 @@ func (ptr *QTiltSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTiltSensor) DeleteLaterDefault() {
+	defer qt.Recovering("QTiltSensor::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QTiltSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

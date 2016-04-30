@@ -135,6 +135,11 @@ void QWebChannel_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebChannel*>(ptr), "deleteLater");
 }
 
+void QWebChannel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWebChannel*>(ptr)->QWebChannel::deleteLater();
+}
+
 void QWebChannel_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QWebChannel*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -265,6 +270,11 @@ void QWebChannelAbstractTransport_CustomEventDefault(void* ptr, void* event)
 void QWebChannelAbstractTransport_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWebChannelAbstractTransport*>(ptr), "deleteLater");
+}
+
+void QWebChannelAbstractTransport_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWebChannelAbstractTransport*>(ptr)->QWebChannelAbstractTransport::deleteLater();
 }
 
 void QWebChannelAbstractTransport_DisconnectNotify(void* ptr, void* sign)

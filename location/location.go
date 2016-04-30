@@ -966,8 +966,9 @@ func callbackQGeoRouteReply_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGeoRouteReplyFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGeoRouteReply) ConnectDeleteLater(f func()) {
@@ -993,6 +994,15 @@ func (ptr *QGeoRouteReply) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoRouteReply) DeleteLaterDefault() {
+	defer qt.Recovering("QGeoRouteReply::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRouteReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1991,8 +2001,9 @@ func callbackQGeoRoutingManager_DeleteLater(ptr unsafe.Pointer, ptrName *C.char)
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGeoRoutingManagerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGeoRoutingManager) ConnectDeleteLater(f func()) {
@@ -2018,6 +2029,15 @@ func (ptr *QGeoRoutingManager) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManager_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoRoutingManager) DeleteLaterDefault() {
+	defer qt.Recovering("QGeoRoutingManager::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2761,8 +2781,9 @@ func callbackQGeoRoutingManagerEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGeoRoutingManagerEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGeoRoutingManagerEngine) ConnectDeleteLater(f func()) {
@@ -2788,6 +2809,15 @@ func (ptr *QGeoRoutingManagerEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QGeoRoutingManagerEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3396,8 +3426,9 @@ func callbackQGeoServiceProvider_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGeoServiceProviderFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGeoServiceProvider) ConnectDeleteLater(f func()) {
@@ -3423,6 +3454,15 @@ func (ptr *QGeoServiceProvider) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoServiceProvider) DeleteLaterDefault() {
+	defer qt.Recovering("QGeoServiceProvider::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProvider_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

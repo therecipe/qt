@@ -197,6 +197,11 @@ void QGraphicsSvgItem_UpdateMicroFocus(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsSvgItem*>(ptr), "updateMicroFocus");
 }
 
+void QGraphicsSvgItem_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::updateMicroFocus();
+}
+
 void QGraphicsSvgItem_Advance(void* ptr, int phase)
 {
 	static_cast<QGraphicsSvgItem*>(ptr)->advance(phase);
@@ -530,6 +535,11 @@ void QGraphicsSvgItem_CustomEventDefault(void* ptr, void* event)
 void QGraphicsSvgItem_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsSvgItem*>(ptr), "deleteLater");
+}
+
+void QGraphicsSvgItem_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::deleteLater();
 }
 
 void QGraphicsSvgItem_DisconnectNotify(void* ptr, void* sign)
@@ -899,6 +909,11 @@ void QSvgRenderer_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "deleteLater");
 }
 
+void QSvgRenderer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::deleteLater();
+}
+
 void QSvgRenderer_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSvgRenderer*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1208,9 +1223,19 @@ void QSvgWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QSvgWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::setEnabled(vbo != 0);
+}
+
 void QSvgWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QSvgWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QSvgWidget_SetVisible(void* ptr, int visible)
@@ -1228,9 +1253,19 @@ void QSvgWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QSvgWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::setWindowModified(vbo != 0);
+}
+
 void QSvgWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QSvgWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::setWindowTitle(QString(vqs));
 }
 
 void QSvgWidget_ShowEvent(void* ptr, void* event)
@@ -1258,6 +1293,11 @@ int QSvgWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSvgWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::close();
 }
 
 void QSvgWidget_CloseEvent(void* ptr, void* event)
@@ -1325,6 +1365,11 @@ void QSvgWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "hide");
 }
 
+void QSvgWidget_HideDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::hide();
+}
+
 void QSvgWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QSvgWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -1378,6 +1423,11 @@ void QSvgWidget_KeyReleaseEventDefault(void* ptr, void* event)
 void QSvgWidget_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "lower");
+}
+
+void QSvgWidget_LowerDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::lower();
 }
 
 void QSvgWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -1435,9 +1485,19 @@ void QSvgWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "raise");
 }
 
+void QSvgWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::raise();
+}
+
 void QSvgWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "repaint");
+}
+
+void QSvgWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::repaint();
 }
 
 void QSvgWidget_ResizeEvent(void* ptr, void* event)
@@ -1455,9 +1515,19 @@ void QSvgWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QSvgWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::setDisabled(disable != 0);
+}
+
 void QSvgWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setFocus");
+}
+
+void QSvgWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::setFocus();
 }
 
 void QSvgWidget_SetHidden(void* ptr, int hidden)
@@ -1465,9 +1535,19 @@ void QSvgWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QSvgWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::setHidden(hidden != 0);
+}
+
 void QSvgWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "show");
+}
+
+void QSvgWidget_ShowDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::show();
 }
 
 void QSvgWidget_ShowFullScreen(void* ptr)
@@ -1475,9 +1555,19 @@ void QSvgWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "showFullScreen");
 }
 
+void QSvgWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::showFullScreen();
+}
+
 void QSvgWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "showMaximized");
+}
+
+void QSvgWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::showMaximized();
 }
 
 void QSvgWidget_ShowMinimized(void* ptr)
@@ -1485,9 +1575,19 @@ void QSvgWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "showMinimized");
 }
 
+void QSvgWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::showMinimized();
+}
+
 void QSvgWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "showNormal");
+}
+
+void QSvgWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::showNormal();
 }
 
 void QSvgWidget_TabletEvent(void* ptr, void* event)
@@ -1505,9 +1605,19 @@ void QSvgWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "update");
 }
 
+void QSvgWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::update();
+}
+
 void QSvgWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "updateMicroFocus");
+}
+
+void QSvgWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::updateMicroFocus();
 }
 
 void QSvgWidget_WheelEvent(void* ptr, void* event)
@@ -1563,6 +1673,11 @@ void QSvgWidget_CustomEventDefault(void* ptr, void* event)
 void QSvgWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "deleteLater");
+}
+
+void QSvgWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::deleteLater();
 }
 
 void QSvgWidget_DisconnectNotify(void* ptr, void* sign)

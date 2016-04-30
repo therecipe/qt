@@ -843,9 +843,19 @@ void QAbstractButton_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractButton_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::setEnabled(vbo != 0);
+}
+
 void QAbstractButton_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QAbstractButton_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::setStyleSheet(QString(styleSheet));
 }
 
 void QAbstractButton_SetVisible(void* ptr, int visible)
@@ -863,9 +873,19 @@ void QAbstractButton_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractButton_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::setWindowModified(vbo != 0);
+}
+
 void QAbstractButton_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QAbstractButton_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::setWindowTitle(QString(vqs));
 }
 
 void QAbstractButton_ShowEvent(void* ptr, void* event)
@@ -893,6 +913,11 @@ int QAbstractButton_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QAbstractButton_CloseDefault(void* ptr)
+{
+	return static_cast<QAbstractButton*>(ptr)->QAbstractButton::close();
 }
 
 void QAbstractButton_CloseEvent(void* ptr, void* event)
@@ -950,6 +975,11 @@ void QAbstractButton_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "hide");
 }
 
+void QAbstractButton_HideDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::hide();
+}
+
 void QAbstractButton_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QAbstractButton*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -985,6 +1015,11 @@ void QAbstractButton_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "lower");
 }
 
+void QAbstractButton_LowerDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::lower();
+}
+
 void QAbstractButton_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QAbstractButton*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -1010,9 +1045,19 @@ void QAbstractButton_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "raise");
 }
 
+void QAbstractButton_RaiseDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::raise();
+}
+
 void QAbstractButton_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "repaint");
+}
+
+void QAbstractButton_RepaintDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::repaint();
 }
 
 void QAbstractButton_ResizeEvent(void* ptr, void* event)
@@ -1030,9 +1075,19 @@ void QAbstractButton_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QAbstractButton_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::setDisabled(disable != 0);
+}
+
 void QAbstractButton_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setFocus");
+}
+
+void QAbstractButton_SetFocus2Default(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::setFocus();
 }
 
 void QAbstractButton_SetHidden(void* ptr, int hidden)
@@ -1040,9 +1095,19 @@ void QAbstractButton_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QAbstractButton_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::setHidden(hidden != 0);
+}
+
 void QAbstractButton_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "show");
+}
+
+void QAbstractButton_ShowDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::show();
 }
 
 void QAbstractButton_ShowFullScreen(void* ptr)
@@ -1050,9 +1115,19 @@ void QAbstractButton_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "showFullScreen");
 }
 
+void QAbstractButton_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::showFullScreen();
+}
+
 void QAbstractButton_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "showMaximized");
+}
+
+void QAbstractButton_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::showMaximized();
 }
 
 void QAbstractButton_ShowMinimized(void* ptr)
@@ -1060,9 +1135,19 @@ void QAbstractButton_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "showMinimized");
 }
 
+void QAbstractButton_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::showMinimized();
+}
+
 void QAbstractButton_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "showNormal");
+}
+
+void QAbstractButton_ShowNormalDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::showNormal();
 }
 
 void QAbstractButton_TabletEvent(void* ptr, void* event)
@@ -1080,9 +1165,19 @@ void QAbstractButton_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "update");
 }
 
+void QAbstractButton_UpdateDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::update();
+}
+
 void QAbstractButton_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "updateMicroFocus");
+}
+
+void QAbstractButton_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::updateMicroFocus();
 }
 
 void QAbstractButton_WheelEvent(void* ptr, void* event)
@@ -1128,6 +1223,11 @@ void QAbstractButton_CustomEventDefault(void* ptr, void* event)
 void QAbstractButton_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractButton*>(ptr), "deleteLater");
+}
+
+void QAbstractButton_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractButton*>(ptr)->QAbstractButton::deleteLater();
 }
 
 void QAbstractButton_DisconnectNotify(void* ptr, void* sign)
@@ -1280,6 +1380,8 @@ void* QAbstractGraphicsShapeItem_BoundingRect(void* ptr)
 {
 	return new QRectF(static_cast<QRectF>(static_cast<QAbstractGraphicsShapeItem*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QAbstractGraphicsShapeItem*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QAbstractGraphicsShapeItem*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QAbstractGraphicsShapeItem*>(ptr)->boundingRect()).height());
 }
+
+
 
 int QAbstractGraphicsShapeItem_CollidesWithItem(void* ptr, void* other, int mode)
 {
@@ -1505,6 +1607,8 @@ void QAbstractGraphicsShapeItem_Paint(void* ptr, void* painter, void* option, vo
 {
 	static_cast<QAbstractGraphicsShapeItem*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
+
+
 
 int QAbstractGraphicsShapeItem_SceneEvent(void* ptr, void* event)
 {
@@ -1761,6 +1865,11 @@ void QAbstractItemDelegate_CustomEventDefault(void* ptr, void* event)
 void QAbstractItemDelegate_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemDelegate*>(ptr), "deleteLater");
+}
+
+void QAbstractItemDelegate_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractItemDelegate*>(ptr)->QAbstractItemDelegate::deleteLater();
 }
 
 void QAbstractItemDelegate_DisconnectNotify(void* ptr, void* sign)
@@ -2934,9 +3043,19 @@ void QAbstractItemView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractItemView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setEnabled(vbo != 0);
+}
+
 void QAbstractItemView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QAbstractItemView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setStyleSheet(QString(styleSheet));
 }
 
 void QAbstractItemView_SetVisible(void* ptr, int visible)
@@ -2954,9 +3073,19 @@ void QAbstractItemView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractItemView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setWindowModified(vbo != 0);
+}
+
 void QAbstractItemView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QAbstractItemView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setWindowTitle(QString(vqs));
 }
 
 void QAbstractItemView_ShowEvent(void* ptr, void* event)
@@ -2974,6 +3103,11 @@ int QAbstractItemView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QAbstractItemView_CloseDefault(void* ptr)
+{
+	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::close();
 }
 
 void QAbstractItemView_CloseEvent(void* ptr, void* event)
@@ -3011,6 +3145,11 @@ void QAbstractItemView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "hide");
 }
 
+void QAbstractItemView_HideDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::hide();
+}
+
 void QAbstractItemView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QAbstractItemView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -3036,6 +3175,11 @@ void QAbstractItemView_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "lower");
 }
 
+void QAbstractItemView_LowerDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::lower();
+}
+
 int QAbstractItemView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QAbstractItemView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -3051,9 +3195,19 @@ void QAbstractItemView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "raise");
 }
 
+void QAbstractItemView_RaiseDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::raise();
+}
+
 void QAbstractItemView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "repaint");
+}
+
+void QAbstractItemView_RepaintDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::repaint();
 }
 
 void QAbstractItemView_SetDisabled(void* ptr, int disable)
@@ -3061,9 +3215,19 @@ void QAbstractItemView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QAbstractItemView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setDisabled(disable != 0);
+}
+
 void QAbstractItemView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setFocus");
+}
+
+void QAbstractItemView_SetFocus2Default(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setFocus();
 }
 
 void QAbstractItemView_SetHidden(void* ptr, int hidden)
@@ -3071,9 +3235,19 @@ void QAbstractItemView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QAbstractItemView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::setHidden(hidden != 0);
+}
+
 void QAbstractItemView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "show");
+}
+
+void QAbstractItemView_ShowDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::show();
 }
 
 void QAbstractItemView_ShowFullScreen(void* ptr)
@@ -3081,9 +3255,19 @@ void QAbstractItemView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "showFullScreen");
 }
 
+void QAbstractItemView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showFullScreen();
+}
+
 void QAbstractItemView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "showMaximized");
+}
+
+void QAbstractItemView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showMaximized();
 }
 
 void QAbstractItemView_ShowMinimized(void* ptr)
@@ -3091,9 +3275,19 @@ void QAbstractItemView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "showMinimized");
 }
 
+void QAbstractItemView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showMinimized();
+}
+
 void QAbstractItemView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "showNormal");
+}
+
+void QAbstractItemView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::showNormal();
 }
 
 void QAbstractItemView_TabletEvent(void* ptr, void* event)
@@ -3109,6 +3303,11 @@ void QAbstractItemView_TabletEventDefault(void* ptr, void* event)
 void QAbstractItemView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "updateMicroFocus");
+}
+
+void QAbstractItemView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::updateMicroFocus();
 }
 
 void QAbstractItemView_ChildEvent(void* ptr, void* event)
@@ -3144,6 +3343,11 @@ void QAbstractItemView_CustomEventDefault(void* ptr, void* event)
 void QAbstractItemView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "deleteLater");
+}
+
+void QAbstractItemView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::deleteLater();
 }
 
 void QAbstractItemView_DisconnectNotify(void* ptr, void* sign)
@@ -3661,9 +3865,19 @@ void QAbstractScrollArea_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractScrollArea_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setEnabled(vbo != 0);
+}
+
 void QAbstractScrollArea_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QAbstractScrollArea_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setStyleSheet(QString(styleSheet));
 }
 
 void QAbstractScrollArea_SetVisible(void* ptr, int visible)
@@ -3681,9 +3895,19 @@ void QAbstractScrollArea_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractScrollArea_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setWindowModified(vbo != 0);
+}
+
 void QAbstractScrollArea_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QAbstractScrollArea_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setWindowTitle(QString(vqs));
 }
 
 void QAbstractScrollArea_ShowEvent(void* ptr, void* event)
@@ -3701,6 +3925,11 @@ int QAbstractScrollArea_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QAbstractScrollArea_CloseDefault(void* ptr)
+{
+	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::close();
 }
 
 void QAbstractScrollArea_CloseEvent(void* ptr, void* event)
@@ -3748,6 +3977,11 @@ void QAbstractScrollArea_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "hide");
 }
 
+void QAbstractScrollArea_HideDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::hide();
+}
+
 void QAbstractScrollArea_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QAbstractScrollArea*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -3793,6 +4027,11 @@ void QAbstractScrollArea_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "lower");
 }
 
+void QAbstractScrollArea_LowerDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::lower();
+}
+
 int QAbstractScrollArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QAbstractScrollArea*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -3808,9 +4047,19 @@ void QAbstractScrollArea_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "raise");
 }
 
+void QAbstractScrollArea_RaiseDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::raise();
+}
+
 void QAbstractScrollArea_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "repaint");
+}
+
+void QAbstractScrollArea_RepaintDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::repaint();
 }
 
 void QAbstractScrollArea_SetDisabled(void* ptr, int disable)
@@ -3818,9 +4067,19 @@ void QAbstractScrollArea_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QAbstractScrollArea_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setDisabled(disable != 0);
+}
+
 void QAbstractScrollArea_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "setFocus");
+}
+
+void QAbstractScrollArea_SetFocus2Default(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setFocus();
 }
 
 void QAbstractScrollArea_SetHidden(void* ptr, int hidden)
@@ -3828,9 +4087,19 @@ void QAbstractScrollArea_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QAbstractScrollArea_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::setHidden(hidden != 0);
+}
+
 void QAbstractScrollArea_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "show");
+}
+
+void QAbstractScrollArea_ShowDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::show();
 }
 
 void QAbstractScrollArea_ShowFullScreen(void* ptr)
@@ -3838,9 +4107,19 @@ void QAbstractScrollArea_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "showFullScreen");
 }
 
+void QAbstractScrollArea_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showFullScreen();
+}
+
 void QAbstractScrollArea_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "showMaximized");
+}
+
+void QAbstractScrollArea_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showMaximized();
 }
 
 void QAbstractScrollArea_ShowMinimized(void* ptr)
@@ -3848,9 +4127,19 @@ void QAbstractScrollArea_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "showMinimized");
 }
 
+void QAbstractScrollArea_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showMinimized();
+}
+
 void QAbstractScrollArea_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "showNormal");
+}
+
+void QAbstractScrollArea_ShowNormalDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::showNormal();
 }
 
 void QAbstractScrollArea_TabletEvent(void* ptr, void* event)
@@ -3868,9 +4157,19 @@ void QAbstractScrollArea_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "update");
 }
 
+void QAbstractScrollArea_UpdateDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::update();
+}
+
 void QAbstractScrollArea_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "updateMicroFocus");
+}
+
+void QAbstractScrollArea_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::updateMicroFocus();
 }
 
 void QAbstractScrollArea_TimerEvent(void* ptr, void* event)
@@ -3916,6 +4215,11 @@ void QAbstractScrollArea_CustomEventDefault(void* ptr, void* event)
 void QAbstractScrollArea_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractScrollArea*>(ptr), "deleteLater");
+}
+
+void QAbstractScrollArea_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::deleteLater();
 }
 
 void QAbstractScrollArea_DisconnectNotify(void* ptr, void* sign)
@@ -4474,9 +4778,19 @@ void QAbstractSlider_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractSlider_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::setEnabled(vbo != 0);
+}
+
 void QAbstractSlider_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QAbstractSlider_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::setStyleSheet(QString(styleSheet));
 }
 
 void QAbstractSlider_SetVisible(void* ptr, int visible)
@@ -4494,9 +4808,19 @@ void QAbstractSlider_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractSlider_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::setWindowModified(vbo != 0);
+}
+
 void QAbstractSlider_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QAbstractSlider_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::setWindowTitle(QString(vqs));
 }
 
 void QAbstractSlider_ShowEvent(void* ptr, void* event)
@@ -4524,6 +4848,11 @@ int QAbstractSlider_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QAbstractSlider_CloseDefault(void* ptr)
+{
+	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::close();
 }
 
 void QAbstractSlider_CloseEvent(void* ptr, void* event)
@@ -4581,6 +4910,11 @@ void QAbstractSlider_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "hide");
 }
 
+void QAbstractSlider_HideDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::hide();
+}
+
 void QAbstractSlider_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QAbstractSlider*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -4624,6 +4958,11 @@ void QAbstractSlider_KeyReleaseEventDefault(void* ptr, void* event)
 void QAbstractSlider_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "lower");
+}
+
+void QAbstractSlider_LowerDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::lower();
 }
 
 void QAbstractSlider_MouseDoubleClickEvent(void* ptr, void* event)
@@ -4681,9 +5020,19 @@ void QAbstractSlider_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "raise");
 }
 
+void QAbstractSlider_RaiseDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::raise();
+}
+
 void QAbstractSlider_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "repaint");
+}
+
+void QAbstractSlider_RepaintDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::repaint();
 }
 
 void QAbstractSlider_ResizeEvent(void* ptr, void* event)
@@ -4701,9 +5050,19 @@ void QAbstractSlider_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QAbstractSlider_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::setDisabled(disable != 0);
+}
+
 void QAbstractSlider_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setFocus");
+}
+
+void QAbstractSlider_SetFocus2Default(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::setFocus();
 }
 
 void QAbstractSlider_SetHidden(void* ptr, int hidden)
@@ -4711,9 +5070,19 @@ void QAbstractSlider_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QAbstractSlider_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::setHidden(hidden != 0);
+}
+
 void QAbstractSlider_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "show");
+}
+
+void QAbstractSlider_ShowDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::show();
 }
 
 void QAbstractSlider_ShowFullScreen(void* ptr)
@@ -4721,9 +5090,19 @@ void QAbstractSlider_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "showFullScreen");
 }
 
+void QAbstractSlider_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::showFullScreen();
+}
+
 void QAbstractSlider_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "showMaximized");
+}
+
+void QAbstractSlider_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::showMaximized();
 }
 
 void QAbstractSlider_ShowMinimized(void* ptr)
@@ -4731,9 +5110,19 @@ void QAbstractSlider_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "showMinimized");
 }
 
+void QAbstractSlider_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::showMinimized();
+}
+
 void QAbstractSlider_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "showNormal");
+}
+
+void QAbstractSlider_ShowNormalDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::showNormal();
 }
 
 void QAbstractSlider_TabletEvent(void* ptr, void* event)
@@ -4751,9 +5140,19 @@ void QAbstractSlider_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "update");
 }
 
+void QAbstractSlider_UpdateDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::update();
+}
+
 void QAbstractSlider_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "updateMicroFocus");
+}
+
+void QAbstractSlider_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::updateMicroFocus();
 }
 
 void QAbstractSlider_ChildEvent(void* ptr, void* event)
@@ -4789,6 +5188,11 @@ void QAbstractSlider_CustomEventDefault(void* ptr, void* event)
 void QAbstractSlider_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSlider*>(ptr), "deleteLater");
+}
+
+void QAbstractSlider_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::deleteLater();
 }
 
 void QAbstractSlider_DisconnectNotify(void* ptr, void* sign)
@@ -5414,9 +5818,19 @@ void QAbstractSpinBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractSpinBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::setEnabled(vbo != 0);
+}
+
 void QAbstractSpinBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QAbstractSpinBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::setStyleSheet(QString(styleSheet));
 }
 
 void QAbstractSpinBox_SetVisible(void* ptr, int visible)
@@ -5434,9 +5848,19 @@ void QAbstractSpinBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QAbstractSpinBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::setWindowModified(vbo != 0);
+}
+
 void QAbstractSpinBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QAbstractSpinBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::setWindowTitle(QString(vqs));
 }
 
 int QAbstractSpinBox_Close(void* ptr)
@@ -5444,6 +5868,11 @@ int QAbstractSpinBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QAbstractSpinBox_CloseDefault(void* ptr)
+{
+	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::close();
 }
 
 int QAbstractSpinBox_FocusNextPrevChild(void* ptr, int next)
@@ -5481,6 +5910,11 @@ void QAbstractSpinBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "hide");
 }
 
+void QAbstractSpinBox_HideDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::hide();
+}
+
 void QAbstractSpinBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QAbstractSpinBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -5504,6 +5938,11 @@ void QAbstractSpinBox_InputMethodEventDefault(void* ptr, void* event)
 void QAbstractSpinBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "lower");
+}
+
+void QAbstractSpinBox_LowerDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::lower();
 }
 
 void QAbstractSpinBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -5531,9 +5970,19 @@ void QAbstractSpinBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "raise");
 }
 
+void QAbstractSpinBox_RaiseDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::raise();
+}
+
 void QAbstractSpinBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "repaint");
+}
+
+void QAbstractSpinBox_RepaintDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::repaint();
 }
 
 void QAbstractSpinBox_SetDisabled(void* ptr, int disable)
@@ -5541,9 +5990,19 @@ void QAbstractSpinBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QAbstractSpinBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::setDisabled(disable != 0);
+}
+
 void QAbstractSpinBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "setFocus");
+}
+
+void QAbstractSpinBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::setFocus();
 }
 
 void QAbstractSpinBox_SetHidden(void* ptr, int hidden)
@@ -5551,9 +6010,19 @@ void QAbstractSpinBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QAbstractSpinBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::setHidden(hidden != 0);
+}
+
 void QAbstractSpinBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "show");
+}
+
+void QAbstractSpinBox_ShowDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::show();
 }
 
 void QAbstractSpinBox_ShowFullScreen(void* ptr)
@@ -5561,9 +6030,19 @@ void QAbstractSpinBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "showFullScreen");
 }
 
+void QAbstractSpinBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::showFullScreen();
+}
+
 void QAbstractSpinBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "showMaximized");
+}
+
+void QAbstractSpinBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::showMaximized();
 }
 
 void QAbstractSpinBox_ShowMinimized(void* ptr)
@@ -5571,9 +6050,19 @@ void QAbstractSpinBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "showMinimized");
 }
 
+void QAbstractSpinBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::showMinimized();
+}
+
 void QAbstractSpinBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "showNormal");
+}
+
+void QAbstractSpinBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::showNormal();
 }
 
 void QAbstractSpinBox_TabletEvent(void* ptr, void* event)
@@ -5591,9 +6080,19 @@ void QAbstractSpinBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "update");
 }
 
+void QAbstractSpinBox_UpdateDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::update();
+}
+
 void QAbstractSpinBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "updateMicroFocus");
+}
+
+void QAbstractSpinBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::updateMicroFocus();
 }
 
 void QAbstractSpinBox_ChildEvent(void* ptr, void* event)
@@ -5629,6 +6128,11 @@ void QAbstractSpinBox_CustomEventDefault(void* ptr, void* event)
 void QAbstractSpinBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractSpinBox*>(ptr), "deleteLater");
+}
+
+void QAbstractSpinBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::deleteLater();
 }
 
 void QAbstractSpinBox_DisconnectNotify(void* ptr, void* sign)
@@ -6348,6 +6852,11 @@ void QAction_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAction*>(ptr), "deleteLater");
 }
 
+void QAction_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAction*>(ptr)->QAction::deleteLater();
+}
+
 void QAction_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAction*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -6542,6 +7051,11 @@ void QActionGroup_CustomEventDefault(void* ptr, void* event)
 void QActionGroup_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QActionGroup*>(ptr), "deleteLater");
+}
+
+void QActionGroup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QActionGroup*>(ptr)->QActionGroup::deleteLater();
 }
 
 void QActionGroup_DisconnectNotify(void* ptr, void* sign)
@@ -6934,6 +7448,11 @@ void QApplication_Quit(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "quit");
 }
 
+void QApplication_QuitDefault(void* ptr)
+{
+	static_cast<QApplication*>(ptr)->QApplication::quit();
+}
+
 void QApplication_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QApplication*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -6977,6 +7496,11 @@ void QApplication_CustomEventDefault(void* ptr, void* event)
 void QApplication_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "deleteLater");
+}
+
+void QApplication_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QApplication*>(ptr)->QApplication::deleteLater();
 }
 
 void QApplication_DisconnectNotify(void* ptr, void* sign)
@@ -7399,6 +7923,11 @@ void QBoxLayout_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBoxLayout*>(ptr), "deleteLater");
 }
 
+void QBoxLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QBoxLayout*>(ptr)->QBoxLayout::deleteLater();
+}
+
 void QBoxLayout_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QBoxLayout*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7680,6 +8209,11 @@ void QButtonGroup_CustomEventDefault(void* ptr, void* event)
 void QButtonGroup_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QButtonGroup*>(ptr), "deleteLater");
+}
+
+void QButtonGroup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QButtonGroup*>(ptr)->QButtonGroup::deleteLater();
 }
 
 void QButtonGroup_DisconnectNotify(void* ptr, void* sign)
@@ -8219,9 +8753,19 @@ void QCalendarWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QCalendarWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::setEnabled(vbo != 0);
+}
+
 void QCalendarWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QCalendarWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QCalendarWidget_SetVisible(void* ptr, int visible)
@@ -8239,9 +8783,19 @@ void QCalendarWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QCalendarWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::setWindowModified(vbo != 0);
+}
+
 void QCalendarWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QCalendarWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::setWindowTitle(QString(vqs));
 }
 
 void QCalendarWidget_ShowEvent(void* ptr, void* event)
@@ -8269,6 +8823,11 @@ int QCalendarWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QCalendarWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::close();
 }
 
 void QCalendarWidget_CloseEvent(void* ptr, void* event)
@@ -8326,6 +8885,11 @@ void QCalendarWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "hide");
 }
 
+void QCalendarWidget_HideDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::hide();
+}
+
 void QCalendarWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QCalendarWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -8369,6 +8933,11 @@ void QCalendarWidget_KeyReleaseEventDefault(void* ptr, void* event)
 void QCalendarWidget_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "lower");
+}
+
+void QCalendarWidget_LowerDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::lower();
 }
 
 void QCalendarWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -8416,9 +8985,19 @@ void QCalendarWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "raise");
 }
 
+void QCalendarWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::raise();
+}
+
 void QCalendarWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "repaint");
+}
+
+void QCalendarWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::repaint();
 }
 
 void QCalendarWidget_SetDisabled(void* ptr, int disable)
@@ -8426,9 +9005,19 @@ void QCalendarWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QCalendarWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::setDisabled(disable != 0);
+}
+
 void QCalendarWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setFocus");
+}
+
+void QCalendarWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::setFocus();
 }
 
 void QCalendarWidget_SetHidden(void* ptr, int hidden)
@@ -8436,9 +9025,19 @@ void QCalendarWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QCalendarWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::setHidden(hidden != 0);
+}
+
 void QCalendarWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "show");
+}
+
+void QCalendarWidget_ShowDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::show();
 }
 
 void QCalendarWidget_ShowFullScreen(void* ptr)
@@ -8446,9 +9045,19 @@ void QCalendarWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "showFullScreen");
 }
 
+void QCalendarWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::showFullScreen();
+}
+
 void QCalendarWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "showMaximized");
+}
+
+void QCalendarWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::showMaximized();
 }
 
 void QCalendarWidget_ShowMinimized(void* ptr)
@@ -8456,9 +9065,19 @@ void QCalendarWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "showMinimized");
 }
 
+void QCalendarWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::showMinimized();
+}
+
 void QCalendarWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "showNormal");
+}
+
+void QCalendarWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::showNormal();
 }
 
 void QCalendarWidget_TabletEvent(void* ptr, void* event)
@@ -8476,9 +9095,19 @@ void QCalendarWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "update");
 }
 
+void QCalendarWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::update();
+}
+
 void QCalendarWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "updateMicroFocus");
+}
+
+void QCalendarWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::updateMicroFocus();
 }
 
 void QCalendarWidget_WheelEvent(void* ptr, void* event)
@@ -8534,6 +9163,11 @@ void QCalendarWidget_CustomEventDefault(void* ptr, void* event)
 void QCalendarWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCalendarWidget*>(ptr), "deleteLater");
+}
+
+void QCalendarWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::deleteLater();
 }
 
 void QCalendarWidget_DisconnectNotify(void* ptr, void* sign)
@@ -8777,9 +9411,19 @@ void QCheckBox_SetChecked(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setChecked", Q_ARG(bool, vbo != 0));
 }
 
+void QCheckBox_SetCheckedDefault(void* ptr, int vbo)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setChecked(vbo != 0);
+}
+
 void QCheckBox_SetIconSize(void* ptr, void* size)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(size)));
+}
+
+void QCheckBox_SetIconSizeDefault(void* ptr, void* size)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setIconSize(*static_cast<QSize*>(size));
 }
 
 void QCheckBox_Toggle(void* ptr)
@@ -8787,9 +9431,19 @@ void QCheckBox_Toggle(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "toggle");
 }
 
+void QCheckBox_ToggleDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::toggle();
+}
+
 void QCheckBox_AnimateClick(void* ptr, int msec)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "animateClick", Q_ARG(int, msec));
+}
+
+void QCheckBox_AnimateClickDefault(void* ptr, int msec)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::animateClick(msec);
 }
 
 void QCheckBox_ChangeEvent(void* ptr, void* e)
@@ -8805,6 +9459,11 @@ void QCheckBox_ChangeEventDefault(void* ptr, void* e)
 void QCheckBox_Click(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "click");
+}
+
+void QCheckBox_ClickDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::click();
 }
 
 void QCheckBox_FocusInEvent(void* ptr, void* e)
@@ -8992,9 +9651,19 @@ void QCheckBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QCheckBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setEnabled(vbo != 0);
+}
+
 void QCheckBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QCheckBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setStyleSheet(QString(styleSheet));
 }
 
 void QCheckBox_SetVisible(void* ptr, int visible)
@@ -9012,9 +9681,19 @@ void QCheckBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QCheckBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setWindowModified(vbo != 0);
+}
+
 void QCheckBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QCheckBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setWindowTitle(QString(vqs));
 }
 
 void QCheckBox_ShowEvent(void* ptr, void* event)
@@ -9032,6 +9711,11 @@ int QCheckBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QCheckBox_CloseDefault(void* ptr)
+{
+	return static_cast<QCheckBox*>(ptr)->QCheckBox::close();
 }
 
 void QCheckBox_CloseEvent(void* ptr, void* event)
@@ -9089,6 +9773,11 @@ void QCheckBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "hide");
 }
 
+void QCheckBox_HideDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::hide();
+}
+
 void QCheckBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QCheckBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -9124,6 +9813,11 @@ void QCheckBox_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "lower");
 }
 
+void QCheckBox_LowerDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::lower();
+}
+
 void QCheckBox_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QCheckBox*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -9149,9 +9843,19 @@ void QCheckBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "raise");
 }
 
+void QCheckBox_RaiseDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::raise();
+}
+
 void QCheckBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "repaint");
+}
+
+void QCheckBox_RepaintDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::repaint();
 }
 
 void QCheckBox_ResizeEvent(void* ptr, void* event)
@@ -9169,9 +9873,19 @@ void QCheckBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QCheckBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setDisabled(disable != 0);
+}
+
 void QCheckBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setFocus");
+}
+
+void QCheckBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setFocus();
 }
 
 void QCheckBox_SetHidden(void* ptr, int hidden)
@@ -9179,9 +9893,19 @@ void QCheckBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QCheckBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::setHidden(hidden != 0);
+}
+
 void QCheckBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "show");
+}
+
+void QCheckBox_ShowDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::show();
 }
 
 void QCheckBox_ShowFullScreen(void* ptr)
@@ -9189,9 +9913,19 @@ void QCheckBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "showFullScreen");
 }
 
+void QCheckBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::showFullScreen();
+}
+
 void QCheckBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "showMaximized");
+}
+
+void QCheckBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::showMaximized();
 }
 
 void QCheckBox_ShowMinimized(void* ptr)
@@ -9199,9 +9933,19 @@ void QCheckBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "showMinimized");
 }
 
+void QCheckBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::showMinimized();
+}
+
 void QCheckBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "showNormal");
+}
+
+void QCheckBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::showNormal();
 }
 
 void QCheckBox_TabletEvent(void* ptr, void* event)
@@ -9219,9 +9963,19 @@ void QCheckBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "update");
 }
 
+void QCheckBox_UpdateDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::update();
+}
+
 void QCheckBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "updateMicroFocus");
+}
+
+void QCheckBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::updateMicroFocus();
 }
 
 void QCheckBox_WheelEvent(void* ptr, void* event)
@@ -9267,6 +10021,11 @@ void QCheckBox_CustomEventDefault(void* ptr, void* event)
 void QCheckBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCheckBox*>(ptr), "deleteLater");
+}
+
+void QCheckBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::deleteLater();
 }
 
 void QCheckBox_DisconnectNotify(void* ptr, void* sign)
@@ -9789,9 +10548,19 @@ void QColorDialog_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QColorDialog_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::setEnabled(vbo != 0);
+}
+
 void QColorDialog_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QColorDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::setStyleSheet(QString(styleSheet));
 }
 
 void QColorDialog_SetWindowModified(void* ptr, int vbo)
@@ -9799,9 +10568,19 @@ void QColorDialog_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QColorDialog_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::setWindowModified(vbo != 0);
+}
+
 void QColorDialog_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QColorDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::setWindowTitle(QString(vqs));
 }
 
 int QColorDialog_Close(void* ptr)
@@ -9809,6 +10588,11 @@ int QColorDialog_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QColorDialog_CloseDefault(void* ptr)
+{
+	return static_cast<QColorDialog*>(ptr)->QColorDialog::close();
 }
 
 int QColorDialog_FocusNextPrevChild(void* ptr, int next)
@@ -9844,6 +10628,11 @@ int QColorDialog_HeightForWidthDefault(void* ptr, int w)
 void QColorDialog_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "hide");
+}
+
+void QColorDialog_HideDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::hide();
 }
 
 void QColorDialog_InitPainter(void* ptr, void* painter)
@@ -9889,6 +10678,11 @@ void QColorDialog_KeyReleaseEventDefault(void* ptr, void* event)
 void QColorDialog_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "lower");
+}
+
+void QColorDialog_LowerDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::lower();
 }
 
 void QColorDialog_MouseDoubleClickEvent(void* ptr, void* event)
@@ -9946,9 +10740,19 @@ void QColorDialog_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "raise");
 }
 
+void QColorDialog_RaiseDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::raise();
+}
+
 void QColorDialog_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "repaint");
+}
+
+void QColorDialog_RepaintDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::repaint();
 }
 
 void QColorDialog_SetDisabled(void* ptr, int disable)
@@ -9956,9 +10760,19 @@ void QColorDialog_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QColorDialog_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::setDisabled(disable != 0);
+}
+
 void QColorDialog_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setFocus");
+}
+
+void QColorDialog_SetFocus2Default(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::setFocus();
 }
 
 void QColorDialog_SetHidden(void* ptr, int hidden)
@@ -9966,9 +10780,19 @@ void QColorDialog_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QColorDialog_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::setHidden(hidden != 0);
+}
+
 void QColorDialog_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "show");
+}
+
+void QColorDialog_ShowDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::show();
 }
 
 void QColorDialog_ShowFullScreen(void* ptr)
@@ -9976,9 +10800,19 @@ void QColorDialog_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "showFullScreen");
 }
 
+void QColorDialog_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::showFullScreen();
+}
+
 void QColorDialog_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "showMaximized");
+}
+
+void QColorDialog_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::showMaximized();
 }
 
 void QColorDialog_ShowMinimized(void* ptr)
@@ -9986,9 +10820,19 @@ void QColorDialog_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "showMinimized");
 }
 
+void QColorDialog_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::showMinimized();
+}
+
 void QColorDialog_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "showNormal");
+}
+
+void QColorDialog_ShowNormalDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::showNormal();
 }
 
 void QColorDialog_TabletEvent(void* ptr, void* event)
@@ -10006,9 +10850,19 @@ void QColorDialog_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "update");
 }
 
+void QColorDialog_UpdateDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::update();
+}
+
 void QColorDialog_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "updateMicroFocus");
+}
+
+void QColorDialog_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::updateMicroFocus();
 }
 
 void QColorDialog_WheelEvent(void* ptr, void* event)
@@ -10064,6 +10918,11 @@ void QColorDialog_CustomEventDefault(void* ptr, void* event)
 void QColorDialog_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColorDialog*>(ptr), "deleteLater");
+}
+
+void QColorDialog_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QColorDialog*>(ptr)->QColorDialog::deleteLater();
 }
 
 void QColorDialog_DisconnectNotify(void* ptr, void* sign)
@@ -10492,6 +11351,11 @@ void QColumnView_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "clearSelection");
 }
 
+void QColumnView_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::clearSelection();
+}
+
 void QColumnView_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -10545,6 +11409,11 @@ void QColumnView_DropEventDefault(void* ptr, void* event)
 void QColumnView_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QColumnView_EditDefault(void* ptr, void* index)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QColumnView_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -10712,9 +11581,19 @@ void QColumnView_ScrollToBottom(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "scrollToBottom");
 }
 
+void QColumnView_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::scrollToBottom();
+}
+
 void QColumnView_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "scrollToTop");
+}
+
+void QColumnView_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::scrollToTop();
 }
 
 void QColumnView_SelectionChanged(void* ptr, void* selected, void* deselected)
@@ -10740,6 +11619,11 @@ int QColumnView_SelectionCommandDefault(void* ptr, void* index, void* event)
 void QColumnView_SetCurrentIndex(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QColumnView_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setCurrentIndex(*static_cast<QModelIndex*>(index));
 }
 
 int QColumnView_SizeHintForColumn(void* ptr, int column)
@@ -10785,6 +11669,11 @@ void QColumnView_TimerEventDefault(void* ptr, void* event)
 void QColumnView_Update(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QColumnView_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::update(*static_cast<QModelIndex*>(index));
 }
 
 void QColumnView_UpdateGeometries(void* ptr)
@@ -10952,9 +11841,19 @@ void QColumnView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QColumnView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setEnabled(vbo != 0);
+}
+
 void QColumnView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QColumnView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setStyleSheet(QString(styleSheet));
 }
 
 void QColumnView_SetVisible(void* ptr, int visible)
@@ -10972,9 +11871,19 @@ void QColumnView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QColumnView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setWindowModified(vbo != 0);
+}
+
 void QColumnView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QColumnView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setWindowTitle(QString(vqs));
 }
 
 void QColumnView_ShowEvent(void* ptr, void* event)
@@ -10992,6 +11901,11 @@ int QColumnView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QColumnView_CloseDefault(void* ptr)
+{
+	return static_cast<QColumnView*>(ptr)->QColumnView::close();
 }
 
 void QColumnView_CloseEvent(void* ptr, void* event)
@@ -11029,6 +11943,11 @@ void QColumnView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "hide");
 }
 
+void QColumnView_HideDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::hide();
+}
+
 void QColumnView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QColumnView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -11054,6 +11973,11 @@ void QColumnView_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "lower");
 }
 
+void QColumnView_LowerDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::lower();
+}
+
 int QColumnView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QColumnView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -11069,9 +11993,19 @@ void QColumnView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "raise");
 }
 
+void QColumnView_RaiseDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::raise();
+}
+
 void QColumnView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "repaint");
+}
+
+void QColumnView_RepaintDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::repaint();
 }
 
 void QColumnView_SetDisabled(void* ptr, int disable)
@@ -11079,9 +12013,19 @@ void QColumnView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QColumnView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setDisabled(disable != 0);
+}
+
 void QColumnView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setFocus");
+}
+
+void QColumnView_SetFocus2Default(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setFocus();
 }
 
 void QColumnView_SetHidden(void* ptr, int hidden)
@@ -11089,9 +12033,19 @@ void QColumnView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QColumnView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::setHidden(hidden != 0);
+}
+
 void QColumnView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "show");
+}
+
+void QColumnView_ShowDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::show();
 }
 
 void QColumnView_ShowFullScreen(void* ptr)
@@ -11099,9 +12053,19 @@ void QColumnView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "showFullScreen");
 }
 
+void QColumnView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::showFullScreen();
+}
+
 void QColumnView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "showMaximized");
+}
+
+void QColumnView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::showMaximized();
 }
 
 void QColumnView_ShowMinimized(void* ptr)
@@ -11109,9 +12073,19 @@ void QColumnView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "showMinimized");
 }
 
+void QColumnView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::showMinimized();
+}
+
 void QColumnView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "showNormal");
+}
+
+void QColumnView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::showNormal();
 }
 
 void QColumnView_TabletEvent(void* ptr, void* event)
@@ -11127,6 +12101,11 @@ void QColumnView_TabletEventDefault(void* ptr, void* event)
 void QColumnView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "updateMicroFocus");
+}
+
+void QColumnView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::updateMicroFocus();
 }
 
 void QColumnView_ChildEvent(void* ptr, void* event)
@@ -11162,6 +12141,11 @@ void QColumnView_CustomEventDefault(void* ptr, void* event)
 void QColumnView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QColumnView*>(ptr), "deleteLater");
+}
+
+void QColumnView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::deleteLater();
 }
 
 void QColumnView_DisconnectNotify(void* ptr, void* sign)
@@ -12015,9 +12999,19 @@ void QComboBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QComboBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::setEnabled(vbo != 0);
+}
+
 void QComboBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QComboBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::setStyleSheet(QString(styleSheet));
 }
 
 void QComboBox_SetVisible(void* ptr, int visible)
@@ -12035,9 +13029,19 @@ void QComboBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QComboBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::setWindowModified(vbo != 0);
+}
+
 void QComboBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QComboBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::setWindowTitle(QString(vqs));
 }
 
 int QComboBox_Close(void* ptr)
@@ -12045,6 +13049,11 @@ int QComboBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QComboBox_CloseDefault(void* ptr)
+{
+	return static_cast<QComboBox*>(ptr)->QComboBox::close();
 }
 
 void QComboBox_CloseEvent(void* ptr, void* event)
@@ -12092,6 +13101,11 @@ void QComboBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "hide");
 }
 
+void QComboBox_HideDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::hide();
+}
+
 void QComboBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QComboBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -12105,6 +13119,11 @@ void QComboBox_InitPainterDefault(void* ptr, void* painter)
 void QComboBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "lower");
+}
+
+void QComboBox_LowerDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::lower();
 }
 
 void QComboBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -12142,9 +13161,19 @@ void QComboBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "raise");
 }
 
+void QComboBox_RaiseDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::raise();
+}
+
 void QComboBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "repaint");
+}
+
+void QComboBox_RepaintDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::repaint();
 }
 
 void QComboBox_SetDisabled(void* ptr, int disable)
@@ -12152,9 +13181,19 @@ void QComboBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QComboBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::setDisabled(disable != 0);
+}
+
 void QComboBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setFocus");
+}
+
+void QComboBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::setFocus();
 }
 
 void QComboBox_SetHidden(void* ptr, int hidden)
@@ -12162,9 +13201,19 @@ void QComboBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QComboBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::setHidden(hidden != 0);
+}
+
 void QComboBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "show");
+}
+
+void QComboBox_ShowDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::show();
 }
 
 void QComboBox_ShowFullScreen(void* ptr)
@@ -12172,9 +13221,19 @@ void QComboBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "showFullScreen");
 }
 
+void QComboBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::showFullScreen();
+}
+
 void QComboBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "showMaximized");
+}
+
+void QComboBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::showMaximized();
 }
 
 void QComboBox_ShowMinimized(void* ptr)
@@ -12182,9 +13241,19 @@ void QComboBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "showMinimized");
 }
 
+void QComboBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::showMinimized();
+}
+
 void QComboBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "showNormal");
+}
+
+void QComboBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::showNormal();
 }
 
 void QComboBox_TabletEvent(void* ptr, void* event)
@@ -12202,9 +13271,19 @@ void QComboBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "update");
 }
 
+void QComboBox_UpdateDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::update();
+}
+
 void QComboBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "updateMicroFocus");
+}
+
+void QComboBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::updateMicroFocus();
 }
 
 void QComboBox_TimerEvent(void* ptr, void* event)
@@ -12250,6 +13329,11 @@ void QComboBox_CustomEventDefault(void* ptr, void* event)
 void QComboBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QComboBox*>(ptr), "deleteLater");
+}
+
+void QComboBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QComboBox*>(ptr)->QComboBox::deleteLater();
 }
 
 void QComboBox_DisconnectNotify(void* ptr, void* sign)
@@ -12489,9 +13573,19 @@ void QCommandLinkButton_ShowMenu(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "showMenu");
 }
 
+void QCommandLinkButton_ShowMenuDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::showMenu();
+}
+
 void QCommandLinkButton_SetChecked(void* ptr, int vbo)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setChecked", Q_ARG(bool, vbo != 0));
+}
+
+void QCommandLinkButton_SetCheckedDefault(void* ptr, int vbo)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setChecked(vbo != 0);
 }
 
 void QCommandLinkButton_SetIconSize(void* ptr, void* size)
@@ -12499,14 +13593,29 @@ void QCommandLinkButton_SetIconSize(void* ptr, void* size)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(size)));
 }
 
+void QCommandLinkButton_SetIconSizeDefault(void* ptr, void* size)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setIconSize(*static_cast<QSize*>(size));
+}
+
 void QCommandLinkButton_Toggle(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "toggle");
 }
 
+void QCommandLinkButton_ToggleDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::toggle();
+}
+
 void QCommandLinkButton_AnimateClick(void* ptr, int msec)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "animateClick", Q_ARG(int, msec));
+}
+
+void QCommandLinkButton_AnimateClickDefault(void* ptr, int msec)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::animateClick(msec);
 }
 
 void QCommandLinkButton_ChangeEvent(void* ptr, void* e)
@@ -12532,6 +13641,11 @@ void QCommandLinkButton_CheckStateSetDefault(void* ptr)
 void QCommandLinkButton_Click(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "click");
+}
+
+void QCommandLinkButton_ClickDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::click();
 }
 
 void QCommandLinkButton_KeyReleaseEvent(void* ptr, void* e)
@@ -12709,9 +13823,19 @@ void QCommandLinkButton_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QCommandLinkButton_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setEnabled(vbo != 0);
+}
+
 void QCommandLinkButton_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QCommandLinkButton_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setStyleSheet(QString(styleSheet));
 }
 
 void QCommandLinkButton_SetVisible(void* ptr, int visible)
@@ -12729,9 +13853,19 @@ void QCommandLinkButton_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QCommandLinkButton_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setWindowModified(vbo != 0);
+}
+
 void QCommandLinkButton_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QCommandLinkButton_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setWindowTitle(QString(vqs));
 }
 
 void QCommandLinkButton_ShowEvent(void* ptr, void* event)
@@ -12749,6 +13883,11 @@ int QCommandLinkButton_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QCommandLinkButton_CloseDefault(void* ptr)
+{
+	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::close();
 }
 
 void QCommandLinkButton_CloseEvent(void* ptr, void* event)
@@ -12796,6 +13935,11 @@ void QCommandLinkButton_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "hide");
 }
 
+void QCommandLinkButton_HideDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::hide();
+}
+
 void QCommandLinkButton_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QCommandLinkButton*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -12831,6 +13975,11 @@ void QCommandLinkButton_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "lower");
 }
 
+void QCommandLinkButton_LowerDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::lower();
+}
+
 void QCommandLinkButton_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QCommandLinkButton*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -12856,9 +14005,19 @@ void QCommandLinkButton_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "raise");
 }
 
+void QCommandLinkButton_RaiseDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::raise();
+}
+
 void QCommandLinkButton_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "repaint");
+}
+
+void QCommandLinkButton_RepaintDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::repaint();
 }
 
 void QCommandLinkButton_ResizeEvent(void* ptr, void* event)
@@ -12876,9 +14035,19 @@ void QCommandLinkButton_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QCommandLinkButton_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setDisabled(disable != 0);
+}
+
 void QCommandLinkButton_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setFocus");
+}
+
+void QCommandLinkButton_SetFocus2Default(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setFocus();
 }
 
 void QCommandLinkButton_SetHidden(void* ptr, int hidden)
@@ -12886,9 +14055,19 @@ void QCommandLinkButton_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QCommandLinkButton_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::setHidden(hidden != 0);
+}
+
 void QCommandLinkButton_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "show");
+}
+
+void QCommandLinkButton_ShowDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::show();
 }
 
 void QCommandLinkButton_ShowFullScreen(void* ptr)
@@ -12896,9 +14075,19 @@ void QCommandLinkButton_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "showFullScreen");
 }
 
+void QCommandLinkButton_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::showFullScreen();
+}
+
 void QCommandLinkButton_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "showMaximized");
+}
+
+void QCommandLinkButton_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::showMaximized();
 }
 
 void QCommandLinkButton_ShowMinimized(void* ptr)
@@ -12906,9 +14095,19 @@ void QCommandLinkButton_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "showMinimized");
 }
 
+void QCommandLinkButton_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::showMinimized();
+}
+
 void QCommandLinkButton_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "showNormal");
+}
+
+void QCommandLinkButton_ShowNormalDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::showNormal();
 }
 
 void QCommandLinkButton_TabletEvent(void* ptr, void* event)
@@ -12926,9 +14125,19 @@ void QCommandLinkButton_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "update");
 }
 
+void QCommandLinkButton_UpdateDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::update();
+}
+
 void QCommandLinkButton_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "updateMicroFocus");
+}
+
+void QCommandLinkButton_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::updateMicroFocus();
 }
 
 void QCommandLinkButton_WheelEvent(void* ptr, void* event)
@@ -12974,6 +14183,11 @@ void QCommandLinkButton_CustomEventDefault(void* ptr, void* event)
 void QCommandLinkButton_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommandLinkButton*>(ptr), "deleteLater");
+}
+
+void QCommandLinkButton_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::deleteLater();
 }
 
 void QCommandLinkButton_DisconnectNotify(void* ptr, void* sign)
@@ -13269,6 +14483,11 @@ void* QCommonStyle_StandardIcon(void* ptr, int standardIcon, void* option, void*
 	return new QIcon(static_cast<QCommonStyle*>(ptr)->standardIcon(static_cast<QStyle::StandardPixmap>(standardIcon), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget)));
 }
 
+void* QCommonStyle_StandardIconDefault(void* ptr, int standardIcon, void* option, void* widget)
+{
+	return new QIcon(static_cast<QCommonStyle*>(ptr)->QCommonStyle::standardIcon(static_cast<QStyle::StandardPixmap>(standardIcon), static_cast<QStyleOption*>(option), static_cast<QWidget*>(widget)));
+}
+
 void* QCommonStyle_StandardPalette(void* ptr)
 {
 	return new QPalette(static_cast<QCommonStyle*>(ptr)->standardPalette());
@@ -13322,6 +14541,11 @@ void QCommonStyle_CustomEventDefault(void* ptr, void* event)
 void QCommonStyle_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCommonStyle*>(ptr), "deleteLater");
+}
+
+void QCommonStyle_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCommonStyle*>(ptr)->QCommonStyle::deleteLater();
 }
 
 void QCommonStyle_DisconnectNotify(void* ptr, void* sign)
@@ -13710,6 +14934,11 @@ void QCompleter_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCompleter*>(ptr), "deleteLater");
 }
 
+void QCompleter_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCompleter*>(ptr)->QCompleter::deleteLater();
+}
+
 void QCompleter_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCompleter*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -13961,6 +15190,11 @@ void QDataWidgetMapper_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDataWidgetMapper*>(ptr), "deleteLater");
 }
 
+void QDataWidgetMapper_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDataWidgetMapper*>(ptr)->QDataWidgetMapper::deleteLater();
+}
+
 void QDataWidgetMapper_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QDataWidgetMapper*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -14019,6 +15253,11 @@ void QDateEdit_DestroyQDateEdit(void* ptr)
 void QDateEdit_SetDateTime(void* ptr, void* dateTime)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setDateTime", Q_ARG(QDateTime, *static_cast<QDateTime*>(dateTime)));
+}
+
+void QDateEdit_SetDateTimeDefault(void* ptr, void* dateTime)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setDateTime(*static_cast<QDateTime*>(dateTime));
 }
 
 void QDateEdit_Clear(void* ptr)
@@ -14274,6 +15513,11 @@ void QDateEdit_SelectAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "selectAll");
 }
 
+void QDateEdit_SelectAllDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::selectAll();
+}
+
 void QDateEdit_ShowEvent(void* ptr, void* event)
 {
 	static_cast<QDateEdit*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
@@ -14289,9 +15533,19 @@ void QDateEdit_StepDown(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "stepDown");
 }
 
+void QDateEdit_StepDownDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::stepDown();
+}
+
 void QDateEdit_StepUp(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "stepUp");
+}
+
+void QDateEdit_StepUpDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::stepUp();
 }
 
 void QDateEdit_TimerEvent(void* ptr, void* event)
@@ -14409,9 +15663,19 @@ void QDateEdit_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDateEdit_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setEnabled(vbo != 0);
+}
+
 void QDateEdit_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDateEdit_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setStyleSheet(QString(styleSheet));
 }
 
 void QDateEdit_SetVisible(void* ptr, int visible)
@@ -14429,9 +15693,19 @@ void QDateEdit_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDateEdit_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setWindowModified(vbo != 0);
+}
+
 void QDateEdit_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDateEdit_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setWindowTitle(QString(vqs));
 }
 
 int QDateEdit_Close(void* ptr)
@@ -14439,6 +15713,11 @@ int QDateEdit_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDateEdit_CloseDefault(void* ptr)
+{
+	return static_cast<QDateEdit*>(ptr)->QDateEdit::close();
 }
 
 int QDateEdit_HasHeightForWidth(void* ptr)
@@ -14466,6 +15745,11 @@ void QDateEdit_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "hide");
 }
 
+void QDateEdit_HideDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::hide();
+}
+
 void QDateEdit_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QDateEdit*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -14489,6 +15773,11 @@ void QDateEdit_InputMethodEventDefault(void* ptr, void* event)
 void QDateEdit_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "lower");
+}
+
+void QDateEdit_LowerDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::lower();
 }
 
 void QDateEdit_MouseDoubleClickEvent(void* ptr, void* event)
@@ -14516,9 +15805,19 @@ void QDateEdit_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "raise");
 }
 
+void QDateEdit_RaiseDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::raise();
+}
+
 void QDateEdit_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "repaint");
+}
+
+void QDateEdit_RepaintDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::repaint();
 }
 
 void QDateEdit_SetDisabled(void* ptr, int disable)
@@ -14526,9 +15825,19 @@ void QDateEdit_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDateEdit_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setDisabled(disable != 0);
+}
+
 void QDateEdit_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setFocus");
+}
+
+void QDateEdit_SetFocus2Default(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setFocus();
 }
 
 void QDateEdit_SetHidden(void* ptr, int hidden)
@@ -14536,9 +15845,19 @@ void QDateEdit_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDateEdit_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::setHidden(hidden != 0);
+}
+
 void QDateEdit_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "show");
+}
+
+void QDateEdit_ShowDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::show();
 }
 
 void QDateEdit_ShowFullScreen(void* ptr)
@@ -14546,9 +15865,19 @@ void QDateEdit_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "showFullScreen");
 }
 
+void QDateEdit_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::showFullScreen();
+}
+
 void QDateEdit_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "showMaximized");
+}
+
+void QDateEdit_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::showMaximized();
 }
 
 void QDateEdit_ShowMinimized(void* ptr)
@@ -14556,9 +15885,19 @@ void QDateEdit_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "showMinimized");
 }
 
+void QDateEdit_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::showMinimized();
+}
+
 void QDateEdit_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "showNormal");
+}
+
+void QDateEdit_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::showNormal();
 }
 
 void QDateEdit_TabletEvent(void* ptr, void* event)
@@ -14576,9 +15915,19 @@ void QDateEdit_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "update");
 }
 
+void QDateEdit_UpdateDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::update();
+}
+
 void QDateEdit_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "updateMicroFocus");
+}
+
+void QDateEdit_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::updateMicroFocus();
 }
 
 void QDateEdit_ChildEvent(void* ptr, void* event)
@@ -14614,6 +15963,11 @@ void QDateEdit_CustomEventDefault(void* ptr, void* event)
 void QDateEdit_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateEdit*>(ptr), "deleteLater");
+}
+
+void QDateEdit_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::deleteLater();
 }
 
 void QDateEdit_DisconnectNotify(void* ptr, void* sign)
@@ -15210,6 +16564,11 @@ void QDateTimeEdit_SelectAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "selectAll");
 }
 
+void QDateTimeEdit_SelectAllDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::selectAll();
+}
+
 void QDateTimeEdit_ShowEvent(void* ptr, void* event)
 {
 	static_cast<QDateTimeEdit*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
@@ -15225,9 +16584,19 @@ void QDateTimeEdit_StepDown(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "stepDown");
 }
 
+void QDateTimeEdit_StepDownDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::stepDown();
+}
+
 void QDateTimeEdit_StepUp(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "stepUp");
+}
+
+void QDateTimeEdit_StepUpDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::stepUp();
 }
 
 void QDateTimeEdit_TimerEvent(void* ptr, void* event)
@@ -15345,9 +16714,19 @@ void QDateTimeEdit_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDateTimeEdit_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::setEnabled(vbo != 0);
+}
+
 void QDateTimeEdit_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDateTimeEdit_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::setStyleSheet(QString(styleSheet));
 }
 
 void QDateTimeEdit_SetVisible(void* ptr, int visible)
@@ -15365,9 +16744,19 @@ void QDateTimeEdit_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDateTimeEdit_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::setWindowModified(vbo != 0);
+}
+
 void QDateTimeEdit_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDateTimeEdit_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::setWindowTitle(QString(vqs));
 }
 
 int QDateTimeEdit_Close(void* ptr)
@@ -15375,6 +16764,11 @@ int QDateTimeEdit_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDateTimeEdit_CloseDefault(void* ptr)
+{
+	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::close();
 }
 
 int QDateTimeEdit_HasHeightForWidth(void* ptr)
@@ -15402,6 +16796,11 @@ void QDateTimeEdit_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "hide");
 }
 
+void QDateTimeEdit_HideDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::hide();
+}
+
 void QDateTimeEdit_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QDateTimeEdit*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -15425,6 +16824,11 @@ void QDateTimeEdit_InputMethodEventDefault(void* ptr, void* event)
 void QDateTimeEdit_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "lower");
+}
+
+void QDateTimeEdit_LowerDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::lower();
 }
 
 void QDateTimeEdit_MouseDoubleClickEvent(void* ptr, void* event)
@@ -15452,9 +16856,19 @@ void QDateTimeEdit_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "raise");
 }
 
+void QDateTimeEdit_RaiseDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::raise();
+}
+
 void QDateTimeEdit_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "repaint");
+}
+
+void QDateTimeEdit_RepaintDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::repaint();
 }
 
 void QDateTimeEdit_SetDisabled(void* ptr, int disable)
@@ -15462,9 +16876,19 @@ void QDateTimeEdit_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDateTimeEdit_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::setDisabled(disable != 0);
+}
+
 void QDateTimeEdit_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setFocus");
+}
+
+void QDateTimeEdit_SetFocus2Default(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::setFocus();
 }
 
 void QDateTimeEdit_SetHidden(void* ptr, int hidden)
@@ -15472,9 +16896,19 @@ void QDateTimeEdit_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDateTimeEdit_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::setHidden(hidden != 0);
+}
+
 void QDateTimeEdit_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "show");
+}
+
+void QDateTimeEdit_ShowDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::show();
 }
 
 void QDateTimeEdit_ShowFullScreen(void* ptr)
@@ -15482,9 +16916,19 @@ void QDateTimeEdit_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "showFullScreen");
 }
 
+void QDateTimeEdit_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::showFullScreen();
+}
+
 void QDateTimeEdit_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "showMaximized");
+}
+
+void QDateTimeEdit_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::showMaximized();
 }
 
 void QDateTimeEdit_ShowMinimized(void* ptr)
@@ -15492,9 +16936,19 @@ void QDateTimeEdit_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "showMinimized");
 }
 
+void QDateTimeEdit_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::showMinimized();
+}
+
 void QDateTimeEdit_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "showNormal");
+}
+
+void QDateTimeEdit_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::showNormal();
 }
 
 void QDateTimeEdit_TabletEvent(void* ptr, void* event)
@@ -15512,9 +16966,19 @@ void QDateTimeEdit_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "update");
 }
 
+void QDateTimeEdit_UpdateDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::update();
+}
+
 void QDateTimeEdit_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "updateMicroFocus");
+}
+
+void QDateTimeEdit_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::updateMicroFocus();
 }
 
 void QDateTimeEdit_ChildEvent(void* ptr, void* event)
@@ -15550,6 +17014,11 @@ void QDateTimeEdit_CustomEventDefault(void* ptr, void* event)
 void QDateTimeEdit_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDateTimeEdit*>(ptr), "deleteLater");
+}
+
+void QDateTimeEdit_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::deleteLater();
 }
 
 void QDateTimeEdit_DisconnectNotify(void* ptr, void* sign)
@@ -15925,9 +17394,19 @@ void QDesktopWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDesktopWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setEnabled(vbo != 0);
+}
+
 void QDesktopWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDesktopWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QDesktopWidget_SetVisible(void* ptr, int visible)
@@ -15945,9 +17424,19 @@ void QDesktopWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDesktopWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowModified(vbo != 0);
+}
+
 void QDesktopWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDesktopWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setWindowTitle(QString(vqs));
 }
 
 void QDesktopWidget_ShowEvent(void* ptr, void* event)
@@ -15985,6 +17474,11 @@ int QDesktopWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDesktopWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::close();
 }
 
 void QDesktopWidget_CloseEvent(void* ptr, void* event)
@@ -16052,6 +17546,11 @@ void QDesktopWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "hide");
 }
 
+void QDesktopWidget_HideDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::hide();
+}
+
 void QDesktopWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QDesktopWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -16105,6 +17604,11 @@ void QDesktopWidget_KeyReleaseEventDefault(void* ptr, void* event)
 void QDesktopWidget_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "lower");
+}
+
+void QDesktopWidget_LowerDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::lower();
 }
 
 void QDesktopWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -16162,9 +17666,19 @@ void QDesktopWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "raise");
 }
 
+void QDesktopWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::raise();
+}
+
 void QDesktopWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "repaint");
+}
+
+void QDesktopWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::repaint();
 }
 
 void QDesktopWidget_SetDisabled(void* ptr, int disable)
@@ -16172,9 +17686,19 @@ void QDesktopWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDesktopWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setDisabled(disable != 0);
+}
+
 void QDesktopWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "setFocus");
+}
+
+void QDesktopWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setFocus();
 }
 
 void QDesktopWidget_SetHidden(void* ptr, int hidden)
@@ -16182,9 +17706,19 @@ void QDesktopWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDesktopWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::setHidden(hidden != 0);
+}
+
 void QDesktopWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "show");
+}
+
+void QDesktopWidget_ShowDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::show();
 }
 
 void QDesktopWidget_ShowFullScreen(void* ptr)
@@ -16192,9 +17726,19 @@ void QDesktopWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "showFullScreen");
 }
 
+void QDesktopWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showFullScreen();
+}
+
 void QDesktopWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "showMaximized");
+}
+
+void QDesktopWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMaximized();
 }
 
 void QDesktopWidget_ShowMinimized(void* ptr)
@@ -16202,9 +17746,19 @@ void QDesktopWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "showMinimized");
 }
 
+void QDesktopWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showMinimized();
+}
+
 void QDesktopWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "showNormal");
+}
+
+void QDesktopWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::showNormal();
 }
 
 void QDesktopWidget_TabletEvent(void* ptr, void* event)
@@ -16222,9 +17776,19 @@ void QDesktopWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "update");
 }
 
+void QDesktopWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::update();
+}
+
 void QDesktopWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "updateMicroFocus");
+}
+
+void QDesktopWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::updateMicroFocus();
 }
 
 void QDesktopWidget_WheelEvent(void* ptr, void* event)
@@ -16280,6 +17844,11 @@ void QDesktopWidget_CustomEventDefault(void* ptr, void* event)
 void QDesktopWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDesktopWidget*>(ptr), "deleteLater");
+}
+
+void QDesktopWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::deleteLater();
 }
 
 void QDesktopWidget_DisconnectNotify(void* ptr, void* sign)
@@ -16529,9 +18098,19 @@ void QDial_SetOrientation(void* ptr, int vqt)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setOrientation", Q_ARG(Qt::Orientation, static_cast<Qt::Orientation>(vqt)));
 }
 
+void QDial_SetOrientationDefault(void* ptr, int vqt)
+{
+	static_cast<QDial*>(ptr)->QDial::setOrientation(static_cast<Qt::Orientation>(vqt));
+}
+
 void QDial_SetValue(void* ptr, int vin)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setValue", Q_ARG(int, vin));
+}
+
+void QDial_SetValueDefault(void* ptr, int vin)
+{
+	static_cast<QDial*>(ptr)->QDial::setValue(vin);
 }
 
 void QDial_ChangeEvent(void* ptr, void* ev)
@@ -16557,6 +18136,11 @@ void QDial_KeyPressEventDefault(void* ptr, void* ev)
 void QDial_SetRange(void* ptr, int min, int max)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setRange", Q_ARG(int, min), Q_ARG(int, max));
+}
+
+void QDial_SetRangeDefault(void* ptr, int min, int max)
+{
+	static_cast<QDial*>(ptr)->QDial::setRange(min, max);
 }
 
 void QDial_TimerEvent(void* ptr, void* e)
@@ -16714,9 +18298,19 @@ void QDial_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDial_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDial*>(ptr)->QDial::setEnabled(vbo != 0);
+}
+
 void QDial_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDial_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDial*>(ptr)->QDial::setStyleSheet(QString(styleSheet));
 }
 
 void QDial_SetVisible(void* ptr, int visible)
@@ -16734,9 +18328,19 @@ void QDial_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDial_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDial*>(ptr)->QDial::setWindowModified(vbo != 0);
+}
+
 void QDial_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDial_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDial*>(ptr)->QDial::setWindowTitle(QString(vqs));
 }
 
 void QDial_ShowEvent(void* ptr, void* event)
@@ -16754,6 +18358,11 @@ int QDial_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDial_CloseDefault(void* ptr)
+{
+	return static_cast<QDial*>(ptr)->QDial::close();
 }
 
 void QDial_CloseEvent(void* ptr, void* event)
@@ -16811,6 +18420,11 @@ void QDial_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "hide");
 }
 
+void QDial_HideDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::hide();
+}
+
 void QDial_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QDial*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -16856,6 +18470,11 @@ void QDial_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "lower");
 }
 
+void QDial_LowerDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::lower();
+}
+
 void QDial_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QDial*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -16881,9 +18500,19 @@ void QDial_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "raise");
 }
 
+void QDial_RaiseDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::raise();
+}
+
 void QDial_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "repaint");
+}
+
+void QDial_RepaintDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::repaint();
 }
 
 void QDial_SetDisabled(void* ptr, int disable)
@@ -16891,9 +18520,19 @@ void QDial_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDial_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDial*>(ptr)->QDial::setDisabled(disable != 0);
+}
+
 void QDial_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setFocus");
+}
+
+void QDial_SetFocus2Default(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::setFocus();
 }
 
 void QDial_SetHidden(void* ptr, int hidden)
@@ -16901,9 +18540,19 @@ void QDial_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDial_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDial*>(ptr)->QDial::setHidden(hidden != 0);
+}
+
 void QDial_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "show");
+}
+
+void QDial_ShowDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::show();
 }
 
 void QDial_ShowFullScreen(void* ptr)
@@ -16911,9 +18560,19 @@ void QDial_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "showFullScreen");
 }
 
+void QDial_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::showFullScreen();
+}
+
 void QDial_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "showMaximized");
+}
+
+void QDial_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::showMaximized();
 }
 
 void QDial_ShowMinimized(void* ptr)
@@ -16921,9 +18580,19 @@ void QDial_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "showMinimized");
 }
 
+void QDial_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::showMinimized();
+}
+
 void QDial_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "showNormal");
+}
+
+void QDial_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::showNormal();
 }
 
 void QDial_TabletEvent(void* ptr, void* event)
@@ -16941,9 +18610,19 @@ void QDial_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "update");
 }
 
+void QDial_UpdateDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::update();
+}
+
 void QDial_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "updateMicroFocus");
+}
+
+void QDial_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::updateMicroFocus();
 }
 
 void QDial_ChildEvent(void* ptr, void* event)
@@ -16979,6 +18658,11 @@ void QDial_CustomEventDefault(void* ptr, void* event)
 void QDial_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDial*>(ptr), "deleteLater");
+}
+
+void QDial_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDial*>(ptr)->QDial::deleteLater();
 }
 
 void QDial_DisconnectNotify(void* ptr, void* sign)
@@ -17467,9 +19151,19 @@ void QDialog_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDialog_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDialog*>(ptr)->QDialog::setEnabled(vbo != 0);
+}
+
 void QDialog_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDialog*>(ptr)->QDialog::setStyleSheet(QString(styleSheet));
 }
 
 void QDialog_SetWindowModified(void* ptr, int vbo)
@@ -17477,9 +19171,19 @@ void QDialog_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDialog_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDialog*>(ptr)->QDialog::setWindowModified(vbo != 0);
+}
+
 void QDialog_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDialog*>(ptr)->QDialog::setWindowTitle(QString(vqs));
 }
 
 void QDialog_ChangeEvent(void* ptr, void* event)
@@ -17497,6 +19201,11 @@ int QDialog_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDialog_CloseDefault(void* ptr)
+{
+	return static_cast<QDialog*>(ptr)->QDialog::close();
 }
 
 int QDialog_FocusNextPrevChild(void* ptr, int next)
@@ -17532,6 +19241,11 @@ int QDialog_HeightForWidthDefault(void* ptr, int w)
 void QDialog_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "hide");
+}
+
+void QDialog_HideDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::hide();
 }
 
 void QDialog_InitPainter(void* ptr, void* painter)
@@ -17577,6 +19291,11 @@ void QDialog_KeyReleaseEventDefault(void* ptr, void* event)
 void QDialog_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "lower");
+}
+
+void QDialog_LowerDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::lower();
 }
 
 void QDialog_MouseDoubleClickEvent(void* ptr, void* event)
@@ -17634,9 +19353,19 @@ void QDialog_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "raise");
 }
 
+void QDialog_RaiseDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::raise();
+}
+
 void QDialog_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "repaint");
+}
+
+void QDialog_RepaintDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::repaint();
 }
 
 void QDialog_SetDisabled(void* ptr, int disable)
@@ -17644,9 +19373,19 @@ void QDialog_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDialog_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDialog*>(ptr)->QDialog::setDisabled(disable != 0);
+}
+
 void QDialog_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setFocus");
+}
+
+void QDialog_SetFocus2Default(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::setFocus();
 }
 
 void QDialog_SetHidden(void* ptr, int hidden)
@@ -17654,9 +19393,19 @@ void QDialog_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDialog_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDialog*>(ptr)->QDialog::setHidden(hidden != 0);
+}
+
 void QDialog_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "show");
+}
+
+void QDialog_ShowDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::show();
 }
 
 void QDialog_ShowFullScreen(void* ptr)
@@ -17664,9 +19413,19 @@ void QDialog_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "showFullScreen");
 }
 
+void QDialog_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::showFullScreen();
+}
+
 void QDialog_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "showMaximized");
+}
+
+void QDialog_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::showMaximized();
 }
 
 void QDialog_ShowMinimized(void* ptr)
@@ -17674,9 +19433,19 @@ void QDialog_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "showMinimized");
 }
 
+void QDialog_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::showMinimized();
+}
+
 void QDialog_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "showNormal");
+}
+
+void QDialog_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::showNormal();
 }
 
 void QDialog_TabletEvent(void* ptr, void* event)
@@ -17694,9 +19463,19 @@ void QDialog_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "update");
 }
 
+void QDialog_UpdateDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::update();
+}
+
 void QDialog_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "updateMicroFocus");
+}
+
+void QDialog_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::updateMicroFocus();
 }
 
 void QDialog_WheelEvent(void* ptr, void* event)
@@ -17752,6 +19531,11 @@ void QDialog_CustomEventDefault(void* ptr, void* event)
 void QDialog_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialog*>(ptr), "deleteLater");
+}
+
+void QDialog_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDialog*>(ptr)->QDialog::deleteLater();
 }
 
 void QDialog_DisconnectNotify(void* ptr, void* sign)
@@ -18182,9 +19966,19 @@ void QDialogButtonBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDialogButtonBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setEnabled(vbo != 0);
+}
+
 void QDialogButtonBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDialogButtonBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setStyleSheet(QString(styleSheet));
 }
 
 void QDialogButtonBox_SetVisible(void* ptr, int visible)
@@ -18202,9 +19996,19 @@ void QDialogButtonBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDialogButtonBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setWindowModified(vbo != 0);
+}
+
 void QDialogButtonBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDialogButtonBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setWindowTitle(QString(vqs));
 }
 
 void QDialogButtonBox_ShowEvent(void* ptr, void* event)
@@ -18232,6 +20036,11 @@ int QDialogButtonBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDialogButtonBox_CloseDefault(void* ptr)
+{
+	return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::close();
 }
 
 void QDialogButtonBox_CloseEvent(void* ptr, void* event)
@@ -18289,6 +20098,11 @@ void QDialogButtonBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "hide");
 }
 
+void QDialogButtonBox_HideDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::hide();
+}
+
 void QDialogButtonBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QDialogButtonBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -18342,6 +20156,11 @@ void QDialogButtonBox_KeyReleaseEventDefault(void* ptr, void* event)
 void QDialogButtonBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "lower");
+}
+
+void QDialogButtonBox_LowerDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::lower();
 }
 
 void QDialogButtonBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -18399,9 +20218,19 @@ void QDialogButtonBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "raise");
 }
 
+void QDialogButtonBox_RaiseDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::raise();
+}
+
 void QDialogButtonBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "repaint");
+}
+
+void QDialogButtonBox_RepaintDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::repaint();
 }
 
 void QDialogButtonBox_ResizeEvent(void* ptr, void* event)
@@ -18419,9 +20248,19 @@ void QDialogButtonBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDialogButtonBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setDisabled(disable != 0);
+}
+
 void QDialogButtonBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "setFocus");
+}
+
+void QDialogButtonBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setFocus();
 }
 
 void QDialogButtonBox_SetHidden(void* ptr, int hidden)
@@ -18429,9 +20268,19 @@ void QDialogButtonBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDialogButtonBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::setHidden(hidden != 0);
+}
+
 void QDialogButtonBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "show");
+}
+
+void QDialogButtonBox_ShowDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::show();
 }
 
 void QDialogButtonBox_ShowFullScreen(void* ptr)
@@ -18439,9 +20288,19 @@ void QDialogButtonBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "showFullScreen");
 }
 
+void QDialogButtonBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showFullScreen();
+}
+
 void QDialogButtonBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "showMaximized");
+}
+
+void QDialogButtonBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showMaximized();
 }
 
 void QDialogButtonBox_ShowMinimized(void* ptr)
@@ -18449,9 +20308,19 @@ void QDialogButtonBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "showMinimized");
 }
 
+void QDialogButtonBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showMinimized();
+}
+
 void QDialogButtonBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "showNormal");
+}
+
+void QDialogButtonBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::showNormal();
 }
 
 void QDialogButtonBox_TabletEvent(void* ptr, void* event)
@@ -18469,9 +20338,19 @@ void QDialogButtonBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "update");
 }
 
+void QDialogButtonBox_UpdateDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::update();
+}
+
 void QDialogButtonBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "updateMicroFocus");
+}
+
+void QDialogButtonBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::updateMicroFocus();
 }
 
 void QDialogButtonBox_WheelEvent(void* ptr, void* event)
@@ -18527,6 +20406,11 @@ void QDialogButtonBox_CustomEventDefault(void* ptr, void* event)
 void QDialogButtonBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDialogButtonBox*>(ptr), "deleteLater");
+}
+
+void QDialogButtonBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::deleteLater();
 }
 
 void QDialogButtonBox_DisconnectNotify(void* ptr, void* sign)
@@ -18976,9 +20860,19 @@ void QDockWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDockWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::setEnabled(vbo != 0);
+}
+
 void QDockWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDockWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QDockWidget_SetVisible(void* ptr, int visible)
@@ -18996,9 +20890,19 @@ void QDockWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDockWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::setWindowModified(vbo != 0);
+}
+
 void QDockWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDockWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::setWindowTitle(QString(vqs));
 }
 
 void QDockWidget_ShowEvent(void* ptr, void* event)
@@ -19026,6 +20930,11 @@ int QDockWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDockWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QDockWidget*>(ptr)->QDockWidget::close();
 }
 
 void QDockWidget_ContextMenuEvent(void* ptr, void* event)
@@ -19071,6 +20980,11 @@ int QDockWidget_HeightForWidthDefault(void* ptr, int w)
 void QDockWidget_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "hide");
+}
+
+void QDockWidget_HideDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::hide();
 }
 
 void QDockWidget_InitPainter(void* ptr, void* painter)
@@ -19128,6 +21042,11 @@ void QDockWidget_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "lower");
 }
 
+void QDockWidget_LowerDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::lower();
+}
+
 void QDockWidget_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QDockWidget*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -19183,9 +21102,19 @@ void QDockWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "raise");
 }
 
+void QDockWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::raise();
+}
+
 void QDockWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "repaint");
+}
+
+void QDockWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::repaint();
 }
 
 void QDockWidget_ResizeEvent(void* ptr, void* event)
@@ -19203,9 +21132,19 @@ void QDockWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDockWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::setDisabled(disable != 0);
+}
+
 void QDockWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "setFocus");
+}
+
+void QDockWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::setFocus();
 }
 
 void QDockWidget_SetHidden(void* ptr, int hidden)
@@ -19213,9 +21152,19 @@ void QDockWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDockWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::setHidden(hidden != 0);
+}
+
 void QDockWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "show");
+}
+
+void QDockWidget_ShowDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::show();
 }
 
 void QDockWidget_ShowFullScreen(void* ptr)
@@ -19223,9 +21172,19 @@ void QDockWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "showFullScreen");
 }
 
+void QDockWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::showFullScreen();
+}
+
 void QDockWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "showMaximized");
+}
+
+void QDockWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::showMaximized();
 }
 
 void QDockWidget_ShowMinimized(void* ptr)
@@ -19233,9 +21192,19 @@ void QDockWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "showMinimized");
 }
 
+void QDockWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::showMinimized();
+}
+
 void QDockWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "showNormal");
+}
+
+void QDockWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::showNormal();
 }
 
 void QDockWidget_TabletEvent(void* ptr, void* event)
@@ -19253,9 +21222,19 @@ void QDockWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "update");
 }
 
+void QDockWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::update();
+}
+
 void QDockWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "updateMicroFocus");
+}
+
+void QDockWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::updateMicroFocus();
 }
 
 void QDockWidget_WheelEvent(void* ptr, void* event)
@@ -19311,6 +21290,11 @@ void QDockWidget_CustomEventDefault(void* ptr, void* event)
 void QDockWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDockWidget*>(ptr), "deleteLater");
+}
+
+void QDockWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDockWidget*>(ptr)->QDockWidget::deleteLater();
 }
 
 void QDockWidget_DisconnectNotify(void* ptr, void* sign)
@@ -19666,6 +21650,11 @@ void QDoubleSpinBox_SelectAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "selectAll");
 }
 
+void QDoubleSpinBox_SelectAllDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::selectAll();
+}
+
 void QDoubleSpinBox_ShowEvent(void* ptr, void* event)
 {
 	static_cast<QDoubleSpinBox*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
@@ -19701,6 +21690,11 @@ void QDoubleSpinBox_StepDown(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "stepDown");
 }
 
+void QDoubleSpinBox_StepDownDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::stepDown();
+}
+
 int QDoubleSpinBox_StepEnabled(void* ptr)
 {
 	return static_cast<QDoubleSpinBox*>(ptr)->stepEnabled();
@@ -19714,6 +21708,11 @@ int QDoubleSpinBox_StepEnabledDefault(void* ptr)
 void QDoubleSpinBox_StepUp(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "stepUp");
+}
+
+void QDoubleSpinBox_StepUpDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::stepUp();
 }
 
 void QDoubleSpinBox_TimerEvent(void* ptr, void* event)
@@ -19841,9 +21840,19 @@ void QDoubleSpinBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QDoubleSpinBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::setEnabled(vbo != 0);
+}
+
 void QDoubleSpinBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QDoubleSpinBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::setStyleSheet(QString(styleSheet));
 }
 
 void QDoubleSpinBox_SetVisible(void* ptr, int visible)
@@ -19861,9 +21870,19 @@ void QDoubleSpinBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QDoubleSpinBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::setWindowModified(vbo != 0);
+}
+
 void QDoubleSpinBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QDoubleSpinBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::setWindowTitle(QString(vqs));
 }
 
 int QDoubleSpinBox_Close(void* ptr)
@@ -19871,6 +21890,11 @@ int QDoubleSpinBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QDoubleSpinBox_CloseDefault(void* ptr)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::close();
 }
 
 int QDoubleSpinBox_FocusNextPrevChild(void* ptr, int next)
@@ -19908,6 +21932,11 @@ void QDoubleSpinBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "hide");
 }
 
+void QDoubleSpinBox_HideDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::hide();
+}
+
 void QDoubleSpinBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QDoubleSpinBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -19931,6 +21960,11 @@ void QDoubleSpinBox_InputMethodEventDefault(void* ptr, void* event)
 void QDoubleSpinBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "lower");
+}
+
+void QDoubleSpinBox_LowerDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::lower();
 }
 
 void QDoubleSpinBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -19958,9 +21992,19 @@ void QDoubleSpinBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "raise");
 }
 
+void QDoubleSpinBox_RaiseDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::raise();
+}
+
 void QDoubleSpinBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "repaint");
+}
+
+void QDoubleSpinBox_RepaintDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::repaint();
 }
 
 void QDoubleSpinBox_SetDisabled(void* ptr, int disable)
@@ -19968,9 +22012,19 @@ void QDoubleSpinBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QDoubleSpinBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::setDisabled(disable != 0);
+}
+
 void QDoubleSpinBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "setFocus");
+}
+
+void QDoubleSpinBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::setFocus();
 }
 
 void QDoubleSpinBox_SetHidden(void* ptr, int hidden)
@@ -19978,9 +22032,19 @@ void QDoubleSpinBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QDoubleSpinBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::setHidden(hidden != 0);
+}
+
 void QDoubleSpinBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "show");
+}
+
+void QDoubleSpinBox_ShowDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::show();
 }
 
 void QDoubleSpinBox_ShowFullScreen(void* ptr)
@@ -19988,9 +22052,19 @@ void QDoubleSpinBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "showFullScreen");
 }
 
+void QDoubleSpinBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::showFullScreen();
+}
+
 void QDoubleSpinBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "showMaximized");
+}
+
+void QDoubleSpinBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::showMaximized();
 }
 
 void QDoubleSpinBox_ShowMinimized(void* ptr)
@@ -19998,9 +22072,19 @@ void QDoubleSpinBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "showMinimized");
 }
 
+void QDoubleSpinBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::showMinimized();
+}
+
 void QDoubleSpinBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "showNormal");
+}
+
+void QDoubleSpinBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::showNormal();
 }
 
 void QDoubleSpinBox_TabletEvent(void* ptr, void* event)
@@ -20018,9 +22102,19 @@ void QDoubleSpinBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "update");
 }
 
+void QDoubleSpinBox_UpdateDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::update();
+}
+
 void QDoubleSpinBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "updateMicroFocus");
+}
+
+void QDoubleSpinBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::updateMicroFocus();
 }
 
 void QDoubleSpinBox_ChildEvent(void* ptr, void* event)
@@ -20056,6 +22150,11 @@ void QDoubleSpinBox_CustomEventDefault(void* ptr, void* event)
 void QDoubleSpinBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDoubleSpinBox*>(ptr), "deleteLater");
+}
+
+void QDoubleSpinBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::deleteLater();
 }
 
 void QDoubleSpinBox_DisconnectNotify(void* ptr, void* sign)
@@ -20498,9 +22597,19 @@ void QErrorMessage_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QErrorMessage_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setEnabled(vbo != 0);
+}
+
 void QErrorMessage_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QErrorMessage_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setStyleSheet(QString(styleSheet));
 }
 
 void QErrorMessage_SetWindowModified(void* ptr, int vbo)
@@ -20508,9 +22617,19 @@ void QErrorMessage_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QErrorMessage_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setWindowModified(vbo != 0);
+}
+
 void QErrorMessage_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QErrorMessage_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setWindowTitle(QString(vqs));
 }
 
 int QErrorMessage_Close(void* ptr)
@@ -20518,6 +22637,11 @@ int QErrorMessage_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QErrorMessage_CloseDefault(void* ptr)
+{
+	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::close();
 }
 
 int QErrorMessage_FocusNextPrevChild(void* ptr, int next)
@@ -20553,6 +22677,11 @@ int QErrorMessage_HeightForWidthDefault(void* ptr, int w)
 void QErrorMessage_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "hide");
+}
+
+void QErrorMessage_HideDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::hide();
 }
 
 void QErrorMessage_InitPainter(void* ptr, void* painter)
@@ -20598,6 +22727,11 @@ void QErrorMessage_KeyReleaseEventDefault(void* ptr, void* event)
 void QErrorMessage_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "lower");
+}
+
+void QErrorMessage_LowerDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::lower();
 }
 
 void QErrorMessage_MouseDoubleClickEvent(void* ptr, void* event)
@@ -20655,9 +22789,19 @@ void QErrorMessage_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "raise");
 }
 
+void QErrorMessage_RaiseDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::raise();
+}
+
 void QErrorMessage_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "repaint");
+}
+
+void QErrorMessage_RepaintDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::repaint();
 }
 
 void QErrorMessage_SetDisabled(void* ptr, int disable)
@@ -20665,9 +22809,19 @@ void QErrorMessage_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QErrorMessage_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setDisabled(disable != 0);
+}
+
 void QErrorMessage_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setFocus");
+}
+
+void QErrorMessage_SetFocus2Default(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setFocus();
 }
 
 void QErrorMessage_SetHidden(void* ptr, int hidden)
@@ -20675,9 +22829,19 @@ void QErrorMessage_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QErrorMessage_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::setHidden(hidden != 0);
+}
+
 void QErrorMessage_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "show");
+}
+
+void QErrorMessage_ShowDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::show();
 }
 
 void QErrorMessage_ShowFullScreen(void* ptr)
@@ -20685,9 +22849,19 @@ void QErrorMessage_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showFullScreen");
 }
 
+void QErrorMessage_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::showFullScreen();
+}
+
 void QErrorMessage_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMaximized");
+}
+
+void QErrorMessage_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::showMaximized();
 }
 
 void QErrorMessage_ShowMinimized(void* ptr)
@@ -20695,9 +22869,19 @@ void QErrorMessage_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showMinimized");
 }
 
+void QErrorMessage_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::showMinimized();
+}
+
 void QErrorMessage_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "showNormal");
+}
+
+void QErrorMessage_ShowNormalDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::showNormal();
 }
 
 void QErrorMessage_TabletEvent(void* ptr, void* event)
@@ -20715,9 +22899,19 @@ void QErrorMessage_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "update");
 }
 
+void QErrorMessage_UpdateDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::update();
+}
+
 void QErrorMessage_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "updateMicroFocus");
+}
+
+void QErrorMessage_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::updateMicroFocus();
 }
 
 void QErrorMessage_WheelEvent(void* ptr, void* event)
@@ -20773,6 +22967,11 @@ void QErrorMessage_CustomEventDefault(void* ptr, void* event)
 void QErrorMessage_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QErrorMessage*>(ptr), "deleteLater");
+}
+
+void QErrorMessage_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QErrorMessage*>(ptr)->QErrorMessage::deleteLater();
 }
 
 void QErrorMessage_DisconnectNotify(void* ptr, void* sign)
@@ -21601,9 +23800,19 @@ void QFileDialog_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QFileDialog_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::setEnabled(vbo != 0);
+}
+
 void QFileDialog_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QFileDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::setStyleSheet(QString(styleSheet));
 }
 
 void QFileDialog_SetWindowModified(void* ptr, int vbo)
@@ -21611,9 +23820,19 @@ void QFileDialog_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QFileDialog_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::setWindowModified(vbo != 0);
+}
+
 void QFileDialog_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QFileDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::setWindowTitle(QString(vqs));
 }
 
 int QFileDialog_Close(void* ptr)
@@ -21621,6 +23840,11 @@ int QFileDialog_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QFileDialog_CloseDefault(void* ptr)
+{
+	return static_cast<QFileDialog*>(ptr)->QFileDialog::close();
 }
 
 int QFileDialog_FocusNextPrevChild(void* ptr, int next)
@@ -21656,6 +23880,11 @@ int QFileDialog_HeightForWidthDefault(void* ptr, int w)
 void QFileDialog_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "hide");
+}
+
+void QFileDialog_HideDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::hide();
 }
 
 void QFileDialog_InitPainter(void* ptr, void* painter)
@@ -21701,6 +23930,11 @@ void QFileDialog_KeyReleaseEventDefault(void* ptr, void* event)
 void QFileDialog_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "lower");
+}
+
+void QFileDialog_LowerDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::lower();
 }
 
 void QFileDialog_MouseDoubleClickEvent(void* ptr, void* event)
@@ -21758,9 +23992,19 @@ void QFileDialog_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "raise");
 }
 
+void QFileDialog_RaiseDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::raise();
+}
+
 void QFileDialog_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "repaint");
+}
+
+void QFileDialog_RepaintDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::repaint();
 }
 
 void QFileDialog_SetDisabled(void* ptr, int disable)
@@ -21768,9 +24012,19 @@ void QFileDialog_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QFileDialog_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::setDisabled(disable != 0);
+}
+
 void QFileDialog_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setFocus");
+}
+
+void QFileDialog_SetFocus2Default(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::setFocus();
 }
 
 void QFileDialog_SetHidden(void* ptr, int hidden)
@@ -21778,9 +24032,19 @@ void QFileDialog_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QFileDialog_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::setHidden(hidden != 0);
+}
+
 void QFileDialog_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "show");
+}
+
+void QFileDialog_ShowDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::show();
 }
 
 void QFileDialog_ShowFullScreen(void* ptr)
@@ -21788,9 +24052,19 @@ void QFileDialog_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "showFullScreen");
 }
 
+void QFileDialog_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::showFullScreen();
+}
+
 void QFileDialog_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "showMaximized");
+}
+
+void QFileDialog_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::showMaximized();
 }
 
 void QFileDialog_ShowMinimized(void* ptr)
@@ -21798,9 +24072,19 @@ void QFileDialog_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "showMinimized");
 }
 
+void QFileDialog_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::showMinimized();
+}
+
 void QFileDialog_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "showNormal");
+}
+
+void QFileDialog_ShowNormalDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::showNormal();
 }
 
 void QFileDialog_TabletEvent(void* ptr, void* event)
@@ -21818,9 +24102,19 @@ void QFileDialog_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "update");
 }
 
+void QFileDialog_UpdateDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::update();
+}
+
 void QFileDialog_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "updateMicroFocus");
+}
+
+void QFileDialog_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::updateMicroFocus();
 }
 
 void QFileDialog_WheelEvent(void* ptr, void* event)
@@ -21876,6 +24170,11 @@ void QFileDialog_CustomEventDefault(void* ptr, void* event)
 void QFileDialog_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileDialog*>(ptr), "deleteLater");
+}
+
+void QFileDialog_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFileDialog*>(ptr)->QFileDialog::deleteLater();
 }
 
 void QFileDialog_DisconnectNotify(void* ptr, void* sign)
@@ -22498,6 +24797,11 @@ void QFileSystemModel_ResetInternalData(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFileSystemModel*>(ptr), "resetInternalData");
 }
 
+void QFileSystemModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::resetInternalData();
+}
+
 void QFileSystemModel_Revert(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileSystemModel*>(ptr), "revert");
@@ -22583,6 +24887,11 @@ void QFileSystemModel_CustomEventDefault(void* ptr, void* event)
 void QFileSystemModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFileSystemModel*>(ptr), "deleteLater");
+}
+
+void QFileSystemModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::deleteLater();
 }
 
 void QFileSystemModel_DisconnectNotify(void* ptr, void* sign)
@@ -22886,9 +25195,19 @@ void QFocusFrame_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QFocusFrame_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::setEnabled(vbo != 0);
+}
+
 void QFocusFrame_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QFocusFrame_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::setStyleSheet(QString(styleSheet));
 }
 
 void QFocusFrame_SetVisible(void* ptr, int visible)
@@ -22906,9 +25225,19 @@ void QFocusFrame_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QFocusFrame_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::setWindowModified(vbo != 0);
+}
+
 void QFocusFrame_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QFocusFrame_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::setWindowTitle(QString(vqs));
 }
 
 void QFocusFrame_ShowEvent(void* ptr, void* event)
@@ -22946,6 +25275,11 @@ int QFocusFrame_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QFocusFrame_CloseDefault(void* ptr)
+{
+	return static_cast<QFocusFrame*>(ptr)->QFocusFrame::close();
 }
 
 void QFocusFrame_CloseEvent(void* ptr, void* event)
@@ -23003,6 +25337,11 @@ void QFocusFrame_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "hide");
 }
 
+void QFocusFrame_HideDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::hide();
+}
+
 void QFocusFrame_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QFocusFrame*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -23056,6 +25395,11 @@ void QFocusFrame_KeyReleaseEventDefault(void* ptr, void* event)
 void QFocusFrame_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "lower");
+}
+
+void QFocusFrame_LowerDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::lower();
 }
 
 void QFocusFrame_MouseDoubleClickEvent(void* ptr, void* event)
@@ -23113,9 +25457,19 @@ void QFocusFrame_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "raise");
 }
 
+void QFocusFrame_RaiseDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::raise();
+}
+
 void QFocusFrame_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "repaint");
+}
+
+void QFocusFrame_RepaintDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::repaint();
 }
 
 void QFocusFrame_ResizeEvent(void* ptr, void* event)
@@ -23133,9 +25487,19 @@ void QFocusFrame_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QFocusFrame_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::setDisabled(disable != 0);
+}
+
 void QFocusFrame_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "setFocus");
+}
+
+void QFocusFrame_SetFocus2Default(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::setFocus();
 }
 
 void QFocusFrame_SetHidden(void* ptr, int hidden)
@@ -23143,9 +25507,19 @@ void QFocusFrame_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QFocusFrame_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::setHidden(hidden != 0);
+}
+
 void QFocusFrame_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "show");
+}
+
+void QFocusFrame_ShowDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::show();
 }
 
 void QFocusFrame_ShowFullScreen(void* ptr)
@@ -23153,9 +25527,19 @@ void QFocusFrame_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "showFullScreen");
 }
 
+void QFocusFrame_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::showFullScreen();
+}
+
 void QFocusFrame_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "showMaximized");
+}
+
+void QFocusFrame_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::showMaximized();
 }
 
 void QFocusFrame_ShowMinimized(void* ptr)
@@ -23163,9 +25547,19 @@ void QFocusFrame_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "showMinimized");
 }
 
+void QFocusFrame_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::showMinimized();
+}
+
 void QFocusFrame_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "showNormal");
+}
+
+void QFocusFrame_ShowNormalDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::showNormal();
 }
 
 void QFocusFrame_TabletEvent(void* ptr, void* event)
@@ -23183,9 +25577,19 @@ void QFocusFrame_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "update");
 }
 
+void QFocusFrame_UpdateDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::update();
+}
+
 void QFocusFrame_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "updateMicroFocus");
+}
+
+void QFocusFrame_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::updateMicroFocus();
 }
 
 void QFocusFrame_WheelEvent(void* ptr, void* event)
@@ -23241,6 +25645,11 @@ void QFocusFrame_CustomEventDefault(void* ptr, void* event)
 void QFocusFrame_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFocusFrame*>(ptr), "deleteLater");
+}
+
+void QFocusFrame_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFocusFrame*>(ptr)->QFocusFrame::deleteLater();
 }
 
 void QFocusFrame_DisconnectNotify(void* ptr, void* sign)
@@ -23423,9 +25832,19 @@ void QFontComboBox_SetCurrentIndex(void* ptr, int index)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentIndex", Q_ARG(int, index));
 }
 
+void QFontComboBox_SetCurrentIndexDefault(void* ptr, int index)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setCurrentIndex(index);
+}
+
 void QFontComboBox_SetCurrentText(void* ptr, char* text)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setCurrentText", Q_ARG(QString, QString(text)));
+}
+
+void QFontComboBox_SetCurrentTextDefault(void* ptr, char* text)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setCurrentText(QString(text));
 }
 
 void QFontComboBox_ChangeEvent(void* ptr, void* e)
@@ -23443,9 +25862,19 @@ void QFontComboBox_Clear(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "clear");
 }
 
+void QFontComboBox_ClearDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::clear();
+}
+
 void QFontComboBox_ClearEditText(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "clearEditText");
+}
+
+void QFontComboBox_ClearEditTextDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::clearEditText();
 }
 
 void QFontComboBox_ContextMenuEvent(void* ptr, void* e)
@@ -23593,6 +26022,11 @@ void QFontComboBox_SetEditText(void* ptr, char* text)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setEditText", Q_ARG(QString, QString(text)));
 }
 
+void QFontComboBox_SetEditTextDefault(void* ptr, char* text)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setEditText(QString(text));
+}
+
 void QFontComboBox_ShowEvent(void* ptr, void* e)
 {
 	static_cast<QFontComboBox*>(ptr)->showEvent(static_cast<QShowEvent*>(e));
@@ -23728,9 +26162,19 @@ void QFontComboBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QFontComboBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setEnabled(vbo != 0);
+}
+
 void QFontComboBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QFontComboBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setStyleSheet(QString(styleSheet));
 }
 
 void QFontComboBox_SetVisible(void* ptr, int visible)
@@ -23748,9 +26192,19 @@ void QFontComboBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QFontComboBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setWindowModified(vbo != 0);
+}
+
 void QFontComboBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QFontComboBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setWindowTitle(QString(vqs));
 }
 
 int QFontComboBox_Close(void* ptr)
@@ -23758,6 +26212,11 @@ int QFontComboBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QFontComboBox_CloseDefault(void* ptr)
+{
+	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::close();
 }
 
 void QFontComboBox_CloseEvent(void* ptr, void* event)
@@ -23805,6 +26264,11 @@ void QFontComboBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "hide");
 }
 
+void QFontComboBox_HideDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::hide();
+}
+
 void QFontComboBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QFontComboBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -23818,6 +26282,11 @@ void QFontComboBox_InitPainterDefault(void* ptr, void* painter)
 void QFontComboBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "lower");
+}
+
+void QFontComboBox_LowerDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::lower();
 }
 
 void QFontComboBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -23855,9 +26324,19 @@ void QFontComboBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "raise");
 }
 
+void QFontComboBox_RaiseDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::raise();
+}
+
 void QFontComboBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "repaint");
+}
+
+void QFontComboBox_RepaintDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::repaint();
 }
 
 void QFontComboBox_SetDisabled(void* ptr, int disable)
@@ -23865,9 +26344,19 @@ void QFontComboBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QFontComboBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setDisabled(disable != 0);
+}
+
 void QFontComboBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setFocus");
+}
+
+void QFontComboBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setFocus();
 }
 
 void QFontComboBox_SetHidden(void* ptr, int hidden)
@@ -23875,9 +26364,19 @@ void QFontComboBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QFontComboBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::setHidden(hidden != 0);
+}
+
 void QFontComboBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "show");
+}
+
+void QFontComboBox_ShowDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::show();
 }
 
 void QFontComboBox_ShowFullScreen(void* ptr)
@@ -23885,9 +26384,19 @@ void QFontComboBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "showFullScreen");
 }
 
+void QFontComboBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::showFullScreen();
+}
+
 void QFontComboBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "showMaximized");
+}
+
+void QFontComboBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::showMaximized();
 }
 
 void QFontComboBox_ShowMinimized(void* ptr)
@@ -23895,9 +26404,19 @@ void QFontComboBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "showMinimized");
 }
 
+void QFontComboBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::showMinimized();
+}
+
 void QFontComboBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "showNormal");
+}
+
+void QFontComboBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::showNormal();
 }
 
 void QFontComboBox_TabletEvent(void* ptr, void* event)
@@ -23915,9 +26434,19 @@ void QFontComboBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "update");
 }
 
+void QFontComboBox_UpdateDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::update();
+}
+
 void QFontComboBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "updateMicroFocus");
+}
+
+void QFontComboBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::updateMicroFocus();
 }
 
 void QFontComboBox_TimerEvent(void* ptr, void* event)
@@ -23963,6 +26492,11 @@ void QFontComboBox_CustomEventDefault(void* ptr, void* event)
 void QFontComboBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontComboBox*>(ptr), "deleteLater");
+}
+
+void QFontComboBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFontComboBox*>(ptr)->QFontComboBox::deleteLater();
 }
 
 void QFontComboBox_DisconnectNotify(void* ptr, void* sign)
@@ -24460,9 +26994,19 @@ void QFontDialog_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QFontDialog_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::setEnabled(vbo != 0);
+}
+
 void QFontDialog_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QFontDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::setStyleSheet(QString(styleSheet));
 }
 
 void QFontDialog_SetWindowModified(void* ptr, int vbo)
@@ -24470,9 +27014,19 @@ void QFontDialog_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QFontDialog_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::setWindowModified(vbo != 0);
+}
+
 void QFontDialog_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QFontDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::setWindowTitle(QString(vqs));
 }
 
 int QFontDialog_Close(void* ptr)
@@ -24480,6 +27034,11 @@ int QFontDialog_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QFontDialog_CloseDefault(void* ptr)
+{
+	return static_cast<QFontDialog*>(ptr)->QFontDialog::close();
 }
 
 int QFontDialog_FocusNextPrevChild(void* ptr, int next)
@@ -24515,6 +27074,11 @@ int QFontDialog_HeightForWidthDefault(void* ptr, int w)
 void QFontDialog_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "hide");
+}
+
+void QFontDialog_HideDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::hide();
 }
 
 void QFontDialog_InitPainter(void* ptr, void* painter)
@@ -24560,6 +27124,11 @@ void QFontDialog_KeyReleaseEventDefault(void* ptr, void* event)
 void QFontDialog_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "lower");
+}
+
+void QFontDialog_LowerDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::lower();
 }
 
 void QFontDialog_MouseDoubleClickEvent(void* ptr, void* event)
@@ -24617,9 +27186,19 @@ void QFontDialog_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "raise");
 }
 
+void QFontDialog_RaiseDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::raise();
+}
+
 void QFontDialog_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "repaint");
+}
+
+void QFontDialog_RepaintDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::repaint();
 }
 
 void QFontDialog_SetDisabled(void* ptr, int disable)
@@ -24627,9 +27206,19 @@ void QFontDialog_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QFontDialog_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::setDisabled(disable != 0);
+}
+
 void QFontDialog_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setFocus");
+}
+
+void QFontDialog_SetFocus2Default(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::setFocus();
 }
 
 void QFontDialog_SetHidden(void* ptr, int hidden)
@@ -24637,9 +27226,19 @@ void QFontDialog_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QFontDialog_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::setHidden(hidden != 0);
+}
+
 void QFontDialog_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "show");
+}
+
+void QFontDialog_ShowDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::show();
 }
 
 void QFontDialog_ShowFullScreen(void* ptr)
@@ -24647,9 +27246,19 @@ void QFontDialog_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "showFullScreen");
 }
 
+void QFontDialog_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::showFullScreen();
+}
+
 void QFontDialog_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "showMaximized");
+}
+
+void QFontDialog_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::showMaximized();
 }
 
 void QFontDialog_ShowMinimized(void* ptr)
@@ -24657,9 +27266,19 @@ void QFontDialog_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "showMinimized");
 }
 
+void QFontDialog_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::showMinimized();
+}
+
 void QFontDialog_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "showNormal");
+}
+
+void QFontDialog_ShowNormalDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::showNormal();
 }
 
 void QFontDialog_TabletEvent(void* ptr, void* event)
@@ -24677,9 +27296,19 @@ void QFontDialog_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "update");
 }
 
+void QFontDialog_UpdateDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::update();
+}
+
 void QFontDialog_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "updateMicroFocus");
+}
+
+void QFontDialog_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::updateMicroFocus();
 }
 
 void QFontDialog_WheelEvent(void* ptr, void* event)
@@ -24735,6 +27364,11 @@ void QFontDialog_CustomEventDefault(void* ptr, void* event)
 void QFontDialog_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFontDialog*>(ptr), "deleteLater");
+}
+
+void QFontDialog_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFontDialog*>(ptr)->QFontDialog::deleteLater();
 }
 
 void QFontDialog_DisconnectNotify(void* ptr, void* sign)
@@ -25212,6 +27846,11 @@ void QFormLayout_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFormLayout*>(ptr), "deleteLater");
 }
 
+void QFormLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFormLayout*>(ptr)->QFormLayout::deleteLater();
+}
+
 void QFormLayout_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QFormLayout*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -25588,9 +28227,19 @@ void QFrame_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QFrame_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QFrame*>(ptr)->QFrame::setEnabled(vbo != 0);
+}
+
 void QFrame_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QFrame_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QFrame*>(ptr)->QFrame::setStyleSheet(QString(styleSheet));
 }
 
 void QFrame_SetVisible(void* ptr, int visible)
@@ -25608,9 +28257,19 @@ void QFrame_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QFrame_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QFrame*>(ptr)->QFrame::setWindowModified(vbo != 0);
+}
+
 void QFrame_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QFrame_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QFrame*>(ptr)->QFrame::setWindowTitle(QString(vqs));
 }
 
 void QFrame_ShowEvent(void* ptr, void* event)
@@ -25628,6 +28287,11 @@ int QFrame_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QFrame_CloseDefault(void* ptr)
+{
+	return static_cast<QFrame*>(ptr)->QFrame::close();
 }
 
 void QFrame_CloseEvent(void* ptr, void* event)
@@ -25685,6 +28349,11 @@ void QFrame_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "hide");
 }
 
+void QFrame_HideDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::hide();
+}
+
 void QFrame_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QFrame*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -25738,6 +28407,11 @@ void QFrame_KeyReleaseEventDefault(void* ptr, void* event)
 void QFrame_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "lower");
+}
+
+void QFrame_LowerDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::lower();
 }
 
 void QFrame_MouseDoubleClickEvent(void* ptr, void* event)
@@ -25795,9 +28469,19 @@ void QFrame_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "raise");
 }
 
+void QFrame_RaiseDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::raise();
+}
+
 void QFrame_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "repaint");
+}
+
+void QFrame_RepaintDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::repaint();
 }
 
 void QFrame_ResizeEvent(void* ptr, void* event)
@@ -25815,9 +28499,19 @@ void QFrame_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QFrame_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QFrame*>(ptr)->QFrame::setDisabled(disable != 0);
+}
+
 void QFrame_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "setFocus");
+}
+
+void QFrame_SetFocus2Default(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::setFocus();
 }
 
 void QFrame_SetHidden(void* ptr, int hidden)
@@ -25825,9 +28519,19 @@ void QFrame_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QFrame_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QFrame*>(ptr)->QFrame::setHidden(hidden != 0);
+}
+
 void QFrame_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "show");
+}
+
+void QFrame_ShowDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::show();
 }
 
 void QFrame_ShowFullScreen(void* ptr)
@@ -25835,9 +28539,19 @@ void QFrame_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "showFullScreen");
 }
 
+void QFrame_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::showFullScreen();
+}
+
 void QFrame_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "showMaximized");
+}
+
+void QFrame_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::showMaximized();
 }
 
 void QFrame_ShowMinimized(void* ptr)
@@ -25845,9 +28559,19 @@ void QFrame_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "showMinimized");
 }
 
+void QFrame_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::showMinimized();
+}
+
 void QFrame_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "showNormal");
+}
+
+void QFrame_ShowNormalDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::showNormal();
 }
 
 void QFrame_TabletEvent(void* ptr, void* event)
@@ -25865,9 +28589,19 @@ void QFrame_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "update");
 }
 
+void QFrame_UpdateDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::update();
+}
+
 void QFrame_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "updateMicroFocus");
+}
+
+void QFrame_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::updateMicroFocus();
 }
 
 void QFrame_WheelEvent(void* ptr, void* event)
@@ -25923,6 +28657,11 @@ void QFrame_CustomEventDefault(void* ptr, void* event)
 void QFrame_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QFrame*>(ptr), "deleteLater");
+}
+
+void QFrame_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QFrame*>(ptr)->QFrame::deleteLater();
 }
 
 void QFrame_DisconnectNotify(void* ptr, void* sign)
@@ -26048,6 +28787,11 @@ void QGesture_CustomEventDefault(void* ptr, void* event)
 void QGesture_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGesture*>(ptr), "deleteLater");
+}
+
+void QGesture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGesture*>(ptr)->QGesture::deleteLater();
 }
 
 void QGesture_DisconnectNotify(void* ptr, void* sign)
@@ -26295,6 +29039,11 @@ void QGraphicsAnchor_CustomEventDefault(void* ptr, void* event)
 void QGraphicsAnchor_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsAnchor*>(ptr), "deleteLater");
+}
+
+void QGraphicsAnchor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsAnchor*>(ptr)->QGraphicsAnchor::deleteLater();
 }
 
 void QGraphicsAnchor_DisconnectNotify(void* ptr, void* sign)
@@ -26618,6 +29367,11 @@ void QGraphicsBlurEffect_SetEnabled(void* ptr, int enable)
 	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "setEnabled", Q_ARG(bool, enable != 0));
 }
 
+void QGraphicsBlurEffect_SetEnabledDefault(void* ptr, int enable)
+{
+	static_cast<QGraphicsBlurEffect*>(ptr)->QGraphicsBlurEffect::setEnabled(enable != 0);
+}
+
 void QGraphicsBlurEffect_SourceChanged(void* ptr, int flags)
 {
 	static_cast<QGraphicsBlurEffect*>(ptr)->sourceChanged(static_cast<QGraphicsEffect::ChangeFlag>(flags));
@@ -26631,6 +29385,11 @@ void QGraphicsBlurEffect_SourceChangedDefault(void* ptr, int flags)
 void QGraphicsBlurEffect_Update(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "update");
+}
+
+void QGraphicsBlurEffect_UpdateDefault(void* ptr)
+{
+	static_cast<QGraphicsBlurEffect*>(ptr)->QGraphicsBlurEffect::update();
 }
 
 void QGraphicsBlurEffect_TimerEvent(void* ptr, void* event)
@@ -26676,6 +29435,11 @@ void QGraphicsBlurEffect_CustomEventDefault(void* ptr, void* event)
 void QGraphicsBlurEffect_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsBlurEffect*>(ptr), "deleteLater");
+}
+
+void QGraphicsBlurEffect_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsBlurEffect*>(ptr)->QGraphicsBlurEffect::deleteLater();
 }
 
 void QGraphicsBlurEffect_DisconnectNotify(void* ptr, void* sign)
@@ -26817,6 +29581,11 @@ void QGraphicsColorizeEffect_SetEnabled(void* ptr, int enable)
 	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "setEnabled", Q_ARG(bool, enable != 0));
 }
 
+void QGraphicsColorizeEffect_SetEnabledDefault(void* ptr, int enable)
+{
+	static_cast<QGraphicsColorizeEffect*>(ptr)->QGraphicsColorizeEffect::setEnabled(enable != 0);
+}
+
 void* QGraphicsColorizeEffect_BoundingRectFor(void* ptr, void* rect)
 {
 	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsColorizeEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsColorizeEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsColorizeEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsColorizeEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).height());
@@ -26840,6 +29609,11 @@ void QGraphicsColorizeEffect_SourceChangedDefault(void* ptr, int flags)
 void QGraphicsColorizeEffect_Update(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "update");
+}
+
+void QGraphicsColorizeEffect_UpdateDefault(void* ptr)
+{
+	static_cast<QGraphicsColorizeEffect*>(ptr)->QGraphicsColorizeEffect::update();
 }
 
 void QGraphicsColorizeEffect_TimerEvent(void* ptr, void* event)
@@ -26885,6 +29659,11 @@ void QGraphicsColorizeEffect_CustomEventDefault(void* ptr, void* event)
 void QGraphicsColorizeEffect_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsColorizeEffect*>(ptr), "deleteLater");
+}
+
+void QGraphicsColorizeEffect_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsColorizeEffect*>(ptr)->QGraphicsColorizeEffect::deleteLater();
 }
 
 void QGraphicsColorizeEffect_DisconnectNotify(void* ptr, void* sign)
@@ -27097,6 +29876,11 @@ void QGraphicsDropShadowEffect_SetEnabled(void* ptr, int enable)
 	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "setEnabled", Q_ARG(bool, enable != 0));
 }
 
+void QGraphicsDropShadowEffect_SetEnabledDefault(void* ptr, int enable)
+{
+	static_cast<QGraphicsDropShadowEffect*>(ptr)->QGraphicsDropShadowEffect::setEnabled(enable != 0);
+}
+
 void QGraphicsDropShadowEffect_SourceChanged(void* ptr, int flags)
 {
 	static_cast<QGraphicsDropShadowEffect*>(ptr)->sourceChanged(static_cast<QGraphicsEffect::ChangeFlag>(flags));
@@ -27110,6 +29894,11 @@ void QGraphicsDropShadowEffect_SourceChangedDefault(void* ptr, int flags)
 void QGraphicsDropShadowEffect_Update(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "update");
+}
+
+void QGraphicsDropShadowEffect_UpdateDefault(void* ptr)
+{
+	static_cast<QGraphicsDropShadowEffect*>(ptr)->QGraphicsDropShadowEffect::update();
 }
 
 void QGraphicsDropShadowEffect_TimerEvent(void* ptr, void* event)
@@ -27155,6 +29944,11 @@ void QGraphicsDropShadowEffect_CustomEventDefault(void* ptr, void* event)
 void QGraphicsDropShadowEffect_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsDropShadowEffect*>(ptr), "deleteLater");
+}
+
+void QGraphicsDropShadowEffect_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsDropShadowEffect*>(ptr)->QGraphicsDropShadowEffect::deleteLater();
 }
 
 void QGraphicsDropShadowEffect_DisconnectNotify(void* ptr, void* sign)
@@ -27356,6 +30150,11 @@ void QGraphicsEffect_CustomEventDefault(void* ptr, void* event)
 void QGraphicsEffect_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsEffect*>(ptr), "deleteLater");
+}
+
+void QGraphicsEffect_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsEffect*>(ptr)->QGraphicsEffect::deleteLater();
 }
 
 void QGraphicsEffect_DisconnectNotify(void* ptr, void* sign)
@@ -29847,6 +32646,8 @@ void* QGraphicsLayout_SizeHint(void* ptr, int which, void* constraint)
 	return new QSizeF(static_cast<QSizeF>(static_cast<QGraphicsLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).width(), static_cast<QSizeF>(static_cast<QGraphicsLayout*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint))).height());
 }
 
+
+
 class MyQGraphicsLayoutItem: public QGraphicsLayoutItem
 {
 public:
@@ -30952,6 +33753,8 @@ void* QGraphicsObject_BoundingRect(void* ptr)
 	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsObject*>(ptr)->boundingRect()).x(), static_cast<QRectF>(static_cast<QGraphicsObject*>(ptr)->boundingRect()).y(), static_cast<QRectF>(static_cast<QGraphicsObject*>(ptr)->boundingRect()).width(), static_cast<QRectF>(static_cast<QGraphicsObject*>(ptr)->boundingRect()).height());
 }
 
+
+
 int QGraphicsObject_CollidesWithItem(void* ptr, void* other, int mode)
 {
 	return static_cast<QGraphicsObject*>(ptr)->collidesWithItem(static_cast<QGraphicsItem*>(other), static_cast<Qt::ItemSelectionMode>(mode));
@@ -31197,6 +34000,8 @@ void QGraphicsObject_Paint(void* ptr, void* painter, void* option, void* widget)
 	static_cast<QGraphicsObject*>(ptr)->paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
 }
 
+
+
 int QGraphicsObject_SceneEvent(void* ptr, void* event)
 {
 	return static_cast<QGraphicsObject*>(ptr)->sceneEvent(static_cast<QEvent*>(event));
@@ -31290,6 +34095,11 @@ void QGraphicsObject_CustomEventDefault(void* ptr, void* event)
 void QGraphicsObject_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsObject*>(ptr), "deleteLater");
+}
+
+void QGraphicsObject_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsObject*>(ptr)->QGraphicsObject::deleteLater();
 }
 
 void QGraphicsObject_DisconnectNotify(void* ptr, void* sign)
@@ -31421,6 +34231,11 @@ void QGraphicsOpacityEffect_SetEnabled(void* ptr, int enable)
 	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "setEnabled", Q_ARG(bool, enable != 0));
 }
 
+void QGraphicsOpacityEffect_SetEnabledDefault(void* ptr, int enable)
+{
+	static_cast<QGraphicsOpacityEffect*>(ptr)->QGraphicsOpacityEffect::setEnabled(enable != 0);
+}
+
 void* QGraphicsOpacityEffect_BoundingRectFor(void* ptr, void* rect)
 {
 	return new QRectF(static_cast<QRectF>(static_cast<QGraphicsOpacityEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QGraphicsOpacityEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QGraphicsOpacityEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QGraphicsOpacityEffect*>(ptr)->boundingRectFor(*static_cast<QRectF*>(rect))).height());
@@ -31444,6 +34259,11 @@ void QGraphicsOpacityEffect_SourceChangedDefault(void* ptr, int flags)
 void QGraphicsOpacityEffect_Update(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "update");
+}
+
+void QGraphicsOpacityEffect_UpdateDefault(void* ptr)
+{
+	static_cast<QGraphicsOpacityEffect*>(ptr)->QGraphicsOpacityEffect::update();
 }
 
 void QGraphicsOpacityEffect_TimerEvent(void* ptr, void* event)
@@ -31489,6 +34309,11 @@ void QGraphicsOpacityEffect_CustomEventDefault(void* ptr, void* event)
 void QGraphicsOpacityEffect_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsOpacityEffect*>(ptr), "deleteLater");
+}
+
+void QGraphicsOpacityEffect_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsOpacityEffect*>(ptr)->QGraphicsOpacityEffect::deleteLater();
 }
 
 void QGraphicsOpacityEffect_DisconnectNotify(void* ptr, void* sign)
@@ -33236,6 +36061,11 @@ int QGraphicsProxyWidget_Close(void* ptr)
 	return returnArg;
 }
 
+int QGraphicsProxyWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::close();
+}
+
 void QGraphicsProxyWidget_CloseEvent(void* ptr, void* event)
 {
 	static_cast<QGraphicsProxyWidget*>(ptr)->closeEvent(static_cast<QCloseEvent*>(event));
@@ -33365,6 +36195,11 @@ void QGraphicsProxyWidget_UpdateMicroFocus(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsProxyWidget*>(ptr), "updateMicroFocus");
 }
 
+void QGraphicsProxyWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::updateMicroFocus();
+}
+
 void QGraphicsProxyWidget_Advance(void* ptr, int phase)
 {
 	static_cast<QGraphicsProxyWidget*>(ptr)->advance(phase);
@@ -33478,6 +36313,11 @@ void QGraphicsProxyWidget_CustomEventDefault(void* ptr, void* event)
 void QGraphicsProxyWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsProxyWidget*>(ptr), "deleteLater");
+}
+
+void QGraphicsProxyWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::deleteLater();
 }
 
 void QGraphicsProxyWidget_DisconnectNotify(void* ptr, void* sign)
@@ -34028,6 +36868,11 @@ void QGraphicsRotation_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsRotation*>(ptr), "update");
 }
 
+void QGraphicsRotation_UpdateDefault(void* ptr)
+{
+	static_cast<QGraphicsRotation*>(ptr)->QGraphicsRotation::update();
+}
+
 void QGraphicsRotation_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QGraphicsRotation*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -34071,6 +36916,11 @@ void QGraphicsRotation_CustomEventDefault(void* ptr, void* event)
 void QGraphicsRotation_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsRotation*>(ptr), "deleteLater");
+}
+
+void QGraphicsRotation_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsRotation*>(ptr)->QGraphicsRotation::deleteLater();
 }
 
 void QGraphicsRotation_DisconnectNotify(void* ptr, void* sign)
@@ -34270,6 +37120,11 @@ void QGraphicsScale_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsScale*>(ptr), "update");
 }
 
+void QGraphicsScale_UpdateDefault(void* ptr)
+{
+	static_cast<QGraphicsScale*>(ptr)->QGraphicsScale::update();
+}
+
 void QGraphicsScale_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QGraphicsScale*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -34313,6 +37168,11 @@ void QGraphicsScale_CustomEventDefault(void* ptr, void* event)
 void QGraphicsScale_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsScale*>(ptr), "deleteLater");
+}
+
+void QGraphicsScale_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsScale*>(ptr)->QGraphicsScale::deleteLater();
 }
 
 void QGraphicsScale_DisconnectNotify(void* ptr, void* sign)
@@ -35065,6 +37925,11 @@ void QGraphicsScene_CustomEventDefault(void* ptr, void* event)
 void QGraphicsScene_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "deleteLater");
+}
+
+void QGraphicsScene_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsScene*>(ptr)->QGraphicsScene::deleteLater();
 }
 
 void QGraphicsScene_DisconnectNotify(void* ptr, void* sign)
@@ -36290,6 +39155,11 @@ void QGraphicsTextItem_UpdateMicroFocus(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsTextItem*>(ptr), "updateMicroFocus");
 }
 
+void QGraphicsTextItem_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::updateMicroFocus();
+}
+
 void QGraphicsTextItem_Advance(void* ptr, int phase)
 {
 	static_cast<QGraphicsTextItem*>(ptr)->advance(phase);
@@ -36393,6 +39263,11 @@ void QGraphicsTextItem_CustomEventDefault(void* ptr, void* event)
 void QGraphicsTextItem_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsTextItem*>(ptr), "deleteLater");
+}
+
+void QGraphicsTextItem_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::deleteLater();
 }
 
 void QGraphicsTextItem_DisconnectNotify(void* ptr, void* sign)
@@ -36505,6 +39380,11 @@ void QGraphicsTransform_CustomEventDefault(void* ptr, void* event)
 void QGraphicsTransform_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsTransform*>(ptr), "deleteLater");
+}
+
+void QGraphicsTransform_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsTransform*>(ptr)->QGraphicsTransform::deleteLater();
 }
 
 void QGraphicsTransform_DisconnectNotify(void* ptr, void* sign)
@@ -37368,9 +40248,19 @@ void QGraphicsView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QGraphicsView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::setEnabled(vbo != 0);
+}
+
 void QGraphicsView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QGraphicsView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::setStyleSheet(QString(styleSheet));
 }
 
 void QGraphicsView_SetVisible(void* ptr, int visible)
@@ -37388,9 +40278,19 @@ void QGraphicsView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QGraphicsView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::setWindowModified(vbo != 0);
+}
+
 void QGraphicsView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QGraphicsView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::setWindowTitle(QString(vqs));
 }
 
 int QGraphicsView_Close(void* ptr)
@@ -37398,6 +40298,11 @@ int QGraphicsView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QGraphicsView_CloseDefault(void* ptr)
+{
+	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::close();
 }
 
 void QGraphicsView_CloseEvent(void* ptr, void* event)
@@ -37435,6 +40340,11 @@ void QGraphicsView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "hide");
 }
 
+void QGraphicsView_HideDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::hide();
+}
+
 void QGraphicsView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QGraphicsView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -37448,6 +40358,11 @@ void QGraphicsView_InitPainterDefault(void* ptr, void* painter)
 void QGraphicsView_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "lower");
+}
+
+void QGraphicsView_LowerDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::lower();
 }
 
 int QGraphicsView_NativeEvent(void* ptr, char* eventType, void* message, long result)
@@ -37465,9 +40380,19 @@ void QGraphicsView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "raise");
 }
 
+void QGraphicsView_RaiseDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::raise();
+}
+
 void QGraphicsView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "repaint");
+}
+
+void QGraphicsView_RepaintDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::repaint();
 }
 
 void QGraphicsView_SetDisabled(void* ptr, int disable)
@@ -37475,9 +40400,19 @@ void QGraphicsView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QGraphicsView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::setDisabled(disable != 0);
+}
+
 void QGraphicsView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "setFocus");
+}
+
+void QGraphicsView_SetFocus2Default(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::setFocus();
 }
 
 void QGraphicsView_SetHidden(void* ptr, int hidden)
@@ -37485,9 +40420,19 @@ void QGraphicsView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QGraphicsView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::setHidden(hidden != 0);
+}
+
 void QGraphicsView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "show");
+}
+
+void QGraphicsView_ShowDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::show();
 }
 
 void QGraphicsView_ShowFullScreen(void* ptr)
@@ -37495,9 +40440,19 @@ void QGraphicsView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "showFullScreen");
 }
 
+void QGraphicsView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::showFullScreen();
+}
+
 void QGraphicsView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "showMaximized");
+}
+
+void QGraphicsView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::showMaximized();
 }
 
 void QGraphicsView_ShowMinimized(void* ptr)
@@ -37505,9 +40460,19 @@ void QGraphicsView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "showMinimized");
 }
 
+void QGraphicsView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::showMinimized();
+}
+
 void QGraphicsView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "showNormal");
+}
+
+void QGraphicsView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::showNormal();
 }
 
 void QGraphicsView_TabletEvent(void* ptr, void* event)
@@ -37525,9 +40490,19 @@ void QGraphicsView_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "update");
 }
 
+void QGraphicsView_UpdateDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::update();
+}
+
 void QGraphicsView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "updateMicroFocus");
+}
+
+void QGraphicsView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::updateMicroFocus();
 }
 
 void QGraphicsView_TimerEvent(void* ptr, void* event)
@@ -37573,6 +40548,11 @@ void QGraphicsView_CustomEventDefault(void* ptr, void* event)
 void QGraphicsView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsView*>(ptr), "deleteLater");
+}
+
+void QGraphicsView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsView*>(ptr)->QGraphicsView::deleteLater();
 }
 
 void QGraphicsView_DisconnectNotify(void* ptr, void* sign)
@@ -38231,6 +41211,11 @@ void QGraphicsWidget_UpdateMicroFocus(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGraphicsWidget*>(ptr), "updateMicroFocus");
 }
 
+void QGraphicsWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::updateMicroFocus();
+}
+
 void QGraphicsWidget_Advance(void* ptr, int phase)
 {
 	static_cast<QGraphicsWidget*>(ptr)->advance(phase);
@@ -38494,6 +41479,11 @@ void QGraphicsWidget_CustomEventDefault(void* ptr, void* event)
 void QGraphicsWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsWidget*>(ptr), "deleteLater");
+}
+
+void QGraphicsWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::deleteLater();
 }
 
 void QGraphicsWidget_DisconnectNotify(void* ptr, void* sign)
@@ -38952,6 +41942,11 @@ void QGridLayout_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGridLayout*>(ptr), "deleteLater");
 }
 
+void QGridLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGridLayout*>(ptr)->QGridLayout::deleteLater();
+}
+
 void QGridLayout_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGridLayout*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -39392,9 +42387,19 @@ void QGroupBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QGroupBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::setEnabled(vbo != 0);
+}
+
 void QGroupBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QGroupBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::setStyleSheet(QString(styleSheet));
 }
 
 void QGroupBox_SetVisible(void* ptr, int visible)
@@ -39412,9 +42417,19 @@ void QGroupBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QGroupBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::setWindowModified(vbo != 0);
+}
+
 void QGroupBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QGroupBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::setWindowTitle(QString(vqs));
 }
 
 void QGroupBox_ShowEvent(void* ptr, void* event)
@@ -39442,6 +42457,11 @@ int QGroupBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QGroupBox_CloseDefault(void* ptr)
+{
+	return static_cast<QGroupBox*>(ptr)->QGroupBox::close();
 }
 
 void QGroupBox_CloseEvent(void* ptr, void* event)
@@ -39499,6 +42519,11 @@ void QGroupBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "hide");
 }
 
+void QGroupBox_HideDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::hide();
+}
+
 void QGroupBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QGroupBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -39554,6 +42579,11 @@ void QGroupBox_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "lower");
 }
 
+void QGroupBox_LowerDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::lower();
+}
+
 void QGroupBox_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QGroupBox*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -39579,9 +42609,19 @@ void QGroupBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "raise");
 }
 
+void QGroupBox_RaiseDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::raise();
+}
+
 void QGroupBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "repaint");
+}
+
+void QGroupBox_RepaintDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::repaint();
 }
 
 void QGroupBox_SetDisabled(void* ptr, int disable)
@@ -39589,9 +42629,19 @@ void QGroupBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QGroupBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::setDisabled(disable != 0);
+}
+
 void QGroupBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "setFocus");
+}
+
+void QGroupBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::setFocus();
 }
 
 void QGroupBox_SetHidden(void* ptr, int hidden)
@@ -39599,9 +42649,19 @@ void QGroupBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QGroupBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::setHidden(hidden != 0);
+}
+
 void QGroupBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "show");
+}
+
+void QGroupBox_ShowDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::show();
 }
 
 void QGroupBox_ShowFullScreen(void* ptr)
@@ -39609,9 +42669,19 @@ void QGroupBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "showFullScreen");
 }
 
+void QGroupBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::showFullScreen();
+}
+
 void QGroupBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "showMaximized");
+}
+
+void QGroupBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::showMaximized();
 }
 
 void QGroupBox_ShowMinimized(void* ptr)
@@ -39619,9 +42689,19 @@ void QGroupBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "showMinimized");
 }
 
+void QGroupBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::showMinimized();
+}
+
 void QGroupBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "showNormal");
+}
+
+void QGroupBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::showNormal();
 }
 
 void QGroupBox_TabletEvent(void* ptr, void* event)
@@ -39639,9 +42719,19 @@ void QGroupBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "update");
 }
 
+void QGroupBox_UpdateDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::update();
+}
+
 void QGroupBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "updateMicroFocus");
+}
+
+void QGroupBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::updateMicroFocus();
 }
 
 void QGroupBox_WheelEvent(void* ptr, void* event)
@@ -39687,6 +42777,11 @@ void QGroupBox_CustomEventDefault(void* ptr, void* event)
 void QGroupBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGroupBox*>(ptr), "deleteLater");
+}
+
+void QGroupBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGroupBox*>(ptr)->QGroupBox::deleteLater();
 }
 
 void QGroupBox_DisconnectNotify(void* ptr, void* sign)
@@ -39977,6 +43072,11 @@ void QHBoxLayout_CustomEventDefault(void* ptr, void* event)
 void QHBoxLayout_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHBoxLayout*>(ptr), "deleteLater");
+}
+
+void QHBoxLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QHBoxLayout*>(ptr)->QHBoxLayout::deleteLater();
 }
 
 void QHBoxLayout_DisconnectNotify(void* ptr, void* sign)
@@ -40817,6 +43917,11 @@ void QHeaderView_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "clearSelection");
 }
 
+void QHeaderView_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::clearSelection();
+}
+
 void QHeaderView_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -40870,6 +43975,11 @@ void QHeaderView_DropEventDefault(void* ptr, void* event)
 void QHeaderView_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QHeaderView_EditDefault(void* ptr, void* index)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QHeaderView_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -40927,6 +44037,11 @@ void* QHeaderView_IndexAt(void* ptr, void* point)
 	return new QModelIndex(static_cast<QHeaderView*>(ptr)->indexAt(*static_cast<QPoint*>(point)));
 }
 
+void* QHeaderView_IndexAtDefault(void* ptr, void* point)
+{
+	return new QModelIndex(static_cast<QHeaderView*>(ptr)->QHeaderView::indexAt(*static_cast<QPoint*>(point)));
+}
+
 void QHeaderView_InputMethodEvent(void* ptr, void* event)
 {
 	static_cast<QHeaderView*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
@@ -40952,6 +44067,11 @@ int QHeaderView_IsIndexHidden(void* ptr, void* index)
 	return static_cast<QHeaderView*>(ptr)->isIndexHidden(*static_cast<QModelIndex*>(index));
 }
 
+int QHeaderView_IsIndexHiddenDefault(void* ptr, void* index)
+{
+	return static_cast<QHeaderView*>(ptr)->QHeaderView::isIndexHidden(*static_cast<QModelIndex*>(index));
+}
+
 void QHeaderView_KeyPressEvent(void* ptr, void* event)
 {
 	static_cast<QHeaderView*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
@@ -40975,6 +44095,11 @@ void QHeaderView_KeyboardSearchDefault(void* ptr, char* search)
 void* QHeaderView_MoveCursor(void* ptr, int cursorAction, int modifiers)
 {
 	return new QModelIndex(static_cast<QHeaderView*>(ptr)->moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifier>(modifiers)));
+}
+
+void* QHeaderView_MoveCursorDefault(void* ptr, int cursorAction, int modifiers)
+{
+	return new QModelIndex(static_cast<QHeaderView*>(ptr)->QHeaderView::moveCursor(static_cast<QAbstractItemView::CursorAction>(cursorAction), static_cast<Qt::KeyboardModifier>(modifiers)));
 }
 
 void QHeaderView_ResizeEvent(void* ptr, void* event)
@@ -41012,14 +44137,29 @@ void QHeaderView_ScrollTo(void* ptr, void* index, int hint)
 	static_cast<QHeaderView*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
+void QHeaderView_ScrollToDefault(void* ptr, void* index, int hint)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
+}
+
 void QHeaderView_ScrollToBottom(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "scrollToBottom");
 }
 
+void QHeaderView_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::scrollToBottom();
+}
+
 void QHeaderView_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "scrollToTop");
+}
+
+void QHeaderView_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::scrollToTop();
 }
 
 void QHeaderView_SelectAll(void* ptr)
@@ -41055,6 +44195,11 @@ int QHeaderView_SelectionCommandDefault(void* ptr, void* index, void* event)
 void QHeaderView_SetCurrentIndex(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QHeaderView_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setCurrentIndex(*static_cast<QModelIndex*>(index));
 }
 
 void QHeaderView_SetRootIndex(void* ptr, void* index)
@@ -41122,6 +44267,11 @@ void QHeaderView_Update(void* ptr, void* index)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
+void QHeaderView_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::update(*static_cast<QModelIndex*>(index));
+}
+
 void QHeaderView_UpdateGeometries(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "updateGeometries");
@@ -41157,9 +44307,19 @@ void* QHeaderView_VisualRect(void* ptr, void* index)
 	return new QRect(static_cast<QRect>(static_cast<QHeaderView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QHeaderView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QHeaderView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QHeaderView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
 }
 
+void* QHeaderView_VisualRectDefault(void* ptr, void* index)
+{
+	return new QRect(static_cast<QRect>(static_cast<QHeaderView*>(ptr)->QHeaderView::visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QHeaderView*>(ptr)->QHeaderView::visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QHeaderView*>(ptr)->QHeaderView::visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QHeaderView*>(ptr)->QHeaderView::visualRect(*static_cast<QModelIndex*>(index))).height());
+}
+
 void* QHeaderView_VisualRegionForSelection(void* ptr, void* selection)
 {
 	return new QRegion(static_cast<QHeaderView*>(ptr)->visualRegionForSelection(*static_cast<QItemSelection*>(selection)));
+}
+
+void* QHeaderView_VisualRegionForSelectionDefault(void* ptr, void* selection)
+{
+	return new QRegion(static_cast<QHeaderView*>(ptr)->QHeaderView::visualRegionForSelection(*static_cast<QItemSelection*>(selection)));
 }
 
 void QHeaderView_ContextMenuEvent(void* ptr, void* e)
@@ -41297,9 +44457,19 @@ void QHeaderView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QHeaderView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setEnabled(vbo != 0);
+}
+
 void QHeaderView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QHeaderView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setStyleSheet(QString(styleSheet));
 }
 
 void QHeaderView_SetWindowModified(void* ptr, int vbo)
@@ -41307,9 +44477,19 @@ void QHeaderView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QHeaderView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setWindowModified(vbo != 0);
+}
+
 void QHeaderView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QHeaderView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setWindowTitle(QString(vqs));
 }
 
 void QHeaderView_ShowEvent(void* ptr, void* event)
@@ -41327,6 +44507,11 @@ int QHeaderView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QHeaderView_CloseDefault(void* ptr)
+{
+	return static_cast<QHeaderView*>(ptr)->QHeaderView::close();
 }
 
 void QHeaderView_CloseEvent(void* ptr, void* event)
@@ -41364,6 +44549,11 @@ void QHeaderView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "hide");
 }
 
+void QHeaderView_HideDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::hide();
+}
+
 void QHeaderView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QHeaderView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -41389,6 +44579,11 @@ void QHeaderView_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "lower");
 }
 
+void QHeaderView_LowerDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::lower();
+}
+
 int QHeaderView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QHeaderView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -41404,9 +44599,19 @@ void QHeaderView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "raise");
 }
 
+void QHeaderView_RaiseDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::raise();
+}
+
 void QHeaderView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "repaint");
+}
+
+void QHeaderView_RepaintDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::repaint();
 }
 
 void QHeaderView_SetDisabled(void* ptr, int disable)
@@ -41414,9 +44619,19 @@ void QHeaderView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QHeaderView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setDisabled(disable != 0);
+}
+
 void QHeaderView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setFocus");
+}
+
+void QHeaderView_SetFocus2Default(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setFocus();
 }
 
 void QHeaderView_SetHidden(void* ptr, int hidden)
@@ -41424,9 +44639,19 @@ void QHeaderView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QHeaderView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::setHidden(hidden != 0);
+}
+
 void QHeaderView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "show");
+}
+
+void QHeaderView_ShowDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::show();
 }
 
 void QHeaderView_ShowFullScreen(void* ptr)
@@ -41434,9 +44659,19 @@ void QHeaderView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "showFullScreen");
 }
 
+void QHeaderView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::showFullScreen();
+}
+
 void QHeaderView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "showMaximized");
+}
+
+void QHeaderView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::showMaximized();
 }
 
 void QHeaderView_ShowMinimized(void* ptr)
@@ -41444,9 +44679,19 @@ void QHeaderView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "showMinimized");
 }
 
+void QHeaderView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::showMinimized();
+}
+
 void QHeaderView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "showNormal");
+}
+
+void QHeaderView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::showNormal();
 }
 
 void QHeaderView_TabletEvent(void* ptr, void* event)
@@ -41462,6 +44707,11 @@ void QHeaderView_TabletEventDefault(void* ptr, void* event)
 void QHeaderView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "updateMicroFocus");
+}
+
+void QHeaderView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::updateMicroFocus();
 }
 
 void QHeaderView_ChildEvent(void* ptr, void* event)
@@ -41497,6 +44747,11 @@ void QHeaderView_CustomEventDefault(void* ptr, void* event)
 void QHeaderView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "deleteLater");
+}
+
+void QHeaderView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::deleteLater();
 }
 
 void QHeaderView_DisconnectNotify(void* ptr, void* sign)
@@ -42145,9 +45400,19 @@ void QInputDialog_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QInputDialog_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::setEnabled(vbo != 0);
+}
+
 void QInputDialog_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QInputDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::setStyleSheet(QString(styleSheet));
 }
 
 void QInputDialog_SetWindowModified(void* ptr, int vbo)
@@ -42155,9 +45420,19 @@ void QInputDialog_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QInputDialog_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::setWindowModified(vbo != 0);
+}
+
 void QInputDialog_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QInputDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::setWindowTitle(QString(vqs));
 }
 
 void QInputDialog_ChangeEvent(void* ptr, void* event)
@@ -42175,6 +45450,11 @@ int QInputDialog_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QInputDialog_CloseDefault(void* ptr)
+{
+	return static_cast<QInputDialog*>(ptr)->QInputDialog::close();
 }
 
 int QInputDialog_FocusNextPrevChild(void* ptr, int next)
@@ -42210,6 +45490,11 @@ int QInputDialog_HeightForWidthDefault(void* ptr, int w)
 void QInputDialog_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "hide");
+}
+
+void QInputDialog_HideDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::hide();
 }
 
 void QInputDialog_InitPainter(void* ptr, void* painter)
@@ -42255,6 +45540,11 @@ void QInputDialog_KeyReleaseEventDefault(void* ptr, void* event)
 void QInputDialog_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "lower");
+}
+
+void QInputDialog_LowerDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::lower();
 }
 
 void QInputDialog_MouseDoubleClickEvent(void* ptr, void* event)
@@ -42312,9 +45602,19 @@ void QInputDialog_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "raise");
 }
 
+void QInputDialog_RaiseDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::raise();
+}
+
 void QInputDialog_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "repaint");
+}
+
+void QInputDialog_RepaintDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::repaint();
 }
 
 void QInputDialog_SetDisabled(void* ptr, int disable)
@@ -42322,9 +45622,19 @@ void QInputDialog_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QInputDialog_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::setDisabled(disable != 0);
+}
+
 void QInputDialog_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setFocus");
+}
+
+void QInputDialog_SetFocus2Default(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::setFocus();
 }
 
 void QInputDialog_SetHidden(void* ptr, int hidden)
@@ -42332,9 +45642,19 @@ void QInputDialog_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QInputDialog_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::setHidden(hidden != 0);
+}
+
 void QInputDialog_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "show");
+}
+
+void QInputDialog_ShowDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::show();
 }
 
 void QInputDialog_ShowFullScreen(void* ptr)
@@ -42342,9 +45662,19 @@ void QInputDialog_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "showFullScreen");
 }
 
+void QInputDialog_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::showFullScreen();
+}
+
 void QInputDialog_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "showMaximized");
+}
+
+void QInputDialog_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::showMaximized();
 }
 
 void QInputDialog_ShowMinimized(void* ptr)
@@ -42352,9 +45682,19 @@ void QInputDialog_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "showMinimized");
 }
 
+void QInputDialog_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::showMinimized();
+}
+
 void QInputDialog_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "showNormal");
+}
+
+void QInputDialog_ShowNormalDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::showNormal();
 }
 
 void QInputDialog_TabletEvent(void* ptr, void* event)
@@ -42372,9 +45712,19 @@ void QInputDialog_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "update");
 }
 
+void QInputDialog_UpdateDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::update();
+}
+
 void QInputDialog_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "updateMicroFocus");
+}
+
+void QInputDialog_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::updateMicroFocus();
 }
 
 void QInputDialog_WheelEvent(void* ptr, void* event)
@@ -42430,6 +45780,11 @@ void QInputDialog_CustomEventDefault(void* ptr, void* event)
 void QInputDialog_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputDialog*>(ptr), "deleteLater");
+}
+
+void QInputDialog_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QInputDialog*>(ptr)->QInputDialog::deleteLater();
 }
 
 void QInputDialog_DisconnectNotify(void* ptr, void* sign)
@@ -42700,6 +46055,11 @@ void QItemDelegate_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QItemDelegate*>(ptr), "deleteLater");
 }
 
+void QItemDelegate_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QItemDelegate*>(ptr)->QItemDelegate::deleteLater();
+}
+
 void QItemDelegate_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QItemDelegate*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -42967,6 +46327,11 @@ void QKeyEventTransition_CustomEventDefault(void* ptr, void* event)
 void QKeyEventTransition_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeyEventTransition*>(ptr), "deleteLater");
+}
+
+void QKeyEventTransition_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QKeyEventTransition*>(ptr)->QKeyEventTransition::deleteLater();
 }
 
 void QKeyEventTransition_DisconnectNotify(void* ptr, void* sign)
@@ -43330,9 +46695,19 @@ void QKeySequenceEdit_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QKeySequenceEdit_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::setEnabled(vbo != 0);
+}
+
 void QKeySequenceEdit_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QKeySequenceEdit_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::setStyleSheet(QString(styleSheet));
 }
 
 void QKeySequenceEdit_SetVisible(void* ptr, int visible)
@@ -43350,9 +46725,19 @@ void QKeySequenceEdit_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QKeySequenceEdit_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::setWindowModified(vbo != 0);
+}
+
 void QKeySequenceEdit_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QKeySequenceEdit_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::setWindowTitle(QString(vqs));
 }
 
 void QKeySequenceEdit_ShowEvent(void* ptr, void* event)
@@ -43390,6 +46775,11 @@ int QKeySequenceEdit_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QKeySequenceEdit_CloseDefault(void* ptr)
+{
+	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::close();
 }
 
 void QKeySequenceEdit_CloseEvent(void* ptr, void* event)
@@ -43447,6 +46837,11 @@ void QKeySequenceEdit_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "hide");
 }
 
+void QKeySequenceEdit_HideDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::hide();
+}
+
 void QKeySequenceEdit_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QKeySequenceEdit*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -43480,6 +46875,11 @@ void* QKeySequenceEdit_InputMethodQueryDefault(void* ptr, int query)
 void QKeySequenceEdit_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "lower");
+}
+
+void QKeySequenceEdit_LowerDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::lower();
 }
 
 void QKeySequenceEdit_MouseDoubleClickEvent(void* ptr, void* event)
@@ -43537,9 +46937,19 @@ void QKeySequenceEdit_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "raise");
 }
 
+void QKeySequenceEdit_RaiseDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::raise();
+}
+
 void QKeySequenceEdit_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "repaint");
+}
+
+void QKeySequenceEdit_RepaintDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::repaint();
 }
 
 void QKeySequenceEdit_ResizeEvent(void* ptr, void* event)
@@ -43557,9 +46967,19 @@ void QKeySequenceEdit_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QKeySequenceEdit_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::setDisabled(disable != 0);
+}
+
 void QKeySequenceEdit_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setFocus");
+}
+
+void QKeySequenceEdit_SetFocus2Default(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::setFocus();
 }
 
 void QKeySequenceEdit_SetHidden(void* ptr, int hidden)
@@ -43567,9 +46987,19 @@ void QKeySequenceEdit_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QKeySequenceEdit_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::setHidden(hidden != 0);
+}
+
 void QKeySequenceEdit_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "show");
+}
+
+void QKeySequenceEdit_ShowDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::show();
 }
 
 void QKeySequenceEdit_ShowFullScreen(void* ptr)
@@ -43577,9 +47007,19 @@ void QKeySequenceEdit_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "showFullScreen");
 }
 
+void QKeySequenceEdit_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::showFullScreen();
+}
+
 void QKeySequenceEdit_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "showMaximized");
+}
+
+void QKeySequenceEdit_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::showMaximized();
 }
 
 void QKeySequenceEdit_ShowMinimized(void* ptr)
@@ -43587,9 +47027,19 @@ void QKeySequenceEdit_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "showMinimized");
 }
 
+void QKeySequenceEdit_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::showMinimized();
+}
+
 void QKeySequenceEdit_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "showNormal");
+}
+
+void QKeySequenceEdit_ShowNormalDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::showNormal();
 }
 
 void QKeySequenceEdit_TabletEvent(void* ptr, void* event)
@@ -43607,9 +47057,19 @@ void QKeySequenceEdit_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "update");
 }
 
+void QKeySequenceEdit_UpdateDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::update();
+}
+
 void QKeySequenceEdit_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "updateMicroFocus");
+}
+
+void QKeySequenceEdit_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::updateMicroFocus();
 }
 
 void QKeySequenceEdit_WheelEvent(void* ptr, void* event)
@@ -43655,6 +47115,11 @@ void QKeySequenceEdit_CustomEventDefault(void* ptr, void* event)
 void QKeySequenceEdit_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QKeySequenceEdit*>(ptr), "deleteLater");
+}
+
+void QKeySequenceEdit_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::deleteLater();
 }
 
 void QKeySequenceEdit_DisconnectNotify(void* ptr, void* sign)
@@ -44056,9 +47521,19 @@ void QLCDNumber_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QLCDNumber_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::setEnabled(vbo != 0);
+}
+
 void QLCDNumber_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QLCDNumber_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::setStyleSheet(QString(styleSheet));
 }
 
 void QLCDNumber_SetVisible(void* ptr, int visible)
@@ -44076,9 +47551,19 @@ void QLCDNumber_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QLCDNumber_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::setWindowModified(vbo != 0);
+}
+
 void QLCDNumber_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QLCDNumber_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::setWindowTitle(QString(vqs));
 }
 
 void QLCDNumber_ShowEvent(void* ptr, void* event)
@@ -44096,6 +47581,11 @@ int QLCDNumber_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QLCDNumber_CloseDefault(void* ptr)
+{
+	return static_cast<QLCDNumber*>(ptr)->QLCDNumber::close();
 }
 
 void QLCDNumber_CloseEvent(void* ptr, void* event)
@@ -44153,6 +47643,11 @@ void QLCDNumber_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "hide");
 }
 
+void QLCDNumber_HideDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::hide();
+}
+
 void QLCDNumber_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QLCDNumber*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -44206,6 +47701,11 @@ void QLCDNumber_KeyReleaseEventDefault(void* ptr, void* event)
 void QLCDNumber_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "lower");
+}
+
+void QLCDNumber_LowerDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::lower();
 }
 
 void QLCDNumber_MouseDoubleClickEvent(void* ptr, void* event)
@@ -44263,9 +47763,19 @@ void QLCDNumber_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "raise");
 }
 
+void QLCDNumber_RaiseDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::raise();
+}
+
 void QLCDNumber_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "repaint");
+}
+
+void QLCDNumber_RepaintDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::repaint();
 }
 
 void QLCDNumber_ResizeEvent(void* ptr, void* event)
@@ -44283,9 +47793,19 @@ void QLCDNumber_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QLCDNumber_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::setDisabled(disable != 0);
+}
+
 void QLCDNumber_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setFocus");
+}
+
+void QLCDNumber_SetFocus2Default(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::setFocus();
 }
 
 void QLCDNumber_SetHidden(void* ptr, int hidden)
@@ -44293,9 +47813,19 @@ void QLCDNumber_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QLCDNumber_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::setHidden(hidden != 0);
+}
+
 void QLCDNumber_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "show");
+}
+
+void QLCDNumber_ShowDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::show();
 }
 
 void QLCDNumber_ShowFullScreen(void* ptr)
@@ -44303,9 +47833,19 @@ void QLCDNumber_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "showFullScreen");
 }
 
+void QLCDNumber_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::showFullScreen();
+}
+
 void QLCDNumber_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "showMaximized");
+}
+
+void QLCDNumber_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::showMaximized();
 }
 
 void QLCDNumber_ShowMinimized(void* ptr)
@@ -44313,9 +47853,19 @@ void QLCDNumber_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "showMinimized");
 }
 
+void QLCDNumber_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::showMinimized();
+}
+
 void QLCDNumber_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "showNormal");
+}
+
+void QLCDNumber_ShowNormalDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::showNormal();
 }
 
 void QLCDNumber_TabletEvent(void* ptr, void* event)
@@ -44333,9 +47883,19 @@ void QLCDNumber_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "update");
 }
 
+void QLCDNumber_UpdateDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::update();
+}
+
 void QLCDNumber_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "updateMicroFocus");
+}
+
+void QLCDNumber_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::updateMicroFocus();
 }
 
 void QLCDNumber_WheelEvent(void* ptr, void* event)
@@ -44391,6 +47951,11 @@ void QLCDNumber_CustomEventDefault(void* ptr, void* event)
 void QLCDNumber_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLCDNumber*>(ptr), "deleteLater");
+}
+
+void QLCDNumber_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLCDNumber*>(ptr)->QLCDNumber::deleteLater();
 }
 
 void QLCDNumber_DisconnectNotify(void* ptr, void* sign)
@@ -44963,9 +48528,19 @@ void QLabel_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QLabel_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QLabel*>(ptr)->QLabel::setEnabled(vbo != 0);
+}
+
 void QLabel_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QLabel_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QLabel*>(ptr)->QLabel::setStyleSheet(QString(styleSheet));
 }
 
 void QLabel_SetVisible(void* ptr, int visible)
@@ -44983,9 +48558,19 @@ void QLabel_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QLabel_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QLabel*>(ptr)->QLabel::setWindowModified(vbo != 0);
+}
+
 void QLabel_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QLabel_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QLabel*>(ptr)->QLabel::setWindowTitle(QString(vqs));
 }
 
 void QLabel_ShowEvent(void* ptr, void* event)
@@ -45003,6 +48588,11 @@ int QLabel_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QLabel_CloseDefault(void* ptr)
+{
+	return static_cast<QLabel*>(ptr)->QLabel::close();
 }
 
 void QLabel_CloseEvent(void* ptr, void* event)
@@ -45028,6 +48618,11 @@ int QLabel_HasHeightForWidthDefault(void* ptr)
 void QLabel_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "hide");
+}
+
+void QLabel_HideDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::hide();
 }
 
 void QLabel_InitPainter(void* ptr, void* painter)
@@ -45075,6 +48670,11 @@ void QLabel_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "lower");
 }
 
+void QLabel_LowerDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::lower();
+}
+
 void QLabel_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QLabel*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -45100,9 +48700,19 @@ void QLabel_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "raise");
 }
 
+void QLabel_RaiseDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::raise();
+}
+
 void QLabel_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "repaint");
+}
+
+void QLabel_RepaintDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::repaint();
 }
 
 void QLabel_ResizeEvent(void* ptr, void* event)
@@ -45120,9 +48730,19 @@ void QLabel_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QLabel_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QLabel*>(ptr)->QLabel::setDisabled(disable != 0);
+}
+
 void QLabel_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setFocus");
+}
+
+void QLabel_SetFocus2Default(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::setFocus();
 }
 
 void QLabel_SetHidden(void* ptr, int hidden)
@@ -45130,9 +48750,19 @@ void QLabel_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QLabel_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QLabel*>(ptr)->QLabel::setHidden(hidden != 0);
+}
+
 void QLabel_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "show");
+}
+
+void QLabel_ShowDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::show();
 }
 
 void QLabel_ShowFullScreen(void* ptr)
@@ -45140,9 +48770,19 @@ void QLabel_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "showFullScreen");
 }
 
+void QLabel_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::showFullScreen();
+}
+
 void QLabel_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "showMaximized");
+}
+
+void QLabel_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::showMaximized();
 }
 
 void QLabel_ShowMinimized(void* ptr)
@@ -45150,9 +48790,19 @@ void QLabel_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "showMinimized");
 }
 
+void QLabel_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::showMinimized();
+}
+
 void QLabel_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "showNormal");
+}
+
+void QLabel_ShowNormalDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::showNormal();
 }
 
 void QLabel_TabletEvent(void* ptr, void* event)
@@ -45170,9 +48820,19 @@ void QLabel_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "update");
 }
 
+void QLabel_UpdateDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::update();
+}
+
 void QLabel_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "updateMicroFocus");
+}
+
+void QLabel_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::updateMicroFocus();
 }
 
 void QLabel_WheelEvent(void* ptr, void* event)
@@ -45228,6 +48888,11 @@ void QLabel_CustomEventDefault(void* ptr, void* event)
 void QLabel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLabel*>(ptr), "deleteLater");
+}
+
+void QLabel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLabel*>(ptr)->QLabel::deleteLater();
 }
 
 void QLabel_DisconnectNotify(void* ptr, void* sign)
@@ -45601,6 +49266,8 @@ void* QLayout_SizeHint(void* ptr)
 	return new QSize(static_cast<QSize>(static_cast<QLayout*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QLayout*>(ptr)->sizeHint()).height());
 }
 
+
+
 void* QLayout_SpacerItem(void* ptr)
 {
 	return static_cast<QLayout*>(ptr)->spacerItem();
@@ -45654,6 +49321,11 @@ void QLayout_CustomEventDefault(void* ptr, void* event)
 void QLayout_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLayout*>(ptr), "deleteLater");
+}
+
+void QLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLayout*>(ptr)->QLayout::deleteLater();
 }
 
 void QLayout_DisconnectNotify(void* ptr, void* sign)
@@ -46651,9 +50323,19 @@ void QLineEdit_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QLineEdit_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::setEnabled(vbo != 0);
+}
+
 void QLineEdit_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QLineEdit_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::setStyleSheet(QString(styleSheet));
 }
 
 void QLineEdit_SetVisible(void* ptr, int visible)
@@ -46671,9 +50353,19 @@ void QLineEdit_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QLineEdit_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::setWindowModified(vbo != 0);
+}
+
 void QLineEdit_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QLineEdit_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::setWindowTitle(QString(vqs));
 }
 
 void QLineEdit_ShowEvent(void* ptr, void* event)
@@ -46691,6 +50383,11 @@ int QLineEdit_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QLineEdit_CloseDefault(void* ptr)
+{
+	return static_cast<QLineEdit*>(ptr)->QLineEdit::close();
 }
 
 void QLineEdit_CloseEvent(void* ptr, void* event)
@@ -46738,6 +50435,11 @@ void QLineEdit_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "hide");
 }
 
+void QLineEdit_HideDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::hide();
+}
+
 void QLineEdit_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QLineEdit*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -46763,6 +50465,11 @@ void QLineEdit_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "lower");
 }
 
+void QLineEdit_LowerDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::lower();
+}
+
 int QLineEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QLineEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -46778,9 +50485,19 @@ void QLineEdit_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "raise");
 }
 
+void QLineEdit_RaiseDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::raise();
+}
+
 void QLineEdit_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "repaint");
+}
+
+void QLineEdit_RepaintDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::repaint();
 }
 
 void QLineEdit_ResizeEvent(void* ptr, void* event)
@@ -46798,9 +50515,19 @@ void QLineEdit_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QLineEdit_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::setDisabled(disable != 0);
+}
+
 void QLineEdit_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setFocus");
+}
+
+void QLineEdit_SetFocus2Default(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::setFocus();
 }
 
 void QLineEdit_SetHidden(void* ptr, int hidden)
@@ -46808,9 +50535,19 @@ void QLineEdit_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QLineEdit_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::setHidden(hidden != 0);
+}
+
 void QLineEdit_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "show");
+}
+
+void QLineEdit_ShowDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::show();
 }
 
 void QLineEdit_ShowFullScreen(void* ptr)
@@ -46818,9 +50555,19 @@ void QLineEdit_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "showFullScreen");
 }
 
+void QLineEdit_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::showFullScreen();
+}
+
 void QLineEdit_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "showMaximized");
+}
+
+void QLineEdit_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::showMaximized();
 }
 
 void QLineEdit_ShowMinimized(void* ptr)
@@ -46828,9 +50575,19 @@ void QLineEdit_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "showMinimized");
 }
 
+void QLineEdit_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::showMinimized();
+}
+
 void QLineEdit_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "showNormal");
+}
+
+void QLineEdit_ShowNormalDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::showNormal();
 }
 
 void QLineEdit_TabletEvent(void* ptr, void* event)
@@ -46848,9 +50605,19 @@ void QLineEdit_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "update");
 }
 
+void QLineEdit_UpdateDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::update();
+}
+
 void QLineEdit_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "updateMicroFocus");
+}
+
+void QLineEdit_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::updateMicroFocus();
 }
 
 void QLineEdit_WheelEvent(void* ptr, void* event)
@@ -46906,6 +50673,11 @@ void QLineEdit_CustomEventDefault(void* ptr, void* event)
 void QLineEdit_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "deleteLater");
+}
+
+void QLineEdit_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLineEdit*>(ptr)->QLineEdit::deleteLater();
 }
 
 void QLineEdit_DisconnectNotify(void* ptr, void* sign)
@@ -47487,6 +51259,11 @@ void QListView_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "clearSelection");
 }
 
+void QListView_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::clearSelection();
+}
+
 void QListView_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -47520,6 +51297,11 @@ void QListView_DragEnterEventDefault(void* ptr, void* event)
 void QListView_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QListView_EditDefault(void* ptr, void* index)
+{
+	static_cast<QListView*>(ptr)->QListView::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QListView_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -47647,9 +51429,19 @@ void QListView_ScrollToBottom(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "scrollToBottom");
 }
 
+void QListView_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::scrollToBottom();
+}
+
 void QListView_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "scrollToTop");
+}
+
+void QListView_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::scrollToTop();
 }
 
 void QListView_SelectAll(void* ptr)
@@ -47675,6 +51467,11 @@ int QListView_SelectionCommandDefault(void* ptr, void* index, void* event)
 void QListView_SetCurrentIndex(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QListView_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QListView*>(ptr)->QListView::setCurrentIndex(*static_cast<QModelIndex*>(index));
 }
 
 void QListView_SetModel(void* ptr, void* model)
@@ -47730,6 +51527,11 @@ int QListView_SizeHintForRowDefault(void* ptr, int row)
 void QListView_Update(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QListView_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QListView*>(ptr)->QListView::update(*static_cast<QModelIndex*>(index));
 }
 
 void QListView_ContextMenuEvent(void* ptr, void* e)
@@ -47877,9 +51679,19 @@ void QListView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QListView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QListView*>(ptr)->QListView::setEnabled(vbo != 0);
+}
+
 void QListView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QListView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QListView*>(ptr)->QListView::setStyleSheet(QString(styleSheet));
 }
 
 void QListView_SetVisible(void* ptr, int visible)
@@ -47897,9 +51709,19 @@ void QListView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QListView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QListView*>(ptr)->QListView::setWindowModified(vbo != 0);
+}
+
 void QListView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QListView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QListView*>(ptr)->QListView::setWindowTitle(QString(vqs));
 }
 
 void QListView_ShowEvent(void* ptr, void* event)
@@ -47917,6 +51739,11 @@ int QListView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QListView_CloseDefault(void* ptr)
+{
+	return static_cast<QListView*>(ptr)->QListView::close();
 }
 
 void QListView_CloseEvent(void* ptr, void* event)
@@ -47954,6 +51781,11 @@ void QListView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "hide");
 }
 
+void QListView_HideDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::hide();
+}
+
 void QListView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QListView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -47979,6 +51811,11 @@ void QListView_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "lower");
 }
 
+void QListView_LowerDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::lower();
+}
+
 int QListView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QListView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -47994,9 +51831,19 @@ void QListView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "raise");
 }
 
+void QListView_RaiseDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::raise();
+}
+
 void QListView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "repaint");
+}
+
+void QListView_RepaintDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::repaint();
 }
 
 void QListView_SetDisabled(void* ptr, int disable)
@@ -48004,9 +51851,19 @@ void QListView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QListView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QListView*>(ptr)->QListView::setDisabled(disable != 0);
+}
+
 void QListView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setFocus");
+}
+
+void QListView_SetFocus2Default(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::setFocus();
 }
 
 void QListView_SetHidden(void* ptr, int hidden)
@@ -48014,9 +51871,19 @@ void QListView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QListView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QListView*>(ptr)->QListView::setHidden(hidden != 0);
+}
+
 void QListView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "show");
+}
+
+void QListView_ShowDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::show();
 }
 
 void QListView_ShowFullScreen(void* ptr)
@@ -48024,9 +51891,19 @@ void QListView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "showFullScreen");
 }
 
+void QListView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::showFullScreen();
+}
+
 void QListView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "showMaximized");
+}
+
+void QListView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::showMaximized();
 }
 
 void QListView_ShowMinimized(void* ptr)
@@ -48034,9 +51911,19 @@ void QListView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "showMinimized");
 }
 
+void QListView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::showMinimized();
+}
+
 void QListView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "showNormal");
+}
+
+void QListView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::showNormal();
 }
 
 void QListView_TabletEvent(void* ptr, void* event)
@@ -48052,6 +51939,11 @@ void QListView_TabletEventDefault(void* ptr, void* event)
 void QListView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "updateMicroFocus");
+}
+
+void QListView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::updateMicroFocus();
 }
 
 void QListView_ChildEvent(void* ptr, void* event)
@@ -48087,6 +51979,11 @@ void QListView_CustomEventDefault(void* ptr, void* event)
 void QListView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListView*>(ptr), "deleteLater");
+}
+
+void QListView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QListView*>(ptr)->QListView::deleteLater();
 }
 
 void QListView_DisconnectNotify(void* ptr, void* sign)
@@ -48868,6 +52765,11 @@ void QListWidget_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "clearSelection");
 }
 
+void QListWidget_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::clearSelection();
+}
+
 void QListWidget_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -48901,6 +52803,11 @@ void QListWidget_DragEnterEventDefault(void* ptr, void* event)
 void QListWidget_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QListWidget_EditDefault(void* ptr, void* index)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QListWidget_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -49028,9 +52935,19 @@ void QListWidget_ScrollToBottom(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToBottom");
 }
 
+void QListWidget_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::scrollToBottom();
+}
+
 void QListWidget_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToTop");
+}
+
+void QListWidget_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::scrollToTop();
 }
 
 void QListWidget_SelectAll(void* ptr)
@@ -49056,6 +52973,11 @@ int QListWidget_SelectionCommandDefault(void* ptr, void* index, void* event)
 void QListWidget_SetCurrentIndex(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QListWidget_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setCurrentIndex(*static_cast<QModelIndex*>(index));
 }
 
 void QListWidget_SetModel(void* ptr, void* model)
@@ -49111,6 +53033,11 @@ int QListWidget_SizeHintForRowDefault(void* ptr, int row)
 void QListWidget_Update(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QListWidget_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::update(*static_cast<QModelIndex*>(index));
 }
 
 void QListWidget_ContextMenuEvent(void* ptr, void* e)
@@ -49258,9 +53185,19 @@ void QListWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QListWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setEnabled(vbo != 0);
+}
+
 void QListWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QListWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QListWidget_SetVisible(void* ptr, int visible)
@@ -49278,9 +53215,19 @@ void QListWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QListWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setWindowModified(vbo != 0);
+}
+
 void QListWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QListWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setWindowTitle(QString(vqs));
 }
 
 void QListWidget_ShowEvent(void* ptr, void* event)
@@ -49298,6 +53245,11 @@ int QListWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QListWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QListWidget*>(ptr)->QListWidget::close();
 }
 
 void QListWidget_CloseEvent(void* ptr, void* event)
@@ -49335,6 +53287,11 @@ void QListWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "hide");
 }
 
+void QListWidget_HideDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::hide();
+}
+
 void QListWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QListWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -49360,6 +53317,11 @@ void QListWidget_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "lower");
 }
 
+void QListWidget_LowerDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::lower();
+}
+
 int QListWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QListWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -49375,9 +53337,19 @@ void QListWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "raise");
 }
 
+void QListWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::raise();
+}
+
 void QListWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "repaint");
+}
+
+void QListWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::repaint();
 }
 
 void QListWidget_SetDisabled(void* ptr, int disable)
@@ -49385,9 +53357,19 @@ void QListWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QListWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setDisabled(disable != 0);
+}
+
 void QListWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setFocus");
+}
+
+void QListWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setFocus();
 }
 
 void QListWidget_SetHidden(void* ptr, int hidden)
@@ -49395,9 +53377,19 @@ void QListWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QListWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setHidden(hidden != 0);
+}
+
 void QListWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "show");
+}
+
+void QListWidget_ShowDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::show();
 }
 
 void QListWidget_ShowFullScreen(void* ptr)
@@ -49405,9 +53397,19 @@ void QListWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "showFullScreen");
 }
 
+void QListWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::showFullScreen();
+}
+
 void QListWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "showMaximized");
+}
+
+void QListWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::showMaximized();
 }
 
 void QListWidget_ShowMinimized(void* ptr)
@@ -49415,9 +53417,19 @@ void QListWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "showMinimized");
 }
 
+void QListWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::showMinimized();
+}
+
 void QListWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "showNormal");
+}
+
+void QListWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::showNormal();
 }
 
 void QListWidget_TabletEvent(void* ptr, void* event)
@@ -49433,6 +53445,11 @@ void QListWidget_TabletEventDefault(void* ptr, void* event)
 void QListWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "updateMicroFocus");
+}
+
+void QListWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::updateMicroFocus();
 }
 
 void QListWidget_ChildEvent(void* ptr, void* event)
@@ -49468,6 +53485,11 @@ void QListWidget_CustomEventDefault(void* ptr, void* event)
 void QListWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "deleteLater");
+}
+
+void QListWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::deleteLater();
 }
 
 void QListWidget_DisconnectNotify(void* ptr, void* sign)
@@ -50001,9 +54023,23 @@ void QMacCocoaViewContainer_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMacCocoaViewContainer_SetEnabledDefault(void* ptr, int vbo)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setEnabled(vbo != 0);
+#endif
+}
+
 void QMacCocoaViewContainer_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMacCocoaViewContainer_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setStyleSheet(QString(styleSheet));
+#endif
 }
 
 void QMacCocoaViewContainer_SetVisible(void* ptr, int visible)
@@ -50023,9 +54059,23 @@ void QMacCocoaViewContainer_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMacCocoaViewContainer_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setWindowModified(vbo != 0);
+#endif
+}
+
 void QMacCocoaViewContainer_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QMacCocoaViewContainer_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setWindowTitle(QString(vqs));
+#endif
 }
 
 void QMacCocoaViewContainer_ShowEvent(void* ptr, void* event)
@@ -50071,6 +54121,15 @@ int QMacCocoaViewContainer_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMacCocoaViewContainer_CloseDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::close();
+#else
+	return false;
+#endif
 }
 
 void QMacCocoaViewContainer_CloseEvent(void* ptr, void* event)
@@ -50158,6 +54217,13 @@ void QMacCocoaViewContainer_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "hide");
 }
 
+void QMacCocoaViewContainer_HideDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::hide();
+#endif
+}
+
 void QMacCocoaViewContainer_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QMacCocoaViewContainer*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -50223,6 +54289,13 @@ void QMacCocoaViewContainer_KeyReleaseEventDefault(void* ptr, void* event)
 void QMacCocoaViewContainer_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "lower");
+}
+
+void QMacCocoaViewContainer_LowerDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::lower();
+#endif
 }
 
 void QMacCocoaViewContainer_MouseDoubleClickEvent(void* ptr, void* event)
@@ -50292,9 +54365,23 @@ void QMacCocoaViewContainer_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "raise");
 }
 
+void QMacCocoaViewContainer_RaiseDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::raise();
+#endif
+}
+
 void QMacCocoaViewContainer_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "repaint");
+}
+
+void QMacCocoaViewContainer_RepaintDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::repaint();
+#endif
 }
 
 void QMacCocoaViewContainer_ResizeEvent(void* ptr, void* event)
@@ -50314,9 +54401,23 @@ void QMacCocoaViewContainer_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMacCocoaViewContainer_SetDisabledDefault(void* ptr, int disable)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setDisabled(disable != 0);
+#endif
+}
+
 void QMacCocoaViewContainer_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "setFocus");
+}
+
+void QMacCocoaViewContainer_SetFocus2Default(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setFocus();
+#endif
 }
 
 void QMacCocoaViewContainer_SetHidden(void* ptr, int hidden)
@@ -50324,9 +54425,23 @@ void QMacCocoaViewContainer_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMacCocoaViewContainer_SetHiddenDefault(void* ptr, int hidden)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::setHidden(hidden != 0);
+#endif
+}
+
 void QMacCocoaViewContainer_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "show");
+}
+
+void QMacCocoaViewContainer_ShowDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::show();
+#endif
 }
 
 void QMacCocoaViewContainer_ShowFullScreen(void* ptr)
@@ -50334,9 +54449,23 @@ void QMacCocoaViewContainer_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "showFullScreen");
 }
 
+void QMacCocoaViewContainer_ShowFullScreenDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showFullScreen();
+#endif
+}
+
 void QMacCocoaViewContainer_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "showMaximized");
+}
+
+void QMacCocoaViewContainer_ShowMaximizedDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showMaximized();
+#endif
 }
 
 void QMacCocoaViewContainer_ShowMinimized(void* ptr)
@@ -50344,9 +54473,23 @@ void QMacCocoaViewContainer_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "showMinimized");
 }
 
+void QMacCocoaViewContainer_ShowMinimizedDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showMinimized();
+#endif
+}
+
 void QMacCocoaViewContainer_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "showNormal");
+}
+
+void QMacCocoaViewContainer_ShowNormalDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::showNormal();
+#endif
 }
 
 void QMacCocoaViewContainer_TabletEvent(void* ptr, void* event)
@@ -50366,9 +54509,23 @@ void QMacCocoaViewContainer_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "update");
 }
 
+void QMacCocoaViewContainer_UpdateDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::update();
+#endif
+}
+
 void QMacCocoaViewContainer_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "updateMicroFocus");
+}
+
+void QMacCocoaViewContainer_UpdateMicroFocusDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::updateMicroFocus();
+#endif
 }
 
 void QMacCocoaViewContainer_WheelEvent(void* ptr, void* event)
@@ -50434,6 +54591,13 @@ void QMacCocoaViewContainer_CustomEventDefault(void* ptr, void* event)
 void QMacCocoaViewContainer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacCocoaViewContainer*>(ptr), "deleteLater");
+}
+
+void QMacCocoaViewContainer_DeleteLaterDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::deleteLater();
+#endif
 }
 
 void QMacCocoaViewContainer_DisconnectNotify(void* ptr, void* sign)
@@ -50770,9 +54934,23 @@ void QMacNativeWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMacNativeWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setEnabled(vbo != 0);
+#endif
+}
+
 void QMacNativeWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMacNativeWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setStyleSheet(QString(styleSheet));
+#endif
 }
 
 void QMacNativeWidget_SetVisible(void* ptr, int visible)
@@ -50792,9 +54970,23 @@ void QMacNativeWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMacNativeWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setWindowModified(vbo != 0);
+#endif
+}
+
 void QMacNativeWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QMacNativeWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setWindowTitle(QString(vqs));
+#endif
 }
 
 void QMacNativeWidget_ShowEvent(void* ptr, void* event)
@@ -50826,6 +55018,15 @@ int QMacNativeWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMacNativeWidget_CloseDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::close();
+#else
+	return false;
+#endif
 }
 
 void QMacNativeWidget_CloseEvent(void* ptr, void* event)
@@ -50899,6 +55100,13 @@ void QMacNativeWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "hide");
 }
 
+void QMacNativeWidget_HideDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::hide();
+#endif
+}
+
 void QMacNativeWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QMacNativeWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -50964,6 +55172,13 @@ void QMacNativeWidget_KeyReleaseEventDefault(void* ptr, void* event)
 void QMacNativeWidget_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "lower");
+}
+
+void QMacNativeWidget_LowerDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::lower();
+#endif
 }
 
 void QMacNativeWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -51033,9 +55248,23 @@ void QMacNativeWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "raise");
 }
 
+void QMacNativeWidget_RaiseDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::raise();
+#endif
+}
+
 void QMacNativeWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "repaint");
+}
+
+void QMacNativeWidget_RepaintDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::repaint();
+#endif
 }
 
 void QMacNativeWidget_ResizeEvent(void* ptr, void* event)
@@ -51055,9 +55284,23 @@ void QMacNativeWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMacNativeWidget_SetDisabledDefault(void* ptr, int disable)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setDisabled(disable != 0);
+#endif
+}
+
 void QMacNativeWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "setFocus");
+}
+
+void QMacNativeWidget_SetFocus2Default(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setFocus();
+#endif
 }
 
 void QMacNativeWidget_SetHidden(void* ptr, int hidden)
@@ -51065,9 +55308,23 @@ void QMacNativeWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMacNativeWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::setHidden(hidden != 0);
+#endif
+}
+
 void QMacNativeWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "show");
+}
+
+void QMacNativeWidget_ShowDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::show();
+#endif
 }
 
 void QMacNativeWidget_ShowFullScreen(void* ptr)
@@ -51075,9 +55332,23 @@ void QMacNativeWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "showFullScreen");
 }
 
+void QMacNativeWidget_ShowFullScreenDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showFullScreen();
+#endif
+}
+
 void QMacNativeWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "showMaximized");
+}
+
+void QMacNativeWidget_ShowMaximizedDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showMaximized();
+#endif
 }
 
 void QMacNativeWidget_ShowMinimized(void* ptr)
@@ -51085,9 +55356,23 @@ void QMacNativeWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "showMinimized");
 }
 
+void QMacNativeWidget_ShowMinimizedDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showMinimized();
+#endif
+}
+
 void QMacNativeWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "showNormal");
+}
+
+void QMacNativeWidget_ShowNormalDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::showNormal();
+#endif
 }
 
 void QMacNativeWidget_TabletEvent(void* ptr, void* event)
@@ -51107,9 +55392,23 @@ void QMacNativeWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "update");
 }
 
+void QMacNativeWidget_UpdateDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::update();
+#endif
+}
+
 void QMacNativeWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "updateMicroFocus");
+}
+
+void QMacNativeWidget_UpdateMicroFocusDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::updateMicroFocus();
+#endif
 }
 
 void QMacNativeWidget_WheelEvent(void* ptr, void* event)
@@ -51175,6 +55474,13 @@ void QMacNativeWidget_CustomEventDefault(void* ptr, void* event)
 void QMacNativeWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacNativeWidget*>(ptr), "deleteLater");
+}
+
+void QMacNativeWidget_DeleteLaterDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::deleteLater();
+#endif
 }
 
 void QMacNativeWidget_DisconnectNotify(void* ptr, void* sign)
@@ -51759,9 +56065,19 @@ void QMainWindow_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMainWindow_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::setEnabled(vbo != 0);
+}
+
 void QMainWindow_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMainWindow_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::setStyleSheet(QString(styleSheet));
 }
 
 void QMainWindow_SetVisible(void* ptr, int visible)
@@ -51779,9 +56095,19 @@ void QMainWindow_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMainWindow_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::setWindowModified(vbo != 0);
+}
+
 void QMainWindow_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QMainWindow_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::setWindowTitle(QString(vqs));
 }
 
 void QMainWindow_ShowEvent(void* ptr, void* event)
@@ -51819,6 +56145,11 @@ int QMainWindow_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMainWindow_CloseDefault(void* ptr)
+{
+	return static_cast<QMainWindow*>(ptr)->QMainWindow::close();
 }
 
 void QMainWindow_CloseEvent(void* ptr, void* event)
@@ -51864,6 +56195,11 @@ int QMainWindow_HeightForWidthDefault(void* ptr, int w)
 void QMainWindow_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "hide");
+}
+
+void QMainWindow_HideDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::hide();
 }
 
 void QMainWindow_InitPainter(void* ptr, void* painter)
@@ -51921,6 +56257,11 @@ void QMainWindow_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "lower");
 }
 
+void QMainWindow_LowerDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::lower();
+}
+
 void QMainWindow_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QMainWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -51976,9 +56317,19 @@ void QMainWindow_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "raise");
 }
 
+void QMainWindow_RaiseDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::raise();
+}
+
 void QMainWindow_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "repaint");
+}
+
+void QMainWindow_RepaintDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::repaint();
 }
 
 void QMainWindow_ResizeEvent(void* ptr, void* event)
@@ -51996,9 +56347,19 @@ void QMainWindow_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMainWindow_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::setDisabled(disable != 0);
+}
+
 void QMainWindow_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setFocus");
+}
+
+void QMainWindow_SetFocus2Default(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::setFocus();
 }
 
 void QMainWindow_SetHidden(void* ptr, int hidden)
@@ -52006,9 +56367,19 @@ void QMainWindow_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMainWindow_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::setHidden(hidden != 0);
+}
+
 void QMainWindow_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "show");
+}
+
+void QMainWindow_ShowDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::show();
 }
 
 void QMainWindow_ShowFullScreen(void* ptr)
@@ -52016,9 +56387,19 @@ void QMainWindow_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "showFullScreen");
 }
 
+void QMainWindow_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::showFullScreen();
+}
+
 void QMainWindow_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "showMaximized");
+}
+
+void QMainWindow_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::showMaximized();
 }
 
 void QMainWindow_ShowMinimized(void* ptr)
@@ -52026,9 +56407,19 @@ void QMainWindow_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "showMinimized");
 }
 
+void QMainWindow_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::showMinimized();
+}
+
 void QMainWindow_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "showNormal");
+}
+
+void QMainWindow_ShowNormalDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::showNormal();
 }
 
 void QMainWindow_TabletEvent(void* ptr, void* event)
@@ -52046,9 +56437,19 @@ void QMainWindow_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "update");
 }
 
+void QMainWindow_UpdateDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::update();
+}
+
 void QMainWindow_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "updateMicroFocus");
+}
+
+void QMainWindow_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::updateMicroFocus();
 }
 
 void QMainWindow_WheelEvent(void* ptr, void* event)
@@ -52104,6 +56505,11 @@ void QMainWindow_CustomEventDefault(void* ptr, void* event)
 void QMainWindow_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMainWindow*>(ptr), "deleteLater");
+}
+
+void QMainWindow_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMainWindow*>(ptr)->QMainWindow::deleteLater();
 }
 
 void QMainWindow_DisconnectNotify(void* ptr, void* sign)
@@ -52734,9 +57140,19 @@ void QMdiArea_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMdiArea_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::setEnabled(vbo != 0);
+}
+
 void QMdiArea_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMdiArea_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::setStyleSheet(QString(styleSheet));
 }
 
 void QMdiArea_SetVisible(void* ptr, int visible)
@@ -52754,9 +57170,19 @@ void QMdiArea_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMdiArea_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::setWindowModified(vbo != 0);
+}
+
 void QMdiArea_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QMdiArea_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::setWindowTitle(QString(vqs));
 }
 
 int QMdiArea_Close(void* ptr)
@@ -52764,6 +57190,11 @@ int QMdiArea_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMdiArea_CloseDefault(void* ptr)
+{
+	return static_cast<QMdiArea*>(ptr)->QMdiArea::close();
 }
 
 void QMdiArea_CloseEvent(void* ptr, void* event)
@@ -52811,6 +57242,11 @@ void QMdiArea_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "hide");
 }
 
+void QMdiArea_HideDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::hide();
+}
+
 void QMdiArea_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QMdiArea*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -52856,6 +57292,11 @@ void QMdiArea_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "lower");
 }
 
+void QMdiArea_LowerDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::lower();
+}
+
 int QMdiArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QMdiArea*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -52871,9 +57312,19 @@ void QMdiArea_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "raise");
 }
 
+void QMdiArea_RaiseDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::raise();
+}
+
 void QMdiArea_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "repaint");
+}
+
+void QMdiArea_RepaintDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::repaint();
 }
 
 void QMdiArea_SetDisabled(void* ptr, int disable)
@@ -52881,9 +57332,19 @@ void QMdiArea_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMdiArea_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::setDisabled(disable != 0);
+}
+
 void QMdiArea_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setFocus");
+}
+
+void QMdiArea_SetFocus2Default(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::setFocus();
 }
 
 void QMdiArea_SetHidden(void* ptr, int hidden)
@@ -52891,9 +57352,19 @@ void QMdiArea_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMdiArea_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::setHidden(hidden != 0);
+}
+
 void QMdiArea_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "show");
+}
+
+void QMdiArea_ShowDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::show();
 }
 
 void QMdiArea_ShowFullScreen(void* ptr)
@@ -52901,9 +57372,19 @@ void QMdiArea_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "showFullScreen");
 }
 
+void QMdiArea_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::showFullScreen();
+}
+
 void QMdiArea_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "showMaximized");
+}
+
+void QMdiArea_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::showMaximized();
 }
 
 void QMdiArea_ShowMinimized(void* ptr)
@@ -52911,9 +57392,19 @@ void QMdiArea_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "showMinimized");
 }
 
+void QMdiArea_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::showMinimized();
+}
+
 void QMdiArea_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "showNormal");
+}
+
+void QMdiArea_ShowNormalDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::showNormal();
 }
 
 void QMdiArea_TabletEvent(void* ptr, void* event)
@@ -52931,9 +57422,19 @@ void QMdiArea_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "update");
 }
 
+void QMdiArea_UpdateDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::update();
+}
+
 void QMdiArea_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "updateMicroFocus");
+}
+
+void QMdiArea_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::updateMicroFocus();
 }
 
 void QMdiArea_ConnectNotify(void* ptr, void* sign)
@@ -52959,6 +57460,11 @@ void QMdiArea_CustomEventDefault(void* ptr, void* event)
 void QMdiArea_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiArea*>(ptr), "deleteLater");
+}
+
+void QMdiArea_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMdiArea*>(ptr)->QMdiArea::deleteLater();
 }
 
 void QMdiArea_DisconnectNotify(void* ptr, void* sign)
@@ -53471,9 +57977,19 @@ void QMdiSubWindow_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMdiSubWindow_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setEnabled(vbo != 0);
+}
+
 void QMdiSubWindow_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMdiSubWindow_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setStyleSheet(QString(styleSheet));
 }
 
 void QMdiSubWindow_SetVisible(void* ptr, int visible)
@@ -53491,9 +58007,19 @@ void QMdiSubWindow_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMdiSubWindow_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setWindowModified(vbo != 0);
+}
+
 void QMdiSubWindow_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QMdiSubWindow_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setWindowTitle(QString(vqs));
 }
 
 int QMdiSubWindow_Close(void* ptr)
@@ -53501,6 +58027,11 @@ int QMdiSubWindow_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMdiSubWindow_CloseDefault(void* ptr)
+{
+	return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::close();
 }
 
 int QMdiSubWindow_FocusNextPrevChild(void* ptr, int next)
@@ -53536,6 +58067,11 @@ int QMdiSubWindow_HeightForWidthDefault(void* ptr, int w)
 void QMdiSubWindow_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "hide");
+}
+
+void QMdiSubWindow_HideDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::hide();
 }
 
 void QMdiSubWindow_InitPainter(void* ptr, void* painter)
@@ -53583,6 +58119,11 @@ void QMdiSubWindow_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "lower");
 }
 
+void QMdiSubWindow_LowerDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::lower();
+}
+
 int QMdiSubWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QMdiSubWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -53598,9 +58139,19 @@ void QMdiSubWindow_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "raise");
 }
 
+void QMdiSubWindow_RaiseDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::raise();
+}
+
 void QMdiSubWindow_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "repaint");
+}
+
+void QMdiSubWindow_RepaintDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::repaint();
 }
 
 void QMdiSubWindow_SetDisabled(void* ptr, int disable)
@@ -53608,9 +58159,19 @@ void QMdiSubWindow_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMdiSubWindow_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setDisabled(disable != 0);
+}
+
 void QMdiSubWindow_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "setFocus");
+}
+
+void QMdiSubWindow_SetFocus2Default(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setFocus();
 }
 
 void QMdiSubWindow_SetHidden(void* ptr, int hidden)
@@ -53618,9 +58179,19 @@ void QMdiSubWindow_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMdiSubWindow_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::setHidden(hidden != 0);
+}
+
 void QMdiSubWindow_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "show");
+}
+
+void QMdiSubWindow_ShowDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::show();
 }
 
 void QMdiSubWindow_ShowFullScreen(void* ptr)
@@ -53628,9 +58199,19 @@ void QMdiSubWindow_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "showFullScreen");
 }
 
+void QMdiSubWindow_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showFullScreen();
+}
+
 void QMdiSubWindow_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "showMaximized");
+}
+
+void QMdiSubWindow_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showMaximized();
 }
 
 void QMdiSubWindow_ShowMinimized(void* ptr)
@@ -53638,9 +58219,19 @@ void QMdiSubWindow_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "showMinimized");
 }
 
+void QMdiSubWindow_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showMinimized();
+}
+
 void QMdiSubWindow_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "showNormal");
+}
+
+void QMdiSubWindow_ShowNormalDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::showNormal();
 }
 
 void QMdiSubWindow_TabletEvent(void* ptr, void* event)
@@ -53658,9 +58249,19 @@ void QMdiSubWindow_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "update");
 }
 
+void QMdiSubWindow_UpdateDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::update();
+}
+
 void QMdiSubWindow_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "updateMicroFocus");
+}
+
+void QMdiSubWindow_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::updateMicroFocus();
 }
 
 void QMdiSubWindow_WheelEvent(void* ptr, void* event)
@@ -53696,6 +58297,11 @@ void QMdiSubWindow_CustomEventDefault(void* ptr, void* event)
 void QMdiSubWindow_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMdiSubWindow*>(ptr), "deleteLater");
+}
+
+void QMdiSubWindow_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::deleteLater();
 }
 
 void QMdiSubWindow_DisconnectNotify(void* ptr, void* sign)
@@ -54331,9 +58937,19 @@ void QMenu_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMenu_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QMenu*>(ptr)->QMenu::setEnabled(vbo != 0);
+}
+
 void QMenu_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMenu_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QMenu*>(ptr)->QMenu::setStyleSheet(QString(styleSheet));
 }
 
 void QMenu_SetVisible(void* ptr, int visible)
@@ -54351,9 +58967,19 @@ void QMenu_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMenu_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QMenu*>(ptr)->QMenu::setWindowModified(vbo != 0);
+}
+
 void QMenu_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QMenu_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QMenu*>(ptr)->QMenu::setWindowTitle(QString(vqs));
 }
 
 void QMenu_ShowEvent(void* ptr, void* event)
@@ -54371,6 +58997,11 @@ int QMenu_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMenu_CloseDefault(void* ptr)
+{
+	return static_cast<QMenu*>(ptr)->QMenu::close();
 }
 
 void QMenu_CloseEvent(void* ptr, void* event)
@@ -54418,6 +59049,11 @@ void QMenu_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "hide");
 }
 
+void QMenu_HideDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::hide();
+}
+
 void QMenu_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QMenu*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -54463,6 +59099,11 @@ void QMenu_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "lower");
 }
 
+void QMenu_LowerDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::lower();
+}
+
 void QMenu_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QMenu*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -54488,9 +59129,19 @@ void QMenu_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "raise");
 }
 
+void QMenu_RaiseDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::raise();
+}
+
 void QMenu_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "repaint");
+}
+
+void QMenu_RepaintDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::repaint();
 }
 
 void QMenu_ResizeEvent(void* ptr, void* event)
@@ -54508,9 +59159,19 @@ void QMenu_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMenu_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QMenu*>(ptr)->QMenu::setDisabled(disable != 0);
+}
+
 void QMenu_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "setFocus");
+}
+
+void QMenu_SetFocus2Default(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::setFocus();
 }
 
 void QMenu_SetHidden(void* ptr, int hidden)
@@ -54518,9 +59179,19 @@ void QMenu_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMenu_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QMenu*>(ptr)->QMenu::setHidden(hidden != 0);
+}
+
 void QMenu_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "show");
+}
+
+void QMenu_ShowDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::show();
 }
 
 void QMenu_ShowFullScreen(void* ptr)
@@ -54528,9 +59199,19 @@ void QMenu_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "showFullScreen");
 }
 
+void QMenu_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::showFullScreen();
+}
+
 void QMenu_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "showMaximized");
+}
+
+void QMenu_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::showMaximized();
 }
 
 void QMenu_ShowMinimized(void* ptr)
@@ -54538,9 +59219,19 @@ void QMenu_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "showMinimized");
 }
 
+void QMenu_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::showMinimized();
+}
+
 void QMenu_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "showNormal");
+}
+
+void QMenu_ShowNormalDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::showNormal();
 }
 
 void QMenu_TabletEvent(void* ptr, void* event)
@@ -54558,9 +59249,19 @@ void QMenu_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "update");
 }
 
+void QMenu_UpdateDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::update();
+}
+
 void QMenu_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "updateMicroFocus");
+}
+
+void QMenu_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::updateMicroFocus();
 }
 
 void QMenu_ChildEvent(void* ptr, void* event)
@@ -54596,6 +59297,11 @@ void QMenu_CustomEventDefault(void* ptr, void* event)
 void QMenu_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenu*>(ptr), "deleteLater");
+}
+
+void QMenu_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->QMenu::deleteLater();
 }
 
 void QMenu_DisconnectNotify(void* ptr, void* sign)
@@ -55132,9 +59838,19 @@ void QMenuBar_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMenuBar_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::setEnabled(vbo != 0);
+}
+
 void QMenuBar_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMenuBar_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::setStyleSheet(QString(styleSheet));
 }
 
 void QMenuBar_SetWindowModified(void* ptr, int vbo)
@@ -55142,9 +59858,19 @@ void QMenuBar_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMenuBar_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::setWindowModified(vbo != 0);
+}
+
 void QMenuBar_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QMenuBar_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::setWindowTitle(QString(vqs));
 }
 
 void QMenuBar_ShowEvent(void* ptr, void* event)
@@ -55162,6 +59888,11 @@ int QMenuBar_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMenuBar_CloseDefault(void* ptr)
+{
+	return static_cast<QMenuBar*>(ptr)->QMenuBar::close();
 }
 
 void QMenuBar_CloseEvent(void* ptr, void* event)
@@ -55209,6 +59940,11 @@ void QMenuBar_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "hide");
 }
 
+void QMenuBar_HideDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::hide();
+}
+
 void QMenuBar_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QMenuBar*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -55254,6 +59990,11 @@ void QMenuBar_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "lower");
 }
 
+void QMenuBar_LowerDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::lower();
+}
+
 void QMenuBar_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QMenuBar*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -55279,9 +60020,19 @@ void QMenuBar_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "raise");
 }
 
+void QMenuBar_RaiseDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::raise();
+}
+
 void QMenuBar_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "repaint");
+}
+
+void QMenuBar_RepaintDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::repaint();
 }
 
 void QMenuBar_SetDisabled(void* ptr, int disable)
@@ -55289,9 +60040,19 @@ void QMenuBar_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMenuBar_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::setDisabled(disable != 0);
+}
+
 void QMenuBar_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setFocus");
+}
+
+void QMenuBar_SetFocus2Default(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::setFocus();
 }
 
 void QMenuBar_SetHidden(void* ptr, int hidden)
@@ -55299,9 +60060,19 @@ void QMenuBar_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMenuBar_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::setHidden(hidden != 0);
+}
+
 void QMenuBar_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "show");
+}
+
+void QMenuBar_ShowDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::show();
 }
 
 void QMenuBar_ShowFullScreen(void* ptr)
@@ -55309,9 +60080,19 @@ void QMenuBar_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "showFullScreen");
 }
 
+void QMenuBar_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::showFullScreen();
+}
+
 void QMenuBar_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "showMaximized");
+}
+
+void QMenuBar_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::showMaximized();
 }
 
 void QMenuBar_ShowMinimized(void* ptr)
@@ -55319,9 +60100,19 @@ void QMenuBar_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "showMinimized");
 }
 
+void QMenuBar_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::showMinimized();
+}
+
 void QMenuBar_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "showNormal");
+}
+
+void QMenuBar_ShowNormalDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::showNormal();
 }
 
 void QMenuBar_TabletEvent(void* ptr, void* event)
@@ -55339,9 +60130,19 @@ void QMenuBar_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "update");
 }
 
+void QMenuBar_UpdateDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::update();
+}
+
 void QMenuBar_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "updateMicroFocus");
+}
+
+void QMenuBar_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::updateMicroFocus();
 }
 
 void QMenuBar_WheelEvent(void* ptr, void* event)
@@ -55387,6 +60188,11 @@ void QMenuBar_CustomEventDefault(void* ptr, void* event)
 void QMenuBar_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMenuBar*>(ptr), "deleteLater");
+}
+
+void QMenuBar_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMenuBar*>(ptr)->QMenuBar::deleteLater();
 }
 
 void QMenuBar_DisconnectNotify(void* ptr, void* sign)
@@ -56022,9 +60828,19 @@ void QMessageBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QMessageBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::setEnabled(vbo != 0);
+}
+
 void QMessageBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QMessageBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::setStyleSheet(QString(styleSheet));
 }
 
 void QMessageBox_SetWindowModified(void* ptr, int vbo)
@@ -56032,11 +60848,21 @@ void QMessageBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QMessageBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::setWindowModified(vbo != 0);
+}
+
 int QMessageBox_Close(void* ptr)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QMessageBox_CloseDefault(void* ptr)
+{
+	return static_cast<QMessageBox*>(ptr)->QMessageBox::close();
 }
 
 int QMessageBox_FocusNextPrevChild(void* ptr, int next)
@@ -56072,6 +60898,11 @@ int QMessageBox_HeightForWidthDefault(void* ptr, int w)
 void QMessageBox_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "hide");
+}
+
+void QMessageBox_HideDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::hide();
 }
 
 void QMessageBox_InitPainter(void* ptr, void* painter)
@@ -56117,6 +60948,11 @@ void QMessageBox_KeyReleaseEventDefault(void* ptr, void* event)
 void QMessageBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "lower");
+}
+
+void QMessageBox_LowerDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::lower();
 }
 
 void QMessageBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -56174,9 +61010,19 @@ void QMessageBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "raise");
 }
 
+void QMessageBox_RaiseDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::raise();
+}
+
 void QMessageBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "repaint");
+}
+
+void QMessageBox_RepaintDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::repaint();
 }
 
 void QMessageBox_SetDisabled(void* ptr, int disable)
@@ -56184,9 +61030,19 @@ void QMessageBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QMessageBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::setDisabled(disable != 0);
+}
+
 void QMessageBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "setFocus");
+}
+
+void QMessageBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::setFocus();
 }
 
 void QMessageBox_SetHidden(void* ptr, int hidden)
@@ -56194,9 +61050,19 @@ void QMessageBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QMessageBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::setHidden(hidden != 0);
+}
+
 void QMessageBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "show");
+}
+
+void QMessageBox_ShowDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::show();
 }
 
 void QMessageBox_ShowFullScreen(void* ptr)
@@ -56204,9 +61070,19 @@ void QMessageBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "showFullScreen");
 }
 
+void QMessageBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::showFullScreen();
+}
+
 void QMessageBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "showMaximized");
+}
+
+void QMessageBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::showMaximized();
 }
 
 void QMessageBox_ShowMinimized(void* ptr)
@@ -56214,9 +61090,19 @@ void QMessageBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "showMinimized");
 }
 
+void QMessageBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::showMinimized();
+}
+
 void QMessageBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "showNormal");
+}
+
+void QMessageBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::showNormal();
 }
 
 void QMessageBox_TabletEvent(void* ptr, void* event)
@@ -56234,9 +61120,19 @@ void QMessageBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "update");
 }
 
+void QMessageBox_UpdateDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::update();
+}
+
 void QMessageBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "updateMicroFocus");
+}
+
+void QMessageBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::updateMicroFocus();
 }
 
 void QMessageBox_WheelEvent(void* ptr, void* event)
@@ -56292,6 +61188,11 @@ void QMessageBox_CustomEventDefault(void* ptr, void* event)
 void QMessageBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMessageBox*>(ptr), "deleteLater");
+}
+
+void QMessageBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMessageBox*>(ptr)->QMessageBox::deleteLater();
 }
 
 void QMessageBox_DisconnectNotify(void* ptr, void* sign)
@@ -56452,6 +61353,11 @@ void QMouseEventTransition_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMouseEventTransition*>(ptr), "deleteLater");
 }
 
+void QMouseEventTransition_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMouseEventTransition*>(ptr)->QMouseEventTransition::deleteLater();
+}
+
 void QMouseEventTransition_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMouseEventTransition*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -56565,6 +61471,11 @@ void QPanGesture_CustomEventDefault(void* ptr, void* event)
 void QPanGesture_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPanGesture*>(ptr), "deleteLater");
+}
+
+void QPanGesture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPanGesture*>(ptr)->QPanGesture::deleteLater();
 }
 
 void QPanGesture_DisconnectNotify(void* ptr, void* sign)
@@ -56767,6 +61678,11 @@ void QPinchGesture_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPinchGesture*>(ptr), "deleteLater");
 }
 
+void QPinchGesture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPinchGesture*>(ptr)->QPinchGesture::deleteLater();
+}
+
 void QPinchGesture_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QPinchGesture*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -56961,6 +61877,11 @@ void QPlainTextDocumentLayout_CustomEventDefault(void* ptr, void* event)
 void QPlainTextDocumentLayout_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextDocumentLayout*>(ptr), "deleteLater");
+}
+
+void QPlainTextDocumentLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::deleteLater();
 }
 
 void QPlainTextDocumentLayout_DisconnectNotify(void* ptr, void* sign)
@@ -57981,9 +62902,19 @@ void QPlainTextEdit_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QPlainTextEdit_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setEnabled(vbo != 0);
+}
+
 void QPlainTextEdit_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QPlainTextEdit_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setStyleSheet(QString(styleSheet));
 }
 
 void QPlainTextEdit_SetVisible(void* ptr, int visible)
@@ -58001,9 +62932,19 @@ void QPlainTextEdit_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QPlainTextEdit_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setWindowModified(vbo != 0);
+}
+
 void QPlainTextEdit_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QPlainTextEdit_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setWindowTitle(QString(vqs));
 }
 
 int QPlainTextEdit_Close(void* ptr)
@@ -58011,6 +62952,11 @@ int QPlainTextEdit_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QPlainTextEdit_CloseDefault(void* ptr)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::close();
 }
 
 void QPlainTextEdit_CloseEvent(void* ptr, void* event)
@@ -58048,6 +62994,11 @@ void QPlainTextEdit_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "hide");
 }
 
+void QPlainTextEdit_HideDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::hide();
+}
+
 void QPlainTextEdit_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QPlainTextEdit*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -58061,6 +63012,11 @@ void QPlainTextEdit_InitPainterDefault(void* ptr, void* painter)
 void QPlainTextEdit_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "lower");
+}
+
+void QPlainTextEdit_LowerDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::lower();
 }
 
 int QPlainTextEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
@@ -58078,9 +63034,19 @@ void QPlainTextEdit_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "raise");
 }
 
+void QPlainTextEdit_RaiseDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::raise();
+}
+
 void QPlainTextEdit_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "repaint");
+}
+
+void QPlainTextEdit_RepaintDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::repaint();
 }
 
 void QPlainTextEdit_SetDisabled(void* ptr, int disable)
@@ -58088,9 +63054,19 @@ void QPlainTextEdit_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QPlainTextEdit_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setDisabled(disable != 0);
+}
+
 void QPlainTextEdit_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setFocus");
+}
+
+void QPlainTextEdit_SetFocus2Default(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setFocus();
 }
 
 void QPlainTextEdit_SetHidden(void* ptr, int hidden)
@@ -58098,9 +63074,19 @@ void QPlainTextEdit_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QPlainTextEdit_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::setHidden(hidden != 0);
+}
+
 void QPlainTextEdit_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "show");
+}
+
+void QPlainTextEdit_ShowDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::show();
 }
 
 void QPlainTextEdit_ShowFullScreen(void* ptr)
@@ -58108,9 +63094,19 @@ void QPlainTextEdit_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "showFullScreen");
 }
 
+void QPlainTextEdit_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showFullScreen();
+}
+
 void QPlainTextEdit_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "showMaximized");
+}
+
+void QPlainTextEdit_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showMaximized();
 }
 
 void QPlainTextEdit_ShowMinimized(void* ptr)
@@ -58118,9 +63114,19 @@ void QPlainTextEdit_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "showMinimized");
 }
 
+void QPlainTextEdit_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showMinimized();
+}
+
 void QPlainTextEdit_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "showNormal");
+}
+
+void QPlainTextEdit_ShowNormalDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::showNormal();
 }
 
 void QPlainTextEdit_TabletEvent(void* ptr, void* event)
@@ -58138,9 +63144,19 @@ void QPlainTextEdit_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "update");
 }
 
+void QPlainTextEdit_UpdateDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::update();
+}
+
 void QPlainTextEdit_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "updateMicroFocus");
+}
+
+void QPlainTextEdit_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::updateMicroFocus();
 }
 
 void QPlainTextEdit_TimerEvent(void* ptr, void* event)
@@ -58186,6 +63202,11 @@ void QPlainTextEdit_CustomEventDefault(void* ptr, void* event)
 void QPlainTextEdit_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPlainTextEdit*>(ptr), "deleteLater");
+}
+
+void QPlainTextEdit_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::deleteLater();
 }
 
 void QPlainTextEdit_DisconnectNotify(void* ptr, void* sign)
@@ -58617,9 +63638,19 @@ void QProgressBar_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QProgressBar_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::setEnabled(vbo != 0);
+}
+
 void QProgressBar_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QProgressBar_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::setStyleSheet(QString(styleSheet));
 }
 
 void QProgressBar_SetVisible(void* ptr, int visible)
@@ -58637,9 +63668,19 @@ void QProgressBar_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QProgressBar_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::setWindowModified(vbo != 0);
+}
+
 void QProgressBar_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QProgressBar_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::setWindowTitle(QString(vqs));
 }
 
 void QProgressBar_ShowEvent(void* ptr, void* event)
@@ -58667,6 +63708,11 @@ int QProgressBar_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QProgressBar_CloseDefault(void* ptr)
+{
+	return static_cast<QProgressBar*>(ptr)->QProgressBar::close();
 }
 
 void QProgressBar_CloseEvent(void* ptr, void* event)
@@ -58724,6 +63770,11 @@ void QProgressBar_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "hide");
 }
 
+void QProgressBar_HideDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::hide();
+}
+
 void QProgressBar_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QProgressBar*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -58777,6 +63828,11 @@ void QProgressBar_KeyReleaseEventDefault(void* ptr, void* event)
 void QProgressBar_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "lower");
+}
+
+void QProgressBar_LowerDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::lower();
 }
 
 void QProgressBar_MouseDoubleClickEvent(void* ptr, void* event)
@@ -58834,9 +63890,19 @@ void QProgressBar_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "raise");
 }
 
+void QProgressBar_RaiseDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::raise();
+}
+
 void QProgressBar_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "repaint");
+}
+
+void QProgressBar_RepaintDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::repaint();
 }
 
 void QProgressBar_ResizeEvent(void* ptr, void* event)
@@ -58854,9 +63920,19 @@ void QProgressBar_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QProgressBar_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::setDisabled(disable != 0);
+}
+
 void QProgressBar_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setFocus");
+}
+
+void QProgressBar_SetFocus2Default(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::setFocus();
 }
 
 void QProgressBar_SetHidden(void* ptr, int hidden)
@@ -58864,9 +63940,19 @@ void QProgressBar_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QProgressBar_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::setHidden(hidden != 0);
+}
+
 void QProgressBar_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "show");
+}
+
+void QProgressBar_ShowDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::show();
 }
 
 void QProgressBar_ShowFullScreen(void* ptr)
@@ -58874,9 +63960,19 @@ void QProgressBar_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "showFullScreen");
 }
 
+void QProgressBar_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::showFullScreen();
+}
+
 void QProgressBar_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "showMaximized");
+}
+
+void QProgressBar_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::showMaximized();
 }
 
 void QProgressBar_ShowMinimized(void* ptr)
@@ -58884,9 +63980,19 @@ void QProgressBar_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "showMinimized");
 }
 
+void QProgressBar_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::showMinimized();
+}
+
 void QProgressBar_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "showNormal");
+}
+
+void QProgressBar_ShowNormalDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::showNormal();
 }
 
 void QProgressBar_TabletEvent(void* ptr, void* event)
@@ -58904,9 +64010,19 @@ void QProgressBar_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "update");
 }
 
+void QProgressBar_UpdateDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::update();
+}
+
 void QProgressBar_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "updateMicroFocus");
+}
+
+void QProgressBar_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::updateMicroFocus();
 }
 
 void QProgressBar_WheelEvent(void* ptr, void* event)
@@ -58962,6 +64078,11 @@ void QProgressBar_CustomEventDefault(void* ptr, void* event)
 void QProgressBar_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "deleteLater");
+}
+
+void QProgressBar_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QProgressBar*>(ptr)->QProgressBar::deleteLater();
 }
 
 void QProgressBar_DisconnectNotify(void* ptr, void* sign)
@@ -59528,9 +64649,19 @@ void QProgressDialog_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QProgressDialog_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setEnabled(vbo != 0);
+}
+
 void QProgressDialog_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QProgressDialog_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setStyleSheet(QString(styleSheet));
 }
 
 void QProgressDialog_SetWindowModified(void* ptr, int vbo)
@@ -59538,9 +64669,19 @@ void QProgressDialog_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QProgressDialog_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setWindowModified(vbo != 0);
+}
+
 void QProgressDialog_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QProgressDialog_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setWindowTitle(QString(vqs));
 }
 
 int QProgressDialog_Close(void* ptr)
@@ -59548,6 +64689,11 @@ int QProgressDialog_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QProgressDialog_CloseDefault(void* ptr)
+{
+	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::close();
 }
 
 int QProgressDialog_FocusNextPrevChild(void* ptr, int next)
@@ -59583,6 +64729,11 @@ int QProgressDialog_HeightForWidthDefault(void* ptr, int w)
 void QProgressDialog_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "hide");
+}
+
+void QProgressDialog_HideDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::hide();
 }
 
 void QProgressDialog_InitPainter(void* ptr, void* painter)
@@ -59628,6 +64779,11 @@ void QProgressDialog_KeyReleaseEventDefault(void* ptr, void* event)
 void QProgressDialog_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "lower");
+}
+
+void QProgressDialog_LowerDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::lower();
 }
 
 void QProgressDialog_MouseDoubleClickEvent(void* ptr, void* event)
@@ -59685,9 +64841,19 @@ void QProgressDialog_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "raise");
 }
 
+void QProgressDialog_RaiseDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::raise();
+}
+
 void QProgressDialog_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "repaint");
+}
+
+void QProgressDialog_RepaintDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::repaint();
 }
 
 void QProgressDialog_SetDisabled(void* ptr, int disable)
@@ -59695,9 +64861,19 @@ void QProgressDialog_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QProgressDialog_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setDisabled(disable != 0);
+}
+
 void QProgressDialog_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setFocus");
+}
+
+void QProgressDialog_SetFocus2Default(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setFocus();
 }
 
 void QProgressDialog_SetHidden(void* ptr, int hidden)
@@ -59705,9 +64881,19 @@ void QProgressDialog_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QProgressDialog_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::setHidden(hidden != 0);
+}
+
 void QProgressDialog_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "show");
+}
+
+void QProgressDialog_ShowDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::show();
 }
 
 void QProgressDialog_ShowFullScreen(void* ptr)
@@ -59715,9 +64901,19 @@ void QProgressDialog_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "showFullScreen");
 }
 
+void QProgressDialog_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::showFullScreen();
+}
+
 void QProgressDialog_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "showMaximized");
+}
+
+void QProgressDialog_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::showMaximized();
 }
 
 void QProgressDialog_ShowMinimized(void* ptr)
@@ -59725,9 +64921,19 @@ void QProgressDialog_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "showMinimized");
 }
 
+void QProgressDialog_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::showMinimized();
+}
+
 void QProgressDialog_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "showNormal");
+}
+
+void QProgressDialog_ShowNormalDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::showNormal();
 }
 
 void QProgressDialog_TabletEvent(void* ptr, void* event)
@@ -59745,9 +64951,19 @@ void QProgressDialog_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "update");
 }
 
+void QProgressDialog_UpdateDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::update();
+}
+
 void QProgressDialog_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "updateMicroFocus");
+}
+
+void QProgressDialog_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::updateMicroFocus();
 }
 
 void QProgressDialog_WheelEvent(void* ptr, void* event)
@@ -59803,6 +65019,11 @@ void QProgressDialog_CustomEventDefault(void* ptr, void* event)
 void QProgressDialog_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QProgressDialog*>(ptr), "deleteLater");
+}
+
+void QProgressDialog_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QProgressDialog*>(ptr)->QProgressDialog::deleteLater();
 }
 
 void QProgressDialog_DisconnectNotify(void* ptr, void* sign)
@@ -60174,6 +65395,11 @@ void QProxyStyle_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QProxyStyle*>(ptr), "deleteLater");
 }
 
+void QProxyStyle_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QProxyStyle*>(ptr)->QProxyStyle::deleteLater();
+}
+
 void QProxyStyle_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QProxyStyle*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -60441,9 +65667,19 @@ void QPushButton_SetChecked(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setChecked", Q_ARG(bool, vbo != 0));
 }
 
+void QPushButton_SetCheckedDefault(void* ptr, int vbo)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setChecked(vbo != 0);
+}
+
 void QPushButton_SetIconSize(void* ptr, void* size)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(size)));
+}
+
+void QPushButton_SetIconSizeDefault(void* ptr, void* size)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setIconSize(*static_cast<QSize*>(size));
 }
 
 void QPushButton_Toggle(void* ptr)
@@ -60451,9 +65687,19 @@ void QPushButton_Toggle(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "toggle");
 }
 
+void QPushButton_ToggleDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::toggle();
+}
+
 void QPushButton_AnimateClick(void* ptr, int msec)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "animateClick", Q_ARG(int, msec));
+}
+
+void QPushButton_AnimateClickDefault(void* ptr, int msec)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::animateClick(msec);
 }
 
 void QPushButton_ChangeEvent(void* ptr, void* e)
@@ -60479,6 +65725,11 @@ void QPushButton_CheckStateSetDefault(void* ptr)
 void QPushButton_Click(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "click");
+}
+
+void QPushButton_ClickDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::click();
 }
 
 void QPushButton_KeyReleaseEvent(void* ptr, void* e)
@@ -60656,9 +65907,19 @@ void QPushButton_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QPushButton_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setEnabled(vbo != 0);
+}
+
 void QPushButton_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QPushButton_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setStyleSheet(QString(styleSheet));
 }
 
 void QPushButton_SetVisible(void* ptr, int visible)
@@ -60676,9 +65937,19 @@ void QPushButton_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QPushButton_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setWindowModified(vbo != 0);
+}
+
 void QPushButton_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QPushButton_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setWindowTitle(QString(vqs));
 }
 
 void QPushButton_ShowEvent(void* ptr, void* event)
@@ -60696,6 +65967,11 @@ int QPushButton_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QPushButton_CloseDefault(void* ptr)
+{
+	return static_cast<QPushButton*>(ptr)->QPushButton::close();
 }
 
 void QPushButton_CloseEvent(void* ptr, void* event)
@@ -60753,6 +66029,11 @@ void QPushButton_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "hide");
 }
 
+void QPushButton_HideDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::hide();
+}
+
 void QPushButton_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QPushButton*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -60788,6 +66069,11 @@ void QPushButton_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "lower");
 }
 
+void QPushButton_LowerDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::lower();
+}
+
 void QPushButton_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QPushButton*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -60813,9 +66099,19 @@ void QPushButton_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "raise");
 }
 
+void QPushButton_RaiseDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::raise();
+}
+
 void QPushButton_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "repaint");
+}
+
+void QPushButton_RepaintDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::repaint();
 }
 
 void QPushButton_ResizeEvent(void* ptr, void* event)
@@ -60833,9 +66129,19 @@ void QPushButton_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QPushButton_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setDisabled(disable != 0);
+}
+
 void QPushButton_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setFocus");
+}
+
+void QPushButton_SetFocus2Default(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setFocus();
 }
 
 void QPushButton_SetHidden(void* ptr, int hidden)
@@ -60843,9 +66149,19 @@ void QPushButton_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QPushButton_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::setHidden(hidden != 0);
+}
+
 void QPushButton_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "show");
+}
+
+void QPushButton_ShowDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::show();
 }
 
 void QPushButton_ShowFullScreen(void* ptr)
@@ -60853,9 +66169,19 @@ void QPushButton_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "showFullScreen");
 }
 
+void QPushButton_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::showFullScreen();
+}
+
 void QPushButton_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "showMaximized");
+}
+
+void QPushButton_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::showMaximized();
 }
 
 void QPushButton_ShowMinimized(void* ptr)
@@ -60863,9 +66189,19 @@ void QPushButton_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "showMinimized");
 }
 
+void QPushButton_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::showMinimized();
+}
+
 void QPushButton_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "showNormal");
+}
+
+void QPushButton_ShowNormalDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::showNormal();
 }
 
 void QPushButton_TabletEvent(void* ptr, void* event)
@@ -60883,9 +66219,19 @@ void QPushButton_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "update");
 }
 
+void QPushButton_UpdateDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::update();
+}
+
 void QPushButton_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "updateMicroFocus");
+}
+
+void QPushButton_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::updateMicroFocus();
 }
 
 void QPushButton_WheelEvent(void* ptr, void* event)
@@ -60931,6 +66277,11 @@ void QPushButton_CustomEventDefault(void* ptr, void* event)
 void QPushButton_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPushButton*>(ptr), "deleteLater");
+}
+
+void QPushButton_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::deleteLater();
 }
 
 void QPushButton_DisconnectNotify(void* ptr, void* sign)
@@ -61128,9 +66479,19 @@ void QRadioButton_SetChecked(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setChecked", Q_ARG(bool, vbo != 0));
 }
 
+void QRadioButton_SetCheckedDefault(void* ptr, int vbo)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setChecked(vbo != 0);
+}
+
 void QRadioButton_SetIconSize(void* ptr, void* size)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(size)));
+}
+
+void QRadioButton_SetIconSizeDefault(void* ptr, void* size)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setIconSize(*static_cast<QSize*>(size));
 }
 
 void QRadioButton_Toggle(void* ptr)
@@ -61138,9 +66499,19 @@ void QRadioButton_Toggle(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "toggle");
 }
 
+void QRadioButton_ToggleDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::toggle();
+}
+
 void QRadioButton_AnimateClick(void* ptr, int msec)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "animateClick", Q_ARG(int, msec));
+}
+
+void QRadioButton_AnimateClickDefault(void* ptr, int msec)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::animateClick(msec);
 }
 
 void QRadioButton_ChangeEvent(void* ptr, void* e)
@@ -61166,6 +66537,11 @@ void QRadioButton_CheckStateSetDefault(void* ptr)
 void QRadioButton_Click(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "click");
+}
+
+void QRadioButton_ClickDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::click();
 }
 
 void QRadioButton_FocusInEvent(void* ptr, void* e)
@@ -61363,9 +66739,19 @@ void QRadioButton_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QRadioButton_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setEnabled(vbo != 0);
+}
+
 void QRadioButton_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QRadioButton_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setStyleSheet(QString(styleSheet));
 }
 
 void QRadioButton_SetVisible(void* ptr, int visible)
@@ -61383,9 +66769,19 @@ void QRadioButton_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QRadioButton_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setWindowModified(vbo != 0);
+}
+
 void QRadioButton_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QRadioButton_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setWindowTitle(QString(vqs));
 }
 
 void QRadioButton_ShowEvent(void* ptr, void* event)
@@ -61403,6 +66799,11 @@ int QRadioButton_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QRadioButton_CloseDefault(void* ptr)
+{
+	return static_cast<QRadioButton*>(ptr)->QRadioButton::close();
 }
 
 void QRadioButton_CloseEvent(void* ptr, void* event)
@@ -61460,6 +66861,11 @@ void QRadioButton_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "hide");
 }
 
+void QRadioButton_HideDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::hide();
+}
+
 void QRadioButton_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QRadioButton*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -61495,6 +66901,11 @@ void QRadioButton_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "lower");
 }
 
+void QRadioButton_LowerDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::lower();
+}
+
 void QRadioButton_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QRadioButton*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -61520,9 +66931,19 @@ void QRadioButton_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "raise");
 }
 
+void QRadioButton_RaiseDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::raise();
+}
+
 void QRadioButton_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "repaint");
+}
+
+void QRadioButton_RepaintDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::repaint();
 }
 
 void QRadioButton_ResizeEvent(void* ptr, void* event)
@@ -61540,9 +66961,19 @@ void QRadioButton_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QRadioButton_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setDisabled(disable != 0);
+}
+
 void QRadioButton_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setFocus");
+}
+
+void QRadioButton_SetFocus2Default(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setFocus();
 }
 
 void QRadioButton_SetHidden(void* ptr, int hidden)
@@ -61550,9 +66981,19 @@ void QRadioButton_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QRadioButton_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::setHidden(hidden != 0);
+}
+
 void QRadioButton_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "show");
+}
+
+void QRadioButton_ShowDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::show();
 }
 
 void QRadioButton_ShowFullScreen(void* ptr)
@@ -61560,9 +67001,19 @@ void QRadioButton_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "showFullScreen");
 }
 
+void QRadioButton_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::showFullScreen();
+}
+
 void QRadioButton_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "showMaximized");
+}
+
+void QRadioButton_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::showMaximized();
 }
 
 void QRadioButton_ShowMinimized(void* ptr)
@@ -61570,9 +67021,19 @@ void QRadioButton_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "showMinimized");
 }
 
+void QRadioButton_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::showMinimized();
+}
+
 void QRadioButton_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "showNormal");
+}
+
+void QRadioButton_ShowNormalDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::showNormal();
 }
 
 void QRadioButton_TabletEvent(void* ptr, void* event)
@@ -61590,9 +67051,19 @@ void QRadioButton_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "update");
 }
 
+void QRadioButton_UpdateDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::update();
+}
+
 void QRadioButton_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "updateMicroFocus");
+}
+
+void QRadioButton_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::updateMicroFocus();
 }
 
 void QRadioButton_WheelEvent(void* ptr, void* event)
@@ -61638,6 +67109,11 @@ void QRadioButton_CustomEventDefault(void* ptr, void* event)
 void QRadioButton_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioButton*>(ptr), "deleteLater");
+}
+
+void QRadioButton_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::deleteLater();
 }
 
 void QRadioButton_DisconnectNotify(void* ptr, void* sign)
@@ -61986,9 +67462,19 @@ void QRubberBand_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QRubberBand_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::setEnabled(vbo != 0);
+}
+
 void QRubberBand_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QRubberBand_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::setStyleSheet(QString(styleSheet));
 }
 
 void QRubberBand_SetVisible(void* ptr, int visible)
@@ -62006,9 +67492,19 @@ void QRubberBand_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QRubberBand_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::setWindowModified(vbo != 0);
+}
+
 void QRubberBand_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QRubberBand_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::setWindowTitle(QString(vqs));
 }
 
 void* QRubberBand_SizeHint(void* ptr)
@@ -62026,6 +67522,11 @@ int QRubberBand_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QRubberBand_CloseDefault(void* ptr)
+{
+	return static_cast<QRubberBand*>(ptr)->QRubberBand::close();
 }
 
 void QRubberBand_CloseEvent(void* ptr, void* event)
@@ -62083,6 +67584,11 @@ void QRubberBand_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "hide");
 }
 
+void QRubberBand_HideDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::hide();
+}
+
 void QRubberBand_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QRubberBand*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -62136,6 +67642,11 @@ void QRubberBand_KeyReleaseEventDefault(void* ptr, void* event)
 void QRubberBand_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "lower");
+}
+
+void QRubberBand_LowerDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::lower();
 }
 
 void QRubberBand_MouseDoubleClickEvent(void* ptr, void* event)
@@ -62193,9 +67704,19 @@ void QRubberBand_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "raise");
 }
 
+void QRubberBand_RaiseDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::raise();
+}
+
 void QRubberBand_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "repaint");
+}
+
+void QRubberBand_RepaintDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::repaint();
 }
 
 void QRubberBand_SetDisabled(void* ptr, int disable)
@@ -62203,9 +67724,19 @@ void QRubberBand_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QRubberBand_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::setDisabled(disable != 0);
+}
+
 void QRubberBand_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "setFocus");
+}
+
+void QRubberBand_SetFocus2Default(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::setFocus();
 }
 
 void QRubberBand_SetHidden(void* ptr, int hidden)
@@ -62213,9 +67744,19 @@ void QRubberBand_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QRubberBand_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::setHidden(hidden != 0);
+}
+
 void QRubberBand_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "show");
+}
+
+void QRubberBand_ShowDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::show();
 }
 
 void QRubberBand_ShowFullScreen(void* ptr)
@@ -62223,9 +67764,19 @@ void QRubberBand_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "showFullScreen");
 }
 
+void QRubberBand_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::showFullScreen();
+}
+
 void QRubberBand_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "showMaximized");
+}
+
+void QRubberBand_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::showMaximized();
 }
 
 void QRubberBand_ShowMinimized(void* ptr)
@@ -62233,9 +67784,19 @@ void QRubberBand_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "showMinimized");
 }
 
+void QRubberBand_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::showMinimized();
+}
+
 void QRubberBand_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "showNormal");
+}
+
+void QRubberBand_ShowNormalDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::showNormal();
 }
 
 void QRubberBand_TabletEvent(void* ptr, void* event)
@@ -62253,9 +67814,19 @@ void QRubberBand_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "update");
 }
 
+void QRubberBand_UpdateDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::update();
+}
+
 void QRubberBand_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "updateMicroFocus");
+}
+
+void QRubberBand_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::updateMicroFocus();
 }
 
 void QRubberBand_WheelEvent(void* ptr, void* event)
@@ -62311,6 +67882,11 @@ void QRubberBand_CustomEventDefault(void* ptr, void* event)
 void QRubberBand_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRubberBand*>(ptr), "deleteLater");
+}
+
+void QRubberBand_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRubberBand*>(ptr)->QRubberBand::deleteLater();
 }
 
 void QRubberBand_DisconnectNotify(void* ptr, void* sign)
@@ -62798,9 +68374,19 @@ void QScrollArea_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QScrollArea_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::setEnabled(vbo != 0);
+}
+
 void QScrollArea_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QScrollArea_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::setStyleSheet(QString(styleSheet));
 }
 
 void QScrollArea_SetVisible(void* ptr, int visible)
@@ -62818,9 +68404,19 @@ void QScrollArea_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QScrollArea_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::setWindowModified(vbo != 0);
+}
+
 void QScrollArea_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QScrollArea_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::setWindowTitle(QString(vqs));
 }
 
 void QScrollArea_ShowEvent(void* ptr, void* event)
@@ -62838,6 +68434,11 @@ int QScrollArea_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QScrollArea_CloseDefault(void* ptr)
+{
+	return static_cast<QScrollArea*>(ptr)->QScrollArea::close();
 }
 
 void QScrollArea_CloseEvent(void* ptr, void* event)
@@ -62873,6 +68474,11 @@ int QScrollArea_HeightForWidthDefault(void* ptr, int w)
 void QScrollArea_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "hide");
+}
+
+void QScrollArea_HideDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::hide();
 }
 
 void QScrollArea_InitPainter(void* ptr, void* painter)
@@ -62920,6 +68526,11 @@ void QScrollArea_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "lower");
 }
 
+void QScrollArea_LowerDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::lower();
+}
+
 int QScrollArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QScrollArea*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -62935,9 +68546,19 @@ void QScrollArea_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "raise");
 }
 
+void QScrollArea_RaiseDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::raise();
+}
+
 void QScrollArea_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "repaint");
+}
+
+void QScrollArea_RepaintDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::repaint();
 }
 
 void QScrollArea_SetDisabled(void* ptr, int disable)
@@ -62945,9 +68566,19 @@ void QScrollArea_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QScrollArea_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::setDisabled(disable != 0);
+}
+
 void QScrollArea_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "setFocus");
+}
+
+void QScrollArea_SetFocus2Default(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::setFocus();
 }
 
 void QScrollArea_SetHidden(void* ptr, int hidden)
@@ -62955,9 +68586,19 @@ void QScrollArea_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QScrollArea_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::setHidden(hidden != 0);
+}
+
 void QScrollArea_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "show");
+}
+
+void QScrollArea_ShowDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::show();
 }
 
 void QScrollArea_ShowFullScreen(void* ptr)
@@ -62965,9 +68606,19 @@ void QScrollArea_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "showFullScreen");
 }
 
+void QScrollArea_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::showFullScreen();
+}
+
 void QScrollArea_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "showMaximized");
+}
+
+void QScrollArea_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::showMaximized();
 }
 
 void QScrollArea_ShowMinimized(void* ptr)
@@ -62975,9 +68626,19 @@ void QScrollArea_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "showMinimized");
 }
 
+void QScrollArea_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::showMinimized();
+}
+
 void QScrollArea_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "showNormal");
+}
+
+void QScrollArea_ShowNormalDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::showNormal();
 }
 
 void QScrollArea_TabletEvent(void* ptr, void* event)
@@ -62995,9 +68656,19 @@ void QScrollArea_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "update");
 }
 
+void QScrollArea_UpdateDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::update();
+}
+
 void QScrollArea_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "updateMicroFocus");
+}
+
+void QScrollArea_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::updateMicroFocus();
 }
 
 void QScrollArea_TimerEvent(void* ptr, void* event)
@@ -63043,6 +68714,11 @@ void QScrollArea_CustomEventDefault(void* ptr, void* event)
 void QScrollArea_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollArea*>(ptr), "deleteLater");
+}
+
+void QScrollArea_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QScrollArea*>(ptr)->QScrollArea::deleteLater();
 }
 
 void QScrollArea_DisconnectNotify(void* ptr, void* sign)
@@ -63266,9 +68942,19 @@ void QScrollBar_SetOrientation(void* ptr, int vqt)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setOrientation", Q_ARG(Qt::Orientation, static_cast<Qt::Orientation>(vqt)));
 }
 
+void QScrollBar_SetOrientationDefault(void* ptr, int vqt)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setOrientation(static_cast<Qt::Orientation>(vqt));
+}
+
 void QScrollBar_SetValue(void* ptr, int vin)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setValue", Q_ARG(int, vin));
+}
+
+void QScrollBar_SetValueDefault(void* ptr, int vin)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setValue(vin);
 }
 
 void QScrollBar_ChangeEvent(void* ptr, void* ev)
@@ -63294,6 +68980,11 @@ void QScrollBar_KeyPressEventDefault(void* ptr, void* ev)
 void QScrollBar_SetRange(void* ptr, int min, int max)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setRange", Q_ARG(int, min), Q_ARG(int, max));
+}
+
+void QScrollBar_SetRangeDefault(void* ptr, int min, int max)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setRange(min, max);
 }
 
 void QScrollBar_TimerEvent(void* ptr, void* e)
@@ -63441,9 +69132,19 @@ void QScrollBar_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QScrollBar_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setEnabled(vbo != 0);
+}
+
 void QScrollBar_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QScrollBar_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setStyleSheet(QString(styleSheet));
 }
 
 void QScrollBar_SetVisible(void* ptr, int visible)
@@ -63461,9 +69162,19 @@ void QScrollBar_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QScrollBar_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setWindowModified(vbo != 0);
+}
+
 void QScrollBar_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QScrollBar_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setWindowTitle(QString(vqs));
 }
 
 void QScrollBar_ShowEvent(void* ptr, void* event)
@@ -63481,6 +69192,11 @@ int QScrollBar_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QScrollBar_CloseDefault(void* ptr)
+{
+	return static_cast<QScrollBar*>(ptr)->QScrollBar::close();
 }
 
 void QScrollBar_CloseEvent(void* ptr, void* event)
@@ -63528,6 +69244,11 @@ void QScrollBar_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "hide");
 }
 
+void QScrollBar_HideDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::hide();
+}
+
 void QScrollBar_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QScrollBar*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -63573,6 +69294,11 @@ void QScrollBar_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "lower");
 }
 
+void QScrollBar_LowerDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::lower();
+}
+
 void QScrollBar_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QScrollBar*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -63598,9 +69324,19 @@ void QScrollBar_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "raise");
 }
 
+void QScrollBar_RaiseDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::raise();
+}
+
 void QScrollBar_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "repaint");
+}
+
+void QScrollBar_RepaintDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::repaint();
 }
 
 void QScrollBar_ResizeEvent(void* ptr, void* event)
@@ -63618,9 +69354,19 @@ void QScrollBar_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QScrollBar_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setDisabled(disable != 0);
+}
+
 void QScrollBar_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setFocus");
+}
+
+void QScrollBar_SetFocus2Default(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setFocus();
 }
 
 void QScrollBar_SetHidden(void* ptr, int hidden)
@@ -63628,9 +69374,19 @@ void QScrollBar_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QScrollBar_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::setHidden(hidden != 0);
+}
+
 void QScrollBar_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "show");
+}
+
+void QScrollBar_ShowDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::show();
 }
 
 void QScrollBar_ShowFullScreen(void* ptr)
@@ -63638,9 +69394,19 @@ void QScrollBar_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "showFullScreen");
 }
 
+void QScrollBar_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::showFullScreen();
+}
+
 void QScrollBar_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "showMaximized");
+}
+
+void QScrollBar_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::showMaximized();
 }
 
 void QScrollBar_ShowMinimized(void* ptr)
@@ -63648,9 +69414,19 @@ void QScrollBar_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "showMinimized");
 }
 
+void QScrollBar_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::showMinimized();
+}
+
 void QScrollBar_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "showNormal");
+}
+
+void QScrollBar_ShowNormalDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::showNormal();
 }
 
 void QScrollBar_TabletEvent(void* ptr, void* event)
@@ -63668,9 +69444,19 @@ void QScrollBar_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "update");
 }
 
+void QScrollBar_UpdateDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::update();
+}
+
 void QScrollBar_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "updateMicroFocus");
+}
+
+void QScrollBar_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::updateMicroFocus();
 }
 
 void QScrollBar_ChildEvent(void* ptr, void* event)
@@ -63706,6 +69492,11 @@ void QScrollBar_CustomEventDefault(void* ptr, void* event)
 void QScrollBar_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScrollBar*>(ptr), "deleteLater");
+}
+
+void QScrollBar_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::deleteLater();
 }
 
 void QScrollBar_DisconnectNotify(void* ptr, void* sign)
@@ -63943,6 +69734,11 @@ void QScroller_CustomEventDefault(void* ptr, void* event)
 void QScroller_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "deleteLater");
+}
+
+void QScroller_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QScroller*>(ptr)->QScroller::deleteLater();
 }
 
 void QScroller_DisconnectNotify(void* ptr, void* sign)
@@ -64211,6 +70007,11 @@ void QShortcut_CustomEventDefault(void* ptr, void* event)
 void QShortcut_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QShortcut*>(ptr), "deleteLater");
+}
+
+void QShortcut_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QShortcut*>(ptr)->QShortcut::deleteLater();
 }
 
 void QShortcut_DisconnectNotify(void* ptr, void* sign)
@@ -64569,9 +70370,19 @@ void QSizeGrip_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QSizeGrip_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setEnabled(vbo != 0);
+}
+
 void QSizeGrip_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QSizeGrip_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setStyleSheet(QString(styleSheet));
 }
 
 void QSizeGrip_SetWindowModified(void* ptr, int vbo)
@@ -64579,9 +70390,19 @@ void QSizeGrip_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QSizeGrip_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setWindowModified(vbo != 0);
+}
+
 void QSizeGrip_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QSizeGrip_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setWindowTitle(QString(vqs));
 }
 
 void QSizeGrip_ChangeEvent(void* ptr, void* event)
@@ -64599,6 +70420,11 @@ int QSizeGrip_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSizeGrip_CloseDefault(void* ptr)
+{
+	return static_cast<QSizeGrip*>(ptr)->QSizeGrip::close();
 }
 
 void QSizeGrip_CloseEvent(void* ptr, void* event)
@@ -64656,6 +70482,11 @@ void QSizeGrip_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "hide");
 }
 
+void QSizeGrip_HideDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::hide();
+}
+
 void QSizeGrip_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QSizeGrip*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -64711,6 +70542,11 @@ void QSizeGrip_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "lower");
 }
 
+void QSizeGrip_LowerDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::lower();
+}
+
 void QSizeGrip_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QSizeGrip*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -64736,9 +70572,19 @@ void QSizeGrip_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "raise");
 }
 
+void QSizeGrip_RaiseDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::raise();
+}
+
 void QSizeGrip_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "repaint");
+}
+
+void QSizeGrip_RepaintDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::repaint();
 }
 
 void QSizeGrip_ResizeEvent(void* ptr, void* event)
@@ -64756,9 +70602,19 @@ void QSizeGrip_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QSizeGrip_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setDisabled(disable != 0);
+}
+
 void QSizeGrip_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setFocus");
+}
+
+void QSizeGrip_SetFocus2Default(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setFocus();
 }
 
 void QSizeGrip_SetHidden(void* ptr, int hidden)
@@ -64766,9 +70622,19 @@ void QSizeGrip_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QSizeGrip_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::setHidden(hidden != 0);
+}
+
 void QSizeGrip_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "show");
+}
+
+void QSizeGrip_ShowDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::show();
 }
 
 void QSizeGrip_ShowFullScreen(void* ptr)
@@ -64776,9 +70642,19 @@ void QSizeGrip_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "showFullScreen");
 }
 
+void QSizeGrip_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::showFullScreen();
+}
+
 void QSizeGrip_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "showMaximized");
+}
+
+void QSizeGrip_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::showMaximized();
 }
 
 void QSizeGrip_ShowMinimized(void* ptr)
@@ -64786,9 +70662,19 @@ void QSizeGrip_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "showMinimized");
 }
 
+void QSizeGrip_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::showMinimized();
+}
+
 void QSizeGrip_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "showNormal");
+}
+
+void QSizeGrip_ShowNormalDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::showNormal();
 }
 
 void QSizeGrip_TabletEvent(void* ptr, void* event)
@@ -64806,9 +70692,19 @@ void QSizeGrip_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "update");
 }
 
+void QSizeGrip_UpdateDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::update();
+}
+
 void QSizeGrip_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "updateMicroFocus");
+}
+
+void QSizeGrip_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::updateMicroFocus();
 }
 
 void QSizeGrip_WheelEvent(void* ptr, void* event)
@@ -64864,6 +70760,11 @@ void QSizeGrip_CustomEventDefault(void* ptr, void* event)
 void QSizeGrip_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSizeGrip*>(ptr), "deleteLater");
+}
+
+void QSizeGrip_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSizeGrip*>(ptr)->QSizeGrip::deleteLater();
 }
 
 void QSizeGrip_DisconnectNotify(void* ptr, void* sign)
@@ -65177,9 +71078,19 @@ void QSlider_SetOrientation(void* ptr, int vqt)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setOrientation", Q_ARG(Qt::Orientation, static_cast<Qt::Orientation>(vqt)));
 }
 
+void QSlider_SetOrientationDefault(void* ptr, int vqt)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setOrientation(static_cast<Qt::Orientation>(vqt));
+}
+
 void QSlider_SetValue(void* ptr, int vin)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setValue", Q_ARG(int, vin));
+}
+
+void QSlider_SetValueDefault(void* ptr, int vin)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setValue(vin);
 }
 
 void QSlider_ChangeEvent(void* ptr, void* ev)
@@ -65205,6 +71116,11 @@ void QSlider_KeyPressEventDefault(void* ptr, void* ev)
 void QSlider_SetRange(void* ptr, int min, int max)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setRange", Q_ARG(int, min), Q_ARG(int, max));
+}
+
+void QSlider_SetRangeDefault(void* ptr, int min, int max)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setRange(min, max);
 }
 
 void QSlider_SliderChange(void* ptr, int change)
@@ -65372,9 +71288,19 @@ void QSlider_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QSlider_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setEnabled(vbo != 0);
+}
+
 void QSlider_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QSlider_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setStyleSheet(QString(styleSheet));
 }
 
 void QSlider_SetVisible(void* ptr, int visible)
@@ -65392,9 +71318,19 @@ void QSlider_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QSlider_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setWindowModified(vbo != 0);
+}
+
 void QSlider_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QSlider_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setWindowTitle(QString(vqs));
 }
 
 void QSlider_ShowEvent(void* ptr, void* event)
@@ -65412,6 +71348,11 @@ int QSlider_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSlider_CloseDefault(void* ptr)
+{
+	return static_cast<QSlider*>(ptr)->QSlider::close();
 }
 
 void QSlider_CloseEvent(void* ptr, void* event)
@@ -65469,6 +71410,11 @@ void QSlider_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "hide");
 }
 
+void QSlider_HideDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::hide();
+}
+
 void QSlider_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QSlider*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -65514,6 +71460,11 @@ void QSlider_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "lower");
 }
 
+void QSlider_LowerDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::lower();
+}
+
 void QSlider_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QSlider*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -65539,9 +71490,19 @@ void QSlider_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "raise");
 }
 
+void QSlider_RaiseDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::raise();
+}
+
 void QSlider_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "repaint");
+}
+
+void QSlider_RepaintDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::repaint();
 }
 
 void QSlider_ResizeEvent(void* ptr, void* event)
@@ -65559,9 +71520,19 @@ void QSlider_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QSlider_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setDisabled(disable != 0);
+}
+
 void QSlider_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setFocus");
+}
+
+void QSlider_SetFocus2Default(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setFocus();
 }
 
 void QSlider_SetHidden(void* ptr, int hidden)
@@ -65569,9 +71540,19 @@ void QSlider_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QSlider_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QSlider*>(ptr)->QSlider::setHidden(hidden != 0);
+}
+
 void QSlider_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "show");
+}
+
+void QSlider_ShowDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::show();
 }
 
 void QSlider_ShowFullScreen(void* ptr)
@@ -65579,9 +71560,19 @@ void QSlider_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "showFullScreen");
 }
 
+void QSlider_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::showFullScreen();
+}
+
 void QSlider_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "showMaximized");
+}
+
+void QSlider_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::showMaximized();
 }
 
 void QSlider_ShowMinimized(void* ptr)
@@ -65589,9 +71580,19 @@ void QSlider_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "showMinimized");
 }
 
+void QSlider_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::showMinimized();
+}
+
 void QSlider_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "showNormal");
+}
+
+void QSlider_ShowNormalDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::showNormal();
 }
 
 void QSlider_TabletEvent(void* ptr, void* event)
@@ -65609,9 +71610,19 @@ void QSlider_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "update");
 }
 
+void QSlider_UpdateDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::update();
+}
+
 void QSlider_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "updateMicroFocus");
+}
+
+void QSlider_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::updateMicroFocus();
 }
 
 void QSlider_ChildEvent(void* ptr, void* event)
@@ -65647,6 +71658,11 @@ void QSlider_CustomEventDefault(void* ptr, void* event)
 void QSlider_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSlider*>(ptr), "deleteLater");
+}
+
+void QSlider_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSlider*>(ptr)->QSlider::deleteLater();
 }
 
 void QSlider_DisconnectNotify(void* ptr, void* sign)
@@ -66290,6 +72306,11 @@ void QSpinBox_SelectAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "selectAll");
 }
 
+void QSpinBox_SelectAllDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::selectAll();
+}
+
 void QSpinBox_ShowEvent(void* ptr, void* event)
 {
 	static_cast<QSpinBox*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
@@ -66325,6 +72346,11 @@ void QSpinBox_StepDown(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "stepDown");
 }
 
+void QSpinBox_StepDownDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::stepDown();
+}
+
 int QSpinBox_StepEnabled(void* ptr)
 {
 	return static_cast<QSpinBox*>(ptr)->stepEnabled();
@@ -66338,6 +72364,11 @@ int QSpinBox_StepEnabledDefault(void* ptr)
 void QSpinBox_StepUp(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "stepUp");
+}
+
+void QSpinBox_StepUpDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::stepUp();
 }
 
 void QSpinBox_TimerEvent(void* ptr, void* event)
@@ -66465,9 +72496,19 @@ void QSpinBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QSpinBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::setEnabled(vbo != 0);
+}
+
 void QSpinBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QSpinBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::setStyleSheet(QString(styleSheet));
 }
 
 void QSpinBox_SetVisible(void* ptr, int visible)
@@ -66485,9 +72526,19 @@ void QSpinBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QSpinBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::setWindowModified(vbo != 0);
+}
+
 void QSpinBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QSpinBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::setWindowTitle(QString(vqs));
 }
 
 int QSpinBox_Close(void* ptr)
@@ -66495,6 +72546,11 @@ int QSpinBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSpinBox_CloseDefault(void* ptr)
+{
+	return static_cast<QSpinBox*>(ptr)->QSpinBox::close();
 }
 
 int QSpinBox_FocusNextPrevChild(void* ptr, int next)
@@ -66532,6 +72588,11 @@ void QSpinBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "hide");
 }
 
+void QSpinBox_HideDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::hide();
+}
+
 void QSpinBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QSpinBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -66555,6 +72616,11 @@ void QSpinBox_InputMethodEventDefault(void* ptr, void* event)
 void QSpinBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "lower");
+}
+
+void QSpinBox_LowerDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::lower();
 }
 
 void QSpinBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -66582,9 +72648,19 @@ void QSpinBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "raise");
 }
 
+void QSpinBox_RaiseDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::raise();
+}
+
 void QSpinBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "repaint");
+}
+
+void QSpinBox_RepaintDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::repaint();
 }
 
 void QSpinBox_SetDisabled(void* ptr, int disable)
@@ -66592,9 +72668,19 @@ void QSpinBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QSpinBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::setDisabled(disable != 0);
+}
+
 void QSpinBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "setFocus");
+}
+
+void QSpinBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::setFocus();
 }
 
 void QSpinBox_SetHidden(void* ptr, int hidden)
@@ -66602,9 +72688,19 @@ void QSpinBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QSpinBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::setHidden(hidden != 0);
+}
+
 void QSpinBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "show");
+}
+
+void QSpinBox_ShowDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::show();
 }
 
 void QSpinBox_ShowFullScreen(void* ptr)
@@ -66612,9 +72708,19 @@ void QSpinBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "showFullScreen");
 }
 
+void QSpinBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::showFullScreen();
+}
+
 void QSpinBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "showMaximized");
+}
+
+void QSpinBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::showMaximized();
 }
 
 void QSpinBox_ShowMinimized(void* ptr)
@@ -66622,9 +72728,19 @@ void QSpinBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "showMinimized");
 }
 
+void QSpinBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::showMinimized();
+}
+
 void QSpinBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "showNormal");
+}
+
+void QSpinBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::showNormal();
 }
 
 void QSpinBox_TabletEvent(void* ptr, void* event)
@@ -66642,9 +72758,19 @@ void QSpinBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "update");
 }
 
+void QSpinBox_UpdateDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::update();
+}
+
 void QSpinBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "updateMicroFocus");
+}
+
+void QSpinBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::updateMicroFocus();
 }
 
 void QSpinBox_ChildEvent(void* ptr, void* event)
@@ -66680,6 +72806,11 @@ void QSpinBox_CustomEventDefault(void* ptr, void* event)
 void QSpinBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSpinBox*>(ptr), "deleteLater");
+}
+
+void QSpinBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::deleteLater();
 }
 
 void QSpinBox_DisconnectNotify(void* ptr, void* sign)
@@ -67037,9 +73168,19 @@ void QSplashScreen_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QSplashScreen_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::setEnabled(vbo != 0);
+}
+
 void QSplashScreen_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QSplashScreen_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::setStyleSheet(QString(styleSheet));
 }
 
 void QSplashScreen_SetVisible(void* ptr, int visible)
@@ -67057,9 +73198,19 @@ void QSplashScreen_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QSplashScreen_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::setWindowModified(vbo != 0);
+}
+
 void QSplashScreen_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QSplashScreen_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::setWindowTitle(QString(vqs));
 }
 
 void QSplashScreen_ShowEvent(void* ptr, void* event)
@@ -67097,6 +73248,11 @@ int QSplashScreen_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSplashScreen_CloseDefault(void* ptr)
+{
+	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::close();
 }
 
 void QSplashScreen_CloseEvent(void* ptr, void* event)
@@ -67154,6 +73310,11 @@ void QSplashScreen_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "hide");
 }
 
+void QSplashScreen_HideDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::hide();
+}
+
 void QSplashScreen_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QSplashScreen*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -67209,6 +73370,11 @@ void QSplashScreen_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "lower");
 }
 
+void QSplashScreen_LowerDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::lower();
+}
+
 void QSplashScreen_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QSplashScreen*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -67254,6 +73420,11 @@ void QSplashScreen_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "raise");
 }
 
+void QSplashScreen_RaiseDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::raise();
+}
+
 void QSplashScreen_ResizeEvent(void* ptr, void* event)
 {
 	static_cast<QSplashScreen*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
@@ -67269,9 +73440,19 @@ void QSplashScreen_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QSplashScreen_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::setDisabled(disable != 0);
+}
+
 void QSplashScreen_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "setFocus");
+}
+
+void QSplashScreen_SetFocus2Default(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::setFocus();
 }
 
 void QSplashScreen_SetHidden(void* ptr, int hidden)
@@ -67279,9 +73460,19 @@ void QSplashScreen_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QSplashScreen_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::setHidden(hidden != 0);
+}
+
 void QSplashScreen_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "show");
+}
+
+void QSplashScreen_ShowDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::show();
 }
 
 void QSplashScreen_ShowFullScreen(void* ptr)
@@ -67289,9 +73480,19 @@ void QSplashScreen_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showFullScreen");
 }
 
+void QSplashScreen_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::showFullScreen();
+}
+
 void QSplashScreen_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showMaximized");
+}
+
+void QSplashScreen_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::showMaximized();
 }
 
 void QSplashScreen_ShowMinimized(void* ptr)
@@ -67299,9 +73500,19 @@ void QSplashScreen_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showMinimized");
 }
 
+void QSplashScreen_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::showMinimized();
+}
+
 void QSplashScreen_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "showNormal");
+}
+
+void QSplashScreen_ShowNormalDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::showNormal();
 }
 
 void QSplashScreen_TabletEvent(void* ptr, void* event)
@@ -67319,9 +73530,19 @@ void QSplashScreen_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "update");
 }
 
+void QSplashScreen_UpdateDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::update();
+}
+
 void QSplashScreen_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "updateMicroFocus");
+}
+
+void QSplashScreen_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::updateMicroFocus();
 }
 
 void QSplashScreen_WheelEvent(void* ptr, void* event)
@@ -67377,6 +73598,11 @@ void QSplashScreen_CustomEventDefault(void* ptr, void* event)
 void QSplashScreen_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplashScreen*>(ptr), "deleteLater");
+}
+
+void QSplashScreen_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSplashScreen*>(ptr)->QSplashScreen::deleteLater();
 }
 
 void QSplashScreen_DisconnectNotify(void* ptr, void* sign)
@@ -67848,9 +74074,19 @@ void QSplitter_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QSplitter_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::setEnabled(vbo != 0);
+}
+
 void QSplitter_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QSplitter_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::setStyleSheet(QString(styleSheet));
 }
 
 void QSplitter_SetVisible(void* ptr, int visible)
@@ -67868,9 +74104,19 @@ void QSplitter_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QSplitter_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::setWindowModified(vbo != 0);
+}
+
 void QSplitter_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QSplitter_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::setWindowTitle(QString(vqs));
 }
 
 void QSplitter_ShowEvent(void* ptr, void* event)
@@ -67888,6 +74134,11 @@ int QSplitter_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSplitter_CloseDefault(void* ptr)
+{
+	return static_cast<QSplitter*>(ptr)->QSplitter::close();
 }
 
 void QSplitter_CloseEvent(void* ptr, void* event)
@@ -67945,6 +74196,11 @@ void QSplitter_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "hide");
 }
 
+void QSplitter_HideDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::hide();
+}
+
 void QSplitter_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QSplitter*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -67998,6 +74254,11 @@ void QSplitter_KeyReleaseEventDefault(void* ptr, void* event)
 void QSplitter_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "lower");
+}
+
+void QSplitter_LowerDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::lower();
 }
 
 void QSplitter_MouseDoubleClickEvent(void* ptr, void* event)
@@ -68055,9 +74316,19 @@ void QSplitter_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "raise");
 }
 
+void QSplitter_RaiseDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::raise();
+}
+
 void QSplitter_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "repaint");
+}
+
+void QSplitter_RepaintDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::repaint();
 }
 
 void QSplitter_SetDisabled(void* ptr, int disable)
@@ -68065,9 +74336,19 @@ void QSplitter_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QSplitter_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::setDisabled(disable != 0);
+}
+
 void QSplitter_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "setFocus");
+}
+
+void QSplitter_SetFocus2Default(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::setFocus();
 }
 
 void QSplitter_SetHidden(void* ptr, int hidden)
@@ -68075,9 +74356,19 @@ void QSplitter_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QSplitter_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::setHidden(hidden != 0);
+}
+
 void QSplitter_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "show");
+}
+
+void QSplitter_ShowDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::show();
 }
 
 void QSplitter_ShowFullScreen(void* ptr)
@@ -68085,9 +74376,19 @@ void QSplitter_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "showFullScreen");
 }
 
+void QSplitter_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::showFullScreen();
+}
+
 void QSplitter_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "showMaximized");
+}
+
+void QSplitter_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::showMaximized();
 }
 
 void QSplitter_ShowMinimized(void* ptr)
@@ -68095,9 +74396,19 @@ void QSplitter_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "showMinimized");
 }
 
+void QSplitter_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::showMinimized();
+}
+
 void QSplitter_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "showNormal");
+}
+
+void QSplitter_ShowNormalDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::showNormal();
 }
 
 void QSplitter_TabletEvent(void* ptr, void* event)
@@ -68115,9 +74426,19 @@ void QSplitter_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "update");
 }
 
+void QSplitter_UpdateDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::update();
+}
+
 void QSplitter_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "updateMicroFocus");
+}
+
+void QSplitter_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::updateMicroFocus();
 }
 
 void QSplitter_WheelEvent(void* ptr, void* event)
@@ -68163,6 +74484,11 @@ void QSplitter_CustomEventDefault(void* ptr, void* event)
 void QSplitter_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitter*>(ptr), "deleteLater");
+}
+
+void QSplitter_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSplitter*>(ptr)->QSplitter::deleteLater();
 }
 
 void QSplitter_DisconnectNotify(void* ptr, void* sign)
@@ -68521,9 +74847,19 @@ void QSplitterHandle_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QSplitterHandle_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::setEnabled(vbo != 0);
+}
+
 void QSplitterHandle_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QSplitterHandle_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::setStyleSheet(QString(styleSheet));
 }
 
 void QSplitterHandle_SetVisible(void* ptr, int visible)
@@ -68541,9 +74877,19 @@ void QSplitterHandle_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QSplitterHandle_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::setWindowModified(vbo != 0);
+}
+
 void QSplitterHandle_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QSplitterHandle_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::setWindowTitle(QString(vqs));
 }
 
 void QSplitterHandle_ShowEvent(void* ptr, void* event)
@@ -68571,6 +74917,11 @@ int QSplitterHandle_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QSplitterHandle_CloseDefault(void* ptr)
+{
+	return static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::close();
 }
 
 void QSplitterHandle_CloseEvent(void* ptr, void* event)
@@ -68628,6 +74979,11 @@ void QSplitterHandle_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "hide");
 }
 
+void QSplitterHandle_HideDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::hide();
+}
+
 void QSplitterHandle_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QSplitterHandle*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -68683,6 +75039,11 @@ void QSplitterHandle_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "lower");
 }
 
+void QSplitterHandle_LowerDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::lower();
+}
+
 void QSplitterHandle_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QSplitterHandle*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -68708,9 +75069,19 @@ void QSplitterHandle_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "raise");
 }
 
+void QSplitterHandle_RaiseDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::raise();
+}
+
 void QSplitterHandle_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "repaint");
+}
+
+void QSplitterHandle_RepaintDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::repaint();
 }
 
 void QSplitterHandle_SetDisabled(void* ptr, int disable)
@@ -68718,9 +75089,19 @@ void QSplitterHandle_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QSplitterHandle_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::setDisabled(disable != 0);
+}
+
 void QSplitterHandle_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "setFocus");
+}
+
+void QSplitterHandle_SetFocus2Default(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::setFocus();
 }
 
 void QSplitterHandle_SetHidden(void* ptr, int hidden)
@@ -68728,9 +75109,19 @@ void QSplitterHandle_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QSplitterHandle_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::setHidden(hidden != 0);
+}
+
 void QSplitterHandle_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "show");
+}
+
+void QSplitterHandle_ShowDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::show();
 }
 
 void QSplitterHandle_ShowFullScreen(void* ptr)
@@ -68738,9 +75129,19 @@ void QSplitterHandle_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "showFullScreen");
 }
 
+void QSplitterHandle_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::showFullScreen();
+}
+
 void QSplitterHandle_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "showMaximized");
+}
+
+void QSplitterHandle_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::showMaximized();
 }
 
 void QSplitterHandle_ShowMinimized(void* ptr)
@@ -68748,9 +75149,19 @@ void QSplitterHandle_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "showMinimized");
 }
 
+void QSplitterHandle_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::showMinimized();
+}
+
 void QSplitterHandle_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "showNormal");
+}
+
+void QSplitterHandle_ShowNormalDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::showNormal();
 }
 
 void QSplitterHandle_TabletEvent(void* ptr, void* event)
@@ -68768,9 +75179,19 @@ void QSplitterHandle_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "update");
 }
 
+void QSplitterHandle_UpdateDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::update();
+}
+
 void QSplitterHandle_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "updateMicroFocus");
+}
+
+void QSplitterHandle_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::updateMicroFocus();
 }
 
 void QSplitterHandle_WheelEvent(void* ptr, void* event)
@@ -68826,6 +75247,11 @@ void QSplitterHandle_CustomEventDefault(void* ptr, void* event)
 void QSplitterHandle_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSplitterHandle*>(ptr), "deleteLater");
+}
+
+void QSplitterHandle_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::deleteLater();
 }
 
 void QSplitterHandle_DisconnectNotify(void* ptr, void* sign)
@@ -69228,6 +75654,11 @@ void QStackedLayout_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStackedLayout*>(ptr), "deleteLater");
 }
 
+void QStackedLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStackedLayout*>(ptr)->QStackedLayout::deleteLater();
+}
+
 void QStackedLayout_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QStackedLayout*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -69618,9 +76049,19 @@ void QStackedWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QStackedWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::setEnabled(vbo != 0);
+}
+
 void QStackedWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QStackedWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QStackedWidget_SetVisible(void* ptr, int visible)
@@ -69638,9 +76079,19 @@ void QStackedWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QStackedWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::setWindowModified(vbo != 0);
+}
+
 void QStackedWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QStackedWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::setWindowTitle(QString(vqs));
 }
 
 void QStackedWidget_ShowEvent(void* ptr, void* event)
@@ -69658,6 +76109,11 @@ int QStackedWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QStackedWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::close();
 }
 
 void QStackedWidget_CloseEvent(void* ptr, void* event)
@@ -69715,6 +76171,11 @@ void QStackedWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "hide");
 }
 
+void QStackedWidget_HideDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::hide();
+}
+
 void QStackedWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QStackedWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -69768,6 +76229,11 @@ void QStackedWidget_KeyReleaseEventDefault(void* ptr, void* event)
 void QStackedWidget_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "lower");
+}
+
+void QStackedWidget_LowerDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::lower();
 }
 
 void QStackedWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -69825,9 +76291,19 @@ void QStackedWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "raise");
 }
 
+void QStackedWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::raise();
+}
+
 void QStackedWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "repaint");
+}
+
+void QStackedWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::repaint();
 }
 
 void QStackedWidget_ResizeEvent(void* ptr, void* event)
@@ -69845,9 +76321,19 @@ void QStackedWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QStackedWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::setDisabled(disable != 0);
+}
+
 void QStackedWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "setFocus");
+}
+
+void QStackedWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::setFocus();
 }
 
 void QStackedWidget_SetHidden(void* ptr, int hidden)
@@ -69855,9 +76341,19 @@ void QStackedWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QStackedWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::setHidden(hidden != 0);
+}
+
 void QStackedWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "show");
+}
+
+void QStackedWidget_ShowDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::show();
 }
 
 void QStackedWidget_ShowFullScreen(void* ptr)
@@ -69865,9 +76361,19 @@ void QStackedWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "showFullScreen");
 }
 
+void QStackedWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::showFullScreen();
+}
+
 void QStackedWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "showMaximized");
+}
+
+void QStackedWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::showMaximized();
 }
 
 void QStackedWidget_ShowMinimized(void* ptr)
@@ -69875,9 +76381,19 @@ void QStackedWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "showMinimized");
 }
 
+void QStackedWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::showMinimized();
+}
+
 void QStackedWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "showNormal");
+}
+
+void QStackedWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::showNormal();
 }
 
 void QStackedWidget_TabletEvent(void* ptr, void* event)
@@ -69895,9 +76411,19 @@ void QStackedWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "update");
 }
 
+void QStackedWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::update();
+}
+
 void QStackedWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "updateMicroFocus");
+}
+
+void QStackedWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::updateMicroFocus();
 }
 
 void QStackedWidget_WheelEvent(void* ptr, void* event)
@@ -69953,6 +76479,11 @@ void QStackedWidget_CustomEventDefault(void* ptr, void* event)
 void QStackedWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStackedWidget*>(ptr), "deleteLater");
+}
+
+void QStackedWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStackedWidget*>(ptr)->QStackedWidget::deleteLater();
 }
 
 void QStackedWidget_DisconnectNotify(void* ptr, void* sign)
@@ -70329,9 +76860,19 @@ void QStatusBar_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QStatusBar_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::setEnabled(vbo != 0);
+}
+
 void QStatusBar_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QStatusBar_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::setStyleSheet(QString(styleSheet));
 }
 
 void QStatusBar_SetVisible(void* ptr, int visible)
@@ -70349,9 +76890,19 @@ void QStatusBar_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QStatusBar_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::setWindowModified(vbo != 0);
+}
+
 void QStatusBar_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QStatusBar_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::setWindowTitle(QString(vqs));
 }
 
 void* QStatusBar_SizeHint(void* ptr)
@@ -70379,6 +76930,11 @@ int QStatusBar_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QStatusBar_CloseDefault(void* ptr)
+{
+	return static_cast<QStatusBar*>(ptr)->QStatusBar::close();
 }
 
 void QStatusBar_CloseEvent(void* ptr, void* event)
@@ -70436,6 +76992,11 @@ void QStatusBar_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "hide");
 }
 
+void QStatusBar_HideDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::hide();
+}
+
 void QStatusBar_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QStatusBar*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -70489,6 +77050,11 @@ void QStatusBar_KeyReleaseEventDefault(void* ptr, void* event)
 void QStatusBar_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "lower");
+}
+
+void QStatusBar_LowerDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::lower();
 }
 
 void QStatusBar_MouseDoubleClickEvent(void* ptr, void* event)
@@ -70546,9 +77112,19 @@ void QStatusBar_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "raise");
 }
 
+void QStatusBar_RaiseDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::raise();
+}
+
 void QStatusBar_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "repaint");
+}
+
+void QStatusBar_RepaintDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::repaint();
 }
 
 void QStatusBar_SetDisabled(void* ptr, int disable)
@@ -70556,9 +77132,19 @@ void QStatusBar_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QStatusBar_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::setDisabled(disable != 0);
+}
+
 void QStatusBar_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "setFocus");
+}
+
+void QStatusBar_SetFocus2Default(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::setFocus();
 }
 
 void QStatusBar_SetHidden(void* ptr, int hidden)
@@ -70566,9 +77152,19 @@ void QStatusBar_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QStatusBar_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::setHidden(hidden != 0);
+}
+
 void QStatusBar_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "show");
+}
+
+void QStatusBar_ShowDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::show();
 }
 
 void QStatusBar_ShowFullScreen(void* ptr)
@@ -70576,9 +77172,19 @@ void QStatusBar_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showFullScreen");
 }
 
+void QStatusBar_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::showFullScreen();
+}
+
 void QStatusBar_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showMaximized");
+}
+
+void QStatusBar_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::showMaximized();
 }
 
 void QStatusBar_ShowMinimized(void* ptr)
@@ -70586,9 +77192,19 @@ void QStatusBar_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showMinimized");
 }
 
+void QStatusBar_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::showMinimized();
+}
+
 void QStatusBar_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "showNormal");
+}
+
+void QStatusBar_ShowNormalDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::showNormal();
 }
 
 void QStatusBar_TabletEvent(void* ptr, void* event)
@@ -70606,9 +77222,19 @@ void QStatusBar_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "update");
 }
 
+void QStatusBar_UpdateDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::update();
+}
+
 void QStatusBar_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "updateMicroFocus");
+}
+
+void QStatusBar_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::updateMicroFocus();
 }
 
 void QStatusBar_WheelEvent(void* ptr, void* event)
@@ -70664,6 +77290,11 @@ void QStatusBar_CustomEventDefault(void* ptr, void* event)
 void QStatusBar_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "deleteLater");
+}
+
+void QStatusBar_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStatusBar*>(ptr)->QStatusBar::deleteLater();
 }
 
 void QStatusBar_DisconnectNotify(void* ptr, void* sign)
@@ -72014,6 +78645,11 @@ void QStyle_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStyle*>(ptr), "deleteLater");
 }
 
+void QStyle_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStyle*>(ptr)->QStyle::deleteLater();
+}
+
 void QStyle_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QStyle*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -72520,6 +79156,11 @@ void QStylePlugin_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStylePlugin*>(ptr), "deleteLater");
 }
 
+void QStylePlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStylePlugin*>(ptr)->QStylePlugin::deleteLater();
+}
+
 void QStylePlugin_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QStylePlugin*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -72771,6 +79412,11 @@ void QStyledItemDelegate_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStyledItemDelegate*>(ptr), "deleteLater");
 }
 
+void QStyledItemDelegate_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::deleteLater();
+}
+
 void QStyledItemDelegate_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QStyledItemDelegate*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -72869,6 +79515,11 @@ void QSwipeGesture_CustomEventDefault(void* ptr, void* event)
 void QSwipeGesture_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSwipeGesture*>(ptr), "deleteLater");
+}
+
+void QSwipeGesture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSwipeGesture*>(ptr)->QSwipeGesture::deleteLater();
 }
 
 void QSwipeGesture_DisconnectNotify(void* ptr, void* sign)
@@ -73101,6 +79752,11 @@ void QSystemTrayIcon_CustomEventDefault(void* ptr, void* event)
 void QSystemTrayIcon_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "deleteLater");
+}
+
+void QSystemTrayIcon_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSystemTrayIcon*>(ptr)->QSystemTrayIcon::deleteLater();
 }
 
 void QSystemTrayIcon_DisconnectNotify(void* ptr, void* sign)
@@ -73875,9 +80531,19 @@ void QTabBar_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTabBar_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::setEnabled(vbo != 0);
+}
+
 void QTabBar_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTabBar_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::setStyleSheet(QString(styleSheet));
 }
 
 void QTabBar_SetVisible(void* ptr, int visible)
@@ -73895,9 +80561,19 @@ void QTabBar_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTabBar_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::setWindowModified(vbo != 0);
+}
+
 void QTabBar_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTabBar_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::setWindowTitle(QString(vqs));
 }
 
 int QTabBar_Close(void* ptr)
@@ -73905,6 +80581,11 @@ int QTabBar_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTabBar_CloseDefault(void* ptr)
+{
+	return static_cast<QTabBar*>(ptr)->QTabBar::close();
 }
 
 void QTabBar_CloseEvent(void* ptr, void* event)
@@ -73962,6 +80643,11 @@ void QTabBar_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "hide");
 }
 
+void QTabBar_HideDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::hide();
+}
+
 void QTabBar_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTabBar*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -74007,6 +80693,11 @@ void QTabBar_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "lower");
 }
 
+void QTabBar_LowerDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::lower();
+}
+
 void QTabBar_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QTabBar*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -74032,9 +80723,19 @@ void QTabBar_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "raise");
 }
 
+void QTabBar_RaiseDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::raise();
+}
+
 void QTabBar_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "repaint");
+}
+
+void QTabBar_RepaintDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::repaint();
 }
 
 void QTabBar_SetDisabled(void* ptr, int disable)
@@ -74042,9 +80743,19 @@ void QTabBar_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTabBar_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::setDisabled(disable != 0);
+}
+
 void QTabBar_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "setFocus");
+}
+
+void QTabBar_SetFocus2Default(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::setFocus();
 }
 
 void QTabBar_SetHidden(void* ptr, int hidden)
@@ -74052,9 +80763,19 @@ void QTabBar_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTabBar_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::setHidden(hidden != 0);
+}
+
 void QTabBar_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "show");
+}
+
+void QTabBar_ShowDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::show();
 }
 
 void QTabBar_ShowFullScreen(void* ptr)
@@ -74062,9 +80783,19 @@ void QTabBar_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "showFullScreen");
 }
 
+void QTabBar_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::showFullScreen();
+}
+
 void QTabBar_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "showMaximized");
+}
+
+void QTabBar_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::showMaximized();
 }
 
 void QTabBar_ShowMinimized(void* ptr)
@@ -74072,9 +80803,19 @@ void QTabBar_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "showMinimized");
 }
 
+void QTabBar_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::showMinimized();
+}
+
 void QTabBar_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "showNormal");
+}
+
+void QTabBar_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::showNormal();
 }
 
 void QTabBar_TabletEvent(void* ptr, void* event)
@@ -74092,9 +80833,19 @@ void QTabBar_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "update");
 }
 
+void QTabBar_UpdateDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::update();
+}
+
 void QTabBar_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "updateMicroFocus");
+}
+
+void QTabBar_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::updateMicroFocus();
 }
 
 void QTabBar_ChildEvent(void* ptr, void* event)
@@ -74130,6 +80881,11 @@ void QTabBar_CustomEventDefault(void* ptr, void* event)
 void QTabBar_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabBar*>(ptr), "deleteLater");
+}
+
+void QTabBar_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTabBar*>(ptr)->QTabBar::deleteLater();
 }
 
 void QTabBar_DisconnectNotify(void* ptr, void* sign)
@@ -74796,9 +81552,19 @@ void QTabWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTabWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::setEnabled(vbo != 0);
+}
+
 void QTabWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTabWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QTabWidget_SetVisible(void* ptr, int visible)
@@ -74816,9 +81582,19 @@ void QTabWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTabWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::setWindowModified(vbo != 0);
+}
+
 void QTabWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTabWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::setWindowTitle(QString(vqs));
 }
 
 int QTabWidget_Close(void* ptr)
@@ -74826,6 +81602,11 @@ int QTabWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTabWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QTabWidget*>(ptr)->QTabWidget::close();
 }
 
 void QTabWidget_CloseEvent(void* ptr, void* event)
@@ -74861,6 +81642,11 @@ int QTabWidget_FocusNextPrevChildDefault(void* ptr, int next)
 void QTabWidget_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "hide");
+}
+
+void QTabWidget_HideDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::hide();
 }
 
 void QTabWidget_InitPainter(void* ptr, void* painter)
@@ -74906,6 +81692,11 @@ void QTabWidget_KeyReleaseEventDefault(void* ptr, void* event)
 void QTabWidget_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "lower");
+}
+
+void QTabWidget_LowerDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::lower();
 }
 
 void QTabWidget_MouseDoubleClickEvent(void* ptr, void* event)
@@ -74963,9 +81754,19 @@ void QTabWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "raise");
 }
 
+void QTabWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::raise();
+}
+
 void QTabWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "repaint");
+}
+
+void QTabWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::repaint();
 }
 
 void QTabWidget_SetDisabled(void* ptr, int disable)
@@ -74973,9 +81774,19 @@ void QTabWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTabWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::setDisabled(disable != 0);
+}
+
 void QTabWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "setFocus");
+}
+
+void QTabWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::setFocus();
 }
 
 void QTabWidget_SetHidden(void* ptr, int hidden)
@@ -74983,9 +81794,19 @@ void QTabWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTabWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::setHidden(hidden != 0);
+}
+
 void QTabWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "show");
+}
+
+void QTabWidget_ShowDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::show();
 }
 
 void QTabWidget_ShowFullScreen(void* ptr)
@@ -74993,9 +81814,19 @@ void QTabWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "showFullScreen");
 }
 
+void QTabWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::showFullScreen();
+}
+
 void QTabWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "showMaximized");
+}
+
+void QTabWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::showMaximized();
 }
 
 void QTabWidget_ShowMinimized(void* ptr)
@@ -75003,9 +81834,19 @@ void QTabWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "showMinimized");
 }
 
+void QTabWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::showMinimized();
+}
+
 void QTabWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "showNormal");
+}
+
+void QTabWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::showNormal();
 }
 
 void QTabWidget_TabletEvent(void* ptr, void* event)
@@ -75023,9 +81864,19 @@ void QTabWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "update");
 }
 
+void QTabWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::update();
+}
+
 void QTabWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "updateMicroFocus");
+}
+
+void QTabWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::updateMicroFocus();
 }
 
 void QTabWidget_WheelEvent(void* ptr, void* event)
@@ -75081,6 +81932,11 @@ void QTabWidget_CustomEventDefault(void* ptr, void* event)
 void QTabWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTabWidget*>(ptr), "deleteLater");
+}
+
+void QTabWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTabWidget*>(ptr)->QTabWidget::deleteLater();
 }
 
 void QTabWidget_DisconnectNotify(void* ptr, void* sign)
@@ -75689,6 +82545,11 @@ void QTableView_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "clearSelection");
 }
 
+void QTableView_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::clearSelection();
+}
+
 void QTableView_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -75742,6 +82603,11 @@ void QTableView_DropEventDefault(void* ptr, void* event)
 void QTableView_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTableView_EditDefault(void* ptr, void* index)
+{
+	static_cast<QTableView*>(ptr)->QTableView::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QTableView_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -75929,14 +82795,29 @@ void QTableView_ScrollTo(void* ptr, void* index, int hint)
 	static_cast<QTableView*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
+void QTableView_ScrollToDefault(void* ptr, void* index, int hint)
+{
+	static_cast<QTableView*>(ptr)->QTableView::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
+}
+
 void QTableView_ScrollToBottom(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "scrollToBottom");
 }
 
+void QTableView_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::scrollToBottom();
+}
+
 void QTableView_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "scrollToTop");
+}
+
+void QTableView_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::scrollToTop();
 }
 
 void QTableView_SelectAll(void* ptr)
@@ -75964,6 +82845,11 @@ void QTableView_SetCurrentIndex(void* ptr, void* index)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
+void QTableView_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setCurrentIndex(*static_cast<QModelIndex*>(index));
+}
+
 void QTableView_StartDrag(void* ptr, int supportedActions)
 {
 	static_cast<QTableView*>(ptr)->startDrag(static_cast<Qt::DropAction>(supportedActions));
@@ -75979,14 +82865,29 @@ void QTableView_Update(void* ptr, void* index)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
+void QTableView_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QTableView*>(ptr)->QTableView::update(*static_cast<QModelIndex*>(index));
+}
+
 void* QTableView_VisualRect(void* ptr, void* index)
 {
 	return new QRect(static_cast<QRect>(static_cast<QTableView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QTableView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QTableView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QTableView*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
 }
 
+void* QTableView_VisualRectDefault(void* ptr, void* index)
+{
+	return new QRect(static_cast<QRect>(static_cast<QTableView*>(ptr)->QTableView::visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QTableView*>(ptr)->QTableView::visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QTableView*>(ptr)->QTableView::visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QTableView*>(ptr)->QTableView::visualRect(*static_cast<QModelIndex*>(index))).height());
+}
+
 void* QTableView_VisualRegionForSelection(void* ptr, void* selection)
 {
 	return new QRegion(static_cast<QTableView*>(ptr)->visualRegionForSelection(*static_cast<QItemSelection*>(selection)));
+}
+
+void* QTableView_VisualRegionForSelectionDefault(void* ptr, void* selection)
+{
+	return new QRegion(static_cast<QTableView*>(ptr)->QTableView::visualRegionForSelection(*static_cast<QItemSelection*>(selection)));
 }
 
 void QTableView_ContextMenuEvent(void* ptr, void* e)
@@ -76134,9 +83035,19 @@ void QTableView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTableView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setEnabled(vbo != 0);
+}
+
 void QTableView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTableView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setStyleSheet(QString(styleSheet));
 }
 
 void QTableView_SetVisible(void* ptr, int visible)
@@ -76154,9 +83065,19 @@ void QTableView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTableView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setWindowModified(vbo != 0);
+}
+
 void QTableView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTableView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setWindowTitle(QString(vqs));
 }
 
 void QTableView_ShowEvent(void* ptr, void* event)
@@ -76174,6 +83095,11 @@ int QTableView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTableView_CloseDefault(void* ptr)
+{
+	return static_cast<QTableView*>(ptr)->QTableView::close();
 }
 
 void QTableView_CloseEvent(void* ptr, void* event)
@@ -76211,6 +83137,11 @@ void QTableView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "hide");
 }
 
+void QTableView_HideDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::hide();
+}
+
 void QTableView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTableView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -76236,6 +83167,11 @@ void QTableView_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "lower");
 }
 
+void QTableView_LowerDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::lower();
+}
+
 int QTableView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QTableView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -76251,9 +83187,19 @@ void QTableView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "raise");
 }
 
+void QTableView_RaiseDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::raise();
+}
+
 void QTableView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "repaint");
+}
+
+void QTableView_RepaintDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::repaint();
 }
 
 void QTableView_SetDisabled(void* ptr, int disable)
@@ -76261,9 +83207,19 @@ void QTableView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTableView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setDisabled(disable != 0);
+}
+
 void QTableView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setFocus");
+}
+
+void QTableView_SetFocus2Default(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setFocus();
 }
 
 void QTableView_SetHidden(void* ptr, int hidden)
@@ -76271,9 +83227,19 @@ void QTableView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTableView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTableView*>(ptr)->QTableView::setHidden(hidden != 0);
+}
+
 void QTableView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "show");
+}
+
+void QTableView_ShowDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::show();
 }
 
 void QTableView_ShowFullScreen(void* ptr)
@@ -76281,9 +83247,19 @@ void QTableView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "showFullScreen");
 }
 
+void QTableView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::showFullScreen();
+}
+
 void QTableView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "showMaximized");
+}
+
+void QTableView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::showMaximized();
 }
 
 void QTableView_ShowMinimized(void* ptr)
@@ -76291,9 +83267,19 @@ void QTableView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "showMinimized");
 }
 
+void QTableView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::showMinimized();
+}
+
 void QTableView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "showNormal");
+}
+
+void QTableView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::showNormal();
 }
 
 void QTableView_TabletEvent(void* ptr, void* event)
@@ -76309,6 +83295,11 @@ void QTableView_TabletEventDefault(void* ptr, void* event)
 void QTableView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "updateMicroFocus");
+}
+
+void QTableView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::updateMicroFocus();
 }
 
 void QTableView_ChildEvent(void* ptr, void* event)
@@ -76344,6 +83335,11 @@ void QTableView_CustomEventDefault(void* ptr, void* event)
 void QTableView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "deleteLater");
+}
+
+void QTableView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTableView*>(ptr)->QTableView::deleteLater();
 }
 
 void QTableView_DisconnectNotify(void* ptr, void* sign)
@@ -77083,9 +84079,19 @@ void QTableWidget_SetShowGrid(void* ptr, int show)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setShowGrid", Q_ARG(bool, show != 0));
 }
 
+void QTableWidget_SetShowGridDefault(void* ptr, int show)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setShowGrid(show != 0);
+}
+
 void QTableWidget_ColumnCountChanged(void* ptr, int oldCount, int newCount)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "columnCountChanged", Q_ARG(int, oldCount), Q_ARG(int, newCount));
+}
+
+void QTableWidget_ColumnCountChangedDefault(void* ptr, int oldCount, int newCount)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::columnCountChanged(oldCount, newCount);
 }
 
 void QTableWidget_ColumnMoved(void* ptr, int column, int oldIndex, int newIndex)
@@ -77093,9 +84099,19 @@ void QTableWidget_ColumnMoved(void* ptr, int column, int oldIndex, int newIndex)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "columnMoved", Q_ARG(int, column), Q_ARG(int, oldIndex), Q_ARG(int, newIndex));
 }
 
+void QTableWidget_ColumnMovedDefault(void* ptr, int column, int oldIndex, int newIndex)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::columnMoved(column, oldIndex, newIndex);
+}
+
 void QTableWidget_ColumnResized(void* ptr, int column, int oldWidth, int newWidth)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "columnResized", Q_ARG(int, column), Q_ARG(int, oldWidth), Q_ARG(int, newWidth));
+}
+
+void QTableWidget_ColumnResizedDefault(void* ptr, int column, int oldWidth, int newWidth)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::columnResized(column, oldWidth, newWidth);
 }
 
 void QTableWidget_CurrentChanged(void* ptr, void* current, void* previous)
@@ -77113,9 +84129,19 @@ void QTableWidget_HideColumn(void* ptr, int column)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "hideColumn", Q_ARG(int, column));
 }
 
+void QTableWidget_HideColumnDefault(void* ptr, int column)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::hideColumn(column);
+}
+
 void QTableWidget_HideRow(void* ptr, int row)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "hideRow", Q_ARG(int, row));
+}
+
+void QTableWidget_HideRowDefault(void* ptr, int row)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::hideRow(row);
 }
 
 int QTableWidget_HorizontalOffset(void* ptr)
@@ -77163,9 +84189,19 @@ void QTableWidget_ResizeColumnToContents(void* ptr, int column)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "resizeColumnToContents", Q_ARG(int, column));
 }
 
+void QTableWidget_ResizeColumnToContentsDefault(void* ptr, int column)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::resizeColumnToContents(column);
+}
+
 void QTableWidget_ResizeColumnsToContents(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "resizeColumnsToContents");
+}
+
+void QTableWidget_ResizeColumnsToContentsDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::resizeColumnsToContents();
 }
 
 void QTableWidget_ResizeRowToContents(void* ptr, int row)
@@ -77173,9 +84209,19 @@ void QTableWidget_ResizeRowToContents(void* ptr, int row)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "resizeRowToContents", Q_ARG(int, row));
 }
 
+void QTableWidget_ResizeRowToContentsDefault(void* ptr, int row)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::resizeRowToContents(row);
+}
+
 void QTableWidget_ResizeRowsToContents(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "resizeRowsToContents");
+}
+
+void QTableWidget_ResizeRowsToContentsDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::resizeRowsToContents();
 }
 
 void QTableWidget_RowCountChanged(void* ptr, int oldCount, int newCount)
@@ -77183,9 +84229,19 @@ void QTableWidget_RowCountChanged(void* ptr, int oldCount, int newCount)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "rowCountChanged", Q_ARG(int, oldCount), Q_ARG(int, newCount));
 }
 
+void QTableWidget_RowCountChangedDefault(void* ptr, int oldCount, int newCount)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::rowCountChanged(oldCount, newCount);
+}
+
 void QTableWidget_RowMoved(void* ptr, int row, int oldIndex, int newIndex)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "rowMoved", Q_ARG(int, row), Q_ARG(int, oldIndex), Q_ARG(int, newIndex));
+}
+
+void QTableWidget_RowMovedDefault(void* ptr, int row, int oldIndex, int newIndex)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::rowMoved(row, oldIndex, newIndex);
 }
 
 void QTableWidget_RowResized(void* ptr, int row, int oldHeight, int newHeight)
@@ -77193,14 +84249,29 @@ void QTableWidget_RowResized(void* ptr, int row, int oldHeight, int newHeight)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "rowResized", Q_ARG(int, row), Q_ARG(int, oldHeight), Q_ARG(int, newHeight));
 }
 
+void QTableWidget_RowResizedDefault(void* ptr, int row, int oldHeight, int newHeight)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::rowResized(row, oldHeight, newHeight);
+}
+
 void QTableWidget_SelectColumn(void* ptr, int column)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "selectColumn", Q_ARG(int, column));
 }
 
+void QTableWidget_SelectColumnDefault(void* ptr, int column)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::selectColumn(column);
+}
+
 void QTableWidget_SelectRow(void* ptr, int row)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "selectRow", Q_ARG(int, row));
+}
+
+void QTableWidget_SelectRowDefault(void* ptr, int row)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::selectRow(row);
 }
 
 void QTableWidget_SelectionChanged(void* ptr, void* selected, void* deselected)
@@ -77248,9 +84319,19 @@ void QTableWidget_ShowColumn(void* ptr, int column)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "showColumn", Q_ARG(int, column));
 }
 
+void QTableWidget_ShowColumnDefault(void* ptr, int column)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::showColumn(column);
+}
+
 void QTableWidget_ShowRow(void* ptr, int row)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "showRow", Q_ARG(int, row));
+}
+
+void QTableWidget_ShowRowDefault(void* ptr, int row)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::showRow(row);
 }
 
 int QTableWidget_SizeHintForColumn(void* ptr, int column)
@@ -77348,6 +84429,11 @@ void QTableWidget_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "clearSelection");
 }
 
+void QTableWidget_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::clearSelection();
+}
+
 void QTableWidget_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -77391,6 +84477,11 @@ void QTableWidget_DragMoveEventDefault(void* ptr, void* event)
 void QTableWidget_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTableWidget_EditDefault(void* ptr, void* index)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QTableWidget_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -77568,14 +84659,29 @@ void QTableWidget_ScrollTo(void* ptr, void* index, int hint)
 	static_cast<QTableWidget*>(ptr)->scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
 }
 
+void QTableWidget_ScrollToDefault(void* ptr, void* index, int hint)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
+}
+
 void QTableWidget_ScrollToBottom(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToBottom");
 }
 
+void QTableWidget_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::scrollToBottom();
+}
+
 void QTableWidget_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToTop");
+}
+
+void QTableWidget_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::scrollToTop();
 }
 
 void QTableWidget_SelectAll(void* ptr)
@@ -77603,6 +84709,11 @@ void QTableWidget_SetCurrentIndex(void* ptr, void* index)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
+void QTableWidget_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setCurrentIndex(*static_cast<QModelIndex*>(index));
+}
+
 void QTableWidget_StartDrag(void* ptr, int supportedActions)
 {
 	static_cast<QTableWidget*>(ptr)->startDrag(static_cast<Qt::DropAction>(supportedActions));
@@ -77618,14 +84729,29 @@ void QTableWidget_Update(void* ptr, void* index)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
+void QTableWidget_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::update(*static_cast<QModelIndex*>(index));
+}
+
 void* QTableWidget_VisualRect(void* ptr, void* index)
 {
 	return new QRect(static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
 }
 
+void* QTableWidget_VisualRectDefault(void* ptr, void* index)
+{
+	return new QRect(static_cast<QRect>(static_cast<QTableWidget*>(ptr)->QTableWidget::visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->QTableWidget::visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->QTableWidget::visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QTableWidget*>(ptr)->QTableWidget::visualRect(*static_cast<QModelIndex*>(index))).height());
+}
+
 void* QTableWidget_VisualRegionForSelection(void* ptr, void* selection)
 {
 	return new QRegion(static_cast<QTableWidget*>(ptr)->visualRegionForSelection(*static_cast<QItemSelection*>(selection)));
+}
+
+void* QTableWidget_VisualRegionForSelectionDefault(void* ptr, void* selection)
+{
+	return new QRegion(static_cast<QTableWidget*>(ptr)->QTableWidget::visualRegionForSelection(*static_cast<QItemSelection*>(selection)));
 }
 
 void QTableWidget_ContextMenuEvent(void* ptr, void* e)
@@ -77773,9 +84899,19 @@ void QTableWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTableWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setEnabled(vbo != 0);
+}
+
 void QTableWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTableWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QTableWidget_SetVisible(void* ptr, int visible)
@@ -77793,9 +84929,19 @@ void QTableWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTableWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setWindowModified(vbo != 0);
+}
+
 void QTableWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTableWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setWindowTitle(QString(vqs));
 }
 
 void QTableWidget_ShowEvent(void* ptr, void* event)
@@ -77813,6 +84959,11 @@ int QTableWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTableWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QTableWidget*>(ptr)->QTableWidget::close();
 }
 
 void QTableWidget_CloseEvent(void* ptr, void* event)
@@ -77850,6 +85001,11 @@ void QTableWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "hide");
 }
 
+void QTableWidget_HideDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::hide();
+}
+
 void QTableWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTableWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -77875,6 +85031,11 @@ void QTableWidget_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "lower");
 }
 
+void QTableWidget_LowerDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::lower();
+}
+
 int QTableWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QTableWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -77890,9 +85051,19 @@ void QTableWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "raise");
 }
 
+void QTableWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::raise();
+}
+
 void QTableWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "repaint");
+}
+
+void QTableWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::repaint();
 }
 
 void QTableWidget_SetDisabled(void* ptr, int disable)
@@ -77900,9 +85071,19 @@ void QTableWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTableWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setDisabled(disable != 0);
+}
+
 void QTableWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setFocus");
+}
+
+void QTableWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setFocus();
 }
 
 void QTableWidget_SetHidden(void* ptr, int hidden)
@@ -77910,9 +85091,19 @@ void QTableWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTableWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::setHidden(hidden != 0);
+}
+
 void QTableWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "show");
+}
+
+void QTableWidget_ShowDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::show();
 }
 
 void QTableWidget_ShowFullScreen(void* ptr)
@@ -77920,9 +85111,19 @@ void QTableWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "showFullScreen");
 }
 
+void QTableWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::showFullScreen();
+}
+
 void QTableWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "showMaximized");
+}
+
+void QTableWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::showMaximized();
 }
 
 void QTableWidget_ShowMinimized(void* ptr)
@@ -77930,9 +85131,19 @@ void QTableWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "showMinimized");
 }
 
+void QTableWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::showMinimized();
+}
+
 void QTableWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "showNormal");
+}
+
+void QTableWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::showNormal();
 }
 
 void QTableWidget_TabletEvent(void* ptr, void* event)
@@ -77948,6 +85159,11 @@ void QTableWidget_TabletEventDefault(void* ptr, void* event)
 void QTableWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "updateMicroFocus");
+}
+
+void QTableWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::updateMicroFocus();
 }
 
 void QTableWidget_ChildEvent(void* ptr, void* event)
@@ -77983,6 +85199,11 @@ void QTableWidget_CustomEventDefault(void* ptr, void* event)
 void QTableWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "deleteLater");
+}
+
+void QTableWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::deleteLater();
 }
 
 void QTableWidget_DisconnectNotify(void* ptr, void* sign)
@@ -78370,6 +85591,11 @@ void QTapAndHoldGesture_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTapAndHoldGesture*>(ptr), "deleteLater");
 }
 
+void QTapAndHoldGesture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTapAndHoldGesture*>(ptr)->QTapAndHoldGesture::deleteLater();
+}
+
 void QTapAndHoldGesture_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTapAndHoldGesture*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -78468,6 +85694,11 @@ void QTapGesture_CustomEventDefault(void* ptr, void* event)
 void QTapGesture_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTapGesture*>(ptr), "deleteLater");
+}
+
+void QTapGesture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTapGesture*>(ptr)->QTapGesture::deleteLater();
 }
 
 void QTapGesture_DisconnectNotify(void* ptr, void* sign)
@@ -78961,9 +86192,19 @@ void QTextBrowser_Redo(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "redo");
 }
 
+void QTextBrowser_RedoDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::redo();
+}
+
 void QTextBrowser_SetFontWeight(void* ptr, int weight)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setFontWeight", Q_ARG(int, weight));
+}
+
+void QTextBrowser_SetFontWeightDefault(void* ptr, int weight)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setFontWeight(weight);
 }
 
 void QTextBrowser_SetHtml(void* ptr, char* text)
@@ -78971,9 +86212,19 @@ void QTextBrowser_SetHtml(void* ptr, char* text)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setHtml", Q_ARG(QString, QString(text)));
 }
 
+void QTextBrowser_SetHtmlDefault(void* ptr, char* text)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setHtml(QString(text));
+}
+
 void QTextBrowser_ZoomIn(void* ptr, int ran)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "zoomIn", Q_ARG(int, ran));
+}
+
+void QTextBrowser_ZoomInDefault(void* ptr, int ran)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::zoomIn(ran);
 }
 
 void QTextBrowser_ZoomOut(void* ptr, int ran)
@@ -78981,9 +86232,19 @@ void QTextBrowser_ZoomOut(void* ptr, int ran)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "zoomOut", Q_ARG(int, ran));
 }
 
+void QTextBrowser_ZoomOutDefault(void* ptr, int ran)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::zoomOut(ran);
+}
+
 void QTextBrowser_Append(void* ptr, char* text)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "append", Q_ARG(QString, QString(text)));
+}
+
+void QTextBrowser_AppendDefault(void* ptr, char* text)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::append(QString(text));
 }
 
 int QTextBrowser_CanInsertFromMimeData(void* ptr, void* source)
@@ -79011,9 +86272,19 @@ void QTextBrowser_Clear(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "clear");
 }
 
+void QTextBrowser_ClearDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::clear();
+}
+
 void QTextBrowser_Copy(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "copy");
+}
+
+void QTextBrowser_CopyDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::copy();
 }
 
 void* QTextBrowser_CreateMimeDataFromSelection(void* ptr)
@@ -79029,6 +86300,11 @@ void* QTextBrowser_CreateMimeDataFromSelectionDefault(void* ptr)
 void QTextBrowser_Cut(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "cut");
+}
+
+void QTextBrowser_CutDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::cut();
 }
 
 void QTextBrowser_DragEnterEvent(void* ptr, void* e)
@@ -79116,9 +86392,19 @@ void QTextBrowser_InsertHtml(void* ptr, char* text)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "insertHtml", Q_ARG(QString, QString(text)));
 }
 
+void QTextBrowser_InsertHtmlDefault(void* ptr, char* text)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::insertHtml(QString(text));
+}
+
 void QTextBrowser_InsertPlainText(void* ptr, char* text)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "insertPlainText", Q_ARG(QString, QString(text)));
+}
+
+void QTextBrowser_InsertPlainTextDefault(void* ptr, char* text)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::insertPlainText(QString(text));
 }
 
 void QTextBrowser_KeyReleaseEvent(void* ptr, void* e)
@@ -79146,6 +86432,11 @@ void QTextBrowser_Paste(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "paste");
 }
 
+void QTextBrowser_PasteDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::paste();
+}
+
 void QTextBrowser_ResizeEvent(void* ptr, void* e)
 {
 	static_cast<QTextBrowser*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(e));
@@ -79171,9 +86462,19 @@ void QTextBrowser_ScrollToAnchor(void* ptr, char* name)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "scrollToAnchor", Q_ARG(QString, QString(name)));
 }
 
+void QTextBrowser_ScrollToAnchorDefault(void* ptr, char* name)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::scrollToAnchor(QString(name));
+}
+
 void QTextBrowser_SelectAll(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "selectAll");
+}
+
+void QTextBrowser_SelectAllDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::selectAll();
 }
 
 void QTextBrowser_SetAlignment(void* ptr, int a)
@@ -79181,9 +86482,19 @@ void QTextBrowser_SetAlignment(void* ptr, int a)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setAlignment", Q_ARG(Qt::AlignmentFlag, static_cast<Qt::AlignmentFlag>(a)));
 }
 
+void QTextBrowser_SetAlignmentDefault(void* ptr, int a)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setAlignment(static_cast<Qt::AlignmentFlag>(a));
+}
+
 void QTextBrowser_SetCurrentFont(void* ptr, void* f)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setCurrentFont", Q_ARG(QFont, *static_cast<QFont*>(f)));
+}
+
+void QTextBrowser_SetCurrentFontDefault(void* ptr, void* f)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setCurrentFont(*static_cast<QFont*>(f));
 }
 
 void QTextBrowser_SetFontFamily(void* ptr, char* fontFamily)
@@ -79191,9 +86502,19 @@ void QTextBrowser_SetFontFamily(void* ptr, char* fontFamily)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setFontFamily", Q_ARG(QString, QString(fontFamily)));
 }
 
+void QTextBrowser_SetFontFamilyDefault(void* ptr, char* fontFamily)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setFontFamily(QString(fontFamily));
+}
+
 void QTextBrowser_SetFontItalic(void* ptr, int italic)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setFontItalic", Q_ARG(bool, italic != 0));
+}
+
+void QTextBrowser_SetFontItalicDefault(void* ptr, int italic)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setFontItalic(italic != 0);
 }
 
 void QTextBrowser_SetFontPointSize(void* ptr, double s)
@@ -79201,9 +86522,19 @@ void QTextBrowser_SetFontPointSize(void* ptr, double s)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setFontPointSize", Q_ARG(qreal, static_cast<double>(s)));
 }
 
+void QTextBrowser_SetFontPointSizeDefault(void* ptr, double s)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setFontPointSize(static_cast<double>(s));
+}
+
 void QTextBrowser_SetFontUnderline(void* ptr, int underline)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setFontUnderline", Q_ARG(bool, underline != 0));
+}
+
+void QTextBrowser_SetFontUnderlineDefault(void* ptr, int underline)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setFontUnderline(underline != 0);
 }
 
 void QTextBrowser_SetPlainText(void* ptr, char* text)
@@ -79211,9 +86542,19 @@ void QTextBrowser_SetPlainText(void* ptr, char* text)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setPlainText", Q_ARG(QString, QString(text)));
 }
 
+void QTextBrowser_SetPlainTextDefault(void* ptr, char* text)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setPlainText(QString(text));
+}
+
 void QTextBrowser_SetText(void* ptr, char* text)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setText", Q_ARG(QString, QString(text)));
+}
+
+void QTextBrowser_SetTextDefault(void* ptr, char* text)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setText(QString(text));
 }
 
 void QTextBrowser_SetTextBackgroundColor(void* ptr, void* c)
@@ -79221,9 +86562,19 @@ void QTextBrowser_SetTextBackgroundColor(void* ptr, void* c)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setTextBackgroundColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
 }
 
+void QTextBrowser_SetTextBackgroundColorDefault(void* ptr, void* c)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setTextBackgroundColor(*static_cast<QColor*>(c));
+}
+
 void QTextBrowser_SetTextColor(void* ptr, void* c)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setTextColor", Q_ARG(QColor, *static_cast<QColor*>(c)));
+}
+
+void QTextBrowser_SetTextColorDefault(void* ptr, void* c)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setTextColor(*static_cast<QColor*>(c));
 }
 
 void QTextBrowser_ShowEvent(void* ptr, void* vqs)
@@ -79239,6 +86590,11 @@ void QTextBrowser_ShowEventDefault(void* ptr, void* vqs)
 void QTextBrowser_Undo(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "undo");
+}
+
+void QTextBrowser_UndoDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::undo();
 }
 
 void QTextBrowser_WheelEvent(void* ptr, void* e)
@@ -79376,9 +86732,19 @@ void QTextBrowser_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTextBrowser_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setEnabled(vbo != 0);
+}
+
 void QTextBrowser_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTextBrowser_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setStyleSheet(QString(styleSheet));
 }
 
 void QTextBrowser_SetVisible(void* ptr, int visible)
@@ -79396,9 +86762,19 @@ void QTextBrowser_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTextBrowser_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setWindowModified(vbo != 0);
+}
+
 void QTextBrowser_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTextBrowser_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setWindowTitle(QString(vqs));
 }
 
 int QTextBrowser_Close(void* ptr)
@@ -79406,6 +86782,11 @@ int QTextBrowser_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTextBrowser_CloseDefault(void* ptr)
+{
+	return static_cast<QTextBrowser*>(ptr)->QTextBrowser::close();
 }
 
 void QTextBrowser_CloseEvent(void* ptr, void* event)
@@ -79443,6 +86824,11 @@ void QTextBrowser_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "hide");
 }
 
+void QTextBrowser_HideDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::hide();
+}
+
 void QTextBrowser_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTextBrowser*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -79456,6 +86842,11 @@ void QTextBrowser_InitPainterDefault(void* ptr, void* painter)
 void QTextBrowser_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "lower");
+}
+
+void QTextBrowser_LowerDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::lower();
 }
 
 int QTextBrowser_NativeEvent(void* ptr, char* eventType, void* message, long result)
@@ -79473,9 +86864,19 @@ void QTextBrowser_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "raise");
 }
 
+void QTextBrowser_RaiseDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::raise();
+}
+
 void QTextBrowser_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "repaint");
+}
+
+void QTextBrowser_RepaintDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::repaint();
 }
 
 void QTextBrowser_SetDisabled(void* ptr, int disable)
@@ -79483,9 +86884,19 @@ void QTextBrowser_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTextBrowser_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setDisabled(disable != 0);
+}
+
 void QTextBrowser_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setFocus");
+}
+
+void QTextBrowser_SetFocus2Default(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setFocus();
 }
 
 void QTextBrowser_SetHidden(void* ptr, int hidden)
@@ -79493,9 +86904,19 @@ void QTextBrowser_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTextBrowser_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::setHidden(hidden != 0);
+}
+
 void QTextBrowser_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "show");
+}
+
+void QTextBrowser_ShowDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::show();
 }
 
 void QTextBrowser_ShowFullScreen(void* ptr)
@@ -79503,9 +86924,19 @@ void QTextBrowser_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "showFullScreen");
 }
 
+void QTextBrowser_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::showFullScreen();
+}
+
 void QTextBrowser_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "showMaximized");
+}
+
+void QTextBrowser_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::showMaximized();
 }
 
 void QTextBrowser_ShowMinimized(void* ptr)
@@ -79513,9 +86944,19 @@ void QTextBrowser_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "showMinimized");
 }
 
+void QTextBrowser_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::showMinimized();
+}
+
 void QTextBrowser_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "showNormal");
+}
+
+void QTextBrowser_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::showNormal();
 }
 
 void QTextBrowser_TabletEvent(void* ptr, void* event)
@@ -79533,9 +86974,19 @@ void QTextBrowser_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "update");
 }
 
+void QTextBrowser_UpdateDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::update();
+}
+
 void QTextBrowser_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "updateMicroFocus");
+}
+
+void QTextBrowser_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::updateMicroFocus();
 }
 
 void QTextBrowser_TimerEvent(void* ptr, void* event)
@@ -79581,6 +87032,11 @@ void QTextBrowser_CustomEventDefault(void* ptr, void* event)
 void QTextBrowser_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "deleteLater");
+}
+
+void QTextBrowser_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextBrowser*>(ptr)->QTextBrowser::deleteLater();
 }
 
 void QTextBrowser_DisconnectNotify(void* ptr, void* sign)
@@ -80634,9 +88090,19 @@ void QTextEdit_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTextEdit_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::setEnabled(vbo != 0);
+}
+
 void QTextEdit_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTextEdit_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::setStyleSheet(QString(styleSheet));
 }
 
 void QTextEdit_SetVisible(void* ptr, int visible)
@@ -80654,9 +88120,19 @@ void QTextEdit_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTextEdit_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::setWindowModified(vbo != 0);
+}
+
 void QTextEdit_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTextEdit_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::setWindowTitle(QString(vqs));
 }
 
 int QTextEdit_Close(void* ptr)
@@ -80664,6 +88140,11 @@ int QTextEdit_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTextEdit_CloseDefault(void* ptr)
+{
+	return static_cast<QTextEdit*>(ptr)->QTextEdit::close();
 }
 
 void QTextEdit_CloseEvent(void* ptr, void* event)
@@ -80701,6 +88182,11 @@ void QTextEdit_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "hide");
 }
 
+void QTextEdit_HideDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::hide();
+}
+
 void QTextEdit_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTextEdit*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -80714,6 +88200,11 @@ void QTextEdit_InitPainterDefault(void* ptr, void* painter)
 void QTextEdit_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "lower");
+}
+
+void QTextEdit_LowerDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::lower();
 }
 
 int QTextEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
@@ -80731,9 +88222,19 @@ void QTextEdit_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "raise");
 }
 
+void QTextEdit_RaiseDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::raise();
+}
+
 void QTextEdit_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "repaint");
+}
+
+void QTextEdit_RepaintDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::repaint();
 }
 
 void QTextEdit_SetDisabled(void* ptr, int disable)
@@ -80741,9 +88242,19 @@ void QTextEdit_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTextEdit_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::setDisabled(disable != 0);
+}
+
 void QTextEdit_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setFocus");
+}
+
+void QTextEdit_SetFocus2Default(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::setFocus();
 }
 
 void QTextEdit_SetHidden(void* ptr, int hidden)
@@ -80751,9 +88262,19 @@ void QTextEdit_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTextEdit_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::setHidden(hidden != 0);
+}
+
 void QTextEdit_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "show");
+}
+
+void QTextEdit_ShowDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::show();
 }
 
 void QTextEdit_ShowFullScreen(void* ptr)
@@ -80761,9 +88282,19 @@ void QTextEdit_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "showFullScreen");
 }
 
+void QTextEdit_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::showFullScreen();
+}
+
 void QTextEdit_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "showMaximized");
+}
+
+void QTextEdit_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::showMaximized();
 }
 
 void QTextEdit_ShowMinimized(void* ptr)
@@ -80771,9 +88302,19 @@ void QTextEdit_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "showMinimized");
 }
 
+void QTextEdit_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::showMinimized();
+}
+
 void QTextEdit_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "showNormal");
+}
+
+void QTextEdit_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::showNormal();
 }
 
 void QTextEdit_TabletEvent(void* ptr, void* event)
@@ -80791,9 +88332,19 @@ void QTextEdit_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "update");
 }
 
+void QTextEdit_UpdateDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::update();
+}
+
 void QTextEdit_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "updateMicroFocus");
+}
+
+void QTextEdit_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::updateMicroFocus();
 }
 
 void QTextEdit_TimerEvent(void* ptr, void* event)
@@ -80839,6 +88390,11 @@ void QTextEdit_CustomEventDefault(void* ptr, void* event)
 void QTextEdit_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "deleteLater");
+}
+
+void QTextEdit_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextEdit*>(ptr)->QTextEdit::deleteLater();
 }
 
 void QTextEdit_DisconnectNotify(void* ptr, void* sign)
@@ -80899,6 +88455,11 @@ void QTimeEdit_DestroyQTimeEdit(void* ptr)
 void QTimeEdit_SetDateTime(void* ptr, void* dateTime)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setDateTime", Q_ARG(QDateTime, *static_cast<QDateTime*>(dateTime)));
+}
+
+void QTimeEdit_SetDateTimeDefault(void* ptr, void* dateTime)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setDateTime(*static_cast<QDateTime*>(dateTime));
 }
 
 void QTimeEdit_Clear(void* ptr)
@@ -81154,6 +88715,11 @@ void QTimeEdit_SelectAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "selectAll");
 }
 
+void QTimeEdit_SelectAllDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::selectAll();
+}
+
 void QTimeEdit_ShowEvent(void* ptr, void* event)
 {
 	static_cast<QTimeEdit*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
@@ -81169,9 +88735,19 @@ void QTimeEdit_StepDown(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "stepDown");
 }
 
+void QTimeEdit_StepDownDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::stepDown();
+}
+
 void QTimeEdit_StepUp(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "stepUp");
+}
+
+void QTimeEdit_StepUpDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::stepUp();
 }
 
 void QTimeEdit_TimerEvent(void* ptr, void* event)
@@ -81289,9 +88865,19 @@ void QTimeEdit_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTimeEdit_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setEnabled(vbo != 0);
+}
+
 void QTimeEdit_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTimeEdit_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setStyleSheet(QString(styleSheet));
 }
 
 void QTimeEdit_SetVisible(void* ptr, int visible)
@@ -81309,9 +88895,19 @@ void QTimeEdit_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTimeEdit_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setWindowModified(vbo != 0);
+}
+
 void QTimeEdit_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTimeEdit_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setWindowTitle(QString(vqs));
 }
 
 int QTimeEdit_Close(void* ptr)
@@ -81319,6 +88915,11 @@ int QTimeEdit_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTimeEdit_CloseDefault(void* ptr)
+{
+	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::close();
 }
 
 int QTimeEdit_HasHeightForWidth(void* ptr)
@@ -81346,6 +88947,11 @@ void QTimeEdit_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "hide");
 }
 
+void QTimeEdit_HideDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::hide();
+}
+
 void QTimeEdit_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTimeEdit*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -81369,6 +88975,11 @@ void QTimeEdit_InputMethodEventDefault(void* ptr, void* event)
 void QTimeEdit_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "lower");
+}
+
+void QTimeEdit_LowerDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::lower();
 }
 
 void QTimeEdit_MouseDoubleClickEvent(void* ptr, void* event)
@@ -81396,9 +89007,19 @@ void QTimeEdit_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "raise");
 }
 
+void QTimeEdit_RaiseDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::raise();
+}
+
 void QTimeEdit_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "repaint");
+}
+
+void QTimeEdit_RepaintDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::repaint();
 }
 
 void QTimeEdit_SetDisabled(void* ptr, int disable)
@@ -81406,9 +89027,19 @@ void QTimeEdit_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTimeEdit_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setDisabled(disable != 0);
+}
+
 void QTimeEdit_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setFocus");
+}
+
+void QTimeEdit_SetFocus2Default(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setFocus();
 }
 
 void QTimeEdit_SetHidden(void* ptr, int hidden)
@@ -81416,9 +89047,19 @@ void QTimeEdit_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTimeEdit_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::setHidden(hidden != 0);
+}
+
 void QTimeEdit_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "show");
+}
+
+void QTimeEdit_ShowDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::show();
 }
 
 void QTimeEdit_ShowFullScreen(void* ptr)
@@ -81426,9 +89067,19 @@ void QTimeEdit_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "showFullScreen");
 }
 
+void QTimeEdit_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::showFullScreen();
+}
+
 void QTimeEdit_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "showMaximized");
+}
+
+void QTimeEdit_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::showMaximized();
 }
 
 void QTimeEdit_ShowMinimized(void* ptr)
@@ -81436,9 +89087,19 @@ void QTimeEdit_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "showMinimized");
 }
 
+void QTimeEdit_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::showMinimized();
+}
+
 void QTimeEdit_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "showNormal");
+}
+
+void QTimeEdit_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::showNormal();
 }
 
 void QTimeEdit_TabletEvent(void* ptr, void* event)
@@ -81456,9 +89117,19 @@ void QTimeEdit_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "update");
 }
 
+void QTimeEdit_UpdateDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::update();
+}
+
 void QTimeEdit_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "updateMicroFocus");
+}
+
+void QTimeEdit_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::updateMicroFocus();
 }
 
 void QTimeEdit_ChildEvent(void* ptr, void* event)
@@ -81494,6 +89165,11 @@ void QTimeEdit_CustomEventDefault(void* ptr, void* event)
 void QTimeEdit_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeEdit*>(ptr), "deleteLater");
+}
+
+void QTimeEdit_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::deleteLater();
 }
 
 void QTimeEdit_DisconnectNotify(void* ptr, void* sign)
@@ -82053,9 +89729,19 @@ void QToolBar_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QToolBar_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::setEnabled(vbo != 0);
+}
+
 void QToolBar_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QToolBar_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::setStyleSheet(QString(styleSheet));
 }
 
 void QToolBar_SetVisible(void* ptr, int visible)
@@ -82073,9 +89759,19 @@ void QToolBar_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QToolBar_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::setWindowModified(vbo != 0);
+}
+
 void QToolBar_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QToolBar_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::setWindowTitle(QString(vqs));
 }
 
 void QToolBar_ShowEvent(void* ptr, void* event)
@@ -82103,6 +89799,11 @@ int QToolBar_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QToolBar_CloseDefault(void* ptr)
+{
+	return static_cast<QToolBar*>(ptr)->QToolBar::close();
 }
 
 void QToolBar_CloseEvent(void* ptr, void* event)
@@ -82160,6 +89861,11 @@ void QToolBar_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "hide");
 }
 
+void QToolBar_HideDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::hide();
+}
+
 void QToolBar_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QToolBar*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -82213,6 +89919,11 @@ void QToolBar_KeyReleaseEventDefault(void* ptr, void* event)
 void QToolBar_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "lower");
+}
+
+void QToolBar_LowerDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::lower();
 }
 
 void QToolBar_MouseDoubleClickEvent(void* ptr, void* event)
@@ -82270,9 +89981,19 @@ void QToolBar_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "raise");
 }
 
+void QToolBar_RaiseDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::raise();
+}
+
 void QToolBar_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "repaint");
+}
+
+void QToolBar_RepaintDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::repaint();
 }
 
 void QToolBar_ResizeEvent(void* ptr, void* event)
@@ -82290,9 +90011,19 @@ void QToolBar_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QToolBar_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::setDisabled(disable != 0);
+}
+
 void QToolBar_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setFocus");
+}
+
+void QToolBar_SetFocus2Default(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::setFocus();
 }
 
 void QToolBar_SetHidden(void* ptr, int hidden)
@@ -82300,9 +90031,19 @@ void QToolBar_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QToolBar_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::setHidden(hidden != 0);
+}
+
 void QToolBar_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "show");
+}
+
+void QToolBar_ShowDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::show();
 }
 
 void QToolBar_ShowFullScreen(void* ptr)
@@ -82310,9 +90051,19 @@ void QToolBar_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "showFullScreen");
 }
 
+void QToolBar_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::showFullScreen();
+}
+
 void QToolBar_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "showMaximized");
+}
+
+void QToolBar_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::showMaximized();
 }
 
 void QToolBar_ShowMinimized(void* ptr)
@@ -82320,9 +90071,19 @@ void QToolBar_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "showMinimized");
 }
 
+void QToolBar_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::showMinimized();
+}
+
 void QToolBar_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "showNormal");
+}
+
+void QToolBar_ShowNormalDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::showNormal();
 }
 
 void QToolBar_TabletEvent(void* ptr, void* event)
@@ -82340,9 +90101,19 @@ void QToolBar_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "update");
 }
 
+void QToolBar_UpdateDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::update();
+}
+
 void QToolBar_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "updateMicroFocus");
+}
+
+void QToolBar_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::updateMicroFocus();
 }
 
 void QToolBar_WheelEvent(void* ptr, void* event)
@@ -82398,6 +90169,11 @@ void QToolBar_CustomEventDefault(void* ptr, void* event)
 void QToolBar_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBar*>(ptr), "deleteLater");
+}
+
+void QToolBar_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QToolBar*>(ptr)->QToolBar::deleteLater();
 }
 
 void QToolBar_DisconnectNotify(void* ptr, void* sign)
@@ -82846,9 +90622,19 @@ void QToolBox_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QToolBox_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::setEnabled(vbo != 0);
+}
+
 void QToolBox_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QToolBox_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::setStyleSheet(QString(styleSheet));
 }
 
 void QToolBox_SetVisible(void* ptr, int visible)
@@ -82866,9 +90652,19 @@ void QToolBox_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QToolBox_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::setWindowModified(vbo != 0);
+}
+
 void QToolBox_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QToolBox_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::setWindowTitle(QString(vqs));
 }
 
 int QToolBox_Close(void* ptr)
@@ -82876,6 +90672,11 @@ int QToolBox_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QToolBox_CloseDefault(void* ptr)
+{
+	return static_cast<QToolBox*>(ptr)->QToolBox::close();
 }
 
 void QToolBox_CloseEvent(void* ptr, void* event)
@@ -82933,6 +90734,11 @@ void QToolBox_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "hide");
 }
 
+void QToolBox_HideDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::hide();
+}
+
 void QToolBox_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QToolBox*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -82986,6 +90792,11 @@ void QToolBox_KeyReleaseEventDefault(void* ptr, void* event)
 void QToolBox_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "lower");
+}
+
+void QToolBox_LowerDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::lower();
 }
 
 void QToolBox_MouseDoubleClickEvent(void* ptr, void* event)
@@ -83043,9 +90854,19 @@ void QToolBox_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "raise");
 }
 
+void QToolBox_RaiseDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::raise();
+}
+
 void QToolBox_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "repaint");
+}
+
+void QToolBox_RepaintDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::repaint();
 }
 
 void QToolBox_ResizeEvent(void* ptr, void* event)
@@ -83063,9 +90884,19 @@ void QToolBox_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QToolBox_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::setDisabled(disable != 0);
+}
+
 void QToolBox_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "setFocus");
+}
+
+void QToolBox_SetFocus2Default(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::setFocus();
 }
 
 void QToolBox_SetHidden(void* ptr, int hidden)
@@ -83073,9 +90904,19 @@ void QToolBox_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QToolBox_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::setHidden(hidden != 0);
+}
+
 void QToolBox_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "show");
+}
+
+void QToolBox_ShowDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::show();
 }
 
 void QToolBox_ShowFullScreen(void* ptr)
@@ -83083,9 +90924,19 @@ void QToolBox_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "showFullScreen");
 }
 
+void QToolBox_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::showFullScreen();
+}
+
 void QToolBox_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "showMaximized");
+}
+
+void QToolBox_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::showMaximized();
 }
 
 void QToolBox_ShowMinimized(void* ptr)
@@ -83093,9 +90944,19 @@ void QToolBox_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "showMinimized");
 }
 
+void QToolBox_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::showMinimized();
+}
+
 void QToolBox_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "showNormal");
+}
+
+void QToolBox_ShowNormalDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::showNormal();
 }
 
 void QToolBox_TabletEvent(void* ptr, void* event)
@@ -83113,9 +90974,19 @@ void QToolBox_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "update");
 }
 
+void QToolBox_UpdateDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::update();
+}
+
 void QToolBox_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "updateMicroFocus");
+}
+
+void QToolBox_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::updateMicroFocus();
 }
 
 void QToolBox_WheelEvent(void* ptr, void* event)
@@ -83171,6 +91042,11 @@ void QToolBox_CustomEventDefault(void* ptr, void* event)
 void QToolBox_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolBox*>(ptr), "deleteLater");
+}
+
+void QToolBox_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QToolBox*>(ptr)->QToolBox::deleteLater();
 }
 
 void QToolBox_DisconnectNotify(void* ptr, void* sign)
@@ -83516,9 +91392,19 @@ void QToolButton_SetChecked(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setChecked", Q_ARG(bool, vbo != 0));
 }
 
+void QToolButton_SetCheckedDefault(void* ptr, int vbo)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setChecked(vbo != 0);
+}
+
 void QToolButton_SetIconSize(void* ptr, void* size)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setIconSize", Q_ARG(QSize, *static_cast<QSize*>(size)));
+}
+
+void QToolButton_SetIconSizeDefault(void* ptr, void* size)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setIconSize(*static_cast<QSize*>(size));
 }
 
 void QToolButton_Toggle(void* ptr)
@@ -83526,9 +91412,19 @@ void QToolButton_Toggle(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "toggle");
 }
 
+void QToolButton_ToggleDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::toggle();
+}
+
 void QToolButton_AnimateClick(void* ptr, int msec)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "animateClick", Q_ARG(int, msec));
+}
+
+void QToolButton_AnimateClickDefault(void* ptr, int msec)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::animateClick(msec);
 }
 
 void QToolButton_CheckStateSet(void* ptr)
@@ -83544,6 +91440,11 @@ void QToolButton_CheckStateSetDefault(void* ptr)
 void QToolButton_Click(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "click");
+}
+
+void QToolButton_ClickDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::click();
 }
 
 void QToolButton_FocusInEvent(void* ptr, void* e)
@@ -83681,9 +91582,19 @@ void QToolButton_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QToolButton_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setEnabled(vbo != 0);
+}
+
 void QToolButton_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QToolButton_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setStyleSheet(QString(styleSheet));
 }
 
 void QToolButton_SetVisible(void* ptr, int visible)
@@ -83701,9 +91612,19 @@ void QToolButton_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QToolButton_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setWindowModified(vbo != 0);
+}
+
 void QToolButton_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QToolButton_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setWindowTitle(QString(vqs));
 }
 
 void QToolButton_ShowEvent(void* ptr, void* event)
@@ -83721,6 +91642,11 @@ int QToolButton_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QToolButton_CloseDefault(void* ptr)
+{
+	return static_cast<QToolButton*>(ptr)->QToolButton::close();
 }
 
 void QToolButton_CloseEvent(void* ptr, void* event)
@@ -83778,6 +91704,11 @@ void QToolButton_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "hide");
 }
 
+void QToolButton_HideDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::hide();
+}
+
 void QToolButton_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QToolButton*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -83813,6 +91744,11 @@ void QToolButton_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "lower");
 }
 
+void QToolButton_LowerDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::lower();
+}
+
 void QToolButton_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QToolButton*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -83838,9 +91774,19 @@ void QToolButton_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "raise");
 }
 
+void QToolButton_RaiseDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::raise();
+}
+
 void QToolButton_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "repaint");
+}
+
+void QToolButton_RepaintDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::repaint();
 }
 
 void QToolButton_ResizeEvent(void* ptr, void* event)
@@ -83858,9 +91804,19 @@ void QToolButton_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QToolButton_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setDisabled(disable != 0);
+}
+
 void QToolButton_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setFocus");
+}
+
+void QToolButton_SetFocus2Default(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setFocus();
 }
 
 void QToolButton_SetHidden(void* ptr, int hidden)
@@ -83868,9 +91824,19 @@ void QToolButton_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QToolButton_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::setHidden(hidden != 0);
+}
+
 void QToolButton_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "show");
+}
+
+void QToolButton_ShowDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::show();
 }
 
 void QToolButton_ShowFullScreen(void* ptr)
@@ -83878,9 +91844,19 @@ void QToolButton_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "showFullScreen");
 }
 
+void QToolButton_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::showFullScreen();
+}
+
 void QToolButton_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "showMaximized");
+}
+
+void QToolButton_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::showMaximized();
 }
 
 void QToolButton_ShowMinimized(void* ptr)
@@ -83888,9 +91864,19 @@ void QToolButton_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "showMinimized");
 }
 
+void QToolButton_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::showMinimized();
+}
+
 void QToolButton_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "showNormal");
+}
+
+void QToolButton_ShowNormalDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::showNormal();
 }
 
 void QToolButton_TabletEvent(void* ptr, void* event)
@@ -83908,9 +91894,19 @@ void QToolButton_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "update");
 }
 
+void QToolButton_UpdateDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::update();
+}
+
 void QToolButton_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "updateMicroFocus");
+}
+
+void QToolButton_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::updateMicroFocus();
 }
 
 void QToolButton_WheelEvent(void* ptr, void* event)
@@ -83956,6 +91952,11 @@ void QToolButton_CustomEventDefault(void* ptr, void* event)
 void QToolButton_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QToolButton*>(ptr), "deleteLater");
+}
+
+void QToolButton_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QToolButton*>(ptr)->QToolButton::deleteLater();
 }
 
 void QToolButton_DisconnectNotify(void* ptr, void* sign)
@@ -84843,6 +92844,11 @@ void QTreeView_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "clearSelection");
 }
 
+void QTreeView_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::clearSelection();
+}
+
 void QTreeView_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -84886,6 +92892,11 @@ void QTreeView_DropEventDefault(void* ptr, void* event)
 void QTreeView_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTreeView_EditDefault(void* ptr, void* index)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QTreeView_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -84983,9 +92994,19 @@ void QTreeView_ScrollToBottom(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "scrollToBottom");
 }
 
+void QTreeView_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::scrollToBottom();
+}
+
 void QTreeView_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "scrollToTop");
+}
+
+void QTreeView_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::scrollToTop();
 }
 
 int QTreeView_SelectionCommand(void* ptr, void* index, void* event)
@@ -85001,6 +93022,11 @@ int QTreeView_SelectionCommandDefault(void* ptr, void* index, void* event)
 void QTreeView_SetCurrentIndex(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTreeView_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setCurrentIndex(*static_cast<QModelIndex*>(index));
 }
 
 int QTreeView_SizeHintForRow(void* ptr, int row)
@@ -85026,6 +93052,11 @@ void QTreeView_StartDragDefault(void* ptr, int supportedActions)
 void QTreeView_Update(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTreeView_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::update(*static_cast<QModelIndex*>(index));
 }
 
 void* QTreeView_ViewOptions(void* ptr)
@@ -85173,9 +93204,19 @@ void QTreeView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTreeView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setEnabled(vbo != 0);
+}
+
 void QTreeView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTreeView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setStyleSheet(QString(styleSheet));
 }
 
 void QTreeView_SetVisible(void* ptr, int visible)
@@ -85193,9 +93234,19 @@ void QTreeView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTreeView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setWindowModified(vbo != 0);
+}
+
 void QTreeView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTreeView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setWindowTitle(QString(vqs));
 }
 
 void QTreeView_ShowEvent(void* ptr, void* event)
@@ -85213,6 +93264,11 @@ int QTreeView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTreeView_CloseDefault(void* ptr)
+{
+	return static_cast<QTreeView*>(ptr)->QTreeView::close();
 }
 
 void QTreeView_CloseEvent(void* ptr, void* event)
@@ -85250,6 +93306,11 @@ void QTreeView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "hide");
 }
 
+void QTreeView_HideDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::hide();
+}
+
 void QTreeView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTreeView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -85275,6 +93336,11 @@ void QTreeView_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "lower");
 }
 
+void QTreeView_LowerDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::lower();
+}
+
 int QTreeView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QTreeView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -85290,9 +93356,19 @@ void QTreeView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "raise");
 }
 
+void QTreeView_RaiseDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::raise();
+}
+
 void QTreeView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "repaint");
+}
+
+void QTreeView_RepaintDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::repaint();
 }
 
 void QTreeView_SetDisabled(void* ptr, int disable)
@@ -85300,9 +93376,19 @@ void QTreeView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTreeView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setDisabled(disable != 0);
+}
+
 void QTreeView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setFocus");
+}
+
+void QTreeView_SetFocus2Default(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setFocus();
 }
 
 void QTreeView_SetHidden(void* ptr, int hidden)
@@ -85310,9 +93396,19 @@ void QTreeView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTreeView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::setHidden(hidden != 0);
+}
+
 void QTreeView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "show");
+}
+
+void QTreeView_ShowDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::show();
 }
 
 void QTreeView_ShowFullScreen(void* ptr)
@@ -85320,9 +93416,19 @@ void QTreeView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "showFullScreen");
 }
 
+void QTreeView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::showFullScreen();
+}
+
 void QTreeView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "showMaximized");
+}
+
+void QTreeView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::showMaximized();
 }
 
 void QTreeView_ShowMinimized(void* ptr)
@@ -85330,9 +93436,19 @@ void QTreeView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "showMinimized");
 }
 
+void QTreeView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::showMinimized();
+}
+
 void QTreeView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "showNormal");
+}
+
+void QTreeView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::showNormal();
 }
 
 void QTreeView_TabletEvent(void* ptr, void* event)
@@ -85348,6 +93464,11 @@ void QTreeView_TabletEventDefault(void* ptr, void* event)
 void QTreeView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "updateMicroFocus");
+}
+
+void QTreeView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::updateMicroFocus();
 }
 
 void QTreeView_ChildEvent(void* ptr, void* event)
@@ -85383,6 +93504,11 @@ void QTreeView_CustomEventDefault(void* ptr, void* event)
 void QTreeView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeView*>(ptr), "deleteLater");
+}
+
+void QTreeView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTreeView*>(ptr)->QTreeView::deleteLater();
 }
 
 void QTreeView_DisconnectNotify(void* ptr, void* sign)
@@ -85975,9 +94101,19 @@ void QTreeWidget_Collapse(void* ptr, void* index)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "collapse", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
 }
 
+void QTreeWidget_CollapseDefault(void* ptr, void* index)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::collapse(*static_cast<QModelIndex*>(index));
+}
+
 void QTreeWidget_Expand(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expand", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTreeWidget_ExpandDefault(void* ptr, void* index)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::expand(*static_cast<QModelIndex*>(index));
 }
 
 void QTreeWidget_CollapseAll(void* ptr)
@@ -85985,9 +94121,19 @@ void QTreeWidget_CollapseAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "collapseAll");
 }
 
+void QTreeWidget_CollapseAllDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::collapseAll();
+}
+
 void QTreeWidget_ColumnCountChanged(void* ptr, int oldCount, int newCount)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "columnCountChanged", Q_ARG(int, oldCount), Q_ARG(int, newCount));
+}
+
+void QTreeWidget_ColumnCountChangedDefault(void* ptr, int oldCount, int newCount)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::columnCountChanged(oldCount, newCount);
 }
 
 void QTreeWidget_ColumnMoved(void* ptr)
@@ -85995,9 +94141,19 @@ void QTreeWidget_ColumnMoved(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "columnMoved");
 }
 
+void QTreeWidget_ColumnMovedDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::columnMoved();
+}
+
 void QTreeWidget_ColumnResized(void* ptr, int column, int oldSize, int newSize)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "columnResized", Q_ARG(int, column), Q_ARG(int, oldSize), Q_ARG(int, newSize));
+}
+
+void QTreeWidget_ColumnResizedDefault(void* ptr, int column, int oldSize, int newSize)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::columnResized(column, oldSize, newSize);
 }
 
 void QTreeWidget_CurrentChanged(void* ptr, void* current, void* previous)
@@ -86045,14 +94201,29 @@ void QTreeWidget_ExpandAll(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expandAll");
 }
 
+void QTreeWidget_ExpandAllDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::expandAll();
+}
+
 void QTreeWidget_ExpandToDepth(void* ptr, int depth)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expandToDepth", Q_ARG(int, depth));
 }
 
+void QTreeWidget_ExpandToDepthDefault(void* ptr, int depth)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::expandToDepth(depth);
+}
+
 void QTreeWidget_HideColumn(void* ptr, int column)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "hideColumn", Q_ARG(int, column));
+}
+
+void QTreeWidget_HideColumnDefault(void* ptr, int column)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::hideColumn(column);
 }
 
 int QTreeWidget_HorizontalOffset(void* ptr)
@@ -86180,6 +94351,11 @@ void QTreeWidget_ResizeColumnToContents(void* ptr, int column)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "resizeColumnToContents", Q_ARG(int, column));
 }
 
+void QTreeWidget_ResizeColumnToContentsDefault(void* ptr, int column)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::resizeColumnToContents(column);
+}
+
 void QTreeWidget_RowsAboutToBeRemoved(void* ptr, void* parent, int start, int end)
 {
 	static_cast<QTreeWidget*>(ptr)->rowsAboutToBeRemoved(*static_cast<QModelIndex*>(parent), start, end);
@@ -86203,6 +94379,11 @@ void QTreeWidget_RowsInsertedDefault(void* ptr, void* parent, int start, int end
 void QTreeWidget_RowsRemoved(void* ptr, void* parent, int start, int end)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "rowsRemoved", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(parent)), Q_ARG(int, start), Q_ARG(int, end));
+}
+
+void QTreeWidget_RowsRemovedDefault(void* ptr, void* parent, int start, int end)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::rowsRemoved(*static_cast<QModelIndex*>(parent), start, end);
 }
 
 void QTreeWidget_ScrollContentsBy(void* ptr, int dx, int dy)
@@ -86278,6 +94459,11 @@ void QTreeWidget_SetSelectionDefault(void* ptr, void* rect, int command)
 void QTreeWidget_ShowColumn(void* ptr, int column)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "showColumn", Q_ARG(int, column));
+}
+
+void QTreeWidget_ShowColumnDefault(void* ptr, int column)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::showColumn(column);
 }
 
 int QTreeWidget_SizeHintForColumn(void* ptr, int column)
@@ -86375,6 +94561,11 @@ void QTreeWidget_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "clearSelection");
 }
 
+void QTreeWidget_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::clearSelection();
+}
+
 void QTreeWidget_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -86408,6 +94599,11 @@ void QTreeWidget_DragEnterEventDefault(void* ptr, void* event)
 void QTreeWidget_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTreeWidget_EditDefault(void* ptr, void* index)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QTreeWidget_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -86495,9 +94691,19 @@ void QTreeWidget_ScrollToBottom(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToBottom");
 }
 
+void QTreeWidget_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::scrollToBottom();
+}
+
 void QTreeWidget_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToTop");
+}
+
+void QTreeWidget_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::scrollToTop();
 }
 
 int QTreeWidget_SelectionCommand(void* ptr, void* index, void* event)
@@ -86513,6 +94719,11 @@ int QTreeWidget_SelectionCommandDefault(void* ptr, void* index, void* event)
 void QTreeWidget_SetCurrentIndex(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTreeWidget_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setCurrentIndex(*static_cast<QModelIndex*>(index));
 }
 
 int QTreeWidget_SizeHintForRow(void* ptr, int row)
@@ -86538,6 +94749,11 @@ void QTreeWidget_StartDragDefault(void* ptr, int supportedActions)
 void QTreeWidget_Update(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QTreeWidget_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::update(*static_cast<QModelIndex*>(index));
 }
 
 void* QTreeWidget_ViewOptions(void* ptr)
@@ -86685,9 +94901,19 @@ void QTreeWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QTreeWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setEnabled(vbo != 0);
+}
+
 void QTreeWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QTreeWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QTreeWidget_SetVisible(void* ptr, int visible)
@@ -86705,9 +94931,19 @@ void QTreeWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QTreeWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setWindowModified(vbo != 0);
+}
+
 void QTreeWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QTreeWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setWindowTitle(QString(vqs));
 }
 
 void QTreeWidget_ShowEvent(void* ptr, void* event)
@@ -86725,6 +94961,11 @@ int QTreeWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QTreeWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::close();
 }
 
 void QTreeWidget_CloseEvent(void* ptr, void* event)
@@ -86762,6 +95003,11 @@ void QTreeWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "hide");
 }
 
+void QTreeWidget_HideDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::hide();
+}
+
 void QTreeWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QTreeWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -86787,6 +95033,11 @@ void QTreeWidget_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "lower");
 }
 
+void QTreeWidget_LowerDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::lower();
+}
+
 int QTreeWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QTreeWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -86802,9 +95053,19 @@ void QTreeWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "raise");
 }
 
+void QTreeWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::raise();
+}
+
 void QTreeWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "repaint");
+}
+
+void QTreeWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::repaint();
 }
 
 void QTreeWidget_SetDisabled(void* ptr, int disable)
@@ -86812,9 +95073,19 @@ void QTreeWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QTreeWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setDisabled(disable != 0);
+}
+
 void QTreeWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setFocus");
+}
+
+void QTreeWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setFocus();
 }
 
 void QTreeWidget_SetHidden(void* ptr, int hidden)
@@ -86822,9 +95093,19 @@ void QTreeWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QTreeWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::setHidden(hidden != 0);
+}
+
 void QTreeWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "show");
+}
+
+void QTreeWidget_ShowDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::show();
 }
 
 void QTreeWidget_ShowFullScreen(void* ptr)
@@ -86832,9 +95113,19 @@ void QTreeWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "showFullScreen");
 }
 
+void QTreeWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::showFullScreen();
+}
+
 void QTreeWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "showMaximized");
+}
+
+void QTreeWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::showMaximized();
 }
 
 void QTreeWidget_ShowMinimized(void* ptr)
@@ -86842,9 +95133,19 @@ void QTreeWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "showMinimized");
 }
 
+void QTreeWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::showMinimized();
+}
+
 void QTreeWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "showNormal");
+}
+
+void QTreeWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::showNormal();
 }
 
 void QTreeWidget_TabletEvent(void* ptr, void* event)
@@ -86860,6 +95161,11 @@ void QTreeWidget_TabletEventDefault(void* ptr, void* event)
 void QTreeWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "updateMicroFocus");
+}
+
+void QTreeWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::updateMicroFocus();
 }
 
 void QTreeWidget_ChildEvent(void* ptr, void* event)
@@ -86895,6 +95201,11 @@ void QTreeWidget_CustomEventDefault(void* ptr, void* event)
 void QTreeWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "deleteLater");
+}
+
+void QTreeWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::deleteLater();
 }
 
 void QTreeWidget_DisconnectNotify(void* ptr, void* sign)
@@ -87646,6 +95957,11 @@ void QUndoGroup_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoGroup*>(ptr), "deleteLater");
 }
 
+void QUndoGroup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QUndoGroup*>(ptr)->QUndoGroup::deleteLater();
+}
+
 void QUndoGroup_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QUndoGroup*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -87975,6 +96291,11 @@ void QUndoStack_CustomEventDefault(void* ptr, void* event)
 void QUndoStack_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "deleteLater");
+}
+
+void QUndoStack_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QUndoStack*>(ptr)->QUndoStack::deleteLater();
 }
 
 void QUndoStack_DisconnectNotify(void* ptr, void* sign)
@@ -88465,6 +96786,11 @@ void QUndoView_ClearSelection(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "clearSelection");
 }
 
+void QUndoView_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::clearSelection();
+}
+
 void QUndoView_CloseEditor(void* ptr, void* editor, int hint)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "closeEditor", Q_ARG(QWidget*, static_cast<QWidget*>(editor)), Q_ARG(QAbstractItemDelegate::EndEditHint, static_cast<QAbstractItemDelegate::EndEditHint>(hint)));
@@ -88498,6 +96824,11 @@ void QUndoView_DragEnterEventDefault(void* ptr, void* event)
 void QUndoView_Edit(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "edit", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QUndoView_EditDefault(void* ptr, void* index)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::edit(*static_cast<QModelIndex*>(index));
 }
 
 int QUndoView_Edit2(void* ptr, void* index, int trigger, void* event)
@@ -88625,9 +96956,19 @@ void QUndoView_ScrollToBottom(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "scrollToBottom");
 }
 
+void QUndoView_ScrollToBottomDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::scrollToBottom();
+}
+
 void QUndoView_ScrollToTop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "scrollToTop");
+}
+
+void QUndoView_ScrollToTopDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::scrollToTop();
 }
 
 void QUndoView_SelectAll(void* ptr)
@@ -88653,6 +96994,11 @@ int QUndoView_SelectionCommandDefault(void* ptr, void* index, void* event)
 void QUndoView_SetCurrentIndex(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setCurrentIndex", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QUndoView_SetCurrentIndexDefault(void* ptr, void* index)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setCurrentIndex(*static_cast<QModelIndex*>(index));
 }
 
 void QUndoView_SetModel(void* ptr, void* model)
@@ -88708,6 +97054,11 @@ int QUndoView_SizeHintForRowDefault(void* ptr, int row)
 void QUndoView_Update(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
+}
+
+void QUndoView_UpdateDefault(void* ptr, void* index)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::update(*static_cast<QModelIndex*>(index));
 }
 
 void QUndoView_ContextMenuEvent(void* ptr, void* e)
@@ -88855,9 +97206,19 @@ void QUndoView_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QUndoView_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setEnabled(vbo != 0);
+}
+
 void QUndoView_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QUndoView_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setStyleSheet(QString(styleSheet));
 }
 
 void QUndoView_SetVisible(void* ptr, int visible)
@@ -88875,9 +97236,19 @@ void QUndoView_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QUndoView_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setWindowModified(vbo != 0);
+}
+
 void QUndoView_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QUndoView_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setWindowTitle(QString(vqs));
 }
 
 void QUndoView_ShowEvent(void* ptr, void* event)
@@ -88895,6 +97266,11 @@ int QUndoView_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QUndoView_CloseDefault(void* ptr)
+{
+	return static_cast<QUndoView*>(ptr)->QUndoView::close();
 }
 
 void QUndoView_CloseEvent(void* ptr, void* event)
@@ -88932,6 +97308,11 @@ void QUndoView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "hide");
 }
 
+void QUndoView_HideDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::hide();
+}
+
 void QUndoView_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QUndoView*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -88957,6 +97338,11 @@ void QUndoView_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "lower");
 }
 
+void QUndoView_LowerDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::lower();
+}
+
 int QUndoView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QUndoView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -88972,9 +97358,19 @@ void QUndoView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "raise");
 }
 
+void QUndoView_RaiseDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::raise();
+}
+
 void QUndoView_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "repaint");
+}
+
+void QUndoView_RepaintDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::repaint();
 }
 
 void QUndoView_SetDisabled(void* ptr, int disable)
@@ -88982,9 +97378,19 @@ void QUndoView_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QUndoView_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setDisabled(disable != 0);
+}
+
 void QUndoView_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setFocus");
+}
+
+void QUndoView_SetFocus2Default(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setFocus();
 }
 
 void QUndoView_SetHidden(void* ptr, int hidden)
@@ -88992,9 +97398,19 @@ void QUndoView_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QUndoView_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::setHidden(hidden != 0);
+}
+
 void QUndoView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "show");
+}
+
+void QUndoView_ShowDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::show();
 }
 
 void QUndoView_ShowFullScreen(void* ptr)
@@ -89002,9 +97418,19 @@ void QUndoView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "showFullScreen");
 }
 
+void QUndoView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::showFullScreen();
+}
+
 void QUndoView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "showMaximized");
+}
+
+void QUndoView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::showMaximized();
 }
 
 void QUndoView_ShowMinimized(void* ptr)
@@ -89012,9 +97438,19 @@ void QUndoView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "showMinimized");
 }
 
+void QUndoView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::showMinimized();
+}
+
 void QUndoView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "showNormal");
+}
+
+void QUndoView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::showNormal();
 }
 
 void QUndoView_TabletEvent(void* ptr, void* event)
@@ -89030,6 +97466,11 @@ void QUndoView_TabletEventDefault(void* ptr, void* event)
 void QUndoView_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "updateMicroFocus");
+}
+
+void QUndoView_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::updateMicroFocus();
 }
 
 void QUndoView_ChildEvent(void* ptr, void* event)
@@ -89065,6 +97506,11 @@ void QUndoView_CustomEventDefault(void* ptr, void* event)
 void QUndoView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoView*>(ptr), "deleteLater");
+}
+
+void QUndoView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::deleteLater();
 }
 
 void QUndoView_DisconnectNotify(void* ptr, void* sign)
@@ -89355,6 +97801,11 @@ void QVBoxLayout_CustomEventDefault(void* ptr, void* event)
 void QVBoxLayout_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVBoxLayout*>(ptr), "deleteLater");
+}
+
+void QVBoxLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVBoxLayout*>(ptr)->QVBoxLayout::deleteLater();
 }
 
 void QVBoxLayout_DisconnectNotify(void* ptr, void* sign)
@@ -91162,6 +99613,11 @@ void QWidget_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWidget*>(ptr), "deleteLater");
 }
 
+void QWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWidget*>(ptr)->QWidget::deleteLater();
+}
+
 void QWidget_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QWidget*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -91291,9 +99747,19 @@ void QWidgetAction_SetChecked(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "setChecked", Q_ARG(bool, vbo != 0));
 }
 
+void QWidgetAction_SetCheckedDefault(void* ptr, int vbo)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::setChecked(vbo != 0);
+}
+
 void QWidgetAction_SetEnabled(void* ptr, int vbo)
 {
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
+}
+
+void QWidgetAction_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::setEnabled(vbo != 0);
 }
 
 void QWidgetAction_SetVisible(void* ptr, int vbo)
@@ -91301,9 +99767,19 @@ void QWidgetAction_SetVisible(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "setVisible", Q_ARG(bool, vbo != 0));
 }
 
+void QWidgetAction_SetVisibleDefault(void* ptr, int vbo)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::setVisible(vbo != 0);
+}
+
 void QWidgetAction_Toggle(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "toggle");
+}
+
+void QWidgetAction_ToggleDefault(void* ptr)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::toggle();
 }
 
 void QWidgetAction_Hover(void* ptr)
@@ -91311,14 +99787,29 @@ void QWidgetAction_Hover(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "hover");
 }
 
+void QWidgetAction_HoverDefault(void* ptr)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::hover();
+}
+
 void QWidgetAction_SetDisabled(void* ptr, int b)
 {
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "setDisabled", Q_ARG(bool, b != 0));
 }
 
+void QWidgetAction_SetDisabledDefault(void* ptr, int b)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::setDisabled(b != 0);
+}
+
 void QWidgetAction_Trigger(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "trigger");
+}
+
+void QWidgetAction_TriggerDefault(void* ptr)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::trigger();
 }
 
 void QWidgetAction_TimerEvent(void* ptr, void* event)
@@ -91364,6 +99855,11 @@ void QWidgetAction_CustomEventDefault(void* ptr, void* event)
 void QWidgetAction_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWidgetAction*>(ptr), "deleteLater");
+}
+
+void QWidgetAction_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWidgetAction*>(ptr)->QWidgetAction::deleteLater();
 }
 
 void QWidgetAction_DisconnectNotify(void* ptr, void* sign)
@@ -92270,9 +100766,19 @@ void QWizard_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QWizard_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QWizard*>(ptr)->QWizard::setEnabled(vbo != 0);
+}
+
 void QWizard_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QWizard_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QWizard*>(ptr)->QWizard::setStyleSheet(QString(styleSheet));
 }
 
 void QWizard_SetWindowModified(void* ptr, int vbo)
@@ -92280,9 +100786,19 @@ void QWizard_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QWizard_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QWizard*>(ptr)->QWizard::setWindowModified(vbo != 0);
+}
+
 void QWizard_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QWizard_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QWizard*>(ptr)->QWizard::setWindowTitle(QString(vqs));
 }
 
 void QWizard_ChangeEvent(void* ptr, void* event)
@@ -92300,6 +100816,11 @@ int QWizard_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QWizard_CloseDefault(void* ptr)
+{
+	return static_cast<QWizard*>(ptr)->QWizard::close();
 }
 
 int QWizard_FocusNextPrevChild(void* ptr, int next)
@@ -92335,6 +100856,11 @@ int QWizard_HeightForWidthDefault(void* ptr, int w)
 void QWizard_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "hide");
+}
+
+void QWizard_HideDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::hide();
 }
 
 void QWizard_InitPainter(void* ptr, void* painter)
@@ -92382,6 +100908,11 @@ void QWizard_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "lower");
 }
 
+void QWizard_LowerDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::lower();
+}
+
 void QWizard_MouseDoubleClickEvent(void* ptr, void* event)
 {
 	static_cast<QWizard*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
@@ -92427,9 +100958,19 @@ void QWizard_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "raise");
 }
 
+void QWizard_RaiseDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::raise();
+}
+
 void QWizard_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "repaint");
+}
+
+void QWizard_RepaintDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::repaint();
 }
 
 void QWizard_SetDisabled(void* ptr, int disable)
@@ -92437,9 +100978,19 @@ void QWizard_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QWizard_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QWizard*>(ptr)->QWizard::setDisabled(disable != 0);
+}
+
 void QWizard_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setFocus");
+}
+
+void QWizard_SetFocus2Default(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::setFocus();
 }
 
 void QWizard_SetHidden(void* ptr, int hidden)
@@ -92447,9 +100998,19 @@ void QWizard_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QWizard_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QWizard*>(ptr)->QWizard::setHidden(hidden != 0);
+}
+
 void QWizard_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "show");
+}
+
+void QWizard_ShowDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::show();
 }
 
 void QWizard_ShowFullScreen(void* ptr)
@@ -92457,9 +101018,19 @@ void QWizard_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "showFullScreen");
 }
 
+void QWizard_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::showFullScreen();
+}
+
 void QWizard_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "showMaximized");
+}
+
+void QWizard_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::showMaximized();
 }
 
 void QWizard_ShowMinimized(void* ptr)
@@ -92467,9 +101038,19 @@ void QWizard_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "showMinimized");
 }
 
+void QWizard_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::showMinimized();
+}
+
 void QWizard_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "showNormal");
+}
+
+void QWizard_ShowNormalDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::showNormal();
 }
 
 void QWizard_TabletEvent(void* ptr, void* event)
@@ -92487,9 +101068,19 @@ void QWizard_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "update");
 }
 
+void QWizard_UpdateDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::update();
+}
+
 void QWizard_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "updateMicroFocus");
+}
+
+void QWizard_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::updateMicroFocus();
 }
 
 void QWizard_WheelEvent(void* ptr, void* event)
@@ -92545,6 +101136,11 @@ void QWizard_CustomEventDefault(void* ptr, void* event)
 void QWizard_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizard*>(ptr), "deleteLater");
+}
+
+void QWizard_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWizard*>(ptr)->QWizard::deleteLater();
 }
 
 void QWizard_DisconnectNotify(void* ptr, void* sign)
@@ -92954,9 +101550,19 @@ void QWizardPage_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QWizardPage_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::setEnabled(vbo != 0);
+}
+
 void QWizardPage_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QWizardPage_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::setStyleSheet(QString(styleSheet));
 }
 
 void QWizardPage_SetVisible(void* ptr, int visible)
@@ -92974,9 +101580,19 @@ void QWizardPage_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QWizardPage_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::setWindowModified(vbo != 0);
+}
+
 void QWizardPage_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QWizardPage_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::setWindowTitle(QString(vqs));
 }
 
 void QWizardPage_ShowEvent(void* ptr, void* event)
@@ -93014,6 +101630,11 @@ int QWizardPage_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QWizardPage_CloseDefault(void* ptr)
+{
+	return static_cast<QWizardPage*>(ptr)->QWizardPage::close();
 }
 
 void QWizardPage_CloseEvent(void* ptr, void* event)
@@ -93081,6 +101702,11 @@ void QWizardPage_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "hide");
 }
 
+void QWizardPage_HideDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::hide();
+}
+
 void QWizardPage_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QWizardPage*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -93134,6 +101760,11 @@ void QWizardPage_KeyReleaseEventDefault(void* ptr, void* event)
 void QWizardPage_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "lower");
+}
+
+void QWizardPage_LowerDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::lower();
 }
 
 void QWizardPage_MouseDoubleClickEvent(void* ptr, void* event)
@@ -93191,9 +101822,19 @@ void QWizardPage_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "raise");
 }
 
+void QWizardPage_RaiseDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::raise();
+}
+
 void QWizardPage_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "repaint");
+}
+
+void QWizardPage_RepaintDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::repaint();
 }
 
 void QWizardPage_ResizeEvent(void* ptr, void* event)
@@ -93211,9 +101852,19 @@ void QWizardPage_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QWizardPage_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::setDisabled(disable != 0);
+}
+
 void QWizardPage_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "setFocus");
+}
+
+void QWizardPage_SetFocus2Default(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::setFocus();
 }
 
 void QWizardPage_SetHidden(void* ptr, int hidden)
@@ -93221,9 +101872,19 @@ void QWizardPage_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QWizardPage_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::setHidden(hidden != 0);
+}
+
 void QWizardPage_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "show");
+}
+
+void QWizardPage_ShowDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::show();
 }
 
 void QWizardPage_ShowFullScreen(void* ptr)
@@ -93231,9 +101892,19 @@ void QWizardPage_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "showFullScreen");
 }
 
+void QWizardPage_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::showFullScreen();
+}
+
 void QWizardPage_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "showMaximized");
+}
+
+void QWizardPage_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::showMaximized();
 }
 
 void QWizardPage_ShowMinimized(void* ptr)
@@ -93241,9 +101912,19 @@ void QWizardPage_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "showMinimized");
 }
 
+void QWizardPage_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::showMinimized();
+}
+
 void QWizardPage_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "showNormal");
+}
+
+void QWizardPage_ShowNormalDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::showNormal();
 }
 
 void QWizardPage_TabletEvent(void* ptr, void* event)
@@ -93261,9 +101942,19 @@ void QWizardPage_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "update");
 }
 
+void QWizardPage_UpdateDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::update();
+}
+
 void QWizardPage_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "updateMicroFocus");
+}
+
+void QWizardPage_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::updateMicroFocus();
 }
 
 void QWizardPage_WheelEvent(void* ptr, void* event)
@@ -93319,6 +102010,11 @@ void QWizardPage_CustomEventDefault(void* ptr, void* event)
 void QWizardPage_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWizardPage*>(ptr), "deleteLater");
+}
+
+void QWizardPage_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWizardPage*>(ptr)->QWizardPage::deleteLater();
 }
 
 void QWizardPage_DisconnectNotify(void* ptr, void* sign)

@@ -96,9 +96,7 @@ func main() {
 
 	for _, m := range templater.GetLibs() {
 
-		if buildTarget == "android" && (m == "DBus" || m == "MacExtras" || m == "WebEngine" || m == "Designer") {
-
-		} else {
+		if !(buildTarget == "android" && (m == "DBus" || m == "SerialPort" || m == "MacExtras" || m == "WebEngine" || m == "WebKit" || m == "Designer")) {
 
 			var before = time.Now()
 

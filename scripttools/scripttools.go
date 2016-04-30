@@ -461,8 +461,9 @@ func callbackQScriptEngineDebugger_DeleteLater(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQScriptEngineDebuggerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QScriptEngineDebugger) ConnectDeleteLater(f func()) {
@@ -488,6 +489,15 @@ func (ptr *QScriptEngineDebugger) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QScriptEngineDebugger_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScriptEngineDebugger) DeleteLaterDefault() {
+	defer qt.Recovering("QScriptEngineDebugger::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngineDebugger_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

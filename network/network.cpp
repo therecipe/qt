@@ -182,6 +182,11 @@ void QAbstractNetworkCache_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractNetworkCache*>(ptr), "deleteLater");
 }
 
+void QAbstractNetworkCache_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractNetworkCache*>(ptr)->QAbstractNetworkCache::deleteLater();
+}
+
 void QAbstractNetworkCache_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractNetworkCache*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -725,6 +730,11 @@ void QAbstractSocket_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractSocket*>(ptr), "deleteLater");
 }
 
+void QAbstractSocket_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::deleteLater();
+}
+
 void QAbstractSocket_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1083,6 +1093,11 @@ void QDnsLookup_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDnsLookup*>(ptr), "deleteLater");
 }
 
+void QDnsLookup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDnsLookup*>(ptr)->QDnsLookup::deleteLater();
+}
+
 void QDnsLookup_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QDnsLookup*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1438,6 +1453,11 @@ void QHttpMultiPart_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHttpMultiPart*>(ptr), "deleteLater");
 }
 
+void QHttpMultiPart_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QHttpMultiPart*>(ptr)->QHttpMultiPart::deleteLater();
+}
+
 void QHttpMultiPart_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QHttpMultiPart*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1689,6 +1709,11 @@ void QLocalServer_CustomEventDefault(void* ptr, void* event)
 void QLocalServer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QLocalServer*>(ptr), "deleteLater");
+}
+
+void QLocalServer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLocalServer*>(ptr)->QLocalServer::deleteLater();
 }
 
 void QLocalServer_DisconnectNotify(void* ptr, void* sign)
@@ -2105,6 +2130,11 @@ void QLocalSocket_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QLocalSocket*>(ptr), "deleteLater");
 }
 
+void QLocalSocket_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QLocalSocket*>(ptr)->QLocalSocket::deleteLater();
+}
+
 void QLocalSocket_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QLocalSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2453,6 +2483,11 @@ void QNetworkAccessManager_CustomEventDefault(void* ptr, void* event)
 void QNetworkAccessManager_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkAccessManager*>(ptr), "deleteLater");
+}
+
+void QNetworkAccessManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::deleteLater();
 }
 
 void QNetworkAccessManager_DisconnectNotify(void* ptr, void* sign)
@@ -2866,6 +2901,11 @@ void QNetworkConfigurationManager_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNetworkConfigurationManager*>(ptr), "deleteLater");
 }
 
+void QNetworkConfigurationManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::deleteLater();
+}
+
 void QNetworkConfigurationManager_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QNetworkConfigurationManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3130,6 +3170,11 @@ void QNetworkCookieJar_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNetworkCookieJar*>(ptr), "deleteLater");
 }
 
+void QNetworkCookieJar_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNetworkCookieJar*>(ptr)->QNetworkCookieJar::deleteLater();
+}
+
 void QNetworkCookieJar_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QNetworkCookieJar*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3362,6 +3407,11 @@ void QNetworkDiskCache_CustomEventDefault(void* ptr, void* event)
 void QNetworkDiskCache_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkDiskCache*>(ptr), "deleteLater");
+}
+
+void QNetworkDiskCache_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNetworkDiskCache*>(ptr)->QNetworkDiskCache::deleteLater();
 }
 
 void QNetworkDiskCache_DisconnectNotify(void* ptr, void* sign)
@@ -4178,6 +4228,11 @@ long long QNetworkReply_WriteData(void* ptr, char* data, long long maxSize)
 	return static_cast<long long>(static_cast<QNetworkReply*>(ptr)->writeData(const_cast<const char*>(data), static_cast<long long>(maxSize)));
 }
 
+long long QNetworkReply_WriteDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<long long>(static_cast<QNetworkReply*>(ptr)->QNetworkReply::writeData(const_cast<const char*>(data), static_cast<long long>(maxSize)));
+}
+
 void QNetworkReply_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QNetworkReply*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -4221,6 +4276,11 @@ void QNetworkReply_CustomEventDefault(void* ptr, void* event)
 void QNetworkReply_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkReply*>(ptr), "deleteLater");
+}
+
+void QNetworkReply_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNetworkReply*>(ptr)->QNetworkReply::deleteLater();
 }
 
 void QNetworkReply_DisconnectNotify(void* ptr, void* sign)
@@ -4630,6 +4690,11 @@ void QNetworkSession_CustomEventDefault(void* ptr, void* event)
 void QNetworkSession_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "deleteLater");
+}
+
+void QNetworkSession_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::deleteLater();
 }
 
 void QNetworkSession_DisconnectNotify(void* ptr, void* sign)
@@ -5712,6 +5777,11 @@ void QSslSocket_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSslSocket*>(ptr), "deleteLater");
 }
 
+void QSslSocket_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSslSocket*>(ptr)->QSslSocket::deleteLater();
+}
+
 void QSslSocket_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSslSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5939,6 +6009,11 @@ void QTcpServer_CustomEventDefault(void* ptr, void* event)
 void QTcpServer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTcpServer*>(ptr), "deleteLater");
+}
+
+void QTcpServer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTcpServer*>(ptr)->QTcpServer::deleteLater();
 }
 
 void QTcpServer_DisconnectNotify(void* ptr, void* sign)
@@ -6291,6 +6366,11 @@ void QTcpSocket_CustomEventDefault(void* ptr, void* event)
 void QTcpSocket_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTcpSocket*>(ptr), "deleteLater");
+}
+
+void QTcpSocket_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTcpSocket*>(ptr)->QTcpSocket::deleteLater();
 }
 
 void QTcpSocket_DisconnectNotify(void* ptr, void* sign)
@@ -6683,6 +6763,11 @@ void QUdpSocket_CustomEventDefault(void* ptr, void* event)
 void QUdpSocket_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUdpSocket*>(ptr), "deleteLater");
+}
+
+void QUdpSocket_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QUdpSocket*>(ptr)->QUdpSocket::deleteLater();
 }
 
 void QUdpSocket_DisconnectNotify(void* ptr, void* sign)

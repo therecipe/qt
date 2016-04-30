@@ -415,6 +415,11 @@ void QGeoAreaMonitorSource_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGeoAreaMonitorSource*>(ptr), "deleteLater");
 }
 
+void QGeoAreaMonitorSource_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGeoAreaMonitorSource*>(ptr)->QGeoAreaMonitorSource::deleteLater();
+}
+
 void QGeoAreaMonitorSource_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGeoAreaMonitorSource*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -825,6 +830,11 @@ void QGeoPositionInfoSource_CustomEventDefault(void* ptr, void* event)
 void QGeoPositionInfoSource_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGeoPositionInfoSource*>(ptr), "deleteLater");
+}
+
+void QGeoPositionInfoSource_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGeoPositionInfoSource*>(ptr)->QGeoPositionInfoSource::deleteLater();
 }
 
 void QGeoPositionInfoSource_DisconnectNotify(void* ptr, void* sign)
@@ -1241,6 +1251,11 @@ void QGeoSatelliteInfoSource_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGeoSatelliteInfoSource*>(ptr), "deleteLater");
 }
 
+void QGeoSatelliteInfoSource_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGeoSatelliteInfoSource*>(ptr)->QGeoSatelliteInfoSource::deleteLater();
+}
+
 void QGeoSatelliteInfoSource_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGeoSatelliteInfoSource*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1524,6 +1539,11 @@ void QNmeaPositionInfoSource_CustomEventDefault(void* ptr, void* event)
 void QNmeaPositionInfoSource_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNmeaPositionInfoSource*>(ptr), "deleteLater");
+}
+
+void QNmeaPositionInfoSource_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNmeaPositionInfoSource*>(ptr)->QNmeaPositionInfoSource::deleteLater();
 }
 
 void QNmeaPositionInfoSource_DisconnectNotify(void* ptr, void* sign)

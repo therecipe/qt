@@ -43,10 +43,9 @@ func (m *Module) Prepare() {
 		}
 	}
 
-	//fixes for 5.6.0
 	for _, c := range ClassMap {
 		if c.Module == m.Project {
-			//c.fixBases()
+			//TODO: fix for 5.6 c.fixBases()
 
 			for _, f := range c.Functions {
 				f.fix()

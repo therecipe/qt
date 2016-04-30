@@ -46,10 +46,54 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 
 		f.Name == "readData", f.Name == "QNetworkReply", //TODO: char*
 
+		f.Name == "setMargins", //depreached in 5.6
+
+		f.Name == "QDesignerFormWindowInterface" || f.Name == "QDesignerFormWindowManagerInterface" || f.Name == "QDesignerWidgetBoxInterface", //unimplemented virtual
+
 		strings.Contains(f.Access, "unsupported"), strings.ContainsAny(f.Signature, "<>"):
 
 		{
 			f.Access = "unsupported_isBlockedFunction"
+			return false
+		}
+	}
+
+	if f.Default {
+		return functionIsSupportedDefault(f)
+	}
+
+	return true
+}
+
+func functionIsSupportedDefault(f *parser.Function) bool {
+	switch f.Fullname {
+	case
+		"QAnimationGroup::updateCurrentTime", "QAnimationGroup::duration",
+		"QAbstractProxyModel::columnCount", "QAbstractTableModel::columnCount",
+		"QAbstractListModel::data", "QAbstractTableModel::data",
+		"QAbstractProxyModel::index", "QAbstractProxyModel::parent",
+		"QAbstractListModel::rowCount", "QAbstractProxyModel::rowCount", "QAbstractTableModel::rowCount",
+
+		"QPagedPaintDevice::paintEngine", "QAccessibleObject::childCount",
+		"QAccessibleObject::indexOfChild", "QAccessibleObject::role",
+		"QAccessibleObject::text", "QAccessibleObject::child",
+		"QAccessibleObject::parent",
+
+		"QAbstractGraphicsShapeItem::paint", "QGraphicsObject::paint",
+		"QLayout::sizeHint", "QAbstractGraphicsShapeItem::boundingRect",
+		"QGraphicsObject::boundingRect", "QGraphicsLayout::sizeHint",
+
+		"QSimpleXmlNodeModel::typedValue", "QSimpleXmlNodeModel::documentUri",
+		"QSimpleXmlNodeModel::compareOrder", "QSimpleXmlNodeModel::nextFromSimpleAxis",
+		"QSimpleXmlNodeModel::kind", "QSimpleXmlNodeModel::root",
+
+		"QAbstractPlanarVideoBuffer::unmap", "QAbstractPlanarVideoBuffer::mapMode",
+
+		"QSGDynamicTexture::bind", "QSGDynamicTexture::hasMipmaps",
+		"QSGDynamicTexture::textureSize", "QSGDynamicTexture::hasAlphaChannel",
+		"QSGDynamicTexture::textureId":
+
+		{
 			return false
 		}
 	}
@@ -134,12 +178,22 @@ var Build = map[string]bool{
 	"WebChannel":        false,
 	"Svg":               false,
 	"Multimedia":        false,
-	"Quick":             true,
-	"Help":              true,
-	"Location":          true,
-	"ScriptTools":       true,
-	"MultimediaWidgets": true,
-	"UiTools":           true,
+	"Quick":             false,
+	"Help":              false,
+	"Location":          false,
+	"ScriptTools":       false,
+	"MultimediaWidgets": false,
+	"UiTools":           false,
+	"X11Extras":         false,
+	"WinExtras":         false,
+	"WebEngine":         false,
+	"WebKit":            false,
+	"TestLib":           false,
+	"SerialPort":        false,
+	"SerialBus":         false,
+	"PrintSupport":      false,
+	"PlatformHeaders":   false,
+	"Designer":          true,
 }
 
 var Libs = []string{
@@ -151,7 +205,7 @@ var Libs = []string{
 	"Xml",
 	"DBus",
 	"Nfc",
-	"Script",
+	"Script", //depreached in 5.6
 	"Sensors",
 	"Positioning",
 	"Widgets",
@@ -166,9 +220,19 @@ var Libs = []string{
 	"Quick",
 	"Help",
 	"Location",
-	"ScriptTools",
-	"MultimediaWidgets",
+	"ScriptTools",       //depreached in 5.6
+	"MultimediaWidgets", //depreached in 5.6
 	"UiTools",
+	//"X11Extras", //linux/android only
+	//"WinExtras", //windows only
+	//"WebEngine", //available in 5.6
+	"WebKit", //depreached in 5.6
+	"TestLib",
+	"SerialPort",
+	//"SerialBus", //available in 5.6 and c++11
+	"PrintSupport",
+	//"PlatformHeaders", //missing imports/guards
+	"Designer",
 }
 
 func GetLibs() []string {
@@ -176,8 +240,7 @@ func GetLibs() []string {
 		switch {
 		case
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
-			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
-			runtime.GOOS == "android" && (Libs[i] == "WebEngine" || Libs[i] == "Designer"):
+			runtime.GOOS != "windows" && Libs[i] == "WinExtras":
 			{
 				Libs = append(Libs[:i], Libs[i+1:]...)
 			}
@@ -214,14 +277,16 @@ var LibDeps = map[string][]string{
 	"ScriptTools":       []string{"Core", "Gui", "Script", "Widgets"},
 	"MultimediaWidgets": []string{"Core", "Gui", "Network", "Widgets", "OpenGL", "Multimedia"},
 	"UiTools":           []string{"Core", "Gui", "Widgets"},
-
-	/*
-		CLucene
-		Designer
-		OpenGL
-		Concurrent
-		WinExtras
-	*/
+	"X11Extras":         []string{"Core"},
+	"WinExtras":         []string{},
+	"WebEngine":         []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "WebEngineCore", "WebEngineWidgets"},
+	"WebKit":            []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "PrintSupport", "WebKitWidgets"},
+	"TestLib":           []string{"Core", "Gui", "Widgets", "Test"},
+	"SerialPort":        []string{"Core"},
+	"SerialBus":         []string{"Core"},
+	"PrintSupport":      []string{"Core", "Gui", "Widgets"},
+	"PlatformHeaders":   []string{"Core"},
+	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
 
 	parser.MOC: make([]string, 0),
 }

@@ -163,6 +163,8 @@ int QAbstractPlanarVideoBuffer_MapMode(void* ptr)
 	return static_cast<QAbstractPlanarVideoBuffer*>(ptr)->mapMode();
 }
 
+
+
 void QAbstractPlanarVideoBuffer_Release(void* ptr)
 {
 	static_cast<QAbstractPlanarVideoBuffer*>(ptr)->release();
@@ -177,6 +179,8 @@ void QAbstractPlanarVideoBuffer_Unmap(void* ptr)
 {
 	static_cast<QAbstractPlanarVideoBuffer*>(ptr)->unmap();
 }
+
+
 
 class MyQAbstractVideoBuffer: public QAbstractVideoBuffer
 {
@@ -340,6 +344,11 @@ void QAbstractVideoFilter_CustomEventDefault(void* ptr, void* event)
 void QAbstractVideoFilter_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractVideoFilter*>(ptr), "deleteLater");
+}
+
+void QAbstractVideoFilter_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractVideoFilter*>(ptr)->QAbstractVideoFilter::deleteLater();
 }
 
 void QAbstractVideoFilter_DisconnectNotify(void* ptr, void* sign)
@@ -588,6 +597,11 @@ void QAbstractVideoSurface_CustomEventDefault(void* ptr, void* event)
 void QAbstractVideoSurface_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractVideoSurface*>(ptr), "deleteLater");
+}
+
+void QAbstractVideoSurface_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractVideoSurface*>(ptr)->QAbstractVideoSurface::deleteLater();
 }
 
 void QAbstractVideoSurface_DisconnectNotify(void* ptr, void* sign)
@@ -1071,6 +1085,11 @@ void QAudioDecoder_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioDecoder*>(ptr), "deleteLater");
 }
 
+void QAudioDecoder_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::deleteLater();
+}
+
 void QAudioDecoder_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAudioDecoder*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1403,6 +1422,11 @@ void QAudioDecoderControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioDecoderControl*>(ptr), "deleteLater");
 }
 
+void QAudioDecoderControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioDecoderControl*>(ptr)->QAudioDecoderControl::deleteLater();
+}
+
 void QAudioDecoderControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAudioDecoderControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1674,6 +1698,11 @@ void QAudioEncoderSettingsControl_CustomEventDefault(void* ptr, void* event)
 void QAudioEncoderSettingsControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAudioEncoderSettingsControl*>(ptr), "deleteLater");
+}
+
+void QAudioEncoderSettingsControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioEncoderSettingsControl*>(ptr)->QAudioEncoderSettingsControl::deleteLater();
 }
 
 void QAudioEncoderSettingsControl_DisconnectNotify(void* ptr, void* sign)
@@ -1988,6 +2017,11 @@ void QAudioInput_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioInput*>(ptr), "deleteLater");
 }
 
+void QAudioInput_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioInput*>(ptr)->QAudioInput::deleteLater();
+}
+
 void QAudioInput_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAudioInput*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2146,6 +2180,11 @@ void QAudioInputSelectorControl_CustomEventDefault(void* ptr, void* event)
 void QAudioInputSelectorControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAudioInputSelectorControl*>(ptr), "deleteLater");
+}
+
+void QAudioInputSelectorControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioInputSelectorControl*>(ptr)->QAudioInputSelectorControl::deleteLater();
 }
 
 void QAudioInputSelectorControl_DisconnectNotify(void* ptr, void* sign)
@@ -2385,6 +2424,11 @@ void QAudioOutput_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioOutput*>(ptr), "deleteLater");
 }
 
+void QAudioOutput_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioOutput*>(ptr)->QAudioOutput::deleteLater();
+}
+
 void QAudioOutput_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAudioOutput*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2545,6 +2589,11 @@ void QAudioOutputSelectorControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioOutputSelectorControl*>(ptr), "deleteLater");
 }
 
+void QAudioOutputSelectorControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioOutputSelectorControl*>(ptr)->QAudioOutputSelectorControl::deleteLater();
+}
+
 void QAudioOutputSelectorControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAudioOutputSelectorControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2702,6 +2751,11 @@ void QAudioProbe_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioProbe*>(ptr), "deleteLater");
 }
 
+void QAudioProbe_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioProbe*>(ptr)->QAudioProbe::deleteLater();
+}
+
 void QAudioProbe_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAudioProbe*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2837,9 +2891,19 @@ void QAudioRecorder_SetMuted(void* ptr, int muted)
 	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "setMuted", Q_ARG(bool, muted != 0));
 }
 
+void QAudioRecorder_SetMutedDefault(void* ptr, int muted)
+{
+	static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::setMuted(muted != 0);
+}
+
 void QAudioRecorder_SetVolume(void* ptr, double volume)
 {
 	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "setVolume", Q_ARG(qreal, static_cast<double>(volume)));
+}
+
+void QAudioRecorder_SetVolumeDefault(void* ptr, double volume)
+{
+	static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::setVolume(static_cast<double>(volume));
 }
 
 void* QAudioRecorder_MediaObject(void* ptr)
@@ -2857,14 +2921,29 @@ void QAudioRecorder_Pause(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "pause");
 }
 
+void QAudioRecorder_PauseDefault(void* ptr)
+{
+	static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::pause();
+}
+
 void QAudioRecorder_Record(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "record");
 }
 
+void QAudioRecorder_RecordDefault(void* ptr)
+{
+	static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::record();
+}
+
 void QAudioRecorder_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "stop");
+}
+
+void QAudioRecorder_StopDefault(void* ptr)
+{
+	static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::stop();
 }
 
 void QAudioRecorder_TimerEvent(void* ptr, void* event)
@@ -2912,6 +2991,11 @@ void QAudioRecorder_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "deleteLater");
 }
 
+void QAudioRecorder_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::deleteLater();
+}
+
 void QAudioRecorder_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAudioRecorder*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2955,6 +3039,11 @@ void* QAudioRecorder_MetaObjectDefault(void* ptr)
 int QAudioRecorder_SetMediaObject(void* ptr, void* object)
 {
 	return static_cast<QAudioRecorder*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
+}
+
+int QAudioRecorder_SetMediaObjectDefault(void* ptr, void* object)
+{
+	return static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::setMediaObject(static_cast<QMediaObject*>(object));
 }
 
 class MyQCamera: public QCamera
@@ -3372,6 +3461,11 @@ void QCamera_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "deleteLater");
 }
 
+void QCamera_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCamera*>(ptr)->QCamera::deleteLater();
+}
+
 void QCamera_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCamera*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3502,6 +3596,11 @@ void QCameraCaptureBufferFormatControl_CustomEventDefault(void* ptr, void* event
 void QCameraCaptureBufferFormatControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraCaptureBufferFormatControl*>(ptr), "deleteLater");
+}
+
+void QCameraCaptureBufferFormatControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraCaptureBufferFormatControl*>(ptr)->QCameraCaptureBufferFormatControl::deleteLater();
 }
 
 void QCameraCaptureBufferFormatControl_DisconnectNotify(void* ptr, void* sign)
@@ -3646,6 +3745,11 @@ void QCameraCaptureDestinationControl_CustomEventDefault(void* ptr, void* event)
 void QCameraCaptureDestinationControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraCaptureDestinationControl*>(ptr), "deleteLater");
+}
+
+void QCameraCaptureDestinationControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraCaptureDestinationControl*>(ptr)->QCameraCaptureDestinationControl::deleteLater();
 }
 
 void QCameraCaptureDestinationControl_DisconnectNotify(void* ptr, void* sign)
@@ -3862,6 +3966,11 @@ void QCameraControl_CustomEventDefault(void* ptr, void* event)
 void QCameraControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraControl*>(ptr), "deleteLater");
+}
+
+void QCameraControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraControl*>(ptr)->QCameraControl::deleteLater();
 }
 
 void QCameraControl_DisconnectNotify(void* ptr, void* sign)
@@ -4220,6 +4329,11 @@ void QCameraExposure_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "deleteLater");
 }
 
+void QCameraExposure_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::deleteLater();
+}
+
 void QCameraExposure_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraExposure*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -4396,6 +4510,11 @@ void QCameraExposureControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraExposureControl*>(ptr), "deleteLater");
 }
 
+void QCameraExposureControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraExposureControl*>(ptr)->QCameraExposureControl::deleteLater();
+}
+
 void QCameraExposureControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraExposureControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -4534,6 +4653,11 @@ void QCameraFeedbackControl_CustomEventDefault(void* ptr, void* event)
 void QCameraFeedbackControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraFeedbackControl*>(ptr), "deleteLater");
+}
+
+void QCameraFeedbackControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraFeedbackControl*>(ptr)->QCameraFeedbackControl::deleteLater();
 }
 
 void QCameraFeedbackControl_DisconnectNotify(void* ptr, void* sign)
@@ -4684,6 +4808,11 @@ void QCameraFlashControl_CustomEventDefault(void* ptr, void* event)
 void QCameraFlashControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraFlashControl*>(ptr), "deleteLater");
+}
+
+void QCameraFlashControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraFlashControl*>(ptr)->QCameraFlashControl::deleteLater();
 }
 
 void QCameraFlashControl_DisconnectNotify(void* ptr, void* sign)
@@ -4935,6 +5064,11 @@ void QCameraFocus_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraFocus*>(ptr), "deleteLater");
 }
 
+void QCameraFocus_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraFocus*>(ptr)->QCameraFocus::deleteLater();
+}
+
 void QCameraFocus_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraFocus*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5149,6 +5283,11 @@ void QCameraFocusControl_CustomEventDefault(void* ptr, void* event)
 void QCameraFocusControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraFocusControl*>(ptr), "deleteLater");
+}
+
+void QCameraFocusControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraFocusControl*>(ptr)->QCameraFocusControl::deleteLater();
 }
 
 void QCameraFocusControl_DisconnectNotify(void* ptr, void* sign)
@@ -5536,6 +5675,11 @@ void QCameraImageCapture_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraImageCapture*>(ptr), "deleteLater");
 }
 
+void QCameraImageCapture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::deleteLater();
+}
+
 void QCameraImageCapture_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraImageCapture*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5788,6 +5932,11 @@ void QCameraImageCaptureControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraImageCaptureControl*>(ptr), "deleteLater");
 }
 
+void QCameraImageCaptureControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraImageCaptureControl*>(ptr)->QCameraImageCaptureControl::deleteLater();
+}
+
 void QCameraImageCaptureControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraImageCaptureControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5958,6 +6107,11 @@ void QCameraImageProcessing_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraImageProcessing*>(ptr), "deleteLater");
 }
 
+void QCameraImageProcessing_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraImageProcessing*>(ptr)->QCameraImageProcessing::deleteLater();
+}
+
 void QCameraImageProcessing_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraImageProcessing*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -6090,6 +6244,11 @@ void QCameraImageProcessingControl_CustomEventDefault(void* ptr, void* event)
 void QCameraImageProcessingControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraImageProcessingControl*>(ptr), "deleteLater");
+}
+
+void QCameraImageProcessingControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraImageProcessingControl*>(ptr)->QCameraImageProcessingControl::deleteLater();
 }
 
 void QCameraImageProcessingControl_DisconnectNotify(void* ptr, void* sign)
@@ -6264,6 +6423,11 @@ void QCameraInfoControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraInfoControl*>(ptr), "deleteLater");
 }
 
+void QCameraInfoControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraInfoControl*>(ptr)->QCameraInfoControl::deleteLater();
+}
+
 void QCameraInfoControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraInfoControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -6412,6 +6576,11 @@ void QCameraLocksControl_CustomEventDefault(void* ptr, void* event)
 void QCameraLocksControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraLocksControl*>(ptr), "deleteLater");
+}
+
+void QCameraLocksControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraLocksControl*>(ptr)->QCameraLocksControl::deleteLater();
 }
 
 void QCameraLocksControl_DisconnectNotify(void* ptr, void* sign)
@@ -6627,6 +6796,11 @@ void QCameraViewfinderSettingsControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinderSettingsControl*>(ptr), "deleteLater");
 }
 
+void QCameraViewfinderSettingsControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraViewfinderSettingsControl*>(ptr)->QCameraViewfinderSettingsControl::deleteLater();
+}
+
 void QCameraViewfinderSettingsControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraViewfinderSettingsControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -6741,6 +6915,11 @@ void QCameraViewfinderSettingsControl2_CustomEventDefault(void* ptr, void* event
 void QCameraViewfinderSettingsControl2_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinderSettingsControl2*>(ptr), "deleteLater");
+}
+
+void QCameraViewfinderSettingsControl2_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraViewfinderSettingsControl2*>(ptr)->QCameraViewfinderSettingsControl2::deleteLater();
 }
 
 void QCameraViewfinderSettingsControl2_DisconnectNotify(void* ptr, void* sign)
@@ -6991,6 +7170,11 @@ void QCameraZoomControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraZoomControl*>(ptr), "deleteLater");
 }
 
+void QCameraZoomControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QCameraZoomControl*>(ptr)->QCameraZoomControl::deleteLater();
+}
+
 void QCameraZoomControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QCameraZoomControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7117,6 +7301,11 @@ void QImageEncoderControl_CustomEventDefault(void* ptr, void* event)
 void QImageEncoderControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QImageEncoderControl*>(ptr), "deleteLater");
+}
+
+void QImageEncoderControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QImageEncoderControl*>(ptr)->QImageEncoderControl::deleteLater();
 }
 
 void QImageEncoderControl_DisconnectNotify(void* ptr, void* sign)
@@ -7326,6 +7515,11 @@ void QMediaAudioProbeControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaAudioProbeControl*>(ptr), "deleteLater");
 }
 
+void QMediaAudioProbeControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaAudioProbeControl*>(ptr)->QMediaAudioProbeControl::deleteLater();
+}
+
 void QMediaAudioProbeControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaAudioProbeControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7456,6 +7650,11 @@ void QMediaAvailabilityControl_CustomEventDefault(void* ptr, void* event)
 void QMediaAvailabilityControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaAvailabilityControl*>(ptr), "deleteLater");
+}
+
+void QMediaAvailabilityControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaAvailabilityControl*>(ptr)->QMediaAvailabilityControl::deleteLater();
 }
 
 void QMediaAvailabilityControl_DisconnectNotify(void* ptr, void* sign)
@@ -7632,6 +7831,11 @@ void QMediaContainerControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaContainerControl*>(ptr), "deleteLater");
 }
 
+void QMediaContainerControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaContainerControl*>(ptr)->QMediaContainerControl::deleteLater();
+}
+
 void QMediaContainerControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaContainerControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7785,6 +7989,11 @@ void QMediaControl_CustomEventDefault(void* ptr, void* event)
 void QMediaControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaControl*>(ptr), "deleteLater");
+}
+
+void QMediaControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaControl*>(ptr)->QMediaControl::deleteLater();
 }
 
 void QMediaControl_DisconnectNotify(void* ptr, void* sign)
@@ -7975,6 +8184,11 @@ void QMediaGaplessPlaybackControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaGaplessPlaybackControl*>(ptr), "deleteLater");
 }
 
+void QMediaGaplessPlaybackControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaGaplessPlaybackControl*>(ptr)->QMediaGaplessPlaybackControl::deleteLater();
+}
+
 void QMediaGaplessPlaybackControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaGaplessPlaybackControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -8099,6 +8313,11 @@ void QMediaNetworkAccessControl_CustomEventDefault(void* ptr, void* event)
 void QMediaNetworkAccessControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaNetworkAccessControl*>(ptr), "deleteLater");
+}
+
+void QMediaNetworkAccessControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaNetworkAccessControl*>(ptr)->QMediaNetworkAccessControl::deleteLater();
 }
 
 void QMediaNetworkAccessControl_DisconnectNotify(void* ptr, void* sign)
@@ -8395,6 +8614,11 @@ void QMediaObject_CustomEventDefault(void* ptr, void* event)
 void QMediaObject_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaObject*>(ptr), "deleteLater");
+}
+
+void QMediaObject_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaObject*>(ptr)->QMediaObject::deleteLater();
 }
 
 void QMediaObject_DisconnectNotify(void* ptr, void* sign)
@@ -8966,6 +9190,11 @@ void QMediaPlayer_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "deleteLater");
 }
 
+void QMediaPlayer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::deleteLater();
+}
+
 void QMediaPlayer_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaPlayer*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -9432,6 +9661,11 @@ void QMediaPlayerControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaPlayerControl*>(ptr), "deleteLater");
 }
 
+void QMediaPlayerControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaPlayerControl*>(ptr)->QMediaPlayerControl::deleteLater();
+}
+
 void QMediaPlayerControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaPlayerControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -9848,6 +10082,11 @@ void QMediaPlaylist_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaPlaylist*>(ptr), "deleteLater");
 }
 
+void QMediaPlaylist_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::deleteLater();
+}
+
 void QMediaPlaylist_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaPlaylist*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -9891,6 +10130,11 @@ void* QMediaPlaylist_MetaObjectDefault(void* ptr)
 int QMediaPlaylist_SetMediaObject(void* ptr, void* object)
 {
 	return static_cast<QMediaPlaylist*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
+}
+
+int QMediaPlaylist_SetMediaObjectDefault(void* ptr, void* object)
+{
+	return static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::setMediaObject(static_cast<QMediaObject*>(object));
 }
 
 class MyQMediaRecorder: public QMediaRecorder
@@ -10363,6 +10607,11 @@ void QMediaRecorder_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "deleteLater");
 }
 
+void QMediaRecorder_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::deleteLater();
+}
+
 void QMediaRecorder_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaRecorder*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -10406,6 +10655,11 @@ void* QMediaRecorder_MetaObjectDefault(void* ptr)
 int QMediaRecorder_SetMediaObject(void* ptr, void* object)
 {
 	return static_cast<QMediaRecorder*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
+}
+
+int QMediaRecorder_SetMediaObjectDefault(void* ptr, void* object)
+{
+	return static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::setMediaObject(static_cast<QMediaObject*>(object));
 }
 
 class MyQMediaRecorderControl: public QMediaRecorderControl
@@ -10654,6 +10908,11 @@ void QMediaRecorderControl_CustomEventDefault(void* ptr, void* event)
 void QMediaRecorderControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaRecorderControl*>(ptr), "deleteLater");
+}
+
+void QMediaRecorderControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaRecorderControl*>(ptr)->QMediaRecorderControl::deleteLater();
 }
 
 void QMediaRecorderControl_DisconnectNotify(void* ptr, void* sign)
@@ -10923,6 +11182,11 @@ void QMediaService_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaService*>(ptr), "deleteLater");
 }
 
+void QMediaService_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaService*>(ptr)->QMediaService::deleteLater();
+}
+
 void QMediaService_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaService*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -11134,6 +11398,11 @@ void QMediaServiceProviderPlugin_CustomEventDefault(void* ptr, void* event)
 void QMediaServiceProviderPlugin_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaServiceProviderPlugin*>(ptr), "deleteLater");
+}
+
+void QMediaServiceProviderPlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaServiceProviderPlugin*>(ptr)->QMediaServiceProviderPlugin::deleteLater();
 }
 
 void QMediaServiceProviderPlugin_DisconnectNotify(void* ptr, void* sign)
@@ -11380,6 +11649,11 @@ void QMediaStreamsControl_CustomEventDefault(void* ptr, void* event)
 void QMediaStreamsControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaStreamsControl*>(ptr), "deleteLater");
+}
+
+void QMediaStreamsControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaStreamsControl*>(ptr)->QMediaStreamsControl::deleteLater();
 }
 
 void QMediaStreamsControl_DisconnectNotify(void* ptr, void* sign)
@@ -11654,6 +11928,11 @@ void QMediaVideoProbeControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaVideoProbeControl*>(ptr), "deleteLater");
 }
 
+void QMediaVideoProbeControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMediaVideoProbeControl*>(ptr)->QMediaVideoProbeControl::deleteLater();
+}
+
 void QMediaVideoProbeControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMediaVideoProbeControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -11828,6 +12107,11 @@ void QMetaDataReaderControl_CustomEventDefault(void* ptr, void* event)
 void QMetaDataReaderControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMetaDataReaderControl*>(ptr), "deleteLater");
+}
+
+void QMetaDataReaderControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMetaDataReaderControl*>(ptr)->QMetaDataReaderControl::deleteLater();
 }
 
 void QMetaDataReaderControl_DisconnectNotify(void* ptr, void* sign)
@@ -12032,6 +12316,11 @@ void QMetaDataWriterControl_CustomEventDefault(void* ptr, void* event)
 void QMetaDataWriterControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMetaDataWriterControl*>(ptr), "deleteLater");
+}
+
+void QMetaDataWriterControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMetaDataWriterControl*>(ptr)->QMetaDataWriterControl::deleteLater();
 }
 
 void QMetaDataWriterControl_DisconnectNotify(void* ptr, void* sign)
@@ -12329,6 +12618,11 @@ void QRadioData_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioData*>(ptr), "deleteLater");
 }
 
+void QRadioData_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRadioData*>(ptr)->QRadioData::deleteLater();
+}
+
 void QRadioData_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QRadioData*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -12603,6 +12897,11 @@ void QRadioDataControl_CustomEventDefault(void* ptr, void* event)
 void QRadioDataControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioDataControl*>(ptr), "deleteLater");
+}
+
+void QRadioDataControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRadioDataControl*>(ptr)->QRadioDataControl::deleteLater();
 }
 
 void QRadioDataControl_DisconnectNotify(void* ptr, void* sign)
@@ -13086,6 +13385,11 @@ void QRadioTuner_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "deleteLater");
 }
 
+void QRadioTuner_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::deleteLater();
+}
+
 void QRadioTuner_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QRadioTuner*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -13521,6 +13825,11 @@ void QRadioTunerControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioTunerControl*>(ptr), "deleteLater");
 }
 
+void QRadioTunerControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRadioTunerControl*>(ptr)->QRadioTunerControl::deleteLater();
+}
+
 void QRadioTunerControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QRadioTunerControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -13671,6 +13980,11 @@ void QSound_CustomEventDefault(void* ptr, void* event)
 void QSound_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSound*>(ptr), "deleteLater");
+}
+
+void QSound_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSound*>(ptr)->QSound::deleteLater();
 }
 
 void QSound_DisconnectNotify(void* ptr, void* sign)
@@ -14014,6 +14328,11 @@ void QSoundEffect_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSoundEffect*>(ptr), "deleteLater");
 }
 
+void QSoundEffect_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSoundEffect*>(ptr)->QSoundEffect::deleteLater();
+}
+
 void QSoundEffect_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSoundEffect*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -14206,6 +14525,11 @@ void QVideoDeviceSelectorControl_CustomEventDefault(void* ptr, void* event)
 void QVideoDeviceSelectorControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoDeviceSelectorControl*>(ptr), "deleteLater");
+}
+
+void QVideoDeviceSelectorControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVideoDeviceSelectorControl*>(ptr)->QVideoDeviceSelectorControl::deleteLater();
 }
 
 void QVideoDeviceSelectorControl_DisconnectNotify(void* ptr, void* sign)
@@ -14429,6 +14753,11 @@ void QVideoEncoderSettingsControl_CustomEventDefault(void* ptr, void* event)
 void QVideoEncoderSettingsControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoEncoderSettingsControl*>(ptr), "deleteLater");
+}
+
+void QVideoEncoderSettingsControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVideoEncoderSettingsControl*>(ptr)->QVideoEncoderSettingsControl::deleteLater();
 }
 
 void QVideoEncoderSettingsControl_DisconnectNotify(void* ptr, void* sign)
@@ -14782,6 +15111,11 @@ void QVideoProbe_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QVideoProbe*>(ptr), "deleteLater");
 }
 
+void QVideoProbe_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVideoProbe*>(ptr)->QVideoProbe::deleteLater();
+}
+
 void QVideoProbe_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QVideoProbe*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -14902,6 +15236,11 @@ void QVideoRendererControl_CustomEventDefault(void* ptr, void* event)
 void QVideoRendererControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoRendererControl*>(ptr), "deleteLater");
+}
+
+void QVideoRendererControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVideoRendererControl*>(ptr)->QVideoRendererControl::deleteLater();
 }
 
 void QVideoRendererControl_DisconnectNotify(void* ptr, void* sign)
@@ -15346,6 +15685,11 @@ void QVideoWindowControl_CustomEventDefault(void* ptr, void* event)
 void QVideoWindowControl_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QVideoWindowControl*>(ptr), "deleteLater");
+}
+
+void QVideoWindowControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QVideoWindowControl*>(ptr)->QVideoWindowControl::deleteLater();
 }
 
 void QVideoWindowControl_DisconnectNotify(void* ptr, void* sign)

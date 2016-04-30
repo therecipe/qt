@@ -555,8 +555,9 @@ func callbackQAbstractNetworkCache_DeleteLater(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractNetworkCacheFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAbstractNetworkCache) ConnectDeleteLater(f func()) {
@@ -582,6 +583,15 @@ func (ptr *QAbstractNetworkCache) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractNetworkCache_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractNetworkCache) DeleteLaterDefault() {
+	defer qt.Recovering("QAbstractNetworkCache::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractNetworkCache_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2516,8 +2526,9 @@ func callbackQAbstractSocket_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractSocketFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAbstractSocket) ConnectDeleteLater(f func()) {
@@ -2543,6 +2554,15 @@ func (ptr *QAbstractSocket) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractSocket) DeleteLaterDefault() {
+	defer qt.Recovering("QAbstractSocket::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3629,8 +3649,9 @@ func callbackQDnsLookup_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQDnsLookupFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QDnsLookup) ConnectDeleteLater(f func()) {
@@ -3656,6 +3677,15 @@ func (ptr *QDnsLookup) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDnsLookup) DeleteLaterDefault() {
+	defer qt.Recovering("QDnsLookup::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QDnsLookup_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4773,8 +4803,9 @@ func callbackQHttpMultiPart_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHttpMultiPartFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QHttpMultiPart) ConnectDeleteLater(f func()) {
@@ -4800,6 +4831,15 @@ func (ptr *QHttpMultiPart) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHttpMultiPart) DeleteLaterDefault() {
+	defer qt.Recovering("QHttpMultiPart::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QHttpMultiPart_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5600,8 +5640,9 @@ func callbackQLocalServer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQLocalServerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QLocalServer) ConnectDeleteLater(f func()) {
@@ -5627,6 +5668,15 @@ func (ptr *QLocalServer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QLocalServer) DeleteLaterDefault() {
+	defer qt.Recovering("QLocalServer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QLocalServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7068,8 +7118,9 @@ func callbackQLocalSocket_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQLocalSocketFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QLocalSocket) ConnectDeleteLater(f func()) {
@@ -7095,6 +7146,15 @@ func (ptr *QLocalSocket) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QLocalSocket) DeleteLaterDefault() {
+	defer qt.Recovering("QLocalSocket::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QLocalSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -8074,8 +8134,9 @@ func callbackQNetworkAccessManager_DeleteLater(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQNetworkAccessManagerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QNetworkAccessManager) ConnectDeleteLater(f func()) {
@@ -8101,6 +8162,15 @@ func (ptr *QNetworkAccessManager) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNetworkAccessManager) DeleteLaterDefault() {
+	defer qt.Recovering("QNetworkAccessManager::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkAccessManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -9304,8 +9374,9 @@ func callbackQNetworkConfigurationManager_DeleteLater(ptr unsafe.Pointer, ptrNam
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQNetworkConfigurationManagerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QNetworkConfigurationManager) ConnectDeleteLater(f func()) {
@@ -9331,6 +9402,15 @@ func (ptr *QNetworkConfigurationManager) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNetworkConfigurationManager) DeleteLaterDefault() {
+	defer qt.Recovering("QNetworkConfigurationManager::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkConfigurationManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -10191,8 +10271,9 @@ func callbackQNetworkCookieJar_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQNetworkCookieJarFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QNetworkCookieJar) ConnectDeleteLater(f func()) {
@@ -10218,6 +10299,15 @@ func (ptr *QNetworkCookieJar) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkCookieJar_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNetworkCookieJar) DeleteLaterDefault() {
+	defer qt.Recovering("QNetworkCookieJar::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkCookieJar_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -11116,8 +11206,9 @@ func callbackQNetworkDiskCache_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) 
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQNetworkDiskCacheFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QNetworkDiskCache) ConnectDeleteLater(f func()) {
@@ -11143,6 +11234,15 @@ func (ptr *QNetworkDiskCache) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkDiskCache_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNetworkDiskCache) DeleteLaterDefault() {
+	defer qt.Recovering("QNetworkDiskCache::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkDiskCache_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -13496,7 +13596,7 @@ func callbackQNetworkReply_WriteData(ptr unsafe.Pointer, ptrName *C.char, data *
 		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxSize)))
 	}
 
-	return C.longlong(0)
+	return C.longlong(NewQNetworkReplyFromPointer(ptr).WriteDataDefault(C.GoString(data), int64(maxSize)))
 }
 
 func (ptr *QNetworkReply) ConnectWriteData(f func(data string, maxSize int64) int64) {
@@ -13508,7 +13608,7 @@ func (ptr *QNetworkReply) ConnectWriteData(f func(data string, maxSize int64) in
 	}
 }
 
-func (ptr *QNetworkReply) DisconnectWriteData(data string, maxSize int64) {
+func (ptr *QNetworkReply) DisconnectWriteData() {
 	defer qt.Recovering("disconnect QNetworkReply::writeData")
 
 	if ptr.Pointer() != nil {
@@ -13522,6 +13622,15 @@ func (ptr *QNetworkReply) WriteData(data string, maxSize int64) int64 {
 
 	if ptr.Pointer() != nil {
 		return int64(C.QNetworkReply_WriteData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QNetworkReply) WriteDataDefault(data string, maxSize int64) int64 {
+	defer qt.Recovering("QNetworkReply::writeData")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QNetworkReply_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -13712,8 +13821,9 @@ func callbackQNetworkReply_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQNetworkReplyFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QNetworkReply) ConnectDeleteLater(f func()) {
@@ -13739,6 +13849,15 @@ func (ptr *QNetworkReply) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNetworkReply) DeleteLaterDefault() {
+	defer qt.Recovering("QNetworkReply::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -15073,8 +15192,9 @@ func callbackQNetworkSession_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQNetworkSessionFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QNetworkSession) ConnectDeleteLater(f func()) {
@@ -15100,6 +15220,15 @@ func (ptr *QNetworkSession) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNetworkSession) DeleteLaterDefault() {
+	defer qt.Recovering("QNetworkSession::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkSession_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -18352,8 +18481,9 @@ func callbackQSslSocket_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSslSocketFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSslSocket) ConnectDeleteLater(f func()) {
@@ -18379,6 +18509,15 @@ func (ptr *QSslSocket) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSslSocket) DeleteLaterDefault() {
+	defer qt.Recovering("QSslSocket::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSslSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -19094,8 +19233,9 @@ func callbackQTcpServer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTcpServerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QTcpServer) ConnectDeleteLater(f func()) {
@@ -19121,6 +19261,15 @@ func (ptr *QTcpServer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTcpServer_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTcpServer) DeleteLaterDefault() {
+	defer qt.Recovering("QTcpServer::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QTcpServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -20583,8 +20732,9 @@ func callbackQTcpSocket_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTcpSocketFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QTcpSocket) ConnectDeleteLater(f func()) {
@@ -20610,6 +20760,15 @@ func (ptr *QTcpSocket) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTcpSocket_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTcpSocket) DeleteLaterDefault() {
+	defer qt.Recovering("QTcpSocket::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QTcpSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -22143,8 +22302,9 @@ func callbackQUdpSocket_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQUdpSocketFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QUdpSocket) ConnectDeleteLater(f func()) {
@@ -22170,6 +22330,15 @@ func (ptr *QUdpSocket) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QUdpSocket_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QUdpSocket) DeleteLaterDefault() {
+	defer qt.Recovering("QUdpSocket::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

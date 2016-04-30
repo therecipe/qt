@@ -190,6 +190,11 @@ void QUiLoader_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUiLoader*>(ptr), "deleteLater");
 }
 
+void QUiLoader_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QUiLoader*>(ptr)->QUiLoader::deleteLater();
+}
+
 void QUiLoader_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QUiLoader*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));

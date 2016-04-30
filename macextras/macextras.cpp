@@ -180,6 +180,13 @@ void QMacToolBar_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMacToolBar*>(ptr), "deleteLater");
 }
 
+void QMacToolBar_DeleteLaterDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacToolBar*>(ptr)->QMacToolBar::deleteLater();
+#endif
+}
+
 void QMacToolBar_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMacToolBar*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -366,6 +373,13 @@ void QMacToolBarItem_CustomEventDefault(void* ptr, void* event)
 void QMacToolBarItem_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMacToolBarItem*>(ptr), "deleteLater");
+}
+
+void QMacToolBarItem_DeleteLaterDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::deleteLater();
+#endif
 }
 
 void QMacToolBarItem_DisconnectNotify(void* ptr, void* sign)

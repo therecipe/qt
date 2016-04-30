@@ -465,6 +465,11 @@ void QQuickFramebufferObject_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickFramebufferObject*>(ptr), "update");
 }
 
+void QQuickFramebufferObject_UpdateDefault(void* ptr)
+{
+	static_cast<QQuickFramebufferObject*>(ptr)->QQuickFramebufferObject::update();
+}
+
 void QQuickFramebufferObject_UpdatePolish(void* ptr)
 {
 	static_cast<QQuickFramebufferObject*>(ptr)->updatePolish();
@@ -528,6 +533,11 @@ void QQuickFramebufferObject_CustomEventDefault(void* ptr, void* event)
 void QQuickFramebufferObject_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickFramebufferObject*>(ptr), "deleteLater");
+}
+
+void QQuickFramebufferObject_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickFramebufferObject*>(ptr)->QQuickFramebufferObject::deleteLater();
 }
 
 void QQuickFramebufferObject_DisconnectNotify(void* ptr, void* sign)
@@ -1526,6 +1536,11 @@ void QQuickItem_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickItem*>(ptr), "deleteLater");
 }
 
+void QQuickItem_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickItem*>(ptr)->QQuickItem::deleteLater();
+}
+
 void QQuickItem_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QQuickItem*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1644,6 +1659,11 @@ void QQuickItemGrabResult_CustomEventDefault(void* ptr, void* event)
 void QQuickItemGrabResult_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickItemGrabResult*>(ptr), "deleteLater");
+}
+
+void QQuickItemGrabResult_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickItemGrabResult*>(ptr)->QQuickItemGrabResult::deleteLater();
 }
 
 void QQuickItemGrabResult_DisconnectNotify(void* ptr, void* sign)
@@ -2266,6 +2286,11 @@ void QQuickPaintedItem_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickPaintedItem*>(ptr), "deleteLater");
 }
 
+void QQuickPaintedItem_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickPaintedItem*>(ptr)->QQuickPaintedItem::deleteLater();
+}
+
 void QQuickPaintedItem_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QQuickPaintedItem*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2449,6 +2474,11 @@ void QQuickRenderControl_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickRenderControl*>(ptr), "deleteLater");
 }
 
+void QQuickRenderControl_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickRenderControl*>(ptr)->QQuickRenderControl::deleteLater();
+}
+
 void QQuickRenderControl_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QQuickRenderControl*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -2542,6 +2572,11 @@ void QQuickTextDocument_CustomEventDefault(void* ptr, void* event)
 void QQuickTextDocument_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickTextDocument*>(ptr), "deleteLater");
+}
+
+void QQuickTextDocument_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickTextDocument*>(ptr)->QQuickTextDocument::deleteLater();
 }
 
 void QQuickTextDocument_DisconnectNotify(void* ptr, void* sign)
@@ -2681,6 +2716,11 @@ void QQuickTextureFactory_CustomEventDefault(void* ptr, void* event)
 void QQuickTextureFactory_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickTextureFactory*>(ptr), "deleteLater");
+}
+
+void QQuickTextureFactory_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickTextureFactory*>(ptr)->QQuickTextureFactory::deleteLater();
 }
 
 void QQuickTextureFactory_DisconnectNotify(void* ptr, void* sign)
@@ -2993,6 +3033,11 @@ void QQuickView_ReleaseResources(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "releaseResources");
 }
 
+void QQuickView_ReleaseResourcesDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::releaseResources();
+}
+
 void QQuickView_ResizeEvent(void* ptr, void* ev)
 {
 	static_cast<QQuickView*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
@@ -3018,6 +3063,11 @@ void QQuickView_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "update");
 }
 
+void QQuickView_UpdateDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::update();
+}
+
 void QQuickView_WheelEvent(void* ptr, void* event)
 {
 	static_cast<QQuickView*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(event));
@@ -3033,9 +3083,19 @@ void QQuickView_SetHeight(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setHeight", Q_ARG(int, arg));
 }
 
+void QQuickView_SetHeightDefault(void* ptr, int arg)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setHeight(arg);
+}
+
 void QQuickView_SetMaximumHeight(void* ptr, int h)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+}
+
+void QQuickView_SetMaximumHeightDefault(void* ptr, int h)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setMaximumHeight(h);
 }
 
 void QQuickView_SetMaximumWidth(void* ptr, int w)
@@ -3043,9 +3103,19 @@ void QQuickView_SetMaximumWidth(void* ptr, int w)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setMaximumWidth", Q_ARG(int, w));
 }
 
+void QQuickView_SetMaximumWidthDefault(void* ptr, int w)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setMaximumWidth(w);
+}
+
 void QQuickView_SetMinimumHeight(void* ptr, int h)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setMinimumHeight", Q_ARG(int, h));
+}
+
+void QQuickView_SetMinimumHeightDefault(void* ptr, int h)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setMinimumHeight(h);
 }
 
 void QQuickView_SetMinimumWidth(void* ptr, int w)
@@ -3053,9 +3123,19 @@ void QQuickView_SetMinimumWidth(void* ptr, int w)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setMinimumWidth", Q_ARG(int, w));
 }
 
+void QQuickView_SetMinimumWidthDefault(void* ptr, int w)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setMinimumWidth(w);
+}
+
 void QQuickView_SetTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QQuickView_SetTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setTitle(QString(vqs));
 }
 
 void QQuickView_SetVisible(void* ptr, int visible)
@@ -3063,9 +3143,19 @@ void QQuickView_SetVisible(void* ptr, int visible)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
+void QQuickView_SetVisibleDefault(void* ptr, int visible)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setVisible(visible != 0);
+}
+
 void QQuickView_SetWidth(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setWidth", Q_ARG(int, arg));
+}
+
+void QQuickView_SetWidthDefault(void* ptr, int arg)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setWidth(arg);
 }
 
 void QQuickView_SetX(void* ptr, int arg)
@@ -3073,9 +3163,19 @@ void QQuickView_SetX(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setX", Q_ARG(int, arg));
 }
 
+void QQuickView_SetXDefault(void* ptr, int arg)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setX(arg);
+}
+
 void QQuickView_SetY(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setY", Q_ARG(int, arg));
+}
+
+void QQuickView_SetYDefault(void* ptr, int arg)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setY(arg);
 }
 
 void QQuickView_Alert(void* ptr, int msec)
@@ -3083,11 +3183,21 @@ void QQuickView_Alert(void* ptr, int msec)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "alert", Q_ARG(int, msec));
 }
 
+void QQuickView_AlertDefault(void* ptr, int msec)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::alert(msec);
+}
+
 int QQuickView_Close(void* ptr)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QQuickView_CloseDefault(void* ptr)
+{
+	return static_cast<QQuickView*>(ptr)->QQuickView::close();
 }
 
 void* QQuickView_FocusObject(void* ptr)
@@ -3115,9 +3225,19 @@ void QQuickView_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "hide");
 }
 
+void QQuickView_HideDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::hide();
+}
+
 void QQuickView_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "lower");
+}
+
+void QQuickView_LowerDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::lower();
 }
 
 void QQuickView_MoveEvent(void* ptr, void* ev)
@@ -3145,9 +3265,19 @@ void QQuickView_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "raise");
 }
 
+void QQuickView_RaiseDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::raise();
+}
+
 void QQuickView_RequestActivate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "requestActivate");
+}
+
+void QQuickView_RequestActivateDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::requestActivate();
 }
 
 void QQuickView_RequestUpdate(void* ptr)
@@ -3155,9 +3285,19 @@ void QQuickView_RequestUpdate(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "requestUpdate");
 }
 
+void QQuickView_RequestUpdateDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::requestUpdate();
+}
+
 void QQuickView_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "show");
+}
+
+void QQuickView_ShowDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::show();
 }
 
 void QQuickView_ShowFullScreen(void* ptr)
@@ -3165,9 +3305,19 @@ void QQuickView_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "showFullScreen");
 }
 
+void QQuickView_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::showFullScreen();
+}
+
 void QQuickView_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "showMaximized");
+}
+
+void QQuickView_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::showMaximized();
 }
 
 void QQuickView_ShowMinimized(void* ptr)
@@ -3175,9 +3325,19 @@ void QQuickView_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "showMinimized");
 }
 
+void QQuickView_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::showMinimized();
+}
+
 void QQuickView_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "showNormal");
+}
+
+void QQuickView_ShowNormalDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::showNormal();
 }
 
 void* QQuickView_Size(void* ptr)
@@ -3263,6 +3423,11 @@ void QQuickView_CustomEventDefault(void* ptr, void* event)
 void QQuickView_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "deleteLater");
+}
+
+void QQuickView_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::deleteLater();
 }
 
 void QQuickView_DisconnectNotify(void* ptr, void* sign)
@@ -3736,9 +3901,19 @@ void QQuickWidget_SetEnabled(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
+void QQuickWidget_SetEnabledDefault(void* ptr, int vbo)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setEnabled(vbo != 0);
+}
+
 void QQuickWidget_SetStyleSheet(void* ptr, char* styleSheet)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void QQuickWidget_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setStyleSheet(QString(styleSheet));
 }
 
 void QQuickWidget_SetVisible(void* ptr, int visible)
@@ -3756,9 +3931,19 @@ void QQuickWidget_SetWindowModified(void* ptr, int vbo)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
+void QQuickWidget_SetWindowModifiedDefault(void* ptr, int vbo)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setWindowModified(vbo != 0);
+}
+
 void QQuickWidget_SetWindowTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QQuickWidget_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setWindowTitle(QString(vqs));
 }
 
 void* QQuickWidget_SizeHint(void* ptr)
@@ -3786,6 +3971,11 @@ int QQuickWidget_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QQuickWidget_CloseDefault(void* ptr)
+{
+	return static_cast<QQuickWidget*>(ptr)->QQuickWidget::close();
 }
 
 void QQuickWidget_CloseEvent(void* ptr, void* event)
@@ -3843,6 +4033,11 @@ void QQuickWidget_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "hide");
 }
 
+void QQuickWidget_HideDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::hide();
+}
+
 void QQuickWidget_InitPainter(void* ptr, void* painter)
 {
 	static_cast<QQuickWidget*>(ptr)->initPainter(static_cast<QPainter*>(painter));
@@ -3878,6 +4073,11 @@ void QQuickWidget_Lower(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "lower");
 }
 
+void QQuickWidget_LowerDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::lower();
+}
+
 int QQuickWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<QQuickWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
@@ -3893,9 +4093,19 @@ void QQuickWidget_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "raise");
 }
 
+void QQuickWidget_RaiseDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::raise();
+}
+
 void QQuickWidget_Repaint(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "repaint");
+}
+
+void QQuickWidget_RepaintDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::repaint();
 }
 
 void QQuickWidget_ResizeEvent(void* ptr, void* event)
@@ -3913,9 +4123,19 @@ void QQuickWidget_SetDisabled(void* ptr, int disable)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
+void QQuickWidget_SetDisabledDefault(void* ptr, int disable)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setDisabled(disable != 0);
+}
+
 void QQuickWidget_SetFocus2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setFocus");
+}
+
+void QQuickWidget_SetFocus2Default(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setFocus();
 }
 
 void QQuickWidget_SetHidden(void* ptr, int hidden)
@@ -3923,9 +4143,19 @@ void QQuickWidget_SetHidden(void* ptr, int hidden)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
+void QQuickWidget_SetHiddenDefault(void* ptr, int hidden)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setHidden(hidden != 0);
+}
+
 void QQuickWidget_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "show");
+}
+
+void QQuickWidget_ShowDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::show();
 }
 
 void QQuickWidget_ShowFullScreen(void* ptr)
@@ -3933,9 +4163,19 @@ void QQuickWidget_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "showFullScreen");
 }
 
+void QQuickWidget_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::showFullScreen();
+}
+
 void QQuickWidget_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "showMaximized");
+}
+
+void QQuickWidget_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::showMaximized();
 }
 
 void QQuickWidget_ShowMinimized(void* ptr)
@@ -3943,9 +4183,19 @@ void QQuickWidget_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "showMinimized");
 }
 
+void QQuickWidget_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::showMinimized();
+}
+
 void QQuickWidget_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "showNormal");
+}
+
+void QQuickWidget_ShowNormalDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::showNormal();
 }
 
 void QQuickWidget_TabletEvent(void* ptr, void* event)
@@ -3963,9 +4213,19 @@ void QQuickWidget_Update(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "update");
 }
 
+void QQuickWidget_UpdateDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::update();
+}
+
 void QQuickWidget_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "updateMicroFocus");
+}
+
+void QQuickWidget_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::updateMicroFocus();
 }
 
 void QQuickWidget_TimerEvent(void* ptr, void* event)
@@ -4011,6 +4271,11 @@ void QQuickWidget_CustomEventDefault(void* ptr, void* event)
 void QQuickWidget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "deleteLater");
+}
+
+void QQuickWidget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::deleteLater();
 }
 
 void QQuickWidget_DisconnectNotify(void* ptr, void* sign)
@@ -4617,9 +4882,19 @@ void QQuickWindow_SetHeight(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setHeight", Q_ARG(int, arg));
 }
 
+void QQuickWindow_SetHeightDefault(void* ptr, int arg)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setHeight(arg);
+}
+
 void QQuickWindow_SetMaximumHeight(void* ptr, int h)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+}
+
+void QQuickWindow_SetMaximumHeightDefault(void* ptr, int h)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setMaximumHeight(h);
 }
 
 void QQuickWindow_SetMaximumWidth(void* ptr, int w)
@@ -4627,9 +4902,19 @@ void QQuickWindow_SetMaximumWidth(void* ptr, int w)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
 }
 
+void QQuickWindow_SetMaximumWidthDefault(void* ptr, int w)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setMaximumWidth(w);
+}
+
 void QQuickWindow_SetMinimumHeight(void* ptr, int h)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
+}
+
+void QQuickWindow_SetMinimumHeightDefault(void* ptr, int h)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setMinimumHeight(h);
 }
 
 void QQuickWindow_SetMinimumWidth(void* ptr, int w)
@@ -4637,9 +4922,19 @@ void QQuickWindow_SetMinimumWidth(void* ptr, int w)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
 }
 
+void QQuickWindow_SetMinimumWidthDefault(void* ptr, int w)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setMinimumWidth(w);
+}
+
 void QQuickWindow_SetTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QQuickWindow_SetTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setTitle(QString(vqs));
 }
 
 void QQuickWindow_SetVisible(void* ptr, int visible)
@@ -4647,9 +4942,19 @@ void QQuickWindow_SetVisible(void* ptr, int visible)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
+void QQuickWindow_SetVisibleDefault(void* ptr, int visible)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setVisible(visible != 0);
+}
+
 void QQuickWindow_SetWidth(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setWidth", Q_ARG(int, arg));
+}
+
+void QQuickWindow_SetWidthDefault(void* ptr, int arg)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setWidth(arg);
 }
 
 void QQuickWindow_SetX(void* ptr, int arg)
@@ -4657,9 +4962,19 @@ void QQuickWindow_SetX(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setX", Q_ARG(int, arg));
 }
 
+void QQuickWindow_SetXDefault(void* ptr, int arg)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setX(arg);
+}
+
 void QQuickWindow_SetY(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "setY", Q_ARG(int, arg));
+}
+
+void QQuickWindow_SetYDefault(void* ptr, int arg)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::setY(arg);
 }
 
 void QQuickWindow_Alert(void* ptr, int msec)
@@ -4667,11 +4982,21 @@ void QQuickWindow_Alert(void* ptr, int msec)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "alert", Q_ARG(int, msec));
 }
 
+void QQuickWindow_AlertDefault(void* ptr, int msec)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::alert(msec);
+}
+
 int QQuickWindow_Close(void* ptr)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QQuickWindow_CloseDefault(void* ptr)
+{
+	return static_cast<QQuickWindow*>(ptr)->QQuickWindow::close();
 }
 
 void* QQuickWindow_FocusObject(void* ptr)
@@ -4699,9 +5024,19 @@ void QQuickWindow_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "hide");
 }
 
+void QQuickWindow_HideDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::hide();
+}
+
 void QQuickWindow_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "lower");
+}
+
+void QQuickWindow_LowerDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::lower();
 }
 
 void QQuickWindow_MoveEvent(void* ptr, void* ev)
@@ -4729,9 +5064,19 @@ void QQuickWindow_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "raise");
 }
 
+void QQuickWindow_RaiseDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::raise();
+}
+
 void QQuickWindow_RequestActivate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "requestActivate");
+}
+
+void QQuickWindow_RequestActivateDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::requestActivate();
 }
 
 void QQuickWindow_RequestUpdate(void* ptr)
@@ -4739,9 +5084,19 @@ void QQuickWindow_RequestUpdate(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "requestUpdate");
 }
 
+void QQuickWindow_RequestUpdateDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::requestUpdate();
+}
+
 void QQuickWindow_Show(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "show");
+}
+
+void QQuickWindow_ShowDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::show();
 }
 
 void QQuickWindow_ShowFullScreen(void* ptr)
@@ -4749,9 +5104,19 @@ void QQuickWindow_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "showFullScreen");
 }
 
+void QQuickWindow_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::showFullScreen();
+}
+
 void QQuickWindow_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "showMaximized");
+}
+
+void QQuickWindow_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::showMaximized();
 }
 
 void QQuickWindow_ShowMinimized(void* ptr)
@@ -4759,9 +5124,19 @@ void QQuickWindow_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "showMinimized");
 }
 
+void QQuickWindow_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::showMinimized();
+}
+
 void QQuickWindow_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "showNormal");
+}
+
+void QQuickWindow_ShowNormalDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::showNormal();
 }
 
 void* QQuickWindow_Size(void* ptr)
@@ -4847,6 +5222,11 @@ void QQuickWindow_CustomEventDefault(void* ptr, void* event)
 void QQuickWindow_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "deleteLater");
+}
+
+void QQuickWindow_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::deleteLater();
 }
 
 void QQuickWindow_DisconnectNotify(void* ptr, void* sign)
@@ -5014,6 +5394,11 @@ void QSGAbstractRenderer_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSGAbstractRenderer*>(ptr), "deleteLater");
 }
 
+void QSGAbstractRenderer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSGAbstractRenderer*>(ptr)->QSGAbstractRenderer::deleteLater();
+}
+
 void QSGAbstractRenderer_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSGAbstractRenderer*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5177,15 +5562,21 @@ void QSGDynamicTexture_Bind(void* ptr)
 	static_cast<QSGDynamicTexture*>(ptr)->bind();
 }
 
+
+
 int QSGDynamicTexture_HasAlphaChannel(void* ptr)
 {
 	return static_cast<QSGDynamicTexture*>(ptr)->hasAlphaChannel();
 }
 
+
+
 int QSGDynamicTexture_HasMipmaps(void* ptr)
 {
 	return static_cast<QSGDynamicTexture*>(ptr)->hasMipmaps();
 }
+
+
 
 int QSGDynamicTexture_IsAtlasTexture(void* ptr)
 {
@@ -5222,10 +5613,14 @@ int QSGDynamicTexture_TextureId(void* ptr)
 	return static_cast<QSGDynamicTexture*>(ptr)->textureId();
 }
 
+
+
 void* QSGDynamicTexture_TextureSize(void* ptr)
 {
 	return new QSize(static_cast<QSize>(static_cast<QSGDynamicTexture*>(ptr)->textureSize()).width(), static_cast<QSize>(static_cast<QSGDynamicTexture*>(ptr)->textureSize()).height());
 }
+
+
 
 void QSGDynamicTexture_TimerEvent(void* ptr, void* event)
 {
@@ -5270,6 +5665,11 @@ void QSGDynamicTexture_CustomEventDefault(void* ptr, void* event)
 void QSGDynamicTexture_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSGDynamicTexture*>(ptr), "deleteLater");
+}
+
+void QSGDynamicTexture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSGDynamicTexture*>(ptr)->QSGDynamicTexture::deleteLater();
 }
 
 void QSGDynamicTexture_DisconnectNotify(void* ptr, void* sign)
@@ -5387,6 +5787,11 @@ void QSGEngine_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSGEngine*>(ptr), "deleteLater");
 }
 
+void QSGEngine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSGEngine*>(ptr)->QSGEngine::deleteLater();
+}
+
 void QSGEngine_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSGEngine*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5457,9 +5862,19 @@ void* QSGFlatColorMaterial_CreateShader(void* ptr)
 	return static_cast<QSGFlatColorMaterial*>(ptr)->createShader();
 }
 
+void* QSGFlatColorMaterial_CreateShaderDefault(void* ptr)
+{
+	return static_cast<QSGFlatColorMaterial*>(ptr)->QSGFlatColorMaterial::createShader();
+}
+
 void* QSGFlatColorMaterial_Type(void* ptr)
 {
 	return static_cast<QSGFlatColorMaterial*>(ptr)->type();
+}
+
+void* QSGFlatColorMaterial_TypeDefault(void* ptr)
+{
+	return static_cast<QSGFlatColorMaterial*>(ptr)->QSGFlatColorMaterial::type();
 }
 
 class MyQSGGeometry: public QSGGeometry
@@ -6051,9 +6466,19 @@ void* QSGOpaqueTextureMaterial_CreateShader(void* ptr)
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->createShader();
 }
 
+void* QSGOpaqueTextureMaterial_CreateShaderDefault(void* ptr)
+{
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->QSGOpaqueTextureMaterial::createShader();
+}
+
 void* QSGOpaqueTextureMaterial_Type(void* ptr)
 {
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->type();
+}
+
+void* QSGOpaqueTextureMaterial_TypeDefault(void* ptr)
+{
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->QSGOpaqueTextureMaterial::type();
 }
 
 void* QSGSimpleRectNode_NewQSGSimpleRectNode2()
@@ -6394,6 +6819,11 @@ void QSGTexture_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSGTexture*>(ptr), "deleteLater");
 }
 
+void QSGTexture_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSGTexture*>(ptr)->QSGTexture::deleteLater();
+}
+
 void QSGTexture_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QSGTexture*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -6449,9 +6879,19 @@ void* QSGTextureMaterial_CreateShader(void* ptr)
 	return static_cast<QSGTextureMaterial*>(ptr)->createShader();
 }
 
+void* QSGTextureMaterial_CreateShaderDefault(void* ptr)
+{
+	return static_cast<QSGTextureMaterial*>(ptr)->QSGTextureMaterial::createShader();
+}
+
 void* QSGTextureMaterial_Type(void* ptr)
 {
 	return static_cast<QSGTextureMaterial*>(ptr)->type();
+}
+
+void* QSGTextureMaterial_TypeDefault(void* ptr)
+{
+	return static_cast<QSGTextureMaterial*>(ptr)->QSGTextureMaterial::type();
 }
 
 class MyQSGTextureProvider: public QSGTextureProvider
@@ -6533,6 +6973,11 @@ void QSGTextureProvider_CustomEventDefault(void* ptr, void* event)
 void QSGTextureProvider_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSGTextureProvider*>(ptr), "deleteLater");
+}
+
+void QSGTextureProvider_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSGTextureProvider*>(ptr)->QSGTextureProvider::deleteLater();
 }
 
 void QSGTextureProvider_DisconnectNotify(void* ptr, void* sign)
@@ -6630,8 +7075,18 @@ void* QSGVertexColorMaterial_CreateShader(void* ptr)
 	return static_cast<QSGVertexColorMaterial*>(ptr)->createShader();
 }
 
+void* QSGVertexColorMaterial_CreateShaderDefault(void* ptr)
+{
+	return static_cast<QSGVertexColorMaterial*>(ptr)->QSGVertexColorMaterial::createShader();
+}
+
 void* QSGVertexColorMaterial_Type(void* ptr)
 {
 	return static_cast<QSGVertexColorMaterial*>(ptr)->type();
+}
+
+void* QSGVertexColorMaterial_TypeDefault(void* ptr)
+{
+	return static_cast<QSGVertexColorMaterial*>(ptr)->QSGVertexColorMaterial::type();
 }
 

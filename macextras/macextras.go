@@ -576,8 +576,9 @@ func callbackQMacToolBar_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMacToolBarFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QMacToolBar) ConnectDeleteLater(f func()) {
@@ -603,6 +604,15 @@ func (ptr *QMacToolBar) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMacToolBar) DeleteLaterDefault() {
+	defer qt.Recovering("QMacToolBar::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBar_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1154,8 +1164,9 @@ func callbackQMacToolBarItem_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMacToolBarItemFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QMacToolBarItem) ConnectDeleteLater(f func()) {
@@ -1181,6 +1192,15 @@ func (ptr *QMacToolBarItem) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMacToolBarItem) DeleteLaterDefault() {
+	defer qt.Recovering("QMacToolBarItem::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

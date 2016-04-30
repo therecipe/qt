@@ -99,6 +99,11 @@ void QDBusAbstractAdaptor_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDBusAbstractAdaptor*>(ptr), "deleteLater");
 }
 
+void QDBusAbstractAdaptor_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusAbstractAdaptor*>(ptr)->QDBusAbstractAdaptor::deleteLater();
+}
+
 void QDBusAbstractAdaptor_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QDBusAbstractAdaptor*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -246,6 +251,11 @@ void QDBusAbstractInterface_CustomEventDefault(void* ptr, void* event)
 void QDBusAbstractInterface_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDBusAbstractInterface*>(ptr), "deleteLater");
+}
+
+void QDBusAbstractInterface_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusAbstractInterface*>(ptr)->QDBusAbstractInterface::deleteLater();
 }
 
 void QDBusAbstractInterface_DisconnectNotify(void* ptr, void* sign)
@@ -644,6 +654,11 @@ void QDBusConnectionInterface_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDBusConnectionInterface*>(ptr), "deleteLater");
 }
 
+void QDBusConnectionInterface_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusConnectionInterface*>(ptr)->QDBusConnectionInterface::deleteLater();
+}
+
 void QDBusConnectionInterface_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QDBusConnectionInterface*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -807,6 +822,11 @@ void QDBusInterface_CustomEventDefault(void* ptr, void* event)
 void QDBusInterface_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDBusInterface*>(ptr), "deleteLater");
+}
+
+void QDBusInterface_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusInterface*>(ptr)->QDBusInterface::deleteLater();
 }
 
 void QDBusInterface_DisconnectNotify(void* ptr, void* sign)
@@ -1125,6 +1145,11 @@ void QDBusPendingCallWatcher_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDBusPendingCallWatcher*>(ptr), "deleteLater");
 }
 
+void QDBusPendingCallWatcher_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusPendingCallWatcher*>(ptr)->QDBusPendingCallWatcher::deleteLater();
+}
+
 void QDBusPendingCallWatcher_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QDBusPendingCallWatcher*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1275,6 +1300,11 @@ void QDBusServer_CustomEventDefault(void* ptr, void* event)
 void QDBusServer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDBusServer*>(ptr), "deleteLater");
+}
+
+void QDBusServer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusServer*>(ptr)->QDBusServer::deleteLater();
 }
 
 void QDBusServer_DisconnectNotify(void* ptr, void* sign)
@@ -1479,6 +1509,11 @@ void QDBusServiceWatcher_CustomEventDefault(void* ptr, void* event)
 void QDBusServiceWatcher_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDBusServiceWatcher*>(ptr), "deleteLater");
+}
+
+void QDBusServiceWatcher_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusServiceWatcher*>(ptr)->QDBusServiceWatcher::deleteLater();
 }
 
 void QDBusServiceWatcher_DisconnectNotify(void* ptr, void* sign)
@@ -1696,6 +1731,11 @@ void QDBusVirtualObject_CustomEventDefault(void* ptr, void* event)
 void QDBusVirtualObject_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDBusVirtualObject*>(ptr), "deleteLater");
+}
+
+void QDBusVirtualObject_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDBusVirtualObject*>(ptr)->QDBusVirtualObject::deleteLater();
 }
 
 void QDBusVirtualObject_DisconnectNotify(void* ptr, void* sign)

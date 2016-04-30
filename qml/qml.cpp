@@ -150,6 +150,11 @@ void QJSEngine_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QJSEngine*>(ptr), "deleteLater");
 }
 
+void QJSEngine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QJSEngine*>(ptr)->QJSEngine::deleteLater();
+}
+
 void QJSEngine_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QJSEngine*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -536,6 +541,11 @@ void QQmlApplicationEngine_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "deleteLater");
 }
 
+void QQmlApplicationEngine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::deleteLater();
+}
+
 void QQmlApplicationEngine_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QQmlApplicationEngine*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -788,6 +798,11 @@ void QQmlComponent_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "deleteLater");
 }
 
+void QQmlComponent_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::deleteLater();
+}
+
 void QQmlComponent_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QQmlComponent*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -962,6 +977,11 @@ void QQmlContext_CustomEventDefault(void* ptr, void* event)
 void QQmlContext_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlContext*>(ptr), "deleteLater");
+}
+
+void QQmlContext_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlContext*>(ptr)->QQmlContext::deleteLater();
 }
 
 void QQmlContext_DisconnectNotify(void* ptr, void* sign)
@@ -1233,6 +1253,11 @@ void QQmlEngine_CustomEventDefault(void* ptr, void* event)
 void QQmlEngine_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlEngine*>(ptr), "deleteLater");
+}
+
+void QQmlEngine_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlEngine*>(ptr)->QQmlEngine::deleteLater();
 }
 
 void QQmlEngine_DisconnectNotify(void* ptr, void* sign)
@@ -1508,6 +1533,11 @@ void QQmlExpression_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQmlExpression*>(ptr), "deleteLater");
 }
 
+void QQmlExpression_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlExpression*>(ptr)->QQmlExpression::deleteLater();
+}
+
 void QQmlExpression_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QQmlExpression*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1635,6 +1665,11 @@ void QQmlExtensionPlugin_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQmlExtensionPlugin*>(ptr), "deleteLater");
 }
 
+void QQmlExtensionPlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlExtensionPlugin*>(ptr)->QQmlExtensionPlugin::deleteLater();
+}
+
 void QQmlExtensionPlugin_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QQmlExtensionPlugin*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1748,6 +1783,11 @@ void QQmlFileSelector_CustomEventDefault(void* ptr, void* event)
 void QQmlFileSelector_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlFileSelector*>(ptr), "deleteLater");
+}
+
+void QQmlFileSelector_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlFileSelector*>(ptr)->QQmlFileSelector::deleteLater();
 }
 
 void QQmlFileSelector_DisconnectNotify(void* ptr, void* sign)
@@ -2430,6 +2470,11 @@ void QQmlPropertyMap_CustomEventDefault(void* ptr, void* event)
 void QQmlPropertyMap_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlPropertyMap*>(ptr), "deleteLater");
+}
+
+void QQmlPropertyMap_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlPropertyMap*>(ptr)->QQmlPropertyMap::deleteLater();
 }
 
 void QQmlPropertyMap_DisconnectNotify(void* ptr, void* sign)

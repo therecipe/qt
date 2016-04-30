@@ -1133,8 +1133,9 @@ func callbackQGeoAreaMonitorSource_DeleteLater(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGeoAreaMonitorSourceFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGeoAreaMonitorSource) ConnectDeleteLater(f func()) {
@@ -1160,6 +1161,15 @@ func (ptr *QGeoAreaMonitorSource) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoAreaMonitorSource_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) DeleteLaterDefault() {
+	defer qt.Recovering("QGeoAreaMonitorSource::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGeoAreaMonitorSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2600,8 +2610,9 @@ func callbackQGeoPositionInfoSource_DeleteLater(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGeoPositionInfoSourceFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGeoPositionInfoSource) ConnectDeleteLater(f func()) {
@@ -2627,6 +2638,15 @@ func (ptr *QGeoPositionInfoSource) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoPositionInfoSource_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoPositionInfoSource) DeleteLaterDefault() {
+	defer qt.Recovering("QGeoPositionInfoSource::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGeoPositionInfoSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3980,8 +4000,9 @@ func callbackQGeoSatelliteInfoSource_DeleteLater(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQGeoSatelliteInfoSourceFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QGeoSatelliteInfoSource) ConnectDeleteLater(f func()) {
@@ -4007,6 +4028,15 @@ func (ptr *QGeoSatelliteInfoSource) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoSatelliteInfoSource_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoSatelliteInfoSource) DeleteLaterDefault() {
+	defer qt.Recovering("QGeoSatelliteInfoSource::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QGeoSatelliteInfoSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5074,8 +5104,9 @@ func callbackQNmeaPositionInfoSource_DeleteLater(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQNmeaPositionInfoSourceFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QNmeaPositionInfoSource) ConnectDeleteLater(f func()) {
@@ -5101,6 +5132,15 @@ func (ptr *QNmeaPositionInfoSource) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QNmeaPositionInfoSource_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNmeaPositionInfoSource) DeleteLaterDefault() {
+	defer qt.Recovering("QNmeaPositionInfoSource::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QNmeaPositionInfoSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

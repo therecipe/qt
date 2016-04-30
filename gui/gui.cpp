@@ -397,6 +397,11 @@ void QAbstractTextDocumentLayout_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractTextDocumentLayout*>(ptr), "deleteLater");
 }
 
+void QAbstractTextDocumentLayout_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::deleteLater();
+}
+
 void QAbstractTextDocumentLayout_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -990,10 +995,14 @@ void* QAccessibleObject_Child(void* ptr, int index)
 	return static_cast<QAccessibleObject*>(ptr)->child(index);
 }
 
+
+
 int QAccessibleObject_ChildCount(void* ptr)
 {
 	return static_cast<QAccessibleObject*>(ptr)->childCount();
 }
+
+
 
 void* QAccessibleObject_FocusChild(void* ptr)
 {
@@ -1020,6 +1029,8 @@ int QAccessibleObject_IndexOfChild(void* ptr, void* child)
 	return static_cast<QAccessibleObject*>(ptr)->indexOfChild(static_cast<QAccessibleInterface*>(child));
 }
 
+
+
 void* QAccessibleObject_Interface_cast(void* ptr, int ty)
 {
 	return static_cast<QAccessibleObject*>(ptr)->interface_cast(static_cast<QAccessible::InterfaceType>(ty));
@@ -1035,15 +1046,21 @@ void* QAccessibleObject_Parent(void* ptr)
 	return static_cast<QAccessibleObject*>(ptr)->parent();
 }
 
+
+
 int QAccessibleObject_Role(void* ptr)
 {
 	return static_cast<QAccessibleObject*>(ptr)->role();
 }
 
+
+
 char* QAccessibleObject_Text(void* ptr, int t)
 {
 	return static_cast<QAccessibleObject*>(ptr)->text(static_cast<QAccessible::Text>(t)).toUtf8().data();
 }
+
+
 
 void* QAccessibleObject_Window(void* ptr)
 {
@@ -1129,6 +1146,11 @@ void QAccessiblePlugin_CustomEventDefault(void* ptr, void* event)
 void QAccessiblePlugin_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAccessiblePlugin*>(ptr), "deleteLater");
+}
+
+void QAccessiblePlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QAccessiblePlugin*>(ptr)->QAccessiblePlugin::deleteLater();
 }
 
 void QAccessiblePlugin_DisconnectNotify(void* ptr, void* sign)
@@ -1967,6 +1989,11 @@ void* QBitmap_PaintEngine(void* ptr)
 	return static_cast<QBitmap*>(ptr)->paintEngine();
 }
 
+void* QBitmap_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QBitmap*>(ptr)->QBitmap::paintEngine();
+}
+
 void* QBrush_NewQBrush4(int color, int style)
 {
 	return new QBrush(static_cast<Qt::GlobalColor>(color), static_cast<Qt::BrushStyle>(style));
@@ -2278,6 +2305,11 @@ void QClipboard_CustomEventDefault(void* ptr, void* event)
 void QClipboard_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QClipboard*>(ptr), "deleteLater");
+}
+
+void QClipboard_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QClipboard*>(ptr)->QClipboard::deleteLater();
 }
 
 void QClipboard_DisconnectNotify(void* ptr, void* sign)
@@ -3025,6 +3057,11 @@ void QDoubleValidator_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDoubleValidator*>(ptr), "deleteLater");
 }
 
+void QDoubleValidator_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::deleteLater();
+}
+
 void QDoubleValidator_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QDoubleValidator*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -3235,6 +3272,11 @@ void QDrag_CustomEventDefault(void* ptr, void* event)
 void QDrag_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDrag*>(ptr), "deleteLater");
+}
+
+void QDrag_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QDrag*>(ptr)->QDrag::deleteLater();
 }
 
 void QDrag_DisconnectNotify(void* ptr, void* sign)
@@ -4433,6 +4475,11 @@ void QGenericPlugin_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGenericPlugin*>(ptr), "deleteLater");
 }
 
+void QGenericPlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGenericPlugin*>(ptr)->QGenericPlugin::deleteLater();
+}
+
 void QGenericPlugin_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGenericPlugin*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5009,6 +5056,11 @@ void QGuiApplication_Quit(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QGuiApplication*>(ptr), "quit");
 }
 
+void QGuiApplication_QuitDefault(void* ptr)
+{
+	static_cast<QGuiApplication*>(ptr)->QGuiApplication::quit();
+}
+
 void QGuiApplication_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QGuiApplication*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -5052,6 +5104,11 @@ void QGuiApplication_CustomEventDefault(void* ptr, void* event)
 void QGuiApplication_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGuiApplication*>(ptr), "deleteLater");
+}
+
+void QGuiApplication_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QGuiApplication*>(ptr)->QGuiApplication::deleteLater();
 }
 
 void QGuiApplication_DisconnectNotify(void* ptr, void* sign)
@@ -5482,6 +5539,11 @@ void QIconEnginePlugin_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QIconEnginePlugin*>(ptr), "deleteLater");
 }
 
+void QIconEnginePlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QIconEnginePlugin*>(ptr)->QIconEnginePlugin::deleteLater();
+}
+
 void QIconEnginePlugin_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QIconEnginePlugin*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -5847,6 +5909,11 @@ void* QImage_PaintEngine(void* ptr)
 	return static_cast<QImage*>(ptr)->paintEngine();
 }
 
+void* QImage_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QImage*>(ptr)->QImage::paintEngine();
+}
+
 class MyQImageIOHandler: public QImageIOHandler
 {
 public:
@@ -6119,6 +6186,11 @@ void QImageIOPlugin_CustomEventDefault(void* ptr, void* event)
 void QImageIOPlugin_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QImageIOPlugin*>(ptr), "deleteLater");
+}
+
+void QImageIOPlugin_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QImageIOPlugin*>(ptr)->QImageIOPlugin::deleteLater();
 }
 
 void QImageIOPlugin_DisconnectNotify(void* ptr, void* sign)
@@ -6792,6 +6864,11 @@ void QInputMethod_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "deleteLater");
 }
 
+void QInputMethod_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QInputMethod*>(ptr)->QInputMethod::deleteLater();
+}
+
 void QInputMethod_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QInputMethod*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7002,6 +7079,11 @@ void QIntValidator_CustomEventDefault(void* ptr, void* event)
 void QIntValidator_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QIntValidator*>(ptr), "deleteLater");
+}
+
+void QIntValidator_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QIntValidator*>(ptr)->QIntValidator::deleteLater();
 }
 
 void QIntValidator_DisconnectNotify(void* ptr, void* sign)
@@ -7715,6 +7797,11 @@ void QMovie_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMovie*>(ptr), "deleteLater");
 }
 
+void QMovie_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMovie*>(ptr)->QMovie::deleteLater();
+}
+
 void QMovie_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMovie*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -7944,6 +8031,11 @@ void QOffscreenSurface_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QOffscreenSurface*>(ptr), "deleteLater");
 }
 
+void QOffscreenSurface_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::deleteLater();
+}
+
 void QOffscreenSurface_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QOffscreenSurface*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -8102,11 +8194,6 @@ int QPageLayout_SetBottomMargin(void* ptr, double bottomMargin)
 int QPageLayout_SetLeftMargin(void* ptr, double leftMargin)
 {
 	return static_cast<QPageLayout*>(ptr)->setLeftMargin(static_cast<double>(leftMargin));
-}
-
-int QPageLayout_SetMargins(void* ptr, void* margins)
-{
-	return static_cast<QPageLayout*>(ptr)->setMargins(*static_cast<QMarginsF*>(margins));
 }
 
 void QPageLayout_SetMinimumMargins(void* ptr, void* minMargins)
@@ -8438,6 +8525,8 @@ void* QPagedPaintDevice_PaintEngine(void* ptr)
 	return static_cast<QPagedPaintDevice*>(ptr)->paintEngine();
 }
 
+
+
 class MyQPaintDevice: public QPaintDevice
 {
 public:
@@ -8640,9 +8729,19 @@ void QPaintDeviceWindow_SetHeight(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setHeight", Q_ARG(int, arg));
 }
 
+void QPaintDeviceWindow_SetHeightDefault(void* ptr, int arg)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setHeight(arg);
+}
+
 void QPaintDeviceWindow_SetMaximumHeight(void* ptr, int h)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+}
+
+void QPaintDeviceWindow_SetMaximumHeightDefault(void* ptr, int h)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMaximumHeight(h);
 }
 
 void QPaintDeviceWindow_SetMaximumWidth(void* ptr, int w)
@@ -8650,9 +8749,19 @@ void QPaintDeviceWindow_SetMaximumWidth(void* ptr, int w)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
 }
 
+void QPaintDeviceWindow_SetMaximumWidthDefault(void* ptr, int w)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMaximumWidth(w);
+}
+
 void QPaintDeviceWindow_SetMinimumHeight(void* ptr, int h)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
+}
+
+void QPaintDeviceWindow_SetMinimumHeightDefault(void* ptr, int h)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMinimumHeight(h);
 }
 
 void QPaintDeviceWindow_SetMinimumWidth(void* ptr, int w)
@@ -8660,9 +8769,19 @@ void QPaintDeviceWindow_SetMinimumWidth(void* ptr, int w)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
 }
 
+void QPaintDeviceWindow_SetMinimumWidthDefault(void* ptr, int w)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMinimumWidth(w);
+}
+
 void QPaintDeviceWindow_SetTitle(void* ptr, char* vqs)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void QPaintDeviceWindow_SetTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setTitle(QString(vqs));
 }
 
 void QPaintDeviceWindow_SetVisible(void* ptr, int visible)
@@ -8670,9 +8789,19 @@ void QPaintDeviceWindow_SetVisible(void* ptr, int visible)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
+void QPaintDeviceWindow_SetVisibleDefault(void* ptr, int visible)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setVisible(visible != 0);
+}
+
 void QPaintDeviceWindow_SetWidth(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setWidth", Q_ARG(int, arg));
+}
+
+void QPaintDeviceWindow_SetWidthDefault(void* ptr, int arg)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setWidth(arg);
 }
 
 void QPaintDeviceWindow_SetX(void* ptr, int arg)
@@ -8680,9 +8809,19 @@ void QPaintDeviceWindow_SetX(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setX", Q_ARG(int, arg));
 }
 
+void QPaintDeviceWindow_SetXDefault(void* ptr, int arg)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setX(arg);
+}
+
 void QPaintDeviceWindow_SetY(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setY", Q_ARG(int, arg));
+}
+
+void QPaintDeviceWindow_SetYDefault(void* ptr, int arg)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setY(arg);
 }
 
 void QPaintDeviceWindow_Alert(void* ptr, int msec)
@@ -8690,11 +8829,21 @@ void QPaintDeviceWindow_Alert(void* ptr, int msec)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "alert", Q_ARG(int, msec));
 }
 
+void QPaintDeviceWindow_AlertDefault(void* ptr, int msec)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::alert(msec);
+}
+
 int QPaintDeviceWindow_Close(void* ptr)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QPaintDeviceWindow_CloseDefault(void* ptr)
+{
+	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::close();
 }
 
 int QPaintDeviceWindow_Event(void* ptr, void* ev)
@@ -8762,6 +8911,11 @@ void QPaintDeviceWindow_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "hide");
 }
 
+void QPaintDeviceWindow_HideDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::hide();
+}
+
 void QPaintDeviceWindow_HideEvent(void* ptr, void* ev)
 {
 	static_cast<QPaintDeviceWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
@@ -8795,6 +8949,11 @@ void QPaintDeviceWindow_KeyReleaseEventDefault(void* ptr, void* ev)
 void QPaintDeviceWindow_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "lower");
+}
+
+void QPaintDeviceWindow_LowerDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::lower();
 }
 
 void QPaintDeviceWindow_MouseDoubleClickEvent(void* ptr, void* ev)
@@ -8862,14 +9021,29 @@ void QPaintDeviceWindow_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "raise");
 }
 
+void QPaintDeviceWindow_RaiseDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::raise();
+}
+
 void QPaintDeviceWindow_RequestActivate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestActivate");
 }
 
+void QPaintDeviceWindow_RequestActivateDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::requestActivate();
+}
+
 void QPaintDeviceWindow_RequestUpdate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestUpdate");
+}
+
+void QPaintDeviceWindow_RequestUpdateDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::requestUpdate();
 }
 
 void QPaintDeviceWindow_ResizeEvent(void* ptr, void* ev)
@@ -8887,6 +9061,11 @@ void QPaintDeviceWindow_Show(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "show");
 }
 
+void QPaintDeviceWindow_ShowDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::show();
+}
+
 void QPaintDeviceWindow_ShowEvent(void* ptr, void* ev)
 {
 	static_cast<QPaintDeviceWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
@@ -8902,9 +9081,19 @@ void QPaintDeviceWindow_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showFullScreen");
 }
 
+void QPaintDeviceWindow_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showFullScreen();
+}
+
 void QPaintDeviceWindow_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMaximized");
+}
+
+void QPaintDeviceWindow_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showMaximized();
 }
 
 void QPaintDeviceWindow_ShowMinimized(void* ptr)
@@ -8912,9 +9101,19 @@ void QPaintDeviceWindow_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMinimized");
 }
 
+void QPaintDeviceWindow_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showMinimized();
+}
+
 void QPaintDeviceWindow_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showNormal");
+}
+
+void QPaintDeviceWindow_ShowNormalDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showNormal();
 }
 
 void* QPaintDeviceWindow_Size(void* ptr)
@@ -9012,6 +9211,11 @@ void QPaintDeviceWindow_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "deleteLater");
 }
 
+void QPaintDeviceWindow_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::deleteLater();
+}
+
 void QPaintDeviceWindow_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QPaintDeviceWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -9055,6 +9259,11 @@ int QPaintDeviceWindow_MetricDefault(void* ptr, int metric)
 void* QPaintDeviceWindow_PaintEngine(void* ptr)
 {
 	return static_cast<QPaintDeviceWindow*>(ptr)->paintEngine();
+}
+
+void* QPaintDeviceWindow_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::paintEngine();
 }
 
 class MyQPaintEngine: public QPaintEngine
@@ -11043,6 +11252,11 @@ void QPdfWriter_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPdfWriter*>(ptr), "deleteLater");
 }
 
+void QPdfWriter_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QPdfWriter*>(ptr)->QPdfWriter::deleteLater();
+}
+
 void QPdfWriter_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QPdfWriter*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -11365,6 +11579,11 @@ void* QPicture_PaintEngine(void* ptr)
 	return static_cast<QPicture*>(ptr)->paintEngine();
 }
 
+void* QPicture_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPicture*>(ptr)->QPicture::paintEngine();
+}
+
 void* QPixelFormat_NewQPixelFormat()
 {
 	return new QPixelFormat();
@@ -11623,6 +11842,11 @@ int QPixmap_MetricDefault(void* ptr, int metric)
 void* QPixmap_PaintEngine(void* ptr)
 {
 	return static_cast<QPixmap*>(ptr)->paintEngine();
+}
+
+void* QPixmap_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPixmap*>(ptr)->QPixmap::paintEngine();
 }
 
 int QPixmapCache_QPixmapCache_CacheLimit()
@@ -12010,9 +12234,19 @@ void QRasterWindow_Update3(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "update");
 }
 
+void QRasterWindow_Update3Default(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::update();
+}
+
 void QRasterWindow_SetHeight(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setHeight", Q_ARG(int, arg));
+}
+
+void QRasterWindow_SetHeightDefault(void* ptr, int arg)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setHeight(arg);
 }
 
 void QRasterWindow_SetMaximumHeight(void* ptr, int h)
@@ -12020,9 +12254,19 @@ void QRasterWindow_SetMaximumHeight(void* ptr, int h)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
 }
 
+void QRasterWindow_SetMaximumHeightDefault(void* ptr, int h)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setMaximumHeight(h);
+}
+
 void QRasterWindow_SetMaximumWidth(void* ptr, int w)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
+}
+
+void QRasterWindow_SetMaximumWidthDefault(void* ptr, int w)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setMaximumWidth(w);
 }
 
 void QRasterWindow_SetMinimumHeight(void* ptr, int h)
@@ -12030,9 +12274,19 @@ void QRasterWindow_SetMinimumHeight(void* ptr, int h)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
 }
 
+void QRasterWindow_SetMinimumHeightDefault(void* ptr, int h)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setMinimumHeight(h);
+}
+
 void QRasterWindow_SetMinimumWidth(void* ptr, int w)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
+}
+
+void QRasterWindow_SetMinimumWidthDefault(void* ptr, int w)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setMinimumWidth(w);
 }
 
 void QRasterWindow_SetTitle(void* ptr, char* vqs)
@@ -12040,9 +12294,19 @@ void QRasterWindow_SetTitle(void* ptr, char* vqs)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
 }
 
+void QRasterWindow_SetTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setTitle(QString(vqs));
+}
+
 void QRasterWindow_SetVisible(void* ptr, int visible)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+}
+
+void QRasterWindow_SetVisibleDefault(void* ptr, int visible)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setVisible(visible != 0);
 }
 
 void QRasterWindow_SetWidth(void* ptr, int arg)
@@ -12050,9 +12314,19 @@ void QRasterWindow_SetWidth(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setWidth", Q_ARG(int, arg));
 }
 
+void QRasterWindow_SetWidthDefault(void* ptr, int arg)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setWidth(arg);
+}
+
 void QRasterWindow_SetX(void* ptr, int arg)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setX", Q_ARG(int, arg));
+}
+
+void QRasterWindow_SetXDefault(void* ptr, int arg)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setX(arg);
 }
 
 void QRasterWindow_SetY(void* ptr, int arg)
@@ -12060,9 +12334,19 @@ void QRasterWindow_SetY(void* ptr, int arg)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "setY", Q_ARG(int, arg));
 }
 
+void QRasterWindow_SetYDefault(void* ptr, int arg)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::setY(arg);
+}
+
 void QRasterWindow_Alert(void* ptr, int msec)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "alert", Q_ARG(int, msec));
+}
+
+void QRasterWindow_AlertDefault(void* ptr, int msec)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::alert(msec);
 }
 
 int QRasterWindow_Close(void* ptr)
@@ -12070,6 +12354,11 @@ int QRasterWindow_Close(void* ptr)
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+int QRasterWindow_CloseDefault(void* ptr)
+{
+	return static_cast<QRasterWindow*>(ptr)->QRasterWindow::close();
 }
 
 int QRasterWindow_Event(void* ptr, void* ev)
@@ -12137,6 +12426,11 @@ void QRasterWindow_Hide(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "hide");
 }
 
+void QRasterWindow_HideDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::hide();
+}
+
 void QRasterWindow_HideEvent(void* ptr, void* ev)
 {
 	static_cast<QRasterWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
@@ -12170,6 +12464,11 @@ void QRasterWindow_KeyReleaseEventDefault(void* ptr, void* ev)
 void QRasterWindow_Lower(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "lower");
+}
+
+void QRasterWindow_LowerDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::lower();
 }
 
 void QRasterWindow_MouseDoubleClickEvent(void* ptr, void* ev)
@@ -12237,14 +12536,29 @@ void QRasterWindow_Raise(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "raise");
 }
 
+void QRasterWindow_RaiseDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::raise();
+}
+
 void QRasterWindow_RequestActivate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "requestActivate");
 }
 
+void QRasterWindow_RequestActivateDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::requestActivate();
+}
+
 void QRasterWindow_RequestUpdate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "requestUpdate");
+}
+
+void QRasterWindow_RequestUpdateDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::requestUpdate();
 }
 
 void QRasterWindow_ResizeEvent(void* ptr, void* ev)
@@ -12262,6 +12576,11 @@ void QRasterWindow_Show(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "show");
 }
 
+void QRasterWindow_ShowDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::show();
+}
+
 void QRasterWindow_ShowEvent(void* ptr, void* ev)
 {
 	static_cast<QRasterWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
@@ -12277,9 +12596,19 @@ void QRasterWindow_ShowFullScreen(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "showFullScreen");
 }
 
+void QRasterWindow_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::showFullScreen();
+}
+
 void QRasterWindow_ShowMaximized(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "showMaximized");
+}
+
+void QRasterWindow_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::showMaximized();
 }
 
 void QRasterWindow_ShowMinimized(void* ptr)
@@ -12287,9 +12616,19 @@ void QRasterWindow_ShowMinimized(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "showMinimized");
 }
 
+void QRasterWindow_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::showMinimized();
+}
+
 void QRasterWindow_ShowNormal(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "showNormal");
+}
+
+void QRasterWindow_ShowNormalDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::showNormal();
 }
 
 void* QRasterWindow_Size(void* ptr)
@@ -12387,6 +12726,11 @@ void QRasterWindow_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRasterWindow*>(ptr), "deleteLater");
 }
 
+void QRasterWindow_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRasterWindow*>(ptr)->QRasterWindow::deleteLater();
+}
+
 void QRasterWindow_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QRasterWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -12430,6 +12774,11 @@ int QRasterWindow_MetricDefault(void* ptr, int metric)
 void* QRasterWindow_PaintEngine(void* ptr)
 {
 	return static_cast<QRasterWindow*>(ptr)->paintEngine();
+}
+
+void* QRasterWindow_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QRasterWindow*>(ptr)->QRasterWindow::paintEngine();
 }
 
 void* QRawFont_NewQRawFont()
@@ -12666,6 +13015,11 @@ void QRegExpValidator_CustomEventDefault(void* ptr, void* event)
 void QRegExpValidator_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRegExpValidator*>(ptr), "deleteLater");
+}
+
+void QRegExpValidator_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::deleteLater();
 }
 
 void QRegExpValidator_DisconnectNotify(void* ptr, void* sign)
@@ -12949,6 +13303,11 @@ void QRegularExpressionValidator_CustomEventDefault(void* ptr, void* event)
 void QRegularExpressionValidator_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRegularExpressionValidator*>(ptr), "deleteLater");
+}
+
+void QRegularExpressionValidator_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::deleteLater();
 }
 
 void QRegularExpressionValidator_DisconnectNotify(void* ptr, void* sign)
@@ -13359,6 +13718,11 @@ void QScreen_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QScreen*>(ptr), "deleteLater");
 }
 
+void QScreen_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QScreen*>(ptr)->QScreen::deleteLater();
+}
+
 void QScreen_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QScreen*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -13592,6 +13956,11 @@ void QSessionManager_CustomEventDefault(void* ptr, void* event)
 void QSessionManager_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSessionManager*>(ptr), "deleteLater");
+}
+
+void QSessionManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSessionManager*>(ptr)->QSessionManager::deleteLater();
 }
 
 void QSessionManager_DisconnectNotify(void* ptr, void* sign)
@@ -14558,6 +14927,11 @@ void QStandardItemModel_ResetInternalData(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStandardItemModel*>(ptr), "resetInternalData");
 }
 
+void QStandardItemModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::resetInternalData();
+}
+
 void QStandardItemModel_Revert(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStandardItemModel*>(ptr), "revert");
@@ -14643,6 +15017,11 @@ void QStandardItemModel_CustomEventDefault(void* ptr, void* event)
 void QStandardItemModel_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStandardItemModel*>(ptr), "deleteLater");
+}
+
+void QStandardItemModel_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::deleteLater();
 }
 
 void QStandardItemModel_DisconnectNotify(void* ptr, void* sign)
@@ -14992,6 +15371,11 @@ void QStyleHints_CustomEventDefault(void* ptr, void* event)
 void QStyleHints_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStyleHints*>(ptr), "deleteLater");
+}
+
+void QStyleHints_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QStyleHints*>(ptr)->QStyleHints::deleteLater();
 }
 
 void QStyleHints_DisconnectNotify(void* ptr, void* sign)
@@ -15437,6 +15821,11 @@ void QSyntaxHighlighter_CustomEventDefault(void* ptr, void* event)
 void QSyntaxHighlighter_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSyntaxHighlighter*>(ptr), "deleteLater");
+}
+
+void QSyntaxHighlighter_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::deleteLater();
 }
 
 void QSyntaxHighlighter_DisconnectNotify(void* ptr, void* sign)
@@ -15945,6 +16334,11 @@ void QTextBlockGroup_CustomEventDefault(void* ptr, void* event)
 void QTextBlockGroup_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextBlockGroup*>(ptr), "deleteLater");
+}
+
+void QTextBlockGroup_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::deleteLater();
 }
 
 void QTextBlockGroup_DisconnectNotify(void* ptr, void* sign)
@@ -17282,6 +17676,11 @@ void QTextDocument_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextDocument*>(ptr), "deleteLater");
 }
 
+void QTextDocument_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextDocument*>(ptr)->QTextDocument::deleteLater();
+}
+
 void QTextDocument_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTextDocument*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -17770,6 +18169,11 @@ void QTextFrame_CustomEventDefault(void* ptr, void* event)
 void QTextFrame_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextFrame*>(ptr), "deleteLater");
+}
+
+void QTextFrame_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextFrame*>(ptr)->QTextFrame::deleteLater();
 }
 
 void QTextFrame_DisconnectNotify(void* ptr, void* sign)
@@ -18527,6 +18931,11 @@ void QTextList_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextList*>(ptr), "deleteLater");
 }
 
+void QTextList_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextList*>(ptr)->QTextList::deleteLater();
+}
+
 void QTextList_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QTextList*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -18695,6 +19104,11 @@ void QTextObject_CustomEventDefault(void* ptr, void* event)
 void QTextObject_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextObject*>(ptr), "deleteLater");
+}
+
+void QTextObject_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextObject*>(ptr)->QTextObject::deleteLater();
 }
 
 void QTextObject_DisconnectNotify(void* ptr, void* sign)
@@ -18990,6 +19404,11 @@ void QTextTable_CustomEventDefault(void* ptr, void* event)
 void QTextTable_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextTable*>(ptr), "deleteLater");
+}
+
+void QTextTable_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QTextTable*>(ptr)->QTextTable::deleteLater();
 }
 
 void QTextTable_DisconnectNotify(void* ptr, void* sign)
@@ -19573,6 +19992,11 @@ void QValidator_CustomEventDefault(void* ptr, void* event)
 void QValidator_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QValidator*>(ptr), "deleteLater");
+}
+
+void QValidator_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QValidator*>(ptr)->QValidator::deleteLater();
 }
 
 void QValidator_DisconnectNotify(void* ptr, void* sign)
@@ -20952,6 +21376,11 @@ void QWindow_CustomEventDefault(void* ptr, void* event)
 void QWindow_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "deleteLater");
+}
+
+void QWindow_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWindow*>(ptr)->QWindow::deleteLater();
 }
 
 void QWindow_DisconnectNotify(void* ptr, void* sign)

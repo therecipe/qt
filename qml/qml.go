@@ -316,8 +316,9 @@ func callbackQJSEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQJSEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QJSEngine) ConnectDeleteLater(f func()) {
@@ -343,6 +344,15 @@ func (ptr *QJSEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QJSEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QJSEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QJSEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1502,8 +1512,9 @@ func callbackQQmlApplicationEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C.ch
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlApplicationEngine) ConnectDeleteLater(f func()) {
@@ -1529,6 +1540,15 @@ func (ptr *QQmlApplicationEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlApplicationEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlApplicationEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2361,8 +2381,9 @@ func callbackQQmlComponent_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlComponentFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlComponent) ConnectDeleteLater(f func()) {
@@ -2388,6 +2409,15 @@ func (ptr *QQmlComponent) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlComponent) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlComponent::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2936,8 +2966,9 @@ func callbackQQmlContext_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlContextFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlContext) ConnectDeleteLater(f func()) {
@@ -2963,6 +2994,15 @@ func (ptr *QQmlContext) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlContext) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlContext::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -3734,8 +3774,9 @@ func callbackQQmlEngine_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlEngineFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlEngine) ConnectDeleteLater(f func()) {
@@ -3761,6 +3802,15 @@ func (ptr *QQmlEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlEngine) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlEngine::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4489,8 +4539,9 @@ func callbackQQmlExpression_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlExpressionFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlExpression) ConnectDeleteLater(f func()) {
@@ -4516,6 +4567,15 @@ func (ptr *QQmlExpression) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlExpression) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlExpression::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5035,8 +5095,9 @@ func callbackQQmlExtensionPlugin_DeleteLater(ptr unsafe.Pointer, ptrName *C.char
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlExtensionPluginFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectDeleteLater(f func()) {
@@ -5062,6 +5123,15 @@ func (ptr *QQmlExtensionPlugin) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlExtensionPlugin) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlExtensionPlugin::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -5536,8 +5606,9 @@ func callbackQQmlFileSelector_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlFileSelectorFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlFileSelector) ConnectDeleteLater(f func()) {
@@ -5563,6 +5634,15 @@ func (ptr *QQmlFileSelector) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlFileSelector) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlFileSelector::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlFileSelector_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7538,8 +7618,9 @@ func callbackQQmlPropertyMap_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQmlPropertyMapFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QQmlPropertyMap) ConnectDeleteLater(f func()) {
@@ -7565,6 +7646,15 @@ func (ptr *QQmlPropertyMap) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlPropertyMap) DeleteLaterDefault() {
+	defer qt.Recovering("QQmlPropertyMap::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

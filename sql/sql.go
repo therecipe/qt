@@ -1852,8 +1852,9 @@ func callbackQSqlDriver_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlDriverFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSqlDriver) ConnectDeleteLater(f func()) {
@@ -1879,6 +1880,15 @@ func (ptr *QSqlDriver) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlDriver_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlDriver) DeleteLaterDefault() {
+	defer qt.Recovering("QSqlDriver::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -2509,8 +2519,9 @@ func callbackQSqlDriverPlugin_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlDriverPluginFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSqlDriverPlugin) ConnectDeleteLater(f func()) {
@@ -2536,6 +2547,15 @@ func (ptr *QSqlDriverPlugin) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlDriverPlugin_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlDriverPlugin) DeleteLaterDefault() {
+	defer qt.Recovering("QSqlDriverPlugin::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -4824,7 +4844,7 @@ func callbackQSqlQueryModel_Parent(ptr unsafe.Pointer, ptrName *C.char, index un
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(nil)
+	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
 }
 
 func (ptr *QSqlQueryModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -4836,7 +4856,7 @@ func (ptr *QSqlQueryModel) ConnectParent(f func(index *core.QModelIndex) *core.Q
 	}
 }
 
-func (ptr *QSqlQueryModel) DisconnectParent(index core.QModelIndex_ITF) {
+func (ptr *QSqlQueryModel) DisconnectParent() {
 	defer qt.Recovering("disconnect QSqlQueryModel::parent")
 
 	if ptr.Pointer() != nil {
@@ -4850,6 +4870,15 @@ func (ptr *QSqlQueryModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex 
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QSqlQueryModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
+func (ptr *QSqlQueryModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QSqlQueryModel::parent")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QSqlQueryModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
 	return nil
 }
@@ -4907,8 +4936,9 @@ func callbackQSqlQueryModel_ResetInternalData(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resetInternalData"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).ResetInternalDataDefault()
 	}
-
 }
 
 func (ptr *QSqlQueryModel) ConnectResetInternalData(f func()) {
@@ -4934,6 +4964,14 @@ func (ptr *QSqlQueryModel) ResetInternalData() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_ResetInternalData(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlQueryModel) ResetInternalDataDefault() {
+	defer qt.Recovering("QSqlQueryModel::resetInternalData")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_ResetInternalDataDefault(ptr.Pointer())
 	}
 }
 
@@ -5448,8 +5486,9 @@ func callbackQSqlQueryModel_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSqlQueryModel) ConnectDeleteLater(f func()) {
@@ -5475,6 +5514,15 @@ func (ptr *QSqlQueryModel) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlQueryModel) DeleteLaterDefault() {
+	defer qt.Recovering("QSqlQueryModel::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -7086,8 +7134,9 @@ func callbackQSqlRelationalTableModel_RevertAll(ptr unsafe.Pointer, ptrName *C.c
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revertAll"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlRelationalTableModelFromPointer(ptr).RevertAllDefault()
 	}
-
 }
 
 func (ptr *QSqlRelationalTableModel) ConnectRevertAll(f func()) {
@@ -7113,6 +7162,14 @@ func (ptr *QSqlRelationalTableModel) RevertAll() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_RevertAll(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) RevertAllDefault() {
+	defer qt.Recovering("QSqlRelationalTableModel::revertAll")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalTableModel_RevertAllDefault(ptr.Pointer())
 	}
 }
 
@@ -7445,7 +7502,7 @@ func callbackQSqlRelationalTableModel_SubmitAll(ptr unsafe.Pointer, ptrName *C.c
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).SubmitAllDefault()))
 }
 
 func (ptr *QSqlRelationalTableModel) ConnectSubmitAll(f func() bool) {
@@ -7471,6 +7528,15 @@ func (ptr *QSqlRelationalTableModel) SubmitAll() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QSqlRelationalTableModel_SubmitAll(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlRelationalTableModel) SubmitAllDefault() bool {
+	defer qt.Recovering("QSqlRelationalTableModel::submitAll")
+
+	if ptr.Pointer() != nil {
+		return C.QSqlRelationalTableModel_SubmitAllDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -8184,7 +8250,7 @@ func callbackQSqlRelationalTableModel_Parent(ptr unsafe.Pointer, ptrName *C.char
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(nil)
+	return core.PointerFromQModelIndex(NewQSqlRelationalTableModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
 }
 
 func (ptr *QSqlRelationalTableModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -8196,7 +8262,7 @@ func (ptr *QSqlRelationalTableModel) ConnectParent(f func(index *core.QModelInde
 	}
 }
 
-func (ptr *QSqlRelationalTableModel) DisconnectParent(index core.QModelIndex_ITF) {
+func (ptr *QSqlRelationalTableModel) DisconnectParent() {
 	defer qt.Recovering("disconnect QSqlRelationalTableModel::parent")
 
 	if ptr.Pointer() != nil {
@@ -8214,14 +8280,24 @@ func (ptr *QSqlRelationalTableModel) Parent(index core.QModelIndex_ITF) *core.QM
 	return nil
 }
 
+func (ptr *QSqlRelationalTableModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QSqlRelationalTableModel::parent")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QSqlRelationalTableModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 //export callbackQSqlRelationalTableModel_ResetInternalData
 func callbackQSqlRelationalTableModel_ResetInternalData(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSqlRelationalTableModel::resetInternalData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resetInternalData"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlRelationalTableModelFromPointer(ptr).ResetInternalDataDefault()
 	}
-
 }
 
 func (ptr *QSqlRelationalTableModel) ConnectResetInternalData(f func()) {
@@ -8247,6 +8323,14 @@ func (ptr *QSqlRelationalTableModel) ResetInternalData() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_ResetInternalData(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) ResetInternalDataDefault() {
+	defer qt.Recovering("QSqlRelationalTableModel::resetInternalData")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalTableModel_ResetInternalDataDefault(ptr.Pointer())
 	}
 }
 
@@ -8577,8 +8661,9 @@ func callbackQSqlRelationalTableModel_DeleteLater(ptr unsafe.Pointer, ptrName *C
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlRelationalTableModelFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSqlRelationalTableModel) ConnectDeleteLater(f func()) {
@@ -8604,6 +8689,15 @@ func (ptr *QSqlRelationalTableModel) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DeleteLaterDefault() {
+	defer qt.Recovering("QSqlRelationalTableModel::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalTableModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -12271,7 +12365,7 @@ func callbackQSqlTableModel_Parent(ptr unsafe.Pointer, ptrName *C.char, index un
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(nil)
+	return core.PointerFromQModelIndex(NewQSqlTableModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
 }
 
 func (ptr *QSqlTableModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -12283,7 +12377,7 @@ func (ptr *QSqlTableModel) ConnectParent(f func(index *core.QModelIndex) *core.Q
 	}
 }
 
-func (ptr *QSqlTableModel) DisconnectParent(index core.QModelIndex_ITF) {
+func (ptr *QSqlTableModel) DisconnectParent() {
 	defer qt.Recovering("disconnect QSqlTableModel::parent")
 
 	if ptr.Pointer() != nil {
@@ -12301,14 +12395,24 @@ func (ptr *QSqlTableModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex 
 	return nil
 }
 
+func (ptr *QSqlTableModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
+	defer qt.Recovering("QSqlTableModel::parent")
+
+	if ptr.Pointer() != nil {
+		return core.NewQModelIndexFromPointer(C.QSqlTableModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return nil
+}
+
 //export callbackQSqlTableModel_ResetInternalData
 func callbackQSqlTableModel_ResetInternalData(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSqlTableModel::resetInternalData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "resetInternalData"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlTableModelFromPointer(ptr).ResetInternalDataDefault()
 	}
-
 }
 
 func (ptr *QSqlTableModel) ConnectResetInternalData(f func()) {
@@ -12334,6 +12438,14 @@ func (ptr *QSqlTableModel) ResetInternalData() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_ResetInternalData(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlTableModel) ResetInternalDataDefault() {
+	defer qt.Recovering("QSqlTableModel::resetInternalData")
+
+	if ptr.Pointer() != nil {
+		C.QSqlTableModel_ResetInternalDataDefault(ptr.Pointer())
 	}
 }
 
@@ -12664,8 +12776,9 @@ func callbackQSqlTableModel_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlTableModelFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QSqlTableModel) ConnectDeleteLater(f func()) {
@@ -12691,6 +12804,15 @@ func (ptr *QSqlTableModel) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlTableModel) DeleteLaterDefault() {
+	defer qt.Recovering("QSqlTableModel::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSqlTableModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

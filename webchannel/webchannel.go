@@ -397,8 +397,9 @@ func callbackQWebChannel_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebChannelFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QWebChannel) ConnectDeleteLater(f func()) {
@@ -424,6 +425,15 @@ func (ptr *QWebChannel) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWebChannel) DeleteLaterDefault() {
+	defer qt.Recovering("QWebChannel::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -934,8 +944,9 @@ func callbackQWebChannelAbstractTransport_DeleteLater(ptr unsafe.Pointer, ptrNam
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebChannelAbstractTransportFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QWebChannelAbstractTransport) ConnectDeleteLater(f func()) {
@@ -961,6 +972,15 @@ func (ptr *QWebChannelAbstractTransport) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWebChannelAbstractTransport) DeleteLaterDefault() {
+	defer qt.Recovering("QWebChannelAbstractTransport::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannelAbstractTransport_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }

@@ -112,6 +112,11 @@ void QmlBridge_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QmlBridge*>(ptr), "deleteLater");
 }
 
+void QmlBridge_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QmlBridge*>(ptr)->QObject::deleteLater();
+}
+
 void QmlBridge_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QmlBridge*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));

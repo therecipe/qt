@@ -220,11 +220,12 @@ return n
 							implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = true
 
 							if functionIsSupported(parentClass, function) {
-								if (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
+								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
 
 									for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
 										var function = *function
 										function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
+										function.Virtual = parser.IMPURE
 										function.SignalMode = signalMode
 
 										fmt.Fprintf(bb, "%v%v\n\n",
@@ -239,17 +240,17 @@ return n
 										)
 									}
 
-									if !converter.IsPrivateSignal(function) {
-										var function = *function
-										function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
+									var function = *function
+									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
+									if function.Meta != parser.SLOT {
 										function.Meta = parser.PLAIN
-										fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
-
-										if function.Virtual == parser.IMPURE {
-											function.Default = true
-											fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
-										}
 									}
+									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
+
+									function.Meta = parser.PLAIN
+									function.Default = true
+									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
+
 								}
 							}
 

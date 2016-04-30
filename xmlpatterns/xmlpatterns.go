@@ -252,8 +252,9 @@ func callbackQAbstractMessageHandler_DeleteLater(ptr unsafe.Pointer, ptrName *C.
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractMessageHandlerFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAbstractMessageHandler) ConnectDeleteLater(f func()) {
@@ -279,6 +280,15 @@ func (ptr *QAbstractMessageHandler) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractMessageHandler_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractMessageHandler) DeleteLaterDefault() {
+	defer qt.Recovering("QAbstractMessageHandler::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractMessageHandler_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -755,8 +765,9 @@ func callbackQAbstractUriResolver_DeleteLater(ptr unsafe.Pointer, ptrName *C.cha
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractUriResolverFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QAbstractUriResolver) ConnectDeleteLater(f func()) {
@@ -782,6 +793,15 @@ func (ptr *QAbstractUriResolver) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractUriResolver_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractUriResolver) DeleteLaterDefault() {
+	defer qt.Recovering("QAbstractUriResolver::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractUriResolver_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -1989,7 +2009,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectCompareOrder(f func(ni1 *QXmlNodeModelInd
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectCompareOrder(ni1 QXmlNodeModelIndex_ITF, ni2 QXmlNodeModelIndex_ITF) {
+func (ptr *QSimpleXmlNodeModel) DisconnectCompareOrder() {
 	defer qt.Recovering("disconnect QSimpleXmlNodeModel::compareOrder")
 
 	if ptr.Pointer() != nil {
@@ -2027,7 +2047,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectDocumentUri(f func(n *QXmlNodeModelIndex)
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectDocumentUri(n QXmlNodeModelIndex_ITF) {
+func (ptr *QSimpleXmlNodeModel) DisconnectDocumentUri() {
 	defer qt.Recovering("disconnect QSimpleXmlNodeModel::documentUri")
 
 	if ptr.Pointer() != nil {
@@ -2065,7 +2085,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectKind(f func(ni *QXmlNodeModelIndex) QXmlN
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectKind(ni QXmlNodeModelIndex_ITF) {
+func (ptr *QSimpleXmlNodeModel) DisconnectKind() {
 	defer qt.Recovering("disconnect QSimpleXmlNodeModel::kind")
 
 	if ptr.Pointer() != nil {
@@ -2091,7 +2111,7 @@ func callbackQSimpleXmlNodeModel_Name(ptr unsafe.Pointer, ptrName *C.char, ni un
 		return PointerFromQXmlName(signal.(func(*QXmlNodeModelIndex) *QXmlName)(NewQXmlNodeModelIndexFromPointer(ni)))
 	}
 
-	return PointerFromQXmlName(nil)
+	return PointerFromQXmlName(NewQSimpleXmlNodeModelFromPointer(ptr).NameDefault(NewQXmlNodeModelIndexFromPointer(ni)))
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QXmlName) {
@@ -2103,7 +2123,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QXml
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectName(ni QXmlNodeModelIndex_ITF) {
+func (ptr *QSimpleXmlNodeModel) DisconnectName() {
 	defer qt.Recovering("disconnect QSimpleXmlNodeModel::name")
 
 	if ptr.Pointer() != nil {
@@ -2113,6 +2133,15 @@ func (ptr *QSimpleXmlNodeModel) DisconnectName(ni QXmlNodeModelIndex_ITF) {
 }
 
 func (ptr *QSimpleXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
+	defer qt.Recovering("QSimpleXmlNodeModel::name")
+
+	if ptr.Pointer() != nil {
+
+	}
+	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) NameDefault(ni QXmlNodeModelIndex_ITF) *QXmlName {
 	defer qt.Recovering("QSimpleXmlNodeModel::name")
 
 	if ptr.Pointer() != nil {
@@ -2141,7 +2170,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectNextFromSimpleAxis(f func(axis QAbstractX
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectNextFromSimpleAxis(axis QAbstractXmlNodeModel__SimpleAxis, origin QXmlNodeModelIndex_ITF) {
+func (ptr *QSimpleXmlNodeModel) DisconnectNextFromSimpleAxis() {
 	defer qt.Recovering("disconnect QSimpleXmlNodeModel::nextFromSimpleAxis")
 
 	if ptr.Pointer() != nil {
@@ -2179,7 +2208,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectRoot(f func(n *QXmlNodeModelIndex) *QXmlN
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectRoot(n QXmlNodeModelIndex_ITF) {
+func (ptr *QSimpleXmlNodeModel) DisconnectRoot() {
 	defer qt.Recovering("disconnect QSimpleXmlNodeModel::root")
 
 	if ptr.Pointer() != nil {
@@ -2217,7 +2246,7 @@ func (ptr *QSimpleXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelInde
 	}
 }
 
-func (ptr *QSimpleXmlNodeModel) DisconnectTypedValue(node QXmlNodeModelIndex_ITF) {
+func (ptr *QSimpleXmlNodeModel) DisconnectTypedValue() {
 	defer qt.Recovering("disconnect QSimpleXmlNodeModel::typedValue")
 
 	if ptr.Pointer() != nil {

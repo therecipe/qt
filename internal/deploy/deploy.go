@@ -399,7 +399,7 @@ func predeploy() {
 					runCmd(exec.Command("cp", "/usr/local/Qt5.5.1/5.5/android_armv7/jar/QtAndroid-bundled.jar", filepath.Join(depPath, "build", "libs")), "predeploy.cpqtandroid")
 
 					runCmd(exec.Command("zip", "-d", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), "org/qtproject/qt5/android/QtNative.class"), "predeploy.patchqtandroid_main")
-					for i := 1; i < 19; i++ {
+					for i := 1; i < 19; i++ { //TODO: 21 in 5.6
 						runCmd(exec.Command("zip", "-d", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), fmt.Sprintf("org/qtproject/qt5/android/QtNative$%v.class", i)), fmt.Sprintf("predeploy.patchqtandroid_%v", i))
 					}
 				}
@@ -423,7 +423,7 @@ func predeploy() {
 
 					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"))
 					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org", "qtproject", "qt5", "android", "QtNative.class"))
-					for i := 1; i < 19; i++ {
+					for i := 1; i < 19; i++ { //TODO: 21 in 5.6
 						utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org", "qtproject", "qt5", "android", fmt.Sprintf("QtNative$%v.class", i)))
 					}
 

@@ -37,6 +37,7 @@ void QUiLoader_ConnectNotifyDefault(void* ptr, void* sign);
 void QUiLoader_CustomEvent(void* ptr, void* event);
 void QUiLoader_CustomEventDefault(void* ptr, void* event);
 void QUiLoader_DeleteLater(void* ptr);
+void QUiLoader_DeleteLaterDefault(void* ptr);
 void QUiLoader_DisconnectNotify(void* ptr, void* sign);
 void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign);
 int QUiLoader_Event(void* ptr, void* e);

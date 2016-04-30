@@ -484,6 +484,11 @@ void QNearFieldManager_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNearFieldManager*>(ptr), "deleteLater");
 }
 
+void QNearFieldManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNearFieldManager*>(ptr)->QNearFieldManager::deleteLater();
+}
+
 void QNearFieldManager_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QNearFieldManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -662,6 +667,11 @@ void QNearFieldShareManager_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNearFieldShareManager*>(ptr), "deleteLater");
 }
 
+void QNearFieldShareManager_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNearFieldShareManager*>(ptr)->QNearFieldShareManager::deleteLater();
+}
+
 void QNearFieldShareManager_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QNearFieldShareManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -821,6 +831,11 @@ void QNearFieldShareTarget_CustomEventDefault(void* ptr, void* event)
 void QNearFieldShareTarget_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNearFieldShareTarget*>(ptr), "deleteLater");
+}
+
+void QNearFieldShareTarget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNearFieldShareTarget*>(ptr)->QNearFieldShareTarget::deleteLater();
 }
 
 void QNearFieldShareTarget_DisconnectNotify(void* ptr, void* sign)
@@ -1026,6 +1041,11 @@ void QNearFieldTarget_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNearFieldTarget*>(ptr), "deleteLater");
 }
 
+void QNearFieldTarget_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::deleteLater();
+}
+
 void QNearFieldTarget_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QNearFieldTarget*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -1213,6 +1233,11 @@ void QQmlNdefRecord_CustomEventDefault(void* ptr, void* event)
 void QQmlNdefRecord_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlNdefRecord*>(ptr), "deleteLater");
+}
+
+void QQmlNdefRecord_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QQmlNdefRecord*>(ptr)->QQmlNdefRecord::deleteLater();
 }
 
 void QQmlNdefRecord_DisconnectNotify(void* ptr, void* sign)

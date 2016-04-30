@@ -96,6 +96,11 @@ void QMaskGenerator_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMaskGenerator*>(ptr), "deleteLater");
 }
 
+void QMaskGenerator_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QMaskGenerator*>(ptr)->QMaskGenerator::deleteLater();
+}
+
 void QMaskGenerator_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QMaskGenerator*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -540,6 +545,11 @@ void QWebSocket_DeleteLater(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "deleteLater");
 }
 
+void QWebSocket_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWebSocket*>(ptr)->QWebSocket::deleteLater();
+}
+
 void QWebSocket_DisconnectNotify(void* ptr, void* sign)
 {
 	static_cast<QWebSocket*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
@@ -874,6 +884,11 @@ void QWebSocketServer_CustomEventDefault(void* ptr, void* event)
 void QWebSocketServer_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWebSocketServer*>(ptr), "deleteLater");
+}
+
+void QWebSocketServer_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QWebSocketServer*>(ptr)->QWebSocketServer::deleteLater();
 }
 
 void QWebSocketServer_DisconnectNotify(void* ptr, void* sign)
