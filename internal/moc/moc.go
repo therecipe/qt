@@ -37,6 +37,10 @@ func main() {
 		appPath = utils.GetAbsPath(appPath)
 	}
 
+	for _, module := range templater.GetLibs() {
+		parser.GetModule(strings.ToLower(module))
+	}
+
 	var module = &parser.Module{Project: "main", Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
 
 	var walkFunc = func(path string, info os.FileInfo, err error) error {
@@ -123,10 +127,6 @@ func main() {
 	filepath.Walk(appPath, walkFunc)
 
 	if len(module.Namespace.Classes) > 0 {
-
-		for _, module := range templater.GetLibs() {
-			parser.GetModule(strings.ToLower(module))
-		}
 
 		module.Prepare()
 
@@ -313,7 +313,10 @@ func getCppTypeFromGoType(t string) string {
 	}
 
 	if _, exists := parser.ClassMap[t]; exists {
-		return t + "*"
+		if parser.ClassMap[t].IsQObjectSubClass() {
+			return t + "*"
+		}
+		return t
 	}
 
 	return "void"
