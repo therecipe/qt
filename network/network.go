@@ -364,6 +364,7 @@ func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCache() {
 	defer qt.Recovering("QAbstractNetworkCache::~QAbstractNetworkCache")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -582,6 +583,7 @@ func (ptr *QAbstractNetworkCache) DeleteLater() {
 	defer qt.Recovering("QAbstractNetworkCache::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractNetworkCache_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -591,6 +593,7 @@ func (ptr *QAbstractNetworkCache) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractNetworkCache::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractNetworkCache_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -936,35 +939,6 @@ func (ptr *QAbstractSocket) Abort() {
 	}
 }
 
-//export callbackQAbstractSocket_AtEnd
-func callbackQAbstractSocket_AtEnd(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QAbstractSocket::atEnd")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "atEnd"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).AtEndDefault()))
-}
-
-func (ptr *QAbstractSocket) ConnectAtEnd(f func() bool) {
-	defer qt.Recovering("connect QAbstractSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "atEnd", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectAtEnd() {
-	defer qt.Recovering("disconnect QAbstractSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "atEnd")
-	}
-}
-
 func (ptr *QAbstractSocket) AtEnd() bool {
 	defer qt.Recovering("QAbstractSocket::atEnd")
 
@@ -972,44 +946,6 @@ func (ptr *QAbstractSocket) AtEnd() bool {
 		return C.QAbstractSocket_AtEnd(ptr.Pointer()) != 0
 	}
 	return false
-}
-
-func (ptr *QAbstractSocket) AtEndDefault() bool {
-	defer qt.Recovering("QAbstractSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_AtEndDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQAbstractSocket_BytesAvailable
-func callbackQAbstractSocket_BytesAvailable(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QAbstractSocket::bytesAvailable")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesAvailable"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).BytesAvailableDefault())
-}
-
-func (ptr *QAbstractSocket) ConnectBytesAvailable(f func() int64) {
-	defer qt.Recovering("connect QAbstractSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesAvailable", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectBytesAvailable() {
-	defer qt.Recovering("disconnect QAbstractSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesAvailable")
-	}
 }
 
 func (ptr *QAbstractSocket) BytesAvailable() int64 {
@@ -1021,44 +957,6 @@ func (ptr *QAbstractSocket) BytesAvailable() int64 {
 	return 0
 }
 
-func (ptr *QAbstractSocket) BytesAvailableDefault() int64 {
-	defer qt.Recovering("QAbstractSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_BytesAvailableDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQAbstractSocket_BytesToWrite
-func callbackQAbstractSocket_BytesToWrite(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QAbstractSocket::bytesToWrite")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesToWrite"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).BytesToWriteDefault())
-}
-
-func (ptr *QAbstractSocket) ConnectBytesToWrite(f func() int64) {
-	defer qt.Recovering("connect QAbstractSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesToWrite", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectBytesToWrite() {
-	defer qt.Recovering("disconnect QAbstractSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesToWrite")
-	}
-}
-
 func (ptr *QAbstractSocket) BytesToWrite() int64 {
 	defer qt.Recovering("QAbstractSocket::bytesToWrite")
 
@@ -1066,44 +964,6 @@ func (ptr *QAbstractSocket) BytesToWrite() int64 {
 		return int64(C.QAbstractSocket_BytesToWrite(ptr.Pointer()))
 	}
 	return 0
-}
-
-func (ptr *QAbstractSocket) BytesToWriteDefault() int64 {
-	defer qt.Recovering("QAbstractSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_BytesToWriteDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQAbstractSocket_CanReadLine
-func callbackQAbstractSocket_CanReadLine(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QAbstractSocket::canReadLine")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "canReadLine"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).CanReadLineDefault()))
-}
-
-func (ptr *QAbstractSocket) ConnectCanReadLine(f func() bool) {
-	defer qt.Recovering("connect QAbstractSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "canReadLine", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectCanReadLine() {
-	defer qt.Recovering("disconnect QAbstractSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "canReadLine")
-	}
 }
 
 func (ptr *QAbstractSocket) CanReadLine() bool {
@@ -1115,57 +975,11 @@ func (ptr *QAbstractSocket) CanReadLine() bool {
 	return false
 }
 
-func (ptr *QAbstractSocket) CanReadLineDefault() bool {
-	defer qt.Recovering("QAbstractSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_CanReadLineDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQAbstractSocket_Close
-func callbackQAbstractSocket_Close(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QAbstractSocket::close")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQAbstractSocketFromPointer(ptr).CloseDefault()
-	}
-}
-
-func (ptr *QAbstractSocket) ConnectClose(f func()) {
-	defer qt.Recovering("connect QAbstractSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectClose() {
-	defer qt.Recovering("disconnect QAbstractSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
-	}
-}
-
 func (ptr *QAbstractSocket) Close() {
 	defer qt.Recovering("QAbstractSocket::close")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_Close(ptr.Pointer())
-	}
-}
-
-func (ptr *QAbstractSocket) CloseDefault() {
-	defer qt.Recovering("QAbstractSocket::close")
-
-	if ptr.Pointer() != nil {
-		C.QAbstractSocket_CloseDefault(ptr.Pointer())
 	}
 }
 
@@ -1376,49 +1190,11 @@ func (ptr *QAbstractSocket) HostFound() {
 	}
 }
 
-//export callbackQAbstractSocket_IsSequential
-func callbackQAbstractSocket_IsSequential(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QAbstractSocket::isSequential")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "isSequential"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).IsSequentialDefault()))
-}
-
-func (ptr *QAbstractSocket) ConnectIsSequential(f func() bool) {
-	defer qt.Recovering("connect QAbstractSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "isSequential", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectIsSequential() {
-	defer qt.Recovering("disconnect QAbstractSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "isSequential")
-	}
-}
-
 func (ptr *QAbstractSocket) IsSequential() bool {
 	defer qt.Recovering("QAbstractSocket::isSequential")
 
 	if ptr.Pointer() != nil {
 		return C.QAbstractSocket_IsSequential(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractSocket) IsSequentialDefault() bool {
-	defer qt.Recovering("QAbstractSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_IsSequentialDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -1522,49 +1298,11 @@ func (ptr *QAbstractSocket) ReadBufferSize() int64 {
 	return 0
 }
 
-//export callbackQAbstractSocket_ReadLineData
-func callbackQAbstractSocket_ReadLineData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, maxlen C.longlong) C.longlong {
-	defer qt.Recovering("callback QAbstractSocket::readLineData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "readLineData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxlen)))
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).ReadLineDataDefault(C.GoString(data), int64(maxlen)))
-}
-
-func (ptr *QAbstractSocket) ConnectReadLineData(f func(data string, maxlen int64) int64) {
-	defer qt.Recovering("connect QAbstractSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "readLineData", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectReadLineData() {
-	defer qt.Recovering("disconnect QAbstractSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "readLineData")
-	}
-}
-
 func (ptr *QAbstractSocket) ReadLineData(data string, maxlen int64) int64 {
 	defer qt.Recovering("QAbstractSocket::readLineData")
 
 	if ptr.Pointer() != nil {
 		return int64(C.QAbstractSocket_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
-	}
-	return 0
-}
-
-func (ptr *QAbstractSocket) ReadLineDataDefault(data string, maxlen int64) int64 {
-	defer qt.Recovering("QAbstractSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -1861,49 +1599,11 @@ func (ptr *QAbstractSocket) StateChanged(socketState QAbstractSocket__SocketStat
 	}
 }
 
-//export callbackQAbstractSocket_WaitForBytesWritten
-func callbackQAbstractSocket_WaitForBytesWritten(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QAbstractSocket::waitForBytesWritten")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForBytesWritten"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(msecs))))
-}
-
-func (ptr *QAbstractSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
-	defer qt.Recovering("connect QAbstractSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForBytesWritten", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectWaitForBytesWritten() {
-	defer qt.Recovering("disconnect QAbstractSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForBytesWritten")
-	}
-}
-
 func (ptr *QAbstractSocket) WaitForBytesWritten(msecs int) bool {
 	defer qt.Recovering("QAbstractSocket::waitForBytesWritten")
 
 	if ptr.Pointer() != nil {
 		return C.QAbstractSocket_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QAbstractSocket) WaitForBytesWrittenDefault(msecs int) bool {
-	defer qt.Recovering("QAbstractSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
@@ -2002,35 +1702,6 @@ func (ptr *QAbstractSocket) WaitForDisconnectedDefault(msecs int) bool {
 	return false
 }
 
-//export callbackQAbstractSocket_WaitForReadyRead
-func callbackQAbstractSocket_WaitForReadyRead(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QAbstractSocket::waitForReadyRead")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForReadyRead"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQAbstractSocketFromPointer(ptr).WaitForReadyReadDefault(int(msecs))))
-}
-
-func (ptr *QAbstractSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
-	defer qt.Recovering("connect QAbstractSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForReadyRead", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectWaitForReadyRead() {
-	defer qt.Recovering("disconnect QAbstractSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForReadyRead")
-	}
-}
-
 func (ptr *QAbstractSocket) WaitForReadyRead(msecs int) bool {
 	defer qt.Recovering("QAbstractSocket::waitForReadyRead")
 
@@ -2038,44 +1709,6 @@ func (ptr *QAbstractSocket) WaitForReadyRead(msecs int) bool {
 		return C.QAbstractSocket_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
-}
-
-func (ptr *QAbstractSocket) WaitForReadyReadDefault(msecs int) bool {
-	defer qt.Recovering("QAbstractSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-		return C.QAbstractSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-//export callbackQAbstractSocket_WriteData
-func callbackQAbstractSocket_WriteData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, size C.longlong) C.longlong {
-	defer qt.Recovering("callback QAbstractSocket::writeData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(size)))
-	}
-
-	return C.longlong(NewQAbstractSocketFromPointer(ptr).WriteDataDefault(C.GoString(data), int64(size)))
-}
-
-func (ptr *QAbstractSocket) ConnectWriteData(f func(data string, size int64) int64) {
-	defer qt.Recovering("connect QAbstractSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "writeData", f)
-	}
-}
-
-func (ptr *QAbstractSocket) DisconnectWriteData() {
-	defer qt.Recovering("disconnect QAbstractSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "writeData")
-	}
 }
 
 func (ptr *QAbstractSocket) WriteData(data string, size int64) int64 {
@@ -2087,19 +1720,11 @@ func (ptr *QAbstractSocket) WriteData(data string, size int64) int64 {
 	return 0
 }
 
-func (ptr *QAbstractSocket) WriteDataDefault(data string, size int64) int64 {
-	defer qt.Recovering("QAbstractSocket::writeData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QAbstractSocket_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(size)))
-	}
-	return 0
-}
-
 func (ptr *QAbstractSocket) DestroyQAbstractSocket() {
 	defer qt.Recovering("QAbstractSocket::~QAbstractSocket")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractSocket_DestroyQAbstractSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2553,6 +2178,7 @@ func (ptr *QAbstractSocket) DeleteLater() {
 	defer qt.Recovering("QAbstractSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractSocket_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2562,6 +2188,7 @@ func (ptr *QAbstractSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3458,6 +3085,7 @@ func (ptr *QDnsLookup) DestroyQDnsLookup() {
 	defer qt.Recovering("QDnsLookup::~QDnsLookup")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDnsLookup_DestroyQDnsLookup(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3676,6 +3304,7 @@ func (ptr *QDnsLookup) DeleteLater() {
 	defer qt.Recovering("QDnsLookup::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDnsLookup_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3685,6 +3314,7 @@ func (ptr *QDnsLookup) DeleteLaterDefault() {
 	defer qt.Recovering("QDnsLookup::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDnsLookup_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4243,6 +3873,15 @@ func (ptr *QHostAddress) IsLoopback() bool {
 	return false
 }
 
+func (ptr *QHostAddress) IsMulticast() bool {
+	defer qt.Recovering("QHostAddress::isMulticast")
+
+	if ptr.Pointer() != nil {
+		return C.QHostAddress_IsMulticast(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QHostAddress) IsNull() bool {
 	defer qt.Recovering("QHostAddress::isNull")
 
@@ -4270,11 +3909,11 @@ func (ptr *QHostAddress) ScopeId() string {
 	return ""
 }
 
-func (ptr *QHostAddress) SetAddress5(address string) bool {
+func (ptr *QHostAddress) SetAddress6(address string) bool {
 	defer qt.Recovering("QHostAddress::setAddress")
 
 	if ptr.Pointer() != nil {
-		return C.QHostAddress_SetAddress5(ptr.Pointer(), C.CString(address)) != 0
+		return C.QHostAddress_SetAddress6(ptr.Pointer(), C.CString(address)) != 0
 	}
 	return false
 }
@@ -4284,6 +3923,14 @@ func (ptr *QHostAddress) SetScopeId(id string) {
 
 	if ptr.Pointer() != nil {
 		C.QHostAddress_SetScopeId(ptr.Pointer(), C.CString(id))
+	}
+}
+
+func (ptr *QHostAddress) Swap(other QHostAddress_ITF) {
+	defer qt.Recovering("QHostAddress::swap")
+
+	if ptr.Pointer() != nil {
+		C.QHostAddress_Swap(ptr.Pointer(), PointerFromQHostAddress(other))
 	}
 }
 
@@ -4355,6 +4002,18 @@ func NewQHostInfoFromPointer(ptr unsafe.Pointer) *QHostInfo {
 func newQHostInfoFromPointer(ptr unsafe.Pointer) *QHostInfo {
 	var n = NewQHostInfoFromPointer(ptr)
 	return n
+}
+
+func QHostInfo_LocalHostName() string {
+	defer qt.Recovering("QHostInfo::localHostName")
+
+	return C.GoString(C.QHostInfo_QHostInfo_LocalHostName())
+}
+
+func (ptr *QHostInfo) LocalHostName() string {
+	defer qt.Recovering("QHostInfo::localHostName")
+
+	return C.GoString(C.QHostInfo_QHostInfo_LocalHostName())
 }
 
 func NewQHostInfo2(other QHostInfo_ITF) *QHostInfo {
@@ -4480,18 +4139,6 @@ func (ptr *QHostInfo) DestroyQHostInfo() {
 		C.QHostInfo_DestroyQHostInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
-}
-
-func QHostInfo_LocalHostName() string {
-	defer qt.Recovering("QHostInfo::localHostName")
-
-	return C.GoString(C.QHostInfo_QHostInfo_LocalHostName())
-}
-
-func (ptr *QHostInfo) LocalHostName() string {
-	defer qt.Recovering("QHostInfo::localHostName")
-
-	return C.GoString(C.QHostInfo_QHostInfo_LocalHostName())
 }
 
 func QHostInfo_LocalDomainName() string {
@@ -5449,6 +5096,7 @@ func (ptr *QLocalServer) DestroyQLocalServer() {
 	defer qt.Recovering("QLocalServer::~QLocalServer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLocalServer_DestroyQLocalServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5667,6 +5315,7 @@ func (ptr *QLocalServer) DeleteLater() {
 	defer qt.Recovering("QLocalServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLocalServer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5676,6 +5325,7 @@ func (ptr *QLocalServer) DeleteLaterDefault() {
 	defer qt.Recovering("QLocalServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLocalServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6232,6 +5882,7 @@ func (ptr *QLocalSocket) DestroyQLocalSocket() {
 	defer qt.Recovering("QLocalSocket::~QLocalSocket")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLocalSocket_DestroyQLocalSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6491,49 +6142,11 @@ func (ptr *QLocalSocket) SetReadBufferSize(size int64) {
 	}
 }
 
-//export callbackQLocalSocket_WaitForBytesWritten
-func callbackQLocalSocket_WaitForBytesWritten(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QLocalSocket::waitForBytesWritten")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForBytesWritten"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(msecs))))
-}
-
-func (ptr *QLocalSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
-	defer qt.Recovering("connect QLocalSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForBytesWritten", f)
-	}
-}
-
-func (ptr *QLocalSocket) DisconnectWaitForBytesWritten() {
-	defer qt.Recovering("disconnect QLocalSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForBytesWritten")
-	}
-}
-
 func (ptr *QLocalSocket) WaitForBytesWritten(msecs int) bool {
 	defer qt.Recovering("QLocalSocket::waitForBytesWritten")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QLocalSocket) WaitForBytesWrittenDefault(msecs int) bool {
-	defer qt.Recovering("QLocalSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-		return C.QLocalSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
@@ -6556,49 +6169,11 @@ func (ptr *QLocalSocket) WaitForDisconnected(msecs int) bool {
 	return false
 }
 
-//export callbackQLocalSocket_WaitForReadyRead
-func callbackQLocalSocket_WaitForReadyRead(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QLocalSocket::waitForReadyRead")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForReadyRead"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQLocalSocketFromPointer(ptr).WaitForReadyReadDefault(int(msecs))))
-}
-
-func (ptr *QLocalSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
-	defer qt.Recovering("connect QLocalSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForReadyRead", f)
-	}
-}
-
-func (ptr *QLocalSocket) DisconnectWaitForReadyRead() {
-	defer qt.Recovering("disconnect QLocalSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForReadyRead")
-	}
-}
-
 func (ptr *QLocalSocket) WaitForReadyRead(msecs int) bool {
 	defer qt.Recovering("QLocalSocket::waitForReadyRead")
 
 	if ptr.Pointer() != nil {
 		return C.QLocalSocket_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QLocalSocket) WaitForReadyReadDefault(msecs int) bool {
-	defer qt.Recovering("QLocalSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-		return C.QLocalSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
@@ -7145,6 +6720,7 @@ func (ptr *QLocalSocket) DeleteLater() {
 	defer qt.Recovering("QLocalSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLocalSocket_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7154,6 +6730,7 @@ func (ptr *QLocalSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QLocalSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLocalSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7808,11 +7385,11 @@ func (ptr *QNetworkAccessManager) ProxyAuthenticationRequired(proxy QNetworkProx
 	}
 }
 
-func (ptr *QNetworkAccessManager) Put2(request QNetworkRequest_ITF, multiPart QHttpMultiPart_ITF) *QNetworkReply {
+func (ptr *QNetworkAccessManager) Put3(request QNetworkRequest_ITF, multiPart QHttpMultiPart_ITF) *QNetworkReply {
 	defer qt.Recovering("QNetworkAccessManager::put")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put2(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
+		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put3(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
 	}
 	return nil
 }
@@ -7826,11 +7403,11 @@ func (ptr *QNetworkAccessManager) Put(request QNetworkRequest_ITF, data core.QIO
 	return nil
 }
 
-func (ptr *QNetworkAccessManager) Put3(request QNetworkRequest_ITF, data string) *QNetworkReply {
+func (ptr *QNetworkAccessManager) Put2(request QNetworkRequest_ITF, data string) *QNetworkReply {
 	defer qt.Recovering("QNetworkAccessManager::put")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put3(ptr.Pointer(), PointerFromQNetworkRequest(request), C.CString(data)))
+		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put2(ptr.Pointer(), PointerFromQNetworkRequest(request), C.CString(data)))
 	}
 	return nil
 }
@@ -7943,6 +7520,7 @@ func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManager() {
 	defer qt.Recovering("QNetworkAccessManager::~QNetworkAccessManager")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkAccessManager_DestroyQNetworkAccessManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8161,6 +7739,7 @@ func (ptr *QNetworkAccessManager) DeleteLater() {
 	defer qt.Recovering("QNetworkAccessManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkAccessManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8170,6 +7749,7 @@ func (ptr *QNetworkAccessManager) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkAccessManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkAccessManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9183,6 +8763,7 @@ func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
 	defer qt.Recovering("QNetworkConfigurationManager::~QNetworkConfigurationManager")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9401,6 +8982,7 @@ func (ptr *QNetworkConfigurationManager) DeleteLater() {
 	defer qt.Recovering("QNetworkConfigurationManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkConfigurationManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9410,6 +8992,7 @@ func (ptr *QNetworkConfigurationManager) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkConfigurationManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkConfigurationManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10080,6 +9663,7 @@ func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
 	defer qt.Recovering("QNetworkCookieJar::~QNetworkCookieJar")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkCookieJar_DestroyQNetworkCookieJar(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10298,6 +9882,7 @@ func (ptr *QNetworkCookieJar) DeleteLater() {
 	defer qt.Recovering("QNetworkCookieJar::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkCookieJar_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10307,6 +9892,7 @@ func (ptr *QNetworkCookieJar) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkCookieJar::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkCookieJar_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11015,6 +10601,7 @@ func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
 	defer qt.Recovering("QNetworkDiskCache::~QNetworkDiskCache")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkDiskCache_DestroyQNetworkDiskCache(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11233,6 +10820,7 @@ func (ptr *QNetworkDiskCache) DeleteLater() {
 	defer qt.Recovering("QNetworkDiskCache::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkDiskCache_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11242,6 +10830,7 @@ func (ptr *QNetworkDiskCache) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkDiskCache::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkDiskCache_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11934,6 +11523,7 @@ func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactory() {
 	defer qt.Recovering("QNetworkProxyFactory::~QNetworkProxyFactory")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -12015,22 +11605,22 @@ func NewQNetworkProxyQuery() *QNetworkProxyQuery {
 	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery())
 }
 
-func NewQNetworkProxyQuery7(networkConfiguration QNetworkConfiguration_ITF, hostname string, port int, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
+func NewQNetworkProxyQuery6(networkConfiguration QNetworkConfiguration_ITF, hostname string, port int, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery7(PointerFromQNetworkConfiguration(networkConfiguration), C.CString(hostname), C.int(port), C.CString(protocolTag), C.int(queryType)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery6(PointerFromQNetworkConfiguration(networkConfiguration), C.CString(hostname), C.int(port), C.CString(protocolTag), C.int(queryType)))
 }
 
-func NewQNetworkProxyQuery6(networkConfiguration QNetworkConfiguration_ITF, requestUrl core.QUrl_ITF, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
+func NewQNetworkProxyQuery5(networkConfiguration QNetworkConfiguration_ITF, requestUrl core.QUrl_ITF, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery6(PointerFromQNetworkConfiguration(networkConfiguration), core.PointerFromQUrl(requestUrl), C.int(queryType)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery5(PointerFromQNetworkConfiguration(networkConfiguration), core.PointerFromQUrl(requestUrl), C.int(queryType)))
 }
 
-func NewQNetworkProxyQuery5(other QNetworkProxyQuery_ITF) *QNetworkProxyQuery {
+func NewQNetworkProxyQuery8(other QNetworkProxyQuery_ITF) *QNetworkProxyQuery {
 	defer qt.Recovering("QNetworkProxyQuery::QNetworkProxyQuery")
 
-	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery5(PointerFromQNetworkProxyQuery(other)))
+	return newQNetworkProxyQueryFromPointer(C.QNetworkProxyQuery_NewQNetworkProxyQuery8(PointerFromQNetworkProxyQuery(other)))
 }
 
 func NewQNetworkProxyQuery3(hostname string, port int, protocolTag string, queryType QNetworkProxyQuery__QueryType) *QNetworkProxyQuery {
@@ -12195,6 +11785,8 @@ const (
 	QNetworkReply__TemporaryNetworkFailureError      = QNetworkReply__NetworkError(7)
 	QNetworkReply__NetworkSessionFailedError         = QNetworkReply__NetworkError(8)
 	QNetworkReply__BackgroundRequestNotAllowedError  = QNetworkReply__NetworkError(9)
+	QNetworkReply__TooManyRedirectsError             = QNetworkReply__NetworkError(10)
+	QNetworkReply__InsecureRedirectError             = QNetworkReply__NetworkError(11)
 	QNetworkReply__UnknownNetworkError               = QNetworkReply__NetworkError(99)
 	QNetworkReply__ProxyConnectionRefusedError       = QNetworkReply__NetworkError(101)
 	QNetworkReply__ProxyConnectionClosedError        = QNetworkReply__NetworkError(102)
@@ -12788,6 +12380,42 @@ func (ptr *QNetworkReply) ReadBufferSize() int64 {
 	return 0
 }
 
+//export callbackQNetworkReply_Redirected
+func callbackQNetworkReply_Redirected(ptr unsafe.Pointer, ptrName *C.char, url unsafe.Pointer) {
+	defer qt.Recovering("callback QNetworkReply::redirected")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "redirected"); signal != nil {
+		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	}
+
+}
+
+func (ptr *QNetworkReply) ConnectRedirected(f func(url *core.QUrl)) {
+	defer qt.Recovering("connect QNetworkReply::redirected")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_ConnectRedirected(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "redirected", f)
+	}
+}
+
+func (ptr *QNetworkReply) DisconnectRedirected() {
+	defer qt.Recovering("disconnect QNetworkReply::redirected")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_DisconnectRedirected(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "redirected")
+	}
+}
+
+func (ptr *QNetworkReply) Redirected(url core.QUrl_ITF) {
+	defer qt.Recovering("QNetworkReply::redirected")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkReply_Redirected(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
+}
+
 func (ptr *QNetworkReply) Request() *QNetworkRequest {
 	defer qt.Recovering("QNetworkReply::request")
 
@@ -12972,6 +12600,7 @@ func (ptr *QNetworkReply) DestroyQNetworkReply() {
 	defer qt.Recovering("QNetworkReply::~QNetworkReply")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkReply_DestroyQNetworkReply(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13848,6 +13477,7 @@ func (ptr *QNetworkReply) DeleteLater() {
 	defer qt.Recovering("QNetworkReply::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkReply_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13857,6 +13487,7 @@ func (ptr *QNetworkReply) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkReply::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -14073,6 +13704,7 @@ const (
 	QNetworkRequest__SpdyAllowedAttribute                  = QNetworkRequest__Attribute(18)
 	QNetworkRequest__SpdyWasUsedAttribute                  = QNetworkRequest__Attribute(19)
 	QNetworkRequest__EmitAllUploadProgressSignalsAttribute = QNetworkRequest__Attribute(20)
+	QNetworkRequest__FollowRedirectsAttribute              = QNetworkRequest__Attribute(21)
 	QNetworkRequest__User                                  = QNetworkRequest__Attribute(1000)
 	QNetworkRequest__UserMax                               = QNetworkRequest__Attribute(32767)
 )
@@ -14201,6 +13833,15 @@ func (ptr *QNetworkRequest) Header(header QNetworkRequest__KnownHeaders) *core.Q
 	return nil
 }
 
+func (ptr *QNetworkRequest) MaximumRedirectsAllowed() int {
+	defer qt.Recovering("QNetworkRequest::maximumRedirectsAllowed")
+
+	if ptr.Pointer() != nil {
+		return int(C.QNetworkRequest_MaximumRedirectsAllowed(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QNetworkRequest) OriginatingObject() *core.QObject {
 	defer qt.Recovering("QNetworkRequest::originatingObject")
 
@@ -14241,6 +13882,14 @@ func (ptr *QNetworkRequest) SetHeader(header QNetworkRequest__KnownHeaders, valu
 
 	if ptr.Pointer() != nil {
 		C.QNetworkRequest_SetHeader(ptr.Pointer(), C.int(header), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QNetworkRequest) SetMaximumRedirectsAllowed(maxRedirectsAllowed int) {
+	defer qt.Recovering("QNetworkRequest::setMaximumRedirectsAllowed")
+
+	if ptr.Pointer() != nil {
+		C.QNetworkRequest_SetMaximumRedirectsAllowed(ptr.Pointer(), C.int(maxRedirectsAllowed))
 	}
 }
 
@@ -15001,6 +14650,7 @@ func (ptr *QNetworkSession) DestroyQNetworkSession() {
 	defer qt.Recovering("QNetworkSession::~QNetworkSession")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkSession_DestroyQNetworkSession(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -15219,6 +14869,7 @@ func (ptr *QNetworkSession) DeleteLater() {
 	defer qt.Recovering("QNetworkSession::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkSession_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -15228,6 +14879,7 @@ func (ptr *QNetworkSession) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkSession::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNetworkSession_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -16740,35 +16392,6 @@ func (ptr *QSslSocket) AddDefaultCaCertificate(certificate QSslCertificate_ITF) 
 	C.QSslSocket_QSslSocket_AddDefaultCaCertificate(PointerFromQSslCertificate(certificate))
 }
 
-//export callbackQSslSocket_AtEnd
-func callbackQSslSocket_AtEnd(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QSslSocket::atEnd")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "atEnd"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).AtEndDefault()))
-}
-
-func (ptr *QSslSocket) ConnectAtEnd(f func() bool) {
-	defer qt.Recovering("connect QSslSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "atEnd", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectAtEnd() {
-	defer qt.Recovering("disconnect QSslSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "atEnd")
-	}
-}
-
 func (ptr *QSslSocket) AtEnd() bool {
 	defer qt.Recovering("QSslSocket::atEnd")
 
@@ -16776,44 +16399,6 @@ func (ptr *QSslSocket) AtEnd() bool {
 		return C.QSslSocket_AtEnd(ptr.Pointer()) != 0
 	}
 	return false
-}
-
-func (ptr *QSslSocket) AtEndDefault() bool {
-	defer qt.Recovering("QSslSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-		return C.QSslSocket_AtEndDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQSslSocket_BytesAvailable
-func callbackQSslSocket_BytesAvailable(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QSslSocket::bytesAvailable")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesAvailable"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQSslSocketFromPointer(ptr).BytesAvailableDefault())
-}
-
-func (ptr *QSslSocket) ConnectBytesAvailable(f func() int64) {
-	defer qt.Recovering("connect QSslSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesAvailable", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectBytesAvailable() {
-	defer qt.Recovering("disconnect QSslSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesAvailable")
-	}
 }
 
 func (ptr *QSslSocket) BytesAvailable() int64 {
@@ -16825,44 +16410,6 @@ func (ptr *QSslSocket) BytesAvailable() int64 {
 	return 0
 }
 
-func (ptr *QSslSocket) BytesAvailableDefault() int64 {
-	defer qt.Recovering("QSslSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QSslSocket_BytesAvailableDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQSslSocket_BytesToWrite
-func callbackQSslSocket_BytesToWrite(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QSslSocket::bytesToWrite")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesToWrite"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQSslSocketFromPointer(ptr).BytesToWriteDefault())
-}
-
-func (ptr *QSslSocket) ConnectBytesToWrite(f func() int64) {
-	defer qt.Recovering("connect QSslSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesToWrite", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectBytesToWrite() {
-	defer qt.Recovering("disconnect QSslSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesToWrite")
-	}
-}
-
 func (ptr *QSslSocket) BytesToWrite() int64 {
 	defer qt.Recovering("QSslSocket::bytesToWrite")
 
@@ -16870,44 +16417,6 @@ func (ptr *QSslSocket) BytesToWrite() int64 {
 		return int64(C.QSslSocket_BytesToWrite(ptr.Pointer()))
 	}
 	return 0
-}
-
-func (ptr *QSslSocket) BytesToWriteDefault() int64 {
-	defer qt.Recovering("QSslSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QSslSocket_BytesToWriteDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQSslSocket_CanReadLine
-func callbackQSslSocket_CanReadLine(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QSslSocket::canReadLine")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "canReadLine"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).CanReadLineDefault()))
-}
-
-func (ptr *QSslSocket) ConnectCanReadLine(f func() bool) {
-	defer qt.Recovering("connect QSslSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "canReadLine", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectCanReadLine() {
-	defer qt.Recovering("disconnect QSslSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "canReadLine")
-	}
 }
 
 func (ptr *QSslSocket) CanReadLine() bool {
@@ -16919,57 +16428,11 @@ func (ptr *QSslSocket) CanReadLine() bool {
 	return false
 }
 
-func (ptr *QSslSocket) CanReadLineDefault() bool {
-	defer qt.Recovering("QSslSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-		return C.QSslSocket_CanReadLineDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQSslSocket_Close
-func callbackQSslSocket_Close(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QSslSocket::close")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQSslSocketFromPointer(ptr).CloseDefault()
-	}
-}
-
-func (ptr *QSslSocket) ConnectClose(f func()) {
-	defer qt.Recovering("connect QSslSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectClose() {
-	defer qt.Recovering("disconnect QSslSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
-	}
-}
-
 func (ptr *QSslSocket) Close() {
 	defer qt.Recovering("QSslSocket::close")
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_Close(ptr.Pointer())
-	}
-}
-
-func (ptr *QSslSocket) CloseDefault() {
-	defer qt.Recovering("QSslSocket::close")
-
-	if ptr.Pointer() != nil {
-		C.QSslSocket_CloseDefault(ptr.Pointer())
 	}
 }
 
@@ -17668,49 +17131,11 @@ func (ptr *QSslSocket) SupportsSsl() bool {
 	return C.QSslSocket_QSslSocket_SupportsSsl() != 0
 }
 
-//export callbackQSslSocket_WaitForBytesWritten
-func callbackQSslSocket_WaitForBytesWritten(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QSslSocket::waitForBytesWritten")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForBytesWritten"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(msecs))))
-}
-
-func (ptr *QSslSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
-	defer qt.Recovering("connect QSslSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForBytesWritten", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectWaitForBytesWritten() {
-	defer qt.Recovering("disconnect QSslSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForBytesWritten")
-	}
-}
-
 func (ptr *QSslSocket) WaitForBytesWritten(msecs int) bool {
 	defer qt.Recovering("QSslSocket::waitForBytesWritten")
 
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QSslSocket) WaitForBytesWrittenDefault(msecs int) bool {
-	defer qt.Recovering("QSslSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-		return C.QSslSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
 }
@@ -17818,35 +17243,6 @@ func (ptr *QSslSocket) WaitForEncrypted(msecs int) bool {
 	return false
 }
 
-//export callbackQSslSocket_WaitForReadyRead
-func callbackQSslSocket_WaitForReadyRead(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QSslSocket::waitForReadyRead")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForReadyRead"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).WaitForReadyReadDefault(int(msecs))))
-}
-
-func (ptr *QSslSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
-	defer qt.Recovering("connect QSslSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForReadyRead", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectWaitForReadyRead() {
-	defer qt.Recovering("disconnect QSslSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForReadyRead")
-	}
-}
-
 func (ptr *QSslSocket) WaitForReadyRead(msecs int) bool {
 	defer qt.Recovering("QSslSocket::waitForReadyRead")
 
@@ -17854,44 +17250,6 @@ func (ptr *QSslSocket) WaitForReadyRead(msecs int) bool {
 		return C.QSslSocket_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
-}
-
-func (ptr *QSslSocket) WaitForReadyReadDefault(msecs int) bool {
-	defer qt.Recovering("QSslSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-		return C.QSslSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-//export callbackQSslSocket_WriteData
-func callbackQSslSocket_WriteData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, len C.longlong) C.longlong {
-	defer qt.Recovering("callback QSslSocket::writeData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(len)))
-	}
-
-	return C.longlong(NewQSslSocketFromPointer(ptr).WriteDataDefault(C.GoString(data), int64(len)))
-}
-
-func (ptr *QSslSocket) ConnectWriteData(f func(data string, len int64) int64) {
-	defer qt.Recovering("connect QSslSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "writeData", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectWriteData() {
-	defer qt.Recovering("disconnect QSslSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "writeData")
-	}
 }
 
 func (ptr *QSslSocket) WriteData(data string, len int64) int64 {
@@ -17903,19 +17261,11 @@ func (ptr *QSslSocket) WriteData(data string, len int64) int64 {
 	return 0
 }
 
-func (ptr *QSslSocket) WriteDataDefault(data string, len int64) int64 {
-	defer qt.Recovering("QSslSocket::writeData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QSslSocket_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(len)))
-	}
-	return 0
-}
-
 func (ptr *QSslSocket) DestroyQSslSocket() {
 	defer qt.Recovering("QSslSocket::~QSslSocket")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSslSocket_DestroyQSslSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17964,100 +17314,6 @@ func (ptr *QSslSocket) DisconnectFromHostDefault() {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectFromHostDefault(ptr.Pointer())
 	}
-}
-
-//export callbackQSslSocket_IsSequential
-func callbackQSslSocket_IsSequential(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QSslSocket::isSequential")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "isSequential"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).IsSequentialDefault()))
-}
-
-func (ptr *QSslSocket) ConnectIsSequential(f func() bool) {
-	defer qt.Recovering("connect QSslSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "isSequential", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectIsSequential() {
-	defer qt.Recovering("disconnect QSslSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "isSequential")
-	}
-}
-
-func (ptr *QSslSocket) IsSequential() bool {
-	defer qt.Recovering("QSslSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QSslSocket_IsSequential(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSslSocket) IsSequentialDefault() bool {
-	defer qt.Recovering("QSslSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QSslSocket_IsSequentialDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQSslSocket_ReadLineData
-func callbackQSslSocket_ReadLineData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, maxlen C.longlong) C.longlong {
-	defer qt.Recovering("callback QSslSocket::readLineData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "readLineData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxlen)))
-	}
-
-	return C.longlong(NewQSslSocketFromPointer(ptr).ReadLineDataDefault(C.GoString(data), int64(maxlen)))
-}
-
-func (ptr *QSslSocket) ConnectReadLineData(f func(data string, maxlen int64) int64) {
-	defer qt.Recovering("connect QSslSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "readLineData", f)
-	}
-}
-
-func (ptr *QSslSocket) DisconnectReadLineData() {
-	defer qt.Recovering("disconnect QSslSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "readLineData")
-	}
-}
-
-func (ptr *QSslSocket) ReadLineData(data string, maxlen int64) int64 {
-	defer qt.Recovering("QSslSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QSslSocket_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
-	}
-	return 0
-}
-
-func (ptr *QSslSocket) ReadLineDataDefault(data string, maxlen int64) int64 {
-	defer qt.Recovering("QSslSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QSslSocket_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
-	}
-	return 0
 }
 
 //export callbackQSslSocket_Open
@@ -18508,6 +17764,7 @@ func (ptr *QSslSocket) DeleteLater() {
 	defer qt.Recovering("QSslSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSslSocket_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -18517,6 +17774,7 @@ func (ptr *QSslSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QSslSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSslSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19042,6 +18300,7 @@ func (ptr *QTcpServer) DestroyQTcpServer() {
 	defer qt.Recovering("QTcpServer::~QTcpServer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTcpServer_DestroyQTcpServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19260,6 +18519,7 @@ func (ptr *QTcpServer) DeleteLater() {
 	defer qt.Recovering("QTcpServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTcpServer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19269,6 +18529,7 @@ func (ptr *QTcpServer) DeleteLaterDefault() {
 	defer qt.Recovering("QTcpServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTcpServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19517,241 +18778,9 @@ func (ptr *QTcpSocket) DestroyQTcpSocket() {
 	defer qt.Recovering("QTcpSocket::~QTcpSocket")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTcpSocket_DestroyQTcpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQTcpSocket_AtEnd
-func callbackQTcpSocket_AtEnd(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QTcpSocket::atEnd")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "atEnd"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).AtEndDefault()))
-}
-
-func (ptr *QTcpSocket) ConnectAtEnd(f func() bool) {
-	defer qt.Recovering("connect QTcpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "atEnd", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectAtEnd() {
-	defer qt.Recovering("disconnect QTcpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "atEnd")
-	}
-}
-
-func (ptr *QTcpSocket) AtEnd() bool {
-	defer qt.Recovering("QTcpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_AtEnd(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QTcpSocket) AtEndDefault() bool {
-	defer qt.Recovering("QTcpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_AtEndDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQTcpSocket_BytesAvailable
-func callbackQTcpSocket_BytesAvailable(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QTcpSocket::bytesAvailable")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesAvailable"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQTcpSocketFromPointer(ptr).BytesAvailableDefault())
-}
-
-func (ptr *QTcpSocket) ConnectBytesAvailable(f func() int64) {
-	defer qt.Recovering("connect QTcpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesAvailable", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectBytesAvailable() {
-	defer qt.Recovering("disconnect QTcpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesAvailable")
-	}
-}
-
-func (ptr *QTcpSocket) BytesAvailable() int64 {
-	defer qt.Recovering("QTcpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_BytesAvailable(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QTcpSocket) BytesAvailableDefault() int64 {
-	defer qt.Recovering("QTcpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_BytesAvailableDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQTcpSocket_BytesToWrite
-func callbackQTcpSocket_BytesToWrite(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QTcpSocket::bytesToWrite")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesToWrite"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQTcpSocketFromPointer(ptr).BytesToWriteDefault())
-}
-
-func (ptr *QTcpSocket) ConnectBytesToWrite(f func() int64) {
-	defer qt.Recovering("connect QTcpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesToWrite", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectBytesToWrite() {
-	defer qt.Recovering("disconnect QTcpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesToWrite")
-	}
-}
-
-func (ptr *QTcpSocket) BytesToWrite() int64 {
-	defer qt.Recovering("QTcpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_BytesToWrite(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QTcpSocket) BytesToWriteDefault() int64 {
-	defer qt.Recovering("QTcpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_BytesToWriteDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQTcpSocket_CanReadLine
-func callbackQTcpSocket_CanReadLine(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QTcpSocket::canReadLine")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "canReadLine"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).CanReadLineDefault()))
-}
-
-func (ptr *QTcpSocket) ConnectCanReadLine(f func() bool) {
-	defer qt.Recovering("connect QTcpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "canReadLine", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectCanReadLine() {
-	defer qt.Recovering("disconnect QTcpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "canReadLine")
-	}
-}
-
-func (ptr *QTcpSocket) CanReadLine() bool {
-	defer qt.Recovering("QTcpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_CanReadLine(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QTcpSocket) CanReadLineDefault() bool {
-	defer qt.Recovering("QTcpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_CanReadLineDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQTcpSocket_Close
-func callbackQTcpSocket_Close(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QTcpSocket::close")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQTcpSocketFromPointer(ptr).CloseDefault()
-	}
-}
-
-func (ptr *QTcpSocket) ConnectClose(f func()) {
-	defer qt.Recovering("connect QTcpSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectClose() {
-	defer qt.Recovering("disconnect QTcpSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
-	}
-}
-
-func (ptr *QTcpSocket) Close() {
-	defer qt.Recovering("QTcpSocket::close")
-
-	if ptr.Pointer() != nil {
-		C.QTcpSocket_Close(ptr.Pointer())
-	}
-}
-
-func (ptr *QTcpSocket) CloseDefault() {
-	defer qt.Recovering("QTcpSocket::close")
-
-	if ptr.Pointer() != nil {
-		C.QTcpSocket_CloseDefault(ptr.Pointer())
 	}
 }
 
@@ -19798,100 +18827,6 @@ func (ptr *QTcpSocket) DisconnectFromHostDefault() {
 	if ptr.Pointer() != nil {
 		C.QTcpSocket_DisconnectFromHostDefault(ptr.Pointer())
 	}
-}
-
-//export callbackQTcpSocket_IsSequential
-func callbackQTcpSocket_IsSequential(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QTcpSocket::isSequential")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "isSequential"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).IsSequentialDefault()))
-}
-
-func (ptr *QTcpSocket) ConnectIsSequential(f func() bool) {
-	defer qt.Recovering("connect QTcpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "isSequential", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectIsSequential() {
-	defer qt.Recovering("disconnect QTcpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "isSequential")
-	}
-}
-
-func (ptr *QTcpSocket) IsSequential() bool {
-	defer qt.Recovering("QTcpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_IsSequential(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QTcpSocket) IsSequentialDefault() bool {
-	defer qt.Recovering("QTcpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_IsSequentialDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQTcpSocket_ReadLineData
-func callbackQTcpSocket_ReadLineData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, maxlen C.longlong) C.longlong {
-	defer qt.Recovering("callback QTcpSocket::readLineData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "readLineData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxlen)))
-	}
-
-	return C.longlong(NewQTcpSocketFromPointer(ptr).ReadLineDataDefault(C.GoString(data), int64(maxlen)))
-}
-
-func (ptr *QTcpSocket) ConnectReadLineData(f func(data string, maxlen int64) int64) {
-	defer qt.Recovering("connect QTcpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "readLineData", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectReadLineData() {
-	defer qt.Recovering("disconnect QTcpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "readLineData")
-	}
-}
-
-func (ptr *QTcpSocket) ReadLineData(data string, maxlen int64) int64 {
-	defer qt.Recovering("QTcpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
-	}
-	return 0
-}
-
-func (ptr *QTcpSocket) ReadLineDataDefault(data string, maxlen int64) int64 {
-	defer qt.Recovering("QTcpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
-	}
-	return 0
 }
 
 //export callbackQTcpSocket_Resume
@@ -20076,53 +19011,6 @@ func (ptr *QTcpSocket) SocketOptionDefault(option QAbstractSocket__SocketOption)
 	return nil
 }
 
-//export callbackQTcpSocket_WaitForBytesWritten
-func callbackQTcpSocket_WaitForBytesWritten(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QTcpSocket::waitForBytesWritten")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForBytesWritten"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(msecs))))
-}
-
-func (ptr *QTcpSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
-	defer qt.Recovering("connect QTcpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForBytesWritten", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectWaitForBytesWritten() {
-	defer qt.Recovering("disconnect QTcpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForBytesWritten")
-	}
-}
-
-func (ptr *QTcpSocket) WaitForBytesWritten(msecs int) bool {
-	defer qt.Recovering("QTcpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QTcpSocket) WaitForBytesWrittenDefault(msecs int) bool {
-	defer qt.Recovering("QTcpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
 //export callbackQTcpSocket_WaitForConnected
 func callbackQTcpSocket_WaitForConnected(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
 	defer qt.Recovering("callback QTcpSocket::waitForConnected")
@@ -20215,100 +19103,6 @@ func (ptr *QTcpSocket) WaitForDisconnectedDefault(msecs int) bool {
 		return C.QTcpSocket_WaitForDisconnectedDefault(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
-}
-
-//export callbackQTcpSocket_WaitForReadyRead
-func callbackQTcpSocket_WaitForReadyRead(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QTcpSocket::waitForReadyRead")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForReadyRead"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).WaitForReadyReadDefault(int(msecs))))
-}
-
-func (ptr *QTcpSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
-	defer qt.Recovering("connect QTcpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForReadyRead", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectWaitForReadyRead() {
-	defer qt.Recovering("disconnect QTcpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForReadyRead")
-	}
-}
-
-func (ptr *QTcpSocket) WaitForReadyRead(msecs int) bool {
-	defer qt.Recovering("QTcpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QTcpSocket) WaitForReadyReadDefault(msecs int) bool {
-	defer qt.Recovering("QTcpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-		return C.QTcpSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-//export callbackQTcpSocket_WriteData
-func callbackQTcpSocket_WriteData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, size C.longlong) C.longlong {
-	defer qt.Recovering("callback QTcpSocket::writeData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(size)))
-	}
-
-	return C.longlong(NewQTcpSocketFromPointer(ptr).WriteDataDefault(C.GoString(data), int64(size)))
-}
-
-func (ptr *QTcpSocket) ConnectWriteData(f func(data string, size int64) int64) {
-	defer qt.Recovering("connect QTcpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "writeData", f)
-	}
-}
-
-func (ptr *QTcpSocket) DisconnectWriteData() {
-	defer qt.Recovering("disconnect QTcpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "writeData")
-	}
-}
-
-func (ptr *QTcpSocket) WriteData(data string, size int64) int64 {
-	defer qt.Recovering("QTcpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_WriteData(ptr.Pointer(), C.CString(data), C.longlong(size)))
-	}
-	return 0
-}
-
-func (ptr *QTcpSocket) WriteDataDefault(data string, size int64) int64 {
-	defer qt.Recovering("QTcpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QTcpSocket_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(size)))
-	}
-	return 0
 }
 
 //export callbackQTcpSocket_Open
@@ -20759,6 +19553,7 @@ func (ptr *QTcpSocket) DeleteLater() {
 	defer qt.Recovering("QTcpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTcpSocket_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20768,6 +19563,7 @@ func (ptr *QTcpSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QTcpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTcpSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21087,241 +19883,9 @@ func (ptr *QUdpSocket) DestroyQUdpSocket() {
 	defer qt.Recovering("QUdpSocket::~QUdpSocket")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QUdpSocket_DestroyQUdpSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQUdpSocket_AtEnd
-func callbackQUdpSocket_AtEnd(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QUdpSocket::atEnd")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "atEnd"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).AtEndDefault()))
-}
-
-func (ptr *QUdpSocket) ConnectAtEnd(f func() bool) {
-	defer qt.Recovering("connect QUdpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "atEnd", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectAtEnd() {
-	defer qt.Recovering("disconnect QUdpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "atEnd")
-	}
-}
-
-func (ptr *QUdpSocket) AtEnd() bool {
-	defer qt.Recovering("QUdpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_AtEnd(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QUdpSocket) AtEndDefault() bool {
-	defer qt.Recovering("QUdpSocket::atEnd")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_AtEndDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQUdpSocket_BytesAvailable
-func callbackQUdpSocket_BytesAvailable(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QUdpSocket::bytesAvailable")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesAvailable"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQUdpSocketFromPointer(ptr).BytesAvailableDefault())
-}
-
-func (ptr *QUdpSocket) ConnectBytesAvailable(f func() int64) {
-	defer qt.Recovering("connect QUdpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesAvailable", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectBytesAvailable() {
-	defer qt.Recovering("disconnect QUdpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesAvailable")
-	}
-}
-
-func (ptr *QUdpSocket) BytesAvailable() int64 {
-	defer qt.Recovering("QUdpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_BytesAvailable(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QUdpSocket) BytesAvailableDefault() int64 {
-	defer qt.Recovering("QUdpSocket::bytesAvailable")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_BytesAvailableDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQUdpSocket_BytesToWrite
-func callbackQUdpSocket_BytesToWrite(ptr unsafe.Pointer, ptrName *C.char) C.longlong {
-	defer qt.Recovering("callback QUdpSocket::bytesToWrite")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "bytesToWrite"); signal != nil {
-		return C.longlong(signal.(func() int64)())
-	}
-
-	return C.longlong(NewQUdpSocketFromPointer(ptr).BytesToWriteDefault())
-}
-
-func (ptr *QUdpSocket) ConnectBytesToWrite(f func() int64) {
-	defer qt.Recovering("connect QUdpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "bytesToWrite", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectBytesToWrite() {
-	defer qt.Recovering("disconnect QUdpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "bytesToWrite")
-	}
-}
-
-func (ptr *QUdpSocket) BytesToWrite() int64 {
-	defer qt.Recovering("QUdpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_BytesToWrite(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QUdpSocket) BytesToWriteDefault() int64 {
-	defer qt.Recovering("QUdpSocket::bytesToWrite")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_BytesToWriteDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQUdpSocket_CanReadLine
-func callbackQUdpSocket_CanReadLine(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QUdpSocket::canReadLine")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "canReadLine"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).CanReadLineDefault()))
-}
-
-func (ptr *QUdpSocket) ConnectCanReadLine(f func() bool) {
-	defer qt.Recovering("connect QUdpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "canReadLine", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectCanReadLine() {
-	defer qt.Recovering("disconnect QUdpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "canReadLine")
-	}
-}
-
-func (ptr *QUdpSocket) CanReadLine() bool {
-	defer qt.Recovering("QUdpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_CanReadLine(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QUdpSocket) CanReadLineDefault() bool {
-	defer qt.Recovering("QUdpSocket::canReadLine")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_CanReadLineDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQUdpSocket_Close
-func callbackQUdpSocket_Close(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QUdpSocket::close")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQUdpSocketFromPointer(ptr).CloseDefault()
-	}
-}
-
-func (ptr *QUdpSocket) ConnectClose(f func()) {
-	defer qt.Recovering("connect QUdpSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectClose() {
-	defer qt.Recovering("disconnect QUdpSocket::close")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
-	}
-}
-
-func (ptr *QUdpSocket) Close() {
-	defer qt.Recovering("QUdpSocket::close")
-
-	if ptr.Pointer() != nil {
-		C.QUdpSocket_Close(ptr.Pointer())
-	}
-}
-
-func (ptr *QUdpSocket) CloseDefault() {
-	defer qt.Recovering("QUdpSocket::close")
-
-	if ptr.Pointer() != nil {
-		C.QUdpSocket_CloseDefault(ptr.Pointer())
 	}
 }
 
@@ -21368,100 +19932,6 @@ func (ptr *QUdpSocket) DisconnectFromHostDefault() {
 	if ptr.Pointer() != nil {
 		C.QUdpSocket_DisconnectFromHostDefault(ptr.Pointer())
 	}
-}
-
-//export callbackQUdpSocket_IsSequential
-func callbackQUdpSocket_IsSequential(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QUdpSocket::isSequential")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "isSequential"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).IsSequentialDefault()))
-}
-
-func (ptr *QUdpSocket) ConnectIsSequential(f func() bool) {
-	defer qt.Recovering("connect QUdpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "isSequential", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectIsSequential() {
-	defer qt.Recovering("disconnect QUdpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "isSequential")
-	}
-}
-
-func (ptr *QUdpSocket) IsSequential() bool {
-	defer qt.Recovering("QUdpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_IsSequential(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QUdpSocket) IsSequentialDefault() bool {
-	defer qt.Recovering("QUdpSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_IsSequentialDefault(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-//export callbackQUdpSocket_ReadLineData
-func callbackQUdpSocket_ReadLineData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, maxlen C.longlong) C.longlong {
-	defer qt.Recovering("callback QUdpSocket::readLineData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "readLineData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxlen)))
-	}
-
-	return C.longlong(NewQUdpSocketFromPointer(ptr).ReadLineDataDefault(C.GoString(data), int64(maxlen)))
-}
-
-func (ptr *QUdpSocket) ConnectReadLineData(f func(data string, maxlen int64) int64) {
-	defer qt.Recovering("connect QUdpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "readLineData", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectReadLineData() {
-	defer qt.Recovering("disconnect QUdpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "readLineData")
-	}
-}
-
-func (ptr *QUdpSocket) ReadLineData(data string, maxlen int64) int64 {
-	defer qt.Recovering("QUdpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
-	}
-	return 0
-}
-
-func (ptr *QUdpSocket) ReadLineDataDefault(data string, maxlen int64) int64 {
-	defer qt.Recovering("QUdpSocket::readLineData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
-	}
-	return 0
 }
 
 //export callbackQUdpSocket_Resume
@@ -21646,53 +20116,6 @@ func (ptr *QUdpSocket) SocketOptionDefault(option QAbstractSocket__SocketOption)
 	return nil
 }
 
-//export callbackQUdpSocket_WaitForBytesWritten
-func callbackQUdpSocket_WaitForBytesWritten(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QUdpSocket::waitForBytesWritten")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForBytesWritten"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(msecs))))
-}
-
-func (ptr *QUdpSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
-	defer qt.Recovering("connect QUdpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForBytesWritten", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectWaitForBytesWritten() {
-	defer qt.Recovering("disconnect QUdpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForBytesWritten")
-	}
-}
-
-func (ptr *QUdpSocket) WaitForBytesWritten(msecs int) bool {
-	defer qt.Recovering("QUdpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_WaitForBytesWritten(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QUdpSocket) WaitForBytesWrittenDefault(msecs int) bool {
-	defer qt.Recovering("QUdpSocket::waitForBytesWritten")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
 //export callbackQUdpSocket_WaitForConnected
 func callbackQUdpSocket_WaitForConnected(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
 	defer qt.Recovering("callback QUdpSocket::waitForConnected")
@@ -21785,100 +20208,6 @@ func (ptr *QUdpSocket) WaitForDisconnectedDefault(msecs int) bool {
 		return C.QUdpSocket_WaitForDisconnectedDefault(ptr.Pointer(), C.int(msecs)) != 0
 	}
 	return false
-}
-
-//export callbackQUdpSocket_WaitForReadyRead
-func callbackQUdpSocket_WaitForReadyRead(ptr unsafe.Pointer, ptrName *C.char, msecs C.int) C.int {
-	defer qt.Recovering("callback QUdpSocket::waitForReadyRead")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "waitForReadyRead"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(msecs))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).WaitForReadyReadDefault(int(msecs))))
-}
-
-func (ptr *QUdpSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
-	defer qt.Recovering("connect QUdpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "waitForReadyRead", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectWaitForReadyRead() {
-	defer qt.Recovering("disconnect QUdpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "waitForReadyRead")
-	}
-}
-
-func (ptr *QUdpSocket) WaitForReadyRead(msecs int) bool {
-	defer qt.Recovering("QUdpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_WaitForReadyRead(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-func (ptr *QUdpSocket) WaitForReadyReadDefault(msecs int) bool {
-	defer qt.Recovering("QUdpSocket::waitForReadyRead")
-
-	if ptr.Pointer() != nil {
-		return C.QUdpSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(msecs)) != 0
-	}
-	return false
-}
-
-//export callbackQUdpSocket_WriteData
-func callbackQUdpSocket_WriteData(ptr unsafe.Pointer, ptrName *C.char, data *C.char, size C.longlong) C.longlong {
-	defer qt.Recovering("callback QUdpSocket::writeData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "writeData"); signal != nil {
-		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(size)))
-	}
-
-	return C.longlong(NewQUdpSocketFromPointer(ptr).WriteDataDefault(C.GoString(data), int64(size)))
-}
-
-func (ptr *QUdpSocket) ConnectWriteData(f func(data string, size int64) int64) {
-	defer qt.Recovering("connect QUdpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "writeData", f)
-	}
-}
-
-func (ptr *QUdpSocket) DisconnectWriteData() {
-	defer qt.Recovering("disconnect QUdpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "writeData")
-	}
-}
-
-func (ptr *QUdpSocket) WriteData(data string, size int64) int64 {
-	defer qt.Recovering("QUdpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_WriteData(ptr.Pointer(), C.CString(data), C.longlong(size)))
-	}
-	return 0
-}
-
-func (ptr *QUdpSocket) WriteDataDefault(data string, size int64) int64 {
-	defer qt.Recovering("QUdpSocket::writeData")
-
-	if ptr.Pointer() != nil {
-		return int64(C.QUdpSocket_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(size)))
-	}
-	return 0
 }
 
 //export callbackQUdpSocket_Open
@@ -22329,6 +20658,7 @@ func (ptr *QUdpSocket) DeleteLater() {
 	defer qt.Recovering("QUdpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QUdpSocket_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -22338,6 +20668,7 @@ func (ptr *QUdpSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QUdpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QUdpSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

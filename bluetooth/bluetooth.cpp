@@ -1244,7 +1244,6 @@ public:
 	qint64 bytesToWrite() const { return static_cast<long long>(callbackQBluetoothSocket_BytesToWrite(const_cast<MyQBluetoothSocket*>(this), this->objectName().toUtf8().data())); };
 	bool canReadLine() const { return callbackQBluetoothSocket_CanReadLine(const_cast<MyQBluetoothSocket*>(this), this->objectName().toUtf8().data()) != 0; };
 	void close() { callbackQBluetoothSocket_Close(this, this->objectName().toUtf8().data()); };
-	bool isSequential() const { return callbackQBluetoothSocket_IsSequential(const_cast<MyQBluetoothSocket*>(this), this->objectName().toUtf8().data()) != 0; };
 	qint64 writeData(const char * data, qint64 maxSize) { return static_cast<long long>(callbackQBluetoothSocket_WriteData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), static_cast<long long>(maxSize))); };
 	bool atEnd() const { return callbackQBluetoothSocket_AtEnd(const_cast<MyQBluetoothSocket*>(this), this->objectName().toUtf8().data()) != 0; };
 	bool open(QIODevice::OpenMode mode) { return callbackQBluetoothSocket_Open(this, this->objectName().toUtf8().data(), mode) != 0; };
@@ -1414,11 +1413,6 @@ char* QBluetoothSocket_ErrorString(void* ptr)
 int QBluetoothSocket_IsSequential(void* ptr)
 {
 	return static_cast<QBluetoothSocket*>(ptr)->isSequential();
-}
-
-int QBluetoothSocket_IsSequentialDefault(void* ptr)
-{
-	return static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::isSequential();
 }
 
 void* QBluetoothSocket_LocalAddress(void* ptr)

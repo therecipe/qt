@@ -15,7 +15,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 		(f.Class() == "QAccessibleObject" || f.Class() == "QAccessibleInterface" || f.Class() == "QAccessibleWidget" || //QAccessible::State -> quint64
 			f.Class() == "QAccessibleStateChangeEvent") && (f.Name == "state" || f.Name == "changedStates" || f.Meta == parser.CONSTRUCTOR),
 
-		f.Fullname == "QPixmapCache::find" && f.OverloadNumber == "3", //Qt::Key -> int
+		f.Fullname == "QPixmapCache::find" && f.OverloadNumber == "4", //Qt::Key -> int
 		(f.Fullname == "QPixmapCache::remove" || f.Fullname == "QPixmapCache::insert") && f.OverloadNumber == "2",
 		f.Fullname == "QPixmapCache::replace",
 
@@ -35,7 +35,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 
 		parser.ClassMap[f.Class()].Module == parser.MOC && f.Name == "metaObject", //needed for qtmoc
 
-		f.Fullname == "QSignalBlocker::QSignalBlocker" && f.OverloadNumber == "2", //undefined symbol
+		f.Fullname == "QSignalBlocker::QSignalBlocker" && f.OverloadNumber == "3", //undefined symbol
 
 		(f.Class() == "QCoreApplication" || f.Class() == "QGuiApplication" || f.Class() == "QApplication" ||
 			f.Class() == "QAudioInput" || f.Class() == "QAudioOutput") && f.Name == "notify", //redeclared (name collision with QObject)
@@ -45,8 +45,6 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 		f.Name == "surfaceHandle", //QQuickWindow && QQuickView //unsupported_cppType(QPlatformSurface)
 
 		f.Name == "readData", f.Name == "QNetworkReply", //TODO: char*
-
-		f.Name == "setMargins", //depreached in 5.6
 
 		f.Name == "QDesignerFormWindowInterface" || f.Name == "QDesignerFormWindowManagerInterface" || f.Name == "QDesignerWidgetBoxInterface", //unimplemented virtual
 
@@ -220,13 +218,13 @@ var Libs = []string{
 	"Quick",
 	"Help",
 	"Location",
-	"ScriptTools",       //depreached in 5.6
-	"MultimediaWidgets", //depreached in 5.6
+	"ScriptTools", //depreached in 5.6
+	//"MultimediaWidgets", //depreached in 5.6
 	"UiTools",
 	//"X11Extras", //linux/android only
 	//"WinExtras", //windows only
-	//"WebEngine", //available in 5.6
-	"WebKit", //depreached in 5.6
+	"WebEngine", //available in 5.6
+	//"WebKit", //depreached in 5.6
 	"TestLib",
 	"SerialPort",
 	//"SerialBus", //available in 5.6 and c++11
@@ -239,6 +237,7 @@ func GetLibs() []string {
 	for i := len(Libs) - 1; i >= 0; i-- {
 		switch {
 		case
+			!(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && Libs[i] == "WebEngine",
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
 			runtime.GOOS != "windows" && Libs[i] == "WinExtras":
 			{
@@ -270,7 +269,7 @@ var LibDeps = map[string][]string{
 	"Bluetooth":         []string{"Core", "Concurrent"},
 	"WebChannel":        []string{"Core", "Network", "Qml"},
 	"Svg":               []string{"Core", "Gui", "Widgets"},
-	"Multimedia":        []string{"Core", "Gui", "Network", "MultimediaWidgets"},
+	"Multimedia":        []string{"Core", "Gui", "Network", "Widgets", "MultimediaWidgets"},
 	"Quick":             []string{"Core", "Gui", "Network", "Widgets", "Qml", "QuickWidgets"},
 	"Help":              []string{"Core", "Gui", "Network", "Sql", "CLucene", "Widgets"},
 	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},
@@ -400,11 +399,6 @@ func manualWeakLink(module string) {
 			{
 				class.WeakLink["QtWidgets"] = true
 				class.WeakLink["QtMultimedia"] = true
-			}
-
-		case "QtMultimedia":
-			{
-				class.WeakLink["QtMultimediaWidgets"] = true
 			}
 		}
 	}

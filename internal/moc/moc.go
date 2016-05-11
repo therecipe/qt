@@ -63,7 +63,7 @@ func main() {
 					for _, s := range typeDecl.Specs {
 						if typeSpec, ok := s.(*ast.TypeSpec); ok {
 
-							var class = &parser.Class{Access: "public", Module: "main", Name: typeSpec.Name.String(), Status: "active", Functions: make([]*parser.Function, 0)}
+							var class = &parser.Class{Access: "public", Module: "main", Name: typeSpec.Name.String(), Status: "public", Functions: make([]*parser.Function, 0)}
 
 							if structDecl, ok := typeSpec.Type.(*ast.StructType); ok {
 								for _, field := range structDecl.Fields.List {
@@ -89,20 +89,18 @@ func main() {
 										tag = strings.Replace(tag, "\"", "", -1)
 										tag = strings.Replace(tag, "`", "", -1)
 
-										var meta, virtual string
+										var meta string
 										if strings.Contains(tag, "signal:") {
 											meta = "signal"
-											virtual = "non"
 										}
 										if strings.Contains(tag, "slot:") {
 											meta = "slot"
-											virtual = "non"
 										}
 
 										if meta != "" {
 											var (
 												name = strings.Split(tag, ":")[1]
-												f    = &parser.Function{Access: "public", Fullname: class.Name + "::" + name, Meta: meta, Name: name, Output: "void", Status: "active", Virtual: virtual, Signature: "()"}
+												f    = &parser.Function{Access: "public", Fullname: class.Name + "::" + name, Meta: meta, Name: name, Output: "void", Status: "public", Virtual: "non", Signature: "()"}
 											)
 											f.Parameters = getParameters(_type)
 											if f.Meta == "slot" {
@@ -181,7 +179,7 @@ func main() {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				mocPath = "/usr/local/Qt5.5.1/5.5/clang_64/bin/moc"
+				mocPath = "/usr/local/Qt5.6.0/5.6/clang_64/bin/moc"
 			}
 
 		case "linux":
@@ -190,19 +188,19 @@ func main() {
 				switch runtime.GOARCH {
 				case "amd64":
 					{
-						mocPath = "/usr/local/Qt5.5.1/5.5/gcc_64/bin/moc"
+						mocPath = "/usr/local/Qt5.6.0/5.6/gcc_64/bin/moc"
 					}
 
 				case "386":
 					{
-						mocPath = "/usr/local/Qt5.5.1/5.5/gcc/bin/moc"
+						mocPath = "/usr/local/Qt5.6.0/5.6/gcc/bin/moc"
 					}
 				}
 			}
 
 		case "windows":
 			{
-				mocPath = "C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\bin\\moc.exe"
+				mocPath = "C:\\Qt\\Qt5.6.0\\5.6\\mingw49_32\\bin\\moc.exe"
 			}
 		}
 

@@ -135,6 +135,7 @@ func (ptr *QmlBridge) DestroyQmlBridge() {
 	defer qt.Recovering("QmlBridge::~QmlBridge")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QmlBridge_DestroyQmlBridge(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -353,6 +354,7 @@ func (ptr *QmlBridge) DeleteLater() {
 	defer qt.Recovering("QmlBridge::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QmlBridge_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -362,6 +364,7 @@ func (ptr *QmlBridge) DeleteLaterDefault() {
 	defer qt.Recovering("QmlBridge::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QmlBridge_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

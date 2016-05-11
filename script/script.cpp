@@ -1165,7 +1165,7 @@ int QScriptValue_LessThan(void* ptr, void* other)
 	return static_cast<QScriptValue*>(ptr)->lessThan(*static_cast<QScriptValue*>(other));
 }
 
-void* QScriptValue_Property2(void* ptr, void* name, int mode)
+void* QScriptValue_Property3(void* ptr, void* name, int mode)
 {
 	return new QScriptValue(static_cast<QScriptValue*>(ptr)->property(*static_cast<QScriptString*>(name), static_cast<QScriptValue::ResolveFlag>(mode)));
 }
@@ -1200,7 +1200,7 @@ void QScriptValue_SetData(void* ptr, void* data)
 	static_cast<QScriptValue*>(ptr)->setData(*static_cast<QScriptValue*>(data));
 }
 
-void QScriptValue_SetProperty2(void* ptr, void* name, void* value, int flags)
+void QScriptValue_SetProperty3(void* ptr, void* name, void* value, int flags)
 {
 	static_cast<QScriptValue*>(ptr)->setProperty(*static_cast<QScriptString*>(name), *static_cast<QScriptValue*>(value), static_cast<QScriptValue::PropertyFlag>(flags));
 }

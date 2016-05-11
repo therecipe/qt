@@ -10,6 +10,16 @@ import (
 	"unsafe"
 )
 
+//QJSEngine::Extension
+type QJSEngine__Extension int64
+
+const (
+	QJSEngine__TranslationExtension       = QJSEngine__Extension(0x1)
+	QJSEngine__ConsoleExtension           = QJSEngine__Extension(0x2)
+	QJSEngine__GarbageCollectionExtension = QJSEngine__Extension(0x4)
+	QJSEngine__AllExtensions              = QJSEngine__Extension(0xffffffff)
+)
+
 type QJSEngine struct {
 	core.QObject
 }
@@ -95,11 +105,11 @@ func (ptr *QJSEngine) GlobalObject() *QJSValue {
 	return nil
 }
 
-func (ptr *QJSEngine) InstallTranslatorFunctions(object QJSValue_ITF) {
-	defer qt.Recovering("QJSEngine::installTranslatorFunctions")
+func (ptr *QJSEngine) InstallExtensions(extensions QJSEngine__Extension, object QJSValue_ITF) {
+	defer qt.Recovering("QJSEngine::installExtensions")
 
 	if ptr.Pointer() != nil {
-		C.QJSEngine_InstallTranslatorFunctions(ptr.Pointer(), PointerFromQJSValue(object))
+		C.QJSEngine_InstallExtensions(ptr.Pointer(), C.int(extensions), PointerFromQJSValue(object))
 	}
 }
 
@@ -125,6 +135,7 @@ func (ptr *QJSEngine) DestroyQJSEngine() {
 	defer qt.Recovering("QJSEngine::~QJSEngine")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -343,6 +354,7 @@ func (ptr *QJSEngine) DeleteLater() {
 	defer qt.Recovering("QJSEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QJSEngine_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -352,6 +364,7 @@ func (ptr *QJSEngine) DeleteLaterDefault() {
 	defer qt.Recovering("QJSEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QJSEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1039,6 +1052,7 @@ func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
 	defer qt.Recovering("QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1274,6 +1288,7 @@ func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	defer qt.Recovering("QQmlApplicationEngine::~QQmlApplicationEngine")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1539,6 +1554,7 @@ func (ptr *QQmlApplicationEngine) DeleteLater() {
 	defer qt.Recovering("QQmlApplicationEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlApplicationEngine_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1548,6 +1564,7 @@ func (ptr *QQmlApplicationEngine) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlApplicationEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlApplicationEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2190,6 +2207,7 @@ func (ptr *QQmlComponent) DestroyQQmlComponent() {
 	defer qt.Recovering("QQmlComponent::~QQmlComponent")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2408,6 +2426,7 @@ func (ptr *QQmlComponent) DeleteLater() {
 	defer qt.Recovering("QQmlComponent::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlComponent_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2417,6 +2436,7 @@ func (ptr *QQmlComponent) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlComponent::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlComponent_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2775,6 +2795,7 @@ func (ptr *QQmlContext) DestroyQQmlContext() {
 	defer qt.Recovering("QQmlContext::~QQmlContext")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlContext_DestroyQQmlContext(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2993,6 +3014,7 @@ func (ptr *QQmlContext) DeleteLater() {
 	defer qt.Recovering("QQmlContext::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlContext_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3002,6 +3024,7 @@ func (ptr *QQmlContext) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlContext::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlContext_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3583,6 +3606,7 @@ func (ptr *QQmlEngine) DestroyQQmlEngine() {
 	defer qt.Recovering("QQmlEngine::~QQmlEngine")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3801,6 +3825,7 @@ func (ptr *QQmlEngine) DeleteLater() {
 	defer qt.Recovering("QQmlEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlEngine_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3810,6 +3835,7 @@ func (ptr *QQmlEngine) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4348,6 +4374,7 @@ func (ptr *QQmlExpression) DestroyQQmlExpression() {
 	defer qt.Recovering("QQmlExpression::~QQmlExpression")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlExpression_DestroyQQmlExpression(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4566,6 +4593,7 @@ func (ptr *QQmlExpression) DeleteLater() {
 	defer qt.Recovering("QQmlExpression::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlExpression_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4575,6 +4603,7 @@ func (ptr *QQmlExpression) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlExpression::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlExpression_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5122,6 +5151,7 @@ func (ptr *QQmlExtensionPlugin) DeleteLater() {
 	defer qt.Recovering("QQmlExtensionPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlExtensionPlugin_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5131,6 +5161,7 @@ func (ptr *QQmlExtensionPlugin) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlExtensionPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5844,10 +5875,11 @@ const (
 type QQmlImageProviderBase__ImageType int64
 
 const (
-	QQmlImageProviderBase__Image   = QQmlImageProviderBase__ImageType(0)
-	QQmlImageProviderBase__Pixmap  = QQmlImageProviderBase__ImageType(1)
-	QQmlImageProviderBase__Texture = QQmlImageProviderBase__ImageType(2)
-	QQmlImageProviderBase__Invalid = QQmlImageProviderBase__ImageType(3)
+	QQmlImageProviderBase__Image         = QQmlImageProviderBase__ImageType(0)
+	QQmlImageProviderBase__Pixmap        = QQmlImageProviderBase__ImageType(1)
+	QQmlImageProviderBase__Texture       = QQmlImageProviderBase__ImageType(2)
+	QQmlImageProviderBase__Invalid       = QQmlImageProviderBase__ImageType(3)
+	QQmlImageProviderBase__ImageResponse = QQmlImageProviderBase__ImageType(4)
 )
 
 type QQmlImageProviderBase struct {
@@ -6689,6 +6721,7 @@ func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFacto
 	defer qt.Recovering("QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7427,6 +7460,7 @@ func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
 	defer qt.Recovering("QQmlPropertyMap::~QQmlPropertyMap")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7645,6 +7679,7 @@ func (ptr *QQmlPropertyMap) DeleteLater() {
 	defer qt.Recovering("QQmlPropertyMap::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlPropertyMap_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7654,6 +7689,7 @@ func (ptr *QQmlPropertyMap) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlPropertyMap::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlPropertyMap_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7937,6 +7973,7 @@ func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSource() {
 	defer qt.Recovering("QQmlPropertyValueSource::~QQmlPropertyValueSource")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

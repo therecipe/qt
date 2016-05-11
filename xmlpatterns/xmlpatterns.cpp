@@ -893,12 +893,12 @@ void* QXmlQuery_NewQXmlQuery2(void* other)
 	return new QXmlQuery(*static_cast<QXmlQuery*>(other));
 }
 
-void QXmlQuery_BindVariable5(void* ptr, char* localName, void* device)
+void QXmlQuery_BindVariable4(void* ptr, char* localName, void* device)
 {
 	static_cast<QXmlQuery*>(ptr)->bindVariable(QString(localName), static_cast<QIODevice*>(device));
 }
 
-void QXmlQuery_BindVariable4(void* ptr, char* localName, void* value)
+void QXmlQuery_BindVariable2(void* ptr, char* localName, void* value)
 {
 	static_cast<QXmlQuery*>(ptr)->bindVariable(QString(localName), *static_cast<QXmlItem*>(value));
 }
@@ -908,7 +908,7 @@ void QXmlQuery_BindVariable6(void* ptr, char* localName, void* query)
 	static_cast<QXmlQuery*>(ptr)->bindVariable(QString(localName), *static_cast<QXmlQuery*>(query));
 }
 
-void QXmlQuery_BindVariable2(void* ptr, void* name, void* device)
+void QXmlQuery_BindVariable3(void* ptr, void* name, void* device)
 {
 	static_cast<QXmlQuery*>(ptr)->bindVariable(*static_cast<QXmlName*>(name), static_cast<QIODevice*>(device));
 }
@@ -918,7 +918,7 @@ void QXmlQuery_BindVariable(void* ptr, void* name, void* value)
 	static_cast<QXmlQuery*>(ptr)->bindVariable(*static_cast<QXmlName*>(name), *static_cast<QXmlItem*>(value));
 }
 
-void QXmlQuery_BindVariable3(void* ptr, void* name, void* query)
+void QXmlQuery_BindVariable5(void* ptr, void* name, void* query)
 {
 	static_cast<QXmlQuery*>(ptr)->bindVariable(*static_cast<QXmlName*>(name), *static_cast<QXmlQuery*>(query));
 }
@@ -928,12 +928,12 @@ int QXmlQuery_EvaluateTo2(void* ptr, void* callback)
 	return static_cast<QXmlQuery*>(ptr)->evaluateTo(static_cast<QAbstractXmlReceiver*>(callback));
 }
 
-int QXmlQuery_EvaluateTo5(void* ptr, void* target)
+int QXmlQuery_EvaluateTo4(void* ptr, void* target)
 {
 	return static_cast<QXmlQuery*>(ptr)->evaluateTo(static_cast<QIODevice*>(target));
 }
 
-int QXmlQuery_EvaluateTo4(void* ptr, char* output)
+int QXmlQuery_EvaluateTo5(void* ptr, char* output)
 {
 	return static_cast<QXmlQuery*>(ptr)->evaluateTo(new QString(output));
 }
@@ -1018,12 +1018,12 @@ void QXmlQuery_SetQuery(void* ptr, void* sourceCode, void* documentURI)
 	static_cast<QXmlQuery*>(ptr)->setQuery(static_cast<QIODevice*>(sourceCode), *static_cast<QUrl*>(documentURI));
 }
 
-void QXmlQuery_SetQuery3(void* ptr, char* sourceCode, void* documentURI)
+void QXmlQuery_SetQuery2(void* ptr, char* sourceCode, void* documentURI)
 {
 	static_cast<QXmlQuery*>(ptr)->setQuery(QString(sourceCode), *static_cast<QUrl*>(documentURI));
 }
 
-void QXmlQuery_SetQuery2(void* ptr, void* queryURI, void* baseURI)
+void QXmlQuery_SetQuery3(void* ptr, void* queryURI, void* baseURI)
 {
 	static_cast<QXmlQuery*>(ptr)->setQuery(*static_cast<QUrl*>(queryURI), *static_cast<QUrl*>(baseURI));
 }

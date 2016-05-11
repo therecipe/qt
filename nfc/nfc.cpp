@@ -1190,6 +1190,11 @@ void QQmlNdefRecord_TypeNameFormatChanged(void* ptr)
 	static_cast<QQmlNdefRecord*>(ptr)->typeNameFormatChanged();
 }
 
+void QQmlNdefRecord_DestroyQQmlNdefRecord(void* ptr)
+{
+	static_cast<QQmlNdefRecord*>(ptr)->~QQmlNdefRecord();
+}
+
 void QQmlNdefRecord_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQmlNdefRecord*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));

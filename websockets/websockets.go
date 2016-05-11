@@ -98,6 +98,7 @@ func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
 	defer qt.Recovering("QMaskGenerator::~QMaskGenerator")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMaskGenerator_DestroyQMaskGenerator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -316,6 +317,7 @@ func (ptr *QMaskGenerator) DeleteLater() {
 	defer qt.Recovering("QMaskGenerator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMaskGenerator_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -325,6 +327,7 @@ func (ptr *QMaskGenerator) DeleteLaterDefault() {
 	defer qt.Recovering("QMaskGenerator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMaskGenerator_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -922,6 +925,42 @@ func (ptr *QWebSocket) MaskGenerator() *QMaskGenerator {
 	return nil
 }
 
+//export callbackQWebSocket_Open2
+func callbackQWebSocket_Open2(ptr unsafe.Pointer, ptrName *C.char, request unsafe.Pointer) {
+	defer qt.Recovering("callback QWebSocket::open")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "open2"); signal != nil {
+		signal.(func(*network.QNetworkRequest))(network.NewQNetworkRequestFromPointer(request))
+	}
+
+}
+
+func (ptr *QWebSocket) ConnectOpen2(f func(request *network.QNetworkRequest)) {
+	defer qt.Recovering("connect QWebSocket::open")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "open2", f)
+	}
+}
+
+func (ptr *QWebSocket) DisconnectOpen2(request network.QNetworkRequest_ITF) {
+	defer qt.Recovering("disconnect QWebSocket::open")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "open2")
+	}
+}
+
+func (ptr *QWebSocket) Open2(request network.QNetworkRequest_ITF) {
+	defer qt.Recovering("QWebSocket::open")
+
+	if ptr.Pointer() != nil {
+		C.QWebSocket_Open2(ptr.Pointer(), network.PointerFromQNetworkRequest(request))
+	}
+}
+
 //export callbackQWebSocket_Open
 func callbackQWebSocket_Open(ptr unsafe.Pointer, ptrName *C.char, url unsafe.Pointer) {
 	defer qt.Recovering("callback QWebSocket::open")
@@ -1118,6 +1157,15 @@ func (ptr *QWebSocket) ReadChannelFinished() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ReadChannelFinished(ptr.Pointer())
 	}
+}
+
+func (ptr *QWebSocket) Request() *network.QNetworkRequest {
+	defer qt.Recovering("QWebSocket::request")
+
+	if ptr.Pointer() != nil {
+		return network.NewQNetworkRequestFromPointer(C.QWebSocket_Request(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWebSocket) RequestUrl() *core.QUrl {
@@ -1334,6 +1382,7 @@ func (ptr *QWebSocket) DestroyQWebSocket() {
 	defer qt.Recovering("QWebSocket::~QWebSocket")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWebSocket_DestroyQWebSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1552,6 +1601,7 @@ func (ptr *QWebSocket) DeleteLater() {
 	defer qt.Recovering("QWebSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWebSocket_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1561,6 +1611,7 @@ func (ptr *QWebSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QWebSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWebSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2312,6 +2363,7 @@ func (ptr *QWebSocketServer) DestroyQWebSocketServer() {
 	defer qt.Recovering("QWebSocketServer::~QWebSocketServer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWebSocketServer_DestroyQWebSocketServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2530,6 +2582,7 @@ func (ptr *QWebSocketServer) DeleteLater() {
 	defer qt.Recovering("QWebSocketServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWebSocketServer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2539,6 +2592,7 @@ func (ptr *QWebSocketServer) DeleteLaterDefault() {
 	defer qt.Recovering("QWebSocketServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWebSocketServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

@@ -28,7 +28,7 @@ func main() {
 	case "darwin", "linux":
 		{
 			var (
-				qtPath = filepath.Join("/usr", "local", "Qt5.5.1")
+				qtPath = filepath.Join("/usr", "local", "Qt5.6.0")
 				_, err = ioutil.ReadDir(qtPath)
 			)
 			if err != nil {
@@ -40,7 +40,7 @@ func main() {
 	case "windows":
 		{
 			var (
-				qtPath = filepath.Join("C:\\", "Qt", "Qt5.5.1")
+				qtPath = filepath.Join("C:\\", "Qt", "Qt5.6.0")
 				_, err = ioutil.ReadDir(qtPath)
 			)
 			if err != nil {

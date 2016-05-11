@@ -350,6 +350,7 @@ func (ptr *QUiLoader) DestroyQUiLoader() {
 	defer qt.Recovering("QUiLoader::~QUiLoader")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QUiLoader_DestroyQUiLoader(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -568,6 +569,7 @@ func (ptr *QUiLoader) DeleteLater() {
 	defer qt.Recovering("QUiLoader::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QUiLoader_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -577,6 +579,7 @@ func (ptr *QUiLoader) DeleteLaterDefault() {
 	defer qt.Recovering("QUiLoader::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QUiLoader_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

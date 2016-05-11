@@ -61,6 +61,7 @@ func (ptr *QAbstractMessageHandler) DestroyQAbstractMessageHandler() {
 	defer qt.Recovering("QAbstractMessageHandler::~QAbstractMessageHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractMessageHandler_DestroyQAbstractMessageHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -279,6 +280,7 @@ func (ptr *QAbstractMessageHandler) DeleteLater() {
 	defer qt.Recovering("QAbstractMessageHandler::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractMessageHandler_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -288,6 +290,7 @@ func (ptr *QAbstractMessageHandler) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractMessageHandler::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractMessageHandler_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -574,6 +577,7 @@ func (ptr *QAbstractUriResolver) DestroyQAbstractUriResolver() {
 	defer qt.Recovering("QAbstractUriResolver::~QAbstractUriResolver")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractUriResolver_DestroyQAbstractUriResolver(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -792,6 +796,7 @@ func (ptr *QAbstractUriResolver) DeleteLater() {
 	defer qt.Recovering("QAbstractUriResolver::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractUriResolver_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -801,6 +806,7 @@ func (ptr *QAbstractUriResolver) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractUriResolver::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractUriResolver_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1431,6 +1437,7 @@ func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModel() {
 	defer qt.Recovering("QAbstractXmlNodeModel::~QAbstractXmlNodeModel")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1791,6 +1798,7 @@ func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiver() {
 	defer qt.Recovering("QAbstractXmlReceiver::~QAbstractXmlReceiver")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAbstractXmlReceiver_DestroyQAbstractXmlReceiver(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1967,6 +1975,7 @@ func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModel() {
 	defer qt.Recovering("QSimpleXmlNodeModel::~QSimpleXmlNodeModel")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3338,19 +3347,19 @@ func NewQXmlQuery2(other QXmlQuery_ITF) *QXmlQuery {
 	return newQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery2(PointerFromQXmlQuery(other)))
 }
 
-func (ptr *QXmlQuery) BindVariable5(localName string, device core.QIODevice_ITF) {
+func (ptr *QXmlQuery) BindVariable4(localName string, device core.QIODevice_ITF) {
 	defer qt.Recovering("QXmlQuery::bindVariable")
 
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable5(ptr.Pointer(), C.CString(localName), core.PointerFromQIODevice(device))
+		C.QXmlQuery_BindVariable4(ptr.Pointer(), C.CString(localName), core.PointerFromQIODevice(device))
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable4(localName string, value QXmlItem_ITF) {
+func (ptr *QXmlQuery) BindVariable2(localName string, value QXmlItem_ITF) {
 	defer qt.Recovering("QXmlQuery::bindVariable")
 
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable4(ptr.Pointer(), C.CString(localName), PointerFromQXmlItem(value))
+		C.QXmlQuery_BindVariable2(ptr.Pointer(), C.CString(localName), PointerFromQXmlItem(value))
 	}
 }
 
@@ -3362,11 +3371,11 @@ func (ptr *QXmlQuery) BindVariable6(localName string, query QXmlQuery_ITF) {
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable2(name QXmlName_ITF, device core.QIODevice_ITF) {
+func (ptr *QXmlQuery) BindVariable3(name QXmlName_ITF, device core.QIODevice_ITF) {
 	defer qt.Recovering("QXmlQuery::bindVariable")
 
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable2(ptr.Pointer(), PointerFromQXmlName(name), core.PointerFromQIODevice(device))
+		C.QXmlQuery_BindVariable3(ptr.Pointer(), PointerFromQXmlName(name), core.PointerFromQIODevice(device))
 	}
 }
 
@@ -3378,11 +3387,11 @@ func (ptr *QXmlQuery) BindVariable(name QXmlName_ITF, value QXmlItem_ITF) {
 	}
 }
 
-func (ptr *QXmlQuery) BindVariable3(name QXmlName_ITF, query QXmlQuery_ITF) {
+func (ptr *QXmlQuery) BindVariable5(name QXmlName_ITF, query QXmlQuery_ITF) {
 	defer qt.Recovering("QXmlQuery::bindVariable")
 
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_BindVariable3(ptr.Pointer(), PointerFromQXmlName(name), PointerFromQXmlQuery(query))
+		C.QXmlQuery_BindVariable5(ptr.Pointer(), PointerFromQXmlName(name), PointerFromQXmlQuery(query))
 	}
 }
 
@@ -3395,20 +3404,20 @@ func (ptr *QXmlQuery) EvaluateTo2(callback QAbstractXmlReceiver_ITF) bool {
 	return false
 }
 
-func (ptr *QXmlQuery) EvaluateTo5(target core.QIODevice_ITF) bool {
+func (ptr *QXmlQuery) EvaluateTo4(target core.QIODevice_ITF) bool {
 	defer qt.Recovering("QXmlQuery::evaluateTo")
 
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), core.PointerFromQIODevice(target)) != 0
+		return C.QXmlQuery_EvaluateTo4(ptr.Pointer(), core.PointerFromQIODevice(target)) != 0
 	}
 	return false
 }
 
-func (ptr *QXmlQuery) EvaluateTo4(output string) bool {
+func (ptr *QXmlQuery) EvaluateTo5(output string) bool {
 	defer qt.Recovering("QXmlQuery::evaluateTo")
 
 	if ptr.Pointer() != nil {
-		return C.QXmlQuery_EvaluateTo4(ptr.Pointer(), C.CString(output)) != 0
+		return C.QXmlQuery_EvaluateTo5(ptr.Pointer(), C.CString(output)) != 0
 	}
 	return false
 }
@@ -3550,19 +3559,19 @@ func (ptr *QXmlQuery) SetQuery(sourceCode core.QIODevice_ITF, documentURI core.Q
 	}
 }
 
-func (ptr *QXmlQuery) SetQuery3(sourceCode string, documentURI core.QUrl_ITF) {
+func (ptr *QXmlQuery) SetQuery2(sourceCode string, documentURI core.QUrl_ITF) {
 	defer qt.Recovering("QXmlQuery::setQuery")
 
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetQuery3(ptr.Pointer(), C.CString(sourceCode), core.PointerFromQUrl(documentURI))
+		C.QXmlQuery_SetQuery2(ptr.Pointer(), C.CString(sourceCode), core.PointerFromQUrl(documentURI))
 	}
 }
 
-func (ptr *QXmlQuery) SetQuery2(queryURI core.QUrl_ITF, baseURI core.QUrl_ITF) {
+func (ptr *QXmlQuery) SetQuery3(queryURI core.QUrl_ITF, baseURI core.QUrl_ITF) {
 	defer qt.Recovering("QXmlQuery::setQuery")
 
 	if ptr.Pointer() != nil {
-		C.QXmlQuery_SetQuery2(ptr.Pointer(), core.PointerFromQUrl(queryURI), core.PointerFromQUrl(baseURI))
+		C.QXmlQuery_SetQuery3(ptr.Pointer(), core.PointerFromQUrl(queryURI), core.PointerFromQUrl(baseURI))
 	}
 }
 
@@ -3675,6 +3684,7 @@ func (ptr *QXmlResultItems) DestroyQXmlResultItems() {
 	defer qt.Recovering("QXmlResultItems::~QXmlResultItems")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlResultItems_DestroyQXmlResultItems(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

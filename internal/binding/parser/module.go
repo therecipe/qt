@@ -45,7 +45,7 @@ func (m *Module) Prepare() {
 
 	for _, c := range ClassMap {
 		if c.Module == m.Project {
-			//TODO: fix for 5.6 c.fixBases()
+			c.fixBases()
 
 			for _, f := range c.Functions {
 				f.fix()

@@ -8,7 +8,6 @@ import (
 
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/multimedia"
-	"github.com/therecipe/qt/multimediawidgets"
 	"github.com/therecipe/qt/widgets"
 )
 
@@ -35,7 +34,7 @@ func newVideoPlayer() *widgets.QWidget {
 	mediaPlayer = multimedia.NewQMediaPlayer(nil, multimedia.QMediaPlayer__VideoSurface)
 
 	var (
-		videoWidget = multimediawidgets.NewQVideoWidget(nil)
+		videoWidget = multimedia.NewQVideoWidget(nil)
 		openButton  = widgets.NewQPushButton2("Open...", nil)
 	)
 	openButton.ConnectClicked(func(_ bool) { openFile() })
@@ -66,7 +65,7 @@ func newVideoPlayer() *widgets.QWidget {
 
 	videoPlayer.SetLayout(layout)
 
-	mediaPlayer.SetVideoOutput(videoWidget.Pointer())
+	mediaPlayer.SetVideoOutput(videoWidget)
 	mediaPlayer.ConnectStateChanged(mediaStateChanged)
 	mediaPlayer.ConnectPositionChanged(positionChanged)
 	mediaPlayer.ConnectDurationChanged(durationChanged)

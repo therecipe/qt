@@ -1661,6 +1661,7 @@ func (ptr *QSqlDriver) DestroyQSqlDriver() {
 	defer qt.Recovering("QSqlDriver::~QSqlDriver")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlDriver_DestroyQSqlDriver(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1879,6 +1880,7 @@ func (ptr *QSqlDriver) DeleteLater() {
 	defer qt.Recovering("QSqlDriver::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlDriver_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1888,6 +1890,7 @@ func (ptr *QSqlDriver) DeleteLaterDefault() {
 	defer qt.Recovering("QSqlDriver::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlDriver_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2211,6 +2214,7 @@ func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBase() {
 	defer qt.Recovering("QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2328,6 +2332,7 @@ func (ptr *QSqlDriverPlugin) DestroyQSqlDriverPlugin() {
 	defer qt.Recovering("QSqlDriverPlugin::~QSqlDriverPlugin")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlDriverPlugin_DestroyQSqlDriverPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2546,6 +2551,7 @@ func (ptr *QSqlDriverPlugin) DeleteLater() {
 	defer qt.Recovering("QSqlDriverPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlDriverPlugin_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2555,6 +2561,7 @@ func (ptr *QSqlDriverPlugin) DeleteLaterDefault() {
 	defer qt.Recovering("QSqlDriverPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlDriverPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3686,35 +3693,6 @@ func newQSqlQueryModelFromPointer(ptr unsafe.Pointer) *QSqlQueryModel {
 	return n
 }
 
-//export callbackQSqlQueryModel_RowCount
-func callbackQSqlQueryModel_RowCount(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlQueryModel::rowCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "rowCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return C.int(NewQSqlQueryModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *QSqlQueryModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
-	defer qt.Recovering("connect QSqlQueryModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "rowCount", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectRowCount() {
-	defer qt.Recovering("disconnect QSqlQueryModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "rowCount")
-	}
-}
-
 func (ptr *QSqlQueryModel) RowCount(parent core.QModelIndex_ITF) int {
 	defer qt.Recovering("QSqlQueryModel::rowCount")
 
@@ -3724,48 +3702,10 @@ func (ptr *QSqlQueryModel) RowCount(parent core.QModelIndex_ITF) int {
 	return 0
 }
 
-func (ptr *QSqlQueryModel) RowCountDefault(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlQueryModel::rowCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlQueryModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
-	}
-	return 0
-}
-
 func NewQSqlQueryModel(parent core.QObject_ITF) *QSqlQueryModel {
 	defer qt.Recovering("QSqlQueryModel::QSqlQueryModel")
 
 	return newQSqlQueryModelFromPointer(C.QSqlQueryModel_NewQSqlQueryModel(core.PointerFromQObject(parent)))
-}
-
-//export callbackQSqlQueryModel_Data
-func callbackQSqlQueryModel_Data(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QSqlQueryModel::data")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "data"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(item), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQSqlQueryModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(item), int(role)))
-}
-
-func (ptr *QSqlQueryModel) ConnectData(f func(item *core.QModelIndex, role int) *core.QVariant) {
-	defer qt.Recovering("connect QSqlQueryModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "data", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectData() {
-	defer qt.Recovering("disconnect QSqlQueryModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "data")
-	}
 }
 
 func (ptr *QSqlQueryModel) Data(item core.QModelIndex_ITF, role int) *core.QVariant {
@@ -3777,58 +3717,11 @@ func (ptr *QSqlQueryModel) Data(item core.QModelIndex_ITF, role int) *core.QVari
 	return nil
 }
 
-func (ptr *QSqlQueryModel) DataDefault(item core.QModelIndex_ITF, role int) *core.QVariant {
-	defer qt.Recovering("QSqlQueryModel::data")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSqlQueryModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(item), C.int(role)))
-	}
-	return nil
-}
-
-//export callbackQSqlQueryModel_CanFetchMore
-func callbackQSqlQueryModel_CanFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlQueryModel::canFetchMore")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "canFetchMore"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlQueryModel) ConnectCanFetchMore(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlQueryModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "canFetchMore", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectCanFetchMore() {
-	defer qt.Recovering("disconnect QSqlQueryModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "canFetchMore")
-	}
-}
-
 func (ptr *QSqlQueryModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QSqlQueryModel::canFetchMore")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlQueryModel_CanFetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQueryModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlQueryModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -3878,35 +3771,6 @@ func (ptr *QSqlQueryModel) ClearDefault() {
 	}
 }
 
-//export callbackQSqlQueryModel_ColumnCount
-func callbackQSqlQueryModel_ColumnCount(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlQueryModel::columnCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "columnCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.int(NewQSqlQueryModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlQueryModel) ConnectColumnCount(f func(index *core.QModelIndex) int) {
-	defer qt.Recovering("connect QSqlQueryModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "columnCount", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectColumnCount() {
-	defer qt.Recovering("disconnect QSqlQueryModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "columnCount")
-	}
-}
-
 func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
 	defer qt.Recovering("QSqlQueryModel::columnCount")
 
@@ -3914,44 +3778,6 @@ func (ptr *QSqlQueryModel) ColumnCount(index core.QModelIndex_ITF) int {
 		return int(C.QSqlQueryModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
 	return 0
-}
-
-func (ptr *QSqlQueryModel) ColumnCountDefault(index core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlQueryModel::columnCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlQueryModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackQSqlQueryModel_FetchMore
-func callbackQSqlQueryModel_FetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
-	defer qt.Recovering("callback QSqlQueryModel::fetchMore")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
-		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
-	} else {
-		NewQSqlQueryModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
-	}
-}
-
-func (ptr *QSqlQueryModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
-	defer qt.Recovering("connect QSqlQueryModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectFetchMore() {
-	defer qt.Recovering("disconnect QSqlQueryModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
-	}
 }
 
 func (ptr *QSqlQueryModel) FetchMore(parent core.QModelIndex_ITF) {
@@ -3962,57 +3788,11 @@ func (ptr *QSqlQueryModel) FetchMore(parent core.QModelIndex_ITF) {
 	}
 }
 
-func (ptr *QSqlQueryModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QSqlQueryModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-		C.QSqlQueryModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
-	}
-}
-
-//export callbackQSqlQueryModel_HeaderData
-func callbackQSqlQueryModel_HeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QSqlQueryModel::headerData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "headerData"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(section), core.Qt__Orientation(orientation), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQSqlQueryModelFromPointer(ptr).HeaderDataDefault(int(section), core.Qt__Orientation(orientation), int(role)))
-}
-
-func (ptr *QSqlQueryModel) ConnectHeaderData(f func(section int, orientation core.Qt__Orientation, role int) *core.QVariant) {
-	defer qt.Recovering("connect QSqlQueryModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "headerData", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectHeaderData() {
-	defer qt.Recovering("disconnect QSqlQueryModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "headerData")
-	}
-}
-
 func (ptr *QSqlQueryModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	defer qt.Recovering("QSqlQueryModel::headerData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlQueryModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QSqlQueryModel::headerData")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSqlQueryModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
 	}
 	return nil
 }
@@ -4064,49 +3844,11 @@ func (ptr *QSqlQueryModel) IndexInQueryDefault(item core.QModelIndex_ITF) *core.
 	return nil
 }
 
-//export callbackQSqlQueryModel_InsertColumns
-func callbackQSqlQueryModel_InsertColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlQueryModel::insertColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).InsertColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlQueryModel) ConnectInsertColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlQueryModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "insertColumns", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectInsertColumns() {
-	defer qt.Recovering("disconnect QSqlQueryModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "insertColumns")
-	}
-}
-
 func (ptr *QSqlQueryModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QSqlQueryModel::insertColumns")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlQueryModel_InsertColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQueryModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlQueryModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_InsertColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -4192,35 +3934,6 @@ func (ptr *QSqlQueryModel) Record(row int) *QSqlRecord {
 	return nil
 }
 
-//export callbackQSqlQueryModel_RemoveColumns
-func callbackQSqlQueryModel_RemoveColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlQueryModel::removeColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).RemoveColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlQueryModel) ConnectRemoveColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlQueryModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "removeColumns", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectRemoveColumns() {
-	defer qt.Recovering("disconnect QSqlQueryModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "removeColumns")
-	}
-}
-
 func (ptr *QSqlQueryModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QSqlQueryModel::removeColumns")
 
@@ -4230,58 +3943,11 @@ func (ptr *QSqlQueryModel) RemoveColumns(column int, count int, parent core.QMod
 	return false
 }
 
-func (ptr *QSqlQueryModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlQueryModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_RemoveColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQSqlQueryModel_SetHeaderData
-func callbackQSqlQueryModel_SetHeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, value unsafe.Pointer, role C.int) C.int {
-	defer qt.Recovering("callback QSqlQueryModel::setHeaderData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHeaderData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlQueryModelFromPointer(ptr).SetHeaderDataDefault(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-}
-
-func (ptr *QSqlQueryModel) ConnectSetHeaderData(f func(section int, orientation core.Qt__Orientation, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QSqlQueryModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "setHeaderData", f)
-	}
-}
-
-func (ptr *QSqlQueryModel) DisconnectSetHeaderData() {
-	defer qt.Recovering("disconnect QSqlQueryModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "setHeaderData")
-	}
-}
-
 func (ptr *QSqlQueryModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	defer qt.Recovering("QSqlQueryModel::setHeaderData")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlQueryModel_SetHeaderData(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlQueryModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QSqlQueryModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlQueryModel_SetHeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
 	}
 	return false
 }
@@ -4314,6 +3980,7 @@ func (ptr *QSqlQueryModel) DestroyQSqlQueryModel() {
 	defer qt.Recovering("QSqlQueryModel::~QSqlQueryModel")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlQueryModel_DestroyQSqlQueryModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5513,6 +5180,7 @@ func (ptr *QSqlQueryModel) DeleteLater() {
 	defer qt.Recovering("QSqlQueryModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlQueryModel_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5522,6 +5190,7 @@ func (ptr *QSqlQueryModel) DeleteLaterDefault() {
 	defer qt.Recovering("QSqlQueryModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlQueryModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6271,49 +5940,11 @@ func (ptr *QSqlRelationalTableModel) ClearDefault() {
 	}
 }
 
-//export callbackQSqlRelationalTableModel_Data
-func callbackQSqlRelationalTableModel_Data(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QSqlRelationalTableModel::data")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "data"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQSqlRelationalTableModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(role)))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectData(f func(index *core.QModelIndex, role int) *core.QVariant) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "data", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectData() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "data")
-	}
-}
-
 func (ptr *QSqlRelationalTableModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
 	defer qt.Recovering("QSqlRelationalTableModel::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlRelationalTableModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
-	}
-	return nil
-}
-
-func (ptr *QSqlRelationalTableModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
-	defer qt.Recovering("QSqlRelationalTableModel::data")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSqlRelationalTableModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
 	}
 	return nil
 }
@@ -6459,49 +6090,11 @@ func (ptr *QSqlRelationalTableModel) RelationModelDefault(column int) *QSqlTable
 	return nil
 }
 
-//export callbackQSqlRelationalTableModel_RemoveColumns
-func callbackQSqlRelationalTableModel_RemoveColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::removeColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).RemoveColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectRemoveColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "removeColumns", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectRemoveColumns() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "removeColumns")
-	}
-}
-
 func (ptr *QSqlRelationalTableModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QSqlRelationalTableModel::removeColumns")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlRelationalTableModel_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlRelationalTableModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_RemoveColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -6645,49 +6238,11 @@ func (ptr *QSqlRelationalTableModel) SelectStatementDefault() string {
 	return ""
 }
 
-//export callbackQSqlRelationalTableModel_SetData
-func callbackQSqlRelationalTableModel_SetData(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::setData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(role))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(role))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectSetData(f func(index *core.QModelIndex, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::setData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "setData", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectSetData() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::setData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "setData")
-	}
-}
-
 func (ptr *QSqlRelationalTableModel) SetData(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	defer qt.Recovering("QSqlRelationalTableModel::setData")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlRelationalTableModel_SetData(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlRelationalTableModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::setData")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(role)) != 0
 	}
 	return false
 }
@@ -6796,6 +6351,7 @@ func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModel() {
 	defer qt.Recovering("QSqlRelationalTableModel::~QSqlRelationalTableModel")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6848,100 +6404,6 @@ func (ptr *QSqlRelationalTableModel) DeleteRowFromTableDefault(row int) bool {
 	return false
 }
 
-//export callbackQSqlRelationalTableModel_Flags
-func callbackQSqlRelationalTableModel_Flags(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::flags")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "flags"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.int(NewQSqlRelationalTableModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectFlags(f func(index *core.QModelIndex) core.Qt__ItemFlag) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "flags", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectFlags() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "flags")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QSqlRelationalTableModel::flags")
-
-	if ptr.Pointer() != nil {
-		return core.Qt__ItemFlag(C.QSqlRelationalTableModel_Flags(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-func (ptr *QSqlRelationalTableModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QSqlRelationalTableModel::flags")
-
-	if ptr.Pointer() != nil {
-		return core.Qt__ItemFlag(C.QSqlRelationalTableModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackQSqlRelationalTableModel_HeaderData
-func callbackQSqlRelationalTableModel_HeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QSqlRelationalTableModel::headerData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "headerData"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(section), core.Qt__Orientation(orientation), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQSqlRelationalTableModelFromPointer(ptr).HeaderDataDefault(int(section), core.Qt__Orientation(orientation), int(role)))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectHeaderData(f func(section int, orientation core.Qt__Orientation, role int) *core.QVariant) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "headerData", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectHeaderData() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "headerData")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QSqlRelationalTableModel::headerData")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSqlRelationalTableModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
-	}
-	return nil
-}
-
-func (ptr *QSqlRelationalTableModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QSqlRelationalTableModel::headerData")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSqlRelationalTableModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
-	}
-	return nil
-}
-
 //export callbackQSqlRelationalTableModel_IndexInQuery
 func callbackQSqlRelationalTableModel_IndexInQuery(ptr unsafe.Pointer, ptrName *C.char, item unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSqlRelationalTableModel::indexInQuery")
@@ -6987,100 +6449,6 @@ func (ptr *QSqlRelationalTableModel) IndexInQueryDefault(item core.QModelIndex_I
 		return core.NewQModelIndexFromPointer(C.QSqlRelationalTableModel_IndexInQueryDefault(ptr.Pointer(), core.PointerFromQModelIndex(item)))
 	}
 	return nil
-}
-
-//export callbackQSqlRelationalTableModel_InsertRows
-func callbackQSqlRelationalTableModel_InsertRows(ptr unsafe.Pointer, ptrName *C.char, row C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::insertRows")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertRows"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).InsertRowsDefault(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectInsertRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::insertRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "insertRows", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectInsertRows() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::insertRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "insertRows")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) InsertRows(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::insertRows")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_InsertRows(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlRelationalTableModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::insertRows")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_InsertRowsDefault(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQSqlRelationalTableModel_RemoveRows
-func callbackQSqlRelationalTableModel_RemoveRows(ptr unsafe.Pointer, ptrName *C.char, row C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::removeRows")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeRows"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).RemoveRowsDefault(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectRemoveRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::removeRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "removeRows", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectRemoveRows() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::removeRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "removeRows")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) RemoveRows(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::removeRows")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_RemoveRows(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlRelationalTableModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::removeRows")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_RemoveRowsDefault(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
 }
 
 //export callbackQSqlRelationalTableModel_Revert
@@ -7171,53 +6539,6 @@ func (ptr *QSqlRelationalTableModel) RevertAllDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_RevertAllDefault(ptr.Pointer())
 	}
-}
-
-//export callbackQSqlRelationalTableModel_RowCount
-func callbackQSqlRelationalTableModel_RowCount(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::rowCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "rowCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return C.int(NewQSqlRelationalTableModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "rowCount", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectRowCount() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "rowCount")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) RowCount(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlRelationalTableModel::rowCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlRelationalTableModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
-	}
-	return 0
-}
-
-func (ptr *QSqlRelationalTableModel) RowCountDefault(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlRelationalTableModel::rowCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlRelationalTableModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
-	}
-	return 0
 }
 
 //export callbackQSqlRelationalTableModel_SelectRow
@@ -7402,51 +6723,6 @@ func (ptr *QSqlRelationalTableModel) SetSortDefault(column int, order core.Qt__S
 	}
 }
 
-//export callbackQSqlRelationalTableModel_Sort
-func callbackQSqlRelationalTableModel_Sort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
-	defer qt.Recovering("callback QSqlRelationalTableModel::sort")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
-		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
-	} else {
-		NewQSqlRelationalTableModelFromPointer(ptr).SortDefault(int(column), core.Qt__SortOrder(order))
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::sort")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "sort", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectSort() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::sort")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "sort")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) Sort(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QSqlRelationalTableModel::sort")
-
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) SortDefault(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QSqlRelationalTableModel::sort")
-
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
-	}
-}
-
 //export callbackQSqlRelationalTableModel_Submit
 func callbackQSqlRelationalTableModel_Submit(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QSqlRelationalTableModel::submit")
@@ -7541,192 +6817,6 @@ func (ptr *QSqlRelationalTableModel) SubmitAllDefault() bool {
 	return false
 }
 
-//export callbackQSqlRelationalTableModel_CanFetchMore
-func callbackQSqlRelationalTableModel_CanFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::canFetchMore")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "canFetchMore"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectCanFetchMore(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "canFetchMore", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectCanFetchMore() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "canFetchMore")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_CanFetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlRelationalTableModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQSqlRelationalTableModel_ColumnCount
-func callbackQSqlRelationalTableModel_ColumnCount(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::columnCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "columnCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.int(NewQSqlRelationalTableModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectColumnCount(f func(index *core.QModelIndex) int) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "columnCount", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectColumnCount() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "columnCount")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) ColumnCount(index core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlRelationalTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlRelationalTableModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-func (ptr *QSqlRelationalTableModel) ColumnCountDefault(index core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlRelationalTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlRelationalTableModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackQSqlRelationalTableModel_FetchMore
-func callbackQSqlRelationalTableModel_FetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
-	defer qt.Recovering("callback QSqlRelationalTableModel::fetchMore")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
-		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
-	} else {
-		NewQSqlRelationalTableModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectFetchMore() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) FetchMore(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QSqlRelationalTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QSqlRelationalTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-		C.QSqlRelationalTableModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
-	}
-}
-
-//export callbackQSqlRelationalTableModel_InsertColumns
-func callbackQSqlRelationalTableModel_InsertColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::insertColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).InsertColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectInsertColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "insertColumns", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectInsertColumns() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "insertColumns")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_InsertColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlRelationalTableModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_InsertColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
 //export callbackQSqlRelationalTableModel_QueryChange
 func callbackQSqlRelationalTableModel_QueryChange(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSqlRelationalTableModel::queryChange")
@@ -7770,53 +6860,6 @@ func (ptr *QSqlRelationalTableModel) QueryChangeDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_QueryChangeDefault(ptr.Pointer())
 	}
-}
-
-//export callbackQSqlRelationalTableModel_SetHeaderData
-func callbackQSqlRelationalTableModel_SetHeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, value unsafe.Pointer, role C.int) C.int {
-	defer qt.Recovering("callback QSqlRelationalTableModel::setHeaderData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHeaderData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlRelationalTableModelFromPointer(ptr).SetHeaderDataDefault(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-}
-
-func (ptr *QSqlRelationalTableModel) ConnectSetHeaderData(f func(section int, orientation core.Qt__Orientation, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QSqlRelationalTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "setHeaderData", f)
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) DisconnectSetHeaderData() {
-	defer qt.Recovering("disconnect QSqlRelationalTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "setHeaderData")
-	}
-}
-
-func (ptr *QSqlRelationalTableModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_SetHeaderData(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlRelationalTableModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QSqlRelationalTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlRelationalTableModel_SetHeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
 }
 
 //export callbackQSqlRelationalTableModel_Index
@@ -8688,6 +7731,7 @@ func (ptr *QSqlRelationalTableModel) DeleteLater() {
 	defer qt.Recovering("QSqlRelationalTableModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlRelationalTableModel_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8697,6 +7741,7 @@ func (ptr *QSqlRelationalTableModel) DeleteLaterDefault() {
 	defer qt.Recovering("QSqlRelationalTableModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlRelationalTableModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10053,6 +9098,7 @@ func (ptr *QSqlResult) DestroyQSqlResult() {
 	defer qt.Recovering("QSqlResult::~QSqlResult")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSqlResult_DestroyQSqlResult(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10290,49 +9336,11 @@ func (ptr *QSqlTableModel) ClearDefault() {
 	}
 }
 
-//export callbackQSqlTableModel_Data
-func callbackQSqlTableModel_Data(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QSqlTableModel::data")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "data"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQSqlTableModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(role)))
-}
-
-func (ptr *QSqlTableModel) ConnectData(f func(index *core.QModelIndex, role int) *core.QVariant) {
-	defer qt.Recovering("connect QSqlTableModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "data", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectData() {
-	defer qt.Recovering("disconnect QSqlTableModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "data")
-	}
-}
-
 func (ptr *QSqlTableModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
 	defer qt.Recovering("QSqlTableModel::data")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlTableModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
-	}
-	return nil
-}
-
-func (ptr *QSqlTableModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
-	defer qt.Recovering("QSqlTableModel::data")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSqlTableModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
 	}
 	return nil
 }
@@ -10420,35 +9428,6 @@ func (ptr *QSqlTableModel) Filter() string {
 	return ""
 }
 
-//export callbackQSqlTableModel_Flags
-func callbackQSqlTableModel_Flags(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::flags")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "flags"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.int(NewQSqlTableModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlTableModel) ConnectFlags(f func(index *core.QModelIndex) core.Qt__ItemFlag) {
-	defer qt.Recovering("connect QSqlTableModel::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "flags", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectFlags() {
-	defer qt.Recovering("disconnect QSqlTableModel::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "flags")
-	}
-}
-
 func (ptr *QSqlTableModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
 	defer qt.Recovering("QSqlTableModel::flags")
 
@@ -10458,58 +9437,11 @@ func (ptr *QSqlTableModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
 	return 0
 }
 
-func (ptr *QSqlTableModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QSqlTableModel::flags")
-
-	if ptr.Pointer() != nil {
-		return core.Qt__ItemFlag(C.QSqlTableModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackQSqlTableModel_HeaderData
-func callbackQSqlTableModel_HeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QSqlTableModel::headerData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "headerData"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(section), core.Qt__Orientation(orientation), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQSqlTableModelFromPointer(ptr).HeaderDataDefault(int(section), core.Qt__Orientation(orientation), int(role)))
-}
-
-func (ptr *QSqlTableModel) ConnectHeaderData(f func(section int, orientation core.Qt__Orientation, role int) *core.QVariant) {
-	defer qt.Recovering("connect QSqlTableModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "headerData", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectHeaderData() {
-	defer qt.Recovering("disconnect QSqlTableModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "headerData")
-	}
-}
-
 func (ptr *QSqlTableModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	defer qt.Recovering("QSqlTableModel::headerData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QSqlTableModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
-	}
-	return nil
-}
-
-func (ptr *QSqlTableModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QSqlTableModel::headerData")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSqlTableModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
 	}
 	return nil
 }
@@ -10617,49 +9549,11 @@ func (ptr *QSqlTableModel) InsertRowIntoTableDefault(values QSqlRecord_ITF) bool
 	return false
 }
 
-//export callbackQSqlTableModel_InsertRows
-func callbackQSqlTableModel_InsertRows(ptr unsafe.Pointer, ptrName *C.char, row C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::insertRows")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertRows"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).InsertRowsDefault(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlTableModel) ConnectInsertRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlTableModel::insertRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "insertRows", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectInsertRows() {
-	defer qt.Recovering("disconnect QSqlTableModel::insertRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "insertRows")
-	}
-}
-
 func (ptr *QSqlTableModel) InsertRows(row int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QSqlTableModel::insertRows")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlTableModel_InsertRows(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlTableModel::insertRows")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_InsertRowsDefault(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -10801,35 +9695,6 @@ func (ptr *QSqlTableModel) Record2(row int) *QSqlRecord {
 	return nil
 }
 
-//export callbackQSqlTableModel_RemoveColumns
-func callbackQSqlTableModel_RemoveColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::removeColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).RemoveColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlTableModel) ConnectRemoveColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlTableModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "removeColumns", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectRemoveColumns() {
-	defer qt.Recovering("disconnect QSqlTableModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "removeColumns")
-	}
-}
-
 func (ptr *QSqlTableModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QSqlTableModel::removeColumns")
 
@@ -10837,44 +9702,6 @@ func (ptr *QSqlTableModel) RemoveColumns(column int, count int, parent core.QMod
 		return C.QSqlTableModel_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
-}
-
-func (ptr *QSqlTableModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlTableModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_RemoveColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQSqlTableModel_RemoveRows
-func callbackQSqlTableModel_RemoveRows(ptr unsafe.Pointer, ptrName *C.char, row C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::removeRows")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeRows"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).RemoveRowsDefault(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlTableModel) ConnectRemoveRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlTableModel::removeRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "removeRows", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectRemoveRows() {
-	defer qt.Recovering("disconnect QSqlTableModel::removeRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "removeRows")
-	}
 }
 
 func (ptr *QSqlTableModel) RemoveRows(row int, count int, parent core.QModelIndex_ITF) bool {
@@ -10886,24 +9713,14 @@ func (ptr *QSqlTableModel) RemoveRows(row int, count int, parent core.QModelInde
 	return false
 }
 
-func (ptr *QSqlTableModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlTableModel::removeRows")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_RemoveRowsDefault(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
 //export callbackQSqlTableModel_Revert
 func callbackQSqlTableModel_Revert(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSqlTableModel::revert")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "revert"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQSqlTableModelFromPointer(ptr).RevertDefault()
 	}
+
 }
 
 func (ptr *QSqlTableModel) ConnectRevert(f func()) {
@@ -10929,14 +9746,6 @@ func (ptr *QSqlTableModel) Revert() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_Revert(ptr.Pointer())
-	}
-}
-
-func (ptr *QSqlTableModel) RevertDefault() {
-	defer qt.Recovering("QSqlTableModel::revert")
-
-	if ptr.Pointer() != nil {
-		C.QSqlTableModel_RevertDefault(ptr.Pointer())
 	}
 }
 
@@ -11021,49 +9830,11 @@ func (ptr *QSqlTableModel) RevertRowDefault(row int) {
 	}
 }
 
-//export callbackQSqlTableModel_RowCount
-func callbackQSqlTableModel_RowCount(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::rowCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "rowCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return C.int(NewQSqlTableModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *QSqlTableModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
-	defer qt.Recovering("connect QSqlTableModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "rowCount", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectRowCount() {
-	defer qt.Recovering("disconnect QSqlTableModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "rowCount")
-	}
-}
-
 func (ptr *QSqlTableModel) RowCount(parent core.QModelIndex_ITF) int {
 	defer qt.Recovering("QSqlTableModel::rowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QSqlTableModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
-	}
-	return 0
-}
-
-func (ptr *QSqlTableModel) RowCountDefault(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlTableModel::rowCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlTableModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
 	}
 	return 0
 }
@@ -11209,49 +9980,11 @@ func (ptr *QSqlTableModel) SelectStatementDefault() string {
 	return ""
 }
 
-//export callbackQSqlTableModel_SetData
-func callbackQSqlTableModel_SetData(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.int {
-	defer qt.Recovering("callback QSqlTableModel::setData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(role))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(role))))
-}
-
-func (ptr *QSqlTableModel) ConnectSetData(f func(index *core.QModelIndex, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QSqlTableModel::setData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "setData", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectSetData() {
-	defer qt.Recovering("disconnect QSqlTableModel::setData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "setData")
-	}
-}
-
 func (ptr *QSqlTableModel) SetData(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	defer qt.Recovering("QSqlTableModel::setData")
 
 	if ptr.Pointer() != nil {
 		return C.QSqlTableModel_SetData(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QSqlTableModel::setData")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(role)) != 0
 	}
 	return false
 }
@@ -11461,48 +10194,11 @@ func (ptr *QSqlTableModel) SetTableDefault(tableName string) {
 	}
 }
 
-//export callbackQSqlTableModel_Sort
-func callbackQSqlTableModel_Sort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
-	defer qt.Recovering("callback QSqlTableModel::sort")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
-		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
-	} else {
-		NewQSqlTableModelFromPointer(ptr).SortDefault(int(column), core.Qt__SortOrder(order))
-	}
-}
-
-func (ptr *QSqlTableModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
-	defer qt.Recovering("connect QSqlTableModel::sort")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "sort", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectSort() {
-	defer qt.Recovering("disconnect QSqlTableModel::sort")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "sort")
-	}
-}
-
 func (ptr *QSqlTableModel) Sort(column int, order core.Qt__SortOrder) {
 	defer qt.Recovering("QSqlTableModel::sort")
 
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_Sort(ptr.Pointer(), C.int(column), C.int(order))
-	}
-}
-
-func (ptr *QSqlTableModel) SortDefault(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QSqlTableModel::sort")
-
-	if ptr.Pointer() != nil {
-		C.QSqlTableModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
 	}
 }
 
@@ -11514,7 +10210,7 @@ func callbackQSqlTableModel_Submit(ptr unsafe.Pointer, ptrName *C.char) C.int {
 		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SubmitDefault()))
+	return C.int(qt.GoBoolToInt(false))
 }
 
 func (ptr *QSqlTableModel) ConnectSubmit(f func() bool) {
@@ -11540,15 +10236,6 @@ func (ptr *QSqlTableModel) Submit() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QSqlTableModel_Submit(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) SubmitDefault() bool {
-	defer qt.Recovering("QSqlTableModel::submit")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SubmitDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -11651,195 +10338,10 @@ func (ptr *QSqlTableModel) DestroyQSqlTableModel() {
 	defer qt.Recovering("QSqlTableModel::~QSqlTableModel")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlTableModel_DestroyQSqlTableModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
-}
-
-//export callbackQSqlTableModel_CanFetchMore
-func callbackQSqlTableModel_CanFetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::canFetchMore")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "canFetchMore"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).CanFetchMoreDefault(core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlTableModel) ConnectCanFetchMore(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "canFetchMore", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectCanFetchMore() {
-	defer qt.Recovering("disconnect QSqlTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "canFetchMore")
-	}
-}
-
-func (ptr *QSqlTableModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_CanFetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlTableModel::canFetchMore")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQSqlTableModel_ColumnCount
-func callbackQSqlTableModel_ColumnCount(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::columnCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "columnCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.int(NewQSqlTableModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QSqlTableModel) ConnectColumnCount(f func(index *core.QModelIndex) int) {
-	defer qt.Recovering("connect QSqlTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "columnCount", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectColumnCount() {
-	defer qt.Recovering("disconnect QSqlTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "columnCount")
-	}
-}
-
-func (ptr *QSqlTableModel) ColumnCount(index core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlTableModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-func (ptr *QSqlTableModel) ColumnCountDefault(index core.QModelIndex_ITF) int {
-	defer qt.Recovering("QSqlTableModel::columnCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QSqlTableModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackQSqlTableModel_FetchMore
-func callbackQSqlTableModel_FetchMore(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) {
-	defer qt.Recovering("callback QSqlTableModel::fetchMore")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "fetchMore"); signal != nil {
-		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
-	} else {
-		NewQSqlTableModelFromPointer(ptr).FetchMoreDefault(core.NewQModelIndexFromPointer(parent))
-	}
-}
-
-func (ptr *QSqlTableModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
-	defer qt.Recovering("connect QSqlTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "fetchMore", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectFetchMore() {
-	defer qt.Recovering("disconnect QSqlTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "fetchMore")
-	}
-}
-
-func (ptr *QSqlTableModel) FetchMore(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QSqlTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-		C.QSqlTableModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
-	}
-}
-
-func (ptr *QSqlTableModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QSqlTableModel::fetchMore")
-
-	if ptr.Pointer() != nil {
-		C.QSqlTableModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
-	}
-}
-
-//export callbackQSqlTableModel_InsertColumns
-func callbackQSqlTableModel_InsertColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QSqlTableModel::insertColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).InsertColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QSqlTableModel) ConnectInsertColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QSqlTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "insertColumns", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectInsertColumns() {
-	defer qt.Recovering("disconnect QSqlTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "insertColumns")
-	}
-}
-
-func (ptr *QSqlTableModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_InsertColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QSqlTableModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_InsertColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
 }
 
 //export callbackQSqlTableModel_QueryChange
@@ -11885,53 +10387,6 @@ func (ptr *QSqlTableModel) QueryChangeDefault() {
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_QueryChangeDefault(ptr.Pointer())
 	}
-}
-
-//export callbackQSqlTableModel_SetHeaderData
-func callbackQSqlTableModel_SetHeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, value unsafe.Pointer, role C.int) C.int {
-	defer qt.Recovering("callback QSqlTableModel::setHeaderData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHeaderData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SetHeaderDataDefault(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-}
-
-func (ptr *QSqlTableModel) ConnectSetHeaderData(f func(section int, orientation core.Qt__Orientation, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QSqlTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "setHeaderData", f)
-	}
-}
-
-func (ptr *QSqlTableModel) DisconnectSetHeaderData() {
-	defer qt.Recovering("disconnect QSqlTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "setHeaderData")
-	}
-}
-
-func (ptr *QSqlTableModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QSqlTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SetHeaderData(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
-}
-
-func (ptr *QSqlTableModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QSqlTableModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-		return C.QSqlTableModel_SetHeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
 }
 
 //export callbackQSqlTableModel_Index
@@ -12803,6 +11258,7 @@ func (ptr *QSqlTableModel) DeleteLater() {
 	defer qt.Recovering("QSqlTableModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlTableModel_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -12812,6 +11268,7 @@ func (ptr *QSqlTableModel) DeleteLaterDefault() {
 	defer qt.Recovering("QSqlTableModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSqlTableModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

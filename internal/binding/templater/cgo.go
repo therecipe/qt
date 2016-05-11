@@ -50,14 +50,14 @@ func createCgoDarwin(module string) {
 	}
 	tmp += "\n"
 
-	tmp += "#cgo CPPFLAGS: -I/usr/local/Qt5.5.1/5.5/clang_64/mkspecs/macx-clang -F/usr/local/Qt5.5.1/5.5/clang_64/lib\n"
+	tmp += "#cgo CPPFLAGS: -I/usr/local/Qt5.6.0/5.6/clang_64/mkspecs/macx-clang -F/usr/local/Qt5.6.0/5.6/clang_64/lib\n"
 
 	tmp += "#cgo CPPFLAGS:"
 	for i := len(libs) - 1; i >= 0; i-- {
 		if libs[i] == "UiTools" || libs[i] == "PlatformHeaders" {
-			tmp += fmt.Sprintf(" -I/usr/local/Qt5.5.1/5.5/clang_64/include/Qt%v", libs[i])
+			tmp += fmt.Sprintf(" -I/usr/local/Qt5.6.0/5.6/clang_64/include/Qt%v", libs[i])
 		} else {
-			tmp += fmt.Sprintf(" -I/usr/local/Qt5.5.1/5.5/clang_64/lib/Qt%v.framework/Headers", libs[i])
+			tmp += fmt.Sprintf(" -I/usr/local/Qt5.6.0/5.6/clang_64/lib/Qt%v.framework/Headers", libs[i])
 		}
 	}
 	tmp += "\n"
@@ -65,13 +65,13 @@ func createCgoDarwin(module string) {
 	tmp += "#cgo CPPFLAGS: -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/AGL.framework/Headers\n"
 	tmp += "\n"
 
-	tmp += "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wl,-rpath,/usr/local/Qt5.5.1/5.5/clang_64/lib\n"
+	tmp += "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.7 -Wl,-rpath,/usr/local/Qt5.6.0/5.6/clang_64/lib\n"
 
-	tmp += "#cgo LDFLAGS: -F/usr/local/Qt5.5.1/5.5/clang_64/lib"
+	tmp += "#cgo LDFLAGS: -F/usr/local/Qt5.6.0/5.6/clang_64/lib"
 
 	for i := len(libs) - 1; i >= 0; i-- {
 		if libs[i] == "UiTools" || libs[i] == "PlatformHeaders" {
-			tmp += fmt.Sprintf(" -L/usr/local/Qt5.5.1/5.5/clang_64/lib -lQt5%v", libs[i])
+			tmp += fmt.Sprintf(" -L/usr/local/Qt5.6.0/5.6/clang_64/lib -lQt5%v", libs[i])
 		} else {
 			if libs[i] != "UiPlugin" {
 				tmp += fmt.Sprintf(" -framework Qt%v", libs[i])
@@ -108,17 +108,17 @@ func createCgoWindows(module string) {
 	}
 	tmp += "\n"
 
-	tmp += "#cgo CPPFLAGS: -IC:/Qt/Qt5.5.1/5.5/mingw492_32/include -IC:/Qt/Qt5.5.1/5.5/mingw492_32/mkspecs/win32-g++\n"
+	tmp += "#cgo CPPFLAGS: -IC:/Qt/Qt5.6.0/5.6/mingw49_32/include -IC:/Qt/Qt5.6.0/5.6/mingw49_32/mkspecs/win32-g++\n"
 
 	tmp += "#cgo CPPFLAGS:"
 	for _, m := range libs {
-		tmp += fmt.Sprintf(" -IC:/Qt/Qt5.5.1/5.5/mingw492_32/include/Qt%v", m)
+		tmp += fmt.Sprintf(" -IC:/Qt/Qt5.6.0/5.6/mingw49_32/include/Qt%v", m)
 	}
 	tmp += "\n\n"
 
 	tmp += "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads -Wl,--allow-multiple-definition\n"
 
-	tmp += "#cgo LDFLAGS: -LC:/Qt/Qt5.5.1/5.5/mingw492_32/lib"
+	tmp += "#cgo LDFLAGS: -LC:/Qt/Qt5.6.0/5.6/mingw49_32/lib"
 	for _, m := range libs {
 		if m == "UiTools" || m == "PlatformHeaders" {
 			tmp += fmt.Sprintf(" -lQt5%v", m)
@@ -161,17 +161,17 @@ func createCgoLinux(module string) {
 	}
 	tmp += "\n"
 
-	tmp += "#cgo CPPFLAGS: -I/usr/local/Qt5.5.1/5.5/gcc/include -I/usr/local/Qt5.5.1/5.5/gcc/mkspecs/linux-g++\n"
+	tmp += "#cgo CPPFLAGS: -I/usr/local/Qt5.6.0/5.6/gcc/include -I/usr/local/Qt5.6.0/5.6/gcc/mkspecs/linux-g++\n"
 
 	tmp += "#cgo CPPFLAGS:"
 	for _, m := range libs {
-		tmp += fmt.Sprintf(" -I/usr/local/Qt5.5.1/5.5/gcc/include/Qt%v", m)
+		tmp += fmt.Sprintf(" -I/usr/local/Qt5.6.0/5.6/gcc/include/Qt%v", m)
 	}
 	tmp += "\n\n"
 
-	tmp += "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc -Wl,-rpath,/usr/local/Qt5.5.1/5.5/gcc/lib\n"
+	tmp += "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc/lib\n"
 
-	tmp += "#cgo LDFLAGS: -L/usr/local/Qt5.5.1/5.5/gcc/lib -L/usr/lib64"
+	tmp += "#cgo LDFLAGS: -L/usr/local/Qt5.6.0/5.6/gcc/lib -L/usr/lib64"
 	for _, m := range libs {
 		if m == "UiTools" || m == "PlatformHeaders" {
 			tmp += fmt.Sprintf(" -lQt5%v", m)
@@ -216,17 +216,17 @@ func createCgoandroidDarwinAndLinux(module string) {
 	}
 	tmp += "\n"
 
-	tmp += "#cgo CPPFLAGS: -I/usr/local/Qt5.5.1/5.5/android_armv7/include -isystem /opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include -I/usr/local/Qt5.5.1/5.5/android_armv7/mkspecs/android-g++\n"
+	tmp += "#cgo CPPFLAGS: -I/usr/local/Qt5.6.0/5.6/android_armv7/include -isystem /opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem /opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include -I/usr/local/Qt5.6.0/5.6/android_armv7/mkspecs/android-g++\n"
 
 	tmp += "#cgo CPPFLAGS:"
 	for i := len(libs) - 1; i >= 0; i-- {
-		tmp += fmt.Sprintf(" -I/usr/local/Qt5.5.1/5.5/android_armv7/include/Qt%v", libs[i])
+		tmp += fmt.Sprintf(" -I/usr/local/Qt5.6.0/5.6/android_armv7/include/Qt%v", libs[i])
 	}
 	tmp += "\n\n"
 
-	tmp += "#cgo LDFLAGS: --sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=/usr/local/Qt5.5.1/5.5/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n"
+	tmp += "#cgo LDFLAGS: --sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=/usr/local/Qt5.6.0/5.6/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n"
 
-	tmp += "#cgo LDFLAGS: -L/opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android-ndk/platforms/android-9/arch-arm//usr/lib -L/usr/local/Qt5.5.1/5.5/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm//usr/lib"
+	tmp += "#cgo LDFLAGS: -L/opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android-ndk/platforms/android-9/arch-arm//usr/lib -L/usr/local/Qt5.6.0/5.6/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm//usr/lib"
 
 	for i := len(libs) - 1; i >= 0; i-- {
 		if libs[i] != "UiPlugin" {
@@ -263,17 +263,17 @@ func createCgoandroidWindows(module string) {
 	}
 	tmp += "\n"
 
-	tmp += "#cgo CPPFLAGS: -IC:/Qt/Qt5.5.1/5.5/android_armv7/include -isystem C:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem C:/android/android-ndk/platforms/android-9/arch-arm/usr/include -IC:/Qt/Qt5.5.1/5.5/android_armv7/mkspecs/android-g++\n"
+	tmp += "#cgo CPPFLAGS: -IC:/Qt/Qt5.6.0/5.6/android_armv7/include -isystem C:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem C:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem C:/android/android-ndk/platforms/android-9/arch-arm/usr/include -IC:/Qt/Qt5.6.0/5.6/android_armv7/mkspecs/android-g++\n"
 
 	tmp += "#cgo CPPFLAGS:"
 	for _, m := range libs {
-		tmp += fmt.Sprintf(" -IC:/Qt/Qt5.5.1/5.5/android_armv7/include/Qt%v", m)
+		tmp += fmt.Sprintf(" -IC:/Qt/Qt5.6.0/5.6/android_armv7/include/Qt%v", m)
 	}
 	tmp += "\n\n"
 
-	tmp += "#cgo LDFLAGS: --sysroot=C:/android/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=C:/Qt/Qt5.5.1/5.5/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition\n"
+	tmp += "#cgo LDFLAGS: --sysroot=C:/android/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=C:/Qt/Qt5.6.0/5.6/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n"
 
-	tmp += "#cgo LDFLAGS: -LC:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android-ndk/platforms/android-9/arch-arm//usr/lib -LC:/Qt/Qt5.5.1/5.5/android_armv7/lib -LC:/android/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android/ndk/platforms/android-9/arch-arm//usr/lib"
+	tmp += "#cgo LDFLAGS: -LC:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android-ndk/platforms/android-9/arch-arm//usr/lib -LC:/Qt/Qt5.6.0/5.6/android_armv7/lib -LC:/android/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android/ndk/platforms/android-9/arch-arm//usr/lib"
 	for _, m := range libs {
 		if m == "UiTools" || m == "PlatformHeaders" {
 			tmp += fmt.Sprintf(" -lQt5%v", m)

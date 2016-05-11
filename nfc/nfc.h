@@ -221,6 +221,7 @@ void QQmlNdefRecord_TypeChanged(void* ptr);
 void QQmlNdefRecord_ConnectTypeNameFormatChanged(void* ptr);
 void QQmlNdefRecord_DisconnectTypeNameFormatChanged(void* ptr);
 void QQmlNdefRecord_TypeNameFormatChanged(void* ptr);
+void QQmlNdefRecord_DestroyQQmlNdefRecord(void* ptr);
 void QQmlNdefRecord_TimerEvent(void* ptr, void* event);
 void QQmlNdefRecord_TimerEventDefault(void* ptr, void* event);
 void QQmlNdefRecord_ChildEvent(void* ptr, void* event);

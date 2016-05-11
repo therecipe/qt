@@ -448,6 +448,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DestroyQBluetoothDeviceDiscoveryAgent
 	defer qt.Recovering("QBluetoothDeviceDiscoveryAgent::~QBluetoothDeviceDiscoveryAgent")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -666,6 +667,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DeleteLater() {
 	defer qt.Recovering("QBluetoothDeviceDiscoveryAgent::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothDeviceDiscoveryAgent_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -675,6 +677,7 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DeleteLaterDefault() {
 	defer qt.Recovering("QBluetoothDeviceDiscoveryAgent::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothDeviceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1659,6 +1662,7 @@ func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
 	defer qt.Recovering("QBluetoothLocalDevice::~QBluetoothLocalDevice")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1985,6 +1989,7 @@ func (ptr *QBluetoothLocalDevice) DeleteLater() {
 	defer qt.Recovering("QBluetoothLocalDevice::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothLocalDevice_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1994,6 +1999,7 @@ func (ptr *QBluetoothLocalDevice) DeleteLaterDefault() {
 	defer qt.Recovering("QBluetoothLocalDevice::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothLocalDevice_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2371,6 +2377,7 @@ func (ptr *QBluetoothServer) DestroyQBluetoothServer() {
 	defer qt.Recovering("QBluetoothServer::~QBluetoothServer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothServer_DestroyQBluetoothServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2632,6 +2639,7 @@ func (ptr *QBluetoothServer) DeleteLater() {
 	defer qt.Recovering("QBluetoothServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothServer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2641,6 +2649,7 @@ func (ptr *QBluetoothServer) DeleteLaterDefault() {
 	defer qt.Recovering("QBluetoothServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3219,6 +3228,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DestroyQBluetoothServiceDiscoveryAge
 	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::~QBluetoothServiceDiscoveryAgent")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3437,6 +3447,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DeleteLater() {
 	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothServiceDiscoveryAgent_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3446,6 +3457,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DeleteLaterDefault() {
 	defer qt.Recovering("QBluetoothServiceDiscoveryAgent::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothServiceDiscoveryAgent_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4364,49 +4376,11 @@ func (ptr *QBluetoothSocket) ErrorString() string {
 	return ""
 }
 
-//export callbackQBluetoothSocket_IsSequential
-func callbackQBluetoothSocket_IsSequential(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QBluetoothSocket::isSequential")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "isSequential"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).IsSequentialDefault()))
-}
-
-func (ptr *QBluetoothSocket) ConnectIsSequential(f func() bool) {
-	defer qt.Recovering("connect QBluetoothSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "isSequential", f)
-	}
-}
-
-func (ptr *QBluetoothSocket) DisconnectIsSequential() {
-	defer qt.Recovering("disconnect QBluetoothSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "isSequential")
-	}
-}
-
 func (ptr *QBluetoothSocket) IsSequential() bool {
 	defer qt.Recovering("QBluetoothSocket::isSequential")
 
 	if ptr.Pointer() != nil {
 		return C.QBluetoothSocket_IsSequential(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QBluetoothSocket) IsSequentialDefault() bool {
-	defer qt.Recovering("QBluetoothSocket::isSequential")
-
-	if ptr.Pointer() != nil {
-		return C.QBluetoothSocket_IsSequentialDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -4550,6 +4524,7 @@ func (ptr *QBluetoothSocket) DestroyQBluetoothSocket() {
 	defer qt.Recovering("QBluetoothSocket::~QBluetoothSocket")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothSocket_DestroyQBluetoothSocket(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5191,6 +5166,7 @@ func (ptr *QBluetoothSocket) DeleteLater() {
 	defer qt.Recovering("QBluetoothSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothSocket_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5200,6 +5176,7 @@ func (ptr *QBluetoothSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QBluetoothSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothSocket_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5493,6 +5470,7 @@ func (ptr *QBluetoothTransferManager) DestroyQBluetoothTransferManager() {
 	defer qt.Recovering("QBluetoothTransferManager::~QBluetoothTransferManager")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothTransferManager_DestroyQBluetoothTransferManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5711,6 +5689,7 @@ func (ptr *QBluetoothTransferManager) DeleteLater() {
 	defer qt.Recovering("QBluetoothTransferManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothTransferManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5720,6 +5699,7 @@ func (ptr *QBluetoothTransferManager) DeleteLaterDefault() {
 	defer qt.Recovering("QBluetoothTransferManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothTransferManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6312,6 +6292,7 @@ func (ptr *QBluetoothTransferReply) DestroyQBluetoothTransferReply() {
 	defer qt.Recovering("QBluetoothTransferReply::~QBluetoothTransferReply")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothTransferReply_DestroyQBluetoothTransferReply(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6530,6 +6511,7 @@ func (ptr *QBluetoothTransferReply) DeleteLater() {
 	defer qt.Recovering("QBluetoothTransferReply::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothTransferReply_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6539,6 +6521,7 @@ func (ptr *QBluetoothTransferReply) DeleteLaterDefault() {
 	defer qt.Recovering("QBluetoothTransferReply::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QBluetoothTransferReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7821,6 +7804,7 @@ func (ptr *QLowEnergyController) DestroyQLowEnergyController() {
 	defer qt.Recovering("QLowEnergyController::~QLowEnergyController")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLowEnergyController_DestroyQLowEnergyController(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8039,6 +8023,7 @@ func (ptr *QLowEnergyController) DeleteLater() {
 	defer qt.Recovering("QLowEnergyController::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLowEnergyController_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8048,6 +8033,7 @@ func (ptr *QLowEnergyController) DeleteLaterDefault() {
 	defer qt.Recovering("QLowEnergyController::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLowEnergyController_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8802,6 +8788,7 @@ func (ptr *QLowEnergyService) DestroyQLowEnergyService() {
 	defer qt.Recovering("QLowEnergyService::~QLowEnergyService")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLowEnergyService_DestroyQLowEnergyService(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9020,6 +9007,7 @@ func (ptr *QLowEnergyService) DeleteLater() {
 	defer qt.Recovering("QLowEnergyService::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLowEnergyService_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9029,6 +9017,7 @@ func (ptr *QLowEnergyService) DeleteLaterDefault() {
 	defer qt.Recovering("QLowEnergyService::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLowEnergyService_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

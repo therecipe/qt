@@ -278,7 +278,7 @@ int QDomDocument_SetContent4(void* ptr, void* source, int namespaceProcessing, c
 	return static_cast<QDomDocument*>(ptr)->setContent(static_cast<QXmlInputSource*>(source), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
 }
 
-int QDomDocument_SetContent6(void* ptr, char* buffer, char* errorMsg, int errorLine, int errorColumn)
+int QDomDocument_SetContent5(void* ptr, char* buffer, char* errorMsg, int errorLine, int errorColumn)
 {
 	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray(buffer), new QString(errorMsg), &errorLine, &errorColumn);
 }
@@ -288,7 +288,7 @@ int QDomDocument_SetContent(void* ptr, char* data, int namespaceProcessing, char
 	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray(data), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
 }
 
-int QDomDocument_SetContent5(void* ptr, char* text, char* errorMsg, int errorLine, int errorColumn)
+int QDomDocument_SetContent6(void* ptr, char* text, char* errorMsg, int errorLine, int errorColumn)
 {
 	return static_cast<QDomDocument*>(ptr)->setContent(QString(text), new QString(errorMsg), &errorLine, &errorColumn);
 }
@@ -453,7 +453,7 @@ void QDomElement_SetAttribute(void* ptr, char* name, char* value)
 	static_cast<QDomElement*>(ptr)->setAttribute(QString(name), QString(value));
 }
 
-void QDomElement_SetAttribute2(void* ptr, char* name, int value)
+void QDomElement_SetAttribute4(void* ptr, char* name, int value)
 {
 	static_cast<QDomElement*>(ptr)->setAttribute(QString(name), value);
 }

@@ -85,9 +85,9 @@ void* QJSEngine_GlobalObject(void* ptr)
 	return new QJSValue(static_cast<QJSEngine*>(ptr)->globalObject());
 }
 
-void QJSEngine_InstallTranslatorFunctions(void* ptr, void* object)
+void QJSEngine_InstallExtensions(void* ptr, int extensions, void* object)
 {
-	static_cast<QJSEngine*>(ptr)->installTranslatorFunctions(*static_cast<QJSValue*>(object));
+	static_cast<QJSEngine*>(ptr)->installExtensions(static_cast<QJSEngine::Extension>(extensions), *static_cast<QJSValue*>(object));
 }
 
 void* QJSEngine_NewObject(void* ptr)

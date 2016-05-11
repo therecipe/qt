@@ -84,6 +84,18 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
+	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater")) && function.SignalMode == "" {
+		if needsCallbackFunctions(parser.ClassMap[function.Class()]) {
+			fmt.Fprintf(bb, "qt.DisconnectAllSignals(ptr.ObjectName%v())\n",
+				func() string {
+					if !parser.ClassMap[function.Class()].IsQObjectSubClass() {
+						return "Abs"
+					}
+					return ""
+				}())
+		}
+	}
+
 	if ((function.Meta == parser.PLAIN && function.SignalMode == "") ||
 		(function.Meta == parser.SLOT && function.SignalMode == "") ||
 		function.Meta == parser.CONSTRUCTOR || function.Meta == parser.DESTRUCTOR) ||

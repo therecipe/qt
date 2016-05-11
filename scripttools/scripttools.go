@@ -270,6 +270,7 @@ func (ptr *QScriptEngineDebugger) DestroyQScriptEngineDebugger() {
 	defer qt.Recovering("QScriptEngineDebugger::~QScriptEngineDebugger")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptEngineDebugger_DestroyQScriptEngineDebugger(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -488,6 +489,7 @@ func (ptr *QScriptEngineDebugger) DeleteLater() {
 	defer qt.Recovering("QScriptEngineDebugger::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptEngineDebugger_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -497,6 +499,7 @@ func (ptr *QScriptEngineDebugger) DeleteLaterDefault() {
 	defer qt.Recovering("QScriptEngineDebugger::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptEngineDebugger_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

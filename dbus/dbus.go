@@ -593,6 +593,15 @@ func (ptr *QDBusAbstractInterface) IsValid() bool {
 	return false
 }
 
+func (ptr *QDBusAbstractInterface) LastError() *QDBusError {
+	defer qt.Recovering("QDBusAbstractInterface::lastError")
+
+	if ptr.Pointer() != nil {
+		return NewQDBusErrorFromPointer(C.QDBusAbstractInterface_LastError(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDBusAbstractInterface) Path() string {
 	defer qt.Recovering("QDBusAbstractInterface::path")
 
@@ -632,6 +641,7 @@ func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
 	defer qt.Recovering("QDBusAbstractInterface::~QDBusAbstractInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -850,6 +860,7 @@ func (ptr *QDBusAbstractInterface) DeleteLater() {
 	defer qt.Recovering("QDBusAbstractInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusAbstractInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -859,6 +870,7 @@ func (ptr *QDBusAbstractInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusAbstractInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusAbstractInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1112,6 +1124,12 @@ func NewQDBusArgument() *QDBusArgument {
 	return newQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
 }
 
+func NewQDBusArgument3(other QDBusArgument_ITF) *QDBusArgument {
+	defer qt.Recovering("QDBusArgument::QDBusArgument")
+
+	return newQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument3(PointerFromQDBusArgument(other)))
+}
+
 func NewQDBusArgument2(other QDBusArgument_ITF) *QDBusArgument {
 	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
@@ -1273,6 +1291,14 @@ func (ptr *QDBusArgument) EndStructure2() {
 	}
 }
 
+func (ptr *QDBusArgument) Swap(other QDBusArgument_ITF) {
+	defer qt.Recovering("QDBusArgument::swap")
+
+	if ptr.Pointer() != nil {
+		C.QDBusArgument_Swap(ptr.Pointer(), PointerFromQDBusArgument(other))
+	}
+}
+
 func (ptr *QDBusArgument) DestroyQDBusArgument() {
 	defer qt.Recovering("QDBusArgument::~QDBusArgument")
 
@@ -1396,6 +1422,12 @@ func (ptr *QDBusConnection) SystemBus() *QDBusConnection {
 	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_SystemBus())
 }
 
+func NewQDBusConnection3(other QDBusConnection_ITF) *QDBusConnection {
+	defer qt.Recovering("QDBusConnection::QDBusConnection")
+
+	return newQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection3(PointerFromQDBusConnection(other)))
+}
+
 func NewQDBusConnection2(other QDBusConnection_ITF) *QDBusConnection {
 	defer qt.Recovering("QDBusConnection::QDBusConnection")
 
@@ -1415,30 +1447,6 @@ func (ptr *QDBusConnection) BaseService() string {
 		return C.GoString(C.QDBusConnection_BaseService(ptr.Pointer()))
 	}
 	return ""
-}
-
-func QDBusConnection_ConnectToBus(ty QDBusConnection__BusType, name string) *QDBusConnection {
-	defer qt.Recovering("QDBusConnection::connectToBus")
-
-	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.int(ty), C.CString(name)))
-}
-
-func (ptr *QDBusConnection) ConnectToBus(ty QDBusConnection__BusType, name string) *QDBusConnection {
-	defer qt.Recovering("QDBusConnection::connectToBus")
-
-	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.int(ty), C.CString(name)))
-}
-
-func QDBusConnection_ConnectToBus2(address string, name string) *QDBusConnection {
-	defer qt.Recovering("QDBusConnection::connectToBus")
-
-	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.CString(address), C.CString(name)))
-}
-
-func (ptr *QDBusConnection) ConnectToBus2(address string, name string) *QDBusConnection {
-	defer qt.Recovering("QDBusConnection::connectToBus")
-
-	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.CString(address), C.CString(name)))
 }
 
 func (ptr *QDBusConnection) AsyncCall(message QDBusMessage_ITF, timeout int) *QDBusPendingCall {
@@ -1484,6 +1492,30 @@ func (ptr *QDBusConnection) Connect3(service string, path string, interfa string
 		return C.QDBusConnection_Connect3(ptr.Pointer(), C.CString(service), C.CString(path), C.CString(interfa), C.CString(name), C.CString(strings.Join(argumentMatch, "|")), C.CString(signature), core.PointerFromQObject(receiver), C.CString(slot)) != 0
 	}
 	return false
+}
+
+func QDBusConnection_ConnectToBus(ty QDBusConnection__BusType, name string) *QDBusConnection {
+	defer qt.Recovering("QDBusConnection::connectToBus")
+
+	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.int(ty), C.CString(name)))
+}
+
+func (ptr *QDBusConnection) ConnectToBus(ty QDBusConnection__BusType, name string) *QDBusConnection {
+	defer qt.Recovering("QDBusConnection::connectToBus")
+
+	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.int(ty), C.CString(name)))
+}
+
+func QDBusConnection_ConnectToBus2(address string, name string) *QDBusConnection {
+	defer qt.Recovering("QDBusConnection::connectToBus")
+
+	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.CString(address), C.CString(name)))
+}
+
+func (ptr *QDBusConnection) ConnectToBus2(address string, name string) *QDBusConnection {
+	defer qt.Recovering("QDBusConnection::connectToBus")
+
+	return NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus2(C.CString(address), C.CString(name)))
 }
 
 func QDBusConnection_ConnectToPeer(address string, name string) *QDBusConnection {
@@ -1576,6 +1608,15 @@ func (ptr *QDBusConnection) IsConnected() bool {
 	return false
 }
 
+func (ptr *QDBusConnection) LastError() *QDBusError {
+	defer qt.Recovering("QDBusConnection::lastError")
+
+	if ptr.Pointer() != nil {
+		return NewQDBusErrorFromPointer(C.QDBusConnection_LastError(ptr.Pointer()))
+	}
+	return nil
+}
+
 func QDBusConnection_LocalMachineId() string {
 	defer qt.Recovering("QDBusConnection::localMachineId")
 
@@ -1640,6 +1681,14 @@ func (ptr *QDBusConnection) Send(message QDBusMessage_ITF) bool {
 		return C.QDBusConnection_Send(ptr.Pointer(), PointerFromQDBusMessage(message)) != 0
 	}
 	return false
+}
+
+func (ptr *QDBusConnection) Swap(other QDBusConnection_ITF) {
+	defer qt.Recovering("QDBusConnection::swap")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnection_Swap(ptr.Pointer(), PointerFromQDBusConnection(other))
+	}
 }
 
 func (ptr *QDBusConnection) UnregisterObject(path string, mode QDBusConnection__UnregisterMode) {
@@ -1739,6 +1788,42 @@ func newQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnection
 		n.SetObjectName("QDBusConnectionInterface_" + qt.Identifier())
 	}
 	return n
+}
+
+//export callbackQDBusConnectionInterface_CallWithCallbackFailed
+func callbackQDBusConnectionInterface_CallWithCallbackFailed(ptr unsafe.Pointer, ptrName *C.char, error unsafe.Pointer, call unsafe.Pointer) {
+	defer qt.Recovering("callback QDBusConnectionInterface::callWithCallbackFailed")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "callWithCallbackFailed"); signal != nil {
+		signal.(func(*QDBusError, *QDBusMessage))(NewQDBusErrorFromPointer(error), NewQDBusMessageFromPointer(call))
+	}
+
+}
+
+func (ptr *QDBusConnectionInterface) ConnectCallWithCallbackFailed(f func(error *QDBusError, call *QDBusMessage)) {
+	defer qt.Recovering("connect QDBusConnectionInterface::callWithCallbackFailed")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "callWithCallbackFailed", f)
+	}
+}
+
+func (ptr *QDBusConnectionInterface) DisconnectCallWithCallbackFailed() {
+	defer qt.Recovering("disconnect QDBusConnectionInterface::callWithCallbackFailed")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_DisconnectCallWithCallbackFailed(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "callWithCallbackFailed")
+	}
+}
+
+func (ptr *QDBusConnectionInterface) CallWithCallbackFailed(error QDBusError_ITF, call QDBusMessage_ITF) {
+	defer qt.Recovering("QDBusConnectionInterface::callWithCallbackFailed")
+
+	if ptr.Pointer() != nil {
+		C.QDBusConnectionInterface_CallWithCallbackFailed(ptr.Pointer(), PointerFromQDBusError(error), PointerFromQDBusMessage(call))
+	}
 }
 
 //export callbackQDBusConnectionInterface_ServiceRegistered
@@ -2026,6 +2111,7 @@ func (ptr *QDBusConnectionInterface) DeleteLater() {
 	defer qt.Recovering("QDBusConnectionInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusConnectionInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2035,6 +2121,7 @@ func (ptr *QDBusConnectionInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusConnectionInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusConnectionInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2421,6 +2508,12 @@ func newQDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
 	return n
 }
 
+func NewQDBusError(other QDBusError_ITF) *QDBusError {
+	defer qt.Recovering("QDBusError::QDBusError")
+
+	return newQDBusErrorFromPointer(C.QDBusError_NewQDBusError(PointerFromQDBusError(other)))
+}
+
 func QDBusError_ErrorString(error QDBusError__ErrorType) string {
 	defer qt.Recovering("QDBusError::errorString")
 
@@ -2458,6 +2551,14 @@ func (ptr *QDBusError) Name() string {
 		return C.GoString(C.QDBusError_Name(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QDBusError) Swap(other QDBusError_ITF) {
+	defer qt.Recovering("QDBusError::swap")
+
+	if ptr.Pointer() != nil {
+		C.QDBusError_Swap(ptr.Pointer(), PointerFromQDBusError(other))
+	}
 }
 
 func (ptr *QDBusError) Type() QDBusError__ErrorType {
@@ -3115,6 +3216,18 @@ func (ptr *QDBusMessage) CreateSignal(path string, interfa string, name string) 
 	return NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateSignal(C.CString(path), C.CString(interfa), C.CString(name)))
 }
 
+func QDBusMessage_CreateTargetedSignal(service string, path string, interfa string, name string) *QDBusMessage {
+	defer qt.Recovering("QDBusMessage::createTargetedSignal")
+
+	return NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.CString(service), C.CString(path), C.CString(interfa), C.CString(name)))
+}
+
+func (ptr *QDBusMessage) CreateTargetedSignal(service string, path string, interfa string, name string) *QDBusMessage {
+	defer qt.Recovering("QDBusMessage::createTargetedSignal")
+
+	return NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateTargetedSignal(C.CString(service), C.CString(path), C.CString(interfa), C.CString(name)))
+}
+
 func (ptr *QDBusMessage) ErrorMessage() string {
 	defer qt.Recovering("QDBusMessage::errorMessage")
 
@@ -3210,6 +3323,14 @@ func (ptr *QDBusMessage) Signature() string {
 		return C.GoString(C.QDBusMessage_Signature(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QDBusMessage) Swap(other QDBusMessage_ITF) {
+	defer qt.Recovering("QDBusMessage::swap")
+
+	if ptr.Pointer() != nil {
+		C.QDBusMessage_Swap(ptr.Pointer(), PointerFromQDBusMessage(other))
+	}
 }
 
 func (ptr *QDBusMessage) Type() QDBusMessage__MessageType {
@@ -3311,6 +3432,14 @@ func (ptr *QDBusObjectPath) SetPath(path string) {
 
 	if ptr.Pointer() != nil {
 		C.QDBusObjectPath_SetPath(ptr.Pointer(), C.CString(path))
+	}
+}
+
+func (ptr *QDBusObjectPath) Swap(other QDBusObjectPath_ITF) {
+	defer qt.Recovering("QDBusObjectPath::swap")
+
+	if ptr.Pointer() != nil {
+		C.QDBusObjectPath_Swap(ptr.Pointer(), PointerFromQDBusObjectPath(other))
 	}
 }
 
@@ -3517,6 +3646,7 @@ func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcher() {
 	defer qt.Recovering("QDBusPendingCallWatcher::~QDBusPendingCallWatcher")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3735,6 +3865,7 @@ func (ptr *QDBusPendingCallWatcher) DeleteLater() {
 	defer qt.Recovering("QDBusPendingCallWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusPendingCallWatcher_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3744,6 +3875,7 @@ func (ptr *QDBusPendingCallWatcher) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusPendingCallWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4108,6 +4240,15 @@ func (ptr *QDBusServer) IsConnected() bool {
 	return false
 }
 
+func (ptr *QDBusServer) LastError() *QDBusError {
+	defer qt.Recovering("QDBusServer::lastError")
+
+	if ptr.Pointer() != nil {
+		return NewQDBusErrorFromPointer(C.QDBusServer_LastError(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDBusServer_NewConnection
 func callbackQDBusServer_NewConnection(ptr unsafe.Pointer, ptrName *C.char, connection unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::newConnection")
@@ -4156,6 +4297,7 @@ func (ptr *QDBusServer) DestroyQDBusServer() {
 	defer qt.Recovering("QDBusServer::~QDBusServer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusServer_DestroyQDBusServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4374,6 +4516,7 @@ func (ptr *QDBusServer) DeleteLater() {
 	defer qt.Recovering("QDBusServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusServer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4383,6 +4526,7 @@ func (ptr *QDBusServer) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusServer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4822,6 +4966,7 @@ func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcher() {
 	defer qt.Recovering("QDBusServiceWatcher::~QDBusServiceWatcher")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5040,6 +5185,7 @@ func (ptr *QDBusServiceWatcher) DeleteLater() {
 	defer qt.Recovering("QDBusServiceWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusServiceWatcher_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5049,6 +5195,7 @@ func (ptr *QDBusServiceWatcher) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusServiceWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusServiceWatcher_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5324,6 +5471,14 @@ func (ptr *QDBusSignature) Signature() string {
 	return ""
 }
 
+func (ptr *QDBusSignature) Swap(other QDBusSignature_ITF) {
+	defer qt.Recovering("QDBusSignature::swap")
+
+	if ptr.Pointer() != nil {
+		C.QDBusSignature_Swap(ptr.Pointer(), PointerFromQDBusSignature(other))
+	}
+}
+
 type QDBusUnixFileDescriptor struct {
 	ptr unsafe.Pointer
 }
@@ -5489,6 +5644,12 @@ func NewQDBusVariant() *QDBusVariant {
 	return newQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
 }
 
+func NewQDBusVariant3(v core.QVariant_ITF) *QDBusVariant {
+	defer qt.Recovering("QDBusVariant::QDBusVariant")
+
+	return newQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant3(core.PointerFromQVariant(v)))
+}
+
 func NewQDBusVariant2(variant core.QVariant_ITF) *QDBusVariant {
 	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
@@ -5500,6 +5661,14 @@ func (ptr *QDBusVariant) SetVariant(variant core.QVariant_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QDBusVariant_SetVariant(ptr.Pointer(), core.PointerFromQVariant(variant))
+	}
+}
+
+func (ptr *QDBusVariant) Swap(other QDBusVariant_ITF) {
+	defer qt.Recovering("QDBusVariant::swap")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVariant_Swap(ptr.Pointer(), PointerFromQDBusVariant(other))
 	}
 }
 
@@ -5645,6 +5814,7 @@ func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 	defer qt.Recovering("QDBusVirtualObject::~QDBusVirtualObject")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5863,6 +6033,7 @@ func (ptr *QDBusVirtualObject) DeleteLater() {
 	defer qt.Recovering("QDBusVirtualObject::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusVirtualObject_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5872,6 +6043,7 @@ func (ptr *QDBusVirtualObject) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusVirtualObject::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDBusVirtualObject_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

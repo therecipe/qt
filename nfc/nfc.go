@@ -1022,6 +1022,7 @@ func (ptr *QNearFieldManager) DestroyQNearFieldManager() {
 	defer qt.Recovering("QNearFieldManager::~QNearFieldManager")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldManager_DestroyQNearFieldManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1240,6 +1241,7 @@ func (ptr *QNearFieldManager) DeleteLater() {
 	defer qt.Recovering("QNearFieldManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1249,6 +1251,7 @@ func (ptr *QNearFieldManager) DeleteLaterDefault() {
 	defer qt.Recovering("QNearFieldManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1667,6 +1670,7 @@ func (ptr *QNearFieldShareManager) DestroyQNearFieldShareManager() {
 	defer qt.Recovering("QNearFieldShareManager::~QNearFieldShareManager")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldShareManager_DestroyQNearFieldShareManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1885,6 +1889,7 @@ func (ptr *QNearFieldShareManager) DeleteLater() {
 	defer qt.Recovering("QNearFieldShareManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldShareManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1894,6 +1899,7 @@ func (ptr *QNearFieldShareManager) DeleteLaterDefault() {
 	defer qt.Recovering("QNearFieldShareManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldShareManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2252,6 +2258,7 @@ func (ptr *QNearFieldShareTarget) DestroyQNearFieldShareTarget() {
 	defer qt.Recovering("QNearFieldShareTarget::~QNearFieldShareTarget")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldShareTarget_DestroyQNearFieldShareTarget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2470,6 +2477,7 @@ func (ptr *QNearFieldShareTarget) DeleteLater() {
 	defer qt.Recovering("QNearFieldShareTarget::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldShareTarget_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2479,6 +2487,7 @@ func (ptr *QNearFieldShareTarget) DeleteLaterDefault() {
 	defer qt.Recovering("QNearFieldShareTarget::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldShareTarget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3089,6 +3098,7 @@ func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 	defer qt.Recovering("QNearFieldTarget::~QNearFieldTarget")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3307,6 +3317,7 @@ func (ptr *QNearFieldTarget) DeleteLater() {
 	defer qt.Recovering("QNearFieldTarget::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldTarget_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3316,6 +3327,7 @@ func (ptr *QNearFieldTarget) DeleteLaterDefault() {
 	defer qt.Recovering("QNearFieldTarget::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNearFieldTarget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3737,6 +3749,16 @@ func (ptr *QQmlNdefRecord) TypeNameFormatChanged() {
 	}
 }
 
+func (ptr *QQmlNdefRecord) DestroyQQmlNdefRecord() {
+	defer qt.Recovering("QQmlNdefRecord::~QQmlNdefRecord")
+
+	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
+		C.QQmlNdefRecord_DestroyQQmlNdefRecord(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //export callbackQQmlNdefRecord_TimerEvent
 func callbackQQmlNdefRecord_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
 	defer qt.Recovering("callback QQmlNdefRecord::timerEvent")
@@ -3950,6 +3972,7 @@ func (ptr *QQmlNdefRecord) DeleteLater() {
 	defer qt.Recovering("QQmlNdefRecord::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlNdefRecord_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3959,6 +3982,7 @@ func (ptr *QQmlNdefRecord) DeleteLaterDefault() {
 	defer qt.Recovering("QQmlNdefRecord::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQmlNdefRecord_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

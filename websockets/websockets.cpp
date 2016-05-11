@@ -14,6 +14,7 @@
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNetworkProxy>
+#include <QNetworkRequest>
 #include <QObject>
 #include <QSslConfiguration>
 #include <QSslError>
@@ -152,6 +153,7 @@ public:
 	void Signal_Disconnected() { callbackQWebSocket_Disconnected(this, this->objectName().toUtf8().data()); };
 	void Signal_Error2(QAbstractSocket::SocketError error) { callbackQWebSocket_Error2(this, this->objectName().toUtf8().data(), error); };
 	void ignoreSslErrors() { callbackQWebSocket_IgnoreSslErrors(this, this->objectName().toUtf8().data()); };
+	void open(const QNetworkRequest & request) { callbackQWebSocket_Open2(this, this->objectName().toUtf8().data(), new QNetworkRequest(request)); };
 	void open(const QUrl & url) { callbackQWebSocket_Open(this, this->objectName().toUtf8().data(), new QUrl(url)); };
 	void ping(const QByteArray & payload) { callbackQWebSocket_Ping(this, this->objectName().toUtf8().data(), QString(payload).toUtf8().data()); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQWebSocket_ProxyAuthenticationRequired(this, this->objectName().toUtf8().data(), new QNetworkProxy(proxy), authenticator); };
@@ -320,6 +322,11 @@ void* QWebSocket_MaskGenerator(void* ptr)
 	return const_cast<QMaskGenerator*>(static_cast<QWebSocket*>(ptr)->maskGenerator());
 }
 
+void QWebSocket_Open2(void* ptr, void* request)
+{
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(QNetworkRequest, *static_cast<QNetworkRequest*>(request)));
+}
+
 void QWebSocket_Open(void* ptr, void* url)
 {
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
@@ -388,6 +395,11 @@ void QWebSocket_DisconnectReadChannelFinished(void* ptr)
 void QWebSocket_ReadChannelFinished(void* ptr)
 {
 	static_cast<QWebSocket*>(ptr)->readChannelFinished();
+}
+
+void* QWebSocket_Request(void* ptr)
+{
+	return new QNetworkRequest(static_cast<QWebSocket*>(ptr)->request());
 }
 
 void* QWebSocket_RequestUrl(void* ptr)

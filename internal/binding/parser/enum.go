@@ -22,7 +22,7 @@ func (e *Enum) Class() string { return strings.Split(e.Fullname, "::")[0] }
 func (e *Enum) register(module string) {
 	SubnamespaceMap[e.Class()] = true
 	if c, exists := ClassMap[e.Class()]; !exists {
-		ClassMap[e.Class()] = &Class{Name: e.Class(), Status: "commendable", Module: module, Access: "public", Enums: []*Enum{e}} //TODO: Status:active in 5.6
+		ClassMap[e.Class()] = &Class{Name: e.Class(), Status: "commendable", Module: module, Access: "public", Enums: []*Enum{e}}
 	} else {
 		if !e.isRegistered() {
 			c.Enums = append(c.Enums, e)

@@ -258,6 +258,7 @@ func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 	defer qt.Recovering("QMacPasteboardMime::~QMacPasteboardMime")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QMacPasteboardMime_DestroyQMacPasteboardMime(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -905,6 +906,7 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 	defer qt.Recovering("QMacToolBarItem::~QMacToolBarItem")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1191,6 +1193,7 @@ func (ptr *QMacToolBarItem) DeleteLater() {
 	defer qt.Recovering("QMacToolBarItem::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMacToolBarItem_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1200,6 +1203,7 @@ func (ptr *QMacToolBarItem) DeleteLaterDefault() {
 	defer qt.Recovering("QMacToolBarItem::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMacToolBarItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

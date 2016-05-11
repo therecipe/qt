@@ -25,7 +25,7 @@ func ConnectSignal(name, signal string, function interface{}) {
 }
 
 func GetSignal(name, signal string) interface{} {
-	if signal == "destroyed" {
+	if signal == "destroyed" || signal == "deleteLater" {
 		defer DisconnectAllSignals(name)
 	}
 	var s interface{}

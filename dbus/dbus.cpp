@@ -183,6 +183,11 @@ int QDBusAbstractInterface_IsValid(void* ptr)
 	return static_cast<QDBusAbstractInterface*>(ptr)->isValid();
 }
 
+void* QDBusAbstractInterface_LastError(void* ptr)
+{
+	return new QDBusError(static_cast<QDBusAbstractInterface*>(ptr)->lastError());
+}
+
 char* QDBusAbstractInterface_Path(void* ptr)
 {
 	return static_cast<QDBusAbstractInterface*>(ptr)->path().toUtf8().data();
@@ -303,6 +308,11 @@ void* QDBusArgument_NewQDBusArgument()
 	return new QDBusArgument();
 }
 
+void* QDBusArgument_NewQDBusArgument3(void* other)
+{
+	return new QDBusArgument(*static_cast<QDBusArgument*>(other));
+}
+
 void* QDBusArgument_NewQDBusArgument2(void* other)
 {
 	return new QDBusArgument(*static_cast<QDBusArgument*>(other));
@@ -403,6 +413,11 @@ void QDBusArgument_EndStructure2(void* ptr)
 	static_cast<QDBusArgument*>(ptr)->endStructure();
 }
 
+void QDBusArgument_Swap(void* ptr, void* other)
+{
+	static_cast<QDBusArgument*>(ptr)->swap(*static_cast<QDBusArgument*>(other));
+}
+
 void QDBusArgument_DestroyQDBusArgument(void* ptr)
 {
 	static_cast<QDBusArgument*>(ptr)->~QDBusArgument();
@@ -418,6 +433,11 @@ void* QDBusConnection_QDBusConnection_SystemBus()
 	return new QDBusConnection(QDBusConnection::systemBus());
 }
 
+void* QDBusConnection_NewQDBusConnection3(void* other)
+{
+	return new QDBusConnection(*static_cast<QDBusConnection*>(other));
+}
+
 void* QDBusConnection_NewQDBusConnection2(void* other)
 {
 	return new QDBusConnection(*static_cast<QDBusConnection*>(other));
@@ -431,16 +451,6 @@ void* QDBusConnection_NewQDBusConnection(char* name)
 char* QDBusConnection_BaseService(void* ptr)
 {
 	return static_cast<QDBusConnection*>(ptr)->baseService().toUtf8().data();
-}
-
-void* QDBusConnection_QDBusConnection_ConnectToBus(int ty, char* name)
-{
-	return new QDBusConnection(QDBusConnection::connectToBus(static_cast<QDBusConnection::BusType>(ty), QString(name)));
-}
-
-void* QDBusConnection_QDBusConnection_ConnectToBus2(char* address, char* name)
-{
-	return new QDBusConnection(QDBusConnection::connectToBus(QString(address), QString(name)));
 }
 
 void* QDBusConnection_AsyncCall(void* ptr, void* message, int timeout)
@@ -466,6 +476,16 @@ int QDBusConnection_Connect2(void* ptr, char* service, char* path, char* interfa
 int QDBusConnection_Connect3(void* ptr, char* service, char* path, char* interfa, char* name, char* argumentMatch, char* signature, void* receiver, char* slot)
 {
 	return static_cast<QDBusConnection*>(ptr)->connect(QString(service), QString(path), QString(interfa), QString(name), QString(argumentMatch).split("|", QString::SkipEmptyParts), QString(signature), static_cast<QObject*>(receiver), const_cast<const char*>(slot));
+}
+
+void* QDBusConnection_QDBusConnection_ConnectToBus(int ty, char* name)
+{
+	return new QDBusConnection(QDBusConnection::connectToBus(static_cast<QDBusConnection::BusType>(ty), QString(name)));
+}
+
+void* QDBusConnection_QDBusConnection_ConnectToBus2(char* address, char* name)
+{
+	return new QDBusConnection(QDBusConnection::connectToBus(QString(address), QString(name)));
 }
 
 void* QDBusConnection_QDBusConnection_ConnectToPeer(char* address, char* name)
@@ -513,6 +533,11 @@ int QDBusConnection_IsConnected(void* ptr)
 	return static_cast<QDBusConnection*>(ptr)->isConnected();
 }
 
+void* QDBusConnection_LastError(void* ptr)
+{
+	return new QDBusError(static_cast<QDBusConnection*>(ptr)->lastError());
+}
+
 char* QDBusConnection_QDBusConnection_LocalMachineId()
 {
 	return QString(QDBusConnection::localMachineId()).toUtf8().data();
@@ -548,6 +573,11 @@ int QDBusConnection_Send(void* ptr, void* message)
 	return static_cast<QDBusConnection*>(ptr)->send(*static_cast<QDBusMessage*>(message));
 }
 
+void QDBusConnection_Swap(void* ptr, void* other)
+{
+	static_cast<QDBusConnection*>(ptr)->swap(*static_cast<QDBusConnection*>(other));
+}
+
 void QDBusConnection_UnregisterObject(void* ptr, char* path, int mode)
 {
 	static_cast<QDBusConnection*>(ptr)->unregisterObject(QString(path), static_cast<QDBusConnection::UnregisterMode>(mode));
@@ -566,6 +596,7 @@ void QDBusConnection_DestroyQDBusConnection(void* ptr)
 class MyQDBusConnectionInterface: public QDBusConnectionInterface
 {
 public:
+	void Signal_CallWithCallbackFailed(const QDBusError & error, const QDBusMessage & call) { callbackQDBusConnectionInterface_CallWithCallbackFailed(this, this->objectName().toUtf8().data(), new QDBusError(error), new QDBusMessage(call)); };
 	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceRegistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
 	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceUnregistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusConnectionInterface_TimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -578,6 +609,21 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusConnectionInterface_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusConnectionInterface_MetaObject(const_cast<MyQDBusConnectionInterface*>(this), this->objectName().toUtf8().data())); };
 };
+
+void QDBusConnectionInterface_ConnectCallWithCallbackFailed(void* ptr)
+{
+	QObject::connect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&QDBusConnectionInterface::callWithCallbackFailed), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&MyQDBusConnectionInterface::Signal_CallWithCallbackFailed));
+}
+
+void QDBusConnectionInterface_DisconnectCallWithCallbackFailed(void* ptr)
+{
+	QObject::disconnect(static_cast<QDBusConnectionInterface*>(ptr), static_cast<void (QDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&QDBusConnectionInterface::callWithCallbackFailed), static_cast<MyQDBusConnectionInterface*>(ptr), static_cast<void (MyQDBusConnectionInterface::*)(const QDBusError &, const QDBusMessage &)>(&MyQDBusConnectionInterface::Signal_CallWithCallbackFailed));
+}
+
+void QDBusConnectionInterface_CallWithCallbackFailed(void* ptr, void* error, void* call)
+{
+	static_cast<QDBusConnectionInterface*>(ptr)->callWithCallbackFailed(*static_cast<QDBusError*>(error), *static_cast<QDBusMessage*>(call));
+}
 
 void QDBusConnectionInterface_ConnectServiceRegistered(void* ptr)
 {
@@ -744,6 +790,11 @@ void QDBusContext_DestroyQDBusContext(void* ptr)
 	static_cast<QDBusContext*>(ptr)->~QDBusContext();
 }
 
+void* QDBusError_NewQDBusError(void* other)
+{
+	return new QDBusError(*static_cast<QDBusError*>(other));
+}
+
 char* QDBusError_QDBusError_ErrorString(int error)
 {
 	return QDBusError::errorString(static_cast<QDBusError::ErrorType>(error)).toUtf8().data();
@@ -762,6 +813,11 @@ char* QDBusError_Message(void* ptr)
 char* QDBusError_Name(void* ptr)
 {
 	return static_cast<QDBusError*>(ptr)->name().toUtf8().data();
+}
+
+void QDBusError_Swap(void* ptr, void* other)
+{
+	static_cast<QDBusError*>(ptr)->swap(*static_cast<QDBusError*>(other));
 }
 
 int QDBusError_Type(void* ptr)
@@ -929,6 +985,11 @@ void* QDBusMessage_QDBusMessage_CreateSignal(char* path, char* interfa, char* na
 	return new QDBusMessage(QDBusMessage::createSignal(QString(path), QString(interfa), QString(name)));
 }
 
+void* QDBusMessage_QDBusMessage_CreateTargetedSignal(char* service, char* path, char* interfa, char* name)
+{
+	return new QDBusMessage(QDBusMessage::createTargetedSignal(QString(service), QString(path), QString(interfa), QString(name)));
+}
+
 char* QDBusMessage_ErrorMessage(void* ptr)
 {
 	return static_cast<QDBusMessage*>(ptr)->errorMessage().toUtf8().data();
@@ -984,6 +1045,11 @@ char* QDBusMessage_Signature(void* ptr)
 	return static_cast<QDBusMessage*>(ptr)->signature().toUtf8().data();
 }
 
+void QDBusMessage_Swap(void* ptr, void* other)
+{
+	static_cast<QDBusMessage*>(ptr)->swap(*static_cast<QDBusMessage*>(other));
+}
+
 int QDBusMessage_Type(void* ptr)
 {
 	return static_cast<QDBusMessage*>(ptr)->type();
@@ -1022,6 +1088,11 @@ char* QDBusObjectPath_Path(void* ptr)
 void QDBusObjectPath_SetPath(void* ptr, char* path)
 {
 	static_cast<QDBusObjectPath*>(ptr)->setPath(QString(path));
+}
+
+void QDBusObjectPath_Swap(void* ptr, void* other)
+{
+	static_cast<QDBusObjectPath*>(ptr)->swap(*static_cast<QDBusObjectPath*>(other));
 }
 
 void* QDBusPendingCall_NewQDBusPendingCall(void* other)
@@ -1230,6 +1301,11 @@ int QDBusServer_IsAnonymousAuthenticationAllowed(void* ptr)
 int QDBusServer_IsConnected(void* ptr)
 {
 	return static_cast<QDBusServer*>(ptr)->isConnected();
+}
+
+void* QDBusServer_LastError(void* ptr)
+{
+	return new QDBusError(static_cast<QDBusServer*>(ptr)->lastError());
 }
 
 void QDBusServer_ConnectNewConnection(void* ptr)
@@ -1586,6 +1662,11 @@ char* QDBusSignature_Signature(void* ptr)
 	return static_cast<QDBusSignature*>(ptr)->signature().toUtf8().data();
 }
 
+void QDBusSignature_Swap(void* ptr, void* other)
+{
+	static_cast<QDBusSignature*>(ptr)->swap(*static_cast<QDBusSignature*>(other));
+}
+
 void* QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor()
 {
 	return new QDBusUnixFileDescriptor();
@@ -1636,6 +1717,11 @@ void* QDBusVariant_NewQDBusVariant()
 	return new QDBusVariant();
 }
 
+void* QDBusVariant_NewQDBusVariant3(void* v)
+{
+	return new QDBusVariant(*static_cast<QVariant*>(v));
+}
+
 void* QDBusVariant_NewQDBusVariant2(void* variant)
 {
 	return new QDBusVariant(*static_cast<QVariant*>(variant));
@@ -1644,6 +1730,11 @@ void* QDBusVariant_NewQDBusVariant2(void* variant)
 void QDBusVariant_SetVariant(void* ptr, void* variant)
 {
 	static_cast<QDBusVariant*>(ptr)->setVariant(*static_cast<QVariant*>(variant));
+}
+
+void QDBusVariant_Swap(void* ptr, void* other)
+{
+	static_cast<QDBusVariant*>(ptr)->swap(*static_cast<QDBusVariant*>(other));
 }
 
 void* QDBusVariant_Variant(void* ptr)

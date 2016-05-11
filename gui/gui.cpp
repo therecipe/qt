@@ -134,6 +134,7 @@
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
 #include <QResizeEvent>
+#include <QRgba64>
 #include <QScreen>
 #include <QScrollEvent>
 #include <QScrollPrepareEvent>
@@ -736,11 +737,6 @@ public:
 	QWindow * window() const { return static_cast<QWindow*>(callbackQAccessibleInterface_Window(const_cast<MyQAccessibleInterface*>(this), this->objectNameAbs().toUtf8().data())); };
 };
 
-void QAccessibleInterface_DestroyQAccessibleInterface(void* ptr)
-{
-	static_cast<QAccessibleInterface*>(ptr)->~QAccessibleInterface();
-}
-
 void* QAccessibleInterface_ActionInterface(void* ptr)
 {
 	return static_cast<QAccessibleInterface*>(ptr)->actionInterface();
@@ -869,6 +865,11 @@ void* QAccessibleInterface_Window(void* ptr)
 void* QAccessibleInterface_WindowDefault(void* ptr)
 {
 	return static_cast<QAccessibleInterface*>(ptr)->QAccessibleInterface::window();
+}
+
+void QAccessibleInterface_DestroyQAccessibleInterface(void* ptr)
+{
+	static_cast<QAccessibleInterface*>(ptr)->~QAccessibleInterface();
 }
 
 char* QAccessibleInterface_ObjectNameAbs(void* ptr)
@@ -2372,27 +2373,37 @@ void* QColor_NewQColor()
 	return new QColor();
 }
 
-void* QColor_NewQColor8(int color)
+void* QColor_NewQColor10(void* other)
+{
+	return new QColor(*static_cast<QColor*>(other));
+}
+
+void* QColor_NewQColor5(void* rgba64)
+{
+	return new QColor(*static_cast<QRgba64*>(rgba64));
+}
+
+void* QColor_NewQColor2(int color)
 {
 	return new QColor(static_cast<Qt::GlobalColor>(color));
 }
 
-void* QColor_NewQColor6(void* color)
+void* QColor_NewQColor9(void* color)
 {
 	return new QColor(*static_cast<QColor*>(color));
 }
 
-void* QColor_NewQColor4(char* name)
+void* QColor_NewQColor6(char* name)
 {
 	return new QColor(QString(name));
 }
 
-void* QColor_NewQColor5(char* name)
+void* QColor_NewQColor7(char* name)
 {
 	return new QColor(const_cast<const char*>(name));
 }
 
-void* QColor_NewQColor2(int r, int g, int b, int a)
+void* QColor_NewQColor3(int r, int g, int b, int a)
 {
 	return new QColor(r, g, b, a);
 }
@@ -2485,6 +2496,11 @@ void* QColor_QColor_FromRgb2(int r, int g, int b, int a)
 void* QColor_QColor_FromRgbF(double r, double g, double b, double a)
 {
 	return new QColor(QColor::fromRgbF(static_cast<double>(r), static_cast<double>(g), static_cast<double>(b), static_cast<double>(a)));
+}
+
+void* QColor_QColor_FromRgba642(void* rgba64)
+{
+	return new QColor(QColor::fromRgba64(*static_cast<QRgba64*>(rgba64)));
 }
 
 void QColor_GetCmyk(void* ptr, int c, int m, int y, int k, int a)
@@ -2710,6 +2726,11 @@ void QColor_SetRedF(void* ptr, double red)
 void QColor_SetRgb(void* ptr, int r, int g, int b, int a)
 {
 	static_cast<QColor*>(ptr)->setRgb(r, g, b, a);
+}
+
+void QColor_SetRgba64(void* ptr, void* rgba)
+{
+	static_cast<QColor*>(ptr)->setRgba64(*static_cast<QRgba64*>(rgba));
 }
 
 int QColor_Spec(void* ptr)
@@ -4119,7 +4140,7 @@ void* QFontMetrics_BoundingRect(void* ptr, void* ch)
 	return new QRect(static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).x(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).y(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).width(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QChar*>(ch))).height());
 }
 
-void* QFontMetrics_BoundingRect4(void* ptr, void* rect, int flags, char* text, int tabStops, int tabArray)
+void* QFontMetrics_BoundingRect3(void* ptr, void* rect, int flags, char* text, int tabStops, int tabArray)
 {
 	return new QRect(static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QRect*>(rect), flags, QString(text), tabStops, &tabArray)).x(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QRect*>(rect), flags, QString(text), tabStops, &tabArray)).y(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QRect*>(rect), flags, QString(text), tabStops, &tabArray)).width(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(*static_cast<QRect*>(rect), flags, QString(text), tabStops, &tabArray)).height());
 }
@@ -4129,7 +4150,7 @@ void* QFontMetrics_BoundingRect2(void* ptr, char* text)
 	return new QRect(static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(QString(text))).x(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(QString(text))).y(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(QString(text))).width(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(QString(text))).height());
 }
 
-void* QFontMetrics_BoundingRect3(void* ptr, int x, int y, int width, int height, int flags, char* text, int tabStops, int tabArray)
+void* QFontMetrics_BoundingRect4(void* ptr, int x, int y, int width, int height, int flags, char* text, int tabStops, int tabArray)
 {
 	return new QRect(static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(x, y, width, height, flags, QString(text), tabStops, &tabArray)).x(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(x, y, width, height, flags, QString(text), tabStops, &tabArray)).y(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(x, y, width, height, flags, QString(text), tabStops, &tabArray)).width(), static_cast<QRect>(static_cast<QFontMetrics*>(ptr)->boundingRect(x, y, width, height, flags, QString(text), tabStops, &tabArray)).height());
 }
@@ -4670,13 +4691,13 @@ class MyQGuiApplication: public QGuiApplication
 public:
 	MyQGuiApplication(int &argc, char **argv) : QGuiApplication(argc, argv) {};
 	void Signal_ApplicationStateChanged(Qt::ApplicationState state) { callbackQGuiApplication_ApplicationStateChanged(this, this->objectName().toUtf8().data(), state); };
-	bool event(QEvent * e) { return callbackQGuiApplication_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	void Signal_FocusObjectChanged(QObject * focusObject) { callbackQGuiApplication_FocusObjectChanged(this, this->objectName().toUtf8().data(), focusObject); };
 	void Signal_FocusWindowChanged(QWindow * focusWindow) { callbackQGuiApplication_FocusWindowChanged(this, this->objectName().toUtf8().data(), focusWindow); };
 	void Signal_FontDatabaseChanged() { callbackQGuiApplication_FontDatabaseChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_LastWindowClosed() { callbackQGuiApplication_LastWindowClosed(this, this->objectName().toUtf8().data()); };
 	void Signal_LayoutDirectionChanged(Qt::LayoutDirection direction) { callbackQGuiApplication_LayoutDirectionChanged(this, this->objectName().toUtf8().data(), direction); };
 	void Signal_PaletteChanged(const QPalette & palette) { callbackQGuiApplication_PaletteChanged(this, this->objectName().toUtf8().data(), new QPalette(palette)); };
+	void Signal_PrimaryScreenChanged(QScreen * screen) { callbackQGuiApplication_PrimaryScreenChanged(this, this->objectName().toUtf8().data(), screen); };
 	void Signal_ScreenAdded(QScreen * screen) { callbackQGuiApplication_ScreenAdded(this, this->objectName().toUtf8().data(), screen); };
 	void Signal_ScreenRemoved(QScreen * screen) { callbackQGuiApplication_ScreenRemoved(this, this->objectName().toUtf8().data(), screen); };
 	void quit() { callbackQGuiApplication_Quit(this, this->objectName().toUtf8().data()); };
@@ -4723,6 +4744,11 @@ void* QGuiApplication_QGuiApplication_OverrideCursor()
 char* QGuiApplication_QGuiApplication_PlatformName()
 {
 	return QGuiApplication::platformName().toUtf8().data();
+}
+
+void* QGuiApplication_QGuiApplication_PrimaryScreen()
+{
+	return QGuiApplication::primaryScreen();
 }
 
 int QGuiApplication_QGuiApplication_QueryKeyboardModifiers()
@@ -4831,11 +4857,6 @@ int QGuiApplication_Event(void* ptr, void* e)
 	return static_cast<QGuiApplication*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QGuiApplication_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QGuiApplication*>(ptr)->QGuiApplication::event(static_cast<QEvent*>(e));
-}
-
 int QGuiApplication_QGuiApplication_Exec()
 {
 	return QGuiApplication::exec();
@@ -4904,6 +4925,11 @@ void QGuiApplication_FontDatabaseChanged(void* ptr)
 void* QGuiApplication_QGuiApplication_InputMethod()
 {
 	return QGuiApplication::inputMethod();
+}
+
+int QGuiApplication_QGuiApplication_IsFallbackSessionManagementEnabled()
+{
+	return QGuiApplication::isFallbackSessionManagementEnabled();
 }
 
 int QGuiApplication_QGuiApplication_IsLeftToRight()
@@ -4981,9 +5007,19 @@ void QGuiApplication_PaletteChanged(void* ptr, void* palette)
 	static_cast<QGuiApplication*>(ptr)->paletteChanged(*static_cast<QPalette*>(palette));
 }
 
-void* QGuiApplication_QGuiApplication_PrimaryScreen()
+void QGuiApplication_ConnectPrimaryScreenChanged(void* ptr)
 {
-	return QGuiApplication::primaryScreen();
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::primaryScreenChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_PrimaryScreenChanged));
+}
+
+void QGuiApplication_DisconnectPrimaryScreenChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QScreen *)>(&QGuiApplication::primaryScreenChanged), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QScreen *)>(&MyQGuiApplication::Signal_PrimaryScreenChanged));
+}
+
+void QGuiApplication_PrimaryScreenChanged(void* ptr, void* screen)
+{
+	static_cast<QGuiApplication*>(ptr)->primaryScreenChanged(static_cast<QScreen*>(screen));
 }
 
 void QGuiApplication_ConnectScreenAdded(void* ptr)
@@ -5019,6 +5055,11 @@ void QGuiApplication_ScreenRemoved(void* ptr, void* screen)
 void QGuiApplication_QGuiApplication_SetDesktopSettingsAware(int on)
 {
 	QGuiApplication::setDesktopSettingsAware(on != 0);
+}
+
+void QGuiApplication_QGuiApplication_SetFallbackSessionManagementEnabled(int enabled)
+{
+	QGuiApplication::setFallbackSessionManagementEnabled(enabled != 0);
 }
 
 void QGuiApplication_QGuiApplication_SetFont(void* font)
@@ -5271,6 +5312,11 @@ int QIcon_QIcon_HasThemeIcon(char* name)
 	return QIcon::hasThemeIcon(QString(name));
 }
 
+int QIcon_IsMask(void* ptr)
+{
+	return static_cast<QIcon*>(ptr)->isMask();
+}
+
 int QIcon_IsNull(void* ptr)
 {
 	return static_cast<QIcon*>(ptr)->isNull();
@@ -5291,7 +5337,7 @@ void QIcon_Paint2(void* ptr, void* painter, int x, int y, int w, int h, int alig
 	static_cast<QIcon*>(ptr)->paint(static_cast<QPainter*>(painter), x, y, w, h, static_cast<Qt::AlignmentFlag>(alignment), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
-void* QIcon_Pixmap2(void* ptr, void* window, void* size, int mode, int state)
+void* QIcon_Pixmap4(void* ptr, void* window, void* size, int mode, int state)
 {
 	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(static_cast<QWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
 }
@@ -5301,14 +5347,19 @@ void* QIcon_Pixmap(void* ptr, void* size, int mode, int state)
 	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(*static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
 }
 
-void* QIcon_Pixmap4(void* ptr, int extent, int mode, int state)
+void* QIcon_Pixmap3(void* ptr, int extent, int mode, int state)
 {
 	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(extent, static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
 }
 
-void* QIcon_Pixmap3(void* ptr, int w, int h, int mode, int state)
+void* QIcon_Pixmap2(void* ptr, int w, int h, int mode, int state)
 {
 	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(w, h, static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+}
+
+void QIcon_SetIsMask(void* ptr, int isMask)
+{
+	static_cast<QIcon*>(ptr)->setIsMask(isMask != 0);
 }
 
 void QIcon_QIcon_SetThemeName(char* name)
@@ -5352,6 +5403,7 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
+	MyQIconEngine() : QIconEngine() {};
 	QSize actualSize(const QSize & size, QIcon::Mode mode, QIcon::State state) { return *static_cast<QSize*>(callbackQIconEngine_ActualSize(this, this->objectNameAbs().toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height()), mode, state)); };
 	void addFile(const QString & fileName, const QSize & size, QIcon::Mode mode, QIcon::State state) { callbackQIconEngine_AddFile(this, this->objectNameAbs().toUtf8().data(), fileName.toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height()), mode, state); };
 	void addPixmap(const QPixmap & pixmap, QIcon::Mode mode, QIcon::State state) { callbackQIconEngine_AddPixmap(this, this->objectNameAbs().toUtf8().data(), new QPixmap(pixmap), mode, state); };
@@ -5362,6 +5414,11 @@ public:
 	QPixmap pixmap(const QSize & size, QIcon::Mode mode, QIcon::State state) { return *static_cast<QPixmap*>(callbackQIconEngine_Pixmap(this, this->objectNameAbs().toUtf8().data(), new QSize(static_cast<QSize>(size).width(), static_cast<QSize>(size).height()), mode, state)); };
 	void virtual_hook(int id, void * data) { callbackQIconEngine_Virtual_hook(this, this->objectNameAbs().toUtf8().data(), id, data); };
 };
+
+void* QIconEngine_NewQIconEngine()
+{
+	return new MyQIconEngine();
+}
 
 void* QIconEngine_ActualSize(void* ptr, void* size, int mode, int state)
 {
@@ -5594,12 +5651,12 @@ void* QImage_Copy(void* ptr, void* rectangle)
 	return new QImage(static_cast<QImage*>(ptr)->copy(*static_cast<QRect*>(rectangle)));
 }
 
-void QImage_Fill2(void* ptr, int color)
+void QImage_Fill3(void* ptr, int color)
 {
 	static_cast<QImage*>(ptr)->fill(static_cast<Qt::GlobalColor>(color));
 }
 
-void QImage_Fill3(void* ptr, void* color)
+void QImage_Fill2(void* ptr, void* color)
 {
 	static_cast<QImage*>(ptr)->fill(*static_cast<QColor*>(color));
 }
@@ -5789,6 +5846,16 @@ int QImage_LoadFromData2(void* ptr, char* data, char* format)
 	return static_cast<QImage*>(ptr)->loadFromData(QByteArray(data), const_cast<const char*>(format));
 }
 
+void* QImage_PixelColor(void* ptr, void* position)
+{
+	return new QColor(static_cast<QImage*>(ptr)->pixelColor(*static_cast<QPoint*>(position)));
+}
+
+void* QImage_PixelColor2(void* ptr, int x, int y)
+{
+	return new QColor(static_cast<QImage*>(ptr)->pixelColor(x, y));
+}
+
 int QImage_PixelIndex(void* ptr, void* position)
 {
 	return static_cast<QImage*>(ptr)->pixelIndex(*static_cast<QPoint*>(position));
@@ -5832,6 +5899,16 @@ void QImage_SetDotsPerMeterX(void* ptr, int x)
 void QImage_SetDotsPerMeterY(void* ptr, int y)
 {
 	static_cast<QImage*>(ptr)->setDotsPerMeterY(y);
+}
+
+void QImage_SetPixelColor(void* ptr, void* position, void* color)
+{
+	static_cast<QImage*>(ptr)->setPixelColor(*static_cast<QPoint*>(position), *static_cast<QColor*>(color));
+}
+
+void QImage_SetPixelColor2(void* ptr, int x, int y, void* color)
+{
+	static_cast<QImage*>(ptr)->setPixelColor(x, y, *static_cast<QColor*>(color));
 }
 
 void* QImage_SmoothScaled(void* ptr, int w, int h)
@@ -6909,6 +6986,11 @@ void* QInputMethod_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QInputMethod*>(ptr)->QInputMethod::metaObject());
 }
 
+void QInputMethodEvent_DestroyQInputMethodEvent(void* ptr)
+{
+	static_cast<QInputMethodEvent*>(ptr)->~QInputMethodEvent();
+}
+
 void* QInputMethodEvent_NewQInputMethodEvent()
 {
 	return new QInputMethodEvent();
@@ -7316,17 +7398,17 @@ void QMatrix4x4_Optimize(void* ptr)
 	static_cast<QMatrix4x4*>(ptr)->optimize();
 }
 
-void QMatrix4x4_Ortho2(void* ptr, void* rect)
+void QMatrix4x4_Ortho3(void* ptr, void* rect)
 {
 	static_cast<QMatrix4x4*>(ptr)->ortho(*static_cast<QRect*>(rect));
 }
 
-void QMatrix4x4_Ortho3(void* ptr, void* rect)
+void QMatrix4x4_Ortho2(void* ptr, void* rect)
 {
 	static_cast<QMatrix4x4*>(ptr)->ortho(*static_cast<QRectF*>(rect));
 }
 
-void QMatrix4x4_Rotate2(void* ptr, void* quaternion)
+void QMatrix4x4_Rotate3(void* ptr, void* quaternion)
 {
 	static_cast<QMatrix4x4*>(ptr)->rotate(*static_cast<QQuaternion*>(quaternion));
 }
@@ -7374,6 +7456,11 @@ void* QMouseEvent_NewQMouseEvent2(int ty, void* localPos, void* screenPos, int b
 void* QMouseEvent_NewQMouseEvent3(int ty, void* localPos, void* windowPos, void* screenPos, int button, int buttons, int modifiers)
 {
 	return new QMouseEvent(static_cast<QEvent::Type>(ty), *static_cast<QPointF*>(localPos), *static_cast<QPointF*>(windowPos), *static_cast<QPointF*>(screenPos), static_cast<Qt::MouseButton>(button), static_cast<Qt::MouseButton>(buttons), static_cast<Qt::KeyboardModifier>(modifiers));
+}
+
+void* QMouseEvent_NewQMouseEvent4(int ty, void* localPos, void* windowPos, void* screenPos, int button, int buttons, int modifiers, int source)
+{
+	return new QMouseEvent(static_cast<QEvent::Type>(ty), *static_cast<QPointF*>(localPos), *static_cast<QPointF*>(windowPos), *static_cast<QPointF*>(screenPos), static_cast<Qt::MouseButton>(button), static_cast<Qt::MouseButton>(buttons), static_cast<Qt::KeyboardModifier>(modifiers), static_cast<Qt::MouseEventSource>(source));
 }
 
 int QMouseEvent_Button(void* ptr)
@@ -8196,6 +8283,11 @@ int QPageLayout_SetLeftMargin(void* ptr, double leftMargin)
 	return static_cast<QPageLayout*>(ptr)->setLeftMargin(static_cast<double>(leftMargin));
 }
 
+int QPageLayout_SetMargins(void* ptr, void* margins)
+{
+	return static_cast<QPageLayout*>(ptr)->setMargins(*static_cast<QMarginsF*>(margins));
+}
+
 void QPageLayout_SetMinimumMargins(void* ptr, void* minMargins)
 {
 	static_cast<QPageLayout*>(ptr)->setMinimumMargins(*static_cast<QMarginsF*>(minMargins));
@@ -8568,14 +8660,19 @@ int QPaintDevice_Depth(void* ptr)
 	return static_cast<QPaintDevice*>(ptr)->depth();
 }
 
+int QPaintDevice_Height(void* ptr)
+{
+	return static_cast<QPaintDevice*>(ptr)->height();
+}
+
 int QPaintDevice_DevicePixelRatio(void* ptr)
 {
 	return static_cast<QPaintDevice*>(ptr)->devicePixelRatio();
 }
 
-int QPaintDevice_Height(void* ptr)
+double QPaintDevice_DevicePixelRatioF(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->height();
+	return static_cast<double>(static_cast<QPaintDevice*>(ptr)->devicePixelRatioF());
 }
 
 int QPaintDevice_HeightMM(void* ptr)
@@ -9626,7 +9723,7 @@ void QPainter_DrawChord(void* ptr, void* rectangle, int startAngle, int spanAngl
 	static_cast<QPainter*>(ptr)->drawChord(*static_cast<QRectF*>(rectangle), startAngle, spanAngle);
 }
 
-void QPainter_DrawConvexPolygon2(void* ptr, void* points, int pointCount)
+void QPainter_DrawConvexPolygon3(void* ptr, void* points, int pointCount)
 {
 	static_cast<QPainter*>(ptr)->drawConvexPolygon(static_cast<QPoint*>(points), pointCount);
 }
@@ -9651,7 +9748,7 @@ void QPainter_DrawGlyphRun(void* ptr, void* position, void* glyphs)
 	static_cast<QPainter*>(ptr)->drawGlyphRun(*static_cast<QPointF*>(position), *static_cast<QGlyphRun*>(glyphs));
 }
 
-void QPainter_DrawImage3(void* ptr, void* point, void* image)
+void QPainter_DrawImage7(void* ptr, void* point, void* image)
 {
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPointF*>(point), *static_cast<QImage*>(image));
 }
@@ -9661,7 +9758,7 @@ void QPainter_DrawImage(void* ptr, void* target, void* image, void* source, int 
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRectF*>(target), *static_cast<QImage*>(image), *static_cast<QRectF*>(source), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
-void QPainter_DrawLines2(void* ptr, void* lines, int lineCount)
+void QPainter_DrawLines5(void* ptr, void* lines, int lineCount)
 {
 	static_cast<QPainter*>(ptr)->drawLines(static_cast<QLine*>(lines), lineCount);
 }
@@ -9676,7 +9773,7 @@ void QPainter_DrawPie(void* ptr, void* rectangle, int startAngle, int spanAngle)
 	static_cast<QPainter*>(ptr)->drawPie(*static_cast<QRectF*>(rectangle), startAngle, spanAngle);
 }
 
-void QPainter_DrawPixmap5(void* ptr, void* point, void* pixmap)
+void QPainter_DrawPixmap7(void* ptr, void* point, void* pixmap)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPointF*>(point), *static_cast<QPixmap*>(pixmap));
 }
@@ -9686,7 +9783,7 @@ void QPainter_DrawPixmap(void* ptr, void* target, void* pixmap, void* source)
 	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QRectF*>(target), *static_cast<QPixmap*>(pixmap), *static_cast<QRectF*>(source));
 }
 
-void QPainter_DrawRects2(void* ptr, void* rectangles, int rectCount)
+void QPainter_DrawRects3(void* ptr, void* rectangles, int rectCount)
 {
 	static_cast<QPainter*>(ptr)->drawRects(static_cast<QRect*>(rectangles), rectCount);
 }
@@ -9701,7 +9798,7 @@ void QPainter_DrawText(void* ptr, void* position, char* text)
 	static_cast<QPainter*>(ptr)->drawText(*static_cast<QPointF*>(position), QString(text));
 }
 
-void QPainter_DrawText5(void* ptr, void* rectangle, int flags, char* text, void* boundingRect)
+void QPainter_DrawText6(void* ptr, void* rectangle, int flags, char* text, void* boundingRect)
 {
 	static_cast<QPainter*>(ptr)->drawText(*static_cast<QRect*>(rectangle), flags, QString(text), static_cast<QRect*>(boundingRect));
 }
@@ -9711,7 +9808,7 @@ void QPainter_DrawText8(void* ptr, void* rectangle, char* text, void* option)
 	static_cast<QPainter*>(ptr)->drawText(*static_cast<QRectF*>(rectangle), QString(text), *static_cast<QTextOption*>(option));
 }
 
-void QPainter_DrawText4(void* ptr, void* rectangle, int flags, char* text, void* boundingRect)
+void QPainter_DrawText5(void* ptr, void* rectangle, int flags, char* text, void* boundingRect)
 {
 	static_cast<QPainter*>(ptr)->drawText(*static_cast<QRectF*>(rectangle), flags, QString(text), static_cast<QRectF*>(boundingRect));
 }
@@ -9726,7 +9823,7 @@ void QPainter_EraseRect(void* ptr, void* rectangle)
 	static_cast<QPainter*>(ptr)->eraseRect(*static_cast<QRectF*>(rectangle));
 }
 
-void QPainter_FillRect5(void* ptr, void* rectangle, void* brush)
+void QPainter_FillRect3(void* ptr, void* rectangle, void* brush)
 {
 	static_cast<QPainter*>(ptr)->fillRect(*static_cast<QRect*>(rectangle), *static_cast<QBrush*>(brush));
 }
@@ -9741,7 +9838,7 @@ void QPainter_FillRect(void* ptr, void* rectangle, void* brush)
 	static_cast<QPainter*>(ptr)->fillRect(*static_cast<QRectF*>(rectangle), *static_cast<QBrush*>(brush));
 }
 
-void QPainter_FillRect7(void* ptr, void* rectangle, void* color)
+void QPainter_FillRect4(void* ptr, void* rectangle, void* color)
 {
 	static_cast<QPainter*>(ptr)->fillRect(*static_cast<QRectF*>(rectangle), *static_cast<QColor*>(color));
 }
@@ -9766,7 +9863,7 @@ void QPainter_SetClipPath(void* ptr, void* path, int operation)
 	static_cast<QPainter*>(ptr)->setClipPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ClipOperation>(operation));
 }
 
-void QPainter_SetClipRect3(void* ptr, void* rectangle, int operation)
+void QPainter_SetClipRect2(void* ptr, void* rectangle, int operation)
 {
 	static_cast<QPainter*>(ptr)->setClipRect(*static_cast<QRect*>(rectangle), static_cast<Qt::ClipOperation>(operation));
 }
@@ -9861,12 +9958,12 @@ void QPainter_DrawArc3(void* ptr, int x, int y, int width, int height, int start
 	static_cast<QPainter*>(ptr)->drawArc(x, y, width, height, startAngle, spanAngle);
 }
 
-void QPainter_DrawChord2(void* ptr, void* rectangle, int startAngle, int spanAngle)
+void QPainter_DrawChord3(void* ptr, void* rectangle, int startAngle, int spanAngle)
 {
 	static_cast<QPainter*>(ptr)->drawChord(*static_cast<QRect*>(rectangle), startAngle, spanAngle);
 }
 
-void QPainter_DrawChord3(void* ptr, int x, int y, int width, int height, int startAngle, int spanAngle)
+void QPainter_DrawChord2(void* ptr, int x, int y, int width, int height, int startAngle, int spanAngle)
 {
 	static_cast<QPainter*>(ptr)->drawChord(x, y, width, height, startAngle, spanAngle);
 }
@@ -9876,7 +9973,7 @@ void QPainter_DrawConvexPolygon4(void* ptr, void* polygon)
 	static_cast<QPainter*>(ptr)->drawConvexPolygon(*static_cast<QPolygon*>(polygon));
 }
 
-void QPainter_DrawConvexPolygon3(void* ptr, void* polygon)
+void QPainter_DrawConvexPolygon2(void* ptr, void* polygon)
 {
 	static_cast<QPainter*>(ptr)->drawConvexPolygon(*static_cast<QPolygonF*>(polygon));
 }
@@ -9896,22 +9993,22 @@ void QPainter_DrawEllipse3(void* ptr, int x, int y, int width, int height)
 	static_cast<QPainter*>(ptr)->drawEllipse(x, y, width, height);
 }
 
-void QPainter_DrawImage4(void* ptr, void* point, void* image)
+void QPainter_DrawImage8(void* ptr, void* point, void* image)
 {
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPoint*>(point), *static_cast<QImage*>(image));
 }
 
-void QPainter_DrawImage6(void* ptr, void* point, void* image, void* source, int flags)
+void QPainter_DrawImage4(void* ptr, void* point, void* image, void* source, int flags)
 {
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPoint*>(point), *static_cast<QImage*>(image), *static_cast<QRect*>(source), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
-void QPainter_DrawImage5(void* ptr, void* point, void* image, void* source, int flags)
+void QPainter_DrawImage3(void* ptr, void* point, void* image, void* source, int flags)
 {
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QPointF*>(point), *static_cast<QImage*>(image), *static_cast<QRectF*>(source), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
-void QPainter_DrawImage8(void* ptr, void* rectangle, void* image)
+void QPainter_DrawImage6(void* ptr, void* rectangle, void* image)
 {
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRect*>(rectangle), *static_cast<QImage*>(image));
 }
@@ -9921,7 +10018,7 @@ void QPainter_DrawImage2(void* ptr, void* target, void* image, void* source, int
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRect*>(target), *static_cast<QImage*>(image), *static_cast<QRect*>(source), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
-void QPainter_DrawImage7(void* ptr, void* rectangle, void* image)
+void QPainter_DrawImage5(void* ptr, void* rectangle, void* image)
 {
 	static_cast<QPainter*>(ptr)->drawImage(*static_cast<QRectF*>(rectangle), *static_cast<QImage*>(image));
 }
@@ -9941,17 +10038,17 @@ void QPainter_DrawLine(void* ptr, void* line)
 	static_cast<QPainter*>(ptr)->drawLine(*static_cast<QLineF*>(line));
 }
 
-void QPainter_DrawLine3(void* ptr, void* p1, void* p2)
+void QPainter_DrawLine4(void* ptr, void* p1, void* p2)
 {
 	static_cast<QPainter*>(ptr)->drawLine(*static_cast<QPoint*>(p1), *static_cast<QPoint*>(p2));
 }
 
-void QPainter_DrawLine4(void* ptr, void* p1, void* p2)
+void QPainter_DrawLine5(void* ptr, void* p1, void* p2)
 {
 	static_cast<QPainter*>(ptr)->drawLine(*static_cast<QPointF*>(p1), *static_cast<QPointF*>(p2));
 }
 
-void QPainter_DrawLine5(void* ptr, int x1, int y1, int x2, int y2)
+void QPainter_DrawLine3(void* ptr, int x1, int y1, int x2, int y2)
 {
 	static_cast<QPainter*>(ptr)->drawLine(x1, y1, x2, y2);
 }
@@ -9961,7 +10058,7 @@ void QPainter_DrawLines(void* ptr, void* lines, int lineCount)
 	static_cast<QPainter*>(ptr)->drawLines(static_cast<QLineF*>(lines), lineCount);
 }
 
-void QPainter_DrawLines4(void* ptr, void* pointPairs, int lineCount)
+void QPainter_DrawLines7(void* ptr, void* pointPairs, int lineCount)
 {
 	static_cast<QPainter*>(ptr)->drawLines(static_cast<QPoint*>(pointPairs), lineCount);
 }
@@ -9976,42 +10073,42 @@ void QPainter_DrawPath(void* ptr, void* path)
 	static_cast<QPainter*>(ptr)->drawPath(*static_cast<QPainterPath*>(path));
 }
 
-void QPainter_DrawPicture2(void* ptr, void* point, void* picture)
+void QPainter_DrawPicture3(void* ptr, void* point, void* picture)
 {
 	static_cast<QPainter*>(ptr)->drawPicture(*static_cast<QPoint*>(point), *static_cast<QPicture*>(picture));
 }
 
-void QPainter_DrawPicture3(void* ptr, int x, int y, void* picture)
+void QPainter_DrawPicture2(void* ptr, int x, int y, void* picture)
 {
 	static_cast<QPainter*>(ptr)->drawPicture(x, y, *static_cast<QPicture*>(picture));
 }
 
-void QPainter_DrawPie2(void* ptr, void* rectangle, int startAngle, int spanAngle)
+void QPainter_DrawPie3(void* ptr, void* rectangle, int startAngle, int spanAngle)
 {
 	static_cast<QPainter*>(ptr)->drawPie(*static_cast<QRect*>(rectangle), startAngle, spanAngle);
 }
 
-void QPainter_DrawPie3(void* ptr, int x, int y, int width, int height, int startAngle, int spanAngle)
+void QPainter_DrawPie2(void* ptr, int x, int y, int width, int height, int startAngle, int spanAngle)
 {
 	static_cast<QPainter*>(ptr)->drawPie(x, y, width, height, startAngle, spanAngle);
 }
 
-void QPainter_DrawPixmap6(void* ptr, void* point, void* pixmap)
+void QPainter_DrawPixmap8(void* ptr, void* point, void* pixmap)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPoint*>(point), *static_cast<QPixmap*>(pixmap));
 }
 
-void QPainter_DrawPixmap4(void* ptr, void* point, void* pixmap, void* source)
+void QPainter_DrawPixmap6(void* ptr, void* point, void* pixmap, void* source)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPoint*>(point), *static_cast<QPixmap*>(pixmap), *static_cast<QRect*>(source));
 }
 
-void QPainter_DrawPixmap3(void* ptr, void* point, void* pixmap, void* source)
+void QPainter_DrawPixmap5(void* ptr, void* point, void* pixmap, void* source)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QPointF*>(point), *static_cast<QPixmap*>(pixmap), *static_cast<QRectF*>(source));
 }
 
-void QPainter_DrawPixmap8(void* ptr, void* rectangle, void* pixmap)
+void QPainter_DrawPixmap10(void* ptr, void* rectangle, void* pixmap)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QRect*>(rectangle), *static_cast<QPixmap*>(pixmap));
 }
@@ -10021,22 +10118,22 @@ void QPainter_DrawPixmap2(void* ptr, void* target, void* pixmap, void* source)
 	static_cast<QPainter*>(ptr)->drawPixmap(*static_cast<QRect*>(target), *static_cast<QPixmap*>(pixmap), *static_cast<QRect*>(source));
 }
 
-void QPainter_DrawPixmap7(void* ptr, int x, int y, void* pixmap)
+void QPainter_DrawPixmap9(void* ptr, int x, int y, void* pixmap)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(x, y, *static_cast<QPixmap*>(pixmap));
 }
 
-void QPainter_DrawPixmap11(void* ptr, int x, int y, void* pixmap, int sx, int sy, int sw, int sh)
+void QPainter_DrawPixmap4(void* ptr, int x, int y, void* pixmap, int sx, int sy, int sw, int sh)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(x, y, *static_cast<QPixmap*>(pixmap), sx, sy, sw, sh);
 }
 
-void QPainter_DrawPixmap10(void* ptr, int x, int y, int w, int h, void* pixmap, int sx, int sy, int sw, int sh)
+void QPainter_DrawPixmap3(void* ptr, int x, int y, int w, int h, void* pixmap, int sx, int sy, int sw, int sh)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(x, y, w, h, *static_cast<QPixmap*>(pixmap), sx, sy, sw, sh);
 }
 
-void QPainter_DrawPixmap9(void* ptr, int x, int y, int width, int height, void* pixmap)
+void QPainter_DrawPixmap11(void* ptr, int x, int y, int width, int height, void* pixmap)
 {
 	static_cast<QPainter*>(ptr)->drawPixmap(x, y, width, height, *static_cast<QPixmap*>(pixmap));
 }
@@ -10056,7 +10153,7 @@ void QPainter_DrawPoint3(void* ptr, int x, int y)
 	static_cast<QPainter*>(ptr)->drawPoint(x, y);
 }
 
-void QPainter_DrawPoints2(void* ptr, void* points, int pointCount)
+void QPainter_DrawPoints3(void* ptr, void* points, int pointCount)
 {
 	static_cast<QPainter*>(ptr)->drawPoints(static_cast<QPoint*>(points), pointCount);
 }
@@ -10071,12 +10168,12 @@ void QPainter_DrawPoints4(void* ptr, void* points)
 	static_cast<QPainter*>(ptr)->drawPoints(*static_cast<QPolygon*>(points));
 }
 
-void QPainter_DrawPoints3(void* ptr, void* points)
+void QPainter_DrawPoints2(void* ptr, void* points)
 {
 	static_cast<QPainter*>(ptr)->drawPoints(*static_cast<QPolygonF*>(points));
 }
 
-void QPainter_DrawPolygon2(void* ptr, void* points, int pointCount, int fillRule)
+void QPainter_DrawPolygon3(void* ptr, void* points, int pointCount, int fillRule)
 {
 	static_cast<QPainter*>(ptr)->drawPolygon(static_cast<QPoint*>(points), pointCount, static_cast<Qt::FillRule>(fillRule));
 }
@@ -10091,12 +10188,12 @@ void QPainter_DrawPolygon4(void* ptr, void* points, int fillRule)
 	static_cast<QPainter*>(ptr)->drawPolygon(*static_cast<QPolygon*>(points), static_cast<Qt::FillRule>(fillRule));
 }
 
-void QPainter_DrawPolygon3(void* ptr, void* points, int fillRule)
+void QPainter_DrawPolygon2(void* ptr, void* points, int fillRule)
 {
 	static_cast<QPainter*>(ptr)->drawPolygon(*static_cast<QPolygonF*>(points), static_cast<Qt::FillRule>(fillRule));
 }
 
-void QPainter_DrawPolyline2(void* ptr, void* points, int pointCount)
+void QPainter_DrawPolyline3(void* ptr, void* points, int pointCount)
 {
 	static_cast<QPainter*>(ptr)->drawPolyline(static_cast<QPoint*>(points), pointCount);
 }
@@ -10111,12 +10208,12 @@ void QPainter_DrawPolyline4(void* ptr, void* points)
 	static_cast<QPainter*>(ptr)->drawPolyline(*static_cast<QPolygon*>(points));
 }
 
-void QPainter_DrawPolyline3(void* ptr, void* points)
+void QPainter_DrawPolyline2(void* ptr, void* points)
 {
 	static_cast<QPainter*>(ptr)->drawPolyline(*static_cast<QPolygonF*>(points));
 }
 
-void QPainter_DrawRect2(void* ptr, void* rectangle)
+void QPainter_DrawRect3(void* ptr, void* rectangle)
 {
 	static_cast<QPainter*>(ptr)->drawRect(*static_cast<QRect*>(rectangle));
 }
@@ -10126,12 +10223,12 @@ void QPainter_DrawRect(void* ptr, void* rectangle)
 	static_cast<QPainter*>(ptr)->drawRect(*static_cast<QRectF*>(rectangle));
 }
 
-void QPainter_DrawRect3(void* ptr, int x, int y, int width, int height)
+void QPainter_DrawRect2(void* ptr, int x, int y, int width, int height)
 {
 	static_cast<QPainter*>(ptr)->drawRect(x, y, width, height);
 }
 
-void QPainter_DrawRoundedRect2(void* ptr, void* rect, double xRadius, double yRadius, int mode)
+void QPainter_DrawRoundedRect3(void* ptr, void* rect, double xRadius, double yRadius, int mode)
 {
 	static_cast<QPainter*>(ptr)->drawRoundedRect(*static_cast<QRect*>(rect), static_cast<double>(xRadius), static_cast<double>(yRadius), static_cast<Qt::SizeMode>(mode));
 }
@@ -10141,7 +10238,7 @@ void QPainter_DrawRoundedRect(void* ptr, void* rect, double xRadius, double yRad
 	static_cast<QPainter*>(ptr)->drawRoundedRect(*static_cast<QRectF*>(rect), static_cast<double>(xRadius), static_cast<double>(yRadius), static_cast<Qt::SizeMode>(mode));
 }
 
-void QPainter_DrawRoundedRect3(void* ptr, int x, int y, int w, int h, double xRadius, double yRadius, int mode)
+void QPainter_DrawRoundedRect2(void* ptr, int x, int y, int w, int h, double xRadius, double yRadius, int mode)
 {
 	static_cast<QPainter*>(ptr)->drawRoundedRect(x, y, w, h, static_cast<double>(xRadius), static_cast<double>(yRadius), static_cast<Qt::SizeMode>(mode));
 }
@@ -10161,12 +10258,12 @@ void QPainter_DrawStaticText3(void* ptr, int left, int top, void* staticText)
 	static_cast<QPainter*>(ptr)->drawStaticText(left, top, *static_cast<QStaticText*>(staticText));
 }
 
-void QPainter_DrawText3(void* ptr, void* position, char* text)
+void QPainter_DrawText2(void* ptr, void* position, char* text)
 {
 	static_cast<QPainter*>(ptr)->drawText(*static_cast<QPoint*>(position), QString(text));
 }
 
-void QPainter_DrawText6(void* ptr, int x, int y, char* text)
+void QPainter_DrawText3(void* ptr, int x, int y, char* text)
 {
 	static_cast<QPainter*>(ptr)->drawText(x, y, QString(text));
 }
@@ -10176,12 +10273,12 @@ void QPainter_DrawText7(void* ptr, int x, int y, int width, int height, int flag
 	static_cast<QPainter*>(ptr)->drawText(x, y, width, height, flags, QString(text), static_cast<QRect*>(boundingRect));
 }
 
-void QPainter_DrawTiledPixmap2(void* ptr, void* rectangle, void* pixmap, void* position)
+void QPainter_DrawTiledPixmap3(void* ptr, void* rectangle, void* pixmap, void* position)
 {
 	static_cast<QPainter*>(ptr)->drawTiledPixmap(*static_cast<QRect*>(rectangle), *static_cast<QPixmap*>(pixmap), *static_cast<QPoint*>(position));
 }
 
-void QPainter_DrawTiledPixmap3(void* ptr, int x, int y, int width, int height, void* pixmap, int sx, int sy)
+void QPainter_DrawTiledPixmap2(void* ptr, int x, int y, int width, int height, void* pixmap, int sx, int sy)
 {
 	static_cast<QPainter*>(ptr)->drawTiledPixmap(x, y, width, height, *static_cast<QPixmap*>(pixmap), sx, sy);
 }
@@ -10196,12 +10293,12 @@ void QPainter_EndNativePainting(void* ptr)
 	static_cast<QPainter*>(ptr)->endNativePainting();
 }
 
-void QPainter_EraseRect2(void* ptr, void* rectangle)
+void QPainter_EraseRect3(void* ptr, void* rectangle)
 {
 	static_cast<QPainter*>(ptr)->eraseRect(*static_cast<QRect*>(rectangle));
 }
 
-void QPainter_EraseRect3(void* ptr, int x, int y, int width, int height)
+void QPainter_EraseRect2(void* ptr, int x, int y, int width, int height)
 {
 	static_cast<QPainter*>(ptr)->eraseRect(x, y, width, height);
 }
@@ -10211,42 +10308,42 @@ void QPainter_FillPath(void* ptr, void* path, void* brush)
 	static_cast<QPainter*>(ptr)->fillPath(*static_cast<QPainterPath*>(path), *static_cast<QBrush*>(brush));
 }
 
-void QPainter_FillRect3(void* ptr, void* rectangle, int style)
+void QPainter_FillRect11(void* ptr, void* rectangle, int style)
 {
 	static_cast<QPainter*>(ptr)->fillRect(*static_cast<QRect*>(rectangle), static_cast<Qt::BrushStyle>(style));
 }
 
-void QPainter_FillRect11(void* ptr, void* rectangle, int color)
+void QPainter_FillRect8(void* ptr, void* rectangle, int color)
 {
 	static_cast<QPainter*>(ptr)->fillRect(*static_cast<QRect*>(rectangle), static_cast<Qt::GlobalColor>(color));
 }
 
-void QPainter_FillRect4(void* ptr, void* rectangle, int style)
+void QPainter_FillRect12(void* ptr, void* rectangle, int style)
 {
 	static_cast<QPainter*>(ptr)->fillRect(*static_cast<QRectF*>(rectangle), static_cast<Qt::BrushStyle>(style));
 }
 
-void QPainter_FillRect12(void* ptr, void* rectangle, int color)
+void QPainter_FillRect9(void* ptr, void* rectangle, int color)
 {
 	static_cast<QPainter*>(ptr)->fillRect(*static_cast<QRectF*>(rectangle), static_cast<Qt::GlobalColor>(color));
 }
 
-void QPainter_FillRect2(void* ptr, int x, int y, int width, int height, int style)
+void QPainter_FillRect10(void* ptr, int x, int y, int width, int height, int style)
 {
 	static_cast<QPainter*>(ptr)->fillRect(x, y, width, height, static_cast<Qt::BrushStyle>(style));
 }
 
-void QPainter_FillRect10(void* ptr, int x, int y, int width, int height, int color)
+void QPainter_FillRect7(void* ptr, int x, int y, int width, int height, int color)
 {
 	static_cast<QPainter*>(ptr)->fillRect(x, y, width, height, static_cast<Qt::GlobalColor>(color));
 }
 
-void QPainter_FillRect8(void* ptr, int x, int y, int width, int height, void* brush)
+void QPainter_FillRect2(void* ptr, int x, int y, int width, int height, void* brush)
 {
 	static_cast<QPainter*>(ptr)->fillRect(x, y, width, height, *static_cast<QBrush*>(brush));
 }
 
-void QPainter_FillRect9(void* ptr, int x, int y, int width, int height, void* color)
+void QPainter_FillRect5(void* ptr, int x, int y, int width, int height, void* color)
 {
 	static_cast<QPainter*>(ptr)->fillRect(x, y, width, height, *static_cast<QColor*>(color));
 }
@@ -10346,7 +10443,7 @@ void QPainter_SetBrushOrigin3(void* ptr, int x, int y)
 	static_cast<QPainter*>(ptr)->setBrushOrigin(x, y);
 }
 
-void QPainter_SetClipRect2(void* ptr, int x, int y, int width, int height, int operation)
+void QPainter_SetClipRect3(void* ptr, int x, int y, int width, int height, int operation)
 {
 	static_cast<QPainter*>(ptr)->setClipRect(x, y, width, height, static_cast<Qt::ClipOperation>(operation));
 }
@@ -11699,17 +11796,17 @@ void* QPixmap_NewQPixmap()
 	return new QPixmap();
 }
 
-void* QPixmap_NewQPixmap6(void* pixmap)
+void* QPixmap_NewQPixmap7(void* pixmap)
 {
 	return new QPixmap(*static_cast<QPixmap*>(pixmap));
 }
 
-void* QPixmap_NewQPixmap8(void* size)
+void* QPixmap_NewQPixmap4(void* size)
 {
 	return new QPixmap(*static_cast<QSize*>(size));
 }
 
-void* QPixmap_NewQPixmap4(char* fileName, char* format, int flags)
+void* QPixmap_NewQPixmap5(char* fileName, char* format, int flags)
 {
 	return new QPixmap(QString(fileName), const_cast<const char*>(format), static_cast<Qt::ImageConversionFlag>(flags));
 }
@@ -11909,7 +12006,12 @@ void* QPolygon_NewQPolygon()
 	return new QPolygon();
 }
 
-void* QPolygon_NewQPolygon3(void* polygon)
+void* QPolygon_NewQPolygon8(void* other)
+{
+	return new QPolygon(*static_cast<QPolygon*>(other));
+}
+
+void* QPolygon_NewQPolygon7(void* polygon)
 {
 	return new QPolygon(*static_cast<QPolygon*>(polygon));
 }
@@ -12014,7 +12116,12 @@ void* QPolygonF_NewQPolygonF()
 	return new QPolygonF();
 }
 
-void* QPolygonF_NewQPolygonF3(void* polygon)
+void* QPolygonF_NewQPolygonF8(void* other)
+{
+	return new QPolygonF(*static_cast<QPolygonF*>(other));
+}
+
+void* QPolygonF_NewQPolygonF7(void* polygon)
 {
 	return new QPolygonF(*static_cast<QPolygonF*>(polygon));
 }
@@ -13067,22 +13174,22 @@ void* QRegion_NewQRegion()
 	return new QRegion();
 }
 
-void* QRegion_NewQRegion5(void* bm)
+void* QRegion_NewQRegion6(void* bm)
 {
 	return new QRegion(*static_cast<QBitmap*>(bm));
 }
 
-void* QRegion_NewQRegion3(void* a, int fillRule)
+void* QRegion_NewQRegion4(void* a, int fillRule)
 {
 	return new QRegion(*static_cast<QPolygon*>(a), static_cast<Qt::FillRule>(fillRule));
 }
 
-void* QRegion_NewQRegion6(void* r, int t)
+void* QRegion_NewQRegion3(void* r, int t)
 {
 	return new QRegion(*static_cast<QRect*>(r), static_cast<QRegion::RegionType>(t));
 }
 
-void* QRegion_NewQRegion4(void* r)
+void* QRegion_NewQRegion5(void* r)
 {
 	return new QRegion(*static_cast<QRegion*>(r));
 }
@@ -13363,6 +13470,16 @@ void* QResizeEvent_OldSize(void* ptr)
 void* QResizeEvent_Size(void* ptr)
 {
 	return new QSize(static_cast<QSize>(static_cast<QResizeEvent*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QResizeEvent*>(ptr)->size()).height());
+}
+
+int QRgba64_IsOpaque(void* ptr)
+{
+	return static_cast<QRgba64*>(ptr)->isOpaque();
+}
+
+int QRgba64_IsTransparent(void* ptr)
+{
+	return static_cast<QRgba64*>(ptr)->isTransparent();
 }
 
 class MyQScreen: public QScreen
@@ -14185,6 +14302,11 @@ void QStandardItem_InsertRows2(void* ptr, int row, int count)
 	static_cast<QStandardItem*>(ptr)->insertRows(row, count);
 }
 
+int QStandardItem_IsAutoTristate(void* ptr)
+{
+	return static_cast<QStandardItem*>(ptr)->isAutoTristate();
+}
+
 int QStandardItem_IsCheckable(void* ptr)
 {
 	return static_cast<QStandardItem*>(ptr)->isCheckable();
@@ -14215,9 +14337,9 @@ int QStandardItem_IsSelectable(void* ptr)
 	return static_cast<QStandardItem*>(ptr)->isSelectable();
 }
 
-int QStandardItem_IsTristate(void* ptr)
+int QStandardItem_IsUserTristate(void* ptr)
 {
-	return static_cast<QStandardItem*>(ptr)->isTristate();
+	return static_cast<QStandardItem*>(ptr)->isUserTristate();
 }
 
 void* QStandardItem_Model(void* ptr)
@@ -14268,6 +14390,11 @@ void QStandardItem_SetAccessibleDescription(void* ptr, char* accessibleDescripti
 void QStandardItem_SetAccessibleText(void* ptr, char* accessibleText)
 {
 	static_cast<QStandardItem*>(ptr)->setAccessibleText(QString(accessibleText));
+}
+
+void QStandardItem_SetAutoTristate(void* ptr, int tristate)
+{
+	static_cast<QStandardItem*>(ptr)->setAutoTristate(tristate != 0);
 }
 
 void QStandardItem_SetBackground(void* ptr, void* brush)
@@ -14385,9 +14512,9 @@ void QStandardItem_SetToolTip(void* ptr, char* toolTip)
 	static_cast<QStandardItem*>(ptr)->setToolTip(QString(toolTip));
 }
 
-void QStandardItem_SetTristate(void* ptr, int tristate)
+void QStandardItem_SetUserTristate(void* ptr, int tristate)
 {
-	static_cast<QStandardItem*>(ptr)->setTristate(tristate != 0);
+	static_cast<QStandardItem*>(ptr)->setUserTristate(tristate != 0);
 }
 
 void QStandardItem_SetWhatsThis(void* ptr, char* whatsThis)
@@ -14470,26 +14597,7 @@ class MyQStandardItemModel: public QStandardItemModel
 public:
 	MyQStandardItemModel(QObject *parent) : QStandardItemModel(parent) {};
 	MyQStandardItemModel(int rows, int columns, QObject *parent) : QStandardItemModel(rows, columns, parent) {};
-	int columnCount(const QModelIndex & parent) const { return callbackQStandardItemModel_ColumnCount(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQStandardItemModel_Data(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), role)); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQStandardItemModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQStandardItemModel_Flags(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQStandardItemModel_HasChildren(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQStandardItemModel_HeaderData(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Index(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModel_ItemChanged(this, this->objectName().toUtf8().data(), item); };
-	QStringList mimeTypes() const { return QString(callbackQStandardItemModel_MimeTypes(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Parent(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(child))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	int rowCount(const QModelIndex & parent) const { return callbackQStandardItemModel_RowCount(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQStandardItemModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQStandardItemModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Sibling(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
-	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQStandardItemModel_SupportedDropActions(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data())); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Buddy(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQStandardItemModel_CanDropMimeData(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
 	bool canFetchMore(const QModelIndex & parent) const { return callbackQStandardItemModel_CanFetchMore(const_cast<MyQStandardItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
@@ -14547,19 +14655,9 @@ int QStandardItemModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QStandardItemModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_ColumnCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
 void* QStandardItemModel_Data(void* ptr, void* index, int role)
 {
 	return new QVariant(static_cast<QStandardItemModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
-}
-
-void* QStandardItemModel_DataDefault(void* ptr, void* index, int role)
-{
-	return new QVariant(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::data(*static_cast<QModelIndex*>(index), role));
 }
 
 int QStandardItemModel_DropMimeData(void* ptr, void* data, int action, int row, int column, void* parent)
@@ -14567,19 +14665,9 @@ int QStandardItemModel_DropMimeData(void* ptr, void* data, int action, int row, 
 	return static_cast<QStandardItemModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_DropMimeDataDefault(void* ptr, void* data, int action, int row, int column, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
-}
-
 int QStandardItemModel_Flags(void* ptr, void* index)
 {
 	return static_cast<QStandardItemModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
-}
-
-int QStandardItemModel_FlagsDefault(void* ptr, void* index)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::flags(*static_cast<QModelIndex*>(index));
 }
 
 int QStandardItemModel_HasChildren(void* ptr, void* parent)
@@ -14587,19 +14675,9 @@ int QStandardItemModel_HasChildren(void* ptr, void* parent)
 	return static_cast<QStandardItemModel*>(ptr)->hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_HasChildrenDefault(void* ptr, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::hasChildren(*static_cast<QModelIndex*>(parent));
-}
-
 void* QStandardItemModel_HeaderData(void* ptr, int section, int orientation, int role)
 {
 	return new QVariant(static_cast<QStandardItemModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
-}
-
-void* QStandardItemModel_HeaderDataDefault(void* ptr, int section, int orientation, int role)
-{
-	return new QVariant(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
 void* QStandardItemModel_HorizontalHeaderItem(void* ptr, int column)
@@ -14610,11 +14688,6 @@ void* QStandardItemModel_HorizontalHeaderItem(void* ptr, int column)
 void* QStandardItemModel_Index(void* ptr, int row, int column, void* parent)
 {
 	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
-}
-
-void* QStandardItemModel_IndexDefault(void* ptr, int row, int column, void* parent)
-{
-	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 void* QStandardItemModel_IndexFromItem(void* ptr, void* item)
@@ -14632,17 +14705,12 @@ int QStandardItemModel_InsertColumns(void* ptr, int column, int count, void* par
 	return static_cast<QStandardItemModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-int QStandardItemModel_InsertRow2(void* ptr, int row, void* parent)
+int QStandardItemModel_InsertRow3(void* ptr, int row, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->insertRow(row, *static_cast<QModelIndex*>(parent));
 }
 
-void QStandardItemModel_InsertRow3(void* ptr, int row, void* item)
+void QStandardItemModel_InsertRow2(void* ptr, int row, void* item)
 {
 	static_cast<QStandardItemModel*>(ptr)->insertRow(row, static_cast<QStandardItem*>(item));
 }
@@ -14650,11 +14718,6 @@ void QStandardItemModel_InsertRow3(void* ptr, int row, void* item)
 int QStandardItemModel_InsertRows(void* ptr, int row, int count, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->insertRows(row, count, *static_cast<QModelIndex*>(parent));
-}
-
-int QStandardItemModel_InsertRowsDefault(void* ptr, int row, int count, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
 void* QStandardItemModel_InvisibleRootItem(void* ptr)
@@ -14697,19 +14760,9 @@ char* QStandardItemModel_MimeTypes(void* ptr)
 	return static_cast<QStandardItemModel*>(ptr)->mimeTypes().join("|").toUtf8().data();
 }
 
-char* QStandardItemModel_MimeTypesDefault(void* ptr)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::mimeTypes().join("|").toUtf8().data();
-}
-
 void* QStandardItemModel_Parent(void* ptr, void* child)
 {
 	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
-}
-
-void* QStandardItemModel_ParentDefault(void* ptr, void* child)
-{
-	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::parent(*static_cast<QModelIndex*>(child)));
 }
 
 int QStandardItemModel_RemoveColumns(void* ptr, int column, int count, void* parent)
@@ -14717,29 +14770,14 @@ int QStandardItemModel_RemoveColumns(void* ptr, int column, int count, void* par
 	return static_cast<QStandardItemModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
 int QStandardItemModel_RemoveRows(void* ptr, int row, int count, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->removeRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-int QStandardItemModel_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
-}
-
 int QStandardItemModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-int QStandardItemModel_RowCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::rowCount(*static_cast<QModelIndex*>(parent));
 }
 
 void QStandardItemModel_SetColumnCount(void* ptr, int columns)
@@ -14752,19 +14790,9 @@ int QStandardItemModel_SetData(void* ptr, void* index, void* value, int role)
 	return static_cast<QStandardItemModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 }
 
-int QStandardItemModel_SetDataDefault(void* ptr, void* index, void* value, int role)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
-}
-
 int QStandardItemModel_SetHeaderData(void* ptr, int section, int orientation, void* value, int role)
 {
 	return static_cast<QStandardItemModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
-}
-
-int QStandardItemModel_SetHeaderDataDefault(void* ptr, int section, int orientation, void* value, int role)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
 void QStandardItemModel_SetHorizontalHeaderItem(void* ptr, int column, void* item)
@@ -14812,29 +14840,14 @@ void* QStandardItemModel_Sibling(void* ptr, int row, int column, void* idx)
 	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
-void* QStandardItemModel_SiblingDefault(void* ptr, int row, int column, void* idx)
-{
-	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::sibling(row, column, *static_cast<QModelIndex*>(idx)));
-}
-
 void QStandardItemModel_Sort(void* ptr, int column, int order)
 {
 	static_cast<QStandardItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
 
-void QStandardItemModel_SortDefault(void* ptr, int column, int order)
-{
-	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::sort(column, static_cast<Qt::SortOrder>(order));
-}
-
 int QStandardItemModel_SupportedDropActions(void* ptr)
 {
 	return static_cast<QStandardItemModel*>(ptr)->supportedDropActions();
-}
-
-int QStandardItemModel_SupportedDropActionsDefault(void* ptr)
-{
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::supportedDropActions();
 }
 
 void* QStandardItemModel_TakeHorizontalHeaderItem(void* ptr, int column)
@@ -15221,6 +15234,11 @@ int QStyleHints_SetFocusOnTouchRelease(void* ptr)
 int QStyleHints_ShowIsFullScreen(void* ptr)
 {
 	return static_cast<QStyleHints*>(ptr)->showIsFullScreen();
+}
+
+int QStyleHints_ShowIsMaximized(void* ptr)
+{
+	return static_cast<QStyleHints*>(ptr)->showIsMaximized();
 }
 
 int QStyleHints_SingleClickActivation(void* ptr)
@@ -16719,12 +16737,12 @@ void* QTextCursor_NewQTextCursor2(void* document)
 	return new QTextCursor(static_cast<QTextDocument*>(document));
 }
 
-void* QTextCursor_NewQTextCursor4(void* frame)
+void* QTextCursor_NewQTextCursor5(void* frame)
 {
 	return new QTextCursor(static_cast<QTextFrame*>(frame));
 }
 
-void* QTextCursor_NewQTextCursor5(void* block)
+void* QTextCursor_NewQTextCursor6(void* block)
 {
 	return new QTextCursor(*static_cast<QTextBlock*>(block));
 }
@@ -17096,7 +17114,7 @@ double QTextDocument_DocumentMargin(void* ptr)
 	return static_cast<double>(static_cast<QTextDocument*>(ptr)->documentMargin());
 }
 
-void* QTextDocument_Find4(void* ptr, char* subString, int position, int options)
+void* QTextDocument_Find2(void* ptr, char* subString, int position, int options)
 {
 	return new QTextCursor(static_cast<QTextDocument*>(ptr)->find(QString(subString), position, static_cast<QTextDocument::FindFlag>(options)));
 }
@@ -17371,22 +17389,22 @@ void* QTextDocument_End(void* ptr)
 	return new QTextBlock(static_cast<QTextDocument*>(ptr)->end());
 }
 
-void* QTextDocument_Find6(void* ptr, void* expr, void* cursor, int options)
+void* QTextDocument_Find4(void* ptr, void* expr, void* cursor, int options)
 {
 	return new QTextCursor(static_cast<QTextDocument*>(ptr)->find(*static_cast<QRegExp*>(expr), *static_cast<QTextCursor*>(cursor), static_cast<QTextDocument::FindFlag>(options)));
 }
 
-void* QTextDocument_Find5(void* ptr, void* expr, int from, int options)
+void* QTextDocument_Find3(void* ptr, void* expr, int from, int options)
 {
 	return new QTextCursor(static_cast<QTextDocument*>(ptr)->find(*static_cast<QRegExp*>(expr), from, static_cast<QTextDocument::FindFlag>(options)));
 }
 
-void* QTextDocument_Find3(void* ptr, void* expr, void* cursor, int options)
+void* QTextDocument_Find6(void* ptr, void* expr, void* cursor, int options)
 {
 	return new QTextCursor(static_cast<QTextDocument*>(ptr)->find(*static_cast<QRegularExpression*>(expr), *static_cast<QTextCursor*>(cursor), static_cast<QTextDocument::FindFlag>(options)));
 }
 
-void* QTextDocument_Find2(void* ptr, void* expr, int from, int options)
+void* QTextDocument_Find5(void* ptr, void* expr, int from, int options)
 {
 	return new QTextCursor(static_cast<QTextDocument*>(ptr)->find(*static_cast<QRegularExpression*>(expr), from, static_cast<QTextDocument::FindFlag>(options)));
 }
@@ -18531,9 +18549,9 @@ int QTextLayout_CacheEnabled(void* ptr)
 	return static_cast<QTextLayout*>(ptr)->cacheEnabled();
 }
 
-void QTextLayout_ClearAdditionalFormats(void* ptr)
+void QTextLayout_ClearFormats(void* ptr)
 {
-	static_cast<QTextLayout*>(ptr)->clearAdditionalFormats();
+	static_cast<QTextLayout*>(ptr)->clearFormats();
 }
 
 void QTextLayout_ClearLayout(void* ptr)
@@ -19161,6 +19179,11 @@ public:
 	QSizeF intrinsicSize(QTextDocument * doc, int posInDocument, const QTextFormat & format) { return *static_cast<QSizeF*>(callbackQTextObjectInterface_IntrinsicSize(this, this->objectNameAbs().toUtf8().data(), doc, posInDocument, new QTextFormat(format))); };
 };
 
+void QTextObjectInterface_DestroyQTextObjectInterface(void* ptr)
+{
+	static_cast<QTextObjectInterface*>(ptr)->~QTextObjectInterface();
+}
+
 void QTextObjectInterface_DrawObject(void* ptr, void* painter, void* rect, void* doc, int posInDocument, void* format)
 {
 	static_cast<QTextObjectInterface*>(ptr)->drawObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format));
@@ -19169,11 +19192,6 @@ void QTextObjectInterface_DrawObject(void* ptr, void* painter, void* rect, void*
 void* QTextObjectInterface_IntrinsicSize(void* ptr, void* doc, int posInDocument, void* format)
 {
 	return new QSizeF(static_cast<QSizeF>(static_cast<QTextObjectInterface*>(ptr)->intrinsicSize(static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format))).width(), static_cast<QSizeF>(static_cast<QTextObjectInterface*>(ptr)->intrinsicSize(static_cast<QTextDocument*>(doc), posInDocument, *static_cast<QTextFormat*>(format))).height());
-}
-
-void QTextObjectInterface_DestroyQTextObjectInterface(void* ptr)
-{
-	static_cast<QTextObjectInterface*>(ptr)->~QTextObjectInterface();
 }
 
 char* QTextObjectInterface_ObjectNameAbs(void* ptr)
@@ -19711,27 +19729,27 @@ void* QTransform_NewQTransform4(double m11, double m12, double m21, double m22, 
 	return new QTransform(static_cast<double>(m11), static_cast<double>(m12), static_cast<double>(m21), static_cast<double>(m22), static_cast<double>(dx), static_cast<double>(dy));
 }
 
-void* QTransform_Map5(void* ptr, void* line)
+void* QTransform_Map4(void* ptr, void* line)
 {
 	return new QLineF(static_cast<QLineF>(static_cast<QTransform*>(ptr)->map(*static_cast<QLineF*>(line))).p1(), static_cast<QLineF>(static_cast<QTransform*>(ptr)->map(*static_cast<QLineF*>(line))).p2());
 }
 
-void* QTransform_Map3(void* ptr, void* point)
+void* QTransform_Map10(void* ptr, void* point)
 {
 	return new QPoint(static_cast<QPoint>(static_cast<QTransform*>(ptr)->map(*static_cast<QPoint*>(point))).x(), static_cast<QPoint>(static_cast<QTransform*>(ptr)->map(*static_cast<QPoint*>(point))).y());
 }
 
-void* QTransform_Map7(void* ptr, void* polygon)
+void* QTransform_Map6(void* ptr, void* polygon)
 {
 	return new QPolygon(static_cast<QTransform*>(ptr)->map(*static_cast<QPolygon*>(polygon)));
 }
 
-void* QTransform_Map6(void* ptr, void* polygon)
+void* QTransform_Map5(void* ptr, void* polygon)
 {
 	return new QPolygonF(static_cast<QTransform*>(ptr)->map(*static_cast<QPolygonF*>(polygon)));
 }
 
-void* QTransform_Map8(void* ptr, void* region)
+void* QTransform_Map7(void* ptr, void* region)
 {
 	return new QRegion(static_cast<QTransform*>(ptr)->map(*static_cast<QRegion*>(region)));
 }
@@ -19851,12 +19869,12 @@ double QTransform_M33(void* ptr)
 	return static_cast<double>(static_cast<QTransform*>(ptr)->m33());
 }
 
-void* QTransform_Map4(void* ptr, void* l)
+void* QTransform_Map3(void* ptr, void* l)
 {
 	return new QLine(static_cast<QLine>(static_cast<QTransform*>(ptr)->map(*static_cast<QLine*>(l))).p1(), static_cast<QLine>(static_cast<QTransform*>(ptr)->map(*static_cast<QLine*>(l))).p2());
 }
 
-void* QTransform_Map9(void* ptr, void* path)
+void* QTransform_Map8(void* ptr, void* path)
 {
 	return new QPainterPath(static_cast<QTransform*>(ptr)->map(*static_cast<QPainterPath*>(path)));
 }
@@ -19866,7 +19884,7 @@ void* QTransform_Map2(void* ptr, void* p)
 	return new QPointF(static_cast<QPointF>(static_cast<QTransform*>(ptr)->map(*static_cast<QPointF*>(p))).x(), static_cast<QPointF>(static_cast<QTransform*>(ptr)->map(*static_cast<QPointF*>(p))).y());
 }
 
-void QTransform_Map10(void* ptr, int x, int y, int tx, int ty)
+void QTransform_Map9(void* ptr, int x, int y, int tx, int ty)
 {
 	static_cast<QTransform*>(ptr)->map(x, y, &tx, &ty);
 }

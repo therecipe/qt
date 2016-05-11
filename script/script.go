@@ -325,6 +325,7 @@ func (ptr *QScriptClass) DestroyQScriptClass() {
 	defer qt.Recovering("QScriptClass::~QScriptClass")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QScriptClass_DestroyQScriptClass(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1268,6 +1269,7 @@ func (ptr *QScriptEngine) DestroyQScriptEngine() {
 	defer qt.Recovering("QScriptEngine::~QScriptEngine")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptEngine_DestroyQScriptEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1486,6 +1488,7 @@ func (ptr *QScriptEngine) DeleteLater() {
 	defer qt.Recovering("QScriptEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptEngine_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1495,6 +1498,7 @@ func (ptr *QScriptEngine) DeleteLaterDefault() {
 	defer qt.Recovering("QScriptEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2257,6 +2261,7 @@ func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgent() {
 	defer qt.Recovering("QScriptEngineAgent::~QScriptEngineAgent")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QScriptEngineAgent_DestroyQScriptEngineAgent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2419,6 +2424,7 @@ func (ptr *QScriptExtensionPlugin) DestroyQScriptExtensionPlugin() {
 	defer qt.Recovering("QScriptExtensionPlugin::~QScriptExtensionPlugin")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptExtensionPlugin_DestroyQScriptExtensionPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2637,6 +2643,7 @@ func (ptr *QScriptExtensionPlugin) DeleteLater() {
 	defer qt.Recovering("QScriptExtensionPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptExtensionPlugin_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2646,6 +2653,7 @@ func (ptr *QScriptExtensionPlugin) DeleteLaterDefault() {
 	defer qt.Recovering("QScriptExtensionPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScriptExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3449,11 +3457,11 @@ func (ptr *QScriptValue) LessThan(other QScriptValue_ITF) bool {
 	return false
 }
 
-func (ptr *QScriptValue) Property2(name QScriptString_ITF, mode QScriptValue__ResolveFlag) *QScriptValue {
+func (ptr *QScriptValue) Property3(name QScriptString_ITF, mode QScriptValue__ResolveFlag) *QScriptValue {
 	defer qt.Recovering("QScriptValue::property")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptValue_Property2(ptr.Pointer(), PointerFromQScriptString(name), C.int(mode)))
+		return NewQScriptValueFromPointer(C.QScriptValue_Property3(ptr.Pointer(), PointerFromQScriptString(name), C.int(mode)))
 	}
 	return nil
 }
@@ -3511,11 +3519,11 @@ func (ptr *QScriptValue) SetData(data QScriptValue_ITF) {
 	}
 }
 
-func (ptr *QScriptValue) SetProperty2(name QScriptString_ITF, value QScriptValue_ITF, flags QScriptValue__PropertyFlag) {
+func (ptr *QScriptValue) SetProperty3(name QScriptString_ITF, value QScriptValue_ITF, flags QScriptValue__PropertyFlag) {
 	defer qt.Recovering("QScriptValue::setProperty")
 
 	if ptr.Pointer() != nil {
-		C.QScriptValue_SetProperty2(ptr.Pointer(), PointerFromQScriptString(name), PointerFromQScriptValue(value), C.int(flags))
+		C.QScriptValue_SetProperty3(ptr.Pointer(), PointerFromQScriptString(name), PointerFromQScriptValue(value), C.int(flags))
 	}
 }
 

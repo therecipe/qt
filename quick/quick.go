@@ -12,6 +12,124 @@ import (
 	"unsafe"
 )
 
+type QQuickAsyncImageProvider struct {
+	QQuickImageProvider
+}
+
+type QQuickAsyncImageProvider_ITF interface {
+	QQuickImageProvider_ITF
+	QQuickAsyncImageProvider_PTR() *QQuickAsyncImageProvider
+}
+
+func (p *QQuickAsyncImageProvider) QQuickAsyncImageProvider_PTR() *QQuickAsyncImageProvider {
+	return p
+}
+
+func (p *QQuickAsyncImageProvider) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.QQuickImageProvider_PTR().Pointer()
+	}
+	return nil
+}
+
+func (p *QQuickAsyncImageProvider) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.QQuickImageProvider_PTR().SetPointer(ptr)
+	}
+}
+
+func PointerFromQQuickAsyncImageProvider(ptr QQuickAsyncImageProvider_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQuickAsyncImageProvider_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQQuickAsyncImageProviderFromPointer(ptr unsafe.Pointer) *QQuickAsyncImageProvider {
+	var n = new(QQuickAsyncImageProvider)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickAsyncImageProviderFromPointer(ptr unsafe.Pointer) *QQuickAsyncImageProvider {
+	var n = NewQQuickAsyncImageProviderFromPointer(ptr)
+	for len(n.ObjectNameAbs()) < len("QQuickAsyncImageProvider_") {
+		n.SetObjectNameAbs("QQuickAsyncImageProvider_" + qt.Identifier())
+	}
+	return n
+}
+
+func NewQQuickAsyncImageProvider() *QQuickAsyncImageProvider {
+	defer qt.Recovering("QQuickAsyncImageProvider::QQuickAsyncImageProvider")
+
+	return newQQuickAsyncImageProviderFromPointer(C.QQuickAsyncImageProvider_NewQQuickAsyncImageProvider())
+}
+
+func (ptr *QQuickAsyncImageProvider) DestroyQQuickAsyncImageProvider() {
+	defer qt.Recovering("QQuickAsyncImageProvider::~QQuickAsyncImageProvider")
+
+	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		C.QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+//export callbackQQuickAsyncImageProvider_RequestImageResponse
+func callbackQQuickAsyncImageProvider_RequestImageResponse(ptr unsafe.Pointer, ptrName *C.char, id *C.char, requestedSize unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickAsyncImageProvider::requestImageResponse")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestImageResponse"); signal != nil {
+		return PointerFromQQuickImageResponse(signal.(func(string, *core.QSize) *QQuickImageResponse)(C.GoString(id), core.NewQSizeFromPointer(requestedSize)))
+	}
+
+	return PointerFromQQuickImageResponse(nil)
+}
+
+func (ptr *QQuickAsyncImageProvider) ConnectRequestImageResponse(f func(id string, requestedSize *core.QSize) *QQuickImageResponse) {
+	defer qt.Recovering("connect QQuickAsyncImageProvider::requestImageResponse")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestImageResponse", f)
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) DisconnectRequestImageResponse(id string, requestedSize core.QSize_ITF) {
+	defer qt.Recovering("disconnect QQuickAsyncImageProvider::requestImageResponse")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestImageResponse")
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) RequestImageResponse(id string, requestedSize core.QSize_ITF) *QQuickImageResponse {
+	defer qt.Recovering("QQuickAsyncImageProvider::requestImageResponse")
+
+	if ptr.Pointer() != nil {
+		return NewQQuickImageResponseFromPointer(C.QQuickAsyncImageProvider_RequestImageResponse(ptr.Pointer(), C.CString(id), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickAsyncImageProvider) ObjectNameAbs() string {
+	defer qt.Recovering("QQuickAsyncImageProvider::objectNameAbs")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QQuickAsyncImageProvider_ObjectNameAbs(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QQuickAsyncImageProvider) SetObjectNameAbs(name string) {
+	defer qt.Recovering("QQuickAsyncImageProvider::setObjectNameAbs")
+
+	if ptr.Pointer() != nil {
+		C.QQuickAsyncImageProvider_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+	}
+}
+
 type QQuickFramebufferObject struct {
 	QQuickItem
 }
@@ -57,6 +175,23 @@ func newQQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebuffe
 		n.SetObjectName("QQuickFramebufferObject_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QQuickFramebufferObject) MirrorVertically() bool {
+	defer qt.Recovering("QQuickFramebufferObject::mirrorVertically")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickFramebufferObject_MirrorVertically(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QQuickFramebufferObject) SetMirrorVertically(enable bool) {
+	defer qt.Recovering("QQuickFramebufferObject::setMirrorVertically")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_SetMirrorVertically(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
+	}
 }
 
 func (ptr *QQuickFramebufferObject) SetTextureFollowsItemSize(follows bool) {
@@ -121,6 +256,42 @@ func (ptr *QQuickFramebufferObject) IsTextureProviderDefault() bool {
 		return C.QQuickFramebufferObject_IsTextureProviderDefault(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+//export callbackQQuickFramebufferObject_MirrorVerticallyChanged
+func callbackQQuickFramebufferObject_MirrorVerticallyChanged(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+	defer qt.Recovering("callback QQuickFramebufferObject::mirrorVerticallyChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mirrorVerticallyChanged"); signal != nil {
+		signal.(func(bool))(int(vbo) != 0)
+	}
+
+}
+
+func (ptr *QQuickFramebufferObject) ConnectMirrorVerticallyChanged(f func(vbo bool)) {
+	defer qt.Recovering("connect QQuickFramebufferObject::mirrorVerticallyChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_ConnectMirrorVerticallyChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "mirrorVerticallyChanged", f)
+	}
+}
+
+func (ptr *QQuickFramebufferObject) DisconnectMirrorVerticallyChanged() {
+	defer qt.Recovering("disconnect QQuickFramebufferObject::mirrorVerticallyChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_DisconnectMirrorVerticallyChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "mirrorVerticallyChanged")
+	}
+}
+
+func (ptr *QQuickFramebufferObject) MirrorVerticallyChanged(vbo bool) {
+	defer qt.Recovering("QQuickFramebufferObject::mirrorVerticallyChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickFramebufferObject_MirrorVerticallyChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
 }
 
 //export callbackQQuickFramebufferObject_ReleaseResources
@@ -296,96 +467,6 @@ func (ptr *QQuickFramebufferObject) ChildMouseEventFilterDefault(item QQuickItem
 		return C.QQuickFramebufferObject_ChildMouseEventFilterDefault(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(event)) != 0
 	}
 	return false
-}
-
-//export callbackQQuickFramebufferObject_ClassBegin
-func callbackQQuickFramebufferObject_ClassBegin(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QQuickFramebufferObject::classBegin")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQQuickFramebufferObjectFromPointer(ptr).ClassBeginDefault()
-	}
-}
-
-func (ptr *QQuickFramebufferObject) ConnectClassBegin(f func()) {
-	defer qt.Recovering("connect QQuickFramebufferObject::classBegin")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "classBegin", f)
-	}
-}
-
-func (ptr *QQuickFramebufferObject) DisconnectClassBegin() {
-	defer qt.Recovering("disconnect QQuickFramebufferObject::classBegin")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "classBegin")
-	}
-}
-
-func (ptr *QQuickFramebufferObject) ClassBegin() {
-	defer qt.Recovering("QQuickFramebufferObject::classBegin")
-
-	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_ClassBegin(ptr.Pointer())
-	}
-}
-
-func (ptr *QQuickFramebufferObject) ClassBeginDefault() {
-	defer qt.Recovering("QQuickFramebufferObject::classBegin")
-
-	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_ClassBeginDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQQuickFramebufferObject_ComponentComplete
-func callbackQQuickFramebufferObject_ComponentComplete(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QQuickFramebufferObject::componentComplete")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQQuickFramebufferObjectFromPointer(ptr).ComponentCompleteDefault()
-	}
-}
-
-func (ptr *QQuickFramebufferObject) ConnectComponentComplete(f func()) {
-	defer qt.Recovering("connect QQuickFramebufferObject::componentComplete")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "componentComplete", f)
-	}
-}
-
-func (ptr *QQuickFramebufferObject) DisconnectComponentComplete() {
-	defer qt.Recovering("disconnect QQuickFramebufferObject::componentComplete")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "componentComplete")
-	}
-}
-
-func (ptr *QQuickFramebufferObject) ComponentComplete() {
-	defer qt.Recovering("QQuickFramebufferObject::componentComplete")
-
-	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_ComponentComplete(ptr.Pointer())
-	}
-}
-
-func (ptr *QQuickFramebufferObject) ComponentCompleteDefault() {
-	defer qt.Recovering("QQuickFramebufferObject::componentComplete")
-
-	if ptr.Pointer() != nil {
-		C.QQuickFramebufferObject_ComponentCompleteDefault(ptr.Pointer())
-	}
 }
 
 //export callbackQQuickFramebufferObject_Contains
@@ -613,53 +694,6 @@ func (ptr *QQuickFramebufferObject) DropEventDefault(event gui.QDropEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickFramebufferObject_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
-}
-
-//export callbackQQuickFramebufferObject_Event
-func callbackQQuickFramebufferObject_Event(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QQuickFramebufferObject::event")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(ev))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQQuickFramebufferObjectFromPointer(ptr).EventDefault(core.NewQEventFromPointer(ev))))
-}
-
-func (ptr *QQuickFramebufferObject) ConnectEvent(f func(ev *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickFramebufferObject::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
-	}
-}
-
-func (ptr *QQuickFramebufferObject) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQuickFramebufferObject::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
-	}
-}
-
-func (ptr *QQuickFramebufferObject) Event(ev core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickFramebufferObject::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickFramebufferObject_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
-	}
-	return false
-}
-
-func (ptr *QQuickFramebufferObject) EventDefault(ev core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickFramebufferObject::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickFramebufferObject_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
-	}
-	return false
 }
 
 //export callbackQQuickFramebufferObject_FocusInEvent
@@ -1777,6 +1811,7 @@ func (ptr *QQuickFramebufferObject) DeleteLater() {
 	defer qt.Recovering("QQuickFramebufferObject::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickFramebufferObject_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1786,6 +1821,7 @@ func (ptr *QQuickFramebufferObject) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickFramebufferObject::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickFramebufferObject_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1983,35 +2019,6 @@ func NewQQuickImageProvider(ty qml.QQmlImageProviderBase__ImageType, flags qml.Q
 	return newQQuickImageProviderFromPointer(C.QQuickImageProvider_NewQQuickImageProvider(C.int(ty), C.int(flags)))
 }
 
-//export callbackQQuickImageProvider_Flags
-func callbackQQuickImageProvider_Flags(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QQuickImageProvider::flags")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "flags"); signal != nil {
-		return C.int(signal.(func() qml.QQmlImageProviderBase__Flag)())
-	}
-
-	return C.int(NewQQuickImageProviderFromPointer(ptr).FlagsDefault())
-}
-
-func (ptr *QQuickImageProvider) ConnectFlags(f func() qml.QQmlImageProviderBase__Flag) {
-	defer qt.Recovering("connect QQuickImageProvider::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "flags", f)
-	}
-}
-
-func (ptr *QQuickImageProvider) DisconnectFlags() {
-	defer qt.Recovering("disconnect QQuickImageProvider::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "flags")
-	}
-}
-
 func (ptr *QQuickImageProvider) Flags() qml.QQmlImageProviderBase__Flag {
 	defer qt.Recovering("QQuickImageProvider::flags")
 
@@ -2019,44 +2026,6 @@ func (ptr *QQuickImageProvider) Flags() qml.QQmlImageProviderBase__Flag {
 		return qml.QQmlImageProviderBase__Flag(C.QQuickImageProvider_Flags(ptr.Pointer()))
 	}
 	return 0
-}
-
-func (ptr *QQuickImageProvider) FlagsDefault() qml.QQmlImageProviderBase__Flag {
-	defer qt.Recovering("QQuickImageProvider::flags")
-
-	if ptr.Pointer() != nil {
-		return qml.QQmlImageProviderBase__Flag(C.QQuickImageProvider_FlagsDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQQuickImageProvider_ImageType
-func callbackQQuickImageProvider_ImageType(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QQuickImageProvider::imageType")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "imageType"); signal != nil {
-		return C.int(signal.(func() qml.QQmlImageProviderBase__ImageType)())
-	}
-
-	return C.int(NewQQuickImageProviderFromPointer(ptr).ImageTypeDefault())
-}
-
-func (ptr *QQuickImageProvider) ConnectImageType(f func() qml.QQmlImageProviderBase__ImageType) {
-	defer qt.Recovering("connect QQuickImageProvider::imageType")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "imageType", f)
-	}
-}
-
-func (ptr *QQuickImageProvider) DisconnectImageType() {
-	defer qt.Recovering("disconnect QQuickImageProvider::imageType")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "imageType")
-	}
 }
 
 func (ptr *QQuickImageProvider) ImageType() qml.QQmlImageProviderBase__ImageType {
@@ -2068,160 +2037,11 @@ func (ptr *QQuickImageProvider) ImageType() qml.QQmlImageProviderBase__ImageType
 	return 0
 }
 
-func (ptr *QQuickImageProvider) ImageTypeDefault() qml.QQmlImageProviderBase__ImageType {
-	defer qt.Recovering("QQuickImageProvider::imageType")
-
-	if ptr.Pointer() != nil {
-		return qml.QQmlImageProviderBase__ImageType(C.QQuickImageProvider_ImageTypeDefault(ptr.Pointer()))
-	}
-	return 0
-}
-
-//export callbackQQuickImageProvider_RequestImage
-func callbackQQuickImageProvider_RequestImage(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQuickImageProvider::requestImage")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "requestImage"); signal != nil {
-		return gui.PointerFromQImage(signal.(func(string, *core.QSize, *core.QSize) *gui.QImage)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
-	}
-
-	return gui.PointerFromQImage(NewQQuickImageProviderFromPointer(ptr).RequestImageDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
-}
-
-func (ptr *QQuickImageProvider) ConnectRequestImage(f func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QImage) {
-	defer qt.Recovering("connect QQuickImageProvider::requestImage")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestImage", f)
-	}
-}
-
-func (ptr *QQuickImageProvider) DisconnectRequestImage() {
-	defer qt.Recovering("disconnect QQuickImageProvider::requestImage")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestImage")
-	}
-}
-
-func (ptr *QQuickImageProvider) RequestImage(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
-	defer qt.Recovering("QQuickImageProvider::requestImage")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImage(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
-	}
-	return nil
-}
-
-func (ptr *QQuickImageProvider) RequestImageDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
-	defer qt.Recovering("QQuickImageProvider::requestImage")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImageDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
-	}
-	return nil
-}
-
-//export callbackQQuickImageProvider_RequestPixmap
-func callbackQQuickImageProvider_RequestPixmap(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQuickImageProvider::requestPixmap")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "requestPixmap"); signal != nil {
-		return gui.PointerFromQPixmap(signal.(func(string, *core.QSize, *core.QSize) *gui.QPixmap)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
-	}
-
-	return gui.PointerFromQPixmap(NewQQuickImageProviderFromPointer(ptr).RequestPixmapDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
-}
-
-func (ptr *QQuickImageProvider) ConnectRequestPixmap(f func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QPixmap) {
-	defer qt.Recovering("connect QQuickImageProvider::requestPixmap")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestPixmap", f)
-	}
-}
-
-func (ptr *QQuickImageProvider) DisconnectRequestPixmap() {
-	defer qt.Recovering("disconnect QQuickImageProvider::requestPixmap")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestPixmap")
-	}
-}
-
-func (ptr *QQuickImageProvider) RequestPixmap(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
-	defer qt.Recovering("QQuickImageProvider::requestPixmap")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmap(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
-	}
-	return nil
-}
-
-func (ptr *QQuickImageProvider) RequestPixmapDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
-	defer qt.Recovering("QQuickImageProvider::requestPixmap")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmapDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
-	}
-	return nil
-}
-
-//export callbackQQuickImageProvider_RequestTexture
-func callbackQQuickImageProvider_RequestTexture(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQuickImageProvider::requestTexture")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "requestTexture"); signal != nil {
-		return PointerFromQQuickTextureFactory(signal.(func(string, *core.QSize, *core.QSize) *QQuickTextureFactory)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
-	}
-
-	return PointerFromQQuickTextureFactory(NewQQuickImageProviderFromPointer(ptr).RequestTextureDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
-}
-
-func (ptr *QQuickImageProvider) ConnectRequestTexture(f func(id string, size *core.QSize, requestedSize *core.QSize) *QQuickTextureFactory) {
-	defer qt.Recovering("connect QQuickImageProvider::requestTexture")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestTexture", f)
-	}
-}
-
-func (ptr *QQuickImageProvider) DisconnectRequestTexture() {
-	defer qt.Recovering("disconnect QQuickImageProvider::requestTexture")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestTexture")
-	}
-}
-
-func (ptr *QQuickImageProvider) RequestTexture(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
-	defer qt.Recovering("QQuickImageProvider::requestTexture")
-
-	if ptr.Pointer() != nil {
-		return NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTexture(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
-	}
-	return nil
-}
-
-func (ptr *QQuickImageProvider) RequestTextureDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
-	defer qt.Recovering("QQuickImageProvider::requestTexture")
-
-	if ptr.Pointer() != nil {
-		return NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTextureDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
-	}
-	return nil
-}
-
 func (ptr *QQuickImageProvider) DestroyQQuickImageProvider() {
 	defer qt.Recovering("QQuickImageProvider::~QQuickImageProvider")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QQuickImageProvider_DestroyQQuickImageProvider(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2244,6 +2064,650 @@ func (ptr *QQuickImageProvider) SetObjectNameAbs(name string) {
 	}
 }
 
+type QQuickImageResponse struct {
+	core.QObject
+}
+
+type QQuickImageResponse_ITF interface {
+	core.QObject_ITF
+	QQuickImageResponse_PTR() *QQuickImageResponse
+}
+
+func (p *QQuickImageResponse) QQuickImageResponse_PTR() *QQuickImageResponse {
+	return p
+}
+
+func (p *QQuickImageResponse) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (p *QQuickImageResponse) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.QObject_PTR().SetPointer(ptr)
+	}
+}
+
+func PointerFromQQuickImageResponse(ptr QQuickImageResponse_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQuickImageResponse_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQQuickImageResponseFromPointer(ptr unsafe.Pointer) *QQuickImageResponse {
+	var n = new(QQuickImageResponse)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQQuickImageResponseFromPointer(ptr unsafe.Pointer) *QQuickImageResponse {
+	var n = NewQQuickImageResponseFromPointer(ptr)
+	for len(n.ObjectName()) < len("QQuickImageResponse_") {
+		n.SetObjectName("QQuickImageResponse_" + qt.Identifier())
+	}
+	return n
+}
+
+func NewQQuickImageResponse() *QQuickImageResponse {
+	defer qt.Recovering("QQuickImageResponse::QQuickImageResponse")
+
+	return newQQuickImageResponseFromPointer(C.QQuickImageResponse_NewQQuickImageResponse())
+}
+
+//export callbackQQuickImageResponse_Cancel
+func callbackQQuickImageResponse_Cancel(ptr unsafe.Pointer, ptrName *C.char) {
+	defer qt.Recovering("callback QQuickImageResponse::cancel")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "cancel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQuickImageResponseFromPointer(ptr).CancelDefault()
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectCancel(f func()) {
+	defer qt.Recovering("connect QQuickImageResponse::cancel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "cancel", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectCancel() {
+	defer qt.Recovering("disconnect QQuickImageResponse::cancel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "cancel")
+	}
+}
+
+func (ptr *QQuickImageResponse) Cancel() {
+	defer qt.Recovering("QQuickImageResponse::cancel")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_Cancel(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickImageResponse) CancelDefault() {
+	defer qt.Recovering("QQuickImageResponse::cancel")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_CancelDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQQuickImageResponse_ErrorString
+func callbackQQuickImageResponse_ErrorString(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+	defer qt.Recovering("callback QQuickImageResponse::errorString")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "errorString"); signal != nil {
+		return C.CString(signal.(func() string)())
+	}
+
+	return C.CString(NewQQuickImageResponseFromPointer(ptr).ErrorStringDefault())
+}
+
+func (ptr *QQuickImageResponse) ConnectErrorString(f func() string) {
+	defer qt.Recovering("connect QQuickImageResponse::errorString")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "errorString", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectErrorString() {
+	defer qt.Recovering("disconnect QQuickImageResponse::errorString")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "errorString")
+	}
+}
+
+func (ptr *QQuickImageResponse) ErrorString() string {
+	defer qt.Recovering("QQuickImageResponse::errorString")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QQuickImageResponse_ErrorString(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QQuickImageResponse) ErrorStringDefault() string {
+	defer qt.Recovering("QQuickImageResponse::errorString")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QQuickImageResponse_ErrorStringDefault(ptr.Pointer()))
+	}
+	return ""
+}
+
+//export callbackQQuickImageResponse_Finished
+func callbackQQuickImageResponse_Finished(ptr unsafe.Pointer, ptrName *C.char) {
+	defer qt.Recovering("callback QQuickImageResponse::finished")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QQuickImageResponse) ConnectFinished(f func()) {
+	defer qt.Recovering("connect QQuickImageResponse::finished")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_ConnectFinished(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectFinished() {
+	defer qt.Recovering("disconnect QQuickImageResponse::finished")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_DisconnectFinished(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "finished")
+	}
+}
+
+func (ptr *QQuickImageResponse) Finished() {
+	defer qt.Recovering("QQuickImageResponse::finished")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_Finished(ptr.Pointer())
+	}
+}
+
+//export callbackQQuickImageResponse_TextureFactory
+func callbackQQuickImageResponse_TextureFactory(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickImageResponse::textureFactory")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "textureFactory"); signal != nil {
+		return PointerFromQQuickTextureFactory(signal.(func() *QQuickTextureFactory)())
+	}
+
+	return PointerFromQQuickTextureFactory(nil)
+}
+
+func (ptr *QQuickImageResponse) ConnectTextureFactory(f func() *QQuickTextureFactory) {
+	defer qt.Recovering("connect QQuickImageResponse::textureFactory")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "textureFactory", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectTextureFactory() {
+	defer qt.Recovering("disconnect QQuickImageResponse::textureFactory")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "textureFactory")
+	}
+}
+
+func (ptr *QQuickImageResponse) TextureFactory() *QQuickTextureFactory {
+	defer qt.Recovering("QQuickImageResponse::textureFactory")
+
+	if ptr.Pointer() != nil {
+		return NewQQuickTextureFactoryFromPointer(C.QQuickImageResponse_TextureFactory(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickImageResponse) DestroyQQuickImageResponse() {
+	defer qt.Recovering("QQuickImageResponse::~QQuickImageResponse")
+
+	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
+		C.QQuickImageResponse_DestroyQQuickImageResponse(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+//export callbackQQuickImageResponse_TimerEvent
+func callbackQQuickImageResponse_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickImageResponse::timerEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQQuickImageResponseFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QQuickImageResponse::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QQuickImageResponse::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+	}
+}
+
+func (ptr *QQuickImageResponse) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickImageResponse::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QQuickImageResponse) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QQuickImageResponse::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQQuickImageResponse_ChildEvent
+func callbackQQuickImageResponse_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickImageResponse::childEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQQuickImageResponseFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QQuickImageResponse::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QQuickImageResponse::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+	}
+}
+
+func (ptr *QQuickImageResponse) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickImageResponse::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QQuickImageResponse) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QQuickImageResponse::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQQuickImageResponse_ConnectNotify
+func callbackQQuickImageResponse_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickImageResponse::connectNotify")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQQuickImageResponseFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
+	defer qt.Recovering("connect QQuickImageResponse::connectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectConnectNotify() {
+	defer qt.Recovering("disconnect QQuickImageResponse::connectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectNotify(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QQuickImageResponse::connectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QQuickImageResponse::connectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQQuickImageResponse_CustomEvent
+func callbackQQuickImageResponse_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickImageResponse::customEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQQuickImageResponseFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QQuickImageResponse::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QQuickImageResponse::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+	}
+}
+
+func (ptr *QQuickImageResponse) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickImageResponse::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QQuickImageResponse) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QQuickImageResponse::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQQuickImageResponse_DeleteLater
+func callbackQQuickImageResponse_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+	defer qt.Recovering("callback QQuickImageResponse::deleteLater")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQuickImageResponseFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectDeleteLater(f func()) {
+	defer qt.Recovering("connect QQuickImageResponse::deleteLater")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectDeleteLater() {
+	defer qt.Recovering("disconnect QQuickImageResponse::deleteLater")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+	}
+}
+
+func (ptr *QQuickImageResponse) DeleteLater() {
+	defer qt.Recovering("QQuickImageResponse::deleteLater")
+
+	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
+		C.QQuickImageResponse_DeleteLater(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQuickImageResponse) DeleteLaterDefault() {
+	defer qt.Recovering("QQuickImageResponse::deleteLater")
+
+	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
+		C.QQuickImageResponse_DeleteLaterDefault(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+//export callbackQQuickImageResponse_DisconnectNotify
+func callbackQQuickImageResponse_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickImageResponse::disconnectNotify")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQQuickImageResponseFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QQuickImageResponse) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
+	defer qt.Recovering("connect QQuickImageResponse::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectDisconnectNotify() {
+	defer qt.Recovering("disconnect QQuickImageResponse::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectNotify(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QQuickImageResponse::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QQuickImageResponse::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QQuickImageResponse_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQQuickImageResponse_Event
+func callbackQQuickImageResponse_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+	defer qt.Recovering("callback QQuickImageResponse::event")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
+		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	}
+
+	return C.int(qt.GoBoolToInt(NewQQuickImageResponseFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+}
+
+func (ptr *QQuickImageResponse) ConnectEvent(f func(e *core.QEvent) bool) {
+	defer qt.Recovering("connect QQuickImageResponse::event")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectEvent() {
+	defer qt.Recovering("disconnect QQuickImageResponse::event")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "event")
+	}
+}
+
+func (ptr *QQuickImageResponse) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QQuickImageResponse::event")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickImageResponse_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QQuickImageResponse) EventDefault(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QQuickImageResponse::event")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickImageResponse_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQQuickImageResponse_EventFilter
+func callbackQQuickImageResponse_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+	defer qt.Recovering("callback QQuickImageResponse::eventFilter")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
+		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	}
+
+	return C.int(qt.GoBoolToInt(NewQQuickImageResponseFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+}
+
+func (ptr *QQuickImageResponse) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
+	defer qt.Recovering("connect QQuickImageResponse::eventFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectEventFilter() {
+	defer qt.Recovering("disconnect QQuickImageResponse::eventFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+	}
+}
+
+func (ptr *QQuickImageResponse) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	defer qt.Recovering("QQuickImageResponse::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickImageResponse_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QQuickImageResponse) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
+	defer qt.Recovering("QQuickImageResponse::eventFilter")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickImageResponse_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+//export callbackQQuickImageResponse_MetaObject
+func callbackQQuickImageResponse_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickImageResponse::metaObject")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQQuickImageResponseFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QQuickImageResponse) ConnectMetaObject(f func() *core.QMetaObject) {
+	defer qt.Recovering("connect QQuickImageResponse::metaObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+	}
+}
+
+func (ptr *QQuickImageResponse) DisconnectMetaObject() {
+	defer qt.Recovering("disconnect QQuickImageResponse::metaObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+	}
+}
+
+func (ptr *QQuickImageResponse) MetaObject() *core.QMetaObject {
+	defer qt.Recovering("QQuickImageResponse::metaObject")
+
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickImageResponse_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QQuickImageResponse) MetaObjectDefault() *core.QMetaObject {
+	defer qt.Recovering("QQuickImageResponse::metaObject")
+
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QQuickImageResponse_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //QQuickItem::Flag
 type QQuickItem__Flag int64
 
@@ -2259,15 +2723,16 @@ const (
 type QQuickItem__ItemChange int64
 
 const (
-	QQuickItem__ItemChildAddedChange       = QQuickItem__ItemChange(0)
-	QQuickItem__ItemChildRemovedChange     = QQuickItem__ItemChange(1)
-	QQuickItem__ItemSceneChange            = QQuickItem__ItemChange(2)
-	QQuickItem__ItemVisibleHasChanged      = QQuickItem__ItemChange(3)
-	QQuickItem__ItemParentHasChanged       = QQuickItem__ItemChange(4)
-	QQuickItem__ItemOpacityHasChanged      = QQuickItem__ItemChange(5)
-	QQuickItem__ItemActiveFocusHasChanged  = QQuickItem__ItemChange(6)
-	QQuickItem__ItemRotationHasChanged     = QQuickItem__ItemChange(7)
-	QQuickItem__ItemAntialiasingHasChanged = QQuickItem__ItemChange(8)
+	QQuickItem__ItemChildAddedChange           = QQuickItem__ItemChange(0)
+	QQuickItem__ItemChildRemovedChange         = QQuickItem__ItemChange(1)
+	QQuickItem__ItemSceneChange                = QQuickItem__ItemChange(2)
+	QQuickItem__ItemVisibleHasChanged          = QQuickItem__ItemChange(3)
+	QQuickItem__ItemParentHasChanged           = QQuickItem__ItemChange(4)
+	QQuickItem__ItemOpacityHasChanged          = QQuickItem__ItemChange(5)
+	QQuickItem__ItemActiveFocusHasChanged      = QQuickItem__ItemChange(6)
+	QQuickItem__ItemRotationHasChanged         = QQuickItem__ItemChange(7)
+	QQuickItem__ItemAntialiasingHasChanged     = QQuickItem__ItemChange(8)
+	QQuickItem__ItemDevicePixelRatioHasChanged = QQuickItem__ItemChange(9)
 )
 
 //QQuickItem::TransformOrigin
@@ -2907,35 +3372,6 @@ func (ptr *QQuickItem) ChildMouseEventFilterDefault(item QQuickItem_ITF, event c
 	return false
 }
 
-//export callbackQQuickItem_ClassBegin
-func callbackQQuickItem_ClassBegin(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QQuickItem::classBegin")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQQuickItemFromPointer(ptr).ClassBeginDefault()
-	}
-}
-
-func (ptr *QQuickItem) ConnectClassBegin(f func()) {
-	defer qt.Recovering("connect QQuickItem::classBegin")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "classBegin", f)
-	}
-}
-
-func (ptr *QQuickItem) DisconnectClassBegin() {
-	defer qt.Recovering("disconnect QQuickItem::classBegin")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "classBegin")
-	}
-}
-
 func (ptr *QQuickItem) ClassBegin() {
 	defer qt.Recovering("QQuickItem::classBegin")
 
@@ -2944,56 +3380,11 @@ func (ptr *QQuickItem) ClassBegin() {
 	}
 }
 
-func (ptr *QQuickItem) ClassBeginDefault() {
-	defer qt.Recovering("QQuickItem::classBegin")
-
-	if ptr.Pointer() != nil {
-		C.QQuickItem_ClassBeginDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQQuickItem_ComponentComplete
-func callbackQQuickItem_ComponentComplete(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QQuickItem::componentComplete")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQQuickItemFromPointer(ptr).ComponentCompleteDefault()
-	}
-}
-
-func (ptr *QQuickItem) ConnectComponentComplete(f func()) {
-	defer qt.Recovering("connect QQuickItem::componentComplete")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "componentComplete", f)
-	}
-}
-
-func (ptr *QQuickItem) DisconnectComponentComplete() {
-	defer qt.Recovering("disconnect QQuickItem::componentComplete")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "componentComplete")
-	}
-}
-
 func (ptr *QQuickItem) ComponentComplete() {
 	defer qt.Recovering("QQuickItem::componentComplete")
 
 	if ptr.Pointer() != nil {
 		C.QQuickItem_ComponentComplete(ptr.Pointer())
-	}
-}
-
-func (ptr *QQuickItem) ComponentCompleteDefault() {
-	defer qt.Recovering("QQuickItem::componentComplete")
-
-	if ptr.Pointer() != nil {
-		C.QQuickItem_ComponentCompleteDefault(ptr.Pointer())
 	}
 }
 
@@ -3233,49 +3624,11 @@ func (ptr *QQuickItem) DropEventDefault(event gui.QDropEvent_ITF) {
 	}
 }
 
-//export callbackQQuickItem_Event
-func callbackQQuickItem_Event(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QQuickItem::event")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(ev))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQQuickItemFromPointer(ptr).EventDefault(core.NewQEventFromPointer(ev))))
-}
-
-func (ptr *QQuickItem) ConnectEvent(f func(ev *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickItem::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
-	}
-}
-
-func (ptr *QQuickItem) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQuickItem::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
-	}
-}
-
 func (ptr *QQuickItem) Event(ev core.QEvent_ITF) bool {
 	defer qt.Recovering("QQuickItem::event")
 
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
-	}
-	return false
-}
-
-func (ptr *QQuickItem) EventDefault(ev core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickItem::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
 	}
 	return false
 }
@@ -4582,6 +4935,7 @@ func (ptr *QQuickItem) DestroyQQuickItem() {
 	defer qt.Recovering("QQuickItem::~QQuickItem")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickItem_DestroyQQuickItem(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4800,6 +5154,7 @@ func (ptr *QQuickItem) DeleteLater() {
 	defer qt.Recovering("QQuickItem::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickItem_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4809,6 +5164,7 @@ func (ptr *QQuickItem) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickItem::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5276,6 +5632,7 @@ func (ptr *QQuickItemGrabResult) DeleteLater() {
 	defer qt.Recovering("QQuickItemGrabResult::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickItemGrabResult_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5285,6 +5642,7 @@ func (ptr *QQuickItemGrabResult) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickItemGrabResult::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickItemGrabResult_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5607,6 +5965,23 @@ func (ptr *QQuickPaintedItem) SetRenderTarget(target QQuickPaintedItem__RenderTa
 	}
 }
 
+func (ptr *QQuickPaintedItem) SetTextureSize(size core.QSize_ITF) {
+	defer qt.Recovering("QQuickPaintedItem::setTextureSize")
+
+	if ptr.Pointer() != nil {
+		C.QQuickPaintedItem_SetTextureSize(ptr.Pointer(), core.PointerFromQSize(size))
+	}
+}
+
+func (ptr *QQuickPaintedItem) TextureSize() *core.QSize {
+	defer qt.Recovering("QQuickPaintedItem::textureSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFromPointer(C.QQuickPaintedItem_TextureSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func NewQQuickPaintedItem(parent QQuickItem_ITF) *QQuickPaintedItem {
 	defer qt.Recovering("QQuickPaintedItem::QQuickPaintedItem")
 
@@ -5620,15 +5995,6 @@ func (ptr *QQuickPaintedItem) Antialiasing() bool {
 		return C.QQuickPaintedItem_Antialiasing(ptr.Pointer()) != 0
 	}
 	return false
-}
-
-func (ptr *QQuickPaintedItem) ContentsBoundingRect() *core.QRectF {
-	defer qt.Recovering("QQuickPaintedItem::contentsBoundingRect")
-
-	if ptr.Pointer() != nil {
-		return core.NewQRectFFromPointer(C.QQuickPaintedItem_ContentsBoundingRect(ptr.Pointer()))
-	}
-	return nil
 }
 
 //export callbackQQuickPaintedItem_ContentsScaleChanged
@@ -5930,14 +6296,6 @@ func (ptr *QQuickPaintedItem) RenderTargetChanged() {
 	}
 }
 
-func (ptr *QQuickPaintedItem) ResetContentsSize() {
-	defer qt.Recovering("QQuickPaintedItem::resetContentsSize")
-
-	if ptr.Pointer() != nil {
-		C.QQuickPaintedItem_ResetContentsSize(ptr.Pointer())
-	}
-}
-
 func (ptr *QQuickPaintedItem) SetAntialiasing(enable bool) {
 	defer qt.Recovering("QQuickPaintedItem::setAntialiasing")
 
@@ -6025,6 +6383,42 @@ func (ptr *QQuickPaintedItem) TextureProviderDefault() *QSGTextureProvider {
 	return nil
 }
 
+//export callbackQQuickPaintedItem_TextureSizeChanged
+func callbackQQuickPaintedItem_TextureSizeChanged(ptr unsafe.Pointer, ptrName *C.char) {
+	defer qt.Recovering("callback QQuickPaintedItem::textureSizeChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "textureSizeChanged"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QQuickPaintedItem) ConnectTextureSizeChanged(f func()) {
+	defer qt.Recovering("connect QQuickPaintedItem::textureSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickPaintedItem_ConnectTextureSizeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "textureSizeChanged", f)
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectTextureSizeChanged() {
+	defer qt.Recovering("disconnect QQuickPaintedItem::textureSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickPaintedItem_DisconnectTextureSizeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "textureSizeChanged")
+	}
+}
+
+func (ptr *QQuickPaintedItem) TextureSizeChanged() {
+	defer qt.Recovering("QQuickPaintedItem::textureSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QQuickPaintedItem_TextureSizeChanged(ptr.Pointer())
+	}
+}
+
 func (ptr *QQuickPaintedItem) Update(rect core.QRect_ITF) {
 	defer qt.Recovering("QQuickPaintedItem::update")
 
@@ -6037,6 +6431,7 @@ func (ptr *QQuickPaintedItem) DestroyQQuickPaintedItem() {
 	defer qt.Recovering("QQuickPaintedItem::~QQuickPaintedItem")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickPaintedItem_DestroyQQuickPaintedItem(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6087,96 +6482,6 @@ func (ptr *QQuickPaintedItem) ChildMouseEventFilterDefault(item QQuickItem_ITF, 
 		return C.QQuickPaintedItem_ChildMouseEventFilterDefault(ptr.Pointer(), PointerFromQQuickItem(item), core.PointerFromQEvent(event)) != 0
 	}
 	return false
-}
-
-//export callbackQQuickPaintedItem_ClassBegin
-func callbackQQuickPaintedItem_ClassBegin(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QQuickPaintedItem::classBegin")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "classBegin"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQQuickPaintedItemFromPointer(ptr).ClassBeginDefault()
-	}
-}
-
-func (ptr *QQuickPaintedItem) ConnectClassBegin(f func()) {
-	defer qt.Recovering("connect QQuickPaintedItem::classBegin")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "classBegin", f)
-	}
-}
-
-func (ptr *QQuickPaintedItem) DisconnectClassBegin() {
-	defer qt.Recovering("disconnect QQuickPaintedItem::classBegin")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "classBegin")
-	}
-}
-
-func (ptr *QQuickPaintedItem) ClassBegin() {
-	defer qt.Recovering("QQuickPaintedItem::classBegin")
-
-	if ptr.Pointer() != nil {
-		C.QQuickPaintedItem_ClassBegin(ptr.Pointer())
-	}
-}
-
-func (ptr *QQuickPaintedItem) ClassBeginDefault() {
-	defer qt.Recovering("QQuickPaintedItem::classBegin")
-
-	if ptr.Pointer() != nil {
-		C.QQuickPaintedItem_ClassBeginDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQQuickPaintedItem_ComponentComplete
-func callbackQQuickPaintedItem_ComponentComplete(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QQuickPaintedItem::componentComplete")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "componentComplete"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQQuickPaintedItemFromPointer(ptr).ComponentCompleteDefault()
-	}
-}
-
-func (ptr *QQuickPaintedItem) ConnectComponentComplete(f func()) {
-	defer qt.Recovering("connect QQuickPaintedItem::componentComplete")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "componentComplete", f)
-	}
-}
-
-func (ptr *QQuickPaintedItem) DisconnectComponentComplete() {
-	defer qt.Recovering("disconnect QQuickPaintedItem::componentComplete")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "componentComplete")
-	}
-}
-
-func (ptr *QQuickPaintedItem) ComponentComplete() {
-	defer qt.Recovering("QQuickPaintedItem::componentComplete")
-
-	if ptr.Pointer() != nil {
-		C.QQuickPaintedItem_ComponentComplete(ptr.Pointer())
-	}
-}
-
-func (ptr *QQuickPaintedItem) ComponentCompleteDefault() {
-	defer qt.Recovering("QQuickPaintedItem::componentComplete")
-
-	if ptr.Pointer() != nil {
-		C.QQuickPaintedItem_ComponentCompleteDefault(ptr.Pointer())
-	}
 }
 
 //export callbackQQuickPaintedItem_Contains
@@ -6404,53 +6709,6 @@ func (ptr *QQuickPaintedItem) DropEventDefault(event gui.QDropEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickPaintedItem_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
-}
-
-//export callbackQQuickPaintedItem_Event
-func callbackQQuickPaintedItem_Event(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QQuickPaintedItem::event")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(ev))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQQuickPaintedItemFromPointer(ptr).EventDefault(core.NewQEventFromPointer(ev))))
-}
-
-func (ptr *QQuickPaintedItem) ConnectEvent(f func(ev *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickPaintedItem::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
-	}
-}
-
-func (ptr *QQuickPaintedItem) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQuickPaintedItem::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
-	}
-}
-
-func (ptr *QQuickPaintedItem) Event(ev core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickPaintedItem::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickPaintedItem_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
-	}
-	return false
-}
-
-func (ptr *QQuickPaintedItem) EventDefault(ev core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickPaintedItem::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickPaintedItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
-	}
-	return false
 }
 
 //export callbackQQuickPaintedItem_FocusInEvent
@@ -7523,6 +7781,7 @@ func (ptr *QQuickPaintedItem) DeleteLater() {
 	defer qt.Recovering("QQuickPaintedItem::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickPaintedItem_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7532,6 +7791,7 @@ func (ptr *QQuickPaintedItem) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickPaintedItem::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickPaintedItem_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7922,6 +8182,7 @@ func (ptr *QQuickRenderControl) DestroyQQuickRenderControl() {
 	defer qt.Recovering("QQuickRenderControl::~QQuickRenderControl")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickRenderControl_DestroyQQuickRenderControl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8140,6 +8401,7 @@ func (ptr *QQuickRenderControl) DeleteLater() {
 	defer qt.Recovering("QQuickRenderControl::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickRenderControl_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8149,6 +8411,7 @@ func (ptr *QQuickRenderControl) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickRenderControl::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickRenderControl_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8991,6 +9254,18 @@ func (ptr *QQuickTextureFactory) TextureByteCount() int {
 	return 0
 }
 
+func QQuickTextureFactory_TextureFactoryForImage(image gui.QImage_ITF) *QQuickTextureFactory {
+	defer qt.Recovering("QQuickTextureFactory::textureFactoryForImage")
+
+	return NewQQuickTextureFactoryFromPointer(C.QQuickTextureFactory_QQuickTextureFactory_TextureFactoryForImage(gui.PointerFromQImage(image)))
+}
+
+func (ptr *QQuickTextureFactory) TextureFactoryForImage(image gui.QImage_ITF) *QQuickTextureFactory {
+	defer qt.Recovering("QQuickTextureFactory::textureFactoryForImage")
+
+	return NewQQuickTextureFactoryFromPointer(C.QQuickTextureFactory_QQuickTextureFactory_TextureFactoryForImage(gui.PointerFromQImage(image)))
+}
+
 //export callbackQQuickTextureFactory_TextureSize
 func callbackQQuickTextureFactory_TextureSize(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QQuickTextureFactory::textureSize")
@@ -9033,6 +9308,7 @@ func (ptr *QQuickTextureFactory) DestroyQQuickTextureFactory() {
 	defer qt.Recovering("QQuickTextureFactory::~QQuickTextureFactory")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickTextureFactory_DestroyQQuickTextureFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9251,6 +9527,7 @@ func (ptr *QQuickTextureFactory) DeleteLater() {
 	defer qt.Recovering("QQuickTextureFactory::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickTextureFactory_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9260,6 +9537,7 @@ func (ptr *QQuickTextureFactory) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickTextureFactory::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickTextureFactory_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -9578,77 +9856,11 @@ func (ptr *QQuickView) InitialSize() *core.QSize {
 	return nil
 }
 
-//export callbackQQuickView_KeyPressEvent
-func callbackQQuickView_KeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::keyPressEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
-		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-	} else {
-		NewQQuickViewFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
-	}
-}
-
-func (ptr *QQuickView) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QQuickView::keyPressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectKeyPressEvent() {
-	defer qt.Recovering("disconnect QQuickView::keyPressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
-	}
-}
-
 func (ptr *QQuickView) KeyPressEvent(e gui.QKeyEvent_ITF) {
 	defer qt.Recovering("QQuickView::keyPressEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
-	}
-}
-
-func (ptr *QQuickView) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QQuickView::keyPressEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
-	}
-}
-
-//export callbackQQuickView_KeyReleaseEvent
-func callbackQQuickView_KeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::keyReleaseEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
-		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-	} else {
-		NewQQuickViewFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
-	}
-}
-
-func (ptr *QQuickView) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QQuickView::keyReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectKeyReleaseEvent() {
-	defer qt.Recovering("disconnect QQuickView::keyReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
 	}
 }
 
@@ -9660,85 +9872,11 @@ func (ptr *QQuickView) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
 	}
 }
 
-func (ptr *QQuickView) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QQuickView::keyReleaseEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
-	}
-}
-
-//export callbackQQuickView_MouseMoveEvent
-func callbackQQuickView_MouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::mouseMoveEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-	} else {
-		NewQQuickViewFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(e))
-	}
-}
-
-func (ptr *QQuickView) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickView::mouseMoveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectMouseMoveEvent() {
-	defer qt.Recovering("disconnect QQuickView::mouseMoveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
-	}
-}
-
 func (ptr *QQuickView) MouseMoveEvent(e gui.QMouseEvent_ITF) {
 	defer qt.Recovering("QQuickView::mouseMoveEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
-	}
-}
-
-func (ptr *QQuickView) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickView::mouseMoveEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
-	}
-}
-
-//export callbackQQuickView_MousePressEvent
-func callbackQQuickView_MousePressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::mousePressEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-	} else {
-		NewQQuickViewFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(e))
-	}
-}
-
-func (ptr *QQuickView) ConnectMousePressEvent(f func(e *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickView::mousePressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectMousePressEvent() {
-	defer qt.Recovering("disconnect QQuickView::mousePressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
 	}
 }
 
@@ -9750,56 +9888,11 @@ func (ptr *QQuickView) MousePressEvent(e gui.QMouseEvent_ITF) {
 	}
 }
 
-func (ptr *QQuickView) MousePressEventDefault(e gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickView::mousePressEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
-	}
-}
-
-//export callbackQQuickView_MouseReleaseEvent
-func callbackQQuickView_MouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::mouseReleaseEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
-	} else {
-		NewQQuickViewFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(e))
-	}
-}
-
-func (ptr *QQuickView) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickView::mouseReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectMouseReleaseEvent() {
-	defer qt.Recovering("disconnect QQuickView::mouseReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
-	}
-}
-
 func (ptr *QQuickView) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
 	defer qt.Recovering("QQuickView::mouseReleaseEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
-	}
-}
-
-func (ptr *QQuickView) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickView::mouseReleaseEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
 	}
 }
 
@@ -9906,327 +9999,9 @@ func (ptr *QQuickView) DestroyQQuickView() {
 	defer qt.Recovering("QQuickView::~QQuickView")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickView_DestroyQQuickView(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-//export callbackQQuickView_AccessibleRoot
-func callbackQQuickView_AccessibleRoot(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QQuickView::accessibleRoot")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "accessibleRoot"); signal != nil {
-		return gui.PointerFromQAccessibleInterface(signal.(func() *gui.QAccessibleInterface)())
-	}
-
-	return gui.PointerFromQAccessibleInterface(NewQQuickViewFromPointer(ptr).AccessibleRootDefault())
-}
-
-func (ptr *QQuickView) ConnectAccessibleRoot(f func() *gui.QAccessibleInterface) {
-	defer qt.Recovering("connect QQuickView::accessibleRoot")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "accessibleRoot", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectAccessibleRoot() {
-	defer qt.Recovering("disconnect QQuickView::accessibleRoot")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "accessibleRoot")
-	}
-}
-
-func (ptr *QQuickView) AccessibleRoot() *gui.QAccessibleInterface {
-	defer qt.Recovering("QQuickView::accessibleRoot")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQAccessibleInterfaceFromPointer(C.QQuickView_AccessibleRoot(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QQuickView) AccessibleRootDefault() *gui.QAccessibleInterface {
-	defer qt.Recovering("QQuickView::accessibleRoot")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQAccessibleInterfaceFromPointer(C.QQuickView_AccessibleRootDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQQuickView_Event
-func callbackQQuickView_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QQuickView::event")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQQuickViewFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
-}
-
-func (ptr *QQuickView) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickView::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQuickView::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
-	}
-}
-
-func (ptr *QQuickView) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickView::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickView_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-func (ptr *QQuickView) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickView::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-//export callbackQQuickView_ExposeEvent
-func callbackQQuickView_ExposeEvent(ptr unsafe.Pointer, ptrName *C.char, vqe unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::exposeEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "exposeEvent"); signal != nil {
-		signal.(func(*gui.QExposeEvent))(gui.NewQExposeEventFromPointer(vqe))
-	} else {
-		NewQQuickViewFromPointer(ptr).ExposeEventDefault(gui.NewQExposeEventFromPointer(vqe))
-	}
-}
-
-func (ptr *QQuickView) ConnectExposeEvent(f func(vqe *gui.QExposeEvent)) {
-	defer qt.Recovering("connect QQuickView::exposeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "exposeEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectExposeEvent() {
-	defer qt.Recovering("disconnect QQuickView::exposeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "exposeEvent")
-	}
-}
-
-func (ptr *QQuickView) ExposeEvent(vqe gui.QExposeEvent_ITF) {
-	defer qt.Recovering("QQuickView::exposeEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_ExposeEvent(ptr.Pointer(), gui.PointerFromQExposeEvent(vqe))
-	}
-}
-
-func (ptr *QQuickView) ExposeEventDefault(vqe gui.QExposeEvent_ITF) {
-	defer qt.Recovering("QQuickView::exposeEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_ExposeEventDefault(ptr.Pointer(), gui.PointerFromQExposeEvent(vqe))
-	}
-}
-
-//export callbackQQuickView_FocusInEvent
-func callbackQQuickView_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::focusInEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
-		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
-	} else {
-		NewQQuickViewFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(ev))
-	}
-}
-
-func (ptr *QQuickView) ConnectFocusInEvent(f func(ev *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QQuickView::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QQuickView::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
-	}
-}
-
-func (ptr *QQuickView) FocusInEvent(ev gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickView::focusInEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
-	}
-}
-
-func (ptr *QQuickView) FocusInEventDefault(ev gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickView::focusInEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
-	}
-}
-
-//export callbackQQuickView_FocusOutEvent
-func callbackQQuickView_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::focusOutEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
-		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
-	} else {
-		NewQQuickViewFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(ev))
-	}
-}
-
-func (ptr *QQuickView) ConnectFocusOutEvent(f func(ev *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QQuickView::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QQuickView::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
-	}
-}
-
-func (ptr *QQuickView) FocusOutEvent(ev gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickView::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
-	}
-}
-
-func (ptr *QQuickView) FocusOutEventDefault(ev gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickView::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
-	}
-}
-
-//export callbackQQuickView_HideEvent
-func callbackQQuickView_HideEvent(ptr unsafe.Pointer, ptrName *C.char, vqh unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::hideEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(vqh))
-	} else {
-		NewQQuickViewFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(vqh))
-	}
-}
-
-func (ptr *QQuickView) ConnectHideEvent(f func(vqh *gui.QHideEvent)) {
-	defer qt.Recovering("connect QQuickView::hideEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectHideEvent() {
-	defer qt.Recovering("disconnect QQuickView::hideEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
-	}
-}
-
-func (ptr *QQuickView) HideEvent(vqh gui.QHideEvent_ITF) {
-	defer qt.Recovering("QQuickView::hideEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(vqh))
-	}
-}
-
-func (ptr *QQuickView) HideEventDefault(vqh gui.QHideEvent_ITF) {
-	defer qt.Recovering("QQuickView::hideEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(vqh))
-	}
-}
-
-//export callbackQQuickView_MouseDoubleClickEvent
-func callbackQQuickView_MouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::mouseDoubleClickEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-	} else {
-		NewQQuickViewFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickView::mouseDoubleClickEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectMouseDoubleClickEvent() {
-	defer qt.Recovering("disconnect QQuickView::mouseDoubleClickEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
-	}
-}
-
-func (ptr *QQuickView) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickView::mouseDoubleClickEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
-	}
-}
-
-func (ptr *QQuickView) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickView::mouseDoubleClickEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
@@ -10275,96 +10050,6 @@ func (ptr *QQuickView) ReleaseResourcesDefault() {
 	}
 }
 
-//export callbackQQuickView_ResizeEvent
-func callbackQQuickView_ResizeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::resizeEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
-		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(ev))
-	} else {
-		NewQQuickViewFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(ev))
-	}
-}
-
-func (ptr *QQuickView) ConnectResizeEvent(f func(ev *gui.QResizeEvent)) {
-	defer qt.Recovering("connect QQuickView::resizeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectResizeEvent() {
-	defer qt.Recovering("disconnect QQuickView::resizeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
-	}
-}
-
-func (ptr *QQuickView) ResizeEvent(ev gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QQuickView::resizeEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(ev))
-	}
-}
-
-func (ptr *QQuickView) ResizeEventDefault(ev gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QQuickView::resizeEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(ev))
-	}
-}
-
-//export callbackQQuickView_ShowEvent
-func callbackQQuickView_ShowEvent(ptr unsafe.Pointer, ptrName *C.char, vqs unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::showEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
-		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(vqs))
-	} else {
-		NewQQuickViewFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(vqs))
-	}
-}
-
-func (ptr *QQuickView) ConnectShowEvent(f func(vqs *gui.QShowEvent)) {
-	defer qt.Recovering("connect QQuickView::showEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectShowEvent() {
-	defer qt.Recovering("disconnect QQuickView::showEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
-	}
-}
-
-func (ptr *QQuickView) ShowEvent(vqs gui.QShowEvent_ITF) {
-	defer qt.Recovering("QQuickView::showEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(vqs))
-	}
-}
-
-func (ptr *QQuickView) ShowEventDefault(vqs gui.QShowEvent_ITF) {
-	defer qt.Recovering("QQuickView::showEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(vqs))
-	}
-}
-
 //export callbackQQuickView_Update
 func callbackQQuickView_Update(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QQuickView::update")
@@ -10407,51 +10092,6 @@ func (ptr *QQuickView) UpdateDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickView_UpdateDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQQuickView_WheelEvent
-func callbackQQuickView_WheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickView::wheelEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
-		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-	} else {
-		NewQQuickViewFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickView) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
-	defer qt.Recovering("connect QQuickView::wheelEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
-	}
-}
-
-func (ptr *QQuickView) DisconnectWheelEvent() {
-	defer qt.Recovering("disconnect QQuickView::wheelEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
-	}
-}
-
-func (ptr *QQuickView) WheelEvent(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QQuickView::wheelEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
-	}
-}
-
-func (ptr *QQuickView) WheelEventDefault(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QQuickView::wheelEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickView_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
 	}
 }
 
@@ -12030,6 +11670,7 @@ func (ptr *QQuickView) DeleteLater() {
 	defer qt.Recovering("QQuickView::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickView_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -12039,6 +11680,7 @@ func (ptr *QQuickView) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickView::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickView_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -12246,96 +11888,6 @@ func newQQuickWidgetFromPointer(ptr unsafe.Pointer) *QQuickWidget {
 		n.SetObjectName("QQuickWidget_" + qt.Identifier())
 	}
 	return n
-}
-
-//export callbackQQuickWidget_FocusInEvent
-func callbackQQuickWidget_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWidget::focusInEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
-		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-	} else {
-		NewQQuickWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QQuickWidget::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
-	}
-}
-
-func (ptr *QQuickWidget) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QQuickWidget::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
-	}
-}
-
-func (ptr *QQuickWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickWidget::focusInEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
-	}
-}
-
-func (ptr *QQuickWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickWidget::focusInEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
-	}
-}
-
-//export callbackQQuickWidget_FocusOutEvent
-func callbackQQuickWidget_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWidget::focusOutEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
-		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
-	} else {
-		NewQQuickWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QQuickWidget::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
-	}
-}
-
-func (ptr *QQuickWidget) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QQuickWidget::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
-	}
-}
-
-func (ptr *QQuickWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickWidget::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
-	}
-}
-
-func (ptr *QQuickWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickWidget::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
-	}
 }
 
 func (ptr *QQuickWidget) ResizeMode() QQuickWidget__ResizeMode {
@@ -12571,35 +12123,6 @@ func (ptr *QQuickWidget) Engine() *qml.QQmlEngine {
 	return nil
 }
 
-//export callbackQQuickWidget_Event
-func callbackQQuickWidget_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QQuickWidget::event")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQQuickWidgetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
-}
-
-func (ptr *QQuickWidget) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickWidget::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
-	}
-}
-
-func (ptr *QQuickWidget) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQuickWidget::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
-	}
-}
-
 func (ptr *QQuickWidget) Event(e core.QEvent_ITF) bool {
 	defer qt.Recovering("QQuickWidget::event")
 
@@ -12609,13 +12132,94 @@ func (ptr *QQuickWidget) Event(e core.QEvent_ITF) bool {
 	return false
 }
 
-func (ptr *QQuickWidget) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickWidget::event")
+//export callbackQQuickWidget_FocusInEvent
+func callbackQQuickWidget_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickWidget::focusInEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	} else {
+		NewQQuickWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
+	}
+}
+
+func (ptr *QQuickWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickWidget::focusInEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QQuickWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
 	}
-	return false
+}
+
+func (ptr *QQuickWidget) DisconnectFocusInEvent() {
+	defer qt.Recovering("disconnect QQuickWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+	}
+}
+
+func (ptr *QQuickWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QQuickWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickWidget::focusInEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+//export callbackQQuickWidget_FocusOutEvent
+func callbackQQuickWidget_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+	defer qt.Recovering("callback QQuickWidget::focusOutEvent")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
+	} else {
+		NewQQuickWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
+	}
+}
+
+func (ptr *QQuickWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
+	defer qt.Recovering("connect QQuickWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+	}
+}
+
+func (ptr *QQuickWidget) DisconnectFocusOutEvent() {
+	defer qt.Recovering("disconnect QQuickWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+	}
+}
+
+func (ptr *QQuickWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
+}
+
+func (ptr *QQuickWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
+	defer qt.Recovering("QQuickWidget::focusOutEvent")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
+	}
 }
 
 func (ptr *QQuickWidget) Format() *gui.QSurfaceFormat {
@@ -13214,6 +12818,7 @@ func (ptr *QQuickWidget) DestroyQQuickWidget() {
 	defer qt.Recovering("QQuickWidget::~QQuickWidget")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickWidget_DestroyQQuickWidget(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13354,53 +12959,6 @@ func (ptr *QQuickWidget) LeaveEventDefault(event core.QEvent_ITF) {
 	}
 }
 
-//export callbackQQuickWidget_Metric
-func callbackQQuickWidget_Metric(ptr unsafe.Pointer, ptrName *C.char, m C.int) C.int {
-	defer qt.Recovering("callback QQuickWidget::metric")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "metric"); signal != nil {
-		return C.int(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m)))
-	}
-
-	return C.int(NewQQuickWidgetFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m)))
-}
-
-func (ptr *QQuickWidget) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
-	defer qt.Recovering("connect QQuickWidget::metric")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "metric", f)
-	}
-}
-
-func (ptr *QQuickWidget) DisconnectMetric() {
-	defer qt.Recovering("disconnect QQuickWidget::metric")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "metric")
-	}
-}
-
-func (ptr *QQuickWidget) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
-	defer qt.Recovering("QQuickWidget::metric")
-
-	if ptr.Pointer() != nil {
-		return int(C.QQuickWidget_Metric(ptr.Pointer(), C.int(m)))
-	}
-	return 0
-}
-
-func (ptr *QQuickWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
-	defer qt.Recovering("QQuickWidget::metric")
-
-	if ptr.Pointer() != nil {
-		return int(C.QQuickWidget_MetricDefault(ptr.Pointer(), C.int(m)))
-	}
-	return 0
-}
-
 //export callbackQQuickWidget_MinimumSizeHint
 func callbackQQuickWidget_MinimumSizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QQuickWidget::minimumSizeHint")
@@ -13491,53 +13049,6 @@ func (ptr *QQuickWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
-}
-
-//export callbackQQuickWidget_PaintEngine
-func callbackQQuickWidget_PaintEngine(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QQuickWidget::paintEngine")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
-	}
-
-	return gui.PointerFromQPaintEngine(NewQQuickWidgetFromPointer(ptr).PaintEngineDefault())
-}
-
-func (ptr *QQuickWidget) ConnectPaintEngine(f func() *gui.QPaintEngine) {
-	defer qt.Recovering("connect QQuickWidget::paintEngine")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "paintEngine", f)
-	}
-}
-
-func (ptr *QQuickWidget) DisconnectPaintEngine() {
-	defer qt.Recovering("disconnect QQuickWidget::paintEngine")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "paintEngine")
-	}
-}
-
-func (ptr *QQuickWidget) PaintEngine() *gui.QPaintEngine {
-	defer qt.Recovering("QQuickWidget::paintEngine")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QQuickWidget_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QQuickWidget) PaintEngineDefault() *gui.QPaintEngine {
-	defer qt.Recovering("QQuickWidget::paintEngine")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QQuickWidget_PaintEngineDefault(ptr.Pointer()))
-	}
-	return nil
 }
 
 //export callbackQQuickWidget_PaintEvent
@@ -14222,51 +13733,6 @@ func (ptr *QQuickWidget) HideDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_HideDefault(ptr.Pointer())
-	}
-}
-
-//export callbackQQuickWidget_InitPainter
-func callbackQQuickWidget_InitPainter(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWidget::initPainter")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "initPainter"); signal != nil {
-		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
-	} else {
-		NewQQuickWidgetFromPointer(ptr).InitPainterDefault(gui.NewQPainterFromPointer(painter))
-	}
-}
-
-func (ptr *QQuickWidget) ConnectInitPainter(f func(painter *gui.QPainter)) {
-	defer qt.Recovering("connect QQuickWidget::initPainter")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "initPainter", f)
-	}
-}
-
-func (ptr *QQuickWidget) DisconnectInitPainter() {
-	defer qt.Recovering("disconnect QQuickWidget::initPainter")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "initPainter")
-	}
-}
-
-func (ptr *QQuickWidget) InitPainter(painter gui.QPainter_ITF) {
-	defer qt.Recovering("QQuickWidget::initPainter")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWidget_InitPainter(ptr.Pointer(), gui.PointerFromQPainter(painter))
-	}
-}
-
-func (ptr *QQuickWidget) InitPainterDefault(painter gui.QPainter_ITF) {
-	defer qt.Recovering("QQuickWidget::initPainter")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWidget_InitPainterDefault(ptr.Pointer(), gui.PointerFromQPainter(painter))
 	}
 }
 
@@ -15297,6 +14763,7 @@ func (ptr *QQuickWidget) DeleteLater() {
 	defer qt.Recovering("QQuickWidget::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickWidget_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -15306,6 +14773,7 @@ func (ptr *QQuickWidget) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickWidget::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickWidget_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -15458,6 +14926,7 @@ const (
 	QQuickWindow__TextureHasMipmaps      = QQuickWindow__CreateTextureOption(0x0002)
 	QQuickWindow__TextureOwnsGLTexture   = QQuickWindow__CreateTextureOption(0x0004)
 	QQuickWindow__TextureCanUseAtlas     = QQuickWindow__CreateTextureOption(0x0008)
+	QQuickWindow__TextureIsOpaque        = QQuickWindow__CreateTextureOption(0x0010)
 )
 
 //QQuickWindow::RenderStage
@@ -15469,6 +14938,7 @@ const (
 	QQuickWindow__BeforeRenderingStage     = QQuickWindow__RenderStage(2)
 	QQuickWindow__AfterRenderingStage      = QQuickWindow__RenderStage(3)
 	QQuickWindow__AfterSwapStage           = QQuickWindow__RenderStage(4)
+	QQuickWindow__NoStage                  = QQuickWindow__RenderStage(5)
 )
 
 //QQuickWindow::SceneGraphError
@@ -15566,49 +15036,11 @@ func NewQQuickWindow(parent gui.QWindow_ITF) *QQuickWindow {
 	return newQQuickWindowFromPointer(C.QQuickWindow_NewQQuickWindow(gui.PointerFromQWindow(parent)))
 }
 
-//export callbackQQuickWindow_AccessibleRoot
-func callbackQQuickWindow_AccessibleRoot(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QQuickWindow::accessibleRoot")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "accessibleRoot"); signal != nil {
-		return gui.PointerFromQAccessibleInterface(signal.(func() *gui.QAccessibleInterface)())
-	}
-
-	return gui.PointerFromQAccessibleInterface(NewQQuickWindowFromPointer(ptr).AccessibleRootDefault())
-}
-
-func (ptr *QQuickWindow) ConnectAccessibleRoot(f func() *gui.QAccessibleInterface) {
-	defer qt.Recovering("connect QQuickWindow::accessibleRoot")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "accessibleRoot", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectAccessibleRoot() {
-	defer qt.Recovering("disconnect QQuickWindow::accessibleRoot")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "accessibleRoot")
-	}
-}
-
 func (ptr *QQuickWindow) AccessibleRoot() *gui.QAccessibleInterface {
 	defer qt.Recovering("QQuickWindow::accessibleRoot")
 
 	if ptr.Pointer() != nil {
 		return gui.NewQAccessibleInterfaceFromPointer(C.QQuickWindow_AccessibleRoot(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QQuickWindow) AccessibleRootDefault() *gui.QAccessibleInterface {
-	defer qt.Recovering("QQuickWindow::accessibleRoot")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQAccessibleInterfaceFromPointer(C.QQuickWindow_AccessibleRootDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -15901,35 +15333,6 @@ func (ptr *QQuickWindow) EffectiveDevicePixelRatio() float64 {
 	return 0
 }
 
-//export callbackQQuickWindow_Event
-func callbackQQuickWindow_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QQuickWindow::event")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQQuickWindowFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
-}
-
-func (ptr *QQuickWindow) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickWindow::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
-	}
-}
-
 func (ptr *QQuickWindow) Event(e core.QEvent_ITF) bool {
 	defer qt.Recovering("QQuickWindow::event")
 
@@ -15939,86 +15342,11 @@ func (ptr *QQuickWindow) Event(e core.QEvent_ITF) bool {
 	return false
 }
 
-func (ptr *QQuickWindow) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickWindow::event")
-
-	if ptr.Pointer() != nil {
-		return C.QQuickWindow_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-//export callbackQQuickWindow_ExposeEvent
-func callbackQQuickWindow_ExposeEvent(ptr unsafe.Pointer, ptrName *C.char, vqe unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::exposeEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "exposeEvent"); signal != nil {
-		signal.(func(*gui.QExposeEvent))(gui.NewQExposeEventFromPointer(vqe))
-	} else {
-		NewQQuickWindowFromPointer(ptr).ExposeEventDefault(gui.NewQExposeEventFromPointer(vqe))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectExposeEvent(f func(vqe *gui.QExposeEvent)) {
-	defer qt.Recovering("connect QQuickWindow::exposeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "exposeEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectExposeEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::exposeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "exposeEvent")
-	}
-}
-
 func (ptr *QQuickWindow) ExposeEvent(vqe gui.QExposeEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::exposeEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_ExposeEvent(ptr.Pointer(), gui.PointerFromQExposeEvent(vqe))
-	}
-}
-
-func (ptr *QQuickWindow) ExposeEventDefault(vqe gui.QExposeEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::exposeEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_ExposeEventDefault(ptr.Pointer(), gui.PointerFromQExposeEvent(vqe))
-	}
-}
-
-//export callbackQQuickWindow_FocusInEvent
-func callbackQQuickWindow_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::focusInEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
-		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
-	} else {
-		NewQQuickWindowFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(ev))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectFocusInEvent(f func(ev *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QQuickWindow::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::focusInEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
 	}
 }
 
@@ -16030,56 +15358,11 @@ func (ptr *QQuickWindow) FocusInEvent(ev gui.QFocusEvent_ITF) {
 	}
 }
 
-func (ptr *QQuickWindow) FocusInEventDefault(ev gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::focusInEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
-	}
-}
-
-//export callbackQQuickWindow_FocusOutEvent
-func callbackQQuickWindow_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::focusOutEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
-		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
-	} else {
-		NewQQuickWindowFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(ev))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectFocusOutEvent(f func(ev *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QQuickWindow::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
-	}
-}
-
 func (ptr *QQuickWindow) FocusOutEvent(ev gui.QFocusEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::focusOutEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
-	}
-}
-
-func (ptr *QQuickWindow) FocusOutEventDefault(ev gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::focusOutEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(ev))
 	}
 }
 
@@ -16140,48 +15423,11 @@ func (ptr *QQuickWindow) HasDefaultAlphaBuffer() bool {
 	return C.QQuickWindow_QQuickWindow_HasDefaultAlphaBuffer() != 0
 }
 
-//export callbackQQuickWindow_HideEvent
-func callbackQQuickWindow_HideEvent(ptr unsafe.Pointer, ptrName *C.char, vqh unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::hideEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
-		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(vqh))
-	} else {
-		NewQQuickWindowFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(vqh))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectHideEvent(f func(vqh *gui.QHideEvent)) {
-	defer qt.Recovering("connect QQuickWindow::hideEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectHideEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::hideEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
-	}
-}
-
 func (ptr *QQuickWindow) HideEvent(vqh gui.QHideEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::hideEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(vqh))
-	}
-}
-
-func (ptr *QQuickWindow) HideEventDefault(vqh gui.QHideEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::hideEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(vqh))
 	}
 }
 
@@ -16221,77 +15467,11 @@ func (ptr *QQuickWindow) IsSceneGraphInitialized() bool {
 	return false
 }
 
-//export callbackQQuickWindow_KeyPressEvent
-func callbackQQuickWindow_KeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::keyPressEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
-		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-	} else {
-		NewQQuickWindowFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QQuickWindow::keyPressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectKeyPressEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::keyPressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
-	}
-}
-
 func (ptr *QQuickWindow) KeyPressEvent(e gui.QKeyEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::keyPressEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
-	}
-}
-
-func (ptr *QQuickWindow) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::keyPressEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
-	}
-}
-
-//export callbackQQuickWindow_KeyReleaseEvent
-func callbackQQuickWindow_KeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::keyReleaseEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
-		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
-	} else {
-		NewQQuickWindowFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(e))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectKeyReleaseEvent(f func(e *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QQuickWindow::keyReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectKeyReleaseEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::keyReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
 	}
 }
 
@@ -16303,56 +15483,11 @@ func (ptr *QQuickWindow) KeyReleaseEvent(e gui.QKeyEvent_ITF) {
 	}
 }
 
-func (ptr *QQuickWindow) KeyReleaseEventDefault(e gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::keyReleaseEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(e))
-	}
-}
-
-//export callbackQQuickWindow_MouseDoubleClickEvent
-func callbackQQuickWindow_MouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::mouseDoubleClickEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-	} else {
-		NewQQuickWindowFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickWindow::mouseDoubleClickEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectMouseDoubleClickEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::mouseDoubleClickEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
-	}
-}
-
 func (ptr *QQuickWindow) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::mouseDoubleClickEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
-	}
-}
-
-func (ptr *QQuickWindow) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::mouseDoubleClickEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
@@ -16365,77 +15500,11 @@ func (ptr *QQuickWindow) MouseGrabberItem() *QQuickItem {
 	return nil
 }
 
-//export callbackQQuickWindow_MouseMoveEvent
-func callbackQQuickWindow_MouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::mouseMoveEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-	} else {
-		NewQQuickWindowFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickWindow::mouseMoveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectMouseMoveEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::mouseMoveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
-	}
-}
-
 func (ptr *QQuickWindow) MouseMoveEvent(event gui.QMouseEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::mouseMoveEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
-	}
-}
-
-func (ptr *QQuickWindow) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::mouseMoveEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
-	}
-}
-
-//export callbackQQuickWindow_MousePressEvent
-func callbackQQuickWindow_MousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::mousePressEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-	} else {
-		NewQQuickWindowFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickWindow::mousePressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectMousePressEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::mousePressEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
 	}
 }
 
@@ -16447,56 +15516,11 @@ func (ptr *QQuickWindow) MousePressEvent(event gui.QMouseEvent_ITF) {
 	}
 }
 
-func (ptr *QQuickWindow) MousePressEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::mousePressEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
-	}
-}
-
-//export callbackQQuickWindow_MouseReleaseEvent
-func callbackQQuickWindow_MouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::mouseReleaseEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
-		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
-	} else {
-		NewQQuickWindowFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QQuickWindow::mouseReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectMouseReleaseEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::mouseReleaseEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
-	}
-}
-
 func (ptr *QQuickWindow) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::mouseReleaseEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
-	}
-}
-
-func (ptr *QQuickWindow) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::mouseReleaseEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
@@ -16607,48 +15631,11 @@ func (ptr *QQuickWindow) ResetOpenGLState() {
 	}
 }
 
-//export callbackQQuickWindow_ResizeEvent
-func callbackQQuickWindow_ResizeEvent(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::resizeEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
-		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(ev))
-	} else {
-		NewQQuickWindowFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(ev))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectResizeEvent(f func(ev *gui.QResizeEvent)) {
-	defer qt.Recovering("connect QQuickWindow::resizeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectResizeEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::resizeEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
-	}
-}
-
 func (ptr *QQuickWindow) ResizeEvent(ev gui.QResizeEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::resizeEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(ev))
-	}
-}
-
-func (ptr *QQuickWindow) ResizeEventDefault(ev gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::resizeEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(ev))
 	}
 }
 
@@ -16857,48 +15844,11 @@ func (ptr *QQuickWindow) SetRenderTarget(fbo gui.QOpenGLFramebufferObject_ITF) {
 	}
 }
 
-//export callbackQQuickWindow_ShowEvent
-func callbackQQuickWindow_ShowEvent(ptr unsafe.Pointer, ptrName *C.char, vqs unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::showEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
-		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(vqs))
-	} else {
-		NewQQuickWindowFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(vqs))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectShowEvent(f func(vqs *gui.QShowEvent)) {
-	defer qt.Recovering("connect QQuickWindow::showEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectShowEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::showEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
-	}
-}
-
 func (ptr *QQuickWindow) ShowEvent(vqs gui.QShowEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::showEvent")
 
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(vqs))
-	}
-}
-
-func (ptr *QQuickWindow) ShowEventDefault(vqs gui.QShowEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::showEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(vqs))
 	}
 }
 
@@ -16938,35 +15888,6 @@ func (ptr *QQuickWindow) Update() {
 	}
 }
 
-//export callbackQQuickWindow_WheelEvent
-func callbackQQuickWindow_WheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWindow::wheelEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
-		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
-	} else {
-		NewQQuickWindowFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
-	}
-}
-
-func (ptr *QQuickWindow) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
-	defer qt.Recovering("connect QQuickWindow::wheelEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
-	}
-}
-
-func (ptr *QQuickWindow) DisconnectWheelEvent() {
-	defer qt.Recovering("disconnect QQuickWindow::wheelEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
-	}
-}
-
 func (ptr *QQuickWindow) WheelEvent(event gui.QWheelEvent_ITF) {
 	defer qt.Recovering("QQuickWindow::wheelEvent")
 
@@ -16975,18 +15896,11 @@ func (ptr *QQuickWindow) WheelEvent(event gui.QWheelEvent_ITF) {
 	}
 }
 
-func (ptr *QQuickWindow) WheelEventDefault(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QQuickWindow::wheelEvent")
-
-	if ptr.Pointer() != nil {
-		C.QQuickWindow_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
-	}
-}
-
 func (ptr *QQuickWindow) DestroyQQuickWindow() {
 	defer qt.Recovering("QQuickWindow::~QQuickWindow")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickWindow_DestroyQQuickWindow(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -18567,6 +17481,7 @@ func (ptr *QQuickWindow) DeleteLater() {
 	defer qt.Recovering("QQuickWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickWindow_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -18576,6 +17491,7 @@ func (ptr *QQuickWindow) DeleteLaterDefault() {
 	defer qt.Recovering("QQuickWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QQuickWindow_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19125,6 +18041,7 @@ func (ptr *QSGAbstractRenderer) DeleteLater() {
 	defer qt.Recovering("QSGAbstractRenderer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGAbstractRenderer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19134,6 +18051,7 @@ func (ptr *QSGAbstractRenderer) DeleteLaterDefault() {
 	defer qt.Recovering("QSGAbstractRenderer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGAbstractRenderer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20309,6 +19227,7 @@ func (ptr *QSGDynamicTexture) DeleteLater() {
 	defer qt.Recovering("QSGDynamicTexture::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGDynamicTexture_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20318,6 +19237,7 @@ func (ptr *QSGDynamicTexture) DeleteLaterDefault() {
 	defer qt.Recovering("QSGDynamicTexture::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGDynamicTexture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20516,6 +19436,7 @@ const (
 	QSGEngine__TextureHasAlphaChannel = QSGEngine__CreateTextureOption(0x0001)
 	QSGEngine__TextureOwnsGLTexture   = QSGEngine__CreateTextureOption(0x0004)
 	QSGEngine__TextureCanUseAtlas     = QSGEngine__CreateTextureOption(0x0008)
+	QSGEngine__TextureIsOpaque        = QSGEngine__CreateTextureOption(0x0010)
 )
 
 type QSGEngine struct {
@@ -21467,6 +20388,7 @@ func (ptr *QSGGeometry) DestroyQSGGeometry() {
 	defer qt.Recovering("QSGGeometry::~QSGGeometry")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSGGeometry_DestroyQSGGeometry(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -22073,51 +20995,6 @@ func (ptr *QSGMaterialShader) ActivateDefault() {
 	}
 }
 
-//export callbackQSGMaterialShader_Compile
-func callbackQSGMaterialShader_Compile(ptr unsafe.Pointer, ptrName *C.char) {
-	defer qt.Recovering("callback QSGMaterialShader::compile")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "compile"); signal != nil {
-		signal.(func())()
-	} else {
-		NewQSGMaterialShaderFromPointer(ptr).CompileDefault()
-	}
-}
-
-func (ptr *QSGMaterialShader) ConnectCompile(f func()) {
-	defer qt.Recovering("connect QSGMaterialShader::compile")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "compile", f)
-	}
-}
-
-func (ptr *QSGMaterialShader) DisconnectCompile() {
-	defer qt.Recovering("disconnect QSGMaterialShader::compile")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "compile")
-	}
-}
-
-func (ptr *QSGMaterialShader) Compile() {
-	defer qt.Recovering("QSGMaterialShader::compile")
-
-	if ptr.Pointer() != nil {
-		C.QSGMaterialShader_Compile(ptr.Pointer())
-	}
-}
-
-func (ptr *QSGMaterialShader) CompileDefault() {
-	defer qt.Recovering("QSGMaterialShader::compile")
-
-	if ptr.Pointer() != nil {
-		C.QSGMaterialShader_CompileDefault(ptr.Pointer())
-	}
-}
-
 //export callbackQSGMaterialShader_Deactivate
 func callbackQSGMaterialShader_Deactivate(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QSGMaterialShader::deactivate")
@@ -22160,6 +21037,60 @@ func (ptr *QSGMaterialShader) DeactivateDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QSGMaterialShader_DeactivateDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {
+	defer qt.Recovering("QSGMaterialShader::program")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQOpenGLShaderProgramFromPointer(C.QSGMaterialShader_Program(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQSGMaterialShader_Compile
+func callbackQSGMaterialShader_Compile(ptr unsafe.Pointer, ptrName *C.char) {
+	defer qt.Recovering("callback QSGMaterialShader::compile")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "compile"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSGMaterialShaderFromPointer(ptr).CompileDefault()
+	}
+}
+
+func (ptr *QSGMaterialShader) ConnectCompile(f func()) {
+	defer qt.Recovering("connect QSGMaterialShader::compile")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "compile", f)
+	}
+}
+
+func (ptr *QSGMaterialShader) DisconnectCompile() {
+	defer qt.Recovering("disconnect QSGMaterialShader::compile")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "compile")
+	}
+}
+
+func (ptr *QSGMaterialShader) Compile() {
+	defer qt.Recovering("QSGMaterialShader::compile")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_Compile(ptr.Pointer())
+	}
+}
+
+func (ptr *QSGMaterialShader) CompileDefault() {
+	defer qt.Recovering("QSGMaterialShader::compile")
+
+	if ptr.Pointer() != nil {
+		C.QSGMaterialShader_CompileDefault(ptr.Pointer())
 	}
 }
 
@@ -22206,15 +21137,6 @@ func (ptr *QSGMaterialShader) InitializeDefault() {
 	if ptr.Pointer() != nil {
 		C.QSGMaterialShader_InitializeDefault(ptr.Pointer())
 	}
-}
-
-func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {
-	defer qt.Recovering("QSGMaterialShader::program")
-
-	if ptr.Pointer() != nil {
-		return gui.NewQOpenGLShaderProgramFromPointer(C.QSGMaterialShader_Program(ptr.Pointer()))
-	}
-	return nil
 }
 
 func (ptr *QSGMaterialShader) SetShaderSourceFile(ty gui.QOpenGLShader__ShaderTypeBit, sourceFile string) {
@@ -22630,6 +21552,7 @@ func (ptr *QSGNode) DestroyQSGNode() {
 	defer qt.Recovering("QSGNode::~QSGNode")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSGNode_DestroyQSGNode(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -24140,6 +23063,7 @@ func (ptr *QSGTexture) DestroyQSGTexture() {
 	defer qt.Recovering("QSGTexture::~QSGTexture")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGTexture_DestroyQSGTexture(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -24358,6 +23282,7 @@ func (ptr *QSGTexture) DeleteLater() {
 	defer qt.Recovering("QSGTexture::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGTexture_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -24367,6 +23292,7 @@ func (ptr *QSGTexture) DeleteLaterDefault() {
 	defer qt.Recovering("QSGTexture::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGTexture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -25077,6 +24003,7 @@ func (ptr *QSGTextureProvider) DeleteLater() {
 	defer qt.Recovering("QSGTextureProvider::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGTextureProvider_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -25086,6 +24013,7 @@ func (ptr *QSGTextureProvider) DeleteLaterDefault() {
 	defer qt.Recovering("QSGTextureProvider::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSGTextureProvider_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

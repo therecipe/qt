@@ -613,11 +613,11 @@ func (ptr *QDomDocument) SetContent4(source QXmlInputSource_ITF, namespaceProces
 	return false
 }
 
-func (ptr *QDomDocument) SetContent6(buffer string, errorMsg string, errorLine int, errorColumn int) bool {
+func (ptr *QDomDocument) SetContent5(buffer string, errorMsg string, errorLine int, errorColumn int) bool {
 	defer qt.Recovering("QDomDocument::setContent")
 
 	if ptr.Pointer() != nil {
-		return C.QDomDocument_SetContent6(ptr.Pointer(), C.CString(buffer), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
+		return C.QDomDocument_SetContent5(ptr.Pointer(), C.CString(buffer), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
 	}
 	return false
 }
@@ -631,11 +631,11 @@ func (ptr *QDomDocument) SetContent(data string, namespaceProcessing bool, error
 	return false
 }
 
-func (ptr *QDomDocument) SetContent5(text string, errorMsg string, errorLine int, errorColumn int) bool {
+func (ptr *QDomDocument) SetContent6(text string, errorMsg string, errorLine int, errorColumn int) bool {
 	defer qt.Recovering("QDomDocument::setContent")
 
 	if ptr.Pointer() != nil {
-		return C.QDomDocument_SetContent5(ptr.Pointer(), C.CString(text), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
+		return C.QDomDocument_SetContent6(ptr.Pointer(), C.CString(text), C.CString(errorMsg), C.int(errorLine), C.int(errorColumn)) != 0
 	}
 	return false
 }
@@ -1039,11 +1039,11 @@ func (ptr *QDomElement) SetAttribute(name string, value string) {
 	}
 }
 
-func (ptr *QDomElement) SetAttribute2(name string, value int) {
+func (ptr *QDomElement) SetAttribute4(name string, value int) {
 	defer qt.Recovering("QDomElement::setAttribute")
 
 	if ptr.Pointer() != nil {
-		C.QDomElement_SetAttribute2(ptr.Pointer(), C.CString(name), C.int(value))
+		C.QDomElement_SetAttribute4(ptr.Pointer(), C.CString(name), C.int(value))
 	}
 }
 
@@ -2636,6 +2636,7 @@ func (ptr *QXmlAttributes) DestroyQXmlAttributes() {
 	defer qt.Recovering("QXmlAttributes::~QXmlAttributes")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlAttributes_DestroyQXmlAttributes(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3275,6 +3276,7 @@ func (ptr *QXmlContentHandler) DestroyQXmlContentHandler() {
 	defer qt.Recovering("QXmlContentHandler::~QXmlContentHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlContentHandler_DestroyQXmlContentHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3461,6 +3463,7 @@ func (ptr *QXmlDTDHandler) DestroyQXmlDTDHandler() {
 	defer qt.Recovering("QXmlDTDHandler::~QXmlDTDHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlDTDHandler_DestroyQXmlDTDHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3685,6 +3688,7 @@ func (ptr *QXmlDeclHandler) DestroyQXmlDeclHandler() {
 	defer qt.Recovering("QXmlDeclHandler::~QXmlDeclHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlDeclHandler_DestroyQXmlDeclHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3708,20 +3712,20 @@ func (ptr *QXmlDeclHandler) SetObjectNameAbs(name string) {
 }
 
 type QXmlDefaultHandler struct {
-	QXmlDTDHandler
-	QXmlErrorHandler
-	QXmlLexicalHandler
-	QXmlEntityResolver
 	QXmlContentHandler
+	QXmlErrorHandler
+	QXmlDTDHandler
+	QXmlEntityResolver
+	QXmlLexicalHandler
 	QXmlDeclHandler
 }
 
 type QXmlDefaultHandler_ITF interface {
-	QXmlDTDHandler_ITF
-	QXmlErrorHandler_ITF
-	QXmlLexicalHandler_ITF
-	QXmlEntityResolver_ITF
 	QXmlContentHandler_ITF
+	QXmlErrorHandler_ITF
+	QXmlDTDHandler_ITF
+	QXmlEntityResolver_ITF
+	QXmlLexicalHandler_ITF
 	QXmlDeclHandler_ITF
 	QXmlDefaultHandler_PTR() *QXmlDefaultHandler
 }
@@ -3732,18 +3736,18 @@ func (p *QXmlDefaultHandler) QXmlDefaultHandler_PTR() *QXmlDefaultHandler {
 
 func (p *QXmlDefaultHandler) Pointer() unsafe.Pointer {
 	if p != nil {
-		return p.QXmlDTDHandler_PTR().Pointer()
+		return p.QXmlContentHandler_PTR().Pointer()
 	}
 	return nil
 }
 
 func (p *QXmlDefaultHandler) SetPointer(ptr unsafe.Pointer) {
 	if p != nil {
-		p.QXmlDTDHandler_PTR().SetPointer(ptr)
-		p.QXmlErrorHandler_PTR().SetPointer(ptr)
-		p.QXmlLexicalHandler_PTR().SetPointer(ptr)
-		p.QXmlEntityResolver_PTR().SetPointer(ptr)
 		p.QXmlContentHandler_PTR().SetPointer(ptr)
+		p.QXmlErrorHandler_PTR().SetPointer(ptr)
+		p.QXmlDTDHandler_PTR().SetPointer(ptr)
+		p.QXmlEntityResolver_PTR().SetPointer(ptr)
+		p.QXmlLexicalHandler_PTR().SetPointer(ptr)
 		p.QXmlDeclHandler_PTR().SetPointer(ptr)
 	}
 }
@@ -3779,6 +3783,7 @@ func (ptr *QXmlDefaultHandler) DestroyQXmlDefaultHandler() {
 	defer qt.Recovering("QXmlDefaultHandler::~QXmlDefaultHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlDefaultHandler_DestroyQXmlDefaultHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5194,6 +5199,7 @@ func (ptr *QXmlEntityResolver) DestroyQXmlEntityResolver() {
 	defer qt.Recovering("QXmlEntityResolver::~QXmlEntityResolver")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlEntityResolver_DestroyQXmlEntityResolver(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5418,6 +5424,7 @@ func (ptr *QXmlErrorHandler) DestroyQXmlErrorHandler() {
 	defer qt.Recovering("QXmlErrorHandler::~QXmlErrorHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlErrorHandler_DestroyQXmlErrorHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5823,6 +5830,7 @@ func (ptr *QXmlInputSource) DestroyQXmlInputSource() {
 	defer qt.Recovering("QXmlInputSource::~QXmlInputSource")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlInputSource_DestroyQXmlInputSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6199,6 +6207,7 @@ func (ptr *QXmlLexicalHandler) DestroyQXmlLexicalHandler() {
 	defer qt.Recovering("QXmlLexicalHandler::~QXmlLexicalHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlLexicalHandler_DestroyQXmlLexicalHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6353,6 +6362,7 @@ func (ptr *QXmlLocator) DestroyQXmlLocator() {
 	defer qt.Recovering("QXmlLocator::~QXmlLocator")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlLocator_DestroyQXmlLocator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7366,6 +7376,7 @@ func (ptr *QXmlReader) DestroyQXmlReader() {
 	defer qt.Recovering("QXmlReader::~QXmlReader")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlReader_DestroyQXmlReader(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8416,6 +8427,7 @@ func (ptr *QXmlSimpleReader) DestroyQXmlSimpleReader() {
 	defer qt.Recovering("QXmlSimpleReader::~QXmlSimpleReader")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QXmlSimpleReader_DestroyQXmlSimpleReader(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

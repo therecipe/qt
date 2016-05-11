@@ -156,6 +156,7 @@
 #include <QUuid>
 #include <QVariant>
 #include <QVariantAnimation>
+#include <QVersionNumber>
 #include <QWaitCondition>
 #include <QWidget>
 #include <QWinEventNotifier>
@@ -4321,6 +4322,11 @@ char* QCommandLineOption_Description(void* ptr)
 	return static_cast<QCommandLineOption*>(ptr)->description().toUtf8().data();
 }
 
+int QCommandLineOption_IsHidden(void* ptr)
+{
+	return static_cast<QCommandLineOption*>(ptr)->isHidden();
+}
+
 char* QCommandLineOption_Names(void* ptr)
 {
 	return static_cast<QCommandLineOption*>(ptr)->names().join("|").toUtf8().data();
@@ -4339,6 +4345,11 @@ void QCommandLineOption_SetDefaultValues(void* ptr, char* defaultValues)
 void QCommandLineOption_SetDescription(void* ptr, char* description)
 {
 	static_cast<QCommandLineOption*>(ptr)->setDescription(QString(description));
+}
+
+void QCommandLineOption_SetHidden(void* ptr, int hide)
+{
+	static_cast<QCommandLineOption*>(ptr)->setHidden(hide != 0);
 }
 
 void QCommandLineOption_SetValueName(void* ptr, char* valueName)
@@ -4446,6 +4457,11 @@ void QCommandLineParser_SetApplicationDescription(void* ptr, char* description)
 	static_cast<QCommandLineParser*>(ptr)->setApplicationDescription(QString(description));
 }
 
+void QCommandLineParser_SetOptionsAfterPositionalArgumentsMode(void* ptr, int parsingMode)
+{
+	static_cast<QCommandLineParser*>(ptr)->setOptionsAfterPositionalArgumentsMode(static_cast<QCommandLineParser::OptionsAfterPositionalArgumentsMode>(parsingMode));
+}
+
 void QCommandLineParser_SetSingleDashWordOptionMode(void* ptr, int singleDashWordOptionMode)
 {
 	static_cast<QCommandLineParser*>(ptr)->setSingleDashWordOptionMode(static_cast<QCommandLineParser::SingleDashWordOptionMode>(singleDashWordOptionMode));
@@ -4518,6 +4534,11 @@ char* QCoreApplication_QCoreApplication_ApplicationVersion()
 	return QCoreApplication::applicationVersion().toUtf8().data();
 }
 
+int QCoreApplication_QCoreApplication_IsQuitLockEnabled()
+{
+	return QCoreApplication::isQuitLockEnabled();
+}
+
 char* QCoreApplication_QCoreApplication_OrganizationDomain()
 {
 	return QCoreApplication::organizationDomain().toUtf8().data();
@@ -4546,6 +4567,11 @@ void QCoreApplication_QCoreApplication_SetOrganizationDomain(char* orgDomain)
 void QCoreApplication_QCoreApplication_SetOrganizationName(char* orgName)
 {
 	QCoreApplication::setOrganizationName(QString(orgName));
+}
+
+void QCoreApplication_QCoreApplication_SetQuitLockEnabled(int enabled)
+{
+	QCoreApplication::setQuitLockEnabled(enabled != 0);
 }
 
 void* QCoreApplication_NewQCoreApplication(int argc, char* argv)
@@ -4644,11 +4670,6 @@ void* QCoreApplication_QCoreApplication_Instance()
 	return QCoreApplication::instance();
 }
 
-int QCoreApplication_QCoreApplication_IsQuitLockEnabled()
-{
-	return QCoreApplication::isQuitLockEnabled();
-}
-
 int QCoreApplication_QCoreApplication_IsSetuidAllowed()
 {
 	return QCoreApplication::isSetuidAllowed();
@@ -4722,11 +4743,6 @@ void QCoreApplication_QCoreApplication_SetEventDispatcher(void* eventDispatcher)
 void QCoreApplication_QCoreApplication_SetLibraryPaths(char* paths)
 {
 	QCoreApplication::setLibraryPaths(QString(paths).split("|", QString::SkipEmptyParts));
-}
-
-void QCoreApplication_QCoreApplication_SetQuitLockEnabled(int enabled)
-{
-	QCoreApplication::setQuitLockEnabled(enabled != 0);
 }
 
 void QCoreApplication_QCoreApplication_SetSetuidAllowed(int allow)
@@ -4839,12 +4855,12 @@ void* QCryptographicHash_NewQCryptographicHash(int method)
 	return new QCryptographicHash(static_cast<QCryptographicHash::Algorithm>(method));
 }
 
-int QCryptographicHash_AddData2(void* ptr, void* device)
+int QCryptographicHash_AddData3(void* ptr, void* device)
 {
 	return static_cast<QCryptographicHash*>(ptr)->addData(static_cast<QIODevice*>(device));
 }
 
-void QCryptographicHash_AddData3(void* ptr, char* data)
+void QCryptographicHash_AddData2(void* ptr, char* data)
 {
 	static_cast<QCryptographicHash*>(ptr)->addData(QByteArray(data));
 }
@@ -5379,6 +5395,11 @@ void QDebug_SetAutoInsertSpaces(void* ptr, int b)
 	static_cast<QDebug*>(ptr)->setAutoInsertSpaces(b != 0);
 }
 
+void QDebug_SetVerbosity(void* ptr, int verbosityLevel)
+{
+	static_cast<QDebug*>(ptr)->setVerbosity(verbosityLevel);
+}
+
 void* QDebug_Space(void* ptr)
 {
 	return new QDebug(static_cast<QDebug*>(ptr)->space());
@@ -5387,6 +5408,11 @@ void* QDebug_Space(void* ptr)
 void QDebug_Swap(void* ptr, void* other)
 {
 	static_cast<QDebug*>(ptr)->swap(*static_cast<QDebug*>(other));
+}
+
+int QDebug_Verbosity(void* ptr)
+{
+	return static_cast<QDebug*>(ptr)->verbosity();
 }
 
 void* QDebugStateSaver_NewQDebugStateSaver(void* dbg)
@@ -7727,6 +7753,7 @@ public:
 	MyQHistoryState(HistoryType type, QState *parent) : QHistoryState(type, parent) {};
 	MyQHistoryState(QState *parent) : QHistoryState(parent) {};
 	void Signal_DefaultStateChanged() { callbackQHistoryState_DefaultStateChanged(this, this->objectName().toUtf8().data()); };
+	void Signal_DefaultTransitionChanged() { callbackQHistoryState_DefaultTransitionChanged(this, this->objectName().toUtf8().data()); };
 	bool event(QEvent * e) { return callbackQHistoryState_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	void Signal_HistoryTypeChanged() { callbackQHistoryState_HistoryTypeChanged(this, this->objectName().toUtf8().data()); };
 	void onEntry(QEvent * event) { callbackQHistoryState_OnEntry(this, this->objectName().toUtf8().data(), event); };
@@ -7764,6 +7791,21 @@ void QHistoryState_ConnectDefaultStateChanged(void* ptr)
 void QHistoryState_DisconnectDefaultStateChanged(void* ptr)
 {
 	QObject::disconnect(static_cast<QHistoryState*>(ptr), &QHistoryState::defaultStateChanged, static_cast<MyQHistoryState*>(ptr), static_cast<void (MyQHistoryState::*)()>(&MyQHistoryState::Signal_DefaultStateChanged));
+}
+
+void* QHistoryState_DefaultTransition(void* ptr)
+{
+	return static_cast<QHistoryState*>(ptr)->defaultTransition();
+}
+
+void QHistoryState_ConnectDefaultTransitionChanged(void* ptr)
+{
+	QObject::connect(static_cast<QHistoryState*>(ptr), &QHistoryState::defaultTransitionChanged, static_cast<MyQHistoryState*>(ptr), static_cast<void (MyQHistoryState::*)()>(&MyQHistoryState::Signal_DefaultTransitionChanged));
+}
+
+void QHistoryState_DisconnectDefaultTransitionChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QHistoryState*>(ptr), &QHistoryState::defaultTransitionChanged, static_cast<MyQHistoryState*>(ptr), static_cast<void (MyQHistoryState::*)()>(&MyQHistoryState::Signal_DefaultTransitionChanged));
 }
 
 int QHistoryState_Event(void* ptr, void* e)
@@ -7814,6 +7856,11 @@ void QHistoryState_OnExitDefault(void* ptr, void* event)
 void QHistoryState_SetDefaultState(void* ptr, void* state)
 {
 	static_cast<QHistoryState*>(ptr)->setDefaultState(static_cast<QAbstractState*>(state));
+}
+
+void QHistoryState_SetDefaultTransition(void* ptr, void* transition)
+{
+	static_cast<QHistoryState*>(ptr)->setDefaultTransition(static_cast<QAbstractTransition*>(transition));
 }
 
 void QHistoryState_SetHistoryType(void* ptr, int ty)
@@ -9227,17 +9274,22 @@ void* QItemSelectionRange_NewQItemSelectionRange()
 	return new QItemSelectionRange();
 }
 
+void* QItemSelectionRange_NewQItemSelectionRange3(void* other)
+{
+	return new QItemSelectionRange(*static_cast<QItemSelectionRange*>(other));
+}
+
 void* QItemSelectionRange_NewQItemSelectionRange2(void* other)
 {
 	return new QItemSelectionRange(*static_cast<QItemSelectionRange*>(other));
 }
 
-void* QItemSelectionRange_NewQItemSelectionRange4(void* index)
+void* QItemSelectionRange_NewQItemSelectionRange5(void* index)
 {
 	return new QItemSelectionRange(*static_cast<QModelIndex*>(index));
 }
 
-void* QItemSelectionRange_NewQItemSelectionRange3(void* topLeft, void* bottomRight)
+void* QItemSelectionRange_NewQItemSelectionRange4(void* topLeft, void* bottomRight)
 {
 	return new QItemSelectionRange(*static_cast<QModelIndex*>(topLeft), *static_cast<QModelIndex*>(bottomRight));
 }
@@ -9295,6 +9347,11 @@ void* QItemSelectionRange_Parent(void* ptr)
 int QItemSelectionRange_Right(void* ptr)
 {
 	return static_cast<QItemSelectionRange*>(ptr)->right();
+}
+
+void QItemSelectionRange_Swap(void* ptr, void* other)
+{
+	static_cast<QItemSelectionRange*>(ptr)->swap(*static_cast<QItemSelectionRange*>(other));
 }
 
 int QItemSelectionRange_Top(void* ptr)
@@ -9607,7 +9664,7 @@ char* QJsonParseError_ErrorString(void* ptr)
 	return static_cast<QJsonParseError*>(ptr)->errorString().toUtf8().data();
 }
 
-void* QJsonValue_NewQJsonValue5(void* s)
+void* QJsonValue_NewQJsonValue7(void* s)
 {
 	return new QJsonValue(*static_cast<QLatin1String*>(s));
 }
@@ -9622,37 +9679,37 @@ void* QJsonValue_NewQJsonValue2(int b)
 	return new QJsonValue(b != 0);
 }
 
-void* QJsonValue_NewQJsonValue7(void* a)
+void* QJsonValue_NewQJsonValue9(void* a)
 {
 	return new QJsonValue(*static_cast<QJsonArray*>(a));
 }
 
-void* QJsonValue_NewQJsonValue8(void* o)
+void* QJsonValue_NewQJsonValue10(void* o)
 {
 	return new QJsonValue(*static_cast<QJsonObject*>(o));
 }
 
-void* QJsonValue_NewQJsonValue9(void* other)
+void* QJsonValue_NewQJsonValue11(void* other)
 {
 	return new QJsonValue(*static_cast<QJsonValue*>(other));
 }
 
-void* QJsonValue_NewQJsonValue4(char* s)
+void* QJsonValue_NewQJsonValue6(char* s)
 {
 	return new QJsonValue(QString(s));
 }
 
-void* QJsonValue_NewQJsonValue6(char* s)
+void* QJsonValue_NewQJsonValue8(char* s)
 {
 	return new QJsonValue(const_cast<const char*>(s));
 }
 
-void* QJsonValue_NewQJsonValue12(int n)
+void* QJsonValue_NewQJsonValue4(int n)
 {
 	return new QJsonValue(n);
 }
 
-void* QJsonValue_NewQJsonValue13(long long n)
+void* QJsonValue_NewQJsonValue5(long long n)
 {
 	return new QJsonValue(static_cast<long long>(n));
 }
@@ -9757,17 +9814,22 @@ char* QLatin1Char_ToLatin1(void* ptr)
 	return QString(static_cast<QLatin1Char*>(ptr)->toLatin1()).toUtf8().data();
 }
 
-void* QLatin1String_NewQLatin1String3(char* str)
+void* QLatin1String_NewQLatin1String()
+{
+	return new QLatin1String();
+}
+
+void* QLatin1String_NewQLatin1String4(char* str)
 {
 	return new QLatin1String(QByteArray(str));
 }
 
-void* QLatin1String_NewQLatin1String(char* str)
+void* QLatin1String_NewQLatin1String2(char* str)
 {
 	return new QLatin1String(const_cast<const char*>(str));
 }
 
-void* QLatin1String_NewQLatin1String2(char* str, int size)
+void* QLatin1String_NewQLatin1String3(char* str, int size)
 {
 	return new QLatin1String(const_cast<const char*>(str), size);
 }
@@ -10417,7 +10479,7 @@ char* QLocale_TimeFormat(void* ptr, int format)
 	return static_cast<QLocale*>(ptr)->timeFormat(static_cast<QLocale::FormatType>(format)).toUtf8().data();
 }
 
-char* QLocale_ToCurrencyString6(void* ptr, int value, char* symbol)
+char* QLocale_ToCurrencyString5(void* ptr, int value, char* symbol)
 {
 	return static_cast<QLocale*>(ptr)->toCurrencyString(value, QString(symbol)).toUtf8().data();
 }
@@ -10447,37 +10509,37 @@ char* QLocale_ToLower(void* ptr, char* str)
 	return static_cast<QLocale*>(ptr)->toLower(QString(str)).toUtf8().data();
 }
 
-char* QLocale_ToString3(void* ptr, void* date, int format)
+char* QLocale_ToString10(void* ptr, void* date, int format)
 {
 	return static_cast<QLocale*>(ptr)->toString(*static_cast<QDate*>(date), static_cast<QLocale::FormatType>(format)).toUtf8().data();
 }
 
-char* QLocale_ToString2(void* ptr, void* date, char* format)
+char* QLocale_ToString9(void* ptr, void* date, char* format)
 {
 	return static_cast<QLocale*>(ptr)->toString(*static_cast<QDate*>(date), QString(format)).toUtf8().data();
 }
 
-char* QLocale_ToString6(void* ptr, void* dateTime, int format)
+char* QLocale_ToString13(void* ptr, void* dateTime, int format)
 {
 	return static_cast<QLocale*>(ptr)->toString(*static_cast<QDateTime*>(dateTime), static_cast<QLocale::FormatType>(format)).toUtf8().data();
 }
 
-char* QLocale_ToString7(void* ptr, void* dateTime, char* format)
+char* QLocale_ToString14(void* ptr, void* dateTime, char* format)
 {
 	return static_cast<QLocale*>(ptr)->toString(*static_cast<QDateTime*>(dateTime), QString(format)).toUtf8().data();
 }
 
-char* QLocale_ToString5(void* ptr, void* time, int format)
+char* QLocale_ToString12(void* ptr, void* time, int format)
 {
 	return static_cast<QLocale*>(ptr)->toString(*static_cast<QTime*>(time), static_cast<QLocale::FormatType>(format)).toUtf8().data();
 }
 
-char* QLocale_ToString4(void* ptr, void* time, char* format)
+char* QLocale_ToString11(void* ptr, void* time, char* format)
 {
 	return static_cast<QLocale*>(ptr)->toString(*static_cast<QTime*>(time), QString(format)).toUtf8().data();
 }
 
-char* QLocale_ToString12(void* ptr, int i)
+char* QLocale_ToString5(void* ptr, int i)
 {
 	return static_cast<QLocale*>(ptr)->toString(i).toUtf8().data();
 }
@@ -10717,12 +10779,12 @@ void* QMessageAuthenticationCode_NewQMessageAuthenticationCode(int method, char*
 	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), QByteArray(key));
 }
 
-int QMessageAuthenticationCode_AddData2(void* ptr, void* device)
+int QMessageAuthenticationCode_AddData3(void* ptr, void* device)
 {
 	return static_cast<QMessageAuthenticationCode*>(ptr)->addData(static_cast<QIODevice*>(device));
 }
 
-void QMessageAuthenticationCode_AddData3(void* ptr, char* data)
+void QMessageAuthenticationCode_AddData2(void* ptr, char* data)
 {
 	static_cast<QMessageAuthenticationCode*>(ptr)->addData(QByteArray(data));
 }
@@ -10792,12 +10854,12 @@ void* QMessageLogger_Debug5(void* ptr, void* cat)
 	return new QDebug(static_cast<QMessageLogger*>(ptr)->debug(*static_cast<QLoggingCategory*>(cat)));
 }
 
-void* QMessageLogger_Info3(void* ptr)
+void* QMessageLogger_Info4(void* ptr)
 {
 	return new QDebug(static_cast<QMessageLogger*>(ptr)->info());
 }
 
-void* QMessageLogger_Info4(void* ptr, void* cat)
+void* QMessageLogger_Info5(void* ptr, void* cat)
 {
 	return new QDebug(static_cast<QMessageLogger*>(ptr)->info(*static_cast<QLoggingCategory*>(cat)));
 }
@@ -11971,12 +12033,12 @@ int QObject_QObject_Disconnect(void* sender, char* sign, void* receiver, char* m
 	return QObject::disconnect(static_cast<QObject*>(sender), const_cast<const char*>(sign), static_cast<QObject*>(receiver), const_cast<const char*>(method));
 }
 
-int QObject_Disconnect5(void* ptr, void* receiver, char* method)
+int QObject_Disconnect4(void* ptr, void* receiver, char* method)
 {
 	return static_cast<QObject*>(ptr)->disconnect(static_cast<QObject*>(receiver), const_cast<const char*>(method));
 }
 
-int QObject_Disconnect4(void* ptr, char* sign, void* receiver, char* method)
+int QObject_Disconnect3(void* ptr, char* sign, void* receiver, char* method)
 {
 	return static_cast<QObject*>(ptr)->disconnect(const_cast<const char*>(sign), static_cast<QObject*>(receiver), const_cast<const char*>(method));
 }
@@ -12116,14 +12178,14 @@ int QObject_SetProperty(void* ptr, char* name, void* value)
 	return static_cast<QObject*>(ptr)->setProperty(const_cast<const char*>(name), *static_cast<QVariant*>(value));
 }
 
-int QObject_StartTimer(void* ptr, int interval, int timerType)
-{
-	return static_cast<QObject*>(ptr)->startTimer(interval, static_cast<Qt::TimerType>(timerType));
-}
-
 int QObject_SignalsBlocked(void* ptr)
 {
 	return static_cast<QObject*>(ptr)->signalsBlocked();
+}
+
+int QObject_StartTimer(void* ptr, int interval, int timerType)
+{
+	return static_cast<QObject*>(ptr)->startTimer(interval, static_cast<Qt::TimerType>(timerType));
 }
 
 void* QObject_Thread(void* ptr)
@@ -13071,7 +13133,7 @@ public:
 	qint64 bytesToWrite() const { return static_cast<long long>(callbackQProcess_BytesToWrite(const_cast<MyQProcess*>(this), this->objectName().toUtf8().data())); };
 	bool canReadLine() const { return callbackQProcess_CanReadLine(const_cast<MyQProcess*>(this), this->objectName().toUtf8().data()) != 0; };
 	void close() { callbackQProcess_Close(this, this->objectName().toUtf8().data()); };
-	void Signal_Error2(QProcess::ProcessError error) { callbackQProcess_Error2(this, this->objectName().toUtf8().data(), error); };
+	void Signal_ErrorOccurred(QProcess::ProcessError error) { callbackQProcess_ErrorOccurred(this, this->objectName().toUtf8().data(), error); };
 	void Signal_Finished(int exitCode, QProcess::ExitStatus exitStatus) { callbackQProcess_Finished(this, this->objectName().toUtf8().data(), exitCode, exitStatus); };
 	bool isSequential() const { return callbackQProcess_IsSequential(const_cast<MyQProcess*>(this), this->objectName().toUtf8().data()) != 0; };
 	void kill() { callbackQProcess_Kill(this, this->objectName().toUtf8().data()); };
@@ -13171,24 +13233,24 @@ void QProcess_CloseWriteChannel(void* ptr)
 	static_cast<QProcess*>(ptr)->closeWriteChannel();
 }
 
-void QProcess_ConnectError2(void* ptr)
-{
-	QObject::connect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::error), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_Error2));
-}
-
-void QProcess_DisconnectError2(void* ptr)
-{
-	QObject::disconnect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::error), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_Error2));
-}
-
-void QProcess_Error2(void* ptr, int error)
-{
-	static_cast<QProcess*>(ptr)->error(static_cast<QProcess::ProcessError>(error));
-}
-
 int QProcess_Error(void* ptr)
 {
 	return static_cast<QProcess*>(ptr)->error();
+}
+
+void QProcess_ConnectErrorOccurred(void* ptr)
+{
+	QObject::connect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::errorOccurred), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_ErrorOccurred));
+}
+
+void QProcess_DisconnectErrorOccurred(void* ptr)
+{
+	QObject::disconnect(static_cast<QProcess*>(ptr), static_cast<void (QProcess::*)(QProcess::ProcessError)>(&QProcess::errorOccurred), static_cast<MyQProcess*>(ptr), static_cast<void (MyQProcess::*)(QProcess::ProcessError)>(&MyQProcess::Signal_ErrorOccurred));
+}
+
+void QProcess_ErrorOccurred(void* ptr, int error)
+{
+	static_cast<QProcess*>(ptr)->errorOccurred(static_cast<QProcess::ProcessError>(error));
 }
 
 int QProcess_QProcess_Execute2(char* command)
@@ -13402,12 +13464,12 @@ void QProcess_SetupChildProcessDefault(void* ptr)
 	static_cast<QProcess*>(ptr)->QProcess::setupChildProcess();
 }
 
-void QProcess_Start2(void* ptr, int mode)
+void QProcess_Start3(void* ptr, int mode)
 {
 	static_cast<QProcess*>(ptr)->start(static_cast<QIODevice::OpenModeFlag>(mode));
 }
 
-void QProcess_Start3(void* ptr, char* command, int mode)
+void QProcess_Start2(void* ptr, char* command, int mode)
 {
 	static_cast<QProcess*>(ptr)->start(QString(command), static_cast<QIODevice::OpenModeFlag>(mode));
 }
@@ -14065,7 +14127,7 @@ int QRect_Contains(void* ptr, void* point, int proper)
 	return static_cast<QRect*>(ptr)->contains(*static_cast<QPoint*>(point), proper != 0);
 }
 
-int QRect_Contains4(void* ptr, void* rectangle, int proper)
+int QRect_Contains2(void* ptr, void* rectangle, int proper)
 {
 	return static_cast<QRect*>(ptr)->contains(*static_cast<QRect*>(rectangle), proper != 0);
 }
@@ -14130,7 +14192,7 @@ int QRect_Contains3(void* ptr, int x, int y)
 	return static_cast<QRect*>(ptr)->contains(x, y);
 }
 
-int QRect_Contains2(void* ptr, int x, int y, int proper)
+int QRect_Contains4(void* ptr, int x, int y, int proper)
 {
 	return static_cast<QRect*>(ptr)->contains(x, y, proper != 0);
 }
@@ -14390,7 +14452,7 @@ int QRectF_Contains(void* ptr, void* point)
 	return static_cast<QRectF*>(ptr)->contains(*static_cast<QPointF*>(point));
 }
 
-int QRectF_Contains3(void* ptr, void* rectangle)
+int QRectF_Contains2(void* ptr, void* rectangle)
 {
 	return static_cast<QRectF*>(ptr)->contains(*static_cast<QRectF*>(rectangle));
 }
@@ -14460,7 +14522,7 @@ void* QRectF_Center(void* ptr)
 	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->center()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->center()).y());
 }
 
-int QRectF_Contains2(void* ptr, double x, double y)
+int QRectF_Contains3(void* ptr, double x, double y)
 {
 	return static_cast<QRectF*>(ptr)->contains(static_cast<double>(x), static_cast<double>(y));
 }
@@ -15130,6 +15192,11 @@ public:
 	void run() { callbackQRunnable_Run(this, this->objectNameAbs().toUtf8().data()); };
 };
 
+void QRunnable_DestroyQRunnable(void* ptr)
+{
+	static_cast<QRunnable*>(ptr)->~QRunnable();
+}
+
 void* QRunnable_NewQRunnable()
 {
 	return new MyQRunnable();
@@ -15148,11 +15215,6 @@ void QRunnable_Run(void* ptr)
 void QRunnable_SetAutoDelete(void* ptr, int autoDelete)
 {
 	static_cast<QRunnable*>(ptr)->setAutoDelete(autoDelete != 0);
-}
-
-void QRunnable_DestroyQRunnable(void* ptr)
-{
-	static_cast<QRunnable*>(ptr)->~QRunnable();
 }
 
 char* QRunnable_ObjectNameAbs(void* ptr)
@@ -16326,7 +16388,7 @@ void* QSharedMemory_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QSharedMemory*>(ptr)->QSharedMemory::metaObject());
 }
 
-void* QSignalBlocker_NewQSignalBlocker3(void* object)
+void* QSignalBlocker_NewQSignalBlocker2(void* object)
 {
 	return new QSignalBlocker(*static_cast<QObject*>(object));
 }
@@ -17828,7 +17890,7 @@ void* QState_NewQState(void* parent)
 	return new MyQState(static_cast<QState*>(parent));
 }
 
-void* QState_AddTransition3(void* ptr, void* target)
+void* QState_AddTransition4(void* ptr, void* target)
 {
 	return static_cast<QState*>(ptr)->addTransition(static_cast<QAbstractState*>(target));
 }
@@ -18053,12 +18115,12 @@ class MyQStateMachine: public QStateMachine
 public:
 	MyQStateMachine(QObject *parent) : QStateMachine(parent) {};
 	MyQStateMachine(QState::ChildMode childMode, QObject *parent) : QStateMachine(childMode, parent) {};
+	void setRunning(bool running) { callbackQStateMachine_SetRunning(this, this->objectName().toUtf8().data(), running); };
 	bool event(QEvent * e) { return callbackQStateMachine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStateMachine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	void onEntry(QEvent * event) { callbackQStateMachine_OnEntry(this, this->objectName().toUtf8().data(), event); };
 	void onExit(QEvent * event) { callbackQStateMachine_OnExit(this, this->objectName().toUtf8().data(), event); };
 	void Signal_RunningChanged(bool running) { callbackQStateMachine_RunningChanged(this, this->objectName().toUtf8().data(), running); };
-	void setRunning(bool running) { callbackQStateMachine_SetRunning(this, this->objectName().toUtf8().data(), running); };
 	void start() { callbackQStateMachine_Start(this, this->objectName().toUtf8().data()); };
 	void Signal_Started() { callbackQStateMachine_Started(this, this->objectName().toUtf8().data()); };
 	void stop() { callbackQStateMachine_Stop(this, this->objectName().toUtf8().data()); };
@@ -18071,6 +18133,16 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQStateMachine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStateMachine_MetaObject(const_cast<MyQStateMachine*>(this), this->objectName().toUtf8().data())); };
 };
+
+int QStateMachine_IsRunning(void* ptr)
+{
+	return static_cast<QStateMachine*>(ptr)->isRunning();
+}
+
+void QStateMachine_SetRunning(void* ptr, int running)
+{
+	QMetaObject::invokeMethod(static_cast<QStateMachine*>(ptr), "setRunning", Q_ARG(bool, running != 0));
+}
 
 void* QStateMachine_NewQStateMachine(void* parent)
 {
@@ -18092,14 +18164,14 @@ void QStateMachine_AddState(void* ptr, void* state)
 	static_cast<QStateMachine*>(ptr)->addState(static_cast<QAbstractState*>(state));
 }
 
-void QStateMachine_ClearError(void* ptr)
-{
-	static_cast<QStateMachine*>(ptr)->clearError();
-}
-
 int QStateMachine_CancelDelayedEvent(void* ptr, int id)
 {
 	return static_cast<QStateMachine*>(ptr)->cancelDelayedEvent(id);
+}
+
+void QStateMachine_ClearError(void* ptr)
+{
+	static_cast<QStateMachine*>(ptr)->clearError();
 }
 
 int QStateMachine_Error(void* ptr)
@@ -18140,11 +18212,6 @@ int QStateMachine_GlobalRestorePolicy(void* ptr)
 int QStateMachine_IsAnimated(void* ptr)
 {
 	return static_cast<QStateMachine*>(ptr)->isAnimated();
-}
-
-int QStateMachine_IsRunning(void* ptr)
-{
-	return static_cast<QStateMachine*>(ptr)->isRunning();
 }
 
 void QStateMachine_OnEntry(void* ptr, void* event)
@@ -18210,11 +18277,6 @@ void QStateMachine_SetAnimated(void* ptr, int enabled)
 void QStateMachine_SetGlobalRestorePolicy(void* ptr, int restorePolicy)
 {
 	static_cast<QStateMachine*>(ptr)->setGlobalRestorePolicy(static_cast<QState::RestorePolicy>(restorePolicy));
-}
-
-void QStateMachine_SetRunning(void* ptr, int running)
-{
-	QMetaObject::invokeMethod(static_cast<QStateMachine*>(ptr), "setRunning", Q_ARG(bool, running != 0));
 }
 
 void QStateMachine_Start(void* ptr)
@@ -18355,6 +18417,11 @@ void* QStorageInfo_NewQStorageInfo4(void* other)
 void* QStorageInfo_NewQStorageInfo2(char* path)
 {
 	return new QStorageInfo(QString(path));
+}
+
+int QStorageInfo_BlockSize(void* ptr)
+{
+	return static_cast<QStorageInfo*>(ptr)->blockSize();
 }
 
 long long QStorageInfo_BytesAvailable(void* ptr)
@@ -18980,6 +19047,11 @@ void* QStringRef_NewQStringRef()
 	return new QStringRef();
 }
 
+void* QStringRef_NewQStringRef5(void* other)
+{
+	return new QStringRef(*static_cast<QStringRef*>(other));
+}
+
 void* QStringRef_NewQStringRef3(char* stri)
 {
 	return new QStringRef(new QString(stri));
@@ -19020,7 +19092,7 @@ void QStringRef_Clear(void* ptr)
 	static_cast<QStringRef*>(ptr)->clear();
 }
 
-int QStringRef_QStringRef_Compare3(void* s1, void* s2, int cs)
+int QStringRef_QStringRef_Compare6(void* s1, void* s2, int cs)
 {
 	return QStringRef::compare(*static_cast<QStringRef*>(s1), *static_cast<QLatin1String*>(s2), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19030,12 +19102,12 @@ int QStringRef_QStringRef_Compare(void* s1, char* s2, int cs)
 	return QStringRef::compare(*static_cast<QStringRef*>(s1), QString(s2), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_QStringRef_Compare2(void* s1, void* s2, int cs)
+int QStringRef_QStringRef_Compare5(void* s1, void* s2, int cs)
 {
 	return QStringRef::compare(*static_cast<QStringRef*>(s1), *static_cast<QStringRef*>(s2), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_Compare6(void* ptr, void* other, int cs)
+int QStringRef_Compare3(void* ptr, void* other, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->compare(*static_cast<QLatin1String*>(other), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19045,7 +19117,7 @@ int QStringRef_Compare4(void* ptr, char* other, int cs)
 	return static_cast<QStringRef*>(ptr)->compare(QString(other), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_Compare5(void* ptr, void* other, int cs)
+int QStringRef_Compare2(void* ptr, void* other, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->compare(*static_cast<QStringRef*>(other), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19060,7 +19132,7 @@ int QStringRef_Contains2(void* ptr, void* ch, int cs)
 	return static_cast<QStringRef*>(ptr)->contains(*static_cast<QChar*>(ch), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_Contains4(void* ptr, void* str, int cs)
+int QStringRef_Contains3(void* ptr, void* str, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->contains(*static_cast<QLatin1String*>(str), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19070,7 +19142,7 @@ int QStringRef_Contains(void* ptr, char* str, int cs)
 	return static_cast<QStringRef*>(ptr)->contains(QString(str), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_Contains3(void* ptr, void* str, int cs)
+int QStringRef_Contains4(void* ptr, void* str, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->contains(*static_cast<QStringRef*>(str), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19105,12 +19177,12 @@ void* QStringRef_End(void* ptr)
 	return const_cast<QChar*>(static_cast<QStringRef*>(ptr)->end());
 }
 
-int QStringRef_EndsWith2(void* ptr, void* ch, int cs)
+int QStringRef_EndsWith3(void* ptr, void* ch, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->endsWith(*static_cast<QChar*>(ch), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_EndsWith3(void* ptr, void* str, int cs)
+int QStringRef_EndsWith2(void* ptr, void* str, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->endsWith(*static_cast<QLatin1String*>(str), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19125,12 +19197,12 @@ int QStringRef_EndsWith4(void* ptr, void* str, int cs)
 	return static_cast<QStringRef*>(ptr)->endsWith(*static_cast<QStringRef*>(str), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_IndexOf3(void* ptr, void* ch, int from, int cs)
+int QStringRef_IndexOf2(void* ptr, void* ch, int from, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->indexOf(*static_cast<QChar*>(ch), from, static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_IndexOf2(void* ptr, void* str, int from, int cs)
+int QStringRef_IndexOf3(void* ptr, void* str, int from, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->indexOf(*static_cast<QLatin1String*>(str), from, static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19185,7 +19257,7 @@ int QStringRef_QStringRef_LocaleAwareCompare(void* s1, char* s2)
 	return QStringRef::localeAwareCompare(*static_cast<QStringRef*>(s1), QString(s2));
 }
 
-int QStringRef_QStringRef_LocaleAwareCompare2(void* s1, void* s2)
+int QStringRef_QStringRef_LocaleAwareCompare4(void* s1, void* s2)
 {
 	return QStringRef::localeAwareCompare(*static_cast<QStringRef*>(s1), *static_cast<QStringRef*>(s2));
 }
@@ -19195,7 +19267,7 @@ int QStringRef_LocaleAwareCompare3(void* ptr, char* other)
 	return static_cast<QStringRef*>(ptr)->localeAwareCompare(QString(other));
 }
 
-int QStringRef_LocaleAwareCompare4(void* ptr, void* other)
+int QStringRef_LocaleAwareCompare2(void* ptr, void* other)
 {
 	return static_cast<QStringRef*>(ptr)->localeAwareCompare(*static_cast<QStringRef*>(other));
 }
@@ -19210,7 +19282,7 @@ int QStringRef_Size(void* ptr)
 	return static_cast<QStringRef*>(ptr)->size();
 }
 
-int QStringRef_StartsWith4(void* ptr, void* ch, int cs)
+int QStringRef_StartsWith3(void* ptr, void* ch, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->startsWith(*static_cast<QChar*>(ch), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19225,7 +19297,7 @@ int QStringRef_StartsWith(void* ptr, char* str, int cs)
 	return static_cast<QStringRef*>(ptr)->startsWith(QString(str), static_cast<Qt::CaseSensitivity>(cs));
 }
 
-int QStringRef_StartsWith3(void* ptr, void* str, int cs)
+int QStringRef_StartsWith4(void* ptr, void* str, int cs)
 {
 	return static_cast<QStringRef*>(ptr)->startsWith(*static_cast<QStringRef*>(str), static_cast<Qt::CaseSensitivity>(cs));
 }
@@ -19265,6 +19337,11 @@ void* QStringRef_Trimmed(void* ptr)
 	return new QStringRef(static_cast<QStringRef*>(ptr)->trimmed());
 }
 
+void QStringRef_Truncate(void* ptr, int position)
+{
+	static_cast<QStringRef*>(ptr)->truncate(position);
+}
+
 void* QStringRef_Unicode(void* ptr)
 {
 	return const_cast<QChar*>(static_cast<QStringRef*>(ptr)->unicode());
@@ -19278,6 +19355,71 @@ void QStringRef_DestroyQStringRef(void* ptr)
 int QSysInfo_ByteOrder_Type()
 {
 	return QSysInfo::ByteOrder;
+}
+
+int QSysInfo_MV_9_Type()
+{
+	return QSysInfo::MV_9;
+}
+
+int QSysInfo_MV_10_0_Type()
+{
+	return QSysInfo::MV_10_0;
+}
+
+int QSysInfo_MV_10_1_Type()
+{
+	return QSysInfo::MV_10_1;
+}
+
+int QSysInfo_MV_10_2_Type()
+{
+	return QSysInfo::MV_10_2;
+}
+
+int QSysInfo_MV_10_3_Type()
+{
+	return QSysInfo::MV_10_3;
+}
+
+int QSysInfo_MV_10_4_Type()
+{
+	return QSysInfo::MV_10_4;
+}
+
+int QSysInfo_MV_10_5_Type()
+{
+	return QSysInfo::MV_10_5;
+}
+
+int QSysInfo_MV_10_6_Type()
+{
+	return QSysInfo::MV_10_6;
+}
+
+int QSysInfo_MV_10_7_Type()
+{
+	return QSysInfo::MV_10_7;
+}
+
+int QSysInfo_MV_10_8_Type()
+{
+	return QSysInfo::MV_10_8;
+}
+
+int QSysInfo_MV_10_9_Type()
+{
+	return QSysInfo::MV_10_9;
+}
+
+int QSysInfo_MV_10_10_Type()
+{
+	return QSysInfo::MV_10_10;
+}
+
+int QSysInfo_MV_10_11_Type()
+{
+	return QSysInfo::MV_10_11;
 }
 
 int QSysInfo_MV_IOS_Type()
@@ -19385,6 +19527,11 @@ char* QSysInfo_QSysInfo_KernelVersion()
 	return QSysInfo::kernelVersion().toUtf8().data();
 }
 
+char* QSysInfo_QSysInfo_MachineHostName()
+{
+	return QSysInfo::machineHostName().toUtf8().data();
+}
+
 char* QSysInfo_QSysInfo_PrettyProductName()
 {
 	return QSysInfo::prettyProductName().toUtf8().data();
@@ -19458,6 +19605,11 @@ void* QTemporaryDir_NewQTemporaryDir2(char* templatePath)
 int QTemporaryDir_AutoRemove(void* ptr)
 {
 	return static_cast<QTemporaryDir*>(ptr)->autoRemove();
+}
+
+char* QTemporaryDir_ErrorString(void* ptr)
+{
+	return static_cast<QTemporaryDir*>(ptr)->errorString().toUtf8().data();
 }
 
 int QTemporaryDir_IsValid(void* ptr)
@@ -20032,7 +20184,7 @@ char* QTextCodec_ToUnicode(void* ptr, char* a)
 	return static_cast<QTextCodec*>(ptr)->toUnicode(QByteArray(a)).toUtf8().data();
 }
 
-char* QTextCodec_ToUnicode3(void* ptr, char* chars)
+char* QTextCodec_ToUnicode2(void* ptr, char* chars)
 {
 	return static_cast<QTextCodec*>(ptr)->toUnicode(const_cast<const char*>(chars)).toUtf8().data();
 }
@@ -20072,12 +20224,12 @@ void* QTextDecoder_NewQTextDecoder2(void* codec, int flags)
 	return new QTextDecoder(static_cast<QTextCodec*>(codec), static_cast<QTextCodec::ConversionFlag>(flags));
 }
 
-char* QTextDecoder_ToUnicode3(void* ptr, char* ba)
+char* QTextDecoder_ToUnicode2(void* ptr, char* ba)
 {
 	return static_cast<QTextDecoder*>(ptr)->toUnicode(QByteArray(ba)).toUtf8().data();
 }
 
-void QTextDecoder_ToUnicode2(void* ptr, char* target, char* chars, int len)
+void QTextDecoder_ToUnicode3(void* ptr, char* target, char* chars, int len)
 {
 	static_cast<QTextDecoder*>(ptr)->toUnicode(new QString(target), const_cast<const char*>(chars), len);
 }
@@ -22348,6 +22500,11 @@ void* QVariant_NewQVariant()
 	return new QVariant();
 }
 
+void QVariant_Clear(void* ptr)
+{
+	static_cast<QVariant*>(ptr)->clear();
+}
+
 void* QVariant_NewQVariant6(void* s)
 {
 	return new QVariant(*static_cast<QDataStream*>(s));
@@ -22356,11 +22513,6 @@ void* QVariant_NewQVariant6(void* s)
 void* QVariant_NewQVariant47(void* other)
 {
 	return new QVariant(*static_cast<QVariant*>(other));
-}
-
-void QVariant_Clear(void* ptr)
-{
-	static_cast<QVariant*>(ptr)->clear();
 }
 
 int QVariant_Convert(void* ptr, int targetTypeId)
@@ -22766,6 +22918,76 @@ void* QVariantAnimation_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QVariantAnimation*>(ptr)->QVariantAnimation::metaObject());
 }
 
+int QVersionNumber_QVersionNumber_Compare(void* v1, void* v2)
+{
+	return QVersionNumber::compare(*static_cast<QVersionNumber*>(v1), *static_cast<QVersionNumber*>(v2));
+}
+
+int QVersionNumber_IsPrefixOf(void* ptr, void* other)
+{
+	return static_cast<QVersionNumber*>(ptr)->isPrefixOf(*static_cast<QVersionNumber*>(other));
+}
+
+char* QVersionNumber_ToString(void* ptr)
+{
+	return static_cast<QVersionNumber*>(ptr)->toString().toUtf8().data();
+}
+
+void* QVersionNumber_NewQVersionNumber()
+{
+	return new QVersionNumber();
+}
+
+void* QVersionNumber_NewQVersionNumber5(int maj)
+{
+	return new QVersionNumber(maj);
+}
+
+void* QVersionNumber_NewQVersionNumber6(int maj, int min)
+{
+	return new QVersionNumber(maj, min);
+}
+
+void* QVersionNumber_NewQVersionNumber7(int maj, int min, int mic)
+{
+	return new QVersionNumber(maj, min, mic);
+}
+
+int QVersionNumber_IsNormalized(void* ptr)
+{
+	return static_cast<QVersionNumber*>(ptr)->isNormalized();
+}
+
+int QVersionNumber_IsNull(void* ptr)
+{
+	return static_cast<QVersionNumber*>(ptr)->isNull();
+}
+
+int QVersionNumber_MajorVersion(void* ptr)
+{
+	return static_cast<QVersionNumber*>(ptr)->majorVersion();
+}
+
+int QVersionNumber_MicroVersion(void* ptr)
+{
+	return static_cast<QVersionNumber*>(ptr)->microVersion();
+}
+
+int QVersionNumber_MinorVersion(void* ptr)
+{
+	return static_cast<QVersionNumber*>(ptr)->minorVersion();
+}
+
+int QVersionNumber_SegmentAt(void* ptr, int index)
+{
+	return static_cast<QVersionNumber*>(ptr)->segmentAt(index);
+}
+
+int QVersionNumber_SegmentCount(void* ptr)
+{
+	return static_cast<QVersionNumber*>(ptr)->segmentCount();
+}
+
 void* QWaitCondition_NewQWaitCondition()
 {
 	return new QWaitCondition();
@@ -22814,6 +23036,11 @@ void QWriteLocker_DestroyQWriteLocker(void* ptr)
 void* QXmlStreamAttribute_NewQXmlStreamAttribute()
 {
 	return new QXmlStreamAttribute();
+}
+
+void* QXmlStreamAttribute_NewQXmlStreamAttribute5(void* other)
+{
+	return new QXmlStreamAttribute(*static_cast<QXmlStreamAttribute*>(other));
 }
 
 void* QXmlStreamAttribute_NewQXmlStreamAttribute3(char* namespaceUri, char* name, char* value)
@@ -23490,7 +23717,7 @@ void QXmlStreamWriter_WriteProcessingInstruction(void* ptr, char* target, char* 
 	static_cast<QXmlStreamWriter*>(ptr)->writeProcessingInstruction(QString(target), QString(data));
 }
 
-void QXmlStreamWriter_WriteStartDocument3(void* ptr)
+void QXmlStreamWriter_WriteStartDocument2(void* ptr)
 {
 	static_cast<QXmlStreamWriter*>(ptr)->writeStartDocument();
 }
@@ -23500,7 +23727,7 @@ void QXmlStreamWriter_WriteStartDocument(void* ptr, char* version)
 	static_cast<QXmlStreamWriter*>(ptr)->writeStartDocument(QString(version));
 }
 
-void QXmlStreamWriter_WriteStartDocument2(void* ptr, char* version, int standalone)
+void QXmlStreamWriter_WriteStartDocument3(void* ptr, char* version, int standalone)
 {
 	static_cast<QXmlStreamWriter*>(ptr)->writeStartDocument(QString(version), standalone != 0);
 }

@@ -3,6 +3,8 @@ package parser
 import (
 	"bytes"
 	"fmt"
+	"path/filepath"
+	"runtime"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -148,4 +150,229 @@ func (c *Class) fix() {
 
 		c.Functions = append(c.Functions, &defFunction)
 	}
+}
+
+func (c *Class) fixBases() {
+	if c.Module != MOC {
+
+		var (
+			prefixPath string
+			midfixPath = "include"
+			suffixPath = string(filepath.Separator)
+		)
+
+		switch runtime.GOOS {
+		case "windows":
+			{
+				prefixPath = "C:\\Qt\\Qt5.6.0\\5.6\\mingw49_32"
+			}
+
+		case "darwin":
+			{
+				prefixPath = "/usr/local/Qt5.6.0/5.6/clang_64"
+				midfixPath = "lib"
+				suffixPath = ".framework/Versions/5/Headers/"
+			}
+
+		case "linux":
+			{
+				switch runtime.GOARCH {
+				case "amd64":
+					{
+						prefixPath = "/usr/local/Qt5.6.0/5.6/gcc_64"
+					}
+
+				case "386":
+					{
+						prefixPath = "/usr/local/Qt5.6.0/5.6/gcc"
+					}
+				}
+			}
+		}
+
+		switch c.Name {
+		case "Qt", "QtGlobalStatic", "QUnicodeTools", "QHooks", "QModulesPrivate", "QtMetaTypePrivate", "QUnicodeTables", "QAndroidJniEnvironment", "QAndroidJniObject", "QAndroidActivityResultReceiver", "QSupportedWritingSystems", "QAbstractOpenGLFunctions":
+			{
+				c.Bases = ""
+				return
+			}
+
+		case "QUiLoader", "QEGLNativeContext", "QWGLNativeContext", "QGLXNativeContext", "QEglFSFunctions", "QWindowsWindowFunctions", "QCocoaNativeContext", "QXcbWindowFunctions", "QCocoaWindowFunctions":
+			{
+				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "include", "%v", "%v.h"), prefixPath, c.Module, strings.ToLower(c.Name))), c.Name, c.Module)
+				return
+			}
+
+		case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
+			{
+				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v5.6.0", "QtGui", "qpa", "%v.h"), prefixPath, midfixPath, c.Module, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+				return
+			}
+
+		case "QColumnView", "QLCDNumber", "QWebEngineUrlSchemeHandler", "QWebEngineUrlRequestInterceptor", "QWebEngineCookieStore", "QWebEngineUrlRequestInfo", "QWebEngineUrlRequestJob":
+			{
+				for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
+					m = "Qt" + m
+					if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name)) {
+
+						c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v.h"), prefixPath, midfixPath, m, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+						return
+					}
+				}
+			}
+
+		case "QFutureWatcher", "QDBusAbstractInterface":
+			{
+				c.Bases = "QObject"
+				return
+			}
+
+		case "QDBusPendingReply":
+			{
+				c.Bases = "QDBusPendingCall"
+				return
+			}
+
+		case "QRasterPaintEngine":
+			{
+				c.Bases = "QPaintEngine"
+				return
+			}
+		}
+
+		var found bool
+		for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
+			m = "Qt" + m
+			if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name)) {
+
+				var f = utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name))
+				if f != "" {
+					found = true
+					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v"), prefixPath, midfixPath, m, suffixPath), strings.Split(f, `"`)[1])), c.Name, m)
+				}
+				break
+			}
+		}
+
+		if !found {
+			fmt.Println("HEADER FILE NOT FOUND:", c.Name, c.Module)
+		}
+
+		var bases = c.GetBases()
+		for i := len(bases) - 1; i >= 0; i-- {
+			if _, exists := ClassMap[bases[i]]; !exists {
+				bases = append(bases[:i], bases[i+1:]...)
+			}
+		}
+		c.Bases = strings.Join(bases, ",")
+
+	}
+}
+
+func getBasesFromHeader(f string, n string, m string) string {
+
+	f = strings.Replace(f, "\r", "", -1)
+
+	if strings.HasSuffix(n, "Iterator") {
+		return ""
+	}
+
+	for i, l := range strings.Split(f, "\n") {
+
+		if strings.Contains(l, "class "+n) || strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_SDK_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT "+n) || strings.Contains(l, "class  "+n) || strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_SDK_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT  "+n) {
+
+			if strings.Contains(l, n+" ") || strings.Contains(l, n+":") || strings.HasSuffix(l, n) {
+
+				l = normalizedClassDeclaration(f, i)
+
+				if !strings.Contains(l, ":") {
+					return ""
+				}
+
+				if strings.Contains(l, "<") {
+					l = strings.Split(l, "<")[0]
+				}
+
+				if strings.Contains(l, "/") {
+					l = strings.Split(l, "/")[0]
+				}
+
+				var tmp = strings.Split(l, ":")[1]
+
+				for _, s := range []string{"{", "}", "#ifndef", "QT_NO_QOBJECT", "#else", "#endif", "class", "Q_" + strings.ToUpper(strings.TrimPrefix(m, "Qt")) + "_EXPORT " + n, "public", "protected", "private", "  ", " "} {
+					tmp = strings.Replace(tmp, s, "", -1)
+				}
+
+				return strings.TrimSpace(tmp)
+			}
+		}
+	}
+
+	for _, l := range strings.Split(f, "\n") {
+		if strings.Contains(l, "struct "+n) || strings.Contains(l, "struct Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) {
+			return ""
+		}
+	}
+
+	for _, l := range strings.Split(f, "\n") {
+		if strings.Contains(l, "namespace "+n) {
+			return ""
+		}
+	}
+
+	fmt.Println("HEADER FILE NOT SUCCESFULL PARSED:", m, n)
+	return ""
+}
+
+func normalizedClassDeclaration(f string, is int) string {
+
+	var out string
+	for i, l := range strings.Split(f, "\n") {
+		if i >= is {
+			out += l
+			if strings.Contains(l, "{") {
+				break
+			}
+		}
+	}
+	return out
+}
+
+var LibDeps = map[string][]string{
+	"Core":              []string{"Widgets"},
+	"AndroidExtras":     []string{"Core"},
+	"Gui":               []string{"Core", "Widgets"},
+	"Network":           []string{"Core"},
+	"Sql":               []string{"Core", "Widgets"},
+	"Xml":               []string{"Core", "XmlPatterns"},
+	"DBus":              []string{"Core"},
+	"Nfc":               []string{"Core"},
+	"Script":            []string{"Core"},
+	"Sensors":           []string{"Core"},
+	"Positioning":       []string{"Core"},
+	"Widgets":           []string{"Core", "Gui"},
+	"MacExtras":         []string{"Core", "Gui"},
+	"Qml":               []string{"Core", "Network"},
+	"WebSockets":        []string{"Core", "Network"},
+	"XmlPatterns":       []string{"Core", "Network"},
+	"Bluetooth":         []string{"Core", "Concurrent"},
+	"WebChannel":        []string{"Core", "Network", "Qml"},
+	"Svg":               []string{"Core", "Gui", "Widgets"},
+	"Multimedia":        []string{"Core", "Gui", "Network", "Widgets", "MultimediaWidgets"},
+	"Quick":             []string{"Core", "Gui", "Network", "Widgets", "Qml", "QuickWidgets"},
+	"Help":              []string{"Core", "Gui", "Network", "Sql", "CLucene", "Widgets"},
+	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},
+	"ScriptTools":       []string{"Core", "Gui", "Script", "Widgets"},
+	"MultimediaWidgets": []string{"Core", "Gui", "Network", "Widgets", "OpenGL", "Multimedia"},
+	"UiTools":           []string{"Core", "Gui", "Widgets"},
+	"X11Extras":         []string{"Core"},
+	"WinExtras":         []string{},
+	"WebEngine":         []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "WebEngineCore", "WebEngineWidgets"},
+	"WebKit":            []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "PrintSupport", "WebKitWidgets"},
+	"TestLib":           []string{"Core", "Gui", "Widgets", "Test"},
+	"SerialPort":        []string{"Core"},
+	"SerialBus":         []string{"Core"},
+	"PrintSupport":      []string{"Core", "Gui", "Widgets"},
+	"PlatformHeaders":   []string{"Core"},
+	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
 }

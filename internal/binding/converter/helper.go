@@ -279,12 +279,12 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.6.0/5.6/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 			}
 
 		case "windows":
 			{
-				fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.5.1\\5.5\\mingw492_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.6.0\\5.6\\mingw49_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 			}
 
 		case "linux":
@@ -292,12 +292,12 @@ func IsPrivateSignal(f *parser.Function) bool {
 				switch runtime.GOARCH {
 				case "amd64":
 					{
-						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.6.0/5.6/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 					}
 
 				case "386":
 					{
-						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.5.1/5.5/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.6.0/5.6/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 					}
 				}
 			}

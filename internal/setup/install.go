@@ -86,7 +86,7 @@ func main() {
 	runCmd(cmd, "install.std")
 
 	if runtime.GOOS == "windows" {
-		setLargeAddressAware(filepath.Join("C:\\", "Qt", "Qt5.5.1", "Tools", "mingw492_32", "libexec", "gcc", "i686-w64-mingw32", "4.9.2", "cc1plus.exe"))
+		setLargeAddressAware(filepath.Join("C:\\", "Qt", "Qt5.6.0", "Tools", "mingw492_32", "libexec", "gcc", "i686-w64-mingw32", "4.9.2", "cc1plus.exe"))
 		if runtime.GOARCH == "386" {
 			setLargeAddressAware(filepath.Join(runtime.GOROOT(), "pkg", "tool", "windows_386", "compile.exe"))
 		}

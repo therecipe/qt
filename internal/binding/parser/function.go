@@ -60,6 +60,7 @@ func (f *Function) fixOverload() {
 		var tmp, err = strconv.Atoi(strings.Split(f.Href, "-")[1])
 		if err == nil && tmp > 0 {
 			f.Overload = true
+			tmp++
 			f.OverloadNumber = strconv.Itoa(tmp)
 		}
 	}
@@ -67,5 +68,31 @@ func (f *Function) fixOverload() {
 	if f.OverloadNumber == "0" {
 		f.Overload = false
 		f.OverloadNumber = ""
+	}
+
+	switch f.Fullname {
+	case
+		"QGraphicsDropShadowEffect::setOffset", "QGraphicsScene::setSceneRect",
+		"QGraphicsView::setSceneRect", "QQuickItem::setFocus",
+		"QAccessibleWidget::setText", "QSvgGenerator::setViewBox",
+		"QSvgRenderer::setViewBox":
+		{
+			var count int
+			for _, sf := range ClassMap[f.Class()].Functions {
+				if f.Fullname == sf.Fullname {
+					if f.Signature == sf.Signature {
+						if count == 0 {
+							return
+						}
+						break
+					} else {
+						count++
+					}
+				}
+			}
+
+			f.Overload = true
+			f.OverloadNumber = strconv.Itoa(count + 1)
+		}
 	}
 }

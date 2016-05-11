@@ -259,7 +259,6 @@ void QBluetoothSocket_DoDeviceDiscovery(void* ptr, void* service, int openMode);
 int QBluetoothSocket_Error(void* ptr);
 char* QBluetoothSocket_ErrorString(void* ptr);
 int QBluetoothSocket_IsSequential(void* ptr);
-int QBluetoothSocket_IsSequentialDefault(void* ptr);
 void* QBluetoothSocket_LocalAddress(void* ptr);
 char* QBluetoothSocket_LocalName(void* ptr);
 void* QBluetoothSocket_PeerAddress(void* ptr);

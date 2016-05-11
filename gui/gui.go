@@ -742,6 +742,7 @@ func (ptr *QAbstractTextDocumentLayout) DeleteLater() {
 	defer qt.Recovering("QAbstractTextDocumentLayout::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractTextDocumentLayout_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -751,6 +752,7 @@ func (ptr *QAbstractTextDocumentLayout) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractTextDocumentLayout::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAbstractTextDocumentLayout_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1638,6 +1640,7 @@ func (ptr *QAccessibleActionInterface) DestroyQAccessibleActionInterface() {
 	defer qt.Recovering("QAccessibleActionInterface::~QAccessibleActionInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleActionInterface_DestroyQAccessibleActionInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1818,6 +1821,7 @@ func (ptr *QAccessibleEditableTextInterface) DestroyQAccessibleEditableTextInter
 	defer qt.Recovering("QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleEditableTextInterface_DestroyQAccessibleEditableTextInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1984,6 +1988,7 @@ func (ptr *QAccessibleEvent) DestroyQAccessibleEvent() {
 	defer qt.Recovering("QAccessibleEvent::~QAccessibleEvent")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleEvent_DestroyQAccessibleEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2050,15 +2055,6 @@ func newQAccessibleInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleInterfac
 		n.SetObjectNameAbs("QAccessibleInterface_" + qt.Identifier())
 	}
 	return n
-}
-
-func (ptr *QAccessibleInterface) DestroyQAccessibleInterface() {
-	defer qt.Recovering("QAccessibleInterface::~QAccessibleInterface")
-
-	if ptr.Pointer() != nil {
-		C.QAccessibleInterface_DestroyQAccessibleInterface(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
 }
 
 func (ptr *QAccessibleInterface) ActionInterface() *QAccessibleActionInterface {
@@ -2757,6 +2753,16 @@ func (ptr *QAccessibleInterface) WindowDefault() *QWindow {
 	return nil
 }
 
+func (ptr *QAccessibleInterface) DestroyQAccessibleInterface() {
+	defer qt.Recovering("QAccessibleInterface::~QAccessibleInterface")
+
+	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		C.QAccessibleInterface_DestroyQAccessibleInterface(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 func (ptr *QAccessibleInterface) ObjectNameAbs() string {
 	defer qt.Recovering("QAccessibleInterface::objectNameAbs")
 
@@ -3058,6 +3064,7 @@ func (ptr *QAccessibleObject) DestroyQAccessibleObject() {
 	defer qt.Recovering("QAccessibleObject::~QAccessibleObject")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleObject_DestroyQAccessibleObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3638,6 +3645,7 @@ func (ptr *QAccessiblePlugin) DestroyQAccessiblePlugin() {
 	defer qt.Recovering("QAccessiblePlugin::~QAccessiblePlugin")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAccessiblePlugin_DestroyQAccessiblePlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3856,6 +3864,7 @@ func (ptr *QAccessiblePlugin) DeleteLater() {
 	defer qt.Recovering("QAccessiblePlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAccessiblePlugin_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3865,6 +3874,7 @@ func (ptr *QAccessiblePlugin) DeleteLaterDefault() {
 	defer qt.Recovering("QAccessiblePlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAccessiblePlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4425,6 +4435,7 @@ func (ptr *QAccessibleTableCellInterface) DestroyQAccessibleTableCellInterface()
 	defer qt.Recovering("QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5141,6 +5152,7 @@ func (ptr *QAccessibleTableInterface) DestroyQAccessibleTableInterface() {
 	defer qt.Recovering("QAccessibleTableInterface::~QAccessibleTableInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleTableInterface_DestroyQAccessibleTableInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6277,6 +6289,7 @@ func (ptr *QAccessibleTextInterface) DestroyQAccessibleTextInterface() {
 	defer qt.Recovering("QAccessibleTextInterface::~QAccessibleTextInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleTextInterface_DestroyQAccessibleTextInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7037,6 +7050,7 @@ func (ptr *QAccessibleValueInterface) DestroyQAccessibleValueInterface() {
 	defer qt.Recovering("QAccessibleValueInterface::~QAccessibleValueInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QAccessibleValueInterface_DestroyQAccessibleValueInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8229,6 +8243,7 @@ func (ptr *QClipboard) DeleteLater() {
 	defer qt.Recovering("QClipboard::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QClipboard_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8238,6 +8253,7 @@ func (ptr *QClipboard) DeleteLaterDefault() {
 	defer qt.Recovering("QClipboard::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QClipboard_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -8564,34 +8580,46 @@ func NewQColor() *QColor {
 	return newQColorFromPointer(C.QColor_NewQColor())
 }
 
-func NewQColor8(color core.Qt__GlobalColor) *QColor {
+func NewQColor10(other QColor_ITF) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return newQColorFromPointer(C.QColor_NewQColor8(C.int(color)))
+	return newQColorFromPointer(C.QColor_NewQColor10(PointerFromQColor(other)))
 }
 
-func NewQColor6(color QColor_ITF) *QColor {
+func NewQColor5(rgba64 QRgba64_ITF) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return newQColorFromPointer(C.QColor_NewQColor6(PointerFromQColor(color)))
+	return newQColorFromPointer(C.QColor_NewQColor5(PointerFromQRgba64(rgba64)))
 }
 
-func NewQColor4(name string) *QColor {
+func NewQColor2(color core.Qt__GlobalColor) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return newQColorFromPointer(C.QColor_NewQColor4(C.CString(name)))
+	return newQColorFromPointer(C.QColor_NewQColor2(C.int(color)))
 }
 
-func NewQColor5(name string) *QColor {
+func NewQColor9(color QColor_ITF) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return newQColorFromPointer(C.QColor_NewQColor5(C.CString(name)))
+	return newQColorFromPointer(C.QColor_NewQColor9(PointerFromQColor(color)))
 }
 
-func NewQColor2(r int, g int, b int, a int) *QColor {
+func NewQColor6(name string) *QColor {
 	defer qt.Recovering("QColor::QColor")
 
-	return newQColorFromPointer(C.QColor_NewQColor2(C.int(r), C.int(g), C.int(b), C.int(a)))
+	return newQColorFromPointer(C.QColor_NewQColor6(C.CString(name)))
+}
+
+func NewQColor7(name string) *QColor {
+	defer qt.Recovering("QColor::QColor")
+
+	return newQColorFromPointer(C.QColor_NewQColor7(C.CString(name)))
+}
+
+func NewQColor3(r int, g int, b int, a int) *QColor {
+	defer qt.Recovering("QColor::QColor")
+
+	return newQColorFromPointer(C.QColor_NewQColor3(C.int(r), C.int(g), C.int(b), C.int(a)))
 }
 
 func (ptr *QColor) Alpha() int {
@@ -8781,6 +8809,18 @@ func (ptr *QColor) FromRgbF(r float64, g float64, b float64, a float64) *QColor 
 	defer qt.Recovering("QColor::fromRgbF")
 
 	return NewQColorFromPointer(C.QColor_QColor_FromRgbF(C.double(r), C.double(g), C.double(b), C.double(a)))
+}
+
+func QColor_FromRgba642(rgba64 QRgba64_ITF) *QColor {
+	defer qt.Recovering("QColor::fromRgba64")
+
+	return NewQColorFromPointer(C.QColor_QColor_FromRgba642(PointerFromQRgba64(rgba64)))
+}
+
+func (ptr *QColor) FromRgba642(rgba64 QRgba64_ITF) *QColor {
+	defer qt.Recovering("QColor::fromRgba64")
+
+	return NewQColorFromPointer(C.QColor_QColor_FromRgba642(PointerFromQRgba64(rgba64)))
 }
 
 func (ptr *QColor) GetCmyk(c int, m int, y int, k int, a int) {
@@ -9168,6 +9208,14 @@ func (ptr *QColor) SetRgb(r int, g int, b int, a int) {
 
 	if ptr.Pointer() != nil {
 		C.QColor_SetRgb(ptr.Pointer(), C.int(r), C.int(g), C.int(b), C.int(a))
+	}
+}
+
+func (ptr *QColor) SetRgba64(rgba QRgba64_ITF) {
+	defer qt.Recovering("QColor::setRgba64")
+
+	if ptr.Pointer() != nil {
+		C.QColor_SetRgba64(ptr.Pointer(), PointerFromQRgba64(rgba))
 	}
 }
 
@@ -9928,6 +9976,7 @@ func (ptr *QDoubleValidator) DestroyQDoubleValidator() {
 	defer qt.Recovering("QDoubleValidator::~QDoubleValidator")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDoubleValidator_DestroyQDoubleValidator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10191,6 +10240,7 @@ func (ptr *QDoubleValidator) DeleteLater() {
 	defer qt.Recovering("QDoubleValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDoubleValidator_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10200,6 +10250,7 @@ func (ptr *QDoubleValidator) DeleteLaterDefault() {
 	defer qt.Recovering("QDoubleValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDoubleValidator_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10642,6 +10693,7 @@ func (ptr *QDrag) DestroyQDrag() {
 	defer qt.Recovering("QDrag::~QDrag")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDrag_DestroyQDrag(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10860,6 +10912,7 @@ func (ptr *QDrag) DeleteLater() {
 	defer qt.Recovering("QDrag::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDrag_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10869,6 +10922,7 @@ func (ptr *QDrag) DeleteLaterDefault() {
 	defer qt.Recovering("QDrag::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QDrag_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13036,11 +13090,11 @@ func (ptr *QFontMetrics) BoundingRect(ch core.QChar_ITF) *core.QRect {
 	return nil
 }
 
-func (ptr *QFontMetrics) BoundingRect4(rect core.QRect_ITF, flags int, text string, tabStops int, tabArray int) *core.QRect {
+func (ptr *QFontMetrics) BoundingRect3(rect core.QRect_ITF, flags int, text string, tabStops int, tabArray int) *core.QRect {
 	defer qt.Recovering("QFontMetrics::boundingRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect4(ptr.Pointer(), core.PointerFromQRect(rect), C.int(flags), C.CString(text), C.int(tabStops), C.int(tabArray)))
+		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect3(ptr.Pointer(), core.PointerFromQRect(rect), C.int(flags), C.CString(text), C.int(tabStops), C.int(tabArray)))
 	}
 	return nil
 }
@@ -13054,11 +13108,11 @@ func (ptr *QFontMetrics) BoundingRect2(text string) *core.QRect {
 	return nil
 }
 
-func (ptr *QFontMetrics) BoundingRect3(x int, y int, width int, height int, flags int, text string, tabStops int, tabArray int) *core.QRect {
+func (ptr *QFontMetrics) BoundingRect4(x int, y int, width int, height int, flags int, text string, tabStops int, tabArray int) *core.QRect {
 	defer qt.Recovering("QFontMetrics::boundingRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(flags), C.CString(text), C.int(tabStops), C.int(tabArray)))
+		return core.NewQRectFromPointer(C.QFontMetrics_BoundingRect4(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(flags), C.CString(text), C.int(tabStops), C.int(tabArray)))
 	}
 	return nil
 }
@@ -13707,6 +13761,7 @@ func (ptr *QGenericPlugin) DestroyQGenericPlugin() {
 	defer qt.Recovering("QGenericPlugin::~QGenericPlugin")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGenericPlugin_DestroyQGenericPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13925,6 +13980,7 @@ func (ptr *QGenericPlugin) DeleteLater() {
 	defer qt.Recovering("QGenericPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGenericPlugin_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13934,6 +13990,7 @@ func (ptr *QGenericPlugin) DeleteLaterDefault() {
 	defer qt.Recovering("QGenericPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGenericPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -14666,6 +14723,18 @@ func (ptr *QGuiApplication) PlatformName() string {
 	return C.GoString(C.QGuiApplication_QGuiApplication_PlatformName())
 }
 
+func QGuiApplication_PrimaryScreen() *QScreen {
+	defer qt.Recovering("QGuiApplication::primaryScreen")
+
+	return NewQScreenFromPointer(C.QGuiApplication_QGuiApplication_PrimaryScreen())
+}
+
+func (ptr *QGuiApplication) PrimaryScreen() *QScreen {
+	defer qt.Recovering("QGuiApplication::primaryScreen")
+
+	return NewQScreenFromPointer(C.QGuiApplication_QGuiApplication_PrimaryScreen())
+}
+
 func QGuiApplication_QueryKeyboardModifiers() core.Qt__KeyboardModifier {
 	defer qt.Recovering("QGuiApplication::queryKeyboardModifiers")
 
@@ -14879,49 +14948,11 @@ func (ptr *QGuiApplication) DevicePixelRatio() float64 {
 	return 0
 }
 
-//export callbackQGuiApplication_Event
-func callbackQGuiApplication_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QGuiApplication::event")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQGuiApplicationFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
-}
-
-func (ptr *QGuiApplication) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QGuiApplication::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
-	}
-}
-
-func (ptr *QGuiApplication) DisconnectEvent() {
-	defer qt.Recovering("disconnect QGuiApplication::event")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
-	}
-}
-
 func (ptr *QGuiApplication) Event(e core.QEvent_ITF) bool {
 	defer qt.Recovering("QGuiApplication::event")
 
 	if ptr.Pointer() != nil {
 		return C.QGuiApplication_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-func (ptr *QGuiApplication) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QGuiApplication::event")
-
-	if ptr.Pointer() != nil {
-		return C.QGuiApplication_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
 }
@@ -15092,6 +15123,18 @@ func (ptr *QGuiApplication) InputMethod() *QInputMethod {
 	defer qt.Recovering("QGuiApplication::inputMethod")
 
 	return NewQInputMethodFromPointer(C.QGuiApplication_QGuiApplication_InputMethod())
+}
+
+func QGuiApplication_IsFallbackSessionManagementEnabled() bool {
+	defer qt.Recovering("QGuiApplication::isFallbackSessionManagementEnabled")
+
+	return C.QGuiApplication_QGuiApplication_IsFallbackSessionManagementEnabled() != 0
+}
+
+func (ptr *QGuiApplication) IsFallbackSessionManagementEnabled() bool {
+	defer qt.Recovering("QGuiApplication::isFallbackSessionManagementEnabled")
+
+	return C.QGuiApplication_QGuiApplication_IsFallbackSessionManagementEnabled() != 0
 }
 
 func QGuiApplication_IsLeftToRight() bool {
@@ -15274,16 +15317,40 @@ func (ptr *QGuiApplication) PaletteChanged(palette QPalette_ITF) {
 	}
 }
 
-func QGuiApplication_PrimaryScreen() *QScreen {
-	defer qt.Recovering("QGuiApplication::primaryScreen")
+//export callbackQGuiApplication_PrimaryScreenChanged
+func callbackQGuiApplication_PrimaryScreenChanged(ptr unsafe.Pointer, ptrName *C.char, screen unsafe.Pointer) {
+	defer qt.Recovering("callback QGuiApplication::primaryScreenChanged")
 
-	return NewQScreenFromPointer(C.QGuiApplication_QGuiApplication_PrimaryScreen())
+	if signal := qt.GetSignal(C.GoString(ptrName), "primaryScreenChanged"); signal != nil {
+		signal.(func(*QScreen))(NewQScreenFromPointer(screen))
+	}
+
 }
 
-func (ptr *QGuiApplication) PrimaryScreen() *QScreen {
-	defer qt.Recovering("QGuiApplication::primaryScreen")
+func (ptr *QGuiApplication) ConnectPrimaryScreenChanged(f func(screen *QScreen)) {
+	defer qt.Recovering("connect QGuiApplication::primaryScreenChanged")
 
-	return NewQScreenFromPointer(C.QGuiApplication_QGuiApplication_PrimaryScreen())
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_ConnectPrimaryScreenChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "primaryScreenChanged", f)
+	}
+}
+
+func (ptr *QGuiApplication) DisconnectPrimaryScreenChanged() {
+	defer qt.Recovering("disconnect QGuiApplication::primaryScreenChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_DisconnectPrimaryScreenChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "primaryScreenChanged")
+	}
+}
+
+func (ptr *QGuiApplication) PrimaryScreenChanged(screen QScreen_ITF) {
+	defer qt.Recovering("QGuiApplication::primaryScreenChanged")
+
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_PrimaryScreenChanged(ptr.Pointer(), PointerFromQScreen(screen))
+	}
 }
 
 //export callbackQGuiApplication_ScreenAdded
@@ -15370,6 +15437,18 @@ func (ptr *QGuiApplication) SetDesktopSettingsAware(on bool) {
 	C.QGuiApplication_QGuiApplication_SetDesktopSettingsAware(C.int(qt.GoBoolToInt(on)))
 }
 
+func QGuiApplication_SetFallbackSessionManagementEnabled(enabled bool) {
+	defer qt.Recovering("QGuiApplication::setFallbackSessionManagementEnabled")
+
+	C.QGuiApplication_QGuiApplication_SetFallbackSessionManagementEnabled(C.int(qt.GoBoolToInt(enabled)))
+}
+
+func (ptr *QGuiApplication) SetFallbackSessionManagementEnabled(enabled bool) {
+	defer qt.Recovering("QGuiApplication::setFallbackSessionManagementEnabled")
+
+	C.QGuiApplication_QGuiApplication_SetFallbackSessionManagementEnabled(C.int(qt.GoBoolToInt(enabled)))
+}
+
 func QGuiApplication_SetFont(font QFont_ITF) {
 	defer qt.Recovering("QGuiApplication::setFont")
 
@@ -15434,6 +15513,7 @@ func (ptr *QGuiApplication) DestroyQGuiApplication() {
 	defer qt.Recovering("QGuiApplication::~QGuiApplication")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGuiApplication_DestroyQGuiApplication(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -15697,6 +15777,7 @@ func (ptr *QGuiApplication) DeleteLater() {
 	defer qt.Recovering("QGuiApplication::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGuiApplication_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -15706,6 +15787,7 @@ func (ptr *QGuiApplication) DeleteLaterDefault() {
 	defer qt.Recovering("QGuiApplication::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGuiApplication_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -16254,6 +16336,15 @@ func (ptr *QIcon) HasThemeIcon(name string) bool {
 	return C.QIcon_QIcon_HasThemeIcon(C.CString(name)) != 0
 }
 
+func (ptr *QIcon) IsMask() bool {
+	defer qt.Recovering("QIcon::isMask")
+
+	if ptr.Pointer() != nil {
+		return C.QIcon_IsMask(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QIcon) IsNull() bool {
 	defer qt.Recovering("QIcon::isNull")
 
@@ -16288,11 +16379,11 @@ func (ptr *QIcon) Paint2(painter QPainter_ITF, x int, y int, w int, h int, align
 	}
 }
 
-func (ptr *QIcon) Pixmap2(window QWindow_ITF, size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) *QPixmap {
+func (ptr *QIcon) Pixmap4(window QWindow_ITF, size core.QSize_ITF, mode QIcon__Mode, state QIcon__State) *QPixmap {
 	defer qt.Recovering("QIcon::pixmap")
 
 	if ptr.Pointer() != nil {
-		return NewQPixmapFromPointer(C.QIcon_Pixmap2(ptr.Pointer(), PointerFromQWindow(window), core.PointerFromQSize(size), C.int(mode), C.int(state)))
+		return NewQPixmapFromPointer(C.QIcon_Pixmap4(ptr.Pointer(), PointerFromQWindow(window), core.PointerFromQSize(size), C.int(mode), C.int(state)))
 	}
 	return nil
 }
@@ -16306,22 +16397,30 @@ func (ptr *QIcon) Pixmap(size core.QSize_ITF, mode QIcon__Mode, state QIcon__Sta
 	return nil
 }
 
-func (ptr *QIcon) Pixmap4(extent int, mode QIcon__Mode, state QIcon__State) *QPixmap {
+func (ptr *QIcon) Pixmap3(extent int, mode QIcon__Mode, state QIcon__State) *QPixmap {
 	defer qt.Recovering("QIcon::pixmap")
 
 	if ptr.Pointer() != nil {
-		return NewQPixmapFromPointer(C.QIcon_Pixmap4(ptr.Pointer(), C.int(extent), C.int(mode), C.int(state)))
+		return NewQPixmapFromPointer(C.QIcon_Pixmap3(ptr.Pointer(), C.int(extent), C.int(mode), C.int(state)))
 	}
 	return nil
 }
 
-func (ptr *QIcon) Pixmap3(w int, h int, mode QIcon__Mode, state QIcon__State) *QPixmap {
+func (ptr *QIcon) Pixmap2(w int, h int, mode QIcon__Mode, state QIcon__State) *QPixmap {
 	defer qt.Recovering("QIcon::pixmap")
 
 	if ptr.Pointer() != nil {
-		return NewQPixmapFromPointer(C.QIcon_Pixmap3(ptr.Pointer(), C.int(w), C.int(h), C.int(mode), C.int(state)))
+		return NewQPixmapFromPointer(C.QIcon_Pixmap2(ptr.Pointer(), C.int(w), C.int(h), C.int(mode), C.int(state)))
 	}
 	return nil
+}
+
+func (ptr *QIcon) SetIsMask(isMask bool) {
+	defer qt.Recovering("QIcon::setIsMask")
+
+	if ptr.Pointer() != nil {
+		C.QIcon_SetIsMask(ptr.Pointer(), C.int(qt.GoBoolToInt(isMask)))
+	}
 }
 
 func QIcon_SetThemeName(name string) {
@@ -16491,6 +16590,12 @@ func newQIconEngineFromPointer(ptr unsafe.Pointer) *QIconEngine {
 		n.SetObjectNameAbs("QIconEngine_" + qt.Identifier())
 	}
 	return n
+}
+
+func NewQIconEngine() *QIconEngine {
+	defer qt.Recovering("QIconEngine::QIconEngine")
+
+	return newQIconEngineFromPointer(C.QIconEngine_NewQIconEngine())
 }
 
 //export callbackQIconEngine_ActualSize
@@ -16894,6 +16999,7 @@ func (ptr *QIconEngine) DestroyQIconEngine() {
 	defer qt.Recovering("QIconEngine::~QIconEngine")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QIconEngine_DestroyQIconEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17011,6 +17117,7 @@ func (ptr *QIconEnginePlugin) DestroyQIconEnginePlugin() {
 	defer qt.Recovering("QIconEnginePlugin::~QIconEnginePlugin")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIconEnginePlugin_DestroyQIconEnginePlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17229,6 +17336,7 @@ func (ptr *QIconEnginePlugin) DeleteLater() {
 	defer qt.Recovering("QIconEnginePlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIconEnginePlugin_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17238,6 +17346,7 @@ func (ptr *QIconEnginePlugin) DeleteLaterDefault() {
 	defer qt.Recovering("QIconEnginePlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIconEnginePlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17530,19 +17639,19 @@ func (ptr *QImage) Copy(rectangle core.QRect_ITF) *QImage {
 	return nil
 }
 
-func (ptr *QImage) Fill2(color core.Qt__GlobalColor) {
+func (ptr *QImage) Fill3(color core.Qt__GlobalColor) {
 	defer qt.Recovering("QImage::fill")
 
 	if ptr.Pointer() != nil {
-		C.QImage_Fill2(ptr.Pointer(), C.int(color))
+		C.QImage_Fill3(ptr.Pointer(), C.int(color))
 	}
 }
 
-func (ptr *QImage) Fill3(color QColor_ITF) {
+func (ptr *QImage) Fill2(color QColor_ITF) {
 	defer qt.Recovering("QImage::fill")
 
 	if ptr.Pointer() != nil {
-		C.QImage_Fill3(ptr.Pointer(), PointerFromQColor(color))
+		C.QImage_Fill2(ptr.Pointer(), PointerFromQColor(color))
 	}
 }
 
@@ -17861,6 +17970,24 @@ func (ptr *QImage) LoadFromData2(data string, format string) bool {
 	return false
 }
 
+func (ptr *QImage) PixelColor(position core.QPoint_ITF) *QColor {
+	defer qt.Recovering("QImage::pixelColor")
+
+	if ptr.Pointer() != nil {
+		return NewQColorFromPointer(C.QImage_PixelColor(ptr.Pointer(), core.PointerFromQPoint(position)))
+	}
+	return nil
+}
+
+func (ptr *QImage) PixelColor2(x int, y int) *QColor {
+	defer qt.Recovering("QImage::pixelColor")
+
+	if ptr.Pointer() != nil {
+		return NewQColorFromPointer(C.QImage_PixelColor2(ptr.Pointer(), C.int(x), C.int(y)))
+	}
+	return nil
+}
+
 func (ptr *QImage) PixelIndex(position core.QPoint_ITF) int {
 	defer qt.Recovering("QImage::pixelIndex")
 
@@ -17935,6 +18062,22 @@ func (ptr *QImage) SetDotsPerMeterY(y int) {
 
 	if ptr.Pointer() != nil {
 		C.QImage_SetDotsPerMeterY(ptr.Pointer(), C.int(y))
+	}
+}
+
+func (ptr *QImage) SetPixelColor(position core.QPoint_ITF, color QColor_ITF) {
+	defer qt.Recovering("QImage::setPixelColor")
+
+	if ptr.Pointer() != nil {
+		C.QImage_SetPixelColor(ptr.Pointer(), core.PointerFromQPoint(position), PointerFromQColor(color))
+	}
+}
+
+func (ptr *QImage) SetPixelColor2(x int, y int, color QColor_ITF) {
+	defer qt.Recovering("QImage::setPixelColor")
+
+	if ptr.Pointer() != nil {
+		C.QImage_SetPixelColor2(ptr.Pointer(), C.int(x), C.int(y), PointerFromQColor(color))
 	}
 }
 
@@ -18871,6 +19014,7 @@ func (ptr *QImageIOHandler) DestroyQImageIOHandler() {
 	defer qt.Recovering("QImageIOHandler::~QImageIOHandler")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QImageIOHandler_DestroyQImageIOHandler(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19035,6 +19179,7 @@ func (ptr *QImageIOPlugin) DestroyQImageIOPlugin() {
 	defer qt.Recovering("QImageIOPlugin::~QImageIOPlugin")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QImageIOPlugin_DestroyQImageIOPlugin(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19253,6 +19398,7 @@ func (ptr *QImageIOPlugin) DeleteLater() {
 	defer qt.Recovering("QImageIOPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QImageIOPlugin_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19262,6 +19408,7 @@ func (ptr *QImageIOPlugin) DeleteLaterDefault() {
 	defer qt.Recovering("QImageIOPlugin::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QImageIOPlugin_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21062,6 +21209,7 @@ func (ptr *QInputMethod) DeleteLater() {
 	defer qt.Recovering("QInputMethod::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QInputMethod_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21071,6 +21219,7 @@ func (ptr *QInputMethod) DeleteLaterDefault() {
 	defer qt.Recovering("QInputMethod::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QInputMethod_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21315,6 +21464,15 @@ func NewQInputMethodEventFromPointer(ptr unsafe.Pointer) *QInputMethodEvent {
 func newQInputMethodEventFromPointer(ptr unsafe.Pointer) *QInputMethodEvent {
 	var n = NewQInputMethodEventFromPointer(ptr)
 	return n
+}
+
+func (ptr *QInputMethodEvent) DestroyQInputMethodEvent() {
+	defer qt.Recovering("QInputMethodEvent::~QInputMethodEvent")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethodEvent_DestroyQInputMethodEvent(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQInputMethodEvent() *QInputMethodEvent {
@@ -21683,6 +21841,7 @@ func (ptr *QIntValidator) DestroyQIntValidator() {
 	defer qt.Recovering("QIntValidator::~QIntValidator")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIntValidator_DestroyQIntValidator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21901,6 +22060,7 @@ func (ptr *QIntValidator) DeleteLater() {
 	defer qt.Recovering("QIntValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIntValidator_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21910,6 +22070,7 @@ func (ptr *QIntValidator) DeleteLaterDefault() {
 	defer qt.Recovering("QIntValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIntValidator_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -22290,6 +22451,7 @@ const (
 	QKeySequence__Deselect                 = QKeySequence__StandardKey(67)
 	QKeySequence__DeleteCompleteLine       = QKeySequence__StandardKey(68)
 	QKeySequence__Backspace                = QKeySequence__StandardKey(69)
+	QKeySequence__Cancel                   = QKeySequence__StandardKey(70)
 )
 
 type QKeySequence struct {
@@ -22679,27 +22841,27 @@ func (ptr *QMatrix4x4) Optimize() {
 	}
 }
 
-func (ptr *QMatrix4x4) Ortho2(rect core.QRect_ITF) {
+func (ptr *QMatrix4x4) Ortho3(rect core.QRect_ITF) {
 	defer qt.Recovering("QMatrix4x4::ortho")
 
 	if ptr.Pointer() != nil {
-		C.QMatrix4x4_Ortho2(ptr.Pointer(), core.PointerFromQRect(rect))
+		C.QMatrix4x4_Ortho3(ptr.Pointer(), core.PointerFromQRect(rect))
 	}
 }
 
-func (ptr *QMatrix4x4) Ortho3(rect core.QRectF_ITF) {
+func (ptr *QMatrix4x4) Ortho2(rect core.QRectF_ITF) {
 	defer qt.Recovering("QMatrix4x4::ortho")
 
 	if ptr.Pointer() != nil {
-		C.QMatrix4x4_Ortho3(ptr.Pointer(), core.PointerFromQRectF(rect))
+		C.QMatrix4x4_Ortho2(ptr.Pointer(), core.PointerFromQRectF(rect))
 	}
 }
 
-func (ptr *QMatrix4x4) Rotate2(quaternion QQuaternion_ITF) {
+func (ptr *QMatrix4x4) Rotate3(quaternion QQuaternion_ITF) {
 	defer qt.Recovering("QMatrix4x4::rotate")
 
 	if ptr.Pointer() != nil {
-		C.QMatrix4x4_Rotate2(ptr.Pointer(), PointerFromQQuaternion(quaternion))
+		C.QMatrix4x4_Rotate3(ptr.Pointer(), PointerFromQQuaternion(quaternion))
 	}
 }
 
@@ -22811,6 +22973,12 @@ func NewQMouseEvent3(ty core.QEvent__Type, localPos core.QPointF_ITF, windowPos 
 	defer qt.Recovering("QMouseEvent::QMouseEvent")
 
 	return newQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent3(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers)))
+}
+
+func NewQMouseEvent4(ty core.QEvent__Type, localPos core.QPointF_ITF, windowPos core.QPointF_ITF, screenPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier, source core.Qt__MouseEventSource) *QMouseEvent {
+	defer qt.Recovering("QMouseEvent::QMouseEvent")
+
+	return newQMouseEventFromPointer(C.QMouseEvent_NewQMouseEvent4(C.int(ty), core.PointerFromQPointF(localPos), core.PointerFromQPointF(windowPos), core.PointerFromQPointF(screenPos), C.int(button), C.int(buttons), C.int(modifiers), C.int(source)))
 }
 
 func (ptr *QMouseEvent) Button() core.Qt__MouseButton {
@@ -23719,6 +23887,7 @@ func (ptr *QMovie) DestroyQMovie() {
 	defer qt.Recovering("QMovie::~QMovie")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMovie_DestroyQMovie(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -23937,6 +24106,7 @@ func (ptr *QMovie) DeleteLater() {
 	defer qt.Recovering("QMovie::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMovie_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -23946,6 +24116,7 @@ func (ptr *QMovie) DeleteLaterDefault() {
 	defer qt.Recovering("QMovie::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMovie_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -24540,6 +24711,7 @@ func (ptr *QOffscreenSurface) DestroyQOffscreenSurface() {
 	defer qt.Recovering("QOffscreenSurface::~QOffscreenSurface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QOffscreenSurface_DestroyQOffscreenSurface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -24758,6 +24930,7 @@ func (ptr *QOffscreenSurface) DeleteLater() {
 	defer qt.Recovering("QOffscreenSurface::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QOffscreenSurface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -24767,6 +24940,7 @@ func (ptr *QOffscreenSurface) DeleteLaterDefault() {
 	defer qt.Recovering("QOffscreenSurface::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QOffscreenSurface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -25284,6 +25458,50 @@ func newQOpenGLDebugMessageFromPointer(ptr unsafe.Pointer) *QOpenGLDebugMessage 
 	return n
 }
 
+type QOpenGLExtraFunctions struct {
+	QOpenGLFunctions
+}
+
+type QOpenGLExtraFunctions_ITF interface {
+	QOpenGLFunctions_ITF
+	QOpenGLExtraFunctions_PTR() *QOpenGLExtraFunctions
+}
+
+func (p *QOpenGLExtraFunctions) QOpenGLExtraFunctions_PTR() *QOpenGLExtraFunctions {
+	return p
+}
+
+func (p *QOpenGLExtraFunctions) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.QOpenGLFunctions_PTR().Pointer()
+	}
+	return nil
+}
+
+func (p *QOpenGLExtraFunctions) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.QOpenGLFunctions_PTR().SetPointer(ptr)
+	}
+}
+
+func PointerFromQOpenGLExtraFunctions(ptr QOpenGLExtraFunctions_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QOpenGLExtraFunctions_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQOpenGLExtraFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLExtraFunctions {
+	var n = new(QOpenGLExtraFunctions)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQOpenGLExtraFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLExtraFunctions {
+	var n = NewQOpenGLExtraFunctionsFromPointer(ptr)
+	return n
+}
+
 //QOpenGLFramebufferObject::Attachment
 type QOpenGLFramebufferObject__Attachment int64
 
@@ -25399,6 +25617,7 @@ const (
 	QOpenGLFunctions__NPOTTextureRepeat     = QOpenGLFunctions__OpenGLFeature(0x2000)
 	QOpenGLFunctions__FixedFunctionPipeline = QOpenGLFunctions__OpenGLFeature(0x4000)
 	QOpenGLFunctions__TextureRGFormats      = QOpenGLFunctions__OpenGLFeature(0x8000)
+	QOpenGLFunctions__MultipleRenderTargets = QOpenGLFunctions__OpenGLFeature(0x10000)
 )
 
 type QOpenGLFunctions struct {
@@ -27113,6 +27332,7 @@ const (
 	QOpenGLTexture__SRGB8_PunchThrough_Alpha1_ETC2 = QOpenGLTexture__TextureFormat(0x9277)
 	QOpenGLTexture__RGBA8_ETC2_EAC                 = QOpenGLTexture__TextureFormat(0x9278)
 	QOpenGLTexture__SRGB8_Alpha8_ETC2_EAC          = QOpenGLTexture__TextureFormat(0x9279)
+	QOpenGLTexture__RGB8_ETC1                      = QOpenGLTexture__TextureFormat(0x8D64)
 	QOpenGLTexture__SRGB8                          = QOpenGLTexture__TextureFormat(0x8C41)
 	QOpenGLTexture__SRGB8_Alpha8                   = QOpenGLTexture__TextureFormat(0x8C43)
 	QOpenGLTexture__SRGB_DXT1                      = QOpenGLTexture__TextureFormat(0x8C4C)
@@ -27691,6 +27911,15 @@ func (ptr *QPageLayout) SetLeftMargin(leftMargin float64) bool {
 
 	if ptr.Pointer() != nil {
 		return C.QPageLayout_SetLeftMargin(ptr.Pointer(), C.double(leftMargin)) != 0
+	}
+	return false
+}
+
+func (ptr *QPageLayout) SetMargins(margins core.QMarginsF_ITF) bool {
+	defer qt.Recovering("QPageLayout::setMargins")
+
+	if ptr.Pointer() != nil {
+		return C.QPageLayout_SetMargins(ptr.Pointer(), core.PointerFromQMarginsF(margins)) != 0
 	}
 	return false
 }
@@ -28671,6 +28900,7 @@ func (ptr *QPagedPaintDevice) DestroyQPagedPaintDevice() {
 	defer qt.Recovering("QPagedPaintDevice::~QPagedPaintDevice")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QPagedPaintDevice_DestroyQPagedPaintDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -28782,17 +29012,18 @@ func (ptr *QPagedPaintDevice) PaintEngine() *QPaintEngine {
 type QPaintDevice__PaintDeviceMetric int64
 
 const (
-	QPaintDevice__PdmWidth            = QPaintDevice__PaintDeviceMetric(1)
-	QPaintDevice__PdmHeight           = QPaintDevice__PaintDeviceMetric(2)
-	QPaintDevice__PdmWidthMM          = QPaintDevice__PaintDeviceMetric(3)
-	QPaintDevice__PdmHeightMM         = QPaintDevice__PaintDeviceMetric(4)
-	QPaintDevice__PdmNumColors        = QPaintDevice__PaintDeviceMetric(5)
-	QPaintDevice__PdmDepth            = QPaintDevice__PaintDeviceMetric(6)
-	QPaintDevice__PdmDpiX             = QPaintDevice__PaintDeviceMetric(7)
-	QPaintDevice__PdmDpiY             = QPaintDevice__PaintDeviceMetric(8)
-	QPaintDevice__PdmPhysicalDpiX     = QPaintDevice__PaintDeviceMetric(9)
-	QPaintDevice__PdmPhysicalDpiY     = QPaintDevice__PaintDeviceMetric(10)
-	QPaintDevice__PdmDevicePixelRatio = QPaintDevice__PaintDeviceMetric(11)
+	QPaintDevice__PdmWidth                  = QPaintDevice__PaintDeviceMetric(1)
+	QPaintDevice__PdmHeight                 = QPaintDevice__PaintDeviceMetric(2)
+	QPaintDevice__PdmWidthMM                = QPaintDevice__PaintDeviceMetric(3)
+	QPaintDevice__PdmHeightMM               = QPaintDevice__PaintDeviceMetric(4)
+	QPaintDevice__PdmNumColors              = QPaintDevice__PaintDeviceMetric(5)
+	QPaintDevice__PdmDepth                  = QPaintDevice__PaintDeviceMetric(6)
+	QPaintDevice__PdmDpiX                   = QPaintDevice__PaintDeviceMetric(7)
+	QPaintDevice__PdmDpiY                   = QPaintDevice__PaintDeviceMetric(8)
+	QPaintDevice__PdmPhysicalDpiX           = QPaintDevice__PaintDeviceMetric(9)
+	QPaintDevice__PdmPhysicalDpiY           = QPaintDevice__PaintDeviceMetric(10)
+	QPaintDevice__PdmDevicePixelRatio       = QPaintDevice__PaintDeviceMetric(11)
+	QPaintDevice__PdmDevicePixelRatioScaled = QPaintDevice__PaintDeviceMetric(12)
 )
 
 type QPaintDevice struct {
@@ -28898,6 +29129,7 @@ func (ptr *QPaintDevice) DestroyQPaintDevice() {
 	defer qt.Recovering("QPaintDevice::~QPaintDevice")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QPaintDevice_DestroyQPaintDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -28921,6 +29153,15 @@ func (ptr *QPaintDevice) Depth() int {
 	return 0
 }
 
+func (ptr *QPaintDevice) Height() int {
+	defer qt.Recovering("QPaintDevice::height")
+
+	if ptr.Pointer() != nil {
+		return int(C.QPaintDevice_Height(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QPaintDevice) DevicePixelRatio() int {
 	defer qt.Recovering("QPaintDevice::devicePixelRatio")
 
@@ -28930,11 +29171,11 @@ func (ptr *QPaintDevice) DevicePixelRatio() int {
 	return 0
 }
 
-func (ptr *QPaintDevice) Height() int {
-	defer qt.Recovering("QPaintDevice::height")
+func (ptr *QPaintDevice) DevicePixelRatioF() float64 {
+	defer qt.Recovering("QPaintDevice::devicePixelRatioF")
 
 	if ptr.Pointer() != nil {
-		return int(C.QPaintDevice_Height(ptr.Pointer()))
+		return float64(C.QPaintDevice_DevicePixelRatioF(ptr.Pointer()))
 	}
 	return 0
 }
@@ -31420,6 +31661,7 @@ func (ptr *QPaintDeviceWindow) DeleteLater() {
 	defer qt.Recovering("QPaintDeviceWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QPaintDeviceWindow_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -31429,6 +31671,7 @@ func (ptr *QPaintDeviceWindow) DeleteLaterDefault() {
 	defer qt.Recovering("QPaintDeviceWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QPaintDeviceWindow_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -32578,6 +32821,7 @@ func (ptr *QPaintEngine) DestroyQPaintEngine() {
 	defer qt.Recovering("QPaintEngine::~QPaintEngine")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QPaintEngine_DestroyQPaintEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -33034,11 +33278,11 @@ func (ptr *QPainter) DrawChord(rectangle core.QRectF_ITF, startAngle int, spanAn
 	}
 }
 
-func (ptr *QPainter) DrawConvexPolygon2(points core.QPoint_ITF, pointCount int) {
+func (ptr *QPainter) DrawConvexPolygon3(points core.QPoint_ITF, pointCount int) {
 	defer qt.Recovering("QPainter::drawConvexPolygon")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawConvexPolygon2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
+		C.QPainter_DrawConvexPolygon3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
 	}
 }
 
@@ -33074,11 +33318,11 @@ func (ptr *QPainter) DrawGlyphRun(position core.QPointF_ITF, glyphs QGlyphRun_IT
 	}
 }
 
-func (ptr *QPainter) DrawImage3(point core.QPointF_ITF, image QImage_ITF) {
+func (ptr *QPainter) DrawImage7(point core.QPointF_ITF, image QImage_ITF) {
 	defer qt.Recovering("QPainter::drawImage")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage3(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image))
+		C.QPainter_DrawImage7(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image))
 	}
 }
 
@@ -33090,11 +33334,11 @@ func (ptr *QPainter) DrawImage(target core.QRectF_ITF, image QImage_ITF, source 
 	}
 }
 
-func (ptr *QPainter) DrawLines2(lines core.QLine_ITF, lineCount int) {
+func (ptr *QPainter) DrawLines5(lines core.QLine_ITF, lineCount int) {
 	defer qt.Recovering("QPainter::drawLines")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLines2(ptr.Pointer(), core.PointerFromQLine(lines), C.int(lineCount))
+		C.QPainter_DrawLines5(ptr.Pointer(), core.PointerFromQLine(lines), C.int(lineCount))
 	}
 }
 
@@ -33114,11 +33358,11 @@ func (ptr *QPainter) DrawPie(rectangle core.QRectF_ITF, startAngle int, spanAngl
 	}
 }
 
-func (ptr *QPainter) DrawPixmap5(point core.QPointF_ITF, pixmap QPixmap_ITF) {
+func (ptr *QPainter) DrawPixmap7(point core.QPointF_ITF, pixmap QPixmap_ITF) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap5(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap))
+		C.QPainter_DrawPixmap7(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap))
 	}
 }
 
@@ -33130,11 +33374,11 @@ func (ptr *QPainter) DrawPixmap(target core.QRectF_ITF, pixmap QPixmap_ITF, sour
 	}
 }
 
-func (ptr *QPainter) DrawRects2(rectangles core.QRect_ITF, rectCount int) {
+func (ptr *QPainter) DrawRects3(rectangles core.QRect_ITF, rectCount int) {
 	defer qt.Recovering("QPainter::drawRects")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRects2(ptr.Pointer(), core.PointerFromQRect(rectangles), C.int(rectCount))
+		C.QPainter_DrawRects3(ptr.Pointer(), core.PointerFromQRect(rectangles), C.int(rectCount))
 	}
 }
 
@@ -33154,11 +33398,11 @@ func (ptr *QPainter) DrawText(position core.QPointF_ITF, text string) {
 	}
 }
 
-func (ptr *QPainter) DrawText5(rectangle core.QRect_ITF, flags int, text string, boundingRect core.QRect_ITF) {
+func (ptr *QPainter) DrawText6(rectangle core.QRect_ITF, flags int, text string, boundingRect core.QRect_ITF) {
 	defer qt.Recovering("QPainter::drawText")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText5(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(flags), C.CString(text), core.PointerFromQRect(boundingRect))
+		C.QPainter_DrawText6(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(flags), C.CString(text), core.PointerFromQRect(boundingRect))
 	}
 }
 
@@ -33170,11 +33414,11 @@ func (ptr *QPainter) DrawText8(rectangle core.QRectF_ITF, text string, option QT
 	}
 }
 
-func (ptr *QPainter) DrawText4(rectangle core.QRectF_ITF, flags int, text string, boundingRect core.QRectF_ITF) {
+func (ptr *QPainter) DrawText5(rectangle core.QRectF_ITF, flags int, text string, boundingRect core.QRectF_ITF) {
 	defer qt.Recovering("QPainter::drawText")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText4(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(flags), C.CString(text), core.PointerFromQRectF(boundingRect))
+		C.QPainter_DrawText5(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(flags), C.CString(text), core.PointerFromQRectF(boundingRect))
 	}
 }
 
@@ -33194,11 +33438,11 @@ func (ptr *QPainter) EraseRect(rectangle core.QRectF_ITF) {
 	}
 }
 
-func (ptr *QPainter) FillRect5(rectangle core.QRect_ITF, brush QBrush_ITF) {
+func (ptr *QPainter) FillRect3(rectangle core.QRect_ITF, brush QBrush_ITF) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect5(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQBrush(brush))
+		C.QPainter_FillRect3(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQBrush(brush))
 	}
 }
 
@@ -33218,11 +33462,11 @@ func (ptr *QPainter) FillRect(rectangle core.QRectF_ITF, brush QBrush_ITF) {
 	}
 }
 
-func (ptr *QPainter) FillRect7(rectangle core.QRectF_ITF, color QColor_ITF) {
+func (ptr *QPainter) FillRect4(rectangle core.QRectF_ITF, color QColor_ITF) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect7(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQColor(color))
+		C.QPainter_FillRect4(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQColor(color))
 	}
 }
 
@@ -33258,11 +33502,11 @@ func (ptr *QPainter) SetClipPath(path QPainterPath_ITF, operation core.Qt__ClipO
 	}
 }
 
-func (ptr *QPainter) SetClipRect3(rectangle core.QRect_ITF, operation core.Qt__ClipOperation) {
+func (ptr *QPainter) SetClipRect2(rectangle core.QRect_ITF, operation core.Qt__ClipOperation) {
 	defer qt.Recovering("QPainter::setClipRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipRect3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(operation))
+		C.QPainter_SetClipRect2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(operation))
 	}
 }
 
@@ -33418,19 +33662,19 @@ func (ptr *QPainter) DrawArc3(x int, y int, width int, height int, startAngle in
 	}
 }
 
-func (ptr *QPainter) DrawChord2(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawChord3(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
 	defer qt.Recovering("QPainter::drawChord")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawChord2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawChord3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawChord3(x int, y int, width int, height int, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawChord2(x int, y int, width int, height int, startAngle int, spanAngle int) {
 	defer qt.Recovering("QPainter::drawChord")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawChord3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawChord2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
@@ -33442,11 +33686,11 @@ func (ptr *QPainter) DrawConvexPolygon4(polygon QPolygon_ITF) {
 	}
 }
 
-func (ptr *QPainter) DrawConvexPolygon3(polygon QPolygonF_ITF) {
+func (ptr *QPainter) DrawConvexPolygon2(polygon QPolygonF_ITF) {
 	defer qt.Recovering("QPainter::drawConvexPolygon")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawConvexPolygon3(ptr.Pointer(), PointerFromQPolygonF(polygon))
+		C.QPainter_DrawConvexPolygon2(ptr.Pointer(), PointerFromQPolygonF(polygon))
 	}
 }
 
@@ -33474,35 +33718,35 @@ func (ptr *QPainter) DrawEllipse3(x int, y int, width int, height int) {
 	}
 }
 
-func (ptr *QPainter) DrawImage4(point core.QPoint_ITF, image QImage_ITF) {
+func (ptr *QPainter) DrawImage8(point core.QPoint_ITF, image QImage_ITF) {
 	defer qt.Recovering("QPainter::drawImage")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage4(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image))
+		C.QPainter_DrawImage8(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image))
 	}
 }
 
-func (ptr *QPainter) DrawImage6(point core.QPoint_ITF, image QImage_ITF, source core.QRect_ITF, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPainter) DrawImage4(point core.QPoint_ITF, image QImage_ITF, source core.QRect_ITF, flags core.Qt__ImageConversionFlag) {
 	defer qt.Recovering("QPainter::drawImage")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage6(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image), core.PointerFromQRect(source), C.int(flags))
+		C.QPainter_DrawImage4(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQImage(image), core.PointerFromQRect(source), C.int(flags))
 	}
 }
 
-func (ptr *QPainter) DrawImage5(point core.QPointF_ITF, image QImage_ITF, source core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
+func (ptr *QPainter) DrawImage3(point core.QPointF_ITF, image QImage_ITF, source core.QRectF_ITF, flags core.Qt__ImageConversionFlag) {
 	defer qt.Recovering("QPainter::drawImage")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage5(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image), core.PointerFromQRectF(source), C.int(flags))
+		C.QPainter_DrawImage3(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQImage(image), core.PointerFromQRectF(source), C.int(flags))
 	}
 }
 
-func (ptr *QPainter) DrawImage8(rectangle core.QRect_ITF, image QImage_ITF) {
+func (ptr *QPainter) DrawImage6(rectangle core.QRect_ITF, image QImage_ITF) {
 	defer qt.Recovering("QPainter::drawImage")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage8(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQImage(image))
+		C.QPainter_DrawImage6(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQImage(image))
 	}
 }
 
@@ -33514,11 +33758,11 @@ func (ptr *QPainter) DrawImage2(target core.QRect_ITF, image QImage_ITF, source 
 	}
 }
 
-func (ptr *QPainter) DrawImage7(rectangle core.QRectF_ITF, image QImage_ITF) {
+func (ptr *QPainter) DrawImage5(rectangle core.QRectF_ITF, image QImage_ITF) {
 	defer qt.Recovering("QPainter::drawImage")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawImage7(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image))
+		C.QPainter_DrawImage5(ptr.Pointer(), core.PointerFromQRectF(rectangle), PointerFromQImage(image))
 	}
 }
 
@@ -33546,27 +33790,27 @@ func (ptr *QPainter) DrawLine(line core.QLineF_ITF) {
 	}
 }
 
-func (ptr *QPainter) DrawLine3(p1 core.QPoint_ITF, p2 core.QPoint_ITF) {
+func (ptr *QPainter) DrawLine4(p1 core.QPoint_ITF, p2 core.QPoint_ITF) {
 	defer qt.Recovering("QPainter::drawLine")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine3(ptr.Pointer(), core.PointerFromQPoint(p1), core.PointerFromQPoint(p2))
+		C.QPainter_DrawLine4(ptr.Pointer(), core.PointerFromQPoint(p1), core.PointerFromQPoint(p2))
 	}
 }
 
-func (ptr *QPainter) DrawLine4(p1 core.QPointF_ITF, p2 core.QPointF_ITF) {
+func (ptr *QPainter) DrawLine5(p1 core.QPointF_ITF, p2 core.QPointF_ITF) {
 	defer qt.Recovering("QPainter::drawLine")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine4(ptr.Pointer(), core.PointerFromQPointF(p1), core.PointerFromQPointF(p2))
+		C.QPainter_DrawLine5(ptr.Pointer(), core.PointerFromQPointF(p1), core.PointerFromQPointF(p2))
 	}
 }
 
-func (ptr *QPainter) DrawLine5(x1 int, y1 int, x2 int, y2 int) {
+func (ptr *QPainter) DrawLine3(x1 int, y1 int, x2 int, y2 int) {
 	defer qt.Recovering("QPainter::drawLine")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLine5(ptr.Pointer(), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
+		C.QPainter_DrawLine3(ptr.Pointer(), C.int(x1), C.int(y1), C.int(x2), C.int(y2))
 	}
 }
 
@@ -33578,11 +33822,11 @@ func (ptr *QPainter) DrawLines(lines core.QLineF_ITF, lineCount int) {
 	}
 }
 
-func (ptr *QPainter) DrawLines4(pointPairs core.QPoint_ITF, lineCount int) {
+func (ptr *QPainter) DrawLines7(pointPairs core.QPoint_ITF, lineCount int) {
 	defer qt.Recovering("QPainter::drawLines")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawLines4(ptr.Pointer(), core.PointerFromQPoint(pointPairs), C.int(lineCount))
+		C.QPainter_DrawLines7(ptr.Pointer(), core.PointerFromQPoint(pointPairs), C.int(lineCount))
 	}
 }
 
@@ -33602,67 +33846,67 @@ func (ptr *QPainter) DrawPath(path QPainterPath_ITF) {
 	}
 }
 
-func (ptr *QPainter) DrawPicture2(point core.QPoint_ITF, picture QPicture_ITF) {
+func (ptr *QPainter) DrawPicture3(point core.QPoint_ITF, picture QPicture_ITF) {
 	defer qt.Recovering("QPainter::drawPicture")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPicture2(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPicture(picture))
+		C.QPainter_DrawPicture3(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPicture(picture))
 	}
 }
 
-func (ptr *QPainter) DrawPicture3(x int, y int, picture QPicture_ITF) {
+func (ptr *QPainter) DrawPicture2(x int, y int, picture QPicture_ITF) {
 	defer qt.Recovering("QPainter::drawPicture")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPicture3(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPicture(picture))
+		C.QPainter_DrawPicture2(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPicture(picture))
 	}
 }
 
-func (ptr *QPainter) DrawPie2(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawPie3(rectangle core.QRect_ITF, startAngle int, spanAngle int) {
 	defer qt.Recovering("QPainter::drawPie")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPie2(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawPie3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawPie3(x int, y int, width int, height int, startAngle int, spanAngle int) {
+func (ptr *QPainter) DrawPie2(x int, y int, width int, height int, startAngle int, spanAngle int) {
 	defer qt.Recovering("QPainter::drawPie")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPie3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
+		C.QPainter_DrawPie2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(startAngle), C.int(spanAngle))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap6(point core.QPoint_ITF, pixmap QPixmap_ITF) {
+func (ptr *QPainter) DrawPixmap8(point core.QPoint_ITF, pixmap QPixmap_ITF) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap6(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap))
+		C.QPainter_DrawPixmap8(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap4(point core.QPoint_ITF, pixmap QPixmap_ITF, source core.QRect_ITF) {
+func (ptr *QPainter) DrawPixmap6(point core.QPoint_ITF, pixmap QPixmap_ITF, source core.QRect_ITF) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap4(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap), core.PointerFromQRect(source))
+		C.QPainter_DrawPixmap6(ptr.Pointer(), core.PointerFromQPoint(point), PointerFromQPixmap(pixmap), core.PointerFromQRect(source))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap3(point core.QPointF_ITF, pixmap QPixmap_ITF, source core.QRectF_ITF) {
+func (ptr *QPainter) DrawPixmap5(point core.QPointF_ITF, pixmap QPixmap_ITF, source core.QRectF_ITF) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap3(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap), core.PointerFromQRectF(source))
+		C.QPainter_DrawPixmap5(ptr.Pointer(), core.PointerFromQPointF(point), PointerFromQPixmap(pixmap), core.PointerFromQRectF(source))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap8(rectangle core.QRect_ITF, pixmap QPixmap_ITF) {
+func (ptr *QPainter) DrawPixmap10(rectangle core.QRect_ITF, pixmap QPixmap_ITF) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap8(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap))
+		C.QPainter_DrawPixmap10(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap))
 	}
 }
 
@@ -33674,35 +33918,35 @@ func (ptr *QPainter) DrawPixmap2(target core.QRect_ITF, pixmap QPixmap_ITF, sour
 	}
 }
 
-func (ptr *QPainter) DrawPixmap7(x int, y int, pixmap QPixmap_ITF) {
+func (ptr *QPainter) DrawPixmap9(x int, y int, pixmap QPixmap_ITF) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap7(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPixmap(pixmap))
+		C.QPainter_DrawPixmap9(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPixmap(pixmap))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap11(x int, y int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
+func (ptr *QPainter) DrawPixmap4(x int, y int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap11(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
+		C.QPainter_DrawPixmap4(ptr.Pointer(), C.int(x), C.int(y), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap10(x int, y int, w int, h int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
+func (ptr *QPainter) DrawPixmap3(x int, y int, w int, h int, pixmap QPixmap_ITF, sx int, sy int, sw int, sh int) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap10(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
+		C.QPainter_DrawPixmap3(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy), C.int(sw), C.int(sh))
 	}
 }
 
-func (ptr *QPainter) DrawPixmap9(x int, y int, width int, height int, pixmap QPixmap_ITF) {
+func (ptr *QPainter) DrawPixmap11(x int, y int, width int, height int, pixmap QPixmap_ITF) {
 	defer qt.Recovering("QPainter::drawPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPixmap9(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQPixmap(pixmap))
+		C.QPainter_DrawPixmap11(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQPixmap(pixmap))
 	}
 }
 
@@ -33730,11 +33974,11 @@ func (ptr *QPainter) DrawPoint3(x int, y int) {
 	}
 }
 
-func (ptr *QPainter) DrawPoints2(points core.QPoint_ITF, pointCount int) {
+func (ptr *QPainter) DrawPoints3(points core.QPoint_ITF, pointCount int) {
 	defer qt.Recovering("QPainter::drawPoints")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoints2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
+		C.QPainter_DrawPoints3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
 	}
 }
 
@@ -33754,19 +33998,19 @@ func (ptr *QPainter) DrawPoints4(points QPolygon_ITF) {
 	}
 }
 
-func (ptr *QPainter) DrawPoints3(points QPolygonF_ITF) {
+func (ptr *QPainter) DrawPoints2(points QPolygonF_ITF) {
 	defer qt.Recovering("QPainter::drawPoints")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPoints3(ptr.Pointer(), PointerFromQPolygonF(points))
+		C.QPainter_DrawPoints2(ptr.Pointer(), PointerFromQPolygonF(points))
 	}
 }
 
-func (ptr *QPainter) DrawPolygon2(points core.QPoint_ITF, pointCount int, fillRule core.Qt__FillRule) {
+func (ptr *QPainter) DrawPolygon3(points core.QPoint_ITF, pointCount int, fillRule core.Qt__FillRule) {
 	defer qt.Recovering("QPainter::drawPolygon")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolygon2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount), C.int(fillRule))
+		C.QPainter_DrawPolygon3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount), C.int(fillRule))
 	}
 }
 
@@ -33786,19 +34030,19 @@ func (ptr *QPainter) DrawPolygon4(points QPolygon_ITF, fillRule core.Qt__FillRul
 	}
 }
 
-func (ptr *QPainter) DrawPolygon3(points QPolygonF_ITF, fillRule core.Qt__FillRule) {
+func (ptr *QPainter) DrawPolygon2(points QPolygonF_ITF, fillRule core.Qt__FillRule) {
 	defer qt.Recovering("QPainter::drawPolygon")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolygon3(ptr.Pointer(), PointerFromQPolygonF(points), C.int(fillRule))
+		C.QPainter_DrawPolygon2(ptr.Pointer(), PointerFromQPolygonF(points), C.int(fillRule))
 	}
 }
 
-func (ptr *QPainter) DrawPolyline2(points core.QPoint_ITF, pointCount int) {
+func (ptr *QPainter) DrawPolyline3(points core.QPoint_ITF, pointCount int) {
 	defer qt.Recovering("QPainter::drawPolyline")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolyline2(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
+		C.QPainter_DrawPolyline3(ptr.Pointer(), core.PointerFromQPoint(points), C.int(pointCount))
 	}
 }
 
@@ -33818,19 +34062,19 @@ func (ptr *QPainter) DrawPolyline4(points QPolygon_ITF) {
 	}
 }
 
-func (ptr *QPainter) DrawPolyline3(points QPolygonF_ITF) {
+func (ptr *QPainter) DrawPolyline2(points QPolygonF_ITF) {
 	defer qt.Recovering("QPainter::drawPolyline")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawPolyline3(ptr.Pointer(), PointerFromQPolygonF(points))
+		C.QPainter_DrawPolyline2(ptr.Pointer(), PointerFromQPolygonF(points))
 	}
 }
 
-func (ptr *QPainter) DrawRect2(rectangle core.QRect_ITF) {
+func (ptr *QPainter) DrawRect3(rectangle core.QRect_ITF) {
 	defer qt.Recovering("QPainter::drawRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRect2(ptr.Pointer(), core.PointerFromQRect(rectangle))
+		C.QPainter_DrawRect3(ptr.Pointer(), core.PointerFromQRect(rectangle))
 	}
 }
 
@@ -33842,19 +34086,19 @@ func (ptr *QPainter) DrawRect(rectangle core.QRectF_ITF) {
 	}
 }
 
-func (ptr *QPainter) DrawRect3(x int, y int, width int, height int) {
+func (ptr *QPainter) DrawRect2(x int, y int, width int, height int) {
 	defer qt.Recovering("QPainter::drawRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QPainter_DrawRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
-func (ptr *QPainter) DrawRoundedRect2(rect core.QRect_ITF, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
+func (ptr *QPainter) DrawRoundedRect3(rect core.QRect_ITF, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
 	defer qt.Recovering("QPainter::drawRoundedRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRoundedRect2(ptr.Pointer(), core.PointerFromQRect(rect), C.double(xRadius), C.double(yRadius), C.int(mode))
+		C.QPainter_DrawRoundedRect3(ptr.Pointer(), core.PointerFromQRect(rect), C.double(xRadius), C.double(yRadius), C.int(mode))
 	}
 }
 
@@ -33866,11 +34110,11 @@ func (ptr *QPainter) DrawRoundedRect(rect core.QRectF_ITF, xRadius float64, yRad
 	}
 }
 
-func (ptr *QPainter) DrawRoundedRect3(x int, y int, w int, h int, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
+func (ptr *QPainter) DrawRoundedRect2(x int, y int, w int, h int, xRadius float64, yRadius float64, mode core.Qt__SizeMode) {
 	defer qt.Recovering("QPainter::drawRoundedRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawRoundedRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h), C.double(xRadius), C.double(yRadius), C.int(mode))
+		C.QPainter_DrawRoundedRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(w), C.int(h), C.double(xRadius), C.double(yRadius), C.int(mode))
 	}
 }
 
@@ -33898,19 +34142,19 @@ func (ptr *QPainter) DrawStaticText3(left int, top int, staticText QStaticText_I
 	}
 }
 
-func (ptr *QPainter) DrawText3(position core.QPoint_ITF, text string) {
+func (ptr *QPainter) DrawText2(position core.QPoint_ITF, text string) {
 	defer qt.Recovering("QPainter::drawText")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText3(ptr.Pointer(), core.PointerFromQPoint(position), C.CString(text))
+		C.QPainter_DrawText2(ptr.Pointer(), core.PointerFromQPoint(position), C.CString(text))
 	}
 }
 
-func (ptr *QPainter) DrawText6(x int, y int, text string) {
+func (ptr *QPainter) DrawText3(x int, y int, text string) {
 	defer qt.Recovering("QPainter::drawText")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawText6(ptr.Pointer(), C.int(x), C.int(y), C.CString(text))
+		C.QPainter_DrawText3(ptr.Pointer(), C.int(x), C.int(y), C.CString(text))
 	}
 }
 
@@ -33922,19 +34166,19 @@ func (ptr *QPainter) DrawText7(x int, y int, width int, height int, flags int, t
 	}
 }
 
-func (ptr *QPainter) DrawTiledPixmap2(rectangle core.QRect_ITF, pixmap QPixmap_ITF, position core.QPoint_ITF) {
+func (ptr *QPainter) DrawTiledPixmap3(rectangle core.QRect_ITF, pixmap QPixmap_ITF, position core.QPoint_ITF) {
 	defer qt.Recovering("QPainter::drawTiledPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawTiledPixmap2(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap), core.PointerFromQPoint(position))
+		C.QPainter_DrawTiledPixmap3(ptr.Pointer(), core.PointerFromQRect(rectangle), PointerFromQPixmap(pixmap), core.PointerFromQPoint(position))
 	}
 }
 
-func (ptr *QPainter) DrawTiledPixmap3(x int, y int, width int, height int, pixmap QPixmap_ITF, sx int, sy int) {
+func (ptr *QPainter) DrawTiledPixmap2(x int, y int, width int, height int, pixmap QPixmap_ITF, sx int, sy int) {
 	defer qt.Recovering("QPainter::drawTiledPixmap")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_DrawTiledPixmap3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy))
+		C.QPainter_DrawTiledPixmap2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQPixmap(pixmap), C.int(sx), C.int(sy))
 	}
 }
 
@@ -33955,19 +34199,19 @@ func (ptr *QPainter) EndNativePainting() {
 	}
 }
 
-func (ptr *QPainter) EraseRect2(rectangle core.QRect_ITF) {
+func (ptr *QPainter) EraseRect3(rectangle core.QRect_ITF) {
 	defer qt.Recovering("QPainter::eraseRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_EraseRect2(ptr.Pointer(), core.PointerFromQRect(rectangle))
+		C.QPainter_EraseRect3(ptr.Pointer(), core.PointerFromQRect(rectangle))
 	}
 }
 
-func (ptr *QPainter) EraseRect3(x int, y int, width int, height int) {
+func (ptr *QPainter) EraseRect2(x int, y int, width int, height int) {
 	defer qt.Recovering("QPainter::eraseRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_EraseRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
+		C.QPainter_EraseRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height))
 	}
 }
 
@@ -33979,67 +34223,67 @@ func (ptr *QPainter) FillPath(path QPainterPath_ITF, brush QBrush_ITF) {
 	}
 }
 
-func (ptr *QPainter) FillRect3(rectangle core.QRect_ITF, style core.Qt__BrushStyle) {
+func (ptr *QPainter) FillRect11(rectangle core.QRect_ITF, style core.Qt__BrushStyle) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect3(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(style))
+		C.QPainter_FillRect11(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(style))
 	}
 }
 
-func (ptr *QPainter) FillRect11(rectangle core.QRect_ITF, color core.Qt__GlobalColor) {
+func (ptr *QPainter) FillRect8(rectangle core.QRect_ITF, color core.Qt__GlobalColor) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect11(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(color))
+		C.QPainter_FillRect8(ptr.Pointer(), core.PointerFromQRect(rectangle), C.int(color))
 	}
 }
 
-func (ptr *QPainter) FillRect4(rectangle core.QRectF_ITF, style core.Qt__BrushStyle) {
+func (ptr *QPainter) FillRect12(rectangle core.QRectF_ITF, style core.Qt__BrushStyle) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect4(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(style))
+		C.QPainter_FillRect12(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(style))
 	}
 }
 
-func (ptr *QPainter) FillRect12(rectangle core.QRectF_ITF, color core.Qt__GlobalColor) {
+func (ptr *QPainter) FillRect9(rectangle core.QRectF_ITF, color core.Qt__GlobalColor) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect12(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(color))
+		C.QPainter_FillRect9(ptr.Pointer(), core.PointerFromQRectF(rectangle), C.int(color))
 	}
 }
 
-func (ptr *QPainter) FillRect2(x int, y int, width int, height int, style core.Qt__BrushStyle) {
+func (ptr *QPainter) FillRect10(x int, y int, width int, height int, style core.Qt__BrushStyle) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(style))
+		C.QPainter_FillRect10(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(style))
 	}
 }
 
-func (ptr *QPainter) FillRect10(x int, y int, width int, height int, color core.Qt__GlobalColor) {
+func (ptr *QPainter) FillRect7(x int, y int, width int, height int, color core.Qt__GlobalColor) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect10(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(color))
+		C.QPainter_FillRect7(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(color))
 	}
 }
 
-func (ptr *QPainter) FillRect8(x int, y int, width int, height int, brush QBrush_ITF) {
+func (ptr *QPainter) FillRect2(x int, y int, width int, height int, brush QBrush_ITF) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect8(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQBrush(brush))
+		C.QPainter_FillRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQBrush(brush))
 	}
 }
 
-func (ptr *QPainter) FillRect9(x int, y int, width int, height int, color QColor_ITF) {
+func (ptr *QPainter) FillRect5(x int, y int, width int, height int, color QColor_ITF) {
 	defer qt.Recovering("QPainter::fillRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_FillRect9(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQColor(color))
+		C.QPainter_FillRect5(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), PointerFromQColor(color))
 	}
 }
 
@@ -34205,11 +34449,11 @@ func (ptr *QPainter) SetBrushOrigin3(x int, y int) {
 	}
 }
 
-func (ptr *QPainter) SetClipRect2(x int, y int, width int, height int, operation core.Qt__ClipOperation) {
+func (ptr *QPainter) SetClipRect3(x int, y int, width int, height int, operation core.Qt__ClipOperation) {
 	defer qt.Recovering("QPainter::setClipRect")
 
 	if ptr.Pointer() != nil {
-		C.QPainter_SetClipRect2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(operation))
+		C.QPainter_SetClipRect3(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height), C.int(operation))
 	}
 }
 
@@ -35880,6 +36124,7 @@ func (ptr *QPdfWriter) DestroyQPdfWriter() {
 	defer qt.Recovering("QPdfWriter::~QPdfWriter")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QPdfWriter_DestroyQPdfWriter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -36098,6 +36343,7 @@ func (ptr *QPdfWriter) DeleteLater() {
 	defer qt.Recovering("QPdfWriter::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QPdfWriter_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -36107,6 +36353,7 @@ func (ptr *QPdfWriter) DeleteLaterDefault() {
 	defer qt.Recovering("QPdfWriter::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QPdfWriter_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -36861,6 +37108,7 @@ func (ptr *QPicture) DestroyQPicture() {
 	defer qt.Recovering("QPicture::~QPicture")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QPicture_DestroyQPicture(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -37348,22 +37596,22 @@ func NewQPixmap() *QPixmap {
 	return newQPixmapFromPointer(C.QPixmap_NewQPixmap())
 }
 
-func NewQPixmap6(pixmap QPixmap_ITF) *QPixmap {
+func NewQPixmap7(pixmap QPixmap_ITF) *QPixmap {
 	defer qt.Recovering("QPixmap::QPixmap")
 
-	return newQPixmapFromPointer(C.QPixmap_NewQPixmap6(PointerFromQPixmap(pixmap)))
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap7(PointerFromQPixmap(pixmap)))
 }
 
-func NewQPixmap8(size core.QSize_ITF) *QPixmap {
+func NewQPixmap4(size core.QSize_ITF) *QPixmap {
 	defer qt.Recovering("QPixmap::QPixmap")
 
-	return newQPixmapFromPointer(C.QPixmap_NewQPixmap8(core.PointerFromQSize(size)))
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap4(core.PointerFromQSize(size)))
 }
 
-func NewQPixmap4(fileName string, format string, flags core.Qt__ImageConversionFlag) *QPixmap {
+func NewQPixmap5(fileName string, format string, flags core.Qt__ImageConversionFlag) *QPixmap {
 	defer qt.Recovering("QPixmap::QPixmap")
 
-	return newQPixmapFromPointer(C.QPixmap_NewQPixmap4(C.CString(fileName), C.CString(format), C.int(flags)))
+	return newQPixmapFromPointer(C.QPixmap_NewQPixmap5(C.CString(fileName), C.CString(format), C.int(flags)))
 }
 
 func (ptr *QPixmap) CacheKey() int64 {
@@ -38049,10 +38297,16 @@ func NewQPolygon() *QPolygon {
 	return newQPolygonFromPointer(C.QPolygon_NewQPolygon())
 }
 
-func NewQPolygon3(polygon QPolygon_ITF) *QPolygon {
+func NewQPolygon8(other QPolygon_ITF) *QPolygon {
 	defer qt.Recovering("QPolygon::QPolygon")
 
-	return newQPolygonFromPointer(C.QPolygon_NewQPolygon3(PointerFromQPolygon(polygon)))
+	return newQPolygonFromPointer(C.QPolygon_NewQPolygon8(PointerFromQPolygon(other)))
+}
+
+func NewQPolygon7(polygon QPolygon_ITF) *QPolygon {
+	defer qt.Recovering("QPolygon::QPolygon")
+
+	return newQPolygonFromPointer(C.QPolygon_NewQPolygon7(PointerFromQPolygon(polygon)))
 }
 
 func NewQPolygon2(size int) *QPolygon {
@@ -38260,10 +38514,16 @@ func NewQPolygonF() *QPolygonF {
 	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF())
 }
 
-func NewQPolygonF3(polygon QPolygonF_ITF) *QPolygonF {
+func NewQPolygonF8(other QPolygonF_ITF) *QPolygonF {
 	defer qt.Recovering("QPolygonF::QPolygonF")
 
-	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF3(PointerFromQPolygonF(polygon)))
+	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF8(PointerFromQPolygonF(other)))
+}
+
+func NewQPolygonF7(polygon QPolygonF_ITF) *QPolygonF {
+	defer qt.Recovering("QPolygonF::QPolygonF")
+
+	return newQPolygonFFromPointer(C.QPolygonF_NewQPolygonF7(PointerFromQPolygonF(polygon)))
 }
 
 func NewQPolygonF2(size int) *QPolygonF {
@@ -41728,6 +41988,7 @@ func (ptr *QRegExpValidator) DestroyQRegExpValidator() {
 	defer qt.Recovering("QRegExpValidator::~QRegExpValidator")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRegExpValidator_DestroyQRegExpValidator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -41991,6 +42252,7 @@ func (ptr *QRegExpValidator) DeleteLater() {
 	defer qt.Recovering("QRegExpValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRegExpValidator_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -42000,6 +42262,7 @@ func (ptr *QRegExpValidator) DeleteLaterDefault() {
 	defer qt.Recovering("QRegExpValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRegExpValidator_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -42248,28 +42511,28 @@ func NewQRegion() *QRegion {
 	return newQRegionFromPointer(C.QRegion_NewQRegion())
 }
 
-func NewQRegion5(bm QBitmap_ITF) *QRegion {
+func NewQRegion6(bm QBitmap_ITF) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return newQRegionFromPointer(C.QRegion_NewQRegion5(PointerFromQBitmap(bm)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion6(PointerFromQBitmap(bm)))
 }
 
-func NewQRegion3(a QPolygon_ITF, fillRule core.Qt__FillRule) *QRegion {
+func NewQRegion4(a QPolygon_ITF, fillRule core.Qt__FillRule) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return newQRegionFromPointer(C.QRegion_NewQRegion3(PointerFromQPolygon(a), C.int(fillRule)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion4(PointerFromQPolygon(a), C.int(fillRule)))
 }
 
-func NewQRegion6(r core.QRect_ITF, t QRegion__RegionType) *QRegion {
+func NewQRegion3(r core.QRect_ITF, t QRegion__RegionType) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return newQRegionFromPointer(C.QRegion_NewQRegion6(core.PointerFromQRect(r), C.int(t)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion3(core.PointerFromQRect(r), C.int(t)))
 }
 
-func NewQRegion4(r QRegion_ITF) *QRegion {
+func NewQRegion5(r QRegion_ITF) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return newQRegionFromPointer(C.QRegion_NewQRegion4(PointerFromQRegion(r)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion5(PointerFromQRegion(r)))
 }
 
 func (ptr *QRegion) BoundingRect() *core.QRect {
@@ -42645,6 +42908,7 @@ func (ptr *QRegularExpressionValidator) DestroyQRegularExpressionValidator() {
 	defer qt.Recovering("QRegularExpressionValidator::~QRegularExpressionValidator")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRegularExpressionValidator_DestroyQRegularExpressionValidator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -42908,6 +43172,7 @@ func (ptr *QRegularExpressionValidator) DeleteLater() {
 	defer qt.Recovering("QRegularExpressionValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRegularExpressionValidator_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -42917,6 +43182,7 @@ func (ptr *QRegularExpressionValidator) DeleteLaterDefault() {
 	defer qt.Recovering("QRegularExpressionValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRegularExpressionValidator_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -43174,6 +43440,67 @@ func (ptr *QResizeEvent) Size() *core.QSize {
 		return core.NewQSizeFromPointer(C.QResizeEvent_Size(ptr.Pointer()))
 	}
 	return nil
+}
+
+type QRgba64 struct {
+	ptr unsafe.Pointer
+}
+
+type QRgba64_ITF interface {
+	QRgba64_PTR() *QRgba64
+}
+
+func (p *QRgba64) QRgba64_PTR() *QRgba64 {
+	return p
+}
+
+func (p *QRgba64) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QRgba64) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQRgba64(ptr QRgba64_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRgba64_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQRgba64FromPointer(ptr unsafe.Pointer) *QRgba64 {
+	var n = new(QRgba64)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQRgba64FromPointer(ptr unsafe.Pointer) *QRgba64 {
+	var n = NewQRgba64FromPointer(ptr)
+	return n
+}
+
+func (ptr *QRgba64) IsOpaque() bool {
+	defer qt.Recovering("QRgba64::isOpaque")
+
+	if ptr.Pointer() != nil {
+		return C.QRgba64_IsOpaque(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QRgba64) IsTransparent() bool {
+	defer qt.Recovering("QRgba64::isTransparent")
+
+	if ptr.Pointer() != nil {
+		return C.QRgba64_IsTransparent(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 type QScreen struct {
@@ -43811,6 +44138,7 @@ func (ptr *QScreen) DestroyQScreen() {
 	defer qt.Recovering("QScreen::~QScreen")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScreen_DestroyQScreen(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -44029,6 +44357,7 @@ func (ptr *QScreen) DeleteLater() {
 	defer qt.Recovering("QScreen::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScreen_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -44038,6 +44367,7 @@ func (ptr *QScreen) DeleteLaterDefault() {
 	defer qt.Recovering("QScreen::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QScreen_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -45520,6 +45850,15 @@ func (ptr *QStandardItem) InsertRows2(row int, count int) {
 	}
 }
 
+func (ptr *QStandardItem) IsAutoTristate() bool {
+	defer qt.Recovering("QStandardItem::isAutoTristate")
+
+	if ptr.Pointer() != nil {
+		return C.QStandardItem_IsAutoTristate(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QStandardItem) IsCheckable() bool {
 	defer qt.Recovering("QStandardItem::isCheckable")
 
@@ -45574,11 +45913,11 @@ func (ptr *QStandardItem) IsSelectable() bool {
 	return false
 }
 
-func (ptr *QStandardItem) IsTristate() bool {
-	defer qt.Recovering("QStandardItem::isTristate")
+func (ptr *QStandardItem) IsUserTristate() bool {
+	defer qt.Recovering("QStandardItem::isUserTristate")
 
 	if ptr.Pointer() != nil {
-		return C.QStandardItem_IsTristate(ptr.Pointer()) != 0
+		return C.QStandardItem_IsUserTristate(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -45664,6 +46003,14 @@ func (ptr *QStandardItem) SetAccessibleText(accessibleText string) {
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_SetAccessibleText(ptr.Pointer(), C.CString(accessibleText))
+	}
+}
+
+func (ptr *QStandardItem) SetAutoTristate(tristate bool) {
+	defer qt.Recovering("QStandardItem::setAutoTristate")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItem_SetAutoTristate(ptr.Pointer(), C.int(qt.GoBoolToInt(tristate)))
 	}
 }
 
@@ -45880,11 +46227,11 @@ func (ptr *QStandardItem) SetToolTip(toolTip string) {
 	}
 }
 
-func (ptr *QStandardItem) SetTristate(tristate bool) {
-	defer qt.Recovering("QStandardItem::setTristate")
+func (ptr *QStandardItem) SetUserTristate(tristate bool) {
+	defer qt.Recovering("QStandardItem::setUserTristate")
 
 	if ptr.Pointer() != nil {
-		C.QStandardItem_SetTristate(ptr.Pointer(), C.int(qt.GoBoolToInt(tristate)))
+		C.QStandardItem_SetUserTristate(ptr.Pointer(), C.int(qt.GoBoolToInt(tristate)))
 	}
 }
 
@@ -46018,6 +46365,7 @@ func (ptr *QStandardItem) DestroyQStandardItem() {
 	defer qt.Recovering("QStandardItem::~QStandardItem")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QStandardItem_DestroyQStandardItem(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -46132,35 +46480,6 @@ func (ptr *QStandardItemModel) Clear() {
 	}
 }
 
-//export callbackQStandardItemModel_ColumnCount
-func callbackQStandardItemModel_ColumnCount(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::columnCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "columnCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return C.int(NewQStandardItemModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *QStandardItemModel) ConnectColumnCount(f func(parent *core.QModelIndex) int) {
-	defer qt.Recovering("connect QStandardItemModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "columnCount", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectColumnCount() {
-	defer qt.Recovering("disconnect QStandardItemModel::columnCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "columnCount")
-	}
-}
-
 func (ptr *QStandardItemModel) ColumnCount(parent core.QModelIndex_ITF) int {
 	defer qt.Recovering("QStandardItemModel::columnCount")
 
@@ -46168,44 +46487,6 @@ func (ptr *QStandardItemModel) ColumnCount(parent core.QModelIndex_ITF) int {
 		return int(C.QStandardItemModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
 	}
 	return 0
-}
-
-func (ptr *QStandardItemModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QStandardItemModel::columnCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QStandardItemModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
-	}
-	return 0
-}
-
-//export callbackQStandardItemModel_Data
-func callbackQStandardItemModel_Data(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QStandardItemModel::data")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "data"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQStandardItemModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(role)))
-}
-
-func (ptr *QStandardItemModel) ConnectData(f func(index *core.QModelIndex, role int) *core.QVariant) {
-	defer qt.Recovering("connect QStandardItemModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "data", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectData() {
-	defer qt.Recovering("disconnect QStandardItemModel::data")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "data")
-	}
 }
 
 func (ptr *QStandardItemModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
@@ -46217,44 +46498,6 @@ func (ptr *QStandardItemModel) Data(index core.QModelIndex_ITF, role int) *core.
 	return nil
 }
 
-func (ptr *QStandardItemModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
-	defer qt.Recovering("QStandardItemModel::data")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QStandardItemModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
-	}
-	return nil
-}
-
-//export callbackQStandardItemModel_DropMimeData
-func callbackQStandardItemModel_DropMimeData(ptr unsafe.Pointer, ptrName *C.char, data unsafe.Pointer, action C.int, row C.int, column C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::dropMimeData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "dropMimeData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(row), int(column), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).DropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(row), int(column), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QStandardItemModel) ConnectDropMimeData(f func(data *core.QMimeData, action core.Qt__DropAction, row int, column int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QStandardItemModel::dropMimeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "dropMimeData", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectDropMimeData() {
-	defer qt.Recovering("disconnect QStandardItemModel::dropMimeData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "dropMimeData")
-	}
-}
-
 func (ptr *QStandardItemModel) DropMimeData(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QStandardItemModel::dropMimeData")
 
@@ -46262,44 +46505,6 @@ func (ptr *QStandardItemModel) DropMimeData(data core.QMimeData_ITF, action core
 		return C.QStandardItemModel_DropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.int(action), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
-}
-
-func (ptr *QStandardItemModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QStandardItemModel::dropMimeData")
-
-	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.int(action), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQStandardItemModel_Flags
-func callbackQStandardItemModel_Flags(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::flags")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "flags"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
-	}
-
-	return C.int(NewQStandardItemModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
-}
-
-func (ptr *QStandardItemModel) ConnectFlags(f func(index *core.QModelIndex) core.Qt__ItemFlag) {
-	defer qt.Recovering("connect QStandardItemModel::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "flags", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectFlags() {
-	defer qt.Recovering("disconnect QStandardItemModel::flags")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "flags")
-	}
 }
 
 func (ptr *QStandardItemModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
@@ -46311,44 +46516,6 @@ func (ptr *QStandardItemModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFl
 	return 0
 }
 
-func (ptr *QStandardItemModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QStandardItemModel::flags")
-
-	if ptr.Pointer() != nil {
-		return core.Qt__ItemFlag(C.QStandardItemModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-	}
-	return 0
-}
-
-//export callbackQStandardItemModel_HasChildren
-func callbackQStandardItemModel_HasChildren(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::hasChildren")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasChildren"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QStandardItemModel) ConnectHasChildren(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QStandardItemModel::hasChildren")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "hasChildren", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectHasChildren() {
-	defer qt.Recovering("disconnect QStandardItemModel::hasChildren")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "hasChildren")
-	}
-}
-
 func (ptr *QStandardItemModel) HasChildren(parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QStandardItemModel::hasChildren")
 
@@ -46358,58 +46525,11 @@ func (ptr *QStandardItemModel) HasChildren(parent core.QModelIndex_ITF) bool {
 	return false
 }
 
-func (ptr *QStandardItemModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QStandardItemModel::hasChildren")
-
-	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQStandardItemModel_HeaderData
-func callbackQStandardItemModel_HeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QStandardItemModel::headerData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "headerData"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(section), core.Qt__Orientation(orientation), int(role)))
-	}
-
-	return core.PointerFromQVariant(NewQStandardItemModelFromPointer(ptr).HeaderDataDefault(int(section), core.Qt__Orientation(orientation), int(role)))
-}
-
-func (ptr *QStandardItemModel) ConnectHeaderData(f func(section int, orientation core.Qt__Orientation, role int) *core.QVariant) {
-	defer qt.Recovering("connect QStandardItemModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "headerData", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectHeaderData() {
-	defer qt.Recovering("disconnect QStandardItemModel::headerData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "headerData")
-	}
-}
-
 func (ptr *QStandardItemModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	defer qt.Recovering("QStandardItemModel::headerData")
 
 	if ptr.Pointer() != nil {
 		return core.NewQVariantFromPointer(C.QStandardItemModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
-	}
-	return nil
-}
-
-func (ptr *QStandardItemModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QStandardItemModel::headerData")
-
-	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QStandardItemModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
 	}
 	return nil
 }
@@ -46423,49 +46543,11 @@ func (ptr *QStandardItemModel) HorizontalHeaderItem(column int) *QStandardItem {
 	return nil
 }
 
-//export callbackQStandardItemModel_Index
-func callbackQStandardItemModel_Index(ptr unsafe.Pointer, ptrName *C.char, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QStandardItemModel::index")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "index"); signal != nil {
-		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(row), int(column), core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return core.PointerFromQModelIndex(NewQStandardItemModelFromPointer(ptr).IndexDefault(int(row), int(column), core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *QStandardItemModel) ConnectIndex(f func(row int, column int, parent *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QStandardItemModel::index")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "index", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectIndex() {
-	defer qt.Recovering("disconnect QStandardItemModel::index")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "index")
-	}
-}
-
 func (ptr *QStandardItemModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	defer qt.Recovering("QStandardItemModel::index")
 
 	if ptr.Pointer() != nil {
 		return core.NewQModelIndexFromPointer(C.QStandardItemModel_Index(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
-	}
-	return nil
-}
-
-func (ptr *QStandardItemModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QStandardItemModel::index")
-
-	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QStandardItemModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
 	}
 	return nil
 }
@@ -46488,35 +46570,6 @@ func (ptr *QStandardItemModel) InsertColumn2(column int, parent core.QModelIndex
 	return false
 }
 
-//export callbackQStandardItemModel_InsertColumns
-func callbackQStandardItemModel_InsertColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::insertColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).InsertColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QStandardItemModel) ConnectInsertColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QStandardItemModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "insertColumns", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectInsertColumns() {
-	defer qt.Recovering("disconnect QStandardItemModel::insertColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "insertColumns")
-	}
-}
-
 func (ptr *QStandardItemModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QStandardItemModel::insertColumns")
 
@@ -46526,58 +46579,20 @@ func (ptr *QStandardItemModel) InsertColumns(column int, count int, parent core.
 	return false
 }
 
-func (ptr *QStandardItemModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QStandardItemModel::insertColumns")
+func (ptr *QStandardItemModel) InsertRow3(row int, parent core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QStandardItemModel::insertRow")
 
 	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_InsertColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
+		return C.QStandardItemModel_InsertRow3(ptr.Pointer(), C.int(row), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
 
-func (ptr *QStandardItemModel) InsertRow2(row int, parent core.QModelIndex_ITF) bool {
+func (ptr *QStandardItemModel) InsertRow2(row int, item QStandardItem_ITF) {
 	defer qt.Recovering("QStandardItemModel::insertRow")
 
 	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_InsertRow2(ptr.Pointer(), C.int(row), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QStandardItemModel) InsertRow3(row int, item QStandardItem_ITF) {
-	defer qt.Recovering("QStandardItemModel::insertRow")
-
-	if ptr.Pointer() != nil {
-		C.QStandardItemModel_InsertRow3(ptr.Pointer(), C.int(row), PointerFromQStandardItem(item))
-	}
-}
-
-//export callbackQStandardItemModel_InsertRows
-func callbackQStandardItemModel_InsertRows(ptr unsafe.Pointer, ptrName *C.char, row C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::insertRows")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertRows"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).InsertRowsDefault(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QStandardItemModel) ConnectInsertRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QStandardItemModel::insertRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "insertRows", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectInsertRows() {
-	defer qt.Recovering("disconnect QStandardItemModel::insertRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "insertRows")
+		C.QStandardItemModel_InsertRow2(ptr.Pointer(), C.int(row), PointerFromQStandardItem(item))
 	}
 }
 
@@ -46586,15 +46601,6 @@ func (ptr *QStandardItemModel) InsertRows(row int, count int, parent core.QModel
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_InsertRows(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-func (ptr *QStandardItemModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QStandardItemModel::insertRows")
-
-	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_InsertRowsDefault(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -46671,35 +46677,6 @@ func (ptr *QStandardItemModel) ItemPrototype() *QStandardItem {
 	return nil
 }
 
-//export callbackQStandardItemModel_MimeTypes
-func callbackQStandardItemModel_MimeTypes(ptr unsafe.Pointer, ptrName *C.char) *C.char {
-	defer qt.Recovering("callback QStandardItemModel::mimeTypes")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "mimeTypes"); signal != nil {
-		return C.CString(strings.Join(signal.(func() []string)(), "|"))
-	}
-
-	return C.CString(strings.Join(NewQStandardItemModelFromPointer(ptr).MimeTypesDefault(), "|"))
-}
-
-func (ptr *QStandardItemModel) ConnectMimeTypes(f func() []string) {
-	defer qt.Recovering("connect QStandardItemModel::mimeTypes")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "mimeTypes", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectMimeTypes() {
-	defer qt.Recovering("disconnect QStandardItemModel::mimeTypes")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "mimeTypes")
-	}
-}
-
 func (ptr *QStandardItemModel) MimeTypes() []string {
 	defer qt.Recovering("QStandardItemModel::mimeTypes")
 
@@ -46707,44 +46684,6 @@ func (ptr *QStandardItemModel) MimeTypes() []string {
 		return strings.Split(C.GoString(C.QStandardItemModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
-}
-
-func (ptr *QStandardItemModel) MimeTypesDefault() []string {
-	defer qt.Recovering("QStandardItemModel::mimeTypes")
-
-	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QStandardItemModel_MimeTypesDefault(ptr.Pointer())), "|")
-	}
-	return make([]string, 0)
-}
-
-//export callbackQStandardItemModel_Parent
-func callbackQStandardItemModel_Parent(ptr unsafe.Pointer, ptrName *C.char, child unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QStandardItemModel::parent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "parent"); signal != nil {
-		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(child)))
-	}
-
-	return core.PointerFromQModelIndex(NewQStandardItemModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(child)))
-}
-
-func (ptr *QStandardItemModel) ConnectParent(f func(child *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QStandardItemModel::parent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "parent", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectParent() {
-	defer qt.Recovering("disconnect QStandardItemModel::parent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "parent")
-	}
 }
 
 func (ptr *QStandardItemModel) Parent(child core.QModelIndex_ITF) *core.QModelIndex {
@@ -46756,44 +46695,6 @@ func (ptr *QStandardItemModel) Parent(child core.QModelIndex_ITF) *core.QModelIn
 	return nil
 }
 
-func (ptr *QStandardItemModel) ParentDefault(child core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QStandardItemModel::parent")
-
-	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QStandardItemModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(child)))
-	}
-	return nil
-}
-
-//export callbackQStandardItemModel_RemoveColumns
-func callbackQStandardItemModel_RemoveColumns(ptr unsafe.Pointer, ptrName *C.char, column C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::removeColumns")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeColumns"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).RemoveColumnsDefault(int(column), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QStandardItemModel) ConnectRemoveColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QStandardItemModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "removeColumns", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectRemoveColumns() {
-	defer qt.Recovering("disconnect QStandardItemModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "removeColumns")
-	}
-}
-
 func (ptr *QStandardItemModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	defer qt.Recovering("QStandardItemModel::removeColumns")
 
@@ -46801,44 +46702,6 @@ func (ptr *QStandardItemModel) RemoveColumns(column int, count int, parent core.
 		return C.QStandardItemModel_RemoveColumns(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
-}
-
-func (ptr *QStandardItemModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QStandardItemModel::removeColumns")
-
-	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_RemoveColumnsDefault(ptr.Pointer(), C.int(column), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQStandardItemModel_RemoveRows
-func callbackQStandardItemModel_RemoveRows(ptr unsafe.Pointer, ptrName *C.char, row C.int, count C.int, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::removeRows")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeRows"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).RemoveRowsDefault(int(row), int(count), core.NewQModelIndexFromPointer(parent))))
-}
-
-func (ptr *QStandardItemModel) ConnectRemoveRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QStandardItemModel::removeRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "removeRows", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectRemoveRows() {
-	defer qt.Recovering("disconnect QStandardItemModel::removeRows")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "removeRows")
-	}
 }
 
 func (ptr *QStandardItemModel) RemoveRows(row int, count int, parent core.QModelIndex_ITF) bool {
@@ -46850,58 +46713,11 @@ func (ptr *QStandardItemModel) RemoveRows(row int, count int, parent core.QModel
 	return false
 }
 
-func (ptr *QStandardItemModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QStandardItemModel::removeRows")
-
-	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_RemoveRowsDefault(ptr.Pointer(), C.int(row), C.int(count), core.PointerFromQModelIndex(parent)) != 0
-	}
-	return false
-}
-
-//export callbackQStandardItemModel_RowCount
-func callbackQStandardItemModel_RowCount(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QStandardItemModel::rowCount")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "rowCount"); signal != nil {
-		return C.int(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent)))
-	}
-
-	return C.int(NewQStandardItemModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent)))
-}
-
-func (ptr *QStandardItemModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
-	defer qt.Recovering("connect QStandardItemModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "rowCount", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectRowCount() {
-	defer qt.Recovering("disconnect QStandardItemModel::rowCount")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "rowCount")
-	}
-}
-
 func (ptr *QStandardItemModel) RowCount(parent core.QModelIndex_ITF) int {
 	defer qt.Recovering("QStandardItemModel::rowCount")
 
 	if ptr.Pointer() != nil {
 		return int(C.QStandardItemModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
-	}
-	return 0
-}
-
-func (ptr *QStandardItemModel) RowCountDefault(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QStandardItemModel::rowCount")
-
-	if ptr.Pointer() != nil {
-		return int(C.QStandardItemModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)))
 	}
 	return 0
 }
@@ -46914,35 +46730,6 @@ func (ptr *QStandardItemModel) SetColumnCount(columns int) {
 	}
 }
 
-//export callbackQStandardItemModel_SetData
-func callbackQStandardItemModel_SetData(ptr unsafe.Pointer, ptrName *C.char, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.int {
-	defer qt.Recovering("callback QStandardItemModel::setData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(role))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(role))))
-}
-
-func (ptr *QStandardItemModel) ConnectSetData(f func(index *core.QModelIndex, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QStandardItemModel::setData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "setData", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectSetData() {
-	defer qt.Recovering("disconnect QStandardItemModel::setData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "setData")
-	}
-}
-
 func (ptr *QStandardItemModel) SetData(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	defer qt.Recovering("QStandardItemModel::setData")
 
@@ -46952,58 +46739,11 @@ func (ptr *QStandardItemModel) SetData(index core.QModelIndex_ITF, value core.QV
 	return false
 }
 
-func (ptr *QStandardItemModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QStandardItemModel::setData")
-
-	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
-}
-
-//export callbackQStandardItemModel_SetHeaderData
-func callbackQStandardItemModel_SetHeaderData(ptr unsafe.Pointer, ptrName *C.char, section C.int, orientation C.int, value unsafe.Pointer, role C.int) C.int {
-	defer qt.Recovering("callback QStandardItemModel::setHeaderData")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHeaderData"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-	}
-
-	return C.int(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).SetHeaderDataDefault(int(section), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(role))))
-}
-
-func (ptr *QStandardItemModel) ConnectSetHeaderData(f func(section int, orientation core.Qt__Orientation, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QStandardItemModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "setHeaderData", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectSetHeaderData() {
-	defer qt.Recovering("disconnect QStandardItemModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "setHeaderData")
-	}
-}
-
 func (ptr *QStandardItemModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	defer qt.Recovering("QStandardItemModel::setHeaderData")
 
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_SetHeaderData(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
-	}
-	return false
-}
-
-func (ptr *QStandardItemModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QStandardItemModel::setHeaderData")
-
-	if ptr.Pointer() != nil {
-		return C.QStandardItemModel_SetHeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), core.PointerFromQVariant(value), C.int(role)) != 0
 	}
 	return false
 }
@@ -47072,35 +46812,6 @@ func (ptr *QStandardItemModel) SetVerticalHeaderLabels(labels []string) {
 	}
 }
 
-//export callbackQStandardItemModel_Sibling
-func callbackQStandardItemModel_Sibling(ptr unsafe.Pointer, ptrName *C.char, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QStandardItemModel::sibling")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "sibling"); signal != nil {
-		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(row), int(column), core.NewQModelIndexFromPointer(idx)))
-	}
-
-	return core.PointerFromQModelIndex(NewQStandardItemModelFromPointer(ptr).SiblingDefault(int(row), int(column), core.NewQModelIndexFromPointer(idx)))
-}
-
-func (ptr *QStandardItemModel) ConnectSibling(f func(row int, column int, idx *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QStandardItemModel::sibling")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "sibling", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectSibling() {
-	defer qt.Recovering("disconnect QStandardItemModel::sibling")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "sibling")
-	}
-}
-
 func (ptr *QStandardItemModel) Sibling(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
 	defer qt.Recovering("QStandardItemModel::sibling")
 
@@ -47108,44 +46819,6 @@ func (ptr *QStandardItemModel) Sibling(row int, column int, idx core.QModelIndex
 		return core.NewQModelIndexFromPointer(C.QStandardItemModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(idx)))
 	}
 	return nil
-}
-
-func (ptr *QStandardItemModel) SiblingDefault(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QStandardItemModel::sibling")
-
-	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QStandardItemModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(idx)))
-	}
-	return nil
-}
-
-//export callbackQStandardItemModel_Sort
-func callbackQStandardItemModel_Sort(ptr unsafe.Pointer, ptrName *C.char, column C.int, order C.int) {
-	defer qt.Recovering("callback QStandardItemModel::sort")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "sort"); signal != nil {
-		signal.(func(int, core.Qt__SortOrder))(int(column), core.Qt__SortOrder(order))
-	} else {
-		NewQStandardItemModelFromPointer(ptr).SortDefault(int(column), core.Qt__SortOrder(order))
-	}
-}
-
-func (ptr *QStandardItemModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
-	defer qt.Recovering("connect QStandardItemModel::sort")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "sort", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectSort() {
-	defer qt.Recovering("disconnect QStandardItemModel::sort")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "sort")
-	}
 }
 
 func (ptr *QStandardItemModel) Sort(column int, order core.Qt__SortOrder) {
@@ -47156,57 +46829,11 @@ func (ptr *QStandardItemModel) Sort(column int, order core.Qt__SortOrder) {
 	}
 }
 
-func (ptr *QStandardItemModel) SortDefault(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QStandardItemModel::sort")
-
-	if ptr.Pointer() != nil {
-		C.QStandardItemModel_SortDefault(ptr.Pointer(), C.int(column), C.int(order))
-	}
-}
-
-//export callbackQStandardItemModel_SupportedDropActions
-func callbackQStandardItemModel_SupportedDropActions(ptr unsafe.Pointer, ptrName *C.char) C.int {
-	defer qt.Recovering("callback QStandardItemModel::supportedDropActions")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "supportedDropActions"); signal != nil {
-		return C.int(signal.(func() core.Qt__DropAction)())
-	}
-
-	return C.int(NewQStandardItemModelFromPointer(ptr).SupportedDropActionsDefault())
-}
-
-func (ptr *QStandardItemModel) ConnectSupportedDropActions(f func() core.Qt__DropAction) {
-	defer qt.Recovering("connect QStandardItemModel::supportedDropActions")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "supportedDropActions", f)
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectSupportedDropActions() {
-	defer qt.Recovering("disconnect QStandardItemModel::supportedDropActions")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "supportedDropActions")
-	}
-}
-
 func (ptr *QStandardItemModel) SupportedDropActions() core.Qt__DropAction {
 	defer qt.Recovering("QStandardItemModel::supportedDropActions")
 
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QStandardItemModel_SupportedDropActions(ptr.Pointer()))
-	}
-	return 0
-}
-
-func (ptr *QStandardItemModel) SupportedDropActionsDefault() core.Qt__DropAction {
-	defer qt.Recovering("QStandardItemModel::supportedDropActions")
-
-	if ptr.Pointer() != nil {
-		return core.Qt__DropAction(C.QStandardItemModel_SupportedDropActionsDefault(ptr.Pointer()))
 	}
 	return 0
 }
@@ -47251,6 +46878,7 @@ func (ptr *QStandardItemModel) DestroyQStandardItemModel() {
 	defer qt.Recovering("QStandardItemModel::~QStandardItemModel")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QStandardItemModel_DestroyQStandardItemModel(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -47980,6 +47608,7 @@ func (ptr *QStandardItemModel) DeleteLater() {
 	defer qt.Recovering("QStandardItemModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QStandardItemModel_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -47989,6 +47618,7 @@ func (ptr *QStandardItemModel) DeleteLaterDefault() {
 	defer qt.Recovering("QStandardItemModel::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QStandardItemModel_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -48555,6 +48185,15 @@ func (ptr *QStyleHints) ShowIsFullScreen() bool {
 	return false
 }
 
+func (ptr *QStyleHints) ShowIsMaximized() bool {
+	defer qt.Recovering("QStyleHints::showIsMaximized")
+
+	if ptr.Pointer() != nil {
+		return C.QStyleHints_ShowIsMaximized(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QStyleHints) SingleClickActivation() bool {
 	defer qt.Recovering("QStyleHints::singleClickActivation")
 
@@ -49002,6 +48641,7 @@ func (ptr *QStyleHints) DeleteLater() {
 	defer qt.Recovering("QStyleHints::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QStyleHints_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -49011,6 +48651,7 @@ func (ptr *QStyleHints) DeleteLaterDefault() {
 	defer qt.Recovering("QStyleHints::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QStyleHints_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -49444,6 +49085,7 @@ func (ptr *QSurface) DestroyQSurface() {
 	defer qt.Recovering("QSurface::~QSurface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSurface_DestroyQSurface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -50152,6 +49794,7 @@ func (ptr *QSyntaxHighlighter) DestroyQSyntaxHighlighter() {
 	defer qt.Recovering("QSyntaxHighlighter::~QSyntaxHighlighter")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSyntaxHighlighter_DestroyQSyntaxHighlighter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -50370,6 +50013,7 @@ func (ptr *QSyntaxHighlighter) DeleteLater() {
 	defer qt.Recovering("QSyntaxHighlighter::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSyntaxHighlighter_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -50379,6 +50023,7 @@ func (ptr *QSyntaxHighlighter) DeleteLaterDefault() {
 	defer qt.Recovering("QSyntaxHighlighter::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSyntaxHighlighter_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -51559,6 +51204,7 @@ func (ptr *QTextBlockGroup) DestroyQTextBlockGroup() {
 	defer qt.Recovering("QTextBlockGroup::~QTextBlockGroup")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTextBlockGroup_DestroyQTextBlockGroup(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -51777,6 +51423,7 @@ func (ptr *QTextBlockGroup) DeleteLater() {
 	defer qt.Recovering("QTextBlockGroup::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTextBlockGroup_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -51786,6 +51433,7 @@ func (ptr *QTextBlockGroup) DeleteLaterDefault() {
 	defer qt.Recovering("QTextBlockGroup::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTextBlockGroup_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -52027,6 +51675,7 @@ func (ptr *QTextBlockUserData) DestroyQTextBlockUserData() {
 	defer qt.Recovering("QTextBlockUserData::~QTextBlockUserData")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QTextBlockUserData_DestroyQTextBlockUserData(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -52740,16 +52389,16 @@ func NewQTextCursor2(document QTextDocument_ITF) *QTextCursor {
 	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor2(PointerFromQTextDocument(document)))
 }
 
-func NewQTextCursor4(frame QTextFrame_ITF) *QTextCursor {
+func NewQTextCursor5(frame QTextFrame_ITF) *QTextCursor {
 	defer qt.Recovering("QTextCursor::QTextCursor")
 
-	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor4(PointerFromQTextFrame(frame)))
+	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor5(PointerFromQTextFrame(frame)))
 }
 
-func NewQTextCursor5(block QTextBlock_ITF) *QTextCursor {
+func NewQTextCursor6(block QTextBlock_ITF) *QTextCursor {
 	defer qt.Recovering("QTextCursor::QTextCursor")
 
-	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor5(PointerFromQTextBlock(block)))
+	return newQTextCursorFromPointer(C.QTextCursor_NewQTextCursor6(PointerFromQTextBlock(block)))
 }
 
 func NewQTextCursor7(cursor QTextCursor_ITF) *QTextCursor {
@@ -53435,11 +53084,11 @@ func (ptr *QTextDocument) DocumentMargin() float64 {
 	return 0
 }
 
-func (ptr *QTextDocument) Find4(subString string, position int, options QTextDocument__FindFlag) *QTextCursor {
+func (ptr *QTextDocument) Find2(subString string, position int, options QTextDocument__FindFlag) *QTextCursor {
 	defer qt.Recovering("QTextDocument::find")
 
 	if ptr.Pointer() != nil {
-		return NewQTextCursorFromPointer(C.QTextDocument_Find4(ptr.Pointer(), C.CString(subString), C.int(position), C.int(options)))
+		return NewQTextCursorFromPointer(C.QTextDocument_Find2(ptr.Pointer(), C.CString(subString), C.int(position), C.int(options)))
 	}
 	return nil
 }
@@ -54019,38 +53668,38 @@ func (ptr *QTextDocument) End() *QTextBlock {
 	return nil
 }
 
-func (ptr *QTextDocument) Find6(expr core.QRegExp_ITF, cursor QTextCursor_ITF, options QTextDocument__FindFlag) *QTextCursor {
+func (ptr *QTextDocument) Find4(expr core.QRegExp_ITF, cursor QTextCursor_ITF, options QTextDocument__FindFlag) *QTextCursor {
 	defer qt.Recovering("QTextDocument::find")
 
 	if ptr.Pointer() != nil {
-		return NewQTextCursorFromPointer(C.QTextDocument_Find6(ptr.Pointer(), core.PointerFromQRegExp(expr), PointerFromQTextCursor(cursor), C.int(options)))
+		return NewQTextCursorFromPointer(C.QTextDocument_Find4(ptr.Pointer(), core.PointerFromQRegExp(expr), PointerFromQTextCursor(cursor), C.int(options)))
 	}
 	return nil
 }
 
-func (ptr *QTextDocument) Find5(expr core.QRegExp_ITF, from int, options QTextDocument__FindFlag) *QTextCursor {
+func (ptr *QTextDocument) Find3(expr core.QRegExp_ITF, from int, options QTextDocument__FindFlag) *QTextCursor {
 	defer qt.Recovering("QTextDocument::find")
 
 	if ptr.Pointer() != nil {
-		return NewQTextCursorFromPointer(C.QTextDocument_Find5(ptr.Pointer(), core.PointerFromQRegExp(expr), C.int(from), C.int(options)))
+		return NewQTextCursorFromPointer(C.QTextDocument_Find3(ptr.Pointer(), core.PointerFromQRegExp(expr), C.int(from), C.int(options)))
 	}
 	return nil
 }
 
-func (ptr *QTextDocument) Find3(expr core.QRegularExpression_ITF, cursor QTextCursor_ITF, options QTextDocument__FindFlag) *QTextCursor {
+func (ptr *QTextDocument) Find6(expr core.QRegularExpression_ITF, cursor QTextCursor_ITF, options QTextDocument__FindFlag) *QTextCursor {
 	defer qt.Recovering("QTextDocument::find")
 
 	if ptr.Pointer() != nil {
-		return NewQTextCursorFromPointer(C.QTextDocument_Find3(ptr.Pointer(), core.PointerFromQRegularExpression(expr), PointerFromQTextCursor(cursor), C.int(options)))
+		return NewQTextCursorFromPointer(C.QTextDocument_Find6(ptr.Pointer(), core.PointerFromQRegularExpression(expr), PointerFromQTextCursor(cursor), C.int(options)))
 	}
 	return nil
 }
 
-func (ptr *QTextDocument) Find2(expr core.QRegularExpression_ITF, from int, options QTextDocument__FindFlag) *QTextCursor {
+func (ptr *QTextDocument) Find5(expr core.QRegularExpression_ITF, from int, options QTextDocument__FindFlag) *QTextCursor {
 	defer qt.Recovering("QTextDocument::find")
 
 	if ptr.Pointer() != nil {
-		return NewQTextCursorFromPointer(C.QTextDocument_Find2(ptr.Pointer(), core.PointerFromQRegularExpression(expr), C.int(from), C.int(options)))
+		return NewQTextCursorFromPointer(C.QTextDocument_Find5(ptr.Pointer(), core.PointerFromQRegularExpression(expr), C.int(from), C.int(options)))
 	}
 	return nil
 }
@@ -54590,6 +54239,7 @@ func (ptr *QTextDocument) DestroyQTextDocument() {
 	defer qt.Recovering("QTextDocument::~QTextDocument")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTextDocument_DestroyQTextDocument(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -54808,6 +54458,7 @@ func (ptr *QTextDocument) DeleteLater() {
 	defer qt.Recovering("QTextDocument::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTextDocument_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -54817,6 +54468,7 @@ func (ptr *QTextDocument) DeleteLaterDefault() {
 	defer qt.Recovering("QTextDocument::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTextDocument_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -57234,11 +56886,11 @@ func (ptr *QTextLayout) CacheEnabled() bool {
 	return false
 }
 
-func (ptr *QTextLayout) ClearAdditionalFormats() {
-	defer qt.Recovering("QTextLayout::clearAdditionalFormats")
+func (ptr *QTextLayout) ClearFormats() {
+	defer qt.Recovering("QTextLayout::clearFormats")
 
 	if ptr.Pointer() != nil {
-		C.QTextLayout_ClearAdditionalFormats(ptr.Pointer())
+		C.QTextLayout_ClearFormats(ptr.Pointer())
 	}
 }
 
@@ -59204,6 +58856,16 @@ func newQTextObjectInterfaceFromPointer(ptr unsafe.Pointer) *QTextObjectInterfac
 	return n
 }
 
+func (ptr *QTextObjectInterface) DestroyQTextObjectInterface() {
+	defer qt.Recovering("QTextObjectInterface::~QTextObjectInterface")
+
+	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		C.QTextObjectInterface_DestroyQTextObjectInterface(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //export callbackQTextObjectInterface_DrawObject
 func callbackQTextObjectInterface_DrawObject(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, rect unsafe.Pointer, doc unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
 	defer qt.Recovering("callback QTextObjectInterface::drawObject")
@@ -59276,15 +58938,6 @@ func (ptr *QTextObjectInterface) IntrinsicSize(doc QTextDocument_ITF, posInDocum
 		return core.NewQSizeFFromPointer(C.QTextObjectInterface_IntrinsicSize(ptr.Pointer(), PointerFromQTextDocument(doc), C.int(posInDocument), PointerFromQTextFormat(format)))
 	}
 	return nil
-}
-
-func (ptr *QTextObjectInterface) DestroyQTextObjectInterface() {
-	defer qt.Recovering("QTextObjectInterface::~QTextObjectInterface")
-
-	if ptr.Pointer() != nil {
-		C.QTextObjectInterface_DestroyQTextObjectInterface(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
 }
 
 func (ptr *QTextObjectInterface) ObjectNameAbs() string {
@@ -60845,47 +60498,47 @@ func NewQTransform4(m11 float64, m12 float64, m21 float64, m22 float64, dx float
 	return newQTransformFromPointer(C.QTransform_NewQTransform4(C.double(m11), C.double(m12), C.double(m21), C.double(m22), C.double(dx), C.double(dy)))
 }
 
-func (ptr *QTransform) Map5(line core.QLineF_ITF) *core.QLineF {
+func (ptr *QTransform) Map4(line core.QLineF_ITF) *core.QLineF {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		return core.NewQLineFFromPointer(C.QTransform_Map5(ptr.Pointer(), core.PointerFromQLineF(line)))
+		return core.NewQLineFFromPointer(C.QTransform_Map4(ptr.Pointer(), core.PointerFromQLineF(line)))
 	}
 	return nil
 }
 
-func (ptr *QTransform) Map3(point core.QPoint_ITF) *core.QPoint {
+func (ptr *QTransform) Map10(point core.QPoint_ITF) *core.QPoint {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		return core.NewQPointFromPointer(C.QTransform_Map3(ptr.Pointer(), core.PointerFromQPoint(point)))
+		return core.NewQPointFromPointer(C.QTransform_Map10(ptr.Pointer(), core.PointerFromQPoint(point)))
 	}
 	return nil
 }
 
-func (ptr *QTransform) Map7(polygon QPolygon_ITF) *QPolygon {
+func (ptr *QTransform) Map6(polygon QPolygon_ITF) *QPolygon {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		return NewQPolygonFromPointer(C.QTransform_Map7(ptr.Pointer(), PointerFromQPolygon(polygon)))
+		return NewQPolygonFromPointer(C.QTransform_Map6(ptr.Pointer(), PointerFromQPolygon(polygon)))
 	}
 	return nil
 }
 
-func (ptr *QTransform) Map6(polygon QPolygonF_ITF) *QPolygonF {
+func (ptr *QTransform) Map5(polygon QPolygonF_ITF) *QPolygonF {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		return NewQPolygonFFromPointer(C.QTransform_Map6(ptr.Pointer(), PointerFromQPolygonF(polygon)))
+		return NewQPolygonFFromPointer(C.QTransform_Map5(ptr.Pointer(), PointerFromQPolygonF(polygon)))
 	}
 	return nil
 }
 
-func (ptr *QTransform) Map8(region QRegion_ITF) *QRegion {
+func (ptr *QTransform) Map7(region QRegion_ITF) *QRegion {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		return NewQRegionFromPointer(C.QTransform_Map8(ptr.Pointer(), PointerFromQRegion(region)))
+		return NewQRegionFromPointer(C.QTransform_Map7(ptr.Pointer(), PointerFromQRegion(region)))
 	}
 	return nil
 }
@@ -61097,20 +60750,20 @@ func (ptr *QTransform) M33() float64 {
 	return 0
 }
 
-func (ptr *QTransform) Map4(l core.QLine_ITF) *core.QLine {
+func (ptr *QTransform) Map3(l core.QLine_ITF) *core.QLine {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		return core.NewQLineFromPointer(C.QTransform_Map4(ptr.Pointer(), core.PointerFromQLine(l)))
+		return core.NewQLineFromPointer(C.QTransform_Map3(ptr.Pointer(), core.PointerFromQLine(l)))
 	}
 	return nil
 }
 
-func (ptr *QTransform) Map9(path QPainterPath_ITF) *QPainterPath {
+func (ptr *QTransform) Map8(path QPainterPath_ITF) *QPainterPath {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		return NewQPainterPathFromPointer(C.QTransform_Map9(ptr.Pointer(), PointerFromQPainterPath(path)))
+		return NewQPainterPathFromPointer(C.QTransform_Map8(ptr.Pointer(), PointerFromQPainterPath(path)))
 	}
 	return nil
 }
@@ -61124,11 +60777,11 @@ func (ptr *QTransform) Map2(p core.QPointF_ITF) *core.QPointF {
 	return nil
 }
 
-func (ptr *QTransform) Map10(x int, y int, tx int, ty int) {
+func (ptr *QTransform) Map9(x int, y int, tx int, ty int) {
 	defer qt.Recovering("QTransform::map")
 
 	if ptr.Pointer() != nil {
-		C.QTransform_Map10(ptr.Pointer(), C.int(x), C.int(y), C.int(tx), C.int(ty))
+		C.QTransform_Map9(ptr.Pointer(), C.int(x), C.int(y), C.int(tx), C.int(ty))
 	}
 }
 
@@ -61377,6 +61030,7 @@ func (ptr *QValidator) DestroyQValidator() {
 	defer qt.Recovering("QValidator::~QValidator")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QValidator_DestroyQValidator(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -61595,6 +61249,7 @@ func (ptr *QValidator) DeleteLater() {
 	defer qt.Recovering("QValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QValidator_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -61604,6 +61259,7 @@ func (ptr *QValidator) DeleteLaterDefault() {
 	defer qt.Recovering("QValidator::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QValidator_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -65536,6 +65192,7 @@ func (ptr *QWindow) DestroyQWindow() {
 	defer qt.Recovering("QWindow::~QWindow")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWindow_DestroyQWindow(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -65754,6 +65411,7 @@ func (ptr *QWindow) DeleteLater() {
 	defer qt.Recovering("QWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWindow_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -65763,6 +65421,7 @@ func (ptr *QWindow) DeleteLaterDefault() {
 	defer qt.Recovering("QWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QWindow_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

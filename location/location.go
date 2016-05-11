@@ -775,6 +775,7 @@ func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
 	defer qt.Recovering("QGeoRouteReply::~QGeoRouteReply")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRouteReply_DestroyQGeoRouteReply(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -993,6 +994,7 @@ func (ptr *QGeoRouteReply) DeleteLater() {
 	defer qt.Recovering("QGeoRouteReply::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRouteReply_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1002,6 +1004,7 @@ func (ptr *QGeoRouteReply) DeleteLaterDefault() {
 	defer qt.Recovering("QGeoRouteReply::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRouteReply_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1810,6 +1813,7 @@ func (ptr *QGeoRoutingManager) DestroyQGeoRoutingManager() {
 	defer qt.Recovering("QGeoRoutingManager::~QGeoRoutingManager")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRoutingManager_DestroyQGeoRoutingManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2028,6 +2032,7 @@ func (ptr *QGeoRoutingManager) DeleteLater() {
 	defer qt.Recovering("QGeoRoutingManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRoutingManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2037,6 +2042,7 @@ func (ptr *QGeoRoutingManager) DeleteLaterDefault() {
 	defer qt.Recovering("QGeoRoutingManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRoutingManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2590,6 +2596,7 @@ func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngine() {
 	defer qt.Recovering("QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2808,6 +2815,7 @@ func (ptr *QGeoRoutingManagerEngine) DeleteLater() {
 	defer qt.Recovering("QGeoRoutingManagerEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRoutingManagerEngine_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2817,6 +2825,7 @@ func (ptr *QGeoRoutingManagerEngine) DeleteLaterDefault() {
 	defer qt.Recovering("QGeoRoutingManagerEngine::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoRoutingManagerEngine_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3703,6 +3712,7 @@ func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactory() {
 	defer qt.Recovering("QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

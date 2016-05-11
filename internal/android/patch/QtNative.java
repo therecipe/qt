@@ -41,16 +41,23 @@ import java.util.concurrent.Semaphore;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.ClipboardManager;
+import android.os.Build;
 import android.util.Log;
 import android.view.ContextMenu;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.lang.reflect.Method;
 import java.security.KeyStore;
 import java.security.cert.X509Certificate;
+import java.util.Iterator;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -58,6 +65,7 @@ import javax.net.ssl.X509TrustManager;
 public class QtNative
 {
     private static Activity m_activity = null;
+    private static boolean m_activityPaused = false;
     private static QtActivityDelegate m_activityDelegate = null;
     public static Object m_mainActivityMutex = new Object(); // mutex used to synchronize runnable operations
 
@@ -71,9 +79,11 @@ public class QtNative
     private static double m_displayMetricsXDpi = .0;
     private static double m_displayMetricsYDpi = .0;
     private static double m_displayMetricsScaledDensity = 1.0;
+    private static double m_displayMetricsDensity = 1.0;
     private static int m_oldx, m_oldy;
     private static final int m_moveThreshold = 0;
     private static ClipboardManager m_clipboardManager = null;
+    private static Method m_checkSelfPermissionMethod = null;
 
     private static ClassLoader m_classLoader = null;
     public static ClassLoader classLoader()
@@ -100,13 +110,15 @@ public class QtNative
         }
     }
 
-    public static boolean openURL(String url)
+    public static boolean openURL(String url, String mime)
     {
         boolean ok = true;
 
         try {
             Uri uri = Uri.parse(url);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            if (!mime.isEmpty())
+                intent.setDataAndType(uri, mime);
             activity().startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
@@ -162,24 +174,33 @@ public class QtNative
         }
     }
 
-    static public ArrayList<Runnable> getLostActions()
-    {
-        return m_lostActions;
-    }
-
-    static public void clearLostActions()
-    {
-        m_lostActions.clear();
-    }
-
-    private static boolean runAction(Runnable action)
+    public static void setApplicationState(int state)
     {
         synchronized (m_mainActivityMutex) {
-            if (m_activity == null)
+            switch (state) {
+                case QtActivityDelegate.ApplicationActive:
+                    m_activityPaused = false;
+                    Iterator<Runnable> itr = m_lostActions.iterator();
+                    while (itr.hasNext())
+                        runAction(itr.next());
+                    m_lostActions.clear();
+                    break;
+                default:
+                    m_activityPaused = true;
+                    break;
+            }
+        }
+        updateApplicationState(state);
+    }
+
+    private static void runAction(Runnable action)
+    {
+        synchronized (m_mainActivityMutex) {
+            final Looper mainLooper = Looper.getMainLooper();
+            final Handler handler = new Handler(mainLooper);
+            final boolean actionIsQueued = !m_activityPaused && m_activity != null && mainLooper != null && handler.post(action);
+            if (!actionIsQueued)
                 m_lostActions.add(action);
-            else
-                m_activity.runOnUiThread(action);
-            return m_activity != null;
         }
     }
 
@@ -189,6 +210,16 @@ public class QtNative
             @Override
             public void run() {
                 QtNative.onAndroidUiThread(id);
+            }
+        });
+    }
+
+    private static void setViewVisibility(final View view, final boolean visible)
+    {
+        runAction(new Runnable() {
+            @Override
+            public void run() {
+                view.setVisibility(visible ? View.VISIBLE : View.GONE);
             }
         });
     }
@@ -214,7 +245,8 @@ public class QtNative
                               m_displayMetricsDesktopHeightPixels,
                               m_displayMetricsXDpi,
                               m_displayMetricsYDpi,
-                              m_displayMetricsScaledDensity);
+                              m_displayMetricsScaledDensity,
+                              m_displayMetricsDensity);
             if (params.length() > 0 && !params.startsWith("\t"))
                 params = "\t" + params;
             startGoApplication(f.getAbsolutePath() + params, environment);
@@ -229,7 +261,8 @@ public class QtNative
                                                     int desktopHeightPixels,
                                                     double XDpi,
                                                     double YDpi,
-                                                    double scaledDensity)
+                                                    double scaledDensity,
+                                                    double density)
     {
         /* Fix buggy dpi report */
         if (XDpi < android.util.DisplayMetrics.DENSITY_LOW)
@@ -245,7 +278,8 @@ public class QtNative
                                   desktopHeightPixels,
                                   XDpi,
                                   YDpi,
-                                  scaledDensity);
+                                  scaledDensity,
+                                  density);
             } else {
                 m_displayMetricsScreenWidthPixels = screenWidthPixels;
                 m_displayMetricsScreenHeightPixels = screenHeightPixels;
@@ -254,6 +288,7 @@ public class QtNative
                 m_displayMetricsXDpi = XDpi;
                 m_displayMetricsYDpi = YDpi;
                 m_displayMetricsScaledDensity = scaledDensity;
+                m_displayMetricsDensity = density;
             }
         }
     }
@@ -261,7 +296,7 @@ public class QtNative
 
 
     // application methods
-    public static native void startGoApplication(String params, String env);
+		public static native void startGoApplication(String params, String env);
     public static native void startQtApplication(String params, String env);
     public static native boolean startQtAndroidPlugin();
     public static native void quitQtAndroidPlugin();
@@ -270,7 +305,12 @@ public class QtNative
 
     private static void quitApp()
     {
-        m_activity.finish();
+        runAction(new Runnable() {
+            @Override
+            public void run() {
+                m_activity.finish();
+            }
+        });
     }
 
     //@ANDROID-9
@@ -302,32 +342,49 @@ public class QtNative
 
     static public void sendTouchEvent(MotionEvent event, int id)
     {
-        //@ANDROID-5
-        touchBegin(id);
-        for (int i=0;i<event.getPointerCount();i++) {
-                touchAdd(id,
-                         event.getPointerId(i),
-                         getAction(i, event),
-                         i == 0,
-                         (int)event.getX(i),
-                         (int)event.getY(i),
-                         event.getSize(i),
-                         event.getPressure(i));
+        int pointerType = 0;
+
+        if (Build.VERSION.SDK_INT >= 14) {
+            switch (event.getToolType(0)) {
+            case MotionEvent.TOOL_TYPE_STYLUS:
+                pointerType = 1; // QTabletEvent::Pen
+                break;
+            case MotionEvent.TOOL_TYPE_ERASER:
+                pointerType = 3; // QTabletEvent::Eraser
+                break;
+            // TODO TOOL_TYPE_MOUSE
+            }
         }
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                touchEnd(id,0);
-                break;
+        if (pointerType != 0) {
+            tabletEvent(id, event.getDeviceId(), event.getEventTime(), event.getAction(), pointerType,
+                event.getButtonState(), event.getX(), event.getY(), event.getPressure());
+        } else {
+            touchBegin(id);
+            for (int i = 0; i < event.getPointerCount(); ++i) {
+                    touchAdd(id,
+                             event.getPointerId(i),
+                             getAction(i, event),
+                             i == 0,
+                             (int)event.getX(i),
+                             (int)event.getY(i),
+                             event.getSize(i),
+                             event.getPressure(i));
+            }
 
-            case MotionEvent.ACTION_UP:
-                touchEnd(id,2);
-                break;
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    touchEnd(id, 0);
+                    break;
 
-            default:
-                touchEnd(id,1);
+                case MotionEvent.ACTION_UP:
+                    touchEnd(id, 2);
+                    break;
+
+                default:
+                    touchEnd(id, 1);
+            }
         }
-        //@ANDROID-5
     }
 
     static public void sendTrackballEvent(MotionEvent event, int id)
@@ -355,6 +412,29 @@ public class QtNative
         }
     }
 
+    public static int checkSelfPermission(final String permission)
+    {
+        int perm = PackageManager.PERMISSION_DENIED;
+        synchronized (m_mainActivityMutex) {
+            if (m_activity == null)
+                return perm;
+            try {
+                if (Build.VERSION.SDK_INT >= 23) {
+                    if (m_checkSelfPermissionMethod == null)
+                        m_checkSelfPermissionMethod = Context.class.getMethod("checkSelfPermission", String.class);
+                    perm = (Integer)m_checkSelfPermissionMethod.invoke(m_activity, permission);
+                } else {
+                    final PackageManager pm = m_activity.getPackageManager();
+                    perm = pm.checkPermission(permission, m_activity.getPackageName());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        return perm;
+    }
+
     private static void updateSelection(final int selStart,
                                         final int selEnd,
                                         final int candidatesStart,
@@ -372,12 +452,13 @@ public class QtNative
                                              final int y,
                                              final int width,
                                              final int height,
-                                             final int inputHints )
+                                             final int inputHints,
+                                             final int enterKeyType)
     {
         runAction(new Runnable() {
             @Override
             public void run() {
-                m_activityDelegate.showSoftwareKeyboard(x, y, width, height, inputHints);
+                m_activityDelegate.showSoftwareKeyboard(x, y, width, height, inputHints, enterKeyType);
             }
         });
     }
@@ -589,7 +670,8 @@ public class QtNative
                                                 int desktopHeightPixels,
                                                 double XDpi,
                                                 double YDpi,
-                                                double scaledDensity);
+                                                double scaledDensity,
+                                                double density);
     public static native void handleOrientationChanged(int newRotation, int nativeOrientation);
     // screen methods
 
@@ -603,11 +685,21 @@ public class QtNative
     public static native void longPress(int winId, int x, int y);
     // pointer methods
 
+    // tablet methods
+    public static native void tabletEvent(int winId, int deviceId, long time, int action, int pointerType, int buttonState, float x, float y, float pressure);
+    // tablet methods
+
     // keyboard methods
     public static native void keyDown(int key, int unicode, int modifier, boolean autoRepeat);
     public static native void keyUp(int key, int unicode, int modifier, boolean autoRepeat);
     public static native void keyboardVisibilityChanged(boolean visibility);
+    public static native void keyboardGeometryChanged(int x, int y, int width, int height);
     // keyboard methods
+
+    // dispatch events methods
+    public static native boolean dispatchGenericMotionEvent(MotionEvent ev);
+    public static native boolean dispatchKeyEvent(KeyEvent event);
+    // dispatch events methods
 
     // surface methods
     public static native void setSurface(int id, Object surface, int w, int h);

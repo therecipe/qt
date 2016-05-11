@@ -95,6 +95,10 @@ func GoTemplate(module string, stub bool) []byte {
 					return bb.String()
 				}(),
 			)
+
+			if !class.IsQObjectSubClass() && len(class.GetBases()) > 1 && !needsCallbackFunctions(class) {
+				fmt.Fprintf(bb, "func (p *%v)ObjectNameAbs() string {\nif p != nil {\nreturn p.%v_PTR().ObjectNameAbs()\n}\nreturn \"\"\n}\n\n", class.Name, class.GetBases()[0])
+			}
 		}
 
 		fmt.Fprintf(bb, `

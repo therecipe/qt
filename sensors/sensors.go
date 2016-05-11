@@ -137,6 +137,7 @@ func (ptr *QAccelerometer) DestroyQAccelerometer() {
 	defer qt.Recovering("QAccelerometer::~QAccelerometer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAccelerometer_DestroyQAccelerometer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -447,6 +448,7 @@ func (ptr *QAccelerometer) DeleteLater() {
 	defer qt.Recovering("QAccelerometer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAccelerometer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -456,6 +458,7 @@ func (ptr *QAccelerometer) DeleteLaterDefault() {
 	defer qt.Recovering("QAccelerometer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAccelerometer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3072,6 +3075,7 @@ func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
 	defer qt.Recovering("QAmbientLightSensor::~QAmbientLightSensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAmbientLightSensor_DestroyQAmbientLightSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3382,6 +3386,7 @@ func (ptr *QAmbientLightSensor) DeleteLater() {
 	defer qt.Recovering("QAmbientLightSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAmbientLightSensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3391,6 +3396,7 @@ func (ptr *QAmbientLightSensor) DeleteLaterDefault() {
 	defer qt.Recovering("QAmbientLightSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QAmbientLightSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4803,6 +4809,7 @@ func (ptr *QCompass) DestroyQCompass() {
 	defer qt.Recovering("QCompass::~QCompass")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QCompass_DestroyQCompass(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5113,6 +5120,7 @@ func (ptr *QCompass) DeleteLater() {
 	defer qt.Recovering("QCompass::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QCompass_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5122,6 +5130,7 @@ func (ptr *QCompass) DeleteLaterDefault() {
 	defer qt.Recovering("QCompass::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QCompass_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7130,6 +7139,7 @@ func (ptr *QGyroscope) DestroyQGyroscope() {
 	defer qt.Recovering("QGyroscope::~QGyroscope")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGyroscope_DestroyQGyroscope(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7440,6 +7450,7 @@ func (ptr *QGyroscope) DeleteLater() {
 	defer qt.Recovering("QGyroscope::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGyroscope_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -7449,6 +7460,7 @@ func (ptr *QGyroscope) DeleteLaterDefault() {
 	defer qt.Recovering("QGyroscope::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGyroscope_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10053,6 +10065,7 @@ func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
 	defer qt.Recovering("QIRProximitySensor::~QIRProximitySensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIRProximitySensor_DestroyQIRProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10363,6 +10376,7 @@ func (ptr *QIRProximitySensor) DeleteLater() {
 	defer qt.Recovering("QIRProximitySensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIRProximitySensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10372,6 +10386,7 @@ func (ptr *QIRProximitySensor) DeleteLaterDefault() {
 	defer qt.Recovering("QIRProximitySensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QIRProximitySensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11261,6 +11276,7 @@ func (ptr *QLightSensor) DestroyQLightSensor() {
 	defer qt.Recovering("QLightSensor::~QLightSensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLightSensor_DestroyQLightSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11571,6 +11587,7 @@ func (ptr *QLightSensor) DeleteLater() {
 	defer qt.Recovering("QLightSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLightSensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11580,6 +11597,7 @@ func (ptr *QLightSensor) DeleteLaterDefault() {
 	defer qt.Recovering("QLightSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QLightSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -11890,6 +11908,7 @@ func (ptr *QMagnetometer) DestroyQMagnetometer() {
 	defer qt.Recovering("QMagnetometer::~QMagnetometer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMagnetometer_DestroyQMagnetometer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -12200,6 +12219,7 @@ func (ptr *QMagnetometer) DeleteLater() {
 	defer qt.Recovering("QMagnetometer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMagnetometer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -12209,6 +12229,7 @@ func (ptr *QMagnetometer) DeleteLaterDefault() {
 	defer qt.Recovering("QMagnetometer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QMagnetometer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13688,6 +13709,7 @@ func (ptr *QOrientationSensor) DestroyQOrientationSensor() {
 	defer qt.Recovering("QOrientationSensor::~QOrientationSensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QOrientationSensor_DestroyQOrientationSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -13998,6 +14020,7 @@ func (ptr *QOrientationSensor) DeleteLater() {
 	defer qt.Recovering("QOrientationSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QOrientationSensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -14007,6 +14030,7 @@ func (ptr *QOrientationSensor) DeleteLaterDefault() {
 	defer qt.Recovering("QOrientationSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QOrientationSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -16015,6 +16039,7 @@ func (ptr *QProximitySensor) DestroyQProximitySensor() {
 	defer qt.Recovering("QProximitySensor::~QProximitySensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QProximitySensor_DestroyQProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -16325,6 +16350,7 @@ func (ptr *QProximitySensor) DeleteLater() {
 	defer qt.Recovering("QProximitySensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QProximitySensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -16334,6 +16360,7 @@ func (ptr *QProximitySensor) DeleteLaterDefault() {
 	defer qt.Recovering("QProximitySensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QProximitySensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17241,6 +17268,7 @@ func (ptr *QRotationSensor) DestroyQRotationSensor() {
 	defer qt.Recovering("QRotationSensor::~QRotationSensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRotationSensor_DestroyQRotationSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17551,6 +17579,7 @@ func (ptr *QRotationSensor) DeleteLater() {
 	defer qt.Recovering("QRotationSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRotationSensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -17560,6 +17589,7 @@ func (ptr *QRotationSensor) DeleteLaterDefault() {
 	defer qt.Recovering("QRotationSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QRotationSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -18714,6 +18744,7 @@ func (ptr *QSensor) DestroyQSensor() {
 	defer qt.Recovering("QSensor::~QSensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensor_DestroyQSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -18932,6 +18963,7 @@ func (ptr *QSensor) DeleteLater() {
 	defer qt.Recovering("QSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -18941,6 +18973,7 @@ func (ptr *QSensor) DeleteLaterDefault() {
 	defer qt.Recovering("QSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19593,6 +19626,7 @@ func (ptr *QSensorBackend) DeleteLater() {
 	defer qt.Recovering("QSensorBackend::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorBackend_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -19602,6 +19636,7 @@ func (ptr *QSensorBackend) DeleteLaterDefault() {
 	defer qt.Recovering("QSensorBackend::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorBackend_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20081,6 +20116,7 @@ func (ptr *QSensorFilter) DestroyQSensorFilter() {
 	defer qt.Recovering("QSensorFilter::~QSensorFilter")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSensorFilter_DestroyQSensorFilter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20248,6 +20284,7 @@ func (ptr *QSensorGesture) DestroyQSensorGesture() {
 	defer qt.Recovering("QSensorGesture::~QSensorGesture")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGesture_DestroyQSensorGesture(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20466,6 +20503,7 @@ func (ptr *QSensorGesture) DeleteLater() {
 	defer qt.Recovering("QSensorGesture::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGesture_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20475,6 +20513,7 @@ func (ptr *QSensorGesture) DeleteLaterDefault() {
 	defer qt.Recovering("QSensorGesture::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGesture_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -20798,6 +20837,7 @@ func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
 	defer qt.Recovering("QSensorGestureManager::~QSensorGestureManager")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGestureManager_DestroyQSensorGestureManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21016,6 +21056,7 @@ func (ptr *QSensorGestureManager) DeleteLater() {
 	defer qt.Recovering("QSensorGestureManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGestureManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21025,6 +21066,7 @@ func (ptr *QSensorGestureManager) DeleteLaterDefault() {
 	defer qt.Recovering("QSensorGestureManager::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGestureManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21342,6 +21384,7 @@ func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterface()
 	defer qt.Recovering("QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21678,6 +21721,7 @@ func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizer() {
 	defer qt.Recovering("QSensorGestureRecognizer::~QSensorGestureRecognizer")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21896,6 +21940,7 @@ func (ptr *QSensorGestureRecognizer) DeleteLater() {
 	defer qt.Recovering("QSensorGestureRecognizer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGestureRecognizer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -21905,6 +21950,7 @@ func (ptr *QSensorGestureRecognizer) DeleteLaterDefault() {
 	defer qt.Recovering("QSensorGestureRecognizer::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QSensorGestureRecognizer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -23510,6 +23556,7 @@ func (ptr *QTapSensor) DestroyQTapSensor() {
 	defer qt.Recovering("QTapSensor::~QTapSensor")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTapSensor_DestroyQTapSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -23820,6 +23867,7 @@ func (ptr *QTapSensor) DeleteLater() {
 	defer qt.Recovering("QTapSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTapSensor_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -23829,6 +23877,7 @@ func (ptr *QTapSensor) DeleteLaterDefault() {
 	defer qt.Recovering("QTapSensor::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QTapSensor_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}

@@ -942,6 +942,7 @@ func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSource() {
 	defer qt.Recovering("QGeoAreaMonitorSource::~QGeoAreaMonitorSource")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1160,6 +1161,7 @@ func (ptr *QGeoAreaMonitorSource) DeleteLater() {
 	defer qt.Recovering("QGeoAreaMonitorSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoAreaMonitorSource_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -1169,6 +1171,7 @@ func (ptr *QGeoAreaMonitorSource) DeleteLaterDefault() {
 	defer qt.Recovering("QGeoAreaMonitorSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoAreaMonitorSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2419,6 +2422,7 @@ func (ptr *QGeoPositionInfoSource) DestroyQGeoPositionInfoSource() {
 	defer qt.Recovering("QGeoPositionInfoSource::~QGeoPositionInfoSource")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2637,6 +2641,7 @@ func (ptr *QGeoPositionInfoSource) DeleteLater() {
 	defer qt.Recovering("QGeoPositionInfoSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoPositionInfoSource_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2646,6 +2651,7 @@ func (ptr *QGeoPositionInfoSource) DeleteLaterDefault() {
 	defer qt.Recovering("QGeoPositionInfoSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoPositionInfoSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3001,6 +3007,7 @@ func (ptr *QGeoPositionInfoSourceFactory) DestroyQGeoPositionInfoSourceFactory()
 	defer qt.Recovering("QGeoPositionInfoSourceFactory::~QGeoPositionInfoSourceFactory")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3809,6 +3816,7 @@ func (ptr *QGeoSatelliteInfoSource) DestroyQGeoSatelliteInfoSource() {
 	defer qt.Recovering("QGeoSatelliteInfoSource::~QGeoSatelliteInfoSource")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4027,6 +4035,7 @@ func (ptr *QGeoSatelliteInfoSource) DeleteLater() {
 	defer qt.Recovering("QGeoSatelliteInfoSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoSatelliteInfoSource_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4036,6 +4045,7 @@ func (ptr *QGeoSatelliteInfoSource) DeleteLaterDefault() {
 	defer qt.Recovering("QGeoSatelliteInfoSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QGeoSatelliteInfoSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4868,6 +4878,7 @@ func (ptr *QNmeaPositionInfoSource) DestroyQNmeaPositionInfoSource() {
 	defer qt.Recovering("QNmeaPositionInfoSource::~QNmeaPositionInfoSource")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNmeaPositionInfoSource_DestroyQNmeaPositionInfoSource(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5131,6 +5142,7 @@ func (ptr *QNmeaPositionInfoSource) DeleteLater() {
 	defer qt.Recovering("QNmeaPositionInfoSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNmeaPositionInfoSource_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5140,6 +5152,7 @@ func (ptr *QNmeaPositionInfoSource) DeleteLaterDefault() {
 	defer qt.Recovering("QNmeaPositionInfoSource::deleteLater")
 
 	if ptr.Pointer() != nil {
+		qt.DisconnectAllSignals(ptr.ObjectName())
 		C.QNmeaPositionInfoSource_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
