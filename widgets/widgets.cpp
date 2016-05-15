@@ -60122,7 +60122,9 @@ void QPlainTextEdit_Paste(void* ptr)
 
 void QPlainTextEdit_Print(void* ptr, void* printer)
 {
+#ifndef Q_OS_IOS
 	static_cast<QPlainTextEdit*>(ptr)->print(static_cast<QPagedPaintDevice*>(printer));
+#endif
 }
 
 void QPlainTextEdit_ConnectRedoAvailable(void* ptr)
@@ -84311,7 +84313,9 @@ void QTextEdit_Paste(void* ptr)
 
 void QTextEdit_Print(void* ptr, void* printer)
 {
+#ifndef Q_OS_IOS
 	static_cast<QTextEdit*>(ptr)->print(static_cast<QPagedPaintDevice*>(printer));
+#endif
 }
 
 void QTextEdit_ConnectRedoAvailable(void* ptr)

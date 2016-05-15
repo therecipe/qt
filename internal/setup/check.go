@@ -12,7 +12,7 @@ import (
 
 func main() {
 
-	//TODO: check android env
+	//TODO: check android / ios env
 
 	if os.Getenv("GOPATH") == "" {
 		fmt.Print("\nerror:\nGOPATH NOT SET\n\n")
@@ -24,37 +24,19 @@ func main() {
 		os.Exit(1)
 	}
 
-	switch runtime.GOOS {
-	case "darwin", "linux":
-		{
-			var (
-				qtPath = filepath.Join("/usr", "local", "Qt5.6.0")
-				_, err = ioutil.ReadDir(qtPath)
-			)
-			if err != nil {
-				fmt.Printf("\nerror: Qt not found\nsolution: install Qt in: \"%v\"\n\n", qtPath)
-				os.Exit(1)
-			}
-		}
-
-	case "windows":
-		{
-			var (
-				qtPath = filepath.Join("C:\\", "Qt", "Qt5.6.0")
-				_, err = ioutil.ReadDir(qtPath)
-			)
-			if err != nil {
-				fmt.Printf("\nerror: Qt not found\nsolution: install Qt in: \"%v\"\n\n", qtPath)
-				os.Exit(1)
-			}
-		}
+	var qtPath = filepath.Join("/usr", "local", "Qt5.6.0")
+	if runtime.GOOS == "windows" {
+		qtPath = filepath.Join("C:\\", "Qt", "Qt5.6.0")
+	}
+	if _, err := ioutil.ReadDir(qtPath); err != nil {
+		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in: \"%v\"\n\n", qtPath)
+		os.Exit(1)
 	}
 
 	switch runtime.GOOS {
 	case "darwin":
 		{
-			var _, err = exec.LookPath("clang++")
-			if err != nil {
+			if _, err := exec.LookPath("clang++"); err != nil {
 				fmt.Printf("\nerror: clang++ not found\nsolution: install Xcode\n\n")
 				os.Exit(1)
 			}
@@ -62,8 +44,7 @@ func main() {
 
 	case "linux":
 		{
-			var _, err = exec.LookPath("g++")
-			if err != nil {
+			if _, err := exec.LookPath("g++"); err != nil {
 				fmt.Printf("\nerror: g++ not found\nsolution: sudo apt-get install g++\n\n")
 				os.Exit(1)
 			}
@@ -71,9 +52,8 @@ func main() {
 
 	case "windows":
 		{
-			var _, err = exec.LookPath("gcc.exe")
-			if err != nil {
-				fmt.Printf("\nerror: gcc.exe not found\nsolution: add the directory that contains \"gcc.exe\" to your PATH\n\n")
+			if _, err := exec.LookPath("g++.exe"); err != nil {
+				fmt.Printf("\nerror: g++.exe not found\nsolution: add the directory that contains \"g++.exe\" to your PATH\n\n")
 				os.Exit(1)
 			}
 		}

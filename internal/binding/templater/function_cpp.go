@@ -160,6 +160,12 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 			{
 				return fmt.Sprintf("#ifdef Q_QDOC\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}
+
+		case
+			function.Fullname == "QTextDocument::print", function.Fullname == "QPlainTextEdit::print", function.Fullname == "QTextEdit::print":
+			{
+				return fmt.Sprintf("#ifndef Q_OS_IOS\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
+			}
 		}
 	}
 

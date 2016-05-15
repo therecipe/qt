@@ -17511,7 +17511,9 @@ int QTextDocument_PageCount(void* ptr)
 
 void QTextDocument_Print(void* ptr, void* printer)
 {
+#ifndef Q_OS_IOS
 	static_cast<QTextDocument*>(ptr)->print(static_cast<QPagedPaintDevice*>(printer));
+#endif
 }
 
 void QTextDocument_Redo2(void* ptr)

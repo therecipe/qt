@@ -114,7 +114,9 @@ func classIsSupported(c *parser.Class) bool {
 		"QItemEditorCreator", "QGeoCodingManager", "QGeoCodingManagerEngine",
 
 		"QPlatformGraphicsBuffer", "QPlatformSystemTrayIcon", "QRasterPaintEngine", "QSupportedWritingSystems", "QGeoLocation", //file not found or QPA API
-		"QAbstractOpenGLFunctions":
+		"QAbstractOpenGLFunctions",
+
+		"QProcess", "QProcessEnvironment": //TODO: iOS
 
 		{
 			c.Access = "unsupported_isBlockedClass"
@@ -287,7 +289,8 @@ var LibDeps = map[string][]string{
 	"PlatformHeaders":   []string{"Core"},
 	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
 
-	parser.MOC: make([]string, 0),
+	parser.MOC:  make([]string, 0),
+	"build_ios": []string{"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},
 }
 
 func isGeneric(f *parser.Function) bool {

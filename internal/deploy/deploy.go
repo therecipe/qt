@@ -7,9 +7,9 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
-	"strconv"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -73,14 +73,14 @@ func args() {
 	case "build", "run", "test":
 		{
 			switch buildTarget {
-			case "desktop", "android":
+			case "desktop", "android", "ios", "ios-simulator":
 				{
 
 				}
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "{ build | run | test }", "({ desktop | android })", "( dir )")
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator ]", filepath.Join("path", "to", "project"))
 					os.Exit(1)
 				}
 			}
@@ -88,7 +88,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "{ build | run | test }", "({ desktop | android })", "( dir )")
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator ]", filepath.Join("path", "to", "project"))
 			os.Exit(1)
 		}
 	}
@@ -99,7 +99,7 @@ func args() {
 	appName = filepath.Base(appPath)
 
 	switch buildTarget {
-	case "android":
+	case "android", "ios", "ios-simulator":
 		{
 			depPath = filepath.Join(appPath, "deploy", buildTarget)
 		}
@@ -118,7 +118,7 @@ func args() {
 		}
 	}
 
-	if runtime.GOOS == "windows" && buildTarget != "android" {
+	if runtime.GOOS == "windows" && buildTarget == "desktop" {
 		ending = ".exe"
 	}
 }
@@ -135,7 +135,7 @@ func qrc() {
 
 	var (
 		rccPath string
-		qmlGo   = filepath.Join(appPath, "qrc_cgo.go")
+		qmlGo   = filepath.Join(appPath, "qrc.go")
 		qmlQrc  = filepath.Join(appPath, "qrc.qrc")
 		qmlCpp  = filepath.Join(appPath, "qrc.cpp")
 	)
@@ -168,6 +168,16 @@ func qrc() {
 			case "windows":
 				{
 					rccPath = "C:\\Qt\\Qt5.6.0\\5.6\\android_armv7\\bin\\rcc.exe"
+				}
+			}
+		}
+
+	case "ios", "ios-simulator":
+		{
+			switch runtime.GOOS {
+			case "darwin":
+				{
+					rccPath = "/usr/local/Qt5.6.0/5.6/ios/bin/rcc"
 				}
 			}
 		}
@@ -206,42 +216,30 @@ func qrc() {
 
 	utils.Save(qmlGo, qmlHeader())
 
-	var rcc = exec.Command(rccPath)
-	rcc.Args = append(rcc.Args,
-		"-project",
-		"-o", qmlQrc)
+	var rcc = exec.Command(rccPath, "-project", "-o", qmlQrc)
 	rcc.Dir = filepath.Join(appPath, "qml")
 	runCmd(rcc, "qrc.qrc")
 
 	utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<file>./", "<file>qml/", -1))
 
-	rcc = exec.Command(rccPath)
-	rcc.Args = append(rcc.Args,
-		"-name", appName,
-		"-o", qmlCpp,
-		qmlQrc)
+	rcc = exec.Command(rccPath, "-name", appName, "-o", qmlCpp, qmlQrc)
 	runCmd(rcc, "qrc.cpp")
 }
 
 func qmlHeader() string {
 
-	var hloc string
-
-	switch runtime.GOOS {
-	case "darwin", "linux":
-		{
-			hloc = "/usr/local"
+	var hloc = func() string {
+		if runtime.GOOS == "windows" {
+			return "C:/Qt"
 		}
-	case "windows":
-		{
-			hloc = "C:/Qt"
-		}
-	}
+		return "/usr/local"
+	}()
 
 	return fmt.Sprintf(`package main
 
 /*
-#cgo +build android,arm LDFLAGS: -L%v/Qt5.6.0/5.6/android_armv7/lib -lQt5Core
+#cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.6.0/5.6/mingw49_32/lib -lQt5Core
+
 #cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.6.0/5.6/clang_64/lib -framework QtCore
 
 #cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc_64/lib
@@ -250,7 +248,16 @@ func qmlHeader() string {
 #cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc/lib
 #cgo +build linux,386 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/gcc/lib -lQt5Core
 
-#cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.6.0/5.6/mingw49_32/lib -lQt5Core
+#cgo +build android,arm LDFLAGS: -L%v/Qt5.6.0/5.6/android_armv7/lib -lQt5Core
+
+#cgo +build darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=6.1 -arch i386
+#cgo +build darwin,386 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Widgets_iphonesimulator -lQt5Core_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
+
+#cgo +build darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=6.1 -arch arm64
+#cgo +build darwin,arm64 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
+
+#cgo +build darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=6.1 -arch armv7
+#cgo +build darwin,arm LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
 */
 import "C"`, hloc)
 }
@@ -258,9 +265,9 @@ import "C"`, hloc)
 func build() {
 
 	var (
-		ldFlags    string
-		outputFile string
-		env        map[string]string
+		ldFlags, tagFlags string
+		outputFile        string
+		env               map[string]string
 	)
 
 	switch buildTarget {
@@ -302,6 +309,43 @@ func build() {
 			}
 		}
 
+	case "ios", "ios-simulator":
+		{
+			ldFlags = "-ldflags=\"-w\""
+			tagFlags = "-tags=\"ios\""
+			outputFile = filepath.Join(depPath, "libgo.a")
+
+			var (
+				GOARCH = func() string {
+					if buildTarget == "ios" {
+						return "arm64"
+					}
+					return "386"
+				}()
+
+				CLANGARCH, CLANGDIR, CLANGFLAG = func() (string, string, string) {
+					if buildTarget == "ios" {
+						return "arm64", "iPhoneOS", "iphoneos"
+					}
+					return "i386", "iPhoneSimulator", "ios-simulator"
+				}()
+			)
+
+			env = map[string]string{
+				"PATH":   os.Getenv("PATH"),
+				"GOPATH": os.Getenv("GOPATH"),
+
+				"GOOS":   runtime.GOOS,
+				"GOARCH": GOARCH,
+
+				"CGO_ENABLED":  "1",
+				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=6.1 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=6.1 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+			}
+
+			utils.Save(filepath.Join(appPath, "cgo_main_wrapper.go"), "package main\nimport \"C\"\n//export go_main_wrapper\nfunc go_main_wrapper() { main() }")
+		}
+
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -322,10 +366,12 @@ func build() {
 					ldFlags = "-ldflags=\"-s\" \"-w\" \"-H=windowsgui\""
 					outputFile = filepath.Join(depPath, appName)
 					env = map[string]string{
-						"PATH":        os.Getenv("PATH"),
-						"GOPATH":      os.Getenv("GOPATH"),
-						"GOOS":        runtime.GOOS,
-						"GOARCH":      "386",
+						"PATH":   os.Getenv("PATH"),
+						"GOPATH": os.Getenv("GOPATH"),
+
+						"GOOS":   runtime.GOOS,
+						"GOARCH": "386",
+
 						"CGO_ENABLED": "1",
 					}
 				}
@@ -333,41 +379,50 @@ func build() {
 		}
 	}
 
-	var cmd = exec.Command("go")
-	cmd.Args = append(cmd.Args,
-		"build",
-		"-p", strconv.Itoa(runtime.NumCPU()),
-		ldFlags,
-		"-o", outputFile+ending)
-
+	var cmd = exec.Command("go", "build", ldFlags, "-o", outputFile+ending)
 	cmd.Dir = appPath
+	if tagFlags != "" {
+		cmd.Args = append(cmd.Args, tagFlags)
+	}
 
 	if buildTarget != "desktop" || runtime.GOOS == "windows" {
-		if buildTarget != "desktop" {
+		if buildTarget == "android" {
 			cmd.Args = append(cmd.Args, "-buildmode", "c-shared")
+		}
+		if buildTarget == "ios" || buildTarget == "ios-simulator" {
+			cmd.Args = append(cmd.Args, "-buildmode", "c-archive")
 		}
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
 	}
-	runCmd(cmd, "build")
+	runCmd(cmd, "build_1")
+
+	//armv7
+	/*
+		if buildTarget == "ios" {
+			var cmdiOS = exec.Command("go", "build", ldFlags, "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
+			cmdiOS.Dir = appPath
+			if tagFlags != "" {
+				cmdiOS.Args = append(cmdiOS.Args, tagFlags)
+			}
+			cmdiOS.Args = append(cmdiOS.Args, "-buildmode", "c-archive")
+			var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
+			tmp = strings.Replace(tmp, "arm64", "arm", -1)
+			cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
+			runCmd(cmdiOS, "build_2")
+		}
+	*/
 }
 
 func predeploy() {
 
-	var copyCmd string
-
-	switch runtime.GOOS {
-	case "windows":
-		{
-			copyCmd = "xcopy"
+	var copyCmd = func() string {
+		if runtime.GOOS == "windows" {
+			return "xcopy"
 		}
-
-	default:
-		{
-			copyCmd = "cp"
-		}
-	}
+		return "cp"
+	}()
 
 	switch buildTarget {
 	case "android":
@@ -474,6 +529,57 @@ func predeploy() {
 			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), string(out))
 		}
 
+	case "ios", "ios-simulator":
+		{
+			utils.MakeFolder(filepath.Join(appPath, buildTarget))
+
+			var buildPath = filepath.Join(depPath, "build")
+			utils.MakeFolder(filepath.Join(buildPath, "project.xcodeproj"))
+			utils.MakeFolder(filepath.Join(buildPath, "Images.xcassets", "AppIcon.appiconset"))
+
+			//add c_main_wrappers
+			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+			//utils.Save(filepath.Join(depPath, "c_main_wrapper_armv7.cpp"), "#include \"libgo_armv7.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+
+			utils.Save(filepath.Join(depPath, "gallery_plugin_import.cpp"), iosGalleryPluginImport)
+			utils.Save(filepath.Join(depPath, "gallery_qml_plugin_import.cpp"), iosGalleryQmlPluginImport)
+
+			utils.Save(filepath.Join(depPath, "qt.conf"), iosQtConf)
+
+			//build arm64
+			var cmd = exec.Command("clang++", "c_main_wrapper.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
+			cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "")...)
+			cmd.Dir = depPath
+			runCmd(cmd, "predeploy.go_main_wrapper_1")
+
+			//build armv7
+			//error						=> ld: Unable to insert branch island. No insertion point available. for architecture armv7
+			/*
+				cmd = exec.Command("clang++", "c_main_wrapper_armv7.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_armv7", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo_armv7")
+				cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "armv7")...)
+				cmd.Dir = depPath
+				runCmdOptional(cmd, "predeploy.go_main_wrapper_2")
+			*/
+			//strip arm64 and armv7
+			//create fat binary
+			//binary size limit	=> https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html
+
+			//create default assets
+			utils.Save(filepath.Join(buildPath, "Info.plist"), iosPLIST())
+			utils.Save(filepath.Join(buildPath, "Images.xcassets", "AppIcon.appiconset", "Contents.json"), iosAppIcon)
+			utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), iosLaunchScreen())
+			utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), iosProject())
+
+			var cpIcon = exec.Command(copyCmd)
+			cpIcon.Args = append(cpIcon.Args, []string{"/usr/local/Qt5.6.0/5.6/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", buildPath}...)
+			runCmd(cpIcon, "predeploy.cpIcon")
+
+			//copy assets from ios folder
+			var cpiOS = exec.Command(copyCmd)
+			cpiOS.Args = append(cpiOS.Args, strings.Split(fmt.Sprintf("-R %v/%v/ %v", appPath, buildTarget, buildPath), " ")...)
+			runCmd(cpiOS, "predeploy.cpiOS")
+		}
+
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -567,6 +673,11 @@ func deploy() {
 			}
 		}
 
+	case "ios", "ios-simulator":
+		{
+			runCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), "deploy")
+		}
+
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -657,6 +768,11 @@ func pastdeploy() {
 
 		}
 
+	case "ios", "ios-simulator":
+		{
+			//TODO:
+		}
+
 	case "desktop":
 		{
 			switch runtime.GOOS {
@@ -671,15 +787,10 @@ func pastdeploy() {
 }
 
 func cleanup() {
-	var (
-		qmlGo  = filepath.Join(appPath, "qrc_cgo.go")
-		qmlQrc = filepath.Join(appPath, "qrc.qrc")
-		qmlCpp = filepath.Join(appPath, "qrc.cpp")
-	)
-
-	utils.RemoveAll(qmlGo)
-	utils.RemoveAll(qmlQrc)
-	utils.RemoveAll(qmlCpp)
+	utils.RemoveAll(filepath.Join(appPath, "qrc.go"))
+	utils.RemoveAll(filepath.Join(appPath, "qrc.qrc"))
+	utils.RemoveAll(filepath.Join(appPath, "qrc.cpp"))
+	utils.RemoveAll(filepath.Join(appPath, "cgo_main_wrapper.go"))
 }
 
 func run() {
@@ -700,6 +811,14 @@ func run() {
 					exec.Command("C:\\android\\android-sdk\\platform-tools\\adb.exe", "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
 				}
 			}
+		}
+
+	case /*"ios",*/ "ios-simulator":
+		{
+			runCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 6s Plus (9.3)#"), "run.boot")
+			runCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "run.install")
+			runCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "run.install")
+			runCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), "run.launch")
 		}
 
 	case "desktop":
@@ -724,22 +843,20 @@ func run() {
 	}
 }
 
-func runCmd(cmd *exec.Cmd, n string) string {
+func runCmd(cmd *exec.Cmd, name string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", n, out, err)
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
 		cleanup()
 		os.Exit(1)
 	}
 	return string(out)
 }
 
-func runCmdOptional(cmd *exec.Cmd, n string) string {
-	var out, err = cmd.CombinedOutput()
-	if err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\n\n", n, out)
+func runCmdOptional(cmd *exec.Cmd, name string) {
+	if out, err := cmd.CombinedOutput(); err != nil {
+		fmt.Printf("\n\n%v\noutput:%s\n\n", name, out)
 	}
-	return string(out)
 }
 
 //darwin
@@ -813,3 +930,406 @@ func linuxSH() string {
 
 	return o
 }
+
+//ios
+func iosPLIST() string {
+	return fmt.Sprintf(`<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>main</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.identifier.%v</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>%v</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>QtRunLoopIntegrationDisableSeparateStack</key>
+	<true/>
+</dict>
+</plist>
+`, appName, appName)
+}
+
+func iosLaunchScreen() string {
+	return fmt.Sprintf(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+	<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+	    <dependencies>
+	        <deployment identifier="iOS"/>
+	        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+	        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+	    </dependencies>
+	    <objects>
+	        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+	        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+	        <view contentMode="scaleToFill" id="iN0-l3-epB">
+	            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+	            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+	            <subviews>
+	                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="%v" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
+	                    <rect key="frame" x="20" y="140" width="441" height="43"/>
+	                    <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+	                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+	                    <nil key="highlightedColor"/>
+	                </label>
+	            </subviews>
+	            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+	            <constraints>
+	                <constraint firstItem="kId-c2-rCX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="bottom" multiplier="1/3" constant="1" id="Kid-kn-2rF"/>
+	                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="Koa-jz-hwk"/>
+	                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" symbolic="YES" id="fvb-Df-36g"/>
+	            </constraints>
+	            <nil key="simulatedStatusBarMetrics"/>
+	            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+	            <point key="canvasLocation" x="404" y="445"/>
+	        </view>
+	    </objects>
+	</document>
+	`, appName)
+}
+
+const iosAppIcon = `{
+  "images" : [
+    {
+      "idiom" : "iphone",
+      "size" : "29x29",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "29x29",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "40x40",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "40x40",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "60x60",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "iphone",
+      "size" : "60x60",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "29x29",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "29x29",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "40x40",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "40x40",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "76x76",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "size" : "76x76",
+      "scale" : "2x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}
+`
+
+func iosProject() string {
+	return fmt.Sprintf(`// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		254BB84F1B1FD08900C56DE9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 254BB84E1B1FD08900C56DE9 /* Images.xcassets */; };
+		254BB8681B1FD16500C56DE9 /* main in Resources */ = {isa = PBXBuildFile; fileRef = 254BB8671B1FD16500C56DE9 /* main */; };
+		25916F411CE65FF600695115 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25916F401CE65FF600695115 /* LaunchScreen.xib */; };
+		25F26AED1CE6675E0045FFBA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 25F26AEC1CE6675E0045FFBA /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		254BB83E1B1FD08900C56DE9 /* main.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = main.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		254BB8421B1FD08900C56DE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		254BB84E1B1FD08900C56DE9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		254BB8671B1FD16500C56DE9 /* main */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = main; sourceTree = "<group>"; };
+		25916F401CE65FF600695115 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		25F26AEC1CE6675E0045FFBA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		254BB8351B1FD08900C56DE9 = {
+			isa = PBXGroup;
+			children = (
+				254BB8671B1FD16500C56DE9 /* main */,
+				254BB8421B1FD08900C56DE9 /* Info.plist */,
+				254BB84E1B1FD08900C56DE9 /* Images.xcassets */,
+				25916F401CE65FF600695115 /* LaunchScreen.xib */,
+				25F26AEC1CE6675E0045FFBA /* Default-568h@2x.png */,
+				254BB83F1B1FD08900C56DE9 /* products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 0;
+		};
+		254BB83F1B1FD08900C56DE9 /* products */ = {
+			isa = PBXGroup;
+			children = (
+				254BB83E1B1FD08900C56DE9 /* main.app */,
+			);
+			name = products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		254BB83D1B1FD08900C56DE9 /* main */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 254BB8611B1FD08900C56DE9 /* Build configuration list for PBXNativeTarget "main" */;
+			buildPhases = (
+				254BB83C1B1FD08900C56DE9 /* Resources */,
+				259BC5361CE6BA19005B5A05 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = main;
+			productName = main;
+			productReference = 254BB83E1B1FD08900C56DE9 /* main.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		254BB8361B1FD08900C56DE9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = Developer;
+				TargetAttributes = {
+					254BB83D1B1FD08900C56DE9 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 254BB8391B1FD08900C56DE9 /* Build configuration list for PBXProject "project" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 254BB8351B1FD08900C56DE9;
+			productRefGroup = 254BB83F1B1FD08900C56DE9 /* products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				254BB83D1B1FD08900C56DE9 /* main */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		254BB83C1B1FD08900C56DE9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				254BB8681B1FD16500C56DE9 /* main in Resources */,
+				25F26AED1CE6675E0045FFBA /* Default-568h@2x.png in Resources */,
+				25916F411CE65FF600695115 /* LaunchScreen.xib in Resources */,
+				254BB84F1B1FD08900C56DE9 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		259BC5361CE6BA19005B5A05 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cp %v/qt.conf $CODESIGNING_FOLDER_PATH/qt.conf;  test -d $CODESIGNING_FOLDER_PATH/qt_qml && rm -r $CODESIGNING_FOLDER_PATH/qt_qml;  mkdir -p $CODESIGNING_FOLDER_PATH/qt_qml &&  for p in /usr/local/Qt5.6.0/5.6/ios/qml; do rsync -r --exclude='*.a' --exclude='*.prl' --exclude='*.qmltypes'  $p/ $CODESIGNING_FOLDER_PATH/qt_qml; done";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		254BB8601B1FD08900C56DE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		254BB8631B1FD08900C56DE9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		254BB8391B1FD08900C56DE9 /* Build configuration list for PBXProject "project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				254BB8601B1FD08900C56DE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		254BB8611B1FD08900C56DE9 /* Build configuration list for PBXNativeTarget "main" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				254BB8631B1FD08900C56DE9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 254BB8361B1FD08900C56DE9 /* Project object */;
+}
+`, depPath)
+}
+
+const (
+	iosGalleryPluginImport = `#include <QtPlugin>
+Q_IMPORT_PLUGIN(QDDSPlugin)
+Q_IMPORT_PLUGIN(QICNSPlugin)
+Q_IMPORT_PLUGIN(QICOPlugin)
+Q_IMPORT_PLUGIN(QTgaPlugin)
+Q_IMPORT_PLUGIN(QTiffPlugin)
+Q_IMPORT_PLUGIN(QWbmpPlugin)
+Q_IMPORT_PLUGIN(QWebpPlugin)
+Q_IMPORT_PLUGIN(QQmlDebuggerServiceFactory)
+Q_IMPORT_PLUGIN(QQmlInspectorServiceFactory)
+Q_IMPORT_PLUGIN(QLocalClientConnectionFactory)
+Q_IMPORT_PLUGIN(QQmlNativeDebugConnectorFactory)
+Q_IMPORT_PLUGIN(QQmlProfilerServiceFactory)
+Q_IMPORT_PLUGIN(QQmlDebugServerFactory)
+Q_IMPORT_PLUGIN(QTcpServerConnectionFactory)
+`
+
+	iosGalleryQmlPluginImport = `#include <QtPlugin>
+Q_IMPORT_PLUGIN(QtQuick2Plugin)
+Q_IMPORT_PLUGIN(QtQuickLayoutsPlugin)
+Q_IMPORT_PLUGIN(QtQuick2DialogsPlugin)
+Q_IMPORT_PLUGIN(QtQuickControlsPlugin)
+Q_IMPORT_PLUGIN(QmlFolderListModelPlugin)
+Q_IMPORT_PLUGIN(QmlSettingsPlugin)
+Q_IMPORT_PLUGIN(QtQuick2DialogsPrivatePlugin)
+Q_IMPORT_PLUGIN(QtQuick2WindowPlugin)
+Q_IMPORT_PLUGIN(QtQmlModelsPlugin)
+Q_IMPORT_PLUGIN(QtQuickExtrasPlugin)
+Q_IMPORT_PLUGIN(QtGraphicalEffectsPlugin)
+`
+
+	iosQtConf = `[Paths]
+Imports = qt_qml
+Qml2Imports = qt_qml
+`
+)

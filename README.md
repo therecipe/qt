@@ -17,6 +17,14 @@
 ### Landscape
 ![](internal/screens/android_landscape.png)
 
+## iOS
+
+### Portrait
+![](internal/screens/ios_portrait.png)
+
+### Landscape
+![](internal/screens/ios_landscape.png)
+
 [source](https://github.com/therecipe/qt/blob/master/internal/examples/widgets/line_edits/line_edits.go)
 
 ---
@@ -25,24 +33,24 @@
 
 ## Desktop (Windows / Mac OS X / Linux)
 
-1. Install Go >= 1.6.2 and setup a proper [GOPATH](https://golang.org/doc/code.html#GOPATH)
+1. Install Go >= 1.6.2 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 	* https://storage.googleapis.com/golang/go1.6.2.windows-amd64.msi
 	* https://storage.googleapis.com/golang/go1.6.2.darwin-amd64.pkg
 	* https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
 
 2. Install Qt 5.6.0 in `C:\Qt\Qt5.6.0\` or `/usr/local/Qt5.6.0/`
 	* https://download.qt.io/official_releases/qt/5.6/5.6.0/qt-opensource-windows-x86-android-5.6.0.exe
-	* https://download.qt.io/official_releases/qt/5.6/5.6.0/qt-opensource-mac-x64-android-5.6.0.dmg
+	* https://download.qt.io/official_releases/qt/5.6/5.6.0/qt-opensource-mac-x64-android-5.6.0.dmg [(**with iOS**)](https://download.qt.io/official_releases/qt/5.6/5.6.0/qt-opensource-mac-x64-android-ios-5.6.0.dmg)
 	* https://download.qt.io/official_releases/qt/5.6/5.6.0/qt-opensource-linux-x64-android-5.6.0.run
 
 3. Setup the environment
 	* Windows
-		* Add the directory that contains **gcc.exe** to your **PATH**
+		* Add the directory that contains **g++.exe** to your **PATH**
 
 			`C:\Qt\Qt5.6.0\Tools\mingw492_32\bin`
 
 	* Mac OS X
-		* Install Xcode >= 7.3
+		* Install Xcode >= 7.3.1
 
 	* Linux
 		* Install g++
@@ -69,7 +77,7 @@
 
 ## Mobile (Android)
 
-1. Make sure the binding is working by setting up the desktop version
+1. Set up the desktop version
 
 2. Install the Android SDK in `C:\android\android-sdk\` or `/opt/android-sdk/`
 	* https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
@@ -104,6 +112,20 @@
     or
 
   	`github.com/therecipe/qt/setup.sh android`
+
+---
+
+## Mobile (iOS)
+
+1. Set up the desktop version on Mac OS X
+
+2. Install and test
+
+  	`github.com/therecipe/qt/setup.sh ios`
+
+    and
+
+  	`github.com/therecipe/qt/setup.sh ios-simulator`
 
 ---
 

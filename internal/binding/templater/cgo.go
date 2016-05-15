@@ -18,6 +18,10 @@ func CopyCgo(module string) {
 		createCgoDarwin(module)
 		createCgoWindows(module)
 		createCgoLinux(module)
+
+		if runtime.GOOS == "darwin" {
+			createCgoiOS(module)
+		}
 	}
 
 	switch runtime.GOOS {
@@ -299,9 +303,115 @@ func createCgoandroidWindows(module string) {
 	}
 }
 
+func createCgoiOS(module string) string {
+	var (
+		tmp  string
+		libs = cleanLibs(module)
+	)
+
+	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
+	tmp += "/*\n"
+
+	tmp += "#cgo CPPFLAGS: -pipe -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=6.1 -arch i386 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n"
+
+	tmp += "#cgo CPPFLAGS: -DDARWIN_NO_CARBON -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DQT_NO_DEBUG"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	tmp += "\n"
+
+	tmp += "#cgo CPPFLAGS: -I/usr/local/Qt5.6.0/5.6/ios/mkspecs/macx-ios-clang/ios -I/usr/local/Qt5.6.0/5.6/ios/include -I/usr/local/Qt5.6.0/5.6/ios/mkspecs/macx-ios-clang\n"
+
+	tmp += "#cgo CPPFLAGS:"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -I/usr/local/Qt5.6.0/5.6/ios/include/Qt%v", m)
+	}
+	tmp += "\n\n"
+
+	tmp += "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=6.1 -arch i386\n"
+
+	tmp += "#cgo LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm"
+	for _, m := range libs {
+		if m == "UiTools" || m == "PlatformHeaders" {
+			tmp += fmt.Sprintf(" -lQt5%v_iphonesimulator", m)
+		}
+	}
+	for _, m := range libs {
+		if m != "UiTools" && m != "PlatformHeaders" {
+			if m != "UiPlugin" {
+				tmp += fmt.Sprintf(" -lQt5%v_iphonesimulator", m)
+			}
+		}
+	}
+
+	if !strings.Contains(tmp, "-lQt5Gui_iphonesimulator") {
+		tmp += " -lQt5Gui_iphonesimulator"
+	}
+
+	switch module {
+	case
+		"Multimedia":
+		{
+			tmp += " -lQt5OpenGL_iphonesimulator"
+		}
+
+	case "TestLib":
+		{
+			tmp += " -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest"
+		}
+
+	case "Qml", "WebChannel", "Quick":
+		{
+			if module != "Quick" {
+				tmp += " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator"
+			}
+			tmp += " -L/usr/local/Qt5.6.0/5.6/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_server_iphonesimulator -lqmldbg_tcp_iphonesimulator"
+		}
+	}
+
+	if module == "build_ios" {
+		tmp += " -lQt5OpenGL_iphonesimulator"
+		tmp += " -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest"
+		tmp += " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator"
+		tmp += " -L/usr/local/Qt5.6.0/5.6/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_server_iphonesimulator -lqmldbg_tcp_iphonesimulator"
+		tmp += " -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQuick.2 -lqtquick2plugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQuick/Layouts -lqquicklayoutsplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQuick/Dialogs -ldialogplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQuick/Controls -lqtquickcontrolsplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/Qt/labs/folderlistmodel -lqmlfolderlistmodelplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/Qt/labs/settings -lqmlsettingsplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQuick/Dialogs/Private -ldialogsprivateplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQuick/Window.2 -lwindowplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQml/Models.2 -lmodelsplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtQuick/Extras -lqtquickextrasplugin_iphonesimulator -L/usr/local/Qt5.6.0/5.6/ios/qml/QtGraphicalEffects/private -lqtgraphicaleffectsprivate_iphonesimulator"
+	}
+
+	tmp += " -lQt5PlatformSupport_iphonesimulator\n"
+	tmp += "*/\n"
+
+	tmp += fmt.Sprintf("import \"C\"\n")
+
+	if module == "build_ios" {
+		return tmp
+	}
+
+	var path, prefix = func() (string, string) {
+		if module == parser.MOC {
+			return AppPath, "moc_"
+		}
+		return utils.GetQtPkgPath(strings.ToLower(module)), ""
+	}()
+
+	//386
+	utils.Save(filepath.Join(path, prefix+"cgo_darwin_386.go"), tmp)
+
+	//arm64
+	tmp = strings.Replace(tmp, "_iphonesimulator", "", -1)
+	tmp = strings.Replace(tmp, "i386", "arm64", -1)
+	tmp = strings.Replace(tmp, "iPhoneSimulator", "iPhoneOS", -1)
+	tmp = strings.Replace(tmp, "ios-simulator", "iphoneos", -1)
+	utils.Save(filepath.Join(path, prefix+"cgo_darwin_arm64.go"), tmp)
+
+	//armv7
+	utils.Save(filepath.Join(path, prefix+"cgo_darwin_arm.go"), strings.Replace(tmp, "arm64", "armv7", -1))
+
+	return ""
+}
+
 func cleanLibs(module string) []string {
 
-	if module == parser.MOC {
+	if module == parser.MOC || module == "build_ios" {
 		return LibDeps[module]
 	}
 
@@ -316,4 +426,28 @@ func cleanLibs(module string) []string {
 		}
 	}
 	return libs
+}
+
+func GetiOSClang(buildTarget, buildARM string) []string {
+	var tmp = createCgoiOS("build_ios")
+
+	tmp = strings.Split(tmp, "/*")[1]
+	tmp = strings.Split(tmp, "*/")[0]
+
+	tmp = strings.Replace(tmp, "#cgo LDFLAGS: ", "", -1)
+	tmp = strings.Replace(tmp, "#cgo CPPFLAGS: ", "", -1)
+	tmp = strings.Replace(tmp, "\n", " ", -1)
+
+	if buildTarget == "ios" {
+		tmp = strings.Replace(tmp, "_iphonesimulator", "", -1)
+		tmp = strings.Replace(tmp, "i386", "arm64", -1)
+		tmp = strings.Replace(tmp, "iPhoneSimulator", "iPhoneOS", -1)
+		tmp = strings.Replace(tmp, "ios-simulator", "iphoneos", -1)
+
+		if buildARM == "armv7" {
+			tmp = strings.Replace(tmp, "arm64", "armv7", -1)
+		}
+	}
+
+	return strings.Split(tmp, " ")
 }
