@@ -38,10 +38,9 @@
 **
 ****************************************************************************/
 
-import QtQuick.Window 2.2
 import QtQuick 2.2
 import QtQuick.Controls 1.2
-import QtQuick.Layouts 1.0
+import QtQuick.Layouts 1.3
 
 ApplicationWindow {
     visible: true
@@ -108,6 +107,29 @@ ApplicationWindow {
             Layout.minimumHeight: 30
             Layout.fillHeight: true
             Layout.fillWidth: true
+        }
+        GroupBox {
+            id: stackBox
+            title: "Stack layout"
+            implicitWidth: 200
+            implicitHeight: 60
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            StackLayout {
+                id: stackLayout
+                anchors.fill: parent
+
+                function advance() { currentIndex = (currentIndex + 1) % count }
+
+                Repeater {
+                    id: stackRepeater
+                    model: 5
+                    Rectangle {
+                        color: Qt.hsla((0.5 + index)/stackRepeater.count, 0.3, 0.7, 1)
+                        Button { anchors.centerIn: parent; text: "Page " + (index + 1); onClicked: { stackLayout.advance() } }
+                    }
+                }
+            }
         }
     }
 }
