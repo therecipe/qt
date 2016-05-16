@@ -274,7 +274,7 @@ func build() {
 	case "android":
 		{
 			ldFlags = "-ldflags=\"-s\" \"-w\""
-			outputFile = filepath.Join(depPath, "libgo.so")
+			outputFile = filepath.Join(depPath, "libgo_base.so")
 
 			switch runtime.GOOS {
 			case "darwin", "linux":
@@ -307,6 +307,8 @@ func build() {
 					}
 				}
 			}
+
+			utils.Save(filepath.Join(appPath, "cgo_main_wrapper.go"), "package main\nimport \"C\"\n//export go_main_wrapper\nfunc go_main_wrapper() { main() }")
 		}
 
 	case "ios", "ios-simulator":
@@ -434,14 +436,17 @@ func predeploy() {
 				runCmdOptional(exec.Command(copyCmd, filepath.Join(appPath, "android", "icon.png"), filepath.Join(depPath, "build", "res", dir, "icon.png")), "predeploy.cpicon")
 			}
 
+			//add c_main_wrappers
+			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+
 			var libPath = filepath.Join(depPath, "build", "libs", "armeabi-v7a")
 			utils.MakeFolder(libPath)
-			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cplib")
 
 			var (
 				qtPrefix      string
 				androidPrefix string
 				ndkhost       string
+				compiler      string
 			)
 
 			switch runtime.GOOS {
@@ -450,13 +455,7 @@ func predeploy() {
 					qtPrefix = "/usr/local"
 					androidPrefix = "/opt"
 					ndkhost = runtime.GOOS + "-x86_64"
-
-					runCmd(exec.Command("cp", "/usr/local/Qt5.6.0/5.6/android_armv7/jar/QtAndroid-bundled.jar", filepath.Join(depPath, "build", "libs")), "predeploy.cpqtandroid")
-
-					runCmd(exec.Command("zip", "-d", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), "org/qtproject/qt5/android/QtNative.class"), "predeploy.patchqtandroid_main")
-					for i := 1; i < 21; i++ {
-						runCmd(exec.Command("zip", "-d", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), fmt.Sprintf("org/qtproject/qt5/android/QtNative$%v.class", i)), fmt.Sprintf("predeploy.patchqtandroid_%v", i))
-					}
+					compiler = filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++")
 				}
 
 			case "windows":
@@ -464,35 +463,23 @@ func predeploy() {
 					qtPrefix = "C:\\Qt"
 					androidPrefix = "C:\\android"
 					ndkhost = runtime.GOOS
-
-					var (
-						jdkVersion = strings.Split(runCmd(exec.Command("java", "-version"), "predeploy.jdk"), "\"")[1]
-						jarPath    = fmt.Sprintf("C:\\Program Files\\Java\\jdk%v\\bin\\jar.exe", jdkVersion)
-					)
-
-					runCmd(exec.Command("xcopy", "C:\\Qt\\Qt5.6.0\\5.6\\android_armv7\\jar\\QtAndroid-bundled.jar", filepath.Join(depPath, "build", "libs")), "predeploy.cpqtandroid")
-
-					var jarUnzip = exec.Command(jarPath, "-xf", filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"))
-					jarUnzip.Dir = filepath.Join(depPath, "build", "libs")
-					runCmd(jarUnzip, "predeploy.unzipqtandroid")
-
-					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"))
-					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org", "qtproject", "qt5", "android", "QtNative.class"))
-					for i := 1; i < 21; i++ {
-						utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org", "qtproject", "qt5", "android", fmt.Sprintf("QtNative$%v.class", i)))
-					}
-
-					var zipQtAndroid = exec.Command(jarPath, "-cmf", filepath.Join(depPath, "build", "libs", "META-INF", "MANIFEST.MF"), filepath.Join(depPath, "build", "libs", "QtAndroid-bundled.jar"), "org")
-					zipQtAndroid.Dir = filepath.Join(depPath, "build", "libs")
-					runCmd(zipQtAndroid, "predeploy.zipqtandroid")
-
-					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "org"))
-					utils.RemoveAll(filepath.Join(depPath, "build", "libs", "META-INF"))
+					compiler = "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-g++.exe"
 				}
 			}
 
-			utils.MakeFolder(filepath.Join(depPath, "build", "src", "org", "qtproject", "qt5", "android"))
-			runCmd(exec.Command(copyCmd, utils.GetQtPkgPath("internal", "android", "patch", "QtNative.java"), filepath.Join(depPath, "build", "src", "org", "qtproject", "qt5", "android")), "predeploy.cpqtandroidpatched")
+			var cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", fmt.Sprintf("--sysroot=%v", filepath.Join(androidPrefix, "android-ndk", "platforms", "android-9", "arch-arm")), "-shared")
+			cmd.Dir = depPath
+			runCmd(cmd, "predeploy.go_main_wrapper_1")
+
+			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so")), "predeploy.cpBase")
+			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so")), "predeploy.cpMain")
+
+			var qtLibPath = filepath.Join(qtPrefix, "Qt5.6.0", "5.6", "android_armv7", "lib")
+			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), "predeploy.cpWidgets")
+			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), "predeploy.cpQuickWidgets")
+			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), "predeploy.cpMultimediaWidgets")
+			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Multimedia.so"), libPath), "predeploy.cpMultimedia")
+			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), "predeploy.cpNetwork")
 
 			var out, err = json.Marshal(&struct {
 				Qt                            string `json:"qt"`
@@ -504,6 +491,7 @@ func predeploy() {
 				Toolchainversion              string `json:"toolchain-version"`
 				Ndkhost                       string `json:"ndk-host"`
 				Targetarchitecture            string `json:"target-architecture"`
+				AndroidExtraLibs              string `json:"android-extra-libs"`
 				AndroidPackageSourceDirectory string `json:"android-package-source-directory"`
 				Qmlrootpath                   string `json:"qml-root-path"`
 				Applicationbinary             string `json:"application-binary"`
@@ -517,6 +505,7 @@ func predeploy() {
 				Toolchainversion:              "4.9",
 				Ndkhost:                       ndkhost,
 				Targetarchitecture:            "armeabi-v7a",
+				AndroidExtraLibs:              filepath.Join(depPath, "libgo_base.so"),
 				AndroidPackageSourceDirectory: filepath.Join(appPath, "android"),
 				Qmlrootpath:                   filepath.Join(appPath, "qml"),
 				Applicationbinary:             filepath.Join(depPath, "libgo.so"),
@@ -570,14 +559,10 @@ func predeploy() {
 			utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), iosLaunchScreen())
 			utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), iosProject())
 
-			var cpIcon = exec.Command(copyCmd)
-			cpIcon.Args = append(cpIcon.Args, []string{"/usr/local/Qt5.6.0/5.6/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", buildPath}...)
-			runCmd(cpIcon, "predeploy.cpIcon")
+			runCmd(exec.Command(copyCmd, "/usr/local/Qt5.6.0/5.6/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", buildPath), "predeploy.cpIcon")
 
 			//copy assets from ios folder
-			var cpiOS = exec.Command(copyCmd)
-			cpiOS.Args = append(cpiOS.Args, strings.Split(fmt.Sprintf("-R %v/%v/ %v", appPath, buildTarget, buildPath), " ")...)
-			runCmd(cpiOS, "predeploy.cpiOS")
+			runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
 		}
 
 	case "desktop":

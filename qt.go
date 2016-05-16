@@ -7,7 +7,7 @@ import (
 	"strings"
 	"sync"
 
-	_ "github.com/therecipe/qt/internal/android/cgo"
+	_ "github.com/therecipe/qt/internal/android"
 )
 
 var (
