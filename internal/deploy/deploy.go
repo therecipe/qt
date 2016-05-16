@@ -473,6 +473,8 @@ func predeploy() {
 
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath, "libgo_base.so")), "predeploy.cpBase")
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), filepath.Join(libPath, "libgo.so")), "predeploy.cpMain")
+			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(libPath)), "predeploy.cpBase")
+			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), filepath.Join(libPath)), "predeploy.cpMain")
 
 			var qtLibPath = filepath.Join(qtPrefix, "Qt5.6.0", "5.6", "android_armv7", "lib")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), "predeploy.cpWidgets")
