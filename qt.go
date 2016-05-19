@@ -1,7 +1,6 @@
 package qt
 
 import (
-	"log"
 	"runtime"
 	"strconv"
 	"strings"
@@ -57,11 +56,11 @@ func Identifier() string {
 }
 
 func DumpSignals() {
-	log.Println("##############################\tDUMP_SIGNALTABLE_START\t##############################")
+	println("##############################\tDUMP_SIGNALTABLE_START\t##############################")
 	for entry := range signals {
-		log.Println(entry)
+		println(entry)
 	}
-	log.Println("##############################\tDUMP_SIGNALTABLE_END\t##############################")
+	println("##############################\tDUMP_SIGNALTABLE_END\t##############################")
 }
 
 func GoBoolToInt(b bool) int {
@@ -73,6 +72,6 @@ func GoBoolToInt(b bool) int {
 
 func Recovering(fn string) {
 	if recover() != nil {
-		log.Println("recovered in:", fn)
+		println("recovered in:", fn)
 	}
 }

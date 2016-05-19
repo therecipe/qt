@@ -480,6 +480,7 @@ func predeploy() {
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), "predeploy.cpMultimediaWidgets")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Multimedia.so"), libPath), "predeploy.cpMultimedia")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), "predeploy.cpNetwork")
+			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5AndroidExtras.so"), libPath), "predeploy.cpAndroidExtras")
 
 			var out, err = json.Marshal(&struct {
 				Qt                            string `json:"qt"`
@@ -596,10 +597,9 @@ func deploy() {
 		{
 
 			var (
-				jdkLib        string
-				qtPrefix      string
-				androidPrefix string
-				ending        string
+				jdkLib   string
+				qtPrefix string
+				ending   string
 			)
 
 			switch runtime.GOOS {
@@ -614,7 +614,6 @@ func deploy() {
 					}
 
 					qtPrefix = "/usr/local"
-					androidPrefix = "/opt"
 				}
 
 			case "windows":
@@ -623,7 +622,6 @@ func deploy() {
 					jdkLib = fmt.Sprintf("C:\\Program Files\\Java\\jdk%v", version)
 
 					qtPrefix = "C:\\Qt"
-					androidPrefix = "C:\\android"
 					ending = ".exe"
 				}
 			}
@@ -635,7 +633,7 @@ func deploy() {
 				"--deployment", "bundled",
 				"--android-platform", "android-22",
 				"--jdk", jdkLib,
-				"--ant", filepath.Join(androidPrefix, "apache-ant", "bin", "ant"),
+				"--gradle",
 			)
 
 			if ks := utils.Load(filepath.Join(appPath, "android", appName+".keystore")); ks != "" {
@@ -744,9 +742,9 @@ func pastdeploy() {
 			}
 
 			if ks := utils.Load(filepath.Join(appPath, "android", appName+".keystore")); ks != "" {
-				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "bin", "QtApp-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.release")
+				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.release")
 			} else {
-				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "bin", "QtApp-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.debug")
+				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.debug")
 			}
 
 			//TODO: copy manifest to android folder and change mindSdkVersion >= 16
@@ -1283,6 +1281,11 @@ func iosProject() string {
 
 const (
 	iosGalleryPluginImport = `#include <QtPlugin>
+Q_IMPORT_PLUGIN(AVFServicePlugin)
+Q_IMPORT_PLUGIN(AVFMediaPlayerServicePlugin)
+Q_IMPORT_PLUGIN(AudioCaptureServicePlugin)
+Q_IMPORT_PLUGIN(CoreAudioPlugin)
+Q_IMPORT_PLUGIN(QM3uPlaylistPlugin)
 Q_IMPORT_PLUGIN(QDDSPlugin)
 Q_IMPORT_PLUGIN(QICNSPlugin)
 Q_IMPORT_PLUGIN(QICOPlugin)
@@ -1301,6 +1304,7 @@ Q_IMPORT_PLUGIN(QTcpServerConnectionFactory)
 
 	iosGalleryQmlPluginImport = `#include <QtPlugin>
 Q_IMPORT_PLUGIN(QtQuick2Plugin)
+Q_IMPORT_PLUGIN(QMultimediaDeclarativeModule)
 Q_IMPORT_PLUGIN(QtQuickLayoutsPlugin)
 Q_IMPORT_PLUGIN(QtQuick2DialogsPlugin)
 Q_IMPORT_PLUGIN(QtQuickControlsPlugin)

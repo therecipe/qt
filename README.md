@@ -97,15 +97,10 @@
 	* https://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin
 	* https://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
 
-5. Install Apache-Ant in `C:\android\apache-ant\` or `/opt/apache-ant/`
-	* https://www.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.zip
-	* https://www.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.bz2
-	* https://www.apache.org/dist/ant/binaries/apache-ant-1.9.7-bin.tar.gz
-
-6. Install Java SE Development Kit (Linux: install in `/opt/jdk/`)
+5. Install Java SE Development Kit (Linux: install in `/opt/jdk/`)
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-7. Install and test
+6. Install and test
 
   	`github.com/therecipe/qt/setup.bat android` **(run as admin)**
 
