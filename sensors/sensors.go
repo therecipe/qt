@@ -143,6 +143,18 @@ func (ptr *QAccelerometer) DestroyQAccelerometer() {
 	}
 }
 
+func QAccelerometer_Type() string {
+	defer qt.Recovering("QAccelerometer::type")
+
+	return C.GoString(C.QAccelerometer_QAccelerometer_Type())
+}
+
+func (ptr *QAccelerometer) Type() string {
+	defer qt.Recovering("QAccelerometer::type")
+
+	return C.GoString(C.QAccelerometer_QAccelerometer_Type())
+}
+
 //export callbackQAccelerometer_Start
 func callbackQAccelerometer_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QAccelerometer::start")
@@ -1332,6 +1344,18 @@ func (ptr *QAltimeter) DestroyQAltimeter() {
 		C.QAltimeter_DestroyQAltimeter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QAltimeter_Type() string {
+	defer qt.Recovering("QAltimeter::type")
+
+	return C.GoString(C.QAltimeter_QAltimeter_Type())
+}
+
+func (ptr *QAltimeter) Type() string {
+	defer qt.Recovering("QAltimeter::type")
+
+	return C.GoString(C.QAltimeter_QAltimeter_Type())
 }
 
 //export callbackQAltimeter_Start
@@ -3081,6 +3105,18 @@ func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
 	}
 }
 
+func QAmbientLightSensor_Type() string {
+	defer qt.Recovering("QAmbientLightSensor::type")
+
+	return C.GoString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
+}
+
+func (ptr *QAmbientLightSensor) Type() string {
+	defer qt.Recovering("QAmbientLightSensor::type")
+
+	return C.GoString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
+}
+
 //export callbackQAmbientLightSensor_Start
 func callbackQAmbientLightSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QAmbientLightSensor::start")
@@ -4238,6 +4274,18 @@ func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
 	}
 }
 
+func QAmbientTemperatureSensor_Type() string {
+	defer qt.Recovering("QAmbientTemperatureSensor::type")
+
+	return C.GoString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
+}
+
+func (ptr *QAmbientTemperatureSensor) Type() string {
+	defer qt.Recovering("QAmbientTemperatureSensor::type")
+
+	return C.GoString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
+}
+
 //export callbackQAmbientTemperatureSensor_Start
 func callbackQAmbientTemperatureSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QAmbientTemperatureSensor::start")
@@ -4813,6 +4861,18 @@ func (ptr *QCompass) DestroyQCompass() {
 		C.QCompass_DestroyQCompass(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QCompass_Type() string {
+	defer qt.Recovering("QCompass::type")
+
+	return C.GoString(C.QCompass_QCompass_Type())
+}
+
+func (ptr *QCompass) Type() string {
+	defer qt.Recovering("QCompass::type")
+
+	return C.GoString(C.QCompass_QCompass_Type())
 }
 
 //export callbackQCompass_Start
@@ -6568,6 +6628,18 @@ func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
 	}
 }
 
+func QDistanceSensor_Type() string {
+	defer qt.Recovering("QDistanceSensor::type")
+
+	return C.GoString(C.QDistanceSensor_QDistanceSensor_Type())
+}
+
+func (ptr *QDistanceSensor) Type() string {
+	defer qt.Recovering("QDistanceSensor::type")
+
+	return C.GoString(C.QDistanceSensor_QDistanceSensor_Type())
+}
+
 //export callbackQDistanceSensor_Start
 func callbackQDistanceSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QDistanceSensor::start")
@@ -7143,6 +7215,18 @@ func (ptr *QGyroscope) DestroyQGyroscope() {
 		C.QGyroscope_DestroyQGyroscope(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QGyroscope_Type() string {
+	defer qt.Recovering("QGyroscope::type")
+
+	return C.GoString(C.QGyroscope_QGyroscope_Type())
+}
+
+func (ptr *QGyroscope) Type() string {
+	defer qt.Recovering("QGyroscope::type")
+
+	return C.GoString(C.QGyroscope_QGyroscope_Type())
 }
 
 //export callbackQGyroscope_Start
@@ -8915,6 +8999,18 @@ func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
 	}
 }
 
+func QHolsterSensor_Type() string {
+	defer qt.Recovering("QHolsterSensor::type")
+
+	return C.GoString(C.QHolsterSensor_QHolsterSensor_Type())
+}
+
+func (ptr *QHolsterSensor) Type() string {
+	defer qt.Recovering("QHolsterSensor::type")
+
+	return C.GoString(C.QHolsterSensor_QHolsterSensor_Type())
+}
+
 //export callbackQHolsterSensor_Start
 func callbackQHolsterSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QHolsterSensor::start")
@@ -10069,6 +10165,18 @@ func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
 		C.QIRProximitySensor_DestroyQIRProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QIRProximitySensor_Type() string {
+	defer qt.Recovering("QIRProximitySensor::type")
+
+	return C.GoString(C.QIRProximitySensor_QIRProximitySensor_Type())
+}
+
+func (ptr *QIRProximitySensor) Type() string {
+	defer qt.Recovering("QIRProximitySensor::type")
+
+	return C.GoString(C.QIRProximitySensor_QIRProximitySensor_Type())
 }
 
 //export callbackQIRProximitySensor_Start
@@ -11282,6 +11390,18 @@ func (ptr *QLightSensor) DestroyQLightSensor() {
 	}
 }
 
+func QLightSensor_Type() string {
+	defer qt.Recovering("QLightSensor::type")
+
+	return C.GoString(C.QLightSensor_QLightSensor_Type())
+}
+
+func (ptr *QLightSensor) Type() string {
+	defer qt.Recovering("QLightSensor::type")
+
+	return C.GoString(C.QLightSensor_QLightSensor_Type())
+}
+
 //export callbackQLightSensor_Start
 func callbackQLightSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QLightSensor::start")
@@ -11912,6 +12032,18 @@ func (ptr *QMagnetometer) DestroyQMagnetometer() {
 		C.QMagnetometer_DestroyQMagnetometer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QMagnetometer_Type() string {
+	defer qt.Recovering("QMagnetometer::type")
+
+	return C.GoString(C.QMagnetometer_QMagnetometer_Type())
+}
+
+func (ptr *QMagnetometer) Type() string {
+	defer qt.Recovering("QMagnetometer::type")
+
+	return C.GoString(C.QMagnetometer_QMagnetometer_Type())
 }
 
 //export callbackQMagnetometer_Start
@@ -13715,6 +13847,18 @@ func (ptr *QOrientationSensor) DestroyQOrientationSensor() {
 	}
 }
 
+func QOrientationSensor_Type() string {
+	defer qt.Recovering("QOrientationSensor::type")
+
+	return C.GoString(C.QOrientationSensor_QOrientationSensor_Type())
+}
+
+func (ptr *QOrientationSensor) Type() string {
+	defer qt.Recovering("QOrientationSensor::type")
+
+	return C.GoString(C.QOrientationSensor_QOrientationSensor_Type())
+}
+
 //export callbackQOrientationSensor_Start
 func callbackQOrientationSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QOrientationSensor::start")
@@ -14889,6 +15033,18 @@ func (ptr *QPressureSensor) DestroyQPressureSensor() {
 	}
 }
 
+func QPressureSensor_Type() string {
+	defer qt.Recovering("QPressureSensor::type")
+
+	return C.GoString(C.QPressureSensor_QPressureSensor_Type())
+}
+
+func (ptr *QPressureSensor) Type() string {
+	defer qt.Recovering("QPressureSensor::type")
+
+	return C.GoString(C.QPressureSensor_QPressureSensor_Type())
+}
+
 //export callbackQPressureSensor_Start
 func callbackQPressureSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QPressureSensor::start")
@@ -16043,6 +16199,18 @@ func (ptr *QProximitySensor) DestroyQProximitySensor() {
 		C.QProximitySensor_DestroyQProximitySensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QProximitySensor_Type() string {
+	defer qt.Recovering("QProximitySensor::type")
+
+	return C.GoString(C.QProximitySensor_QProximitySensor_Type())
+}
+
+func (ptr *QProximitySensor) Type() string {
+	defer qt.Recovering("QProximitySensor::type")
+
+	return C.GoString(C.QProximitySensor_QProximitySensor_Type())
 }
 
 //export callbackQProximitySensor_Start
@@ -17272,6 +17440,18 @@ func (ptr *QRotationSensor) DestroyQRotationSensor() {
 		C.QRotationSensor_DestroyQRotationSensor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QRotationSensor_Type() string {
+	defer qt.Recovering("QRotationSensor::type")
+
+	return C.GoString(C.QRotationSensor_QRotationSensor_Type())
+}
+
+func (ptr *QRotationSensor) Type() string {
+	defer qt.Recovering("QRotationSensor::type")
+
+	return C.GoString(C.QRotationSensor_QRotationSensor_Type())
 }
 
 //export callbackQRotationSensor_Start
@@ -20119,6 +20299,23 @@ func (ptr *QSensorFilter) DestroyQSensorFilter() {
 		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
 		C.QSensorFilter_DestroyQSensorFilter(ptr.Pointer())
 		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorFilter) M_sensor() *QSensor {
+	defer qt.Recovering("QSensorFilter::m_sensor")
+
+	if ptr.Pointer() != nil {
+		return NewQSensorFromPointer(C.QSensorFilter_M_sensor(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSensorFilter) SetM_sensor(vqs QSensor_ITF) {
+	defer qt.Recovering("QSensorFilter::setM_sensor")
+
+	if ptr.Pointer() != nil {
+		C.QSensorFilter_SetM_sensor(ptr.Pointer(), PointerFromQSensor(vqs))
 	}
 }
 
@@ -23562,6 +23759,18 @@ func (ptr *QTapSensor) DestroyQTapSensor() {
 	}
 }
 
+func QTapSensor_Type() string {
+	defer qt.Recovering("QTapSensor::type")
+
+	return C.GoString(C.QTapSensor_QTapSensor_Type())
+}
+
+func (ptr *QTapSensor) Type() string {
+	defer qt.Recovering("QTapSensor::type")
+
+	return C.GoString(C.QTapSensor_QTapSensor_Type())
+}
+
 //export callbackQTapSensor_Start
 func callbackQTapSensor_Start(ptr unsafe.Pointer, ptrName *C.char) C.int {
 	defer qt.Recovering("callback QTapSensor::start")
@@ -24742,6 +24951,18 @@ func (ptr *QTiltSensor) Calibrate() {
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_Calibrate(ptr.Pointer())
 	}
+}
+
+func QTiltSensor_Type() string {
+	defer qt.Recovering("QTiltSensor::type")
+
+	return C.GoString(C.QTiltSensor_QTiltSensor_Type())
+}
+
+func (ptr *QTiltSensor) Type() string {
+	defer qt.Recovering("QTiltSensor::type")
+
+	return C.GoString(C.QTiltSensor_QTiltSensor_Type())
 }
 
 //export callbackQTiltSensor_Start

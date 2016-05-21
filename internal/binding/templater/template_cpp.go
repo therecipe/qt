@@ -63,7 +63,7 @@ func CppTemplate(module string) []byte {
 		if classIsSupported(class) {
 			var implementedVirtuals = make(map[string]bool)
 
-			if needsCallbackFunctions(class) {
+			if needsCallbackFunctions(class) || class.Module == parser.MOC {
 
 				fmt.Fprintf(bb,
 					`class %v%v: public %v

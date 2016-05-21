@@ -138,6 +138,11 @@ void QAccelerometer_DestroyQAccelerometer(void* ptr)
 	static_cast<QAccelerometer*>(ptr)->~QAccelerometer();
 }
 
+char* QAccelerometer_QAccelerometer_Type()
+{
+	return QString(QAccelerometer::type).toUtf8().data();
+}
+
 int QAccelerometer_Start(void* ptr)
 {
 	bool returnArg;
@@ -412,6 +417,11 @@ void* QAltimeter_NewQAltimeter(void* parent)
 void QAltimeter_DestroyQAltimeter(void* ptr)
 {
 	static_cast<QAltimeter*>(ptr)->~QAltimeter();
+}
+
+char* QAltimeter_QAltimeter_Type()
+{
+	return QString(QAltimeter::type).toUtf8().data();
 }
 
 int QAltimeter_Start(void* ptr)
@@ -816,6 +826,11 @@ void QAmbientLightSensor_DestroyQAmbientLightSensor(void* ptr)
 	static_cast<QAmbientLightSensor*>(ptr)->~QAmbientLightSensor();
 }
 
+char* QAmbientLightSensor_QAmbientLightSensor_Type()
+{
+	return QString(QAmbientLightSensor::type).toUtf8().data();
+}
+
 int QAmbientLightSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -1072,6 +1087,11 @@ void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(void* ptr)
 	static_cast<QAmbientTemperatureSensor*>(ptr)->~QAmbientTemperatureSensor();
 }
 
+char* QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type()
+{
+	return QString(QAmbientTemperatureSensor::type).toUtf8().data();
+}
+
 int QAmbientTemperatureSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -1214,6 +1234,11 @@ void* QCompass_NewQCompass(void* parent)
 void QCompass_DestroyQCompass(void* ptr)
 {
 	static_cast<QCompass*>(ptr)->~QCompass();
+}
+
+char* QCompass_QCompass_Type()
+{
+	return QString(QCompass::type).toUtf8().data();
 }
 
 int QCompass_Start(void* ptr)
@@ -1611,6 +1636,11 @@ void QDistanceSensor_DestroyQDistanceSensor(void* ptr)
 	static_cast<QDistanceSensor*>(ptr)->~QDistanceSensor();
 }
 
+char* QDistanceSensor_QDistanceSensor_Type()
+{
+	return QString(QDistanceSensor::type).toUtf8().data();
+}
+
 int QDistanceSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -1753,6 +1783,11 @@ void* QGyroscope_NewQGyroscope(void* parent)
 void QGyroscope_DestroyQGyroscope(void* ptr)
 {
 	static_cast<QGyroscope*>(ptr)->~QGyroscope();
+}
+
+char* QGyroscope_QGyroscope_Type()
+{
+	return QString(QGyroscope::type).toUtf8().data();
 }
 
 int QGyroscope_Start(void* ptr)
@@ -2160,6 +2195,11 @@ void QHolsterSensor_DestroyQHolsterSensor(void* ptr)
 	static_cast<QHolsterSensor*>(ptr)->~QHolsterSensor();
 }
 
+char* QHolsterSensor_QHolsterSensor_Type()
+{
+	return QString(QHolsterSensor::type).toUtf8().data();
+}
+
 int QHolsterSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -2431,6 +2471,11 @@ void* QIRProximitySensor_NewQIRProximitySensor(void* parent)
 void QIRProximitySensor_DestroyQIRProximitySensor(void* ptr)
 {
 	static_cast<QIRProximitySensor*>(ptr)->~QIRProximitySensor();
+}
+
+char* QIRProximitySensor_QIRProximitySensor_Type()
+{
+	return QString(QIRProximitySensor::type).toUtf8().data();
 }
 
 int QIRProximitySensor_Start(void* ptr)
@@ -2732,6 +2777,11 @@ void QLightSensor_DestroyQLightSensor(void* ptr)
 	static_cast<QLightSensor*>(ptr)->~QLightSensor();
 }
 
+char* QLightSensor_QLightSensor_Type()
+{
+	return QString(QLightSensor::type).toUtf8().data();
+}
+
 int QLightSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -2900,6 +2950,11 @@ void QMagnetometer_ReturnGeoValuesChanged(void* ptr, int returnGeoValues)
 void QMagnetometer_DestroyQMagnetometer(void* ptr)
 {
 	static_cast<QMagnetometer*>(ptr)->~QMagnetometer();
+}
+
+char* QMagnetometer_QMagnetometer_Type()
+{
+	return QString(QMagnetometer::type).toUtf8().data();
 }
 
 int QMagnetometer_Start(void* ptr)
@@ -3334,6 +3389,11 @@ void QOrientationSensor_DestroyQOrientationSensor(void* ptr)
 	static_cast<QOrientationSensor*>(ptr)->~QOrientationSensor();
 }
 
+char* QOrientationSensor_QOrientationSensor_Type()
+{
+	return QString(QOrientationSensor::type).toUtf8().data();
+}
+
 int QOrientationSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -3598,6 +3658,11 @@ void* QPressureSensor_NewQPressureSensor(void* parent)
 void QPressureSensor_DestroyQPressureSensor(void* ptr)
 {
 	static_cast<QPressureSensor*>(ptr)->~QPressureSensor();
+}
+
+char* QPressureSensor_QPressureSensor_Type()
+{
+	return QString(QPressureSensor::type).toUtf8().data();
 }
 
 int QPressureSensor_Start(void* ptr)
@@ -3871,6 +3936,11 @@ void* QProximitySensor_NewQProximitySensor(void* parent)
 void QProximitySensor_DestroyQProximitySensor(void* ptr)
 {
 	static_cast<QProximitySensor*>(ptr)->~QProximitySensor();
+}
+
+char* QProximitySensor_QProximitySensor_Type()
+{
+	return QString(QProximitySensor::type).toUtf8().data();
 }
 
 int QProximitySensor_Start(void* ptr)
@@ -4180,6 +4250,11 @@ void QRotationSensor_SetHasZ(void* ptr, int hasZ)
 void QRotationSensor_DestroyQRotationSensor(void* ptr)
 {
 	static_cast<QRotationSensor*>(ptr)->~QRotationSensor();
+}
+
+char* QRotationSensor_QRotationSensor_Type()
+{
+	return QString(QRotationSensor::type).toUtf8().data();
 }
 
 int QRotationSensor_Start(void* ptr)
@@ -5074,6 +5149,16 @@ int QSensorFilter_Filter(void* ptr, void* reading)
 void QSensorFilter_DestroyQSensorFilter(void* ptr)
 {
 	static_cast<QSensorFilter*>(ptr)->~QSensorFilter();
+}
+
+void* QSensorFilter_M_sensor(void* ptr)
+{
+	return static_cast<QSensorFilter*>(ptr)->m_sensor;
+}
+
+void QSensorFilter_SetM_sensor(void* ptr, void* vqs)
+{
+	static_cast<QSensorFilter*>(ptr)->m_sensor = static_cast<QSensor*>(vqs);
 }
 
 char* QSensorFilter_ObjectNameAbs(void* ptr)
@@ -5983,6 +6068,11 @@ void QTapSensor_DestroyQTapSensor(void* ptr)
 	static_cast<QTapSensor*>(ptr)->~QTapSensor();
 }
 
+char* QTapSensor_QTapSensor_Type()
+{
+	return QString(QTapSensor::type).toUtf8().data();
+}
+
 int QTapSensor_Start(void* ptr)
 {
 	bool returnArg;
@@ -6252,6 +6342,11 @@ void QTiltSensor_DestroyQTiltSensor(void* ptr)
 void QTiltSensor_Calibrate(void* ptr)
 {
 	static_cast<QTiltSensor*>(ptr)->calibrate();
+}
+
+char* QTiltSensor_QTiltSensor_Type()
+{
+	return QString(QTiltSensor::type).toUtf8().data();
 }
 
 int QTiltSensor_Start(void* ptr)

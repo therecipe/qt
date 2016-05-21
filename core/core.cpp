@@ -75,6 +75,7 @@
 #include <QMargins>
 #include <QMarginsF>
 #include <QMessageAuthenticationCode>
+#include <QMessageLogContext>
 #include <QMessageLogger>
 #include <QMetaClassInfo>
 #include <QMetaEnum>
@@ -4180,6 +4181,16 @@ int QChildEvent_Removed(void* ptr)
 	return static_cast<QChildEvent*>(ptr)->removed();
 }
 
+void* QChildEvent_C(void* ptr)
+{
+	return static_cast<QChildEvent*>(ptr)->c;
+}
+
+void QChildEvent_SetC(void* ptr, void* vqo)
+{
+	static_cast<QChildEvent*>(ptr)->c = static_cast<QObject*>(vqo);
+}
+
 int QCollator_CaseSensitivity(void* ptr)
 {
 	return static_cast<QCollator*>(ptr)->caseSensitivity();
@@ -4766,6 +4777,11 @@ char* QCoreApplication_QCoreApplication_Translate(char* context, char* sourceTex
 void QCoreApplication_DestroyQCoreApplication(void* ptr)
 {
 	static_cast<QCoreApplication*>(ptr)->~QCoreApplication();
+}
+
+int QCoreApplication_QCoreApplication_ApplicationFlags()
+{
+	return QCoreApplication::ApplicationFlags;
 }
 
 void QCoreApplication_TimerEvent(void* ptr, void* event)
@@ -9662,6 +9678,26 @@ char* QJsonParseError_ErrorString(void* ptr)
 	return static_cast<QJsonParseError*>(ptr)->errorString().toUtf8().data();
 }
 
+int QJsonParseError_Error(void* ptr)
+{
+	return static_cast<QJsonParseError*>(ptr)->error;
+}
+
+void QJsonParseError_SetError(void* ptr, int vpa)
+{
+	static_cast<QJsonParseError*>(ptr)->error = static_cast<QJsonParseError::ParseError>(vpa);
+}
+
+int QJsonParseError_Offset(void* ptr)
+{
+	return static_cast<QJsonParseError*>(ptr)->offset;
+}
+
+void QJsonParseError_SetOffset(void* ptr, int vin)
+{
+	static_cast<QJsonParseError*>(ptr)->offset = vin;
+}
+
 void* QJsonValue_NewQJsonValue7(void* s)
 {
 	return new QJsonValue(*static_cast<QLatin1String*>(s));
@@ -10815,6 +10851,41 @@ void QMessageAuthenticationCode_SetKey(void* ptr, char* key)
 void QMessageAuthenticationCode_DestroyQMessageAuthenticationCode(void* ptr)
 {
 	static_cast<QMessageAuthenticationCode*>(ptr)->~QMessageAuthenticationCode();
+}
+
+char* QMessageLogContext_Category(void* ptr)
+{
+	return QString(static_cast<QMessageLogContext*>(ptr)->category).toUtf8().data();
+}
+
+char* QMessageLogContext_File(void* ptr)
+{
+	return QString(static_cast<QMessageLogContext*>(ptr)->file).toUtf8().data();
+}
+
+char* QMessageLogContext_Function(void* ptr)
+{
+	return QString(static_cast<QMessageLogContext*>(ptr)->function).toUtf8().data();
+}
+
+int QMessageLogContext_Line(void* ptr)
+{
+	return static_cast<QMessageLogContext*>(ptr)->line;
+}
+
+void QMessageLogContext_SetLine(void* ptr, int vin)
+{
+	static_cast<QMessageLogContext*>(ptr)->line = vin;
+}
+
+int QMessageLogContext_Version(void* ptr)
+{
+	return static_cast<QMessageLogContext*>(ptr)->version;
+}
+
+void QMessageLogContext_SetVersion(void* ptr, int vin)
+{
+	static_cast<QMessageLogContext*>(ptr)->version = vin;
 }
 
 void* QMessageLogger_NewQMessageLogger()
@@ -18895,6 +18966,11 @@ int QSysInfo_QSysInfo_WindowsVersion()
 	return QSysInfo::windowsVersion();
 }
 
+int QSysInfo_QSysInfo_MacintoshVersion()
+{
+	return QSysInfo::MacintoshVersion;
+}
+
 void* QSystemSemaphore_NewQSystemSemaphore(char* key, int initialValue, int mode)
 {
 	return new QSystemSemaphore(QString(key), initialValue, static_cast<QSystemSemaphore::AccessMode>(mode));
@@ -21014,6 +21090,16 @@ void* QTimerEvent_NewQTimerEvent(int timerId)
 int QTimerEvent_TimerId(void* ptr)
 {
 	return static_cast<QTimerEvent*>(ptr)->timerId();
+}
+
+int QTimerEvent_Id(void* ptr)
+{
+	return static_cast<QTimerEvent*>(ptr)->id;
+}
+
+void QTimerEvent_SetId(void* ptr, int vin)
+{
+	static_cast<QTimerEvent*>(ptr)->id = vin;
 }
 
 class MyQTranslator: public QTranslator

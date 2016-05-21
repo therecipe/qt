@@ -15901,6 +15901,40 @@ func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) 
 	return newQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, "|"))))
 }
 
+func (ptr *QHelpSearchQuery) FieldName() QHelpSearchQuery__FieldName {
+	defer qt.Recovering("QHelpSearchQuery::fieldName")
+
+	if ptr.Pointer() != nil {
+		return QHelpSearchQuery__FieldName(C.QHelpSearchQuery_FieldName(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QHelpSearchQuery) SetFieldName(vfi QHelpSearchQuery__FieldName) {
+	defer qt.Recovering("QHelpSearchQuery::setFieldName")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQuery_SetFieldName(ptr.Pointer(), C.int(vfi))
+	}
+}
+
+func (ptr *QHelpSearchQuery) WordList() []string {
+	defer qt.Recovering("QHelpSearchQuery::wordList")
+
+	if ptr.Pointer() != nil {
+		return strings.Split(C.GoString(C.QHelpSearchQuery_WordList(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QHelpSearchQuery) SetWordList(vqs []string) {
+	defer qt.Recovering("QHelpSearchQuery::setWordList")
+
+	if ptr.Pointer() != nil {
+		C.QHelpSearchQuery_SetWordList(ptr.Pointer(), C.CString(strings.Join(vqs, "|")))
+	}
+}
+
 type QHelpSearchQueryWidget struct {
 	widgets.QWidget
 }

@@ -698,6 +698,26 @@ void QAccessibleEvent_DestroyQAccessibleEvent(void* ptr)
 	static_cast<QAccessibleEvent*>(ptr)->~QAccessibleEvent();
 }
 
+void* QAccessibleEvent_M_object(void* ptr)
+{
+	return static_cast<QAccessibleEvent*>(ptr)->m_object;
+}
+
+void QAccessibleEvent_SetM_object(void* ptr, void* vqo)
+{
+	static_cast<QAccessibleEvent*>(ptr)->m_object = static_cast<QObject*>(vqo);
+}
+
+int QAccessibleEvent_M_type(void* ptr)
+{
+	return static_cast<QAccessibleEvent*>(ptr)->m_type;
+}
+
+void QAccessibleEvent_SetM_type(void* ptr, int vqa)
+{
+	static_cast<QAccessibleEvent*>(ptr)->m_type = static_cast<QAccessible::Event>(vqa);
+}
+
 char* QAccessibleEvent_ObjectNameAbs(void* ptr)
 {
 	if (dynamic_cast<MyQAccessibleEvent*>(static_cast<QAccessibleEvent*>(ptr))) {
@@ -1458,6 +1478,56 @@ void QAccessibleTableModelChangeEvent_SetModelChangeType(void* ptr, int changeTy
 	static_cast<QAccessibleTableModelChangeEvent*>(ptr)->setModelChangeType(static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(changeType));
 }
 
+int QAccessibleTableModelChangeEvent_M_firstColumn(void* ptr)
+{
+	return static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_firstColumn;
+}
+
+void QAccessibleTableModelChangeEvent_SetM_firstColumn(void* ptr, int vin)
+{
+	static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_firstColumn = vin;
+}
+
+int QAccessibleTableModelChangeEvent_M_firstRow(void* ptr)
+{
+	return static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_firstRow;
+}
+
+void QAccessibleTableModelChangeEvent_SetM_firstRow(void* ptr, int vin)
+{
+	static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_firstRow = vin;
+}
+
+int QAccessibleTableModelChangeEvent_M_lastColumn(void* ptr)
+{
+	return static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_lastColumn;
+}
+
+void QAccessibleTableModelChangeEvent_SetM_lastColumn(void* ptr, int vin)
+{
+	static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_lastColumn = vin;
+}
+
+int QAccessibleTableModelChangeEvent_M_lastRow(void* ptr)
+{
+	return static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_lastRow;
+}
+
+void QAccessibleTableModelChangeEvent_SetM_lastRow(void* ptr, int vin)
+{
+	static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_lastRow = vin;
+}
+
+int QAccessibleTableModelChangeEvent_M_modelChangeType(void* ptr)
+{
+	return static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_modelChangeType;
+}
+
+void QAccessibleTableModelChangeEvent_SetM_modelChangeType(void* ptr, int vmo)
+{
+	static_cast<QAccessibleTableModelChangeEvent*>(ptr)->m_modelChangeType = static_cast<QAccessibleTableModelChangeEvent::ModelChangeType>(vmo);
+}
+
 void* QAccessibleTableModelChangeEvent_AccessibleInterface(void* ptr)
 {
 	return static_cast<QAccessibleTableModelChangeEvent*>(ptr)->accessibleInterface();
@@ -1488,6 +1558,16 @@ void QAccessibleTextCursorEvent_SetCursorPosition(void* ptr, int position)
 	static_cast<QAccessibleTextCursorEvent*>(ptr)->setCursorPosition(position);
 }
 
+int QAccessibleTextCursorEvent_M_cursorPosition(void* ptr)
+{
+	return static_cast<QAccessibleTextCursorEvent*>(ptr)->m_cursorPosition;
+}
+
+void QAccessibleTextCursorEvent_SetM_cursorPosition(void* ptr, int vin)
+{
+	static_cast<QAccessibleTextCursorEvent*>(ptr)->m_cursorPosition = vin;
+}
+
 void* QAccessibleTextCursorEvent_AccessibleInterface(void* ptr)
 {
 	return static_cast<QAccessibleTextCursorEvent*>(ptr)->accessibleInterface();
@@ -1516,6 +1596,26 @@ int QAccessibleTextInsertEvent_ChangePosition(void* ptr)
 char* QAccessibleTextInsertEvent_TextInserted(void* ptr)
 {
 	return static_cast<QAccessibleTextInsertEvent*>(ptr)->textInserted().toUtf8().data();
+}
+
+int QAccessibleTextInsertEvent_M_position(void* ptr)
+{
+	return static_cast<QAccessibleTextInsertEvent*>(ptr)->m_position;
+}
+
+void QAccessibleTextInsertEvent_SetM_position(void* ptr, int vin)
+{
+	static_cast<QAccessibleTextInsertEvent*>(ptr)->m_position = vin;
+}
+
+char* QAccessibleTextInsertEvent_M_text(void* ptr)
+{
+	return static_cast<QAccessibleTextInsertEvent*>(ptr)->m_text.toUtf8().data();
+}
+
+void QAccessibleTextInsertEvent_SetM_text(void* ptr, char* vqs)
+{
+	static_cast<QAccessibleTextInsertEvent*>(ptr)->m_text = QString(vqs);
 }
 
 void* QAccessibleTextInsertEvent_AccessibleInterface(void* ptr)
@@ -1687,6 +1787,26 @@ char* QAccessibleTextRemoveEvent_TextRemoved(void* ptr)
 	return static_cast<QAccessibleTextRemoveEvent*>(ptr)->textRemoved().toUtf8().data();
 }
 
+int QAccessibleTextRemoveEvent_M_position(void* ptr)
+{
+	return static_cast<QAccessibleTextRemoveEvent*>(ptr)->m_position;
+}
+
+void QAccessibleTextRemoveEvent_SetM_position(void* ptr, int vin)
+{
+	static_cast<QAccessibleTextRemoveEvent*>(ptr)->m_position = vin;
+}
+
+char* QAccessibleTextRemoveEvent_M_text(void* ptr)
+{
+	return static_cast<QAccessibleTextRemoveEvent*>(ptr)->m_text.toUtf8().data();
+}
+
+void QAccessibleTextRemoveEvent_SetM_text(void* ptr, char* vqs)
+{
+	static_cast<QAccessibleTextRemoveEvent*>(ptr)->m_text = QString(vqs);
+}
+
 void* QAccessibleTextRemoveEvent_AccessibleInterface(void* ptr)
 {
 	return static_cast<QAccessibleTextRemoveEvent*>(ptr)->accessibleInterface();
@@ -1720,6 +1840,26 @@ int QAccessibleTextSelectionEvent_SelectionStart(void* ptr)
 void QAccessibleTextSelectionEvent_SetSelection(void* ptr, int start, int end)
 {
 	static_cast<QAccessibleTextSelectionEvent*>(ptr)->setSelection(start, end);
+}
+
+int QAccessibleTextSelectionEvent_M_selectionEnd(void* ptr)
+{
+	return static_cast<QAccessibleTextSelectionEvent*>(ptr)->m_selectionEnd;
+}
+
+void QAccessibleTextSelectionEvent_SetM_selectionEnd(void* ptr, int vin)
+{
+	static_cast<QAccessibleTextSelectionEvent*>(ptr)->m_selectionEnd = vin;
+}
+
+int QAccessibleTextSelectionEvent_M_selectionStart(void* ptr)
+{
+	return static_cast<QAccessibleTextSelectionEvent*>(ptr)->m_selectionStart;
+}
+
+void QAccessibleTextSelectionEvent_SetM_selectionStart(void* ptr, int vin)
+{
+	static_cast<QAccessibleTextSelectionEvent*>(ptr)->m_selectionStart = vin;
 }
 
 void* QAccessibleTextSelectionEvent_AccessibleInterface(void* ptr)
@@ -1757,6 +1897,36 @@ char* QAccessibleTextUpdateEvent_TextRemoved(void* ptr)
 	return static_cast<QAccessibleTextUpdateEvent*>(ptr)->textRemoved().toUtf8().data();
 }
 
+char* QAccessibleTextUpdateEvent_M_oldText(void* ptr)
+{
+	return static_cast<QAccessibleTextUpdateEvent*>(ptr)->m_oldText.toUtf8().data();
+}
+
+void QAccessibleTextUpdateEvent_SetM_oldText(void* ptr, char* vqs)
+{
+	static_cast<QAccessibleTextUpdateEvent*>(ptr)->m_oldText = QString(vqs);
+}
+
+int QAccessibleTextUpdateEvent_M_position(void* ptr)
+{
+	return static_cast<QAccessibleTextUpdateEvent*>(ptr)->m_position;
+}
+
+void QAccessibleTextUpdateEvent_SetM_position(void* ptr, int vin)
+{
+	static_cast<QAccessibleTextUpdateEvent*>(ptr)->m_position = vin;
+}
+
+char* QAccessibleTextUpdateEvent_M_text(void* ptr)
+{
+	return static_cast<QAccessibleTextUpdateEvent*>(ptr)->m_text.toUtf8().data();
+}
+
+void QAccessibleTextUpdateEvent_SetM_text(void* ptr, char* vqs)
+{
+	static_cast<QAccessibleTextUpdateEvent*>(ptr)->m_text = QString(vqs);
+}
+
 void* QAccessibleTextUpdateEvent_AccessibleInterface(void* ptr)
 {
 	return static_cast<QAccessibleTextUpdateEvent*>(ptr)->accessibleInterface();
@@ -1785,6 +1955,16 @@ void QAccessibleValueChangeEvent_SetValue(void* ptr, void* value)
 void* QAccessibleValueChangeEvent_Value(void* ptr)
 {
 	return new QVariant(static_cast<QAccessibleValueChangeEvent*>(ptr)->value());
+}
+
+void* QAccessibleValueChangeEvent_M_value(void* ptr)
+{
+	return new QVariant(static_cast<QAccessibleValueChangeEvent*>(ptr)->m_value);
+}
+
+void QAccessibleValueChangeEvent_SetM_value(void* ptr, void* vqv)
+{
+	static_cast<QAccessibleValueChangeEvent*>(ptr)->m_value = *static_cast<QVariant*>(vqv);
 }
 
 void* QAccessibleValueChangeEvent_AccessibleInterface(void* ptr)
@@ -2261,6 +2441,11 @@ int QClipboard_SupportsSelection(void* ptr)
 char* QClipboard_Text(void* ptr, int mode)
 {
 	return static_cast<QClipboard*>(ptr)->text(static_cast<QClipboard::Mode>(mode)).toUtf8().data();
+}
+
+char* QClipboard_Text2(void* ptr, char* subtype, int mode)
+{
+	return static_cast<QClipboard*>(ptr)->text(*(new QString(subtype)), static_cast<QClipboard::Mode>(mode)).toUtf8().data();
 }
 
 void QClipboard_TimerEvent(void* ptr, void* event)
@@ -2868,6 +3053,26 @@ int QContextMenuEvent_Y(void* ptr)
 	return static_cast<QContextMenuEvent*>(ptr)->y();
 }
 
+void* QContextMenuEvent_Gp(void* ptr)
+{
+	return new QPoint(static_cast<QPoint>(static_cast<QContextMenuEvent*>(ptr)->gp).x(), static_cast<QPoint>(static_cast<QContextMenuEvent*>(ptr)->gp).y());
+}
+
+void QContextMenuEvent_SetGp(void* ptr, void* vqp)
+{
+	static_cast<QContextMenuEvent*>(ptr)->gp = *static_cast<QPoint*>(vqp);
+}
+
+void* QContextMenuEvent_P(void* ptr)
+{
+	return new QPoint(static_cast<QPoint>(static_cast<QContextMenuEvent*>(ptr)->p).x(), static_cast<QPoint>(static_cast<QContextMenuEvent*>(ptr)->p).y());
+}
+
+void QContextMenuEvent_SetP(void* ptr, void* vqp)
+{
+	static_cast<QContextMenuEvent*>(ptr)->p = *static_cast<QPoint*>(vqp);
+}
+
 void* QCursor_QCursor_Pos()
 {
 	return new QPoint(static_cast<QPoint>(QCursor::pos()).x(), static_cast<QPoint>(QCursor::pos()).y());
@@ -3010,9 +3215,15 @@ void QDoubleValidator_SetNotation(void* ptr, int vno)
 	static_cast<QDoubleValidator*>(ptr)->setNotation(static_cast<QDoubleValidator::Notation>(vno));
 }
 
+int QDoubleValidator_Validate(void* ptr, char* input, int pos)
+{
+	return static_cast<QDoubleValidator*>(ptr)->validate(*(new QString(input)), pos);
+}
 
-
-
+int QDoubleValidator_ValidateDefault(void* ptr, char* input, int pos)
+{
+	return static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::validate(*(new QString(input)), pos);
+}
 
 void* QDoubleValidator_NewQDoubleValidator(void* parent)
 {
@@ -3029,9 +3240,15 @@ void QDoubleValidator_DestroyQDoubleValidator(void* ptr)
 	static_cast<QDoubleValidator*>(ptr)->~QDoubleValidator();
 }
 
+void QDoubleValidator_Fixup(void* ptr, char* input)
+{
+	static_cast<QDoubleValidator*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QDoubleValidator_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::fixup(*(new QString(input)));
+}
 
 void QDoubleValidator_TimerEvent(void* ptr, void* event)
 {
@@ -3385,6 +3602,16 @@ void QDragMoveEvent_DestroyQDragMoveEvent(void* ptr)
 	static_cast<QDragMoveEvent*>(ptr)->~QDragMoveEvent();
 }
 
+void* QDragMoveEvent_Rect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QDragMoveEvent*>(ptr)->rect).x(), static_cast<QRect>(static_cast<QDragMoveEvent*>(ptr)->rect).y(), static_cast<QRect>(static_cast<QDragMoveEvent*>(ptr)->rect).width(), static_cast<QRect>(static_cast<QDragMoveEvent*>(ptr)->rect).height());
+}
+
+void QDragMoveEvent_SetRect(void* ptr, void* vqr)
+{
+	static_cast<QDragMoveEvent*>(ptr)->rect = *static_cast<QRect*>(vqr);
+}
+
 void QDropEvent_SetDropAction(void* ptr, int action)
 {
 	static_cast<QDropEvent*>(ptr)->setDropAction(static_cast<Qt::DropAction>(action));
@@ -3445,6 +3672,71 @@ void* QDropEvent_Source(void* ptr)
 	return static_cast<QDropEvent*>(ptr)->source();
 }
 
+int QDropEvent_Act(void* ptr)
+{
+	return static_cast<QDropEvent*>(ptr)->act;
+}
+
+void QDropEvent_SetAct(void* ptr, int vqt)
+{
+	static_cast<QDropEvent*>(ptr)->act = static_cast<Qt::DropAction>(vqt);
+}
+
+int QDropEvent_Default_action(void* ptr)
+{
+	return static_cast<QDropEvent*>(ptr)->default_action;
+}
+
+void QDropEvent_SetDefault_action(void* ptr, int vqt)
+{
+	static_cast<QDropEvent*>(ptr)->default_action = static_cast<Qt::DropAction>(vqt);
+}
+
+int QDropEvent_Drop_action(void* ptr)
+{
+	return static_cast<QDropEvent*>(ptr)->drop_action;
+}
+
+void QDropEvent_SetDrop_action(void* ptr, int vqt)
+{
+	static_cast<QDropEvent*>(ptr)->drop_action = static_cast<Qt::DropAction>(vqt);
+}
+
+void* QDropEvent_Mdata(void* ptr)
+{
+	return const_cast<QMimeData*>(static_cast<QDropEvent*>(ptr)->mdata);
+}
+
+int QDropEvent_ModState(void* ptr)
+{
+	return static_cast<QDropEvent*>(ptr)->modState;
+}
+
+void QDropEvent_SetModState(void* ptr, int vqt)
+{
+	static_cast<QDropEvent*>(ptr)->modState = static_cast<Qt::KeyboardModifier>(vqt);
+}
+
+int QDropEvent_MouseState(void* ptr)
+{
+	return static_cast<QDropEvent*>(ptr)->mouseState;
+}
+
+void QDropEvent_SetMouseState(void* ptr, int vqt)
+{
+	static_cast<QDropEvent*>(ptr)->mouseState = static_cast<Qt::MouseButton>(vqt);
+}
+
+void* QDropEvent_P(void* ptr)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QDropEvent*>(ptr)->p).x(), static_cast<QPointF>(static_cast<QDropEvent*>(ptr)->p).y());
+}
+
+void QDropEvent_SetP(void* ptr, void* vqp)
+{
+	static_cast<QDropEvent*>(ptr)->p = *static_cast<QPointF*>(vqp);
+}
+
 void* QEnterEvent_NewQEnterEvent(void* localPos, void* windowPos, void* screenPos)
 {
 	return new QEnterEvent(*static_cast<QPointF*>(localPos), *static_cast<QPointF*>(windowPos), *static_cast<QPointF*>(screenPos));
@@ -3503,6 +3795,16 @@ void* QExposeEvent_NewQExposeEvent(void* exposeRegion)
 void* QExposeEvent_Region(void* ptr)
 {
 	return new QRegion(static_cast<QExposeEvent*>(ptr)->region());
+}
+
+void* QExposeEvent_Rgn(void* ptr)
+{
+	return new QRegion(static_cast<QExposeEvent*>(ptr)->rgn);
+}
+
+void QExposeEvent_SetRgn(void* ptr, void* vqr)
+{
+	static_cast<QExposeEvent*>(ptr)->rgn = *static_cast<QRegion*>(vqr);
 }
 
 int QFileOpenEvent_OpenFile(void* ptr, void* file, int flags)
@@ -6695,6 +6997,16 @@ int QInputEvent_Modifiers(void* ptr)
 	return static_cast<QInputEvent*>(ptr)->modifiers();
 }
 
+int QInputEvent_ModState(void* ptr)
+{
+	return static_cast<QInputEvent*>(ptr)->modState;
+}
+
+void QInputEvent_SetModState(void* ptr, int vqt)
+{
+	static_cast<QInputEvent*>(ptr)->modState = static_cast<Qt::KeyboardModifier>(vqt);
+}
+
 class MyQInputMethod: public QInputMethod
 {
 public:
@@ -7075,9 +7387,15 @@ void QIntValidator_SetTop(void* ptr, int vin)
 	static_cast<QIntValidator*>(ptr)->setTop(vin);
 }
 
+int QIntValidator_Validate(void* ptr, char* input, int pos)
+{
+	return static_cast<QIntValidator*>(ptr)->validate(*(new QString(input)), pos);
+}
 
-
-
+int QIntValidator_ValidateDefault(void* ptr, char* input, int pos)
+{
+	return static_cast<QIntValidator*>(ptr)->QIntValidator::validate(*(new QString(input)), pos);
+}
 
 void* QIntValidator_NewQIntValidator(void* parent)
 {
@@ -7094,9 +7412,15 @@ int QIntValidator_Bottom(void* ptr)
 	return static_cast<QIntValidator*>(ptr)->bottom();
 }
 
+void QIntValidator_Fixup(void* ptr, char* input)
+{
+	static_cast<QIntValidator*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QIntValidator_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QIntValidator*>(ptr)->QIntValidator::fixup(*(new QString(input)));
+}
 
 void QIntValidator_SetRange(void* ptr, int bottom, int top)
 {
@@ -7236,6 +7560,26 @@ int QKeyEvent_Modifiers(void* ptr)
 char* QKeyEvent_Text(void* ptr)
 {
 	return static_cast<QKeyEvent*>(ptr)->text().toUtf8().data();
+}
+
+int QKeyEvent_K(void* ptr)
+{
+	return static_cast<QKeyEvent*>(ptr)->k;
+}
+
+void QKeyEvent_SetK(void* ptr, int vin)
+{
+	static_cast<QKeyEvent*>(ptr)->k = vin;
+}
+
+char* QKeyEvent_Txt(void* ptr)
+{
+	return static_cast<QKeyEvent*>(ptr)->txt.toUtf8().data();
+}
+
+void QKeyEvent_SetTxt(void* ptr, char* vqs)
+{
+	static_cast<QKeyEvent*>(ptr)->txt = QString(vqs);
 }
 
 void* QKeySequence_NewQKeySequence()
@@ -7526,6 +7870,41 @@ int QMouseEvent_X(void* ptr)
 int QMouseEvent_Y(void* ptr)
 {
 	return static_cast<QMouseEvent*>(ptr)->y();
+}
+
+int QMouseEvent_B(void* ptr)
+{
+	return static_cast<QMouseEvent*>(ptr)->b;
+}
+
+void QMouseEvent_SetB(void* ptr, int vqt)
+{
+	static_cast<QMouseEvent*>(ptr)->b = static_cast<Qt::MouseButton>(vqt);
+}
+
+int QMouseEvent_Caps(void* ptr)
+{
+	return static_cast<QMouseEvent*>(ptr)->caps;
+}
+
+void QMouseEvent_SetCaps(void* ptr, int vin)
+{
+	static_cast<QMouseEvent*>(ptr)->caps = vin;
+}
+
+int QMouseEvent_MouseState(void* ptr)
+{
+	return static_cast<QMouseEvent*>(ptr)->mouseState;
+}
+
+void QMouseEvent_SetMouseState(void* ptr, int vqt)
+{
+	static_cast<QMouseEvent*>(ptr)->mouseState = static_cast<Qt::MouseButton>(vqt);
+}
+
+void QMouseEvent_SetVelocity(void* ptr, void* vqv)
+{
+	static_cast<QMouseEvent*>(ptr)->velocity = *static_cast<QVector2D*>(vqv);
 }
 
 void* QMoveEvent_NewQMoveEvent(void* pos, void* oldPos)
@@ -7962,6 +8341,56 @@ double QNativeGestureEvent_Value(void* ptr)
 void* QNativeGestureEvent_WindowPos(void* ptr)
 {
 	return new QPointF(static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->windowPos()).x(), static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->windowPos()).y());
+}
+
+int QNativeGestureEvent_MGestureType(void* ptr)
+{
+	return static_cast<QNativeGestureEvent*>(ptr)->mGestureType;
+}
+
+void QNativeGestureEvent_SetMGestureType(void* ptr, int vqt)
+{
+	static_cast<QNativeGestureEvent*>(ptr)->mGestureType = static_cast<Qt::NativeGestureType>(vqt);
+}
+
+void* QNativeGestureEvent_MLocalPos(void* ptr)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->mLocalPos).x(), static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->mLocalPos).y());
+}
+
+void QNativeGestureEvent_SetMLocalPos(void* ptr, void* vqp)
+{
+	static_cast<QNativeGestureEvent*>(ptr)->mLocalPos = *static_cast<QPointF*>(vqp);
+}
+
+double QNativeGestureEvent_MRealValue(void* ptr)
+{
+	return static_cast<double>(static_cast<QNativeGestureEvent*>(ptr)->mRealValue);
+}
+
+void QNativeGestureEvent_SetMRealValue(void* ptr, double vqr)
+{
+	static_cast<QNativeGestureEvent*>(ptr)->mRealValue = static_cast<double>(vqr);
+}
+
+void* QNativeGestureEvent_MScreenPos(void* ptr)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->mScreenPos).x(), static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->mScreenPos).y());
+}
+
+void QNativeGestureEvent_SetMScreenPos(void* ptr, void* vqp)
+{
+	static_cast<QNativeGestureEvent*>(ptr)->mScreenPos = *static_cast<QPointF*>(vqp);
+}
+
+void* QNativeGestureEvent_MWindowPos(void* ptr)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->mWindowPos).x(), static_cast<QPointF>(static_cast<QNativeGestureEvent*>(ptr)->mWindowPos).y());
+}
+
+void QNativeGestureEvent_SetMWindowPos(void* ptr, void* vqp)
+{
+	static_cast<QNativeGestureEvent*>(ptr)->mWindowPos = *static_cast<QPointF*>(vqp);
 }
 
 class MyQOffscreenSurface: public QOffscreenSurface
@@ -9568,6 +9997,26 @@ void QPaintEngine_DestroyQPaintEngine(void* ptr)
 	static_cast<QPaintEngine*>(ptr)->~QPaintEngine();
 }
 
+int QPaintEngine_Gccaps(void* ptr)
+{
+	return static_cast<QPaintEngine*>(ptr)->gccaps;
+}
+
+void QPaintEngine_SetGccaps(void* ptr, int vpa)
+{
+	static_cast<QPaintEngine*>(ptr)->gccaps = static_cast<QPaintEngine::PaintEngineFeature>(vpa);
+}
+
+void* QPaintEngine_State(void* ptr)
+{
+	return static_cast<QPaintEngine*>(ptr)->state;
+}
+
+void QPaintEngine_SetState(void* ptr, void* vqp)
+{
+	static_cast<QPaintEngine*>(ptr)->state = static_cast<QPaintEngineState*>(vqp);
+}
+
 char* QPaintEngine_ObjectNameAbs(void* ptr)
 {
 	if (dynamic_cast<MyQPaintEngine*>(static_cast<QPaintEngine*>(ptr))) {
@@ -9668,6 +10117,16 @@ int QPaintEngineState_State(void* ptr)
 	return static_cast<QPaintEngineState*>(ptr)->state();
 }
 
+int QPaintEngineState_DirtyFlags(void* ptr)
+{
+	return static_cast<QPaintEngineState*>(ptr)->dirtyFlags;
+}
+
+void QPaintEngineState_SetDirtyFlags(void* ptr, int vqp)
+{
+	static_cast<QPaintEngineState*>(ptr)->dirtyFlags = static_cast<QPaintEngine::DirtyFlag>(vqp);
+}
+
 void* QPaintEvent_NewQPaintEvent2(void* paintRect)
 {
 	return new QPaintEvent(*static_cast<QRect*>(paintRect));
@@ -9686,6 +10145,36 @@ void* QPaintEvent_Rect(void* ptr)
 void* QPaintEvent_Region(void* ptr)
 {
 	return new QRegion(static_cast<QPaintEvent*>(ptr)->region());
+}
+
+int QPaintEvent_M_erased(void* ptr)
+{
+	return static_cast<QPaintEvent*>(ptr)->m_erased;
+}
+
+void QPaintEvent_SetM_erased(void* ptr, int vbo)
+{
+	static_cast<QPaintEvent*>(ptr)->m_erased = vbo != 0;
+}
+
+void* QPaintEvent_M_rect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QPaintEvent*>(ptr)->m_rect).x(), static_cast<QRect>(static_cast<QPaintEvent*>(ptr)->m_rect).y(), static_cast<QRect>(static_cast<QPaintEvent*>(ptr)->m_rect).width(), static_cast<QRect>(static_cast<QPaintEvent*>(ptr)->m_rect).height());
+}
+
+void QPaintEvent_SetM_rect(void* ptr, void* vqr)
+{
+	static_cast<QPaintEvent*>(ptr)->m_rect = *static_cast<QRect*>(vqr);
+}
+
+void* QPaintEvent_M_region(void* ptr)
+{
+	return new QRegion(static_cast<QPaintEvent*>(ptr)->m_region);
+}
+
+void QPaintEvent_SetM_region(void* ptr, void* vqr)
+{
+	static_cast<QPaintEvent*>(ptr)->m_region = *static_cast<QRegion*>(vqr);
 }
 
 void* QPainter_NewQPainter2(void* device)
@@ -11986,6 +12475,16 @@ int QPlatformSurfaceEvent_SurfaceEventType(void* ptr)
 	return static_cast<QPlatformSurfaceEvent*>(ptr)->surfaceEventType();
 }
 
+int QPlatformSurfaceEvent_M_surfaceEventType(void* ptr)
+{
+	return static_cast<QPlatformSurfaceEvent*>(ptr)->m_surfaceEventType;
+}
+
+void QPlatformSurfaceEvent_SetM_surfaceEventType(void* ptr, int vsu)
+{
+	static_cast<QPlatformSurfaceEvent*>(ptr)->m_surfaceEventType = static_cast<QPlatformSurfaceEvent::SurfaceEventType>(vsu);
+}
+
 void* QPolygon_NewQPolygon5(void* rectangle, int closed)
 {
 	return new QPolygon(*static_cast<QRect*>(rectangle), closed != 0);
@@ -13066,18 +13565,30 @@ void* QRegExpValidator_RegExp(void* ptr)
 	return new QRegExp(static_cast<QRegExpValidator*>(ptr)->regExp());
 }
 
+int QRegExpValidator_Validate(void* ptr, char* input, int pos)
+{
+	return static_cast<QRegExpValidator*>(ptr)->validate(*(new QString(input)), pos);
+}
 
-
-
+int QRegExpValidator_ValidateDefault(void* ptr, char* input, int pos)
+{
+	return static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::validate(*(new QString(input)), pos);
+}
 
 void QRegExpValidator_DestroyQRegExpValidator(void* ptr)
 {
 	static_cast<QRegExpValidator*>(ptr)->~QRegExpValidator();
 }
 
+void QRegExpValidator_Fixup(void* ptr, char* input)
+{
+	static_cast<QRegExpValidator*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QRegExpValidator_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::fixup(*(new QString(input)));
+}
 
 void QRegExpValidator_TimerEvent(void* ptr, void* event)
 {
@@ -13354,18 +13865,30 @@ void QRegularExpressionValidator_RegularExpressionChanged(void* ptr, void* re)
 	static_cast<QRegularExpressionValidator*>(ptr)->regularExpressionChanged(*static_cast<QRegularExpression*>(re));
 }
 
+int QRegularExpressionValidator_Validate(void* ptr, char* input, int pos)
+{
+	return static_cast<QRegularExpressionValidator*>(ptr)->validate(*(new QString(input)), pos);
+}
 
-
-
+int QRegularExpressionValidator_ValidateDefault(void* ptr, char* input, int pos)
+{
+	return static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::validate(*(new QString(input)), pos);
+}
 
 void QRegularExpressionValidator_DestroyQRegularExpressionValidator(void* ptr)
 {
 	static_cast<QRegularExpressionValidator*>(ptr)->~QRegularExpressionValidator();
 }
 
+void QRegularExpressionValidator_Fixup(void* ptr, char* input)
+{
+	static_cast<QRegularExpressionValidator*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QRegularExpressionValidator_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::fixup(*(new QString(input)));
+}
 
 void QRegularExpressionValidator_TimerEvent(void* ptr, void* event)
 {
@@ -14143,6 +14666,36 @@ int QShortcutEvent_ShortcutId(void* ptr)
 void QShortcutEvent_DestroyQShortcutEvent(void* ptr)
 {
 	static_cast<QShortcutEvent*>(ptr)->~QShortcutEvent();
+}
+
+int QShortcutEvent_Ambig(void* ptr)
+{
+	return static_cast<QShortcutEvent*>(ptr)->ambig;
+}
+
+void QShortcutEvent_SetAmbig(void* ptr, int vbo)
+{
+	static_cast<QShortcutEvent*>(ptr)->ambig = vbo != 0;
+}
+
+void* QShortcutEvent_Sequence(void* ptr)
+{
+	return new QKeySequence(static_cast<QShortcutEvent*>(ptr)->sequence);
+}
+
+void QShortcutEvent_SetSequence(void* ptr, void* vqk)
+{
+	static_cast<QShortcutEvent*>(ptr)->sequence = *static_cast<QKeySequence*>(vqk);
+}
+
+int QShortcutEvent_Sid(void* ptr)
+{
+	return static_cast<QShortcutEvent*>(ptr)->sid;
+}
+
+void QShortcutEvent_SetSid(void* ptr, int vin)
+{
+	static_cast<QShortcutEvent*>(ptr)->sid = vin;
 }
 
 void* QShowEvent_NewQShowEvent()
@@ -15477,6 +16030,16 @@ void QSurface_DestroyQSurface(void* ptr)
 	static_cast<QSurface*>(ptr)->~QSurface();
 }
 
+int QSurface_M_type(void* ptr)
+{
+	return static_cast<QSurface*>(ptr)->m_type;
+}
+
+void QSurface_SetM_type(void* ptr, int vsu)
+{
+	static_cast<QSurface*>(ptr)->m_type = static_cast<QSurface::SurfaceClass>(vsu);
+}
+
 char* QSurface_ObjectNameAbs(void* ptr)
 {
 	if (dynamic_cast<MyQSurface*>(static_cast<QSurface*>(ptr))) {
@@ -15994,6 +16557,26 @@ int QTabletEvent_YTilt(void* ptr)
 int QTabletEvent_Z(void* ptr)
 {
 	return static_cast<QTabletEvent*>(ptr)->z();
+}
+
+void* QTabletEvent_MExtra(void* ptr)
+{
+	return static_cast<QTabletEvent*>(ptr)->mExtra;
+}
+
+void QTabletEvent_SetMExtra(void* ptr, void* vvo)
+{
+	static_cast<QTabletEvent*>(ptr)->mExtra = vvo;
+}
+
+long long QTabletEvent_MUnique(void* ptr)
+{
+	return static_cast<long long>(static_cast<QTabletEvent*>(ptr)->mUnique);
+}
+
+void QTabletEvent_SetMUnique(void* ptr, long long vqi)
+{
+	static_cast<QTabletEvent*>(ptr)->mUnique = static_cast<long long>(vqi);
 }
 
 int QTextBlock_IsValid(void* ptr)
@@ -19721,6 +20304,46 @@ void QTouchEvent_DestroyQTouchEvent(void* ptr)
 	static_cast<QTouchEvent*>(ptr)->~QTouchEvent();
 }
 
+void* QTouchEvent__device(void* ptr)
+{
+	return static_cast<QTouchEvent*>(ptr)->_device;
+}
+
+void QTouchEvent_Set_device(void* ptr, void* vqt)
+{
+	static_cast<QTouchEvent*>(ptr)->_device = static_cast<QTouchDevice*>(vqt);
+}
+
+void* QTouchEvent__target(void* ptr)
+{
+	return static_cast<QTouchEvent*>(ptr)->_target;
+}
+
+void QTouchEvent_Set_target(void* ptr, void* vqo)
+{
+	static_cast<QTouchEvent*>(ptr)->_target = static_cast<QObject*>(vqo);
+}
+
+int QTouchEvent__touchPointStates(void* ptr)
+{
+	return static_cast<QTouchEvent*>(ptr)->_touchPointStates;
+}
+
+void QTouchEvent_Set_touchPointStates(void* ptr, int vqt)
+{
+	static_cast<QTouchEvent*>(ptr)->_touchPointStates = static_cast<Qt::TouchPointState>(vqt);
+}
+
+void* QTouchEvent__window(void* ptr)
+{
+	return static_cast<QTouchEvent*>(ptr)->_window;
+}
+
+void QTouchEvent_Set_window(void* ptr, void* vqw)
+{
+	static_cast<QTouchEvent*>(ptr)->_window = static_cast<QWindow*>(vqw);
+}
+
 void* QTransform_NewQTransform3(double m11, double m12, double m13, double m21, double m22, double m23, double m31, double m32, double m33)
 {
 	return new QTransform(static_cast<double>(m11), static_cast<double>(m12), static_cast<double>(m13), static_cast<double>(m21), static_cast<double>(m22), static_cast<double>(m23), static_cast<double>(m31), static_cast<double>(m32), static_cast<double>(m33));
@@ -19919,6 +20542,7 @@ int QTransform_Type(void* ptr)
 class MyQValidator: public QValidator
 {
 public:
+	MyQValidator(QObject *parent) : QValidator(parent) {};
 	void fixup(QString & input) const { callbackQValidator_Fixup(const_cast<MyQValidator*>(this), this->objectName().toUtf8().data(), input.toUtf8().data()); };
 	void Signal_Changed() { callbackQValidator_Changed(this, this->objectName().toUtf8().data()); };
 	State validate(QString & input, int & pos) const { return static_cast<QValidator::State>(callbackQValidator_Validate(const_cast<MyQValidator*>(this), this->objectName().toUtf8().data(), input.toUtf8().data(), pos)); };
@@ -19933,9 +20557,20 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQValidator_MetaObject(const_cast<MyQValidator*>(this), this->objectName().toUtf8().data())); };
 };
 
+void QValidator_Fixup(void* ptr, char* input)
+{
+	static_cast<QValidator*>(ptr)->fixup(*(new QString(input)));
+}
 
+void QValidator_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QValidator*>(ptr)->QValidator::fixup(*(new QString(input)));
+}
 
-
+void* QValidator_NewQValidator(void* parent)
+{
+	return new MyQValidator(static_cast<QObject*>(parent));
+}
 
 void QValidator_ConnectChanged(void* ptr)
 {
@@ -19962,7 +20597,10 @@ void QValidator_SetLocale(void* ptr, void* locale)
 	static_cast<QValidator*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
 }
 
-
+int QValidator_Validate(void* ptr, char* input, int pos)
+{
+	return static_cast<QValidator*>(ptr)->validate(*(new QString(input)), pos);
+}
 
 void QValidator_DestroyQValidator(void* ptr)
 {
@@ -20282,6 +20920,81 @@ int QWheelEvent_X(void* ptr)
 int QWheelEvent_Y(void* ptr)
 {
 	return static_cast<QWheelEvent*>(ptr)->y();
+}
+
+int QWheelEvent_QWheelEvent_DefaultDeltasPerStep()
+{
+	return QWheelEvent::DefaultDeltasPerStep;
+}
+
+void* QWheelEvent_AngleD(void* ptr)
+{
+	return new QPoint(static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->angleD).x(), static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->angleD).y());
+}
+
+void QWheelEvent_SetAngleD(void* ptr, void* vqp)
+{
+	static_cast<QWheelEvent*>(ptr)->angleD = *static_cast<QPoint*>(vqp);
+}
+
+void* QWheelEvent_G(void* ptr)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->g).x(), static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->g).y());
+}
+
+void QWheelEvent_SetG(void* ptr, void* vqp)
+{
+	static_cast<QWheelEvent*>(ptr)->g = *static_cast<QPointF*>(vqp);
+}
+
+int QWheelEvent_MouseState(void* ptr)
+{
+	return static_cast<QWheelEvent*>(ptr)->mouseState;
+}
+
+void QWheelEvent_SetMouseState(void* ptr, int vqt)
+{
+	static_cast<QWheelEvent*>(ptr)->mouseState = static_cast<Qt::MouseButton>(vqt);
+}
+
+void* QWheelEvent_P(void* ptr)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->p).x(), static_cast<QPointF>(static_cast<QWheelEvent*>(ptr)->p).y());
+}
+
+void QWheelEvent_SetP(void* ptr, void* vqp)
+{
+	static_cast<QWheelEvent*>(ptr)->p = *static_cast<QPointF*>(vqp);
+}
+
+void* QWheelEvent_PixelD(void* ptr)
+{
+	return new QPoint(static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->pixelD).x(), static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->pixelD).y());
+}
+
+void QWheelEvent_SetPixelD(void* ptr, void* vqp)
+{
+	static_cast<QWheelEvent*>(ptr)->pixelD = *static_cast<QPoint*>(vqp);
+}
+
+int QWheelEvent_Qt4D(void* ptr)
+{
+	return static_cast<QWheelEvent*>(ptr)->qt4D;
+}
+
+void QWheelEvent_SetQt4D(void* ptr, int vin)
+{
+	static_cast<QWheelEvent*>(ptr)->qt4D = vin;
+}
+
+int QWheelEvent_Qt4O(void* ptr)
+{
+	return static_cast<QWheelEvent*>(ptr)->qt4O;
+}
+
+void QWheelEvent_SetQt4O(void* ptr, int vqt)
+{
+	static_cast<QWheelEvent*>(ptr)->qt4O = static_cast<Qt::Orientation>(vqt);
 }
 
 class MyQWindow: public QWindow

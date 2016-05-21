@@ -29,8 +29,7 @@ func goInput(name, value string, f *parser.Function) string {
 				if strings.Contains(vOld, "const") {
 					return fmt.Sprintf("C.CString(%v)", name)
 				}
-				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
-				return f.Access
+				return fmt.Sprintf("C.CString(%v)", name)
 			}
 
 			if strings.Contains(vOld, "**") {
@@ -167,8 +166,7 @@ func cppInput(name, value string, f *parser.Function) string {
 				if strings.Contains(vOld, "const") {
 					return fmt.Sprintf("%v(%v)", value, name)
 				}
-				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
-				return f.Access
+				return fmt.Sprintf("*(new %v(%v))", value, name)
 			}
 
 			if strings.Contains(vOld, "*") {

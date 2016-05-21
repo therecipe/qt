@@ -13,7 +13,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 	switch {
 	case
 		(f.Class() == "QAccessibleObject" || f.Class() == "QAccessibleInterface" || f.Class() == "QAccessibleWidget" || //QAccessible::State -> quint64
-			f.Class() == "QAccessibleStateChangeEvent") && (f.Name == "state" || f.Name == "changedStates" || f.Meta == parser.CONSTRUCTOR),
+			f.Class() == "QAccessibleStateChangeEvent") && (f.Name == "state" || f.Name == "changedStates" || f.Name == "m_changedStates" || f.Name == "setM_changedStates" || f.Meta == parser.CONSTRUCTOR),
 
 		f.Fullname == "QPixmapCache::find" && f.OverloadNumber == "4", //Qt::Key -> int
 		(f.Fullname == "QPixmapCache::remove" || f.Fullname == "QPixmapCache::insert") && f.OverloadNumber == "2",
@@ -51,7 +51,9 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 		strings.Contains(f.Access, "unsupported"), strings.ContainsAny(f.Signature, "<>"):
 
 		{
-			f.Access = "unsupported_isBlockedFunction"
+			if !strings.Contains(f.Access, "unsupported") {
+				f.Access = "unsupported_isBlockedFunction"
+			}
 			return false
 		}
 	}
@@ -111,7 +113,7 @@ func classIsSupported(c *parser.Class) bool {
 		"QWeakPointer", "QWinEventNotifier",
 
 		"QFlags", "QException", "QStandardItemEditorCreator", "QSGSimpleMaterialShader", "QGeoCodeReply", "QFutureWatcher", //other
-		"QItemEditorCreator", "QGeoCodingManager", "QGeoCodingManagerEngine",
+		"QItemEditorCreator", "QGeoCodingManager", "QGeoCodingManagerEngine", "QQmlListProperty",
 
 		"QPlatformGraphicsBuffer", "QPlatformSystemTrayIcon", "QRasterPaintEngine", "QSupportedWritingSystems", "QGeoLocation", //file not found or QPA API
 		"QAbstractOpenGLFunctions",

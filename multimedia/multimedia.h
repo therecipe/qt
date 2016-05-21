@@ -26,6 +26,8 @@ void QAbstractVideoBuffer_Release(void* ptr);
 void QAbstractVideoBuffer_ReleaseDefault(void* ptr);
 void QAbstractVideoBuffer_Unmap(void* ptr);
 void QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(void* ptr);
+int QAbstractVideoBuffer_M_type(void* ptr);
+void QAbstractVideoBuffer_SetM_type(void* ptr, int vha);
 char* QAbstractVideoBuffer_ObjectNameAbs(void* ptr);
 void QAbstractVideoBuffer_SetObjectNameAbs(void* ptr, char* name);
 int QAbstractVideoFilter_IsActive(void* ptr);

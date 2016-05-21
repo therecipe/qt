@@ -15610,6 +15610,23 @@ func (ptr *QChildEvent) Removed() bool {
 	return false
 }
 
+func (ptr *QChildEvent) C() *QObject {
+	defer qt.Recovering("QChildEvent::c")
+
+	if ptr.Pointer() != nil {
+		return NewQObjectFromPointer(C.QChildEvent_C(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QChildEvent) SetC(vqo QObject_ITF) {
+	defer qt.Recovering("QChildEvent::setC")
+
+	if ptr.Pointer() != nil {
+		C.QChildEvent_SetC(ptr.Pointer(), PointerFromQObject(vqo))
+	}
+}
+
 type QCollator struct {
 	ptr unsafe.Pointer
 }
@@ -17031,6 +17048,18 @@ func (ptr *QCoreApplication) DestroyQCoreApplication() {
 		C.QCoreApplication_DestroyQCoreApplication(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func QCoreApplication_ApplicationFlags() int {
+	defer qt.Recovering("QCoreApplication::ApplicationFlags")
+
+	return int(C.QCoreApplication_QCoreApplication_ApplicationFlags())
+}
+
+func (ptr *QCoreApplication) ApplicationFlags() int {
+	defer qt.Recovering("QCoreApplication::ApplicationFlags")
+
+	return int(C.QCoreApplication_QCoreApplication_ApplicationFlags())
 }
 
 //export callbackQCoreApplication_TimerEvent
@@ -33846,6 +33875,40 @@ func (ptr *QJsonParseError) ErrorString() string {
 	return ""
 }
 
+func (ptr *QJsonParseError) Error() QJsonParseError__ParseError {
+	defer qt.Recovering("QJsonParseError::error")
+
+	if ptr.Pointer() != nil {
+		return QJsonParseError__ParseError(C.QJsonParseError_Error(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QJsonParseError) SetError(vpa QJsonParseError__ParseError) {
+	defer qt.Recovering("QJsonParseError::setError")
+
+	if ptr.Pointer() != nil {
+		C.QJsonParseError_SetError(ptr.Pointer(), C.int(vpa))
+	}
+}
+
+func (ptr *QJsonParseError) Offset() int {
+	defer qt.Recovering("QJsonParseError::offset")
+
+	if ptr.Pointer() != nil {
+		return int(C.QJsonParseError_Offset(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QJsonParseError) SetOffset(vin int) {
+	defer qt.Recovering("QJsonParseError::setOffset")
+
+	if ptr.Pointer() != nil {
+		C.QJsonParseError_SetOffset(ptr.Pointer(), C.int(vin))
+	}
+}
+
 //QJsonValue::Type
 type QJsonValue__Type int64
 
@@ -37813,6 +37876,67 @@ func NewQMessageLogContextFromPointer(ptr unsafe.Pointer) *QMessageLogContext {
 func newQMessageLogContextFromPointer(ptr unsafe.Pointer) *QMessageLogContext {
 	var n = NewQMessageLogContextFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMessageLogContext) Category() string {
+	defer qt.Recovering("QMessageLogContext::category")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMessageLogContext_Category(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMessageLogContext) File() string {
+	defer qt.Recovering("QMessageLogContext::file")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMessageLogContext_File(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMessageLogContext) Function() string {
+	defer qt.Recovering("QMessageLogContext::function")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QMessageLogContext_Function(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QMessageLogContext) Line() int {
+	defer qt.Recovering("QMessageLogContext::line")
+
+	if ptr.Pointer() != nil {
+		return int(C.QMessageLogContext_Line(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMessageLogContext) SetLine(vin int) {
+	defer qt.Recovering("QMessageLogContext::setLine")
+
+	if ptr.Pointer() != nil {
+		C.QMessageLogContext_SetLine(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QMessageLogContext) Version() int {
+	defer qt.Recovering("QMessageLogContext::version")
+
+	if ptr.Pointer() != nil {
+		return int(C.QMessageLogContext_Version(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMessageLogContext) SetVersion(vin int) {
+	defer qt.Recovering("QMessageLogContext::setVersion")
+
+	if ptr.Pointer() != nil {
+		C.QMessageLogContext_SetVersion(ptr.Pointer(), C.int(vin))
+	}
 }
 
 type QMessageLogger struct {
@@ -63979,6 +64103,18 @@ func (ptr *QSysInfo) WindowsVersion() QSysInfo__WinVersion {
 	return QSysInfo__WinVersion(C.QSysInfo_QSysInfo_WindowsVersion())
 }
 
+func QSysInfo_MacintoshVersion() QSysInfo__MacVersion {
+	defer qt.Recovering("QSysInfo::MacintoshVersion")
+
+	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacintoshVersion())
+}
+
+func (ptr *QSysInfo) MacintoshVersion() QSysInfo__MacVersion {
+	defer qt.Recovering("QSysInfo::MacintoshVersion")
+
+	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacintoshVersion())
+}
+
 //QSystemSemaphore::AccessMode
 type QSystemSemaphore__AccessMode int64
 
@@ -70677,6 +70813,23 @@ func (ptr *QTimerEvent) TimerId() int {
 		return int(C.QTimerEvent_TimerId(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QTimerEvent) Id() int {
+	defer qt.Recovering("QTimerEvent::id")
+
+	if ptr.Pointer() != nil {
+		return int(C.QTimerEvent_Id(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTimerEvent) SetId(vin int) {
+	defer qt.Recovering("QTimerEvent::setId")
+
+	if ptr.Pointer() != nil {
+		C.QTimerEvent_SetId(ptr.Pointer(), C.int(vin))
+	}
 }
 
 type QTranslator struct {

@@ -3406,6 +3406,12 @@ func NewQDBusObjectPath3(path core.QLatin1String_ITF) *QDBusObjectPath {
 	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath3(core.PointerFromQLatin1String(path)))
 }
 
+func NewQDBusObjectPath5(p string) *QDBusObjectPath {
+	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
+
+	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath5(C.CString(p)))
+}
+
 func NewQDBusObjectPath4(path string) *QDBusObjectPath {
 	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
 
@@ -5440,6 +5446,12 @@ func NewQDBusSignature3(signature core.QLatin1String_ITF) *QDBusSignature {
 	defer qt.Recovering("QDBusSignature::QDBusSignature")
 
 	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
+}
+
+func NewQDBusSignature5(sig string) *QDBusSignature {
+	defer qt.Recovering("QDBusSignature::QDBusSignature")
+
+	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature5(C.CString(sig)))
 }
 
 func NewQDBusSignature4(signature string) *QDBusSignature {

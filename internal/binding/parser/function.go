@@ -23,6 +23,7 @@ type Function struct {
 	SignalMode     string
 	TemplateMode   string
 	Default        bool
+	TmpName        string
 }
 
 type Parameter struct {

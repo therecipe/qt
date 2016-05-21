@@ -255,6 +255,11 @@ void QSqlDatabase_DestroyQSqlDatabase(void* ptr)
 	static_cast<QSqlDatabase*>(ptr)->~QSqlDatabase();
 }
 
+char* QSqlDatabase_QSqlDatabase_DefaultConnection()
+{
+	return QString(QSqlDatabase::defaultConnection).toUtf8().data();
+}
+
 class MyQSqlDriver: public QSqlDriver
 {
 public:

@@ -1070,6 +1070,11 @@ void* QDBusObjectPath_NewQDBusObjectPath3(void* path)
 	return new QDBusObjectPath(*static_cast<QLatin1String*>(path));
 }
 
+void* QDBusObjectPath_NewQDBusObjectPath5(char* p)
+{
+	return new QDBusObjectPath(*(new QString(p)));
+}
+
 void* QDBusObjectPath_NewQDBusObjectPath4(char* path)
 {
 	return new QDBusObjectPath(QString(path));
@@ -1640,6 +1645,11 @@ void* QDBusSignature_NewQDBusSignature()
 void* QDBusSignature_NewQDBusSignature3(void* signature)
 {
 	return new QDBusSignature(*static_cast<QLatin1String*>(signature));
+}
+
+void* QDBusSignature_NewQDBusSignature5(char* sig)
+{
+	return new QDBusSignature(*(new QString(sig)));
 }
 
 void* QDBusSignature_NewQDBusSignature4(char* signature)

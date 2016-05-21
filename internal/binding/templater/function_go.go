@@ -99,7 +99,8 @@ func goFunctionBody(function *parser.Function) string {
 	if ((function.Meta == parser.PLAIN && function.SignalMode == "") ||
 		(function.Meta == parser.SLOT && function.SignalMode == "") ||
 		function.Meta == parser.CONSTRUCTOR || function.Meta == parser.DESTRUCTOR) ||
-		(function.Meta == parser.SIGNAL && (function.SignalMode == "" || function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT)) {
+		(function.Meta == parser.SIGNAL && (function.SignalMode == "" || function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT)) ||
+		(function.Meta == parser.GETTER || function.Meta == parser.SETTER) {
 
 		//TODO:
 		if functionIsSupported(parser.ClassMap[function.Class()], function) {

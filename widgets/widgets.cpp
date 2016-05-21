@@ -5305,9 +5305,15 @@ int QAbstractSpinBox_Event(void* ptr, void* event)
 	return static_cast<QAbstractSpinBox*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
+void QAbstractSpinBox_Fixup(void* ptr, char* input)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QAbstractSpinBox_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::fixup(*(new QString(input)));
+}
 
 void QAbstractSpinBox_FocusInEvent(void* ptr, void* event)
 {
@@ -5504,9 +5510,15 @@ void QAbstractSpinBox_TimerEvent(void* ptr, void* event)
 	static_cast<QAbstractSpinBox*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+int QAbstractSpinBox_Validate(void* ptr, char* input, int pos)
+{
+	return static_cast<QAbstractSpinBox*>(ptr)->validate(*(new QString(input)), pos);
+}
 
-
-
+int QAbstractSpinBox_ValidateDefault(void* ptr, char* input, int pos)
+{
+	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::validate(*(new QString(input)), pos);
+}
 
 void QAbstractSpinBox_WheelEvent(void* ptr, void* event)
 {
@@ -14607,9 +14619,15 @@ void* QDateEdit_DateTimeFromTextDefault(void* ptr, char* text)
 	return new QDateTime(static_cast<QDateEdit*>(ptr)->QDateEdit::dateTimeFromText(QString(text)));
 }
 
+void QDateEdit_Fixup(void* ptr, char* input)
+{
+	static_cast<QDateEdit*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QDateEdit_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::fixup(*(new QString(input)));
+}
 
 void QDateEdit_FocusInEvent(void* ptr, void* event)
 {
@@ -14701,9 +14719,15 @@ char* QDateEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
 	return static_cast<QDateEdit*>(ptr)->QDateEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().data();
 }
 
+int QDateEdit_Validate(void* ptr, char* text, int pos)
+{
+	return static_cast<QDateEdit*>(ptr)->validate(*(new QString(text)), pos);
+}
 
-
-
+int QDateEdit_ValidateDefault(void* ptr, char* text, int pos)
+{
+	return static_cast<QDateEdit*>(ptr)->QDateEdit::validate(*(new QString(text)), pos);
+}
 
 void QDateEdit_WheelEvent(void* ptr, void* event)
 {
@@ -15568,9 +15592,15 @@ int QDateTimeEdit_Event(void* ptr, void* event)
 	return static_cast<QDateTimeEdit*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
+void QDateTimeEdit_Fixup(void* ptr, char* input)
+{
+	static_cast<QDateTimeEdit*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QDateTimeEdit_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::fixup(*(new QString(input)));
+}
 
 void QDateTimeEdit_FocusInEvent(void* ptr, void* event)
 {
@@ -15697,9 +15727,15 @@ char* QDateTimeEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
 	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().data();
 }
 
+int QDateTimeEdit_Validate(void* ptr, char* text, int pos)
+{
+	return static_cast<QDateTimeEdit*>(ptr)->validate(*(new QString(text)), pos);
+}
 
-
-
+int QDateTimeEdit_ValidateDefault(void* ptr, char* text, int pos)
+{
+	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::validate(*(new QString(text)), pos);
+}
 
 void QDateTimeEdit_WheelEvent(void* ptr, void* event)
 {
@@ -20468,13 +20504,25 @@ void* QDoubleSpinBox_NewQDoubleSpinBox(void* parent)
 	return new MyQDoubleSpinBox(static_cast<QWidget*>(parent));
 }
 
+void QDoubleSpinBox_Fixup(void* ptr, char* input)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->fixup(*(new QString(input)));
+}
 
+void QDoubleSpinBox_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::fixup(*(new QString(input)));
+}
 
+int QDoubleSpinBox_Validate(void* ptr, char* text, int pos)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->validate(*(new QString(text)), pos);
+}
 
-
-
-
-
+int QDoubleSpinBox_ValidateDefault(void* ptr, char* text, int pos)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::validate(*(new QString(text)), pos);
+}
 
 void QDoubleSpinBox_ConnectValueChanged2(void* ptr)
 {
@@ -30686,6 +30734,11 @@ double QGraphicsItem_ZValue(void* ptr)
 void QGraphicsItem_DestroyQGraphicsItem(void* ptr)
 {
 	static_cast<QGraphicsItem*>(ptr)->~QGraphicsItem();
+}
+
+int QGraphicsItem_QGraphicsItem_UserType()
+{
+	return QGraphicsItem::UserType;
 }
 
 char* QGraphicsItem_ObjectNameAbs(void* ptr)
@@ -47685,6 +47738,16 @@ void* QLayoutItem_WidgetDefault(void* ptr)
 void QLayoutItem_DestroyQLayoutItem(void* ptr)
 {
 	static_cast<QLayoutItem*>(ptr)->~QLayoutItem();
+}
+
+int QLayoutItem_Align(void* ptr)
+{
+	return static_cast<QLayoutItem*>(ptr)->align;
+}
+
+void QLayoutItem_SetAlign(void* ptr, int vqt)
+{
+	static_cast<QLayoutItem*>(ptr)->align = static_cast<Qt::AlignmentFlag>(vqt);
 }
 
 char* QLayoutItem_ObjectNameAbs(void* ptr)
@@ -69139,9 +69202,15 @@ int QSpinBox_Event(void* ptr, void* event)
 	return static_cast<QSpinBox*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
+void QSpinBox_Fixup(void* ptr, char* input)
+{
+	static_cast<QSpinBox*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QSpinBox_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::fixup(*(new QString(input)));
+}
 
 void QSpinBox_SetRange(void* ptr, int minimum, int maximum)
 {
@@ -69158,9 +69227,15 @@ char* QSpinBox_TextFromValueDefault(void* ptr, int value)
 	return static_cast<QSpinBox*>(ptr)->QSpinBox::textFromValue(value).toUtf8().data();
 }
 
+int QSpinBox_Validate(void* ptr, char* text, int pos)
+{
+	return static_cast<QSpinBox*>(ptr)->validate(*(new QString(text)), pos);
+}
 
-
-
+int QSpinBox_ValidateDefault(void* ptr, char* text, int pos)
+{
+	return static_cast<QSpinBox*>(ptr)->QSpinBox::validate(*(new QString(text)), pos);
+}
 
 void QSpinBox_ConnectValueChanged2(void* ptr)
 {
@@ -75519,6 +75594,26 @@ void* QStyleHintReturn_NewQStyleHintReturn(int version, int ty)
 	return new QStyleHintReturn(version, ty);
 }
 
+int QStyleHintReturn_Type(void* ptr)
+{
+	return static_cast<QStyleHintReturn*>(ptr)->type;
+}
+
+void QStyleHintReturn_SetType(void* ptr, int vin)
+{
+	static_cast<QStyleHintReturn*>(ptr)->type = vin;
+}
+
+int QStyleHintReturn_Version(void* ptr)
+{
+	return static_cast<QStyleHintReturn*>(ptr)->version;
+}
+
+void QStyleHintReturn_SetVersion(void* ptr, int vin)
+{
+	static_cast<QStyleHintReturn*>(ptr)->version = vin;
+}
+
 void* QStyleHintReturnMask_NewQStyleHintReturnMask()
 {
 	return new QStyleHintReturnMask();
@@ -75529,6 +75624,16 @@ void QStyleHintReturnMask_DestroyQStyleHintReturnMask(void* ptr)
 	static_cast<QStyleHintReturnMask*>(ptr)->~QStyleHintReturnMask();
 }
 
+void* QStyleHintReturnMask_Region(void* ptr)
+{
+	return new QRegion(static_cast<QStyleHintReturnMask*>(ptr)->region);
+}
+
+void QStyleHintReturnMask_SetRegion(void* ptr, void* vqr)
+{
+	static_cast<QStyleHintReturnMask*>(ptr)->region = *static_cast<QRegion*>(vqr);
+}
+
 void* QStyleHintReturnVariant_NewQStyleHintReturnVariant()
 {
 	return new QStyleHintReturnVariant();
@@ -75537,6 +75642,16 @@ void* QStyleHintReturnVariant_NewQStyleHintReturnVariant()
 void QStyleHintReturnVariant_DestroyQStyleHintReturnVariant(void* ptr)
 {
 	static_cast<QStyleHintReturnVariant*>(ptr)->~QStyleHintReturnVariant();
+}
+
+void* QStyleHintReturnVariant_Variant(void* ptr)
+{
+	return new QVariant(static_cast<QStyleHintReturnVariant*>(ptr)->variant);
+}
+
+void QStyleHintReturnVariant_SetVariant(void* ptr, void* vqv)
+{
+	static_cast<QStyleHintReturnVariant*>(ptr)->variant = *static_cast<QVariant*>(vqv);
 }
 
 int QStyleOption_SO_Slider_Type()
@@ -75594,6 +75709,86 @@ void QStyleOption_DestroyQStyleOption(void* ptr)
 	static_cast<QStyleOption*>(ptr)->~QStyleOption();
 }
 
+int QStyleOption_Direction(void* ptr)
+{
+	return static_cast<QStyleOption*>(ptr)->direction;
+}
+
+void QStyleOption_SetDirection(void* ptr, int vqt)
+{
+	static_cast<QStyleOption*>(ptr)->direction = static_cast<Qt::LayoutDirection>(vqt);
+}
+
+void* QStyleOption_FontMetrics(void* ptr)
+{
+	return new QFontMetrics(static_cast<QStyleOption*>(ptr)->fontMetrics);
+}
+
+void QStyleOption_SetFontMetrics(void* ptr, void* vqf)
+{
+	static_cast<QStyleOption*>(ptr)->fontMetrics = *static_cast<QFontMetrics*>(vqf);
+}
+
+void* QStyleOption_Palette(void* ptr)
+{
+	return new QPalette(static_cast<QStyleOption*>(ptr)->palette);
+}
+
+void QStyleOption_SetPalette(void* ptr, void* vqp)
+{
+	static_cast<QStyleOption*>(ptr)->palette = *static_cast<QPalette*>(vqp);
+}
+
+void* QStyleOption_Rect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QStyleOption*>(ptr)->rect).x(), static_cast<QRect>(static_cast<QStyleOption*>(ptr)->rect).y(), static_cast<QRect>(static_cast<QStyleOption*>(ptr)->rect).width(), static_cast<QRect>(static_cast<QStyleOption*>(ptr)->rect).height());
+}
+
+void QStyleOption_SetRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOption*>(ptr)->rect = *static_cast<QRect*>(vqr);
+}
+
+int QStyleOption_State(void* ptr)
+{
+	return static_cast<QStyleOption*>(ptr)->state;
+}
+
+void QStyleOption_SetState(void* ptr, int vqs)
+{
+	static_cast<QStyleOption*>(ptr)->state = static_cast<QStyle::StateFlag>(vqs);
+}
+
+void* QStyleOption_StyleObject(void* ptr)
+{
+	return static_cast<QStyleOption*>(ptr)->styleObject;
+}
+
+void QStyleOption_SetStyleObject(void* ptr, void* vqo)
+{
+	static_cast<QStyleOption*>(ptr)->styleObject = static_cast<QObject*>(vqo);
+}
+
+int QStyleOption_Type(void* ptr)
+{
+	return static_cast<QStyleOption*>(ptr)->type;
+}
+
+void QStyleOption_SetType(void* ptr, int vin)
+{
+	static_cast<QStyleOption*>(ptr)->type = vin;
+}
+
+int QStyleOption_Version(void* ptr)
+{
+	return static_cast<QStyleOption*>(ptr)->version;
+}
+
+void QStyleOption_SetVersion(void* ptr, int vin)
+{
+	static_cast<QStyleOption*>(ptr)->version = vin;
+}
+
 void* QStyleOptionButton_NewQStyleOptionButton()
 {
 	return new QStyleOptionButton();
@@ -75602,6 +75797,46 @@ void* QStyleOptionButton_NewQStyleOptionButton()
 void* QStyleOptionButton_NewQStyleOptionButton2(void* other)
 {
 	return new QStyleOptionButton(*static_cast<QStyleOptionButton*>(other));
+}
+
+int QStyleOptionButton_Features(void* ptr)
+{
+	return static_cast<QStyleOptionButton*>(ptr)->features;
+}
+
+void QStyleOptionButton_SetFeatures(void* ptr, int vbu)
+{
+	static_cast<QStyleOptionButton*>(ptr)->features = static_cast<QStyleOptionButton::ButtonFeature>(vbu);
+}
+
+void* QStyleOptionButton_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionButton*>(ptr)->icon);
+}
+
+void QStyleOptionButton_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionButton*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+void* QStyleOptionButton_IconSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionButton*>(ptr)->iconSize).width(), static_cast<QSize>(static_cast<QStyleOptionButton*>(ptr)->iconSize).height());
+}
+
+void QStyleOptionButton_SetIconSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionButton*>(ptr)->iconSize = *static_cast<QSize*>(vqs);
+}
+
+char* QStyleOptionButton_Text(void* ptr)
+{
+	return static_cast<QStyleOptionButton*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionButton_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionButton*>(ptr)->text = QString(vqs);
 }
 
 void* QStyleOptionComboBox_NewQStyleOptionComboBox()
@@ -75614,6 +75849,66 @@ void* QStyleOptionComboBox_NewQStyleOptionComboBox2(void* other)
 	return new QStyleOptionComboBox(*static_cast<QStyleOptionComboBox*>(other));
 }
 
+void* QStyleOptionComboBox_CurrentIcon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionComboBox*>(ptr)->currentIcon);
+}
+
+void QStyleOptionComboBox_SetCurrentIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionComboBox*>(ptr)->currentIcon = *static_cast<QIcon*>(vqi);
+}
+
+char* QStyleOptionComboBox_CurrentText(void* ptr)
+{
+	return static_cast<QStyleOptionComboBox*>(ptr)->currentText.toUtf8().data();
+}
+
+void QStyleOptionComboBox_SetCurrentText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionComboBox*>(ptr)->currentText = QString(vqs);
+}
+
+int QStyleOptionComboBox_Editable(void* ptr)
+{
+	return static_cast<QStyleOptionComboBox*>(ptr)->editable;
+}
+
+void QStyleOptionComboBox_SetEditable(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionComboBox*>(ptr)->editable = vbo != 0;
+}
+
+int QStyleOptionComboBox_Frame(void* ptr)
+{
+	return static_cast<QStyleOptionComboBox*>(ptr)->frame;
+}
+
+void QStyleOptionComboBox_SetFrame(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionComboBox*>(ptr)->frame = vbo != 0;
+}
+
+void* QStyleOptionComboBox_IconSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionComboBox*>(ptr)->iconSize).width(), static_cast<QSize>(static_cast<QStyleOptionComboBox*>(ptr)->iconSize).height());
+}
+
+void QStyleOptionComboBox_SetIconSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionComboBox*>(ptr)->iconSize = *static_cast<QSize*>(vqs);
+}
+
+void* QStyleOptionComboBox_PopupRect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QStyleOptionComboBox*>(ptr)->popupRect).x(), static_cast<QRect>(static_cast<QStyleOptionComboBox*>(ptr)->popupRect).y(), static_cast<QRect>(static_cast<QStyleOptionComboBox*>(ptr)->popupRect).width(), static_cast<QRect>(static_cast<QStyleOptionComboBox*>(ptr)->popupRect).height());
+}
+
+void QStyleOptionComboBox_SetPopupRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOptionComboBox*>(ptr)->popupRect = *static_cast<QRect*>(vqr);
+}
+
 void* QStyleOptionComplex_NewQStyleOptionComplex2(void* other)
 {
 	return new QStyleOptionComplex(*static_cast<QStyleOptionComplex*>(other));
@@ -75622,6 +75917,26 @@ void* QStyleOptionComplex_NewQStyleOptionComplex2(void* other)
 void* QStyleOptionComplex_NewQStyleOptionComplex(int version, int ty)
 {
 	return new QStyleOptionComplex(version, ty);
+}
+
+int QStyleOptionComplex_ActiveSubControls(void* ptr)
+{
+	return static_cast<QStyleOptionComplex*>(ptr)->activeSubControls;
+}
+
+void QStyleOptionComplex_SetActiveSubControls(void* ptr, int vqs)
+{
+	static_cast<QStyleOptionComplex*>(ptr)->activeSubControls = static_cast<QStyle::SubControl>(vqs);
+}
+
+int QStyleOptionComplex_SubControls(void* ptr)
+{
+	return static_cast<QStyleOptionComplex*>(ptr)->subControls;
+}
+
+void QStyleOptionComplex_SetSubControls(void* ptr, int vqs)
+{
+	static_cast<QStyleOptionComplex*>(ptr)->subControls = static_cast<QStyle::SubControl>(vqs);
 }
 
 void* QStyleOptionDockWidget_NewQStyleOptionDockWidget()
@@ -75634,6 +75949,56 @@ void* QStyleOptionDockWidget_NewQStyleOptionDockWidget2(void* other)
 	return new QStyleOptionDockWidget(*static_cast<QStyleOptionDockWidget*>(other));
 }
 
+int QStyleOptionDockWidget_Closable(void* ptr)
+{
+	return static_cast<QStyleOptionDockWidget*>(ptr)->closable;
+}
+
+void QStyleOptionDockWidget_SetClosable(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionDockWidget*>(ptr)->closable = vbo != 0;
+}
+
+int QStyleOptionDockWidget_Floatable(void* ptr)
+{
+	return static_cast<QStyleOptionDockWidget*>(ptr)->floatable;
+}
+
+void QStyleOptionDockWidget_SetFloatable(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionDockWidget*>(ptr)->floatable = vbo != 0;
+}
+
+int QStyleOptionDockWidget_Movable(void* ptr)
+{
+	return static_cast<QStyleOptionDockWidget*>(ptr)->movable;
+}
+
+void QStyleOptionDockWidget_SetMovable(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionDockWidget*>(ptr)->movable = vbo != 0;
+}
+
+char* QStyleOptionDockWidget_Title(void* ptr)
+{
+	return static_cast<QStyleOptionDockWidget*>(ptr)->title.toUtf8().data();
+}
+
+void QStyleOptionDockWidget_SetTitle(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionDockWidget*>(ptr)->title = QString(vqs);
+}
+
+int QStyleOptionDockWidget_VerticalTitleBar(void* ptr)
+{
+	return static_cast<QStyleOptionDockWidget*>(ptr)->verticalTitleBar;
+}
+
+void QStyleOptionDockWidget_SetVerticalTitleBar(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionDockWidget*>(ptr)->verticalTitleBar = vbo != 0;
+}
+
 void* QStyleOptionFocusRect_NewQStyleOptionFocusRect()
 {
 	return new QStyleOptionFocusRect();
@@ -75644,6 +76009,16 @@ void* QStyleOptionFocusRect_NewQStyleOptionFocusRect2(void* other)
 	return new QStyleOptionFocusRect(*static_cast<QStyleOptionFocusRect*>(other));
 }
 
+void* QStyleOptionFocusRect_BackgroundColor(void* ptr)
+{
+	return new QColor(static_cast<QStyleOptionFocusRect*>(ptr)->backgroundColor);
+}
+
+void QStyleOptionFocusRect_SetBackgroundColor(void* ptr, void* vqc)
+{
+	static_cast<QStyleOptionFocusRect*>(ptr)->backgroundColor = *static_cast<QColor*>(vqc);
+}
+
 void* QStyleOptionFrame_NewQStyleOptionFrame()
 {
 	return new QStyleOptionFrame();
@@ -75652,6 +76027,46 @@ void* QStyleOptionFrame_NewQStyleOptionFrame()
 void* QStyleOptionFrame_NewQStyleOptionFrame2(void* other)
 {
 	return new QStyleOptionFrame(*static_cast<QStyleOptionFrame*>(other));
+}
+
+int QStyleOptionFrame_Features(void* ptr)
+{
+	return static_cast<QStyleOptionFrame*>(ptr)->features;
+}
+
+void QStyleOptionFrame_SetFeatures(void* ptr, int vfr)
+{
+	static_cast<QStyleOptionFrame*>(ptr)->features = static_cast<QStyleOptionFrame::FrameFeature>(vfr);
+}
+
+int QStyleOptionFrame_FrameShape(void* ptr)
+{
+	return static_cast<QStyleOptionFrame*>(ptr)->frameShape;
+}
+
+void QStyleOptionFrame_SetFrameShape(void* ptr, int vqf)
+{
+	static_cast<QStyleOptionFrame*>(ptr)->frameShape = static_cast<QFrame::Shape>(vqf);
+}
+
+int QStyleOptionFrame_LineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionFrame*>(ptr)->lineWidth;
+}
+
+void QStyleOptionFrame_SetLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionFrame*>(ptr)->lineWidth = vin;
+}
+
+int QStyleOptionFrame_MidLineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionFrame*>(ptr)->midLineWidth;
+}
+
+void QStyleOptionFrame_SetMidLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionFrame*>(ptr)->midLineWidth = vin;
 }
 
 void* QStyleOptionGraphicsItem_NewQStyleOptionGraphicsItem()
@@ -75669,6 +76084,16 @@ double QStyleOptionGraphicsItem_QStyleOptionGraphicsItem_LevelOfDetailFromTransf
 	return static_cast<double>(QStyleOptionGraphicsItem::levelOfDetailFromTransform(*static_cast<QTransform*>(worldTransform)));
 }
 
+void* QStyleOptionGraphicsItem_ExposedRect(void* ptr)
+{
+	return new QRectF(static_cast<QRectF>(static_cast<QStyleOptionGraphicsItem*>(ptr)->exposedRect).x(), static_cast<QRectF>(static_cast<QStyleOptionGraphicsItem*>(ptr)->exposedRect).y(), static_cast<QRectF>(static_cast<QStyleOptionGraphicsItem*>(ptr)->exposedRect).width(), static_cast<QRectF>(static_cast<QStyleOptionGraphicsItem*>(ptr)->exposedRect).height());
+}
+
+void QStyleOptionGraphicsItem_SetExposedRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOptionGraphicsItem*>(ptr)->exposedRect = *static_cast<QRectF*>(vqr);
+}
+
 void* QStyleOptionGroupBox_NewQStyleOptionGroupBox()
 {
 	return new QStyleOptionGroupBox();
@@ -75677,6 +76102,66 @@ void* QStyleOptionGroupBox_NewQStyleOptionGroupBox()
 void* QStyleOptionGroupBox_NewQStyleOptionGroupBox2(void* other)
 {
 	return new QStyleOptionGroupBox(*static_cast<QStyleOptionGroupBox*>(other));
+}
+
+int QStyleOptionGroupBox_Features(void* ptr)
+{
+	return static_cast<QStyleOptionGroupBox*>(ptr)->features;
+}
+
+void QStyleOptionGroupBox_SetFeatures(void* ptr, int vqs)
+{
+	static_cast<QStyleOptionGroupBox*>(ptr)->features = static_cast<QStyleOptionFrame::FrameFeature>(vqs);
+}
+
+int QStyleOptionGroupBox_LineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionGroupBox*>(ptr)->lineWidth;
+}
+
+void QStyleOptionGroupBox_SetLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionGroupBox*>(ptr)->lineWidth = vin;
+}
+
+int QStyleOptionGroupBox_MidLineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionGroupBox*>(ptr)->midLineWidth;
+}
+
+void QStyleOptionGroupBox_SetMidLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionGroupBox*>(ptr)->midLineWidth = vin;
+}
+
+char* QStyleOptionGroupBox_Text(void* ptr)
+{
+	return static_cast<QStyleOptionGroupBox*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionGroupBox_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionGroupBox*>(ptr)->text = QString(vqs);
+}
+
+int QStyleOptionGroupBox_TextAlignment(void* ptr)
+{
+	return static_cast<QStyleOptionGroupBox*>(ptr)->textAlignment;
+}
+
+void QStyleOptionGroupBox_SetTextAlignment(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionGroupBox*>(ptr)->textAlignment = static_cast<Qt::AlignmentFlag>(vqt);
+}
+
+void* QStyleOptionGroupBox_TextColor(void* ptr)
+{
+	return new QColor(static_cast<QStyleOptionGroupBox*>(ptr)->textColor);
+}
+
+void QStyleOptionGroupBox_SetTextColor(void* ptr, void* vqc)
+{
+	static_cast<QStyleOptionGroupBox*>(ptr)->textColor = *static_cast<QColor*>(vqc);
 }
 
 void* QStyleOptionHeader_NewQStyleOptionHeader()
@@ -75689,6 +76174,96 @@ void* QStyleOptionHeader_NewQStyleOptionHeader2(void* other)
 	return new QStyleOptionHeader(*static_cast<QStyleOptionHeader*>(other));
 }
 
+void* QStyleOptionHeader_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionHeader*>(ptr)->icon);
+}
+
+void QStyleOptionHeader_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+int QStyleOptionHeader_IconAlignment(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->iconAlignment;
+}
+
+void QStyleOptionHeader_SetIconAlignment(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->iconAlignment = static_cast<Qt::AlignmentFlag>(vqt);
+}
+
+int QStyleOptionHeader_Orientation(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->orientation;
+}
+
+void QStyleOptionHeader_SetOrientation(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->orientation = static_cast<Qt::Orientation>(vqt);
+}
+
+int QStyleOptionHeader_Position(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->position;
+}
+
+void QStyleOptionHeader_SetPosition(void* ptr, int vse)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->position = static_cast<QStyleOptionHeader::SectionPosition>(vse);
+}
+
+int QStyleOptionHeader_Section(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->section;
+}
+
+void QStyleOptionHeader_SetSection(void* ptr, int vin)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->section = vin;
+}
+
+int QStyleOptionHeader_SelectedPosition(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->selectedPosition;
+}
+
+void QStyleOptionHeader_SetSelectedPosition(void* ptr, int vse)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->selectedPosition = static_cast<QStyleOptionHeader::SelectedPosition>(vse);
+}
+
+int QStyleOptionHeader_SortIndicator(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->sortIndicator;
+}
+
+void QStyleOptionHeader_SetSortIndicator(void* ptr, int vso)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->sortIndicator = static_cast<QStyleOptionHeader::SortIndicator>(vso);
+}
+
+char* QStyleOptionHeader_Text(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionHeader_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->text = QString(vqs);
+}
+
+int QStyleOptionHeader_TextAlignment(void* ptr)
+{
+	return static_cast<QStyleOptionHeader*>(ptr)->textAlignment;
+}
+
+void QStyleOptionHeader_SetTextAlignment(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionHeader*>(ptr)->textAlignment = static_cast<Qt::AlignmentFlag>(vqt);
+}
+
 void* QStyleOptionMenuItem_NewQStyleOptionMenuItem()
 {
 	return new QStyleOptionMenuItem();
@@ -75697,6 +76272,106 @@ void* QStyleOptionMenuItem_NewQStyleOptionMenuItem()
 void* QStyleOptionMenuItem_NewQStyleOptionMenuItem2(void* other)
 {
 	return new QStyleOptionMenuItem(*static_cast<QStyleOptionMenuItem*>(other));
+}
+
+int QStyleOptionMenuItem_CheckType(void* ptr)
+{
+	return static_cast<QStyleOptionMenuItem*>(ptr)->checkType;
+}
+
+void QStyleOptionMenuItem_SetCheckType(void* ptr, int vch)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->checkType = static_cast<QStyleOptionMenuItem::CheckType>(vch);
+}
+
+int QStyleOptionMenuItem_Checked(void* ptr)
+{
+	return static_cast<QStyleOptionMenuItem*>(ptr)->checked;
+}
+
+void QStyleOptionMenuItem_SetChecked(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->checked = vbo != 0;
+}
+
+void* QStyleOptionMenuItem_Font(void* ptr)
+{
+	return new QFont(static_cast<QStyleOptionMenuItem*>(ptr)->font);
+}
+
+void QStyleOptionMenuItem_SetFont(void* ptr, void* vqf)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->font = *static_cast<QFont*>(vqf);
+}
+
+void* QStyleOptionMenuItem_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionMenuItem*>(ptr)->icon);
+}
+
+void QStyleOptionMenuItem_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+int QStyleOptionMenuItem_MaxIconWidth(void* ptr)
+{
+	return static_cast<QStyleOptionMenuItem*>(ptr)->maxIconWidth;
+}
+
+void QStyleOptionMenuItem_SetMaxIconWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->maxIconWidth = vin;
+}
+
+int QStyleOptionMenuItem_MenuHasCheckableItems(void* ptr)
+{
+	return static_cast<QStyleOptionMenuItem*>(ptr)->menuHasCheckableItems;
+}
+
+void QStyleOptionMenuItem_SetMenuHasCheckableItems(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->menuHasCheckableItems = vbo != 0;
+}
+
+int QStyleOptionMenuItem_MenuItemType(void* ptr)
+{
+	return static_cast<QStyleOptionMenuItem*>(ptr)->menuItemType;
+}
+
+void QStyleOptionMenuItem_SetMenuItemType(void* ptr, int vme)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->menuItemType = static_cast<QStyleOptionMenuItem::MenuItemType>(vme);
+}
+
+void* QStyleOptionMenuItem_MenuRect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QStyleOptionMenuItem*>(ptr)->menuRect).x(), static_cast<QRect>(static_cast<QStyleOptionMenuItem*>(ptr)->menuRect).y(), static_cast<QRect>(static_cast<QStyleOptionMenuItem*>(ptr)->menuRect).width(), static_cast<QRect>(static_cast<QStyleOptionMenuItem*>(ptr)->menuRect).height());
+}
+
+void QStyleOptionMenuItem_SetMenuRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->menuRect = *static_cast<QRect*>(vqr);
+}
+
+int QStyleOptionMenuItem_TabWidth(void* ptr)
+{
+	return static_cast<QStyleOptionMenuItem*>(ptr)->tabWidth;
+}
+
+void QStyleOptionMenuItem_SetTabWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->tabWidth = vin;
+}
+
+char* QStyleOptionMenuItem_Text(void* ptr)
+{
+	return static_cast<QStyleOptionMenuItem*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionMenuItem_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionMenuItem*>(ptr)->text = QString(vqs);
 }
 
 void* QStyleOptionProgressBar_NewQStyleOptionProgressBar()
@@ -75709,6 +76384,86 @@ void* QStyleOptionProgressBar_NewQStyleOptionProgressBar2(void* other)
 	return new QStyleOptionProgressBar(*static_cast<QStyleOptionProgressBar*>(other));
 }
 
+int QStyleOptionProgressBar_BottomToTop(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->bottomToTop;
+}
+
+void QStyleOptionProgressBar_SetBottomToTop(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->bottomToTop = vbo != 0;
+}
+
+int QStyleOptionProgressBar_InvertedAppearance(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->invertedAppearance;
+}
+
+void QStyleOptionProgressBar_SetInvertedAppearance(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->invertedAppearance = vbo != 0;
+}
+
+int QStyleOptionProgressBar_Maximum(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->maximum;
+}
+
+void QStyleOptionProgressBar_SetMaximum(void* ptr, int vin)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->maximum = vin;
+}
+
+int QStyleOptionProgressBar_Minimum(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->minimum;
+}
+
+void QStyleOptionProgressBar_SetMinimum(void* ptr, int vin)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->minimum = vin;
+}
+
+int QStyleOptionProgressBar_Progress(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->progress;
+}
+
+void QStyleOptionProgressBar_SetProgress(void* ptr, int vin)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->progress = vin;
+}
+
+char* QStyleOptionProgressBar_Text(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionProgressBar_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->text = QString(vqs);
+}
+
+int QStyleOptionProgressBar_TextAlignment(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->textAlignment;
+}
+
+void QStyleOptionProgressBar_SetTextAlignment(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->textAlignment = static_cast<Qt::AlignmentFlag>(vqt);
+}
+
+int QStyleOptionProgressBar_TextVisible(void* ptr)
+{
+	return static_cast<QStyleOptionProgressBar*>(ptr)->textVisible;
+}
+
+void QStyleOptionProgressBar_SetTextVisible(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionProgressBar*>(ptr)->textVisible = vbo != 0;
+}
+
 void* QStyleOptionRubberBand_NewQStyleOptionRubberBand()
 {
 	return new QStyleOptionRubberBand();
@@ -75717,6 +76472,26 @@ void* QStyleOptionRubberBand_NewQStyleOptionRubberBand()
 void* QStyleOptionRubberBand_NewQStyleOptionRubberBand2(void* other)
 {
 	return new QStyleOptionRubberBand(*static_cast<QStyleOptionRubberBand*>(other));
+}
+
+int QStyleOptionRubberBand_Opaque(void* ptr)
+{
+	return static_cast<QStyleOptionRubberBand*>(ptr)->opaque;
+}
+
+void QStyleOptionRubberBand_SetOpaque(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionRubberBand*>(ptr)->opaque = vbo != 0;
+}
+
+int QStyleOptionRubberBand_Shape(void* ptr)
+{
+	return static_cast<QStyleOptionRubberBand*>(ptr)->shape;
+}
+
+void QStyleOptionRubberBand_SetShape(void* ptr, int vqr)
+{
+	static_cast<QStyleOptionRubberBand*>(ptr)->shape = static_cast<QRubberBand::Shape>(vqr);
 }
 
 void* QStyleOptionSizeGrip_NewQStyleOptionSizeGrip()
@@ -75729,6 +76504,16 @@ void* QStyleOptionSizeGrip_NewQStyleOptionSizeGrip2(void* other)
 	return new QStyleOptionSizeGrip(*static_cast<QStyleOptionSizeGrip*>(other));
 }
 
+int QStyleOptionSizeGrip_Corner(void* ptr)
+{
+	return static_cast<QStyleOptionSizeGrip*>(ptr)->corner;
+}
+
+void QStyleOptionSizeGrip_SetCorner(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionSizeGrip*>(ptr)->corner = static_cast<Qt::Corner>(vqt);
+}
+
 void* QStyleOptionSlider_NewQStyleOptionSlider()
 {
 	return new QStyleOptionSlider();
@@ -75737,6 +76522,126 @@ void* QStyleOptionSlider_NewQStyleOptionSlider()
 void* QStyleOptionSlider_NewQStyleOptionSlider2(void* other)
 {
 	return new QStyleOptionSlider(*static_cast<QStyleOptionSlider*>(other));
+}
+
+int QStyleOptionSlider_DialWrapping(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->dialWrapping;
+}
+
+void QStyleOptionSlider_SetDialWrapping(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->dialWrapping = vbo != 0;
+}
+
+int QStyleOptionSlider_Maximum(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->maximum;
+}
+
+void QStyleOptionSlider_SetMaximum(void* ptr, int vin)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->maximum = vin;
+}
+
+int QStyleOptionSlider_Minimum(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->minimum;
+}
+
+void QStyleOptionSlider_SetMinimum(void* ptr, int vin)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->minimum = vin;
+}
+
+double QStyleOptionSlider_NotchTarget(void* ptr)
+{
+	return static_cast<double>(static_cast<QStyleOptionSlider*>(ptr)->notchTarget);
+}
+
+void QStyleOptionSlider_SetNotchTarget(void* ptr, double vqr)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->notchTarget = static_cast<double>(vqr);
+}
+
+int QStyleOptionSlider_Orientation(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->orientation;
+}
+
+void QStyleOptionSlider_SetOrientation(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->orientation = static_cast<Qt::Orientation>(vqt);
+}
+
+int QStyleOptionSlider_PageStep(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->pageStep;
+}
+
+void QStyleOptionSlider_SetPageStep(void* ptr, int vin)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->pageStep = vin;
+}
+
+int QStyleOptionSlider_SingleStep(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->singleStep;
+}
+
+void QStyleOptionSlider_SetSingleStep(void* ptr, int vin)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->singleStep = vin;
+}
+
+int QStyleOptionSlider_SliderPosition(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->sliderPosition;
+}
+
+void QStyleOptionSlider_SetSliderPosition(void* ptr, int vin)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->sliderPosition = vin;
+}
+
+int QStyleOptionSlider_SliderValue(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->sliderValue;
+}
+
+void QStyleOptionSlider_SetSliderValue(void* ptr, int vin)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->sliderValue = vin;
+}
+
+int QStyleOptionSlider_TickInterval(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->tickInterval;
+}
+
+void QStyleOptionSlider_SetTickInterval(void* ptr, int vin)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->tickInterval = vin;
+}
+
+int QStyleOptionSlider_TickPosition(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->tickPosition;
+}
+
+void QStyleOptionSlider_SetTickPosition(void* ptr, int vqs)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->tickPosition = static_cast<QSlider::TickPosition>(vqs);
+}
+
+int QStyleOptionSlider_UpsideDown(void* ptr)
+{
+	return static_cast<QStyleOptionSlider*>(ptr)->upsideDown;
+}
+
+void QStyleOptionSlider_SetUpsideDown(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionSlider*>(ptr)->upsideDown = vbo != 0;
 }
 
 void* QStyleOptionSpinBox_NewQStyleOptionSpinBox()
@@ -75749,6 +76654,36 @@ void* QStyleOptionSpinBox_NewQStyleOptionSpinBox2(void* other)
 	return new QStyleOptionSpinBox(*static_cast<QStyleOptionSpinBox*>(other));
 }
 
+int QStyleOptionSpinBox_ButtonSymbols(void* ptr)
+{
+	return static_cast<QStyleOptionSpinBox*>(ptr)->buttonSymbols;
+}
+
+void QStyleOptionSpinBox_SetButtonSymbols(void* ptr, int vqa)
+{
+	static_cast<QStyleOptionSpinBox*>(ptr)->buttonSymbols = static_cast<QAbstractSpinBox::ButtonSymbols>(vqa);
+}
+
+int QStyleOptionSpinBox_Frame(void* ptr)
+{
+	return static_cast<QStyleOptionSpinBox*>(ptr)->frame;
+}
+
+void QStyleOptionSpinBox_SetFrame(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionSpinBox*>(ptr)->frame = vbo != 0;
+}
+
+int QStyleOptionSpinBox_StepEnabled(void* ptr)
+{
+	return static_cast<QStyleOptionSpinBox*>(ptr)->stepEnabled;
+}
+
+void QStyleOptionSpinBox_SetStepEnabled(void* ptr, int vqa)
+{
+	static_cast<QStyleOptionSpinBox*>(ptr)->stepEnabled = static_cast<QAbstractSpinBox::StepEnabledFlag>(vqa);
+}
+
 void* QStyleOptionTab_NewQStyleOptionTab()
 {
 	return new QStyleOptionTab();
@@ -75757,6 +76692,126 @@ void* QStyleOptionTab_NewQStyleOptionTab()
 void* QStyleOptionTab_NewQStyleOptionTab2(void* other)
 {
 	return new QStyleOptionTab(*static_cast<QStyleOptionTab*>(other));
+}
+
+int QStyleOptionTab_CornerWidgets(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->cornerWidgets;
+}
+
+void QStyleOptionTab_SetCornerWidgets(void* ptr, int vco)
+{
+	static_cast<QStyleOptionTab*>(ptr)->cornerWidgets = static_cast<QStyleOptionTab::CornerWidget>(vco);
+}
+
+int QStyleOptionTab_DocumentMode(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->documentMode;
+}
+
+void QStyleOptionTab_SetDocumentMode(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionTab*>(ptr)->documentMode = vbo != 0;
+}
+
+int QStyleOptionTab_Features(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->features;
+}
+
+void QStyleOptionTab_SetFeatures(void* ptr, int vta)
+{
+	static_cast<QStyleOptionTab*>(ptr)->features = static_cast<QStyleOptionTab::TabFeature>(vta);
+}
+
+void* QStyleOptionTab_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionTab*>(ptr)->icon);
+}
+
+void QStyleOptionTab_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionTab*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+void* QStyleOptionTab_IconSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionTab*>(ptr)->iconSize).width(), static_cast<QSize>(static_cast<QStyleOptionTab*>(ptr)->iconSize).height());
+}
+
+void QStyleOptionTab_SetIconSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionTab*>(ptr)->iconSize = *static_cast<QSize*>(vqs);
+}
+
+void* QStyleOptionTab_LeftButtonSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionTab*>(ptr)->leftButtonSize).width(), static_cast<QSize>(static_cast<QStyleOptionTab*>(ptr)->leftButtonSize).height());
+}
+
+void QStyleOptionTab_SetLeftButtonSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionTab*>(ptr)->leftButtonSize = *static_cast<QSize*>(vqs);
+}
+
+int QStyleOptionTab_Position(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->position;
+}
+
+void QStyleOptionTab_SetPosition(void* ptr, int vta)
+{
+	static_cast<QStyleOptionTab*>(ptr)->position = static_cast<QStyleOptionTab::TabPosition>(vta);
+}
+
+void* QStyleOptionTab_RightButtonSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionTab*>(ptr)->rightButtonSize).width(), static_cast<QSize>(static_cast<QStyleOptionTab*>(ptr)->rightButtonSize).height());
+}
+
+void QStyleOptionTab_SetRightButtonSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionTab*>(ptr)->rightButtonSize = *static_cast<QSize*>(vqs);
+}
+
+int QStyleOptionTab_Row(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->row;
+}
+
+void QStyleOptionTab_SetRow(void* ptr, int vin)
+{
+	static_cast<QStyleOptionTab*>(ptr)->row = vin;
+}
+
+int QStyleOptionTab_SelectedPosition(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->selectedPosition;
+}
+
+void QStyleOptionTab_SetSelectedPosition(void* ptr, int vse)
+{
+	static_cast<QStyleOptionTab*>(ptr)->selectedPosition = static_cast<QStyleOptionTab::SelectedPosition>(vse);
+}
+
+int QStyleOptionTab_Shape(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->shape;
+}
+
+void QStyleOptionTab_SetShape(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionTab*>(ptr)->shape = static_cast<QTabBar::Shape>(vqt);
+}
+
+char* QStyleOptionTab_Text(void* ptr)
+{
+	return static_cast<QStyleOptionTab*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionTab_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionTab*>(ptr)->text = QString(vqs);
 }
 
 void* QStyleOptionTabBarBase_NewQStyleOptionTabBarBase()
@@ -75769,6 +76824,46 @@ void* QStyleOptionTabBarBase_NewQStyleOptionTabBarBase2(void* other)
 	return new QStyleOptionTabBarBase(*static_cast<QStyleOptionTabBarBase*>(other));
 }
 
+int QStyleOptionTabBarBase_DocumentMode(void* ptr)
+{
+	return static_cast<QStyleOptionTabBarBase*>(ptr)->documentMode;
+}
+
+void QStyleOptionTabBarBase_SetDocumentMode(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionTabBarBase*>(ptr)->documentMode = vbo != 0;
+}
+
+void* QStyleOptionTabBarBase_SelectedTabRect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->selectedTabRect).x(), static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->selectedTabRect).y(), static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->selectedTabRect).width(), static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->selectedTabRect).height());
+}
+
+void QStyleOptionTabBarBase_SetSelectedTabRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOptionTabBarBase*>(ptr)->selectedTabRect = *static_cast<QRect*>(vqr);
+}
+
+int QStyleOptionTabBarBase_Shape(void* ptr)
+{
+	return static_cast<QStyleOptionTabBarBase*>(ptr)->shape;
+}
+
+void QStyleOptionTabBarBase_SetShape(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionTabBarBase*>(ptr)->shape = static_cast<QTabBar::Shape>(vqt);
+}
+
+void* QStyleOptionTabBarBase_TabBarRect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->tabBarRect).x(), static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->tabBarRect).y(), static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->tabBarRect).width(), static_cast<QRect>(static_cast<QStyleOptionTabBarBase*>(ptr)->tabBarRect).height());
+}
+
+void QStyleOptionTabBarBase_SetTabBarRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOptionTabBarBase*>(ptr)->tabBarRect = *static_cast<QRect*>(vqr);
+}
+
 void* QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame()
 {
 	return new QStyleOptionTabWidgetFrame();
@@ -75777,6 +76872,86 @@ void* QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame()
 void* QStyleOptionTabWidgetFrame_NewQStyleOptionTabWidgetFrame2(void* other)
 {
 	return new QStyleOptionTabWidgetFrame(*static_cast<QStyleOptionTabWidgetFrame*>(other));
+}
+
+void* QStyleOptionTabWidgetFrame_LeftCornerWidgetSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->leftCornerWidgetSize).width(), static_cast<QSize>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->leftCornerWidgetSize).height());
+}
+
+void QStyleOptionTabWidgetFrame_SetLeftCornerWidgetSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->leftCornerWidgetSize = *static_cast<QSize*>(vqs);
+}
+
+int QStyleOptionTabWidgetFrame_LineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionTabWidgetFrame*>(ptr)->lineWidth;
+}
+
+void QStyleOptionTabWidgetFrame_SetLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->lineWidth = vin;
+}
+
+int QStyleOptionTabWidgetFrame_MidLineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionTabWidgetFrame*>(ptr)->midLineWidth;
+}
+
+void QStyleOptionTabWidgetFrame_SetMidLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->midLineWidth = vin;
+}
+
+void* QStyleOptionTabWidgetFrame_RightCornerWidgetSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->rightCornerWidgetSize).width(), static_cast<QSize>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->rightCornerWidgetSize).height());
+}
+
+void QStyleOptionTabWidgetFrame_SetRightCornerWidgetSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->rightCornerWidgetSize = *static_cast<QSize*>(vqs);
+}
+
+void* QStyleOptionTabWidgetFrame_SelectedTabRect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->selectedTabRect).x(), static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->selectedTabRect).y(), static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->selectedTabRect).width(), static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->selectedTabRect).height());
+}
+
+void QStyleOptionTabWidgetFrame_SetSelectedTabRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->selectedTabRect = *static_cast<QRect*>(vqr);
+}
+
+int QStyleOptionTabWidgetFrame_Shape(void* ptr)
+{
+	return static_cast<QStyleOptionTabWidgetFrame*>(ptr)->shape;
+}
+
+void QStyleOptionTabWidgetFrame_SetShape(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->shape = static_cast<QTabBar::Shape>(vqt);
+}
+
+void* QStyleOptionTabWidgetFrame_TabBarRect(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarRect).x(), static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarRect).y(), static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarRect).width(), static_cast<QRect>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarRect).height());
+}
+
+void QStyleOptionTabWidgetFrame_SetTabBarRect(void* ptr, void* vqr)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarRect = *static_cast<QRect*>(vqr);
+}
+
+void* QStyleOptionTabWidgetFrame_TabBarSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarSize).width(), static_cast<QSize>(static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarSize).height());
+}
+
+void QStyleOptionTabWidgetFrame_SetTabBarSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionTabWidgetFrame*>(ptr)->tabBarSize = *static_cast<QSize*>(vqs);
 }
 
 void* QStyleOptionTitleBar_NewQStyleOptionTitleBar()
@@ -75789,6 +76964,46 @@ void* QStyleOptionTitleBar_NewQStyleOptionTitleBar2(void* other)
 	return new QStyleOptionTitleBar(*static_cast<QStyleOptionTitleBar*>(other));
 }
 
+void* QStyleOptionTitleBar_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionTitleBar*>(ptr)->icon);
+}
+
+void QStyleOptionTitleBar_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionTitleBar*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+char* QStyleOptionTitleBar_Text(void* ptr)
+{
+	return static_cast<QStyleOptionTitleBar*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionTitleBar_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionTitleBar*>(ptr)->text = QString(vqs);
+}
+
+int QStyleOptionTitleBar_TitleBarFlags(void* ptr)
+{
+	return static_cast<QStyleOptionTitleBar*>(ptr)->titleBarFlags;
+}
+
+void QStyleOptionTitleBar_SetTitleBarFlags(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionTitleBar*>(ptr)->titleBarFlags = static_cast<Qt::WindowType>(vqt);
+}
+
+int QStyleOptionTitleBar_TitleBarState(void* ptr)
+{
+	return static_cast<QStyleOptionTitleBar*>(ptr)->titleBarState;
+}
+
+void QStyleOptionTitleBar_SetTitleBarState(void* ptr, int vin)
+{
+	static_cast<QStyleOptionTitleBar*>(ptr)->titleBarState = vin;
+}
+
 void* QStyleOptionToolBar_NewQStyleOptionToolBar()
 {
 	return new QStyleOptionToolBar();
@@ -75797,6 +77012,66 @@ void* QStyleOptionToolBar_NewQStyleOptionToolBar()
 void* QStyleOptionToolBar_NewQStyleOptionToolBar2(void* other)
 {
 	return new QStyleOptionToolBar(*static_cast<QStyleOptionToolBar*>(other));
+}
+
+int QStyleOptionToolBar_Features(void* ptr)
+{
+	return static_cast<QStyleOptionToolBar*>(ptr)->features;
+}
+
+void QStyleOptionToolBar_SetFeatures(void* ptr, int vto)
+{
+	static_cast<QStyleOptionToolBar*>(ptr)->features = static_cast<QStyleOptionToolBar::ToolBarFeature>(vto);
+}
+
+int QStyleOptionToolBar_LineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionToolBar*>(ptr)->lineWidth;
+}
+
+void QStyleOptionToolBar_SetLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionToolBar*>(ptr)->lineWidth = vin;
+}
+
+int QStyleOptionToolBar_MidLineWidth(void* ptr)
+{
+	return static_cast<QStyleOptionToolBar*>(ptr)->midLineWidth;
+}
+
+void QStyleOptionToolBar_SetMidLineWidth(void* ptr, int vin)
+{
+	static_cast<QStyleOptionToolBar*>(ptr)->midLineWidth = vin;
+}
+
+int QStyleOptionToolBar_PositionOfLine(void* ptr)
+{
+	return static_cast<QStyleOptionToolBar*>(ptr)->positionOfLine;
+}
+
+void QStyleOptionToolBar_SetPositionOfLine(void* ptr, int vto)
+{
+	static_cast<QStyleOptionToolBar*>(ptr)->positionOfLine = static_cast<QStyleOptionToolBar::ToolBarPosition>(vto);
+}
+
+int QStyleOptionToolBar_PositionWithinLine(void* ptr)
+{
+	return static_cast<QStyleOptionToolBar*>(ptr)->positionWithinLine;
+}
+
+void QStyleOptionToolBar_SetPositionWithinLine(void* ptr, int vto)
+{
+	static_cast<QStyleOptionToolBar*>(ptr)->positionWithinLine = static_cast<QStyleOptionToolBar::ToolBarPosition>(vto);
+}
+
+int QStyleOptionToolBar_ToolBarArea(void* ptr)
+{
+	return static_cast<QStyleOptionToolBar*>(ptr)->toolBarArea;
+}
+
+void QStyleOptionToolBar_SetToolBarArea(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionToolBar*>(ptr)->toolBarArea = static_cast<Qt::ToolBarArea>(vqt);
 }
 
 void* QStyleOptionToolBox_NewQStyleOptionToolBox()
@@ -75809,6 +77084,46 @@ void* QStyleOptionToolBox_NewQStyleOptionToolBox2(void* other)
 	return new QStyleOptionToolBox(*static_cast<QStyleOptionToolBox*>(other));
 }
 
+void* QStyleOptionToolBox_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionToolBox*>(ptr)->icon);
+}
+
+void QStyleOptionToolBox_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionToolBox*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+int QStyleOptionToolBox_Position(void* ptr)
+{
+	return static_cast<QStyleOptionToolBox*>(ptr)->position;
+}
+
+void QStyleOptionToolBox_SetPosition(void* ptr, int vta)
+{
+	static_cast<QStyleOptionToolBox*>(ptr)->position = static_cast<QStyleOptionToolBox::TabPosition>(vta);
+}
+
+int QStyleOptionToolBox_SelectedPosition(void* ptr)
+{
+	return static_cast<QStyleOptionToolBox*>(ptr)->selectedPosition;
+}
+
+void QStyleOptionToolBox_SetSelectedPosition(void* ptr, int vse)
+{
+	static_cast<QStyleOptionToolBox*>(ptr)->selectedPosition = static_cast<QStyleOptionToolBox::SelectedPosition>(vse);
+}
+
+char* QStyleOptionToolBox_Text(void* ptr)
+{
+	return static_cast<QStyleOptionToolBox*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionToolBox_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionToolBox*>(ptr)->text = QString(vqs);
+}
+
 void* QStyleOptionToolButton_NewQStyleOptionToolButton()
 {
 	return new QStyleOptionToolButton();
@@ -75819,6 +77134,86 @@ void* QStyleOptionToolButton_NewQStyleOptionToolButton2(void* other)
 	return new QStyleOptionToolButton(*static_cast<QStyleOptionToolButton*>(other));
 }
 
+int QStyleOptionToolButton_ArrowType(void* ptr)
+{
+	return static_cast<QStyleOptionToolButton*>(ptr)->arrowType;
+}
+
+void QStyleOptionToolButton_SetArrowType(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->arrowType = static_cast<Qt::ArrowType>(vqt);
+}
+
+int QStyleOptionToolButton_Features(void* ptr)
+{
+	return static_cast<QStyleOptionToolButton*>(ptr)->features;
+}
+
+void QStyleOptionToolButton_SetFeatures(void* ptr, int vto)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->features = static_cast<QStyleOptionToolButton::ToolButtonFeature>(vto);
+}
+
+void* QStyleOptionToolButton_Font(void* ptr)
+{
+	return new QFont(static_cast<QStyleOptionToolButton*>(ptr)->font);
+}
+
+void QStyleOptionToolButton_SetFont(void* ptr, void* vqf)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->font = *static_cast<QFont*>(vqf);
+}
+
+void* QStyleOptionToolButton_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionToolButton*>(ptr)->icon);
+}
+
+void QStyleOptionToolButton_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+void* QStyleOptionToolButton_IconSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionToolButton*>(ptr)->iconSize).width(), static_cast<QSize>(static_cast<QStyleOptionToolButton*>(ptr)->iconSize).height());
+}
+
+void QStyleOptionToolButton_SetIconSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->iconSize = *static_cast<QSize*>(vqs);
+}
+
+void* QStyleOptionToolButton_Pos(void* ptr)
+{
+	return new QPoint(static_cast<QPoint>(static_cast<QStyleOptionToolButton*>(ptr)->pos).x(), static_cast<QPoint>(static_cast<QStyleOptionToolButton*>(ptr)->pos).y());
+}
+
+void QStyleOptionToolButton_SetPos(void* ptr, void* vqp)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->pos = *static_cast<QPoint*>(vqp);
+}
+
+char* QStyleOptionToolButton_Text(void* ptr)
+{
+	return static_cast<QStyleOptionToolButton*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionToolButton_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->text = QString(vqs);
+}
+
+int QStyleOptionToolButton_ToolButtonStyle(void* ptr)
+{
+	return static_cast<QStyleOptionToolButton*>(ptr)->toolButtonStyle;
+}
+
+void QStyleOptionToolButton_SetToolButtonStyle(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionToolButton*>(ptr)->toolButtonStyle = static_cast<Qt::ToolButtonStyle>(vqt);
+}
+
 void* QStyleOptionViewItem_NewQStyleOptionViewItem()
 {
 	return new QStyleOptionViewItem();
@@ -75827,6 +77222,161 @@ void* QStyleOptionViewItem_NewQStyleOptionViewItem()
 void* QStyleOptionViewItem_NewQStyleOptionViewItem2(void* other)
 {
 	return new QStyleOptionViewItem(*static_cast<QStyleOptionViewItem*>(other));
+}
+
+void* QStyleOptionViewItem_BackgroundBrush(void* ptr)
+{
+	return new QBrush(static_cast<QStyleOptionViewItem*>(ptr)->backgroundBrush);
+}
+
+void QStyleOptionViewItem_SetBackgroundBrush(void* ptr, void* vqb)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->backgroundBrush = *static_cast<QBrush*>(vqb);
+}
+
+int QStyleOptionViewItem_CheckState(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->checkState;
+}
+
+void QStyleOptionViewItem_SetCheckState(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->checkState = static_cast<Qt::CheckState>(vqt);
+}
+
+int QStyleOptionViewItem_DecorationAlignment(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->decorationAlignment;
+}
+
+void QStyleOptionViewItem_SetDecorationAlignment(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->decorationAlignment = static_cast<Qt::AlignmentFlag>(vqt);
+}
+
+int QStyleOptionViewItem_DecorationPosition(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->decorationPosition;
+}
+
+void QStyleOptionViewItem_SetDecorationPosition(void* ptr, int vpo)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->decorationPosition = static_cast<QStyleOptionViewItem::Position>(vpo);
+}
+
+void* QStyleOptionViewItem_DecorationSize(void* ptr)
+{
+	return new QSize(static_cast<QSize>(static_cast<QStyleOptionViewItem*>(ptr)->decorationSize).width(), static_cast<QSize>(static_cast<QStyleOptionViewItem*>(ptr)->decorationSize).height());
+}
+
+void QStyleOptionViewItem_SetDecorationSize(void* ptr, void* vqs)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->decorationSize = *static_cast<QSize*>(vqs);
+}
+
+int QStyleOptionViewItem_DisplayAlignment(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->displayAlignment;
+}
+
+void QStyleOptionViewItem_SetDisplayAlignment(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->displayAlignment = static_cast<Qt::AlignmentFlag>(vqt);
+}
+
+int QStyleOptionViewItem_Features(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->features;
+}
+
+void QStyleOptionViewItem_SetFeatures(void* ptr, int vvi)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->features = static_cast<QStyleOptionViewItem::ViewItemFeature>(vvi);
+}
+
+void* QStyleOptionViewItem_Font(void* ptr)
+{
+	return new QFont(static_cast<QStyleOptionViewItem*>(ptr)->font);
+}
+
+void QStyleOptionViewItem_SetFont(void* ptr, void* vqf)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->font = *static_cast<QFont*>(vqf);
+}
+
+void* QStyleOptionViewItem_Icon(void* ptr)
+{
+	return new QIcon(static_cast<QStyleOptionViewItem*>(ptr)->icon);
+}
+
+void QStyleOptionViewItem_SetIcon(void* ptr, void* vqi)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->icon = *static_cast<QIcon*>(vqi);
+}
+
+void* QStyleOptionViewItem_Index(void* ptr)
+{
+	return new QModelIndex(static_cast<QStyleOptionViewItem*>(ptr)->index);
+}
+
+void QStyleOptionViewItem_SetIndex(void* ptr, void* vqm)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->index = *static_cast<QModelIndex*>(vqm);
+}
+
+void* QStyleOptionViewItem_Locale(void* ptr)
+{
+	return new QLocale(static_cast<QStyleOptionViewItem*>(ptr)->locale);
+}
+
+void QStyleOptionViewItem_SetLocale(void* ptr, void* vql)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->locale = *static_cast<QLocale*>(vql);
+}
+
+int QStyleOptionViewItem_ShowDecorationSelected(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->showDecorationSelected;
+}
+
+void QStyleOptionViewItem_SetShowDecorationSelected(void* ptr, int vbo)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->showDecorationSelected = vbo != 0;
+}
+
+char* QStyleOptionViewItem_Text(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->text.toUtf8().data();
+}
+
+void QStyleOptionViewItem_SetText(void* ptr, char* vqs)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->text = QString(vqs);
+}
+
+int QStyleOptionViewItem_TextElideMode(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->textElideMode;
+}
+
+void QStyleOptionViewItem_SetTextElideMode(void* ptr, int vqt)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->textElideMode = static_cast<Qt::TextElideMode>(vqt);
+}
+
+int QStyleOptionViewItem_ViewItemPosition(void* ptr)
+{
+	return static_cast<QStyleOptionViewItem*>(ptr)->viewItemPosition;
+}
+
+void QStyleOptionViewItem_SetViewItemPosition(void* ptr, int vvi)
+{
+	static_cast<QStyleOptionViewItem*>(ptr)->viewItemPosition = static_cast<QStyleOptionViewItem::ViewItemPosition>(vvi);
+}
+
+void* QStyleOptionViewItem_Widget(void* ptr)
+{
+	return const_cast<QWidget*>(static_cast<QStyleOptionViewItem*>(ptr)->widget);
 }
 
 void* QStylePainter_NewQStylePainter()
@@ -84970,6 +86520,26 @@ void* QTileRules_NewQTileRules2(int rule)
 	return new QTileRules(static_cast<Qt::TileRule>(rule));
 }
 
+int QTileRules_Horizontal(void* ptr)
+{
+	return static_cast<QTileRules*>(ptr)->horizontal;
+}
+
+void QTileRules_SetHorizontal(void* ptr, int vqt)
+{
+	static_cast<QTileRules*>(ptr)->horizontal = static_cast<Qt::TileRule>(vqt);
+}
+
+int QTileRules_Vertical(void* ptr)
+{
+	return static_cast<QTileRules*>(ptr)->vertical;
+}
+
+void QTileRules_SetVertical(void* ptr, int vqt)
+{
+	static_cast<QTileRules*>(ptr)->vertical = static_cast<Qt::TileRule>(vqt);
+}
+
 void* QTimeEdit_NewQTimeEdit(void* parent)
 {
 	return new QTimeEdit(static_cast<QWidget*>(parent));
@@ -85015,9 +86585,15 @@ void* QTimeEdit_DateTimeFromTextDefault(void* ptr, char* text)
 	return new QDateTime(static_cast<QTimeEdit*>(ptr)->QTimeEdit::dateTimeFromText(QString(text)));
 }
 
+void QTimeEdit_Fixup(void* ptr, char* input)
+{
+	static_cast<QTimeEdit*>(ptr)->fixup(*(new QString(input)));
+}
 
-
-
+void QTimeEdit_FixupDefault(void* ptr, char* input)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::fixup(*(new QString(input)));
+}
 
 void QTimeEdit_FocusInEvent(void* ptr, void* event)
 {
@@ -85109,9 +86685,15 @@ char* QTimeEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
 	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().data();
 }
 
+int QTimeEdit_Validate(void* ptr, char* text, int pos)
+{
+	return static_cast<QTimeEdit*>(ptr)->validate(*(new QString(text)), pos);
+}
 
-
-
+int QTimeEdit_ValidateDefault(void* ptr, char* text, int pos)
+{
+	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::validate(*(new QString(text)), pos);
+}
 
 void QTimeEdit_WheelEvent(void* ptr, void* event)
 {
@@ -96179,6 +97761,16 @@ void* QWidgetItem_WidgetDefault(void* ptr)
 void QWidgetItem_DestroyQWidgetItem(void* ptr)
 {
 	static_cast<QWidgetItem*>(ptr)->~QWidgetItem();
+}
+
+void* QWidgetItem_Wid(void* ptr)
+{
+	return static_cast<QWidgetItem*>(ptr)->wid;
+}
+
+void QWidgetItem_SetWid(void* ptr, void* vqw)
+{
+	static_cast<QWidgetItem*>(ptr)->wid = static_cast<QWidget*>(vqw);
 }
 
 char* QWidgetItem_ObjectNameAbs(void* ptr)

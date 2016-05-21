@@ -4087,6 +4087,26 @@ void* QHelpSearchQuery_NewQHelpSearchQuery2(int field, char* wordList)
 	return new QHelpSearchQuery(static_cast<QHelpSearchQuery::FieldName>(field), QString(wordList).split("|", QString::SkipEmptyParts));
 }
 
+int QHelpSearchQuery_FieldName(void* ptr)
+{
+	return static_cast<QHelpSearchQuery*>(ptr)->fieldName;
+}
+
+void QHelpSearchQuery_SetFieldName(void* ptr, int vfi)
+{
+	static_cast<QHelpSearchQuery*>(ptr)->fieldName = static_cast<QHelpSearchQuery::FieldName>(vfi);
+}
+
+char* QHelpSearchQuery_WordList(void* ptr)
+{
+	return static_cast<QHelpSearchQuery*>(ptr)->wordList.join("|").toUtf8().data();
+}
+
+void QHelpSearchQuery_SetWordList(void* ptr, char* vqs)
+{
+	static_cast<QHelpSearchQuery*>(ptr)->wordList = QString(vqs).split("|", QString::SkipEmptyParts);
+}
+
 class MyQHelpSearchQueryWidget: public QHelpSearchQueryWidget
 {
 public:

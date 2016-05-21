@@ -21878,6 +21878,23 @@ func (ptr *QSGOpaqueTextureMaterial) VerticalWrapMode() QSGTexture__WrapMode {
 	return 0
 }
 
+func (ptr *QSGOpaqueTextureMaterial) M_texture() *QSGTexture {
+	defer qt.Recovering("QSGOpaqueTextureMaterial::m_texture")
+
+	if ptr.Pointer() != nil {
+		return NewQSGTextureFromPointer(C.QSGOpaqueTextureMaterial_M_texture(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSGOpaqueTextureMaterial) SetM_texture(vqs QSGTexture_ITF) {
+	defer qt.Recovering("QSGOpaqueTextureMaterial::setM_texture")
+
+	if ptr.Pointer() != nil {
+		C.QSGOpaqueTextureMaterial_SetM_texture(ptr.Pointer(), PointerFromQSGTexture(vqs))
+	}
+}
+
 //export callbackQSGOpaqueTextureMaterial_Compare
 func callbackQSGOpaqueTextureMaterial_Compare(ptr unsafe.Pointer, ptrName *C.char, other unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QSGOpaqueTextureMaterial::compare")

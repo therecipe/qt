@@ -280,10 +280,14 @@ func build() {
 			case "darwin", "linux":
 				{
 					env = map[string]string{
-						"GOPATH":       os.Getenv("GOPATH"),
-						"GOOS":         "android",
-						"GOARCH":       "arm",
-						"GOARM":        "7",
+						"PATH":   os.Getenv("PATH"),
+						"GOPATH": os.Getenv("GOPATH"),
+						"GOROOT": runtime.GOROOT(),
+
+						"GOOS":   "android",
+						"GOARCH": "arm",
+						"GOARM":  "7",
+
 						"CC":           filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
 						"CXX":          filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
 						"CGO_ENABLED":  "1",
@@ -295,10 +299,14 @@ func build() {
 			case "windows":
 				{
 					env = map[string]string{
-						"GOPATH":       os.Getenv("GOPATH"),
-						"GOOS":         "android",
-						"GOARCH":       "arm",
-						"GOARM":        "7",
+						"PATH":   os.Getenv("PATH"),
+						"GOPATH": os.Getenv("GOPATH"),
+						"GOROOT": runtime.GOROOT(),
+
+						"GOOS":   "android",
+						"GOARCH": "arm",
+						"GOARM":  "7",
+
 						"CC":           "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-gcc.exe",
 						"CXX":          "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-g++.exe",
 						"CGO_ENABLED":  "1",
@@ -336,6 +344,7 @@ func build() {
 			env = map[string]string{
 				"PATH":   os.Getenv("PATH"),
 				"GOPATH": os.Getenv("GOPATH"),
+				"GOROOT": runtime.GOROOT(),
 
 				"GOOS":   runtime.GOOS,
 				"GOARCH": GOARCH,
@@ -370,6 +379,7 @@ func build() {
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
 						"GOPATH": os.Getenv("GOPATH"),
+						"GOROOT": runtime.GOROOT(),
 
 						"GOOS":   runtime.GOOS,
 						"GOARCH": "386",

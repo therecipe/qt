@@ -2086,6 +2086,11 @@ char* QXmlNamespaceSupport_Prefixes2(void* ptr, char* uri)
 	return static_cast<QXmlNamespaceSupport*>(ptr)->prefixes(QString(uri)).join("|").toUtf8().data();
 }
 
+void QXmlNamespaceSupport_ProcessName(void* ptr, char* qname, int isAttribute, char* nsuri, char* localname)
+{
+	static_cast<QXmlNamespaceSupport*>(ptr)->processName(QString(qname), isAttribute != 0, *(new QString(nsuri)), *(new QString(localname)));
+}
+
 void QXmlNamespaceSupport_PushContext(void* ptr)
 {
 	static_cast<QXmlNamespaceSupport*>(ptr)->pushContext();
@@ -2099,6 +2104,11 @@ void QXmlNamespaceSupport_Reset(void* ptr)
 void QXmlNamespaceSupport_SetPrefix(void* ptr, char* pre, char* uri)
 {
 	static_cast<QXmlNamespaceSupport*>(ptr)->setPrefix(QString(pre), QString(uri));
+}
+
+void QXmlNamespaceSupport_SplitName(void* ptr, char* qname, char* prefix, char* localname)
+{
+	static_cast<QXmlNamespaceSupport*>(ptr)->splitName(QString(qname), *(new QString(prefix)), *(new QString(localname)));
 }
 
 char* QXmlNamespaceSupport_Uri(void* ptr, char* prefix)

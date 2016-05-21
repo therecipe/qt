@@ -6469,6 +6469,14 @@ func (ptr *QXmlNamespaceSupport) Prefixes2(uri string) []string {
 	return make([]string, 0)
 }
 
+func (ptr *QXmlNamespaceSupport) ProcessName(qname string, isAttribute bool, nsuri string, localname string) {
+	defer qt.Recovering("QXmlNamespaceSupport::processName")
+
+	if ptr.Pointer() != nil {
+		C.QXmlNamespaceSupport_ProcessName(ptr.Pointer(), C.CString(qname), C.int(qt.GoBoolToInt(isAttribute)), C.CString(nsuri), C.CString(localname))
+	}
+}
+
 func (ptr *QXmlNamespaceSupport) PushContext() {
 	defer qt.Recovering("QXmlNamespaceSupport::pushContext")
 
@@ -6490,6 +6498,14 @@ func (ptr *QXmlNamespaceSupport) SetPrefix(pre string, uri string) {
 
 	if ptr.Pointer() != nil {
 		C.QXmlNamespaceSupport_SetPrefix(ptr.Pointer(), C.CString(pre), C.CString(uri))
+	}
+}
+
+func (ptr *QXmlNamespaceSupport) SplitName(qname string, prefix string, localname string) {
+	defer qt.Recovering("QXmlNamespaceSupport::splitName")
+
+	if ptr.Pointer() != nil {
+		C.QXmlNamespaceSupport_SplitName(ptr.Pointer(), C.CString(qname), C.CString(prefix), C.CString(localname))
 	}
 }
 

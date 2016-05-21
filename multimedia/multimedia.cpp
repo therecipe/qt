@@ -271,6 +271,16 @@ void QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(void* ptr)
 	static_cast<QAbstractVideoBuffer*>(ptr)->~QAbstractVideoBuffer();
 }
 
+int QAbstractVideoBuffer_M_type(void* ptr)
+{
+	return static_cast<QAbstractVideoBuffer*>(ptr)->m_type;
+}
+
+void QAbstractVideoBuffer_SetM_type(void* ptr, int vha)
+{
+	static_cast<QAbstractVideoBuffer*>(ptr)->m_type = static_cast<QAbstractVideoBuffer::HandleType>(vha);
+}
+
 char* QAbstractVideoBuffer_ObjectNameAbs(void* ptr)
 {
 	if (dynamic_cast<MyQAbstractVideoBuffer*>(static_cast<QAbstractVideoBuffer*>(ptr))) {

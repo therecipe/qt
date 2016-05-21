@@ -507,6 +507,23 @@ func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBuffer() {
 	}
 }
 
+func (ptr *QAbstractVideoBuffer) M_type() QAbstractVideoBuffer__HandleType {
+	defer qt.Recovering("QAbstractVideoBuffer::m_type")
+
+	if ptr.Pointer() != nil {
+		return QAbstractVideoBuffer__HandleType(C.QAbstractVideoBuffer_M_type(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAbstractVideoBuffer) SetM_type(vha QAbstractVideoBuffer__HandleType) {
+	defer qt.Recovering("QAbstractVideoBuffer::setM_type")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoBuffer_SetM_type(ptr.Pointer(), C.int(vha))
+	}
+}
+
 func (ptr *QAbstractVideoBuffer) ObjectNameAbs() string {
 	defer qt.Recovering("QAbstractVideoBuffer::objectNameAbs")
 

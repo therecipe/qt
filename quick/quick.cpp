@@ -6296,6 +6296,16 @@ int QSGOpaqueTextureMaterial_VerticalWrapMode(void* ptr)
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->verticalWrapMode();
 }
 
+void* QSGOpaqueTextureMaterial_M_texture(void* ptr)
+{
+	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->m_texture;
+}
+
+void QSGOpaqueTextureMaterial_SetM_texture(void* ptr, void* vqs)
+{
+	static_cast<QSGOpaqueTextureMaterial*>(ptr)->m_texture = static_cast<QSGTexture*>(vqs);
+}
+
 int QSGOpaqueTextureMaterial_Compare(void* ptr, void* other)
 {
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->compare(static_cast<QSGMaterial*>(other));

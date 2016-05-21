@@ -20,6 +20,7 @@ type Class struct {
 	Brief     string      `xml:"brief,attr"`
 	Functions []*Function `xml:"function"`
 	Enums     []*Enum     `xml:"enum"`
+	Variables []*Variable `xml:"variable"`
 	DocModule string
 	Stub      bool
 	WeakLink  map[string]bool
@@ -375,4 +376,13 @@ var LibDeps = map[string][]string{
 	"PrintSupport":      []string{"Core", "Gui", "Widgets"},
 	"PlatformHeaders":   []string{"Core"},
 	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
+}
+
+func (c *Class) hasFunctionWithName(name string) bool {
+	for _, f := range c.Functions {
+		if strings.ToLower(f.Name) == strings.ToLower(name) {
+			return true
+		}
+	}
+	return false
 }

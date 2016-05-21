@@ -24,6 +24,9 @@ const (
 	DISCONNECT = "Disconnect"
 	CALLBACK   = "callback"
 
+	GETTER = "getter"
+	SETTER = "setter"
+
 	VOID = "void"
 )
 

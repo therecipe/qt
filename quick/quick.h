@@ -1145,6 +1145,8 @@ void QSGOpaqueTextureMaterial_SetTexture(void* ptr, void* texture);
 void QSGOpaqueTextureMaterial_SetVerticalWrapMode(void* ptr, int mode);
 void* QSGOpaqueTextureMaterial_Texture(void* ptr);
 int QSGOpaqueTextureMaterial_VerticalWrapMode(void* ptr);
+void* QSGOpaqueTextureMaterial_M_texture(void* ptr);
+void QSGOpaqueTextureMaterial_SetM_texture(void* ptr, void* vqs);
 int QSGOpaqueTextureMaterial_Compare(void* ptr, void* other);
 int QSGOpaqueTextureMaterial_CompareDefault(void* ptr, void* other);
 void* QSGOpaqueTextureMaterial_CreateShader(void* ptr);

@@ -35,6 +35,7 @@ func main() {
 						env = map[string]string{
 							"PATH":   os.Getenv("PATH"),
 							"GOPATH": os.Getenv("GOPATH"),
+							"GOROOT": runtime.GOROOT(),
 
 							"GOOS":   "android",
 							"GOARCH": "arm",
@@ -53,6 +54,7 @@ func main() {
 						env = map[string]string{
 							"PATH":   os.Getenv("PATH"),
 							"GOPATH": os.Getenv("GOPATH"),
+							"GOROOT": runtime.GOROOT(),
 
 							"GOOS":   "android",
 							"GOARCH": "arm",
@@ -92,6 +94,7 @@ func main() {
 				env = map[string]string{
 					"PATH":   os.Getenv("PATH"),
 					"GOPATH": os.Getenv("GOPATH"),
+					"GOROOT": runtime.GOROOT(),
 
 					"GOOS":   runtime.GOOS,
 					"GOARCH": GOARCH,
@@ -109,6 +112,7 @@ func main() {
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
 						"GOPATH": os.Getenv("GOPATH"),
+						"GOROOT": runtime.GOROOT(),
 
 						"GOOS":   runtime.GOOS,
 						"GOARCH": "386",

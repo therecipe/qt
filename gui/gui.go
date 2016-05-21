@@ -1994,6 +1994,40 @@ func (ptr *QAccessibleEvent) DestroyQAccessibleEvent() {
 	}
 }
 
+func (ptr *QAccessibleEvent) M_object() *core.QObject {
+	defer qt.Recovering("QAccessibleEvent::m_object")
+
+	if ptr.Pointer() != nil {
+		return core.NewQObjectFromPointer(C.QAccessibleEvent_M_object(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAccessibleEvent) SetM_object(vqo core.QObject_ITF) {
+	defer qt.Recovering("QAccessibleEvent::setM_object")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleEvent_SetM_object(ptr.Pointer(), core.PointerFromQObject(vqo))
+	}
+}
+
+func (ptr *QAccessibleEvent) M_type() QAccessible__Event {
+	defer qt.Recovering("QAccessibleEvent::m_type")
+
+	if ptr.Pointer() != nil {
+		return QAccessible__Event(C.QAccessibleEvent_M_type(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleEvent) SetM_type(vqa QAccessible__Event) {
+	defer qt.Recovering("QAccessibleEvent::setM_type")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleEvent_SetM_type(ptr.Pointer(), C.int(vqa))
+	}
+}
+
 func (ptr *QAccessibleEvent) ObjectNameAbs() string {
 	defer qt.Recovering("QAccessibleEvent::objectNameAbs")
 
@@ -5328,6 +5362,91 @@ func (ptr *QAccessibleTableModelChangeEvent) SetModelChangeType(changeType QAcce
 	}
 }
 
+func (ptr *QAccessibleTableModelChangeEvent) M_firstColumn() int {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::m_firstColumn")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTableModelChangeEvent_M_firstColumn(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) SetM_firstColumn(vin int) {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setM_firstColumn")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableModelChangeEvent_SetM_firstColumn(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) M_firstRow() int {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::m_firstRow")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTableModelChangeEvent_M_firstRow(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) SetM_firstRow(vin int) {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setM_firstRow")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableModelChangeEvent_SetM_firstRow(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) M_lastColumn() int {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::m_lastColumn")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTableModelChangeEvent_M_lastColumn(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) SetM_lastColumn(vin int) {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setM_lastColumn")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableModelChangeEvent_SetM_lastColumn(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) M_lastRow() int {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::m_lastRow")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTableModelChangeEvent_M_lastRow(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) SetM_lastRow(vin int) {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setM_lastRow")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableModelChangeEvent_SetM_lastRow(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) M_modelChangeType() QAccessibleTableModelChangeEvent__ModelChangeType {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::m_modelChangeType")
+
+	if ptr.Pointer() != nil {
+		return QAccessibleTableModelChangeEvent__ModelChangeType(C.QAccessibleTableModelChangeEvent_M_modelChangeType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTableModelChangeEvent) SetM_modelChangeType(vmo QAccessibleTableModelChangeEvent__ModelChangeType) {
+	defer qt.Recovering("QAccessibleTableModelChangeEvent::setM_modelChangeType")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableModelChangeEvent_SetM_modelChangeType(ptr.Pointer(), C.int(vmo))
+	}
+}
+
 //export callbackQAccessibleTableModelChangeEvent_AccessibleInterface
 func callbackQAccessibleTableModelChangeEvent_AccessibleInterface(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QAccessibleTableModelChangeEvent::accessibleInterface")
@@ -5445,6 +5564,23 @@ func (ptr *QAccessibleTextCursorEvent) SetCursorPosition(position int) {
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTextCursorEvent_SetCursorPosition(ptr.Pointer(), C.int(position))
+	}
+}
+
+func (ptr *QAccessibleTextCursorEvent) M_cursorPosition() int {
+	defer qt.Recovering("QAccessibleTextCursorEvent::m_cursorPosition")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTextCursorEvent_M_cursorPosition(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTextCursorEvent) SetM_cursorPosition(vin int) {
+	defer qt.Recovering("QAccessibleTextCursorEvent::setM_cursorPosition")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextCursorEvent_SetM_cursorPosition(ptr.Pointer(), C.int(vin))
 	}
 }
 
@@ -5567,6 +5703,40 @@ func (ptr *QAccessibleTextInsertEvent) TextInserted() string {
 		return C.GoString(C.QAccessibleTextInsertEvent_TextInserted(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QAccessibleTextInsertEvent) M_position() int {
+	defer qt.Recovering("QAccessibleTextInsertEvent::m_position")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTextInsertEvent_M_position(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTextInsertEvent) SetM_position(vin int) {
+	defer qt.Recovering("QAccessibleTextInsertEvent::setM_position")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextInsertEvent_SetM_position(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTextInsertEvent) M_text() string {
+	defer qt.Recovering("QAccessibleTextInsertEvent::m_text")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleTextInsertEvent_M_text(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleTextInsertEvent) SetM_text(vqs string) {
+	defer qt.Recovering("QAccessibleTextInsertEvent::setM_text")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextInsertEvent_SetM_text(ptr.Pointer(), C.CString(vqs))
+	}
 }
 
 //export callbackQAccessibleTextInsertEvent_AccessibleInterface
@@ -6386,6 +6556,40 @@ func (ptr *QAccessibleTextRemoveEvent) TextRemoved() string {
 	return ""
 }
 
+func (ptr *QAccessibleTextRemoveEvent) M_position() int {
+	defer qt.Recovering("QAccessibleTextRemoveEvent::m_position")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTextRemoveEvent_M_position(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTextRemoveEvent) SetM_position(vin int) {
+	defer qt.Recovering("QAccessibleTextRemoveEvent::setM_position")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextRemoveEvent_SetM_position(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTextRemoveEvent) M_text() string {
+	defer qt.Recovering("QAccessibleTextRemoveEvent::m_text")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleTextRemoveEvent_M_text(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleTextRemoveEvent) SetM_text(vqs string) {
+	defer qt.Recovering("QAccessibleTextRemoveEvent::setM_text")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextRemoveEvent_SetM_text(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
 //export callbackQAccessibleTextRemoveEvent_AccessibleInterface
 func callbackQAccessibleTextRemoveEvent_AccessibleInterface(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QAccessibleTextRemoveEvent::accessibleInterface")
@@ -6512,6 +6716,40 @@ func (ptr *QAccessibleTextSelectionEvent) SetSelection(start int, end int) {
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTextSelectionEvent_SetSelection(ptr.Pointer(), C.int(start), C.int(end))
+	}
+}
+
+func (ptr *QAccessibleTextSelectionEvent) M_selectionEnd() int {
+	defer qt.Recovering("QAccessibleTextSelectionEvent::m_selectionEnd")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTextSelectionEvent_M_selectionEnd(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTextSelectionEvent) SetM_selectionEnd(vin int) {
+	defer qt.Recovering("QAccessibleTextSelectionEvent::setM_selectionEnd")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextSelectionEvent_SetM_selectionEnd(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTextSelectionEvent) M_selectionStart() int {
+	defer qt.Recovering("QAccessibleTextSelectionEvent::m_selectionStart")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTextSelectionEvent_M_selectionStart(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTextSelectionEvent) SetM_selectionStart(vin int) {
+	defer qt.Recovering("QAccessibleTextSelectionEvent::setM_selectionStart")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextSelectionEvent_SetM_selectionStart(ptr.Pointer(), C.int(vin))
 	}
 }
 
@@ -6645,6 +6883,57 @@ func (ptr *QAccessibleTextUpdateEvent) TextRemoved() string {
 	return ""
 }
 
+func (ptr *QAccessibleTextUpdateEvent) M_oldText() string {
+	defer qt.Recovering("QAccessibleTextUpdateEvent::m_oldText")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleTextUpdateEvent_M_oldText(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleTextUpdateEvent) SetM_oldText(vqs string) {
+	defer qt.Recovering("QAccessibleTextUpdateEvent::setM_oldText")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextUpdateEvent_SetM_oldText(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
+func (ptr *QAccessibleTextUpdateEvent) M_position() int {
+	defer qt.Recovering("QAccessibleTextUpdateEvent::m_position")
+
+	if ptr.Pointer() != nil {
+		return int(C.QAccessibleTextUpdateEvent_M_position(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QAccessibleTextUpdateEvent) SetM_position(vin int) {
+	defer qt.Recovering("QAccessibleTextUpdateEvent::setM_position")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextUpdateEvent_SetM_position(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QAccessibleTextUpdateEvent) M_text() string {
+	defer qt.Recovering("QAccessibleTextUpdateEvent::m_text")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QAccessibleTextUpdateEvent_M_text(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QAccessibleTextUpdateEvent) SetM_text(vqs string) {
+	defer qt.Recovering("QAccessibleTextUpdateEvent::setM_text")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextUpdateEvent_SetM_text(ptr.Pointer(), C.CString(vqs))
+	}
+}
+
 //export callbackQAccessibleTextUpdateEvent_AccessibleInterface
 func callbackQAccessibleTextUpdateEvent_AccessibleInterface(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QAccessibleTextUpdateEvent::accessibleInterface")
@@ -6763,6 +7052,23 @@ func (ptr *QAccessibleValueChangeEvent) Value() *core.QVariant {
 		return core.NewQVariantFromPointer(C.QAccessibleValueChangeEvent_Value(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QAccessibleValueChangeEvent) M_value() *core.QVariant {
+	defer qt.Recovering("QAccessibleValueChangeEvent::m_value")
+
+	if ptr.Pointer() != nil {
+		return core.NewQVariantFromPointer(C.QAccessibleValueChangeEvent_M_value(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QAccessibleValueChangeEvent) SetM_value(vqv core.QVariant_ITF) {
+	defer qt.Recovering("QAccessibleValueChangeEvent::setM_value")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleValueChangeEvent_SetM_value(ptr.Pointer(), core.PointerFromQVariant(vqv))
+	}
 }
 
 //export callbackQAccessibleValueChangeEvent_AccessibleInterface
@@ -8026,6 +8332,15 @@ func (ptr *QClipboard) Text(mode QClipboard__Mode) string {
 
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QClipboard_Text(ptr.Pointer(), C.int(mode)))
+	}
+	return ""
+}
+
+func (ptr *QClipboard) Text2(subtype string, mode QClipboard__Mode) string {
+	defer qt.Recovering("QClipboard::text")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QClipboard_Text2(ptr.Pointer(), C.CString(subtype), C.int(mode)))
 	}
 	return ""
 }
@@ -9538,6 +9853,40 @@ func (ptr *QContextMenuEvent) Y() int {
 	return 0
 }
 
+func (ptr *QContextMenuEvent) Gp() *core.QPoint {
+	defer qt.Recovering("QContextMenuEvent::gp")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QContextMenuEvent_Gp(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QContextMenuEvent) SetGp(vqp core.QPoint_ITF) {
+	defer qt.Recovering("QContextMenuEvent::setGp")
+
+	if ptr.Pointer() != nil {
+		C.QContextMenuEvent_SetGp(ptr.Pointer(), core.PointerFromQPoint(vqp))
+	}
+}
+
+func (ptr *QContextMenuEvent) P() *core.QPoint {
+	defer qt.Recovering("QContextMenuEvent::p")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QContextMenuEvent_P(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QContextMenuEvent) SetP(vqp core.QPoint_ITF) {
+	defer qt.Recovering("QContextMenuEvent::setP")
+
+	if ptr.Pointer() != nil {
+		C.QContextMenuEvent_SetP(ptr.Pointer(), core.PointerFromQPoint(vqp))
+	}
+}
+
 type QCursor struct {
 	ptr unsafe.Pointer
 }
@@ -9943,7 +10292,7 @@ func (ptr *QDoubleValidator) Validate(input string, pos int) QValidator__State {
 	defer qt.Recovering("QDoubleValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QDoubleValidator_Validate(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -9952,7 +10301,7 @@ func (ptr *QDoubleValidator) ValidateDefault(input string, pos int) QValidator__
 	defer qt.Recovering("QDoubleValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QDoubleValidator_ValidateDefault(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -10015,7 +10364,7 @@ func (ptr *QDoubleValidator) Fixup(input string) {
 	defer qt.Recovering("QDoubleValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QDoubleValidator_Fixup(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -10023,7 +10372,7 @@ func (ptr *QDoubleValidator) FixupDefault(input string) {
 	defer qt.Recovering("QDoubleValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QDoubleValidator_FixupDefault(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -11314,6 +11663,23 @@ func (ptr *QDragMoveEvent) DestroyQDragMoveEvent() {
 	}
 }
 
+func (ptr *QDragMoveEvent) Rect() *core.QRect {
+	defer qt.Recovering("QDragMoveEvent::rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QDragMoveEvent_Rect(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDragMoveEvent) SetRect(vqr core.QRect_ITF) {
+	defer qt.Recovering("QDragMoveEvent::setRect")
+
+	if ptr.Pointer() != nil {
+		C.QDragMoveEvent_SetRect(ptr.Pointer(), core.PointerFromQRect(vqr))
+	}
+}
+
 type QDropEvent struct {
 	core.QEvent
 }
@@ -11459,6 +11825,117 @@ func (ptr *QDropEvent) Source() *core.QObject {
 		return core.NewQObjectFromPointer(C.QDropEvent_Source(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QDropEvent) Act() core.Qt__DropAction {
+	defer qt.Recovering("QDropEvent::act")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QDropEvent_Act(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDropEvent) SetAct(vqt core.Qt__DropAction) {
+	defer qt.Recovering("QDropEvent::setAct")
+
+	if ptr.Pointer() != nil {
+		C.QDropEvent_SetAct(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QDropEvent) Default_action() core.Qt__DropAction {
+	defer qt.Recovering("QDropEvent::default_action")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QDropEvent_Default_action(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDropEvent) SetDefault_action(vqt core.Qt__DropAction) {
+	defer qt.Recovering("QDropEvent::setDefault_action")
+
+	if ptr.Pointer() != nil {
+		C.QDropEvent_SetDefault_action(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QDropEvent) Drop_action() core.Qt__DropAction {
+	defer qt.Recovering("QDropEvent::drop_action")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QDropEvent_Drop_action(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDropEvent) SetDrop_action(vqt core.Qt__DropAction) {
+	defer qt.Recovering("QDropEvent::setDrop_action")
+
+	if ptr.Pointer() != nil {
+		C.QDropEvent_SetDrop_action(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QDropEvent) Mdata() *core.QMimeData {
+	defer qt.Recovering("QDropEvent::mdata")
+
+	if ptr.Pointer() != nil {
+		return core.NewQMimeDataFromPointer(C.QDropEvent_Mdata(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDropEvent) ModState() core.Qt__KeyboardModifier {
+	defer qt.Recovering("QDropEvent::modState")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__KeyboardModifier(C.QDropEvent_ModState(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDropEvent) SetModState(vqt core.Qt__KeyboardModifier) {
+	defer qt.Recovering("QDropEvent::setModState")
+
+	if ptr.Pointer() != nil {
+		C.QDropEvent_SetModState(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QDropEvent) MouseState() core.Qt__MouseButton {
+	defer qt.Recovering("QDropEvent::mouseState")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__MouseButton(C.QDropEvent_MouseState(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QDropEvent) SetMouseState(vqt core.Qt__MouseButton) {
+	defer qt.Recovering("QDropEvent::setMouseState")
+
+	if ptr.Pointer() != nil {
+		C.QDropEvent_SetMouseState(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QDropEvent) P() *core.QPointF {
+	defer qt.Recovering("QDropEvent::p")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QDropEvent_P(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QDropEvent) SetP(vqp core.QPointF_ITF) {
+	defer qt.Recovering("QDropEvent::setP")
+
+	if ptr.Pointer() != nil {
+		C.QDropEvent_SetP(ptr.Pointer(), core.PointerFromQPointF(vqp))
+	}
 }
 
 type QEnterEvent struct {
@@ -11649,6 +12126,23 @@ func (ptr *QExposeEvent) Region() *QRegion {
 		return NewQRegionFromPointer(C.QExposeEvent_Region(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QExposeEvent) Rgn() *QRegion {
+	defer qt.Recovering("QExposeEvent::rgn")
+
+	if ptr.Pointer() != nil {
+		return NewQRegionFromPointer(C.QExposeEvent_Rgn(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QExposeEvent) SetRgn(vqr QRegion_ITF) {
+	defer qt.Recovering("QExposeEvent::setRgn")
+
+	if ptr.Pointer() != nil {
+		C.QExposeEvent_SetRgn(ptr.Pointer(), PointerFromQRegion(vqr))
+	}
 }
 
 type QFileOpenEvent struct {
@@ -20410,6 +20904,23 @@ func (ptr *QInputEvent) Modifiers() core.Qt__KeyboardModifier {
 	return 0
 }
 
+func (ptr *QInputEvent) ModState() core.Qt__KeyboardModifier {
+	defer qt.Recovering("QInputEvent::modState")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__KeyboardModifier(C.QInputEvent_ModState(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QInputEvent) SetModState(vqt core.Qt__KeyboardModifier) {
+	defer qt.Recovering("QInputEvent::setModState")
+
+	if ptr.Pointer() != nil {
+		C.QInputEvent_SetModState(ptr.Pointer(), C.int(vqt))
+	}
+}
+
 //QInputMethod::Action
 type QInputMethod__Action int64
 
@@ -21703,7 +22214,7 @@ func (ptr *QIntValidator) Validate(input string, pos int) QValidator__State {
 	defer qt.Recovering("QIntValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QIntValidator_Validate(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -21712,7 +22223,7 @@ func (ptr *QIntValidator) ValidateDefault(input string, pos int) QValidator__Sta
 	defer qt.Recovering("QIntValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QIntValidator_ValidateDefault(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -21771,7 +22282,7 @@ func (ptr *QIntValidator) Fixup(input string) {
 	defer qt.Recovering("QIntValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QIntValidator_Fixup(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -21779,7 +22290,7 @@ func (ptr *QIntValidator) FixupDefault(input string) {
 	defer qt.Recovering("QIntValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QIntValidator_FixupDefault(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -22358,6 +22869,40 @@ func (ptr *QKeyEvent) Text() string {
 		return C.GoString(C.QKeyEvent_Text(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QKeyEvent) K() int {
+	defer qt.Recovering("QKeyEvent::k")
+
+	if ptr.Pointer() != nil {
+		return int(C.QKeyEvent_K(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QKeyEvent) SetK(vin int) {
+	defer qt.Recovering("QKeyEvent::setK")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEvent_SetK(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QKeyEvent) Txt() string {
+	defer qt.Recovering("QKeyEvent::txt")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QKeyEvent_Txt(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QKeyEvent) SetTxt(vqs string) {
+	defer qt.Recovering("QKeyEvent::setTxt")
+
+	if ptr.Pointer() != nil {
+		C.QKeyEvent_SetTxt(ptr.Pointer(), C.CString(vqs))
+	}
 }
 
 //QKeySequence::SequenceFormat
@@ -23096,6 +23641,65 @@ func (ptr *QMouseEvent) Y() int {
 		return int(C.QMouseEvent_Y(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QMouseEvent) B() core.Qt__MouseButton {
+	defer qt.Recovering("QMouseEvent::b")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__MouseButton(C.QMouseEvent_B(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMouseEvent) SetB(vqt core.Qt__MouseButton) {
+	defer qt.Recovering("QMouseEvent::setB")
+
+	if ptr.Pointer() != nil {
+		C.QMouseEvent_SetB(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QMouseEvent) Caps() int {
+	defer qt.Recovering("QMouseEvent::caps")
+
+	if ptr.Pointer() != nil {
+		return int(C.QMouseEvent_Caps(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMouseEvent) SetCaps(vin int) {
+	defer qt.Recovering("QMouseEvent::setCaps")
+
+	if ptr.Pointer() != nil {
+		C.QMouseEvent_SetCaps(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QMouseEvent) MouseState() core.Qt__MouseButton {
+	defer qt.Recovering("QMouseEvent::mouseState")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__MouseButton(C.QMouseEvent_MouseState(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QMouseEvent) SetMouseState(vqt core.Qt__MouseButton) {
+	defer qt.Recovering("QMouseEvent::setMouseState")
+
+	if ptr.Pointer() != nil {
+		C.QMouseEvent_SetMouseState(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QMouseEvent) SetVelocity(vqv QVector2D_ITF) {
+	defer qt.Recovering("QMouseEvent::setVelocity")
+
+	if ptr.Pointer() != nil {
+		C.QMouseEvent_SetVelocity(ptr.Pointer(), PointerFromQVector2D(vqv))
+	}
 }
 
 type QMoveEvent struct {
@@ -24413,6 +25017,91 @@ func (ptr *QNativeGestureEvent) WindowPos() *core.QPointF {
 		return core.NewQPointFFromPointer(C.QNativeGestureEvent_WindowPos(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QNativeGestureEvent) MGestureType() core.Qt__NativeGestureType {
+	defer qt.Recovering("QNativeGestureEvent::mGestureType")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__NativeGestureType(C.QNativeGestureEvent_MGestureType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QNativeGestureEvent) SetMGestureType(vqt core.Qt__NativeGestureType) {
+	defer qt.Recovering("QNativeGestureEvent::setMGestureType")
+
+	if ptr.Pointer() != nil {
+		C.QNativeGestureEvent_SetMGestureType(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QNativeGestureEvent) MLocalPos() *core.QPointF {
+	defer qt.Recovering("QNativeGestureEvent::mLocalPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QNativeGestureEvent_MLocalPos(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNativeGestureEvent) SetMLocalPos(vqp core.QPointF_ITF) {
+	defer qt.Recovering("QNativeGestureEvent::setMLocalPos")
+
+	if ptr.Pointer() != nil {
+		C.QNativeGestureEvent_SetMLocalPos(ptr.Pointer(), core.PointerFromQPointF(vqp))
+	}
+}
+
+func (ptr *QNativeGestureEvent) MRealValue() float64 {
+	defer qt.Recovering("QNativeGestureEvent::mRealValue")
+
+	if ptr.Pointer() != nil {
+		return float64(C.QNativeGestureEvent_MRealValue(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QNativeGestureEvent) SetMRealValue(vqr float64) {
+	defer qt.Recovering("QNativeGestureEvent::setMRealValue")
+
+	if ptr.Pointer() != nil {
+		C.QNativeGestureEvent_SetMRealValue(ptr.Pointer(), C.double(vqr))
+	}
+}
+
+func (ptr *QNativeGestureEvent) MScreenPos() *core.QPointF {
+	defer qt.Recovering("QNativeGestureEvent::mScreenPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QNativeGestureEvent_MScreenPos(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNativeGestureEvent) SetMScreenPos(vqp core.QPointF_ITF) {
+	defer qt.Recovering("QNativeGestureEvent::setMScreenPos")
+
+	if ptr.Pointer() != nil {
+		C.QNativeGestureEvent_SetMScreenPos(ptr.Pointer(), core.PointerFromQPointF(vqp))
+	}
+}
+
+func (ptr *QNativeGestureEvent) MWindowPos() *core.QPointF {
+	defer qt.Recovering("QNativeGestureEvent::mWindowPos")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QNativeGestureEvent_MWindowPos(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QNativeGestureEvent) SetMWindowPos(vqp core.QPointF_ITF) {
+	defer qt.Recovering("QNativeGestureEvent::setMWindowPos")
+
+	if ptr.Pointer() != nil {
+		C.QNativeGestureEvent_SetMWindowPos(ptr.Pointer(), core.PointerFromQPointF(vqp))
+	}
 }
 
 type QOffscreenSurface struct {
@@ -32827,6 +33516,40 @@ func (ptr *QPaintEngine) DestroyQPaintEngine() {
 	}
 }
 
+func (ptr *QPaintEngine) Gccaps() QPaintEngine__PaintEngineFeature {
+	defer qt.Recovering("QPaintEngine::gccaps")
+
+	if ptr.Pointer() != nil {
+		return QPaintEngine__PaintEngineFeature(C.QPaintEngine_Gccaps(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPaintEngine) SetGccaps(vpa QPaintEngine__PaintEngineFeature) {
+	defer qt.Recovering("QPaintEngine::setGccaps")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_SetGccaps(ptr.Pointer(), C.int(vpa))
+	}
+}
+
+func (ptr *QPaintEngine) State() *QPaintEngineState {
+	defer qt.Recovering("QPaintEngine::state")
+
+	if ptr.Pointer() != nil {
+		return NewQPaintEngineStateFromPointer(C.QPaintEngine_State(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPaintEngine) SetState(vqp QPaintEngineState_ITF) {
+	defer qt.Recovering("QPaintEngine::setState")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_SetState(ptr.Pointer(), PointerFromQPaintEngineState(vqp))
+	}
+}
+
 func (ptr *QPaintEngine) ObjectNameAbs() string {
 	defer qt.Recovering("QPaintEngine::objectNameAbs")
 
@@ -33040,6 +33763,23 @@ func (ptr *QPaintEngineState) State() QPaintEngine__DirtyFlag {
 	return 0
 }
 
+func (ptr *QPaintEngineState) DirtyFlags() QPaintEngine__DirtyFlag {
+	defer qt.Recovering("QPaintEngineState::dirtyFlags")
+
+	if ptr.Pointer() != nil {
+		return QPaintEngine__DirtyFlag(C.QPaintEngineState_DirtyFlags(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPaintEngineState) SetDirtyFlags(vqp QPaintEngine__DirtyFlag) {
+	defer qt.Recovering("QPaintEngineState::setDirtyFlags")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngineState_SetDirtyFlags(ptr.Pointer(), C.int(vqp))
+	}
+}
+
 type QPaintEvent struct {
 	core.QEvent
 }
@@ -33112,6 +33852,57 @@ func (ptr *QPaintEvent) Region() *QRegion {
 		return NewQRegionFromPointer(C.QPaintEvent_Region(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QPaintEvent) M_erased() bool {
+	defer qt.Recovering("QPaintEvent::m_erased")
+
+	if ptr.Pointer() != nil {
+		return C.QPaintEvent_M_erased(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPaintEvent) SetM_erased(vbo bool) {
+	defer qt.Recovering("QPaintEvent::setM_erased")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEvent_SetM_erased(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
+func (ptr *QPaintEvent) M_rect() *core.QRect {
+	defer qt.Recovering("QPaintEvent::m_rect")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFromPointer(C.QPaintEvent_M_rect(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPaintEvent) SetM_rect(vqr core.QRect_ITF) {
+	defer qt.Recovering("QPaintEvent::setM_rect")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEvent_SetM_rect(ptr.Pointer(), core.PointerFromQRect(vqr))
+	}
+}
+
+func (ptr *QPaintEvent) M_region() *QRegion {
+	defer qt.Recovering("QPaintEvent::m_region")
+
+	if ptr.Pointer() != nil {
+		return NewQRegionFromPointer(C.QPaintEvent_M_region(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPaintEvent) SetM_region(vqr QRegion_ITF) {
+	defer qt.Recovering("QPaintEvent::setM_region")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEvent_SetM_region(ptr.Pointer(), PointerFromQRegion(vqr))
+	}
 }
 
 //QPainter::CompositionMode
@@ -38159,6 +38950,23 @@ func (ptr *QPlatformSurfaceEvent) SurfaceEventType() QPlatformSurfaceEvent__Surf
 	return 0
 }
 
+func (ptr *QPlatformSurfaceEvent) M_surfaceEventType() QPlatformSurfaceEvent__SurfaceEventType {
+	defer qt.Recovering("QPlatformSurfaceEvent::m_surfaceEventType")
+
+	if ptr.Pointer() != nil {
+		return QPlatformSurfaceEvent__SurfaceEventType(C.QPlatformSurfaceEvent_M_surfaceEventType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QPlatformSurfaceEvent) SetM_surfaceEventType(vsu QPlatformSurfaceEvent__SurfaceEventType) {
+	defer qt.Recovering("QPlatformSurfaceEvent::setM_surfaceEventType")
+
+	if ptr.Pointer() != nil {
+		C.QPlatformSurfaceEvent_SetM_surfaceEventType(ptr.Pointer(), C.int(vsu))
+	}
+}
+
 //QPlatformSystemTrayIcon::ActivationReason
 type QPlatformSystemTrayIcon__ActivationReason int64
 
@@ -41970,7 +42778,7 @@ func (ptr *QRegExpValidator) Validate(input string, pos int) QValidator__State {
 	defer qt.Recovering("QRegExpValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QRegExpValidator_Validate(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -41979,7 +42787,7 @@ func (ptr *QRegExpValidator) ValidateDefault(input string, pos int) QValidator__
 	defer qt.Recovering("QRegExpValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QRegExpValidator_ValidateDefault(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -42027,7 +42835,7 @@ func (ptr *QRegExpValidator) Fixup(input string) {
 	defer qt.Recovering("QRegExpValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QRegExpValidator_Fixup(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -42035,7 +42843,7 @@ func (ptr *QRegExpValidator) FixupDefault(input string) {
 	defer qt.Recovering("QRegExpValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QRegExpValidator_FixupDefault(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -42890,7 +43698,7 @@ func (ptr *QRegularExpressionValidator) Validate(input string, pos int) QValidat
 	defer qt.Recovering("QRegularExpressionValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QRegularExpressionValidator_Validate(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -42899,7 +43707,7 @@ func (ptr *QRegularExpressionValidator) ValidateDefault(input string, pos int) Q
 	defer qt.Recovering("QRegularExpressionValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QRegularExpressionValidator_ValidateDefault(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -42947,7 +43755,7 @@ func (ptr *QRegularExpressionValidator) Fixup(input string) {
 	defer qt.Recovering("QRegularExpressionValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QRegularExpressionValidator_Fixup(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -42955,7 +43763,7 @@ func (ptr *QRegularExpressionValidator) FixupDefault(input string) {
 	defer qt.Recovering("QRegularExpressionValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QRegularExpressionValidator_FixupDefault(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -45462,6 +46270,57 @@ func (ptr *QShortcutEvent) DestroyQShortcutEvent() {
 	if ptr.Pointer() != nil {
 		C.QShortcutEvent_DestroyQShortcutEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QShortcutEvent) Ambig() bool {
+	defer qt.Recovering("QShortcutEvent::ambig")
+
+	if ptr.Pointer() != nil {
+		return C.QShortcutEvent_Ambig(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QShortcutEvent) SetAmbig(vbo bool) {
+	defer qt.Recovering("QShortcutEvent::setAmbig")
+
+	if ptr.Pointer() != nil {
+		C.QShortcutEvent_SetAmbig(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+	}
+}
+
+func (ptr *QShortcutEvent) Sequence() *QKeySequence {
+	defer qt.Recovering("QShortcutEvent::sequence")
+
+	if ptr.Pointer() != nil {
+		return NewQKeySequenceFromPointer(C.QShortcutEvent_Sequence(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QShortcutEvent) SetSequence(vqk QKeySequence_ITF) {
+	defer qt.Recovering("QShortcutEvent::setSequence")
+
+	if ptr.Pointer() != nil {
+		C.QShortcutEvent_SetSequence(ptr.Pointer(), PointerFromQKeySequence(vqk))
+	}
+}
+
+func (ptr *QShortcutEvent) Sid() int {
+	defer qt.Recovering("QShortcutEvent::sid")
+
+	if ptr.Pointer() != nil {
+		return int(C.QShortcutEvent_Sid(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QShortcutEvent) SetSid(vin int) {
+	defer qt.Recovering("QShortcutEvent::setSid")
+
+	if ptr.Pointer() != nil {
+		C.QShortcutEvent_SetSid(ptr.Pointer(), C.int(vin))
 	}
 }
 
@@ -49091,6 +49950,23 @@ func (ptr *QSurface) DestroyQSurface() {
 	}
 }
 
+func (ptr *QSurface) M_type() QSurface__SurfaceClass {
+	defer qt.Recovering("QSurface::m_type")
+
+	if ptr.Pointer() != nil {
+		return QSurface__SurfaceClass(C.QSurface_M_type(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QSurface) SetM_type(vsu QSurface__SurfaceClass) {
+	defer qt.Recovering("QSurface::setM_type")
+
+	if ptr.Pointer() != nil {
+		C.QSurface_SetM_type(ptr.Pointer(), C.int(vsu))
+	}
+}
+
 func (ptr *QSurface) ObjectNameAbs() string {
 	defer qt.Recovering("QSurface::objectNameAbs")
 
@@ -50475,6 +51351,40 @@ func (ptr *QTabletEvent) Z() int {
 		return int(C.QTabletEvent_Z(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QTabletEvent) MExtra() unsafe.Pointer {
+	defer qt.Recovering("QTabletEvent::mExtra")
+
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QTabletEvent_MExtra(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTabletEvent) SetMExtra(vvo unsafe.Pointer) {
+	defer qt.Recovering("QTabletEvent::setMExtra")
+
+	if ptr.Pointer() != nil {
+		C.QTabletEvent_SetMExtra(ptr.Pointer(), vvo)
+	}
+}
+
+func (ptr *QTabletEvent) MUnique() int64 {
+	defer qt.Recovering("QTabletEvent::mUnique")
+
+	if ptr.Pointer() != nil {
+		return int64(C.QTabletEvent_MUnique(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTabletEvent) SetMUnique(vqi int64) {
+	defer qt.Recovering("QTabletEvent::setMUnique")
+
+	if ptr.Pointer() != nil {
+		C.QTabletEvent_SetMUnique(ptr.Pointer(), C.longlong(vqi))
+	}
 }
 
 type QTextBlock struct {
@@ -60431,6 +61341,74 @@ func (ptr *QTouchEvent) DestroyQTouchEvent() {
 	}
 }
 
+func (ptr *QTouchEvent) _device() *QTouchDevice {
+	defer qt.Recovering("QTouchEvent::_device")
+
+	if ptr.Pointer() != nil {
+		return NewQTouchDeviceFromPointer(C.QTouchEvent__device(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTouchEvent) Set_device(vqt QTouchDevice_ITF) {
+	defer qt.Recovering("QTouchEvent::set_device")
+
+	if ptr.Pointer() != nil {
+		C.QTouchEvent_Set_device(ptr.Pointer(), PointerFromQTouchDevice(vqt))
+	}
+}
+
+func (ptr *QTouchEvent) _target() *core.QObject {
+	defer qt.Recovering("QTouchEvent::_target")
+
+	if ptr.Pointer() != nil {
+		return core.NewQObjectFromPointer(C.QTouchEvent__target(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTouchEvent) Set_target(vqo core.QObject_ITF) {
+	defer qt.Recovering("QTouchEvent::set_target")
+
+	if ptr.Pointer() != nil {
+		C.QTouchEvent_Set_target(ptr.Pointer(), core.PointerFromQObject(vqo))
+	}
+}
+
+func (ptr *QTouchEvent) _touchPointStates() core.Qt__TouchPointState {
+	defer qt.Recovering("QTouchEvent::_touchPointStates")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__TouchPointState(C.QTouchEvent__touchPointStates(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTouchEvent) Set_touchPointStates(vqt core.Qt__TouchPointState) {
+	defer qt.Recovering("QTouchEvent::set_touchPointStates")
+
+	if ptr.Pointer() != nil {
+		C.QTouchEvent_Set_touchPointStates(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QTouchEvent) _window() *QWindow {
+	defer qt.Recovering("QTouchEvent::_window")
+
+	if ptr.Pointer() != nil {
+		return NewQWindowFromPointer(C.QTouchEvent__window(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QTouchEvent) Set_window(vqw QWindow_ITF) {
+	defer qt.Recovering("QTouchEvent::set_window")
+
+	if ptr.Pointer() != nil {
+		C.QTouchEvent_Set_window(ptr.Pointer(), PointerFromQWindow(vqw))
+	}
+}
+
 //QTransform::TransformationType
 type QTransform__TransformationType int64
 
@@ -60923,7 +61901,7 @@ func (ptr *QValidator) Fixup(input string) {
 	defer qt.Recovering("QValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QValidator_Fixup(ptr.Pointer(), C.CString(input))
 	}
 }
 
@@ -60931,8 +61909,14 @@ func (ptr *QValidator) FixupDefault(input string) {
 	defer qt.Recovering("QValidator::fixup")
 
 	if ptr.Pointer() != nil {
-
+		C.QValidator_FixupDefault(ptr.Pointer(), C.CString(input))
 	}
+}
+
+func NewQValidator(parent core.QObject_ITF) *QValidator {
+	defer qt.Recovering("QValidator::QValidator")
+
+	return newQValidatorFromPointer(C.QValidator_NewQValidator(core.PointerFromQObject(parent)))
 }
 
 //export callbackQValidator_Changed
@@ -61021,7 +62005,7 @@ func (ptr *QValidator) Validate(input string, pos int) QValidator__State {
 	defer qt.Recovering("QValidator::validate")
 
 	if ptr.Pointer() != nil {
-
+		return QValidator__State(C.QValidator_Validate(ptr.Pointer(), C.CString(input), C.int(pos)))
 	}
 	return 0
 }
@@ -62011,6 +62995,137 @@ func (ptr *QWheelEvent) Y() int {
 		return int(C.QWheelEvent_Y(ptr.Pointer()))
 	}
 	return 0
+}
+
+func QWheelEvent_DefaultDeltasPerStep() int {
+	defer qt.Recovering("QWheelEvent::DefaultDeltasPerStep")
+
+	return int(C.QWheelEvent_QWheelEvent_DefaultDeltasPerStep())
+}
+
+func (ptr *QWheelEvent) DefaultDeltasPerStep() int {
+	defer qt.Recovering("QWheelEvent::DefaultDeltasPerStep")
+
+	return int(C.QWheelEvent_QWheelEvent_DefaultDeltasPerStep())
+}
+
+func (ptr *QWheelEvent) AngleD() *core.QPoint {
+	defer qt.Recovering("QWheelEvent::angleD")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWheelEvent_AngleD(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWheelEvent) SetAngleD(vqp core.QPoint_ITF) {
+	defer qt.Recovering("QWheelEvent::setAngleD")
+
+	if ptr.Pointer() != nil {
+		C.QWheelEvent_SetAngleD(ptr.Pointer(), core.PointerFromQPoint(vqp))
+	}
+}
+
+func (ptr *QWheelEvent) G() *core.QPointF {
+	defer qt.Recovering("QWheelEvent::g")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QWheelEvent_G(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWheelEvent) SetG(vqp core.QPointF_ITF) {
+	defer qt.Recovering("QWheelEvent::setG")
+
+	if ptr.Pointer() != nil {
+		C.QWheelEvent_SetG(ptr.Pointer(), core.PointerFromQPointF(vqp))
+	}
+}
+
+func (ptr *QWheelEvent) MouseState() core.Qt__MouseButton {
+	defer qt.Recovering("QWheelEvent::mouseState")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__MouseButton(C.QWheelEvent_MouseState(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWheelEvent) SetMouseState(vqt core.Qt__MouseButton) {
+	defer qt.Recovering("QWheelEvent::setMouseState")
+
+	if ptr.Pointer() != nil {
+		C.QWheelEvent_SetMouseState(ptr.Pointer(), C.int(vqt))
+	}
+}
+
+func (ptr *QWheelEvent) P() *core.QPointF {
+	defer qt.Recovering("QWheelEvent::p")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QWheelEvent_P(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWheelEvent) SetP(vqp core.QPointF_ITF) {
+	defer qt.Recovering("QWheelEvent::setP")
+
+	if ptr.Pointer() != nil {
+		C.QWheelEvent_SetP(ptr.Pointer(), core.PointerFromQPointF(vqp))
+	}
+}
+
+func (ptr *QWheelEvent) PixelD() *core.QPoint {
+	defer qt.Recovering("QWheelEvent::pixelD")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWheelEvent_PixelD(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWheelEvent) SetPixelD(vqp core.QPoint_ITF) {
+	defer qt.Recovering("QWheelEvent::setPixelD")
+
+	if ptr.Pointer() != nil {
+		C.QWheelEvent_SetPixelD(ptr.Pointer(), core.PointerFromQPoint(vqp))
+	}
+}
+
+func (ptr *QWheelEvent) Qt4D() int {
+	defer qt.Recovering("QWheelEvent::qt4D")
+
+	if ptr.Pointer() != nil {
+		return int(C.QWheelEvent_Qt4D(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWheelEvent) SetQt4D(vin int) {
+	defer qt.Recovering("QWheelEvent::setQt4D")
+
+	if ptr.Pointer() != nil {
+		C.QWheelEvent_SetQt4D(ptr.Pointer(), C.int(vin))
+	}
+}
+
+func (ptr *QWheelEvent) Qt4O() core.Qt__Orientation {
+	defer qt.Recovering("QWheelEvent::qt4O")
+
+	if ptr.Pointer() != nil {
+		return core.Qt__Orientation(C.QWheelEvent_Qt4O(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWheelEvent) SetQt4O(vqt core.Qt__Orientation) {
+	defer qt.Recovering("QWheelEvent::setQt4O")
+
+	if ptr.Pointer() != nil {
+		C.QWheelEvent_SetQt4O(ptr.Pointer(), C.int(vqt))
+	}
 }
 
 //QWindow::AncestorMode

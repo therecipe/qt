@@ -312,6 +312,35 @@ func cppFunctionBody(function *parser.Function) string {
 					converter.CppOutputParametersDeducedFromGeneric(function), converter.CppInputParameters(function))))
 		}
 
+	case parser.GETTER:
+		{
+			return fmt.Sprintf("\treturn %v;", converter.CppOutputParameters(function,
+				func() string {
+					if function.Static {
+						return function.Fullname
+					}
+					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", function.Class(), function.Name)
+				}()))
+		}
+
+	case parser.SETTER:
+		{
+			var function = *function
+			function.Name = function.TmpName
+			function.Fullname = fmt.Sprintf("%v::%v", function.Class(), function.Name)
+
+			return fmt.Sprintf("\t%v = %v;", converter.CppOutputParameters(&function,
+				func() string {
+					if function.Static {
+						return function.Fullname
+					}
+					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", function.Class(), function.Name)
+				}()),
+
+				converter.CppInputParameters(&function),
+			)
+		}
+
 	case parser.SIGNAL:
 		{
 			var my string

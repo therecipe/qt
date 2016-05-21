@@ -451,6 +451,18 @@ func (ptr *QSqlDatabase) DestroyQSqlDatabase() {
 	}
 }
 
+func QSqlDatabase_DefaultConnection() string {
+	defer qt.Recovering("QSqlDatabase::defaultConnection")
+
+	return C.GoString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
+}
+
+func (ptr *QSqlDatabase) DefaultConnection() string {
+	defer qt.Recovering("QSqlDatabase::defaultConnection")
+
+	return C.GoString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
+}
+
 //QSqlDriver::DbmsType
 type QSqlDriver__DbmsType int64
 

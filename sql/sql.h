@@ -50,6 +50,7 @@ void QSqlDatabase_SetUserName(void* ptr, char* name);
 int QSqlDatabase_Transaction(void* ptr);
 char* QSqlDatabase_UserName(void* ptr);
 void QSqlDatabase_DestroyQSqlDatabase(void* ptr);
+char* QSqlDatabase_QSqlDatabase_DefaultConnection();
 void* QSqlDriver_NewQSqlDriver(void* parent);
 int QSqlDriver_BeginTransaction(void* ptr);
 int QSqlDriver_BeginTransactionDefault(void* ptr);
