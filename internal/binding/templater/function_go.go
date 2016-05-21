@@ -167,11 +167,11 @@ func goFunctionBody(function *parser.Function) string {
 
 			if converter.GoHeaderOutput(function) == "" {
 				if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
-					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", function.Class(), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 				}
 			} else {
 				if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
-					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", function.Class(), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
 				} else {
 					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
 				}

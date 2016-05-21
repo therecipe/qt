@@ -116,7 +116,7 @@ var n = new(%v)
 n.SetPointer(ptr)
 return n
 }
-`, class.Name, class.Name, class.Name)
+`, strings.Title(class.Name), class.Name, class.Name)
 
 		fmt.Fprintf(bb, `
 func new%vFromPointer(ptr unsafe.Pointer) *%v {
@@ -124,7 +124,7 @@ var n = New%vFromPointer(ptr)%v
 return n
 }
 
-`, class.Name, class.Name, class.Name,
+`, strings.Title(class.Name), class.Name, strings.Title(class.Name),
 
 			func() string {
 				if classIsSupported(class) {

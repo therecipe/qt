@@ -97,18 +97,18 @@ func goOutput(name, value string, f *parser.Function) string {
 				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
 				}
-				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, value, name)
+				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
 			}
 
 			if f.Meta == "constructor" {
-				return fmt.Sprintf("new%vFromPointer(%v)", value, name)
+				return fmt.Sprintf("new%vFromPointer(%v)", strings.Title(value), name)
 			}
 
 			if f.TemplateMode == "String" {
-				return fmt.Sprintf("New%vFromPointer(%v).ToString()", value, name)
+				return fmt.Sprintf("New%vFromPointer(%v).ToString()", strings.Title(value), name)
 			}
 
-			return fmt.Sprintf("New%vFromPointer(%v)", value, name)
+			return fmt.Sprintf("New%vFromPointer(%v)", strings.Title(value), name)
 		}
 	}
 
@@ -263,9 +263,9 @@ func cgoOutput(name, value string, f *parser.Function) string {
 				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
 				}
-				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, value, name)
+				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
 			}
-			return fmt.Sprintf("New%vFromPointer(%v)", value, name)
+			return fmt.Sprintf("New%vFromPointer(%v)", strings.Title(value), name)
 		}
 	}
 
