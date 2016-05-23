@@ -67,11 +67,11 @@
 
 5. Generate, install and test
 
-  	`github.com/therecipe/qt/setup.bat` **(run as admin)**
+  	`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat` **(run as admin)**
 
   	or
 
-  	`github.com/therecipe/qt/setup.sh`
+  	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
 ---
 
@@ -102,11 +102,11 @@
 
 6. Install and test
 
-  	`github.com/therecipe/qt/setup.bat android` **(run as admin)**
+  	`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android` **(run as admin)**
 
     or
 
-  	`github.com/therecipe/qt/setup.sh android`
+  	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh android`
 
 ---
 
@@ -116,11 +116,7 @@
 
 2. Install and test
 
-  	`github.com/therecipe/qt/setup.sh ios`
-
-    and
-
-  	`github.com/therecipe/qt/setup.sh ios-simulator`
+  	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
 
 ---
 
