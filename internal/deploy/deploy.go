@@ -250,13 +250,13 @@ func qmlHeader() string {
 
 #cgo +build android,arm LDFLAGS: -L%v/Qt5.6.0/5.6/android_armv7/lib -lQt5Core
 
-#cgo +build darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=6.1 -arch i386
+#cgo +build darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=7.0 -arch i386
 #cgo +build darwin,386 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Widgets_iphonesimulator -lQt5Core_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
 
-#cgo +build darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=6.1 -arch arm64
+#cgo +build darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=7.0 -arch arm64
 #cgo +build darwin,arm64 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
 
-#cgo +build darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=6.1 -arch armv7
+#cgo +build darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=7.0 -arch armv7
 #cgo +build darwin,arm LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
 */
 import "C"`, hloc)
@@ -321,7 +321,7 @@ func build() {
 
 	case "ios", "ios-simulator":
 		{
-			ldFlags = "-ldflags=\"-w\""
+			ldFlags = "-ldflags=\"-s\" \"-w\""
 			tagFlags = "-tags=\"ios\""
 			outputFile = filepath.Join(depPath, "libgo.a")
 
@@ -350,8 +350,8 @@ func build() {
 				"GOARCH": GOARCH,
 
 				"CGO_ENABLED":  "1",
-				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=6.1 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
-				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=6.1 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
 			}
 
 			utils.Save(filepath.Join(appPath, "cgo_main_wrapper.go"), "package main\nimport \"C\"\n//export go_main_wrapper\nfunc go_main_wrapper() { main() }")
@@ -362,7 +362,7 @@ func build() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					ldFlags = "-ldflags=\"-w\" \"-r=/usr/local/Qt5.6.0/5.6/clang_64/lib\""
+					ldFlags = "-ldflags=\"-s\" \"-w\" \"-r=/usr/local/Qt5.6.0/5.6/clang_64/lib\""
 					outputFile = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
 				}
 
@@ -410,21 +410,25 @@ func build() {
 	}
 	runCmd(cmd, "build_1")
 
+	if runtime.GOOS == "darwin" && buildTarget == "desktop" {
+		var strip = exec.Command("strip", outputFile)
+		strip.Dir = appPath
+		runCmd(strip, "build.strip")
+	}
+
 	//armv7
-	/*
-		if buildTarget == "ios" {
-			var cmdiOS = exec.Command("go", "build", ldFlags, "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
-			cmdiOS.Dir = appPath
-			if tagFlags != "" {
-				cmdiOS.Args = append(cmdiOS.Args, tagFlags)
-			}
-			cmdiOS.Args = append(cmdiOS.Args, "-buildmode", "c-archive")
-			var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
-			tmp = strings.Replace(tmp, "arm64", "arm", -1)
-			cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-			runCmd(cmdiOS, "build_2")
+	if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+		var cmdiOS = exec.Command("go", "build", ldFlags, "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
+		cmdiOS.Dir = appPath
+		if tagFlags != "" {
+			cmdiOS.Args = append(cmdiOS.Args, tagFlags)
 		}
-	*/
+		cmdiOS.Args = append(cmdiOS.Args, "-buildmode", "c-archive")
+		var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
+		tmp = strings.Replace(tmp, "arm64", "arm", -1)
+		cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
+		runCmd(cmdiOS, "build_2")
+	}
 }
 
 func predeploy() {
@@ -440,14 +444,6 @@ func predeploy() {
 	case "android":
 		{
 			utils.MakeFolder(filepath.Join(appPath, "android"))
-
-			for _, dir := range []string{"drawable-hdpi", "drawable-ldpi", "drawable-mdpi"} {
-				utils.MakeFolder(filepath.Join(depPath, "build", "res", dir))
-				runCmdOptional(exec.Command(copyCmd, filepath.Join(appPath, "android", "icon.png"), filepath.Join(depPath, "build", "res", dir, "icon.png")), "predeploy.cpicon")
-			}
-
-			//add c_main_wrappers
-			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
 
 			var libPath = filepath.Join(depPath, "build", "libs", "armeabi-v7a")
 			utils.MakeFolder(libPath)
@@ -477,9 +473,22 @@ func predeploy() {
 				}
 			}
 
+			//add c_main_wrappers
+			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+
 			var cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", fmt.Sprintf("--sysroot=%v", filepath.Join(androidPrefix, "android-ndk", "platforms", "android-9", "arch-arm")), "-shared")
 			cmd.Dir = depPath
 			runCmd(cmd, "predeploy.go_main_wrapper_1")
+
+			var strip = exec.Command(filepath.Join(filepath.Dir(compiler), fmt.Sprintf("arm-linux-androideabi-strip%v", func() string {
+				if runtime.GOOS == "windows" {
+					return ".exe"
+				}
+				return ""
+			}(),
+			)), "libgo.so")
+			strip.Dir = depPath
+			runCmd(strip, "predeploy.strip_1")
 
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), "predeploy.cpBase")
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cpMain")
@@ -539,7 +548,9 @@ func predeploy() {
 
 			//add c_main_wrappers
 			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
-			//utils.Save(filepath.Join(depPath, "c_main_wrapper_armv7.cpp"), "#include \"libgo_armv7.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+				utils.Save(filepath.Join(depPath, "c_main_wrapper_armv7.cpp"), "#include \"libgo_armv7.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
+			}
 
 			utils.Save(filepath.Join(depPath, "gallery_plugin_import.cpp"), iosGalleryPluginImport)
 			utils.Save(filepath.Join(depPath, "gallery_qml_plugin_import.cpp"), iosGalleryQmlPluginImport)
@@ -547,22 +558,31 @@ func predeploy() {
 			utils.Save(filepath.Join(depPath, "qt.conf"), iosQtConf)
 
 			//build arm64
-			var cmd = exec.Command("clang++", "c_main_wrapper.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
+			var cmd = exec.Command("xcrun", "clang++", "c_main_wrapper.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
 			cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "")...)
 			cmd.Dir = depPath
 			runCmd(cmd, "predeploy.go_main_wrapper_1")
 
-			//build armv7
-			//error						=> ld: Unable to insert branch island. No insertion point available. for architecture armv7
-			/*
-				cmd = exec.Command("clang++", "c_main_wrapper_armv7.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_armv7", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo_armv7")
+			var strip = exec.Command("strip", "main")
+			strip.Dir = filepath.Join(depPath, "build")
+			runCmd(strip, "predeploy.strip_1")
+
+			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+				//build armv7
+				cmd = exec.Command("xcrun", "clang++", "c_main_wrapper_armv7.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_armv7", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo_armv7")
 				cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "armv7")...)
 				cmd.Dir = depPath
 				runCmdOptional(cmd, "predeploy.go_main_wrapper_2")
-			*/
-			//strip arm64 and armv7
-			//create fat binary
-			//binary size limit	=> https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html
+
+				strip = exec.Command("strip", "main_armv7")
+				strip.Dir = filepath.Join(depPath, "build")
+				runCmdOptional(strip, "predeploy.strip_2")
+
+				//binary size limits	=> https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html
+				var lipo = exec.Command("xcrun", "lipo", "-create", "-arch", "arm64", "main", "-arch", "armv7", "main_armv7", "-output", "main")
+				lipo.Dir = filepath.Join(depPath, "build")
+				runCmdOptional(lipo, "predeploy.lipo")
+			}
 
 			//create default assets
 			utils.Save(filepath.Join(buildPath, "Info.plist"), iosPLIST())
@@ -641,7 +661,7 @@ func deploy() {
 				"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 				"--output", filepath.Join(depPath, "build"),
 				"--deployment", "bundled",
-				"--android-platform", "android-22",
+				"--android-platform", "android-23",
 				"--jdk", jdkLib,
 				"--gradle",
 			)
@@ -951,11 +971,7 @@ func iosPLIST() string {
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>arm64</string>
-	</array>
+	<string>LaunchScreen</string>%v
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
@@ -974,7 +990,16 @@ func iosPLIST() string {
 	<true/>
 </dict>
 </plist>
-`, appName, appName)
+`, appName, appName, func() string {
+		if strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") {
+			return ""
+		}
+		return `
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>`
+	}())
 }
 
 func iosLaunchScreen() string {

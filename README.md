@@ -87,7 +87,7 @@
 3. Install the SDK dependencies with `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
 		* Android SDK Build-tools (23.0.3)
-	* Android 5.1.1 (API 22)
+	* Android 6.0 (API 23)
 		* SDK Platform
 	* Extras (Windows only)
 		* Google USB Driver

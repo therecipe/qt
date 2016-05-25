@@ -100,8 +100,8 @@ func main() {
 					"GOARCH": GOARCH,
 
 					"CGO_ENABLED":  "1",
-					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=6.1 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
-					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=6.1 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
 				}
 			}
 
@@ -135,19 +135,17 @@ func main() {
 		runCmd(cmd, "install.std_1")
 
 		//armv7
-		/*
-			if buildTarget == "ios" {
-				var cmdiOS = exec.Command("go", "install")
-				if tagFlags != "" {
-					cmdiOS.Args = append(cmdiOS.Args, tagFlags)
-				}
-				cmdiOS.Args = append(cmdiOS.Args, "std")
-				var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
-				tmp = strings.Replace(tmp, "arm64", "arm", -1)
-				cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-				runCmd(cmdiOS, "install.std_2")
+		if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+			var cmdiOS = exec.Command("go", "install")
+			if tagFlags != "" {
+				cmdiOS.Args = append(cmdiOS.Args, tagFlags)
 			}
-		*/
+			cmdiOS.Args = append(cmdiOS.Args, "std")
+			var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
+			tmp = strings.Replace(tmp, "arm64", "arm", -1)
+			cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
+			runCmd(cmdiOS, "install.std_2")
+		}
 	}
 
 	fmt.Println("------------------------install-------------------------")
@@ -176,19 +174,17 @@ func main() {
 				runCmd(cmd, fmt.Sprintf("install.%v_1", m))
 
 				//armv7
-				/*
-					if buildTarget == "ios" {
-						var cmdiOS = exec.Command("go", "install")
-						if tagFlags != "" {
-							cmdiOS.Args = append(cmdiOS.Args, tagFlags)
-						}
-						cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(m)))
-						var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
-						tmp = strings.Replace(tmp, "arm64", "arm", -1)
-						cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-						runCmd(cmdiOS, fmt.Sprintf("install.%v_2", m))
+				if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+					var cmdiOS = exec.Command("go", "install")
+					if tagFlags != "" {
+						cmdiOS.Args = append(cmdiOS.Args, tagFlags)
 					}
-				*/
+					cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(m)))
+					var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
+					tmp = strings.Replace(tmp, "arm64", "arm", -1)
+					cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
+					runCmd(cmdiOS, fmt.Sprintf("install.%v_2", m))
+				}
 			}
 
 			fmt.Println(strings.Repeat(" ", 30-len(m)), time.Since(before)/time.Second*time.Second)
