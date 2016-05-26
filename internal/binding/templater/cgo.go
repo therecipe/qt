@@ -10,7 +10,10 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var AppPath string
+var (
+	MocAppPath string
+	MocModule string
+)
 
 func CopyCgo(module string) {
 
@@ -43,7 +46,12 @@ func createCgoDarwin(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk -mmacosx-version-min=10.8 -Wall -W -fPIC\n"
@@ -89,7 +97,7 @@ func createCgoDarwin(module string) {
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	if module == parser.MOC {
-		utils.Save(filepath.Join(AppPath, "moc_cgo_darwin_amd64.go"), tmp)
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_darwin_amd64.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_darwin_amd64.go"), tmp)
 	}
@@ -101,7 +109,12 @@ func createCgoWindows(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra\n"
@@ -142,7 +155,7 @@ func createCgoWindows(module string) {
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	if module == parser.MOC {
-		utils.Save(filepath.Join(AppPath, "moc_cgo_windows_386.go"), tmp)
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_windows_386.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_windows_386.go"), tmp)
 	}
@@ -154,7 +167,12 @@ func createCgoLinux(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -pipe -O2 -Wall -W -D_REENTRANT\n"
@@ -195,8 +213,8 @@ func createCgoLinux(module string) {
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	if module == parser.MOC {
-		utils.Save(filepath.Join(AppPath, "moc_cgo_linux_386.go"), strings.Replace(tmp, "lib64", "lib", -1))
-		utils.Save(filepath.Join(AppPath, "moc_cgo_linux_amd64.go"), strings.Replace(tmp, "gcc", "gcc_64", -1))
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_386.go"), strings.Replace(tmp, "lib64", "lib", -1))
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_amd64.go"), strings.Replace(tmp, "gcc", "gcc_64", -1))
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_386.go"), strings.Replace(tmp, "lib64", "lib", -1))
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_amd64.go"), strings.Replace(tmp, "gcc", "gcc_64", -1))
@@ -209,7 +227,12 @@ func createCgoandroidDarwinAndLinux(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -Wno-psabi -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -ffunction-sections -funwind-tables -fstack-protector -fno-short-enums -DANDROID -Wa,--noexecstack -fno-builtin-memmove -Os -fomit-frame-pointer -fno-strict-aliasing -finline-limit=64 -mthumb -Wall -Wno-psabi -W -D_REENTRANT -fPIC\n"
@@ -244,7 +267,7 @@ func createCgoandroidDarwinAndLinux(module string) {
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	if module == parser.MOC {
-		utils.Save(filepath.Join(AppPath, "moc_cgo_android_arm.go"), tmp)
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_android_arm.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_android_arm.go"), tmp)
 	}
@@ -256,7 +279,12 @@ func createCgoandroidWindows(module string) {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -Wno-psabi -march=armv7-a -mfloat-abi=softfp -mfpu=vfp -ffunction-sections -funwind-tables -fstack-protector -fno-short-enums -DANDROID -Wa,--noexecstack -fno-builtin-memmove -Os -fomit-frame-pointer -fno-strict-aliasing -finline-limit=64 -mthumb -Wall -Wno-psabi -W -D_REENTRANT\n"
@@ -297,7 +325,7 @@ func createCgoandroidWindows(module string) {
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	if module == parser.MOC {
-		utils.Save(filepath.Join(AppPath, "moc_cgo_android_arm.go"), tmp)
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_android_arm.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_android_arm.go"), tmp)
 	}
@@ -309,7 +337,12 @@ func createCgoiOS(module string) string {
 		libs = cleanLibs(module)
 	)
 
-	tmp += fmt.Sprintf("package %v\n\n", strings.ToLower(module))
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
 	tmp += "/*\n"
 
 	tmp += "#cgo CPPFLAGS: -pipe -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=7.0 -arch i386 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n"
@@ -391,7 +424,7 @@ func createCgoiOS(module string) string {
 
 	var path, prefix = func() (string, string) {
 		if module == parser.MOC {
-			return AppPath, "moc_"
+			return MocAppPath, "moc_"
 		}
 		return utils.GetQtPkgPath(strings.ToLower(module)), ""
 	}()

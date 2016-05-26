@@ -58,6 +58,11 @@ func main() {
 				os.Exit(1)
 			}
 
+			if !strings.Contains(string(src), "package main") {
+				var plist = strings.Split(filepath.Clean(path), string(filepath.Separator))
+				templater.MocModule = plist[len(plist)-2]
+			}
+
 			for _, d := range file.Decls {
 				if typeDecl, ok := d.(*ast.GenDecl); ok {
 					for _, s := range typeDecl.Specs {
@@ -215,7 +220,7 @@ func main() {
 		gofmt.Dir = appPath
 		runCmd(gofmt, "moc.fmt")
 
-		templater.AppPath = appPath
+		templater.MocAppPath = appPath
 		templater.CopyCgo("main")
 	}
 }

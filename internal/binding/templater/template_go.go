@@ -291,7 +291,12 @@ import (
 			return ""
 		}(),
 
-		module,
+		func() string {
+			if MocModule != "" {
+				return MocModule
+			}
+			return module
+		}(),
 
 		func() string {
 			switch module {
