@@ -12,10 +12,14 @@ import (
 
 var (
 	MocAppPath string
-	MocModule string
+	MocModule  string
 )
 
 func CopyCgo(module string) {
+
+	if Minimal {
+		return
+	}
 
 	if !strings.Contains(module, "droid") {
 		createCgoDarwin(module)

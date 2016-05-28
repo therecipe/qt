@@ -22,86 +22,88 @@ func GoTemplate(module string, stub bool) []byte {
 
 		class.Stub = stub
 
-		if module != parser.MOC {
-			fmt.Fprintf(bb, "type %v struct {\n%v\n}\n\n",
+		if !Minimal || (Minimal && class.Export) {
+
+			if module != parser.MOC {
+				fmt.Fprintf(bb, "type %v struct {\n%v\n}\n\n",
+
+					class.Name,
+
+					func() string {
+						if class.Bases == "" {
+							return "ptr unsafe.Pointer"
+						}
+
+						var bb = new(bytes.Buffer)
+						defer bb.Reset()
+
+						for _, parentClassName := range class.GetBases() {
+							var parentClass = parser.ClassMap[parentClassName]
+							if parentClass.Module == class.Module {
+								fmt.Fprintf(bb, "%v\n", parentClassName)
+							} else {
+								fmt.Fprintf(bb, "%v.%v\n", shortModule(parentClass.Module), parentClassName)
+							}
+						}
+
+						return bb.String()
+					}(),
+				)
+			}
+
+			fmt.Fprintf(bb, "type %v_ITF interface {\n%v%v\n}\n\n",
 
 				class.Name,
 
 				func() string {
-					if class.Bases == "" {
-						return "ptr unsafe.Pointer"
-					}
-
 					var bb = new(bytes.Buffer)
 					defer bb.Reset()
 
 					for _, parentClassName := range class.GetBases() {
 						var parentClass = parser.ClassMap[parentClassName]
 						if parentClass.Module == class.Module {
-							fmt.Fprintf(bb, "%v\n", parentClassName)
+							fmt.Fprintf(bb, "%v_ITF\n", parentClassName)
 						} else {
-							fmt.Fprintf(bb, "%v.%v\n", shortModule(parentClass.Module), parentClassName)
+							fmt.Fprintf(bb, "%v.%v_ITF\n", shortModule(parentClass.Module), parentClassName)
 						}
 					}
 
 					return bb.String()
 				}(),
+
+				fmt.Sprintf("%v_PTR() *%v\n", class.Name, class.Name),
 			)
-		}
 
-		fmt.Fprintf(bb, "type %v_ITF interface {\n%v%v\n}\n\n",
+			fmt.Fprintf(bb, "func (p *%v) %v_PTR() *%v {\nreturn p\n}\n\n", class.Name, class.Name, class.Name)
 
-			class.Name,
+			if class.Bases == "" {
+				fmt.Fprintf(bb, "func (p *%v)Pointer() unsafe.Pointer {\nif p != nil {\nreturn p.ptr\n}\nreturn nil\n}\n\n", class.Name)
+				fmt.Fprintf(bb, "func (p *%v)SetPointer(ptr unsafe.Pointer) {\nif p != nil {\np.ptr = ptr\n}\n}\n\n", class.Name)
+			} else {
+				fmt.Fprintf(bb, "func (p *%v)Pointer() unsafe.Pointer {\nif p != nil {\nreturn p.%v_PTR().Pointer()\n}\nreturn nil\n}\n\n", class.Name, class.GetBases()[0])
 
-			func() string {
-				var bb = new(bytes.Buffer)
-				defer bb.Reset()
+				fmt.Fprintf(bb, "func (p *%v)SetPointer(ptr unsafe.Pointer) {\nif p != nil{\n%v}\n}\n",
 
-				for _, parentClassName := range class.GetBases() {
-					var parentClass = parser.ClassMap[parentClassName]
-					if parentClass.Module == class.Module {
-						fmt.Fprintf(bb, "%v_ITF\n", parentClassName)
-					} else {
-						fmt.Fprintf(bb, "%v.%v_ITF\n", shortModule(parentClass.Module), parentClassName)
-					}
+					class.Name,
+
+					func() string {
+						var bb = new(bytes.Buffer)
+						defer bb.Reset()
+
+						for _, parentClassName := range class.GetBases() {
+							fmt.Fprintf(bb, "p.%v_PTR().SetPointer(ptr)\n", parentClassName)
+						}
+
+						return bb.String()
+					}(),
+				)
+
+				if !class.IsQObjectSubClass() && len(class.GetBases()) > 1 && !needsCallbackFunctions(class) {
+					fmt.Fprintf(bb, "func (p *%v)ObjectNameAbs() string {\nif p != nil {\nreturn p.%v_PTR().ObjectNameAbs()\n}\nreturn \"\"\n}\n\n", class.Name, class.GetBases()[0])
 				}
-
-				return bb.String()
-			}(),
-
-			fmt.Sprintf("%v_PTR() *%v\n", class.Name, class.Name),
-		)
-
-		fmt.Fprintf(bb, "func (p *%v) %v_PTR() *%v {\nreturn p\n}\n\n", class.Name, class.Name, class.Name)
-
-		if class.Bases == "" {
-			fmt.Fprintf(bb, "func (p *%v)Pointer() unsafe.Pointer {\nif p != nil {\nreturn p.ptr\n}\nreturn nil\n}\n\n", class.Name)
-			fmt.Fprintf(bb, "func (p *%v)SetPointer(ptr unsafe.Pointer) {\nif p != nil {\np.ptr = ptr\n}\n}\n\n", class.Name)
-		} else {
-			fmt.Fprintf(bb, "func (p *%v)Pointer() unsafe.Pointer {\nif p != nil {\nreturn p.%v_PTR().Pointer()\n}\nreturn nil\n}\n\n", class.Name, class.GetBases()[0])
-
-			fmt.Fprintf(bb, "func (p *%v)SetPointer(ptr unsafe.Pointer) {\nif p != nil{\n%v}\n}\n",
-
-				class.Name,
-
-				func() string {
-					var bb = new(bytes.Buffer)
-					defer bb.Reset()
-
-					for _, parentClassName := range class.GetBases() {
-						fmt.Fprintf(bb, "p.%v_PTR().SetPointer(ptr)\n", parentClassName)
-					}
-
-					return bb.String()
-				}(),
-			)
-
-			if !class.IsQObjectSubClass() && len(class.GetBases()) > 1 && !needsCallbackFunctions(class) {
-				fmt.Fprintf(bb, "func (p *%v)ObjectNameAbs() string {\nif p != nil {\nreturn p.%v_PTR().ObjectNameAbs()\n}\nreturn \"\"\n}\n\n", class.Name, class.GetBases()[0])
 			}
-		}
 
-		fmt.Fprintf(bb, `
+			fmt.Fprintf(bb, `
 func PointerFrom%v(ptr %v_ITF) unsafe.Pointer {
 if ptr != nil {
 return ptr.%v_PTR().Pointer()
@@ -110,7 +112,7 @@ return nil
 }
 `, class.Name, class.Name, class.Name)
 
-		fmt.Fprintf(bb, `
+			fmt.Fprintf(bb, `
 func New%vFromPointer(ptr unsafe.Pointer) *%v {
 var n = new(%v)
 n.SetPointer(ptr)
@@ -118,7 +120,7 @@ return n
 }
 `, strings.Title(class.Name), class.Name, class.Name)
 
-		fmt.Fprintf(bb, `
+			fmt.Fprintf(bb, `
 func new%vFromPointer(ptr unsafe.Pointer) *%v {
 var n = New%vFromPointer(ptr)%v
 return n
@@ -126,21 +128,23 @@ return n
 
 `, strings.Title(class.Name), class.Name, strings.Title(class.Name),
 
-			func() string {
-				if classIsSupported(class) {
-					if class.IsQObjectSubClass() || needsCallbackFunctions(class) {
+				func() string {
+					if classIsSupported(class) {
+						if class.IsQObjectSubClass() || needsCallbackFunctions(class) {
 
-						var abs string
-						if !class.IsQObjectSubClass() {
-							abs = "Abs"
+							var abs string
+							if !class.IsQObjectSubClass() {
+								abs = "Abs"
+							}
+
+							return fmt.Sprintf("\nfor len(n.ObjectName%v()) < len(\"%v_\") {\nn.SetObjectName%v(\"%v_\" + qt.Identifier())\n}", abs, class.Name, abs, class.Name)
 						}
-
-						return fmt.Sprintf("\nfor len(n.ObjectName%v()) < len(\"%v_\") {\nn.SetObjectName%v(\"%v_\" + qt.Identifier())\n}", abs, class.Name, abs, class.Name)
 					}
-				}
-				return ""
-			}(),
-		)
+					return ""
+				}(),
+			)
+
+		}
 
 		if classIsSupported(class) {
 
@@ -285,10 +289,27 @@ import (
 `,
 
 		func() string {
-			if stub {
-				return "// +build !android"
+			switch {
+			case stub:
+				{
+					return "// +build !android"
+				}
+
+			case Minimal:
+				{
+					return "// +build minimal"
+				}
+
+			case module == parser.MOC, module == "androidextras":
+				{
+					return ""
+				}
+
+			default:
+				{
+					return "// +build !minimal"
+				}
 			}
-			return ""
 		}(),
 
 		func() string {
@@ -299,6 +320,10 @@ import (
 		}(),
 
 		func() string {
+			if Minimal {
+				return fmt.Sprintf("%v-minimal", module)
+			}
+
 			switch module {
 			case parser.MOC:
 				{

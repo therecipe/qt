@@ -62,6 +62,10 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 		return functionIsSupportedDefault(f)
 	}
 
+	if Minimal {
+		return f.Export
+	}
+
 	return true
 }
 
@@ -96,6 +100,10 @@ func functionIsSupportedDefault(f *parser.Function) bool {
 		{
 			return false
 		}
+	}
+
+	if Minimal {
+		return f.Export
 	}
 
 	return true
@@ -138,6 +146,10 @@ func classIsSupported(c *parser.Class) bool {
 			c.Access = "unsupported_isBlockedClass"
 			return false
 		}
+	}
+
+	if Minimal {
+		return c.Export
 	}
 
 	return true
@@ -367,6 +379,7 @@ func getSortedClassesForModule(module string) []*parser.Class {
 	return output
 }
 
+//TODO: move to parser
 func addCallbackNameFunctions(c *parser.Class) {
 	if !c.IsQObjectSubClass() && needsCallbackFunctions(c) {
 		c.Functions = append(c.Functions, &parser.Function{
@@ -375,6 +388,7 @@ func addCallbackNameFunctions(c *parser.Class) {
 			Access:   "public",
 			Meta:     parser.PLAIN,
 			Output:   "QString",
+			Export:   true,
 		})
 		c.Functions = append(c.Functions, &parser.Function{
 			Name:     "setObjectNameAbs",
@@ -386,6 +400,7 @@ func addCallbackNameFunctions(c *parser.Class) {
 				Name:  "name",
 				Value: "QString",
 			}},
+			Export: true,
 		})
 	}
 }

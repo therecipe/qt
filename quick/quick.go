@@ -1,3 +1,5 @@
+// +build !minimal
+
 package quick
 
 //#include "quick.h"

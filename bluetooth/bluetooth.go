@@ -1,3 +1,5 @@
+// +build !minimal
+
 package bluetooth
 
 //#include "bluetooth.h"

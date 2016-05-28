@@ -7,6 +7,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+var Minimal bool
+
 func GenModule(name string) {
 	if ShouldBuild(name) {
 
@@ -20,8 +22,10 @@ func GenModule(name string) {
 		}
 
 		//cleanup
-		utils.RemoveAll(utils.GetQtPkgPath(pkgName))
-		utils.RemoveAll(utils.GetQtPkgPath("internal", "binding", "dump", name))
+		if !Minimal {
+			utils.RemoveAll(utils.GetQtPkgPath(pkgName))
+			utils.RemoveAll(utils.GetQtPkgPath("internal", "binding", "dump", name))
+		}
 
 		//prepare
 		utils.MakeFolder(utils.GetQtPkgPath(pkgName))
@@ -41,12 +45,28 @@ func GenModule(name string) {
 		GoTemplate("Qt"+name, false)
 
 		//generate
-		utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
-		utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
+		if Minimal {
+			if name != "AndroidExtras" {
+				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".cpp"), CppTemplate("Qt"+name))
+				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".h"), HTemplate("Qt"+name))
+			}
+		} else {
+			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
+			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
+		}
 
 		if name == "AndroidExtras" {
-			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+name, false))
+			if !Minimal {
+				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+name, false))
+			}
 		}
-		utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+name, name == "AndroidExtras"))
+
+		if Minimal {
+			if name != "AndroidExtras" {
+				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal.go"), GoTemplate("Qt"+name, name == "AndroidExtras"))
+			}
+		} else {
+			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+name, name == "AndroidExtras"))
+		}
 	}
 }

@@ -1,3 +1,5 @@
+// +build !minimal
+
 package serialport
 
 //#include "serialport.h"

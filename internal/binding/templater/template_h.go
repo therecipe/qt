@@ -13,8 +13,9 @@ func HTemplate(module string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	fmt.Fprintf(bb,
-		`#pragma once
+	fmt.Fprintf(bb, `%v
+
+#pragma once
 
 #ifndef GO_%v_H
 #define GO_%v_H
@@ -24,6 +25,25 @@ extern "C" {
 #endif
 
 `,
+		func() string {
+			switch {
+			case Minimal:
+				{
+					return "// +build minimal"
+				}
+
+			case module == parser.MOC, module == "QtAndroidExtras":
+				{
+					return ""
+				}
+
+			default:
+				{
+					return "// +build !minimal"
+				}
+			}
+		}(),
+
 		strings.ToUpper(module),
 		strings.ToUpper(module))
 

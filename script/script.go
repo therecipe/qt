@@ -1,3 +1,5 @@
+// +build !minimal
+
 package script
 
 //#include "script.h"

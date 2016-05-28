@@ -1,4 +1,6 @@
 .DS_Store
+*-minimal*
+**_minimal/
 **/dump/
 **/deploy/windows/
 **/deploy/darwin/

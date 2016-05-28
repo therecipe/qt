@@ -1,3 +1,5 @@
+// +build !minimal
+
 package svg
 
 //#include "svg.h"

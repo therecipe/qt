@@ -1,3 +1,5 @@
+// +build !minimal
+
 package printsupport
 
 //#include "printsupport.h"

@@ -1,3 +1,5 @@
+// +build !minimal
+
 package core
 
 //#include "core.h"

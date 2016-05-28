@@ -1,3 +1,5 @@
+// +build !minimal
+
 package xmlpatterns
 
 //#include "xmlpatterns.h"

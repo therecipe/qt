@@ -1,3 +1,5 @@
+// +build !minimal
+
 package websockets
 
 //#include "websockets.h"

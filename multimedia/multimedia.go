@@ -1,3 +1,5 @@
+// +build !minimal
+
 package multimedia
 
 //#include "multimedia.h"

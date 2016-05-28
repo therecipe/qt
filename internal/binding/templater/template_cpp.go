@@ -299,13 +299,34 @@ func preambleCpp(module string, input []byte) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	fmt.Fprintf(bb, `#define protected public
+	fmt.Fprintf(bb, `%v
+
+#define protected public
 #define private public
 
 #include "%v.h"
 #include "_cgo_export.h"
 
 `,
+		func() string {
+			switch {
+			case Minimal:
+				{
+					return "// +build minimal"
+				}
+
+			case module == parser.MOC, module == "QtAndroidExtras":
+				{
+					return ""
+				}
+
+			default:
+				{
+					return "// +build !minimal"
+				}
+			}
+		}(),
+
 		func() string {
 			switch module {
 			case parser.MOC:

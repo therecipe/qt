@@ -1,3 +1,5 @@
+// +build !minimal
+
 package xml
 
 //#include "xml.h"

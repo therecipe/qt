@@ -24,6 +24,7 @@ type Class struct {
 	DocModule string
 	Stub      bool
 	WeakLink  map[string]bool
+	Export    bool
 }
 
 func (c *Class) register(module string) {

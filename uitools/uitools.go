@@ -1,3 +1,5 @@
+// +build !minimal
+
 package uitools
 
 //#include "uitools.h"

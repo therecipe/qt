@@ -1,3 +1,5 @@
+// +build !minimal
+
 package sensors
 
 //#include "sensors.h"

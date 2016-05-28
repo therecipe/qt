@@ -1,3 +1,5 @@
+// +build !minimal
+
 package testlib
 
 //#include "testlib.h"

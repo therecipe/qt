@@ -43,7 +43,7 @@ func CppInputParametersForSlotArguments(function *parser.Function, parameter *pa
 	switch {
 	case strings.Contains(parameter.Value, "*"):
 		{
-			return fmt.Sprintf("%v*", cleanValue(parameter.Value))
+			return fmt.Sprintf("%v*", CleanValue(parameter.Value))
 		}
 
 	case isEnum(function.Class(), parameter.Value):
@@ -53,7 +53,7 @@ func CppInputParametersForSlotArguments(function *parser.Function, parameter *pa
 
 	default:
 		{
-			return cleanValue(parameter.Value)
+			return CleanValue(parameter.Value)
 		}
 	}
 }

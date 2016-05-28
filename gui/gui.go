@@ -1,3 +1,5 @@
+// +build !minimal
+
 package gui
 
 //#include "gui.h"

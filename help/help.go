@@ -1,3 +1,5 @@
+// +build !minimal
+
 package help
 
 //#include "help.h"

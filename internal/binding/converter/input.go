@@ -15,7 +15,7 @@ func goInput(name, value string, f *parser.Function) string {
 	var vOld = value
 
 	name = cleanName(name, value)
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "QStringList":
@@ -149,7 +149,7 @@ func cppInput(name, value string, f *parser.Function) string {
 	var vOld = value
 
 	name = cleanName(name, value)
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "QStringList":

@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/therecipe/qt/internal/minimal"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -18,6 +19,7 @@ var (
 	depPath                string
 	buildMode, buildTarget string
 	ending                 string
+	buildMinimal           bool
 )
 
 func main() {
@@ -43,30 +45,50 @@ func main() {
 			run()
 		}
 	}
+
+	if !buildMinimal {
+		runCmd(exec.Command("qtdeploy", []string{"build", buildTarget, appPath, "minimal"}...), "build.minimal")
+	}
 }
 
 func args() {
 
 	switch len(os.Args) {
 	case 1:
-		buildMode = "test"
-		buildTarget = "desktop"
-		appPath, _ = os.Getwd()
+		{
+			buildMode = "test"
+			buildTarget = "desktop"
+			appPath, _ = os.Getwd()
+		}
 
 	case 2:
-		buildMode = os.Args[1]
-		buildTarget = "desktop"
-		appPath, _ = os.Getwd()
+		{
+			buildMode = os.Args[1]
+			buildTarget = "desktop"
+			appPath, _ = os.Getwd()
+		}
 
 	case 3:
-		buildMode = os.Args[1]
-		buildTarget = os.Args[2]
-		appPath, _ = os.Getwd()
+		{
+			buildMode = os.Args[1]
+			buildTarget = os.Args[2]
+			appPath, _ = os.Getwd()
+		}
 
 	case 4:
-		buildMode = os.Args[1]
-		buildTarget = os.Args[2]
-		appPath = os.Args[3]
+		{
+			buildMode = os.Args[1]
+			buildTarget = os.Args[2]
+			appPath = os.Args[3]
+		}
+
+	case 5:
+		{
+			buildMode = os.Args[1]
+			buildTarget = os.Args[2]
+			appPath = os.Args[3]
+			buildMinimal = true
+		}
 	}
 
 	switch buildMode {
@@ -108,6 +130,10 @@ func args() {
 		{
 			depPath = filepath.Join(appPath, "deploy", runtime.GOOS)
 		}
+	}
+
+	if buildMinimal {
+		depPath += "_minimal"
 	}
 
 	switch buildMode {
@@ -265,15 +291,16 @@ import "C"`, hloc)
 func build() {
 
 	var (
-		ldFlags, tagFlags string
-		outputFile        string
-		env               map[string]string
+		ldFlags    = "-ldflags="
+		tagFlags   = "-tags="
+		outputFile string
+		env        map[string]string
 	)
 
 	switch buildTarget {
 	case "android":
 		{
-			ldFlags = "-ldflags=\"-s\" \"-w\""
+			ldFlags += "\"-s\" \"-w\""
 			outputFile = filepath.Join(depPath, "libgo_base.so")
 
 			switch runtime.GOOS {
@@ -321,8 +348,8 @@ func build() {
 
 	case "ios", "ios-simulator":
 		{
-			ldFlags = "-ldflags=\"-s\" \"-w\""
-			tagFlags = "-tags=\"ios\""
+			ldFlags += "\"-s\" \"-w\""
+			tagFlags += "\"ios\""
 			outputFile = filepath.Join(depPath, "libgo.a")
 
 			var (
@@ -362,19 +389,19 @@ func build() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					ldFlags = "-ldflags=\"-s\" \"-w\" \"-r=/usr/local/Qt5.6.0/5.6/clang_64/lib\""
+					ldFlags += "\"-s\" \"-w\" \"-r=/usr/local/Qt5.6.0/5.6/clang_64/lib\""
 					outputFile = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
 				}
 
 			case "linux":
 				{
-					ldFlags = "-ldflags=\"-s\" \"-w\""
+					ldFlags += "\"-s\" \"-w\""
 					outputFile = filepath.Join(depPath, appName)
 				}
 
 			case "windows":
 				{
-					ldFlags = "-ldflags=\"-s\" \"-w\" \"-H=windowsgui\""
+					ldFlags += "\"-s\" \"-w\" \"-H=windowsgui\""
 					outputFile = filepath.Join(depPath, appName)
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
@@ -393,6 +420,12 @@ func build() {
 
 	var cmd = exec.Command("go", "build", ldFlags, "-o", outputFile+ending)
 	cmd.Dir = appPath
+
+	if buildMinimal {
+		minimal.Minimal(appPath)
+		tagFlags += " \"minimal\""
+	}
+
 	if tagFlags != "" {
 		cmd.Args = append(cmd.Args, tagFlags)
 	}
@@ -417,7 +450,7 @@ func build() {
 	}
 
 	//armv7
-	if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+	if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") || buildMinimal) {
 		var cmdiOS = exec.Command("go", "build", ldFlags, "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
 		cmdiOS.Dir = appPath
 		if tagFlags != "" {
@@ -548,7 +581,7 @@ func predeploy() {
 
 			//add c_main_wrappers
 			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
-			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") || buildMinimal) {
 				utils.Save(filepath.Join(depPath, "c_main_wrapper_armv7.cpp"), "#include \"libgo_armv7.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
 			}
 
@@ -567,7 +600,7 @@ func predeploy() {
 			strip.Dir = filepath.Join(depPath, "build")
 			runCmd(strip, "predeploy.strip_1")
 
-			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
+			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") || buildMinimal) {
 				//build armv7
 				cmd = exec.Command("xcrun", "clang++", "c_main_wrapper_armv7.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_armv7", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo_armv7")
 				cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "armv7")...)
@@ -991,7 +1024,7 @@ func iosPLIST() string {
 </dict>
 </plist>
 `, appName, appName, func() string {
-		if strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") {
+		if strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") || buildMinimal {
 			return ""
 		}
 		return `

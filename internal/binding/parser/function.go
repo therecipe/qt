@@ -24,6 +24,7 @@ type Function struct {
 	TemplateMode   string
 	Default        bool
 	TmpName        string
+	Export         bool
 }
 
 type Parameter struct {

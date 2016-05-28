@@ -1,3 +1,5 @@
+// +build !minimal
+
 package designer
 
 //#include "designer.h"

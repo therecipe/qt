@@ -1,3 +1,5 @@
+// +build !minimal
+
 package scripttools
 
 //#include "scripttools.h"

@@ -1,3 +1,5 @@
+// +build !minimal
+
 package webengine
 
 //#include "webengine.h"

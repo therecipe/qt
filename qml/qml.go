@@ -1,3 +1,5 @@
+// +build !minimal
+
 package qml
 
 //#include "qml.h"

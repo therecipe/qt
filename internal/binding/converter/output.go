@@ -11,7 +11,7 @@ func goOutput(name, value string, f *parser.Function) string {
 	var vOld = value
 
 	name = cleanName(name, value)
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "QStringList":
@@ -119,7 +119,7 @@ func goOutput(name, value string, f *parser.Function) string {
 func goOutputFailed(value string, f *parser.Function) string {
 	var vOld = value
 
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "bool":
@@ -198,7 +198,7 @@ func cgoOutput(name, value string, f *parser.Function) string {
 	var vOld = value
 
 	name = cleanName(name, value)
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "QStringList":
@@ -282,7 +282,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 	var vOld = value
 
 	name = cleanName(name, value)
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "QStringList":
@@ -408,7 +408,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 			for _, f := range parser.ClassMap[value].Functions {
 				if f.Meta == "constructor" {
 					if len(f.Parameters) == 1 {
-						if cleanValue(f.Parameters[0].Value) == value {
+						if CleanValue(f.Parameters[0].Value) == value {
 							return fmt.Sprintf("new %v(%v)", value, name)
 						}
 					}

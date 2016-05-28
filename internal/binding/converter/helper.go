@@ -53,7 +53,7 @@ func class(input interface{}) string {
 	return ""
 }
 
-func cleanValue(value string) string {
+func CleanValue(value string) string {
 	for _, b := range []string{"*", "const", "&"} {
 		value = strings.Replace(value, b, "", -1)
 	}
@@ -82,7 +82,7 @@ func cleanName(name, value string) string {
 
 	case "":
 		{
-			return "v" + strings.Replace(strings.ToLower(cleanValue(value)[:2]), ".", "", -1)
+			return "v" + strings.Replace(strings.ToLower(CleanValue(value)[:2]), ".", "", -1)
 		}
 	}
 

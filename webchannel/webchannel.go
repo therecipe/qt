@@ -1,3 +1,5 @@
+// +build !minimal
+
 package webchannel
 
 //#include "webchannel.h"

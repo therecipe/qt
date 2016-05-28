@@ -1,3 +1,5 @@
+// +build !minimal
+
 package dbus
 
 //#include "dbus.h"

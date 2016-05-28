@@ -1,3 +1,5 @@
+// +build !minimal
+
 package sql
 
 //#include "sql.h"

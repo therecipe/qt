@@ -1,3 +1,5 @@
+// +build !minimal
+
 #pragma once
 
 #ifndef GO_QTXML_H

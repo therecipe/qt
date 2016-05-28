@@ -10,7 +10,7 @@ import (
 func goType(f *parser.Function, value string) string {
 	var vOld = value
 
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "uchar", "char", "QString", "QByteArray":
@@ -136,7 +136,7 @@ func cgoType(f *parser.Function, value string) string {
 
 	var vOld = value
 
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "uchar", "char", "QString", "QByteArray", "QStringList":
@@ -197,7 +197,7 @@ func cgoType(f *parser.Function, value string) string {
 func cppType(f *parser.Function, value string) string {
 	var vOld = value
 
-	value = cleanValue(value)
+	value = CleanValue(value)
 
 	switch value {
 	case "uchar", "char", "QString", "QByteArray", "QStringList":

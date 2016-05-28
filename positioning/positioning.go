@@ -1,3 +1,5 @@
+// +build !minimal
+
 package positioning
 
 //#include "positioning.h"

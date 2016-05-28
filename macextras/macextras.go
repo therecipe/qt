@@ -1,3 +1,5 @@
+// +build !minimal
+
 package macextras
 
 //#include "macextras.h"
