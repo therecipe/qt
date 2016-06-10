@@ -18775,137 +18775,245 @@ int QSysInfo_ByteOrder_Type()
 
 int QSysInfo_MV_9_Type()
 {
-	return QSysInfo::MV_9;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_9;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_0_Type()
 {
-	return QSysInfo::MV_10_0;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_0;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_1_Type()
 {
-	return QSysInfo::MV_10_1;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_1;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_2_Type()
 {
-	return QSysInfo::MV_10_2;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_2;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_3_Type()
 {
-	return QSysInfo::MV_10_3;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_3;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_4_Type()
 {
-	return QSysInfo::MV_10_4;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_4;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_5_Type()
 {
-	return QSysInfo::MV_10_5;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_5;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_6_Type()
 {
-	return QSysInfo::MV_10_6;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_6;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_7_Type()
 {
-	return QSysInfo::MV_10_7;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_7;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_8_Type()
 {
-	return QSysInfo::MV_10_8;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_8;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_9_Type()
 {
-	return QSysInfo::MV_10_9;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_9;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_10_Type()
 {
-	return QSysInfo::MV_10_10;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_10;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_10_11_Type()
 {
-	return QSysInfo::MV_10_11;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_10_11;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_Type()
 {
-	return QSysInfo::MV_IOS;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_4_3_Type()
 {
-	return QSysInfo::MV_IOS_4_3;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_4_3;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_5_0_Type()
 {
-	return QSysInfo::MV_IOS_5_0;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_5_0;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_5_1_Type()
 {
-	return QSysInfo::MV_IOS_5_1;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_5_1;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_6_0_Type()
 {
-	return QSysInfo::MV_IOS_6_0;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_6_0;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_6_1_Type()
 {
-	return QSysInfo::MV_IOS_6_1;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_6_1;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_7_0_Type()
 {
-	return QSysInfo::MV_IOS_7_0;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_7_0;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_7_1_Type()
 {
-	return QSysInfo::MV_IOS_7_1;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_7_1;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_8_0_Type()
 {
-	return QSysInfo::MV_IOS_8_0;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_8_0;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_8_1_Type()
 {
-	return QSysInfo::MV_IOS_8_1;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_8_1;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_8_2_Type()
 {
-	return QSysInfo::MV_IOS_8_2;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_8_2;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_8_3_Type()
 {
-	return QSysInfo::MV_IOS_8_3;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_8_3;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_8_4_Type()
 {
-	return QSysInfo::MV_IOS_8_4;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_8_4;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_MV_IOS_9_0_Type()
 {
-	return QSysInfo::MV_IOS_9_0;
+	#if QT_VERSION >= 0x056000
+		return QSysInfo::MV_IOS_9_0;
+	#else
+		return 0;
+	#endif
 }
 
 int QSysInfo_WordSize_Type()

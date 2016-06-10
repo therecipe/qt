@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -120,6 +121,42 @@ func main() {
 						"CGO_ENABLED": "1",
 					}
 				}
+			}
+
+		case "sailfish", "sailfish-emulator":
+			{
+				var _, err = ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386"))
+				if err != nil {
+					env = map[string]string{
+						"PATH":   os.Getenv("PATH"),
+						"GOPATH": os.Getenv("GOPATH"),
+						"GOROOT": runtime.GOROOT(),
+
+						"GOOS":   "linux",
+						"GOARCH": "386",
+					}
+
+					var build = exec.Command(filepath.Join(runtime.GOROOT(), "src", func() string {
+						if runtime.GOOS == "windows" {
+							return "run.bat"
+						}
+						return "run.bash"
+					}()))
+					for key, value := range env {
+						build.Env = append(build.Env, fmt.Sprintf("%v=%v", key, value))
+					}
+					build.Run()
+
+					env["GOARCH"] = "arm"
+					env["GOARM"] = "7"
+					var cmd = exec.Command("go", "install")
+					cmd.Args = append(cmd.Args, "std")
+					for key, value := range env {
+						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
+					}
+					runCmd(cmd, "install.std")
+				}
+				return
 			}
 		}
 

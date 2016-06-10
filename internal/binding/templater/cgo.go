@@ -22,29 +22,30 @@ func CopyCgo(module string) {
 	}
 
 	if !strings.Contains(module, "droid") {
-		createCgoDarwin(module)
-		createCgoWindows(module)
-		createCgoLinux(module)
+		cgoDarwin(module)
+		cgoWindows(module)
+		cgoLinux(module)
+		cgoSailfish(module)
 
 		if runtime.GOOS == "darwin" {
-			createCgoiOS(module)
+			cgoIos(module)
 		}
 	}
 
 	switch runtime.GOOS {
 	case "darwin", "linux":
 		{
-			createCgoandroidDarwinAndLinux(module)
+			cgoAndroidOnDarwinAndLinux(module)
 		}
 
 	case "windows":
 		{
-			createCgoandroidWindows(module)
+			cgoAndroidOnWindows(module)
 		}
 	}
 }
 
-func createCgoDarwin(module string) {
+func cgoDarwin(module string) {
 	var (
 		tmp  string
 		libs = cleanLibs(module)
@@ -107,7 +108,7 @@ func createCgoDarwin(module string) {
 	}
 }
 
-func createCgoWindows(module string) {
+func cgoWindows(module string) {
 	var (
 		tmp  string
 		libs = cleanLibs(module)
@@ -165,7 +166,7 @@ func createCgoWindows(module string) {
 	}
 }
 
-func createCgoLinux(module string) {
+func cgoLinux(module string) {
 	var (
 		tmp  string
 		libs = cleanLibs(module)
@@ -217,15 +218,13 @@ func createCgoLinux(module string) {
 	tmp += fmt.Sprintf("import \"C\"\n")
 
 	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_386.go"), strings.Replace(tmp, "lib64", "lib", -1))
 		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_amd64.go"), strings.Replace(tmp, "gcc", "gcc_64", -1))
 	} else {
-		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_386.go"), strings.Replace(tmp, "lib64", "lib", -1))
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_amd64.go"), strings.Replace(tmp, "gcc", "gcc_64", -1))
 	}
 }
 
-func createCgoandroidDarwinAndLinux(module string) {
+func cgoAndroidOnDarwinAndLinux(module string) {
 	var (
 		tmp  string
 		libs = cleanLibs(module)
@@ -277,7 +276,7 @@ func createCgoandroidDarwinAndLinux(module string) {
 	}
 }
 
-func createCgoandroidWindows(module string) {
+func cgoAndroidOnWindows(module string) {
 	var (
 		tmp  string
 		libs = cleanLibs(module)
@@ -335,7 +334,7 @@ func createCgoandroidWindows(module string) {
 	}
 }
 
-func createCgoiOS(module string) string {
+func cgoIos(module string) string {
 	var (
 		tmp  string
 		libs = cleanLibs(module)
@@ -449,6 +448,75 @@ func createCgoiOS(module string) string {
 	return ""
 }
 
+func cgoSailfish(module string) {
+	var (
+		tmp  string
+		libs = cleanLibs(module)
+	)
+
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
+	tmp += "/*\n"
+	tmp += "#cgo CPPFLAGS: -pipe -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -m32 -msse -msse2 -march=i686 -mfpmath=sse -mtune=generic -fno-omit-frame-pointer -fasynchronous-unwind-tables -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -W -D_REENTRANT -fPIE\n"
+
+	tmp += "#cgo CPPFLAGS: -DQT_NO_DEBUG"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	tmp += "\n"
+
+	tmp += "#cgo CPPFLAGS: -I/srv/mer/targets/SailfishOS-i486/usr/share/qt5/mkspecs/linux-g++ -I/srv/mer/targets/SailfishOS-i486/usr/include -I/srv/mer/targets/SailfishOS-i486/usr/include/sailfishapp -I/srv/mer/targets/SailfishOS-i486/usr/include/mdeclarativecache5 -I/srv/mer/targets/SailfishOS-i486/usr/include/qt5\n"
+
+	tmp += "#cgo CPPFLAGS:"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -I/srv/mer/targets/SailfishOS-i486/usr/include/qt5/Qt%v", m)
+	}
+	tmp += "\n\n"
+
+	tmp += "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib\n"
+
+	tmp += "#cgo LDFLAGS: -rdynamic -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lsailfishapp -lmdeclarativecache5"
+	for _, m := range libs {
+		if m == "UiTools" || m == "PlatformHeaders" {
+			if IsWhiteListedSailfishLib(m) {
+				tmp += fmt.Sprintf(" -lQt5%v", m)
+			}
+		}
+	}
+	for _, m := range libs {
+		if m != "UiTools" && m != "PlatformHeaders" {
+			if m != "UiPlugin" {
+				if IsWhiteListedSailfishLib(m) {
+					tmp += fmt.Sprintf(" -lQt5%v", m)
+				}
+			}
+		}
+	}
+	tmp += " -lGLESv2 -lpthread\n"
+	tmp += "*/\n"
+
+	tmp += fmt.Sprintf("import \"C\"\n")
+
+	if module == parser.MOC {
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_386.go"), tmp)
+	} else {
+		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_386.go"), tmp)
+	}
+
+	tmp = strings.Replace(tmp, "-m32 -msse -msse2 -march=i686 -mfpmath=sse -mtune=generic -fno-omit-frame-pointer -fasynchronous-unwind-tables", "-fmessage-length=0 -march=armv7-a -mfloat-abi=hard -mfpu=neon -mthumb -Wno-psabi", -1)
+	tmp = strings.Replace(tmp, "i486", "armv7hl", -1)
+
+	if module == parser.MOC {
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_arm.go"), tmp)
+	} else {
+		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_arm.go"), tmp)
+	}
+}
+
 func cleanLibs(module string) []string {
 
 	if module == parser.MOC || module == "build_ios" {
@@ -469,7 +537,7 @@ func cleanLibs(module string) []string {
 }
 
 func GetiOSClang(buildTarget, buildARM string) []string {
-	var tmp = createCgoiOS("build_ios")
+	var tmp = cgoIos("build_ios")
 
 	tmp = strings.Split(tmp, "/*")[1]
 	tmp = strings.Split(tmp, "*/")[0]
@@ -490,4 +558,18 @@ func GetiOSClang(buildTarget, buildARM string) []string {
 	}
 
 	return strings.Split(tmp, " ")
+}
+
+func IsWhiteListedSailfishLib(name string) bool {
+	switch name {
+	case "Core", "Quick", "Qml", "Network", "Gui", "Concurrent", "Multimedia", "Sql", "Svg", "XmlPatterns", "Xml", "DBus", "WebKit", "Sensors", "Positioning":
+		{
+			return true
+		}
+
+	default:
+		{
+			return false
+		}
+	}
 }

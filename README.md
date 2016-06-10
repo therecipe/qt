@@ -25,13 +25,17 @@
 ### Landscape
 ![](internal/screens/ios_landscape.png)
 
+## Sailfish OS
+
+![](internal/screens/sailfish_portrait.png)
+
 [source](https://github.com/therecipe/qt/blob/master/internal/examples/widgets/line_edits/line_edits.go)
 
 ---
 
 # Getting Started
 
-## Desktop (Windows / Mac OS X / Linux)
+## Windows / Mac OS X / Linux
 
 1. Install Go >= 1.6.2 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 	* https://storage.googleapis.com/golang/go1.6.2.windows-amd64.msi
@@ -75,7 +79,7 @@
 
 ---
 
-## Mobile (Android)
+## Android
 
 1. Set up the desktop version
 
@@ -110,13 +114,37 @@
 
 ---
 
-## Mobile (iOS)
+## iOS
 
 1. Set up the desktop version on Mac OS X
 
 2. Install and test
 
   	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
+
+---
+
+## Sailfish OS
+
+1. Set up the desktop version
+
+2. Install VirtualBox
+	* http://download.virtualbox.org/virtualbox/5.0.20/VirtualBox-5.0.20-106931-Win.exe
+	* http://download.virtualbox.org/virtualbox/5.0.20/VirtualBox-5.0.20-106931-OSX.dmg
+	* http://download.virtualbox.org/virtualbox/5.0.20/VirtualBox-5.0.20-106931-Linux_amd64.run
+
+3. Install the Sailfish OS SDK in `C:\SailfishOS\` or `/opt/SailfishOS/`
+	* http://releases.sailfishos.org/sdk/installers/1602/SailfishOSSDK-Beta-1602-Qt5-windows-offline.exe
+	* http://releases.sailfishos.org/sdk/installers/1602/SailfishOSSDK-Beta-1602-Qt5-mac-offline.dmg
+	* http://releases.sailfishos.org/sdk/installers/1602/SailfishOSSDK-Beta-1602-Qt5-linux-64-offline.run
+
+4. Install and test
+
+		`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator` **(run as admin)**
+
+		or
+
+		`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh sailfish && ./setup.sh sailfish-emulator`
 
 ---
 

@@ -14,6 +14,8 @@ import (
 	"github.com/therecipe/qt/internal/binding/templater"
 )
 
+var BuildTarget string
+
 func Minimal(path string) {
 
 	var (
@@ -82,7 +84,7 @@ func Minimal(path string) {
 			if hasPureVirtualFunctions(className) {
 				for _, f := range c.Functions {
 					if f.Virtual == parser.PURE {
-						exportFunction(c, f.Name)
+						exportFunction(c, f)
 					}
 				}
 			}
@@ -100,7 +102,7 @@ func Minimal(path string) {
 						f.SignalMode = signalMode
 
 						if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
-							exportFunction(c, f.Name)
+							exportFunction(c, f)
 						}
 					}
 				}
@@ -108,18 +110,24 @@ func Minimal(path string) {
 			default:
 				{
 					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
-						exportFunction(c, f.Name)
+						exportFunction(c, f)
 					}
 				}
 			}
 		}
-
-		//TODO: enums
-
 	}
 
-	exportFunction(parser.ClassMap["QObject"], "objectName")
-	exportFunction(parser.ClassMap["QObject"], "setObjectName")
+	exportFunction(parser.ClassMap["QObject"], &parser.Function{Name: "objectName"})
+	exportFunction(parser.ClassMap["QObject"], &parser.Function{Name: "setObjectName"})
+
+	if BuildTarget == "sailfish" || BuildTarget == "sailfish-emulator" {
+		parser.ClassMap["QQuickWidget"].Export = false
+	}
+
+	if BuildTarget == "ios" || BuildTarget == "ios-simulator" {
+		parser.ClassMap["QProcess"].Export = false
+		parser.ClassMap["QProcessEnvironment"].Export = false
+	}
 
 	templater.Minimal = true
 	for _, module := range templater.GetLibs() {
@@ -127,9 +135,9 @@ func Minimal(path string) {
 	}
 }
 
-func exportFunction(class *parser.Class, name string) {
+func exportFunction(class *parser.Class, function *parser.Function) {
 	for _, f := range class.Functions {
-		if f.Name == name {
+		if converter.GoHeaderName(function) == converter.GoHeaderName(f) {
 
 			f.Export = true
 

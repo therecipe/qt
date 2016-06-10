@@ -2,12 +2,16 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
+	"time"
+
+	"golang.org/x/crypto/ssh"
 
 	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/minimal"
@@ -91,18 +95,22 @@ func args() {
 		}
 	}
 
+	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" {
+		buildMinimal = true
+	}
+
 	switch buildMode {
 	case "build", "run", "test":
 		{
 			switch buildTarget {
-			case "desktop", "android", "ios", "ios-simulator":
+			case "desktop", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
 				{
 
 				}
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator ]", filepath.Join("path", "to", "project"))
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ]", filepath.Join("path", "to", "project"))
 					os.Exit(1)
 				}
 			}
@@ -110,7 +118,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator ]", filepath.Join("path", "to", "project"))
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ]", filepath.Join("path", "to", "project"))
 			os.Exit(1)
 		}
 	}
@@ -121,7 +129,7 @@ func args() {
 	appName = filepath.Base(appPath)
 
 	switch buildTarget {
-	case "android", "ios", "ios-simulator":
+	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
 		{
 			depPath = filepath.Join(appPath, "deploy", buildTarget)
 		}
@@ -177,18 +185,7 @@ func qrc() {
 
 			case "linux":
 				{
-
-					switch runtime.GOARCH {
-					case "amd64":
-						{
-							rccPath = "/usr/local/Qt5.6.0/5.6/android_armv7/bin/rcc"
-						}
-
-					case "386":
-						{
-							rccPath = "/usr/local/Qt5.6.0/5.6/android_armv7/bin/rcc"
-						}
-					}
+					rccPath = "/usr/local/Qt5.6.0/5.6/android_armv7/bin/rcc"
 				}
 
 			case "windows":
@@ -208,7 +205,7 @@ func qrc() {
 			}
 		}
 
-	case "desktop":
+	case "desktop", "sailfish", "sailfish-emulator":
 		{
 			switch runtime.GOOS {
 			case "darwin":
@@ -218,18 +215,7 @@ func qrc() {
 
 			case "linux":
 				{
-
-					switch runtime.GOARCH {
-					case "amd64":
-						{
-							rccPath = "/usr/local/Qt5.6.0/5.6/gcc_64/bin/rcc"
-						}
-
-					case "386":
-						{
-							rccPath = "/usr/local/Qt5.6.0/5.6/gcc/bin/rcc"
-						}
-					}
+					rccPath = "/usr/local/Qt5.6.0/5.6/gcc_64/bin/rcc"
 				}
 
 			case "windows":
@@ -268,13 +254,11 @@ func qmlHeader() string {
 
 #cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.6.0/5.6/clang_64/lib -framework QtCore
 
-#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc_64/lib
-#cgo +build linux,amd64 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/gcc_64/lib -lQt5Core
+#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc_64/lib -L/usr/local/Qt5.6.0/5.6/gcc_64/lib -lQt5Core
 
-#cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc/lib
-#cgo +build linux,386 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/gcc/lib -lQt5Core
 
 #cgo +build android,arm LDFLAGS: -L%v/Qt5.6.0/5.6/android_armv7/lib -lQt5Core
+
 
 #cgo +build darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=7.0 -arch i386
 #cgo +build darwin,386 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Widgets_iphonesimulator -lQt5Core_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
@@ -284,8 +268,12 @@ func qmlHeader() string {
 
 #cgo +build darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=7.0 -arch armv7
 #cgo +build darwin,arm LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
+
+
+#cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core
+#cgo +build linux,arm LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/lib -L/srv/mer/targets/SailfishOS-armv7hl/usr/lib -L/srv/mer/targets/SailfishOS-armv7hl/lib -lQt5Core
 */
-import "C"`, hloc)
+import "C"`, hloc, appName, appName)
 }
 
 func build() {
@@ -296,6 +284,12 @@ func build() {
 		outputFile string
 		env        map[string]string
 	)
+
+	if buildMinimal {
+		minimal.BuildTarget = buildTarget
+		minimal.Minimal(appPath)
+		tagFlags += " \"minimal\""
+	}
 
 	switch buildTarget {
 	case "android":
@@ -416,15 +410,64 @@ func build() {
 				}
 			}
 		}
+
+	case "sailfish", "sailfish-emulator":
+		{
+			if !strings.Contains(appPath, os.Getenv("GOPATH")) {
+				fmt.Println("Project needs to be inside GOPATH", appPath, os.Getenv("GOPATH"))
+				os.Exit(1)
+			}
+
+			switch runtime.GOOS {
+			case "windows":
+				{
+					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "registervm", "C:\\SailfishOS\\mersdk\\MerSDK\\MerSDK.vbox"), "buid.vboxRegisterSDK")
+					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
+					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
+					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
+				}
+
+			case "darwin", "linux":
+				{
+					runCmdOptional(exec.Command("vboxmanage", "registervm", "/opt/SailfishOS/mersdk/MerSDK/MerSDK.vbox"), "buid.vboxRegisterSDK")
+					runCmdOptional(exec.Command("vboxmanage", "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
+					runCmdOptional(exec.Command("vboxmanage", "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
+					runCmdOptional(exec.Command("nohup", "vboxmanage", "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
+				}
+			}
+
+			time.Sleep(10 * time.Second)
+
+			if buildTarget == "sailfish-emulator" {
+
+				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-as", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/as")
+				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-ld", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/ld")
+
+				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=minimal", "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
+				if errBuild != nil {
+					fmt.Println("build.Sailfish", errBuild)
+					cleanup()
+					os.Exit(1)
+				}
+			} else {
+
+				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/armv7hl-meego-linux-gnueabi-as", "/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/as")
+				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/armv7hl-meego-linux-gnueabi-ld", "/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/ld")
+
+				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=minimal", "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
+				if errBuild != nil {
+					fmt.Println("build.Sailfish", errBuild)
+					cleanup()
+					os.Exit(1)
+				}
+			}
+
+			return
+		}
 	}
 
 	var cmd = exec.Command("go", "build", ldFlags, "-o", outputFile+ending)
 	cmd.Dir = appPath
-
-	if buildMinimal {
-		minimal.Minimal(appPath)
-		tagFlags += " \"minimal\""
-	}
 
 	if tagFlags != "" {
 		cmd.Args = append(cmd.Args, tagFlags)
@@ -625,7 +668,7 @@ func predeploy() {
 
 			runCmd(exec.Command(copyCmd, "/usr/local/Qt5.6.0/5.6/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", buildPath), "predeploy.cpIcon")
 
-			//copy assets from ios folder
+			//copy assets from buildTarget folder
 			runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
 		}
 
@@ -648,6 +691,41 @@ func predeploy() {
 				{
 					//TODO: icon windres
 				}
+			}
+		}
+
+	case "sailfish", "sailfish-emulator":
+		{
+			utils.MakeFolder(filepath.Join(appPath, buildTarget))
+
+			//create default assets
+			utils.MakeFolder(filepath.Join(depPath, "rpm"))
+			utils.Save(filepath.Join(depPath, "rpm", appName+".spec"), sailfishSpec())
+			utils.Save(filepath.Join(depPath, appName+".desktop"), sailfishDesktop())
+
+			//copy assets from buildTarget folder
+			if runtime.GOOS == "windows" {
+				runCmd(exec.Command(copyCmd, "C:\\SailfishOS\\tutorials\\stocqt\\stocqt.png", filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
+
+				var cmd = exec.Command(copyCmd, buildTarget, depPath)
+				cmd.Dir = appPath
+				runCmd(cmd, "predeploy.cpSailfish")
+			} else {
+				runCmd(exec.Command(copyCmd, "/opt/SailfishOS/tutorials/stocqt/stocqt.png", filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
+
+				runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), depPath), "predeploy.cpSailfish")
+			}
+
+			var errClean = sshCommand("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", buildTarget+"_minimal")
+			if errClean != nil {
+				fmt.Println("predeploy.clean", errClean)
+			}
+
+			var errCopy = sshCommand("2222", "mersdk", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", buildTarget+"_minimal", "/home/mersdk")
+			if errCopy != nil {
+				fmt.Println("predeploy.copy", errCopy)
+				cleanup()
+				os.Exit(1)
 			}
 		}
 	}
@@ -777,6 +855,25 @@ func deploy() {
 				}
 			}
 		}
+
+	case "sailfish", "sailfish-emulator":
+		{
+			if buildTarget == "sailfish-emulator" {
+				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal", "&&", "mb2", "-t", "SailfishOS-i486", "build")
+				if errDeploy != nil {
+					fmt.Println("deploy.sailfish", errDeploy)
+					cleanup()
+					os.Exit(1)
+				}
+			} else {
+				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal", "&&", "mb2", "-t", "SailfishOS-armv7hl", "build")
+				if errDeploy != nil {
+					fmt.Println("deploy.sailfish", errDeploy)
+					cleanup()
+					os.Exit(1)
+				}
+			}
+		}
 	}
 }
 
@@ -827,6 +924,16 @@ func pastdeploy() {
 					runCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_app", appName, appName))), "pastdeploy.moveApp")
 					runCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))), "pastdeploy.moveSh")
 				}
+			}
+		}
+
+	case "sailfish", "sailfish-emulator":
+		{
+			var errPastDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1))
+			if errPastDeploy != nil {
+				fmt.Println("pastdeploy.sailfish", errPastDeploy)
+				cleanup()
+				os.Exit(1)
 			}
 		}
 	}
@@ -884,6 +991,41 @@ func run() {
 				{
 					exec.Command(filepath.Join(depPath, appName+ending)).Start()
 				}
+			}
+		}
+
+	case /*"sailfish",*/ "sailfish-emulator":
+		{
+			switch runtime.GOOS {
+			case "windows":
+				{
+					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "registervm", "C:\\SailfishOS\\emulator\\SailfishOS Emulator\\SailfishOS Emulator.vbox"), "buid.vboxRegisterEmulator")
+					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
+					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
+				}
+
+			case "darwin", "linux":
+				{
+					runCmdOptional(exec.Command("vboxmanage", "registervm", "/opt/SailfishOS/emulator/SailfishOS Emulator/SailfishOS Emulator.vbox"), "buid.vboxRegisterEmulator")
+					runCmdOptional(exec.Command("vboxmanage", "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
+					runCmdOptional(exec.Command("nohup", "vboxmanage", "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
+				}
+			}
+
+			time.Sleep(10 * time.Second)
+
+			var errInstall = sshCommand("2223", "nemo", "sudo", "rpm", "-i", "--force", strings.Replace(strings.Replace(depPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1)+"/*.rpm", "\\", "/", -1))
+			if errInstall != nil {
+				fmt.Println("run.install", errInstall)
+				cleanup()
+				os.Exit(1)
+			}
+
+			var errRun = sshCommand("2223", "nemo", "nohup", "/usr/bin/harbour-"+appName, ">", "/dev/null", "2>&1", "&")
+			if errRun != nil {
+				fmt.Println("run.run", errRun)
+				cleanup()
+				os.Exit(1)
 			}
 		}
 	}
@@ -1390,3 +1532,135 @@ Imports = qt_qml
 Qml2Imports = qt_qml
 `
 )
+
+//sailfish
+const (
+	sailfishSpecTemplate = `#
+# Do NOT Edit the Auto-generated Part!
+# Generated by: spectacle version 0.27
+#
+
+Name:       harbour-NAME_PLACEHOLDER
+
+# >> macros
+# << macros
+
+Summary:    Put your summary here
+Version:    0.1
+Release:    1
+Group:      Qt/Qt
+License:    MIT
+Source0:    %{name}-%{version}.tar.bz2
+#Requires:  mapplauncherd-booster-silica-qt5
+#Requires:  nemo-qml-plugin-thumbnailer-qt5
+Requires:   sailfishsilica-qt5
+#Requires:  qt5-qtdocgallery
+BuildRequires:  pkgconfig(sailfishapp)
+BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(Qt5Qml)
+BuildRequires:  pkgconfig(Qt5Core)
+#BuildRequires: pkgconfig(qdeclarative5-boostable)
+BuildRequires:  desktop-file-utils
+
+%description
+Put your description here
+
+
+%prep
+%setup -q -n %{name}-%{version}
+
+# >> setup
+# << setup
+
+%build
+# >> build pre
+# << build pre
+
+# >> build post
+# << build post
+
+%install
+rm -rf %{buildroot}
+# >> install pre
+# << install pre
+install -d %{buildroot}%{_bindir}
+install -p -m 0755 %(pwd)/%{name} %{buildroot}%{_bindir}/%{name}
+install -d %{buildroot}%{_datadir}/applications
+install -d %{buildroot}%{_datadir}/%{name}
+install -d %{buildroot}%{_datadir}/icons/hicolor/86x86/apps
+install -m 0444 -t %{buildroot}%{_datadir}/icons/hicolor/86x86/apps %{name}.png
+install -p %(pwd)/NAME_PLACEHOLDER.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
+
+# >> install post
+# << install post
+
+desktop-file-install --delete-original       \
+  --dir %{buildroot}%{_datadir}/applications             \
+   %{buildroot}%{_datadir}/applications/*.desktop
+
+%files
+%defattr(-,root,root,-)
+%{_bindir}
+%{_datadir}/%{name}
+%{_datadir}/icons/hicolor/86x86/apps
+%{_datadir}/applications/%{name}.desktop
+
+# >> files
+# << files`
+)
+
+func sailfishDesktop() string {
+	return fmt.Sprintf(`[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+X-Nemo-Application-Type=generic
+Comment=Put your comment here
+Name=%v
+Icon=harbour-%v
+Exec=harbour-%v`, appName, appName, appName)
+}
+
+func sailfishSpec() string {
+	return strings.Replace(sailfishSpecTemplate, "NAME_PLACEHOLDER", appName, -1)
+}
+
+func sshCommand(port, login string, cmd ...string) error {
+
+	var emuType = func() string {
+		if port == "2222" {
+			return "engine"
+		}
+		return "SailfishOS_Emulator"
+	}()
+
+	var keyPath = func() string {
+		if runtime.GOOS == "windows" {
+			return filepath.Join("C:\\", "SailfishOS", "vmshare", "ssh", "private_keys", emuType, login)
+		}
+		return filepath.Join("/opt", "SailfishOS", "vmshare", "ssh", "private_keys", emuType, login)
+	}()
+
+	var signer, errPrivKey = ssh.ParsePrivateKey([]byte(utils.Load(keyPath)))
+	if errPrivKey != nil {
+		return errPrivKey
+	}
+
+	var client, errDial = ssh.Dial("tcp", "localhost:"+port, &ssh.ClientConfig{User: login, Auth: []ssh.AuthMethod{ssh.PublicKeys(signer)}})
+	if errDial != nil {
+		return errDial
+	}
+	defer client.Close()
+
+	var sess, errSess = client.NewSession()
+	if errSess != nil {
+		return errSess
+	}
+
+	var output, errCmd = sess.CombinedOutput(strings.Join(cmd, " "))
+	if errCmd != nil {
+		return errors.New(string(output))
+	}
+
+	return nil
+}

@@ -1,12 +1,12 @@
 package dbus
 
 /*
-#cgo CPPFLAGS: -pipe -O2 -Wall -W -D_REENTRANT
+#cgo CPPFLAGS: -pipe -O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -Wformat -Wformat-security -m32 -msse -msse2 -march=i686 -mfpmath=sse -mtune=generic -fno-omit-frame-pointer -fasynchronous-unwind-tables -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -W -D_REENTRANT -fPIE
 #cgo CPPFLAGS: -DQT_NO_DEBUG -DQT_CORE_LIB -DQT_DBUS_LIB
-#cgo CPPFLAGS: -I/usr/local/Qt5.6.0/5.6/gcc/include -I/usr/local/Qt5.6.0/5.6/gcc/mkspecs/linux-g++
-#cgo CPPFLAGS: -I/usr/local/Qt5.6.0/5.6/gcc/include/QtCore -I/usr/local/Qt5.6.0/5.6/gcc/include/QtDBus
+#cgo CPPFLAGS: -I/srv/mer/targets/SailfishOS-i486/usr/share/qt5/mkspecs/linux-g++ -I/srv/mer/targets/SailfishOS-i486/usr/include -I/srv/mer/targets/SailfishOS-i486/usr/include/sailfishapp -I/srv/mer/targets/SailfishOS-i486/usr/include/mdeclarativecache5 -I/srv/mer/targets/SailfishOS-i486/usr/include/qt5
+#cgo CPPFLAGS: -I/srv/mer/targets/SailfishOS-i486/usr/include/qt5/QtCore -I/srv/mer/targets/SailfishOS-i486/usr/include/qt5/QtDBus
 
-#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc/lib
-#cgo LDFLAGS: -L/usr/local/Qt5.6.0/5.6/gcc/lib -L/usr/lib -lQt5Core -lQt5DBus -lpthread
+#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib
+#cgo LDFLAGS: -rdynamic -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lsailfishapp -lmdeclarativecache5 -lQt5Core -lQt5DBus -lGLESv2 -lpthread
 */
 import "C"
