@@ -71,11 +71,11 @@
 
 5. Generate, install and test
 
-  	`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat` **(run as admin)**
+	`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat` **(run as admin)**
 
-  	or
+	or
 
-  	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
+	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
 ---
 
@@ -106,11 +106,11 @@
 
 6. Install and test
 
-  	`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android` **(run as admin)**
+	`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android` **(run as admin)**
 
-    or
+	or
 
-  	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh android`
+	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh android`
 
 ---
 
@@ -120,7 +120,7 @@
 
 2. Install and test
 
-  	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
+	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
 
 ---
 
@@ -140,11 +140,11 @@
 
 4. Install and test
 
-		`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator` **(run as admin)**
+	`cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator` **(run as admin)**
 
-		or
+	or
 
-		`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh sailfish && ./setup.sh sailfish-emulator`
+	`cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh sailfish && ./setup.sh sailfish-emulator`
 
 ---
 
