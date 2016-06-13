@@ -39784,11 +39784,11 @@ func (ptr *QMimeData) Html() string {
 	return ""
 }
 
-func (ptr *QMimeData) ImageData() *QVariant {
+func (ptr *QMimeData) ImageData() unsafe.Pointer {
 	defer qt.Recovering("QMimeData::imageData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QMimeData_ImageData(ptr.Pointer()))
+		return unsafe.Pointer(C.QMimeData_ImageData(ptr.Pointer()))
 	}
 	return nil
 }

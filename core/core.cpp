@@ -56,6 +56,7 @@
 #include <QHistoryState>
 #include <QIODevice>
 #include <QIdentityProxyModel>
+#include <QImage>
 #include <QItemSelection>
 #include <QItemSelectionModel>
 #include <QItemSelectionRange>
@@ -11609,7 +11610,7 @@ char* QMimeData_Html(void* ptr)
 
 void* QMimeData_ImageData(void* ptr)
 {
-	return new QVariant(static_cast<QMimeData*>(ptr)->imageData());
+	return new QImage(qvariant_cast<QImage>(static_cast<QMimeData*>(ptr)->imageData()));
 }
 
 void QMimeData_RemoveFormat(void* ptr, char* mimeType)

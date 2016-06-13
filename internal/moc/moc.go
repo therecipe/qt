@@ -17,8 +17,9 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func main() {
+var modulesInited bool
 
+func main() {
 	var appPath string
 
 	switch len(os.Args) {
@@ -37,9 +38,24 @@ func main() {
 		appPath = utils.GetAbsPath(appPath)
 	}
 
-	for _, module := range templater.GetLibs() {
-		parser.GetModule(strings.ToLower(module))
+	var walkFunc = func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			moc(path)
+
+			for className, class := range parser.ClassMap {
+				if class.Module == parser.MOC {
+					delete(parser.ClassMap, className)
+				}
+			}
+		}
+
+		return nil
 	}
+
+	filepath.Walk(appPath, walkFunc)
+}
+
+func moc(appPath string) {
 
 	var module = &parser.Module{Project: "main", Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
 
@@ -131,6 +147,13 @@ func main() {
 
 	if len(module.Namespace.Classes) > 0 {
 
+		if !modulesInited {
+			for _, module := range templater.GetLibs() {
+				parser.GetModule(strings.ToLower(module))
+			}
+			modulesInited = true
+		}
+
 		module.Prepare()
 
 		for _, c := range parser.ClassMap {
@@ -189,18 +212,7 @@ func main() {
 
 		case "linux":
 			{
-
-				switch runtime.GOARCH {
-				case "amd64":
-					{
-						mocPath = "/usr/local/Qt5.6.0/5.6/gcc_64/bin/moc"
-					}
-
-				case "386":
-					{
-						mocPath = "/usr/local/Qt5.6.0/5.6/gcc/bin/moc"
-					}
-				}
+				mocPath = "/usr/local/Qt5.6.0/5.6/gcc_64/bin/moc"
 			}
 
 		case "windows":
@@ -325,11 +337,10 @@ func getCppTypeFromGoType(t string) string {
 	return "void"
 }
 
-func runCmd(cmd *exec.Cmd, n string) string {
+func runCmd(cmd *exec.Cmd, n string) {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
 		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", n, out, err)
 		os.Exit(1)
 	}
-	return string(out)
 }

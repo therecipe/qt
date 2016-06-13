@@ -305,6 +305,10 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 	case "bool", "int", "long", "void", "", "T", "JavaVM", "jclass", "jobject":
 		{
+			if f.Fullname == "QMimeData::imageData" {
+				return fmt.Sprintf("new QImage(qvariant_cast<QImage>(%v))", name)
+			}
+
 			if value == "void" {
 				if strings.Contains(vOld, "*") {
 					if strings.Contains(vOld, "const") {

@@ -266,7 +266,7 @@ func GetLibs() []string {
 }
 
 var LibDeps = map[string][]string{
-	"Core":              []string{"Widgets"},
+	"Core":              []string{"Gui", "Widgets"},
 	"AndroidExtras":     []string{"Core"},
 	"Gui":               []string{"Core", "Widgets"},
 	"Network":           []string{"Core"},

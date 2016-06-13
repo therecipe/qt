@@ -51,6 +51,10 @@ func (f *Function) fix() {
 		f.Parameters = f.Parameters[:len(f.Parameters)-1]
 	}
 
+	if f.Fullname == "QMimeData::imageData" {
+		f.Output = "void*"
+	}
+
 	if f.Virtual == IMPURE || f.Virtual == PURE || f.Meta == SIGNAL || f.Meta == SLOT {
 		f.Static = false
 	}
