@@ -295,6 +295,7 @@ func build() {
 	case "android":
 		{
 			ldFlags += "\"-s\" \"-w\""
+			tagFlags += "\"android\""
 			outputFile = filepath.Join(depPath, "libgo_base.so")
 
 			switch runtime.GOOS {

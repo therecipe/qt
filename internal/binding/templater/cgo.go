@@ -450,7 +450,7 @@ func cgoIos(module string) string {
 
 func cgoSailfish(module string) {
 	var (
-		tmp  string
+		tmp  = "// +build !android\n\n"
 		libs = cleanLibs(module)
 	)
 

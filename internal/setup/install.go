@@ -30,6 +30,8 @@ func main() {
 		case
 			"android":
 			{
+				tagFlags = "-tags=\"android\""
+
 				switch runtime.GOOS {
 				case "darwin", "linux":
 					{
