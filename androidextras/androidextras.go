@@ -360,6 +360,16 @@ func QAndroidJniObject_CallStaticMethodString4(clazz unsafe.Pointer, methodName 
 	return ""
 }
 
+func QAndroidJniObject_FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
+
+	return nil
+}
+
+func (ptr *QAndroidJniObject) FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
+
+	return nil
+}
+
 func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
 
 	return nil

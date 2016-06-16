@@ -2127,6 +2127,11 @@ void* QBitmap_NewQBitmap()
 	return new QBitmap();
 }
 
+void* QBitmap_NewQBitmap6(void* other)
+{
+	return new QBitmap(*static_cast<QBitmap*>(other));
+}
+
 void* QBitmap_NewQBitmap2(void* pixmap)
 {
 	return new QBitmap(*static_cast<QPixmap*>(pixmap));
@@ -2147,9 +2152,19 @@ void QBitmap_Clear(void* ptr)
 	static_cast<QBitmap*>(ptr)->clear();
 }
 
+void* QBitmap_QBitmap_FromImage(void* image, int flags)
+{
+	return new QBitmap(QBitmap::fromImage(*static_cast<QImage*>(image), static_cast<Qt::ImageConversionFlag>(flags)));
+}
+
 void QBitmap_Swap(void* ptr, void* other)
 {
 	static_cast<QBitmap*>(ptr)->swap(*static_cast<QBitmap*>(other));
+}
+
+void* QBitmap_Transformed(void* ptr, void* matrix)
+{
+	return new QBitmap(static_cast<QBitmap*>(ptr)->transformed(*static_cast<QTransform*>(matrix)));
 }
 
 void QBitmap_DestroyQBitmap(void* ptr)
@@ -2290,6 +2305,11 @@ void QBrush_Swap(void* ptr, void* other)
 void* QBrush_TextureImage(void* ptr)
 {
 	return new QImage(static_cast<QBrush*>(ptr)->textureImage());
+}
+
+void* QBrush_Transform(void* ptr)
+{
+	return new QTransform(static_cast<QBrush*>(ptr)->transform());
 }
 
 void QBrush_DestroyQBrush(void* ptr)
@@ -3165,6 +3185,11 @@ int QCursor_Shape(void* ptr)
 	return static_cast<QCursor*>(ptr)->shape();
 }
 
+void QCursor_Swap(void* ptr, void* other)
+{
+	static_cast<QCursor*>(ptr)->swap(*static_cast<QCursor*>(other));
+}
+
 void QCursor_DestroyQCursor(void* ptr)
 {
 	static_cast<QCursor*>(ptr)->~QCursor();
@@ -3377,6 +3402,11 @@ void QDrag_DisconnectActionChanged(void* ptr)
 void QDrag_ActionChanged(void* ptr, int action)
 {
 	static_cast<QDrag*>(ptr)->actionChanged(static_cast<Qt::DropAction>(action));
+}
+
+void QDrag_QDrag_Cancel()
+{
+	QDrag::cancel();
 }
 
 int QDrag_DefaultAction(void* ptr)
@@ -5025,6 +5055,11 @@ int QGuiApplication_QGuiApplication_ApplicationState()
 	return QGuiApplication::applicationState();
 }
 
+char* QGuiApplication_QGuiApplication_DesktopFileName()
+{
+	return QGuiApplication::desktopFileName().toUtf8().data();
+}
+
 int QGuiApplication_IsSavingSession(void* ptr)
 {
 	return static_cast<QGuiApplication*>(ptr)->isSavingSession();
@@ -5083,6 +5118,11 @@ char* QGuiApplication_SessionKey(void* ptr)
 void QGuiApplication_QGuiApplication_SetApplicationDisplayName(char* name)
 {
 	QGuiApplication::setApplicationDisplayName(QString(name));
+}
+
+void QGuiApplication_QGuiApplication_SetDesktopFileName(char* name)
+{
+	QGuiApplication::setDesktopFileName(QString(name));
 }
 
 void QGuiApplication_QGuiApplication_SetLayoutDirection(int direction)
@@ -5606,7 +5646,12 @@ long long QIcon_CacheKey(void* ptr)
 	return static_cast<long long>(static_cast<QIcon*>(ptr)->cacheKey());
 }
 
-void* QIcon_QIcon_FromTheme(char* name, void* fallback)
+void* QIcon_QIcon_FromTheme(char* name)
+{
+	return new QIcon(QIcon::fromTheme(QString(name)));
+}
+
+void* QIcon_QIcon_FromTheme2(char* name, void* fallback)
 {
 	return new QIcon(QIcon::fromTheme(QString(name), *static_cast<QIcon*>(fallback)));
 }
@@ -5767,6 +5812,11 @@ char* QIconEngine_IconName(void* ptr)
 char* QIconEngine_IconNameDefault(void* ptr)
 {
 	return static_cast<QIconEngine*>(ptr)->QIconEngine::iconName().toUtf8().data();
+}
+
+int QIconEngine_IsNull(void* ptr)
+{
+	return static_cast<QIconEngine*>(ptr)->isNull();
 }
 
 char* QIconEngine_Key(void* ptr)
@@ -6013,6 +6063,11 @@ void QImage_SetText(void* ptr, char* key, char* text)
 void* QImage_Size(void* ptr)
 {
 	return new QSize(static_cast<QSize>(static_cast<QImage*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QImage*>(ptr)->size()).height());
+}
+
+void* QImage_QImage_TrueMatrix2(void* matrix, int width, int height)
+{
+	return new QTransform(QImage::trueMatrix(*static_cast<QTransform*>(matrix), width, height));
 }
 
 int QImage_Width(void* ptr)
@@ -7012,11 +7067,13 @@ void QInputEvent_SetModState(void* ptr, int vqt)
 class MyQInputMethod: public QInputMethod
 {
 public:
+	void Signal_AnchorRectangleChanged() { callbackQInputMethod_AnchorRectangleChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_AnimatingChanged() { callbackQInputMethod_AnimatingChanged(this, this->objectName().toUtf8().data()); };
 	void commit() { callbackQInputMethod_Commit(this, this->objectName().toUtf8().data()); };
 	void Signal_CursorRectangleChanged() { callbackQInputMethod_CursorRectangleChanged(this, this->objectName().toUtf8().data()); };
 	void hide() { callbackQInputMethod_Hide(this, this->objectName().toUtf8().data()); };
 	void Signal_InputDirectionChanged(Qt::LayoutDirection newDirection) { callbackQInputMethod_InputDirectionChanged(this, this->objectName().toUtf8().data(), newDirection); };
+	void Signal_InputItemClipRectangleChanged() { callbackQInputMethod_InputItemClipRectangleChanged(this, this->objectName().toUtf8().data()); };
 	void invokeAction(QInputMethod::Action a, int cursorPosition) { callbackQInputMethod_InvokeAction(this, this->objectName().toUtf8().data(), a, cursorPosition); };
 	void Signal_KeyboardRectangleChanged() { callbackQInputMethod_KeyboardRectangleChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_LocaleChanged() { callbackQInputMethod_LocaleChanged(this, this->objectName().toUtf8().data()); };
@@ -7035,6 +7092,11 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInputMethod_MetaObject(const_cast<MyQInputMethod*>(this), this->objectName().toUtf8().data())); };
 };
 
+void* QInputMethod_AnchorRectangle(void* ptr)
+{
+	return new QRectF(static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->anchorRectangle()).x(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->anchorRectangle()).y(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->anchorRectangle()).width(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->anchorRectangle()).height());
+}
+
 void* QInputMethod_CursorRectangle(void* ptr)
 {
 	return new QRectF(static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).x(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).y(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).width(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->cursorRectangle()).height());
@@ -7043,6 +7105,11 @@ void* QInputMethod_CursorRectangle(void* ptr)
 int QInputMethod_InputDirection(void* ptr)
 {
 	return static_cast<QInputMethod*>(ptr)->inputDirection();
+}
+
+void* QInputMethod_InputItemClipRectangle(void* ptr)
+{
+	return new QRectF(static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemClipRectangle()).x(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemClipRectangle()).y(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemClipRectangle()).width(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemClipRectangle()).height());
 }
 
 int QInputMethod_IsAnimating(void* ptr)
@@ -7063,6 +7130,21 @@ void* QInputMethod_KeyboardRectangle(void* ptr)
 void* QInputMethod_Locale(void* ptr)
 {
 	return new QLocale(static_cast<QInputMethod*>(ptr)->locale());
+}
+
+void QInputMethod_ConnectAnchorRectangleChanged(void* ptr)
+{
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::anchorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_AnchorRectangleChanged));
+}
+
+void QInputMethod_DisconnectAnchorRectangleChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::anchorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_AnchorRectangleChanged));
+}
+
+void QInputMethod_AnchorRectangleChanged(void* ptr)
+{
+	static_cast<QInputMethod*>(ptr)->anchorRectangleChanged();
 }
 
 void QInputMethod_ConnectAnimatingChanged(void* ptr)
@@ -7120,9 +7202,29 @@ void QInputMethod_InputDirectionChanged(void* ptr, int newDirection)
 	static_cast<QInputMethod*>(ptr)->inputDirectionChanged(static_cast<Qt::LayoutDirection>(newDirection));
 }
 
+void QInputMethod_ConnectInputItemClipRectangleChanged(void* ptr)
+{
+	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::inputItemClipRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_InputItemClipRectangleChanged));
+}
+
+void QInputMethod_DisconnectInputItemClipRectangleChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::inputItemClipRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_InputItemClipRectangleChanged));
+}
+
+void QInputMethod_InputItemClipRectangleChanged(void* ptr)
+{
+	static_cast<QInputMethod*>(ptr)->inputItemClipRectangleChanged();
+}
+
 void* QInputMethod_InputItemRectangle(void* ptr)
 {
 	return new QRectF(static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).x(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).y(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).width(), static_cast<QRectF>(static_cast<QInputMethod*>(ptr)->inputItemRectangle()).height());
+}
+
+void* QInputMethod_InputItemTransform(void* ptr)
+{
+	return new QTransform(static_cast<QInputMethod*>(ptr)->inputItemTransform());
 }
 
 void QInputMethod_InvokeAction(void* ptr, int a, int cursorPosition)
@@ -7777,6 +7879,11 @@ void QMatrix4x4_SetRow(void* ptr, int index, void* value)
 void QMatrix4x4_SetToIdentity(void* ptr)
 {
 	static_cast<QMatrix4x4*>(ptr)->setToIdentity();
+}
+
+void* QMatrix4x4_ToTransform(void* ptr)
+{
+	return new QTransform(static_cast<QMatrix4x4*>(ptr)->toTransform());
 }
 
 void QMatrix4x4_Translate(void* ptr, void* vector)
@@ -10119,6 +10226,11 @@ int QPaintEngineState_State(void* ptr)
 	return static_cast<QPaintEngineState*>(ptr)->state();
 }
 
+void* QPaintEngineState_Transform(void* ptr)
+{
+	return new QTransform(static_cast<QPaintEngineState*>(ptr)->transform());
+}
+
 int QPaintEngineState_DirtyFlags(void* ptr)
 {
 	return static_cast<QPaintEngineState*>(ptr)->dirtyFlags;
@@ -10429,6 +10541,11 @@ void* QPainter_ClipRegion(void* ptr)
 	return new QRegion(static_cast<QPainter*>(ptr)->clipRegion());
 }
 
+void* QPainter_CombinedTransform(void* ptr)
+{
+	return new QTransform(static_cast<QPainter*>(ptr)->combinedTransform());
+}
+
 int QPainter_CompositionMode(void* ptr)
 {
 	return static_cast<QPainter*>(ptr)->compositionMode();
@@ -10437,6 +10554,11 @@ int QPainter_CompositionMode(void* ptr)
 void* QPainter_Device(void* ptr)
 {
 	return static_cast<QPainter*>(ptr)->device();
+}
+
+void* QPainter_DeviceTransform(void* ptr)
+{
+	return new QTransform(static_cast<QPainter*>(ptr)->deviceTransform());
 }
 
 void QPainter_DrawArc2(void* ptr, void* rectangle, int startAngle, int spanAngle)
@@ -11034,6 +11156,11 @@ int QPainter_TestRenderHint(void* ptr, int hint)
 	return static_cast<QPainter*>(ptr)->testRenderHint(static_cast<QPainter::RenderHint>(hint));
 }
 
+void* QPainter_Transform(void* ptr)
+{
+	return new QTransform(static_cast<QPainter*>(ptr)->transform());
+}
+
 void QPainter_Translate2(void* ptr, void* offset)
 {
 	static_cast<QPainter*>(ptr)->translate(*static_cast<QPoint*>(offset));
@@ -11067,6 +11194,11 @@ void* QPainter_Window(void* ptr)
 int QPainter_WorldMatrixEnabled(void* ptr)
 {
 	return static_cast<QPainter*>(ptr)->worldMatrixEnabled();
+}
+
+void* QPainter_WorldTransform(void* ptr)
+{
+	return new QTransform(static_cast<QPainter*>(ptr)->worldTransform());
 }
 
 void QPainter_DestroyQPainter(void* ptr)
@@ -12252,6 +12384,11 @@ int QPixmap_IsQBitmap(void* ptr)
 	return static_cast<QPixmap*>(ptr)->isQBitmap();
 }
 
+void* QPixmap_Mask(void* ptr)
+{
+	return new QBitmap(static_cast<QPixmap*>(ptr)->mask());
+}
+
 void* QPixmap_Rect(void* ptr)
 {
 	return new QRect(static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).x(), static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).y(), static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).width(), static_cast<QRect>(static_cast<QPixmap*>(ptr)->rect()).height());
@@ -12275,6 +12412,11 @@ void* QPixmap_ScaledToWidth(void* ptr, int width, int mode)
 void* QPixmap_Size(void* ptr)
 {
 	return new QSize(static_cast<QSize>(static_cast<QPixmap*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QPixmap*>(ptr)->size()).height());
+}
+
+void* QPixmap_QPixmap_TrueMatrix(void* matrix, int width, int height)
+{
+	return new QTransform(QPixmap::trueMatrix(*static_cast<QTransform*>(matrix), width, height));
 }
 
 int QPixmap_Width(void* ptr)
@@ -12315,6 +12457,16 @@ int QPixmap_ConvertFromImage(void* ptr, void* image, int flags)
 void* QPixmap_Copy2(void* ptr, int x, int y, int width, int height)
 {
 	return new QPixmap(static_cast<QPixmap*>(ptr)->copy(x, y, width, height));
+}
+
+void* QPixmap_CreateHeuristicMask(void* ptr, int clipTight)
+{
+	return new QBitmap(static_cast<QPixmap*>(ptr)->createHeuristicMask(clipTight != 0));
+}
+
+void* QPixmap_CreateMaskFromColor(void* ptr, void* maskColor, int mode)
+{
+	return new QBitmap(static_cast<QPixmap*>(ptr)->createMaskFromColor(*static_cast<QColor*>(maskColor), static_cast<Qt::MaskMode>(mode)));
 }
 
 int QPixmap_QPixmap_DefaultDepth()
@@ -13687,7 +13839,7 @@ void* QRegion_NewQRegion()
 	return new QRegion();
 }
 
-void* QRegion_NewQRegion6(void* bm)
+void* QRegion_NewQRegion7(void* bm)
 {
 	return new QRegion(*static_cast<QBitmap*>(bm));
 }
@@ -13780,6 +13932,11 @@ void* QRegion_United(void* ptr, void* r)
 void* QRegion_Xored(void* ptr, void* r)
 {
 	return new QRegion(static_cast<QRegion*>(ptr)->xored(*static_cast<QRegion*>(r)));
+}
+
+void* QRegion_NewQRegion6(void* other)
+{
+	return new QRegion(*static_cast<QRegion*>(other));
 }
 
 void* QRegion_NewQRegion2(int x, int y, int w, int h, int t)
@@ -14293,6 +14450,11 @@ void QScreen_RefreshRateChanged(void* ptr, double refreshRate)
 void QScreen_SetOrientationUpdateMask(void* ptr, int mask)
 {
 	static_cast<QScreen*>(ptr)->setOrientationUpdateMask(static_cast<Qt::ScreenOrientation>(mask));
+}
+
+void* QScreen_TransformBetween(void* ptr, int a, int b, void* target)
+{
+	return new QTransform(static_cast<QScreen*>(ptr)->transformBetween(static_cast<Qt::ScreenOrientation>(a), static_cast<Qt::ScreenOrientation>(b), *static_cast<QRect*>(target)));
 }
 
 void QScreen_ConnectVirtualGeometryChanged(void* ptr)
@@ -15733,8 +15895,10 @@ public:
 	void Signal_CursorFlashTimeChanged(int cursorFlashTime) { callbackQStyleHints_CursorFlashTimeChanged(this, this->objectName().toUtf8().data(), cursorFlashTime); };
 	void Signal_KeyboardInputIntervalChanged(int keyboardInputInterval) { callbackQStyleHints_KeyboardInputIntervalChanged(this, this->objectName().toUtf8().data(), keyboardInputInterval); };
 	void Signal_MouseDoubleClickIntervalChanged(int mouseDoubleClickInterval) { callbackQStyleHints_MouseDoubleClickIntervalChanged(this, this->objectName().toUtf8().data(), mouseDoubleClickInterval); };
+	void Signal_MousePressAndHoldIntervalChanged(int mousePressAndHoldInterval) { callbackQStyleHints_MousePressAndHoldIntervalChanged(this, this->objectName().toUtf8().data(), mousePressAndHoldInterval); };
 	void Signal_StartDragDistanceChanged(int startDragDistance) { callbackQStyleHints_StartDragDistanceChanged(this, this->objectName().toUtf8().data(), startDragDistance); };
 	void Signal_StartDragTimeChanged(int startDragTime) { callbackQStyleHints_StartDragTimeChanged(this, this->objectName().toUtf8().data(), startDragTime); };
+	void Signal_TabFocusBehaviorChanged(Qt::TabFocusBehavior tabFocusBehavior) { callbackQStyleHints_TabFocusBehaviorChanged(this, this->objectName().toUtf8().data(), tabFocusBehavior); };
 	void timerEvent(QTimerEvent * event) { callbackQStyleHints_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStyleHints_ChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQStyleHints_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
@@ -15871,6 +16035,21 @@ void QStyleHints_MouseDoubleClickIntervalChanged(void* ptr, int mouseDoubleClick
 	static_cast<QStyleHints*>(ptr)->mouseDoubleClickIntervalChanged(mouseDoubleClickInterval);
 }
 
+void QStyleHints_ConnectMousePressAndHoldIntervalChanged(void* ptr)
+{
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mousePressAndHoldIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MousePressAndHoldIntervalChanged));
+}
+
+void QStyleHints_DisconnectMousePressAndHoldIntervalChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::mousePressAndHoldIntervalChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_MousePressAndHoldIntervalChanged));
+}
+
+void QStyleHints_MousePressAndHoldIntervalChanged(void* ptr, int mousePressAndHoldInterval)
+{
+	static_cast<QStyleHints*>(ptr)->mousePressAndHoldIntervalChanged(mousePressAndHoldInterval);
+}
+
 void QStyleHints_ConnectStartDragDistanceChanged(void* ptr)
 {
 	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(int)>(&QStyleHints::startDragDistanceChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(int)>(&MyQStyleHints::Signal_StartDragDistanceChanged));
@@ -15899,6 +16078,21 @@ void QStyleHints_DisconnectStartDragTimeChanged(void* ptr)
 void QStyleHints_StartDragTimeChanged(void* ptr, int startDragTime)
 {
 	static_cast<QStyleHints*>(ptr)->startDragTimeChanged(startDragTime);
+}
+
+void QStyleHints_ConnectTabFocusBehaviorChanged(void* ptr)
+{
+	QObject::connect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(Qt::TabFocusBehavior)>(&QStyleHints::tabFocusBehaviorChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(Qt::TabFocusBehavior)>(&MyQStyleHints::Signal_TabFocusBehaviorChanged));
+}
+
+void QStyleHints_DisconnectTabFocusBehaviorChanged(void* ptr)
+{
+	QObject::disconnect(static_cast<QStyleHints*>(ptr), static_cast<void (QStyleHints::*)(Qt::TabFocusBehavior)>(&QStyleHints::tabFocusBehaviorChanged), static_cast<MyQStyleHints*>(ptr), static_cast<void (MyQStyleHints::*)(Qt::TabFocusBehavior)>(&MyQStyleHints::Signal_TabFocusBehaviorChanged));
+}
+
+void QStyleHints_TabFocusBehaviorChanged(void* ptr, int tabFocusBehavior)
+{
+	static_cast<QStyleHints*>(ptr)->tabFocusBehaviorChanged(static_cast<Qt::TabFocusBehavior>(tabFocusBehavior));
 }
 
 void QStyleHints_TimerEvent(void* ptr, void* event)
@@ -20401,9 +20595,34 @@ int QTransform_QTransform_QuadToSquare(void* quad, void* trans)
 	return QTransform::quadToSquare(*static_cast<QPolygonF*>(quad), *static_cast<QTransform*>(trans));
 }
 
+void* QTransform_Rotate(void* ptr, double angle, int axis)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->rotate(static_cast<double>(angle), static_cast<Qt::Axis>(axis)));
+}
+
+void* QTransform_RotateRadians(void* ptr, double angle, int axis)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->rotateRadians(static_cast<double>(angle), static_cast<Qt::Axis>(axis)));
+}
+
 void* QTransform_NewQTransform()
 {
 	return new QTransform();
+}
+
+void* QTransform_NewQTransform6(void* other)
+{
+	return new QTransform(*static_cast<QTransform*>(other));
+}
+
+void* QTransform_NewQTransform7(void* other)
+{
+	return new QTransform(*static_cast<QTransform*>(other));
+}
+
+void* QTransform_Adjoint(void* ptr)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->adjoint());
 }
 
 double QTransform_Determinant(void* ptr)
@@ -20419,6 +20638,21 @@ double QTransform_Dx(void* ptr)
 double QTransform_Dy(void* ptr)
 {
 	return static_cast<double>(static_cast<QTransform*>(ptr)->dy());
+}
+
+void* QTransform_QTransform_FromScale(double sx, double sy)
+{
+	return new QTransform(QTransform::fromScale(static_cast<double>(sx), static_cast<double>(sy)));
+}
+
+void* QTransform_QTransform_FromTranslate(double dx, double dy)
+{
+	return new QTransform(QTransform::fromTranslate(static_cast<double>(dx), static_cast<double>(dy)));
+}
+
+void* QTransform_Inverted(void* ptr, int invertible)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->inverted(NULL));
 }
 
 int QTransform_IsAffine(void* ptr)
@@ -20526,14 +20760,34 @@ void QTransform_Reset(void* ptr)
 	static_cast<QTransform*>(ptr)->reset();
 }
 
+void* QTransform_Scale(void* ptr, double sx, double sy)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->scale(static_cast<double>(sx), static_cast<double>(sy)));
+}
+
 void QTransform_SetMatrix(void* ptr, double m11, double m12, double m13, double m21, double m22, double m23, double m31, double m32, double m33)
 {
 	static_cast<QTransform*>(ptr)->setMatrix(static_cast<double>(m11), static_cast<double>(m12), static_cast<double>(m13), static_cast<double>(m21), static_cast<double>(m22), static_cast<double>(m23), static_cast<double>(m31), static_cast<double>(m32), static_cast<double>(m33));
 }
 
+void* QTransform_Shear(void* ptr, double sh, double sv)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->shear(static_cast<double>(sh), static_cast<double>(sv)));
+}
+
 int QTransform_QTransform_SquareToQuad(void* quad, void* trans)
 {
 	return QTransform::squareToQuad(*static_cast<QPolygonF*>(quad), *static_cast<QTransform*>(trans));
+}
+
+void* QTransform_Translate(void* ptr, double dx, double dy)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy)));
+}
+
+void* QTransform_Transposed(void* ptr)
+{
+	return new QTransform(static_cast<QTransform*>(ptr)->transposed());
 }
 
 int QTransform_Type(void* ptr)
@@ -20859,6 +21113,11 @@ void* QWheelEvent_NewQWheelEvent5(void* pos, void* globalPos, void* pixelDelta, 
 	return new QWheelEvent(*static_cast<QPointF*>(pos), *static_cast<QPointF*>(globalPos), *static_cast<QPoint*>(pixelDelta), *static_cast<QPoint*>(angleDelta), qt4Delta, static_cast<Qt::Orientation>(qt4Orientation), static_cast<Qt::MouseButton>(buttons), static_cast<Qt::KeyboardModifier>(modifiers), static_cast<Qt::ScrollPhase>(phase), static_cast<Qt::MouseEventSource>(source));
 }
 
+void* QWheelEvent_NewQWheelEvent6(void* pos, void* globalPos, void* pixelDelta, void* angleDelta, int qt4Delta, int qt4Orientation, int buttons, int modifiers, int phase, int source, int inverted)
+{
+	return new QWheelEvent(*static_cast<QPointF*>(pos), *static_cast<QPointF*>(globalPos), *static_cast<QPoint*>(pixelDelta), *static_cast<QPoint*>(angleDelta), qt4Delta, static_cast<Qt::Orientation>(qt4Orientation), static_cast<Qt::MouseButton>(buttons), static_cast<Qt::KeyboardModifier>(modifiers), static_cast<Qt::ScrollPhase>(phase), static_cast<Qt::MouseEventSource>(source), inverted != 0);
+}
+
 void* QWheelEvent_AngleDelta(void* ptr)
 {
 	return new QPoint(static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->angleDelta()).x(), static_cast<QPoint>(static_cast<QWheelEvent*>(ptr)->angleDelta()).y());
@@ -20887,6 +21146,11 @@ int QWheelEvent_GlobalX(void* ptr)
 int QWheelEvent_GlobalY(void* ptr)
 {
 	return static_cast<QWheelEvent*>(ptr)->globalY();
+}
+
+int QWheelEvent_Inverted(void* ptr)
+{
+	return static_cast<QWheelEvent*>(ptr)->inverted();
 }
 
 int QWheelEvent_Phase(void* ptr)

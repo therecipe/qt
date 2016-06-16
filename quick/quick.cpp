@@ -39,6 +39,7 @@
 #include <QOpenGLShader>
 #include <QPaintEvent>
 #include <QPainter>
+#include <QPixmap>
 #include <QPoint>
 #include <QPointF>
 #include <QQmlEngine>
@@ -106,6 +107,9 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQQuickAsyncImageProvider() : QQuickAsyncImageProvider() {};
 	QQuickImageResponse * requestImageResponse(const QString & id, const QSize & requestedSize) { return static_cast<QQuickImageResponse*>(callbackQQuickAsyncImageProvider_RequestImageResponse(this, this->objectNameAbs().toUtf8().data(), id.toUtf8().data(), new QSize(static_cast<QSize>(requestedSize).width(), static_cast<QSize>(requestedSize).height()))); };
+	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QImage*>(callbackQQuickAsyncImageProvider_RequestImage(this, this->objectNameAbs().toUtf8().data(), id.toUtf8().data(), size, new QSize(static_cast<QSize>(requestedSize).width(), static_cast<QSize>(requestedSize).height()))); };
+	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QPixmap*>(callbackQQuickAsyncImageProvider_RequestPixmap(this, this->objectNameAbs().toUtf8().data(), id.toUtf8().data(), size, new QSize(static_cast<QSize>(requestedSize).width(), static_cast<QSize>(requestedSize).height()))); };
+	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { return static_cast<QQuickTextureFactory*>(callbackQQuickAsyncImageProvider_RequestTexture(this, this->objectNameAbs().toUtf8().data(), id.toUtf8().data(), size, new QSize(static_cast<QSize>(requestedSize).width(), static_cast<QSize>(requestedSize).height()))); };
 };
 
 void* QQuickAsyncImageProvider_NewQQuickAsyncImageProvider()
@@ -136,6 +140,36 @@ void QQuickAsyncImageProvider_SetObjectNameAbs(void* ptr, char* name)
 	if (dynamic_cast<MyQQuickAsyncImageProvider*>(static_cast<QQuickAsyncImageProvider*>(ptr))) {
 		static_cast<MyQQuickAsyncImageProvider*>(ptr)->setObjectNameAbs(QString(name));
 	}
+}
+
+void* QQuickAsyncImageProvider_RequestImage(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QImage(static_cast<QQuickAsyncImageProvider*>(ptr)->requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickAsyncImageProvider_RequestImageDefault(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QImage(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickAsyncImageProvider_RequestPixmap(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QPixmap(static_cast<QQuickAsyncImageProvider*>(ptr)->requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickAsyncImageProvider_RequestPixmapDefault(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QPixmap(static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickAsyncImageProvider_RequestTexture(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return static_cast<QQuickAsyncImageProvider*>(ptr)->requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
+}
+
+void* QQuickAsyncImageProvider_RequestTextureDefault(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return static_cast<QQuickAsyncImageProvider*>(ptr)->QQuickAsyncImageProvider::requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
 }
 
 class MyQQuickFramebufferObject: public QQuickFramebufferObject
@@ -609,6 +643,9 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQQuickImageProvider(ImageType type, Flags flags) : QQuickImageProvider(type, flags) {};
+	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, this->objectNameAbs().toUtf8().data(), id.toUtf8().data(), size, new QSize(static_cast<QSize>(requestedSize).width(), static_cast<QSize>(requestedSize).height()))); };
+	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, this->objectNameAbs().toUtf8().data(), id.toUtf8().data(), size, new QSize(static_cast<QSize>(requestedSize).width(), static_cast<QSize>(requestedSize).height()))); };
+	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, this->objectNameAbs().toUtf8().data(), id.toUtf8().data(), size, new QSize(static_cast<QSize>(requestedSize).width(), static_cast<QSize>(requestedSize).height()))); };
 };
 
 void* QQuickImageProvider_NewQQuickImageProvider(int ty, int flags)
@@ -624,6 +661,36 @@ int QQuickImageProvider_Flags(void* ptr)
 int QQuickImageProvider_ImageType(void* ptr)
 {
 	return static_cast<QQuickImageProvider*>(ptr)->imageType();
+}
+
+void* QQuickImageProvider_RequestImage(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QImage(static_cast<QQuickImageProvider*>(ptr)->requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickImageProvider_RequestImageDefault(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QImage(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestImage(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickImageProvider_RequestPixmap(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickImageProvider_RequestPixmapDefault(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return new QPixmap(static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestPixmap(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize)));
+}
+
+void* QQuickImageProvider_RequestTexture(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return static_cast<QQuickImageProvider*>(ptr)->requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
+}
+
+void* QQuickImageProvider_RequestTextureDefault(void* ptr, char* id, void* size, void* requestedSize)
+{
+	return static_cast<QQuickImageProvider*>(ptr)->QQuickImageProvider::requestTexture(QString(id), static_cast<QSize*>(size), *static_cast<QSize*>(requestedSize));
 }
 
 void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr)
@@ -1319,6 +1386,11 @@ void* QQuickItem_InputMethodQueryDefault(void* ptr, int query)
 	return new QVariant(static_cast<QQuickItem*>(ptr)->QQuickItem::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 }
 
+int QQuickItem_IsAncestorOf(void* ptr, void* child)
+{
+	return static_cast<QQuickItem*>(ptr)->isAncestorOf(static_cast<QQuickItem*>(child));
+}
+
 int QQuickItem_IsComponentComplete(void* ptr)
 {
 	return static_cast<QQuickItem*>(ptr)->isComponentComplete();
@@ -1359,6 +1431,11 @@ void QQuickItem_KeyReleaseEventDefault(void* ptr, void* event)
 	static_cast<QQuickItem*>(ptr)->QQuickItem::keyReleaseEvent(static_cast<QKeyEvent*>(event));
 }
 
+void* QQuickItem_MapFromGlobal(void* ptr, void* point)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromGlobal(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromGlobal(*static_cast<QPointF*>(point))).y());
+}
+
 void* QQuickItem_MapFromItem(void* ptr, void* item, void* point)
 {
 	return new QPointF(static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromItem(static_cast<QQuickItem*>(item), *static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapFromItem(static_cast<QQuickItem*>(item), *static_cast<QPointF*>(point))).y());
@@ -1387,6 +1464,11 @@ void* QQuickItem_MapRectToItem(void* ptr, void* item, void* rect)
 void* QQuickItem_MapRectToScene(void* ptr, void* rect)
 {
 	return new QRectF(static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).x(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).y(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).width(), static_cast<QRectF>(static_cast<QQuickItem*>(ptr)->mapRectToScene(*static_cast<QRectF*>(rect))).height());
+}
+
+void* QQuickItem_MapToGlobal(void* ptr, void* point)
+{
+	return new QPointF(static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapToGlobal(*static_cast<QPointF*>(point))).x(), static_cast<QPointF>(static_cast<QQuickItem*>(ptr)->mapToGlobal(*static_cast<QPointF*>(point))).y());
 }
 
 void* QQuickItem_MapToItem(void* ptr, void* item, void* point)

@@ -5420,6 +5420,15 @@ func (ptr *QQmlFileSelector) Get(engine QQmlEngine_ITF) *QQmlFileSelector {
 	return NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_QQmlFileSelector_Get(PointerFromQQmlEngine(engine)))
 }
 
+func (ptr *QQmlFileSelector) Selector() *core.QFileSelector {
+	defer qt.Recovering("QQmlFileSelector::selector")
+
+	if ptr.Pointer() != nil {
+		return core.NewQFileSelectorFromPointer(C.QQmlFileSelector_Selector(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQmlFileSelector) SetExtraSelectors(strin []string) {
 	defer qt.Recovering("QQmlFileSelector::setExtraSelectors")
 

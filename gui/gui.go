@@ -7657,6 +7657,12 @@ func NewQBitmap() *QBitmap {
 	return newQBitmapFromPointer(C.QBitmap_NewQBitmap())
 }
 
+func NewQBitmap6(other QBitmap_ITF) *QBitmap {
+	defer qt.Recovering("QBitmap::QBitmap")
+
+	return newQBitmapFromPointer(C.QBitmap_NewQBitmap6(PointerFromQBitmap(other)))
+}
+
 func NewQBitmap2(pixmap QPixmap_ITF) *QBitmap {
 	defer qt.Recovering("QBitmap::QBitmap")
 
@@ -7683,12 +7689,33 @@ func (ptr *QBitmap) Clear() {
 	}
 }
 
+func QBitmap_FromImage(image QImage_ITF, flags core.Qt__ImageConversionFlag) *QBitmap {
+	defer qt.Recovering("QBitmap::fromImage")
+
+	return NewQBitmapFromPointer(C.QBitmap_QBitmap_FromImage(PointerFromQImage(image), C.int(flags)))
+}
+
+func (ptr *QBitmap) FromImage(image QImage_ITF, flags core.Qt__ImageConversionFlag) *QBitmap {
+	defer qt.Recovering("QBitmap::fromImage")
+
+	return NewQBitmapFromPointer(C.QBitmap_QBitmap_FromImage(PointerFromQImage(image), C.int(flags)))
+}
+
 func (ptr *QBitmap) Swap(other QBitmap_ITF) {
 	defer qt.Recovering("QBitmap::swap")
 
 	if ptr.Pointer() != nil {
 		C.QBitmap_Swap(ptr.Pointer(), PointerFromQBitmap(other))
 	}
+}
+
+func (ptr *QBitmap) Transformed(matrix QTransform_ITF) *QBitmap {
+	defer qt.Recovering("QBitmap::transformed")
+
+	if ptr.Pointer() != nil {
+		return NewQBitmapFromPointer(C.QBitmap_Transformed(ptr.Pointer(), PointerFromQTransform(matrix)))
+	}
+	return nil
 }
 
 func (ptr *QBitmap) DestroyQBitmap() {
@@ -8003,6 +8030,15 @@ func (ptr *QBrush) TextureImage() *QImage {
 
 	if ptr.Pointer() != nil {
 		return NewQImageFromPointer(C.QBrush_TextureImage(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QBrush) Transform() *QTransform {
+	defer qt.Recovering("QBrush::transform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QBrush_Transform(ptr.Pointer()))
 	}
 	return nil
 }
@@ -10093,6 +10129,14 @@ func (ptr *QCursor) Shape() core.Qt__CursorShape {
 	return 0
 }
 
+func (ptr *QCursor) Swap(other QCursor_ITF) {
+	defer qt.Recovering("QCursor::swap")
+
+	if ptr.Pointer() != nil {
+		C.QCursor_Swap(ptr.Pointer(), PointerFromQCursor(other))
+	}
+}
+
 func (ptr *QCursor) DestroyQCursor() {
 	defer qt.Recovering("QCursor::~QCursor")
 
@@ -10880,6 +10924,18 @@ func (ptr *QDrag) ActionChanged(action core.Qt__DropAction) {
 	if ptr.Pointer() != nil {
 		C.QDrag_ActionChanged(ptr.Pointer(), C.int(action))
 	}
+}
+
+func QDrag_Cancel() {
+	defer qt.Recovering("QDrag::cancel")
+
+	C.QDrag_QDrag_Cancel()
+}
+
+func (ptr *QDrag) Cancel() {
+	defer qt.Recovering("QDrag::cancel")
+
+	C.QDrag_QDrag_Cancel()
 }
 
 func (ptr *QDrag) DefaultAction() core.Qt__DropAction {
@@ -15165,6 +15221,18 @@ func (ptr *QGuiApplication) ApplicationState() core.Qt__ApplicationState {
 	return core.Qt__ApplicationState(C.QGuiApplication_QGuiApplication_ApplicationState())
 }
 
+func QGuiApplication_DesktopFileName() string {
+	defer qt.Recovering("QGuiApplication::desktopFileName")
+
+	return C.GoString(C.QGuiApplication_QGuiApplication_DesktopFileName())
+}
+
+func (ptr *QGuiApplication) DesktopFileName() string {
+	defer qt.Recovering("QGuiApplication::desktopFileName")
+
+	return C.GoString(C.QGuiApplication_QGuiApplication_DesktopFileName())
+}
+
 func (ptr *QGuiApplication) IsSavingSession() bool {
 	defer qt.Recovering("QGuiApplication::isSavingSession")
 
@@ -15295,6 +15363,18 @@ func (ptr *QGuiApplication) SetApplicationDisplayName(name string) {
 	defer qt.Recovering("QGuiApplication::setApplicationDisplayName")
 
 	C.QGuiApplication_QGuiApplication_SetApplicationDisplayName(C.CString(name))
+}
+
+func QGuiApplication_SetDesktopFileName(name string) {
+	defer qt.Recovering("QGuiApplication::setDesktopFileName")
+
+	C.QGuiApplication_QGuiApplication_SetDesktopFileName(C.CString(name))
+}
+
+func (ptr *QGuiApplication) SetDesktopFileName(name string) {
+	defer qt.Recovering("QGuiApplication::setDesktopFileName")
+
+	C.QGuiApplication_QGuiApplication_SetDesktopFileName(C.CString(name))
 }
 
 func QGuiApplication_SetLayoutDirection(direction core.Qt__LayoutDirection) {
@@ -16808,16 +16888,28 @@ func (ptr *QIcon) CacheKey() int64 {
 	return 0
 }
 
-func QIcon_FromTheme(name string, fallback QIcon_ITF) *QIcon {
+func QIcon_FromTheme(name string) *QIcon {
 	defer qt.Recovering("QIcon::fromTheme")
 
-	return NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.CString(name), PointerFromQIcon(fallback)))
+	return NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.CString(name)))
 }
 
-func (ptr *QIcon) FromTheme(name string, fallback QIcon_ITF) *QIcon {
+func (ptr *QIcon) FromTheme(name string) *QIcon {
 	defer qt.Recovering("QIcon::fromTheme")
 
-	return NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.CString(name), PointerFromQIcon(fallback)))
+	return NewQIconFromPointer(C.QIcon_QIcon_FromTheme(C.CString(name)))
+}
+
+func QIcon_FromTheme2(name string, fallback QIcon_ITF) *QIcon {
+	defer qt.Recovering("QIcon::fromTheme")
+
+	return NewQIconFromPointer(C.QIcon_QIcon_FromTheme2(C.CString(name), PointerFromQIcon(fallback)))
+}
+
+func (ptr *QIcon) FromTheme2(name string, fallback QIcon_ITF) *QIcon {
+	defer qt.Recovering("QIcon::fromTheme")
+
+	return NewQIconFromPointer(C.QIcon_QIcon_FromTheme2(C.CString(name), PointerFromQIcon(fallback)))
 }
 
 func QIcon_HasThemeIcon(name string) bool {
@@ -17040,6 +17132,7 @@ type QIconEngine__IconEngineHook int64
 const (
 	QIconEngine__AvailableSizesHook = QIconEngine__IconEngineHook(1)
 	QIconEngine__IconNameHook       = QIconEngine__IconEngineHook(2)
+	QIconEngine__IsNullHook         = QIconEngine__IconEngineHook(3)
 )
 
 type QIconEngine struct {
@@ -17314,6 +17407,15 @@ func (ptr *QIconEngine) IconNameDefault() string {
 		return C.GoString(C.QIconEngine_IconNameDefault(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QIconEngine) IsNull() bool {
+	defer qt.Recovering("QIconEngine::isNull")
+
+	if ptr.Pointer() != nil {
+		return C.QIconEngine_IsNull(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 //export callbackQIconEngine_Key
@@ -18237,6 +18339,18 @@ func (ptr *QImage) Size() *core.QSize {
 		return core.NewQSizeFromPointer(C.QImage_Size(ptr.Pointer()))
 	}
 	return nil
+}
+
+func QImage_TrueMatrix2(matrix QTransform_ITF, width int, height int) *QTransform {
+	defer qt.Recovering("QImage::trueMatrix")
+
+	return NewQTransformFromPointer(C.QImage_QImage_TrueMatrix2(PointerFromQTransform(matrix), C.int(width), C.int(height)))
+}
+
+func (ptr *QImage) TrueMatrix2(matrix QTransform_ITF, width int, height int) *QTransform {
+	defer qt.Recovering("QImage::trueMatrix")
+
+	return NewQTransformFromPointer(C.QImage_QImage_TrueMatrix2(PointerFromQTransform(matrix), C.int(width), C.int(height)))
 }
 
 func (ptr *QImage) Width() int {
@@ -20978,6 +21092,15 @@ func newQInputMethodFromPointer(ptr unsafe.Pointer) *QInputMethod {
 	return n
 }
 
+func (ptr *QInputMethod) AnchorRectangle() *core.QRectF {
+	defer qt.Recovering("QInputMethod::anchorRectangle")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QInputMethod_AnchorRectangle(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QInputMethod) CursorRectangle() *core.QRectF {
 	defer qt.Recovering("QInputMethod::cursorRectangle")
 
@@ -20994,6 +21117,15 @@ func (ptr *QInputMethod) InputDirection() core.Qt__LayoutDirection {
 		return core.Qt__LayoutDirection(C.QInputMethod_InputDirection(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QInputMethod) InputItemClipRectangle() *core.QRectF {
+	defer qt.Recovering("QInputMethod::inputItemClipRectangle")
+
+	if ptr.Pointer() != nil {
+		return core.NewQRectFFromPointer(C.QInputMethod_InputItemClipRectangle(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QInputMethod) IsAnimating() bool {
@@ -21030,6 +21162,42 @@ func (ptr *QInputMethod) Locale() *core.QLocale {
 		return core.NewQLocaleFromPointer(C.QInputMethod_Locale(ptr.Pointer()))
 	}
 	return nil
+}
+
+//export callbackQInputMethod_AnchorRectangleChanged
+func callbackQInputMethod_AnchorRectangleChanged(ptr unsafe.Pointer, ptrName *C.char) {
+	defer qt.Recovering("callback QInputMethod::anchorRectangleChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "anchorRectangleChanged"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QInputMethod) ConnectAnchorRectangleChanged(f func()) {
+	defer qt.Recovering("connect QInputMethod::anchorRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_ConnectAnchorRectangleChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "anchorRectangleChanged", f)
+	}
+}
+
+func (ptr *QInputMethod) DisconnectAnchorRectangleChanged() {
+	defer qt.Recovering("disconnect QInputMethod::anchorRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_DisconnectAnchorRectangleChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "anchorRectangleChanged")
+	}
+}
+
+func (ptr *QInputMethod) AnchorRectangleChanged() {
+	defer qt.Recovering("QInputMethod::anchorRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_AnchorRectangleChanged(ptr.Pointer())
+	}
 }
 
 //export callbackQInputMethod_AnimatingChanged
@@ -21212,11 +21380,56 @@ func (ptr *QInputMethod) InputDirectionChanged(newDirection core.Qt__LayoutDirec
 	}
 }
 
+//export callbackQInputMethod_InputItemClipRectangleChanged
+func callbackQInputMethod_InputItemClipRectangleChanged(ptr unsafe.Pointer, ptrName *C.char) {
+	defer qt.Recovering("callback QInputMethod::inputItemClipRectangleChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "inputItemClipRectangleChanged"); signal != nil {
+		signal.(func())()
+	}
+
+}
+
+func (ptr *QInputMethod) ConnectInputItemClipRectangleChanged(f func()) {
+	defer qt.Recovering("connect QInputMethod::inputItemClipRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_ConnectInputItemClipRectangleChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "inputItemClipRectangleChanged", f)
+	}
+}
+
+func (ptr *QInputMethod) DisconnectInputItemClipRectangleChanged() {
+	defer qt.Recovering("disconnect QInputMethod::inputItemClipRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_DisconnectInputItemClipRectangleChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "inputItemClipRectangleChanged")
+	}
+}
+
+func (ptr *QInputMethod) InputItemClipRectangleChanged() {
+	defer qt.Recovering("QInputMethod::inputItemClipRectangleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QInputMethod_InputItemClipRectangleChanged(ptr.Pointer())
+	}
+}
+
 func (ptr *QInputMethod) InputItemRectangle() *core.QRectF {
 	defer qt.Recovering("QInputMethod::inputItemRectangle")
 
 	if ptr.Pointer() != nil {
 		return core.NewQRectFFromPointer(C.QInputMethod_InputItemRectangle(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QInputMethod) InputItemTransform() *QTransform {
+	defer qt.Recovering("QInputMethod::inputItemTransform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QInputMethod_InputItemTransform(ptr.Pointer()))
 	}
 	return nil
 }
@@ -23442,6 +23655,15 @@ func (ptr *QMatrix4x4) SetToIdentity() {
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_SetToIdentity(ptr.Pointer())
 	}
+}
+
+func (ptr *QMatrix4x4) ToTransform() *QTransform {
+	defer qt.Recovering("QMatrix4x4::toTransform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QMatrix4x4_ToTransform(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMatrix4x4) Translate(vector QVector3D_ITF) {
@@ -26200,6 +26422,15 @@ const (
 	QOpenGLFramebufferObject__NoAttachment         = QOpenGLFramebufferObject__Attachment(0)
 	QOpenGLFramebufferObject__CombinedDepthStencil = QOpenGLFramebufferObject__Attachment(1)
 	QOpenGLFramebufferObject__Depth                = QOpenGLFramebufferObject__Attachment(2)
+)
+
+//QOpenGLFramebufferObject::FramebufferRestorePolicy
+type QOpenGLFramebufferObject__FramebufferRestorePolicy int64
+
+const (
+	QOpenGLFramebufferObject__DontRestoreFramebufferBinding      = QOpenGLFramebufferObject__FramebufferRestorePolicy(0)
+	QOpenGLFramebufferObject__RestoreFramebufferBindingToDefault = QOpenGLFramebufferObject__FramebufferRestorePolicy(1)
+	QOpenGLFramebufferObject__RestoreFrameBufferBinding          = QOpenGLFramebufferObject__FramebufferRestorePolicy(2)
 )
 
 type QOpenGLFramebufferObject struct {
@@ -33765,6 +33996,15 @@ func (ptr *QPaintEngineState) State() QPaintEngine__DirtyFlag {
 	return 0
 }
 
+func (ptr *QPaintEngineState) Transform() *QTransform {
+	defer qt.Recovering("QPaintEngineState::transform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QPaintEngineState_Transform(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPaintEngineState) DirtyFlags() QPaintEngine__DirtyFlag {
 	defer qt.Recovering("QPaintEngineState::dirtyFlags")
 
@@ -34421,6 +34661,15 @@ func (ptr *QPainter) ClipRegion() *QRegion {
 	return nil
 }
 
+func (ptr *QPainter) CombinedTransform() *QTransform {
+	defer qt.Recovering("QPainter::combinedTransform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QPainter_CombinedTransform(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPainter) CompositionMode() QPainter__CompositionMode {
 	defer qt.Recovering("QPainter::compositionMode")
 
@@ -34435,6 +34684,15 @@ func (ptr *QPainter) Device() *QPaintDevice {
 
 	if ptr.Pointer() != nil {
 		return NewQPaintDeviceFromPointer(C.QPainter_Device(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QPainter) DeviceTransform() *QTransform {
+	defer qt.Recovering("QPainter::deviceTransform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QPainter_DeviceTransform(ptr.Pointer()))
 	}
 	return nil
 }
@@ -35403,6 +35661,15 @@ func (ptr *QPainter) TestRenderHint(hint QPainter__RenderHint) bool {
 	return false
 }
 
+func (ptr *QPainter) Transform() *QTransform {
+	defer qt.Recovering("QPainter::transform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QPainter_Transform(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPainter) Translate2(offset core.QPoint_ITF) {
 	defer qt.Recovering("QPainter::translate")
 
@@ -35461,6 +35728,15 @@ func (ptr *QPainter) WorldMatrixEnabled() bool {
 		return C.QPainter_WorldMatrixEnabled(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QPainter) WorldTransform() *QTransform {
+	defer qt.Recovering("QPainter::worldTransform")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QPainter_WorldTransform(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QPainter) DestroyQPainter() {
@@ -38329,6 +38605,15 @@ func (ptr *QPixmap) IsQBitmap() bool {
 	return false
 }
 
+func (ptr *QPixmap) Mask() *QBitmap {
+	defer qt.Recovering("QPixmap::mask")
+
+	if ptr.Pointer() != nil {
+		return NewQBitmapFromPointer(C.QPixmap_Mask(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPixmap) Rect() *core.QRect {
 	defer qt.Recovering("QPixmap::rect")
 
@@ -38372,6 +38657,18 @@ func (ptr *QPixmap) Size() *core.QSize {
 		return core.NewQSizeFromPointer(C.QPixmap_Size(ptr.Pointer()))
 	}
 	return nil
+}
+
+func QPixmap_TrueMatrix(matrix QTransform_ITF, width int, height int) *QTransform {
+	defer qt.Recovering("QPixmap::trueMatrix")
+
+	return NewQTransformFromPointer(C.QPixmap_QPixmap_TrueMatrix(PointerFromQTransform(matrix), C.int(width), C.int(height)))
+}
+
+func (ptr *QPixmap) TrueMatrix(matrix QTransform_ITF, width int, height int) *QTransform {
+	defer qt.Recovering("QPixmap::trueMatrix")
+
+	return NewQTransformFromPointer(C.QPixmap_QPixmap_TrueMatrix(PointerFromQTransform(matrix), C.int(width), C.int(height)))
 }
 
 func (ptr *QPixmap) Width() int {
@@ -38430,6 +38727,24 @@ func (ptr *QPixmap) Copy2(x int, y int, width int, height int) *QPixmap {
 
 	if ptr.Pointer() != nil {
 		return NewQPixmapFromPointer(C.QPixmap_Copy2(ptr.Pointer(), C.int(x), C.int(y), C.int(width), C.int(height)))
+	}
+	return nil
+}
+
+func (ptr *QPixmap) CreateHeuristicMask(clipTight bool) *QBitmap {
+	defer qt.Recovering("QPixmap::createHeuristicMask")
+
+	if ptr.Pointer() != nil {
+		return NewQBitmapFromPointer(C.QPixmap_CreateHeuristicMask(ptr.Pointer(), C.int(qt.GoBoolToInt(clipTight))))
+	}
+	return nil
+}
+
+func (ptr *QPixmap) CreateMaskFromColor(maskColor QColor_ITF, mode core.Qt__MaskMode) *QBitmap {
+	defer qt.Recovering("QPixmap::createMaskFromColor")
+
+	if ptr.Pointer() != nil {
+		return NewQBitmapFromPointer(C.QPixmap_CreateMaskFromColor(ptr.Pointer(), PointerFromQColor(maskColor), C.int(mode)))
 	}
 	return nil
 }
@@ -43321,10 +43636,10 @@ func NewQRegion() *QRegion {
 	return newQRegionFromPointer(C.QRegion_NewQRegion())
 }
 
-func NewQRegion6(bm QBitmap_ITF) *QRegion {
+func NewQRegion7(bm QBitmap_ITF) *QRegion {
 	defer qt.Recovering("QRegion::QRegion")
 
-	return newQRegionFromPointer(C.QRegion_NewQRegion6(PointerFromQBitmap(bm)))
+	return newQRegionFromPointer(C.QRegion_NewQRegion7(PointerFromQBitmap(bm)))
 }
 
 func NewQRegion4(a QPolygon_ITF, fillRule core.Qt__FillRule) *QRegion {
@@ -43476,6 +43791,12 @@ func (ptr *QRegion) Xored(r QRegion_ITF) *QRegion {
 		return NewQRegionFromPointer(C.QRegion_Xored(ptr.Pointer(), PointerFromQRegion(r)))
 	}
 	return nil
+}
+
+func NewQRegion6(other QRegion_ITF) *QRegion {
+	defer qt.Recovering("QRegion::QRegion")
+
+	return newQRegionFromPointer(C.QRegion_NewQRegion6(PointerFromQRegion(other)))
 }
 
 func NewQRegion2(x int, y int, w int, h int, t QRegion__RegionType) *QRegion {
@@ -44906,6 +45227,15 @@ func (ptr *QScreen) SetOrientationUpdateMask(mask core.Qt__ScreenOrientation) {
 	if ptr.Pointer() != nil {
 		C.QScreen_SetOrientationUpdateMask(ptr.Pointer(), C.int(mask))
 	}
+}
+
+func (ptr *QScreen) TransformBetween(a core.Qt__ScreenOrientation, b core.Qt__ScreenOrientation, target core.QRect_ITF) *QTransform {
+	defer qt.Recovering("QScreen::transformBetween")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QScreen_TransformBetween(ptr.Pointer(), C.int(a), C.int(b), core.PointerFromQRect(target)))
+	}
+	return nil
 }
 
 //export callbackQScreen_VirtualGeometryChanged
@@ -49217,6 +49547,42 @@ func (ptr *QStyleHints) MouseDoubleClickIntervalChanged(mouseDoubleClickInterval
 	}
 }
 
+//export callbackQStyleHints_MousePressAndHoldIntervalChanged
+func callbackQStyleHints_MousePressAndHoldIntervalChanged(ptr unsafe.Pointer, ptrName *C.char, mousePressAndHoldInterval C.int) {
+	defer qt.Recovering("callback QStyleHints::mousePressAndHoldIntervalChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressAndHoldIntervalChanged"); signal != nil {
+		signal.(func(int))(int(mousePressAndHoldInterval))
+	}
+
+}
+
+func (ptr *QStyleHints) ConnectMousePressAndHoldIntervalChanged(f func(mousePressAndHoldInterval int)) {
+	defer qt.Recovering("connect QStyleHints::mousePressAndHoldIntervalChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_ConnectMousePressAndHoldIntervalChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "mousePressAndHoldIntervalChanged", f)
+	}
+}
+
+func (ptr *QStyleHints) DisconnectMousePressAndHoldIntervalChanged() {
+	defer qt.Recovering("disconnect QStyleHints::mousePressAndHoldIntervalChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_DisconnectMousePressAndHoldIntervalChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "mousePressAndHoldIntervalChanged")
+	}
+}
+
+func (ptr *QStyleHints) MousePressAndHoldIntervalChanged(mousePressAndHoldInterval int) {
+	defer qt.Recovering("QStyleHints::mousePressAndHoldIntervalChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_MousePressAndHoldIntervalChanged(ptr.Pointer(), C.int(mousePressAndHoldInterval))
+	}
+}
+
 //export callbackQStyleHints_StartDragDistanceChanged
 func callbackQStyleHints_StartDragDistanceChanged(ptr unsafe.Pointer, ptrName *C.char, startDragDistance C.int) {
 	defer qt.Recovering("callback QStyleHints::startDragDistanceChanged")
@@ -49286,6 +49652,42 @@ func (ptr *QStyleHints) StartDragTimeChanged(startDragTime int) {
 
 	if ptr.Pointer() != nil {
 		C.QStyleHints_StartDragTimeChanged(ptr.Pointer(), C.int(startDragTime))
+	}
+}
+
+//export callbackQStyleHints_TabFocusBehaviorChanged
+func callbackQStyleHints_TabFocusBehaviorChanged(ptr unsafe.Pointer, ptrName *C.char, tabFocusBehavior C.int) {
+	defer qt.Recovering("callback QStyleHints::tabFocusBehaviorChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "tabFocusBehaviorChanged"); signal != nil {
+		signal.(func(core.Qt__TabFocusBehavior))(core.Qt__TabFocusBehavior(tabFocusBehavior))
+	}
+
+}
+
+func (ptr *QStyleHints) ConnectTabFocusBehaviorChanged(f func(tabFocusBehavior core.Qt__TabFocusBehavior)) {
+	defer qt.Recovering("connect QStyleHints::tabFocusBehaviorChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_ConnectTabFocusBehaviorChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "tabFocusBehaviorChanged", f)
+	}
+}
+
+func (ptr *QStyleHints) DisconnectTabFocusBehaviorChanged() {
+	defer qt.Recovering("disconnect QStyleHints::tabFocusBehaviorChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_DisconnectTabFocusBehaviorChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "tabFocusBehaviorChanged")
+	}
+}
+
+func (ptr *QStyleHints) TabFocusBehaviorChanged(tabFocusBehavior core.Qt__TabFocusBehavior) {
+	defer qt.Recovering("QStyleHints::tabFocusBehaviorChanged")
+
+	if ptr.Pointer() != nil {
+		C.QStyleHints_TabFocusBehaviorChanged(ptr.Pointer(), C.int(tabFocusBehavior))
 	}
 }
 
@@ -59877,6 +60279,7 @@ const (
 	QTextOption__ShowLineAndParagraphSeparators        = QTextOption__Flag(0x2)
 	QTextOption__AddSpaceForLineAndParagraphSeparators = QTextOption__Flag(0x4)
 	QTextOption__SuppressColors                        = QTextOption__Flag(0x8)
+	QTextOption__ShowDocumentTerminator                = QTextOption__Flag(0x10)
 	QTextOption__IncludeTrailingSpaces                 = QTextOption__Flag(0x80000000)
 )
 
@@ -61562,10 +61965,49 @@ func (ptr *QTransform) QuadToSquare(quad QPolygonF_ITF, trans QTransform_ITF) bo
 	return C.QTransform_QTransform_QuadToSquare(PointerFromQPolygonF(quad), PointerFromQTransform(trans)) != 0
 }
 
+func (ptr *QTransform) Rotate(angle float64, axis core.Qt__Axis) *QTransform {
+	defer qt.Recovering("QTransform::rotate")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_Rotate(ptr.Pointer(), C.double(angle), C.int(axis)))
+	}
+	return nil
+}
+
+func (ptr *QTransform) RotateRadians(angle float64, axis core.Qt__Axis) *QTransform {
+	defer qt.Recovering("QTransform::rotateRadians")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_RotateRadians(ptr.Pointer(), C.double(angle), C.int(axis)))
+	}
+	return nil
+}
+
 func NewQTransform() *QTransform {
 	defer qt.Recovering("QTransform::QTransform")
 
 	return newQTransformFromPointer(C.QTransform_NewQTransform())
+}
+
+func NewQTransform6(other QTransform_ITF) *QTransform {
+	defer qt.Recovering("QTransform::QTransform")
+
+	return newQTransformFromPointer(C.QTransform_NewQTransform6(PointerFromQTransform(other)))
+}
+
+func NewQTransform7(other QTransform_ITF) *QTransform {
+	defer qt.Recovering("QTransform::QTransform")
+
+	return newQTransformFromPointer(C.QTransform_NewQTransform7(PointerFromQTransform(other)))
+}
+
+func (ptr *QTransform) Adjoint() *QTransform {
+	defer qt.Recovering("QTransform::adjoint")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_Adjoint(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QTransform) Determinant() float64 {
@@ -61593,6 +62035,39 @@ func (ptr *QTransform) Dy() float64 {
 		return float64(C.QTransform_Dy(ptr.Pointer()))
 	}
 	return 0
+}
+
+func QTransform_FromScale(sx float64, sy float64) *QTransform {
+	defer qt.Recovering("QTransform::fromScale")
+
+	return NewQTransformFromPointer(C.QTransform_QTransform_FromScale(C.double(sx), C.double(sy)))
+}
+
+func (ptr *QTransform) FromScale(sx float64, sy float64) *QTransform {
+	defer qt.Recovering("QTransform::fromScale")
+
+	return NewQTransformFromPointer(C.QTransform_QTransform_FromScale(C.double(sx), C.double(sy)))
+}
+
+func QTransform_FromTranslate(dx float64, dy float64) *QTransform {
+	defer qt.Recovering("QTransform::fromTranslate")
+
+	return NewQTransformFromPointer(C.QTransform_QTransform_FromTranslate(C.double(dx), C.double(dy)))
+}
+
+func (ptr *QTransform) FromTranslate(dx float64, dy float64) *QTransform {
+	defer qt.Recovering("QTransform::fromTranslate")
+
+	return NewQTransformFromPointer(C.QTransform_QTransform_FromTranslate(C.double(dx), C.double(dy)))
+}
+
+func (ptr *QTransform) Inverted(invertible bool) *QTransform {
+	defer qt.Recovering("QTransform::inverted")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_Inverted(ptr.Pointer(), C.int(qt.GoBoolToInt(invertible))))
+	}
+	return nil
 }
 
 func (ptr *QTransform) IsAffine() bool {
@@ -61785,12 +62260,30 @@ func (ptr *QTransform) Reset() {
 	}
 }
 
+func (ptr *QTransform) Scale(sx float64, sy float64) *QTransform {
+	defer qt.Recovering("QTransform::scale")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_Scale(ptr.Pointer(), C.double(sx), C.double(sy)))
+	}
+	return nil
+}
+
 func (ptr *QTransform) SetMatrix(m11 float64, m12 float64, m13 float64, m21 float64, m22 float64, m23 float64, m31 float64, m32 float64, m33 float64) {
 	defer qt.Recovering("QTransform::setMatrix")
 
 	if ptr.Pointer() != nil {
 		C.QTransform_SetMatrix(ptr.Pointer(), C.double(m11), C.double(m12), C.double(m13), C.double(m21), C.double(m22), C.double(m23), C.double(m31), C.double(m32), C.double(m33))
 	}
+}
+
+func (ptr *QTransform) Shear(sh float64, sv float64) *QTransform {
+	defer qt.Recovering("QTransform::shear")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_Shear(ptr.Pointer(), C.double(sh), C.double(sv)))
+	}
+	return nil
 }
 
 func QTransform_SquareToQuad(quad QPolygonF_ITF, trans QTransform_ITF) bool {
@@ -61803,6 +62296,24 @@ func (ptr *QTransform) SquareToQuad(quad QPolygonF_ITF, trans QTransform_ITF) bo
 	defer qt.Recovering("QTransform::squareToQuad")
 
 	return C.QTransform_QTransform_SquareToQuad(PointerFromQPolygonF(quad), PointerFromQTransform(trans)) != 0
+}
+
+func (ptr *QTransform) Translate(dx float64, dy float64) *QTransform {
+	defer qt.Recovering("QTransform::translate")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_Translate(ptr.Pointer(), C.double(dx), C.double(dy)))
+	}
+	return nil
+}
+
+func (ptr *QTransform) Transposed() *QTransform {
+	defer qt.Recovering("QTransform::transposed")
+
+	if ptr.Pointer() != nil {
+		return NewQTransformFromPointer(C.QTransform_Transposed(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QTransform) Type() QTransform__TransformationType {
@@ -62882,6 +63393,12 @@ func NewQWheelEvent5(pos core.QPointF_ITF, globalPos core.QPointF_ITF, pixelDelt
 	return newQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent5(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers), C.int(phase), C.int(source)))
 }
 
+func NewQWheelEvent6(pos core.QPointF_ITF, globalPos core.QPointF_ITF, pixelDelta core.QPoint_ITF, angleDelta core.QPoint_ITF, qt4Delta int, qt4Orientation core.Qt__Orientation, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier, phase core.Qt__ScrollPhase, source core.Qt__MouseEventSource, inverted bool) *QWheelEvent {
+	defer qt.Recovering("QWheelEvent::QWheelEvent")
+
+	return newQWheelEventFromPointer(C.QWheelEvent_NewQWheelEvent6(core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), core.PointerFromQPoint(pixelDelta), core.PointerFromQPoint(angleDelta), C.int(qt4Delta), C.int(qt4Orientation), C.int(buttons), C.int(modifiers), C.int(phase), C.int(source), C.int(qt.GoBoolToInt(inverted))))
+}
+
 func (ptr *QWheelEvent) AngleDelta() *core.QPoint {
 	defer qt.Recovering("QWheelEvent::angleDelta")
 
@@ -62934,6 +63451,15 @@ func (ptr *QWheelEvent) GlobalY() int {
 		return int(C.QWheelEvent_GlobalY(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QWheelEvent) Inverted() bool {
+	defer qt.Recovering("QWheelEvent::inverted")
+
+	if ptr.Pointer() != nil {
+		return C.QWheelEvent_Inverted(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 func (ptr *QWheelEvent) Phase() core.Qt__ScrollPhase {

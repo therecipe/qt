@@ -21,6 +21,7 @@ type QQuickWebEngineProfile__HttpCacheType int64
 const (
 	QQuickWebEngineProfile__MemoryHttpCache = QQuickWebEngineProfile__HttpCacheType(0)
 	QQuickWebEngineProfile__DiskHttpCache   = QQuickWebEngineProfile__HttpCacheType(1)
+	QQuickWebEngineProfile__NoCache         = QQuickWebEngineProfile__HttpCacheType(2)
 )
 
 //QQuickWebEngineProfile::PersistentCookiesPolicy
@@ -271,6 +272,14 @@ func (ptr *QQuickWebEngineProfile) CachePathChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_CachePathChanged(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWebEngineProfile) ClearHttpCache() {
+	defer qt.Recovering("QQuickWebEngineProfile::clearHttpCache")
+
+	if ptr.Pointer() != nil {
+		C.QQuickWebEngineProfile_ClearHttpCache(ptr.Pointer())
 	}
 }
 
@@ -1145,6 +1154,155 @@ func (ptr *QWebEngineCertificateError) Url() *core.QUrl {
 	return nil
 }
 
+//QWebEngineContextMenuData::MediaType
+type QWebEngineContextMenuData__MediaType int64
+
+const (
+	QWebEngineContextMenuData__MediaTypeNone   = QWebEngineContextMenuData__MediaType(0)
+	QWebEngineContextMenuData__MediaTypeImage  = QWebEngineContextMenuData__MediaType(1)
+	QWebEngineContextMenuData__MediaTypeVideo  = QWebEngineContextMenuData__MediaType(2)
+	QWebEngineContextMenuData__MediaTypeAudio  = QWebEngineContextMenuData__MediaType(3)
+	QWebEngineContextMenuData__MediaTypeCanvas = QWebEngineContextMenuData__MediaType(4)
+	QWebEngineContextMenuData__MediaTypeFile   = QWebEngineContextMenuData__MediaType(5)
+	QWebEngineContextMenuData__MediaTypePlugin = QWebEngineContextMenuData__MediaType(6)
+)
+
+type QWebEngineContextMenuData struct {
+	ptr unsafe.Pointer
+}
+
+type QWebEngineContextMenuData_ITF interface {
+	QWebEngineContextMenuData_PTR() *QWebEngineContextMenuData
+}
+
+func (p *QWebEngineContextMenuData) QWebEngineContextMenuData_PTR() *QWebEngineContextMenuData {
+	return p
+}
+
+func (p *QWebEngineContextMenuData) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QWebEngineContextMenuData) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQWebEngineContextMenuData(ptr QWebEngineContextMenuData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEngineContextMenuData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEngineContextMenuDataFromPointer(ptr unsafe.Pointer) *QWebEngineContextMenuData {
+	var n = new(QWebEngineContextMenuData)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQWebEngineContextMenuDataFromPointer(ptr unsafe.Pointer) *QWebEngineContextMenuData {
+	var n = NewQWebEngineContextMenuDataFromPointer(ptr)
+	return n
+}
+
+func NewQWebEngineContextMenuData() *QWebEngineContextMenuData {
+	defer qt.Recovering("QWebEngineContextMenuData::QWebEngineContextMenuData")
+
+	return newQWebEngineContextMenuDataFromPointer(C.QWebEngineContextMenuData_NewQWebEngineContextMenuData())
+}
+
+func NewQWebEngineContextMenuData2(other QWebEngineContextMenuData_ITF) *QWebEngineContextMenuData {
+	defer qt.Recovering("QWebEngineContextMenuData::QWebEngineContextMenuData")
+
+	return newQWebEngineContextMenuDataFromPointer(C.QWebEngineContextMenuData_NewQWebEngineContextMenuData2(PointerFromQWebEngineContextMenuData(other)))
+}
+
+func (ptr *QWebEngineContextMenuData) IsContentEditable() bool {
+	defer qt.Recovering("QWebEngineContextMenuData::isContentEditable")
+
+	if ptr.Pointer() != nil {
+		return C.QWebEngineContextMenuData_IsContentEditable(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEngineContextMenuData) IsValid() bool {
+	defer qt.Recovering("QWebEngineContextMenuData::isValid")
+
+	if ptr.Pointer() != nil {
+		return C.QWebEngineContextMenuData_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEngineContextMenuData) LinkText() string {
+	defer qt.Recovering("QWebEngineContextMenuData::linkText")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QWebEngineContextMenuData_LinkText(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineContextMenuData) LinkUrl() *core.QUrl {
+	defer qt.Recovering("QWebEngineContextMenuData::linkUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QWebEngineContextMenuData_LinkUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineContextMenuData) MediaType() QWebEngineContextMenuData__MediaType {
+	defer qt.Recovering("QWebEngineContextMenuData::mediaType")
+
+	if ptr.Pointer() != nil {
+		return QWebEngineContextMenuData__MediaType(C.QWebEngineContextMenuData_MediaType(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineContextMenuData) MediaUrl() *core.QUrl {
+	defer qt.Recovering("QWebEngineContextMenuData::mediaUrl")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QWebEngineContextMenuData_MediaUrl(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineContextMenuData) Position() *core.QPoint {
+	defer qt.Recovering("QWebEngineContextMenuData::position")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFromPointer(C.QWebEngineContextMenuData_Position(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineContextMenuData) SelectedText() string {
+	defer qt.Recovering("QWebEngineContextMenuData::selectedText")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QWebEngineContextMenuData_SelectedText(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QWebEngineContextMenuData) DestroyQWebEngineContextMenuData() {
+	defer qt.Recovering("QWebEngineContextMenuData::~QWebEngineContextMenuData")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineContextMenuData_DestroyQWebEngineContextMenuData(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 type QWebEngineCookieStore struct {
 	core.QObject
 }
@@ -1740,6 +1898,16 @@ const (
 	QWebEngineDownloadItem__DownloadInterrupted = QWebEngineDownloadItem__DownloadState(4)
 )
 
+//QWebEngineDownloadItem::SavePageFormat
+type QWebEngineDownloadItem__SavePageFormat int64
+
+const (
+	QWebEngineDownloadItem__UnknownSaveFormat      = QWebEngineDownloadItem__SavePageFormat(-1)
+	QWebEngineDownloadItem__SingleHtmlSaveFormat   = QWebEngineDownloadItem__SavePageFormat(0)
+	QWebEngineDownloadItem__CompleteHtmlSaveFormat = QWebEngineDownloadItem__SavePageFormat(1)
+	QWebEngineDownloadItem__MimeHtmlSaveFormat     = QWebEngineDownloadItem__SavePageFormat(2)
+)
+
 type QWebEngineDownloadItem struct {
 	core.QObject
 }
@@ -1967,11 +2135,28 @@ func (ptr *QWebEngineDownloadItem) ReceivedBytes() int64 {
 	return 0
 }
 
+func (ptr *QWebEngineDownloadItem) SavePageFormat() QWebEngineDownloadItem__SavePageFormat {
+	defer qt.Recovering("QWebEngineDownloadItem::savePageFormat")
+
+	if ptr.Pointer() != nil {
+		return QWebEngineDownloadItem__SavePageFormat(C.QWebEngineDownloadItem_SavePageFormat(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QWebEngineDownloadItem) SetPath(path string) {
 	defer qt.Recovering("QWebEngineDownloadItem::setPath")
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_SetPath(ptr.Pointer(), C.CString(path))
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) SetSavePageFormat(format QWebEngineDownloadItem__SavePageFormat) {
+	defer qt.Recovering("QWebEngineDownloadItem::setSavePageFormat")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_SetSavePageFormat(ptr.Pointer(), C.int(format))
 	}
 }
 
@@ -2453,6 +2638,83 @@ func (ptr *QWebEngineDownloadItem) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QWebEngineFullScreenRequest struct {
+	ptr unsafe.Pointer
+}
+
+type QWebEngineFullScreenRequest_ITF interface {
+	QWebEngineFullScreenRequest_PTR() *QWebEngineFullScreenRequest
+}
+
+func (p *QWebEngineFullScreenRequest) QWebEngineFullScreenRequest_PTR() *QWebEngineFullScreenRequest {
+	return p
+}
+
+func (p *QWebEngineFullScreenRequest) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QWebEngineFullScreenRequest) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQWebEngineFullScreenRequest(ptr QWebEngineFullScreenRequest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEngineFullScreenRequest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEngineFullScreenRequestFromPointer(ptr unsafe.Pointer) *QWebEngineFullScreenRequest {
+	var n = new(QWebEngineFullScreenRequest)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQWebEngineFullScreenRequestFromPointer(ptr unsafe.Pointer) *QWebEngineFullScreenRequest {
+	var n = NewQWebEngineFullScreenRequestFromPointer(ptr)
+	return n
+}
+
+func (ptr *QWebEngineFullScreenRequest) Accept() {
+	defer qt.Recovering("QWebEngineFullScreenRequest::accept")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineFullScreenRequest_Accept(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineFullScreenRequest) Origin() *core.QUrl {
+	defer qt.Recovering("QWebEngineFullScreenRequest::origin")
+
+	if ptr.Pointer() != nil {
+		return core.NewQUrlFromPointer(C.QWebEngineFullScreenRequest_Origin(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineFullScreenRequest) Reject() {
+	defer qt.Recovering("QWebEngineFullScreenRequest::reject")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineFullScreenRequest_Reject(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineFullScreenRequest) ToggleOn() bool {
+	defer qt.Recovering("QWebEngineFullScreenRequest::toggleOn")
+
+	if ptr.Pointer() != nil {
+		return C.QWebEngineFullScreenRequest_ToggleOn(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 type QWebEngineHistory struct {
 	ptr unsafe.Pointer
 }
@@ -2791,46 +3053,50 @@ const (
 type QWebEnginePage__WebAction int64
 
 const (
-	QWebEnginePage__NoWebAction             = QWebEnginePage__WebAction(-1)
-	QWebEnginePage__Back                    = QWebEnginePage__WebAction(0)
-	QWebEnginePage__Forward                 = QWebEnginePage__WebAction(1)
-	QWebEnginePage__Stop                    = QWebEnginePage__WebAction(2)
-	QWebEnginePage__Reload                  = QWebEnginePage__WebAction(3)
-	QWebEnginePage__Cut                     = QWebEnginePage__WebAction(4)
-	QWebEnginePage__Copy                    = QWebEnginePage__WebAction(5)
-	QWebEnginePage__Paste                   = QWebEnginePage__WebAction(6)
-	QWebEnginePage__Undo                    = QWebEnginePage__WebAction(7)
-	QWebEnginePage__Redo                    = QWebEnginePage__WebAction(8)
-	QWebEnginePage__SelectAll               = QWebEnginePage__WebAction(9)
-	QWebEnginePage__ReloadAndBypassCache    = QWebEnginePage__WebAction(10)
-	QWebEnginePage__PasteAndMatchStyle      = QWebEnginePage__WebAction(11)
-	QWebEnginePage__OpenLinkInThisWindow    = QWebEnginePage__WebAction(12)
-	QWebEnginePage__OpenLinkInNewWindow     = QWebEnginePage__WebAction(13)
-	QWebEnginePage__OpenLinkInNewTab        = QWebEnginePage__WebAction(14)
-	QWebEnginePage__CopyLinkToClipboard     = QWebEnginePage__WebAction(15)
-	QWebEnginePage__DownloadLinkToDisk      = QWebEnginePage__WebAction(16)
-	QWebEnginePage__CopyImageToClipboard    = QWebEnginePage__WebAction(17)
-	QWebEnginePage__CopyImageUrlToClipboard = QWebEnginePage__WebAction(18)
-	QWebEnginePage__DownloadImageToDisk     = QWebEnginePage__WebAction(19)
-	QWebEnginePage__CopyMediaUrlToClipboard = QWebEnginePage__WebAction(20)
-	QWebEnginePage__ToggleMediaControls     = QWebEnginePage__WebAction(21)
-	QWebEnginePage__ToggleMediaLoop         = QWebEnginePage__WebAction(22)
-	QWebEnginePage__ToggleMediaPlayPause    = QWebEnginePage__WebAction(23)
-	QWebEnginePage__ToggleMediaMute         = QWebEnginePage__WebAction(24)
-	QWebEnginePage__DownloadMediaToDisk     = QWebEnginePage__WebAction(25)
-	QWebEnginePage__InspectElement          = QWebEnginePage__WebAction(26)
-	QWebEnginePage__ExitFullScreen          = QWebEnginePage__WebAction(27)
-	QWebEnginePage__RequestClose            = QWebEnginePage__WebAction(28)
-	QWebEnginePage__WebActionCount          = QWebEnginePage__WebAction(29)
+	QWebEnginePage__NoWebAction                = QWebEnginePage__WebAction(-1)
+	QWebEnginePage__Back                       = QWebEnginePage__WebAction(0)
+	QWebEnginePage__Forward                    = QWebEnginePage__WebAction(1)
+	QWebEnginePage__Stop                       = QWebEnginePage__WebAction(2)
+	QWebEnginePage__Reload                     = QWebEnginePage__WebAction(3)
+	QWebEnginePage__Cut                        = QWebEnginePage__WebAction(4)
+	QWebEnginePage__Copy                       = QWebEnginePage__WebAction(5)
+	QWebEnginePage__Paste                      = QWebEnginePage__WebAction(6)
+	QWebEnginePage__Undo                       = QWebEnginePage__WebAction(7)
+	QWebEnginePage__Redo                       = QWebEnginePage__WebAction(8)
+	QWebEnginePage__SelectAll                  = QWebEnginePage__WebAction(9)
+	QWebEnginePage__ReloadAndBypassCache       = QWebEnginePage__WebAction(10)
+	QWebEnginePage__PasteAndMatchStyle         = QWebEnginePage__WebAction(11)
+	QWebEnginePage__OpenLinkInThisWindow       = QWebEnginePage__WebAction(12)
+	QWebEnginePage__OpenLinkInNewWindow        = QWebEnginePage__WebAction(13)
+	QWebEnginePage__OpenLinkInNewTab           = QWebEnginePage__WebAction(14)
+	QWebEnginePage__CopyLinkToClipboard        = QWebEnginePage__WebAction(15)
+	QWebEnginePage__DownloadLinkToDisk         = QWebEnginePage__WebAction(16)
+	QWebEnginePage__CopyImageToClipboard       = QWebEnginePage__WebAction(17)
+	QWebEnginePage__CopyImageUrlToClipboard    = QWebEnginePage__WebAction(18)
+	QWebEnginePage__DownloadImageToDisk        = QWebEnginePage__WebAction(19)
+	QWebEnginePage__CopyMediaUrlToClipboard    = QWebEnginePage__WebAction(20)
+	QWebEnginePage__ToggleMediaControls        = QWebEnginePage__WebAction(21)
+	QWebEnginePage__ToggleMediaLoop            = QWebEnginePage__WebAction(22)
+	QWebEnginePage__ToggleMediaPlayPause       = QWebEnginePage__WebAction(23)
+	QWebEnginePage__ToggleMediaMute            = QWebEnginePage__WebAction(24)
+	QWebEnginePage__DownloadMediaToDisk        = QWebEnginePage__WebAction(25)
+	QWebEnginePage__InspectElement             = QWebEnginePage__WebAction(26)
+	QWebEnginePage__ExitFullScreen             = QWebEnginePage__WebAction(27)
+	QWebEnginePage__RequestClose               = QWebEnginePage__WebAction(28)
+	QWebEnginePage__Unselect                   = QWebEnginePage__WebAction(29)
+	QWebEnginePage__SavePage                   = QWebEnginePage__WebAction(30)
+	QWebEnginePage__OpenLinkInNewBackgroundTab = QWebEnginePage__WebAction(31)
+	QWebEnginePage__WebActionCount             = QWebEnginePage__WebAction(32)
 )
 
 //QWebEnginePage::WebWindowType
 type QWebEnginePage__WebWindowType int64
 
 const (
-	QWebEnginePage__WebBrowserWindow = QWebEnginePage__WebWindowType(0)
-	QWebEnginePage__WebBrowserTab    = QWebEnginePage__WebWindowType(1)
-	QWebEnginePage__WebDialog        = QWebEnginePage__WebWindowType(2)
+	QWebEnginePage__WebBrowserWindow        = QWebEnginePage__WebWindowType(0)
+	QWebEnginePage__WebBrowserTab           = QWebEnginePage__WebWindowType(1)
+	QWebEnginePage__WebDialog               = QWebEnginePage__WebWindowType(2)
+	QWebEnginePage__WebBrowserBackgroundTab = QWebEnginePage__WebWindowType(3)
 )
 
 type QWebEnginePage struct {
@@ -2998,6 +3264,15 @@ func (ptr *QWebEnginePage) ChooseFilesDefault(mode QWebEnginePage__FileSelection
 	return make([]string, 0)
 }
 
+func (ptr *QWebEnginePage) ContentsSize() *core.QSizeF {
+	defer qt.Recovering("QWebEnginePage::contentsSize")
+
+	if ptr.Pointer() != nil {
+		return core.NewQSizeFFromPointer(C.QWebEnginePage_ContentsSize(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebEnginePage) CreateStandardContextMenu() *widgets.QMenu {
 	defer qt.Recovering("QWebEnginePage::createStandardContextMenu")
 
@@ -3072,6 +3347,15 @@ func (ptr *QWebEnginePage) History() *QWebEngineHistory {
 	return nil
 }
 
+func (ptr *QWebEnginePage) Icon() *gui.QIcon {
+	defer qt.Recovering("QWebEnginePage::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QWebEnginePage_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebEnginePage) IconUrl() *core.QUrl {
 	defer qt.Recovering("QWebEnginePage::iconUrl")
 
@@ -3079,6 +3363,15 @@ func (ptr *QWebEnginePage) IconUrl() *core.QUrl {
 		return core.NewQUrlFromPointer(C.QWebEnginePage_IconUrl(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QWebEnginePage) IsAudioMuted() bool {
+	defer qt.Recovering("QWebEnginePage::isAudioMuted")
+
+	if ptr.Pointer() != nil {
+		return C.QWebEnginePage_IsAudioMuted(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 //export callbackQWebEnginePage_JavaScriptAlert
@@ -3273,6 +3566,15 @@ func (ptr *QWebEnginePage) Load(url core.QUrl_ITF) {
 	}
 }
 
+func (ptr *QWebEnginePage) RecentlyAudible() bool {
+	defer qt.Recovering("QWebEnginePage::recentlyAudible")
+
+	if ptr.Pointer() != nil {
+		return C.QWebEnginePage_RecentlyAudible(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 func (ptr *QWebEnginePage) RequestedUrl() *core.QUrl {
 	defer qt.Recovering("QWebEnginePage::requestedUrl")
 
@@ -3282,12 +3584,21 @@ func (ptr *QWebEnginePage) RequestedUrl() *core.QUrl {
 	return nil
 }
 
-func (ptr *QWebEnginePage) RunJavaScript2(scriptSource string) {
+func (ptr *QWebEnginePage) RunJavaScript4(scriptSource string) {
 	defer qt.Recovering("QWebEnginePage::runJavaScript")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_RunJavaScript2(ptr.Pointer(), C.CString(scriptSource))
+		C.QWebEnginePage_RunJavaScript4(ptr.Pointer(), C.CString(scriptSource))
 	}
+}
+
+func (ptr *QWebEnginePage) ScrollPosition() *core.QPointF {
+	defer qt.Recovering("QWebEnginePage::scrollPosition")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QWebEnginePage_ScrollPosition(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QWebEnginePage) SelectedText() string {
@@ -3297,6 +3608,14 @@ func (ptr *QWebEnginePage) SelectedText() string {
 		return C.GoString(C.QWebEnginePage_SelectedText(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QWebEnginePage) SetAudioMuted(muted bool) {
+	defer qt.Recovering("QWebEnginePage::setAudioMuted")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_SetAudioMuted(ptr.Pointer(), C.int(qt.GoBoolToInt(muted)))
+	}
 }
 
 func (ptr *QWebEnginePage) SetBackgroundColor(color gui.QColor_ITF) {
@@ -3461,6 +3780,42 @@ func NewQWebEnginePage2(profile QWebEngineProfile_ITF, parent core.QObject_ITF) 
 	return newQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage2(PointerFromQWebEngineProfile(profile), core.PointerFromQObject(parent)))
 }
 
+//export callbackQWebEnginePage_AudioMutedChanged
+func callbackQWebEnginePage_AudioMutedChanged(ptr unsafe.Pointer, ptrName *C.char, muted C.int) {
+	defer qt.Recovering("callback QWebEnginePage::audioMutedChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "audioMutedChanged"); signal != nil {
+		signal.(func(bool))(int(muted) != 0)
+	}
+
+}
+
+func (ptr *QWebEnginePage) ConnectAudioMutedChanged(f func(muted bool)) {
+	defer qt.Recovering("connect QWebEnginePage::audioMutedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_ConnectAudioMutedChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "audioMutedChanged", f)
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectAudioMutedChanged() {
+	defer qt.Recovering("disconnect QWebEnginePage::audioMutedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_DisconnectAudioMutedChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "audioMutedChanged")
+	}
+}
+
+func (ptr *QWebEnginePage) AudioMutedChanged(muted bool) {
+	defer qt.Recovering("QWebEnginePage::audioMutedChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_AudioMutedChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(muted)))
+	}
+}
+
 //export callbackQWebEnginePage_AuthenticationRequired
 func callbackQWebEnginePage_AuthenticationRequired(ptr unsafe.Pointer, ptrName *C.char, requestUrl unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QWebEnginePage::authenticationRequired")
@@ -3495,6 +3850,51 @@ func (ptr *QWebEnginePage) AuthenticationRequired(requestUrl core.QUrl_ITF, auth
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_AuthenticationRequired(ptr.Pointer(), core.PointerFromQUrl(requestUrl), network.PointerFromQAuthenticator(authenticator))
 	}
+}
+
+//export callbackQWebEnginePage_ContentsSizeChanged
+func callbackQWebEnginePage_ContentsSizeChanged(ptr unsafe.Pointer, ptrName *C.char, size unsafe.Pointer) {
+	defer qt.Recovering("callback QWebEnginePage::contentsSizeChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "contentsSizeChanged"); signal != nil {
+		signal.(func(*core.QSizeF))(core.NewQSizeFFromPointer(size))
+	}
+
+}
+
+func (ptr *QWebEnginePage) ConnectContentsSizeChanged(f func(size *core.QSizeF)) {
+	defer qt.Recovering("connect QWebEnginePage::contentsSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_ConnectContentsSizeChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "contentsSizeChanged", f)
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectContentsSizeChanged() {
+	defer qt.Recovering("disconnect QWebEnginePage::contentsSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_DisconnectContentsSizeChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "contentsSizeChanged")
+	}
+}
+
+func (ptr *QWebEnginePage) ContentsSizeChanged(size core.QSizeF_ITF) {
+	defer qt.Recovering("QWebEnginePage::contentsSizeChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_ContentsSizeChanged(ptr.Pointer(), core.PointerFromQSizeF(size))
+	}
+}
+
+func (ptr *QWebEnginePage) ContextMenuData() *QWebEngineContextMenuData {
+	defer qt.Recovering("QWebEnginePage::contextMenuData")
+
+	if ptr.Pointer() != nil {
+		return NewQWebEngineContextMenuDataFromPointer(C.QWebEnginePage_ContextMenuData(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEnginePage_Event
@@ -3657,6 +4057,42 @@ func (ptr *QWebEnginePage) GeometryChangeRequested(geom core.QRect_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_GeometryChangeRequested(ptr.Pointer(), core.PointerFromQRect(geom))
+	}
+}
+
+//export callbackQWebEnginePage_IconChanged
+func callbackQWebEnginePage_IconChanged(ptr unsafe.Pointer, ptrName *C.char, icon unsafe.Pointer) {
+	defer qt.Recovering("callback QWebEnginePage::iconChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "iconChanged"); signal != nil {
+		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
+	}
+
+}
+
+func (ptr *QWebEnginePage) ConnectIconChanged(f func(icon *gui.QIcon)) {
+	defer qt.Recovering("connect QWebEnginePage::iconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_ConnectIconChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "iconChanged", f)
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectIconChanged() {
+	defer qt.Recovering("disconnect QWebEnginePage::iconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_DisconnectIconChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "iconChanged")
+	}
+}
+
+func (ptr *QWebEnginePage) IconChanged(icon gui.QIcon_ITF) {
+	defer qt.Recovering("QWebEnginePage::iconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_IconChanged(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
 }
 
@@ -3840,6 +4276,14 @@ func (ptr *QWebEnginePage) LoadStarted() {
 	}
 }
 
+func (ptr *QWebEnginePage) PrintToPdf(filePath string, pageLayout gui.QPageLayout_ITF) {
+	defer qt.Recovering("QWebEnginePage::printToPdf")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_PrintToPdf(ptr.Pointer(), C.CString(filePath), gui.PointerFromQPageLayout(pageLayout))
+	}
+}
+
 func (ptr *QWebEnginePage) Profile() *QWebEngineProfile {
 	defer qt.Recovering("QWebEnginePage::profile")
 
@@ -3885,6 +4329,42 @@ func (ptr *QWebEnginePage) ProxyAuthenticationRequired(requestUrl core.QUrl_ITF,
 	}
 }
 
+//export callbackQWebEnginePage_RecentlyAudibleChanged
+func callbackQWebEnginePage_RecentlyAudibleChanged(ptr unsafe.Pointer, ptrName *C.char, recentlyAudible C.int) {
+	defer qt.Recovering("callback QWebEnginePage::recentlyAudibleChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "recentlyAudibleChanged"); signal != nil {
+		signal.(func(bool))(int(recentlyAudible) != 0)
+	}
+
+}
+
+func (ptr *QWebEnginePage) ConnectRecentlyAudibleChanged(f func(recentlyAudible bool)) {
+	defer qt.Recovering("connect QWebEnginePage::recentlyAudibleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_ConnectRecentlyAudibleChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "recentlyAudibleChanged", f)
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectRecentlyAudibleChanged() {
+	defer qt.Recovering("disconnect QWebEnginePage::recentlyAudibleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_DisconnectRecentlyAudibleChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "recentlyAudibleChanged")
+	}
+}
+
+func (ptr *QWebEnginePage) RecentlyAudibleChanged(recentlyAudible bool) {
+	defer qt.Recovering("QWebEnginePage::recentlyAudibleChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_RecentlyAudibleChanged(ptr.Pointer(), C.int(qt.GoBoolToInt(recentlyAudible)))
+	}
+}
+
 //export callbackQWebEnginePage_RenderProcessTerminated
 func callbackQWebEnginePage_RenderProcessTerminated(ptr unsafe.Pointer, ptrName *C.char, terminationStatus C.int, exitCode C.int) {
 	defer qt.Recovering("callback QWebEnginePage::renderProcessTerminated")
@@ -3918,6 +4398,42 @@ func (ptr *QWebEnginePage) RenderProcessTerminated(terminationStatus QWebEngineP
 
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_RenderProcessTerminated(ptr.Pointer(), C.int(terminationStatus), C.int(exitCode))
+	}
+}
+
+//export callbackQWebEnginePage_ScrollPositionChanged
+func callbackQWebEnginePage_ScrollPositionChanged(ptr unsafe.Pointer, ptrName *C.char, position unsafe.Pointer) {
+	defer qt.Recovering("callback QWebEnginePage::scrollPositionChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "scrollPositionChanged"); signal != nil {
+		signal.(func(*core.QPointF))(core.NewQPointFFromPointer(position))
+	}
+
+}
+
+func (ptr *QWebEnginePage) ConnectScrollPositionChanged(f func(position *core.QPointF)) {
+	defer qt.Recovering("connect QWebEnginePage::scrollPositionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_ConnectScrollPositionChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "scrollPositionChanged", f)
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectScrollPositionChanged() {
+	defer qt.Recovering("disconnect QWebEnginePage::scrollPositionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_DisconnectScrollPositionChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "scrollPositionChanged")
+	}
+}
+
+func (ptr *QWebEnginePage) ScrollPositionChanged(position core.QPointF_ITF) {
+	defer qt.Recovering("QWebEnginePage::scrollPositionChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEnginePage_ScrollPositionChanged(ptr.Pointer(), core.PointerFromQPointF(position))
 	}
 }
 
@@ -3957,11 +4473,11 @@ func (ptr *QWebEnginePage) SelectionChanged() {
 	}
 }
 
-func (ptr *QWebEnginePage) SetWebChannel(channel webchannel.QWebChannel_ITF) {
+func (ptr *QWebEnginePage) SetWebChannel2(channel webchannel.QWebChannel_ITF) {
 	defer qt.Recovering("QWebEnginePage::setWebChannel")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_SetWebChannel(ptr.Pointer(), webchannel.PointerFromQWebChannel(channel))
+		C.QWebEnginePage_SetWebChannel2(ptr.Pointer(), webchannel.PointerFromQWebChannel(channel))
 	}
 }
 
@@ -4456,6 +4972,7 @@ type QWebEngineProfile__HttpCacheType int64
 const (
 	QWebEngineProfile__MemoryHttpCache = QWebEngineProfile__HttpCacheType(0)
 	QWebEngineProfile__DiskHttpCache   = QWebEngineProfile__HttpCacheType(1)
+	QWebEngineProfile__NoCache         = QWebEngineProfile__HttpCacheType(2)
 )
 
 //QWebEngineProfile::PersistentCookiesPolicy
@@ -4540,6 +5057,14 @@ func (ptr *QWebEngineProfile) ClearAllVisitedLinks() {
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ClearAllVisitedLinks(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineProfile) ClearHttpCache() {
+	defer qt.Recovering("QWebEngineProfile::clearHttpCache")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineProfile_ClearHttpCache(ptr.Pointer())
 	}
 }
 
@@ -5512,12 +6037,13 @@ func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
 type QWebEngineSettings__FontFamily int64
 
 const (
-	QWebEngineSettings__StandardFont  = QWebEngineSettings__FontFamily(0)
-	QWebEngineSettings__FixedFont     = QWebEngineSettings__FontFamily(1)
-	QWebEngineSettings__SerifFont     = QWebEngineSettings__FontFamily(2)
-	QWebEngineSettings__SansSerifFont = QWebEngineSettings__FontFamily(3)
-	QWebEngineSettings__CursiveFont   = QWebEngineSettings__FontFamily(4)
-	QWebEngineSettings__FantasyFont   = QWebEngineSettings__FontFamily(5)
+	QWebEngineSettings__StandardFont   = QWebEngineSettings__FontFamily(0)
+	QWebEngineSettings__FixedFont      = QWebEngineSettings__FontFamily(1)
+	QWebEngineSettings__SerifFont      = QWebEngineSettings__FontFamily(2)
+	QWebEngineSettings__SansSerifFont  = QWebEngineSettings__FontFamily(3)
+	QWebEngineSettings__CursiveFont    = QWebEngineSettings__FontFamily(4)
+	QWebEngineSettings__FantasyFont    = QWebEngineSettings__FontFamily(5)
+	QWebEngineSettings__PictographFont = QWebEngineSettings__FontFamily(6)
 )
 
 //QWebEngineSettings::FontSize
@@ -5549,6 +6075,11 @@ const (
 	QWebEngineSettings__ErrorPageEnabled                = QWebEngineSettings__WebAttribute(12)
 	QWebEngineSettings__PluginsEnabled                  = QWebEngineSettings__WebAttribute(13)
 	QWebEngineSettings__FullScreenSupportEnabled        = QWebEngineSettings__WebAttribute(14)
+	QWebEngineSettings__ScreenCaptureEnabled            = QWebEngineSettings__WebAttribute(15)
+	QWebEngineSettings__WebGLEnabled                    = QWebEngineSettings__WebAttribute(16)
+	QWebEngineSettings__Accelerated2dCanvasEnabled      = QWebEngineSettings__WebAttribute(17)
+	QWebEngineSettings__AutoLoadIconsForPage            = QWebEngineSettings__WebAttribute(18)
+	QWebEngineSettings__TouchIconsEnabled               = QWebEngineSettings__WebAttribute(19)
 )
 
 type QWebEngineSettings struct {
@@ -5726,23 +6257,25 @@ const (
 type QWebEngineUrlRequestInfo__ResourceType int64
 
 const (
-	QWebEngineUrlRequestInfo__ResourceTypeMainFrame     = QWebEngineUrlRequestInfo__ResourceType(0)
-	QWebEngineUrlRequestInfo__ResourceTypeSubFrame      = QWebEngineUrlRequestInfo__ResourceType(1)
-	QWebEngineUrlRequestInfo__ResourceTypeStylesheet    = QWebEngineUrlRequestInfo__ResourceType(2)
-	QWebEngineUrlRequestInfo__ResourceTypeScript        = QWebEngineUrlRequestInfo__ResourceType(3)
-	QWebEngineUrlRequestInfo__ResourceTypeImage         = QWebEngineUrlRequestInfo__ResourceType(4)
-	QWebEngineUrlRequestInfo__ResourceTypeFontResource  = QWebEngineUrlRequestInfo__ResourceType(5)
-	QWebEngineUrlRequestInfo__ResourceTypeSubResource   = QWebEngineUrlRequestInfo__ResourceType(6)
-	QWebEngineUrlRequestInfo__ResourceTypeObject        = QWebEngineUrlRequestInfo__ResourceType(7)
-	QWebEngineUrlRequestInfo__ResourceTypeMedia         = QWebEngineUrlRequestInfo__ResourceType(8)
-	QWebEngineUrlRequestInfo__ResourceTypeWorker        = QWebEngineUrlRequestInfo__ResourceType(9)
-	QWebEngineUrlRequestInfo__ResourceTypeSharedWorker  = QWebEngineUrlRequestInfo__ResourceType(10)
-	QWebEngineUrlRequestInfo__ResourceTypePrefetch      = QWebEngineUrlRequestInfo__ResourceType(11)
-	QWebEngineUrlRequestInfo__ResourceTypeFavicon       = QWebEngineUrlRequestInfo__ResourceType(12)
-	QWebEngineUrlRequestInfo__ResourceTypeXhr           = QWebEngineUrlRequestInfo__ResourceType(13)
-	QWebEngineUrlRequestInfo__ResourceTypePing          = QWebEngineUrlRequestInfo__ResourceType(14)
-	QWebEngineUrlRequestInfo__ResourceTypeServiceWorker = QWebEngineUrlRequestInfo__ResourceType(15)
-	QWebEngineUrlRequestInfo__ResourceTypeUnknown       = QWebEngineUrlRequestInfo__ResourceType(16)
+	QWebEngineUrlRequestInfo__ResourceTypeMainFrame      = QWebEngineUrlRequestInfo__ResourceType(0)
+	QWebEngineUrlRequestInfo__ResourceTypeSubFrame       = QWebEngineUrlRequestInfo__ResourceType(1)
+	QWebEngineUrlRequestInfo__ResourceTypeStylesheet     = QWebEngineUrlRequestInfo__ResourceType(2)
+	QWebEngineUrlRequestInfo__ResourceTypeScript         = QWebEngineUrlRequestInfo__ResourceType(3)
+	QWebEngineUrlRequestInfo__ResourceTypeImage          = QWebEngineUrlRequestInfo__ResourceType(4)
+	QWebEngineUrlRequestInfo__ResourceTypeFontResource   = QWebEngineUrlRequestInfo__ResourceType(5)
+	QWebEngineUrlRequestInfo__ResourceTypeSubResource    = QWebEngineUrlRequestInfo__ResourceType(6)
+	QWebEngineUrlRequestInfo__ResourceTypeObject         = QWebEngineUrlRequestInfo__ResourceType(7)
+	QWebEngineUrlRequestInfo__ResourceTypeMedia          = QWebEngineUrlRequestInfo__ResourceType(8)
+	QWebEngineUrlRequestInfo__ResourceTypeWorker         = QWebEngineUrlRequestInfo__ResourceType(9)
+	QWebEngineUrlRequestInfo__ResourceTypeSharedWorker   = QWebEngineUrlRequestInfo__ResourceType(10)
+	QWebEngineUrlRequestInfo__ResourceTypePrefetch       = QWebEngineUrlRequestInfo__ResourceType(11)
+	QWebEngineUrlRequestInfo__ResourceTypeFavicon        = QWebEngineUrlRequestInfo__ResourceType(12)
+	QWebEngineUrlRequestInfo__ResourceTypeXhr            = QWebEngineUrlRequestInfo__ResourceType(13)
+	QWebEngineUrlRequestInfo__ResourceTypePing           = QWebEngineUrlRequestInfo__ResourceType(14)
+	QWebEngineUrlRequestInfo__ResourceTypeServiceWorker  = QWebEngineUrlRequestInfo__ResourceType(15)
+	QWebEngineUrlRequestInfo__ResourceTypeCspReport      = QWebEngineUrlRequestInfo__ResourceType(16)
+	QWebEngineUrlRequestInfo__ResourceTypePluginResource = QWebEngineUrlRequestInfo__ResourceType(17)
+	QWebEngineUrlRequestInfo__ResourceTypeUnknown        = QWebEngineUrlRequestInfo__ResourceType(18)
 )
 
 type QWebEngineUrlRequestInfo struct {
@@ -7537,6 +8070,15 @@ func (ptr *QWebEngineView) History() *QWebEngineHistory {
 	return nil
 }
 
+func (ptr *QWebEngineView) Icon() *gui.QIcon {
+	defer qt.Recovering("QWebEngineView::icon")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQIconFromPointer(C.QWebEngineView_Icon(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebEngineView) IconUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineView::iconUrl")
 
@@ -7792,6 +8334,38 @@ func (ptr *QWebEngineView) ContextMenuEventDefault(event gui.QContextMenuEvent_I
 	}
 }
 
+func (ptr *QWebEngineView) DragEnterEvent(e gui.QDragEnterEvent_ITF) {
+	defer qt.Recovering("QWebEngineView::dragEnterEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
+	}
+}
+
+func (ptr *QWebEngineView) DragLeaveEvent(e gui.QDragLeaveEvent_ITF) {
+	defer qt.Recovering("QWebEngineView::dragLeaveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
+}
+
+func (ptr *QWebEngineView) DragMoveEvent(e gui.QDragMoveEvent_ITF) {
+	defer qt.Recovering("QWebEngineView::dragMoveEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
+}
+
+func (ptr *QWebEngineView) DropEvent(e gui.QDropEvent_ITF) {
+	defer qt.Recovering("QWebEngineView::dropEvent")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
+}
+
 //export callbackQWebEngineView_Event
 func callbackQWebEngineView_Event(ptr unsafe.Pointer, ptrName *C.char, ev unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QWebEngineView::event")
@@ -7889,6 +8463,42 @@ func (ptr *QWebEngineView) HideEventDefault(event gui.QHideEvent_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+//export callbackQWebEngineView_IconChanged
+func callbackQWebEngineView_IconChanged(ptr unsafe.Pointer, ptrName *C.char, icon unsafe.Pointer) {
+	defer qt.Recovering("callback QWebEngineView::iconChanged")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "iconChanged"); signal != nil {
+		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
+	}
+
+}
+
+func (ptr *QWebEngineView) ConnectIconChanged(f func(icon *gui.QIcon)) {
+	defer qt.Recovering("connect QWebEngineView::iconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_ConnectIconChanged(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "iconChanged", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectIconChanged() {
+	defer qt.Recovering("disconnect QWebEngineView::iconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DisconnectIconChanged(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "iconChanged")
+	}
+}
+
+func (ptr *QWebEngineView) IconChanged(icon gui.QIcon_ITF) {
+	defer qt.Recovering("QWebEngineView::iconChanged")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_IconChanged(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
 }
 
@@ -8314,186 +8924,6 @@ func (ptr *QWebEngineView) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
-	}
-}
-
-//export callbackQWebEngineView_DragEnterEvent
-func callbackQWebEngineView_DragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::dragEnterEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
-		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
-	} else {
-		NewQWebEngineViewFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
-	}
-}
-
-func (ptr *QWebEngineView) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
-	defer qt.Recovering("connect QWebEngineView::dragEnterEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
-	}
-}
-
-func (ptr *QWebEngineView) DisconnectDragEnterEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::dragEnterEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
-	}
-}
-
-func (ptr *QWebEngineView) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragEnterEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
-	}
-}
-
-func (ptr *QWebEngineView) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragEnterEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
-	}
-}
-
-//export callbackQWebEngineView_DragLeaveEvent
-func callbackQWebEngineView_DragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::dragLeaveEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
-		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
-	} else {
-		NewQWebEngineViewFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
-	}
-}
-
-func (ptr *QWebEngineView) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
-	defer qt.Recovering("connect QWebEngineView::dragLeaveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
-	}
-}
-
-func (ptr *QWebEngineView) DisconnectDragLeaveEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::dragLeaveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
-	}
-}
-
-func (ptr *QWebEngineView) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragLeaveEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
-	}
-}
-
-func (ptr *QWebEngineView) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragLeaveEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
-	}
-}
-
-//export callbackQWebEngineView_DragMoveEvent
-func callbackQWebEngineView_DragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::dragMoveEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
-		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
-	} else {
-		NewQWebEngineViewFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
-	}
-}
-
-func (ptr *QWebEngineView) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
-	defer qt.Recovering("connect QWebEngineView::dragMoveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
-	}
-}
-
-func (ptr *QWebEngineView) DisconnectDragMoveEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::dragMoveEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
-	}
-}
-
-func (ptr *QWebEngineView) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragMoveEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
-	}
-}
-
-func (ptr *QWebEngineView) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragMoveEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
-	}
-}
-
-//export callbackQWebEngineView_DropEvent
-func callbackQWebEngineView_DropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::dropEvent")
-
-	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
-		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
-	} else {
-		NewQWebEngineViewFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
-	}
-}
-
-func (ptr *QWebEngineView) ConnectDropEvent(f func(event *gui.QDropEvent)) {
-	defer qt.Recovering("connect QWebEngineView::dropEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
-	}
-}
-
-func (ptr *QWebEngineView) DisconnectDropEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::dropEvent")
-
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
-	}
-}
-
-func (ptr *QWebEngineView) DropEvent(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dropEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
-	}
-}
-
-func (ptr *QWebEngineView) DropEventDefault(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dropEvent")
-
-	if ptr.Pointer() != nil {
-		C.QWebEngineView_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
 }
 

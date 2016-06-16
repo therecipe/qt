@@ -11151,6 +11151,30 @@ func (ptr *QNetworkInterface) InterfaceFromName(name string) *QNetworkInterface 
 	return NewQNetworkInterfaceFromPointer(C.QNetworkInterface_QNetworkInterface_InterfaceFromName(C.CString(name)))
 }
 
+func QNetworkInterface_InterfaceIndexFromName(name string) int {
+	defer qt.Recovering("QNetworkInterface::interfaceIndexFromName")
+
+	return int(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.CString(name)))
+}
+
+func (ptr *QNetworkInterface) InterfaceIndexFromName(name string) int {
+	defer qt.Recovering("QNetworkInterface::interfaceIndexFromName")
+
+	return int(C.QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(C.CString(name)))
+}
+
+func QNetworkInterface_InterfaceNameFromIndex(index int) string {
+	defer qt.Recovering("QNetworkInterface::interfaceNameFromIndex")
+
+	return C.GoString(C.QNetworkInterface_QNetworkInterface_InterfaceNameFromIndex(C.int(index)))
+}
+
+func (ptr *QNetworkInterface) InterfaceNameFromIndex(index int) string {
+	defer qt.Recovering("QNetworkInterface::interfaceNameFromIndex")
+
+	return C.GoString(C.QNetworkInterface_QNetworkInterface_InterfaceNameFromIndex(C.int(index)))
+}
+
 func (ptr *QNetworkInterface) IsValid() bool {
 	defer qt.Recovering("QNetworkInterface::isValid")
 
@@ -15647,6 +15671,15 @@ func (ptr *QSslConfiguration) DefaultConfiguration() *QSslConfiguration {
 	defer qt.Recovering("QSslConfiguration::defaultConfiguration")
 
 	return NewQSslConfigurationFromPointer(C.QSslConfiguration_QSslConfiguration_DefaultConfiguration())
+}
+
+func (ptr *QSslConfiguration) EphemeralServerKey() *QSslKey {
+	defer qt.Recovering("QSslConfiguration::ephemeralServerKey")
+
+	if ptr.Pointer() != nil {
+		return NewQSslKeyFromPointer(C.QSslConfiguration_EphemeralServerKey(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QSslConfiguration) IsNull() bool {

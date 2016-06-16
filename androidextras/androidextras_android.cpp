@@ -235,6 +235,11 @@ void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4(void* clazz, c
 	return new QAndroidJniObject(QAndroidJniObject::callStaticObjectMethod(static_cast<jclass>(clazz), const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v)).object());
 }
 
+void* QAndroidJniObject_QAndroidJniObject_FromLocalRef(void* localRef)
+{
+	return new QAndroidJniObject(QAndroidJniObject::fromLocalRef(static_cast<jobject>(localRef)).object());
+}
+
 void* QAndroidJniObject_QAndroidJniObject_FromString(char* stri)
 {
 	return new QAndroidJniObject(QAndroidJniObject::fromString(QString(stri)).object());

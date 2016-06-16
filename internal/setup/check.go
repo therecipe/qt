@@ -12,7 +12,7 @@ import (
 
 func main() {
 
-	//TODO: check android / ios env
+	//TODO: check android / ios / sailfish env
 
 	if os.Getenv("GOPATH") == "" {
 		fmt.Print("\nerror:\nGOPATH NOT SET\n\n")
@@ -24,9 +24,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	var qtPath = filepath.Join("/usr", "local", "Qt5.6.0")
+	var qtPath = filepath.Join("/usr", "local", "Qt5.7.0")
 	if runtime.GOOS == "windows" {
-		qtPath = filepath.Join("C:\\", "Qt", "Qt5.6.0")
+		qtPath = filepath.Join("C:\\", "Qt", "Qt5.7.0")
 	}
 	if _, err := ioutil.ReadDir(qtPath); err != nil {
 		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in: \"%v\"\n\n", qtPath)

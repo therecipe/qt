@@ -207,17 +207,17 @@ func moc(appPath string) {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				mocPath = "/usr/local/Qt5.6.0/5.6/clang_64/bin/moc"
+				mocPath = "/usr/local/Qt5.7.0/5.7/clang_64/bin/moc"
 			}
 
 		case "linux":
 			{
-				mocPath = "/usr/local/Qt5.6.0/5.6/gcc_64/bin/moc"
+				mocPath = "/usr/local/Qt5.7.0/5.7/gcc_64/bin/moc"
 			}
 
 		case "windows":
 			{
-				mocPath = "C:\\Qt\\Qt5.6.0\\5.6\\mingw49_32\\bin\\moc.exe"
+				mocPath = "C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32\\bin\\moc.exe"
 			}
 		}
 

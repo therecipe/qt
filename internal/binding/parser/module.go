@@ -62,7 +62,10 @@ func (m *Module) Prepare() {
 				f.fixOverload()
 
 				if f.Virtual == "virtual" {
-					f.Virtual = "impure"
+					f.Virtual = IMPURE
+				}
+				if f.Meta == COPY_CONSTRUCTOR || f.Meta == MOVE_CONSTRUCTOR {
+					f.Meta = CONSTRUCTOR
 				}
 			}
 		}

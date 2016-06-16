@@ -2039,6 +2039,16 @@ void* QAbstractItemView_IconSize(void* ptr)
 	return new QSize(static_cast<QSize>(static_cast<QAbstractItemView*>(ptr)->iconSize()).width(), static_cast<QSize>(static_cast<QAbstractItemView*>(ptr)->iconSize()).height());
 }
 
+void QAbstractItemView_ResetHorizontalScrollMode(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->resetHorizontalScrollMode();
+}
+
+void QAbstractItemView_ResetVerticalScrollMode(void* ptr)
+{
+	static_cast<QAbstractItemView*>(ptr)->resetVerticalScrollMode();
+}
+
 int QAbstractItemView_SelectionBehavior(void* ptr)
 {
 	return static_cast<QAbstractItemView*>(ptr)->selectionBehavior();
@@ -7638,6 +7648,16 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQButtonGroup_MetaObject(const_cast<MyQButtonGroup*>(this), this->objectName().toUtf8().data())); };
 };
 
+int QButtonGroup_Exclusive(void* ptr)
+{
+	return static_cast<QButtonGroup*>(ptr)->exclusive();
+}
+
+void QButtonGroup_SetExclusive(void* ptr, int vbo)
+{
+	static_cast<QButtonGroup*>(ptr)->setExclusive(vbo != 0);
+}
+
 void* QButtonGroup_NewQButtonGroup(void* parent)
 {
 	return new MyQButtonGroup(static_cast<QObject*>(parent));
@@ -7651,46 +7671,6 @@ void QButtonGroup_AddButton(void* ptr, void* button, int id)
 void* QButtonGroup_Button(void* ptr, int id)
 {
 	return static_cast<QButtonGroup*>(ptr)->button(id);
-}
-
-void* QButtonGroup_CheckedButton(void* ptr)
-{
-	return static_cast<QButtonGroup*>(ptr)->checkedButton();
-}
-
-int QButtonGroup_CheckedId(void* ptr)
-{
-	return static_cast<QButtonGroup*>(ptr)->checkedId();
-}
-
-int QButtonGroup_Exclusive(void* ptr)
-{
-	return static_cast<QButtonGroup*>(ptr)->exclusive();
-}
-
-int QButtonGroup_Id(void* ptr, void* button)
-{
-	return static_cast<QButtonGroup*>(ptr)->id(static_cast<QAbstractButton*>(button));
-}
-
-void QButtonGroup_RemoveButton(void* ptr, void* button)
-{
-	static_cast<QButtonGroup*>(ptr)->removeButton(static_cast<QAbstractButton*>(button));
-}
-
-void QButtonGroup_SetExclusive(void* ptr, int vbo)
-{
-	static_cast<QButtonGroup*>(ptr)->setExclusive(vbo != 0);
-}
-
-void QButtonGroup_SetId(void* ptr, void* button, int id)
-{
-	static_cast<QButtonGroup*>(ptr)->setId(static_cast<QAbstractButton*>(button), id);
-}
-
-void QButtonGroup_DestroyQButtonGroup(void* ptr)
-{
-	static_cast<QButtonGroup*>(ptr)->~QButtonGroup();
 }
 
 void QButtonGroup_ConnectButtonClicked(void* ptr)
@@ -7811,6 +7791,36 @@ void QButtonGroup_DisconnectButtonToggled2(void* ptr)
 void QButtonGroup_ButtonToggled2(void* ptr, int id, int checked)
 {
 	static_cast<QButtonGroup*>(ptr)->buttonToggled(id, checked != 0);
+}
+
+void* QButtonGroup_CheckedButton(void* ptr)
+{
+	return static_cast<QButtonGroup*>(ptr)->checkedButton();
+}
+
+int QButtonGroup_CheckedId(void* ptr)
+{
+	return static_cast<QButtonGroup*>(ptr)->checkedId();
+}
+
+int QButtonGroup_Id(void* ptr, void* button)
+{
+	return static_cast<QButtonGroup*>(ptr)->id(static_cast<QAbstractButton*>(button));
+}
+
+void QButtonGroup_RemoveButton(void* ptr, void* button)
+{
+	static_cast<QButtonGroup*>(ptr)->removeButton(static_cast<QAbstractButton*>(button));
+}
+
+void QButtonGroup_SetId(void* ptr, void* button, int id)
+{
+	static_cast<QButtonGroup*>(ptr)->setId(static_cast<QAbstractButton*>(button), id);
+}
+
+void QButtonGroup_DestroyQButtonGroup(void* ptr)
+{
+	static_cast<QButtonGroup*>(ptr)->~QButtonGroup();
 }
 
 void QButtonGroup_TimerEvent(void* ptr, void* event)
@@ -23217,7 +23227,6 @@ public:
 	void Signal_DirectoryLoaded(const QString & path) { callbackQFileSystemModel_DirectoryLoaded(this, this->objectName().toUtf8().data(), path.toUtf8().data()); };
 	void Signal_FileRenamed(const QString & path, const QString & oldName, const QString & newName) { callbackQFileSystemModel_FileRenamed(this, this->objectName().toUtf8().data(), path.toUtf8().data(), oldName.toUtf8().data(), newName.toUtf8().data()); };
 	void Signal_RootPathChanged(const QString & newPath) { callbackQFileSystemModel_RootPathChanged(this, this->objectName().toUtf8().data(), newPath.toUtf8().data()); };
-	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Sibling(const_cast<MyQFileSystemModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(index))); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Buddy(const_cast<MyQFileSystemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQFileSystemModel_CanDropMimeData(const_cast<MyQFileSystemModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQFileSystemModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
@@ -23491,6 +23500,11 @@ void* QFileSystemModel_SetRootPath(void* ptr, char* newPath)
 	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->setRootPath(QString(newPath)));
 }
 
+void* QFileSystemModel_Sibling(void* ptr, int row, int column, void* idx)
+{
+	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
+}
+
 long long QFileSystemModel_Size(void* ptr, void* index)
 {
 	return static_cast<long long>(static_cast<QFileSystemModel*>(ptr)->size(*static_cast<QModelIndex*>(index)));
@@ -23519,16 +23533,6 @@ char* QFileSystemModel_Type(void* ptr, void* index)
 void QFileSystemModel_DestroyQFileSystemModel(void* ptr)
 {
 	static_cast<QFileSystemModel*>(ptr)->~QFileSystemModel();
-}
-
-void* QFileSystemModel_Sibling(void* ptr, int row, int column, void* index)
-{
-	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(index)));
-}
-
-void* QFileSystemModel_SiblingDefault(void* ptr, int row, int column, void* index)
-{
-	return new QModelIndex(static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::sibling(row, column, *static_cast<QModelIndex*>(index)));
 }
 
 void* QFileSystemModel_Buddy(void* ptr, void* index)
@@ -29748,6 +29752,11 @@ void* QGraphicsItem_Data(void* ptr, int key)
 	return new QVariant(static_cast<QGraphicsItem*>(ptr)->data(key));
 }
 
+void* QGraphicsItem_DeviceTransform(void* ptr, void* viewportTransform)
+{
+	return new QTransform(static_cast<QGraphicsItem*>(ptr)->deviceTransform(*static_cast<QTransform*>(viewportTransform)));
+}
+
 void QGraphicsItem_DragEnterEvent(void* ptr, void* event)
 {
 	static_cast<QGraphicsItem*>(ptr)->dragEnterEvent(static_cast<QGraphicsSceneDragDropEvent*>(event));
@@ -30021,6 +30030,11 @@ void* QGraphicsItem_ItemChange(void* ptr, int change, void* value)
 void* QGraphicsItem_ItemChangeDefault(void* ptr, int change, void* value)
 {
 	return new QVariant(static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::itemChange(static_cast<QGraphicsItem::GraphicsItemChange>(change), *static_cast<QVariant*>(value)));
+}
+
+void* QGraphicsItem_ItemTransform(void* ptr, void* other, int ok)
+{
+	return new QTransform(static_cast<QGraphicsItem*>(ptr)->itemTransform(static_cast<QGraphicsItem*>(other), NULL));
 }
 
 void QGraphicsItem_KeyPressEvent(void* ptr, void* event)
@@ -30438,6 +30452,11 @@ void* QGraphicsItem_ScenePos(void* ptr)
 	return new QPointF(static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->scenePos()).x(), static_cast<QPointF>(static_cast<QGraphicsItem*>(ptr)->scenePos()).y());
 }
 
+void* QGraphicsItem_SceneTransform(void* ptr)
+{
+	return new QTransform(static_cast<QGraphicsItem*>(ptr)->sceneTransform());
+}
+
 void QGraphicsItem_Scroll(void* ptr, double dx, double dy, void* rect)
 {
 	static_cast<QGraphicsItem*>(ptr)->scroll(static_cast<double>(dx), static_cast<double>(dy), *static_cast<QRectF*>(rect));
@@ -30656,6 +30675,11 @@ void* QGraphicsItem_TopLevelItem(void* ptr)
 void* QGraphicsItem_TopLevelWidget(void* ptr)
 {
 	return static_cast<QGraphicsItem*>(ptr)->topLevelWidget();
+}
+
+void* QGraphicsItem_Transform(void* ptr)
+{
+	return new QTransform(static_cast<QGraphicsItem*>(ptr)->transform());
 }
 
 void* QGraphicsItem_TransformOriginPoint(void* ptr)
@@ -38693,6 +38717,11 @@ void* QGraphicsView_SizeHintDefault(void* ptr)
 	return new QSize(static_cast<QSize>(static_cast<QGraphicsView*>(ptr)->QGraphicsView::sizeHint()).width(), static_cast<QSize>(static_cast<QGraphicsView*>(ptr)->QGraphicsView::sizeHint()).height());
 }
 
+void* QGraphicsView_Transform(void* ptr)
+{
+	return new QTransform(static_cast<QGraphicsView*>(ptr)->transform());
+}
+
 void QGraphicsView_Translate(void* ptr, double dx, double dy)
 {
 	static_cast<QGraphicsView*>(ptr)->translate(static_cast<double>(dx), static_cast<double>(dy));
@@ -38711,6 +38740,11 @@ int QGraphicsView_ViewportEvent(void* ptr, void* event)
 int QGraphicsView_ViewportEventDefault(void* ptr, void* event)
 {
 	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::viewportEvent(static_cast<QEvent*>(event));
+}
+
+void* QGraphicsView_ViewportTransform(void* ptr)
+{
+	return new QTransform(static_cast<QGraphicsView*>(ptr)->viewportTransform());
 }
 
 void QGraphicsView_WheelEvent(void* ptr, void* event)
@@ -50176,6 +50210,7 @@ public:
 	void Signal_ItemSelectionChanged() { callbackQListWidget_ItemSelectionChanged(this, this->objectName().toUtf8().data()); };
 	QStringList mimeTypes() const { return QString(callbackQListWidget_MimeTypes(const_cast<MyQListWidget*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
 	void scrollToItem(const QListWidgetItem * item, QAbstractItemView::ScrollHint hint) { callbackQListWidget_ScrollToItem(this, this->objectName().toUtf8().data(), const_cast<QListWidgetItem*>(item), hint); };
+	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQListWidget_SetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQListWidget_SupportedDropActions(const_cast<MyQListWidget*>(this), this->objectName().toUtf8().data())); };
 	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQListWidget_CurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQListWidget_DragLeaveEvent(this, this->objectName().toUtf8().data(), e); };
@@ -50226,7 +50261,6 @@ public:
 	void setCurrentIndex(const QModelIndex & index) { callbackQListWidget_SetCurrentIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
 	void setModel(QAbstractItemModel * model) { callbackQListWidget_SetModel(this, this->objectName().toUtf8().data(), model); };
 	void setRootIndex(const QModelIndex & index) { callbackQListWidget_SetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
-	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQListWidget_SetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	int sizeHintForColumn(int column) const { return callbackQListWidget_SizeHintForColumn(const_cast<MyQListWidget*>(this), this->objectName().toUtf8().data(), column); };
 	int sizeHintForRow(int row) const { return callbackQListWidget_SizeHintForRow(const_cast<MyQListWidget*>(this), this->objectName().toUtf8().data(), row); };
 	void update(const QModelIndex & index) { callbackQListWidget_Update(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
@@ -50609,6 +50643,16 @@ void QListWidget_SetCurrentRow2(void* ptr, int row, int command)
 void QListWidget_SetItemWidget(void* ptr, void* item, void* widget)
 {
 	static_cast<QListWidget*>(ptr)->setItemWidget(static_cast<QListWidgetItem*>(item), static_cast<QWidget*>(widget));
+}
+
+void QListWidget_SetSelectionModel(void* ptr, void* selectionModel)
+{
+	static_cast<QListWidget*>(ptr)->setSelectionModel(static_cast<QItemSelectionModel*>(selectionModel));
+}
+
+void QListWidget_SetSelectionModelDefault(void* ptr, void* selectionModel)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::setSelectionModel(static_cast<QItemSelectionModel*>(selectionModel));
 }
 
 void QListWidget_SortItems(void* ptr, int order)
@@ -51129,16 +51173,6 @@ void QListWidget_SetRootIndex(void* ptr, void* index)
 void QListWidget_SetRootIndexDefault(void* ptr, void* index)
 {
 	static_cast<QListWidget*>(ptr)->QListWidget::setRootIndex(*static_cast<QModelIndex*>(index));
-}
-
-void QListWidget_SetSelectionModel(void* ptr, void* selectionModel)
-{
-	static_cast<QListWidget*>(ptr)->setSelectionModel(static_cast<QItemSelectionModel*>(selectionModel));
-}
-
-void QListWidget_SetSelectionModelDefault(void* ptr, void* selectionModel)
-{
-	static_cast<QListWidget*>(ptr)->QListWidget::setSelectionModel(static_cast<QItemSelectionModel*>(selectionModel));
 }
 
 int QListWidget_SizeHintForColumn(void* ptr, int column)
@@ -56577,13 +56611,6 @@ void QMenu_PaintEventDefault(void* ptr, void* e)
 	static_cast<QMenu*>(ptr)->QMenu::paintEvent(static_cast<QPaintEvent*>(e));
 }
 
-void QMenu_SetAsDockMenu(void* ptr)
-{
-#ifdef Q_OS_OSX
-	static_cast<QMenu*>(ptr)->setAsDockMenu();
-#endif
-}
-
 void QMenu_Popup(void* ptr, void* p, void* atAction)
 {
 	static_cast<QMenu*>(ptr)->popup(*static_cast<QPoint*>(p), static_cast<QAction*>(atAction));
@@ -56594,9 +56621,26 @@ void QMenu_SetActiveAction(void* ptr, void* act)
 	static_cast<QMenu*>(ptr)->setActiveAction(static_cast<QAction*>(act));
 }
 
+void QMenu_SetAsDockMenu(void* ptr)
+{
+#ifdef Q_OS_OSX
+	static_cast<QMenu*>(ptr)->setAsDockMenu();
+#endif
+}
+
 void QMenu_SetDefaultAction(void* ptr, void* act)
 {
 	static_cast<QMenu*>(ptr)->setDefaultAction(static_cast<QAction*>(act));
+}
+
+void QMenu_ShowTearOffMenu2(void* ptr)
+{
+	static_cast<QMenu*>(ptr)->showTearOffMenu();
+}
+
+void QMenu_ShowTearOffMenu(void* ptr, void* pos)
+{
+	static_cast<QMenu*>(ptr)->showTearOffMenu(*static_cast<QPoint*>(pos));
 }
 
 void* QMenu_SizeHint(void* ptr)
@@ -74854,6 +74898,11 @@ int QStyle_PE_PanelMenu_Type()
 	return QStyle::PE_PanelMenu;
 }
 
+int QStyle_PE_IndicatorTabTearRight_Type()
+{
+	return QStyle::PE_IndicatorTabTearRight;
+}
+
 int QStyle_SH_BlinkCursorWhenTextSelected_Type()
 {
 	#if QT_VERSION >= 0x056000
@@ -75610,6 +75659,15 @@ int QStyle_SH_Menu_SubMenuDontStartSloppyOnLeave_Type()
 	#endif
 }
 
+int QStyle_SH_ItemView_ScrollMode_Type()
+{
+	#if QT_VERSION >= 0x056000
+		return QStyle::SH_ItemView_ScrollMode;
+	#else
+		return 0;
+	#endif
+}
+
 int QStyle_SE_TabBarTearIndicator_Type()
 {
 	return QStyle::SE_TabBarTearIndicator;
@@ -75758,6 +75816,21 @@ int QStyle_SE_ShapedFrameContents_Type()
 int QStyle_SE_ToolBarHandle_Type()
 {
 	return QStyle::SE_ToolBarHandle;
+}
+
+int QStyle_SE_TabBarScrollLeftButton_Type()
+{
+	return QStyle::SE_TabBarScrollLeftButton;
+}
+
+int QStyle_SE_TabBarScrollRightButton_Type()
+{
+	return QStyle::SE_TabBarScrollRightButton;
+}
+
+int QStyle_SE_TabBarTearIndicatorRight_Type()
+{
+	return QStyle::SE_TabBarTearIndicatorRight;
 }
 
 class MyQStyle: public QStyle

@@ -4932,9 +4932,19 @@ void* QDataStream_NewQDataStream4(char* a)
 	return new QDataStream(QByteArray(a));
 }
 
+void QDataStream_AbortTransaction(void* ptr)
+{
+	static_cast<QDataStream*>(ptr)->abortTransaction();
+}
+
 int QDataStream_ByteOrder(void* ptr)
 {
 	return static_cast<QDataStream*>(ptr)->byteOrder();
+}
+
+int QDataStream_CommitTransaction(void* ptr)
+{
+	return static_cast<QDataStream*>(ptr)->commitTransaction();
 }
 
 void* QDataStream_Device(void* ptr)
@@ -4955,6 +4965,11 @@ int QDataStream_ReadRawData(void* ptr, char* s, int len)
 void QDataStream_ResetStatus(void* ptr)
 {
 	static_cast<QDataStream*>(ptr)->resetStatus();
+}
+
+void QDataStream_RollbackTransaction(void* ptr)
+{
+	static_cast<QDataStream*>(ptr)->rollbackTransaction();
 }
 
 void QDataStream_SetByteOrder(void* ptr, int bo)
@@ -4985,6 +5000,11 @@ void QDataStream_SetVersion(void* ptr, int v)
 int QDataStream_SkipRawData(void* ptr, int len)
 {
 	return static_cast<QDataStream*>(ptr)->skipRawData(len);
+}
+
+void QDataStream_StartTransaction(void* ptr)
+{
+	static_cast<QDataStream*>(ptr)->startTransaction();
 }
 
 int QDataStream_Status(void* ptr)
@@ -6288,6 +6308,7 @@ void* QEventTransition_MetaObjectDefault(void* ptr)
 class MyQFile: public QFile
 {
 public:
+	MyQFile() : QFile() {};
 	MyQFile(QObject *parent) : QFile(parent) {};
 	MyQFile(const QString &name) : QFile(name) {};
 	MyQFile(const QString &name, QObject *parent) : QFile(name, parent) {};
@@ -6321,12 +6342,17 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFile_MetaObject(const_cast<MyQFile*>(this), this->objectName().toUtf8().data())); };
 };
 
+void* QFile_NewQFile()
+{
+	return new MyQFile();
+}
+
 void* QFile_NewQFile3(void* parent)
 {
 	return new MyQFile(static_cast<QObject*>(parent));
 }
 
-void* QFile_NewQFile(char* name)
+void* QFile_NewQFile2(char* name)
 {
 	return new MyQFile(QString(name));
 }
@@ -7979,6 +8005,8 @@ public:
 	qint64 bytesToWrite() const { return static_cast<long long>(callbackQIODevice_BytesToWrite(const_cast<MyQIODevice*>(this), this->objectName().toUtf8().data())); };
 	void Signal_BytesWritten(qint64 bytes) { callbackQIODevice_BytesWritten(this, this->objectName().toUtf8().data(), static_cast<long long>(bytes)); };
 	bool canReadLine() const { return callbackQIODevice_CanReadLine(const_cast<MyQIODevice*>(this), this->objectName().toUtf8().data()) != 0; };
+	void Signal_ChannelBytesWritten(int channel, qint64 bytes) { callbackQIODevice_ChannelBytesWritten(this, this->objectName().toUtf8().data(), channel, static_cast<long long>(bytes)); };
+	void Signal_ChannelReadyRead(int channel) { callbackQIODevice_ChannelReadyRead(this, this->objectName().toUtf8().data(), channel); };
 	void close() { callbackQIODevice_Close(this, this->objectName().toUtf8().data()); };
 	bool isSequential() const { return callbackQIODevice_IsSequential(const_cast<MyQIODevice*>(this), this->objectName().toUtf8().data()) != 0; };
 	bool open(QIODevice::OpenMode mode) { return callbackQIODevice_Open(this, this->objectName().toUtf8().data(), mode) != 0; };
@@ -8083,6 +8111,36 @@ int QIODevice_CanReadLineDefault(void* ptr)
 	return static_cast<QIODevice*>(ptr)->QIODevice::canReadLine();
 }
 
+void QIODevice_ConnectChannelBytesWritten(void* ptr)
+{
+	QObject::connect(static_cast<QIODevice*>(ptr), static_cast<void (QIODevice::*)(int, qint64)>(&QIODevice::channelBytesWritten), static_cast<MyQIODevice*>(ptr), static_cast<void (MyQIODevice::*)(int, qint64)>(&MyQIODevice::Signal_ChannelBytesWritten));
+}
+
+void QIODevice_DisconnectChannelBytesWritten(void* ptr)
+{
+	QObject::disconnect(static_cast<QIODevice*>(ptr), static_cast<void (QIODevice::*)(int, qint64)>(&QIODevice::channelBytesWritten), static_cast<MyQIODevice*>(ptr), static_cast<void (MyQIODevice::*)(int, qint64)>(&MyQIODevice::Signal_ChannelBytesWritten));
+}
+
+void QIODevice_ChannelBytesWritten(void* ptr, int channel, long long bytes)
+{
+	static_cast<QIODevice*>(ptr)->channelBytesWritten(channel, static_cast<long long>(bytes));
+}
+
+void QIODevice_ConnectChannelReadyRead(void* ptr)
+{
+	QObject::connect(static_cast<QIODevice*>(ptr), static_cast<void (QIODevice::*)(int)>(&QIODevice::channelReadyRead), static_cast<MyQIODevice*>(ptr), static_cast<void (MyQIODevice::*)(int)>(&MyQIODevice::Signal_ChannelReadyRead));
+}
+
+void QIODevice_DisconnectChannelReadyRead(void* ptr)
+{
+	QObject::disconnect(static_cast<QIODevice*>(ptr), static_cast<void (QIODevice::*)(int)>(&QIODevice::channelReadyRead), static_cast<MyQIODevice*>(ptr), static_cast<void (MyQIODevice::*)(int)>(&MyQIODevice::Signal_ChannelReadyRead));
+}
+
+void QIODevice_ChannelReadyRead(void* ptr, int channel)
+{
+	static_cast<QIODevice*>(ptr)->channelReadyRead(channel);
+}
+
 void QIODevice_Close(void* ptr)
 {
 	static_cast<QIODevice*>(ptr)->close();
@@ -8091,6 +8149,21 @@ void QIODevice_Close(void* ptr)
 void QIODevice_CloseDefault(void* ptr)
 {
 	static_cast<QIODevice*>(ptr)->QIODevice::close();
+}
+
+void QIODevice_CommitTransaction(void* ptr)
+{
+	static_cast<QIODevice*>(ptr)->commitTransaction();
+}
+
+int QIODevice_CurrentReadChannel(void* ptr)
+{
+	return static_cast<QIODevice*>(ptr)->currentReadChannel();
+}
+
+int QIODevice_CurrentWriteChannel(void* ptr)
+{
+	return static_cast<QIODevice*>(ptr)->currentWriteChannel();
 }
 
 char* QIODevice_ErrorString(void* ptr)
@@ -8121,6 +8194,11 @@ int QIODevice_IsSequentialDefault(void* ptr)
 int QIODevice_IsTextModeEnabled(void* ptr)
 {
 	return static_cast<QIODevice*>(ptr)->isTextModeEnabled();
+}
+
+int QIODevice_IsTransactionStarted(void* ptr)
+{
+	return static_cast<QIODevice*>(ptr)->isTransactionStarted();
 }
 
 int QIODevice_IsWritable(void* ptr)
@@ -8176,6 +8254,11 @@ long long QIODevice_Read(void* ptr, char* data, long long maxSize)
 char* QIODevice_ReadAll(void* ptr)
 {
 	return QString(static_cast<QIODevice*>(ptr)->readAll()).toUtf8().data();
+}
+
+int QIODevice_ReadChannelCount(void* ptr)
+{
+	return static_cast<QIODevice*>(ptr)->readChannelCount();
 }
 
 void QIODevice_ConnectReadChannelFinished(void* ptr)
@@ -8238,6 +8321,11 @@ int QIODevice_ResetDefault(void* ptr)
 	return static_cast<QIODevice*>(ptr)->QIODevice::reset();
 }
 
+void QIODevice_RollbackTransaction(void* ptr)
+{
+	static_cast<QIODevice*>(ptr)->rollbackTransaction();
+}
+
 int QIODevice_Seek(void* ptr, long long pos)
 {
 	return static_cast<QIODevice*>(ptr)->seek(static_cast<long long>(pos));
@@ -8246,6 +8334,16 @@ int QIODevice_Seek(void* ptr, long long pos)
 int QIODevice_SeekDefault(void* ptr, long long pos)
 {
 	return static_cast<QIODevice*>(ptr)->QIODevice::seek(static_cast<long long>(pos));
+}
+
+void QIODevice_SetCurrentReadChannel(void* ptr, int channel)
+{
+	static_cast<QIODevice*>(ptr)->setCurrentReadChannel(channel);
+}
+
+void QIODevice_SetCurrentWriteChannel(void* ptr, int channel)
+{
+	static_cast<QIODevice*>(ptr)->setCurrentWriteChannel(channel);
 }
 
 void QIODevice_SetErrorString(void* ptr, char* str)
@@ -8271,6 +8369,11 @@ long long QIODevice_Size(void* ptr)
 long long QIODevice_SizeDefault(void* ptr)
 {
 	return static_cast<long long>(static_cast<QIODevice*>(ptr)->QIODevice::size());
+}
+
+void QIODevice_StartTransaction(void* ptr)
+{
+	static_cast<QIODevice*>(ptr)->startTransaction();
 }
 
 void QIODevice_UngetChar(void* ptr, char* c)
@@ -8311,6 +8414,11 @@ long long QIODevice_Write2(void* ptr, char* data)
 long long QIODevice_Write(void* ptr, char* data, long long maxSize)
 {
 	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(const_cast<const char*>(data), static_cast<long long>(maxSize)));
+}
+
+int QIODevice_WriteChannelCount(void* ptr)
+{
+	return static_cast<QIODevice*>(ptr)->writeChannelCount();
 }
 
 long long QIODevice_WriteData(void* ptr, char* data, long long maxSize)
@@ -9621,6 +9729,11 @@ void* QJsonObject_NewQJsonObject3(void* other)
 	return new QJsonObject(*static_cast<QJsonObject*>(other));
 }
 
+int QJsonObject_Contains2(void* ptr, void* key)
+{
+	return static_cast<QJsonObject*>(ptr)->contains(*static_cast<QLatin1String*>(key));
+}
+
 int QJsonObject_Contains(void* ptr, char* key)
 {
 	return static_cast<QJsonObject*>(ptr)->contains(QString(key));
@@ -9664,6 +9777,11 @@ int QJsonObject_Size(void* ptr)
 void* QJsonObject_Take(void* ptr, char* key)
 {
 	return new QJsonValue(static_cast<QJsonObject*>(ptr)->take(QString(key)));
+}
+
+void* QJsonObject_Value2(void* ptr, void* key)
+{
+	return new QJsonValue(static_cast<QJsonObject*>(ptr)->value(*static_cast<QLatin1String*>(key)));
 }
 
 void* QJsonObject_Value(void* ptr, char* key)
@@ -9821,7 +9939,12 @@ void* QJsonValue_ToObject(void* ptr, void* defaultValue)
 	return new QJsonObject(static_cast<QJsonValue*>(ptr)->toObject(*static_cast<QJsonObject*>(defaultValue)));
 }
 
-char* QJsonValue_ToString(void* ptr, char* defaultValue)
+char* QJsonValue_ToString(void* ptr)
+{
+	return static_cast<QJsonValue*>(ptr)->toString().toUtf8().data();
+}
+
+char* QJsonValue_ToString2(void* ptr, char* defaultValue)
 {
 	return static_cast<QJsonValue*>(ptr)->toString(QString(defaultValue)).toUtf8().data();
 }
@@ -10499,6 +10622,11 @@ char* QLocale_StandaloneDayName(void* ptr, int day, int ty)
 char* QLocale_StandaloneMonthName(void* ptr, int month, int ty)
 {
 	return static_cast<QLocale*>(ptr)->standaloneMonthName(month, static_cast<QLocale::FormatType>(ty)).toUtf8().data();
+}
+
+void QLocale_Swap(void* ptr, void* other)
+{
+	static_cast<QLocale*>(ptr)->swap(*static_cast<QLocale*>(other));
 }
 
 void* QLocale_QLocale_System()
@@ -11184,6 +11312,11 @@ int QMetaObject_IndexOfSignal(void* ptr, char* sign)
 int QMetaObject_IndexOfSlot(void* ptr, char* slot)
 {
 	return static_cast<QMetaObject*>(ptr)->indexOfSlot(const_cast<const char*>(slot));
+}
+
+int QMetaObject_Inherits(void* ptr, void* metaObject)
+{
+	return static_cast<QMetaObject*>(ptr)->inherits(static_cast<QMetaObject*>(metaObject));
 }
 
 int QMetaObject_QMetaObject_InvokeMethod4(void* obj, char* member, void* val0, void* val1, void* val2, void* val3, void* val4, void* val5, void* val6, void* val7, void* val8, void* val9)
@@ -13844,6 +13977,11 @@ void* QRect_Translated(void* ptr, int dx, int dy)
 	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).height());
 }
 
+void* QRect_Transposed(void* ptr)
+{
+	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).height());
+}
+
 void* QRect_United(void* ptr, void* rectangle)
 {
 	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).height());
@@ -14167,6 +14305,11 @@ void* QRectF_Translated2(void* ptr, void* offset)
 void* QRectF_Translated(void* ptr, double dx, double dy)
 {
 	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).height());
+}
+
+void* QRectF_Transposed(void* ptr)
+{
+	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).height());
 }
 
 void* QRectF_United(void* ptr, void* rectangle)
@@ -18489,21 +18632,6 @@ void* QStringRef_AppendTo(void* ptr, char* stri)
 	return new QStringRef(static_cast<QStringRef*>(ptr)->appendTo(new QString(stri)));
 }
 
-void* QStringRef_Begin(void* ptr)
-{
-	return const_cast<QChar*>(static_cast<QStringRef*>(ptr)->begin());
-}
-
-void* QStringRef_Cbegin(void* ptr)
-{
-	return const_cast<QChar*>(static_cast<QStringRef*>(ptr)->cbegin());
-}
-
-void* QStringRef_Cend(void* ptr)
-{
-	return const_cast<QChar*>(static_cast<QStringRef*>(ptr)->cend());
-}
-
 void QStringRef_Clear(void* ptr)
 {
 	static_cast<QStringRef*>(ptr)->clear();
@@ -18587,11 +18715,6 @@ int QStringRef_Count4(void* ptr, void* str, int cs)
 void* QStringRef_Data(void* ptr)
 {
 	return const_cast<QChar*>(static_cast<QStringRef*>(ptr)->data());
-}
-
-void* QStringRef_End(void* ptr)
-{
-	return const_cast<QChar*>(static_cast<QStringRef*>(ptr)->end());
 }
 
 int QStringRef_EndsWith3(void* ptr, void* ch, int cs)
@@ -22693,6 +22816,11 @@ void* QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration()
 	return new QXmlStreamEntityDeclaration();
 }
 
+void* QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration3(void* other)
+{
+	return new QXmlStreamEntityDeclaration(*static_cast<QXmlStreamEntityDeclaration*>(other));
+}
+
 void* QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration2(void* other)
 {
 	return new QXmlStreamEntityDeclaration(*static_cast<QXmlStreamEntityDeclaration*>(other));
@@ -22772,7 +22900,12 @@ void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration()
 	return new QXmlStreamNamespaceDeclaration();
 }
 
-void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration3(char* prefix, char* namespaceUri)
+void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration3(void* other)
+{
+	return new QXmlStreamNamespaceDeclaration(*static_cast<QXmlStreamNamespaceDeclaration*>(other));
+}
+
+void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration4(char* prefix, char* namespaceUri)
 {
 	return new QXmlStreamNamespaceDeclaration(QString(prefix), QString(namespaceUri));
 }
@@ -22800,6 +22933,11 @@ void QXmlStreamNamespaceDeclaration_DestroyQXmlStreamNamespaceDeclaration(void* 
 void* QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration()
 {
 	return new QXmlStreamNotationDeclaration();
+}
+
+void* QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration3(void* other)
+{
+	return new QXmlStreamNotationDeclaration(*static_cast<QXmlStreamNotationDeclaration*>(other));
 }
 
 void* QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration2(void* other)

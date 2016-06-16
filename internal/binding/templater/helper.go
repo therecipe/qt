@@ -95,7 +95,9 @@ func functionIsSupportedDefault(f *parser.Function) bool {
 
 		"QSGDynamicTexture::bind", "QSGDynamicTexture::hasMipmaps",
 		"QSGDynamicTexture::textureSize", "QSGDynamicTexture::hasAlphaChannel",
-		"QSGDynamicTexture::textureId":
+		"QSGDynamicTexture::textureId",
+
+		"QModbusClient::open", "QModbusClient::close", "QModbusServer::open", "QModbusServer::close":
 
 		{
 			return false
@@ -207,7 +209,13 @@ var Build = map[string]bool{
 	"SerialBus":         false,
 	"PrintSupport":      false,
 	"PlatformHeaders":   false,
-	"Designer":          true,
+	"Designer":          false,
+	"Scxml":             false,
+	"Gamepad":           false,
+	"Purchasing":        false,
+	"DataVisualization": false,
+	"Charts":            false,
+	"Quick2DRenderer":   false,
 }
 
 var Libs = []string{
@@ -219,7 +227,7 @@ var Libs = []string{
 	"Xml",
 	"DBus",
 	"Nfc",
-	"Script", //depreached in 5.6
+	"Script", //depreached (planned) in 5.6
 	"Sensors",
 	"Positioning",
 	"Widgets",
@@ -234,19 +242,26 @@ var Libs = []string{
 	"Quick",
 	"Help",
 	"Location",
-	"ScriptTools", //depreached in 5.6
-	//"MultimediaWidgets", //depreached in 5.6
+	"ScriptTools", //depreached (planned) in 5.6
+	//"MultimediaWidgets", //depreached (merged) in 5.6
 	"UiTools",
 	//"X11Extras", //linux/android only
 	//"WinExtras", //windows only
-	"WebEngine", //available in 5.6
-	//"WebKit", //depreached in 5.6
+	"WebEngine",
+	//"WebKit", //depreached (full) in 5.6
 	"TestLib",
 	"SerialPort",
-	//"SerialBus", //available in 5.6 and c++11
+	"SerialBus",
 	"PrintSupport",
 	//"PlatformHeaders", //missing imports/guards
 	"Designer",
+	"Scxml",
+	"Gamepad",
+
+	"Purchasing", //GPLv3 & LGPLv3
+	//"DataVisualization", //GPLv3
+	//"Charts",            //GPLv3
+	//"Quick2DRenderer",   //GPLv3
 }
 
 func GetLibs() []string {
@@ -302,6 +317,13 @@ var LibDeps = map[string][]string{
 	"PrintSupport":      []string{"Core", "Gui", "Widgets"},
 	"PlatformHeaders":   []string{"Core"},
 	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
+	"Scxml":             []string{"Core", "Network", "Qml"},
+	"Gamepad":           []string{"Core", "Gui"},
+
+	"Purchasing":        []string{"Core"},
+	"DataVisualization": []string{"Core", "Gui"},
+	"Charts":            []string{"Core", "Gui", "Widgets"},
+	"Quick2DRenderer":   []string{"Core"},
 
 	parser.MOC:  make([]string, 0),
 	"build_ios": []string{"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},

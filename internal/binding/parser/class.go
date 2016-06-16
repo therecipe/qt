@@ -152,6 +152,61 @@ func (c *Class) fix() {
 
 		c.Functions = append(c.Functions, &defFunction)
 	}
+
+	if c.Name == "QScxmlCppDataModel" {
+		for _, s := range []struct{ Name, Output string }{
+			{"evaluateToString", "QString"},
+			{"evaluateToBool", "bool"},
+			{"evaluateToVariant", "QVariant"},
+			{"evaluateToVoid", "void"},
+			{"evaluateAssignment", "void"},
+			{"evaluateInitialization", "void"},
+		} {
+			c.Functions = append(c.Functions, &Function{
+				Name:     s.Name,
+				Fullname: fmt.Sprintf("%v::%v", c.Name, s.Name),
+				Access:   "public",
+				Virtual:  PURE,
+				Meta:     PLAIN,
+				Output:   s.Output,
+				Parameters: []*Parameter{
+					&Parameter{
+						Name:  "id",
+						Value: "QScxmlExecutableContent::EvaluatorId",
+					},
+					&Parameter{
+						Name:  "ok",
+						Value: "bool*",
+					}},
+				Signature: "()",
+				Export:    true,
+			})
+		}
+
+		c.Functions = append(c.Functions, &Function{
+			Name:     "evaluateForeach",
+			Fullname: fmt.Sprintf("%v::evaluateForeach", c.Name),
+			Access:   "public",
+			Virtual:  PURE,
+			Meta:     PLAIN,
+			Output:   "void",
+			Parameters: []*Parameter{
+				&Parameter{
+					Name:  "id",
+					Value: "QScxmlExecutableContent::EvaluatorId",
+				},
+				&Parameter{
+					Name:  "ok",
+					Value: "bool*",
+				},
+				&Parameter{
+					Name:  "body",
+					Value: "ForeachLoopBody*",
+				}},
+			Signature: "()",
+			Export:    true,
+		})
+	}
 }
 
 func (c *Class) fixBases() {
@@ -166,12 +221,12 @@ func (c *Class) fixBases() {
 		switch runtime.GOOS {
 		case "windows":
 			{
-				prefixPath = "C:\\Qt\\Qt5.6.0\\5.6\\mingw49_32"
+				prefixPath = "C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32"
 			}
 
 		case "darwin":
 			{
-				prefixPath = "/usr/local/Qt5.6.0/5.6/clang_64"
+				prefixPath = "/usr/local/Qt5.7.0/5.7/clang_64"
 				midfixPath = "lib"
 				suffixPath = ".framework/Versions/5/Headers/"
 			}
@@ -181,12 +236,12 @@ func (c *Class) fixBases() {
 				switch runtime.GOARCH {
 				case "amd64":
 					{
-						prefixPath = "/usr/local/Qt5.6.0/5.6/gcc_64"
+						prefixPath = "/usr/local/Qt5.7.0/5.7/gcc_64"
 					}
 
 				case "386":
 					{
-						prefixPath = "/usr/local/Qt5.6.0/5.6/gcc"
+						prefixPath = "/usr/local/Qt5.7.0/5.7/gcc"
 					}
 				}
 			}
@@ -207,7 +262,7 @@ func (c *Class) fixBases() {
 
 		case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
 			{
-				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v5.6.0", "QtGui", "qpa", "%v.h"), prefixPath, midfixPath, c.Module, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v5.7.0", "QtGui", "qpa", "%v.h"), prefixPath, midfixPath, c.Module, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
 				return
 			}
 
@@ -341,7 +396,7 @@ func normalizedClassDeclaration(f string, is int) string {
 }
 
 var LibDeps = map[string][]string{
-	"Core":              []string{"Widgets"},
+	"Core":              []string{"Gui", "Widgets"},
 	"AndroidExtras":     []string{"Core"},
 	"Gui":               []string{"Core", "Widgets"},
 	"Network":           []string{"Core"},
@@ -377,6 +432,13 @@ var LibDeps = map[string][]string{
 	"PrintSupport":      []string{"Core", "Gui", "Widgets"},
 	"PlatformHeaders":   []string{"Core"},
 	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
+	"Scxml":             []string{"Core", "Network", "Qml"},
+	"Gamepad":           []string{"Core", "Gui"},
+
+	"Purchasing":        []string{"Core"},
+	"DataVisualization": []string{"Core", "Gui"},
+	"Charts":            []string{"Core", "Gui", "Widgets"},
+	"Quick2DRenderer":   []string{"Core"},
 }
 
 func (c *Class) hasFunctionWithName(name string) bool {

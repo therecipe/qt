@@ -7264,6 +7264,299 @@ func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	}
 }
 
+//QLowEnergyAdvertisingData::Discoverability
+type QLowEnergyAdvertisingData__Discoverability int64
+
+const (
+	QLowEnergyAdvertisingData__DiscoverabilityNone    = QLowEnergyAdvertisingData__Discoverability(0)
+	QLowEnergyAdvertisingData__DiscoverabilityLimited = QLowEnergyAdvertisingData__Discoverability(1)
+	QLowEnergyAdvertisingData__DiscoverabilityGeneral = QLowEnergyAdvertisingData__Discoverability(2)
+)
+
+type QLowEnergyAdvertisingData struct {
+	ptr unsafe.Pointer
+}
+
+type QLowEnergyAdvertisingData_ITF interface {
+	QLowEnergyAdvertisingData_PTR() *QLowEnergyAdvertisingData
+}
+
+func (p *QLowEnergyAdvertisingData) QLowEnergyAdvertisingData_PTR() *QLowEnergyAdvertisingData {
+	return p
+}
+
+func (p *QLowEnergyAdvertisingData) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QLowEnergyAdvertisingData) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQLowEnergyAdvertisingData(ptr QLowEnergyAdvertisingData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyAdvertisingData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyAdvertisingDataFromPointer(ptr unsafe.Pointer) *QLowEnergyAdvertisingData {
+	var n = new(QLowEnergyAdvertisingData)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyAdvertisingDataFromPointer(ptr unsafe.Pointer) *QLowEnergyAdvertisingData {
+	var n = NewQLowEnergyAdvertisingDataFromPointer(ptr)
+	return n
+}
+
+func NewQLowEnergyAdvertisingData() *QLowEnergyAdvertisingData {
+	defer qt.Recovering("QLowEnergyAdvertisingData::QLowEnergyAdvertisingData")
+
+	return newQLowEnergyAdvertisingDataFromPointer(C.QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData())
+}
+
+func NewQLowEnergyAdvertisingData2(other QLowEnergyAdvertisingData_ITF) *QLowEnergyAdvertisingData {
+	defer qt.Recovering("QLowEnergyAdvertisingData::QLowEnergyAdvertisingData")
+
+	return newQLowEnergyAdvertisingDataFromPointer(C.QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData2(PointerFromQLowEnergyAdvertisingData(other)))
+}
+
+func (ptr *QLowEnergyAdvertisingData) Discoverability() QLowEnergyAdvertisingData__Discoverability {
+	defer qt.Recovering("QLowEnergyAdvertisingData::discoverability")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyAdvertisingData__Discoverability(C.QLowEnergyAdvertisingData_Discoverability(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyAdvertisingData) IncludePowerLevel() bool {
+	defer qt.Recovering("QLowEnergyAdvertisingData::includePowerLevel")
+
+	if ptr.Pointer() != nil {
+		return C.QLowEnergyAdvertisingData_IncludePowerLevel(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QLowEnergyAdvertisingData) LocalName() string {
+	defer qt.Recovering("QLowEnergyAdvertisingData::localName")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QLowEnergyAdvertisingData_LocalName(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QLowEnergyAdvertisingData) ManufacturerData() string {
+	defer qt.Recovering("QLowEnergyAdvertisingData::manufacturerData")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QLowEnergyAdvertisingData_ManufacturerData(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QLowEnergyAdvertisingData) RawData() string {
+	defer qt.Recovering("QLowEnergyAdvertisingData::rawData")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QLowEnergyAdvertisingData_RawData(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QLowEnergyAdvertisingData) SetDiscoverability(mode QLowEnergyAdvertisingData__Discoverability) {
+	defer qt.Recovering("QLowEnergyAdvertisingData::setDiscoverability")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingData_SetDiscoverability(ptr.Pointer(), C.int(mode))
+	}
+}
+
+func (ptr *QLowEnergyAdvertisingData) SetIncludePowerLevel(doInclude bool) {
+	defer qt.Recovering("QLowEnergyAdvertisingData::setIncludePowerLevel")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingData_SetIncludePowerLevel(ptr.Pointer(), C.int(qt.GoBoolToInt(doInclude)))
+	}
+}
+
+func (ptr *QLowEnergyAdvertisingData) SetLocalName(name string) {
+	defer qt.Recovering("QLowEnergyAdvertisingData::setLocalName")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingData_SetLocalName(ptr.Pointer(), C.CString(name))
+	}
+}
+
+func (ptr *QLowEnergyAdvertisingData) SetRawData(data string) {
+	defer qt.Recovering("QLowEnergyAdvertisingData::setRawData")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingData_SetRawData(ptr.Pointer(), C.CString(data))
+	}
+}
+
+func (ptr *QLowEnergyAdvertisingData) Swap(other QLowEnergyAdvertisingData_ITF) {
+	defer qt.Recovering("QLowEnergyAdvertisingData::swap")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingData_Swap(ptr.Pointer(), PointerFromQLowEnergyAdvertisingData(other))
+	}
+}
+
+func (ptr *QLowEnergyAdvertisingData) DestroyQLowEnergyAdvertisingData() {
+	defer qt.Recovering("QLowEnergyAdvertisingData::~QLowEnergyAdvertisingData")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+//QLowEnergyAdvertisingParameters::FilterPolicy
+type QLowEnergyAdvertisingParameters__FilterPolicy int64
+
+const (
+	QLowEnergyAdvertisingParameters__IgnoreWhiteList                      = QLowEnergyAdvertisingParameters__FilterPolicy(0x00)
+	QLowEnergyAdvertisingParameters__UseWhiteListForScanning              = QLowEnergyAdvertisingParameters__FilterPolicy(0x01)
+	QLowEnergyAdvertisingParameters__UseWhiteListForConnecting            = QLowEnergyAdvertisingParameters__FilterPolicy(0x02)
+	QLowEnergyAdvertisingParameters__UseWhiteListForScanningAndConnecting = QLowEnergyAdvertisingParameters__FilterPolicy(0x03)
+)
+
+//QLowEnergyAdvertisingParameters::Mode
+type QLowEnergyAdvertisingParameters__Mode int64
+
+const (
+	QLowEnergyAdvertisingParameters__AdvInd        = QLowEnergyAdvertisingParameters__Mode(0x0)
+	QLowEnergyAdvertisingParameters__AdvScanInd    = QLowEnergyAdvertisingParameters__Mode(0x2)
+	QLowEnergyAdvertisingParameters__AdvNonConnInd = QLowEnergyAdvertisingParameters__Mode(0x3)
+)
+
+type QLowEnergyAdvertisingParameters struct {
+	ptr unsafe.Pointer
+}
+
+type QLowEnergyAdvertisingParameters_ITF interface {
+	QLowEnergyAdvertisingParameters_PTR() *QLowEnergyAdvertisingParameters
+}
+
+func (p *QLowEnergyAdvertisingParameters) QLowEnergyAdvertisingParameters_PTR() *QLowEnergyAdvertisingParameters {
+	return p
+}
+
+func (p *QLowEnergyAdvertisingParameters) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QLowEnergyAdvertisingParameters) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQLowEnergyAdvertisingParameters(ptr QLowEnergyAdvertisingParameters_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyAdvertisingParameters_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyAdvertisingParametersFromPointer(ptr unsafe.Pointer) *QLowEnergyAdvertisingParameters {
+	var n = new(QLowEnergyAdvertisingParameters)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyAdvertisingParametersFromPointer(ptr unsafe.Pointer) *QLowEnergyAdvertisingParameters {
+	var n = NewQLowEnergyAdvertisingParametersFromPointer(ptr)
+	return n
+}
+
+func NewQLowEnergyAdvertisingParameters() *QLowEnergyAdvertisingParameters {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::QLowEnergyAdvertisingParameters")
+
+	return newQLowEnergyAdvertisingParametersFromPointer(C.QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters())
+}
+
+func NewQLowEnergyAdvertisingParameters2(other QLowEnergyAdvertisingParameters_ITF) *QLowEnergyAdvertisingParameters {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::QLowEnergyAdvertisingParameters")
+
+	return newQLowEnergyAdvertisingParametersFromPointer(C.QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters2(PointerFromQLowEnergyAdvertisingParameters(other)))
+}
+
+func (ptr *QLowEnergyAdvertisingParameters) FilterPolicy() QLowEnergyAdvertisingParameters__FilterPolicy {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::filterPolicy")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyAdvertisingParameters__FilterPolicy(C.QLowEnergyAdvertisingParameters_FilterPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyAdvertisingParameters) MaximumInterval() int {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::maximumInterval")
+
+	if ptr.Pointer() != nil {
+		return int(C.QLowEnergyAdvertisingParameters_MaximumInterval(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyAdvertisingParameters) MinimumInterval() int {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::minimumInterval")
+
+	if ptr.Pointer() != nil {
+		return int(C.QLowEnergyAdvertisingParameters_MinimumInterval(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyAdvertisingParameters) Mode() QLowEnergyAdvertisingParameters__Mode {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::mode")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyAdvertisingParameters__Mode(C.QLowEnergyAdvertisingParameters_Mode(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyAdvertisingParameters) SetMode(mode QLowEnergyAdvertisingParameters__Mode) {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::setMode")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingParameters_SetMode(ptr.Pointer(), C.int(mode))
+	}
+}
+
+func (ptr *QLowEnergyAdvertisingParameters) Swap(other QLowEnergyAdvertisingParameters_ITF) {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::swap")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingParameters_Swap(ptr.Pointer(), PointerFromQLowEnergyAdvertisingParameters(other))
+	}
+}
+
+func (ptr *QLowEnergyAdvertisingParameters) DestroyQLowEnergyAdvertisingParameters() {
+	defer qt.Recovering("QLowEnergyAdvertisingParameters::~QLowEnergyAdvertisingParameters")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyAdvertisingParameters_DestroyQLowEnergyAdvertisingParameters(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //QLowEnergyCharacteristic::PropertyType
 type QLowEnergyCharacteristic__PropertyType int64
 
@@ -7397,6 +7690,278 @@ func (ptr *QLowEnergyCharacteristic) DestroyQLowEnergyCharacteristic() {
 	}
 }
 
+type QLowEnergyCharacteristicData struct {
+	ptr unsafe.Pointer
+}
+
+type QLowEnergyCharacteristicData_ITF interface {
+	QLowEnergyCharacteristicData_PTR() *QLowEnergyCharacteristicData
+}
+
+func (p *QLowEnergyCharacteristicData) QLowEnergyCharacteristicData_PTR() *QLowEnergyCharacteristicData {
+	return p
+}
+
+func (p *QLowEnergyCharacteristicData) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QLowEnergyCharacteristicData) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQLowEnergyCharacteristicData(ptr QLowEnergyCharacteristicData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyCharacteristicData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyCharacteristicDataFromPointer(ptr unsafe.Pointer) *QLowEnergyCharacteristicData {
+	var n = new(QLowEnergyCharacteristicData)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyCharacteristicDataFromPointer(ptr unsafe.Pointer) *QLowEnergyCharacteristicData {
+	var n = NewQLowEnergyCharacteristicDataFromPointer(ptr)
+	return n
+}
+
+func NewQLowEnergyCharacteristicData() *QLowEnergyCharacteristicData {
+	defer qt.Recovering("QLowEnergyCharacteristicData::QLowEnergyCharacteristicData")
+
+	return newQLowEnergyCharacteristicDataFromPointer(C.QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData())
+}
+
+func NewQLowEnergyCharacteristicData2(other QLowEnergyCharacteristicData_ITF) *QLowEnergyCharacteristicData {
+	defer qt.Recovering("QLowEnergyCharacteristicData::QLowEnergyCharacteristicData")
+
+	return newQLowEnergyCharacteristicDataFromPointer(C.QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData2(PointerFromQLowEnergyCharacteristicData(other)))
+}
+
+func (ptr *QLowEnergyCharacteristicData) AddDescriptor(descriptor QLowEnergyDescriptorData_ITF) {
+	defer qt.Recovering("QLowEnergyCharacteristicData::addDescriptor")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_AddDescriptor(ptr.Pointer(), PointerFromQLowEnergyDescriptorData(descriptor))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) IsValid() bool {
+	defer qt.Recovering("QLowEnergyCharacteristicData::isValid")
+
+	if ptr.Pointer() != nil {
+		return C.QLowEnergyCharacteristicData_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QLowEnergyCharacteristicData) MaximumValueLength() int {
+	defer qt.Recovering("QLowEnergyCharacteristicData::maximumValueLength")
+
+	if ptr.Pointer() != nil {
+		return int(C.QLowEnergyCharacteristicData_MaximumValueLength(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyCharacteristicData) MinimumValueLength() int {
+	defer qt.Recovering("QLowEnergyCharacteristicData::minimumValueLength")
+
+	if ptr.Pointer() != nil {
+		return int(C.QLowEnergyCharacteristicData_MinimumValueLength(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyCharacteristicData) Properties() QLowEnergyCharacteristic__PropertyType {
+	defer qt.Recovering("QLowEnergyCharacteristicData::properties")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyCharacteristic__PropertyType(C.QLowEnergyCharacteristicData_Properties(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyCharacteristicData) SetProperties(properties QLowEnergyCharacteristic__PropertyType) {
+	defer qt.Recovering("QLowEnergyCharacteristicData::setProperties")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_SetProperties(ptr.Pointer(), C.int(properties))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) SetUuid(uuid QBluetoothUuid_ITF) {
+	defer qt.Recovering("QLowEnergyCharacteristicData::setUuid")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_SetUuid(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) SetValue(value string) {
+	defer qt.Recovering("QLowEnergyCharacteristicData::setValue")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_SetValue(ptr.Pointer(), C.CString(value))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) SetValueLength(minimum int, maximum int) {
+	defer qt.Recovering("QLowEnergyCharacteristicData::setValueLength")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_SetValueLength(ptr.Pointer(), C.int(minimum), C.int(maximum))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) Swap(other QLowEnergyCharacteristicData_ITF) {
+	defer qt.Recovering("QLowEnergyCharacteristicData::swap")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_Swap(ptr.Pointer(), PointerFromQLowEnergyCharacteristicData(other))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) Uuid() *QBluetoothUuid {
+	defer qt.Recovering("QLowEnergyCharacteristicData::uuid")
+
+	if ptr.Pointer() != nil {
+		return NewQBluetoothUuidFromPointer(C.QLowEnergyCharacteristicData_Uuid(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLowEnergyCharacteristicData) Value() string {
+	defer qt.Recovering("QLowEnergyCharacteristicData::value")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QLowEnergyCharacteristicData_Value(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QLowEnergyCharacteristicData) DestroyQLowEnergyCharacteristicData() {
+	defer qt.Recovering("QLowEnergyCharacteristicData::~QLowEnergyCharacteristicData")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+type QLowEnergyConnectionParameters struct {
+	ptr unsafe.Pointer
+}
+
+type QLowEnergyConnectionParameters_ITF interface {
+	QLowEnergyConnectionParameters_PTR() *QLowEnergyConnectionParameters
+}
+
+func (p *QLowEnergyConnectionParameters) QLowEnergyConnectionParameters_PTR() *QLowEnergyConnectionParameters {
+	return p
+}
+
+func (p *QLowEnergyConnectionParameters) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QLowEnergyConnectionParameters) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQLowEnergyConnectionParameters(ptr QLowEnergyConnectionParameters_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyConnectionParameters_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyConnectionParametersFromPointer(ptr unsafe.Pointer) *QLowEnergyConnectionParameters {
+	var n = new(QLowEnergyConnectionParameters)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyConnectionParametersFromPointer(ptr unsafe.Pointer) *QLowEnergyConnectionParameters {
+	var n = NewQLowEnergyConnectionParametersFromPointer(ptr)
+	return n
+}
+
+func NewQLowEnergyConnectionParameters() *QLowEnergyConnectionParameters {
+	defer qt.Recovering("QLowEnergyConnectionParameters::QLowEnergyConnectionParameters")
+
+	return newQLowEnergyConnectionParametersFromPointer(C.QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters())
+}
+
+func NewQLowEnergyConnectionParameters2(other QLowEnergyConnectionParameters_ITF) *QLowEnergyConnectionParameters {
+	defer qt.Recovering("QLowEnergyConnectionParameters::QLowEnergyConnectionParameters")
+
+	return newQLowEnergyConnectionParametersFromPointer(C.QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters2(PointerFromQLowEnergyConnectionParameters(other)))
+}
+
+func (ptr *QLowEnergyConnectionParameters) Latency() int {
+	defer qt.Recovering("QLowEnergyConnectionParameters::latency")
+
+	if ptr.Pointer() != nil {
+		return int(C.QLowEnergyConnectionParameters_Latency(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyConnectionParameters) SetLatency(latency int) {
+	defer qt.Recovering("QLowEnergyConnectionParameters::setLatency")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyConnectionParameters_SetLatency(ptr.Pointer(), C.int(latency))
+	}
+}
+
+func (ptr *QLowEnergyConnectionParameters) SetSupervisionTimeout(timeout int) {
+	defer qt.Recovering("QLowEnergyConnectionParameters::setSupervisionTimeout")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyConnectionParameters_SetSupervisionTimeout(ptr.Pointer(), C.int(timeout))
+	}
+}
+
+func (ptr *QLowEnergyConnectionParameters) SupervisionTimeout() int {
+	defer qt.Recovering("QLowEnergyConnectionParameters::supervisionTimeout")
+
+	if ptr.Pointer() != nil {
+		return int(C.QLowEnergyConnectionParameters_SupervisionTimeout(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyConnectionParameters) Swap(other QLowEnergyConnectionParameters_ITF) {
+	defer qt.Recovering("QLowEnergyConnectionParameters::swap")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyConnectionParameters_Swap(ptr.Pointer(), PointerFromQLowEnergyConnectionParameters(other))
+	}
+}
+
+func (ptr *QLowEnergyConnectionParameters) DestroyQLowEnergyConnectionParameters() {
+	defer qt.Recovering("QLowEnergyConnectionParameters::~QLowEnergyConnectionParameters")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyConnectionParameters_DestroyQLowEnergyConnectionParameters(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //QLowEnergyController::ControllerState
 type QLowEnergyController__ControllerState int64
 
@@ -7407,6 +7972,7 @@ const (
 	QLowEnergyController__DiscoveringState = QLowEnergyController__ControllerState(3)
 	QLowEnergyController__DiscoveredState  = QLowEnergyController__ControllerState(4)
 	QLowEnergyController__ClosingState     = QLowEnergyController__ControllerState(5)
+	QLowEnergyController__AdvertisingState = QLowEnergyController__ControllerState(6)
 )
 
 //QLowEnergyController::Error
@@ -7419,6 +7985,7 @@ const (
 	QLowEnergyController__NetworkError                 = QLowEnergyController__Error(3)
 	QLowEnergyController__InvalidBluetoothAdapterError = QLowEnergyController__Error(4)
 	QLowEnergyController__ConnectionError              = QLowEnergyController__Error(5)
+	QLowEnergyController__AdvertisingError             = QLowEnergyController__Error(6)
 )
 
 //QLowEnergyController::RemoteAddressType
@@ -7427,6 +7994,14 @@ type QLowEnergyController__RemoteAddressType int64
 const (
 	QLowEnergyController__PublicAddress = QLowEnergyController__RemoteAddressType(0)
 	QLowEnergyController__RandomAddress = QLowEnergyController__RemoteAddressType(1)
+)
+
+//QLowEnergyController::Role
+type QLowEnergyController__Role int64
+
+const (
+	QLowEnergyController__CentralRole    = QLowEnergyController__Role(0)
+	QLowEnergyController__PeripheralRole = QLowEnergyController__Role(1)
 )
 
 type QLowEnergyController struct {
@@ -7509,6 +8084,42 @@ func (ptr *QLowEnergyController) Connected() {
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_Connected(ptr.Pointer())
+	}
+}
+
+//export callbackQLowEnergyController_ConnectionUpdated
+func callbackQLowEnergyController_ConnectionUpdated(ptr unsafe.Pointer, ptrName *C.char, newParameters unsafe.Pointer) {
+	defer qt.Recovering("callback QLowEnergyController::connectionUpdated")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "connectionUpdated"); signal != nil {
+		signal.(func(*QLowEnergyConnectionParameters))(NewQLowEnergyConnectionParametersFromPointer(newParameters))
+	}
+
+}
+
+func (ptr *QLowEnergyController) ConnectConnectionUpdated(f func(newParameters *QLowEnergyConnectionParameters)) {
+	defer qt.Recovering("connect QLowEnergyController::connectionUpdated")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_ConnectConnectionUpdated(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "connectionUpdated", f)
+	}
+}
+
+func (ptr *QLowEnergyController) DisconnectConnectionUpdated() {
+	defer qt.Recovering("disconnect QLowEnergyController::connectionUpdated")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_DisconnectConnectionUpdated(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "connectionUpdated")
+	}
+}
+
+func (ptr *QLowEnergyController) ConnectionUpdated(newParameters QLowEnergyConnectionParameters_ITF) {
+	defer qt.Recovering("QLowEnergyController::connectionUpdated")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_ConnectionUpdated(ptr.Pointer(), PointerFromQLowEnergyConnectionParameters(newParameters))
 	}
 }
 
@@ -7692,10 +8303,13 @@ func (ptr *QLowEnergyController) StateChanged(state QLowEnergyController__Contro
 	}
 }
 
-func NewQLowEnergyController(remoteDeviceInfo QBluetoothDeviceInfo_ITF, parent core.QObject_ITF) *QLowEnergyController {
-	defer qt.Recovering("QLowEnergyController::QLowEnergyController")
+func (ptr *QLowEnergyController) AddService(service QLowEnergyServiceData_ITF, parent core.QObject_ITF) *QLowEnergyService {
+	defer qt.Recovering("QLowEnergyController::addService")
 
-	return newQLowEnergyControllerFromPointer(C.QLowEnergyController_NewQLowEnergyController(PointerFromQBluetoothDeviceInfo(remoteDeviceInfo), core.PointerFromQObject(parent)))
+	if ptr.Pointer() != nil {
+		return NewQLowEnergyServiceFromPointer(C.QLowEnergyController_AddService(ptr.Pointer(), PointerFromQLowEnergyServiceData(service), core.PointerFromQObject(parent)))
+	}
+	return nil
 }
 
 func (ptr *QLowEnergyController) ConnectToDevice() {
@@ -7704,6 +8318,30 @@ func (ptr *QLowEnergyController) ConnectToDevice() {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_ConnectToDevice(ptr.Pointer())
 	}
+}
+
+func QLowEnergyController_CreateCentral(remoteDevice QBluetoothDeviceInfo_ITF, parent core.QObject_ITF) *QLowEnergyController {
+	defer qt.Recovering("QLowEnergyController::createCentral")
+
+	return NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreateCentral(PointerFromQBluetoothDeviceInfo(remoteDevice), core.PointerFromQObject(parent)))
+}
+
+func (ptr *QLowEnergyController) CreateCentral(remoteDevice QBluetoothDeviceInfo_ITF, parent core.QObject_ITF) *QLowEnergyController {
+	defer qt.Recovering("QLowEnergyController::createCentral")
+
+	return NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreateCentral(PointerFromQBluetoothDeviceInfo(remoteDevice), core.PointerFromQObject(parent)))
+}
+
+func QLowEnergyController_CreatePeripheral(parent core.QObject_ITF) *QLowEnergyController {
+	defer qt.Recovering("QLowEnergyController::createPeripheral")
+
+	return NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreatePeripheral(core.PointerFromQObject(parent)))
+}
+
+func (ptr *QLowEnergyController) CreatePeripheral(parent core.QObject_ITF) *QLowEnergyController {
+	defer qt.Recovering("QLowEnergyController::createPeripheral")
+
+	return NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreatePeripheral(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QLowEnergyController) CreateServiceObject(serviceUuid QBluetoothUuid_ITF, parent core.QObject_ITF) *QLowEnergyService {
@@ -7785,11 +8423,36 @@ func (ptr *QLowEnergyController) RemoteName() string {
 	return ""
 }
 
+func (ptr *QLowEnergyController) RequestConnectionUpdate(parameters QLowEnergyConnectionParameters_ITF) {
+	defer qt.Recovering("QLowEnergyController::requestConnectionUpdate")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_RequestConnectionUpdate(ptr.Pointer(), PointerFromQLowEnergyConnectionParameters(parameters))
+	}
+}
+
+func (ptr *QLowEnergyController) Role() QLowEnergyController__Role {
+	defer qt.Recovering("QLowEnergyController::role")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyController__Role(C.QLowEnergyController_Role(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QLowEnergyController) SetRemoteAddressType(ty QLowEnergyController__RemoteAddressType) {
 	defer qt.Recovering("QLowEnergyController::setRemoteAddressType")
 
 	if ptr.Pointer() != nil {
 		C.QLowEnergyController_SetRemoteAddressType(ptr.Pointer(), C.int(ty))
+	}
+}
+
+func (ptr *QLowEnergyController) StartAdvertising(parameters QLowEnergyAdvertisingParameters_ITF, advertisingData QLowEnergyAdvertisingData_ITF, scanResponseData QLowEnergyAdvertisingData_ITF) {
+	defer qt.Recovering("QLowEnergyController::startAdvertising")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_StartAdvertising(ptr.Pointer(), PointerFromQLowEnergyAdvertisingParameters(parameters), PointerFromQLowEnergyAdvertisingData(advertisingData), PointerFromQLowEnergyAdvertisingData(scanResponseData))
 	}
 }
 
@@ -7800,6 +8463,14 @@ func (ptr *QLowEnergyController) State() QLowEnergyController__ControllerState {
 		return QLowEnergyController__ControllerState(C.QLowEnergyController_State(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QLowEnergyController) StopAdvertising() {
+	defer qt.Recovering("QLowEnergyController::stopAdvertising")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyController_StopAdvertising(ptr.Pointer())
+	}
 }
 
 func (ptr *QLowEnergyController) DestroyQLowEnergyController() {
@@ -8336,6 +9007,145 @@ func (ptr *QLowEnergyDescriptor) DestroyQLowEnergyDescriptor() {
 	}
 }
 
+type QLowEnergyDescriptorData struct {
+	ptr unsafe.Pointer
+}
+
+type QLowEnergyDescriptorData_ITF interface {
+	QLowEnergyDescriptorData_PTR() *QLowEnergyDescriptorData
+}
+
+func (p *QLowEnergyDescriptorData) QLowEnergyDescriptorData_PTR() *QLowEnergyDescriptorData {
+	return p
+}
+
+func (p *QLowEnergyDescriptorData) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QLowEnergyDescriptorData) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQLowEnergyDescriptorData(ptr QLowEnergyDescriptorData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyDescriptorData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyDescriptorDataFromPointer(ptr unsafe.Pointer) *QLowEnergyDescriptorData {
+	var n = new(QLowEnergyDescriptorData)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyDescriptorDataFromPointer(ptr unsafe.Pointer) *QLowEnergyDescriptorData {
+	var n = NewQLowEnergyDescriptorDataFromPointer(ptr)
+	return n
+}
+
+func NewQLowEnergyDescriptorData() *QLowEnergyDescriptorData {
+	defer qt.Recovering("QLowEnergyDescriptorData::QLowEnergyDescriptorData")
+
+	return newQLowEnergyDescriptorDataFromPointer(C.QLowEnergyDescriptorData_NewQLowEnergyDescriptorData())
+}
+
+func NewQLowEnergyDescriptorData2(uuid QBluetoothUuid_ITF, value string) *QLowEnergyDescriptorData {
+	defer qt.Recovering("QLowEnergyDescriptorData::QLowEnergyDescriptorData")
+
+	return newQLowEnergyDescriptorDataFromPointer(C.QLowEnergyDescriptorData_NewQLowEnergyDescriptorData2(PointerFromQBluetoothUuid(uuid), C.CString(value)))
+}
+
+func NewQLowEnergyDescriptorData3(other QLowEnergyDescriptorData_ITF) *QLowEnergyDescriptorData {
+	defer qt.Recovering("QLowEnergyDescriptorData::QLowEnergyDescriptorData")
+
+	return newQLowEnergyDescriptorDataFromPointer(C.QLowEnergyDescriptorData_NewQLowEnergyDescriptorData3(PointerFromQLowEnergyDescriptorData(other)))
+}
+
+func (ptr *QLowEnergyDescriptorData) IsReadable() bool {
+	defer qt.Recovering("QLowEnergyDescriptorData::isReadable")
+
+	if ptr.Pointer() != nil {
+		return C.QLowEnergyDescriptorData_IsReadable(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QLowEnergyDescriptorData) IsValid() bool {
+	defer qt.Recovering("QLowEnergyDescriptorData::isValid")
+
+	if ptr.Pointer() != nil {
+		return C.QLowEnergyDescriptorData_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QLowEnergyDescriptorData) IsWritable() bool {
+	defer qt.Recovering("QLowEnergyDescriptorData::isWritable")
+
+	if ptr.Pointer() != nil {
+		return C.QLowEnergyDescriptorData_IsWritable(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QLowEnergyDescriptorData) SetUuid(uuid QBluetoothUuid_ITF) {
+	defer qt.Recovering("QLowEnergyDescriptorData::setUuid")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyDescriptorData_SetUuid(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
+	}
+}
+
+func (ptr *QLowEnergyDescriptorData) SetValue(value string) {
+	defer qt.Recovering("QLowEnergyDescriptorData::setValue")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyDescriptorData_SetValue(ptr.Pointer(), C.CString(value))
+	}
+}
+
+func (ptr *QLowEnergyDescriptorData) Swap(other QLowEnergyDescriptorData_ITF) {
+	defer qt.Recovering("QLowEnergyDescriptorData::swap")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyDescriptorData_Swap(ptr.Pointer(), PointerFromQLowEnergyDescriptorData(other))
+	}
+}
+
+func (ptr *QLowEnergyDescriptorData) Uuid() *QBluetoothUuid {
+	defer qt.Recovering("QLowEnergyDescriptorData::uuid")
+
+	if ptr.Pointer() != nil {
+		return NewQBluetoothUuidFromPointer(C.QLowEnergyDescriptorData_Uuid(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLowEnergyDescriptorData) Value() string {
+	defer qt.Recovering("QLowEnergyDescriptorData::value")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QLowEnergyDescriptorData_Value(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {
+	defer qt.Recovering("QLowEnergyDescriptorData::~QLowEnergyDescriptorData")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //QLowEnergyService::ServiceError
 type QLowEnergyService__ServiceError int64
 
@@ -8357,6 +9167,7 @@ const (
 	QLowEnergyService__DiscoveryRequired   = QLowEnergyService__ServiceState(1)
 	QLowEnergyService__DiscoveringServices = QLowEnergyService__ServiceState(2)
 	QLowEnergyService__ServiceDiscovered   = QLowEnergyService__ServiceState(3)
+	QLowEnergyService__LocalService        = QLowEnergyService__ServiceState(4)
 )
 
 //QLowEnergyService::ServiceType
@@ -8373,6 +9184,7 @@ type QLowEnergyService__WriteMode int64
 const (
 	QLowEnergyService__WriteWithResponse    = QLowEnergyService__WriteMode(0)
 	QLowEnergyService__WriteWithoutResponse = QLowEnergyService__WriteMode(1)
+	QLowEnergyService__WriteSigned          = QLowEnergyService__WriteMode(2)
 )
 
 type QLowEnergyService struct {
@@ -9209,4 +10021,143 @@ func (ptr *QLowEnergyService) MetaObjectDefault() *core.QMetaObject {
 		return core.NewQMetaObjectFromPointer(C.QLowEnergyService_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
+}
+
+//QLowEnergyServiceData::ServiceType
+type QLowEnergyServiceData__ServiceType int64
+
+const (
+	QLowEnergyServiceData__ServiceTypePrimary   = QLowEnergyServiceData__ServiceType(0x2800)
+	QLowEnergyServiceData__ServiceTypeSecondary = QLowEnergyServiceData__ServiceType(0x2801)
+)
+
+type QLowEnergyServiceData struct {
+	ptr unsafe.Pointer
+}
+
+type QLowEnergyServiceData_ITF interface {
+	QLowEnergyServiceData_PTR() *QLowEnergyServiceData
+}
+
+func (p *QLowEnergyServiceData) QLowEnergyServiceData_PTR() *QLowEnergyServiceData {
+	return p
+}
+
+func (p *QLowEnergyServiceData) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QLowEnergyServiceData) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQLowEnergyServiceData(ptr QLowEnergyServiceData_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyServiceData_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyServiceDataFromPointer(ptr unsafe.Pointer) *QLowEnergyServiceData {
+	var n = new(QLowEnergyServiceData)
+	n.SetPointer(ptr)
+	return n
+}
+
+func newQLowEnergyServiceDataFromPointer(ptr unsafe.Pointer) *QLowEnergyServiceData {
+	var n = NewQLowEnergyServiceDataFromPointer(ptr)
+	return n
+}
+
+func NewQLowEnergyServiceData() *QLowEnergyServiceData {
+	defer qt.Recovering("QLowEnergyServiceData::QLowEnergyServiceData")
+
+	return newQLowEnergyServiceDataFromPointer(C.QLowEnergyServiceData_NewQLowEnergyServiceData())
+}
+
+func NewQLowEnergyServiceData2(other QLowEnergyServiceData_ITF) *QLowEnergyServiceData {
+	defer qt.Recovering("QLowEnergyServiceData::QLowEnergyServiceData")
+
+	return newQLowEnergyServiceDataFromPointer(C.QLowEnergyServiceData_NewQLowEnergyServiceData2(PointerFromQLowEnergyServiceData(other)))
+}
+
+func (ptr *QLowEnergyServiceData) AddCharacteristic(characteristic QLowEnergyCharacteristicData_ITF) {
+	defer qt.Recovering("QLowEnergyServiceData::addCharacteristic")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyServiceData_AddCharacteristic(ptr.Pointer(), PointerFromQLowEnergyCharacteristicData(characteristic))
+	}
+}
+
+func (ptr *QLowEnergyServiceData) AddIncludedService(service QLowEnergyService_ITF) {
+	defer qt.Recovering("QLowEnergyServiceData::addIncludedService")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyServiceData_AddIncludedService(ptr.Pointer(), PointerFromQLowEnergyService(service))
+	}
+}
+
+func (ptr *QLowEnergyServiceData) IsValid() bool {
+	defer qt.Recovering("QLowEnergyServiceData::isValid")
+
+	if ptr.Pointer() != nil {
+		return C.QLowEnergyServiceData_IsValid(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QLowEnergyServiceData) SetType(ty QLowEnergyServiceData__ServiceType) {
+	defer qt.Recovering("QLowEnergyServiceData::setType")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyServiceData_SetType(ptr.Pointer(), C.int(ty))
+	}
+}
+
+func (ptr *QLowEnergyServiceData) SetUuid(uuid QBluetoothUuid_ITF) {
+	defer qt.Recovering("QLowEnergyServiceData::setUuid")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyServiceData_SetUuid(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
+	}
+}
+
+func (ptr *QLowEnergyServiceData) Swap(other QLowEnergyServiceData_ITF) {
+	defer qt.Recovering("QLowEnergyServiceData::swap")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyServiceData_Swap(ptr.Pointer(), PointerFromQLowEnergyServiceData(other))
+	}
+}
+
+func (ptr *QLowEnergyServiceData) Type() QLowEnergyServiceData__ServiceType {
+	defer qt.Recovering("QLowEnergyServiceData::type")
+
+	if ptr.Pointer() != nil {
+		return QLowEnergyServiceData__ServiceType(C.QLowEnergyServiceData_Type(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyServiceData) Uuid() *QBluetoothUuid {
+	defer qt.Recovering("QLowEnergyServiceData::uuid")
+
+	if ptr.Pointer() != nil {
+		return NewQBluetoothUuidFromPointer(C.QLowEnergyServiceData_Uuid(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QLowEnergyServiceData) DestroyQLowEnergyServiceData() {
+	defer qt.Recovering("QLowEnergyServiceData::~QLowEnergyServiceData")
+
+	if ptr.Pointer() != nil {
+		C.QLowEnergyServiceData_DestroyQLowEnergyServiceData(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }

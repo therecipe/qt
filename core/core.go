@@ -17614,7 +17614,8 @@ const (
 	QDataStream__Qt_5_4                    = QDataStream__Version(16)
 	QDataStream__Qt_5_5                    = QDataStream__Version(QDataStream__Qt_5_4)
 	QDataStream__Qt_5_6                    = QDataStream__Version(17)
-	QDataStream__Qt_DefaultCompiledVersion = QDataStream__Version(QDataStream__Qt_5_6)
+	QDataStream__Qt_5_7                    = QDataStream__Version(QDataStream__Qt_5_6)
+	QDataStream__Qt_DefaultCompiledVersion = QDataStream__Version(QDataStream__Qt_5_7)
 )
 
 type QDataStream struct {
@@ -17693,6 +17694,14 @@ func NewQDataStream4(a string) *QDataStream {
 	return newQDataStreamFromPointer(C.QDataStream_NewQDataStream4(C.CString(a)))
 }
 
+func (ptr *QDataStream) AbortTransaction() {
+	defer qt.Recovering("QDataStream::abortTransaction")
+
+	if ptr.Pointer() != nil {
+		C.QDataStream_AbortTransaction(ptr.Pointer())
+	}
+}
+
 func (ptr *QDataStream) ByteOrder() QDataStream__ByteOrder {
 	defer qt.Recovering("QDataStream::byteOrder")
 
@@ -17700,6 +17709,15 @@ func (ptr *QDataStream) ByteOrder() QDataStream__ByteOrder {
 		return QDataStream__ByteOrder(C.QDataStream_ByteOrder(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QDataStream) CommitTransaction() bool {
+	defer qt.Recovering("QDataStream::commitTransaction")
+
+	if ptr.Pointer() != nil {
+		return C.QDataStream_CommitTransaction(ptr.Pointer()) != 0
+	}
+	return false
 }
 
 func (ptr *QDataStream) Device() *QIODevice {
@@ -17734,6 +17752,14 @@ func (ptr *QDataStream) ResetStatus() {
 
 	if ptr.Pointer() != nil {
 		C.QDataStream_ResetStatus(ptr.Pointer())
+	}
+}
+
+func (ptr *QDataStream) RollbackTransaction() {
+	defer qt.Recovering("QDataStream::rollbackTransaction")
+
+	if ptr.Pointer() != nil {
+		C.QDataStream_RollbackTransaction(ptr.Pointer())
 	}
 }
 
@@ -17784,6 +17810,14 @@ func (ptr *QDataStream) SkipRawData(len int) int {
 		return int(C.QDataStream_SkipRawData(ptr.Pointer(), C.int(len)))
 	}
 	return 0
+}
+
+func (ptr *QDataStream) StartTransaction() {
+	defer qt.Recovering("QDataStream::startTransaction")
+
+	if ptr.Pointer() != nil {
+		C.QDataStream_StartTransaction(ptr.Pointer())
+	}
 }
 
 func (ptr *QDataStream) Status() QDataStream__Status {
@@ -20148,6 +20182,7 @@ const (
 	QEvent__WindowChangeInternal             = QEvent__Type(215)
 	QEvent__ScreenChangeInternal             = QEvent__Type(216)
 	QEvent__PlatformSurface                  = QEvent__Type(217)
+	QEvent__Pointer                          = QEvent__Type(218)
 	QEvent__User                             = QEvent__Type(1000)
 	QEvent__MaxUser                          = QEvent__Type(65535)
 )
@@ -21685,16 +21720,22 @@ func newQFileFromPointer(ptr unsafe.Pointer) *QFile {
 	return n
 }
 
+func NewQFile() *QFile {
+	defer qt.Recovering("QFile::QFile")
+
+	return newQFileFromPointer(C.QFile_NewQFile())
+}
+
 func NewQFile3(parent QObject_ITF) *QFile {
 	defer qt.Recovering("QFile::QFile")
 
 	return newQFileFromPointer(C.QFile_NewQFile3(PointerFromQObject(parent)))
 }
 
-func NewQFile(name string) *QFile {
+func NewQFile2(name string) *QFile {
 	defer qt.Recovering("QFile::QFile")
 
-	return newQFileFromPointer(C.QFile_NewQFile(C.CString(name)))
+	return newQFileFromPointer(C.QFile_NewQFile2(C.CString(name)))
 }
 
 func NewQFile4(name string, parent QObject_ITF) *QFile {
@@ -28066,13 +28107,14 @@ func (ptr *QHistoryState) MetaObjectDefault() *QMetaObject {
 type QHooks__HookIndex int64
 
 const (
-	QHooks__HookDataVersion = QHooks__HookIndex(0)
-	QHooks__HookDataSize    = QHooks__HookIndex(1)
-	QHooks__QtVersion       = QHooks__HookIndex(2)
-	QHooks__AddQObject      = QHooks__HookIndex(3)
-	QHooks__RemoveQObject   = QHooks__HookIndex(4)
-	QHooks__Startup         = QHooks__HookIndex(5)
-	QHooks__LastHookIndex   = QHooks__HookIndex(6)
+	QHooks__HookDataVersion        = QHooks__HookIndex(0)
+	QHooks__HookDataSize           = QHooks__HookIndex(1)
+	QHooks__QtVersion              = QHooks__HookIndex(2)
+	QHooks__AddQObject             = QHooks__HookIndex(3)
+	QHooks__RemoveQObject          = QHooks__HookIndex(4)
+	QHooks__Startup                = QHooks__HookIndex(5)
+	QHooks__TypeInformationVersion = QHooks__HookIndex(6)
+	QHooks__LastHookIndex          = QHooks__HookIndex(7)
 )
 
 type QHooks struct {
@@ -28457,6 +28499,78 @@ func (ptr *QIODevice) CanReadLineDefault() bool {
 	return false
 }
 
+//export callbackQIODevice_ChannelBytesWritten
+func callbackQIODevice_ChannelBytesWritten(ptr unsafe.Pointer, ptrName *C.char, channel C.int, bytes C.longlong) {
+	defer qt.Recovering("callback QIODevice::channelBytesWritten")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "channelBytesWritten"); signal != nil {
+		signal.(func(int, int64))(int(channel), int64(bytes))
+	}
+
+}
+
+func (ptr *QIODevice) ConnectChannelBytesWritten(f func(channel int, bytes int64)) {
+	defer qt.Recovering("connect QIODevice::channelBytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ConnectChannelBytesWritten(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "channelBytesWritten", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectChannelBytesWritten() {
+	defer qt.Recovering("disconnect QIODevice::channelBytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_DisconnectChannelBytesWritten(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "channelBytesWritten")
+	}
+}
+
+func (ptr *QIODevice) ChannelBytesWritten(channel int, bytes int64) {
+	defer qt.Recovering("QIODevice::channelBytesWritten")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ChannelBytesWritten(ptr.Pointer(), C.int(channel), C.longlong(bytes))
+	}
+}
+
+//export callbackQIODevice_ChannelReadyRead
+func callbackQIODevice_ChannelReadyRead(ptr unsafe.Pointer, ptrName *C.char, channel C.int) {
+	defer qt.Recovering("callback QIODevice::channelReadyRead")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "channelReadyRead"); signal != nil {
+		signal.(func(int))(int(channel))
+	}
+
+}
+
+func (ptr *QIODevice) ConnectChannelReadyRead(f func(channel int)) {
+	defer qt.Recovering("connect QIODevice::channelReadyRead")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ConnectChannelReadyRead(ptr.Pointer())
+		qt.ConnectSignal(ptr.ObjectName(), "channelReadyRead", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectChannelReadyRead() {
+	defer qt.Recovering("disconnect QIODevice::channelReadyRead")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_DisconnectChannelReadyRead(ptr.Pointer())
+		qt.DisconnectSignal(ptr.ObjectName(), "channelReadyRead")
+	}
+}
+
+func (ptr *QIODevice) ChannelReadyRead(channel int) {
+	defer qt.Recovering("QIODevice::channelReadyRead")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_ChannelReadyRead(ptr.Pointer(), C.int(channel))
+	}
+}
+
 //export callbackQIODevice_Close
 func callbackQIODevice_Close(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QIODevice::close")
@@ -28500,6 +28614,32 @@ func (ptr *QIODevice) CloseDefault() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_CloseDefault(ptr.Pointer())
 	}
+}
+
+func (ptr *QIODevice) CommitTransaction() {
+	defer qt.Recovering("QIODevice::commitTransaction")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_CommitTransaction(ptr.Pointer())
+	}
+}
+
+func (ptr *QIODevice) CurrentReadChannel() int {
+	defer qt.Recovering("QIODevice::currentReadChannel")
+
+	if ptr.Pointer() != nil {
+		return int(C.QIODevice_CurrentReadChannel(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) CurrentWriteChannel() int {
+	defer qt.Recovering("QIODevice::currentWriteChannel")
+
+	if ptr.Pointer() != nil {
+		return int(C.QIODevice_CurrentWriteChannel(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QIODevice) ErrorString() string {
@@ -28581,6 +28721,15 @@ func (ptr *QIODevice) IsTextModeEnabled() bool {
 
 	if ptr.Pointer() != nil {
 		return C.QIODevice_IsTextModeEnabled(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QIODevice) IsTransactionStarted() bool {
+	defer qt.Recovering("QIODevice::isTransactionStarted")
+
+	if ptr.Pointer() != nil {
+		return C.QIODevice_IsTransactionStarted(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -28740,6 +28889,15 @@ func (ptr *QIODevice) ReadAll() string {
 		return C.GoString(C.QIODevice_ReadAll(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QIODevice) ReadChannelCount() int {
+	defer qt.Recovering("QIODevice::readChannelCount")
+
+	if ptr.Pointer() != nil {
+		return int(C.QIODevice_ReadChannelCount(ptr.Pointer()))
+	}
+	return 0
 }
 
 //export callbackQIODevice_ReadChannelFinished
@@ -28926,6 +29084,14 @@ func (ptr *QIODevice) ResetDefault() bool {
 	return false
 }
 
+func (ptr *QIODevice) RollbackTransaction() {
+	defer qt.Recovering("QIODevice::rollbackTransaction")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_RollbackTransaction(ptr.Pointer())
+	}
+}
+
 //export callbackQIODevice_Seek
 func callbackQIODevice_Seek(ptr unsafe.Pointer, ptrName *C.char, pos C.longlong) C.int {
 	defer qt.Recovering("callback QIODevice::seek")
@@ -28971,6 +29137,22 @@ func (ptr *QIODevice) SeekDefault(pos int64) bool {
 		return C.QIODevice_SeekDefault(ptr.Pointer(), C.longlong(pos)) != 0
 	}
 	return false
+}
+
+func (ptr *QIODevice) SetCurrentReadChannel(channel int) {
+	defer qt.Recovering("QIODevice::setCurrentReadChannel")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_SetCurrentReadChannel(ptr.Pointer(), C.int(channel))
+	}
+}
+
+func (ptr *QIODevice) SetCurrentWriteChannel(channel int) {
+	defer qt.Recovering("QIODevice::setCurrentWriteChannel")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_SetCurrentWriteChannel(ptr.Pointer(), C.int(channel))
+	}
 }
 
 func (ptr *QIODevice) SetErrorString(str string) {
@@ -29042,6 +29224,14 @@ func (ptr *QIODevice) SizeDefault() int64 {
 		return int64(C.QIODevice_SizeDefault(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QIODevice) StartTransaction() {
+	defer qt.Recovering("QIODevice::startTransaction")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_StartTransaction(ptr.Pointer())
+	}
 }
 
 func (ptr *QIODevice) UngetChar(c string) {
@@ -29169,6 +29359,15 @@ func (ptr *QIODevice) Write(data string, maxSize int64) int64 {
 
 	if ptr.Pointer() != nil {
 		return int64(C.QIODevice_Write(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QIODevice) WriteChannelCount() int {
+	defer qt.Recovering("QIODevice::writeChannelCount")
+
+	if ptr.Pointer() != nil {
+		return int(C.QIODevice_WriteChannelCount(ptr.Pointer()))
 	}
 	return 0
 }
@@ -33706,6 +33905,15 @@ func NewQJsonObject3(other QJsonObject_ITF) *QJsonObject {
 	return newQJsonObjectFromPointer(C.QJsonObject_NewQJsonObject3(PointerFromQJsonObject(other)))
 }
 
+func (ptr *QJsonObject) Contains2(key QLatin1String_ITF) bool {
+	defer qt.Recovering("QJsonObject::contains")
+
+	if ptr.Pointer() != nil {
+		return C.QJsonObject_Contains2(ptr.Pointer(), PointerFromQLatin1String(key)) != 0
+	}
+	return false
+}
+
 func (ptr *QJsonObject) Contains(key string) bool {
 	defer qt.Recovering("QJsonObject::contains")
 
@@ -33782,6 +33990,15 @@ func (ptr *QJsonObject) Take(key string) *QJsonValue {
 
 	if ptr.Pointer() != nil {
 		return NewQJsonValueFromPointer(C.QJsonObject_Take(ptr.Pointer(), C.CString(key)))
+	}
+	return nil
+}
+
+func (ptr *QJsonObject) Value2(key QLatin1String_ITF) *QJsonValue {
+	defer qt.Recovering("QJsonObject::value")
+
+	if ptr.Pointer() != nil {
+		return NewQJsonValueFromPointer(C.QJsonObject_Value2(ptr.Pointer(), PointerFromQLatin1String(key)))
 	}
 	return nil
 }
@@ -34156,11 +34373,20 @@ func (ptr *QJsonValue) ToObject(defaultValue QJsonObject_ITF) *QJsonObject {
 	return nil
 }
 
-func (ptr *QJsonValue) ToString(defaultValue string) string {
+func (ptr *QJsonValue) ToString() string {
 	defer qt.Recovering("QJsonValue::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QJsonValue_ToString(ptr.Pointer(), C.CString(defaultValue)))
+		return C.GoString(C.QJsonValue_ToString(ptr.Pointer()))
+	}
+	return ""
+}
+
+func (ptr *QJsonValue) ToString2(defaultValue string) string {
+	defer qt.Recovering("QJsonValue::toString")
+
+	if ptr.Pointer() != nil {
+		return C.GoString(C.QJsonValue_ToString2(ptr.Pointer(), C.CString(defaultValue)))
 	}
 	return ""
 }
@@ -35978,14 +36204,14 @@ const (
 	QLocale__Tanzania                               = QLocale__Country(210)
 	QLocale__Thailand                               = QLocale__Country(211)
 	QLocale__Togo                                   = QLocale__Country(212)
-	QLocale__Tokelau                                = QLocale__Country(213)
+	QLocale__TokelauCountry                         = QLocale__Country(213)
 	QLocale__Tonga                                  = QLocale__Country(214)
 	QLocale__TrinidadAndTobago                      = QLocale__Country(215)
 	QLocale__Tunisia                                = QLocale__Country(216)
 	QLocale__Turkey                                 = QLocale__Country(217)
 	QLocale__Turkmenistan                           = QLocale__Country(218)
 	QLocale__TurksAndCaicosIslands                  = QLocale__Country(219)
-	QLocale__Tuvalu                                 = QLocale__Country(220)
+	QLocale__TuvaluCountry                          = QLocale__Country(220)
 	QLocale__Uganda                                 = QLocale__Country(221)
 	QLocale__Ukraine                                = QLocale__Country(222)
 	QLocale__UnitedArabEmirates                     = QLocale__Country(223)
@@ -36023,13 +36249,17 @@ const (
 	QLocale__Bonaire                                = QLocale__Country(255)
 	QLocale__SintMaarten                            = QLocale__Country(256)
 	QLocale__Kosovo                                 = QLocale__Country(257)
+	QLocale__EuropeanUnion                          = QLocale__Country(258)
+	QLocale__OutlyingOceania                        = QLocale__Country(259)
+	QLocale__Tokelau                                = QLocale__Country(QLocale__TokelauCountry)
+	QLocale__Tuvalu                                 = QLocale__Country(QLocale__TuvaluCountry)
 	QLocale__DemocraticRepublicOfCongo              = QLocale__Country(QLocale__CongoKinshasa)
 	QLocale__PeoplesRepublicOfCongo                 = QLocale__Country(QLocale__CongoBrazzaville)
 	QLocale__DemocraticRepublicOfKorea              = QLocale__Country(QLocale__NorthKorea)
 	QLocale__RepublicOfKorea                        = QLocale__Country(QLocale__SouthKorea)
 	QLocale__RussianFederation                      = QLocale__Country(QLocale__Russia)
 	QLocale__SyrianArabRepublic                     = QLocale__Country(QLocale__Syria)
-	QLocale__LastCountry                            = QLocale__Country(QLocale__Kosovo)
+	QLocale__LastCountry                            = QLocale__Country(QLocale__OutlyingOceania)
 )
 
 //QLocale::CurrencySymbolFormat
@@ -36039,6 +36269,13 @@ const (
 	QLocale__CurrencyIsoCode     = QLocale__CurrencySymbolFormat(0)
 	QLocale__CurrencySymbol      = QLocale__CurrencySymbolFormat(1)
 	QLocale__CurrencyDisplayName = QLocale__CurrencySymbolFormat(2)
+)
+
+//QLocale::FloatingPointPrecisionOption
+type QLocale__FloatingPointPrecisionOption int64
+
+const (
+	QLocale__FloatingPointShortest = QLocale__FloatingPointPrecisionOption(-128)
 )
 
 //QLocale::FormatType
@@ -36394,6 +36631,26 @@ const (
 	QLocale__Mono                      = QLocale__Language(337)
 	QLocale__TedimChin                 = QLocale__Language(338)
 	QLocale__Maithili                  = QLocale__Language(339)
+	QLocale__Ahom                      = QLocale__Language(340)
+	QLocale__AmericanSignLanguage      = QLocale__Language(341)
+	QLocale__ArdhamagadhiPrakrit       = QLocale__Language(342)
+	QLocale__Bhojpuri                  = QLocale__Language(343)
+	QLocale__HieroglyphicLuwian        = QLocale__Language(344)
+	QLocale__LiteraryChinese           = QLocale__Language(345)
+	QLocale__Mazanderani               = QLocale__Language(346)
+	QLocale__Mru                       = QLocale__Language(347)
+	QLocale__Newari                    = QLocale__Language(348)
+	QLocale__NorthernLuri              = QLocale__Language(349)
+	QLocale__Palauan                   = QLocale__Language(350)
+	QLocale__Papiamento                = QLocale__Language(351)
+	QLocale__Saraiki                   = QLocale__Language(352)
+	QLocale__TokelauLanguage           = QLocale__Language(353)
+	QLocale__TokPisin                  = QLocale__Language(354)
+	QLocale__TuvaluLanguage            = QLocale__Language(355)
+	QLocale__UncodedLanguages          = QLocale__Language(356)
+	QLocale__Cantonese                 = QLocale__Language(357)
+	QLocale__Osage                     = QLocale__Language(358)
+	QLocale__Tangut                    = QLocale__Language(359)
 	QLocale__Norwegian                 = QLocale__Language(QLocale__NorwegianBokmal)
 	QLocale__Moldavian                 = QLocale__Language(QLocale__Romanian)
 	QLocale__SerboCroatian             = QLocale__Language(QLocale__Serbian)
@@ -36408,7 +36665,7 @@ const (
 	QLocale__Chewa                     = QLocale__Language(QLocale__Nyanja)
 	QLocale__Frisian                   = QLocale__Language(QLocale__WesternFrisian)
 	QLocale__Uigur                     = QLocale__Language(QLocale__Uighur)
-	QLocale__LastLanguage              = QLocale__Language(QLocale__Maithili)
+	QLocale__LastLanguage              = QLocale__Language(QLocale__Tangut)
 )
 
 //QLocale::MeasurementSystem
@@ -36425,8 +36682,11 @@ const (
 type QLocale__NumberOption int64
 
 const (
-	QLocale__OmitGroupSeparator   = QLocale__NumberOption(0x01)
-	QLocale__RejectGroupSeparator = QLocale__NumberOption(0x02)
+	QLocale__DefaultNumberOptions        = QLocale__NumberOption(0x0)
+	QLocale__OmitGroupSeparator          = QLocale__NumberOption(0x01)
+	QLocale__RejectGroupSeparator        = QLocale__NumberOption(0x02)
+	QLocale__OmitLeadingZeroInExponent   = QLocale__NumberOption(0x04)
+	QLocale__RejectLeadingZeroInExponent = QLocale__NumberOption(0x08)
 )
 
 //QLocale::QuotationStyle
@@ -36569,9 +36829,23 @@ const (
 	QLocale__KhudawadiScript             = QLocale__Script(125)
 	QLocale__TirhutaScript               = QLocale__Script(126)
 	QLocale__VarangKshitiScript          = QLocale__Script(127)
+	QLocale__AhomScript                  = QLocale__Script(128)
+	QLocale__AnatolianHieroglyphsScript  = QLocale__Script(129)
+	QLocale__HatranScript                = QLocale__Script(130)
+	QLocale__MultaniScript               = QLocale__Script(131)
+	QLocale__OldHungarianScript          = QLocale__Script(132)
+	QLocale__SignWritingScript           = QLocale__Script(133)
+	QLocale__AdlamScript                 = QLocale__Script(134)
+	QLocale__BhaiksukiScript             = QLocale__Script(135)
+	QLocale__MarchenScript               = QLocale__Script(136)
+	QLocale__NewaScript                  = QLocale__Script(137)
+	QLocale__OsageScript                 = QLocale__Script(138)
+	QLocale__TangutScript                = QLocale__Script(139)
+	QLocale__HanWithBopomofoScript       = QLocale__Script(140)
+	QLocale__JamoScript                  = QLocale__Script(141)
 	QLocale__SimplifiedChineseScript     = QLocale__Script(QLocale__SimplifiedHanScript)
 	QLocale__TraditionalChineseScript    = QLocale__Script(QLocale__TraditionalHanScript)
-	QLocale__LastScript                  = QLocale__Script(QLocale__VarangKshitiScript)
+	QLocale__LastScript                  = QLocale__Script(QLocale__JamoScript)
 )
 
 type QLocale struct {
@@ -36911,6 +37185,14 @@ func (ptr *QLocale) StandaloneMonthName(month int, ty QLocale__FormatType) strin
 		return C.GoString(C.QLocale_StandaloneMonthName(ptr.Pointer(), C.int(month), C.int(ty)))
 	}
 	return ""
+}
+
+func (ptr *QLocale) Swap(other QLocale_ITF) {
+	defer qt.Recovering("QLocale::swap")
+
+	if ptr.Pointer() != nil {
+		C.QLocale_Swap(ptr.Pointer(), PointerFromQLocale(other))
+	}
 }
 
 func QLocale_System() *QLocale {
@@ -38704,6 +38986,15 @@ func (ptr *QMetaObject) IndexOfSlot(slot string) int {
 		return int(C.QMetaObject_IndexOfSlot(ptr.Pointer(), C.CString(slot)))
 	}
 	return 0
+}
+
+func (ptr *QMetaObject) Inherits(metaObject QMetaObject_ITF) bool {
+	defer qt.Recovering("QMetaObject::inherits")
+
+	if ptr.Pointer() != nil {
+		return C.QMetaObject_Inherits(ptr.Pointer(), PointerFromQMetaObject(metaObject)) != 0
+	}
+	return false
 }
 
 func QMetaObject_InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
@@ -47610,6 +47901,15 @@ func (ptr *QRect) Translated(dx int, dy int) *QRect {
 	return nil
 }
 
+func (ptr *QRect) Transposed() *QRect {
+	defer qt.Recovering("QRect::transposed")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFromPointer(C.QRect_Transposed(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QRect) United(rectangle QRect_ITF) *QRect {
 	defer qt.Recovering("QRect::united")
 
@@ -48190,6 +48490,15 @@ func (ptr *QRectF) Translated(dx float64, dy float64) *QRectF {
 
 	if ptr.Pointer() != nil {
 		return NewQRectFFromPointer(C.QRectF_Translated(ptr.Pointer(), C.double(dx), C.double(dy)))
+	}
+	return nil
+}
+
+func (ptr *QRectF) Transposed() *QRectF {
+	defer qt.Recovering("QRectF::transposed")
+
+	if ptr.Pointer() != nil {
+		return NewQRectFFromPointer(C.QRectF_Transposed(ptr.Pointer()))
 	}
 	return nil
 }
@@ -52151,25 +52460,27 @@ func newQSetIteratorFromPointer(ptr unsafe.Pointer) *QSetIterator {
 type QSettings__Format int64
 
 const (
-	QSettings__NativeFormat   = QSettings__Format(0)
-	QSettings__IniFormat      = QSettings__Format(1)
-	QSettings__InvalidFormat  = QSettings__Format(16)
-	QSettings__CustomFormat1  = QSettings__Format(17)
-	QSettings__CustomFormat2  = QSettings__Format(18)
-	QSettings__CustomFormat3  = QSettings__Format(19)
-	QSettings__CustomFormat4  = QSettings__Format(20)
-	QSettings__CustomFormat5  = QSettings__Format(21)
-	QSettings__CustomFormat6  = QSettings__Format(22)
-	QSettings__CustomFormat7  = QSettings__Format(23)
-	QSettings__CustomFormat8  = QSettings__Format(24)
-	QSettings__CustomFormat9  = QSettings__Format(25)
-	QSettings__CustomFormat10 = QSettings__Format(26)
-	QSettings__CustomFormat11 = QSettings__Format(27)
-	QSettings__CustomFormat12 = QSettings__Format(28)
-	QSettings__CustomFormat13 = QSettings__Format(29)
-	QSettings__CustomFormat14 = QSettings__Format(30)
-	QSettings__CustomFormat15 = QSettings__Format(31)
-	QSettings__CustomFormat16 = QSettings__Format(32)
+	QSettings__NativeFormat     = QSettings__Format(0)
+	QSettings__IniFormat        = QSettings__Format(1)
+	QSettings__Registry32Format = QSettings__Format(2)
+	QSettings__Registry64Format = QSettings__Format(3)
+	QSettings__InvalidFormat    = QSettings__Format(16)
+	QSettings__CustomFormat1    = QSettings__Format(17)
+	QSettings__CustomFormat2    = QSettings__Format(18)
+	QSettings__CustomFormat3    = QSettings__Format(19)
+	QSettings__CustomFormat4    = QSettings__Format(20)
+	QSettings__CustomFormat5    = QSettings__Format(21)
+	QSettings__CustomFormat6    = QSettings__Format(22)
+	QSettings__CustomFormat7    = QSettings__Format(23)
+	QSettings__CustomFormat8    = QSettings__Format(24)
+	QSettings__CustomFormat9    = QSettings__Format(25)
+	QSettings__CustomFormat10   = QSettings__Format(26)
+	QSettings__CustomFormat11   = QSettings__Format(27)
+	QSettings__CustomFormat12   = QSettings__Format(28)
+	QSettings__CustomFormat13   = QSettings__Format(29)
+	QSettings__CustomFormat14   = QSettings__Format(30)
+	QSettings__CustomFormat15   = QSettings__Format(31)
+	QSettings__CustomFormat16   = QSettings__Format(32)
 )
 
 //QSettings::Scope
@@ -63315,33 +63626,6 @@ func (ptr *QStringRef) AppendTo(stri string) *QStringRef {
 	return nil
 }
 
-func (ptr *QStringRef) Begin() *QChar {
-	defer qt.Recovering("QStringRef::begin")
-
-	if ptr.Pointer() != nil {
-		return NewQCharFromPointer(C.QStringRef_Begin(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QStringRef) Cbegin() *QChar {
-	defer qt.Recovering("QStringRef::cbegin")
-
-	if ptr.Pointer() != nil {
-		return NewQCharFromPointer(C.QStringRef_Cbegin(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QStringRef) Cend() *QChar {
-	defer qt.Recovering("QStringRef::cend")
-
-	if ptr.Pointer() != nil {
-		return NewQCharFromPointer(C.QStringRef_Cend(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QStringRef) Clear() {
 	defer qt.Recovering("QStringRef::clear")
 
@@ -63499,15 +63783,6 @@ func (ptr *QStringRef) Data() *QChar {
 
 	if ptr.Pointer() != nil {
 		return NewQCharFromPointer(C.QStringRef_Data(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QStringRef) End() *QChar {
-	defer qt.Recovering("QStringRef::end")
-
-	if ptr.Pointer() != nil {
-		return NewQCharFromPointer(C.QStringRef_End(ptr.Pointer()))
 	}
 	return nil
 }
@@ -75194,6 +75469,12 @@ func NewQXmlStreamEntityDeclaration() *QXmlStreamEntityDeclaration {
 	return newQXmlStreamEntityDeclarationFromPointer(C.QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration())
 }
 
+func NewQXmlStreamEntityDeclaration3(other QXmlStreamEntityDeclaration_ITF) *QXmlStreamEntityDeclaration {
+	defer qt.Recovering("QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration")
+
+	return newQXmlStreamEntityDeclarationFromPointer(C.QXmlStreamEntityDeclaration_NewQXmlStreamEntityDeclaration3(PointerFromQXmlStreamEntityDeclaration(other)))
+}
+
 func NewQXmlStreamEntityDeclaration2(other QXmlStreamEntityDeclaration_ITF) *QXmlStreamEntityDeclaration {
 	defer qt.Recovering("QXmlStreamEntityDeclaration::QXmlStreamEntityDeclaration")
 
@@ -75423,10 +75704,16 @@ func NewQXmlStreamNamespaceDeclaration() *QXmlStreamNamespaceDeclaration {
 	return newQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration())
 }
 
-func NewQXmlStreamNamespaceDeclaration3(prefix string, namespaceUri string) *QXmlStreamNamespaceDeclaration {
+func NewQXmlStreamNamespaceDeclaration3(other QXmlStreamNamespaceDeclaration_ITF) *QXmlStreamNamespaceDeclaration {
 	defer qt.Recovering("QXmlStreamNamespaceDeclaration::QXmlStreamNamespaceDeclaration")
 
-	return newQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration3(C.CString(prefix), C.CString(namespaceUri)))
+	return newQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration3(PointerFromQXmlStreamNamespaceDeclaration(other)))
+}
+
+func NewQXmlStreamNamespaceDeclaration4(prefix string, namespaceUri string) *QXmlStreamNamespaceDeclaration {
+	defer qt.Recovering("QXmlStreamNamespaceDeclaration::QXmlStreamNamespaceDeclaration")
+
+	return newQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration4(C.CString(prefix), C.CString(namespaceUri)))
 }
 
 func NewQXmlStreamNamespaceDeclaration2(other QXmlStreamNamespaceDeclaration_ITF) *QXmlStreamNamespaceDeclaration {
@@ -75509,6 +75796,12 @@ func NewQXmlStreamNotationDeclaration() *QXmlStreamNotationDeclaration {
 	defer qt.Recovering("QXmlStreamNotationDeclaration::QXmlStreamNotationDeclaration")
 
 	return newQXmlStreamNotationDeclarationFromPointer(C.QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration())
+}
+
+func NewQXmlStreamNotationDeclaration3(other QXmlStreamNotationDeclaration_ITF) *QXmlStreamNotationDeclaration {
+	defer qt.Recovering("QXmlStreamNotationDeclaration::QXmlStreamNotationDeclaration")
+
+	return newQXmlStreamNotationDeclarationFromPointer(C.QXmlStreamNotationDeclaration_NewQXmlStreamNotationDeclaration3(PointerFromQXmlStreamNotationDeclaration(other)))
 }
 
 func NewQXmlStreamNotationDeclaration2(other QXmlStreamNotationDeclaration_ITF) *QXmlStreamNotationDeclaration {
@@ -76492,28 +76785,33 @@ const (
 type Qt__ApplicationAttribute int64
 
 const (
-	Qt__AA_ImmediateWidgetCreation                = Qt__ApplicationAttribute(0)
-	Qt__AA_MSWindowsUseDirect3DByDefault          = Qt__ApplicationAttribute(1)
-	Qt__AA_DontShowIconsInMenus                   = Qt__ApplicationAttribute(2)
-	Qt__AA_NativeWindows                          = Qt__ApplicationAttribute(3)
-	Qt__AA_DontCreateNativeWidgetSiblings         = Qt__ApplicationAttribute(4)
-	Qt__AA_MacPluginApplication                   = Qt__ApplicationAttribute(5)
-	Qt__AA_DontUseNativeMenuBar                   = Qt__ApplicationAttribute(6)
-	Qt__AA_MacDontSwapCtrlAndMeta                 = Qt__ApplicationAttribute(7)
-	Qt__AA_Use96Dpi                               = Qt__ApplicationAttribute(8)
-	Qt__AA_X11InitThreads                         = Qt__ApplicationAttribute(10)
-	Qt__AA_SynthesizeTouchForUnhandledMouseEvents = Qt__ApplicationAttribute(11)
-	Qt__AA_SynthesizeMouseForUnhandledTouchEvents = Qt__ApplicationAttribute(12)
-	Qt__AA_UseHighDpiPixmaps                      = Qt__ApplicationAttribute(13)
-	Qt__AA_ForceRasterWidgets                     = Qt__ApplicationAttribute(14)
-	Qt__AA_UseDesktopOpenGL                       = Qt__ApplicationAttribute(15)
-	Qt__AA_UseOpenGLES                            = Qt__ApplicationAttribute(16)
-	Qt__AA_UseSoftwareOpenGL                      = Qt__ApplicationAttribute(17)
-	Qt__AA_ShareOpenGLContexts                    = Qt__ApplicationAttribute(18)
-	Qt__AA_SetPalette                             = Qt__ApplicationAttribute(19)
-	Qt__AA_EnableHighDpiScaling                   = Qt__ApplicationAttribute(20)
-	Qt__AA_DisableHighDpiScaling                  = Qt__ApplicationAttribute(21)
-	Qt__AA_AttributeCount                         = Qt__ApplicationAttribute(22)
+	Qt__AA_ImmediateWidgetCreation                 = Qt__ApplicationAttribute(0)
+	Qt__AA_MSWindowsUseDirect3DByDefault           = Qt__ApplicationAttribute(1)
+	Qt__AA_DontShowIconsInMenus                    = Qt__ApplicationAttribute(2)
+	Qt__AA_NativeWindows                           = Qt__ApplicationAttribute(3)
+	Qt__AA_DontCreateNativeWidgetSiblings          = Qt__ApplicationAttribute(4)
+	Qt__AA_PluginApplication                       = Qt__ApplicationAttribute(5)
+	Qt__AA_MacPluginApplication                    = Qt__ApplicationAttribute(Qt__AA_PluginApplication)
+	Qt__AA_DontUseNativeMenuBar                    = Qt__ApplicationAttribute(6)
+	Qt__AA_MacDontSwapCtrlAndMeta                  = Qt__ApplicationAttribute(7)
+	Qt__AA_Use96Dpi                                = Qt__ApplicationAttribute(8)
+	Qt__AA_X11InitThreads                          = Qt__ApplicationAttribute(10)
+	Qt__AA_SynthesizeTouchForUnhandledMouseEvents  = Qt__ApplicationAttribute(11)
+	Qt__AA_SynthesizeMouseForUnhandledTouchEvents  = Qt__ApplicationAttribute(12)
+	Qt__AA_UseHighDpiPixmaps                       = Qt__ApplicationAttribute(13)
+	Qt__AA_ForceRasterWidgets                      = Qt__ApplicationAttribute(14)
+	Qt__AA_UseDesktopOpenGL                        = Qt__ApplicationAttribute(15)
+	Qt__AA_UseOpenGLES                             = Qt__ApplicationAttribute(16)
+	Qt__AA_UseSoftwareOpenGL                       = Qt__ApplicationAttribute(17)
+	Qt__AA_ShareOpenGLContexts                     = Qt__ApplicationAttribute(18)
+	Qt__AA_SetPalette                              = Qt__ApplicationAttribute(19)
+	Qt__AA_EnableHighDpiScaling                    = Qt__ApplicationAttribute(20)
+	Qt__AA_DisableHighDpiScaling                   = Qt__ApplicationAttribute(21)
+	Qt__AA_UseStyleSheetPropagationInWidgetStyles  = Qt__ApplicationAttribute(22)
+	Qt__AA_DontUseNativeDialogs                    = Qt__ApplicationAttribute(23)
+	Qt__AA_SynthesizeMouseForUnhandledTabletEvents = Qt__ApplicationAttribute(24)
+	Qt__AA_CompressHighFrequencyEvents             = Qt__ApplicationAttribute(25)
+	Qt__AA_AttributeCount                          = Qt__ApplicationAttribute(26)
 )
 
 //Qt::ApplicationState
@@ -76945,24 +77243,26 @@ const (
 type Qt__InputMethodQuery int64
 
 const (
-	Qt__ImEnabled           = Qt__InputMethodQuery(0x1)
-	Qt__ImCursorRectangle   = Qt__InputMethodQuery(0x2)
-	Qt__ImMicroFocus        = Qt__InputMethodQuery(0x2)
-	Qt__ImFont              = Qt__InputMethodQuery(0x4)
-	Qt__ImCursorPosition    = Qt__InputMethodQuery(0x8)
-	Qt__ImSurroundingText   = Qt__InputMethodQuery(0x10)
-	Qt__ImCurrentSelection  = Qt__InputMethodQuery(0x20)
-	Qt__ImMaximumTextLength = Qt__InputMethodQuery(0x40)
-	Qt__ImAnchorPosition    = Qt__InputMethodQuery(0x80)
-	Qt__ImHints             = Qt__InputMethodQuery(0x100)
-	Qt__ImPreferredLanguage = Qt__InputMethodQuery(0x200)
-	Qt__ImAbsolutePosition  = Qt__InputMethodQuery(0x400)
-	Qt__ImTextBeforeCursor  = Qt__InputMethodQuery(0x800)
-	Qt__ImTextAfterCursor   = Qt__InputMethodQuery(0x1000)
-	Qt__ImEnterKeyType      = Qt__InputMethodQuery(0x2000)
-	Qt__ImPlatformData      = Qt__InputMethodQuery(0x80000000)
-	Qt__ImQueryInput        = Qt__InputMethodQuery(Qt__ImCursorRectangle | Qt__ImCursorPosition | Qt__ImSurroundingText | Qt__ImCurrentSelection | Qt__ImAnchorPosition)
-	Qt__ImQueryAll          = Qt__InputMethodQuery(0xffffffff)
+	Qt__ImEnabled                = Qt__InputMethodQuery(0x1)
+	Qt__ImCursorRectangle        = Qt__InputMethodQuery(0x2)
+	Qt__ImMicroFocus             = Qt__InputMethodQuery(0x2)
+	Qt__ImFont                   = Qt__InputMethodQuery(0x4)
+	Qt__ImCursorPosition         = Qt__InputMethodQuery(0x8)
+	Qt__ImSurroundingText        = Qt__InputMethodQuery(0x10)
+	Qt__ImCurrentSelection       = Qt__InputMethodQuery(0x20)
+	Qt__ImMaximumTextLength      = Qt__InputMethodQuery(0x40)
+	Qt__ImAnchorPosition         = Qt__InputMethodQuery(0x80)
+	Qt__ImHints                  = Qt__InputMethodQuery(0x100)
+	Qt__ImPreferredLanguage      = Qt__InputMethodQuery(0x200)
+	Qt__ImAbsolutePosition       = Qt__InputMethodQuery(0x400)
+	Qt__ImTextBeforeCursor       = Qt__InputMethodQuery(0x800)
+	Qt__ImTextAfterCursor        = Qt__InputMethodQuery(0x1000)
+	Qt__ImEnterKeyType           = Qt__InputMethodQuery(0x2000)
+	Qt__ImAnchorRectangle        = Qt__InputMethodQuery(0x4000)
+	Qt__ImInputItemClipRectangle = Qt__InputMethodQuery(0x8000)
+	Qt__ImPlatformData           = Qt__InputMethodQuery(0x80000000)
+	Qt__ImQueryInput             = Qt__InputMethodQuery(Qt__ImCursorRectangle | Qt__ImCursorPosition | Qt__ImSurroundingText | Qt__ImCurrentSelection | Qt__ImAnchorRectangle | Qt__ImAnchorPosition)
+	Qt__ImQueryAll               = Qt__InputMethodQuery(0xffffffff)
 )
 
 //Qt::ItemDataRole
@@ -77685,9 +77985,10 @@ const (
 type Qt__ScrollPhase int64
 
 const (
-	Qt__ScrollBegin  = Qt__ScrollPhase(1)
-	Qt__ScrollUpdate = Qt__ScrollPhase(2)
-	Qt__ScrollEnd    = Qt__ScrollPhase(3)
+	Qt__NoScrollPhase = Qt__ScrollPhase(0)
+	Qt__ScrollBegin   = Qt__ScrollPhase(1)
+	Qt__ScrollUpdate  = Qt__ScrollPhase(2)
+	Qt__ScrollEnd     = Qt__ScrollPhase(3)
 )
 
 //Qt::ShortcutContext

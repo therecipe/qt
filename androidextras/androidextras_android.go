@@ -1143,6 +1143,18 @@ func QAndroidJniObject_CallStaticMethodString4(clazz unsafe.Pointer, methodName 
 	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4(clazz, C.CString(methodName), C.CString(signature), p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)).ToString()
 }
 
+func QAndroidJniObject_FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
+	defer qt.Recovering("QAndroidJniObject::fromLocalRef")
+
+	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromLocalRef(localRef))
+}
+
+func (ptr *QAndroidJniObject) FromLocalRef(localRef unsafe.Pointer) *QAndroidJniObject {
+	defer qt.Recovering("QAndroidJniObject::fromLocalRef")
+
+	return NewQAndroidJniObjectFromPointer(C.QAndroidJniObject_QAndroidJniObject_FromLocalRef(localRef))
+}
+
 func QAndroidJniObject_FromString(stri string) *QAndroidJniObject {
 	defer qt.Recovering("QAndroidJniObject::fromString")
 

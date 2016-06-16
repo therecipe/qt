@@ -15,10 +15,12 @@ const (
 	IMPURE = "impure"
 	PURE   = "pure"
 
-	MOC         = "main"
-	PLAIN       = "plain"
-	CONSTRUCTOR = "constructor"
-	DESTRUCTOR  = "destructor"
+	MOC              = "main"
+	PLAIN            = "plain"
+	CONSTRUCTOR      = "constructor"
+	COPY_CONSTRUCTOR = "copy-constructor"
+	MOVE_CONSTRUCTOR = "move-constructor"
+	DESTRUCTOR       = "destructor"
 
 	CONNECT    = "Connect"
 	DISCONNECT = "Disconnect"
@@ -35,17 +37,19 @@ var (
 	SubnamespaceMap = make(map[string]bool)
 )
 
-func GetModule(s string) (m *Module) {
+func GetModule(s string) *Module {
+
+	var m = new(Module)
 
 	switch runtime.GOOS {
 	case "darwin", "linux":
 		{
-			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("/usr/local/Qt5.6.0/Docs/Qt-5.6/qt%v/qt%v.index", s, s))), &m)
+			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("/usr/local/Qt5.7.0/Docs/Qt-5.7/qt%v/qt%v.index", s, s))), &m)
 		}
 
 	case "windows":
 		{
-			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.6.0\\Docs\\Qt-5.6\\qt%v\\qt%v.index", s, s))), &m)
+			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.7.0\\Docs\\Qt-5.7\\qt%v\\qt%v.index", s, s))), &m)
 		}
 	}
 

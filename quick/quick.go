@@ -132,6 +132,147 @@ func (ptr *QQuickAsyncImageProvider) SetObjectNameAbs(name string) {
 	}
 }
 
+//export callbackQQuickAsyncImageProvider_RequestImage
+func callbackQQuickAsyncImageProvider_RequestImage(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickAsyncImageProvider::requestImage")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestImage"); signal != nil {
+		return gui.PointerFromQImage(signal.(func(string, *core.QSize, *core.QSize) *gui.QImage)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+	}
+
+	return gui.PointerFromQImage(NewQQuickAsyncImageProviderFromPointer(ptr).RequestImageDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+}
+
+func (ptr *QQuickAsyncImageProvider) ConnectRequestImage(f func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QImage) {
+	defer qt.Recovering("connect QQuickAsyncImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestImage", f)
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) DisconnectRequestImage() {
+	defer qt.Recovering("disconnect QQuickAsyncImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestImage")
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) RequestImage(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
+	defer qt.Recovering("QQuickAsyncImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickAsyncImageProvider_RequestImage(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickAsyncImageProvider) RequestImageDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
+	defer qt.Recovering("QQuickAsyncImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickAsyncImageProvider_RequestImageDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+//export callbackQQuickAsyncImageProvider_RequestPixmap
+func callbackQQuickAsyncImageProvider_RequestPixmap(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickAsyncImageProvider::requestPixmap")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestPixmap"); signal != nil {
+		return gui.PointerFromQPixmap(signal.(func(string, *core.QSize, *core.QSize) *gui.QPixmap)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+	}
+
+	return gui.PointerFromQPixmap(NewQQuickAsyncImageProviderFromPointer(ptr).RequestPixmapDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+}
+
+func (ptr *QQuickAsyncImageProvider) ConnectRequestPixmap(f func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QPixmap) {
+	defer qt.Recovering("connect QQuickAsyncImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestPixmap", f)
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) DisconnectRequestPixmap() {
+	defer qt.Recovering("disconnect QQuickAsyncImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestPixmap")
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) RequestPixmap(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
+	defer qt.Recovering("QQuickAsyncImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQPixmapFromPointer(C.QQuickAsyncImageProvider_RequestPixmap(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickAsyncImageProvider) RequestPixmapDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
+	defer qt.Recovering("QQuickAsyncImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQPixmapFromPointer(C.QQuickAsyncImageProvider_RequestPixmapDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+//export callbackQQuickAsyncImageProvider_RequestTexture
+func callbackQQuickAsyncImageProvider_RequestTexture(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickAsyncImageProvider::requestTexture")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestTexture"); signal != nil {
+		return PointerFromQQuickTextureFactory(signal.(func(string, *core.QSize, *core.QSize) *QQuickTextureFactory)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+	}
+
+	return PointerFromQQuickTextureFactory(NewQQuickAsyncImageProviderFromPointer(ptr).RequestTextureDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+}
+
+func (ptr *QQuickAsyncImageProvider) ConnectRequestTexture(f func(id string, size *core.QSize, requestedSize *core.QSize) *QQuickTextureFactory) {
+	defer qt.Recovering("connect QQuickAsyncImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestTexture", f)
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) DisconnectRequestTexture() {
+	defer qt.Recovering("disconnect QQuickAsyncImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestTexture")
+	}
+}
+
+func (ptr *QQuickAsyncImageProvider) RequestTexture(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
+	defer qt.Recovering("QQuickAsyncImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+		return NewQQuickTextureFactoryFromPointer(C.QQuickAsyncImageProvider_RequestTexture(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickAsyncImageProvider) RequestTextureDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
+	defer qt.Recovering("QQuickAsyncImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+		return NewQQuickTextureFactoryFromPointer(C.QQuickAsyncImageProvider_RequestTextureDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
 type QQuickFramebufferObject struct {
 	QQuickItem
 }
@@ -2037,6 +2178,147 @@ func (ptr *QQuickImageProvider) ImageType() qml.QQmlImageProviderBase__ImageType
 		return qml.QQmlImageProviderBase__ImageType(C.QQuickImageProvider_ImageType(ptr.Pointer()))
 	}
 	return 0
+}
+
+//export callbackQQuickImageProvider_RequestImage
+func callbackQQuickImageProvider_RequestImage(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickImageProvider::requestImage")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestImage"); signal != nil {
+		return gui.PointerFromQImage(signal.(func(string, *core.QSize, *core.QSize) *gui.QImage)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+	}
+
+	return gui.PointerFromQImage(NewQQuickImageProviderFromPointer(ptr).RequestImageDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+}
+
+func (ptr *QQuickImageProvider) ConnectRequestImage(f func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QImage) {
+	defer qt.Recovering("connect QQuickImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestImage", f)
+	}
+}
+
+func (ptr *QQuickImageProvider) DisconnectRequestImage() {
+	defer qt.Recovering("disconnect QQuickImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestImage")
+	}
+}
+
+func (ptr *QQuickImageProvider) RequestImage(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
+	defer qt.Recovering("QQuickImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImage(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickImageProvider) RequestImageDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QImage {
+	defer qt.Recovering("QQuickImageProvider::requestImage")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQImageFromPointer(C.QQuickImageProvider_RequestImageDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+//export callbackQQuickImageProvider_RequestPixmap
+func callbackQQuickImageProvider_RequestPixmap(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickImageProvider::requestPixmap")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestPixmap"); signal != nil {
+		return gui.PointerFromQPixmap(signal.(func(string, *core.QSize, *core.QSize) *gui.QPixmap)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+	}
+
+	return gui.PointerFromQPixmap(NewQQuickImageProviderFromPointer(ptr).RequestPixmapDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+}
+
+func (ptr *QQuickImageProvider) ConnectRequestPixmap(f func(id string, size *core.QSize, requestedSize *core.QSize) *gui.QPixmap) {
+	defer qt.Recovering("connect QQuickImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestPixmap", f)
+	}
+}
+
+func (ptr *QQuickImageProvider) DisconnectRequestPixmap() {
+	defer qt.Recovering("disconnect QQuickImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestPixmap")
+	}
+}
+
+func (ptr *QQuickImageProvider) RequestPixmap(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
+	defer qt.Recovering("QQuickImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmap(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickImageProvider) RequestPixmapDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *gui.QPixmap {
+	defer qt.Recovering("QQuickImageProvider::requestPixmap")
+
+	if ptr.Pointer() != nil {
+		return gui.NewQPixmapFromPointer(C.QQuickImageProvider_RequestPixmapDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+//export callbackQQuickImageProvider_RequestTexture
+func callbackQQuickImageProvider_RequestTexture(ptr unsafe.Pointer, ptrName *C.char, id *C.char, size unsafe.Pointer, requestedSize unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QQuickImageProvider::requestTexture")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "requestTexture"); signal != nil {
+		return PointerFromQQuickTextureFactory(signal.(func(string, *core.QSize, *core.QSize) *QQuickTextureFactory)(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+	}
+
+	return PointerFromQQuickTextureFactory(NewQQuickImageProviderFromPointer(ptr).RequestTextureDefault(C.GoString(id), core.NewQSizeFromPointer(size), core.NewQSizeFromPointer(requestedSize)))
+}
+
+func (ptr *QQuickImageProvider) ConnectRequestTexture(f func(id string, size *core.QSize, requestedSize *core.QSize) *QQuickTextureFactory) {
+	defer qt.Recovering("connect QQuickImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectNameAbs(), "requestTexture", f)
+	}
+}
+
+func (ptr *QQuickImageProvider) DisconnectRequestTexture() {
+	defer qt.Recovering("disconnect QQuickImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectNameAbs(), "requestTexture")
+	}
+}
+
+func (ptr *QQuickImageProvider) RequestTexture(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
+	defer qt.Recovering("QQuickImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+		return NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTexture(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
+}
+
+func (ptr *QQuickImageProvider) RequestTextureDefault(id string, size core.QSize_ITF, requestedSize core.QSize_ITF) *QQuickTextureFactory {
+	defer qt.Recovering("QQuickImageProvider::requestTexture")
+
+	if ptr.Pointer() != nil {
+		return NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTextureDefault(ptr.Pointer(), C.CString(id), core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
+	}
+	return nil
 }
 
 func (ptr *QQuickImageProvider) DestroyQQuickImageProvider() {
@@ -4057,6 +4339,15 @@ func (ptr *QQuickItem) InputMethodQueryDefault(query core.Qt__InputMethodQuery) 
 	return nil
 }
 
+func (ptr *QQuickItem) IsAncestorOf(child QQuickItem_ITF) bool {
+	defer qt.Recovering("QQuickItem::isAncestorOf")
+
+	if ptr.Pointer() != nil {
+		return C.QQuickItem_IsAncestorOf(ptr.Pointer(), PointerFromQQuickItem(child)) != 0
+	}
+	return false
+}
+
 func (ptr *QQuickItem) IsComponentComplete() bool {
 	defer qt.Recovering("QQuickItem::isComponentComplete")
 
@@ -4183,6 +4474,15 @@ func (ptr *QQuickItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 	}
 }
 
+func (ptr *QQuickItem) MapFromGlobal(point core.QPointF_ITF) *core.QPointF {
+	defer qt.Recovering("QQuickItem::mapFromGlobal")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QQuickItem_MapFromGlobal(ptr.Pointer(), core.PointerFromQPointF(point)))
+	}
+	return nil
+}
+
 func (ptr *QQuickItem) MapFromItem(item QQuickItem_ITF, point core.QPointF_ITF) *core.QPointF {
 	defer qt.Recovering("QQuickItem::mapFromItem")
 
@@ -4233,6 +4533,15 @@ func (ptr *QQuickItem) MapRectToScene(rect core.QRectF_ITF) *core.QRectF {
 
 	if ptr.Pointer() != nil {
 		return core.NewQRectFFromPointer(C.QQuickItem_MapRectToScene(ptr.Pointer(), core.PointerFromQRectF(rect)))
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) MapToGlobal(point core.QPointF_ITF) *core.QPointF {
+	defer qt.Recovering("QQuickItem::mapToGlobal")
+
+	if ptr.Pointer() != nil {
+		return core.NewQPointFFromPointer(C.QQuickItem_MapToGlobal(ptr.Pointer(), core.PointerFromQPointF(point)))
 	}
 	return nil
 }

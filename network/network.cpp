@@ -3434,6 +3434,16 @@ void* QNetworkInterface_QNetworkInterface_InterfaceFromName(char* name)
 	return new QNetworkInterface(QNetworkInterface::interfaceFromName(QString(name)));
 }
 
+int QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(char* name)
+{
+	return QNetworkInterface::interfaceIndexFromName(QString(name));
+}
+
+char* QNetworkInterface_QNetworkInterface_InterfaceNameFromIndex(int index)
+{
+	return QNetworkInterface::interfaceNameFromIndex(index).toUtf8().data();
+}
+
 int QNetworkInterface_IsValid(void* ptr)
 {
 	return static_cast<QNetworkInterface*>(ptr)->isValid();
@@ -4926,6 +4936,11 @@ void* QSslConfiguration_NewQSslConfiguration2(void* other)
 void* QSslConfiguration_QSslConfiguration_DefaultConfiguration()
 {
 	return new QSslConfiguration(QSslConfiguration::defaultConfiguration());
+}
+
+void* QSslConfiguration_EphemeralServerKey(void* ptr)
+{
+	return new QSslKey(static_cast<QSslConfiguration*>(ptr)->ephemeralServerKey());
 }
 
 int QSslConfiguration_IsNull(void* ptr)

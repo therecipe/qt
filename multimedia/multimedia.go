@@ -21826,6 +21826,15 @@ func newQCameraImageProcessingFromPointer(ptr unsafe.Pointer) *QCameraImageProce
 	return n
 }
 
+func (ptr *QCameraImageProcessing) Brightness() float64 {
+	defer qt.Recovering("QCameraImageProcessing::brightness")
+
+	if ptr.Pointer() != nil {
+		return float64(C.QCameraImageProcessing_Brightness(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QCameraImageProcessing) ColorFilter() QCameraImageProcessing__ColorFilter {
 	defer qt.Recovering("QCameraImageProcessing::colorFilter")
 
@@ -21896,6 +21905,14 @@ func (ptr *QCameraImageProcessing) Saturation() float64 {
 		return float64(C.QCameraImageProcessing_Saturation(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QCameraImageProcessing) SetBrightness(value float64) {
+	defer qt.Recovering("QCameraImageProcessing::setBrightness")
+
+	if ptr.Pointer() != nil {
+		C.QCameraImageProcessing_SetBrightness(ptr.Pointer(), C.double(value))
+	}
 }
 
 func (ptr *QCameraImageProcessing) SetColorFilter(filter QCameraImageProcessing__ColorFilter) {
@@ -41470,6 +41487,15 @@ func (ptr *QMediaPlaylist) MediaRemoved(start int, end int) {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_MediaRemoved(ptr.Pointer(), C.int(start), C.int(end))
 	}
+}
+
+func (ptr *QMediaPlaylist) MoveMedia(from int, to int) bool {
+	defer qt.Recovering("QMediaPlaylist::moveMedia")
+
+	if ptr.Pointer() != nil {
+		return C.QMediaPlaylist_MoveMedia(ptr.Pointer(), C.int(from), C.int(to)) != 0
+	}
+	return false
 }
 
 //export callbackQMediaPlaylist_Next

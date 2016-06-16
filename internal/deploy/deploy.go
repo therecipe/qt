@@ -180,17 +180,17 @@ func qrc() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					rccPath = "/usr/local/Qt5.6.0/5.6/android_armv7/bin/rcc"
+					rccPath = "/usr/local/Qt5.7.0/5.7/android_armv7/bin/rcc"
 				}
 
 			case "linux":
 				{
-					rccPath = "/usr/local/Qt5.6.0/5.6/android_armv7/bin/rcc"
+					rccPath = "/usr/local/Qt5.7.0/5.7/android_armv7/bin/rcc"
 				}
 
 			case "windows":
 				{
-					rccPath = "C:\\Qt\\Qt5.6.0\\5.6\\android_armv7\\bin\\rcc.exe"
+					rccPath = "C:\\Qt\\Qt5.7.0\\5.7\\android_armv7\\bin\\rcc.exe"
 				}
 			}
 		}
@@ -200,7 +200,7 @@ func qrc() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					rccPath = "/usr/local/Qt5.6.0/5.6/ios/bin/rcc"
+					rccPath = "/usr/local/Qt5.7.0/5.7/ios/bin/rcc"
 				}
 			}
 		}
@@ -210,17 +210,17 @@ func qrc() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					rccPath = "/usr/local/Qt5.6.0/5.6/clang_64/bin/rcc"
+					rccPath = "/usr/local/Qt5.7.0/5.7/clang_64/bin/rcc"
 				}
 
 			case "linux":
 				{
-					rccPath = "/usr/local/Qt5.6.0/5.6/gcc_64/bin/rcc"
+					rccPath = "/usr/local/Qt5.7.0/5.7/gcc_64/bin/rcc"
 				}
 
 			case "windows":
 				{
-					rccPath = "C:\\Qt\\Qt5.6.0\\5.6\\mingw49_32\\bin\\rcc.exe"
+					rccPath = "C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32\\bin\\rcc.exe"
 				}
 			}
 		}
@@ -250,24 +250,24 @@ func qmlHeader() string {
 	return fmt.Sprintf(`package main
 
 /*
-#cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.6.0/5.6/mingw49_32/lib -lQt5Core
+#cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.7.0/5.7/mingw53_32/lib -lQt5Core
 
-#cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.6.0/5.6/clang_64/lib -framework QtCore
+#cgo +build darwin,amd64 LDFLAGS: -F/usr/local/Qt5.7.0/5.7/clang_64/lib -framework QtCore
 
-#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.6.0/5.6/gcc_64/lib -L/usr/local/Qt5.6.0/5.6/gcc_64/lib -lQt5Core
+#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,/usr/local/Qt5.7.0/5.7/gcc_64/lib -L/usr/local/Qt5.7.0/5.7/gcc_64/lib -lQt5Core
 
 
-#cgo +build android,arm LDFLAGS: -L%v/Qt5.6.0/5.6/android_armv7/lib -lQt5Core
+#cgo +build android,arm LDFLAGS: -L%v/Qt5.7.0/5.7/android_armv7/lib -lQt5Core
 
 
 #cgo +build darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator9.3.sdk -mios-simulator-version-min=7.0 -arch i386
-#cgo +build darwin,386 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Widgets_iphonesimulator -lQt5Core_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
+#cgo +build darwin,386 LDFLAGS: -L/usr/local/Qt5.7.0/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.7.0/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.7.0/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Widgets_iphonesimulator -lQt5Core_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
 
 #cgo +build darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=7.0 -arch arm64
-#cgo +build darwin,arm64 LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
+#cgo +build darwin,arm64 LDFLAGS: -L/usr/local/Qt5.7.0/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.7.0/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.7.0/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
 
 #cgo +build darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk -miphoneos-version-min=7.0 -arch armv7
-#cgo +build darwin,arm LDFLAGS: -L/usr/local/Qt5.6.0/5.6/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.6.0/5.6/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.6.0/5.6/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
+#cgo +build darwin,arm LDFLAGS: -L/usr/local/Qt5.7.0/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.7.0/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.7.0/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
 
 
 #cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core
@@ -384,7 +384,7 @@ func build() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					ldFlags += "\"-s\" \"-w\" \"-r=/usr/local/Qt5.6.0/5.6/clang_64/lib\""
+					ldFlags += "\"-s\" \"-w\" \"-r=/usr/local/Qt5.7.0/5.7/clang_64/lib\""
 					outputFile = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
 				}
 
@@ -570,7 +570,7 @@ func predeploy() {
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), "predeploy.cpBase")
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cpMain")
 
-			var qtLibPath = filepath.Join(qtPrefix, "Qt5.6.0", "5.6", "android_armv7", "lib")
+			var qtLibPath = filepath.Join(qtPrefix, "Qt5.7.0", "5.7", "android_armv7", "lib")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), "predeploy.cpWidgets")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), "predeploy.cpQuickWidgets")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), "predeploy.cpMultimediaWidgets")
@@ -593,7 +593,7 @@ func predeploy() {
 				Qmlrootpath                   string `json:"qml-root-path"`
 				Applicationbinary             string `json:"application-binary"`
 			}{
-				Qt:  filepath.Join(qtPrefix, "Qt5.6.0", "5.6", "android_armv7"),
+				Qt:  filepath.Join(qtPrefix, "Qt5.7.0", "5.7", "android_armv7"),
 				Sdk: filepath.Join(androidPrefix, "android-sdk"),
 				SdkBuildToolsRevision: "23.0.3",
 				Ndk:                           filepath.Join(androidPrefix, "android-ndk"),
@@ -667,7 +667,7 @@ func predeploy() {
 			utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), iosLaunchScreen())
 			utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), iosProject())
 
-			runCmd(exec.Command(copyCmd, "/usr/local/Qt5.6.0/5.6/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", buildPath), "predeploy.cpIcon")
+			runCmd(exec.Command(copyCmd, "/usr/local/Qt5.7.0/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", buildPath), "predeploy.cpIcon")
 
 			//copy assets from buildTarget folder
 			runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
@@ -768,7 +768,7 @@ func deploy() {
 				}
 			}
 
-			var deploy = exec.Command(filepath.Join(qtPrefix, "Qt5.6.0", "5.6", "android_armv7", "bin", "androiddeployqt"+ending))
+			var deploy = exec.Command(filepath.Join(qtPrefix, "Qt5.7.0", "5.7", "android_armv7", "bin", "androiddeployqt"+ending))
 			deploy.Args = append(deploy.Args,
 				"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 				"--output", filepath.Join(depPath, "build"),
@@ -786,7 +786,7 @@ func deploy() {
 				)
 			}
 
-			deploy.Dir = filepath.Join(qtPrefix, "Qt5.6.0", "5.6", "android_armv7", "bin")
+			deploy.Dir = filepath.Join(qtPrefix, "Qt5.7.0", "5.7", "android_armv7", "bin")
 			deploy.Env = append(deploy.Env, "JAVA_HOME="+jdkLib)
 
 			if runtime.GOOS == "windows" {
@@ -808,12 +808,12 @@ func deploy() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					var deploy = exec.Command("/usr/local/Qt5.6.0/5.6/clang_64/bin/macdeployqt")
+					var deploy = exec.Command("/usr/local/Qt5.7.0/5.7/clang_64/bin/macdeployqt")
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, fmt.Sprintf("%v.app/", appName)),
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-always-overwrite")
-					deploy.Dir = "/usr/local/Qt5.6.0/5.6/clang_64/bin/"
+					deploy.Dir = "/usr/local/Qt5.7.0/5.7/clang_64/bin/"
 					runCmd(deploy, "deploy")
 				}
 
@@ -847,7 +847,7 @@ func deploy() {
 
 			case "windows":
 				{
-					var deploy = exec.Command("C:\\Qt\\Qt5.6.0\\5.6\\mingw49_32\\bin\\windeployqt.exe")
+					var deploy = exec.Command("C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32\\bin\\windeployqt.exe")
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, appName+ending),
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
@@ -1410,7 +1410,7 @@ func iosProject() string {
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp %v/qt.conf $CODESIGNING_FOLDER_PATH/qt.conf;  test -d $CODESIGNING_FOLDER_PATH/qt_qml && rm -r $CODESIGNING_FOLDER_PATH/qt_qml;  mkdir -p $CODESIGNING_FOLDER_PATH/qt_qml &&  for p in /usr/local/Qt5.6.0/5.6/ios/qml; do rsync -r --exclude='*.a' --exclude='*.prl' --exclude='*.qmltypes'  $p/ $CODESIGNING_FOLDER_PATH/qt_qml; done";
+			shellScript = "cp %v/qt.conf $CODESIGNING_FOLDER_PATH/qt.conf;  test -d $CODESIGNING_FOLDER_PATH/qt_qml && rm -r $CODESIGNING_FOLDER_PATH/qt_qml;  mkdir -p $CODESIGNING_FOLDER_PATH/qt_qml &&  for p in /usr/local/Qt5.7.0/5.7/ios/qml; do rsync -r --exclude='*.a' --exclude='*.prl' --exclude='*.qmltypes'  $p/ $CODESIGNING_FOLDER_PATH/qt_qml; done";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

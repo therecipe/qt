@@ -23,10 +23,16 @@
 #include <QChildEvent>
 #include <QEvent>
 #include <QIODevice>
+#include <QLowEnergyAdvertisingData>
+#include <QLowEnergyAdvertisingParameters>
 #include <QLowEnergyCharacteristic>
+#include <QLowEnergyCharacteristicData>
+#include <QLowEnergyConnectionParameters>
 #include <QLowEnergyController>
 #include <QLowEnergyDescriptor>
+#include <QLowEnergyDescriptorData>
 #include <QLowEnergyService>
+#include <QLowEnergyServiceData>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -2111,6 +2117,116 @@ void QBluetoothUuid_DestroyQBluetoothUuid(void* ptr)
 	static_cast<QBluetoothUuid*>(ptr)->~QBluetoothUuid();
 }
 
+void* QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData()
+{
+	return new QLowEnergyAdvertisingData();
+}
+
+void* QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData2(void* other)
+{
+	return new QLowEnergyAdvertisingData(*static_cast<QLowEnergyAdvertisingData*>(other));
+}
+
+int QLowEnergyAdvertisingData_Discoverability(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingData*>(ptr)->discoverability();
+}
+
+int QLowEnergyAdvertisingData_IncludePowerLevel(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingData*>(ptr)->includePowerLevel();
+}
+
+char* QLowEnergyAdvertisingData_LocalName(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingData*>(ptr)->localName().toUtf8().data();
+}
+
+char* QLowEnergyAdvertisingData_ManufacturerData(void* ptr)
+{
+	return QString(static_cast<QLowEnergyAdvertisingData*>(ptr)->manufacturerData()).toUtf8().data();
+}
+
+char* QLowEnergyAdvertisingData_RawData(void* ptr)
+{
+	return QString(static_cast<QLowEnergyAdvertisingData*>(ptr)->rawData()).toUtf8().data();
+}
+
+void QLowEnergyAdvertisingData_SetDiscoverability(void* ptr, int mode)
+{
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->setDiscoverability(static_cast<QLowEnergyAdvertisingData::Discoverability>(mode));
+}
+
+void QLowEnergyAdvertisingData_SetIncludePowerLevel(void* ptr, int doInclude)
+{
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->setIncludePowerLevel(doInclude != 0);
+}
+
+void QLowEnergyAdvertisingData_SetLocalName(void* ptr, char* name)
+{
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->setLocalName(QString(name));
+}
+
+void QLowEnergyAdvertisingData_SetRawData(void* ptr, char* data)
+{
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->setRawData(QByteArray(data));
+}
+
+void QLowEnergyAdvertisingData_Swap(void* ptr, void* other)
+{
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->swap(*static_cast<QLowEnergyAdvertisingData*>(other));
+}
+
+void QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(void* ptr)
+{
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->~QLowEnergyAdvertisingData();
+}
+
+void* QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters()
+{
+	return new QLowEnergyAdvertisingParameters();
+}
+
+void* QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters2(void* other)
+{
+	return new QLowEnergyAdvertisingParameters(*static_cast<QLowEnergyAdvertisingParameters*>(other));
+}
+
+int QLowEnergyAdvertisingParameters_FilterPolicy(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingParameters*>(ptr)->filterPolicy();
+}
+
+int QLowEnergyAdvertisingParameters_MaximumInterval(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingParameters*>(ptr)->maximumInterval();
+}
+
+int QLowEnergyAdvertisingParameters_MinimumInterval(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingParameters*>(ptr)->minimumInterval();
+}
+
+int QLowEnergyAdvertisingParameters_Mode(void* ptr)
+{
+	return static_cast<QLowEnergyAdvertisingParameters*>(ptr)->mode();
+}
+
+void QLowEnergyAdvertisingParameters_SetMode(void* ptr, int mode)
+{
+	static_cast<QLowEnergyAdvertisingParameters*>(ptr)->setMode(static_cast<QLowEnergyAdvertisingParameters::Mode>(mode));
+}
+
+void QLowEnergyAdvertisingParameters_Swap(void* ptr, void* other)
+{
+	static_cast<QLowEnergyAdvertisingParameters*>(ptr)->swap(*static_cast<QLowEnergyAdvertisingParameters*>(other));
+}
+
+void QLowEnergyAdvertisingParameters_DestroyQLowEnergyAdvertisingParameters(void* ptr)
+{
+	static_cast<QLowEnergyAdvertisingParameters*>(ptr)->~QLowEnergyAdvertisingParameters();
+}
+
 void* QLowEnergyCharacteristic_NewQLowEnergyCharacteristic()
 {
 	return new QLowEnergyCharacteristic();
@@ -2156,11 +2272,126 @@ void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(void* ptr)
 	static_cast<QLowEnergyCharacteristic*>(ptr)->~QLowEnergyCharacteristic();
 }
 
+void* QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData()
+{
+	return new QLowEnergyCharacteristicData();
+}
+
+void* QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData2(void* other)
+{
+	return new QLowEnergyCharacteristicData(*static_cast<QLowEnergyCharacteristicData*>(other));
+}
+
+void QLowEnergyCharacteristicData_AddDescriptor(void* ptr, void* descriptor)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->addDescriptor(*static_cast<QLowEnergyDescriptorData*>(descriptor));
+}
+
+int QLowEnergyCharacteristicData_IsValid(void* ptr)
+{
+	return static_cast<QLowEnergyCharacteristicData*>(ptr)->isValid();
+}
+
+int QLowEnergyCharacteristicData_MaximumValueLength(void* ptr)
+{
+	return static_cast<QLowEnergyCharacteristicData*>(ptr)->maximumValueLength();
+}
+
+int QLowEnergyCharacteristicData_MinimumValueLength(void* ptr)
+{
+	return static_cast<QLowEnergyCharacteristicData*>(ptr)->minimumValueLength();
+}
+
+int QLowEnergyCharacteristicData_Properties(void* ptr)
+{
+	return static_cast<QLowEnergyCharacteristicData*>(ptr)->properties();
+}
+
+void QLowEnergyCharacteristicData_SetProperties(void* ptr, int properties)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->setProperties(static_cast<QLowEnergyCharacteristic::PropertyType>(properties));
+}
+
+void QLowEnergyCharacteristicData_SetUuid(void* ptr, void* uuid)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->setUuid(*static_cast<QBluetoothUuid*>(uuid));
+}
+
+void QLowEnergyCharacteristicData_SetValue(void* ptr, char* value)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->setValue(QByteArray(value));
+}
+
+void QLowEnergyCharacteristicData_SetValueLength(void* ptr, int minimum, int maximum)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->setValueLength(minimum, maximum);
+}
+
+void QLowEnergyCharacteristicData_Swap(void* ptr, void* other)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->swap(*static_cast<QLowEnergyCharacteristicData*>(other));
+}
+
+void* QLowEnergyCharacteristicData_Uuid(void* ptr)
+{
+	return new QBluetoothUuid(static_cast<QLowEnergyCharacteristicData*>(ptr)->uuid());
+}
+
+char* QLowEnergyCharacteristicData_Value(void* ptr)
+{
+	return QString(static_cast<QLowEnergyCharacteristicData*>(ptr)->value()).toUtf8().data();
+}
+
+void QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(void* ptr)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->~QLowEnergyCharacteristicData();
+}
+
+void* QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters()
+{
+	return new QLowEnergyConnectionParameters();
+}
+
+void* QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters2(void* other)
+{
+	return new QLowEnergyConnectionParameters(*static_cast<QLowEnergyConnectionParameters*>(other));
+}
+
+int QLowEnergyConnectionParameters_Latency(void* ptr)
+{
+	return static_cast<QLowEnergyConnectionParameters*>(ptr)->latency();
+}
+
+void QLowEnergyConnectionParameters_SetLatency(void* ptr, int latency)
+{
+	static_cast<QLowEnergyConnectionParameters*>(ptr)->setLatency(latency);
+}
+
+void QLowEnergyConnectionParameters_SetSupervisionTimeout(void* ptr, int timeout)
+{
+	static_cast<QLowEnergyConnectionParameters*>(ptr)->setSupervisionTimeout(timeout);
+}
+
+int QLowEnergyConnectionParameters_SupervisionTimeout(void* ptr)
+{
+	return static_cast<QLowEnergyConnectionParameters*>(ptr)->supervisionTimeout();
+}
+
+void QLowEnergyConnectionParameters_Swap(void* ptr, void* other)
+{
+	static_cast<QLowEnergyConnectionParameters*>(ptr)->swap(*static_cast<QLowEnergyConnectionParameters*>(other));
+}
+
+void QLowEnergyConnectionParameters_DestroyQLowEnergyConnectionParameters(void* ptr)
+{
+	static_cast<QLowEnergyConnectionParameters*>(ptr)->~QLowEnergyConnectionParameters();
+}
+
 class MyQLowEnergyController: public QLowEnergyController
 {
 public:
-	MyQLowEnergyController(const QBluetoothDeviceInfo &remoteDeviceInfo, QObject *parent) : QLowEnergyController(remoteDeviceInfo, parent) {};
 	void Signal_Connected() { callbackQLowEnergyController_Connected(this, this->objectName().toUtf8().data()); };
+	void Signal_ConnectionUpdated(const QLowEnergyConnectionParameters & newParameters) { callbackQLowEnergyController_ConnectionUpdated(this, this->objectName().toUtf8().data(), new QLowEnergyConnectionParameters(newParameters)); };
 	void Signal_Disconnected() { callbackQLowEnergyController_Disconnected(this, this->objectName().toUtf8().data()); };
 	void Signal_DiscoveryFinished() { callbackQLowEnergyController_DiscoveryFinished(this, this->objectName().toUtf8().data()); };
 	void Signal_Error2(QLowEnergyController::Error newError) { callbackQLowEnergyController_Error2(this, this->objectName().toUtf8().data(), newError); };
@@ -2190,6 +2421,21 @@ void QLowEnergyController_DisconnectConnected(void* ptr)
 void QLowEnergyController_Connected(void* ptr)
 {
 	static_cast<QLowEnergyController*>(ptr)->connected();
+}
+
+void QLowEnergyController_ConnectConnectionUpdated(void* ptr)
+{
+	QObject::connect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(const QLowEnergyConnectionParameters &)>(&QLowEnergyController::connectionUpdated), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(const QLowEnergyConnectionParameters &)>(&MyQLowEnergyController::Signal_ConnectionUpdated));
+}
+
+void QLowEnergyController_DisconnectConnectionUpdated(void* ptr)
+{
+	QObject::disconnect(static_cast<QLowEnergyController*>(ptr), static_cast<void (QLowEnergyController::*)(const QLowEnergyConnectionParameters &)>(&QLowEnergyController::connectionUpdated), static_cast<MyQLowEnergyController*>(ptr), static_cast<void (MyQLowEnergyController::*)(const QLowEnergyConnectionParameters &)>(&MyQLowEnergyController::Signal_ConnectionUpdated));
+}
+
+void QLowEnergyController_ConnectionUpdated(void* ptr, void* newParameters)
+{
+	static_cast<QLowEnergyController*>(ptr)->connectionUpdated(*static_cast<QLowEnergyConnectionParameters*>(newParameters));
 }
 
 void QLowEnergyController_ConnectDisconnected(void* ptr)
@@ -2267,14 +2513,24 @@ void QLowEnergyController_StateChanged(void* ptr, int state)
 	static_cast<QLowEnergyController*>(ptr)->stateChanged(static_cast<QLowEnergyController::ControllerState>(state));
 }
 
-void* QLowEnergyController_NewQLowEnergyController(void* remoteDeviceInfo, void* parent)
+void* QLowEnergyController_AddService(void* ptr, void* service, void* parent)
 {
-	return new MyQLowEnergyController(*static_cast<QBluetoothDeviceInfo*>(remoteDeviceInfo), static_cast<QObject*>(parent));
+	return static_cast<QLowEnergyController*>(ptr)->addService(*static_cast<QLowEnergyServiceData*>(service), static_cast<QObject*>(parent));
 }
 
 void QLowEnergyController_ConnectToDevice(void* ptr)
 {
 	static_cast<QLowEnergyController*>(ptr)->connectToDevice();
+}
+
+void* QLowEnergyController_QLowEnergyController_CreateCentral(void* remoteDevice, void* parent)
+{
+	return QLowEnergyController::createCentral(*static_cast<QBluetoothDeviceInfo*>(remoteDevice), static_cast<QObject*>(parent));
+}
+
+void* QLowEnergyController_QLowEnergyController_CreatePeripheral(void* parent)
+{
+	return QLowEnergyController::createPeripheral(static_cast<QObject*>(parent));
 }
 
 void* QLowEnergyController_CreateServiceObject(void* ptr, void* serviceUuid, void* parent)
@@ -2322,14 +2578,34 @@ char* QLowEnergyController_RemoteName(void* ptr)
 	return static_cast<QLowEnergyController*>(ptr)->remoteName().toUtf8().data();
 }
 
+void QLowEnergyController_RequestConnectionUpdate(void* ptr, void* parameters)
+{
+	static_cast<QLowEnergyController*>(ptr)->requestConnectionUpdate(*static_cast<QLowEnergyConnectionParameters*>(parameters));
+}
+
+int QLowEnergyController_Role(void* ptr)
+{
+	return static_cast<QLowEnergyController*>(ptr)->role();
+}
+
 void QLowEnergyController_SetRemoteAddressType(void* ptr, int ty)
 {
 	static_cast<QLowEnergyController*>(ptr)->setRemoteAddressType(static_cast<QLowEnergyController::RemoteAddressType>(ty));
 }
 
+void QLowEnergyController_StartAdvertising(void* ptr, void* parameters, void* advertisingData, void* scanResponseData)
+{
+	static_cast<QLowEnergyController*>(ptr)->startAdvertising(*static_cast<QLowEnergyAdvertisingParameters*>(parameters), *static_cast<QLowEnergyAdvertisingData*>(advertisingData), *static_cast<QLowEnergyAdvertisingData*>(scanResponseData));
+}
+
 int QLowEnergyController_State(void* ptr)
 {
 	return static_cast<QLowEnergyController*>(ptr)->state();
+}
+
+void QLowEnergyController_StopAdvertising(void* ptr)
+{
+	static_cast<QLowEnergyController*>(ptr)->stopAdvertising();
 }
 
 void QLowEnergyController_DestroyQLowEnergyController(void* ptr)
@@ -2465,6 +2741,66 @@ char* QLowEnergyDescriptor_Value(void* ptr)
 void QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(void* ptr)
 {
 	static_cast<QLowEnergyDescriptor*>(ptr)->~QLowEnergyDescriptor();
+}
+
+void* QLowEnergyDescriptorData_NewQLowEnergyDescriptorData()
+{
+	return new QLowEnergyDescriptorData();
+}
+
+void* QLowEnergyDescriptorData_NewQLowEnergyDescriptorData2(void* uuid, char* value)
+{
+	return new QLowEnergyDescriptorData(*static_cast<QBluetoothUuid*>(uuid), QByteArray(value));
+}
+
+void* QLowEnergyDescriptorData_NewQLowEnergyDescriptorData3(void* other)
+{
+	return new QLowEnergyDescriptorData(*static_cast<QLowEnergyDescriptorData*>(other));
+}
+
+int QLowEnergyDescriptorData_IsReadable(void* ptr)
+{
+	return static_cast<QLowEnergyDescriptorData*>(ptr)->isReadable();
+}
+
+int QLowEnergyDescriptorData_IsValid(void* ptr)
+{
+	return static_cast<QLowEnergyDescriptorData*>(ptr)->isValid();
+}
+
+int QLowEnergyDescriptorData_IsWritable(void* ptr)
+{
+	return static_cast<QLowEnergyDescriptorData*>(ptr)->isWritable();
+}
+
+void QLowEnergyDescriptorData_SetUuid(void* ptr, void* uuid)
+{
+	static_cast<QLowEnergyDescriptorData*>(ptr)->setUuid(*static_cast<QBluetoothUuid*>(uuid));
+}
+
+void QLowEnergyDescriptorData_SetValue(void* ptr, char* value)
+{
+	static_cast<QLowEnergyDescriptorData*>(ptr)->setValue(QByteArray(value));
+}
+
+void QLowEnergyDescriptorData_Swap(void* ptr, void* other)
+{
+	static_cast<QLowEnergyDescriptorData*>(ptr)->swap(*static_cast<QLowEnergyDescriptorData*>(other));
+}
+
+void* QLowEnergyDescriptorData_Uuid(void* ptr)
+{
+	return new QBluetoothUuid(static_cast<QLowEnergyDescriptorData*>(ptr)->uuid());
+}
+
+char* QLowEnergyDescriptorData_Value(void* ptr)
+{
+	return QString(static_cast<QLowEnergyDescriptorData*>(ptr)->value()).toUtf8().data();
+}
+
+void QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(void* ptr)
+{
+	static_cast<QLowEnergyDescriptorData*>(ptr)->~QLowEnergyDescriptorData();
 }
 
 class MyQLowEnergyService: public QLowEnergyService
@@ -2751,5 +3087,60 @@ void* QLowEnergyService_MetaObject(void* ptr)
 void* QLowEnergyService_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QLowEnergyService*>(ptr)->QLowEnergyService::metaObject());
+}
+
+void* QLowEnergyServiceData_NewQLowEnergyServiceData()
+{
+	return new QLowEnergyServiceData();
+}
+
+void* QLowEnergyServiceData_NewQLowEnergyServiceData2(void* other)
+{
+	return new QLowEnergyServiceData(*static_cast<QLowEnergyServiceData*>(other));
+}
+
+void QLowEnergyServiceData_AddCharacteristic(void* ptr, void* characteristic)
+{
+	static_cast<QLowEnergyServiceData*>(ptr)->addCharacteristic(*static_cast<QLowEnergyCharacteristicData*>(characteristic));
+}
+
+void QLowEnergyServiceData_AddIncludedService(void* ptr, void* service)
+{
+	static_cast<QLowEnergyServiceData*>(ptr)->addIncludedService(static_cast<QLowEnergyService*>(service));
+}
+
+int QLowEnergyServiceData_IsValid(void* ptr)
+{
+	return static_cast<QLowEnergyServiceData*>(ptr)->isValid();
+}
+
+void QLowEnergyServiceData_SetType(void* ptr, int ty)
+{
+	static_cast<QLowEnergyServiceData*>(ptr)->setType(static_cast<QLowEnergyServiceData::ServiceType>(ty));
+}
+
+void QLowEnergyServiceData_SetUuid(void* ptr, void* uuid)
+{
+	static_cast<QLowEnergyServiceData*>(ptr)->setUuid(*static_cast<QBluetoothUuid*>(uuid));
+}
+
+void QLowEnergyServiceData_Swap(void* ptr, void* other)
+{
+	static_cast<QLowEnergyServiceData*>(ptr)->swap(*static_cast<QLowEnergyServiceData*>(other));
+}
+
+int QLowEnergyServiceData_Type(void* ptr)
+{
+	return static_cast<QLowEnergyServiceData*>(ptr)->type();
+}
+
+void* QLowEnergyServiceData_Uuid(void* ptr)
+{
+	return new QBluetoothUuid(static_cast<QLowEnergyServiceData*>(ptr)->uuid());
+}
+
+void QLowEnergyServiceData_DestroyQLowEnergyServiceData(void* ptr)
+{
+	static_cast<QLowEnergyServiceData*>(ptr)->~QLowEnergyServiceData();
 }
 

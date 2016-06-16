@@ -315,6 +315,7 @@ void* QQmlExtensionPlugin_MetaObject(void* ptr);
 void* QQmlExtensionPlugin_MetaObjectDefault(void* ptr);
 void* QQmlFileSelector_NewQQmlFileSelector(void* engine, void* parent);
 void* QQmlFileSelector_QQmlFileSelector_Get(void* engine);
+void* QQmlFileSelector_Selector(void* ptr);
 void QQmlFileSelector_SetExtraSelectors(void* ptr, char* strin);
 void QQmlFileSelector_SetExtraSelectors2(void* ptr, char* strin);
 void QQmlFileSelector_SetSelector(void* ptr, void* selector);

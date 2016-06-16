@@ -51,6 +51,7 @@ void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod3(void* clazz, c
 void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString3(void* clazz, char* methodName);
 void* QAndroidJniObject_QAndroidJniObject_CallStaticObjectMethod4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
 void* QAndroidJniObject_QAndroidJniObject_CallStaticMethodString4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v);
+void* QAndroidJniObject_QAndroidJniObject_FromLocalRef(void* localRef);
 void* QAndroidJniObject_QAndroidJniObject_FromString(char* stri);
 int QAndroidJniObject_GetFieldInt(void* ptr, char* fieldName);
 int QAndroidJniObject_GetFieldBoolean(void* ptr, char* fieldName);

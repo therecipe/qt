@@ -1722,6 +1722,11 @@ void* QQmlFileSelector_QQmlFileSelector_Get(void* engine)
 	return QQmlFileSelector::get(static_cast<QQmlEngine*>(engine));
 }
 
+void* QQmlFileSelector_Selector(void* ptr)
+{
+	return static_cast<QQmlFileSelector*>(ptr)->selector();
+}
+
 void QQmlFileSelector_SetExtraSelectors(void* ptr, char* strin)
 {
 	static_cast<QQmlFileSelector*>(ptr)->setExtraSelectors(QString(strin).split("|", QString::SkipEmptyParts));

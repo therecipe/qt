@@ -6163,6 +6163,11 @@ void* QCameraImageCaptureControl_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QCameraImageCaptureControl*>(ptr)->QCameraImageCaptureControl::metaObject());
 }
 
+double QCameraImageProcessing_Brightness(void* ptr)
+{
+	return static_cast<double>(static_cast<QCameraImageProcessing*>(ptr)->brightness());
+}
+
 int QCameraImageProcessing_ColorFilter(void* ptr)
 {
 	return static_cast<QCameraImageProcessing*>(ptr)->colorFilter();
@@ -6201,6 +6206,11 @@ double QCameraImageProcessing_ManualWhiteBalance(void* ptr)
 double QCameraImageProcessing_Saturation(void* ptr)
 {
 	return static_cast<double>(static_cast<QCameraImageProcessing*>(ptr)->saturation());
+}
+
+void QCameraImageProcessing_SetBrightness(void* ptr, double value)
+{
+	static_cast<QCameraImageProcessing*>(ptr)->setBrightness(static_cast<double>(value));
 }
 
 void QCameraImageProcessing_SetColorFilter(void* ptr, int filter)
@@ -11416,6 +11426,11 @@ void QMediaPlaylist_DisconnectMediaRemoved(void* ptr)
 void QMediaPlaylist_MediaRemoved(void* ptr, int start, int end)
 {
 	static_cast<QMediaPlaylist*>(ptr)->mediaRemoved(start, end);
+}
+
+int QMediaPlaylist_MoveMedia(void* ptr, int from, int to)
+{
+	return static_cast<QMediaPlaylist*>(ptr)->moveMedia(from, to);
 }
 
 void QMediaPlaylist_Next(void* ptr)
