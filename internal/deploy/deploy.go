@@ -841,7 +841,7 @@ func deploy() {
 
 					runCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), "deploy.qml")
 					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "platforms", "libqxcb.so"), filepath.Join(depPath, "platforms", "libqxcb.so")), "deploy.qxcb")
-					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "platformthemes", "libqgtk2.so"), filepath.Join(depPath, "platformthemes", "libqgtk2.so")), "deploy.qgtk2")
+					//runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "platformthemes", "libqgtk2.so"), filepath.Join(depPath, "platformthemes", "libqgtk2.so")), "deploy.qgtk2") //http://lists.qt-project.org/pipermail/development/2016-April/025626.html
 					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "xcbglintegrations", "libqxcb-glx-integration.so"), filepath.Join(depPath, "xcbglintegrations", "libqxcb-glx-integration.so")), "deploy.qxcb-glx-integration")
 				}
 
