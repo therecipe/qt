@@ -129,9 +129,9 @@
 1. Set up the desktop version
 
 2. Install VirtualBox
-	* http://download.virtualbox.org/virtualbox/5.0.20/VirtualBox-5.0.20-106931-Win.exe
-	* http://download.virtualbox.org/virtualbox/5.0.20/VirtualBox-5.0.20-106931-OSX.dmg
-	* http://download.virtualbox.org/virtualbox/5.0.20/VirtualBox-5.0.20-106931-Linux_amd64.run
+	* http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0.22-108108-Win.exe
+	* http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0.22-108108-OSX.dmg
+	* http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0.22-108108-Linux_amd64.run
 
 3. Install the Sailfish OS SDK in `C:\SailfishOS\` or `/opt/SailfishOS/`
 	* http://releases.sailfishos.org/sdk/installers/1602/SailfishOSSDK-Beta-1602-Qt5-windows-offline.exe

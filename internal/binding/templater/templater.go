@@ -30,7 +30,7 @@ func GenModule(name string) {
 		//prepare
 		utils.MakeFolder(utils.GetQtPkgPath(pkgName))
 		CopyCgo(name)
-		if name == "AndroidExtras" {
+		if name == "AndroidExtras" && !Minimal {
 			utils.Save(utils.GetQtPkgPath(pkgName, "utils-androidextras_android.go"), utils.Load(utils.GetQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
 		}
 		manualWeakLink("Qt" + name)

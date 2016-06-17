@@ -407,7 +407,7 @@ func cgoIos(module string) string {
 			if module != "Quick" {
 				tmp += " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator"
 			}
-			tmp += " -L/usr/local/Qt5.7.0/5.7/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_server_iphonesimulator -lqmldbg_tcp_iphonesimulator"
+			tmp += " -L/usr/local/Qt5.7.0/5.7/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator"
 		}
 
 	case "Purchasing":
@@ -420,7 +420,7 @@ func cgoIos(module string) string {
 		tmp += " -lQt5OpenGL_iphonesimulator"
 		tmp += " -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest"
 		tmp += " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator"
-		tmp += " -L/usr/local/Qt5.7.0/5.7/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_server_iphonesimulator -lqmldbg_tcp_iphonesimulator"
+		tmp += " -L/usr/local/Qt5.7.0/5.7/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator"
 
 		tmp += " -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQuick.2 -lqtquick2plugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQuick/Layouts -lqquicklayoutsplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQuick/Dialogs -ldialogplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQuick/Controls -lqtquickcontrolsplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/Qt/labs/folderlistmodel -lqmlfolderlistmodelplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/Qt/labs/settings -lqmlsettingsplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQuick/Dialogs/Private -ldialogsprivateplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQuick/Window.2 -lwindowplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQml/Models.2 -lmodelsplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtQuick/Extras -lqtquickextrasplugin_iphonesimulator -L/usr/local/Qt5.7.0/5.7/ios/qml/QtGraphicalEffects/private -lqtgraphicaleffectsprivate_iphonesimulator"
 		tmp += " -L/usr/local/Qt5.7.0/5.7/ios/qml/QtMultimedia -ldeclarative_multimedia_iphonesimulator -lQt5MultimediaQuick_p_iphonesimulator"
@@ -556,8 +556,9 @@ func GetiOSClang(buildTarget, buildARM string) []string {
 	tmp = strings.Split(tmp, "/*")[1]
 	tmp = strings.Split(tmp, "*/")[0]
 
-	tmp = strings.Replace(tmp, "#cgo LDFLAGS: ", "", -1)
+	tmp = strings.Replace(tmp, "#cgo CFLAGS: ", "", -1)
 	tmp = strings.Replace(tmp, "#cgo CXXFLAGS: ", "", -1)
+	tmp = strings.Replace(tmp, "#cgo LDFLAGS: ", "", -1)
 	tmp = strings.Replace(tmp, "\n", " ", -1)
 
 	if buildTarget == "ios" {
