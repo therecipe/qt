@@ -42,6 +42,7 @@ func main() {
 		filepath.Join("uitools", "calculator")} {
 
 		if (buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && (!strings.Contains(example, "quick") || (example == filepath.Join("quick", "bridge") || example == filepath.Join("quick", "dialog"))) {
+		} else if !(buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && example == filepath.Join("quick", "sailfish") {
 		} else {
 
 			var before = time.Now()

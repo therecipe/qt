@@ -1,3 +1,5 @@
+// +build android
+
 package androidextras
 
 //#include "androidextras_android.h"

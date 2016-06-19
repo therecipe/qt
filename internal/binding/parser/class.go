@@ -311,7 +311,7 @@ func (c *Class) fixBases() {
 			}
 		}
 
-		if !found {
+		if !found && c.Name != "SailfishApp" {
 			fmt.Println("HEADER FILE NOT FOUND:", c.Name, c.Module)
 		}
 
@@ -439,6 +439,11 @@ var LibDeps = map[string][]string{
 	"DataVisualization": []string{"Core", "Gui"},
 	"Charts":            []string{"Core", "Gui", "Widgets"},
 	"Quick2DRenderer":   []string{"Core"},
+
+	"Sailfish": []string{"Core"},
+
+	MOC:         make([]string, 0),
+	"build_ios": []string{"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},
 }
 
 func (c *Class) hasFunctionWithName(name string) bool {

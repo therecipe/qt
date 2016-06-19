@@ -32,9 +32,19 @@ extern "C" {
 					return "// +build minimal"
 				}
 
-			case module == parser.MOC, module == "QtAndroidExtras":
+			case module == parser.MOC:
 				{
 					return ""
+				}
+
+			case module == "QtAndroidExtras":
+				{
+					return "// +build android"
+				}
+
+			case module == "QtSailfish":
+				{
+					return "// +build sailfish"
 				}
 
 			default:

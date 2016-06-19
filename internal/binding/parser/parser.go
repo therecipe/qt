@@ -39,6 +39,12 @@ var (
 
 func GetModule(s string) *Module {
 
+	if s == "sailfish" {
+		var m = sailfishModule()
+		m.Prepare()
+		return m
+	}
+
 	var m = new(Module)
 
 	switch runtime.GOOS {

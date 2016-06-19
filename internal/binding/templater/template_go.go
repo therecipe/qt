@@ -292,7 +292,10 @@ import (
 			switch {
 			case stub:
 				{
-					return "// +build !android"
+					if module == "androidextras" {
+						return "// +build !android"
+					}
+					return "// +build !sailfish"
 				}
 
 			case Minimal:
@@ -300,9 +303,19 @@ import (
 					return "// +build minimal"
 				}
 
-			case module == parser.MOC, module == "androidextras":
+			case module == parser.MOC:
 				{
 					return ""
+				}
+
+			case module == "androidextras":
+				{
+					return "// +build android"
+				}
+
+			case module == "sailfish":
+				{
+					return "// +build sailfish"
 				}
 
 			default:
@@ -333,6 +346,11 @@ import (
 			case "androidextras":
 				{
 					return fmt.Sprintf("%v_android", module)
+				}
+
+			case "sailfish":
+				{
+					return fmt.Sprintf("%v_sailfish", module)
 				}
 
 			default:

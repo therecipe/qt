@@ -315,9 +315,19 @@ func preambleCpp(module string, input []byte) []byte {
 					return "// +build minimal"
 				}
 
-			case module == parser.MOC, module == "QtAndroidExtras":
+			case module == parser.MOC:
 				{
 					return ""
+				}
+
+			case module == "QtAndroidExtras":
+				{
+					return "// +build android"
+				}
+
+			case module == "QtSailfish":
+				{
+					return "// +build sailfish"
 				}
 
 			default:
@@ -339,6 +349,11 @@ func preambleCpp(module string, input []byte) []byte {
 					return fmt.Sprintf("%v_android", shortModule(module))
 				}
 
+			case "QtSailfish":
+				{
+					return fmt.Sprintf("%v_sailfish", shortModule(module))
+				}
+
 			default:
 				{
 					return shortModule(module)
@@ -356,7 +371,11 @@ func preambleCpp(module string, input []byte) []byte {
 	sort.Stable(sort.StringSlice(classes))
 
 	for _, class := range classes {
-		fmt.Fprintf(bb, "#include <%v>\n", class)
+		if class == "SailfishApp" {
+			fmt.Fprintln(bb, "#include <sailfishapp.h>")
+		} else {
+			fmt.Fprintf(bb, "#include <%v>\n", class)
+		}
 	}
 	fmt.Fprint(bb, "\n")
 

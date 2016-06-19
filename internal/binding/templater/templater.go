@@ -20,6 +20,9 @@ func GenModule(name string) {
 		if name == "AndroidExtras" {
 			suffix = "_android"
 		}
+		if name == "Sailfish" {
+			suffix = "_sailfish"
+		}
 
 		//cleanup
 		if !Minimal {
@@ -46,7 +49,7 @@ func GenModule(name string) {
 
 		//generate
 		if Minimal {
-			if name != "AndroidExtras" {
+			if !(name == "AndroidExtras" || name == "Sailfish") {
 				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".cpp"), CppTemplate("Qt"+name))
 				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".h"), HTemplate("Qt"+name))
 			}
@@ -55,18 +58,15 @@ func GenModule(name string) {
 			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
 		}
 
-		if name == "AndroidExtras" {
-			if !Minimal {
-				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+name, false))
-			}
-		}
-
 		if Minimal {
-			if name != "AndroidExtras" {
-				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal.go"), GoTemplate("Qt"+name, name == "AndroidExtras"))
+			if !(name == "AndroidExtras" || name == "Sailfish") {
+				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal.go"), GoTemplate("Qt"+name, false))
 			}
 		} else {
-			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+name, name == "AndroidExtras"))
+			if name == "AndroidExtras" || name == "Sailfish" {
+				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+name, false))
+			}
+			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+name, name == "AndroidExtras" || name == "Sailfish"))
 		}
 	}
 }

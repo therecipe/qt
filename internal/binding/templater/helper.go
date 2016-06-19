@@ -216,6 +216,7 @@ var Build = map[string]bool{
 	"DataVisualization": false,
 	"Charts":            false,
 	"Quick2DRenderer":   false,
+	"Sailfish":          false,
 }
 
 var Libs = []string{
@@ -262,6 +263,8 @@ var Libs = []string{
 	//"DataVisualization", //GPLv3
 	//"Charts",            //GPLv3
 	//"Quick2DRenderer",   //GPLv3
+
+	"Sailfish",
 }
 
 func GetLibs() []string {
@@ -324,6 +327,8 @@ var LibDeps = map[string][]string{
 	"DataVisualization": []string{"Core", "Gui"},
 	"Charts":            []string{"Core", "Gui", "Widgets"},
 	"Quick2DRenderer":   []string{"Core"},
+
+	"Sailfish": []string{"Core"},
 
 	parser.MOC:  make([]string, 0),
 	"build_ios": []string{"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},

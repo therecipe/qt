@@ -21,7 +21,7 @@ func CopyCgo(module string) {
 		return
 	}
 
-	if !strings.Contains(module, "droid") {
+	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module)
 		cgoWindows(module)
 		cgoLinux(module)
@@ -32,15 +32,21 @@ func CopyCgo(module string) {
 		}
 	}
 
-	switch runtime.GOOS {
-	case "darwin", "linux":
-		{
-			cgoAndroidOnDarwinAndLinux(module)
-		}
+	if strings.Contains(module, "fish") {
+		cgoSailfish(module)
+	}
 
-	case "windows":
-		{
-			cgoAndroidOnWindows(module)
+	if !strings.Contains(module, "fish") {
+		switch runtime.GOOS {
+		case "darwin", "linux":
+			{
+				cgoAndroidOnDarwinAndLinux(module)
+			}
+
+		case "windows":
+			{
+				cgoAndroidOnWindows(module)
+			}
 		}
 	}
 }

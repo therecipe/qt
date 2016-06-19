@@ -280,6 +280,21 @@ func cppFunctionBody(function *parser.Function) string {
 
 	case parser.PLAIN, parser.DESTRUCTOR:
 		{
+			if function.Fullname == "SailfishApp::application" || function.Fullname == "SailfishApp::main" {
+				return fmt.Sprintf(`	QList<QByteArray> aList = QByteArray(argv).split('|');
+	char *argvs[argc];
+	static int argcs = argc;
+	for (int i = 0; i < argc; i++)
+	argvs[i] = aList[i].data();
+
+	return %v(%v);`,
+
+					function.Fullname,
+
+					converter.CppInputParameters(function),
+				)
+			}
+
 			return fmt.Sprintf("\t%v%v;",
 
 				func() string {
