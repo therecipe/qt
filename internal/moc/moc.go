@@ -57,7 +57,16 @@ func main() {
 
 func moc(appPath string) {
 
-	var module = &parser.Module{Project: "main", Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
+	for _, name := range []string{"moc.h", "moc.go", "moc.cpp", "moc_moc.h",
+		"moc_cgo_windows_386.go", "moc_cgo_linux_arm.go", "moc_cgo_linux_amd64.go", "moc_cgo_linux_386.go",
+		"moc_cgo_darwin_arm64.go", "moc_cgo_darwin_arm.go", "moc_cgo_darwin_arm.go", "moc_cgo_darwin_amd64.go",
+		"moc_cgo_darwin_386.go", "moc_cgo_android_arm.go"} {
+		if utils.Exists(filepath.Join(appPath, name)) {
+			utils.RemoveAll(filepath.Join(appPath, name))
+		}
+	}
+
+	var module = &parser.Module{Project: parser.MOC, Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
 
 	var walkFunc = func(path string, info os.FileInfo, err error) error {
 		if !strings.HasPrefix(info.Name(), "moc") && strings.HasSuffix(info.Name(), ".go") && filepath.Dir(path) == appPath && !info.IsDir() {
@@ -84,19 +93,23 @@ func moc(appPath string) {
 					for _, s := range typeDecl.Specs {
 						if typeSpec, ok := s.(*ast.TypeSpec); ok {
 
-							var class = &parser.Class{Access: "public", Module: "main", Name: typeSpec.Name.String(), Status: "public", Functions: make([]*parser.Function, 0)}
+							var (
+								class     = &parser.Class{Access: "public", Module: parser.MOC, Name: typeSpec.Name.String(), Status: "public", Functions: make([]*parser.Function, 0)}
+								skipClass = true
+							)
 
 							if structDecl, ok := typeSpec.Type.(*ast.StructType); ok {
 								for _, field := range structDecl.Fields.List {
 
 									var fieldValue = string(src[field.Pos()-1 : field.End()-1])
 
-									if !strings.Contains(fieldValue, " ") && fieldValue != "" {
+									if !strings.Contains(fieldValue, " ") && fieldValue != "" && class.Bases == "" {
 										if strings.Contains(fieldValue, ".") {
 											class.Bases = strings.Split(fieldValue, ".")[1]
 										} else {
-											class.Bases = strings.TrimPrefix(fieldValue, "*")
+											class.Bases = fieldValue
 										}
+										skipClass = strings.HasPrefix(fieldValue, "*")
 									}
 
 									for _ = range field.Names {
@@ -133,7 +146,9 @@ func moc(appPath string) {
 								}
 							}
 
-							module.Namespace.Classes = append(module.Namespace.Classes, class)
+							if !skipClass {
+								module.Namespace.Classes = append(module.Namespace.Classes, class)
+							}
 						}
 					}
 				}
@@ -157,7 +172,7 @@ func moc(appPath string) {
 		module.Prepare()
 
 		for _, c := range parser.ClassMap {
-			if c.Module == "main" {
+			if c.Module == parser.MOC {
 				for _, f := range c.Functions {
 					for _, p := range f.Parameters {
 						p.Value = getCppTypeFromGoType(p.Value)
@@ -191,49 +206,58 @@ func moc(appPath string) {
 		}
 
 		for _, c := range parser.ClassMap {
-			if c.Module == "main" {
+			if c.Module == parser.MOC {
 				if !c.IsQObjectSubClass() {
 					delete(parser.ClassMap, c.Name)
 				}
 			}
 		}
 
-		utils.SaveBytes(filepath.Join(appPath, "moc.cpp"), templater.CppTemplate("main"))
-		utils.SaveBytes(filepath.Join(appPath, "moc.h"), templater.HTemplate("main"))
-		utils.SaveBytes(filepath.Join(appPath, "moc.go"), templater.GoTemplate("main", false))
-
-		var mocPath string
-
-		switch runtime.GOOS {
-		case "darwin":
-			{
-				mocPath = "/usr/local/Qt5.7.0/5.7/clang_64/bin/moc"
-			}
-
-		case "linux":
-			{
-				mocPath = "/usr/local/Qt5.7.0/5.7/gcc_64/bin/moc"
-			}
-
-		case "windows":
-			{
-				mocPath = "C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32\\bin\\moc.exe"
+		var classCount int
+		for _, class := range parser.ClassMap {
+			if class.Module == parser.MOC {
+				classCount++
 			}
 		}
 
-		var moc = exec.Command(mocPath)
-		moc.Args = append(moc.Args,
-			filepath.Join(appPath, "moc.cpp"),
-			"-o", filepath.Join(appPath, "moc_moc.h"))
-		moc.Dir = filepath.Join(appPath)
-		runCmd(moc, "moc.moc")
+		if classCount > 0 {
+			utils.SaveBytes(filepath.Join(appPath, "moc.cpp"), templater.CppTemplate(parser.MOC))
+			utils.SaveBytes(filepath.Join(appPath, "moc.h"), templater.HTemplate(parser.MOC))
+			utils.SaveBytes(filepath.Join(appPath, "moc.go"), templater.GoTemplate(parser.MOC, false))
 
-		var gofmt = exec.Command("go", "fmt")
-		gofmt.Dir = appPath
-		runCmd(gofmt, "moc.fmt")
+			var mocPath string
 
-		templater.MocAppPath = appPath
-		templater.CopyCgo("main")
+			switch runtime.GOOS {
+			case "darwin":
+				{
+					mocPath = "/usr/local/Qt5.7.0/5.7/clang_64/bin/moc"
+				}
+
+			case "linux":
+				{
+					mocPath = "/usr/local/Qt5.7.0/5.7/gcc_64/bin/moc"
+				}
+
+			case "windows":
+				{
+					mocPath = "C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32\\bin\\moc.exe"
+				}
+			}
+
+			var moc = exec.Command(mocPath)
+			moc.Args = append(moc.Args,
+				filepath.Join(appPath, "moc.cpp"),
+				"-o", filepath.Join(appPath, "moc_moc.h"))
+			moc.Dir = filepath.Join(appPath)
+			runCmd(moc, "moc.moc")
+
+			var gofmt = exec.Command("go", "fmt")
+			gofmt.Dir = appPath
+			runCmd(gofmt, "moc.fmt")
+
+			templater.MocAppPath = appPath
+			templater.CopyCgo(parser.MOC)
+		}
 	}
 }
 
