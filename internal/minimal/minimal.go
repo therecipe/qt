@@ -30,7 +30,7 @@ func Minimal(path string) {
 				fmt.Println("minimal.parseFile", errParse)
 			} else {
 				for _, i := range pFile.Imports {
-					if !strings.Contains(i.Path.Value, "github.com/therecipe/qt/") {
+					if !strings.Contains(i.Path.Value, "github.com/therecipe/qt") {
 						var path = filepath.Join(os.Getenv("GOPATH"), "src", strings.Replace(i.Path.Value, "\"", "", -1))
 						if _, err := ioutil.ReadDir(path); err == nil {
 							if !isImported(imported, path) {

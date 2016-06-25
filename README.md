@@ -90,16 +90,16 @@
 
 3. Install the SDK dependencies with `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
-		* Android SDK Build-tools (23.0.3)
+		* Android SDK Build-tools (24.0.0)
 	* Android 6.0 (API 23)
 		* SDK Platform
 	* Extras (Windows only)
 		* Google USB Driver
 
 4. Install the Android NDK in `C:\android\android-ndk\` or `/opt/android-ndk/`
-	* https://dl.google.com/android/ndk/android-ndk-r10e-windows-x86.exe
-	* https://dl.google.com/android/ndk/android-ndk-r10e-darwin-x86_64.bin
-	* https://dl.google.com/android/ndk/android-ndk-r10e-linux-x86_64.bin
+	* https://dl.google.com/android/repository/android-ndk-r12-windows-x86_64.zip
+	* https://dl.google.com/android/repository/android-ndk-r12-darwin-x86_64.zip
+	* https://dl.google.com/android/repository/android-ndk-r12-linux-x86_64.zip
 
 5. Install Java SE Development Kit (Linux: install in `/opt/jdk/`)
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
