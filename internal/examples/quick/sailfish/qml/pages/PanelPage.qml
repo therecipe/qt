@@ -122,8 +122,11 @@ Page {
                 width: parent.width
                 enabled: !drawer.opened
 
-                PageHeader { title: "Popup Panels" }
+                PageHeader { title: "Panels and sections" }
 
+                SectionHeader {
+                    text: "Panels"
+                }
                 Button {
                     text: controlPanel.open ? "Hide controls" : "Show controls"
                     onClicked: controlPanel.open = !controlPanel.open
@@ -140,6 +143,36 @@ Page {
                     text: "Open drawer"
                     onClicked: drawer.open = true
                     anchors.horizontalCenter: parent.horizontalCenter
+                }
+
+                SectionHeader {
+                    text: "Expanding sections"
+                }
+                ExpandingSectionGroup {
+                    currentIndex: 0
+
+                    Repeater {
+                        model: 5
+
+                        ExpandingSection {
+                            id: section
+
+                            property int sectionIndex: model.index
+                            title: "Section " + (model.index + 1)
+
+                            content.sourceComponent: Column {
+                                width: section.width
+
+                                Repeater {
+                                    model: (section.sectionIndex + 1) * 2
+
+                                    TextSwitch {
+                                        text: "Option " + (model.index + 1)
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

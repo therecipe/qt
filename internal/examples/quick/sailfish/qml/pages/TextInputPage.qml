@@ -219,6 +219,14 @@ Page {
                 placeholderText: "Type multi-line text here"
                 label: "Expanding text area"
             }
+
+            SearchField {
+                width: parent.width
+            }
+
+            PasswordField {
+                width: parent.width
+            }
         }
     }
 }

@@ -29,7 +29,7 @@
 
 ![](internal/screens/sailfish_portrait.png)
 
-[source](https://github.com/therecipe/qt/blob/master/internal/examples/widgets/line_edits/line_edits.go)
+[source](http://github.com/therecipe/qt/blob/master/internal/examples/widgets/line_edits/line_edits.go)
 
 ---
 
@@ -37,15 +37,15 @@
 
 ## Windows / Mac OS X / Linux
 
-1. Install Go >= 1.6.2 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
-	* https://storage.googleapis.com/golang/go1.6.2.windows-amd64.msi
-	* https://storage.googleapis.com/golang/go1.6.2.darwin-amd64.pkg
-	* https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
+1. Install Go >= 1.6.2 and setup a proper [**GOPATH**](http://golang.org/doc/code.html#GOPATH)
+	* http://storage.googleapis.com/golang/go1.6.3.windows-amd64.msi
+	* http://storage.googleapis.com/golang/go1.6.3.darwin-amd64.pkg
+	* http://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz
 
 2. Install Qt 5.7.0 in `C:\Qt\Qt5.7.0\` or `/usr/local/Qt5.7.0/`
-	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
-	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg [(**with iOS**)](https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg)
-	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
+	* http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
+	* http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg [(**with iOS**)](http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg)
+	* http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
 3. Setup the environment
 	* Windows
@@ -84,25 +84,25 @@
 1. Set up the desktop version
 
 2. Install the Android SDK in `C:\android\android-sdk\` or `/opt/android-sdk/`
-	* https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
-	* https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
-	* https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+	* http://dl.google.com/android/android-sdk_r24.4.1-windows.zip
+	* http://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
+	* http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 
 3. Install the SDK dependencies with `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
-		* Android SDK Build-tools (24.0.0)
-	* Android 6.0 (API 23)
+		* Android SDK Build-tools (24.0.1)
+	* Android 7.0 (API 24)
 		* SDK Platform
 	* Extras (Windows only)
 		* Google USB Driver
 
 4. Install the Android NDK in `C:\android\android-ndk\` or `/opt/android-ndk/`
-	* https://dl.google.com/android/repository/android-ndk-r12-windows-x86_64.zip
-	* https://dl.google.com/android/repository/android-ndk-r12-darwin-x86_64.zip
-	* https://dl.google.com/android/repository/android-ndk-r12-linux-x86_64.zip
+	* http://dl.google.com/android/repository/android-ndk-r12b-windows-x86_64.zip
+	* http://dl.google.com/android/repository/android-ndk-r12b-darwin-x86_64.zip
+	* http://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip
 
 5. Install Java SE Development Kit (Linux: install in `/opt/jdk/`)
-	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+	* http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 6. Install and test
 
@@ -129,14 +129,14 @@
 1. Set up the desktop version
 
 2. Install VirtualBox
-	* http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0.22-108108-Win.exe
-	* http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0.22-108108-OSX.dmg
-	* http://download.virtualbox.org/virtualbox/5.0.22/VirtualBox-5.0.22-108108-Linux_amd64.run
+	* http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-Win.exe
+	* http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-OSX.dmg
+	* http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-Linux_amd64.run
 
 3. Install the Sailfish OS SDK in `C:\SailfishOS\` or `/opt/SailfishOS/`
-	* http://releases.sailfishos.org/sdk/installers/1602/SailfishOSSDK-Beta-1602-Qt5-windows-offline.exe
-	* http://releases.sailfishos.org/sdk/installers/1602/SailfishOSSDK-Beta-1602-Qt5-mac-offline.dmg
-	* http://releases.sailfishos.org/sdk/installers/1602/SailfishOSSDK-Beta-1602-Qt5-linux-64-offline.run
+	* http://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
+	* http://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
+	* http://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
 
 4. Install and test
 
@@ -186,6 +186,6 @@ func main() {
 4. You will find the binary file here
 `[GOPATH]/src/qtExample/deploy/[GOOS]/qtExample`
 
-5. Take a look at the [other examples](https://github.com/therecipe/qt/tree/master/internal/examples)
+5. Take a look at the [other examples](http://github.com/therecipe/qt/tree/master/internal/examples)
 
-6. Make yourself familiar with the [qt documentation](https://doc.qt.io/qt-5/classes.html)
+6. Make yourself familiar with the [qt documentation](http://doc.qt.io/qt-5/classes.html)

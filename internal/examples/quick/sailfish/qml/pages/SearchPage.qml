@@ -199,7 +199,7 @@ Page {
 
         // copied under creative commons license from Wikipedia
         // http://en.wikipedia.org/wiki/List_of_sovereign_states
-        property variant countries: ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
+        property var countries: ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola",
             "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
             "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados",
             "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
@@ -243,14 +243,41 @@ Page {
 
         function update() {
             var filteredCountries = countries.filter(function (country) { return country.toLowerCase().indexOf(searchString) !== -1 })
-            while (count > filteredCountries.length) {
-                remove(filteredCountries.length)
+
+            var country
+            var found
+            var i
+
+            // helper objects that can be quickly accessed
+            var filteredCountryObject = new Object
+            for (i = 0; i < filteredCountries.length; ++i) {
+                filteredCountryObject[filteredCountries[i]] = true
             }
-            for (var index = 0; index < filteredCountries.length; index++) {
-                if (index < count) {
-                    setProperty(index, "text", filteredCountries[index])
+            var existingCountryObject = new Object
+            for (i = 0; i < count; ++i) {
+                country = get(i).text
+                existingCountryObject[country] = true
+            }
+
+            // remove items no longer in filtered set
+            i = 0
+            while (i < count) {
+                country = get(i).text
+                found = filteredCountryObject.hasOwnProperty(country)
+                if (!found) {
+                    remove(i)
                 } else {
-                    append({ "text": filteredCountries[index]})
+                    i++
+                }
+            }
+
+            // add new items
+            for (i = 0; i < filteredCountries.length; ++i) {
+                country = filteredCountries[i]
+                found = existingCountryObject.hasOwnProperty(country)
+                if (!found) {
+                    // for simplicity, just adding to end instead of corresponding position in original list
+                    append({ "text": country})
                 }
             }
         }

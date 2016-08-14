@@ -329,8 +329,8 @@ func build() {
 						"GOARCH": "arm",
 						"GOARM":  "7",
 
-						"CC":           "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-gcc.exe",
-						"CXX":          "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-g++.exe",
+						"CC":           "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-gcc.exe",
+						"CXX":          "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-g++.exe",
 						"CGO_ENABLED":  "1",
 						"CGO_CPPFLAGS": "-isystem C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\usr\\include",
 						"CGO_LDFLAGS":  "--sysroot=C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\ -llog",
@@ -528,7 +528,6 @@ func predeploy() {
 			var (
 				qtPrefix      string
 				androidPrefix string
-				ndkhost       string
 				compiler      string
 			)
 
@@ -537,7 +536,6 @@ func predeploy() {
 				{
 					qtPrefix = "/usr/local"
 					androidPrefix = "/opt"
-					ndkhost = runtime.GOOS + "-x86_64"
 					compiler = filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++")
 				}
 
@@ -545,8 +543,7 @@ func predeploy() {
 				{
 					qtPrefix = "C:\\Qt"
 					androidPrefix = "C:\\android"
-					ndkhost = runtime.GOOS
-					compiler = "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows\\bin\\arm-linux-androideabi-g++.exe"
+					compiler = "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-g++.exe"
 				}
 			}
 
@@ -595,12 +592,12 @@ func predeploy() {
 			}{
 				Qt:  filepath.Join(qtPrefix, "Qt5.7.0", "5.7", "android_armv7"),
 				Sdk: filepath.Join(androidPrefix, "android-sdk"),
-				SdkBuildToolsRevision: "24.0.0",
+				SdkBuildToolsRevision: "24.0.1",
 				Ndk:                           filepath.Join(androidPrefix, "android-ndk"),
 				Toolchainprefix:               "arm-linux-androideabi",
 				Toolprefix:                    "arm-linux-androideabi",
 				Toolchainversion:              "4.9",
-				Ndkhost:                       ndkhost,
+				Ndkhost:                       runtime.GOOS + "-x86_64",
 				Targetarchitecture:            "armeabi-v7a",
 				AndroidExtraLibs:              filepath.Join(depPath, "libgo_base.so"),
 				AndroidPackageSourceDirectory: filepath.Join(appPath, "android"),
@@ -612,7 +609,7 @@ func predeploy() {
 				os.Exit(1)
 			}
 
-			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), string(out))
+			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), strings.Replace(string(out), `\\`, `/`, -1))
 		}
 
 	case "ios", "ios-simulator":
@@ -773,7 +770,7 @@ func deploy() {
 				"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 				"--output", filepath.Join(depPath, "build"),
 				"--deployment", "bundled",
-				"--android-platform", "android-23",
+				"--android-platform", "android-24",
 				"--jdk", jdkLib,
 				"--gradle",
 			)
