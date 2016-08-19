@@ -17,7 +17,7 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data) { callbackQAndroidActivityResultReceiver_HandleActivityResult(this, this->objectNameAbs().toUtf8().data(), receiverRequestCode, resultCode, new QAndroidJniObject(data.object())); };
+	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data) { callbackQAndroidActivityResultReceiver_HandleActivityResult(this, this->objectNameAbs().toUtf8().data(), receiverRequestCode, resultCode, const_cast<QAndroidJniObject*>(&data)); };
 };
 
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data)

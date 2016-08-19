@@ -1,3 +1,5 @@
+//author: https://github.com/longlongh4
+
 package main
 
 import (

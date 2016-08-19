@@ -2,12 +2,14 @@
 
 package macextras
 
+//#include <stdlib.h>
 //#include "macextras.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
+	"runtime"
 	"unsafe"
 )
 
@@ -90,7 +92,11 @@ func (ptr *QMacPasteboardMime) CanConvert(mime string, flav string) bool {
 	defer qt.Recovering("QMacPasteboardMime::canConvert")
 
 	if ptr.Pointer() != nil {
-		return C.QMacPasteboardMime_CanConvert(ptr.Pointer(), C.CString(mime), C.CString(flav)) != 0
+		var mimeC = C.CString(mime)
+		defer C.free(unsafe.Pointer(mimeC))
+		var flavC = C.CString(flav)
+		defer C.free(unsafe.Pointer(flavC))
+		return C.QMacPasteboardMime_CanConvert(ptr.Pointer(), mimeC, flavC) != 0
 	}
 	return false
 }
@@ -213,7 +219,9 @@ func (ptr *QMacPasteboardMime) FlavorFor(mime string) string {
 	defer qt.Recovering("QMacPasteboardMime::flavorFor")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMacPasteboardMime_FlavorFor(ptr.Pointer(), C.CString(mime)))
+		var mimeC = C.CString(mime)
+		defer C.free(unsafe.Pointer(mimeC))
+		return C.GoString(C.QMacPasteboardMime_FlavorFor(ptr.Pointer(), mimeC))
 	}
 	return ""
 }
@@ -251,7 +259,9 @@ func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
 	defer qt.Recovering("QMacPasteboardMime::mimeFor")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMacPasteboardMime_MimeFor(ptr.Pointer(), C.CString(flav)))
+		var flavC = C.CString(flav)
+		defer C.free(unsafe.Pointer(flavC))
+		return C.GoString(C.QMacPasteboardMime_MimeFor(ptr.Pointer(), flavC))
 	}
 	return ""
 }
@@ -279,7 +289,9 @@ func (ptr *QMacPasteboardMime) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QMacPasteboardMime::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QMacPasteboardMime_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QMacPasteboardMime_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -339,14 +351,18 @@ func NewQMacToolBar(parent core.QObject_ITF) *QMacToolBar {
 func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
 	defer qt.Recovering("QMacToolBar::QMacToolBar")
 
-	return newQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(C.CString(identifier), core.PointerFromQObject(parent)))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	return newQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(identifierC, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
 	defer qt.Recovering("QMacToolBar::addAllowedItem")
 
 	if ptr.Pointer() != nil {
-		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 	}
 	return nil
 }
@@ -355,7 +371,9 @@ func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarIte
 	defer qt.Recovering("QMacToolBar::addItem")
 
 	if ptr.Pointer() != nil {
-		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), C.CString(text)))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 	}
 	return nil
 }
@@ -918,7 +936,9 @@ func (ptr *QMacToolBarItem) Icon() *gui.QIcon {
 	defer qt.Recovering("QMacToolBarItem::icon")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQIconFromPointer(C.QMacToolBarItem_Icon(ptr.Pointer()))
+		var tmpValue = gui.NewQIconFromPointer(C.QMacToolBarItem_Icon(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		return tmpValue
 	}
 	return nil
 }
@@ -960,7 +980,9 @@ func (ptr *QMacToolBarItem) SetText(text string) {
 	defer qt.Recovering("QMacToolBarItem::setText")
 
 	if ptr.Pointer() != nil {
-		C.QMacToolBarItem_SetText(ptr.Pointer(), C.CString(text))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QMacToolBarItem_SetText(ptr.Pointer(), textC)
 	}
 }
 

@@ -2,6 +2,7 @@
 
 package sailfish
 
+//#include <stdlib.h>
 //#include "sailfish_sailfish.h"
 import "C"
 import (
@@ -52,6 +53,11 @@ func NewSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
 func newSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
 	var n = NewSailfishAppFromPointer(ptr)
 	return n
+}
+
+func (ptr *SailfishApp) DestroySailfishApp() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {

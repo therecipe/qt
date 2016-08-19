@@ -53,10 +53,10 @@ public:
 	MyQJSEngine(QObject *parent) : QJSEngine(parent) {};
 	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQJSEngine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQJSEngine_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQJSEngine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQJSEngine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQJSEngine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQJSEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQJSEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQJSEngine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<MyQJSEngine*>(this), this->objectName().toUtf8().data())); };
@@ -384,7 +384,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQQmlAbstractUrlInterceptor() : QQmlAbstractUrlInterceptor() {};
-	QUrl intercept(const QUrl & url, QQmlAbstractUrlInterceptor::DataType ty) { return *static_cast<QUrl*>(callbackQQmlAbstractUrlInterceptor_Intercept(this, this->objectNameAbs().toUtf8().data(), new QUrl(url), ty)); };
+	QUrl intercept(const QUrl & url, QQmlAbstractUrlInterceptor::DataType ty) { return *static_cast<QUrl*>(callbackQQmlAbstractUrlInterceptor_Intercept(this, this->objectNameAbs().toUtf8().data(), const_cast<QUrl*>(&url), ty)); };
 };
 
 void* QQmlAbstractUrlInterceptor_NewQQmlAbstractUrlInterceptor()
@@ -424,16 +424,16 @@ public:
 	MyQQmlApplicationEngine(const QString &filePath, QObject *parent) : QQmlApplicationEngine(filePath, parent) {};
 	MyQQmlApplicationEngine(const QUrl &url, QObject *parent) : QQmlApplicationEngine(url, parent) {};
 	void load(const QString & filePath) { callbackQQmlApplicationEngine_Load2(this, this->objectName().toUtf8().data(), filePath.toUtf8().data()); };
-	void load(const QUrl & url) { callbackQQmlApplicationEngine_Load(this, this->objectName().toUtf8().data(), new QUrl(url)); };
-	void loadData(const QByteArray & data, const QUrl & url) { callbackQQmlApplicationEngine_LoadData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), new QUrl(url)); };
-	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngine_ObjectCreated(this, this->objectName().toUtf8().data(), object, new QUrl(url)); };
+	void load(const QUrl & url) { callbackQQmlApplicationEngine_Load(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
+	void loadData(const QByteArray & data, const QUrl & url) { callbackQQmlApplicationEngine_LoadData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), const_cast<QUrl*>(&url)); };
+	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngine_ObjectCreated(this, this->objectName().toUtf8().data(), object, const_cast<QUrl*>(&url)); };
 	bool event(QEvent * e) { return callbackQQmlApplicationEngine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQQmlApplicationEngine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlApplicationEngine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlApplicationEngine_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlApplicationEngine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlApplicationEngine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQmlApplicationEngine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlApplicationEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlApplicationEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlApplicationEngine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlApplicationEngine_MetaObject(const_cast<MyQQmlApplicationEngine*>(this), this->objectName().toUtf8().data())); };
 };
@@ -589,17 +589,17 @@ public:
 	QObject * beginCreate(QQmlContext * publicContext) { return static_cast<QObject*>(callbackQQmlComponent_BeginCreate(this, this->objectName().toUtf8().data(), publicContext)); };
 	void completeCreate() { callbackQQmlComponent_CompleteCreate(this, this->objectName().toUtf8().data()); };
 	QObject * create(QQmlContext * context) { return static_cast<QObject*>(callbackQQmlComponent_Create(this, this->objectName().toUtf8().data(), context)); };
-	void loadUrl(const QUrl & url) { callbackQQmlComponent_LoadUrl(this, this->objectName().toUtf8().data(), new QUrl(url)); };
-	void loadUrl(const QUrl & url, QQmlComponent::CompilationMode mode) { callbackQQmlComponent_LoadUrl2(this, this->objectName().toUtf8().data(), new QUrl(url), mode); };
+	void loadUrl(const QUrl & url) { callbackQQmlComponent_LoadUrl(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
+	void loadUrl(const QUrl & url, QQmlComponent::CompilationMode mode) { callbackQQmlComponent_LoadUrl2(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url), mode); };
 	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponent_ProgressChanged(this, this->objectName().toUtf8().data(), static_cast<double>(progress)); };
-	void setData(const QByteArray & data, const QUrl & url) { callbackQQmlComponent_SetData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), new QUrl(url)); };
+	void setData(const QByteArray & data, const QUrl & url) { callbackQQmlComponent_SetData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponent_StatusChanged(this, this->objectName().toUtf8().data(), status); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlComponent_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlComponent_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlComponent_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlComponent_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlComponent_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQmlComponent_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlComponent_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlComponent_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQmlComponent_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlComponent_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlComponent_MetaObject(const_cast<MyQQmlComponent*>(this), this->objectName().toUtf8().data())); };
@@ -852,10 +852,10 @@ public:
 	MyQQmlContext(QQmlEngine *engine, QObject *parent) : QQmlContext(engine, parent) {};
 	void timerEvent(QTimerEvent * event) { callbackQQmlContext_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlContext_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlContext_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlContext_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlContext_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQmlContext_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlContext_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlContext_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQmlContext_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlContext_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlContext_MetaObject(const_cast<MyQQmlContext*>(this), this->objectName().toUtf8().data())); };
@@ -1034,10 +1034,10 @@ public:
 	void Signal_Quit() { callbackQQmlEngine_Quit(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlEngine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlEngine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlEngine_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlEngine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlEngine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQmlEngine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlEngine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlEngine_MetaObject(const_cast<MyQQmlEngine*>(this), this->objectName().toUtf8().data())); };
 };
@@ -1371,10 +1371,10 @@ public:
 	void Signal_ValueChanged() { callbackQQmlExpression_ValueChanged(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlExpression_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlExpression_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlExpression_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlExpression_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlExpression_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQmlExpression_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlExpression_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlExpression_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQmlExpression_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlExpression_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlExpression_MetaObject(const_cast<MyQQmlExpression*>(this), this->objectName().toUtf8().data())); };
@@ -1588,10 +1588,10 @@ public:
 	void registerTypes(const char * uri) { callbackQQmlExtensionPlugin_RegisterTypes(this, this->objectName().toUtf8().data(), QString(uri).toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlExtensionPlugin_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlExtensionPlugin_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlExtensionPlugin_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlExtensionPlugin_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlExtensionPlugin_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQmlExtensionPlugin_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlExtensionPlugin_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlExtensionPlugin_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQmlExtensionPlugin_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlExtensionPlugin_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlExtensionPlugin_MetaObject(const_cast<MyQQmlExtensionPlugin*>(this), this->objectName().toUtf8().data())); };
@@ -2346,14 +2346,14 @@ class MyQQmlPropertyMap: public QQmlPropertyMap
 {
 public:
 	MyQQmlPropertyMap(QObject *parent) : QQmlPropertyMap(parent) {};
-	QVariant updateValue(const QString & key, const QVariant & input) { return *static_cast<QVariant*>(callbackQQmlPropertyMap_UpdateValue(this, this->objectName().toUtf8().data(), key.toUtf8().data(), new QVariant(input))); };
-	void Signal_ValueChanged(const QString & key, const QVariant & value) { callbackQQmlPropertyMap_ValueChanged(this, this->objectName().toUtf8().data(), key.toUtf8().data(), new QVariant(value)); };
+	QVariant updateValue(const QString & key, const QVariant & input) { return *static_cast<QVariant*>(callbackQQmlPropertyMap_UpdateValue(this, this->objectName().toUtf8().data(), key.toUtf8().data(), const_cast<QVariant*>(&input))); };
+	void Signal_ValueChanged(const QString & key, const QVariant & value) { callbackQQmlPropertyMap_ValueChanged(this, this->objectName().toUtf8().data(), key.toUtf8().data(), const_cast<QVariant*>(&value)); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlPropertyMap_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlPropertyMap_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlPropertyMap_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlPropertyMap_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQmlPropertyMap_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQmlPropertyMap_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlPropertyMap_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlPropertyMap_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQmlPropertyMap_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlPropertyMap_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlPropertyMap_MetaObject(const_cast<MyQQmlPropertyMap*>(this), this->objectName().toUtf8().data())); };
@@ -2531,7 +2531,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQQmlPropertyValueSource() : QQmlPropertyValueSource() {};
-	void setTarget(const QQmlProperty & property) { callbackQQmlPropertyValueSource_SetTarget(this, this->objectNameAbs().toUtf8().data(), new QQmlProperty(property)); };
+	void setTarget(const QQmlProperty & property) { callbackQQmlPropertyValueSource_SetTarget(this, this->objectNameAbs().toUtf8().data(), const_cast<QQmlProperty*>(&property)); };
 };
 
 void* QQmlPropertyValueSource_NewQQmlPropertyValueSource()

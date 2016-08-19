@@ -193,10 +193,10 @@ public:
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQAbstractAnimation_UpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAnimation_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractAnimation_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractAnimation_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractAnimation_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractAnimation_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractAnimation_MetaObject(const_cast<MyQAbstractAnimation*>(this), this->objectName().toUtf8().data())); };
 };
@@ -494,10 +494,10 @@ public:
 	void wakeUp() { callbackQAbstractEventDispatcher_WakeUp(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractEventDispatcher_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractEventDispatcher_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractEventDispatcher_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractEventDispatcher_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractEventDispatcher_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractEventDispatcher_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractEventDispatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractEventDispatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractEventDispatcher_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractEventDispatcher_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractEventDispatcher_MetaObject(const_cast<MyQAbstractEventDispatcher*>(this), this->objectName().toUtf8().data())); };
@@ -723,57 +723,57 @@ class MyQAbstractItemModel: public QAbstractItemModel
 {
 public:
 	MyQAbstractItemModel(QObject *parent) : QAbstractItemModel(parent) {};
-	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Sibling(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(index))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Buddy(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractItemModel_CanDropMimeData(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractItemModel_CanFetchMore(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQAbstractItemModel_ColumnCount(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsAboutToBeInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQAbstractItemModel_ColumnsAboutToBeMoved(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceStart, sourceEnd, new QModelIndex(destinationParent), destinationColumn); };
-	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQAbstractItemModel_ColumnsMoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end, new QModelIndex(destination), column); };
-	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_Data(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), role)); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractItemModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractItemModel_Flags(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractItemModel_HasChildren(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Sibling(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&index))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Buddy(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractItemModel_CanDropMimeData(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractItemModel_CanFetchMore(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQAbstractItemModel_ColumnCount(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	void Signal_ColumnsAboutToBeInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsAboutToBeInserted(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationColumn) { callbackQAbstractItemModel_ColumnsAboutToBeMoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationColumn); };
+	void Signal_ColumnsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsAboutToBeRemoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsInserted(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_ColumnsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int column) { callbackQAbstractItemModel_ColumnsMoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), column); };
+	void Signal_ColumnsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_ColumnsRemoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), first, last); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_Data(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), role)); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractItemModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractItemModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractItemModel_Flags(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractItemModel_HasChildren(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractItemModel_HeaderData(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
 	void Signal_HeaderDataChanged(Qt::Orientation orientation, int first, int last) { callbackQAbstractItemModel_HeaderDataChanged(this, this->objectName().toUtf8().data(), orientation, first, last); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Index(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Index(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQAbstractItemModel_MimeTypes(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
 	void Signal_ModelAboutToBeReset() { callbackQAbstractItemModel_ModelAboutToBeReset(this, this->objectName().toUtf8().data()); };
 	void Signal_ModelReset() { callbackQAbstractItemModel_ModelReset(this, this->objectName().toUtf8().data()); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractItemModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractItemModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Parent(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractItemModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractItemModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Parent(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQAbstractItemModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQAbstractItemModel_Revert(this, this->objectName().toUtf8().data()); };
-	int rowCount(const QModelIndex & parent) const { return callbackQAbstractItemModel_RowCount(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQAbstractItemModel_RowsAboutToBeInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
-	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQAbstractItemModel_RowsAboutToBeMoved(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceStart, sourceEnd, new QModelIndex(destinationParent), destinationRow); };
-	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_RowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_RowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQAbstractItemModel_RowsMoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end, new QModelIndex(destination), row); };
-	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_RowsRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), first, last); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractItemModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractItemModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQAbstractItemModel_RowCount(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	void Signal_RowsAboutToBeInserted(const QModelIndex & parent, int start, int end) { callbackQAbstractItemModel_RowsAboutToBeInserted(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end); };
+	void Signal_RowsAboutToBeMoved(const QModelIndex & sourceParent, int sourceStart, int sourceEnd, const QModelIndex & destinationParent, int destinationRow) { callbackQAbstractItemModel_RowsAboutToBeMoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceStart, sourceEnd, const_cast<QModelIndex*>(&destinationParent), destinationRow); };
+	void Signal_RowsAboutToBeRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_RowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_RowsInserted(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_RowsInserted(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), first, last); };
+	void Signal_RowsMoved(const QModelIndex & parent, int start, int end, const QModelIndex & destination, int row) { callbackQAbstractItemModel_RowsMoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end, const_cast<QModelIndex*>(&destination), row); };
+	void Signal_RowsRemoved(const QModelIndex & parent, int first, int last) { callbackQAbstractItemModel_RowsRemoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), first, last); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractItemModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractItemModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractItemModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractItemModel_Span(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQAbstractItemModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDropActions(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractItemModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractItemModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractItemModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractItemModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractItemModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractItemModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractItemModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractItemModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractItemModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractItemModel_MetaObject(const_cast<MyQAbstractItemModel*>(this), this->objectName().toUtf8().data())); };
@@ -1286,12 +1286,12 @@ void QAbstractItemModel_SortDefault(void* ptr, int column, int order)
 
 void* QAbstractItemModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractItemModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractItemModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractItemModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QAbstractItemModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QAbstractItemModel_Submit(void* ptr)
@@ -1425,42 +1425,42 @@ class MyQAbstractListModel: public QAbstractListModel
 {
 public:
 	MyQAbstractListModel(QObject *parent) : QAbstractListModel(parent) {};
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Index(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractListModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractListModel_Flags(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Sibling(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Buddy(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractListModel_CanDropMimeData(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractListModel_CanFetchMore(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQAbstractListModel_ColumnCount(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractListModel_Data(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), role)); };
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractListModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractListModel_HasChildren(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Index(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractListModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractListModel_Flags(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Sibling(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Buddy(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractListModel_CanDropMimeData(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractListModel_CanFetchMore(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQAbstractListModel_ColumnCount(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractListModel_Data(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), role)); };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractListModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractListModel_HasChildren(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractListModel_HeaderData(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractListModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractListModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractListModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractListModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQAbstractListModel_MimeTypes(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Parent(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractListModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractListModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractListModel_Parent(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractListModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractListModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQAbstractListModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQAbstractListModel_Revert(this, this->objectName().toUtf8().data()); };
-	int rowCount(const QModelIndex & parent) const { return callbackQAbstractListModel_RowCount(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractListModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractListModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQAbstractListModel_RowCount(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractListModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractListModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractListModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractListModel_Span(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractListModel_Span(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQAbstractListModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractListModel_SupportedDragActions(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQAbstractListModel_SupportedDropActions(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractListModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractListModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractListModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractListModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractListModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractListModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractListModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractListModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractListModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractListModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractListModel_MetaObject(const_cast<MyQAbstractListModel*>(this), this->objectName().toUtf8().data())); };
@@ -1732,12 +1732,12 @@ void QAbstractListModel_SortDefault(void* ptr, int column, int order)
 
 void* QAbstractListModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractListModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractListModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractListModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QAbstractListModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QAbstractListModel_Submit(void* ptr)
@@ -1906,48 +1906,48 @@ class MyQAbstractProxyModel: public QAbstractProxyModel
 {
 public:
 	MyQAbstractProxyModel(QObject *parent) : QAbstractProxyModel(parent) {};
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Buddy(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractProxyModel_CanDropMimeData(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractProxyModel_CanFetchMore(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	QVariant data(const QModelIndex & proxyIndex, int role) const { return *static_cast<QVariant*>(callbackQAbstractProxyModel_Data(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(proxyIndex), role)); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractProxyModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractProxyModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractProxyModel_Flags(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractProxyModel_HasChildren(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Buddy(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractProxyModel_CanDropMimeData(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractProxyModel_CanFetchMore(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	QVariant data(const QModelIndex & proxyIndex, int role) const { return *static_cast<QVariant*>(callbackQAbstractProxyModel_Data(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&proxyIndex), role)); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractProxyModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractProxyModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractProxyModel_Flags(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractProxyModel_HasChildren(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractProxyModel_HeaderData(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	QModelIndex mapFromSource(const QModelIndex & sourceIndex) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_MapFromSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(sourceIndex))); };
-	QItemSelection mapSelectionFromSource(const QItemSelection & sourceSelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionFromSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QItemSelection(sourceSelection))); };
-	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionToSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QItemSelection(proxySelection))); };
-	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_MapToSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(proxyIndex))); };
+	QModelIndex mapFromSource(const QModelIndex & sourceIndex) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_MapFromSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceIndex))); };
+	QItemSelection mapSelectionFromSource(const QItemSelection & sourceSelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionFromSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&sourceSelection))); };
+	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionToSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&proxySelection))); };
+	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_MapToSource(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&proxyIndex))); };
 	QStringList mimeTypes() const { return QString(callbackQAbstractProxyModel_MimeTypes(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
 	void resetInternalData() { callbackQAbstractProxyModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQAbstractProxyModel_Revert(this, this->objectName().toUtf8().data()); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractProxyModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractProxyModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractProxyModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractProxyModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQAbstractProxyModel_SetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Sibling(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Sibling(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractProxyModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
 	void Signal_SourceModelChanged() { callbackQAbstractProxyModel_SourceModelChanged(this, this->objectName().toUtf8().data()); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractProxyModel_Span(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractProxyModel_Span(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQAbstractProxyModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractProxyModel_SupportedDragActions(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQAbstractProxyModel_SupportedDropActions(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data())); };
-	int columnCount(const QModelIndex & parent) const { return callbackQAbstractProxyModel_ColumnCount(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Index(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractProxyModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractProxyModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Parent(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	int rowCount(const QModelIndex & parent) const { return callbackQAbstractProxyModel_RowCount(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
+	int columnCount(const QModelIndex & parent) const { return callbackQAbstractProxyModel_ColumnCount(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Index(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractProxyModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractProxyModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_Parent(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractProxyModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQAbstractProxyModel_RowCount(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractProxyModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractProxyModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractProxyModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractProxyModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractProxyModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractProxyModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractProxyModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractProxyModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractProxyModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractProxyModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractProxyModel_MetaObject(const_cast<MyQAbstractProxyModel*>(this), this->objectName().toUtf8().data())); };
@@ -2170,12 +2170,12 @@ void QAbstractProxyModel_DisconnectSourceModelChanged(void* ptr)
 
 void* QAbstractProxyModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QAbstractProxyModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QAbstractProxyModel_Submit(void* ptr)
@@ -2403,10 +2403,10 @@ public:
 	void onExit(QEvent * event) { callbackQAbstractState_OnExit(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractState_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractState_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractState_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractState_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractState_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractState_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractState_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractState_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractState_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractState_MetaObject(const_cast<MyQAbstractState*>(this), this->objectName().toUtf8().data())); };
 };
@@ -2575,42 +2575,42 @@ class MyQAbstractTableModel: public QAbstractTableModel
 {
 public:
 	MyQAbstractTableModel(QObject *parent) : QAbstractTableModel(parent) {};
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Index(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractTableModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractTableModel_Flags(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Sibling(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Buddy(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractTableModel_CanDropMimeData(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractTableModel_CanFetchMore(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQAbstractTableModel_ColumnCount(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractTableModel_Data(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), role)); };
-	void fetchMore(const QModelIndex & parent) { callbackQAbstractTableModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractTableModel_HasChildren(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Index(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQAbstractTableModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQAbstractTableModel_Flags(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Sibling(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Buddy(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQAbstractTableModel_CanDropMimeData(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQAbstractTableModel_CanFetchMore(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQAbstractTableModel_ColumnCount(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQAbstractTableModel_Data(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), role)); };
+	void fetchMore(const QModelIndex & parent) { callbackQAbstractTableModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQAbstractTableModel_HasChildren(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractTableModel_HeaderData(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQAbstractTableModel_MimeTypes(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Parent(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQAbstractTableModel_Parent(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQAbstractTableModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQAbstractTableModel_Revert(this, this->objectName().toUtf8().data()); };
-	int rowCount(const QModelIndex & parent) const { return callbackQAbstractTableModel_RowCount(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractTableModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractTableModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQAbstractTableModel_RowCount(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQAbstractTableModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQAbstractTableModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQAbstractTableModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractTableModel_Span(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQAbstractTableModel_Span(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQAbstractTableModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractTableModel_SupportedDragActions(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQAbstractTableModel_SupportedDropActions(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTableModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractTableModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractTableModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractTableModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractTableModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractTableModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractTableModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractTableModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractTableModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractTableModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractTableModel_MetaObject(const_cast<MyQAbstractTableModel*>(this), this->objectName().toUtf8().data())); };
@@ -2879,12 +2879,12 @@ void QAbstractTableModel_SortDefault(void* ptr, int column, int order)
 
 void* QAbstractTableModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QAbstractTableModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QAbstractTableModel_Submit(void* ptr)
@@ -3021,10 +3021,10 @@ public:
 	void Signal_Triggered() { callbackQAbstractTransition_Triggered(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTransition_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractTransition_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractTransition_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractTransition_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractTransition_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractTransition_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractTransition_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractTransition_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractTransition_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractTransition_MetaObject(const_cast<MyQAbstractTransition*>(this), this->objectName().toUtf8().data())); };
 };
@@ -3226,10 +3226,10 @@ public:
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQAnimationGroup_UpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
 	void timerEvent(QTimerEvent * event) { callbackQAnimationGroup_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAnimationGroup_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAnimationGroup_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAnimationGroup_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAnimationGroup_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAnimationGroup_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAnimationGroup_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAnimationGroup_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAnimationGroup_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAnimationGroup_MetaObject(const_cast<MyQAnimationGroup*>(this), this->objectName().toUtf8().data())); };
 };
@@ -3640,10 +3640,10 @@ public:
 	bool waitForReadyRead(int msecs) { return callbackQBuffer_WaitForReadyRead(this, this->objectName().toUtf8().data(), msecs) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQBuffer_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQBuffer_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQBuffer_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQBuffer_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQBuffer_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQBuffer_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQBuffer_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQBuffer_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQBuffer_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQBuffer_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQBuffer_MetaObject(const_cast<MyQBuffer*>(this), this->objectName().toUtf8().data())); };
@@ -4528,10 +4528,10 @@ public:
 	void quit() { callbackQCoreApplication_Quit(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQCoreApplication_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQCoreApplication_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQCoreApplication_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQCoreApplication_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQCoreApplication_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQCoreApplication_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQCoreApplication_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQCoreApplication_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCoreApplication_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCoreApplication_MetaObject(const_cast<MyQCoreApplication*>(this), this->objectName().toUtf8().data())); };
 };
@@ -5979,10 +5979,10 @@ public:
 	void quit() { callbackQEventLoop_Quit(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQEventLoop_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQEventLoop_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQEventLoop_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQEventLoop_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQEventLoop_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQEventLoop_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQEventLoop_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQEventLoop_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQEventLoop_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQEventLoop_MetaObject(const_cast<MyQEventLoop*>(this), this->objectName().toUtf8().data())); };
 };
@@ -6152,10 +6152,10 @@ public:
 	void onTransition(QEvent * event) { callbackQEventTransition_OnTransition(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQEventTransition_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQEventTransition_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQEventTransition_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQEventTransition_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQEventTransition_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQEventTransition_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQEventTransition_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQEventTransition_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQEventTransition_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQEventTransition_MetaObject(const_cast<MyQEventTransition*>(this), this->objectName().toUtf8().data())); };
 };
@@ -6333,10 +6333,10 @@ public:
 	bool waitForReadyRead(int msecs) { return callbackQFile_WaitForReadyRead(this, this->objectName().toUtf8().data(), msecs) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQFile_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQFile_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQFile_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQFile_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQFile_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQFile_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQFile_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQFile_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQFile_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFile_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFile_MetaObject(const_cast<MyQFile*>(this), this->objectName().toUtf8().data())); };
@@ -6771,10 +6771,10 @@ public:
 	bool waitForReadyRead(int msecs) { return callbackQFileDevice_WaitForReadyRead(this, this->objectName().toUtf8().data(), msecs) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQFileDevice_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQFileDevice_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQFileDevice_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQFileDevice_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQFileDevice_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQFileDevice_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQFileDevice_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQFileDevice_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQFileDevice_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFileDevice_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFileDevice_MetaObject(const_cast<MyQFileDevice*>(this), this->objectName().toUtf8().data())); };
@@ -7464,10 +7464,10 @@ public:
 	void Signal_FileChanged(const QString & path) { callbackQFileSystemWatcher_FileChanged(this, this->objectName().toUtf8().data(), path.toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQFileSystemWatcher_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQFileSystemWatcher_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQFileSystemWatcher_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQFileSystemWatcher_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQFileSystemWatcher_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQFileSystemWatcher_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQFileSystemWatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQFileSystemWatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQFileSystemWatcher_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFileSystemWatcher_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFileSystemWatcher_MetaObject(const_cast<MyQFileSystemWatcher*>(this), this->objectName().toUtf8().data())); };
@@ -7637,10 +7637,10 @@ public:
 	void onExit(QEvent * event) { callbackQFinalState_OnExit(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQFinalState_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQFinalState_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQFinalState_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQFinalState_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQFinalState_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQFinalState_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQFinalState_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQFinalState_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFinalState_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFinalState_MetaObject(const_cast<MyQFinalState*>(this), this->objectName().toUtf8().data())); };
 };
@@ -7803,10 +7803,10 @@ public:
 	void onExit(QEvent * event) { callbackQHistoryState_OnExit(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQHistoryState_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQHistoryState_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHistoryState_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHistoryState_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHistoryState_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHistoryState_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHistoryState_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHistoryState_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHistoryState_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHistoryState_MetaObject(const_cast<MyQHistoryState*>(this), this->objectName().toUtf8().data())); };
 };
@@ -8022,10 +8022,10 @@ public:
 	qint64 writeData(const char * data, qint64 maxSize) { return static_cast<long long>(callbackQIODevice_WriteData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), static_cast<long long>(maxSize))); };
 	void timerEvent(QTimerEvent * event) { callbackQIODevice_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQIODevice_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQIODevice_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQIODevice_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQIODevice_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQIODevice_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQIODevice_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQIODevice_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQIODevice_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQIODevice_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQIODevice_MetaObject(const_cast<MyQIODevice*>(this), this->objectName().toUtf8().data())); };
@@ -8525,47 +8525,47 @@ class MyQIdentityProxyModel: public QIdentityProxyModel
 {
 public:
 	MyQIdentityProxyModel(QObject *parent) : QIdentityProxyModel(parent) {};
-	int columnCount(const QModelIndex & parent) const { return callbackQIdentityProxyModel_ColumnCount(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQIdentityProxyModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQIdentityProxyModel_ColumnCount(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQIdentityProxyModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQIdentityProxyModel_HeaderData(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Index(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	QModelIndex mapFromSource(const QModelIndex & sourceIndex) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_MapFromSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(sourceIndex))); };
-	QItemSelection mapSelectionFromSource(const QItemSelection & selection) const { return *static_cast<QItemSelection*>(callbackQIdentityProxyModel_MapSelectionFromSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QItemSelection(selection))); };
-	QItemSelection mapSelectionToSource(const QItemSelection & selection) const { return *static_cast<QItemSelection*>(callbackQIdentityProxyModel_MapSelectionToSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QItemSelection(selection))); };
-	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_MapToSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(proxyIndex))); };
-	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Parent(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(child))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	int rowCount(const QModelIndex & parent) const { return callbackQIdentityProxyModel_RowCount(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Index(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	QModelIndex mapFromSource(const QModelIndex & sourceIndex) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_MapFromSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceIndex))); };
+	QItemSelection mapSelectionFromSource(const QItemSelection & selection) const { return *static_cast<QItemSelection*>(callbackQIdentityProxyModel_MapSelectionFromSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selection))); };
+	QItemSelection mapSelectionToSource(const QItemSelection & selection) const { return *static_cast<QItemSelection*>(callbackQIdentityProxyModel_MapSelectionToSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selection))); };
+	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_MapToSource(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&proxyIndex))); };
+	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Parent(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&child))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQIdentityProxyModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQIdentityProxyModel_RowCount(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
 	void setSourceModel(QAbstractItemModel * newSourceModel) { callbackQIdentityProxyModel_SetSourceModel(this, this->objectName().toUtf8().data(), newSourceModel); };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Sibling(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Buddy(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQIdentityProxyModel_CanDropMimeData(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQIdentityProxyModel_CanFetchMore(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	QVariant data(const QModelIndex & proxyIndex, int role) const { return *static_cast<QVariant*>(callbackQIdentityProxyModel_Data(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(proxyIndex), role)); };
-	void fetchMore(const QModelIndex & parent) { callbackQIdentityProxyModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQIdentityProxyModel_Flags(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQIdentityProxyModel_HasChildren(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Sibling(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQIdentityProxyModel_Buddy(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQIdentityProxyModel_CanDropMimeData(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQIdentityProxyModel_CanFetchMore(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	QVariant data(const QModelIndex & proxyIndex, int role) const { return *static_cast<QVariant*>(callbackQIdentityProxyModel_Data(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&proxyIndex), role)); };
+	void fetchMore(const QModelIndex & parent) { callbackQIdentityProxyModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQIdentityProxyModel_Flags(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQIdentityProxyModel_HasChildren(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQIdentityProxyModel_MimeTypes(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
 	void resetInternalData() { callbackQIdentityProxyModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQIdentityProxyModel_Revert(this, this->objectName().toUtf8().data()); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQIdentityProxyModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQIdentityProxyModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQIdentityProxyModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQIdentityProxyModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQIdentityProxyModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQIdentityProxyModel_Span(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQIdentityProxyModel_Span(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQIdentityProxyModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQIdentityProxyModel_SupportedDragActions(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQIdentityProxyModel_SupportedDropActions(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data())); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQIdentityProxyModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQIdentityProxyModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQIdentityProxyModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQIdentityProxyModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQIdentityProxyModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQIdentityProxyModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQIdentityProxyModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQIdentityProxyModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQIdentityProxyModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQIdentityProxyModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQIdentityProxyModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQIdentityProxyModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQIdentityProxyModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQIdentityProxyModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQIdentityProxyModel_MetaObject(const_cast<MyQIdentityProxyModel*>(this), this->objectName().toUtf8().data())); };
@@ -8873,12 +8873,12 @@ void QIdentityProxyModel_SortDefault(void* ptr, int column, int order)
 
 void* QIdentityProxyModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QIdentityProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QIdentityProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QIdentityProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QIdentityProxyModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QIdentityProxyModel_Submit(void* ptr)
@@ -9059,21 +9059,21 @@ public:
 	void clear() { callbackQItemSelectionModel_Clear(this, this->objectName().toUtf8().data()); };
 	void clearCurrentIndex() { callbackQItemSelectionModel_ClearCurrentIndex(this, this->objectName().toUtf8().data()); };
 	void clearSelection() { callbackQItemSelectionModel_ClearSelection(this, this->objectName().toUtf8().data()); };
-	void Signal_CurrentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModel_CurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
-	void Signal_CurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModel_CurrentColumnChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
-	void Signal_CurrentRowChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModel_CurrentRowChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
+	void Signal_CurrentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModel_CurrentChanged(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
+	void Signal_CurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModel_CurrentColumnChanged(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
+	void Signal_CurrentRowChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQItemSelectionModel_CurrentRowChanged(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
 	void Signal_ModelChanged(QAbstractItemModel * model) { callbackQItemSelectionModel_ModelChanged(this, this->objectName().toUtf8().data(), model); };
 	void reset() { callbackQItemSelectionModel_Reset(this, this->objectName().toUtf8().data()); };
-	void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_Select2(this, this->objectName().toUtf8().data(), new QItemSelection(selection), command); };
-	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_Select(this, this->objectName().toUtf8().data(), new QModelIndex(index), command); };
-	void Signal_SelectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQItemSelectionModel_SelectionChanged(this, this->objectName().toUtf8().data(), new QItemSelection(selected), new QItemSelection(deselected)); };
-	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_SetCurrentIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index), command); };
+	void select(const QItemSelection & selection, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_Select2(this, this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selection), command); };
+	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_Select(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), command); };
+	void Signal_SelectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQItemSelectionModel_SelectionChanged(this, this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
+	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_SetCurrentIndex(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), command); };
 	void timerEvent(QTimerEvent * event) { callbackQItemSelectionModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQItemSelectionModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQItemSelectionModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQItemSelectionModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQItemSelectionModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQItemSelectionModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQItemSelectionModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQItemSelectionModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQItemSelectionModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQItemSelectionModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQItemSelectionModel_MetaObject(const_cast<MyQItemSelectionModel*>(this), this->objectName().toUtf8().data())); };
@@ -9426,7 +9426,7 @@ int QItemSelectionRange_Bottom(void* ptr)
 
 void* QItemSelectionRange_BottomRight(void* ptr)
 {
-	return new QPersistentModelIndex(static_cast<QItemSelectionRange*>(ptr)->bottomRight());
+	return const_cast<QPersistentModelIndex*>(&static_cast<QItemSelectionRange*>(ptr)->bottomRight());
 }
 
 int QItemSelectionRange_Contains(void* ptr, void* index)
@@ -9486,7 +9486,7 @@ int QItemSelectionRange_Top(void* ptr)
 
 void* QItemSelectionRange_TopLeft(void* ptr)
 {
-	return new QPersistentModelIndex(static_cast<QItemSelectionRange*>(ptr)->topLeft());
+	return const_cast<QPersistentModelIndex*>(&static_cast<QItemSelectionRange*>(ptr)->topLeft());
 }
 
 int QItemSelectionRange_Width(void* ptr)
@@ -10231,12 +10231,12 @@ int QLine_IsNull(void* ptr)
 
 void* QLine_P1(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QLine*>(ptr)->p1()).x(), static_cast<QPoint>(static_cast<QLine*>(ptr)->p1()).y());
+	return ({ QPoint tmpValue = static_cast<QLine*>(ptr)->p1(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QLine_P2(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QLine*>(ptr)->p2()).x(), static_cast<QPoint>(static_cast<QLine*>(ptr)->p2()).y());
+	return ({ QPoint tmpValue = static_cast<QLine*>(ptr)->p2(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 void QLine_SetLine(void* ptr, int x1, int y1, int x2, int y2)
@@ -10271,12 +10271,12 @@ void QLine_Translate2(void* ptr, int dx, int dy)
 
 void* QLine_Translated(void* ptr, void* offset)
 {
-	return new QLine(static_cast<QLine>(static_cast<QLine*>(ptr)->translated(*static_cast<QPoint*>(offset))).p1(), static_cast<QLine>(static_cast<QLine*>(ptr)->translated(*static_cast<QPoint*>(offset))).p2());
+	return ({ QLine tmpValue = static_cast<QLine*>(ptr)->translated(*static_cast<QPoint*>(offset)); new QLine(tmpValue.p1(), tmpValue.p2()); });
 }
 
 void* QLine_Translated2(void* ptr, int dx, int dy)
 {
-	return new QLine(static_cast<QLine>(static_cast<QLine*>(ptr)->translated(dx, dy)).p1(), static_cast<QLine>(static_cast<QLine*>(ptr)->translated(dx, dy)).p2());
+	return ({ QLine tmpValue = static_cast<QLine*>(ptr)->translated(dx, dy); new QLine(tmpValue.p1(), tmpValue.p2()); });
 }
 
 int QLine_X1(void* ptr)
@@ -10346,7 +10346,7 @@ double QLineF_Dy(void* ptr)
 
 void* QLineF_QLineF_FromPolar(double length, double angle)
 {
-	return new QLineF(static_cast<QLineF>(QLineF::fromPolar(static_cast<double>(length), static_cast<double>(angle))).p1(), static_cast<QLineF>(QLineF::fromPolar(static_cast<double>(length), static_cast<double>(angle))).p2());
+	return ({ QLineF tmpValue = QLineF::fromPolar(static_cast<double>(length), static_cast<double>(angle)); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
 int QLineF_IsNull(void* ptr)
@@ -10361,22 +10361,22 @@ double QLineF_Length(void* ptr)
 
 void* QLineF_NormalVector(void* ptr)
 {
-	return new QLineF(static_cast<QLineF>(static_cast<QLineF*>(ptr)->normalVector()).p1(), static_cast<QLineF>(static_cast<QLineF*>(ptr)->normalVector()).p2());
+	return ({ QLineF tmpValue = static_cast<QLineF*>(ptr)->normalVector(); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
 void* QLineF_P1(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QLineF*>(ptr)->p1()).x(), static_cast<QPointF>(static_cast<QLineF*>(ptr)->p1()).y());
+	return ({ QPointF tmpValue = static_cast<QLineF*>(ptr)->p1(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QLineF_P2(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QLineF*>(ptr)->p2()).x(), static_cast<QPointF>(static_cast<QLineF*>(ptr)->p2()).y());
+	return ({ QPointF tmpValue = static_cast<QLineF*>(ptr)->p2(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QLineF_PointAt(void* ptr, double t)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QLineF*>(ptr)->pointAt(static_cast<double>(t))).x(), static_cast<QPointF>(static_cast<QLineF*>(ptr)->pointAt(static_cast<double>(t))).y());
+	return ({ QPointF tmpValue = static_cast<QLineF*>(ptr)->pointAt(static_cast<double>(t)); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void QLineF_SetAngle(void* ptr, double angle)
@@ -10411,7 +10411,7 @@ void QLineF_SetPoints(void* ptr, void* p1, void* p2)
 
 void* QLineF_ToLine(void* ptr)
 {
-	return new QLine(static_cast<QLine>(static_cast<QLineF*>(ptr)->toLine()).p1(), static_cast<QLine>(static_cast<QLineF*>(ptr)->toLine()).p2());
+	return ({ QLine tmpValue = static_cast<QLineF*>(ptr)->toLine(); new QLine(tmpValue.p1(), tmpValue.p2()); });
 }
 
 void QLineF_Translate(void* ptr, void* offset)
@@ -10426,17 +10426,17 @@ void QLineF_Translate2(void* ptr, double dx, double dy)
 
 void* QLineF_Translated(void* ptr, void* offset)
 {
-	return new QLineF(static_cast<QLineF>(static_cast<QLineF*>(ptr)->translated(*static_cast<QPointF*>(offset))).p1(), static_cast<QLineF>(static_cast<QLineF*>(ptr)->translated(*static_cast<QPointF*>(offset))).p2());
+	return ({ QLineF tmpValue = static_cast<QLineF*>(ptr)->translated(*static_cast<QPointF*>(offset)); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
 void* QLineF_Translated2(void* ptr, double dx, double dy)
 {
-	return new QLineF(static_cast<QLineF>(static_cast<QLineF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).p1(), static_cast<QLineF>(static_cast<QLineF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).p2());
+	return ({ QLineF tmpValue = static_cast<QLineF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy)); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
 void* QLineF_UnitVector(void* ptr)
 {
-	return new QLineF(static_cast<QLineF>(static_cast<QLineF*>(ptr)->unitVector()).p1(), static_cast<QLineF>(static_cast<QLineF*>(ptr)->unitVector()).p2());
+	return ({ QLineF tmpValue = static_cast<QLineF*>(ptr)->unitVector(); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
 double QLineF_X1(void* ptr)
@@ -10931,7 +10931,7 @@ void QMarginsF_SetTop(void* ptr, double Top)
 
 void* QMarginsF_ToMargins(void* ptr)
 {
-	return new QMargins(static_cast<QMargins>(static_cast<QMarginsF*>(ptr)->toMargins()).left(), static_cast<QMargins>(static_cast<QMarginsF*>(ptr)->toMargins()).top(), static_cast<QMargins>(static_cast<QMarginsF*>(ptr)->toMargins()).right(), static_cast<QMargins>(static_cast<QMarginsF*>(ptr)->toMargins()).bottom());
+	return ({ QMargins tmpValue = static_cast<QMarginsF*>(ptr)->toMargins(); new QMargins(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); });
 }
 
 double QMarginsF_Top(void* ptr)
@@ -11662,10 +11662,10 @@ public:
 	bool hasFormat(const QString & mimeType) const { return callbackQMimeData_HasFormat(const_cast<MyQMimeData*>(this), this->objectName().toUtf8().data(), mimeType.toUtf8().data()) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQMimeData_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQMimeData_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQMimeData_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQMimeData_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQMimeData_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQMimeData_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQMimeData_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQMimeData_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQMimeData_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMimeData_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMimeData_MetaObject(const_cast<MyQMimeData*>(this), this->objectName().toUtf8().data())); };
@@ -12132,11 +12132,11 @@ public:
 	MyQObject(QObject *parent) : QObject(parent) {};
 	void timerEvent(QTimerEvent * event) { callbackQObject_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQObject_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQObject_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQObject_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQObject_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQObject_DeleteLater(this, this->objectName().toUtf8().data()); };
 	void Signal_Destroyed(QObject * obj) { callbackQObject_Destroyed(this, this->objectName().toUtf8().data(), obj); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQObject_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQObject_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQObject_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<MyQObject*>(this), this->objectName().toUtf8().data())); };
@@ -12545,10 +12545,10 @@ public:
 	void stop() { callbackQParallelAnimationGroup_Stop(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQParallelAnimationGroup_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQParallelAnimationGroup_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQParallelAnimationGroup_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQParallelAnimationGroup_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQParallelAnimationGroup_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQParallelAnimationGroup_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQParallelAnimationGroup_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQParallelAnimationGroup_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQParallelAnimationGroup_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQParallelAnimationGroup_MetaObject(const_cast<MyQParallelAnimationGroup*>(this), this->objectName().toUtf8().data())); };
 };
@@ -12771,10 +12771,10 @@ public:
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQPauseAnimation_UpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
 	void timerEvent(QTimerEvent * event) { callbackQPauseAnimation_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQPauseAnimation_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQPauseAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQPauseAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQPauseAnimation_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQPauseAnimation_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQPauseAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQPauseAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPauseAnimation_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPauseAnimation_MetaObject(const_cast<MyQPauseAnimation*>(this), this->objectName().toUtf8().data())); };
 };
@@ -13316,7 +13316,7 @@ void QPointF_SetY(void* ptr, double y)
 
 void* QPointF_ToPoint(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QPointF*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QPointF*>(ptr)->toPoint()).y());
+	return ({ QPoint tmpValue = static_cast<QPointF*>(ptr)->toPoint(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 double QPointF_X(void* ptr)
@@ -13335,10 +13335,10 @@ public:
 	MyQPropertyAnimation(QObject *parent) : QPropertyAnimation(parent) {};
 	MyQPropertyAnimation(QObject *target, const QByteArray &propertyName, QObject *parent) : QPropertyAnimation(target, propertyName, parent) {};
 	bool event(QEvent * event) { return callbackQPropertyAnimation_Event(this, this->objectName().toUtf8().data(), event) != 0; };
-	void updateCurrentValue(const QVariant & value) { callbackQPropertyAnimation_UpdateCurrentValue(this, this->objectName().toUtf8().data(), new QVariant(value)); };
+	void updateCurrentValue(const QVariant & value) { callbackQPropertyAnimation_UpdateCurrentValue(this, this->objectName().toUtf8().data(), const_cast<QVariant*>(&value)); };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQPropertyAnimation_UpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
 	int duration() const { return callbackQPropertyAnimation_Duration(const_cast<MyQPropertyAnimation*>(this), this->objectName().toUtf8().data()); };
-	QVariant interpolated(const QVariant & from, const QVariant & to, qreal progress) const { return *static_cast<QVariant*>(callbackQPropertyAnimation_Interpolated(const_cast<MyQPropertyAnimation*>(this), this->objectName().toUtf8().data(), new QVariant(from), new QVariant(to), static_cast<double>(progress))); };
+	QVariant interpolated(const QVariant & from, const QVariant & to, qreal progress) const { return *static_cast<QVariant*>(callbackQPropertyAnimation_Interpolated(const_cast<MyQPropertyAnimation*>(this), this->objectName().toUtf8().data(), const_cast<QVariant*>(&from), const_cast<QVariant*>(&to), static_cast<double>(progress))); };
 	void updateCurrentTime(int vin) { callbackQPropertyAnimation_UpdateCurrentTime(this, this->objectName().toUtf8().data(), vin); };
 	void setCurrentTime(int msecs) { callbackQPropertyAnimation_SetCurrentTime(this, this->objectName().toUtf8().data(), msecs); };
 	void pause() { callbackQPropertyAnimation_Pause(this, this->objectName().toUtf8().data()); };
@@ -13349,10 +13349,10 @@ public:
 	void updateDirection(QAbstractAnimation::Direction direction) { callbackQPropertyAnimation_UpdateDirection(this, this->objectName().toUtf8().data(), direction); };
 	void timerEvent(QTimerEvent * event) { callbackQPropertyAnimation_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQPropertyAnimation_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQPropertyAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQPropertyAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQPropertyAnimation_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQPropertyAnimation_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQPropertyAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQPropertyAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPropertyAnimation_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPropertyAnimation_MetaObject(const_cast<MyQPropertyAnimation*>(this), this->objectName().toUtf8().data())); };
 };
@@ -13714,7 +13714,7 @@ void QRect_Adjust(void* ptr, int dx1, int dy1, int dx2, int dy2)
 
 void* QRect_Adjusted(void* ptr, int dx1, int dy1, int dx2, int dy2)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2)).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->adjusted(dx1, dy1, dx2, dy2); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 int QRect_Bottom(void* ptr)
@@ -13724,17 +13724,17 @@ int QRect_Bottom(void* ptr)
 
 void* QRect_BottomLeft(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomLeft()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomLeft()).y());
+	return ({ QPoint tmpValue = static_cast<QRect*>(ptr)->bottomLeft(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QRect_BottomRight(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomRight()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->bottomRight()).y());
+	return ({ QPoint tmpValue = static_cast<QRect*>(ptr)->bottomRight(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QRect_Center(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->center()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->center()).y());
+	return ({ QPoint tmpValue = static_cast<QRect*>(ptr)->center(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 int QRect_Contains3(void* ptr, int x, int y)
@@ -13764,7 +13764,7 @@ int QRect_Height(void* ptr)
 
 void* QRect_Intersected(void* ptr, void* rectangle)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle))).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->intersected(*static_cast<QRect*>(rectangle)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 int QRect_IsEmpty(void* ptr)
@@ -13789,12 +13789,12 @@ int QRect_Left(void* ptr)
 
 void* QRect_MarginsAdded(void* ptr, void* margins)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins))).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->marginsAdded(*static_cast<QMargins*>(margins)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRect_MarginsRemoved(void* ptr, void* margins)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins))).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->marginsRemoved(*static_cast<QMargins*>(margins)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void QRect_MoveBottom(void* ptr, int y)
@@ -13854,7 +13854,7 @@ void QRect_MoveTopRight(void* ptr, void* position)
 
 void* QRect_Normalized(void* ptr)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->normalized()).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->normalized(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 int QRect_Right(void* ptr)
@@ -13939,7 +13939,7 @@ void QRect_SetY(void* ptr, int y)
 
 void* QRect_Size(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QRect*>(ptr)->size()).width(), static_cast<QSize>(static_cast<QRect*>(ptr)->size()).height());
+	return ({ QSize tmpValue = static_cast<QRect*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QRect_Top(void* ptr)
@@ -13949,12 +13949,12 @@ int QRect_Top(void* ptr)
 
 void* QRect_TopLeft(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->topLeft()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->topLeft()).y());
+	return ({ QPoint tmpValue = static_cast<QRect*>(ptr)->topLeft(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QRect_TopRight(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QRect*>(ptr)->topRight()).x(), static_cast<QPoint>(static_cast<QRect*>(ptr)->topRight()).y());
+	return ({ QPoint tmpValue = static_cast<QRect*>(ptr)->topRight(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 void QRect_Translate2(void* ptr, void* offset)
@@ -13969,22 +13969,22 @@ void QRect_Translate(void* ptr, int dx, int dy)
 
 void* QRect_Translated2(void* ptr, void* offset)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset))).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->translated(*static_cast<QPoint*>(offset)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRect_Translated(void* ptr, int dx, int dy)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->translated(dx, dy)).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->translated(dx, dy); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRect_Transposed(void* ptr)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->transposed()).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->transposed(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRect_United(void* ptr, void* rectangle)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).x(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).y(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).width(), static_cast<QRect>(static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle))).height());
+	return ({ QRect tmpValue = static_cast<QRect*>(ptr)->united(*static_cast<QRect*>(rectangle)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 int QRect_Width(void* ptr)
@@ -14019,7 +14019,7 @@ int QRectF_Intersects(void* ptr, void* rectangle)
 
 void* QRectF_ToAlignedRect(void* ptr)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).x(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).y(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).width(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toAlignedRect()).height());
+	return ({ QRect tmpValue = static_cast<QRectF*>(ptr)->toAlignedRect(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRectF_NewQRectF()
@@ -14054,7 +14054,7 @@ void QRectF_Adjust(void* ptr, double dx1, double dy1, double dx2, double dy2)
 
 void* QRectF_Adjusted(void* ptr, double dx1, double dy1, double dx2, double dy2)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2))).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->adjusted(static_cast<double>(dx1), static_cast<double>(dy1), static_cast<double>(dx2), static_cast<double>(dy2)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 double QRectF_Bottom(void* ptr)
@@ -14064,17 +14064,17 @@ double QRectF_Bottom(void* ptr)
 
 void* QRectF_BottomLeft(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomLeft()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomLeft()).y());
+	return ({ QPointF tmpValue = static_cast<QRectF*>(ptr)->bottomLeft(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QRectF_BottomRight(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomRight()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->bottomRight()).y());
+	return ({ QPointF tmpValue = static_cast<QRectF*>(ptr)->bottomRight(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QRectF_Center(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->center()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->center()).y());
+	return ({ QPointF tmpValue = static_cast<QRectF*>(ptr)->center(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 int QRectF_Contains3(void* ptr, double x, double y)
@@ -14089,7 +14089,7 @@ double QRectF_Height(void* ptr)
 
 void* QRectF_Intersected(void* ptr, void* rectangle)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle))).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->intersected(*static_cast<QRectF*>(rectangle)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 int QRectF_IsEmpty(void* ptr)
@@ -14114,12 +14114,12 @@ double QRectF_Left(void* ptr)
 
 void* QRectF_MarginsAdded(void* ptr, void* margins)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins))).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->marginsAdded(*static_cast<QMarginsF*>(margins)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRectF_MarginsRemoved(void* ptr, void* margins)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins))).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->marginsRemoved(*static_cast<QMarginsF*>(margins)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void QRectF_MoveBottom(void* ptr, double y)
@@ -14179,7 +14179,7 @@ void QRectF_MoveTopRight(void* ptr, void* position)
 
 void* QRectF_Normalized(void* ptr)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->normalized()).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->normalized(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 double QRectF_Right(void* ptr)
@@ -14264,12 +14264,12 @@ void QRectF_SetY(void* ptr, double y)
 
 void* QRectF_Size(void* ptr)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QRectF*>(ptr)->size()).width(), static_cast<QSizeF>(static_cast<QRectF*>(ptr)->size()).height());
+	return ({ QSizeF tmpValue = static_cast<QRectF*>(ptr)->size(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRectF_ToRect(void* ptr)
 {
-	return new QRect(static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).x(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).y(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).width(), static_cast<QRect>(static_cast<QRectF*>(ptr)->toRect()).height());
+	return ({ QRect tmpValue = static_cast<QRectF*>(ptr)->toRect(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 double QRectF_Top(void* ptr)
@@ -14279,12 +14279,12 @@ double QRectF_Top(void* ptr)
 
 void* QRectF_TopLeft(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->topLeft()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->topLeft()).y());
+	return ({ QPointF tmpValue = static_cast<QRectF*>(ptr)->topLeft(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QRectF_TopRight(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QRectF*>(ptr)->topRight()).x(), static_cast<QPointF>(static_cast<QRectF*>(ptr)->topRight()).y());
+	return ({ QPointF tmpValue = static_cast<QRectF*>(ptr)->topRight(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void QRectF_Translate2(void* ptr, void* offset)
@@ -14299,22 +14299,22 @@ void QRectF_Translate(void* ptr, double dx, double dy)
 
 void* QRectF_Translated2(void* ptr, void* offset)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset))).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->translated(*static_cast<QPointF*>(offset)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRectF_Translated(void* ptr, double dx, double dy)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy))).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->translated(static_cast<double>(dx), static_cast<double>(dy)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRectF_Transposed(void* ptr)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->transposed()).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->transposed(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QRectF_United(void* ptr, void* rectangle)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).x(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).y(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).width(), static_cast<QRectF>(static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle))).height());
+	return ({ QRectF tmpValue = static_cast<QRectF*>(ptr)->united(*static_cast<QRectF*>(rectangle)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 double QRectF_Width(void* ptr)
@@ -14819,10 +14819,10 @@ public:
 	bool waitForReadyRead(int msecs) { return callbackQSaveFile_WaitForReadyRead(this, this->objectName().toUtf8().data(), msecs) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQSaveFile_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSaveFile_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSaveFile_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSaveFile_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSaveFile_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSaveFile_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSaveFile_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSaveFile_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSaveFile_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSaveFile_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSaveFile_MetaObject(const_cast<MyQSaveFile*>(this), this->objectName().toUtf8().data())); };
@@ -15206,10 +15206,10 @@ public:
 	void stop() { callbackQSequentialAnimationGroup_Stop(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQSequentialAnimationGroup_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSequentialAnimationGroup_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSequentialAnimationGroup_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSequentialAnimationGroup_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSequentialAnimationGroup_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSequentialAnimationGroup_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSequentialAnimationGroup_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSequentialAnimationGroup_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSequentialAnimationGroup_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSequentialAnimationGroup_MetaObject(const_cast<MyQSequentialAnimationGroup*>(this), this->objectName().toUtf8().data())); };
 };
@@ -15470,10 +15470,10 @@ public:
 	bool event(QEvent * event) { return callbackQSettings_Event(this, this->objectName().toUtf8().data(), event) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQSettings_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSettings_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSettings_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSettings_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSettings_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSettings_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSettings_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSettings_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSettings_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSettings_MetaObject(const_cast<MyQSettings*>(this), this->objectName().toUtf8().data())); };
 };
@@ -15985,10 +15985,10 @@ public:
 	void Signal_Mapped(int i) { callbackQSignalMapper_Mapped(this, this->objectName().toUtf8().data(), i); };
 	void timerEvent(QTimerEvent * event) { callbackQSignalMapper_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSignalMapper_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSignalMapper_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSignalMapper_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSignalMapper_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSignalMapper_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSignalMapper_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSignalMapper_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSignalMapper_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSignalMapper_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSignalMapper_MetaObject(const_cast<MyQSignalMapper*>(this), this->objectName().toUtf8().data())); };
@@ -16221,10 +16221,10 @@ public:
 	void Signal_SignalChanged() { callbackQSignalTransition_SignalChanged(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQSignalTransition_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSignalTransition_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSignalTransition_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSignalTransition_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSignalTransition_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSignalTransition_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSignalTransition_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSignalTransition_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSignalTransition_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSignalTransition_MetaObject(const_cast<MyQSignalTransition*>(this), this->objectName().toUtf8().data())); };
 };
@@ -16406,12 +16406,12 @@ void* QSize_NewQSize2(int width, int height)
 
 void* QSize_BoundedTo(void* ptr, void* otherSize)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->boundedTo(*static_cast<QSize*>(otherSize))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->boundedTo(*static_cast<QSize*>(otherSize))).height());
+	return ({ QSize tmpValue = static_cast<QSize*>(ptr)->boundedTo(*static_cast<QSize*>(otherSize)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSize_ExpandedTo(void* ptr, void* otherSize)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->expandedTo(*static_cast<QSize*>(otherSize))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->expandedTo(*static_cast<QSize*>(otherSize))).height());
+	return ({ QSize tmpValue = static_cast<QSize*>(ptr)->expandedTo(*static_cast<QSize*>(otherSize)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QSize_Height(void* ptr)
@@ -16456,12 +16456,12 @@ void QSize_Scale(void* ptr, int width, int height, int mode)
 
 void* QSize_Scaled2(void* ptr, void* s, int mode)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(*static_cast<QSize*>(s), static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(*static_cast<QSize*>(s), static_cast<Qt::AspectRatioMode>(mode))).height());
+	return ({ QSize tmpValue = static_cast<QSize*>(ptr)->scaled(*static_cast<QSize*>(s), static_cast<Qt::AspectRatioMode>(mode)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSize_Scaled(void* ptr, int width, int height, int mode)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(width, height, static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->scaled(width, height, static_cast<Qt::AspectRatioMode>(mode))).height());
+	return ({ QSize tmpValue = static_cast<QSize*>(ptr)->scaled(width, height, static_cast<Qt::AspectRatioMode>(mode)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QSize_SetHeight(void* ptr, int height)
@@ -16481,7 +16481,7 @@ void QSize_Transpose(void* ptr)
 
 void* QSize_Transposed(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSize*>(ptr)->transposed()).width(), static_cast<QSize>(static_cast<QSize*>(ptr)->transposed()).height());
+	return ({ QSize tmpValue = static_cast<QSize*>(ptr)->transposed(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QSize_Width(void* ptr)
@@ -16506,12 +16506,12 @@ void* QSizeF_NewQSizeF3(double width, double height)
 
 void* QSizeF_BoundedTo(void* ptr, void* otherSize)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->boundedTo(*static_cast<QSizeF*>(otherSize))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->boundedTo(*static_cast<QSizeF*>(otherSize))).height());
+	return ({ QSizeF tmpValue = static_cast<QSizeF*>(ptr)->boundedTo(*static_cast<QSizeF*>(otherSize)); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSizeF_ExpandedTo(void* ptr, void* otherSize)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->expandedTo(*static_cast<QSizeF*>(otherSize))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->expandedTo(*static_cast<QSizeF*>(otherSize))).height());
+	return ({ QSizeF tmpValue = static_cast<QSizeF*>(ptr)->expandedTo(*static_cast<QSizeF*>(otherSize)); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 double QSizeF_Height(void* ptr)
@@ -16556,12 +16556,12 @@ void QSizeF_Scale(void* ptr, double width, double height, int mode)
 
 void* QSizeF_Scaled2(void* ptr, void* s, int mode)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(*static_cast<QSizeF*>(s), static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(*static_cast<QSizeF*>(s), static_cast<Qt::AspectRatioMode>(mode))).height());
+	return ({ QSizeF tmpValue = static_cast<QSizeF*>(ptr)->scaled(*static_cast<QSizeF*>(s), static_cast<Qt::AspectRatioMode>(mode)); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSizeF_Scaled(void* ptr, double width, double height, int mode)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(static_cast<double>(width), static_cast<double>(height), static_cast<Qt::AspectRatioMode>(mode))).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->scaled(static_cast<double>(width), static_cast<double>(height), static_cast<Qt::AspectRatioMode>(mode))).height());
+	return ({ QSizeF tmpValue = static_cast<QSizeF*>(ptr)->scaled(static_cast<double>(width), static_cast<double>(height), static_cast<Qt::AspectRatioMode>(mode)); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 void QSizeF_SetHeight(void* ptr, double height)
@@ -16576,7 +16576,7 @@ void QSizeF_SetWidth(void* ptr, double width)
 
 void* QSizeF_ToSize(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSizeF*>(ptr)->toSize()).width(), static_cast<QSize>(static_cast<QSizeF*>(ptr)->toSize()).height());
+	return ({ QSize tmpValue = static_cast<QSizeF*>(ptr)->toSize(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QSizeF_Transpose(void* ptr)
@@ -16586,7 +16586,7 @@ void QSizeF_Transpose(void* ptr)
 
 void* QSizeF_Transposed(void* ptr)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->transposed()).width(), static_cast<QSizeF>(static_cast<QSizeF*>(ptr)->transposed()).height());
+	return ({ QSizeF tmpValue = static_cast<QSizeF*>(ptr)->transposed(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 double QSizeF_Width(void* ptr)
@@ -16602,10 +16602,10 @@ public:
 	void setEnabled(bool enable) { callbackQSocketNotifier_SetEnabled(this, this->objectName().toUtf8().data(), enable); };
 	void timerEvent(QTimerEvent * event) { callbackQSocketNotifier_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSocketNotifier_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSocketNotifier_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSocketNotifier_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSocketNotifier_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSocketNotifier_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSocketNotifier_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSocketNotifier_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSocketNotifier_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSocketNotifier_MetaObject(const_cast<MyQSocketNotifier*>(this), this->objectName().toUtf8().data())); };
 };
@@ -16734,54 +16734,54 @@ class MyQSortFilterProxyModel: public QSortFilterProxyModel
 {
 public:
 	MyQSortFilterProxyModel(QObject *parent) : QSortFilterProxyModel(parent) {};
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Buddy(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_CanFetchMore(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_ColumnCount(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQSortFilterProxyModel_Data(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), role)); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSortFilterProxyModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	void fetchMore(const QModelIndex & parent) { callbackQSortFilterProxyModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool filterAcceptsColumn(int source_column, const QModelIndex & source_parent) const { return callbackQSortFilterProxyModel_FilterAcceptsColumn(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), source_column, new QModelIndex(source_parent)) != 0; };
-	bool filterAcceptsRow(int source_row, const QModelIndex & source_parent) const { return callbackQSortFilterProxyModel_FilterAcceptsRow(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), source_row, new QModelIndex(source_parent)) != 0; };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSortFilterProxyModel_Flags(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_HasChildren(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Buddy(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_CanFetchMore(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_ColumnCount(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQSortFilterProxyModel_Data(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), role)); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSortFilterProxyModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	void fetchMore(const QModelIndex & parent) { callbackQSortFilterProxyModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool filterAcceptsColumn(int source_column, const QModelIndex & source_parent) const { return callbackQSortFilterProxyModel_FilterAcceptsColumn(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), source_column, const_cast<QModelIndex*>(&source_parent)) != 0; };
+	bool filterAcceptsRow(int source_row, const QModelIndex & source_parent) const { return callbackQSortFilterProxyModel_FilterAcceptsRow(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), source_row, const_cast<QModelIndex*>(&source_parent)) != 0; };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSortFilterProxyModel_Flags(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_HasChildren(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQSortFilterProxyModel_HeaderData(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Index(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Index(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void invalidate() { callbackQSortFilterProxyModel_Invalidate(this, this->objectName().toUtf8().data()); };
-	bool lessThan(const QModelIndex & source_left, const QModelIndex & source_right) const { return callbackQSortFilterProxyModel_LessThan(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(source_left), new QModelIndex(source_right)) != 0; };
-	QModelIndex mapFromSource(const QModelIndex & sourceIndex) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_MapFromSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(sourceIndex))); };
-	QItemSelection mapSelectionFromSource(const QItemSelection & sourceSelection) const { return *static_cast<QItemSelection*>(callbackQSortFilterProxyModel_MapSelectionFromSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QItemSelection(sourceSelection))); };
-	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQSortFilterProxyModel_MapSelectionToSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QItemSelection(proxySelection))); };
-	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_MapToSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(proxyIndex))); };
+	bool lessThan(const QModelIndex & source_left, const QModelIndex & source_right) const { return callbackQSortFilterProxyModel_LessThan(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&source_left), const_cast<QModelIndex*>(&source_right)) != 0; };
+	QModelIndex mapFromSource(const QModelIndex & sourceIndex) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_MapFromSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceIndex))); };
+	QItemSelection mapSelectionFromSource(const QItemSelection & sourceSelection) const { return *static_cast<QItemSelection*>(callbackQSortFilterProxyModel_MapSelectionFromSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&sourceSelection))); };
+	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQSortFilterProxyModel_MapSelectionToSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&proxySelection))); };
+	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_MapToSource(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&proxyIndex))); };
 	QStringList mimeTypes() const { return QString(callbackQSortFilterProxyModel_MimeTypes(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Parent(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(child))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	int rowCount(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_RowCount(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQSortFilterProxyModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
+	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Parent(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&child))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQSortFilterProxyModel_RowCount(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQSortFilterProxyModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
 	void setFilterFixedString(const QString & pattern) { callbackQSortFilterProxyModel_SetFilterFixedString(this, this->objectName().toUtf8().data(), pattern.toUtf8().data()); };
 	void setFilterRegExp(const QString & pattern) { callbackQSortFilterProxyModel_SetFilterRegExp2(this, this->objectName().toUtf8().data(), pattern.toUtf8().data()); };
 	void setFilterWildcard(const QString & pattern) { callbackQSortFilterProxyModel_SetFilterWildcard(this, this->objectName().toUtf8().data(), pattern.toUtf8().data()); };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSortFilterProxyModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSortFilterProxyModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void setSourceModel(QAbstractItemModel * sourceModel) { callbackQSortFilterProxyModel_SetSourceModel(this, this->objectName().toUtf8().data(), sourceModel); };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Sibling(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Sibling(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
 	void sort(int column, Qt::SortOrder order) { callbackQSortFilterProxyModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSortFilterProxyModel_Span(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSortFilterProxyModel_Span(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSortFilterProxyModel_SupportedDropActions(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data())); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSortFilterProxyModel_CanDropMimeData(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSortFilterProxyModel_CanDropMimeData(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQSortFilterProxyModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQSortFilterProxyModel_Revert(this, this->objectName().toUtf8().data()); };
 	bool submit() { return callbackQSortFilterProxyModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSortFilterProxyModel_SupportedDragActions(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data())); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSortFilterProxyModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSortFilterProxyModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSortFilterProxyModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSortFilterProxyModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQSortFilterProxyModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSortFilterProxyModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSortFilterProxyModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSortFilterProxyModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSortFilterProxyModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSortFilterProxyModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSortFilterProxyModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSortFilterProxyModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSortFilterProxyModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSortFilterProxyModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSortFilterProxyModel_MetaObject(const_cast<MyQSortFilterProxyModel*>(this), this->objectName().toUtf8().data())); };
@@ -17199,12 +17199,12 @@ int QSortFilterProxyModel_SortOrder(void* ptr)
 
 void* QSortFilterProxyModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSortFilterProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSortFilterProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSortFilterProxyModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSortFilterProxyModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QSortFilterProxyModel_SupportedDropActions(void* ptr)
@@ -17432,10 +17432,10 @@ public:
 	void Signal_PropertiesAssigned() { callbackQState_PropertiesAssigned(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQState_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQState_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQState_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQState_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQState_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQState_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQState_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQState_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQState_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQState_MetaObject(const_cast<MyQState*>(this), this->objectName().toUtf8().data())); };
 };
@@ -17687,10 +17687,10 @@ public:
 	void Signal_Stopped() { callbackQStateMachine_Stopped(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQStateMachine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStateMachine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQStateMachine_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQStateMachine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQStateMachine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQStateMachine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQStateMachine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQStateMachine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStateMachine_MetaObject(const_cast<MyQStateMachine*>(this), this->objectName().toUtf8().data())); };
 };
 
@@ -18074,42 +18074,42 @@ class MyQStringListModel: public QStringListModel
 public:
 	MyQStringListModel(QObject *parent) : QStringListModel(parent) {};
 	MyQStringListModel(const QStringList &strings, QObject *parent) : QStringListModel(strings, parent) {};
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQStringListModel_Data(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), role)); };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQStringListModel_Flags(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStringListModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQStringListModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	int rowCount(const QModelIndex & parent) const { return callbackQStringListModel_RowCount(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQStringListModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Sibling(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQStringListModel_Data(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), role)); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQStringListModel_Flags(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStringListModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQStringListModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQStringListModel_RowCount(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQStringListModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Sibling(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
 	void sort(int column, Qt::SortOrder order) { callbackQStringListModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQStringListModel_SupportedDropActions(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data())); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Index(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQStringListModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Buddy(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQStringListModel_CanDropMimeData(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQStringListModel_CanFetchMore(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQStringListModel_ColumnCount(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	void fetchMore(const QModelIndex & parent) { callbackQStringListModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQStringListModel_HasChildren(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Index(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQStringListModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Buddy(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQStringListModel_CanDropMimeData(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQStringListModel_CanFetchMore(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQStringListModel_ColumnCount(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	void fetchMore(const QModelIndex & parent) { callbackQStringListModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQStringListModel_HasChildren(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQStringListModel_HeaderData(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStringListModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStringListModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQStringListModel_MimeTypes(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Parent(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQStringListModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQStringListModel_Parent(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQStringListModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQStringListModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQStringListModel_Revert(this, this->objectName().toUtf8().data()); };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQStringListModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQStringListModel_Span(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQStringListModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQStringListModel_Span(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQStringListModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQStringListModel_SupportedDragActions(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQStringListModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQStringListModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQStringListModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQStringListModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQStringListModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQStringListModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQStringListModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQStringListModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQStringListModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStringListModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStringListModel_MetaObject(const_cast<MyQStringListModel*>(this), this->objectName().toUtf8().data())); };
@@ -18407,12 +18407,12 @@ int QStringListModel_SetHeaderDataDefault(void* ptr, int section, int orientatio
 
 void* QStringListModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QStringListModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QStringListModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QStringListModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QStringListModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QStringListModel*>(ptr)->QStringListModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QStringListModel*>(ptr)->QStringListModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QStringListModel*>(ptr)->QStringListModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QStringListModel_Submit(void* ptr)
@@ -19318,10 +19318,10 @@ public:
 	bool waitForReadyRead(int msecs) { return callbackQTemporaryFile_WaitForReadyRead(this, this->objectName().toUtf8().data(), msecs) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQTemporaryFile_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQTemporaryFile_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQTemporaryFile_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQTemporaryFile_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTemporaryFile_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQTemporaryFile_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQTemporaryFile_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQTemporaryFile_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQTemporaryFile_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTemporaryFile_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTemporaryFile_MetaObject(const_cast<MyQTemporaryFile*>(this), this->objectName().toUtf8().data())); };
@@ -20183,10 +20183,10 @@ public:
 	void terminate() { callbackQThread_Terminate(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQThread_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQThread_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQThread_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQThread_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQThread_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQThread_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQThread_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQThread_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQThread_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQThread_MetaObject(const_cast<MyQThread*>(this), this->objectName().toUtf8().data())); };
 };
@@ -20683,10 +20683,10 @@ public:
 	void Signal_ValueChanged(qreal value) { callbackQTimeLine_ValueChanged(this, this->objectName().toUtf8().data(), static_cast<double>(value)); };
 	qreal valueForTime(int msec) const { return static_cast<double>(callbackQTimeLine_ValueForTime(const_cast<MyQTimeLine*>(this), this->objectName().toUtf8().data(), msec)); };
 	void childEvent(QChildEvent * event) { callbackQTimeLine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQTimeLine_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQTimeLine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTimeLine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQTimeLine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQTimeLine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQTimeLine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQTimeLine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTimeLine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTimeLine_MetaObject(const_cast<MyQTimeLine*>(this), this->objectName().toUtf8().data())); };
@@ -21127,10 +21127,10 @@ public:
 	void Signal_Timeout() { callbackQTimer_Timeout(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * e) { callbackQTimer_TimerEvent(this, this->objectName().toUtf8().data(), e); };
 	void childEvent(QChildEvent * event) { callbackQTimer_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQTimer_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQTimer_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTimer_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQTimer_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQTimer_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQTimer_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQTimer_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTimer_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTimer_MetaObject(const_cast<MyQTimer*>(this), this->objectName().toUtf8().data())); };
@@ -21344,10 +21344,10 @@ public:
 	QString translate(const char * context, const char * sourceText, const char * disambiguation, int n) const { return QString(callbackQTranslator_Translate(const_cast<MyQTranslator*>(this), this->objectName().toUtf8().data(), QString(context).toUtf8().data(), QString(sourceText).toUtf8().data(), QString(disambiguation).toUtf8().data(), n)); };
 	void timerEvent(QTimerEvent * event) { callbackQTranslator_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQTranslator_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQTranslator_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQTranslator_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTranslator_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQTranslator_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQTranslator_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQTranslator_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQTranslator_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTranslator_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTranslator_MetaObject(const_cast<MyQTranslator*>(this), this->objectName().toUtf8().data())); };
@@ -22090,12 +22090,12 @@ void* QVariant_ToEasingCurve(void* ptr)
 
 void* QVariant_ToLine(void* ptr)
 {
-	return new QLine(static_cast<QLine>(static_cast<QVariant*>(ptr)->toLine()).p1(), static_cast<QLine>(static_cast<QVariant*>(ptr)->toLine()).p2());
+	return ({ QLine tmpValue = static_cast<QVariant*>(ptr)->toLine(); new QLine(tmpValue.p1(), tmpValue.p2()); });
 }
 
 void* QVariant_ToLineF(void* ptr)
 {
-	return new QLineF(static_cast<QLineF>(static_cast<QVariant*>(ptr)->toLineF()).p1(), static_cast<QLineF>(static_cast<QVariant*>(ptr)->toLineF()).p2());
+	return ({ QLineF tmpValue = static_cast<QVariant*>(ptr)->toLineF(); new QLineF(tmpValue.p1(), tmpValue.p2()); });
 }
 
 void* QVariant_ToLocale(void* ptr)
@@ -22105,22 +22105,22 @@ void* QVariant_ToLocale(void* ptr)
 
 void* QVariant_ToPoint(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).x(), static_cast<QPoint>(static_cast<QVariant*>(ptr)->toPoint()).y());
+	return ({ QPoint tmpValue = static_cast<QVariant*>(ptr)->toPoint(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QVariant_ToPointF(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QVariant*>(ptr)->toPointF()).x(), static_cast<QPointF>(static_cast<QVariant*>(ptr)->toPointF()).y());
+	return ({ QPointF tmpValue = static_cast<QVariant*>(ptr)->toPointF(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 void* QVariant_ToRect(void* ptr)
 {
-	return new QRect(static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).x(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).y(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).width(), static_cast<QRect>(static_cast<QVariant*>(ptr)->toRect()).height());
+	return ({ QRect tmpValue = static_cast<QVariant*>(ptr)->toRect(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QVariant_ToRectF(void* ptr)
 {
-	return new QRectF(static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).x(), static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).y(), static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).width(), static_cast<QRectF>(static_cast<QVariant*>(ptr)->toRectF()).height());
+	return ({ QRectF tmpValue = static_cast<QVariant*>(ptr)->toRectF(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QVariant_ToRegExp(void* ptr)
@@ -22135,12 +22135,12 @@ void* QVariant_ToRegularExpression(void* ptr)
 
 void* QVariant_ToSize(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QVariant*>(ptr)->toSize()).width(), static_cast<QSize>(static_cast<QVariant*>(ptr)->toSize()).height());
+	return ({ QSize tmpValue = static_cast<QVariant*>(ptr)->toSize(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QVariant_ToSizeF(void* ptr)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QVariant*>(ptr)->toSizeF()).width(), static_cast<QSizeF>(static_cast<QVariant*>(ptr)->toSizeF()).height());
+	return ({ QSizeF tmpValue = static_cast<QVariant*>(ptr)->toSizeF(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 char* QVariant_ToStringList(void* ptr)
@@ -22274,11 +22274,11 @@ public:
 	MyQVariantAnimation(QObject *parent) : QVariantAnimation(parent) {};
 	int duration() const { return callbackQVariantAnimation_Duration(const_cast<MyQVariantAnimation*>(this), this->objectName().toUtf8().data()); };
 	bool event(QEvent * event) { return callbackQVariantAnimation_Event(this, this->objectName().toUtf8().data(), event) != 0; };
-	QVariant interpolated(const QVariant & from, const QVariant & to, qreal progress) const { return *static_cast<QVariant*>(callbackQVariantAnimation_Interpolated(const_cast<MyQVariantAnimation*>(this), this->objectName().toUtf8().data(), new QVariant(from), new QVariant(to), static_cast<double>(progress))); };
+	QVariant interpolated(const QVariant & from, const QVariant & to, qreal progress) const { return *static_cast<QVariant*>(callbackQVariantAnimation_Interpolated(const_cast<MyQVariantAnimation*>(this), this->objectName().toUtf8().data(), const_cast<QVariant*>(&from), const_cast<QVariant*>(&to), static_cast<double>(progress))); };
 	void updateCurrentTime(int vin) { callbackQVariantAnimation_UpdateCurrentTime(this, this->objectName().toUtf8().data(), vin); };
-	void updateCurrentValue(const QVariant & value) { callbackQVariantAnimation_UpdateCurrentValue(this, this->objectName().toUtf8().data(), new QVariant(value)); };
+	void updateCurrentValue(const QVariant & value) { callbackQVariantAnimation_UpdateCurrentValue(this, this->objectName().toUtf8().data(), const_cast<QVariant*>(&value)); };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQVariantAnimation_UpdateState(this, this->objectName().toUtf8().data(), newState, oldState); };
-	void Signal_ValueChanged(const QVariant & value) { callbackQVariantAnimation_ValueChanged(this, this->objectName().toUtf8().data(), new QVariant(value)); };
+	void Signal_ValueChanged(const QVariant & value) { callbackQVariantAnimation_ValueChanged(this, this->objectName().toUtf8().data(), const_cast<QVariant*>(&value)); };
 	void setCurrentTime(int msecs) { callbackQVariantAnimation_SetCurrentTime(this, this->objectName().toUtf8().data(), msecs); };
 	void pause() { callbackQVariantAnimation_Pause(this, this->objectName().toUtf8().data()); };
 	void resume() { callbackQVariantAnimation_Resume(this, this->objectName().toUtf8().data()); };
@@ -22288,10 +22288,10 @@ public:
 	void updateDirection(QAbstractAnimation::Direction direction) { callbackQVariantAnimation_UpdateDirection(this, this->objectName().toUtf8().data(), direction); };
 	void timerEvent(QTimerEvent * event) { callbackQVariantAnimation_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQVariantAnimation_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQVariantAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQVariantAnimation_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQVariantAnimation_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQVariantAnimation_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQVariantAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQVariantAnimation_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVariantAnimation_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVariantAnimation_MetaObject(const_cast<MyQVariantAnimation*>(this), this->objectName().toUtf8().data())); };
 };

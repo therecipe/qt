@@ -144,6 +144,15 @@ return n
 				}(),
 			)
 
+			if classNeedsDestructor(class) {
+				fmt.Fprintf(bb, `
+func (ptr *%v) Destroy%v() {
+C.free(ptr.Pointer())
+ptr.SetPointer(nil)
+}
+
+`, class.Name, class.Name)
+			}
 		}
 
 		if classIsSupported(class) {
@@ -283,6 +292,7 @@ func preambleGo(module string, input []byte, stub bool) []byte {
 
 package %v
 
+//#include <stdlib.h>
 //#include "%v.h"
 import "C"
 import (
@@ -361,11 +371,11 @@ import (
 		}(),
 	)
 
-	for _, m := range append(Libs, "qt", "strings", "unsafe", "log") {
+	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime") {
 		m = strings.ToLower(m)
 		if strings.Contains(string(input), fmt.Sprintf("%v.", m)) {
 			switch m {
-			case "strings", "unsafe", "log":
+			case "strings", "unsafe", "log", "runtime":
 				{
 					fmt.Fprintf(bb, "\"%v\"\n", m)
 				}

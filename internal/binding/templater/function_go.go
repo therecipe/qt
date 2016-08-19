@@ -107,27 +107,51 @@ func goFunctionBody(function *parser.Function) string {
 			cppFunction(function)
 			if functionIsSupported(parser.ClassMap[function.Class()], function) {
 
-				fmt.Fprintf(bb, "%v%v",
+				for _, alloc := range converter.GoInputParametersForCAlloc(function) {
+					fmt.Fprint(bb, alloc)
+				}
+
+				var body = converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v%v(%v)",
+
+					converter.CppHeaderName(function),
 
 					func() string {
-						if converter.GoHeaderOutput(function) != "" {
-							return "return "
+						if function.Default {
+							return "Default"
 						}
 						return ""
 					}(),
 
-					converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v%v(%v)",
+					converter.GoInputParametersForC(function)))
 
-						converter.CppHeaderName(function),
+				fmt.Fprint(bb, func() string {
+					if converter.GoHeaderOutput(function) != "" {
+						if function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) {
+							return fmt.Sprintf(`var tmpValue = %v
+runtime.SetFinalizer(tmpValue, (%v).Destroy%v)
+return tmpValue%v`, body,
 
-						func() string {
-							if function.Default {
-								return "Default"
-							}
-							return ""
-						}(),
+								func() string {
+									if function.TemplateMode == "String" {
+										return fmt.Sprintf("*%v", function.Class())
+									}
+									return converter.GoHeaderOutput(function)
+								}(),
 
-						converter.GoInputParametersForC(function))),
+								converter.CleanValue(function.Output),
+
+								func() string {
+									if function.TemplateMode == "String" {
+										return ".ToString()"
+									}
+									return ""
+								}(),
+							)
+						}
+						return fmt.Sprintf("return %v", body)
+					}
+					return body
+				}(),
 				)
 
 			}

@@ -113,37 +113,37 @@ class MyQHelpContentModel: public QHelpContentModel
 public:
 	void Signal_ContentsCreated() { callbackQHelpContentModel_ContentsCreated(this, this->objectName().toUtf8().data()); };
 	void Signal_ContentsCreationStarted() { callbackQHelpContentModel_ContentsCreationStarted(this, this->objectName().toUtf8().data()); };
-	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Sibling(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(index))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Buddy(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQHelpContentModel_CanDropMimeData(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQHelpContentModel_CanFetchMore(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQHelpContentModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	void fetchMore(const QModelIndex & parent) { callbackQHelpContentModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQHelpContentModel_Flags(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQHelpContentModel_HasChildren(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Sibling(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&index))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Buddy(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQHelpContentModel_CanDropMimeData(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQHelpContentModel_CanFetchMore(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQHelpContentModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	void fetchMore(const QModelIndex & parent) { callbackQHelpContentModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQHelpContentModel_Flags(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQHelpContentModel_HasChildren(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQHelpContentModel_HeaderData(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQHelpContentModel_MimeTypes(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpContentModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpContentModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpContentModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQHelpContentModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpContentModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpContentModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpContentModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQHelpContentModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQHelpContentModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQHelpContentModel_Revert(this, this->objectName().toUtf8().data()); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQHelpContentModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQHelpContentModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQHelpContentModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQHelpContentModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQHelpContentModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQHelpContentModel_Span(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQHelpContentModel_Span(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQHelpContentModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQHelpContentModel_SupportedDragActions(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQHelpContentModel_SupportedDropActions(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpContentModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQHelpContentModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpContentModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpContentModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpContentModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpContentModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpContentModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpContentModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQHelpContentModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpContentModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpContentModel_MetaObject(const_cast<MyQHelpContentModel*>(this), this->objectName().toUtf8().data())); };
@@ -436,12 +436,12 @@ void QHelpContentModel_SortDefault(void* ptr, int column, int order)
 
 void* QHelpContentModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QHelpContentModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpContentModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QHelpContentModel_Submit(void* ptr)
@@ -569,23 +569,23 @@ void* QHelpContentModel_MetaObjectDefault(void* ptr)
 class MyQHelpContentWidget: public QHelpContentWidget
 {
 public:
-	void Signal_LinkActivated(const QUrl & link) { callbackQHelpContentWidget_LinkActivated(this, this->objectName().toUtf8().data(), new QUrl(link)); };
-	void collapse(const QModelIndex & index) { callbackQHelpContentWidget_Collapse(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
-	void expand(const QModelIndex & index) { callbackQHelpContentWidget_Expand(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
+	void Signal_LinkActivated(const QUrl & link) { callbackQHelpContentWidget_LinkActivated(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&link)); };
+	void collapse(const QModelIndex & index) { callbackQHelpContentWidget_Collapse(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
+	void expand(const QModelIndex & index) { callbackQHelpContentWidget_Expand(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
 	void collapseAll() { callbackQHelpContentWidget_CollapseAll(this, this->objectName().toUtf8().data()); };
 	void columnCountChanged(int oldCount, int newCount) { callbackQHelpContentWidget_ColumnCountChanged(this, this->objectName().toUtf8().data(), oldCount, newCount); };
 	void columnMoved() { callbackQHelpContentWidget_ColumnMoved(this, this->objectName().toUtf8().data()); };
 	void columnResized(int column, int oldSize, int newSize) { callbackQHelpContentWidget_ColumnResized(this, this->objectName().toUtf8().data(), column, oldSize, newSize); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQHelpContentWidget_CurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQHelpContentWidget_CurrentChanged(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQHelpContentWidget_DragMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQHelpContentWidget_DrawBranches(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), painter, new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), new QModelIndex(index)); };
-	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQHelpContentWidget_DrawRow(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), painter, new QStyleOptionViewItem(option), new QModelIndex(index)); };
+	void drawBranches(QPainter * painter, const QRect & rect, const QModelIndex & index) const { callbackQHelpContentWidget_DrawBranches(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), painter, const_cast<QRect*>(&rect), const_cast<QModelIndex*>(&index)); };
+	void drawRow(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQHelpContentWidget_DrawRow(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
 	void expandAll() { callbackQHelpContentWidget_ExpandAll(this, this->objectName().toUtf8().data()); };
 	void expandToDepth(int depth) { callbackQHelpContentWidget_ExpandToDepth(this, this->objectName().toUtf8().data(), depth); };
 	void hideColumn(int column) { callbackQHelpContentWidget_HideColumn(this, this->objectName().toUtf8().data(), column); };
 	int horizontalOffset() const { return callbackQHelpContentWidget_HorizontalOffset(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data()); };
-	QModelIndex indexAt(const QPoint & point) const { return *static_cast<QModelIndex*>(callbackQHelpContentWidget_IndexAt(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), new QPoint(static_cast<QPoint>(point).x(), static_cast<QPoint>(point).y()))); };
-	bool isIndexHidden(const QModelIndex & index) const { return callbackQHelpContentWidget_IsIndexHidden(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), new QModelIndex(index)) != 0; };
+	QModelIndex indexAt(const QPoint & point) const { return *static_cast<QModelIndex*>(callbackQHelpContentWidget_IndexAt(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), const_cast<QPoint*>(&point))); };
+	bool isIndexHidden(const QModelIndex & index) const { return callbackQHelpContentWidget_IsIndexHidden(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQHelpContentWidget_KeyPressEvent(this, this->objectName().toUtf8().data(), event); };
 	void keyboardSearch(const QString & search) { callbackQHelpContentWidget_KeyboardSearch(this, this->objectName().toUtf8().data(), search.toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQHelpContentWidget_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
@@ -596,16 +596,16 @@ public:
 	void paintEvent(QPaintEvent * event) { callbackQHelpContentWidget_PaintEvent(this, this->objectName().toUtf8().data(), event); };
 	void reset() { callbackQHelpContentWidget_Reset(this, this->objectName().toUtf8().data()); };
 	void resizeColumnToContents(int column) { callbackQHelpContentWidget_ResizeColumnToContents(this, this->objectName().toUtf8().data(), column); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQHelpContentWidget_RowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQHelpContentWidget_RowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
-	void rowsRemoved(const QModelIndex & parent, int start, int end) { callbackQHelpContentWidget_RowsRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
+	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQHelpContentWidget_RowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end); };
+	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQHelpContentWidget_RowsInserted(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end); };
+	void rowsRemoved(const QModelIndex & parent, int start, int end) { callbackQHelpContentWidget_RowsRemoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end); };
 	void scrollContentsBy(int dx, int dy) { callbackQHelpContentWidget_ScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
-	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQHelpContentWidget_ScrollTo(this, this->objectName().toUtf8().data(), new QModelIndex(index), hint); };
+	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQHelpContentWidget_ScrollTo(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), hint); };
 	void selectAll() { callbackQHelpContentWidget_SelectAll(this, this->objectName().toUtf8().data()); };
-	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpContentWidget_SelectionChanged(this, this->objectName().toUtf8().data(), new QItemSelection(selected), new QItemSelection(deselected)); };
+	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpContentWidget_SelectionChanged(this, this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setModel(QAbstractItemModel * model) { callbackQHelpContentWidget_SetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
-	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQHelpContentWidget_SetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
+	void setRootIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetRootIndex(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
+	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQHelpContentWidget_SetSelection(this, this->objectName().toUtf8().data(), const_cast<QRect*>(&rect), command); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQHelpContentWidget_SetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	void showColumn(int column) { callbackQHelpContentWidget_ShowColumn(this, this->objectName().toUtf8().data(), column); };
 	int sizeHintForColumn(int column) const { return callbackQHelpContentWidget_SizeHintForColumn(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), column); };
@@ -613,16 +613,16 @@ public:
 	int verticalOffset() const { return callbackQHelpContentWidget_VerticalOffset(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data()); };
 	bool viewportEvent(QEvent * event) { return callbackQHelpContentWidget_ViewportEvent(this, this->objectName().toUtf8().data(), event) != 0; };
 	QSize viewportSizeHint() const { return *static_cast<QSize*>(callbackQHelpContentWidget_ViewportSizeHint(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data())); };
-	QRect visualRect(const QModelIndex & index) const { return *static_cast<QRect*>(callbackQHelpContentWidget_VisualRect(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	QRegion visualRegionForSelection(const QItemSelection & selection) const { return *static_cast<QRegion*>(callbackQHelpContentWidget_VisualRegionForSelection(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), new QItemSelection(selection))); };
+	QRect visualRect(const QModelIndex & index) const { return *static_cast<QRect*>(callbackQHelpContentWidget_VisualRect(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	QRegion visualRegionForSelection(const QItemSelection & selection) const { return *static_cast<QRegion*>(callbackQHelpContentWidget_VisualRegionForSelection(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selection))); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQHelpContentWidget_DragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
 	void clearSelection() { callbackQHelpContentWidget_ClearSelection(this, this->objectName().toUtf8().data()); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQHelpContentWidget_CloseEditor(this, this->objectName().toUtf8().data(), editor, hint); };
 	void commitData(QWidget * editor) { callbackQHelpContentWidget_CommitData(this, this->objectName().toUtf8().data(), editor); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQHelpContentWidget_DragEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void dropEvent(QDropEvent * event) { callbackQHelpContentWidget_DropEvent(this, this->objectName().toUtf8().data(), event); };
-	void edit(const QModelIndex & index) { callbackQHelpContentWidget_Edit(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
-	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQHelpContentWidget_Edit2(this, this->objectName().toUtf8().data(), new QModelIndex(index), trigger, event) != 0; };
+	void edit(const QModelIndex & index) { callbackQHelpContentWidget_Edit(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
+	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQHelpContentWidget_Edit2(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQHelpContentWidget_EditorDestroyed(this, this->objectName().toUtf8().data(), editor); };
 	void focusInEvent(QFocusEvent * event) { callbackQHelpContentWidget_FocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	bool focusNextPrevChild(bool next) { return callbackQHelpContentWidget_FocusNextPrevChild(this, this->objectName().toUtf8().data(), next) != 0; };
@@ -632,11 +632,11 @@ public:
 	void resizeEvent(QResizeEvent * event) { callbackQHelpContentWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
 	void scrollToBottom() { callbackQHelpContentWidget_ScrollToBottom(this, this->objectName().toUtf8().data()); };
 	void scrollToTop() { callbackQHelpContentWidget_ScrollToTop(this, this->objectName().toUtf8().data()); };
-	QItemSelectionModel::SelectionFlags selectionCommand(const QModelIndex & index, const QEvent * event) const { return static_cast<QItemSelectionModel::SelectionFlag>(callbackQHelpContentWidget_SelectionCommand(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), const_cast<QEvent*>(event))); };
-	void setCurrentIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetCurrentIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
+	QItemSelectionModel::SelectionFlags selectionCommand(const QModelIndex & index, const QEvent * event) const { return static_cast<QItemSelectionModel::SelectionFlag>(callbackQHelpContentWidget_SelectionCommand(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QEvent*>(event))); };
+	void setCurrentIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetCurrentIndex(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
 	int sizeHintForRow(int row) const { return callbackQHelpContentWidget_SizeHintForRow(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data(), row); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHelpContentWidget_StartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
-	void update(const QModelIndex & index) { callbackQHelpContentWidget_Update(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
+	void update(const QModelIndex & index) { callbackQHelpContentWidget_Update(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQHelpContentWidget_ViewOptions(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data())); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQHelpContentWidget_ContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQHelpContentWidget_MinimumSizeHint(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data())); };
@@ -676,10 +676,10 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQHelpContentWidget_TabletEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateMicroFocus() { callbackQHelpContentWidget_UpdateMicroFocus(this, this->objectName().toUtf8().data()); };
 	void childEvent(QChildEvent * event) { callbackQHelpContentWidget_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpContentWidget_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpContentWidget_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpContentWidget_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpContentWidget_MetaObject(const_cast<MyQHelpContentWidget*>(this), this->objectName().toUtf8().data())); };
 };
@@ -1126,22 +1126,22 @@ int QHelpContentWidget_ViewportEventDefault(void* ptr, void* event)
 
 void* QHelpContentWidget_ViewportSizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->viewportSizeHint()).width(), static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->viewportSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentWidget*>(ptr)->viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpContentWidget_ViewportSizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::viewportSizeHint()).width(), static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::viewportSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpContentWidget_VisualRect(void* ptr, void* index)
 {
-	return new QRect(static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
+	return ({ QRect tmpValue = static_cast<QHelpContentWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpContentWidget_VisualRectDefault(void* ptr, void* index)
 {
-	return new QRect(static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::visualRect(*static_cast<QModelIndex*>(index))).height());
+	return ({ QRect tmpValue = static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::visualRect(*static_cast<QModelIndex*>(index)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpContentWidget_VisualRegionForSelection(void* ptr, void* selection)
@@ -1396,12 +1396,12 @@ void QHelpContentWidget_ContextMenuEventDefault(void* ptr, void* e)
 
 void* QHelpContentWidget_MinimumSizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpContentWidget_MinimumSizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpContentWidget_SetupViewport(void* ptr, void* viewport)
@@ -1416,12 +1416,12 @@ void QHelpContentWidget_SetupViewportDefault(void* ptr, void* viewport)
 
 void* QHelpContentWidget_SizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentWidget*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpContentWidget_SizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::sizeHint()).width(), static_cast<QSize>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpContentWidget_WheelEvent(void* ptr, void* e)
@@ -1962,10 +1962,10 @@ public:
 	void Signal_Warning(const QString & msg) { callbackQHelpEngineCore_Warning(this, this->objectName().toUtf8().data(), msg.toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQHelpEngineCore_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpEngineCore_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpEngineCore_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpEngineCore_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpEngineCore_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpEngineCore_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpEngineCore_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQHelpEngineCore_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpEngineCore_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpEngineCore_MetaObject(const_cast<MyQHelpEngineCore*>(this), this->objectName().toUtf8().data())); };
@@ -2276,42 +2276,42 @@ class MyQHelpIndexModel: public QHelpIndexModel
 public:
 	void Signal_IndexCreated() { callbackQHelpIndexModel_IndexCreated(this, this->objectName().toUtf8().data()); };
 	void Signal_IndexCreationStarted() { callbackQHelpIndexModel_IndexCreationStarted(this, this->objectName().toUtf8().data()); };
-	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQHelpIndexModel_Data(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), role)); };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQHelpIndexModel_Flags(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
-	int rowCount(const QModelIndex & parent) const { return callbackQHelpIndexModel_RowCount(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQHelpIndexModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Sibling(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQHelpIndexModel_Data(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), role)); };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQHelpIndexModel_Flags(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQHelpIndexModel_RowCount(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQHelpIndexModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Sibling(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
 	void sort(int column, Qt::SortOrder order) { callbackQHelpIndexModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQHelpIndexModel_SupportedDropActions(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data())); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Index(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQHelpIndexModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Buddy(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQHelpIndexModel_CanDropMimeData(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQHelpIndexModel_CanFetchMore(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQHelpIndexModel_ColumnCount(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	void fetchMore(const QModelIndex & parent) { callbackQHelpIndexModel_FetchMore(this, this->objectName().toUtf8().data(), new QModelIndex(parent)); };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQHelpIndexModel_HasChildren(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Index(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQHelpIndexModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Buddy(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQHelpIndexModel_CanDropMimeData(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQHelpIndexModel_CanFetchMore(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & parent) const { return callbackQHelpIndexModel_ColumnCount(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	void fetchMore(const QModelIndex & parent) { callbackQHelpIndexModel_FetchMore(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQHelpIndexModel_HasChildren(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQHelpIndexModel_HeaderData(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), section, orientation, role)); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_InsertColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQHelpIndexModel_MimeTypes(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpIndexModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpIndexModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Parent(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, new QModelIndex(parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpIndexModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpIndexModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpIndexModel_Parent(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_RemoveColumns(this, this->objectName().toUtf8().data(), column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQHelpIndexModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQHelpIndexModel_Revert(this, this->objectName().toUtf8().data()); };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQHelpIndexModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, new QVariant(value), role) != 0; };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQHelpIndexModel_Span(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQHelpIndexModel_SetHeaderData(this, this->objectName().toUtf8().data(), section, orientation, const_cast<QVariant*>(&value), role) != 0; };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQHelpIndexModel_Span(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQHelpIndexModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQHelpIndexModel_SupportedDragActions(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpIndexModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQHelpIndexModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpIndexModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpIndexModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpIndexModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpIndexModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpIndexModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpIndexModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQHelpIndexModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpIndexModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpIndexModel_MetaObject(const_cast<MyQHelpIndexModel*>(this), this->objectName().toUtf8().data())); };
@@ -2634,12 +2634,12 @@ int QHelpIndexModel_SetHeaderDataDefault(void* ptr, int section, int orientation
 
 void* QHelpIndexModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QHelpIndexModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpIndexModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QHelpIndexModel_Submit(void* ptr)
@@ -2759,39 +2759,39 @@ class MyQHelpIndexWidget: public QHelpIndexWidget
 public:
 	void activateCurrentItem() { callbackQHelpIndexWidget_ActivateCurrentItem(this, this->objectName().toUtf8().data()); };
 	void filterIndices(const QString & filter, const QString & wildcard) { callbackQHelpIndexWidget_FilterIndices(this, this->objectName().toUtf8().data(), filter.toUtf8().data(), wildcard.toUtf8().data()); };
-	void Signal_LinkActivated(const QUrl & link, const QString & keyword) { callbackQHelpIndexWidget_LinkActivated(this, this->objectName().toUtf8().data(), new QUrl(link), keyword.toUtf8().data()); };
-	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQHelpIndexWidget_CurrentChanged(this, this->objectName().toUtf8().data(), new QModelIndex(current), new QModelIndex(previous)); };
+	void Signal_LinkActivated(const QUrl & link, const QString & keyword) { callbackQHelpIndexWidget_LinkActivated(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&link), keyword.toUtf8().data()); };
+	void currentChanged(const QModelIndex & current, const QModelIndex & previous) { callbackQHelpIndexWidget_CurrentChanged(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&current), const_cast<QModelIndex*>(&previous)); };
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQHelpIndexWidget_DragLeaveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQHelpIndexWidget_DragMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void dropEvent(QDropEvent * e) { callbackQHelpIndexWidget_DropEvent(this, this->objectName().toUtf8().data(), e); };
 	int horizontalOffset() const { return callbackQHelpIndexWidget_HorizontalOffset(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data()); };
-	QModelIndex indexAt(const QPoint & p) const { return *static_cast<QModelIndex*>(callbackQHelpIndexWidget_IndexAt(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), new QPoint(static_cast<QPoint>(p).x(), static_cast<QPoint>(p).y()))); };
-	bool isIndexHidden(const QModelIndex & index) const { return callbackQHelpIndexWidget_IsIndexHidden(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), new QModelIndex(index)) != 0; };
+	QModelIndex indexAt(const QPoint & p) const { return *static_cast<QModelIndex*>(callbackQHelpIndexWidget_IndexAt(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), const_cast<QPoint*>(&p))); };
+	bool isIndexHidden(const QModelIndex & index) const { return callbackQHelpIndexWidget_IsIndexHidden(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)) != 0; };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQHelpIndexWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), e); };
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQHelpIndexWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), e); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQHelpIndexWidget_MoveCursor(this, this->objectName().toUtf8().data(), cursorAction, modifiers)); };
 	void paintEvent(QPaintEvent * e) { callbackQHelpIndexWidget_PaintEvent(this, this->objectName().toUtf8().data(), e); };
 	void resizeEvent(QResizeEvent * e) { callbackQHelpIndexWidget_ResizeEvent(this, this->objectName().toUtf8().data(), e); };
-	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQHelpIndexWidget_RowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
-	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQHelpIndexWidget_RowsInserted(this, this->objectName().toUtf8().data(), new QModelIndex(parent), start, end); };
-	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQHelpIndexWidget_ScrollTo(this, this->objectName().toUtf8().data(), new QModelIndex(index), hint); };
-	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpIndexWidget_SelectionChanged(this, this->objectName().toUtf8().data(), new QItemSelection(selected), new QItemSelection(deselected)); };
-	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQHelpIndexWidget_SetSelection(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(rect).x(), static_cast<QRect>(rect).y(), static_cast<QRect>(rect).width(), static_cast<QRect>(rect).height()), command); };
+	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQHelpIndexWidget_RowsAboutToBeRemoved(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end); };
+	void rowsInserted(const QModelIndex & parent, int start, int end) { callbackQHelpIndexWidget_RowsInserted(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent), start, end); };
+	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQHelpIndexWidget_ScrollTo(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), hint); };
+	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpIndexWidget_SelectionChanged(this, this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
+	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQHelpIndexWidget_SetSelection(this, this->objectName().toUtf8().data(), const_cast<QRect*>(&rect), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHelpIndexWidget_StartDrag(this, this->objectName().toUtf8().data(), supportedActions); };
 	void updateGeometries() { callbackQHelpIndexWidget_UpdateGeometries(this, this->objectName().toUtf8().data()); };
 	int verticalOffset() const { return callbackQHelpIndexWidget_VerticalOffset(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data()); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQHelpIndexWidget_ViewOptions(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data())); };
 	QSize viewportSizeHint() const { return *static_cast<QSize*>(callbackQHelpIndexWidget_ViewportSizeHint(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data())); };
-	QRect visualRect(const QModelIndex & index) const { return *static_cast<QRect*>(callbackQHelpIndexWidget_VisualRect(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	QRegion visualRegionForSelection(const QItemSelection & selection) const { return *static_cast<QRegion*>(callbackQHelpIndexWidget_VisualRegionForSelection(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), new QItemSelection(selection))); };
+	QRect visualRect(const QModelIndex & index) const { return *static_cast<QRect*>(callbackQHelpIndexWidget_VisualRect(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	QRegion visualRegionForSelection(const QItemSelection & selection) const { return *static_cast<QRegion*>(callbackQHelpIndexWidget_VisualRegionForSelection(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), const_cast<QItemSelection*>(&selection))); };
 	void wheelEvent(QWheelEvent * e) { callbackQHelpIndexWidget_WheelEvent(this, this->objectName().toUtf8().data(), e); };
 	bool viewportEvent(QEvent * event) { return callbackQHelpIndexWidget_ViewportEvent(this, this->objectName().toUtf8().data(), event) != 0; };
 	void clearSelection() { callbackQHelpIndexWidget_ClearSelection(this, this->objectName().toUtf8().data()); };
 	void closeEditor(QWidget * editor, QAbstractItemDelegate::EndEditHint hint) { callbackQHelpIndexWidget_CloseEditor(this, this->objectName().toUtf8().data(), editor, hint); };
 	void commitData(QWidget * editor) { callbackQHelpIndexWidget_CommitData(this, this->objectName().toUtf8().data(), editor); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQHelpIndexWidget_DragEnterEvent(this, this->objectName().toUtf8().data(), event); };
-	void edit(const QModelIndex & index) { callbackQHelpIndexWidget_Edit(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
-	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQHelpIndexWidget_Edit2(this, this->objectName().toUtf8().data(), new QModelIndex(index), trigger, event) != 0; };
+	void edit(const QModelIndex & index) { callbackQHelpIndexWidget_Edit(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
+	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQHelpIndexWidget_Edit2(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQHelpIndexWidget_EditorDestroyed(this, this->objectName().toUtf8().data(), editor); };
 	void focusInEvent(QFocusEvent * event) { callbackQHelpIndexWidget_FocusInEvent(this, this->objectName().toUtf8().data(), event); };
 	bool focusNextPrevChild(bool next) { return callbackQHelpIndexWidget_FocusNextPrevChild(this, this->objectName().toUtf8().data(), next) != 0; };
@@ -2806,14 +2806,14 @@ public:
 	void scrollToBottom() { callbackQHelpIndexWidget_ScrollToBottom(this, this->objectName().toUtf8().data()); };
 	void scrollToTop() { callbackQHelpIndexWidget_ScrollToTop(this, this->objectName().toUtf8().data()); };
 	void selectAll() { callbackQHelpIndexWidget_SelectAll(this, this->objectName().toUtf8().data()); };
-	QItemSelectionModel::SelectionFlags selectionCommand(const QModelIndex & index, const QEvent * event) const { return static_cast<QItemSelectionModel::SelectionFlag>(callbackQHelpIndexWidget_SelectionCommand(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), new QModelIndex(index), const_cast<QEvent*>(event))); };
-	void setCurrentIndex(const QModelIndex & index) { callbackQHelpIndexWidget_SetCurrentIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
+	QItemSelectionModel::SelectionFlags selectionCommand(const QModelIndex & index, const QEvent * event) const { return static_cast<QItemSelectionModel::SelectionFlag>(callbackQHelpIndexWidget_SelectionCommand(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QEvent*>(event))); };
+	void setCurrentIndex(const QModelIndex & index) { callbackQHelpIndexWidget_SetCurrentIndex(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
 	void setModel(QAbstractItemModel * model) { callbackQHelpIndexWidget_SetModel(this, this->objectName().toUtf8().data(), model); };
-	void setRootIndex(const QModelIndex & index) { callbackQHelpIndexWidget_SetRootIndex(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
+	void setRootIndex(const QModelIndex & index) { callbackQHelpIndexWidget_SetRootIndex(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
 	void setSelectionModel(QItemSelectionModel * selectionModel) { callbackQHelpIndexWidget_SetSelectionModel(this, this->objectName().toUtf8().data(), selectionModel); };
 	int sizeHintForColumn(int column) const { return callbackQHelpIndexWidget_SizeHintForColumn(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), column); };
 	int sizeHintForRow(int row) const { return callbackQHelpIndexWidget_SizeHintForRow(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data(), row); };
-	void update(const QModelIndex & index) { callbackQHelpIndexWidget_Update(this, this->objectName().toUtf8().data(), new QModelIndex(index)); };
+	void update(const QModelIndex & index) { callbackQHelpIndexWidget_Update(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index)); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQHelpIndexWidget_ContextMenuEvent(this, this->objectName().toUtf8().data(), e); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQHelpIndexWidget_MinimumSizeHint(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data())); };
 	void scrollContentsBy(int dx, int dy) { callbackQHelpIndexWidget_ScrollContentsBy(this, this->objectName().toUtf8().data(), dx, dy); };
@@ -2852,10 +2852,10 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQHelpIndexWidget_TabletEvent(this, this->objectName().toUtf8().data(), event); };
 	void updateMicroFocus() { callbackQHelpIndexWidget_UpdateMicroFocus(this, this->objectName().toUtf8().data()); };
 	void childEvent(QChildEvent * event) { callbackQHelpIndexWidget_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpIndexWidget_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpIndexWidget_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpIndexWidget_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpIndexWidget_MetaObject(const_cast<MyQHelpIndexWidget*>(this), this->objectName().toUtf8().data())); };
 };
@@ -3097,22 +3097,22 @@ void* QHelpIndexWidget_ViewOptionsDefault(void* ptr)
 
 void* QHelpIndexWidget_ViewportSizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->viewportSizeHint()).width(), static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->viewportSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexWidget*>(ptr)->viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpIndexWidget_ViewportSizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::viewportSizeHint()).width(), static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::viewportSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::viewportSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpIndexWidget_VisualRect(void* ptr, void* index)
 {
-	return new QRect(static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index))).height());
+	return ({ QRect tmpValue = static_cast<QHelpIndexWidget*>(ptr)->visualRect(*static_cast<QModelIndex*>(index)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpIndexWidget_VisualRectDefault(void* ptr, void* index)
 {
-	return new QRect(static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::visualRect(*static_cast<QModelIndex*>(index))).x(), static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::visualRect(*static_cast<QModelIndex*>(index))).y(), static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::visualRect(*static_cast<QModelIndex*>(index))).width(), static_cast<QRect>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::visualRect(*static_cast<QModelIndex*>(index))).height());
+	return ({ QRect tmpValue = static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::visualRect(*static_cast<QModelIndex*>(index)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpIndexWidget_VisualRegionForSelection(void* ptr, void* selection)
@@ -3437,12 +3437,12 @@ void QHelpIndexWidget_ContextMenuEventDefault(void* ptr, void* e)
 
 void* QHelpIndexWidget_MinimumSizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpIndexWidget_MinimumSizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpIndexWidget_ScrollContentsBy(void* ptr, int dx, int dy)
@@ -3467,12 +3467,12 @@ void QHelpIndexWidget_SetupViewportDefault(void* ptr, void* viewport)
 
 void* QHelpIndexWidget_SizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexWidget*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpIndexWidget_SizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::sizeHint()).width(), static_cast<QSize>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpIndexWidget_ChangeEvent(void* ptr, void* ev)
@@ -3880,10 +3880,10 @@ public:
 	void Signal_SearchingStarted() { callbackQHelpSearchEngine_SearchingStarted(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchEngine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQHelpSearchEngine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchEngine_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchEngine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpSearchEngine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpSearchEngine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQHelpSearchEngine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchEngine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchEngine_MetaObject(const_cast<MyQHelpSearchEngine*>(this), this->objectName().toUtf8().data())); };
@@ -4169,10 +4169,10 @@ public:
 	void wheelEvent(QWheelEvent * event) { callbackQHelpSearchQueryWidget_WheelEvent(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchQueryWidget_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQHelpSearchQueryWidget_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchQueryWidget_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchQueryWidget_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpSearchQueryWidget_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpSearchQueryWidget_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchQueryWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchQueryWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchQueryWidget_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchQueryWidget_MetaObject(const_cast<MyQHelpSearchQueryWidget*>(this), this->objectName().toUtf8().data())); };
 };
@@ -4319,12 +4319,12 @@ void QHelpSearchQueryWidget_LeaveEventDefault(void* ptr, void* event)
 
 void* QHelpSearchQueryWidget_MinimumSizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchQueryWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpSearchQueryWidget_MinimumSizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpSearchQueryWidget_MoveEvent(void* ptr, void* event)
@@ -4409,12 +4409,12 @@ void QHelpSearchQueryWidget_ShowEventDefault(void* ptr, void* event)
 
 void* QHelpSearchQueryWidget_SizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchQueryWidget*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpSearchQueryWidget_SizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::sizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpSearchQueryWidget_ChangeEvent(void* ptr, void* event)
@@ -4832,7 +4832,7 @@ void* QHelpSearchQueryWidget_MetaObjectDefault(void* ptr)
 class MyQHelpSearchResultWidget: public QHelpSearchResultWidget
 {
 public:
-	void Signal_RequestShowLink(const QUrl & link) { callbackQHelpSearchResultWidget_RequestShowLink(this, this->objectName().toUtf8().data(), new QUrl(link)); };
+	void Signal_RequestShowLink(const QUrl & link) { callbackQHelpSearchResultWidget_RequestShowLink(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&link)); };
 	void actionEvent(QActionEvent * event) { callbackQHelpSearchResultWidget_ActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQHelpSearchResultWidget_DragEnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQHelpSearchResultWidget_DragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4888,10 +4888,10 @@ public:
 	void wheelEvent(QWheelEvent * event) { callbackQHelpSearchResultWidget_WheelEvent(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpSearchResultWidget_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQHelpSearchResultWidget_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchResultWidget_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQHelpSearchResultWidget_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpSearchResultWidget_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQHelpSearchResultWidget_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchResultWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchResultWidget_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchResultWidget_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchResultWidget_MetaObject(const_cast<MyQHelpSearchResultWidget*>(this), this->objectName().toUtf8().data())); };
 };
@@ -5023,12 +5023,12 @@ void QHelpSearchResultWidget_LeaveEventDefault(void* ptr, void* event)
 
 void* QHelpSearchResultWidget_MinimumSizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchResultWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpSearchResultWidget_MinimumSizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::minimumSizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpSearchResultWidget_MoveEvent(void* ptr, void* event)
@@ -5113,12 +5113,12 @@ void QHelpSearchResultWidget_ShowEventDefault(void* ptr, void* event)
 
 void* QHelpSearchResultWidget_SizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchResultWidget*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QHelpSearchResultWidget_SizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::sizeHint()).width(), static_cast<QSize>(static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QHelpSearchResultWidget_ChangeEvent(void* ptr, void* event)

@@ -2,6 +2,7 @@
 
 package sailfish
 
+//#include <stdlib.h>
 //#include "sailfish_sailfish.h"
 import "C"
 import (
@@ -9,6 +10,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/quick"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -56,28 +58,41 @@ func newSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
 	return n
 }
 
+func (ptr *SailfishApp) DestroySailfishApp() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 	defer qt.Recovering("SailfishApp::application")
 
-	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(argc), C.CString(strings.Join(argv, "|"))))
+	var argvC = C.CString(strings.Join(argv, "|"))
+	defer C.free(unsafe.Pointer(argvC))
+	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(argc), argvC))
 }
 
 func (ptr *SailfishApp) Application(argc int, argv []string) *gui.QGuiApplication {
 	defer qt.Recovering("SailfishApp::application")
 
-	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(argc), C.CString(strings.Join(argv, "|"))))
+	var argvC = C.CString(strings.Join(argv, "|"))
+	defer C.free(unsafe.Pointer(argvC))
+	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(argc), argvC))
 }
 
 func SailfishApp_Main(argc int, argv []string) int {
 	defer qt.Recovering("SailfishApp::main")
 
-	return int(C.SailfishApp_SailfishApp_Main(C.int(argc), C.CString(strings.Join(argv, "|"))))
+	var argvC = C.CString(strings.Join(argv, "|"))
+	defer C.free(unsafe.Pointer(argvC))
+	return int(C.SailfishApp_SailfishApp_Main(C.int(argc), argvC))
 }
 
 func (ptr *SailfishApp) Main(argc int, argv []string) int {
 	defer qt.Recovering("SailfishApp::main")
 
-	return int(C.SailfishApp_SailfishApp_Main(C.int(argc), C.CString(strings.Join(argv, "|"))))
+	var argvC = C.CString(strings.Join(argv, "|"))
+	defer C.free(unsafe.Pointer(argvC))
+	return int(C.SailfishApp_SailfishApp_Main(C.int(argc), argvC))
 }
 
 func SailfishApp_CreateView() *quick.QQuickView {
@@ -95,11 +110,19 @@ func (ptr *SailfishApp) CreateView() *quick.QQuickView {
 func SailfishApp_PathTo(filename string) *core.QUrl {
 	defer qt.Recovering("SailfishApp::pathTo")
 
-	return core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.CString(filename)))
+	var filenameC = C.CString(filename)
+	defer C.free(unsafe.Pointer(filenameC))
+	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(filenameC))
+	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func (ptr *SailfishApp) PathTo(filename string) *core.QUrl {
 	defer qt.Recovering("SailfishApp::pathTo")
 
-	return core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(C.CString(filename)))
+	var filenameC = C.CString(filename)
+	defer C.free(unsafe.Pointer(filenameC))
+	var tmpValue = core.NewQUrlFromPointer(C.SailfishApp_SailfishApp_PathTo(filenameC))
+	runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+	return tmpValue
 }

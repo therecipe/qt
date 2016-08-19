@@ -1240,6 +1240,7 @@ public:
 	void setDocumentLocator(QXmlLocator * locator) { callbackQXmlContentHandler_SetDocumentLocator(this, this->objectNameAbs().toUtf8().data(), locator); };
 	bool skippedEntity(const QString & name) { return callbackQXmlContentHandler_SkippedEntity(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data()) != 0; };
 	bool startDocument() { return callbackQXmlContentHandler_StartDocument(this, this->objectNameAbs().toUtf8().data()) != 0; };
+	bool startElement(const QString & namespaceURI, const QString & localName, const QString & qName, const QXmlAttributes & atts) { return callbackQXmlContentHandler_StartElement(this, this->objectNameAbs().toUtf8().data(), namespaceURI.toUtf8().data(), localName.toUtf8().data(), qName.toUtf8().data(), const_cast<QXmlAttributes*>(&atts)) != 0; };
 	bool startPrefixMapping(const QString & prefix, const QString & uri) { return callbackQXmlContentHandler_StartPrefixMapping(this, this->objectNameAbs().toUtf8().data(), prefix.toUtf8().data(), uri.toUtf8().data()) != 0; };
 };
 
@@ -1291,6 +1292,11 @@ int QXmlContentHandler_SkippedEntity(void* ptr, char* name)
 int QXmlContentHandler_StartDocument(void* ptr)
 {
 	return static_cast<QXmlContentHandler*>(ptr)->startDocument();
+}
+
+int QXmlContentHandler_StartElement(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts)
+{
+	return static_cast<QXmlContentHandler*>(ptr)->startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
 }
 
 int QXmlContentHandler_StartPrefixMapping(void* ptr, char* prefix, char* uri)
@@ -1432,10 +1438,10 @@ public:
 	bool endElement(const QString & namespaceURI, const QString & localName, const QString & qName) { return callbackQXmlDefaultHandler_EndElement(this, this->objectNameAbs().toUtf8().data(), namespaceURI.toUtf8().data(), localName.toUtf8().data(), qName.toUtf8().data()) != 0; };
 	bool endEntity(const QString & name) { return callbackQXmlDefaultHandler_EndEntity(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data()) != 0; };
 	bool endPrefixMapping(const QString & prefix) { return callbackQXmlDefaultHandler_EndPrefixMapping(this, this->objectNameAbs().toUtf8().data(), prefix.toUtf8().data()) != 0; };
-	bool error(const QXmlParseException & exception) { return callbackQXmlDefaultHandler_Error(this, this->objectNameAbs().toUtf8().data(), new QXmlParseException(exception)) != 0; };
+	bool error(const QXmlParseException & exception) { return callbackQXmlDefaultHandler_Error(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlParseException*>(&exception)) != 0; };
 	QString errorString() const { return QString(callbackQXmlDefaultHandler_ErrorString(const_cast<MyQXmlDefaultHandler*>(this), this->objectNameAbs().toUtf8().data())); };
 	bool externalEntityDecl(const QString & name, const QString & publicId, const QString & systemId) { return callbackQXmlDefaultHandler_ExternalEntityDecl(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), publicId.toUtf8().data(), systemId.toUtf8().data()) != 0; };
-	bool fatalError(const QXmlParseException & exception) { return callbackQXmlDefaultHandler_FatalError(this, this->objectNameAbs().toUtf8().data(), new QXmlParseException(exception)) != 0; };
+	bool fatalError(const QXmlParseException & exception) { return callbackQXmlDefaultHandler_FatalError(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlParseException*>(&exception)) != 0; };
 	bool ignorableWhitespace(const QString & ch) { return callbackQXmlDefaultHandler_IgnorableWhitespace(this, this->objectNameAbs().toUtf8().data(), ch.toUtf8().data()) != 0; };
 	bool internalEntityDecl(const QString & name, const QString & value) { return callbackQXmlDefaultHandler_InternalEntityDecl(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), value.toUtf8().data()) != 0; };
 	bool notationDecl(const QString & name, const QString & publicId, const QString & systemId) { return callbackQXmlDefaultHandler_NotationDecl(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), publicId.toUtf8().data(), systemId.toUtf8().data()) != 0; };
@@ -1446,10 +1452,11 @@ public:
 	bool startCDATA() { return callbackQXmlDefaultHandler_StartCDATA(this, this->objectNameAbs().toUtf8().data()) != 0; };
 	bool startDTD(const QString & name, const QString & publicId, const QString & systemId) { return callbackQXmlDefaultHandler_StartDTD(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), publicId.toUtf8().data(), systemId.toUtf8().data()) != 0; };
 	bool startDocument() { return callbackQXmlDefaultHandler_StartDocument(this, this->objectNameAbs().toUtf8().data()) != 0; };
+	bool startElement(const QString & namespaceURI, const QString & localName, const QString & qName, const QXmlAttributes & atts) { return callbackQXmlDefaultHandler_StartElement(this, this->objectNameAbs().toUtf8().data(), namespaceURI.toUtf8().data(), localName.toUtf8().data(), qName.toUtf8().data(), const_cast<QXmlAttributes*>(&atts)) != 0; };
 	bool startEntity(const QString & name) { return callbackQXmlDefaultHandler_StartEntity(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data()) != 0; };
 	bool startPrefixMapping(const QString & prefix, const QString & uri) { return callbackQXmlDefaultHandler_StartPrefixMapping(this, this->objectNameAbs().toUtf8().data(), prefix.toUtf8().data(), uri.toUtf8().data()) != 0; };
 	bool unparsedEntityDecl(const QString & name, const QString & publicId, const QString & systemId, const QString & notationName) { return callbackQXmlDefaultHandler_UnparsedEntityDecl(this, this->objectNameAbs().toUtf8().data(), name.toUtf8().data(), publicId.toUtf8().data(), systemId.toUtf8().data(), notationName.toUtf8().data()) != 0; };
-	bool warning(const QXmlParseException & exception) { return callbackQXmlDefaultHandler_Warning(this, this->objectNameAbs().toUtf8().data(), new QXmlParseException(exception)) != 0; };
+	bool warning(const QXmlParseException & exception) { return callbackQXmlDefaultHandler_Warning(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlParseException*>(&exception)) != 0; };
 };
 
 void* QXmlDefaultHandler_NewQXmlDefaultHandler()
@@ -1686,6 +1693,16 @@ int QXmlDefaultHandler_StartDocumentDefault(void* ptr)
 	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startDocument();
 }
 
+int QXmlDefaultHandler_StartElement(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts)
+{
+	return static_cast<QXmlDefaultHandler*>(ptr)->startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
+}
+
+int QXmlDefaultHandler_StartElementDefault(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts)
+{
+	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
+}
+
 int QXmlDefaultHandler_StartEntity(void* ptr, char* name)
 {
 	return static_cast<QXmlDefaultHandler*>(ptr)->startEntity(QString(name));
@@ -1784,10 +1801,10 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	bool error(const QXmlParseException & exception) { return callbackQXmlErrorHandler_Error(this, this->objectNameAbs().toUtf8().data(), new QXmlParseException(exception)) != 0; };
+	bool error(const QXmlParseException & exception) { return callbackQXmlErrorHandler_Error(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlParseException*>(&exception)) != 0; };
 	QString errorString() const { return QString(callbackQXmlErrorHandler_ErrorString(const_cast<MyQXmlErrorHandler*>(this), this->objectNameAbs().toUtf8().data())); };
-	bool fatalError(const QXmlParseException & exception) { return callbackQXmlErrorHandler_FatalError(this, this->objectNameAbs().toUtf8().data(), new QXmlParseException(exception)) != 0; };
-	bool warning(const QXmlParseException & exception) { return callbackQXmlErrorHandler_Warning(this, this->objectNameAbs().toUtf8().data(), new QXmlParseException(exception)) != 0; };
+	bool fatalError(const QXmlParseException & exception) { return callbackQXmlErrorHandler_FatalError(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlParseException*>(&exception)) != 0; };
+	bool warning(const QXmlParseException & exception) { return callbackQXmlErrorHandler_Warning(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlParseException*>(&exception)) != 0; };
 };
 
 int QXmlErrorHandler_Error(void* ptr, void* exception)
@@ -2321,6 +2338,7 @@ public:
 	bool hasFeature(const QString & name) const { return callbackQXmlSimpleReader_HasFeature(const_cast<MyQXmlSimpleReader*>(this), this->objectNameAbs().toUtf8().data(), name.toUtf8().data()) != 0; };
 	bool hasProperty(const QString & name) const { return callbackQXmlSimpleReader_HasProperty(const_cast<MyQXmlSimpleReader*>(this), this->objectNameAbs().toUtf8().data(), name.toUtf8().data()) != 0; };
 	QXmlLexicalHandler * lexicalHandler() const { return static_cast<QXmlLexicalHandler*>(callbackQXmlSimpleReader_LexicalHandler(const_cast<MyQXmlSimpleReader*>(this), this->objectNameAbs().toUtf8().data())); };
+	bool parse(const QXmlInputSource & input) { return callbackQXmlSimpleReader_Parse(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlInputSource*>(&input)) != 0; };
 	bool parse(const QXmlInputSource * input) { return callbackQXmlSimpleReader_Parse2(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlInputSource*>(input)) != 0; };
 	bool parse(const QXmlInputSource * input, bool incremental) { return callbackQXmlSimpleReader_Parse3(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlInputSource*>(input), incremental) != 0; };
 	bool parseContinue() { return callbackQXmlSimpleReader_ParseContinue(this, this->objectNameAbs().toUtf8().data()) != 0; };
@@ -2428,6 +2446,16 @@ void* QXmlSimpleReader_LexicalHandler(void* ptr)
 void* QXmlSimpleReader_LexicalHandlerDefault(void* ptr)
 {
 	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::lexicalHandler();
+}
+
+int QXmlSimpleReader_Parse(void* ptr, void* input)
+{
+	return static_cast<QXmlSimpleReader*>(ptr)->parse(*static_cast<QXmlInputSource*>(input));
+}
+
+int QXmlSimpleReader_ParseDefault(void* ptr, void* input)
+{
+	return static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::parse(*static_cast<QXmlInputSource*>(input));
 }
 
 int QXmlSimpleReader_Parse2(void* ptr, void* input)

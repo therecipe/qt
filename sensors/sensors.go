@@ -2,11 +2,13 @@
 
 package sensors
 
+//#include <stdlib.h>
 //#include "sensors.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -711,6 +713,11 @@ func newQAccelerometerFilterFromPointer(ptr unsafe.Pointer) *QAccelerometerFilte
 	return n
 }
 
+func (ptr *QAccelerometerFilter) DestroyQAccelerometerFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQAccelerometerFilter_Filter
 func callbackQAccelerometerFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QAccelerometerFilter::filter")
@@ -762,7 +769,9 @@ func (ptr *QAccelerometerFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAccelerometerFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAccelerometerFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAccelerometerFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -811,6 +820,11 @@ func newQAccelerometerReadingFromPointer(ptr unsafe.Pointer) *QAccelerometerRead
 		n.SetObjectName("QAccelerometerReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QAccelerometerReading) DestroyQAccelerometerReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QAccelerometerReading) X() float64 {
@@ -1912,6 +1926,11 @@ func newQAltimeterFilterFromPointer(ptr unsafe.Pointer) *QAltimeterFilter {
 	return n
 }
 
+func (ptr *QAltimeterFilter) DestroyQAltimeterFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQAltimeterFilter_Filter
 func callbackQAltimeterFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QAltimeterFilter::filter")
@@ -1963,7 +1982,9 @@ func (ptr *QAltimeterFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAltimeterFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAltimeterFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAltimeterFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -2012,6 +2033,11 @@ func newQAltimeterReadingFromPointer(ptr unsafe.Pointer) *QAltimeterReading {
 		n.SetObjectName("QAltimeterReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QAltimeterReading) DestroyQAltimeterReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QAltimeterReading) Altitude() float64 {
@@ -2491,6 +2517,11 @@ func newQAmbientLightFilterFromPointer(ptr unsafe.Pointer) *QAmbientLightFilter 
 	return n
 }
 
+func (ptr *QAmbientLightFilter) DestroyQAmbientLightFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQAmbientLightFilter_Filter
 func callbackQAmbientLightFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QAmbientLightFilter::filter")
@@ -2542,7 +2573,9 @@ func (ptr *QAmbientLightFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAmbientLightFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAmbientLightFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAmbientLightFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -2603,6 +2636,11 @@ func newQAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReadin
 		n.SetObjectName("QAmbientLightReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QAmbientLightReading) DestroyQAmbientLightReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
@@ -3673,6 +3711,11 @@ func newQAmbientTemperatureFilterFromPointer(ptr unsafe.Pointer) *QAmbientTemper
 	return n
 }
 
+func (ptr *QAmbientTemperatureFilter) DestroyQAmbientTemperatureFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQAmbientTemperatureFilter_Filter
 func callbackQAmbientTemperatureFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QAmbientTemperatureFilter::filter")
@@ -3724,7 +3767,9 @@ func (ptr *QAmbientTemperatureFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAmbientTemperatureFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAmbientTemperatureFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAmbientTemperatureFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -3773,6 +3818,11 @@ func newQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) *QAmbientTempe
 		n.SetObjectName("QAmbientTemperatureReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QAmbientTemperatureReading) DestroyQAmbientTemperatureReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QAmbientTemperatureReading) Temperature() float64 {
@@ -5431,6 +5481,11 @@ func newQCompassFilterFromPointer(ptr unsafe.Pointer) *QCompassFilter {
 	return n
 }
 
+func (ptr *QCompassFilter) DestroyQCompassFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQCompassFilter_Filter
 func callbackQCompassFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QCompassFilter::filter")
@@ -5482,7 +5537,9 @@ func (ptr *QCompassFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QCompassFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QCompassFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QCompassFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -5531,6 +5588,11 @@ func newQCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
 		n.SetObjectName("QCompassReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QCompassReading) DestroyQCompassReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QCompassReading) Azimuth() float64 {
@@ -6027,6 +6089,11 @@ func newQDistanceFilterFromPointer(ptr unsafe.Pointer) *QDistanceFilter {
 	return n
 }
 
+func (ptr *QDistanceFilter) DestroyQDistanceFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQDistanceFilter_Filter
 func callbackQDistanceFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDistanceFilter::filter")
@@ -6078,7 +6145,9 @@ func (ptr *QDistanceFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QDistanceFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDistanceFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDistanceFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -6127,6 +6196,11 @@ func newQDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
 		n.SetObjectName("QDistanceReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QDistanceReading) DestroyQDistanceReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QDistanceReading) Distance() float64 {
@@ -7785,6 +7859,11 @@ func newQGyroscopeFilterFromPointer(ptr unsafe.Pointer) *QGyroscopeFilter {
 	return n
 }
 
+func (ptr *QGyroscopeFilter) DestroyQGyroscopeFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQGyroscopeFilter_Filter
 func callbackQGyroscopeFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QGyroscopeFilter::filter")
@@ -7836,7 +7915,9 @@ func (ptr *QGyroscopeFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QGyroscopeFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QGyroscopeFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QGyroscopeFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -7885,6 +7966,11 @@ func newQGyroscopeReadingFromPointer(ptr unsafe.Pointer) *QGyroscopeReading {
 		n.SetObjectName("QGyroscopeReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QGyroscopeReading) DestroyQGyroscopeReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QGyroscopeReading) X() float64 {
@@ -8398,6 +8484,11 @@ func newQHolsterFilterFromPointer(ptr unsafe.Pointer) *QHolsterFilter {
 	return n
 }
 
+func (ptr *QHolsterFilter) DestroyQHolsterFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQHolsterFilter_Filter
 func callbackQHolsterFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QHolsterFilter::filter")
@@ -8449,7 +8540,9 @@ func (ptr *QHolsterFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QHolsterFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QHolsterFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QHolsterFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -8498,6 +8591,11 @@ func newQHolsterReadingFromPointer(ptr unsafe.Pointer) *QHolsterReading {
 		n.SetObjectName("QHolsterReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QHolsterReading) DestroyQHolsterReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QHolsterReading) Holstered() bool {
@@ -9565,6 +9663,11 @@ func newQIRProximityFilterFromPointer(ptr unsafe.Pointer) *QIRProximityFilter {
 	return n
 }
 
+func (ptr *QIRProximityFilter) DestroyQIRProximityFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQIRProximityFilter_Filter
 func callbackQIRProximityFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QIRProximityFilter::filter")
@@ -9616,7 +9719,9 @@ func (ptr *QIRProximityFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QIRProximityFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QIRProximityFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QIRProximityFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -9665,6 +9770,11 @@ func newQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading 
 		n.SetObjectName("QIRProximityReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QIRProximityReading) DestroyQIRProximityReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QIRProximityReading) Reflectance() float64 {
@@ -10735,6 +10845,11 @@ func newQLightFilterFromPointer(ptr unsafe.Pointer) *QLightFilter {
 	return n
 }
 
+func (ptr *QLightFilter) DestroyQLightFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQLightFilter_Filter
 func callbackQLightFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QLightFilter::filter")
@@ -10786,7 +10901,9 @@ func (ptr *QLightFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QLightFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QLightFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QLightFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -10835,6 +10952,11 @@ func newQLightReadingFromPointer(ptr unsafe.Pointer) *QLightReading {
 		n.SetObjectName("QLightReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QLightReading) DestroyQLightReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QLightReading) Lux() float64 {
@@ -12602,6 +12724,11 @@ func newQMagnetometerFilterFromPointer(ptr unsafe.Pointer) *QMagnetometerFilter 
 	return n
 }
 
+func (ptr *QMagnetometerFilter) DestroyQMagnetometerFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQMagnetometerFilter_Filter
 func callbackQMagnetometerFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QMagnetometerFilter::filter")
@@ -12653,7 +12780,9 @@ func (ptr *QMagnetometerFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QMagnetometerFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QMagnetometerFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QMagnetometerFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -12702,6 +12831,11 @@ func newQMagnetometerReadingFromPointer(ptr unsafe.Pointer) *QMagnetometerReadin
 		n.SetObjectName("QMagnetometerReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QMagnetometerReading) DestroyQMagnetometerReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QMagnetometerReading) CalibrationLevel() float64 {
@@ -13232,6 +13366,11 @@ func newQOrientationFilterFromPointer(ptr unsafe.Pointer) *QOrientationFilter {
 	return n
 }
 
+func (ptr *QOrientationFilter) DestroyQOrientationFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQOrientationFilter_Filter
 func callbackQOrientationFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QOrientationFilter::filter")
@@ -13283,7 +13422,9 @@ func (ptr *QOrientationFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QOrientationFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QOrientationFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QOrientationFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -13345,6 +13486,11 @@ func newQOrientationReadingFromPointer(ptr unsafe.Pointer) *QOrientationReading 
 		n.SetObjectName("QOrientationReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QOrientationReading) DestroyQOrientationReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QOrientationReading) Orientation() QOrientationReading__Orientation {
@@ -14415,6 +14561,11 @@ func newQPressureFilterFromPointer(ptr unsafe.Pointer) *QPressureFilter {
 	return n
 }
 
+func (ptr *QPressureFilter) DestroyQPressureFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQPressureFilter_Filter
 func callbackQPressureFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QPressureFilter::filter")
@@ -14466,7 +14617,9 @@ func (ptr *QPressureFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QPressureFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QPressureFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QPressureFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -14515,6 +14668,11 @@ func newQPressureReadingFromPointer(ptr unsafe.Pointer) *QPressureReading {
 		n.SetObjectName("QPressureReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QPressureReading) DestroyQPressureReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QPressureReading) Pressure() float64 {
@@ -15599,6 +15757,11 @@ func newQProximityFilterFromPointer(ptr unsafe.Pointer) *QProximityFilter {
 	return n
 }
 
+func (ptr *QProximityFilter) DestroyQProximityFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQProximityFilter_Filter
 func callbackQProximityFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QProximityFilter::filter")
@@ -15650,7 +15813,9 @@ func (ptr *QProximityFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QProximityFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QProximityFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QProximityFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -15699,6 +15864,11 @@ func newQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
 		n.SetObjectName("QProximityReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QProximityReading) DestroyQProximityReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QProximityReading) Close() bool {
@@ -16769,6 +16939,11 @@ func newQRotationFilterFromPointer(ptr unsafe.Pointer) *QRotationFilter {
 	return n
 }
 
+func (ptr *QRotationFilter) DestroyQRotationFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQRotationFilter_Filter
 func callbackQRotationFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QRotationFilter::filter")
@@ -16820,7 +16995,9 @@ func (ptr *QRotationFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QRotationFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QRotationFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QRotationFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -16869,6 +17046,11 @@ func newQRotationReadingFromPointer(ptr unsafe.Pointer) *QRotationReading {
 		n.SetObjectName("QRotationReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QRotationReading) DestroyQRotationReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QRotationReading) X() float64 {
@@ -18213,7 +18395,9 @@ func (ptr *QSensor) SetIdentifier(identifier string) {
 	defer qt.Recovering("QSensor::setIdentifier")
 
 	if ptr.Pointer() != nil {
-		C.QSensor_SetIdentifier(ptr.Pointer(), C.CString(identifier))
+		var identifierC = C.CString(identifier)
+		defer C.free(unsafe.Pointer(identifierC))
+		C.QSensor_SetIdentifier(ptr.Pointer(), identifierC)
 	}
 }
 
@@ -18263,7 +18447,9 @@ func (ptr *QSensor) UserOrientation() int {
 func NewQSensor(ty string, parent core.QObject_ITF) *QSensor {
 	defer qt.Recovering("QSensor::QSensor")
 
-	return newQSensorFromPointer(C.QSensor_NewQSensor(C.CString(ty), core.PointerFromQObject(parent)))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	return newQSensorFromPointer(C.QSensor_NewQSensor(tyC, core.PointerFromQObject(parent)))
 }
 
 //export callbackQSensor_ActiveChanged
@@ -18574,13 +18760,17 @@ func (ptr *QSensor) DataRateChanged() {
 func QSensor_DefaultSensorForType(ty string) string {
 	defer qt.Recovering("QSensor::defaultSensorForType")
 
-	return C.GoString(C.QSensor_QSensor_DefaultSensorForType(C.CString(ty)))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	return C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC))
 }
 
 func (ptr *QSensor) DefaultSensorForType(ty string) string {
 	defer qt.Recovering("QSensor::defaultSensorForType")
 
-	return C.GoString(C.QSensor_QSensor_DefaultSensorForType(C.CString(ty)))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	return C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC))
 }
 
 //export callbackQSensor_EfficientBufferSizeChanged
@@ -19394,6 +19584,11 @@ func newQSensorBackendFromPointer(ptr unsafe.Pointer) *QSensorBackend {
 	return n
 }
 
+func (ptr *QSensorBackend) DestroyQSensorBackend() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QSensorBackend) AddDataRate(min float64, max float64) {
 	defer qt.Recovering("QSensorBackend::addDataRate")
 
@@ -19519,7 +19714,9 @@ func (ptr *QSensorBackend) SetDescription(description string) {
 	defer qt.Recovering("QSensorBackend::setDescription")
 
 	if ptr.Pointer() != nil {
-		C.QSensorBackend_SetDescription(ptr.Pointer(), C.CString(description))
+		var descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+		C.QSensorBackend_SetDescription(ptr.Pointer(), descriptionC)
 	}
 }
 
@@ -20056,6 +20253,11 @@ func newQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) *QSensorBackendFact
 	return n
 }
 
+func (ptr *QSensorBackendFactory) DestroyQSensorBackendFactory() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQSensorBackendFactory_CreateBackend
 func callbackQSensorBackendFactory_CreateBackend(ptr unsafe.Pointer, ptrName *C.char, sensor unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSensorBackendFactory::createBackend")
@@ -20107,7 +20309,9 @@ func (ptr *QSensorBackendFactory) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QSensorBackendFactory::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QSensorBackendFactory_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QSensorBackendFactory_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -20155,6 +20359,11 @@ func newQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) *QSensorChangesIn
 		n.SetObjectNameAbs("QSensorChangesInterface_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QSensorChangesInterface) DestroyQSensorChangesInterface() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //export callbackQSensorChangesInterface_SensorsChanged
@@ -20206,7 +20415,9 @@ func (ptr *QSensorChangesInterface) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QSensorChangesInterface::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QSensorChangesInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QSensorChangesInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -20334,7 +20545,9 @@ func (ptr *QSensorFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QSensorFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QSensorFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QSensorFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -20388,7 +20601,9 @@ func newQSensorGestureFromPointer(ptr unsafe.Pointer) *QSensorGesture {
 func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
 	defer qt.Recovering("QSensorGesture::QSensorGesture")
 
-	return newQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(C.CString(strings.Join(ids, "|")), core.PointerFromQObject(parent)))
+	var idsC = C.CString(strings.Join(ids, "|"))
+	defer C.free(unsafe.Pointer(idsC))
+	return newQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(idsC, core.PointerFromQObject(parent)))
 }
 
 //export callbackQSensorGesture_Detected
@@ -20423,7 +20638,9 @@ func (ptr *QSensorGesture) Detected(gestureId string) {
 	defer qt.Recovering("QSensorGesture::detected")
 
 	if ptr.Pointer() != nil {
-		C.QSensorGesture_Detected(ptr.Pointer(), C.CString(gestureId))
+		var gestureIdC = C.CString(gestureId)
+		defer C.free(unsafe.Pointer(gestureIdC))
+		C.QSensorGesture_Detected(ptr.Pointer(), gestureIdC)
 	}
 }
 
@@ -21006,7 +21223,9 @@ func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
 	defer qt.Recovering("QSensorGestureManager::recognizerSignals")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), C.CString(gestureId))), "|")
+		var gestureIdC = C.CString(gestureId)
+		defer C.free(unsafe.Pointer(gestureIdC))
+		return strings.Split(C.GoString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), gestureIdC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -21023,13 +21242,17 @@ func (ptr *QSensorGestureManager) RegisterSensorGestureRecognizer(recognizer QSe
 func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
 	defer qt.Recovering("QSensorGestureManager::sensorGestureRecognizer")
 
-	return NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(C.CString(id)))
+	var idC = C.CString(id)
+	defer C.free(unsafe.Pointer(idC))
+	return NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
 }
 
 func (ptr *QSensorGestureManager) SensorGestureRecognizer(id string) *QSensorGestureRecognizer {
 	defer qt.Recovering("QSensorGestureManager::sensorGestureRecognizer")
 
-	return NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(C.CString(id)))
+	var idC = C.CString(id)
+	defer C.free(unsafe.Pointer(idC))
+	return NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
 }
 
 func (ptr *QSensorGestureManager) DestroyQSensorGestureManager() {
@@ -21602,7 +21825,9 @@ func (ptr *QSensorGesturePluginInterface) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QSensorGesturePluginInterface::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QSensorGesturePluginInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QSensorGesturePluginInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -21735,7 +21960,9 @@ func (ptr *QSensorGestureRecognizer) Detected(gestureId string) {
 	defer qt.Recovering("QSensorGestureRecognizer::detected")
 
 	if ptr.Pointer() != nil {
-		C.QSensorGestureRecognizer_Detected(ptr.Pointer(), C.CString(gestureId))
+		var gestureIdC = C.CString(gestureId)
+		defer C.free(unsafe.Pointer(gestureIdC))
+		C.QSensorGestureRecognizer_Detected(ptr.Pointer(), gestureIdC)
 	}
 }
 
@@ -22384,6 +22611,11 @@ func newQSensorManagerFromPointer(ptr unsafe.Pointer) *QSensorManager {
 	return n
 }
 
+func (ptr *QSensorManager) DestroyQSensorManager() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func QSensorManager_CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 	defer qt.Recovering("QSensorManager::createBackend")
 
@@ -22399,49 +22631,81 @@ func (ptr *QSensorManager) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 func QSensorManager_IsBackendRegistered(ty string, identifier string) bool {
 	defer qt.Recovering("QSensorManager::isBackendRegistered")
 
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(C.CString(ty), C.CString(identifier)) != 0
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	return C.QSensorManager_QSensorManager_IsBackendRegistered(tyC, identifierC) != 0
 }
 
 func (ptr *QSensorManager) IsBackendRegistered(ty string, identifier string) bool {
 	defer qt.Recovering("QSensorManager::isBackendRegistered")
 
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(C.CString(ty), C.CString(identifier)) != 0
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	return C.QSensorManager_QSensorManager_IsBackendRegistered(tyC, identifierC) != 0
 }
 
 func QSensorManager_RegisterBackend(ty string, identifier string, factory QSensorBackendFactory_ITF) {
 	defer qt.Recovering("QSensorManager::registerBackend")
 
-	C.QSensorManager_QSensorManager_RegisterBackend(C.CString(ty), C.CString(identifier), PointerFromQSensorBackendFactory(factory))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	C.QSensorManager_QSensorManager_RegisterBackend(tyC, identifierC, PointerFromQSensorBackendFactory(factory))
 }
 
 func (ptr *QSensorManager) RegisterBackend(ty string, identifier string, factory QSensorBackendFactory_ITF) {
 	defer qt.Recovering("QSensorManager::registerBackend")
 
-	C.QSensorManager_QSensorManager_RegisterBackend(C.CString(ty), C.CString(identifier), PointerFromQSensorBackendFactory(factory))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	C.QSensorManager_QSensorManager_RegisterBackend(tyC, identifierC, PointerFromQSensorBackendFactory(factory))
 }
 
 func QSensorManager_SetDefaultBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::setDefaultBackend")
 
-	C.QSensorManager_QSensorManager_SetDefaultBackend(C.CString(ty), C.CString(identifier))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	C.QSensorManager_QSensorManager_SetDefaultBackend(tyC, identifierC)
 }
 
 func (ptr *QSensorManager) SetDefaultBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::setDefaultBackend")
 
-	C.QSensorManager_QSensorManager_SetDefaultBackend(C.CString(ty), C.CString(identifier))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	C.QSensorManager_QSensorManager_SetDefaultBackend(tyC, identifierC)
 }
 
 func QSensorManager_UnregisterBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::unregisterBackend")
 
-	C.QSensorManager_QSensorManager_UnregisterBackend(C.CString(ty), C.CString(identifier))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	C.QSensorManager_QSensorManager_UnregisterBackend(tyC, identifierC)
 }
 
 func (ptr *QSensorManager) UnregisterBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::unregisterBackend")
 
-	C.QSensorManager_QSensorManager_UnregisterBackend(C.CString(ty), C.CString(identifier))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	var identifierC = C.CString(identifier)
+	defer C.free(unsafe.Pointer(identifierC))
+	C.QSensorManager_QSensorManager_UnregisterBackend(tyC, identifierC)
 }
 
 type QSensorPluginInterface struct {
@@ -22488,6 +22752,11 @@ func newQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorPluginInte
 		n.SetObjectNameAbs("QSensorPluginInterface_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QSensorPluginInterface) DestroyQSensorPluginInterface() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //export callbackQSensorPluginInterface_RegisterSensors
@@ -22539,7 +22808,9 @@ func (ptr *QSensorPluginInterface) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QSensorPluginInterface::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QSensorPluginInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QSensorPluginInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -22590,11 +22861,18 @@ func newQSensorReadingFromPointer(ptr unsafe.Pointer) *QSensorReading {
 	return n
 }
 
+func (ptr *QSensorReading) DestroyQSensorReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QSensorReading) Value(index int) *core.QVariant {
 	defer qt.Recovering("QSensorReading::value")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSensorReading_Value(ptr.Pointer(), C.int(index)))
+		var tmpValue = core.NewQVariantFromPointer(C.QSensorReading_Value(ptr.Pointer(), C.int(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -23068,6 +23346,11 @@ func newQTapFilterFromPointer(ptr unsafe.Pointer) *QTapFilter {
 	return n
 }
 
+func (ptr *QTapFilter) DestroyQTapFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQTapFilter_Filter
 func callbackQTapFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QTapFilter::filter")
@@ -23119,7 +23402,9 @@ func (ptr *QTapFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QTapFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QTapFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QTapFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -23187,6 +23472,11 @@ func newQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
 		n.SetObjectName("QTapReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QTapReading) DestroyQTapReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QTapReading) IsDoubleTap() bool {
@@ -24327,6 +24617,11 @@ func newQTiltFilterFromPointer(ptr unsafe.Pointer) *QTiltFilter {
 	return n
 }
 
+func (ptr *QTiltFilter) DestroyQTiltFilter() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQTiltFilter_Filter
 func callbackQTiltFilter_Filter(ptr unsafe.Pointer, ptrName *C.char, reading unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QTiltFilter::filter")
@@ -24378,7 +24673,9 @@ func (ptr *QTiltFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QTiltFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QTiltFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QTiltFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -24427,6 +24724,11 @@ func newQTiltReadingFromPointer(ptr unsafe.Pointer) *QTiltReading {
 		n.SetObjectName("QTiltReading_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QTiltReading) DestroyQTiltReading() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QTiltReading) XRotation() float64 {

@@ -104,10 +104,6 @@ func goOutput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("new%vFromPointer(%v)", strings.Title(value), name)
 			}
 
-			if f.TemplateMode == "String" {
-				return fmt.Sprintf("New%vFromPointer(%v).ToString()", strings.Title(value), name)
-			}
-
 			return fmt.Sprintf("New%vFromPointer(%v)", strings.Title(value), name)
 		}
 	}
@@ -372,6 +368,14 @@ func cppOutput(name, value string, f *parser.Function) string {
 				return name
 			}
 
+			if strings.Contains(vOld, "&") {
+				if strings.Contains(vOld, "const") {
+					return fmt.Sprintf("const_cast<%v*>(&%v)", value, name)
+				}
+			}
+
+			f.NeedsFinalizer = true
+
 			switch value {
 			case "QModelIndex", "QMetaMethod", "QItemSelection":
 				{
@@ -385,27 +389,27 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 			case "QPoint", "QPointF":
 				{
-					return fmt.Sprintf("new %v(static_cast<%v>(%v).x(), static_cast<%v>(%v).y())", value, value, name, value, name)
+					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.x(), tmpValue.y()); })", value, name, value)
 				}
 
 			case "QSize", "QSizeF":
 				{
-					return fmt.Sprintf("new %v(static_cast<%v>(%v).width(), static_cast<%v>(%v).height())", value, value, name, value, name)
+					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.width(), tmpValue.height()); })", value, name, value)
 				}
 
 			case "QRect", "QRectF":
 				{
-					return fmt.Sprintf("new %v(static_cast<%v>(%v).x(), static_cast<%v>(%v).y(), static_cast<%v>(%v).width(), static_cast<%v>(%v).height())", value, value, name, value, name, value, name, value, name)
+					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); })", value, name, value)
 				}
 
 			case "QLine", "QLineF":
 				{
-					return fmt.Sprintf("new %v(static_cast<%v>(%v).p1(), static_cast<%v>(%v).p2())", value, value, name, value, name)
+					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.p1(), tmpValue.p2()); })", value, name, value)
 				}
 
 			case "QMargins", "QMarginsF":
 				{
-					return fmt.Sprintf("new %v(static_cast<%v>(%v).left(), static_cast<%v>(%v).top(), static_cast<%v>(%v).right(), static_cast<%v>(%v).bottom())", value, value, name, value, name, value, name, value, name)
+					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); })", value, name, value)
 				}
 			}
 

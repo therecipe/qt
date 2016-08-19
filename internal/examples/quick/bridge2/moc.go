@@ -1,5 +1,6 @@
 package main
 
+//#include <stdlib.h>
 //#include "moc.h"
 import "C"
 import (
@@ -83,7 +84,9 @@ func (ptr *QmlBridge) SendToQml(data string) {
 	defer qt.Recovering("QmlBridge::sendToQml")
 
 	if ptr.Pointer() != nil {
-		C.QmlBridge_SendToQml(ptr.Pointer(), C.CString(data))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QmlBridge_SendToQml(ptr.Pointer(), dataC)
 	}
 }
 
@@ -120,7 +123,9 @@ func (ptr *QmlBridge) SendToGo(data string) string {
 	defer qt.Recovering("QmlBridge::sendToGo")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QmlBridge_SendToGo(ptr.Pointer(), C.CString(data)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return C.GoString(C.QmlBridge_SendToGo(ptr.Pointer(), dataC))
 	}
 	return ""
 }

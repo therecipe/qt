@@ -1271,6 +1271,7 @@ int QSGTextureProvider_EventFilterDefault(void* ptr, void* watched, void* event)
 void* QSGTextureProvider_MetaObject(void* ptr);
 void* QSGTextureProvider_MetaObjectDefault(void* ptr);
 void* QSGTransformNode_NewQSGTransformNode();
+void* QSGTransformNode_Matrix(void* ptr);
 void QSGTransformNode_SetMatrix(void* ptr, void* matrix);
 void QSGTransformNode_DestroyQSGTransformNode(void* ptr);
 int QSGTransformNode_IsSubtreeBlocked(void* ptr);

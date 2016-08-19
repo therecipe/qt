@@ -151,10 +151,10 @@ class MyQDBusAbstractInterface: public QDBusAbstractInterface
 public:
 	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterface_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDBusAbstractInterface_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQDBusAbstractInterface_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDBusAbstractInterface_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusAbstractInterface_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusAbstractInterface_MetaObject(const_cast<MyQDBusAbstractInterface*>(this), this->objectName().toUtf8().data())); };
@@ -598,15 +598,15 @@ void QDBusConnection_DestroyQDBusConnection(void* ptr)
 class MyQDBusConnectionInterface: public QDBusConnectionInterface
 {
 public:
-	void Signal_CallWithCallbackFailed(const QDBusError & error, const QDBusMessage & call) { callbackQDBusConnectionInterface_CallWithCallbackFailed(this, this->objectName().toUtf8().data(), new QDBusError(error), new QDBusMessage(call)); };
+	void Signal_CallWithCallbackFailed(const QDBusError & error, const QDBusMessage & call) { callbackQDBusConnectionInterface_CallWithCallbackFailed(this, this->objectName().toUtf8().data(), const_cast<QDBusError*>(&error), const_cast<QDBusMessage*>(&call)); };
 	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceRegistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
 	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceUnregistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusConnectionInterface_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQDBusConnectionInterface_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDBusConnectionInterface_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDBusConnectionInterface_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDBusConnectionInterface_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQDBusConnectionInterface_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusConnectionInterface_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusConnectionInterface_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDBusConnectionInterface_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusConnectionInterface_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusConnectionInterface_MetaObject(const_cast<MyQDBusConnectionInterface*>(this), this->objectName().toUtf8().data())); };
@@ -769,7 +769,7 @@ int QDBusContext_IsDelayedReply(void* ptr)
 
 void* QDBusContext_Message(void* ptr)
 {
-	return new QDBusMessage(static_cast<QDBusContext*>(ptr)->message());
+	return const_cast<QDBusMessage*>(&static_cast<QDBusContext*>(ptr)->message());
 }
 
 void QDBusContext_SendErrorReply2(void* ptr, int ty, char* msg)
@@ -1134,10 +1134,10 @@ public:
 	void Signal_Finished(QDBusPendingCallWatcher * self) { callbackQDBusPendingCallWatcher_Finished(this, this->objectName().toUtf8().data(), self); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusPendingCallWatcher_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQDBusPendingCallWatcher_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDBusPendingCallWatcher_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDBusPendingCallWatcher_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDBusPendingCallWatcher_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQDBusPendingCallWatcher_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusPendingCallWatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusPendingCallWatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDBusPendingCallWatcher_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusPendingCallWatcher_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusPendingCallWatcher_MetaObject(const_cast<MyQDBusPendingCallWatcher*>(this), this->objectName().toUtf8().data())); };
@@ -1273,13 +1273,13 @@ class MyQDBusServer: public QDBusServer
 public:
 	MyQDBusServer(QObject *parent) : QDBusServer(parent) {};
 	MyQDBusServer(const QString &address, QObject *parent) : QDBusServer(address, parent) {};
-	void Signal_NewConnection(const QDBusConnection & connection) { callbackQDBusServer_NewConnection(this, this->objectName().toUtf8().data(), new QDBusConnection(connection)); };
+	void Signal_NewConnection(const QDBusConnection & connection) { callbackQDBusServer_NewConnection(this, this->objectName().toUtf8().data(), const_cast<QDBusConnection*>(&connection)); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusServer_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQDBusServer_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDBusServer_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDBusServer_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDBusServer_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQDBusServer_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusServer_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusServer_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDBusServer_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusServer_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusServer_MetaObject(const_cast<MyQDBusServer*>(this), this->objectName().toUtf8().data())); };
@@ -1440,10 +1440,10 @@ public:
 	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusServiceWatcher_ServiceUnregistered(this, this->objectName().toUtf8().data(), serviceName.toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusServiceWatcher_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQDBusServiceWatcher_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDBusServiceWatcher_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDBusServiceWatcher_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDBusServiceWatcher_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQDBusServiceWatcher_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusServiceWatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusServiceWatcher_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDBusServiceWatcher_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusServiceWatcher_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusServiceWatcher_MetaObject(const_cast<MyQDBusServiceWatcher*>(this), this->objectName().toUtf8().data())); };
@@ -1758,14 +1758,14 @@ class MyQDBusVirtualObject: public QDBusVirtualObject
 {
 public:
 	MyQDBusVirtualObject(QObject *parent) : QDBusVirtualObject(parent) {};
-	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, this->objectName().toUtf8().data(), new QDBusMessage(message), new QDBusConnection(connection)) != 0; };
+	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, this->objectName().toUtf8().data(), const_cast<QDBusMessage*>(&message), const_cast<QDBusConnection*>(&connection)) != 0; };
 	QString introspect(const QString & path) const { return QString(callbackQDBusVirtualObject_Introspect(const_cast<MyQDBusVirtualObject*>(this), this->objectName().toUtf8().data(), path.toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusVirtualObject_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQDBusVirtualObject_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDBusVirtualObject_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDBusVirtualObject_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDBusVirtualObject_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQDBusVirtualObject_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusVirtualObject_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusVirtualObject_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQDBusVirtualObject_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusVirtualObject_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusVirtualObject_MetaObject(const_cast<MyQDBusVirtualObject*>(this), this->objectName().toUtf8().data())); };

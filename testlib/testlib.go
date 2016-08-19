@@ -2,6 +2,7 @@
 
 package testlib
 
+//#include <stdlib.h>
 //#include "testlib.h"
 import "C"
 import (
@@ -61,10 +62,17 @@ func newQSignalSpyFromPointer(ptr unsafe.Pointer) *QSignalSpy {
 	return n
 }
 
+func (ptr *QSignalSpy) DestroyQSignalSpy() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQSignalSpy(object core.QObject_ITF, sign string) *QSignalSpy {
 	defer qt.Recovering("QSignalSpy::QSignalSpy")
 
-	return newQSignalSpyFromPointer(C.QSignalSpy_NewQSignalSpy(core.PointerFromQObject(object), C.CString(sign)))
+	var signC = C.CString(sign)
+	defer C.free(unsafe.Pointer(signC))
+	return newQSignalSpyFromPointer(C.QSignalSpy_NewQSignalSpy(core.PointerFromQObject(object), signC))
 }
 
 func (ptr *QSignalSpy) IsValid() bool {
@@ -583,7 +591,9 @@ func (ptr *QTestEventList) AddKeyClick2(ascii string, modifiers core.Qt__Keyboar
 	defer qt.Recovering("QTestEventList::addKeyClick")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddKeyClick2(ptr.Pointer(), C.CString(ascii), C.int(modifiers), C.int(msecs))
+		var asciiC = C.CString(ascii)
+		defer C.free(unsafe.Pointer(asciiC))
+		C.QTestEventList_AddKeyClick2(ptr.Pointer(), asciiC, C.int(modifiers), C.int(msecs))
 	}
 }
 
@@ -591,7 +601,9 @@ func (ptr *QTestEventList) AddKeyClicks(keys string, modifiers core.Qt__Keyboard
 	defer qt.Recovering("QTestEventList::addKeyClicks")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddKeyClicks(ptr.Pointer(), C.CString(keys), C.int(modifiers), C.int(msecs))
+		var keysC = C.CString(keys)
+		defer C.free(unsafe.Pointer(keysC))
+		C.QTestEventList_AddKeyClicks(ptr.Pointer(), keysC, C.int(modifiers), C.int(msecs))
 	}
 }
 
@@ -607,7 +619,9 @@ func (ptr *QTestEventList) AddKeyPress2(ascii string, modifiers core.Qt__Keyboar
 	defer qt.Recovering("QTestEventList::addKeyPress")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddKeyPress2(ptr.Pointer(), C.CString(ascii), C.int(modifiers), C.int(msecs))
+		var asciiC = C.CString(ascii)
+		defer C.free(unsafe.Pointer(asciiC))
+		C.QTestEventList_AddKeyPress2(ptr.Pointer(), asciiC, C.int(modifiers), C.int(msecs))
 	}
 }
 
@@ -623,7 +637,9 @@ func (ptr *QTestEventList) AddKeyRelease2(ascii string, modifiers core.Qt__Keybo
 	defer qt.Recovering("QTestEventList::addKeyRelease")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddKeyRelease2(ptr.Pointer(), C.CString(ascii), C.int(modifiers), C.int(msecs))
+		var asciiC = C.CString(ascii)
+		defer C.free(unsafe.Pointer(asciiC))
+		C.QTestEventList_AddKeyRelease2(ptr.Pointer(), asciiC, C.int(modifiers), C.int(msecs))
 	}
 }
 

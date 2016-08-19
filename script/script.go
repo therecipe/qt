@@ -2,11 +2,13 @@
 
 package script
 
+//#include <stdlib.h>
 //#include "script.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -121,7 +123,9 @@ func (ptr *QScriptClass) Extension(extension QScriptClass__Extension, argument c
 	defer qt.Recovering("QScriptClass::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QScriptClass_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		var tmpValue = core.NewQVariantFromPointer(C.QScriptClass_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -130,7 +134,9 @@ func (ptr *QScriptClass) ExtensionDefault(extension QScriptClass__Extension, arg
 	defer qt.Recovering("QScriptClass::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QScriptClass_ExtensionDefault(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		var tmpValue = core.NewQVariantFromPointer(C.QScriptClass_ExtensionDefault(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -262,7 +268,9 @@ func (ptr *QScriptClass) Prototype() *QScriptValue {
 	defer qt.Recovering("QScriptClass::prototype")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptClass_Prototype(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptClass_Prototype(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -271,7 +279,9 @@ func (ptr *QScriptClass) PrototypeDefault() *QScriptValue {
 	defer qt.Recovering("QScriptClass::prototype")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptClass_PrototypeDefault(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptClass_PrototypeDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -346,7 +356,9 @@ func (ptr *QScriptClass) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QScriptClass::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QScriptClass_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QScriptClass_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -460,7 +472,9 @@ func (ptr *QScriptContext) ActivationObject() *QScriptValue {
 	defer qt.Recovering("QScriptContext::activationObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_ActivationObject(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ActivationObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -469,7 +483,9 @@ func (ptr *QScriptContext) Argument(index int) *QScriptValue {
 	defer qt.Recovering("QScriptContext::argument")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_Argument(ptr.Pointer(), C.int(index)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_Argument(ptr.Pointer(), C.int(index)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -487,7 +503,9 @@ func (ptr *QScriptContext) ArgumentsObject() *QScriptValue {
 	defer qt.Recovering("QScriptContext::argumentsObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_ArgumentsObject(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ArgumentsObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -505,7 +523,9 @@ func (ptr *QScriptContext) Callee() *QScriptValue {
 	defer qt.Recovering("QScriptContext::callee")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_Callee(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_Callee(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -566,7 +586,9 @@ func (ptr *QScriptContext) ThisObject() *QScriptValue {
 	defer qt.Recovering("QScriptContext::thisObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_ThisObject(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThisObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -575,7 +597,11 @@ func (ptr *QScriptContext) ThrowError(error QScriptContext__Error, text string) 
 	defer qt.Recovering("QScriptContext::throwError")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_ThrowError(ptr.Pointer(), C.int(error), C.CString(text)))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThrowError(ptr.Pointer(), C.int(error), textC))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -584,7 +610,11 @@ func (ptr *QScriptContext) ThrowError2(text string) *QScriptValue {
 	defer qt.Recovering("QScriptContext::throwError")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_ThrowError2(ptr.Pointer(), C.CString(text)))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThrowError2(ptr.Pointer(), textC))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -593,7 +623,9 @@ func (ptr *QScriptContext) ThrowValue(value QScriptValue_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptContext::throwValue")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptContext_ThrowValue(ptr.Pointer(), PointerFromQScriptValue(value)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptContext_ThrowValue(ptr.Pointer(), PointerFromQScriptValue(value)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -898,13 +930,21 @@ func (ptr *QScriptEngine) AvailableExtensions() []string {
 func QScriptEngine_CheckSyntax(program string) *QScriptSyntaxCheckResult {
 	defer qt.Recovering("QScriptEngine::checkSyntax")
 
-	return NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(C.CString(program)))
+	var programC = C.CString(program)
+	defer C.free(unsafe.Pointer(programC))
+	var tmpValue = NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(programC))
+	runtime.SetFinalizer(tmpValue, (*QScriptSyntaxCheckResult).DestroyQScriptSyntaxCheckResult)
+	return tmpValue
 }
 
 func (ptr *QScriptEngine) CheckSyntax(program string) *QScriptSyntaxCheckResult {
 	defer qt.Recovering("QScriptEngine::checkSyntax")
 
-	return NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(C.CString(program)))
+	var programC = C.CString(program)
+	defer C.free(unsafe.Pointer(programC))
+	var tmpValue = NewQScriptSyntaxCheckResultFromPointer(C.QScriptEngine_QScriptEngine_CheckSyntax(programC))
+	runtime.SetFinalizer(tmpValue, (*QScriptSyntaxCheckResult).DestroyQScriptSyntaxCheckResult)
+	return tmpValue
 }
 
 func (ptr *QScriptEngine) ClearExceptions() {
@@ -936,7 +976,9 @@ func (ptr *QScriptEngine) DefaultPrototype(metaTypeId int) *QScriptValue {
 	defer qt.Recovering("QScriptEngine::defaultPrototype")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_DefaultPrototype(ptr.Pointer(), C.int(metaTypeId)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_DefaultPrototype(ptr.Pointer(), C.int(metaTypeId)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -945,7 +987,9 @@ func (ptr *QScriptEngine) Evaluate2(program QScriptProgram_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptEngine::evaluate")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_Evaluate2(ptr.Pointer(), PointerFromQScriptProgram(program)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_Evaluate2(ptr.Pointer(), PointerFromQScriptProgram(program)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -954,7 +998,13 @@ func (ptr *QScriptEngine) Evaluate(program string, fileName string, lineNumber i
 	defer qt.Recovering("QScriptEngine::evaluate")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_Evaluate(ptr.Pointer(), C.CString(program), C.CString(fileName), C.int(lineNumber)))
+		var programC = C.CString(program)
+		defer C.free(unsafe.Pointer(programC))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_Evaluate(ptr.Pointer(), programC, fileNameC, C.int(lineNumber)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -963,7 +1013,9 @@ func (ptr *QScriptEngine) GlobalObject() *QScriptValue {
 	defer qt.Recovering("QScriptEngine::globalObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_GlobalObject(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_GlobalObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -981,7 +1033,11 @@ func (ptr *QScriptEngine) ImportExtension(extension string) *QScriptValue {
 	defer qt.Recovering("QScriptEngine::importExtension")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_ImportExtension(ptr.Pointer(), C.CString(extension)))
+		var extensionC = C.CString(extension)
+		defer C.free(unsafe.Pointer(extensionC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_ImportExtension(ptr.Pointer(), extensionC))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1016,7 +1072,9 @@ func (ptr *QScriptEngine) NewDate2(value core.QDateTime_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptEngine::newDate")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewDate2(ptr.Pointer(), core.PointerFromQDateTime(value)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewDate2(ptr.Pointer(), core.PointerFromQDateTime(value)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1025,7 +1083,9 @@ func (ptr *QScriptEngine) NewObject() *QScriptValue {
 	defer qt.Recovering("QScriptEngine::newObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewObject(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1034,7 +1094,9 @@ func (ptr *QScriptEngine) NewObject2(scriptClass QScriptClass_ITF, data QScriptV
 	defer qt.Recovering("QScriptEngine::newObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewObject2(ptr.Pointer(), PointerFromQScriptClass(scriptClass), PointerFromQScriptValue(data)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewObject2(ptr.Pointer(), PointerFromQScriptClass(scriptClass), PointerFromQScriptValue(data)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1043,7 +1105,9 @@ func (ptr *QScriptEngine) NewQMetaObject(metaObject core.QMetaObject_ITF, ctor Q
 	defer qt.Recovering("QScriptEngine::newQMetaObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewQMetaObject(ptr.Pointer(), core.PointerFromQMetaObject(metaObject), PointerFromQScriptValue(ctor)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewQMetaObject(ptr.Pointer(), core.PointerFromQMetaObject(metaObject), PointerFromQScriptValue(ctor)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1052,7 +1116,9 @@ func (ptr *QScriptEngine) NewQObject(object core.QObject_ITF, ownership QScriptE
 	defer qt.Recovering("QScriptEngine::newQObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewQObject(ptr.Pointer(), core.PointerFromQObject(object), C.int(ownership), C.int(options)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewQObject(ptr.Pointer(), core.PointerFromQObject(object), C.int(ownership), C.int(options)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1061,7 +1127,9 @@ func (ptr *QScriptEngine) NewQObject2(scriptObject QScriptValue_ITF, qtObject co
 	defer qt.Recovering("QScriptEngine::newQObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewQObject2(ptr.Pointer(), PointerFromQScriptValue(scriptObject), core.PointerFromQObject(qtObject), C.int(ownership), C.int(options)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewQObject2(ptr.Pointer(), PointerFromQScriptValue(scriptObject), core.PointerFromQObject(qtObject), C.int(ownership), C.int(options)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1070,7 +1138,9 @@ func (ptr *QScriptEngine) NewRegExp(regexp core.QRegExp_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptEngine::newRegExp")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp(ptr.Pointer(), core.PointerFromQRegExp(regexp)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp(ptr.Pointer(), core.PointerFromQRegExp(regexp)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1079,7 +1149,13 @@ func (ptr *QScriptEngine) NewRegExp2(pattern string, flags string) *QScriptValue
 	defer qt.Recovering("QScriptEngine::newRegExp")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp2(ptr.Pointer(), C.CString(pattern), C.CString(flags)))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		var flagsC = C.CString(flags)
+		defer C.free(unsafe.Pointer(flagsC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewRegExp2(ptr.Pointer(), patternC, flagsC))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1088,7 +1164,9 @@ func (ptr *QScriptEngine) NewVariant2(object QScriptValue_ITF, value core.QVaria
 	defer qt.Recovering("QScriptEngine::newVariant")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewVariant2(ptr.Pointer(), PointerFromQScriptValue(object), core.PointerFromQVariant(value)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewVariant2(ptr.Pointer(), PointerFromQScriptValue(object), core.PointerFromQVariant(value)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1097,7 +1175,9 @@ func (ptr *QScriptEngine) NewVariant(value core.QVariant_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptEngine::newVariant")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NewVariant(ptr.Pointer(), core.PointerFromQVariant(value)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NewVariant(ptr.Pointer(), core.PointerFromQVariant(value)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1106,7 +1186,9 @@ func (ptr *QScriptEngine) NullValue() *QScriptValue {
 	defer qt.Recovering("QScriptEngine::nullValue")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_NullValue(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_NullValue(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1217,7 +1299,9 @@ func (ptr *QScriptEngine) ToObject(value QScriptValue_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptEngine::toObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_ToObject(ptr.Pointer(), PointerFromQScriptValue(value)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_ToObject(ptr.Pointer(), PointerFromQScriptValue(value)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1226,7 +1310,11 @@ func (ptr *QScriptEngine) ToStringHandle(str string) *QScriptString {
 	defer qt.Recovering("QScriptEngine::toStringHandle")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptStringFromPointer(C.QScriptEngine_ToStringHandle(ptr.Pointer(), C.CString(str)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		var tmpValue = NewQScriptStringFromPointer(C.QScriptEngine_ToStringHandle(ptr.Pointer(), strC))
+		runtime.SetFinalizer(tmpValue, (*QScriptString).DestroyQScriptString)
+		return tmpValue
 	}
 	return nil
 }
@@ -1235,7 +1323,9 @@ func (ptr *QScriptEngine) UncaughtException() *QScriptValue {
 	defer qt.Recovering("QScriptEngine::uncaughtException")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_UncaughtException(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_UncaughtException(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1262,7 +1352,9 @@ func (ptr *QScriptEngine) UndefinedValue() *QScriptValue {
 	defer qt.Recovering("QScriptEngine::undefinedValue")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptEngine_UndefinedValue(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptEngine_UndefinedValue(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -1973,7 +2065,9 @@ func (ptr *QScriptEngineAgent) Extension(extension QScriptEngineAgent__Extension
 	defer qt.Recovering("QScriptEngineAgent::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QScriptEngineAgent_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		var tmpValue = core.NewQVariantFromPointer(C.QScriptEngineAgent_Extension(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -1982,7 +2076,9 @@ func (ptr *QScriptEngineAgent) ExtensionDefault(extension QScriptEngineAgent__Ex
 	defer qt.Recovering("QScriptEngineAgent::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QScriptEngineAgent_ExtensionDefault(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		var tmpValue = core.NewQVariantFromPointer(C.QScriptEngineAgent_ExtensionDefault(ptr.Pointer(), C.int(extension), core.PointerFromQVariant(argument)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -2155,7 +2251,11 @@ func (ptr *QScriptEngineAgent) ScriptLoad(id int64, program string, fileName str
 	defer qt.Recovering("QScriptEngineAgent::scriptLoad")
 
 	if ptr.Pointer() != nil {
-		C.QScriptEngineAgent_ScriptLoad(ptr.Pointer(), C.longlong(id), C.CString(program), C.CString(fileName), C.int(baseLineNumber))
+		var programC = C.CString(program)
+		defer C.free(unsafe.Pointer(programC))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QScriptEngineAgent_ScriptLoad(ptr.Pointer(), C.longlong(id), programC, fileNameC, C.int(baseLineNumber))
 	}
 }
 
@@ -2163,7 +2263,11 @@ func (ptr *QScriptEngineAgent) ScriptLoadDefault(id int64, program string, fileN
 	defer qt.Recovering("QScriptEngineAgent::scriptLoad")
 
 	if ptr.Pointer() != nil {
-		C.QScriptEngineAgent_ScriptLoadDefault(ptr.Pointer(), C.longlong(id), C.CString(program), C.CString(fileName), C.int(baseLineNumber))
+		var programC = C.CString(program)
+		defer C.free(unsafe.Pointer(programC))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QScriptEngineAgent_ScriptLoadDefault(ptr.Pointer(), C.longlong(id), programC, fileNameC, C.int(baseLineNumber))
 	}
 }
 
@@ -2282,7 +2386,9 @@ func (ptr *QScriptEngineAgent) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QScriptEngineAgent::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QScriptEngineAgent_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QScriptEngineAgent_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -2371,7 +2477,9 @@ func (ptr *QScriptExtensionPlugin) Initialize(key string, engine QScriptEngine_I
 	defer qt.Recovering("QScriptExtensionPlugin::initialize")
 
 	if ptr.Pointer() != nil {
-		C.QScriptExtensionPlugin_Initialize(ptr.Pointer(), C.CString(key), PointerFromQScriptEngine(engine))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QScriptExtensionPlugin_Initialize(ptr.Pointer(), keyC, PointerFromQScriptEngine(engine))
 	}
 }
 
@@ -2417,7 +2525,11 @@ func (ptr *QScriptExtensionPlugin) SetupPackage(key string, engine QScriptEngine
 	defer qt.Recovering("QScriptExtensionPlugin::setupPackage")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptExtensionPlugin_SetupPackage(ptr.Pointer(), C.CString(key), PointerFromQScriptEngine(engine)))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptExtensionPlugin_SetupPackage(ptr.Pointer(), keyC, PointerFromQScriptEngine(engine)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -2905,7 +3017,11 @@ func NewQScriptProgram3(other QScriptProgram_ITF) *QScriptProgram {
 func NewQScriptProgram2(sourceCode string, fileName string, firstLineNumber int) *QScriptProgram {
 	defer qt.Recovering("QScriptProgram::QScriptProgram")
 
-	return newQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram2(C.CString(sourceCode), C.CString(fileName), C.int(firstLineNumber)))
+	var sourceCodeC = C.CString(sourceCode)
+	defer C.free(unsafe.Pointer(sourceCodeC))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return newQScriptProgramFromPointer(C.QScriptProgram_NewQScriptProgram2(sourceCodeC, fileNameC, C.int(firstLineNumber)))
 }
 
 func (ptr *QScriptProgram) FileName() string {
@@ -3246,13 +3362,17 @@ func NewQScriptValue2(other QScriptValue_ITF) *QScriptValue {
 func NewQScriptValue15(value string) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue15(C.CString(value)))
+	var valueC = C.CString(value)
+	defer C.free(unsafe.Pointer(valueC))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue15(valueC))
 }
 
 func NewQScriptValue17(value string) *QScriptValue {
 	defer qt.Recovering("QScriptValue::QScriptValue")
 
-	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue17(C.CString(value)))
+	var valueC = C.CString(value)
+	defer C.free(unsafe.Pointer(valueC))
+	return newQScriptValueFromPointer(C.QScriptValue_NewQScriptValue17(valueC))
 }
 
 func NewQScriptValue12(value int) *QScriptValue {
@@ -3265,7 +3385,9 @@ func (ptr *QScriptValue) Call2(thisObject QScriptValue_ITF, arguments QScriptVal
 	defer qt.Recovering("QScriptValue::call")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptValue_Call2(ptr.Pointer(), PointerFromQScriptValue(thisObject), PointerFromQScriptValue(arguments)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Call2(ptr.Pointer(), PointerFromQScriptValue(thisObject), PointerFromQScriptValue(arguments)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -3274,7 +3396,9 @@ func (ptr *QScriptValue) Construct2(arguments QScriptValue_ITF) *QScriptValue {
 	defer qt.Recovering("QScriptValue::construct")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptValue_Construct2(ptr.Pointer(), PointerFromQScriptValue(arguments)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Construct2(ptr.Pointer(), PointerFromQScriptValue(arguments)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -3283,7 +3407,9 @@ func (ptr *QScriptValue) Data() *QScriptValue {
 	defer qt.Recovering("QScriptValue::data")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptValue_Data(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Data(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -3463,7 +3589,9 @@ func (ptr *QScriptValue) Property3(name QScriptString_ITF, mode QScriptValue__Re
 	defer qt.Recovering("QScriptValue::property")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptValue_Property3(ptr.Pointer(), PointerFromQScriptString(name), C.int(mode)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Property3(ptr.Pointer(), PointerFromQScriptString(name), C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -3472,7 +3600,11 @@ func (ptr *QScriptValue) Property(name string, mode QScriptValue__ResolveFlag) *
 	defer qt.Recovering("QScriptValue::property")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptValue_Property(ptr.Pointer(), C.CString(name), C.int(mode)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Property(ptr.Pointer(), nameC, C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -3490,7 +3622,9 @@ func (ptr *QScriptValue) PropertyFlags(name string, mode QScriptValue__ResolveFl
 	defer qt.Recovering("QScriptValue::propertyFlags")
 
 	if ptr.Pointer() != nil {
-		return QScriptValue__PropertyFlag(C.QScriptValue_PropertyFlags(ptr.Pointer(), C.CString(name), C.int(mode)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return QScriptValue__PropertyFlag(C.QScriptValue_PropertyFlags(ptr.Pointer(), nameC, C.int(mode)))
 	}
 	return 0
 }
@@ -3499,7 +3633,9 @@ func (ptr *QScriptValue) Prototype() *QScriptValue {
 	defer qt.Recovering("QScriptValue::prototype")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptValue_Prototype(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptValue_Prototype(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -3533,7 +3669,9 @@ func (ptr *QScriptValue) SetProperty(name string, value QScriptValue_ITF, flags 
 	defer qt.Recovering("QScriptValue::setProperty")
 
 	if ptr.Pointer() != nil {
-		C.QScriptValue_SetProperty(ptr.Pointer(), C.CString(name), PointerFromQScriptValue(value), C.int(flags))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QScriptValue_SetProperty(ptr.Pointer(), nameC, PointerFromQScriptValue(value), C.int(flags))
 	}
 }
 
@@ -3575,7 +3713,9 @@ func (ptr *QScriptValue) ToDateTime() *core.QDateTime {
 	defer qt.Recovering("QScriptValue::toDateTime")
 
 	if ptr.Pointer() != nil {
-		return core.NewQDateTimeFromPointer(C.QScriptValue_ToDateTime(ptr.Pointer()))
+		var tmpValue = core.NewQDateTimeFromPointer(C.QScriptValue_ToDateTime(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -3602,7 +3742,9 @@ func (ptr *QScriptValue) ToRegExp() *core.QRegExp {
 	defer qt.Recovering("QScriptValue::toRegExp")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRegExpFromPointer(C.QScriptValue_ToRegExp(ptr.Pointer()))
+		var tmpValue = core.NewQRegExpFromPointer(C.QScriptValue_ToRegExp(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRegExp).DestroyQRegExp)
+		return tmpValue
 	}
 	return nil
 }
@@ -3620,7 +3762,9 @@ func (ptr *QScriptValue) ToVariant() *core.QVariant {
 	defer qt.Recovering("QScriptValue::toVariant")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QScriptValue_ToVariant(ptr.Pointer()))
+		var tmpValue = core.NewQVariantFromPointer(C.QScriptValue_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -3720,11 +3864,18 @@ func newQScriptableFromPointer(ptr unsafe.Pointer) *QScriptable {
 	return n
 }
 
+func (ptr *QScriptable) DestroyQScriptable() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QScriptable) Argument(index int) *QScriptValue {
 	defer qt.Recovering("QScriptable::argument")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptable_Argument(ptr.Pointer(), C.int(index)))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptable_Argument(ptr.Pointer(), C.int(index)))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -3760,7 +3911,9 @@ func (ptr *QScriptable) ThisObject() *QScriptValue {
 	defer qt.Recovering("QScriptable::thisObject")
 
 	if ptr.Pointer() != nil {
-		return NewQScriptValueFromPointer(C.QScriptable_ThisObject(ptr.Pointer()))
+		var tmpValue = NewQScriptValueFromPointer(C.QScriptable_ThisObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QScriptValue).DestroyQScriptValue)
+		return tmpValue
 	}
 	return nil
 }

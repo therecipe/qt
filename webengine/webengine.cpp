@@ -89,10 +89,10 @@ public:
 	void Signal_StorageNameChanged() { callbackQQuickWebEngineProfile_StorageNameChanged(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickWebEngineProfile_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQuickWebEngineProfile_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineProfile_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineProfile_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQQuickWebEngineProfile_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQQuickWebEngineProfile_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineProfile_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQuickWebEngineProfile_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQQuickWebEngineProfile_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQuickWebEngineProfile_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWebEngineProfile_MetaObject(const_cast<MyQQuickWebEngineProfile*>(this), this->objectName().toUtf8().data())); };
@@ -525,7 +525,7 @@ void* QWebEngineContextMenuData_MediaUrl(void* ptr)
 
 void* QWebEngineContextMenuData_Position(void* ptr)
 {
-	return new QPoint(static_cast<QPoint>(static_cast<QWebEngineContextMenuData*>(ptr)->position()).x(), static_cast<QPoint>(static_cast<QWebEngineContextMenuData*>(ptr)->position()).y());
+	return ({ QPoint tmpValue = static_cast<QWebEngineContextMenuData*>(ptr)->position(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
 char* QWebEngineContextMenuData_SelectedText(void* ptr)
@@ -541,14 +541,14 @@ void QWebEngineContextMenuData_DestroyQWebEngineContextMenuData(void* ptr)
 class MyQWebEngineCookieStore: public QWebEngineCookieStore
 {
 public:
-	void Signal_CookieAdded(const QNetworkCookie & cookie) { callbackQWebEngineCookieStore_CookieAdded(this, this->objectName().toUtf8().data(), new QNetworkCookie(cookie)); };
-	void Signal_CookieRemoved(const QNetworkCookie & cookie) { callbackQWebEngineCookieStore_CookieRemoved(this, this->objectName().toUtf8().data(), new QNetworkCookie(cookie)); };
+	void Signal_CookieAdded(const QNetworkCookie & cookie) { callbackQWebEngineCookieStore_CookieAdded(this, this->objectName().toUtf8().data(), const_cast<QNetworkCookie*>(&cookie)); };
+	void Signal_CookieRemoved(const QNetworkCookie & cookie) { callbackQWebEngineCookieStore_CookieRemoved(this, this->objectName().toUtf8().data(), const_cast<QNetworkCookie*>(&cookie)); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineCookieStore_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineCookieStore_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineCookieStore_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineCookieStore_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEngineCookieStore_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQWebEngineCookieStore_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineCookieStore_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineCookieStore_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineCookieStore_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineCookieStore_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineCookieStore_MetaObject(const_cast<MyQWebEngineCookieStore*>(this), this->objectName().toUtf8().data())); };
@@ -714,10 +714,10 @@ public:
 	void Signal_StateChanged(QWebEngineDownloadItem::DownloadState state) { callbackQWebEngineDownloadItem_StateChanged(this, this->objectName().toUtf8().data(), state); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineDownloadItem_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineDownloadItem_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineDownloadItem_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineDownloadItem_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEngineDownloadItem_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQWebEngineDownloadItem_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineDownloadItem_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineDownloadItem_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineDownloadItem_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineDownloadItem_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineDownloadItem_MetaObject(const_cast<MyQWebEngineDownloadItem*>(this), this->objectName().toUtf8().data())); };
@@ -925,7 +925,7 @@ void QWebEngineFullScreenRequest_Accept(void* ptr)
 
 void* QWebEngineFullScreenRequest_Origin(void* ptr)
 {
-	return new QUrl(static_cast<QWebEngineFullScreenRequest*>(ptr)->origin());
+	return const_cast<QUrl*>(&static_cast<QWebEngineFullScreenRequest*>(ptr)->origin());
 }
 
 void QWebEngineFullScreenRequest_Reject(void* ptr)
@@ -1048,41 +1048,42 @@ class MyQWebEnginePage: public QWebEnginePage
 public:
 	MyQWebEnginePage(QObject *parent) : QWebEnginePage(parent) {};
 	MyQWebEnginePage(QWebEngineProfile *profile, QObject *parent) : QWebEnginePage(profile, parent) {};
-	bool acceptNavigationRequest(const QUrl & url, QWebEnginePage::NavigationType ty, bool isMainFrame) { return callbackQWebEnginePage_AcceptNavigationRequest(this, this->objectName().toUtf8().data(), new QUrl(url), ty, isMainFrame) != 0; };
+	bool acceptNavigationRequest(const QUrl & url, QWebEnginePage::NavigationType ty, bool isMainFrame) { return callbackQWebEnginePage_AcceptNavigationRequest(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url), ty, isMainFrame) != 0; };
+	bool certificateError(const QWebEngineCertificateError & certificateError) { return callbackQWebEnginePage_CertificateError(this, this->objectName().toUtf8().data(), const_cast<QWebEngineCertificateError*>(&certificateError)) != 0; };
 	QStringList chooseFiles(QWebEnginePage::FileSelectionMode mode, const QStringList & oldFiles, const QStringList & acceptedMimeTypes) { return QString(callbackQWebEnginePage_ChooseFiles(this, this->objectName().toUtf8().data(), mode, oldFiles.join("|").toUtf8().data(), acceptedMimeTypes.join("|").toUtf8().data())).split("|", QString::SkipEmptyParts); };
 	QWebEnginePage * createWindow(QWebEnginePage::WebWindowType ty) { return static_cast<QWebEnginePage*>(callbackQWebEnginePage_CreateWindow(this, this->objectName().toUtf8().data(), ty)); };
-	void javaScriptAlert(const QUrl & securityOrigin, const QString & msg) { callbackQWebEnginePage_JavaScriptAlert(this, this->objectName().toUtf8().data(), new QUrl(securityOrigin), msg.toUtf8().data()); };
-	bool javaScriptConfirm(const QUrl & securityOrigin, const QString & msg) { return callbackQWebEnginePage_JavaScriptConfirm(this, this->objectName().toUtf8().data(), new QUrl(securityOrigin), msg.toUtf8().data()) != 0; };
+	void javaScriptAlert(const QUrl & securityOrigin, const QString & msg) { callbackQWebEnginePage_JavaScriptAlert(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&securityOrigin), msg.toUtf8().data()); };
+	bool javaScriptConfirm(const QUrl & securityOrigin, const QString & msg) { return callbackQWebEnginePage_JavaScriptConfirm(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&securityOrigin), msg.toUtf8().data()) != 0; };
 	void javaScriptConsoleMessage(QWebEnginePage::JavaScriptConsoleMessageLevel level, const QString & message, int lineNumber, const QString & sourceID) { callbackQWebEnginePage_JavaScriptConsoleMessage(this, this->objectName().toUtf8().data(), level, message.toUtf8().data(), lineNumber, sourceID.toUtf8().data()); };
-	bool javaScriptPrompt(const QUrl & securityOrigin, const QString & msg, const QString & defaultValue, QString * result) { return callbackQWebEnginePage_JavaScriptPrompt(this, this->objectName().toUtf8().data(), new QUrl(securityOrigin), msg.toUtf8().data(), defaultValue.toUtf8().data(), result->toUtf8().data()) != 0; };
+	bool javaScriptPrompt(const QUrl & securityOrigin, const QString & msg, const QString & defaultValue, QString * result) { return callbackQWebEnginePage_JavaScriptPrompt(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&securityOrigin), msg.toUtf8().data(), defaultValue.toUtf8().data(), result->toUtf8().data()) != 0; };
 	void triggerAction(QWebEnginePage::WebAction action, bool checked) { callbackQWebEnginePage_TriggerAction(this, this->objectName().toUtf8().data(), action, checked); };
 	void Signal_AudioMutedChanged(bool muted) { callbackQWebEnginePage_AudioMutedChanged(this, this->objectName().toUtf8().data(), muted); };
-	void Signal_AuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator) { callbackQWebEnginePage_AuthenticationRequired(this, this->objectName().toUtf8().data(), new QUrl(requestUrl), authenticator); };
-	void Signal_ContentsSizeChanged(const QSizeF & size) { callbackQWebEnginePage_ContentsSizeChanged(this, this->objectName().toUtf8().data(), new QSizeF(static_cast<QSizeF>(size).width(), static_cast<QSizeF>(size).height())); };
+	void Signal_AuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator) { callbackQWebEnginePage_AuthenticationRequired(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&requestUrl), authenticator); };
+	void Signal_ContentsSizeChanged(const QSizeF & size) { callbackQWebEnginePage_ContentsSizeChanged(this, this->objectName().toUtf8().data(), const_cast<QSizeF*>(&size)); };
 	bool event(QEvent * e) { return callbackQWebEnginePage_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	void Signal_FeaturePermissionRequestCanceled(const QUrl & securityOrigin, QWebEnginePage::Feature feature) { callbackQWebEnginePage_FeaturePermissionRequestCanceled(this, this->objectName().toUtf8().data(), new QUrl(securityOrigin), feature); };
-	void Signal_FeaturePermissionRequested(const QUrl & securityOrigin, QWebEnginePage::Feature feature) { callbackQWebEnginePage_FeaturePermissionRequested(this, this->objectName().toUtf8().data(), new QUrl(securityOrigin), feature); };
-	void Signal_GeometryChangeRequested(const QRect & geom) { callbackQWebEnginePage_GeometryChangeRequested(this, this->objectName().toUtf8().data(), new QRect(static_cast<QRect>(geom).x(), static_cast<QRect>(geom).y(), static_cast<QRect>(geom).width(), static_cast<QRect>(geom).height())); };
-	void Signal_IconChanged(const QIcon & icon) { callbackQWebEnginePage_IconChanged(this, this->objectName().toUtf8().data(), new QIcon(icon)); };
-	void Signal_IconUrlChanged(const QUrl & url) { callbackQWebEnginePage_IconUrlChanged(this, this->objectName().toUtf8().data(), new QUrl(url)); };
+	void Signal_FeaturePermissionRequestCanceled(const QUrl & securityOrigin, QWebEnginePage::Feature feature) { callbackQWebEnginePage_FeaturePermissionRequestCanceled(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&securityOrigin), feature); };
+	void Signal_FeaturePermissionRequested(const QUrl & securityOrigin, QWebEnginePage::Feature feature) { callbackQWebEnginePage_FeaturePermissionRequested(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&securityOrigin), feature); };
+	void Signal_GeometryChangeRequested(const QRect & geom) { callbackQWebEnginePage_GeometryChangeRequested(this, this->objectName().toUtf8().data(), const_cast<QRect*>(&geom)); };
+	void Signal_IconChanged(const QIcon & icon) { callbackQWebEnginePage_IconChanged(this, this->objectName().toUtf8().data(), const_cast<QIcon*>(&icon)); };
+	void Signal_IconUrlChanged(const QUrl & url) { callbackQWebEnginePage_IconUrlChanged(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
 	void Signal_LinkHovered(const QString & url) { callbackQWebEnginePage_LinkHovered(this, this->objectName().toUtf8().data(), url.toUtf8().data()); };
 	void Signal_LoadFinished(bool ok) { callbackQWebEnginePage_LoadFinished(this, this->objectName().toUtf8().data(), ok); };
 	void Signal_LoadProgress(int progress) { callbackQWebEnginePage_LoadProgress(this, this->objectName().toUtf8().data(), progress); };
 	void Signal_LoadStarted() { callbackQWebEnginePage_LoadStarted(this, this->objectName().toUtf8().data()); };
-	void Signal_ProxyAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator, const QString & proxyHost) { callbackQWebEnginePage_ProxyAuthenticationRequired(this, this->objectName().toUtf8().data(), new QUrl(requestUrl), authenticator, proxyHost.toUtf8().data()); };
+	void Signal_ProxyAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator, const QString & proxyHost) { callbackQWebEnginePage_ProxyAuthenticationRequired(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&requestUrl), authenticator, proxyHost.toUtf8().data()); };
 	void Signal_RecentlyAudibleChanged(bool recentlyAudible) { callbackQWebEnginePage_RecentlyAudibleChanged(this, this->objectName().toUtf8().data(), recentlyAudible); };
 	void Signal_RenderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode) { callbackQWebEnginePage_RenderProcessTerminated(this, this->objectName().toUtf8().data(), terminationStatus, exitCode); };
-	void Signal_ScrollPositionChanged(const QPointF & position) { callbackQWebEnginePage_ScrollPositionChanged(this, this->objectName().toUtf8().data(), new QPointF(static_cast<QPointF>(position).x(), static_cast<QPointF>(position).y())); };
+	void Signal_ScrollPositionChanged(const QPointF & position) { callbackQWebEnginePage_ScrollPositionChanged(this, this->objectName().toUtf8().data(), const_cast<QPointF*>(&position)); };
 	void Signal_SelectionChanged() { callbackQWebEnginePage_SelectionChanged(this, this->objectName().toUtf8().data()); };
 	void Signal_TitleChanged(const QString & title) { callbackQWebEnginePage_TitleChanged(this, this->objectName().toUtf8().data(), title.toUtf8().data()); };
-	void Signal_UrlChanged(const QUrl & url) { callbackQWebEnginePage_UrlChanged(this, this->objectName().toUtf8().data(), new QUrl(url)); };
+	void Signal_UrlChanged(const QUrl & url) { callbackQWebEnginePage_UrlChanged(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
 	void Signal_WindowCloseRequested() { callbackQWebEnginePage_WindowCloseRequested(this, this->objectName().toUtf8().data()); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEnginePage_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQWebEnginePage_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWebEnginePage_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWebEnginePage_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEnginePage_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQWebEnginePage_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEnginePage_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEnginePage_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEnginePage_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEnginePage_MetaObject(const_cast<MyQWebEnginePage*>(this), this->objectName().toUtf8().data())); };
 };
@@ -1112,6 +1113,16 @@ void* QWebEnginePage_BackgroundColor(void* ptr)
 	return new QColor(static_cast<QWebEnginePage*>(ptr)->backgroundColor());
 }
 
+int QWebEnginePage_CertificateError(void* ptr, void* certificateError)
+{
+	return static_cast<QWebEnginePage*>(ptr)->certificateError(*static_cast<QWebEngineCertificateError*>(certificateError));
+}
+
+int QWebEnginePage_CertificateErrorDefault(void* ptr, void* certificateError)
+{
+	return static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::certificateError(*static_cast<QWebEngineCertificateError*>(certificateError));
+}
+
 char* QWebEnginePage_ChooseFiles(void* ptr, int mode, char* oldFiles, char* acceptedMimeTypes)
 {
 	return static_cast<QWebEnginePage*>(ptr)->chooseFiles(static_cast<QWebEnginePage::FileSelectionMode>(mode), QString(oldFiles).split("|", QString::SkipEmptyParts), QString(acceptedMimeTypes).split("|", QString::SkipEmptyParts)).join("|").toUtf8().data();
@@ -1124,7 +1135,7 @@ char* QWebEnginePage_ChooseFilesDefault(void* ptr, int mode, char* oldFiles, cha
 
 void* QWebEnginePage_ContentsSize(void* ptr)
 {
-	return new QSizeF(static_cast<QSizeF>(static_cast<QWebEnginePage*>(ptr)->contentsSize()).width(), static_cast<QSizeF>(static_cast<QWebEnginePage*>(ptr)->contentsSize()).height());
+	return ({ QSizeF tmpValue = static_cast<QWebEnginePage*>(ptr)->contentsSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QWebEnginePage_CreateStandardContextMenu(void* ptr)
@@ -1229,7 +1240,7 @@ void QWebEnginePage_RunJavaScript4(void* ptr, char* scriptSource)
 
 void* QWebEnginePage_ScrollPosition(void* ptr)
 {
-	return new QPointF(static_cast<QPointF>(static_cast<QWebEnginePage*>(ptr)->scrollPosition()).x(), static_cast<QPointF>(static_cast<QWebEnginePage*>(ptr)->scrollPosition()).y());
+	return ({ QPointF tmpValue = static_cast<QWebEnginePage*>(ptr)->scrollPosition(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
 char* QWebEnginePage_SelectedText(void* ptr)
@@ -1369,7 +1380,7 @@ void QWebEnginePage_ContentsSizeChanged(void* ptr, void* size)
 
 void* QWebEnginePage_ContextMenuData(void* ptr)
 {
-	return new QWebEngineContextMenuData(static_cast<QWebEnginePage*>(ptr)->contextMenuData());
+	return const_cast<QWebEngineContextMenuData*>(&static_cast<QWebEnginePage*>(ptr)->contextMenuData());
 }
 
 int QWebEnginePage_Event(void* ptr, void* e)
@@ -1750,10 +1761,10 @@ public:
 	void Signal_DownloadRequested(QWebEngineDownloadItem * download) { callbackQWebEngineProfile_DownloadRequested(this, this->objectName().toUtf8().data(), download); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineProfile_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineProfile_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineProfile_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineProfile_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEngineProfile_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQWebEngineProfile_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineProfile_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineProfile_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineProfile_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineProfile_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineProfile_MetaObject(const_cast<MyQWebEngineProfile*>(this), this->objectName().toUtf8().data())); };
@@ -2239,10 +2250,10 @@ class MyQWebEngineUrlRequestInterceptor: public QWebEngineUrlRequestInterceptor
 public:
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlRequestInterceptor_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineUrlRequestInterceptor_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlRequestInterceptor_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlRequestInterceptor_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEngineUrlRequestInterceptor_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQWebEngineUrlRequestInterceptor_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlRequestInterceptor_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlRequestInterceptor_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineUrlRequestInterceptor_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlRequestInterceptor_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlRequestInterceptor_MetaObject(const_cast<MyQWebEngineUrlRequestInterceptor*>(this), this->objectName().toUtf8().data())); };
@@ -2460,10 +2471,10 @@ public:
 	void requestStarted(QWebEngineUrlRequestJob * request) { callbackQWebEngineUrlSchemeHandler_RequestStarted(this, this->objectName().toUtf8().data(), request); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlSchemeHandler_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineUrlSchemeHandler_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlSchemeHandler_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlSchemeHandler_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEngineUrlSchemeHandler_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQWebEngineUrlSchemeHandler_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlSchemeHandler_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlSchemeHandler_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQWebEngineUrlSchemeHandler_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlSchemeHandler_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlSchemeHandler_MetaObject(const_cast<MyQWebEngineUrlSchemeHandler*>(this), this->objectName().toUtf8().data())); };
@@ -2586,8 +2597,8 @@ public:
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWebEngineView_ContextMenuEvent(this, this->objectName().toUtf8().data(), event); };
 	bool event(QEvent * ev) { return callbackQWebEngineView_Event(this, this->objectName().toUtf8().data(), ev) != 0; };
 	void hideEvent(QHideEvent * event) { callbackQWebEngineView_HideEvent(this, this->objectName().toUtf8().data(), event); };
-	void Signal_IconChanged(const QIcon & icon) { callbackQWebEngineView_IconChanged(this, this->objectName().toUtf8().data(), new QIcon(icon)); };
-	void Signal_IconUrlChanged(const QUrl & url) { callbackQWebEngineView_IconUrlChanged(this, this->objectName().toUtf8().data(), new QUrl(url)); };
+	void Signal_IconChanged(const QIcon & icon) { callbackQWebEngineView_IconChanged(this, this->objectName().toUtf8().data(), const_cast<QIcon*>(&icon)); };
+	void Signal_IconUrlChanged(const QUrl & url) { callbackQWebEngineView_IconUrlChanged(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
 	void Signal_LoadFinished(bool ok) { callbackQWebEngineView_LoadFinished(this, this->objectName().toUtf8().data(), ok); };
 	void Signal_LoadProgress(int progress) { callbackQWebEngineView_LoadProgress(this, this->objectName().toUtf8().data(), progress); };
 	void Signal_LoadStarted() { callbackQWebEngineView_LoadStarted(this, this->objectName().toUtf8().data()); };
@@ -2596,7 +2607,7 @@ public:
 	void showEvent(QShowEvent * event) { callbackQWebEngineView_ShowEvent(this, this->objectName().toUtf8().data(), event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWebEngineView_SizeHint(const_cast<MyQWebEngineView*>(this), this->objectName().toUtf8().data())); };
 	void Signal_TitleChanged(const QString & title) { callbackQWebEngineView_TitleChanged(this, this->objectName().toUtf8().data(), title.toUtf8().data()); };
-	void Signal_UrlChanged(const QUrl & url) { callbackQWebEngineView_UrlChanged(this, this->objectName().toUtf8().data(), new QUrl(url)); };
+	void Signal_UrlChanged(const QUrl & url) { callbackQWebEngineView_UrlChanged(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
 	void actionEvent(QActionEvent * event) { callbackQWebEngineView_ActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void enterEvent(QEvent * event) { callbackQWebEngineView_EnterEvent(this, this->objectName().toUtf8().data(), event); };
 	void focusInEvent(QFocusEvent * event) { callbackQWebEngineView_FocusInEvent(this, this->objectName().toUtf8().data(), event); };
@@ -2644,10 +2655,10 @@ public:
 	void wheelEvent(QWheelEvent * event) { callbackQWebEngineView_WheelEvent(this, this->objectName().toUtf8().data(), event); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineView_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineView_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineView_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineView_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQWebEngineView_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQWebEngineView_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineView_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineView_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineView_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineView_MetaObject(const_cast<MyQWebEngineView*>(this), this->objectName().toUtf8().data())); };
 };
@@ -2954,12 +2965,12 @@ void QWebEngineView_ShowEventDefault(void* ptr, void* event)
 
 void* QWebEngineView_SizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->sizeHint()).width(), static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QWebEngineView*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QWebEngineView_SizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::sizeHint()).width(), static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::sizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QWebEngineView*>(ptr)->QWebEngineView::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QWebEngineView_ConnectTitleChanged(void* ptr)
@@ -3044,12 +3055,12 @@ void QWebEngineView_LeaveEventDefault(void* ptr, void* event)
 
 void* QWebEngineView_MinimumSizeHint(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->minimumSizeHint()).width(), static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QWebEngineView*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QWebEngineView_MinimumSizeHintDefault(void* ptr)
 {
-	return new QSize(static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::minimumSizeHint()).width(), static_cast<QSize>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::minimumSizeHint()).height());
+	return ({ QSize tmpValue = static_cast<QWebEngineView*>(ptr)->QWebEngineView::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QWebEngineView_MoveEvent(void* ptr, void* event)

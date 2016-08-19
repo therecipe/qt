@@ -2,12 +2,14 @@
 
 package websockets
 
+//#include <stdlib.h>
 //#include "websockets.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
+	"runtime"
 	"unsafe"
 )
 
@@ -644,7 +646,9 @@ func (ptr *QWebSocket) BinaryFrameReceived(frame string, isLastFrame bool) {
 	defer qt.Recovering("QWebSocket::binaryFrameReceived")
 
 	if ptr.Pointer() != nil {
-		C.QWebSocket_BinaryFrameReceived(ptr.Pointer(), C.CString(frame), C.int(qt.GoBoolToInt(isLastFrame)))
+		var frameC = C.CString(frame)
+		defer C.free(unsafe.Pointer(frameC))
+		C.QWebSocket_BinaryFrameReceived(ptr.Pointer(), frameC, C.int(qt.GoBoolToInt(isLastFrame)))
 	}
 }
 
@@ -680,7 +684,9 @@ func (ptr *QWebSocket) BinaryMessageReceived(message string) {
 	defer qt.Recovering("QWebSocket::binaryMessageReceived")
 
 	if ptr.Pointer() != nil {
-		C.QWebSocket_BinaryMessageReceived(ptr.Pointer(), C.CString(message))
+		var messageC = C.CString(message)
+		defer C.free(unsafe.Pointer(messageC))
+		C.QWebSocket_BinaryMessageReceived(ptr.Pointer(), messageC)
 	}
 }
 
@@ -913,7 +919,9 @@ func (ptr *QWebSocket) LocalAddress() *network.QHostAddress {
 	defer qt.Recovering("QWebSocket::localAddress")
 
 	if ptr.Pointer() != nil {
-		return network.NewQHostAddressFromPointer(C.QWebSocket_LocalAddress(ptr.Pointer()))
+		var tmpValue = network.NewQHostAddressFromPointer(C.QWebSocket_LocalAddress(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QHostAddress).DestroyQHostAddress)
+		return tmpValue
 	}
 	return nil
 }
@@ -1021,7 +1029,9 @@ func (ptr *QWebSocket) PeerAddress() *network.QHostAddress {
 	defer qt.Recovering("QWebSocket::peerAddress")
 
 	if ptr.Pointer() != nil {
-		return network.NewQHostAddressFromPointer(C.QWebSocket_PeerAddress(ptr.Pointer()))
+		var tmpValue = network.NewQHostAddressFromPointer(C.QWebSocket_PeerAddress(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QHostAddress).DestroyQHostAddress)
+		return tmpValue
 	}
 	return nil
 }
@@ -1067,7 +1077,9 @@ func (ptr *QWebSocket) Ping(payload string) {
 	defer qt.Recovering("QWebSocket::ping")
 
 	if ptr.Pointer() != nil {
-		C.QWebSocket_Ping(ptr.Pointer(), C.CString(payload))
+		var payloadC = C.CString(payload)
+		defer C.free(unsafe.Pointer(payloadC))
+		C.QWebSocket_Ping(ptr.Pointer(), payloadC)
 	}
 }
 
@@ -1075,7 +1087,9 @@ func (ptr *QWebSocket) Proxy() *network.QNetworkProxy {
 	defer qt.Recovering("QWebSocket::proxy")
 
 	if ptr.Pointer() != nil {
-		return network.NewQNetworkProxyFromPointer(C.QWebSocket_Proxy(ptr.Pointer()))
+		var tmpValue = network.NewQNetworkProxyFromPointer(C.QWebSocket_Proxy(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QNetworkProxy).DestroyQNetworkProxy)
+		return tmpValue
 	}
 	return nil
 }
@@ -1165,7 +1179,9 @@ func (ptr *QWebSocket) Request() *network.QNetworkRequest {
 	defer qt.Recovering("QWebSocket::request")
 
 	if ptr.Pointer() != nil {
-		return network.NewQNetworkRequestFromPointer(C.QWebSocket_Request(ptr.Pointer()))
+		var tmpValue = network.NewQNetworkRequestFromPointer(C.QWebSocket_Request(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QNetworkRequest).DestroyQNetworkRequest)
+		return tmpValue
 	}
 	return nil
 }
@@ -1174,7 +1190,9 @@ func (ptr *QWebSocket) RequestUrl() *core.QUrl {
 	defer qt.Recovering("QWebSocket::requestUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebSocket_RequestUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebSocket_RequestUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -1200,7 +1218,9 @@ func (ptr *QWebSocket) SendBinaryMessage(data string) int64 {
 	defer qt.Recovering("QWebSocket::sendBinaryMessage")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QWebSocket_SendBinaryMessage(ptr.Pointer(), C.CString(data)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QWebSocket_SendBinaryMessage(ptr.Pointer(), dataC))
 	}
 	return 0
 }
@@ -1209,7 +1229,9 @@ func (ptr *QWebSocket) SendTextMessage(message string) int64 {
 	defer qt.Recovering("QWebSocket::sendTextMessage")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QWebSocket_SendTextMessage(ptr.Pointer(), C.CString(message)))
+		var messageC = C.CString(message)
+		defer C.free(unsafe.Pointer(messageC))
+		return int64(C.QWebSocket_SendTextMessage(ptr.Pointer(), messageC))
 	}
 	return 0
 }
@@ -1258,7 +1280,9 @@ func (ptr *QWebSocket) SslConfiguration() *network.QSslConfiguration {
 	defer qt.Recovering("QWebSocket::sslConfiguration")
 
 	if ptr.Pointer() != nil {
-		return network.NewQSslConfigurationFromPointer(C.QWebSocket_SslConfiguration(ptr.Pointer()))
+		var tmpValue = network.NewQSslConfigurationFromPointer(C.QWebSocket_SslConfiguration(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QSslConfiguration).DestroyQSslConfiguration)
+		return tmpValue
 	}
 	return nil
 }
@@ -1340,7 +1364,9 @@ func (ptr *QWebSocket) TextFrameReceived(frame string, isLastFrame bool) {
 	defer qt.Recovering("QWebSocket::textFrameReceived")
 
 	if ptr.Pointer() != nil {
-		C.QWebSocket_TextFrameReceived(ptr.Pointer(), C.CString(frame), C.int(qt.GoBoolToInt(isLastFrame)))
+		var frameC = C.CString(frame)
+		defer C.free(unsafe.Pointer(frameC))
+		C.QWebSocket_TextFrameReceived(ptr.Pointer(), frameC, C.int(qt.GoBoolToInt(isLastFrame)))
 	}
 }
 
@@ -1376,7 +1402,9 @@ func (ptr *QWebSocket) TextMessageReceived(message string) {
 	defer qt.Recovering("QWebSocket::textMessageReceived")
 
 	if ptr.Pointer() != nil {
-		C.QWebSocket_TextMessageReceived(ptr.Pointer(), C.CString(message))
+		var messageC = C.CString(message)
+		defer C.free(unsafe.Pointer(messageC))
+		C.QWebSocket_TextMessageReceived(ptr.Pointer(), messageC)
 	}
 }
 
@@ -1857,7 +1885,9 @@ func NewQWebSocketCorsAuthenticator3(other QWebSocketCorsAuthenticator_ITF) *QWe
 func NewQWebSocketCorsAuthenticator(origin string) *QWebSocketCorsAuthenticator {
 	defer qt.Recovering("QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
 
-	return newQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(C.CString(origin)))
+	var originC = C.CString(origin)
+	defer C.free(unsafe.Pointer(originC))
+	return newQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(originC))
 }
 
 func NewQWebSocketCorsAuthenticator2(other QWebSocketCorsAuthenticator_ITF) *QWebSocketCorsAuthenticator {
@@ -1967,7 +1997,9 @@ func newQWebSocketServerFromPointer(ptr unsafe.Pointer) *QWebSocketServer {
 func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode, parent core.QObject_ITF) *QWebSocketServer {
 	defer qt.Recovering("QWebSocketServer::QWebSocketServer")
 
-	return newQWebSocketServerFromPointer(C.QWebSocketServer_NewQWebSocketServer(C.CString(serverName), C.int(secureMode), core.PointerFromQObject(parent)))
+	var serverNameC = C.CString(serverName)
+	defer C.free(unsafe.Pointer(serverNameC))
+	return newQWebSocketServerFromPointer(C.QWebSocketServer_NewQWebSocketServer(serverNameC, C.int(secureMode), core.PointerFromQObject(parent)))
 }
 
 //export callbackQWebSocketServer_AcceptError
@@ -2253,7 +2285,9 @@ func (ptr *QWebSocketServer) Proxy() *network.QNetworkProxy {
 	defer qt.Recovering("QWebSocketServer::proxy")
 
 	if ptr.Pointer() != nil {
-		return network.NewQNetworkProxyFromPointer(C.QWebSocketServer_Proxy(ptr.Pointer()))
+		var tmpValue = network.NewQNetworkProxyFromPointer(C.QWebSocketServer_Proxy(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QNetworkProxy).DestroyQNetworkProxy)
+		return tmpValue
 	}
 	return nil
 }
@@ -2279,7 +2313,9 @@ func (ptr *QWebSocketServer) ServerAddress() *network.QHostAddress {
 	defer qt.Recovering("QWebSocketServer::serverAddress")
 
 	if ptr.Pointer() != nil {
-		return network.NewQHostAddressFromPointer(C.QWebSocketServer_ServerAddress(ptr.Pointer()))
+		var tmpValue = network.NewQHostAddressFromPointer(C.QWebSocketServer_ServerAddress(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QHostAddress).DestroyQHostAddress)
+		return tmpValue
 	}
 	return nil
 }
@@ -2297,7 +2333,9 @@ func (ptr *QWebSocketServer) ServerUrl() *core.QUrl {
 	defer qt.Recovering("QWebSocketServer::serverUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebSocketServer_ServerUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebSocketServer_ServerUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -2322,7 +2360,9 @@ func (ptr *QWebSocketServer) SetServerName(serverName string) {
 	defer qt.Recovering("QWebSocketServer::setServerName")
 
 	if ptr.Pointer() != nil {
-		C.QWebSocketServer_SetServerName(ptr.Pointer(), C.CString(serverName))
+		var serverNameC = C.CString(serverName)
+		defer C.free(unsafe.Pointer(serverNameC))
+		C.QWebSocketServer_SetServerName(ptr.Pointer(), serverNameC)
 	}
 }
 
@@ -2356,7 +2396,9 @@ func (ptr *QWebSocketServer) SslConfiguration() *network.QSslConfiguration {
 	defer qt.Recovering("QWebSocketServer::sslConfiguration")
 
 	if ptr.Pointer() != nil {
-		return network.NewQSslConfigurationFromPointer(C.QWebSocketServer_SslConfiguration(ptr.Pointer()))
+		var tmpValue = network.NewQSslConfigurationFromPointer(C.QWebSocketServer_SslConfiguration(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*network.QSslConfiguration).DestroyQSslConfiguration)
+		return tmpValue
 	}
 	return nil
 }

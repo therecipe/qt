@@ -252,6 +252,7 @@ int QXmlContentHandler_ProcessingInstruction(void* ptr, char* target, char* data
 void QXmlContentHandler_SetDocumentLocator(void* ptr, void* locator);
 int QXmlContentHandler_SkippedEntity(void* ptr, char* name);
 int QXmlContentHandler_StartDocument(void* ptr);
+int QXmlContentHandler_StartElement(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts);
 int QXmlContentHandler_StartPrefixMapping(void* ptr, char* prefix, char* uri);
 void QXmlContentHandler_DestroyQXmlContentHandler(void* ptr);
 char* QXmlContentHandler_ObjectNameAbs(void* ptr);
@@ -317,6 +318,8 @@ int QXmlDefaultHandler_StartDTD(void* ptr, char* name, char* publicId, char* sys
 int QXmlDefaultHandler_StartDTDDefault(void* ptr, char* name, char* publicId, char* systemId);
 int QXmlDefaultHandler_StartDocument(void* ptr);
 int QXmlDefaultHandler_StartDocumentDefault(void* ptr);
+int QXmlDefaultHandler_StartElement(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts);
+int QXmlDefaultHandler_StartElementDefault(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts);
 int QXmlDefaultHandler_StartEntity(void* ptr, char* name);
 int QXmlDefaultHandler_StartEntityDefault(void* ptr, char* name);
 int QXmlDefaultHandler_StartPrefixMapping(void* ptr, char* prefix, char* uri);
@@ -436,6 +439,8 @@ int QXmlSimpleReader_HasProperty(void* ptr, char* name);
 int QXmlSimpleReader_HasPropertyDefault(void* ptr, char* name);
 void* QXmlSimpleReader_LexicalHandler(void* ptr);
 void* QXmlSimpleReader_LexicalHandlerDefault(void* ptr);
+int QXmlSimpleReader_Parse(void* ptr, void* input);
+int QXmlSimpleReader_ParseDefault(void* ptr, void* input);
 int QXmlSimpleReader_Parse2(void* ptr, void* input);
 int QXmlSimpleReader_Parse2Default(void* ptr, void* input);
 int QXmlSimpleReader_Parse3(void* ptr, void* input, int incremental);

@@ -2,6 +2,7 @@
 
 package designer
 
+//#include <stdlib.h>
 //#include "designer.h"
 import "C"
 import (
@@ -9,6 +10,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -92,7 +94,9 @@ func (ptr *QAbstractExtensionFactory) Extension(object core.QObject_ITF, iid str
 	defer qt.Recovering("QAbstractExtensionFactory::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QAbstractExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QAbstractExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 	}
 	return nil
 }
@@ -120,7 +124,9 @@ func (ptr *QAbstractExtensionFactory) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAbstractExtensionFactory::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAbstractExtensionFactory_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAbstractExtensionFactory_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -203,7 +209,9 @@ func (ptr *QAbstractExtensionManager) Extension(object core.QObject_ITF, iid str
 	defer qt.Recovering("QAbstractExtensionManager::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 	}
 	return nil
 }
@@ -240,7 +248,9 @@ func (ptr *QAbstractExtensionManager) RegisterExtensions(factory QAbstractExtens
 	defer qt.Recovering("QAbstractExtensionManager::registerExtensions")
 
 	if ptr.Pointer() != nil {
-		C.QAbstractExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.CString(iid))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		C.QAbstractExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
@@ -276,7 +286,9 @@ func (ptr *QAbstractExtensionManager) UnregisterExtensions(factory QAbstractExte
 	defer qt.Recovering("QAbstractExtensionManager::unregisterExtensions")
 
 	if ptr.Pointer() != nil {
-		C.QAbstractExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.CString(iid))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		C.QAbstractExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
@@ -303,7 +315,9 @@ func (ptr *QAbstractExtensionManager) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAbstractExtensionManager::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAbstractExtensionManager_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAbstractExtensionManager_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -472,7 +486,9 @@ func (ptr *QAbstractFormBuilder) WorkingDirectory() *core.QDir {
 	defer qt.Recovering("QAbstractFormBuilder::workingDirectory")
 
 	if ptr.Pointer() != nil {
-		return core.NewQDirFromPointer(C.QAbstractFormBuilder_WorkingDirectory(ptr.Pointer()))
+		var tmpValue = core.NewQDirFromPointer(C.QAbstractFormBuilder_WorkingDirectory(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		return tmpValue
 	}
 	return nil
 }
@@ -500,7 +516,9 @@ func (ptr *QAbstractFormBuilder) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAbstractFormBuilder::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAbstractFormBuilder_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAbstractFormBuilder_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -1205,7 +1223,9 @@ func (ptr *QDesignerActionEditorInterface) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerActionEditorInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -1214,7 +1234,9 @@ func (ptr *QDesignerActionEditorInterface) MinimumSizeHintDefault() *core.QSize 
 	defer qt.Recovering("QDesignerActionEditorInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -1387,7 +1409,9 @@ func (ptr *QDesignerActionEditorInterface) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerActionEditorInterface_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -1395,7 +1419,9 @@ func (ptr *QDesignerActionEditorInterface) SetStyleSheetDefault(styleSheet strin
 	defer qt.Recovering("QDesignerActionEditorInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerActionEditorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -1522,7 +1548,9 @@ func (ptr *QDesignerActionEditorInterface) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerActionEditorInterface_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -1530,7 +1558,9 @@ func (ptr *QDesignerActionEditorInterface) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerActionEditorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -1612,7 +1642,9 @@ func (ptr *QDesignerActionEditorInterface) SizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerActionEditorInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -1621,7 +1653,9 @@ func (ptr *QDesignerActionEditorInterface) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QDesignerActionEditorInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerActionEditorInterface_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -2072,7 +2106,9 @@ func (ptr *QDesignerActionEditorInterface) InputMethodQuery(query core.Qt__Input
 	defer qt.Recovering("QDesignerActionEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -2081,7 +2117,9 @@ func (ptr *QDesignerActionEditorInterface) InputMethodQueryDefault(query core.Qt
 	defer qt.Recovering("QDesignerActionEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -2434,7 +2472,9 @@ func (ptr *QDesignerActionEditorInterface) NativeEvent(eventType string, message
 	defer qt.Recovering("QDesignerActionEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerActionEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -2443,7 +2483,9 @@ func (ptr *QDesignerActionEditorInterface) NativeEventDefault(eventType string, 
 	defer qt.Recovering("QDesignerActionEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerActionEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -3912,7 +3954,9 @@ func (ptr *QDesignerContainerExtension) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QDesignerContainerExtension::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerContainerExtension_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerContainerExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -3985,7 +4029,9 @@ func (ptr *QDesignerCustomWidgetCollectionInterface) SetObjectNameAbs(name strin
 	defer qt.Recovering("QDesignerCustomWidgetCollectionInterface::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerCustomWidgetCollectionInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerCustomWidgetCollectionInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -4238,7 +4284,9 @@ func (ptr *QDesignerCustomWidgetInterface) Icon() *gui.QIcon {
 	defer qt.Recovering("QDesignerCustomWidgetInterface::icon")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQIconFromPointer(C.QDesignerCustomWidgetInterface_Icon(ptr.Pointer()))
+		var tmpValue = gui.NewQIconFromPointer(C.QDesignerCustomWidgetInterface_Icon(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		return tmpValue
 	}
 	return nil
 }
@@ -4548,7 +4596,9 @@ func (ptr *QDesignerCustomWidgetInterface) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QDesignerCustomWidgetInterface::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerCustomWidgetInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerCustomWidgetInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -4631,7 +4681,9 @@ func (ptr *QDesignerDynamicPropertySheetExtension) AddDynamicProperty(propertyNa
 	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::addDynamicProperty")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr.Pointer(), C.CString(propertyName), core.PointerFromQVariant(value)))
+		var propertyNameC = C.CString(propertyName)
+		defer C.free(unsafe.Pointer(propertyNameC))
+		return int(C.QDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr.Pointer(), propertyNameC, core.PointerFromQVariant(value)))
 	}
 	return 0
 }
@@ -4669,7 +4721,9 @@ func (ptr *QDesignerDynamicPropertySheetExtension) CanAddDynamicProperty(propert
 	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::canAddDynamicProperty")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr.Pointer(), C.CString(propertyName)) != 0
+		var propertyNameC = C.CString(propertyName)
+		defer C.free(unsafe.Pointer(propertyNameC))
+		return C.QDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr.Pointer(), propertyNameC) != 0
 	}
 	return false
 }
@@ -4811,7 +4865,9 @@ func (ptr *QDesignerDynamicPropertySheetExtension) SetObjectNameAbs(name string)
 	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerDynamicPropertySheetExtension_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerDynamicPropertySheetExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -5688,7 +5744,9 @@ func (ptr *QDesignerFormWindowCursorInterface) ResetWidgetProperty(widget widget
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::resetWidgetProperty")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowCursorInterface_ResetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerFormWindowCursorInterface_ResetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), nameC)
 	}
 }
 
@@ -5836,7 +5894,9 @@ func (ptr *QDesignerFormWindowCursorInterface) SetProperty(name string, value co
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::setProperty")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowCursorInterface_SetProperty(ptr.Pointer(), C.CString(name), core.PointerFromQVariant(value))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerFormWindowCursorInterface_SetProperty(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
 	}
 }
 
@@ -5872,7 +5932,9 @@ func (ptr *QDesignerFormWindowCursorInterface) SetWidgetProperty(widget widgets.
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::setWidgetProperty")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowCursorInterface_SetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), C.CString(name), core.PointerFromQVariant(value))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerFormWindowCursorInterface_SetWidgetProperty(ptr.Pointer(), widgets.PointerFromQWidget(widget), nameC, core.PointerFromQVariant(value))
 	}
 }
 
@@ -5975,7 +6037,9 @@ func (ptr *QDesignerFormWindowCursorInterface) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowCursorInterface_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerFormWindowCursorInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -6138,7 +6202,9 @@ func (ptr *QDesignerFormWindowInterface) AbsoluteDir() *core.QDir {
 	defer qt.Recovering("QDesignerFormWindowInterface::absoluteDir")
 
 	if ptr.Pointer() != nil {
-		return core.NewQDirFromPointer(C.QDesignerFormWindowInterface_AbsoluteDir(ptr.Pointer()))
+		var tmpValue = core.NewQDirFromPointer(C.QDesignerFormWindowInterface_AbsoluteDir(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		return tmpValue
 	}
 	return nil
 }
@@ -6175,7 +6241,11 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []strin
 	defer qt.Recovering("QDesignerFormWindowInterface::activateResourceFilePaths")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), C.CString(strings.Join(paths, "|")), C.int(errorCount), C.CString(errorMessages))
+		var pathsC = C.CString(strings.Join(paths, "|"))
+		defer C.free(unsafe.Pointer(pathsC))
+		var errorMessagesC = C.CString(errorMessages)
+		defer C.free(unsafe.Pointer(errorMessagesC))
+		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), pathsC, C.int(errorCount), errorMessagesC)
 	}
 }
 
@@ -6256,7 +6326,9 @@ func (ptr *QDesignerFormWindowInterface) AddResourceFile(path string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::addResourceFile")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_AddResourceFile(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QDesignerFormWindowInterface_AddResourceFile(ptr.Pointer(), pathC)
 	}
 }
 
@@ -6787,7 +6859,9 @@ func (ptr *QDesignerFormWindowInterface) FileNameChanged(fileName string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::fileNameChanged")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_FileNameChanged(ptr.Pointer(), C.CString(fileName))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QDesignerFormWindowInterface_FileNameChanged(ptr.Pointer(), fileNameC)
 	}
 }
 
@@ -6898,7 +6972,9 @@ func (ptr *QDesignerFormWindowInterface) Grid() *core.QPoint {
 	defer qt.Recovering("QDesignerFormWindowInterface::grid")
 
 	if ptr.Pointer() != nil {
-		return core.NewQPointFromPointer(C.QDesignerFormWindowInterface_Grid(ptr.Pointer()))
+		var tmpValue = core.NewQPointFromPointer(C.QDesignerFormWindowInterface_Grid(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -7123,7 +7199,11 @@ func (ptr *QDesignerFormWindowInterface) LayoutFunction(margin string, spacing s
 	defer qt.Recovering("QDesignerFormWindowInterface::layoutFunction")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_LayoutFunction(ptr.Pointer(), C.CString(margin), C.CString(spacing))
+		var marginC = C.CString(margin)
+		defer C.free(unsafe.Pointer(marginC))
+		var spacingC = C.CString(spacing)
+		defer C.free(unsafe.Pointer(spacingC))
+		C.QDesignerFormWindowInterface_LayoutFunction(ptr.Pointer(), marginC, spacingC)
 	}
 }
 
@@ -7305,7 +7385,9 @@ func (ptr *QDesignerFormWindowInterface) RemoveResourceFile(path string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::removeResourceFile")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_RemoveResourceFile(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QDesignerFormWindowInterface_RemoveResourceFile(ptr.Pointer(), pathC)
 	}
 }
 
@@ -7525,7 +7607,9 @@ func (ptr *QDesignerFormWindowInterface) SetAuthor(author string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setAuthor")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetAuthor(ptr.Pointer(), C.CString(author))
+		var authorC = C.CString(author)
+		defer C.free(unsafe.Pointer(authorC))
+		C.QDesignerFormWindowInterface_SetAuthor(ptr.Pointer(), authorC)
 	}
 }
 
@@ -7561,7 +7645,9 @@ func (ptr *QDesignerFormWindowInterface) SetComment(comment string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setComment")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetComment(ptr.Pointer(), C.CString(comment))
+		var commentC = C.CString(comment)
+		defer C.free(unsafe.Pointer(commentC))
+		C.QDesignerFormWindowInterface_SetComment(ptr.Pointer(), commentC)
 	}
 }
 
@@ -7598,7 +7684,9 @@ func (ptr *QDesignerFormWindowInterface) SetContents(device core.QIODevice_ITF, 
 	defer qt.Recovering("QDesignerFormWindowInterface::setContents")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_SetContents(ptr.Pointer(), core.PointerFromQIODevice(device), C.CString(errorMessage)) != 0
+		var errorMessageC = C.CString(errorMessage)
+		defer C.free(unsafe.Pointer(errorMessageC))
+		return C.QDesignerFormWindowInterface_SetContents(ptr.Pointer(), core.PointerFromQIODevice(device), errorMessageC) != 0
 	}
 	return false
 }
@@ -7636,7 +7724,9 @@ func (ptr *QDesignerFormWindowInterface) SetContents2(contents string) bool {
 	defer qt.Recovering("QDesignerFormWindowInterface::setContents")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_SetContents2(ptr.Pointer(), C.CString(contents)) != 0
+		var contentsC = C.CString(contents)
+		defer C.free(unsafe.Pointer(contentsC))
+		return C.QDesignerFormWindowInterface_SetContents2(ptr.Pointer(), contentsC) != 0
 	}
 	return false
 }
@@ -7709,7 +7799,9 @@ func (ptr *QDesignerFormWindowInterface) SetExportMacro(exportMacro string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setExportMacro")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetExportMacro(ptr.Pointer(), C.CString(exportMacro))
+		var exportMacroC = C.CString(exportMacro)
+		defer C.free(unsafe.Pointer(exportMacroC))
+		C.QDesignerFormWindowInterface_SetExportMacro(ptr.Pointer(), exportMacroC)
 	}
 }
 
@@ -7781,7 +7873,9 @@ func (ptr *QDesignerFormWindowInterface) SetFileName(fileName string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetFileName(ptr.Pointer(), C.CString(fileName))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QDesignerFormWindowInterface_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
 
@@ -7853,7 +7947,9 @@ func (ptr *QDesignerFormWindowInterface) SetIncludeHints(includeHints []string) 
 	defer qt.Recovering("QDesignerFormWindowInterface::setIncludeHints")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetIncludeHints(ptr.Pointer(), C.CString(strings.Join(includeHints, "|")))
+		var includeHintsC = C.CString(strings.Join(includeHints, "|"))
+		defer C.free(unsafe.Pointer(includeHintsC))
+		C.QDesignerFormWindowInterface_SetIncludeHints(ptr.Pointer(), includeHintsC)
 	}
 }
 
@@ -7925,7 +8021,11 @@ func (ptr *QDesignerFormWindowInterface) SetLayoutFunction(margin string, spacin
 	defer qt.Recovering("QDesignerFormWindowInterface::setLayoutFunction")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetLayoutFunction(ptr.Pointer(), C.CString(margin), C.CString(spacing))
+		var marginC = C.CString(margin)
+		defer C.free(unsafe.Pointer(marginC))
+		var spacingC = C.CString(spacing)
+		defer C.free(unsafe.Pointer(spacingC))
+		C.QDesignerFormWindowInterface_SetLayoutFunction(ptr.Pointer(), marginC, spacingC)
 	}
 }
 
@@ -7997,7 +8097,9 @@ func (ptr *QDesignerFormWindowInterface) SetPixmapFunction(pixmapFunction string
 	defer qt.Recovering("QDesignerFormWindowInterface::setPixmapFunction")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetPixmapFunction(ptr.Pointer(), C.CString(pixmapFunction))
+		var pixmapFunctionC = C.CString(pixmapFunction)
+		defer C.free(unsafe.Pointer(pixmapFunctionC))
+		C.QDesignerFormWindowInterface_SetPixmapFunction(ptr.Pointer(), pixmapFunctionC)
 	}
 }
 
@@ -8674,7 +8776,9 @@ func (ptr *QDesignerFormWindowInterface) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerFormWindowInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -8683,7 +8787,9 @@ func (ptr *QDesignerFormWindowInterface) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QDesignerFormWindowInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -8856,7 +8962,9 @@ func (ptr *QDesignerFormWindowInterface) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerFormWindowInterface_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -8864,7 +8972,9 @@ func (ptr *QDesignerFormWindowInterface) SetStyleSheetDefault(styleSheet string)
 	defer qt.Recovering("QDesignerFormWindowInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerFormWindowInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -8991,7 +9101,9 @@ func (ptr *QDesignerFormWindowInterface) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerFormWindowInterface_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -8999,7 +9111,9 @@ func (ptr *QDesignerFormWindowInterface) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerFormWindowInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -9081,7 +9195,9 @@ func (ptr *QDesignerFormWindowInterface) SizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerFormWindowInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -9090,7 +9206,9 @@ func (ptr *QDesignerFormWindowInterface) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QDesignerFormWindowInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerFormWindowInterface_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -9541,7 +9659,9 @@ func (ptr *QDesignerFormWindowInterface) InputMethodQuery(query core.Qt__InputMe
 	defer qt.Recovering("QDesignerFormWindowInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -9550,7 +9670,9 @@ func (ptr *QDesignerFormWindowInterface) InputMethodQueryDefault(query core.Qt__
 	defer qt.Recovering("QDesignerFormWindowInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -9903,7 +10025,9 @@ func (ptr *QDesignerFormWindowInterface) NativeEvent(eventType string, message u
 	defer qt.Recovering("QDesignerFormWindowInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerFormWindowInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -9912,7 +10036,9 @@ func (ptr *QDesignerFormWindowInterface) NativeEventDefault(eventType string, me
 	defer qt.Recovering("QDesignerFormWindowInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerFormWindowInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -11371,7 +11497,9 @@ func (ptr *QDesignerFormWindowManagerInterface) CreatePreviewPixmap() *gui.QPixm
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::createPreviewPixmap")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQPixmapFromPointer(C.QDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr.Pointer()))
+		var tmpValue = gui.NewQPixmapFromPointer(C.QDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPixmap).DestroyQPixmap)
+		return tmpValue
 	}
 	return nil
 }
@@ -12284,7 +12412,9 @@ func (ptr *QDesignerMemberSheetExtension) IndexOf(name string) int {
 	defer qt.Recovering("QDesignerMemberSheetExtension::indexOf")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerMemberSheetExtension_IndexOf(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QDesignerMemberSheetExtension_IndexOf(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -12549,7 +12679,9 @@ func (ptr *QDesignerMemberSheetExtension) SetMemberGroup(index int, group string
 	defer qt.Recovering("QDesignerMemberSheetExtension::setMemberGroup")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerMemberSheetExtension_SetMemberGroup(ptr.Pointer(), C.int(index), C.CString(group))
+		var groupC = C.CString(group)
+		defer C.free(unsafe.Pointer(groupC))
+		C.QDesignerMemberSheetExtension_SetMemberGroup(ptr.Pointer(), C.int(index), groupC)
 	}
 }
 
@@ -12650,7 +12782,9 @@ func (ptr *QDesignerMemberSheetExtension) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QDesignerMemberSheetExtension::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerMemberSheetExtension_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerMemberSheetExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -13283,7 +13417,9 @@ func (ptr *QDesignerObjectInspectorInterface) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -13292,7 +13428,9 @@ func (ptr *QDesignerObjectInspectorInterface) MinimumSizeHintDefault() *core.QSi
 	defer qt.Recovering("QDesignerObjectInspectorInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -13465,7 +13603,9 @@ func (ptr *QDesignerObjectInspectorInterface) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerObjectInspectorInterface_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -13473,7 +13613,9 @@ func (ptr *QDesignerObjectInspectorInterface) SetStyleSheetDefault(styleSheet st
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerObjectInspectorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -13600,7 +13742,9 @@ func (ptr *QDesignerObjectInspectorInterface) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerObjectInspectorInterface_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -13608,7 +13752,9 @@ func (ptr *QDesignerObjectInspectorInterface) SetWindowTitleDefault(vqs string) 
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerObjectInspectorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -13690,7 +13836,9 @@ func (ptr *QDesignerObjectInspectorInterface) SizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -13699,7 +13847,9 @@ func (ptr *QDesignerObjectInspectorInterface) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerObjectInspectorInterface_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -14150,7 +14300,9 @@ func (ptr *QDesignerObjectInspectorInterface) InputMethodQuery(query core.Qt__In
 	defer qt.Recovering("QDesignerObjectInspectorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -14159,7 +14311,9 @@ func (ptr *QDesignerObjectInspectorInterface) InputMethodQueryDefault(query core
 	defer qt.Recovering("QDesignerObjectInspectorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -14512,7 +14666,9 @@ func (ptr *QDesignerObjectInspectorInterface) NativeEvent(eventType string, mess
 	defer qt.Recovering("QDesignerObjectInspectorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerObjectInspectorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -14521,7 +14677,9 @@ func (ptr *QDesignerObjectInspectorInterface) NativeEventDefault(eventType strin
 	defer qt.Recovering("QDesignerObjectInspectorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerObjectInspectorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -15815,7 +15973,9 @@ func (ptr *QDesignerPropertyEditorInterface) PropertyChanged(name string, value 
 	defer qt.Recovering("QDesignerPropertyEditorInterface::propertyChanged")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_PropertyChanged(ptr.Pointer(), C.CString(name), core.PointerFromQVariant(value))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerPropertyEditorInterface_PropertyChanged(ptr.Pointer(), nameC, core.PointerFromQVariant(value))
 	}
 }
 
@@ -15887,7 +16047,9 @@ func (ptr *QDesignerPropertyEditorInterface) SetPropertyValue(name string, value
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setPropertyValue")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetPropertyValue(ptr.Pointer(), C.CString(name), core.PointerFromQVariant(value), C.int(qt.GoBoolToInt(changed)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerPropertyEditorInterface_SetPropertyValue(ptr.Pointer(), nameC, core.PointerFromQVariant(value), C.int(qt.GoBoolToInt(changed)))
 	}
 }
 
@@ -16420,7 +16582,9 @@ func (ptr *QDesignerPropertyEditorInterface) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -16429,7 +16593,9 @@ func (ptr *QDesignerPropertyEditorInterface) MinimumSizeHintDefault() *core.QSiz
 	defer qt.Recovering("QDesignerPropertyEditorInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -16602,7 +16768,9 @@ func (ptr *QDesignerPropertyEditorInterface) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerPropertyEditorInterface_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -16610,7 +16778,9 @@ func (ptr *QDesignerPropertyEditorInterface) SetStyleSheetDefault(styleSheet str
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerPropertyEditorInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -16737,7 +16907,9 @@ func (ptr *QDesignerPropertyEditorInterface) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerPropertyEditorInterface_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -16745,7 +16917,9 @@ func (ptr *QDesignerPropertyEditorInterface) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerPropertyEditorInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -16827,7 +17001,9 @@ func (ptr *QDesignerPropertyEditorInterface) SizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -16836,7 +17012,9 @@ func (ptr *QDesignerPropertyEditorInterface) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerPropertyEditorInterface_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -17287,7 +17465,9 @@ func (ptr *QDesignerPropertyEditorInterface) InputMethodQuery(query core.Qt__Inp
 	defer qt.Recovering("QDesignerPropertyEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -17296,7 +17476,9 @@ func (ptr *QDesignerPropertyEditorInterface) InputMethodQueryDefault(query core.
 	defer qt.Recovering("QDesignerPropertyEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -17649,7 +17831,9 @@ func (ptr *QDesignerPropertyEditorInterface) NativeEvent(eventType string, messa
 	defer qt.Recovering("QDesignerPropertyEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerPropertyEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -17658,7 +17842,9 @@ func (ptr *QDesignerPropertyEditorInterface) NativeEventDefault(eventType string
 	defer qt.Recovering("QDesignerPropertyEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerPropertyEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -18861,7 +19047,9 @@ func (ptr *QDesignerPropertySheetExtension) IndexOf(name string) int {
 	defer qt.Recovering("QDesignerPropertySheetExtension::indexOf")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerPropertySheetExtension_IndexOf(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QDesignerPropertySheetExtension_IndexOf(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -19060,7 +19248,9 @@ func (ptr *QDesignerPropertySheetExtension) Property(index int) *core.QVariant {
 	defer qt.Recovering("QDesignerPropertySheetExtension::property")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerPropertySheetExtension_Property(ptr.Pointer(), C.int(index)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertySheetExtension_Property(ptr.Pointer(), C.int(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -19319,7 +19509,9 @@ func (ptr *QDesignerPropertySheetExtension) SetPropertyGroup(index int, group st
 	defer qt.Recovering("QDesignerPropertySheetExtension::setPropertyGroup")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertySheetExtension_SetPropertyGroup(ptr.Pointer(), C.int(index), C.CString(group))
+		var groupC = C.CString(group)
+		defer C.free(unsafe.Pointer(groupC))
+		C.QDesignerPropertySheetExtension_SetPropertyGroup(ptr.Pointer(), C.int(index), groupC)
 	}
 }
 
@@ -19382,7 +19574,9 @@ func (ptr *QDesignerPropertySheetExtension) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QDesignerPropertySheetExtension::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertySheetExtension_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerPropertySheetExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -19502,7 +19696,9 @@ func (ptr *QDesignerTaskMenuExtension) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QDesignerTaskMenuExtension::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerTaskMenuExtension_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QDesignerTaskMenuExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -19699,7 +19895,9 @@ func (ptr *QDesignerWidgetBoxInterface) SetFileName(fileName string) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetFileName(ptr.Pointer(), C.CString(fileName))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QDesignerWidgetBoxInterface_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
 
@@ -20196,7 +20394,9 @@ func (ptr *QDesignerWidgetBoxInterface) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -20205,7 +20405,9 @@ func (ptr *QDesignerWidgetBoxInterface) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -20378,7 +20580,9 @@ func (ptr *QDesignerWidgetBoxInterface) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerWidgetBoxInterface_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -20386,7 +20590,9 @@ func (ptr *QDesignerWidgetBoxInterface) SetStyleSheetDefault(styleSheet string) 
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QDesignerWidgetBoxInterface_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -20513,7 +20719,9 @@ func (ptr *QDesignerWidgetBoxInterface) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerWidgetBoxInterface_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -20521,7 +20729,9 @@ func (ptr *QDesignerWidgetBoxInterface) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QDesignerWidgetBoxInterface_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -20603,7 +20813,9 @@ func (ptr *QDesignerWidgetBoxInterface) SizeHint() *core.QSize {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -20612,7 +20824,9 @@ func (ptr *QDesignerWidgetBoxInterface) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QDesignerWidgetBoxInterface_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -21063,7 +21277,9 @@ func (ptr *QDesignerWidgetBoxInterface) InputMethodQuery(query core.Qt__InputMet
 	defer qt.Recovering("QDesignerWidgetBoxInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -21072,7 +21288,9 @@ func (ptr *QDesignerWidgetBoxInterface) InputMethodQueryDefault(query core.Qt__I
 	defer qt.Recovering("QDesignerWidgetBoxInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -21425,7 +21643,9 @@ func (ptr *QDesignerWidgetBoxInterface) NativeEvent(eventType string, message un
 	defer qt.Recovering("QDesignerWidgetBoxInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerWidgetBoxInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -21434,7 +21654,9 @@ func (ptr *QDesignerWidgetBoxInterface) NativeEventDefault(eventType string, mes
 	defer qt.Recovering("QDesignerWidgetBoxInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QDesignerWidgetBoxInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -22532,6 +22754,11 @@ func newQExtensionFactoryFromPointer(ptr unsafe.Pointer) *QExtensionFactory {
 	return n
 }
 
+func (ptr *QExtensionFactory) DestroyQExtensionFactory() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
 	defer qt.Recovering("QExtensionFactory::QExtensionFactory")
 
@@ -22571,7 +22798,9 @@ func (ptr *QExtensionFactory) CreateExtension(object core.QObject_ITF, iid strin
 	defer qt.Recovering("QExtensionFactory::createExtension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid), core.PointerFromQObject(parent)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
 	}
 	return nil
 }
@@ -22580,7 +22809,9 @@ func (ptr *QExtensionFactory) CreateExtensionDefault(object core.QObject_ITF, ii
 	defer qt.Recovering("QExtensionFactory::createExtension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid), core.PointerFromQObject(parent)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
 	}
 	return nil
 }
@@ -22618,7 +22849,9 @@ func (ptr *QExtensionFactory) Extension(object core.QObject_ITF, iid string) *co
 	defer qt.Recovering("QExtensionFactory::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 	}
 	return nil
 }
@@ -22627,7 +22860,9 @@ func (ptr *QExtensionFactory) ExtensionDefault(object core.QObject_ITF, iid stri
 	defer qt.Recovering("QExtensionFactory::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 	}
 	return nil
 }
@@ -23145,7 +23380,9 @@ func (ptr *QExtensionManager) Extension(object core.QObject_ITF, iid string) *co
 	defer qt.Recovering("QExtensionManager::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 	}
 	return nil
 }
@@ -23154,7 +23391,9 @@ func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid stri
 	defer qt.Recovering("QExtensionManager::extension")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), C.CString(iid)))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		return core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 	}
 	return nil
 }
@@ -23192,7 +23431,9 @@ func (ptr *QExtensionManager) RegisterExtensions(factory QAbstractExtensionFacto
 	defer qt.Recovering("QExtensionManager::registerExtensions")
 
 	if ptr.Pointer() != nil {
-		C.QExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.CString(iid))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		C.QExtensionManager_RegisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
@@ -23200,7 +23441,9 @@ func (ptr *QExtensionManager) RegisterExtensionsDefault(factory QAbstractExtensi
 	defer qt.Recovering("QExtensionManager::registerExtensions")
 
 	if ptr.Pointer() != nil {
-		C.QExtensionManager_RegisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.CString(iid))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		C.QExtensionManager_RegisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
@@ -23237,7 +23480,9 @@ func (ptr *QExtensionManager) UnregisterExtensions(factory QAbstractExtensionFac
 	defer qt.Recovering("QExtensionManager::unregisterExtensions")
 
 	if ptr.Pointer() != nil {
-		C.QExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.CString(iid))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		C.QExtensionManager_UnregisterExtensions(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
@@ -23245,7 +23490,9 @@ func (ptr *QExtensionManager) UnregisterExtensionsDefault(factory QAbstractExten
 	defer qt.Recovering("QExtensionManager::unregisterExtensions")
 
 	if ptr.Pointer() != nil {
-		C.QExtensionManager_UnregisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), C.CString(iid))
+		var iidC = C.CString(iid)
+		defer C.free(unsafe.Pointer(iidC))
+		C.QExtensionManager_UnregisterExtensionsDefault(ptr.Pointer(), PointerFromQAbstractExtensionFactory(factory), iidC)
 	}
 }
 
@@ -23731,7 +23978,9 @@ func (ptr *QFormBuilder) AddPluginPath(pluginPath string) {
 	defer qt.Recovering("QFormBuilder::addPluginPath")
 
 	if ptr.Pointer() != nil {
-		C.QFormBuilder_AddPluginPath(ptr.Pointer(), C.CString(pluginPath))
+		var pluginPathC = C.CString(pluginPath)
+		defer C.free(unsafe.Pointer(pluginPathC))
+		C.QFormBuilder_AddPluginPath(ptr.Pointer(), pluginPathC)
 	}
 }
 
@@ -23756,7 +24005,9 @@ func (ptr *QFormBuilder) SetPluginPath(pluginPaths []string) {
 	defer qt.Recovering("QFormBuilder::setPluginPath")
 
 	if ptr.Pointer() != nil {
-		C.QFormBuilder_SetPluginPath(ptr.Pointer(), C.CString(strings.Join(pluginPaths, "|")))
+		var pluginPathsC = C.CString(strings.Join(pluginPaths, "|"))
+		defer C.free(unsafe.Pointer(pluginPathsC))
+		C.QFormBuilder_SetPluginPath(ptr.Pointer(), pluginPathsC)
 	}
 }
 
@@ -23783,7 +24034,9 @@ func (ptr *QFormBuilder) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QFormBuilder::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QFormBuilder_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QFormBuilder_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 

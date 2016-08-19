@@ -37,10 +37,10 @@
 
 ## Windows / Mac OS X / Linux
 
-1. Install Go >= 1.6.2 and setup a proper [**GOPATH**](http://golang.org/doc/code.html#GOPATH)
-	* http://storage.googleapis.com/golang/go1.6.3.windows-amd64.msi
-	* http://storage.googleapis.com/golang/go1.6.3.darwin-amd64.pkg
-	* http://storage.googleapis.com/golang/go1.6.3.linux-amd64.tar.gz
+1. Install Go >= 1.7.0 and setup a proper [**GOPATH**](http://golang.org/doc/code.html#GOPATH)
+	* http://storage.googleapis.com/golang/go1.7.0.windows-amd64.msi
+	* http://storage.googleapis.com/golang/go1.7.0.darwin-amd64.pkg
+	* http://storage.googleapis.com/golang/go1.7.0.linux-amd64.tar.gz
 
 2. Install Qt 5.7.0 in `C:\Qt\Qt5.7.0\` or `/usr/local/Qt5.7.0/`
 	* http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
@@ -129,9 +129,9 @@
 1. Set up the desktop version
 
 2. Install VirtualBox
-	* http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-Win.exe
-	* http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-OSX.dmg
-	* http://download.virtualbox.org/virtualbox/5.1.2/VirtualBox-5.1.2-108956-Linux_amd64.run
+	* http://download.virtualbox.org/virtualbox/5.1.4/VirtualBox-5.1.4-110228-Win.exe
+	* http://download.virtualbox.org/virtualbox/5.1.4/VirtualBox-5.1.4-110228-OSX.dmg
+	* http://download.virtualbox.org/virtualbox/5.1.4/VirtualBox-5.1.4-110228-Linux_amd64.run
 
 3. Install the Sailfish OS SDK in `C:\SailfishOS\` or `/opt/SailfishOS/`
 	* http://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe

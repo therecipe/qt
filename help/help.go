@@ -2,6 +2,7 @@
 
 package help
 
+//#include <stdlib.h>
 //#include "help.h"
 import "C"
 import (
@@ -9,6 +10,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -114,7 +116,9 @@ func (ptr *QHelpContentItem) Url() *core.QUrl {
 	defer qt.Recovering("QHelpContentItem::url")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QHelpContentItem_Url(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QHelpContentItem_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -269,7 +273,9 @@ func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
 	defer qt.Recovering("QHelpContentModel::createContents")
 
 	if ptr.Pointer() != nil {
-		C.QHelpContentModel_CreateContents(ptr.Pointer(), C.CString(customFilterName))
+		var customFilterNameC = C.CString(customFilterName)
+		defer C.free(unsafe.Pointer(customFilterNameC))
+		C.QHelpContentModel_CreateContents(ptr.Pointer(), customFilterNameC)
 	}
 }
 
@@ -277,7 +283,9 @@ func (ptr *QHelpContentModel) Data(index core.QModelIndex_ITF, role int) *core.Q
 	defer qt.Recovering("QHelpContentModel::data")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpContentModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -286,7 +294,9 @@ func (ptr *QHelpContentModel) Index(row int, column int, parent core.QModelIndex
 	defer qt.Recovering("QHelpContentModel::index")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentModel_Index(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Index(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -304,7 +314,9 @@ func (ptr *QHelpContentModel) Parent(index core.QModelIndex_ITF) *core.QModelInd
 	defer qt.Recovering("QHelpContentModel::parent")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -361,7 +373,9 @@ func (ptr *QHelpContentModel) Sibling(row int, column int, index core.QModelInde
 	defer qt.Recovering("QHelpContentModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -370,7 +384,9 @@ func (ptr *QHelpContentModel) SiblingDefault(row int, column int, index core.QMo
 	defer qt.Recovering("QHelpContentModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -408,7 +424,9 @@ func (ptr *QHelpContentModel) Buddy(index core.QModelIndex_ITF) *core.QModelInde
 	defer qt.Recovering("QHelpContentModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentModel_Buddy(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Buddy(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -417,7 +435,9 @@ func (ptr *QHelpContentModel) BuddyDefault(index core.QModelIndex_ITF) *core.QMo
 	defer qt.Recovering("QHelpContentModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -735,7 +755,9 @@ func (ptr *QHelpContentModel) HeaderData(section int, orientation core.Qt__Orien
 	defer qt.Recovering("QHelpContentModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpContentModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -744,7 +766,9 @@ func (ptr *QHelpContentModel) HeaderDataDefault(section int, orientation core.Qt
 	defer qt.Recovering("QHelpContentModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpContentModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -1340,7 +1364,9 @@ func (ptr *QHelpContentModel) Span(index core.QModelIndex_ITF) *core.QSize {
 	defer qt.Recovering("QHelpContentModel::span")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentModel_Span(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentModel_Span(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -1349,7 +1375,9 @@ func (ptr *QHelpContentModel) SpanDefault(index core.QModelIndex_ITF) *core.QSiz
 	defer qt.Recovering("QHelpContentModel::span")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -1957,11 +1985,18 @@ func newQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
 	return n
 }
 
+func (ptr *QHelpContentWidget) DestroyQHelpContentWidget() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 	defer qt.Recovering("QHelpContentWidget::indexOf")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2667,7 +2702,9 @@ func (ptr *QHelpContentWidget) IndexAt(point core.QPoint_ITF) *core.QModelIndex 
 	defer qt.Recovering("QHelpContentWidget::indexAt")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2676,7 +2713,9 @@ func (ptr *QHelpContentWidget) IndexAtDefault(point core.QPoint_ITF) *core.QMode
 	defer qt.Recovering("QHelpContentWidget::indexAt")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2806,7 +2845,9 @@ func (ptr *QHelpContentWidget) KeyboardSearch(search string) {
 	defer qt.Recovering("QHelpContentWidget::keyboardSearch")
 
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_KeyboardSearch(ptr.Pointer(), C.CString(search))
+		var searchC = C.CString(search)
+		defer C.free(unsafe.Pointer(searchC))
+		C.QHelpContentWidget_KeyboardSearch(ptr.Pointer(), searchC)
 	}
 }
 
@@ -2814,7 +2855,9 @@ func (ptr *QHelpContentWidget) KeyboardSearchDefault(search string) {
 	defer qt.Recovering("QHelpContentWidget::keyboardSearch")
 
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_KeyboardSearchDefault(ptr.Pointer(), C.CString(search))
+		var searchC = C.CString(search)
+		defer C.free(unsafe.Pointer(searchC))
+		C.QHelpContentWidget_KeyboardSearchDefault(ptr.Pointer(), searchC)
 	}
 }
 
@@ -3031,7 +3074,9 @@ func (ptr *QHelpContentWidget) MoveCursor(cursorAction widgets.QAbstractItemView
 	defer qt.Recovering("QHelpContentWidget::moveCursor")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursor(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursor(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -3040,7 +3085,9 @@ func (ptr *QHelpContentWidget) MoveCursorDefault(cursorAction widgets.QAbstractI
 	defer qt.Recovering("QHelpContentWidget::moveCursor")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursorDefault(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursorDefault(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -3939,7 +3986,9 @@ func (ptr *QHelpContentWidget) ViewportSizeHint() *core.QSize {
 	defer qt.Recovering("QHelpContentWidget::viewportSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -3948,7 +3997,9 @@ func (ptr *QHelpContentWidget) ViewportSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpContentWidget::viewportSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -3986,7 +4037,9 @@ func (ptr *QHelpContentWidget) VisualRect(index core.QModelIndex_ITF) *core.QRec
 	defer qt.Recovering("QHelpContentWidget::visualRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QHelpContentWidget_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQRectFromPointer(C.QHelpContentWidget_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -3995,7 +4048,9 @@ func (ptr *QHelpContentWidget) VisualRectDefault(index core.QModelIndex_ITF) *co
 	defer qt.Recovering("QHelpContentWidget::visualRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QHelpContentWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQRectFromPointer(C.QHelpContentWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -4033,7 +4088,9 @@ func (ptr *QHelpContentWidget) VisualRegionForSelection(selection core.QItemSele
 	defer qt.Recovering("QHelpContentWidget::visualRegionForSelection")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		var tmpValue = gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		return tmpValue
 	}
 	return nil
 }
@@ -4042,7 +4099,9 @@ func (ptr *QHelpContentWidget) VisualRegionForSelectionDefault(selection core.QI
 	defer qt.Recovering("QHelpContentWidget::visualRegionForSelection")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		var tmpValue = gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		return tmpValue
 	}
 	return nil
 }
@@ -4669,7 +4728,9 @@ func (ptr *QHelpContentWidget) InputMethodQuery(query core.Qt__InputMethodQuery)
 	defer qt.Recovering("QHelpContentWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -4678,7 +4739,9 @@ func (ptr *QHelpContentWidget) InputMethodQueryDefault(query core.Qt__InputMetho
 	defer qt.Recovering("QHelpContentWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -5080,7 +5143,9 @@ func (ptr *QHelpContentWidget) ViewOptions() *widgets.QStyleOptionViewItem {
 	defer qt.Recovering("QHelpContentWidget::viewOptions")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptions(ptr.Pointer()))
+		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptions(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -5089,7 +5154,9 @@ func (ptr *QHelpContentWidget) ViewOptionsDefault() *widgets.QStyleOptionViewIte
 	defer qt.Recovering("QHelpContentWidget::viewOptions")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptionsDefault(ptr.Pointer()))
+		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptionsDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -5172,7 +5239,9 @@ func (ptr *QHelpContentWidget) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QHelpContentWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -5181,7 +5250,9 @@ func (ptr *QHelpContentWidget) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpContentWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -5264,7 +5335,9 @@ func (ptr *QHelpContentWidget) SizeHint() *core.QSize {
 	defer qt.Recovering("QHelpContentWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -5273,7 +5346,9 @@ func (ptr *QHelpContentWidget) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpContentWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -5671,7 +5746,9 @@ func (ptr *QHelpContentWidget) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QHelpContentWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpContentWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -5679,7 +5756,9 @@ func (ptr *QHelpContentWidget) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("QHelpContentWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpContentWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -5806,7 +5885,9 @@ func (ptr *QHelpContentWidget) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QHelpContentWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpContentWidget_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -5814,7 +5895,9 @@ func (ptr *QHelpContentWidget) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QHelpContentWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpContentWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -6217,7 +6300,9 @@ func (ptr *QHelpContentWidget) NativeEvent(eventType string, message unsafe.Poin
 	defer qt.Recovering("QHelpContentWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpContentWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -6226,7 +6311,9 @@ func (ptr *QHelpContentWidget) NativeEventDefault(eventType string, message unsa
 	defer qt.Recovering("QHelpContentWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpContentWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -7144,7 +7231,9 @@ func newQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
 func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine {
 	defer qt.Recovering("QHelpEngine::QHelpEngine")
 
-	return newQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(C.CString(collectionFile), core.PointerFromQObject(parent)))
+	var collectionFileC = C.CString(collectionFile)
+	defer C.free(unsafe.Pointer(collectionFileC))
+	return newQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(collectionFileC, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
@@ -7700,7 +7789,9 @@ func (ptr *QHelpEngineCore) SetCollectionFile(fileName string) {
 	defer qt.Recovering("QHelpEngineCore::setCollectionFile")
 
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_SetCollectionFile(ptr.Pointer(), C.CString(fileName))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QHelpEngineCore_SetCollectionFile(ptr.Pointer(), fileNameC)
 	}
 }
 
@@ -7708,21 +7799,29 @@ func (ptr *QHelpEngineCore) SetCurrentFilter(filterName string) {
 	defer qt.Recovering("QHelpEngineCore::setCurrentFilter")
 
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_SetCurrentFilter(ptr.Pointer(), C.CString(filterName))
+		var filterNameC = C.CString(filterName)
+		defer C.free(unsafe.Pointer(filterNameC))
+		C.QHelpEngineCore_SetCurrentFilter(ptr.Pointer(), filterNameC)
 	}
 }
 
 func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEngineCore {
 	defer qt.Recovering("QHelpEngineCore::QHelpEngineCore")
 
-	return newQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(C.CString(collectionFile), core.PointerFromQObject(parent)))
+	var collectionFileC = C.CString(collectionFile)
+	defer C.free(unsafe.Pointer(collectionFileC))
+	return newQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(collectionFileC, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []string) bool {
 	defer qt.Recovering("QHelpEngineCore::addCustomFilter")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), C.CString(filterName), C.CString(strings.Join(attributes, "|"))) != 0
+		var filterNameC = C.CString(filterName)
+		defer C.free(unsafe.Pointer(filterNameC))
+		var attributesC = C.CString(strings.Join(attributes, "|"))
+		defer C.free(unsafe.Pointer(attributesC))
+		return C.QHelpEngineCore_AddCustomFilter(ptr.Pointer(), filterNameC, attributesC) != 0
 	}
 	return false
 }
@@ -7731,7 +7830,9 @@ func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 	defer qt.Recovering("QHelpEngineCore::copyCollectionFile")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_CopyCollectionFile(ptr.Pointer(), C.CString(fileName)) != 0
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		return C.QHelpEngineCore_CopyCollectionFile(ptr.Pointer(), fileNameC) != 0
 	}
 	return false
 }
@@ -7768,7 +7869,9 @@ func (ptr *QHelpEngineCore) CurrentFilterChanged(newFilter string) {
 	defer qt.Recovering("QHelpEngineCore::currentFilterChanged")
 
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_CurrentFilterChanged(ptr.Pointer(), C.CString(newFilter))
+		var newFilterC = C.CString(newFilter)
+		defer C.free(unsafe.Pointer(newFilterC))
+		C.QHelpEngineCore_CurrentFilterChanged(ptr.Pointer(), newFilterC)
 	}
 }
 
@@ -7785,7 +7888,11 @@ func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_I
 	defer qt.Recovering("QHelpEngineCore::customValue")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpEngineCore_CustomValue(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(defaultValue)))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_CustomValue(ptr.Pointer(), keyC, core.PointerFromQVariant(defaultValue)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -7794,7 +7901,9 @@ func (ptr *QHelpEngineCore) DocumentationFileName(namespaceName string) string {
 	defer qt.Recovering("QHelpEngineCore::documentationFileName")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpEngineCore_DocumentationFileName(ptr.Pointer(), C.CString(namespaceName)))
+		var namespaceNameC = C.CString(namespaceName)
+		defer C.free(unsafe.Pointer(namespaceNameC))
+		return C.GoString(C.QHelpEngineCore_DocumentationFileName(ptr.Pointer(), namespaceNameC))
 	}
 	return ""
 }
@@ -7830,7 +7939,9 @@ func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
 	defer qt.Recovering("QHelpEngineCore::filterAttributes")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), C.CString(filterName))), "|")
+		var filterNameC = C.CString(filterName)
+		defer C.free(unsafe.Pointer(filterNameC))
+		return strings.Split(C.GoString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), filterNameC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -7839,7 +7950,9 @@ func (ptr *QHelpEngineCore) FindFile(url core.QUrl_ITF) *core.QUrl {
 	defer qt.Recovering("QHelpEngineCore::findFile")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QHelpEngineCore_FindFile(ptr.Pointer(), core.PointerFromQUrl(url)))
+		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore_FindFile(ptr.Pointer(), core.PointerFromQUrl(url)))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -7847,25 +7960,41 @@ func (ptr *QHelpEngineCore) FindFile(url core.QUrl_ITF) *core.QUrl {
 func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.QVariant {
 	defer qt.Recovering("QHelpEngineCore::metaData")
 
-	return core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(C.CString(documentationFileName), C.CString(name)))
+	var documentationFileNameC = C.CString(documentationFileName)
+	defer C.free(unsafe.Pointer(documentationFileNameC))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(documentationFileNameC, nameC))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	return tmpValue
 }
 
 func (ptr *QHelpEngineCore) MetaData(documentationFileName string, name string) *core.QVariant {
 	defer qt.Recovering("QHelpEngineCore::metaData")
 
-	return core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(C.CString(documentationFileName), C.CString(name)))
+	var documentationFileNameC = C.CString(documentationFileName)
+	defer C.free(unsafe.Pointer(documentationFileNameC))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var tmpValue = core.NewQVariantFromPointer(C.QHelpEngineCore_QHelpEngineCore_MetaData(documentationFileNameC, nameC))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	return tmpValue
 }
 
 func QHelpEngineCore_NamespaceName(documentationFileName string) string {
 	defer qt.Recovering("QHelpEngineCore::namespaceName")
 
-	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(C.CString(documentationFileName)))
+	var documentationFileNameC = C.CString(documentationFileName)
+	defer C.free(unsafe.Pointer(documentationFileNameC))
+	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
 }
 
 func (ptr *QHelpEngineCore) NamespaceName(documentationFileName string) string {
 	defer qt.Recovering("QHelpEngineCore::namespaceName")
 
-	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(C.CString(documentationFileName)))
+	var documentationFileNameC = C.CString(documentationFileName)
+	defer C.free(unsafe.Pointer(documentationFileNameC))
+	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
 }
 
 //export callbackQHelpEngineCore_ReadersAboutToBeInvalidated
@@ -7908,7 +8037,9 @@ func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) 
 	defer qt.Recovering("QHelpEngineCore::registerDocumentation")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_RegisterDocumentation(ptr.Pointer(), C.CString(documentationFileName)) != 0
+		var documentationFileNameC = C.CString(documentationFileName)
+		defer C.free(unsafe.Pointer(documentationFileNameC))
+		return C.QHelpEngineCore_RegisterDocumentation(ptr.Pointer(), documentationFileNameC) != 0
 	}
 	return false
 }
@@ -7926,7 +8057,9 @@ func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
 	defer qt.Recovering("QHelpEngineCore::removeCustomFilter")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_RemoveCustomFilter(ptr.Pointer(), C.CString(filterName)) != 0
+		var filterNameC = C.CString(filterName)
+		defer C.free(unsafe.Pointer(filterNameC))
+		return C.QHelpEngineCore_RemoveCustomFilter(ptr.Pointer(), filterNameC) != 0
 	}
 	return false
 }
@@ -7935,7 +8068,9 @@ func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
 	defer qt.Recovering("QHelpEngineCore::removeCustomValue")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_RemoveCustomValue(ptr.Pointer(), C.CString(key)) != 0
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return C.QHelpEngineCore_RemoveCustomValue(ptr.Pointer(), keyC) != 0
 	}
 	return false
 }
@@ -7944,7 +8079,9 @@ func (ptr *QHelpEngineCore) SetCustomValue(key string, value core.QVariant_ITF) 
 	defer qt.Recovering("QHelpEngineCore::setCustomValue")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_SetCustomValue(ptr.Pointer(), C.CString(key), core.PointerFromQVariant(value)) != 0
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return C.QHelpEngineCore_SetCustomValue(ptr.Pointer(), keyC, core.PointerFromQVariant(value)) != 0
 	}
 	return false
 }
@@ -8034,7 +8171,9 @@ func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
 	defer qt.Recovering("QHelpEngineCore::unregisterDocumentation")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpEngineCore_UnregisterDocumentation(ptr.Pointer(), C.CString(namespaceName)) != 0
+		var namespaceNameC = C.CString(namespaceName)
+		defer C.free(unsafe.Pointer(namespaceNameC))
+		return C.QHelpEngineCore_UnregisterDocumentation(ptr.Pointer(), namespaceNameC) != 0
 	}
 	return false
 }
@@ -8071,7 +8210,9 @@ func (ptr *QHelpEngineCore) Warning(msg string) {
 	defer qt.Recovering("QHelpEngineCore::warning")
 
 	if ptr.Pointer() != nil {
-		C.QHelpEngineCore_Warning(ptr.Pointer(), C.CString(msg))
+		var msgC = C.CString(msg)
+		defer C.free(unsafe.Pointer(msgC))
+		C.QHelpEngineCore_Warning(ptr.Pointer(), msgC)
 	}
 }
 
@@ -8547,11 +8688,18 @@ func newQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
 	return n
 }
 
+func (ptr *QHelpIndexModel) DestroyQHelpIndexModel() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
 	defer qt.Recovering("QHelpIndexModel::createIndex")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexModel_CreateIndex(ptr.Pointer(), C.CString(customFilterName))
+		var customFilterNameC = C.CString(customFilterName)
+		defer C.free(unsafe.Pointer(customFilterNameC))
+		C.QHelpIndexModel_CreateIndex(ptr.Pointer(), customFilterNameC)
 	}
 }
 
@@ -8559,7 +8707,13 @@ func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelI
 	defer qt.Recovering("QHelpIndexModel::filter")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Filter(ptr.Pointer(), C.CString(filter), C.CString(wildcard)))
+		var filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+		var wildcardC = C.CString(wildcard)
+		defer C.free(unsafe.Pointer(wildcardC))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Filter(ptr.Pointer(), filterC, wildcardC))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -8678,7 +8832,9 @@ func (ptr *QHelpIndexModel) Data(index core.QModelIndex_ITF, role int) *core.QVa
 	defer qt.Recovering("QHelpIndexModel::data")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpIndexModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -8687,7 +8843,9 @@ func (ptr *QHelpIndexModel) DataDefault(index core.QModelIndex_ITF, role int) *c
 	defer qt.Recovering("QHelpIndexModel::data")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpIndexModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -8960,7 +9118,9 @@ func (ptr *QHelpIndexModel) Sibling(row int, column int, idx core.QModelIndex_IT
 	defer qt.Recovering("QHelpIndexModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(idx)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -8969,7 +9129,9 @@ func (ptr *QHelpIndexModel) SiblingDefault(row int, column int, idx core.QModelI
 	defer qt.Recovering("QHelpIndexModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(idx)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9099,7 +9261,9 @@ func (ptr *QHelpIndexModel) Index(row int, column int, parent core.QModelIndex_I
 	defer qt.Recovering("QHelpIndexModel::index")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Index(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Index(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9108,7 +9272,9 @@ func (ptr *QHelpIndexModel) IndexDefault(row int, column int, parent core.QModel
 	defer qt.Recovering("QHelpIndexModel::index")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9193,7 +9359,9 @@ func (ptr *QHelpIndexModel) Buddy(index core.QModelIndex_ITF) *core.QModelIndex 
 	defer qt.Recovering("QHelpIndexModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Buddy(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Buddy(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9202,7 +9370,9 @@ func (ptr *QHelpIndexModel) BuddyDefault(index core.QModelIndex_ITF) *core.QMode
 	defer qt.Recovering("QHelpIndexModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9473,7 +9643,9 @@ func (ptr *QHelpIndexModel) HeaderData(section int, orientation core.Qt__Orienta
 	defer qt.Recovering("QHelpIndexModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -9482,7 +9654,9 @@ func (ptr *QHelpIndexModel) HeaderDataDefault(section int, orientation core.Qt__
 	defer qt.Recovering("QHelpIndexModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -9708,7 +9882,9 @@ func (ptr *QHelpIndexModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex
 	defer qt.Recovering("QHelpIndexModel::parent")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9717,7 +9893,9 @@ func (ptr *QHelpIndexModel) ParentDefault(index core.QModelIndex_ITF) *core.QMod
 	defer qt.Recovering("QHelpIndexModel::parent")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9939,7 +10117,9 @@ func (ptr *QHelpIndexModel) Span(index core.QModelIndex_ITF) *core.QSize {
 	defer qt.Recovering("QHelpIndexModel::span")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexModel_Span(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexModel_Span(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -9948,7 +10128,9 @@ func (ptr *QHelpIndexModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize 
 	defer qt.Recovering("QHelpIndexModel::span")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -10509,6 +10691,11 @@ func newQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
 	return n
 }
 
+func (ptr *QHelpIndexWidget) DestroyQHelpIndexWidget() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQHelpIndexWidget_ActivateCurrentItem
 func callbackQHelpIndexWidget_ActivateCurrentItem(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QHelpIndexWidget::activateCurrentItem")
@@ -10577,7 +10764,11 @@ func (ptr *QHelpIndexWidget) FilterIndices(filter string, wildcard string) {
 	defer qt.Recovering("QHelpIndexWidget::filterIndices")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_FilterIndices(ptr.Pointer(), C.CString(filter), C.CString(wildcard))
+		var filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+		var wildcardC = C.CString(wildcard)
+		defer C.free(unsafe.Pointer(wildcardC))
+		C.QHelpIndexWidget_FilterIndices(ptr.Pointer(), filterC, wildcardC)
 	}
 }
 
@@ -10613,7 +10804,9 @@ func (ptr *QHelpIndexWidget) LinkActivated(link core.QUrl_ITF, keyword string) {
 	defer qt.Recovering("QHelpIndexWidget::linkActivated")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_LinkActivated(ptr.Pointer(), core.PointerFromQUrl(link), C.CString(keyword))
+		var keywordC = C.CString(keyword)
+		defer C.free(unsafe.Pointer(keywordC))
+		C.QHelpIndexWidget_LinkActivated(ptr.Pointer(), core.PointerFromQUrl(link), keywordC)
 	}
 }
 
@@ -10877,7 +11070,9 @@ func (ptr *QHelpIndexWidget) IndexAt(p core.QPoint_ITF) *core.QModelIndex {
 	defer qt.Recovering("QHelpIndexWidget::indexAt")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAt(ptr.Pointer(), core.PointerFromQPoint(p)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAt(ptr.Pointer(), core.PointerFromQPoint(p)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -10886,7 +11081,9 @@ func (ptr *QHelpIndexWidget) IndexAtDefault(p core.QPoint_ITF) *core.QModelIndex
 	defer qt.Recovering("QHelpIndexWidget::indexAt")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(p)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(p)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -11061,7 +11258,9 @@ func (ptr *QHelpIndexWidget) MoveCursor(cursorAction widgets.QAbstractItemView__
 	defer qt.Recovering("QHelpIndexWidget::moveCursor")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursor(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursor(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -11070,7 +11269,9 @@ func (ptr *QHelpIndexWidget) MoveCursorDefault(cursorAction widgets.QAbstractIte
 	defer qt.Recovering("QHelpIndexWidget::moveCursor")
 
 	if ptr.Pointer() != nil {
-		return core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursorDefault(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursorDefault(ptr.Pointer(), C.int(cursorAction), C.int(modifiers)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -11560,7 +11761,9 @@ func (ptr *QHelpIndexWidget) ViewOptions() *widgets.QStyleOptionViewItem {
 	defer qt.Recovering("QHelpIndexWidget::viewOptions")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptions(ptr.Pointer()))
+		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptions(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -11569,7 +11772,9 @@ func (ptr *QHelpIndexWidget) ViewOptionsDefault() *widgets.QStyleOptionViewItem 
 	defer qt.Recovering("QHelpIndexWidget::viewOptions")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptionsDefault(ptr.Pointer()))
+		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptionsDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -11607,7 +11812,9 @@ func (ptr *QHelpIndexWidget) ViewportSizeHint() *core.QSize {
 	defer qt.Recovering("QHelpIndexWidget::viewportSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -11616,7 +11823,9 @@ func (ptr *QHelpIndexWidget) ViewportSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpIndexWidget::viewportSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -11654,7 +11863,9 @@ func (ptr *QHelpIndexWidget) VisualRect(index core.QModelIndex_ITF) *core.QRect 
 	defer qt.Recovering("QHelpIndexWidget::visualRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -11663,7 +11874,9 @@ func (ptr *QHelpIndexWidget) VisualRectDefault(index core.QModelIndex_ITF) *core
 	defer qt.Recovering("QHelpIndexWidget::visualRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		var tmpValue = core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -11701,7 +11914,9 @@ func (ptr *QHelpIndexWidget) VisualRegionForSelection(selection core.QItemSelect
 	defer qt.Recovering("QHelpIndexWidget::visualRegionForSelection")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		var tmpValue = gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		return tmpValue
 	}
 	return nil
 }
@@ -11710,7 +11925,9 @@ func (ptr *QHelpIndexWidget) VisualRegionForSelectionDefault(selection core.QIte
 	defer qt.Recovering("QHelpIndexWidget::visualRegionForSelection")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		var tmpValue = gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
+		return tmpValue
 	}
 	return nil
 }
@@ -12339,7 +12556,9 @@ func (ptr *QHelpIndexWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *
 	defer qt.Recovering("QHelpIndexWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -12348,7 +12567,9 @@ func (ptr *QHelpIndexWidget) InputMethodQueryDefault(query core.Qt__InputMethodQ
 	defer qt.Recovering("QHelpIndexWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -12431,7 +12652,9 @@ func (ptr *QHelpIndexWidget) KeyboardSearch(search string) {
 	defer qt.Recovering("QHelpIndexWidget::keyboardSearch")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_KeyboardSearch(ptr.Pointer(), C.CString(search))
+		var searchC = C.CString(search)
+		defer C.free(unsafe.Pointer(searchC))
+		C.QHelpIndexWidget_KeyboardSearch(ptr.Pointer(), searchC)
 	}
 }
 
@@ -12439,7 +12662,9 @@ func (ptr *QHelpIndexWidget) KeyboardSearchDefault(search string) {
 	defer qt.Recovering("QHelpIndexWidget::keyboardSearch")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_KeyboardSearchDefault(ptr.Pointer(), C.CString(search))
+		var searchC = C.CString(search)
+		defer C.free(unsafe.Pointer(searchC))
+		C.QHelpIndexWidget_KeyboardSearchDefault(ptr.Pointer(), searchC)
 	}
 }
 
@@ -13157,7 +13382,9 @@ func (ptr *QHelpIndexWidget) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QHelpIndexWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -13166,7 +13393,9 @@ func (ptr *QHelpIndexWidget) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpIndexWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -13294,7 +13523,9 @@ func (ptr *QHelpIndexWidget) SizeHint() *core.QSize {
 	defer qt.Recovering("QHelpIndexWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -13303,7 +13534,9 @@ func (ptr *QHelpIndexWidget) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpIndexWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -13656,7 +13889,9 @@ func (ptr *QHelpIndexWidget) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QHelpIndexWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpIndexWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -13664,7 +13899,9 @@ func (ptr *QHelpIndexWidget) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("QHelpIndexWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpIndexWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -13791,7 +14028,9 @@ func (ptr *QHelpIndexWidget) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QHelpIndexWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpIndexWidget_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -13799,7 +14038,9 @@ func (ptr *QHelpIndexWidget) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QHelpIndexWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpIndexWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -14202,7 +14443,9 @@ func (ptr *QHelpIndexWidget) NativeEvent(eventType string, message unsafe.Pointe
 	defer qt.Recovering("QHelpIndexWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpIndexWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -14211,7 +14454,9 @@ func (ptr *QHelpIndexWidget) NativeEventDefault(eventType string, message unsafe
 	defer qt.Recovering("QHelpIndexWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpIndexWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -15891,6 +16136,11 @@ func newQHelpSearchQueryFromPointer(ptr unsafe.Pointer) *QHelpSearchQuery {
 	return n
 }
 
+func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQHelpSearchQuery() *QHelpSearchQuery {
 	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
 
@@ -15900,7 +16150,9 @@ func NewQHelpSearchQuery() *QHelpSearchQuery {
 func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) *QHelpSearchQuery {
 	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
 
-	return newQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), C.CString(strings.Join(wordList, "|"))))
+	var wordListC = C.CString(strings.Join(wordList, "|"))
+	defer C.free(unsafe.Pointer(wordListC))
+	return newQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.int(field), wordListC))
 }
 
 func (ptr *QHelpSearchQuery) FieldName() QHelpSearchQuery__FieldName {
@@ -15933,7 +16185,9 @@ func (ptr *QHelpSearchQuery) SetWordList(vqs []string) {
 	defer qt.Recovering("QHelpSearchQuery::setWordList")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQuery_SetWordList(ptr.Pointer(), C.CString(strings.Join(vqs, "|")))
+		var vqsC = C.CString(strings.Join(vqs, "|"))
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpSearchQuery_SetWordList(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -16544,7 +16798,9 @@ func (ptr *QHelpSearchQueryWidget) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QHelpSearchQueryWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -16553,7 +16809,9 @@ func (ptr *QHelpSearchQueryWidget) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpSearchQueryWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -16726,7 +16984,9 @@ func (ptr *QHelpSearchQueryWidget) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QHelpSearchQueryWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpSearchQueryWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -16734,7 +16994,9 @@ func (ptr *QHelpSearchQueryWidget) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("QHelpSearchQueryWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpSearchQueryWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -16861,7 +17123,9 @@ func (ptr *QHelpSearchQueryWidget) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QHelpSearchQueryWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpSearchQueryWidget_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -16869,7 +17133,9 @@ func (ptr *QHelpSearchQueryWidget) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QHelpSearchQueryWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchQueryWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpSearchQueryWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -16951,7 +17217,9 @@ func (ptr *QHelpSearchQueryWidget) SizeHint() *core.QSize {
 	defer qt.Recovering("QHelpSearchQueryWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -16960,7 +17228,9 @@ func (ptr *QHelpSearchQueryWidget) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpSearchQueryWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -17411,7 +17681,9 @@ func (ptr *QHelpSearchQueryWidget) InputMethodQuery(query core.Qt__InputMethodQu
 	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -17420,7 +17692,9 @@ func (ptr *QHelpSearchQueryWidget) InputMethodQueryDefault(query core.Qt__InputM
 	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -17773,7 +18047,9 @@ func (ptr *QHelpSearchQueryWidget) NativeEvent(eventType string, message unsafe.
 	defer qt.Recovering("QHelpSearchQueryWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpSearchQueryWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -17782,7 +18058,9 @@ func (ptr *QHelpSearchQueryWidget) NativeEventDefault(eventType string, message 
 	defer qt.Recovering("QHelpSearchQueryWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchQueryWidget_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpSearchQueryWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -18881,7 +19159,9 @@ func (ptr *QHelpSearchResultWidget) LinkAt(point core.QPoint_ITF) *core.QUrl {
 	defer qt.Recovering("QHelpSearchResultWidget::linkAt")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QHelpSearchResultWidget_LinkAt(ptr.Pointer(), core.PointerFromQPoint(point)))
+		var tmpValue = core.NewQUrlFromPointer(C.QHelpSearchResultWidget_LinkAt(ptr.Pointer(), core.PointerFromQPoint(point)))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -19415,7 +19695,9 @@ func (ptr *QHelpSearchResultWidget) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QHelpSearchResultWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -19424,7 +19706,9 @@ func (ptr *QHelpSearchResultWidget) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpSearchResultWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -19597,7 +19881,9 @@ func (ptr *QHelpSearchResultWidget) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QHelpSearchResultWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpSearchResultWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -19605,7 +19891,9 @@ func (ptr *QHelpSearchResultWidget) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("QHelpSearchResultWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QHelpSearchResultWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -19732,7 +20020,9 @@ func (ptr *QHelpSearchResultWidget) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QHelpSearchResultWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpSearchResultWidget_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -19740,7 +20030,9 @@ func (ptr *QHelpSearchResultWidget) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QHelpSearchResultWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QHelpSearchResultWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QHelpSearchResultWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -19822,7 +20114,9 @@ func (ptr *QHelpSearchResultWidget) SizeHint() *core.QSize {
 	defer qt.Recovering("QHelpSearchResultWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -19831,7 +20125,9 @@ func (ptr *QHelpSearchResultWidget) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QHelpSearchResultWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -20282,7 +20578,9 @@ func (ptr *QHelpSearchResultWidget) InputMethodQuery(query core.Qt__InputMethodQ
 	defer qt.Recovering("QHelpSearchResultWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -20291,7 +20589,9 @@ func (ptr *QHelpSearchResultWidget) InputMethodQueryDefault(query core.Qt__Input
 	defer qt.Recovering("QHelpSearchResultWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -20644,7 +20944,9 @@ func (ptr *QHelpSearchResultWidget) NativeEvent(eventType string, message unsafe
 	defer qt.Recovering("QHelpSearchResultWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchResultWidget_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpSearchResultWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -20653,7 +20955,9 @@ func (ptr *QHelpSearchResultWidget) NativeEventDefault(eventType string, message
 	defer qt.Recovering("QHelpSearchResultWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QHelpSearchResultWidget_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QHelpSearchResultWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }

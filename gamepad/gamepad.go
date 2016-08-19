@@ -2,6 +2,7 @@
 
 package gamepad
 
+//#include <stdlib.h>
 //#include "gamepad.h"
 import "C"
 import (
@@ -950,7 +951,9 @@ func (ptr *QGamepad) NameChanged(value string) {
 	defer qt.Recovering("QGamepad::nameChanged")
 
 	if ptr.Pointer() != nil {
-		C.QGamepad_NameChanged(ptr.Pointer(), C.CString(value))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QGamepad_NameChanged(ptr.Pointer(), valueC)
 	}
 }
 

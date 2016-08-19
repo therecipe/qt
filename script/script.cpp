@@ -41,9 +41,9 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQScriptClass(QScriptEngine *engine) : QScriptClass(engine) {};
-	QVariant extension(QScriptClass::Extension extension, const QVariant & argument) { return *static_cast<QVariant*>(callbackQScriptClass_Extension(this, this->objectNameAbs().toUtf8().data(), extension, new QVariant(argument))); };
+	QVariant extension(QScriptClass::Extension extension, const QVariant & argument) { return *static_cast<QVariant*>(callbackQScriptClass_Extension(this, this->objectNameAbs().toUtf8().data(), extension, const_cast<QVariant*>(&argument))); };
 	QString name() const { return QString(callbackQScriptClass_Name(const_cast<MyQScriptClass*>(this), this->objectNameAbs().toUtf8().data())); };
-	QScriptClassPropertyIterator * newIterator(const QScriptValue & object) { return static_cast<QScriptClassPropertyIterator*>(callbackQScriptClass_NewIterator(this, this->objectNameAbs().toUtf8().data(), new QScriptValue(object))); };
+	QScriptClassPropertyIterator * newIterator(const QScriptValue & object) { return static_cast<QScriptClassPropertyIterator*>(callbackQScriptClass_NewIterator(this, this->objectNameAbs().toUtf8().data(), const_cast<QScriptValue*>(&object))); };
 	QScriptValue prototype() const { return *static_cast<QScriptValue*>(callbackQScriptClass_Prototype(const_cast<MyQScriptClass*>(this), this->objectNameAbs().toUtf8().data())); };
 	bool supportsExtension(QScriptClass::Extension extension) const { return callbackQScriptClass_SupportsExtension(const_cast<MyQScriptClass*>(this), this->objectNameAbs().toUtf8().data(), extension) != 0; };
 };
@@ -293,13 +293,13 @@ class MyQScriptEngine: public QScriptEngine
 public:
 	MyQScriptEngine() : QScriptEngine() {};
 	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {};
-	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngine_SignalHandlerException(this, this->objectName().toUtf8().data(), new QScriptValue(exception)); };
+	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngine_SignalHandlerException(this, this->objectName().toUtf8().data(), const_cast<QScriptValue*>(&exception)); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQScriptEngine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQScriptEngine_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQScriptEngine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQScriptEngine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQScriptEngine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQScriptEngine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngine_MetaObject(const_cast<MyQScriptEngine*>(this), this->objectName().toUtf8().data())); };
@@ -639,11 +639,11 @@ public:
 	MyQScriptEngineAgent(QScriptEngine *engine) : QScriptEngineAgent(engine) {};
 	void contextPop() { callbackQScriptEngineAgent_ContextPop(this, this->objectNameAbs().toUtf8().data()); };
 	void contextPush() { callbackQScriptEngineAgent_ContextPush(this, this->objectNameAbs().toUtf8().data()); };
-	void exceptionCatch(qint64 scriptId, const QScriptValue & exception) { callbackQScriptEngineAgent_ExceptionCatch(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception)); };
-	void exceptionThrow(qint64 scriptId, const QScriptValue & exception, bool hasHandler) { callbackQScriptEngineAgent_ExceptionThrow(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(exception), hasHandler); };
-	QVariant extension(QScriptEngineAgent::Extension extension, const QVariant & argument) { return *static_cast<QVariant*>(callbackQScriptEngineAgent_Extension(this, this->objectNameAbs().toUtf8().data(), extension, new QVariant(argument))); };
+	void exceptionCatch(qint64 scriptId, const QScriptValue & exception) { callbackQScriptEngineAgent_ExceptionCatch(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), const_cast<QScriptValue*>(&exception)); };
+	void exceptionThrow(qint64 scriptId, const QScriptValue & exception, bool hasHandler) { callbackQScriptEngineAgent_ExceptionThrow(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), const_cast<QScriptValue*>(&exception), hasHandler); };
+	QVariant extension(QScriptEngineAgent::Extension extension, const QVariant & argument) { return *static_cast<QVariant*>(callbackQScriptEngineAgent_Extension(this, this->objectNameAbs().toUtf8().data(), extension, const_cast<QVariant*>(&argument))); };
 	void functionEntry(qint64 scriptId) { callbackQScriptEngineAgent_FunctionEntry(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId)); };
-	void functionExit(qint64 scriptId, const QScriptValue & returnValue) { callbackQScriptEngineAgent_FunctionExit(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), new QScriptValue(returnValue)); };
+	void functionExit(qint64 scriptId, const QScriptValue & returnValue) { callbackQScriptEngineAgent_FunctionExit(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), const_cast<QScriptValue*>(&returnValue)); };
 	void positionChange(qint64 scriptId, int lineNumber, int columnNumber) { callbackQScriptEngineAgent_PositionChange(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(scriptId), lineNumber, columnNumber); };
 	void scriptLoad(qint64 id, const QString & program, const QString & fileName, int baseLineNumber) { callbackQScriptEngineAgent_ScriptLoad(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(id), program.toUtf8().data(), fileName.toUtf8().data(), baseLineNumber); };
 	void scriptUnload(qint64 id) { callbackQScriptEngineAgent_ScriptUnload(this, this->objectNameAbs().toUtf8().data(), static_cast<long long>(id)); };
@@ -798,10 +798,10 @@ public:
 	QStringList keys() const { return QString(callbackQScriptExtensionPlugin_Keys(const_cast<MyQScriptExtensionPlugin*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptExtensionPlugin_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQScriptExtensionPlugin_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQScriptExtensionPlugin_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQScriptExtensionPlugin_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQScriptExtensionPlugin_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQScriptExtensionPlugin_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptExtensionPlugin_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptExtensionPlugin_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQScriptExtensionPlugin_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptExtensionPlugin_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptExtensionPlugin_MetaObject(const_cast<MyQScriptExtensionPlugin*>(this), this->objectName().toUtf8().data())); };

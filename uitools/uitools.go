@@ -2,12 +2,14 @@
 
 package uitools
 
+//#include <stdlib.h>
 //#include "uitools.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -69,7 +71,9 @@ func (ptr *QUiLoader) AddPluginPath(path string) {
 	defer qt.Recovering("QUiLoader::addPluginPath")
 
 	if ptr.Pointer() != nil {
-		C.QUiLoader_AddPluginPath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QUiLoader_AddPluginPath(ptr.Pointer(), pathC)
 	}
 }
 
@@ -132,7 +136,9 @@ func (ptr *QUiLoader) CreateAction(parent core.QObject_ITF, name string) *widget
 	defer qt.Recovering("QUiLoader::createAction")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQActionFromPointer(C.QUiLoader_CreateAction(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQActionFromPointer(C.QUiLoader_CreateAction(ptr.Pointer(), core.PointerFromQObject(parent), nameC))
 	}
 	return nil
 }
@@ -141,7 +147,9 @@ func (ptr *QUiLoader) CreateActionDefault(parent core.QObject_ITF, name string) 
 	defer qt.Recovering("QUiLoader::createAction")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQActionFromPointer(C.QUiLoader_CreateActionDefault(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQActionFromPointer(C.QUiLoader_CreateActionDefault(ptr.Pointer(), core.PointerFromQObject(parent), nameC))
 	}
 	return nil
 }
@@ -179,7 +187,9 @@ func (ptr *QUiLoader) CreateActionGroup(parent core.QObject_ITF, name string) *w
 	defer qt.Recovering("QUiLoader::createActionGroup")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroup(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroup(ptr.Pointer(), core.PointerFromQObject(parent), nameC))
 	}
 	return nil
 }
@@ -188,7 +198,9 @@ func (ptr *QUiLoader) CreateActionGroupDefault(parent core.QObject_ITF, name str
 	defer qt.Recovering("QUiLoader::createActionGroup")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroupDefault(ptr.Pointer(), core.PointerFromQObject(parent), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQActionGroupFromPointer(C.QUiLoader_CreateActionGroupDefault(ptr.Pointer(), core.PointerFromQObject(parent), nameC))
 	}
 	return nil
 }
@@ -226,7 +238,11 @@ func (ptr *QUiLoader) CreateLayout(className string, parent core.QObject_ITF, na
 	defer qt.Recovering("QUiLoader::createLayout")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayout(ptr.Pointer(), C.CString(className), core.PointerFromQObject(parent), C.CString(name)))
+		var classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayout(ptr.Pointer(), classNameC, core.PointerFromQObject(parent), nameC))
 	}
 	return nil
 }
@@ -235,7 +251,11 @@ func (ptr *QUiLoader) CreateLayoutDefault(className string, parent core.QObject_
 	defer qt.Recovering("QUiLoader::createLayout")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayoutDefault(ptr.Pointer(), C.CString(className), core.PointerFromQObject(parent), C.CString(name)))
+		var classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQLayoutFromPointer(C.QUiLoader_CreateLayoutDefault(ptr.Pointer(), classNameC, core.PointerFromQObject(parent), nameC))
 	}
 	return nil
 }
@@ -273,7 +293,11 @@ func (ptr *QUiLoader) CreateWidget(className string, parent widgets.QWidget_ITF,
 	defer qt.Recovering("QUiLoader::createWidget")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidget(ptr.Pointer(), C.CString(className), widgets.PointerFromQWidget(parent), C.CString(name)))
+		var classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidget(ptr.Pointer(), classNameC, widgets.PointerFromQWidget(parent), nameC))
 	}
 	return nil
 }
@@ -282,7 +306,11 @@ func (ptr *QUiLoader) CreateWidgetDefault(className string, parent widgets.QWidg
 	defer qt.Recovering("QUiLoader::createWidget")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidgetDefault(ptr.Pointer(), C.CString(className), widgets.PointerFromQWidget(parent), C.CString(name)))
+		var classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return widgets.NewQWidgetFromPointer(C.QUiLoader_CreateWidgetDefault(ptr.Pointer(), classNameC, widgets.PointerFromQWidget(parent), nameC))
 	}
 	return nil
 }
@@ -343,7 +371,9 @@ func (ptr *QUiLoader) WorkingDirectory() *core.QDir {
 	defer qt.Recovering("QUiLoader::workingDirectory")
 
 	if ptr.Pointer() != nil {
-		return core.NewQDirFromPointer(C.QUiLoader_WorkingDirectory(ptr.Pointer()))
+		var tmpValue = core.NewQDirFromPointer(C.QUiLoader_WorkingDirectory(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDir).DestroyQDir)
+		return tmpValue
 	}
 	return nil
 }

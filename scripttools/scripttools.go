@@ -2,6 +2,7 @@
 
 package scripttools
 
+//#include <stdlib.h>
 //#include "scripttools.h"
 import "C"
 import (

@@ -271,31 +271,31 @@ public:
 	bool commitTransaction() { return callbackQSqlDriver_CommitTransaction(this, this->objectName().toUtf8().data()) != 0; };
 	QSqlResult * createResult() const { return static_cast<QSqlResult*>(callbackQSqlDriver_CreateResult(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data())); };
 	QString escapeIdentifier(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_EscapeIdentifier(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), identifier.toUtf8().data(), ty)); };
-	QString formatValue(const QSqlField & field, bool trimStrings) const { return QString(callbackQSqlDriver_FormatValue(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), new QSqlField(field), trimStrings)); };
+	QString formatValue(const QSqlField & field, bool trimStrings) const { return QString(callbackQSqlDriver_FormatValue(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), const_cast<QSqlField*>(&field), trimStrings)); };
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQSqlDriver_Handle(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data())); };
 	bool hasFeature(QSqlDriver::DriverFeature feature) const { return callbackQSqlDriver_HasFeature(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), feature) != 0; };
 	bool isIdentifierEscaped(const QString & identifier, QSqlDriver::IdentifierType ty) const { return callbackQSqlDriver_IsIdentifierEscaped(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), identifier.toUtf8().data(), ty) != 0; };
 	bool isOpen() const { return callbackQSqlDriver_IsOpen(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data()) != 0; };
 	void Signal_Notification(const QString & name) { callbackQSqlDriver_Notification(this, this->objectName().toUtf8().data(), name.toUtf8().data()); };
-	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { callbackQSqlDriver_Notification2(this, this->objectName().toUtf8().data(), name.toUtf8().data(), source, new QVariant(payload)); };
+	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { callbackQSqlDriver_Notification2(this, this->objectName().toUtf8().data(), name.toUtf8().data(), source, const_cast<QVariant*>(&payload)); };
 	bool open(const QString & db, const QString & user, const QString & password, const QString & host, int port, const QString & options) { return callbackQSqlDriver_Open(this, this->objectName().toUtf8().data(), db.toUtf8().data(), user.toUtf8().data(), password.toUtf8().data(), host.toUtf8().data(), port, options.toUtf8().data()) != 0; };
 	QSqlIndex primaryIndex(const QString & tableName) const { return *static_cast<QSqlIndex*>(callbackQSqlDriver_PrimaryIndex(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), tableName.toUtf8().data())); };
 	QSqlRecord record(const QString & tableName) const { return *static_cast<QSqlRecord*>(callbackQSqlDriver_Record(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), tableName.toUtf8().data())); };
 	bool rollbackTransaction() { return callbackQSqlDriver_RollbackTransaction(this, this->objectName().toUtf8().data()) != 0; };
-	void setLastError(const QSqlError & error) { callbackQSqlDriver_SetLastError(this, this->objectName().toUtf8().data(), new QSqlError(error)); };
+	void setLastError(const QSqlError & error) { callbackQSqlDriver_SetLastError(this, this->objectName().toUtf8().data(), const_cast<QSqlError*>(&error)); };
 	void setOpen(bool open) { callbackQSqlDriver_SetOpen(this, this->objectName().toUtf8().data(), open); };
 	void setOpenError(bool error) { callbackQSqlDriver_SetOpenError(this, this->objectName().toUtf8().data(), error); };
-	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { return QString(callbackQSqlDriver_SqlStatement(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), ty, tableName.toUtf8().data(), new QSqlRecord(rec), preparedStatement)); };
+	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { return QString(callbackQSqlDriver_SqlStatement(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), ty, tableName.toUtf8().data(), const_cast<QSqlRecord*>(&rec), preparedStatement)); };
 	QString stripDelimiters(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_StripDelimiters(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data(), identifier.toUtf8().data(), ty)); };
 	bool subscribeToNotification(const QString & name) { return callbackQSqlDriver_SubscribeToNotification(this, this->objectName().toUtf8().data(), name.toUtf8().data()) != 0; };
 	QStringList subscribedToNotifications() const { return QString(callbackQSqlDriver_SubscribedToNotifications(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
 	bool unsubscribeFromNotification(const QString & name) { return callbackQSqlDriver_UnsubscribeFromNotification(this, this->objectName().toUtf8().data(), name.toUtf8().data()) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriver_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlDriver_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriver_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriver_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSqlDriver_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSqlDriver_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriver_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriver_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlDriver_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlDriver_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriver_MetaObject(const_cast<MyQSqlDriver*>(this), this->objectName().toUtf8().data())); };
@@ -687,10 +687,10 @@ public:
 	QSqlDriver * create(const QString & key) { return static_cast<QSqlDriver*>(callbackQSqlDriverPlugin_Create(this, this->objectName().toUtf8().data(), key.toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriverPlugin_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlDriverPlugin_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSqlDriverPlugin_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSqlDriverPlugin_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlDriverPlugin_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlDriverPlugin_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlDriverPlugin_MetaObject(const_cast<MyQSqlDriverPlugin*>(this), this->objectName().toUtf8().data())); };
@@ -1216,35 +1216,35 @@ class MyQSqlQueryModel: public QSqlQueryModel
 public:
 	MyQSqlQueryModel(QObject *parent) : QSqlQueryModel(parent) {};
 	void clear() { callbackQSqlQueryModel_Clear(this, this->objectName().toUtf8().data()); };
-	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_IndexInQuery(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(item))); };
+	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_IndexInQuery(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&item))); };
 	void queryChange() { callbackQSqlQueryModel_QueryChange(this, this->objectName().toUtf8().data()); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Index(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlQueryModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSqlQueryModel_Flags(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Sibling(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Buddy(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlQueryModel_CanDropMimeData(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlQueryModel_HasChildren(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
-	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Index(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlQueryModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSqlQueryModel_Flags(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Sibling(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Buddy(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlQueryModel_CanDropMimeData(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlQueryModel_HasChildren(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQSqlQueryModel_MimeTypes(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Parent(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, new QModelIndex(parent)) != 0; };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Parent(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_RemoveRows(this, this->objectName().toUtf8().data(), row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQSqlQueryModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
 	void revert() { callbackQSqlQueryModel_Revert(this, this->objectName().toUtf8().data()); };
-	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQSqlQueryModel_SetData(this, this->objectName().toUtf8().data(), new QModelIndex(index), new QVariant(value), role) != 0; };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQSqlQueryModel_SetData(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlQueryModel_Sort(this, this->objectName().toUtf8().data(), column, order); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlQueryModel_Span(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlQueryModel_Span(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	bool submit() { return callbackQSqlQueryModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDragActions(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlQueryModel_SupportedDropActions(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlQueryModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlQueryModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSqlQueryModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSqlQueryModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlQueryModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlQueryModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlQueryModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlQueryModel_MetaObject(const_cast<MyQSqlQueryModel*>(this), this->objectName().toUtf8().data())); };
@@ -1542,12 +1542,12 @@ void QSqlQueryModel_SortDefault(void* ptr, int column, int order)
 
 void* QSqlQueryModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSqlQueryModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSqlQueryModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSqlQueryModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSqlQueryModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QSqlQueryModel_Submit(void* ptr)
@@ -1872,16 +1872,17 @@ class MyQSqlRelationalTableModel: public QSqlRelationalTableModel
 public:
 	MyQSqlRelationalTableModel(QObject *parent, QSqlDatabase db) : QSqlRelationalTableModel(parent, db) {};
 	void clear() { callbackQSqlRelationalTableModel_Clear(this, this->objectName().toUtf8().data()); };
-	bool insertRowIntoTable(const QSqlRecord & values) { return callbackQSqlRelationalTableModel_InsertRowIntoTable(this, this->objectName().toUtf8().data(), new QSqlRecord(values)) != 0; };
+	bool insertRowIntoTable(const QSqlRecord & values) { return callbackQSqlRelationalTableModel_InsertRowIntoTable(this, this->objectName().toUtf8().data(), const_cast<QSqlRecord*>(&values)) != 0; };
 	QString orderByClause() const { return QString(callbackQSqlRelationalTableModel_OrderByClause(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data())); };
 	QSqlTableModel * relationModel(int column) const { return static_cast<QSqlTableModel*>(callbackQSqlRelationalTableModel_RelationModel(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), column)); };
 	void revertRow(int row) { callbackQSqlRelationalTableModel_RevertRow(this, this->objectName().toUtf8().data(), row); };
 	bool select() { return callbackQSqlRelationalTableModel_Select(this, this->objectName().toUtf8().data()) != 0; };
 	QString selectStatement() const { return QString(callbackQSqlRelationalTableModel_SelectStatement(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data())); };
+	void setRelation(int column, const QSqlRelation & relation) { callbackQSqlRelationalTableModel_SetRelation(this, this->objectName().toUtf8().data(), column, const_cast<QSqlRelation*>(&relation)); };
 	void setTable(const QString & table) { callbackQSqlRelationalTableModel_SetTable(this, this->objectName().toUtf8().data(), table.toUtf8().data()); };
-	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlRelationalTableModel_UpdateRowInTable(this, this->objectName().toUtf8().data(), row, new QSqlRecord(values)) != 0; };
+	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlRelationalTableModel_UpdateRowInTable(this, this->objectName().toUtf8().data(), row, const_cast<QSqlRecord*>(&values)) != 0; };
 	bool deleteRowFromTable(int row) { return callbackQSqlRelationalTableModel_DeleteRowFromTable(this, this->objectName().toUtf8().data(), row) != 0; };
-	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_IndexInQuery(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(item))); };
+	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_IndexInQuery(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&item))); };
 	void revert() { callbackQSqlRelationalTableModel_Revert(this, this->objectName().toUtf8().data()); };
 	void revertAll() { callbackQSqlRelationalTableModel_RevertAll(this, this->objectName().toUtf8().data()); };
 	bool selectRow(int row) { return callbackQSqlRelationalTableModel_SelectRow(this, this->objectName().toUtf8().data(), row) != 0; };
@@ -1891,26 +1892,26 @@ public:
 	bool submit() { return callbackQSqlRelationalTableModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	bool submitAll() { return callbackQSqlRelationalTableModel_SubmitAll(this, this->objectName().toUtf8().data()) != 0; };
 	void queryChange() { callbackQSqlRelationalTableModel_QueryChange(this, this->objectName().toUtf8().data()); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Index(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Sibling(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Buddy(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_CanDropMimeData(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_HasChildren(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Index(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Sibling(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Buddy(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_CanDropMimeData(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_HasChildren(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQSqlRelationalTableModel_MimeTypes(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Parent(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Parent(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	void resetInternalData() { callbackQSqlRelationalTableModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlRelationalTableModel_Span(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlRelationalTableModel_Span(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlRelationalTableModel_SupportedDragActions(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlRelationalTableModel_SupportedDropActions(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlRelationalTableModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlRelationalTableModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSqlRelationalTableModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSqlRelationalTableModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSqlRelationalTableModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSqlRelationalTableModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlRelationalTableModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlRelationalTableModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlRelationalTableModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlRelationalTableModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlRelationalTableModel_MetaObject(const_cast<MyQSqlRelationalTableModel*>(this), this->objectName().toUtf8().data())); };
@@ -2009,6 +2010,16 @@ int QSqlRelationalTableModel_SetData(void* ptr, void* index, void* value, int ro
 void QSqlRelationalTableModel_SetJoinMode(void* ptr, int joinMode)
 {
 	static_cast<QSqlRelationalTableModel*>(ptr)->setJoinMode(static_cast<QSqlRelationalTableModel::JoinMode>(joinMode));
+}
+
+void QSqlRelationalTableModel_SetRelation(void* ptr, int column, void* relation)
+{
+	static_cast<QSqlRelationalTableModel*>(ptr)->setRelation(column, *static_cast<QSqlRelation*>(relation));
+}
+
+void QSqlRelationalTableModel_SetRelationDefault(void* ptr, int column, void* relation)
+{
+	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setRelation(column, *static_cast<QSqlRelation*>(relation));
 }
 
 void QSqlRelationalTableModel_SetTable(void* ptr, char* table)
@@ -2264,12 +2275,12 @@ void QSqlRelationalTableModel_ResetInternalDataDefault(void* ptr)
 
 void* QSqlRelationalTableModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSqlRelationalTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSqlRelationalTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSqlRelationalTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSqlRelationalTableModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QSqlRelationalTableModel_SupportedDragActions(void* ptr)
@@ -2407,7 +2418,7 @@ public:
 	void setActive(bool active) { callbackQSqlResult_SetActive(this, this->objectNameAbs().toUtf8().data(), active); };
 	void setAt(int index) { callbackQSqlResult_SetAt(this, this->objectNameAbs().toUtf8().data(), index); };
 	void setForwardOnly(bool forward) { callbackQSqlResult_SetForwardOnly(this, this->objectNameAbs().toUtf8().data(), forward); };
-	void setLastError(const QSqlError & error) { callbackQSqlResult_SetLastError(this, this->objectNameAbs().toUtf8().data(), new QSqlError(error)); };
+	void setLastError(const QSqlError & error) { callbackQSqlResult_SetLastError(this, this->objectNameAbs().toUtf8().data(), const_cast<QSqlError*>(&error)); };
 	void setQuery(const QString & query) { callbackQSqlResult_SetQuery(this, this->objectNameAbs().toUtf8().data(), query.toUtf8().data()); };
 	void setSelect(bool sele) { callbackQSqlResult_SetSelect(this, this->objectNameAbs().toUtf8().data(), sele); };
 	int size() { return callbackQSqlResult_Size(this, this->objectNameAbs().toUtf8().data()); };
@@ -2712,8 +2723,8 @@ public:
 	void Signal_BeforeUpdate(int row, QSqlRecord & record) { callbackQSqlTableModel_BeforeUpdate(this, this->objectName().toUtf8().data(), row, new QSqlRecord(record)); };
 	void clear() { callbackQSqlTableModel_Clear(this, this->objectName().toUtf8().data()); };
 	bool deleteRowFromTable(int row) { return callbackQSqlTableModel_DeleteRowFromTable(this, this->objectName().toUtf8().data(), row) != 0; };
-	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_IndexInQuery(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(item))); };
-	bool insertRowIntoTable(const QSqlRecord & values) { return callbackQSqlTableModel_InsertRowIntoTable(this, this->objectName().toUtf8().data(), new QSqlRecord(values)) != 0; };
+	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_IndexInQuery(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&item))); };
+	bool insertRowIntoTable(const QSqlRecord & values) { return callbackQSqlTableModel_InsertRowIntoTable(this, this->objectName().toUtf8().data(), const_cast<QSqlRecord*>(&values)) != 0; };
 	QString orderByClause() const { return QString(callbackQSqlTableModel_OrderByClause(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data())); };
 	void Signal_PrimeInsert(int row, QSqlRecord & record) { callbackQSqlTableModel_PrimeInsert(this, this->objectName().toUtf8().data(), row, new QSqlRecord(record)); };
 	void revert() { callbackQSqlTableModel_Revert(this, this->objectName().toUtf8().data()); };
@@ -2728,28 +2739,28 @@ public:
 	void setTable(const QString & tableName) { callbackQSqlTableModel_SetTable(this, this->objectName().toUtf8().data(), tableName.toUtf8().data()); };
 	bool submit() { return callbackQSqlTableModel_Submit(this, this->objectName().toUtf8().data()) != 0; };
 	bool submitAll() { return callbackQSqlTableModel_SubmitAll(this, this->objectName().toUtf8().data()) != 0; };
-	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlTableModel_UpdateRowInTable(this, this->objectName().toUtf8().data(), row, new QSqlRecord(values)) != 0; };
+	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlTableModel_UpdateRowInTable(this, this->objectName().toUtf8().data(), row, const_cast<QSqlRecord*>(&values)) != 0; };
 	void queryChange() { callbackQSqlTableModel_QueryChange(this, this->objectName().toUtf8().data()); };
-	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Index(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(parent))); };
-	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlTableModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Sibling(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), row, column, new QModelIndex(idx))); };
-	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Buddy(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
-	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlTableModel_CanDropMimeData(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, new QModelIndex(parent)) != 0; };
-	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlTableModel_HasChildren(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(parent)) != 0; };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Index(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlTableModel_DropMimeData(this, this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Sibling(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), row, column, const_cast<QModelIndex*>(&idx))); };
+	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Buddy(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
+	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlTableModel_CanDropMimeData(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlTableModel_HasChildren(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&parent)) != 0; };
 	QStringList mimeTypes() const { return QString(callbackQSqlTableModel_MimeTypes(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data())).split("|", QString::SkipEmptyParts); };
-	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveColumns(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceColumn, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveRows(this, this->objectName().toUtf8().data(), new QModelIndex(sourceParent), sourceRow, count, new QModelIndex(destinationParent), destinationChild) != 0; };
-	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Parent(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveColumns(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveRows(this, this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Parent(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	void resetInternalData() { callbackQSqlTableModel_ResetInternalData(this, this->objectName().toUtf8().data()); };
-	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlTableModel_Span(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), new QModelIndex(index))); };
+	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlTableModel_Span(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data(), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlTableModel_SupportedDragActions(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data())); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlTableModel_SupportedDropActions(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlTableModel_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQSqlTableModel_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQSqlTableModel_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSqlTableModel_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSqlTableModel_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQSqlTableModel_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlTableModel_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlTableModel_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQSqlTableModel_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSqlTableModel_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlTableModel_MetaObject(const_cast<MyQSqlTableModel*>(this), this->objectName().toUtf8().data())); };
@@ -3235,12 +3246,12 @@ void QSqlTableModel_ResetInternalDataDefault(void* ptr)
 
 void* QSqlTableModel_Span(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSqlTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSqlTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSqlTableModel*>(ptr)->span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QSqlTableModel_SpanDefault(void* ptr, void* index)
 {
-	return new QSize(static_cast<QSize>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::span(*static_cast<QModelIndex*>(index))).width(), static_cast<QSize>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::span(*static_cast<QModelIndex*>(index))).height());
+	return ({ QSize tmpValue = static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::span(*static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 int QSqlTableModel_SupportedDragActions(void* ptr)

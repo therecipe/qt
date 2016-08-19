@@ -45,10 +45,10 @@ class MyQAbstractMessageHandler: public QAbstractMessageHandler
 public:
 	void timerEvent(QTimerEvent * event) { callbackQAbstractMessageHandler_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractMessageHandler_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractMessageHandler_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractMessageHandler_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractMessageHandler_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractMessageHandler_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractMessageHandler_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractMessageHandler_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractMessageHandler_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractMessageHandler_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractMessageHandler_MetaObject(const_cast<MyQAbstractMessageHandler*>(this), this->objectName().toUtf8().data())); };
@@ -153,13 +153,13 @@ class MyQAbstractUriResolver: public QAbstractUriResolver
 {
 public:
 	MyQAbstractUriResolver(QObject *parent) : QAbstractUriResolver(parent) {};
-	QUrl resolve(const QUrl & relative, const QUrl & baseURI) const { return *static_cast<QUrl*>(callbackQAbstractUriResolver_Resolve(const_cast<MyQAbstractUriResolver*>(this), this->objectName().toUtf8().data(), new QUrl(relative), new QUrl(baseURI))); };
+	QUrl resolve(const QUrl & relative, const QUrl & baseURI) const { return *static_cast<QUrl*>(callbackQAbstractUriResolver_Resolve(const_cast<MyQAbstractUriResolver*>(this), this->objectName().toUtf8().data(), const_cast<QUrl*>(&relative), const_cast<QUrl*>(&baseURI))); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractUriResolver_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractUriResolver_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAbstractUriResolver_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQAbstractUriResolver_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQAbstractUriResolver_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQAbstractUriResolver_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractUriResolver_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractUriResolver_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQAbstractUriResolver_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractUriResolver_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractUriResolver_MetaObject(const_cast<MyQAbstractUriResolver*>(this), this->objectName().toUtf8().data())); };
@@ -276,15 +276,16 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	QUrl baseUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_BaseUri(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(n))); };
-	QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex & ni1, const QXmlNodeModelIndex & ni2) const { return static_cast<QXmlNodeModelIndex::DocumentOrder>(callbackQAbstractXmlNodeModel_CompareOrder(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(ni1), new QXmlNodeModelIndex(ni2))); };
-	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_DocumentUri(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(n))); };
-	QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex & ni) const { return static_cast<QXmlNodeModelIndex::NodeKind>(callbackQAbstractXmlNodeModel_Kind(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(ni))); };
-	QXmlName name(const QXmlNodeModelIndex & ni) const { return *static_cast<QXmlName*>(callbackQAbstractXmlNodeModel_Name(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(ni))); };
-	QXmlNodeModelIndex nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis axis, const QXmlNodeModelIndex & origin) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_NextFromSimpleAxis(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), axis, new QXmlNodeModelIndex(origin))); };
-	QXmlNodeModelIndex root(const QXmlNodeModelIndex & n) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_Root(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(n))); };
-	QString stringValue(const QXmlNodeModelIndex & n) const { return QString(callbackQAbstractXmlNodeModel_StringValue(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(n))); };
-	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQAbstractXmlNodeModel_TypedValue(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(node))); };
+	QUrl baseUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_BaseUri(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&n))); };
+	QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex & ni1, const QXmlNodeModelIndex & ni2) const { return static_cast<QXmlNodeModelIndex::DocumentOrder>(callbackQAbstractXmlNodeModel_CompareOrder(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&ni1), const_cast<QXmlNodeModelIndex*>(&ni2))); };
+	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQAbstractXmlNodeModel_DocumentUri(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&n))); };
+	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_ElementById(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&id))); };
+	QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex & ni) const { return static_cast<QXmlNodeModelIndex::NodeKind>(callbackQAbstractXmlNodeModel_Kind(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&ni))); };
+	QXmlName name(const QXmlNodeModelIndex & ni) const { return *static_cast<QXmlName*>(callbackQAbstractXmlNodeModel_Name(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&ni))); };
+	QXmlNodeModelIndex nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis axis, const QXmlNodeModelIndex & origin) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_NextFromSimpleAxis(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), axis, const_cast<QXmlNodeModelIndex*>(&origin))); };
+	QXmlNodeModelIndex root(const QXmlNodeModelIndex & n) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_Root(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&n))); };
+	QString stringValue(const QXmlNodeModelIndex & n) const { return QString(callbackQAbstractXmlNodeModel_StringValue(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&n))); };
+	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQAbstractXmlNodeModel_TypedValue(const_cast<MyQAbstractXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&node))); };
 };
 
 void* QAbstractXmlNodeModel_BaseUri(void* ptr, void* n)
@@ -315,6 +316,11 @@ void* QAbstractXmlNodeModel_CreateIndex2(void* ptr, void* pointer, long long add
 void* QAbstractXmlNodeModel_DocumentUri(void* ptr, void* n)
 {
 	return new QUrl(static_cast<QAbstractXmlNodeModel*>(ptr)->documentUri(*static_cast<QXmlNodeModelIndex*>(n)));
+}
+
+void* QAbstractXmlNodeModel_ElementById(void* ptr, void* id)
+{
+	return new QXmlNodeModelIndex(static_cast<QAbstractXmlNodeModel*>(ptr)->elementById(*static_cast<QXmlName*>(id)));
 }
 
 int QAbstractXmlNodeModel_Kind(void* ptr, void* ni)
@@ -375,19 +381,34 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	void atomicValue(const QVariant & value) { callbackQAbstractXmlReceiver_AtomicValue(this, this->objectNameAbs().toUtf8().data(), new QVariant(value)); };
-	void characters(const QStringRef & value) { callbackQAbstractXmlReceiver_Characters(this, this->objectNameAbs().toUtf8().data(), new QStringRef(value)); };
+	MyQAbstractXmlReceiver() : QAbstractXmlReceiver() {};
+	void atomicValue(const QVariant & value) { callbackQAbstractXmlReceiver_AtomicValue(this, this->objectNameAbs().toUtf8().data(), const_cast<QVariant*>(&value)); };
+	void attribute(const QXmlName & name, const QStringRef & value) { callbackQAbstractXmlReceiver_Attribute(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
+	void characters(const QStringRef & value) { callbackQAbstractXmlReceiver_Characters(this, this->objectNameAbs().toUtf8().data(), const_cast<QStringRef*>(&value)); };
 	void comment(const QString & value) { callbackQAbstractXmlReceiver_Comment(this, this->objectNameAbs().toUtf8().data(), value.toUtf8().data()); };
 	void endDocument() { callbackQAbstractXmlReceiver_EndDocument(this, this->objectNameAbs().toUtf8().data()); };
 	void endElement() { callbackQAbstractXmlReceiver_EndElement(this, this->objectNameAbs().toUtf8().data()); };
 	void endOfSequence() { callbackQAbstractXmlReceiver_EndOfSequence(this, this->objectNameAbs().toUtf8().data()); };
+	void namespaceBinding(const QXmlName & name) { callbackQAbstractXmlReceiver_NamespaceBinding(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name)); };
+	void processingInstruction(const QXmlName & target, const QString & value) { callbackQAbstractXmlReceiver_ProcessingInstruction(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&target), value.toUtf8().data()); };
 	void startDocument() { callbackQAbstractXmlReceiver_StartDocument(this, this->objectNameAbs().toUtf8().data()); };
+	void startElement(const QXmlName & name) { callbackQAbstractXmlReceiver_StartElement(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQAbstractXmlReceiver_StartOfSequence(this, this->objectNameAbs().toUtf8().data()); };
 };
+
+void* QAbstractXmlReceiver_NewQAbstractXmlReceiver()
+{
+	return new MyQAbstractXmlReceiver();
+}
 
 void QAbstractXmlReceiver_AtomicValue(void* ptr, void* value)
 {
 	static_cast<QAbstractXmlReceiver*>(ptr)->atomicValue(*static_cast<QVariant*>(value));
+}
+
+void QAbstractXmlReceiver_Attribute(void* ptr, void* name, void* value)
+{
+	static_cast<QAbstractXmlReceiver*>(ptr)->attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
 }
 
 void QAbstractXmlReceiver_Characters(void* ptr, void* value)
@@ -415,9 +436,24 @@ void QAbstractXmlReceiver_EndOfSequence(void* ptr)
 	static_cast<QAbstractXmlReceiver*>(ptr)->endOfSequence();
 }
 
+void QAbstractXmlReceiver_NamespaceBinding(void* ptr, void* name)
+{
+	static_cast<QAbstractXmlReceiver*>(ptr)->namespaceBinding(*static_cast<QXmlName*>(name));
+}
+
+void QAbstractXmlReceiver_ProcessingInstruction(void* ptr, void* target, char* value)
+{
+	static_cast<QAbstractXmlReceiver*>(ptr)->processingInstruction(*static_cast<QXmlName*>(target), QString(value));
+}
+
 void QAbstractXmlReceiver_StartDocument(void* ptr)
 {
 	static_cast<QAbstractXmlReceiver*>(ptr)->startDocument();
+}
+
+void QAbstractXmlReceiver_StartElement(void* ptr, void* name)
+{
+	static_cast<QAbstractXmlReceiver*>(ptr)->startElement(*static_cast<QXmlName*>(name));
 }
 
 void QAbstractXmlReceiver_StartOfSequence(void* ptr)
@@ -451,15 +487,16 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	QUrl baseUri(const QXmlNodeModelIndex & node) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_BaseUri(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(node))); };
-	QString stringValue(const QXmlNodeModelIndex & node) const { return QString(callbackQSimpleXmlNodeModel_StringValue(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(node))); };
-	QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex & ni1, const QXmlNodeModelIndex & ni2) const { return static_cast<QXmlNodeModelIndex::DocumentOrder>(callbackQSimpleXmlNodeModel_CompareOrder(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(ni1), new QXmlNodeModelIndex(ni2))); };
-	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_DocumentUri(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(n))); };
-	QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex & ni) const { return static_cast<QXmlNodeModelIndex::NodeKind>(callbackQSimpleXmlNodeModel_Kind(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(ni))); };
-	QXmlName name(const QXmlNodeModelIndex & ni) const { return *static_cast<QXmlName*>(callbackQSimpleXmlNodeModel_Name(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(ni))); };
-	QXmlNodeModelIndex nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis axis, const QXmlNodeModelIndex & origin) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_NextFromSimpleAxis(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), axis, new QXmlNodeModelIndex(origin))); };
-	QXmlNodeModelIndex root(const QXmlNodeModelIndex & n) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_Root(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(n))); };
-	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQSimpleXmlNodeModel_TypedValue(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), new QXmlNodeModelIndex(node))); };
+	QUrl baseUri(const QXmlNodeModelIndex & node) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_BaseUri(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&node))); };
+	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_ElementById(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&id))); };
+	QString stringValue(const QXmlNodeModelIndex & node) const { return QString(callbackQSimpleXmlNodeModel_StringValue(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&node))); };
+	QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex & ni1, const QXmlNodeModelIndex & ni2) const { return static_cast<QXmlNodeModelIndex::DocumentOrder>(callbackQSimpleXmlNodeModel_CompareOrder(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&ni1), const_cast<QXmlNodeModelIndex*>(&ni2))); };
+	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_DocumentUri(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&n))); };
+	QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex & ni) const { return static_cast<QXmlNodeModelIndex::NodeKind>(callbackQSimpleXmlNodeModel_Kind(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&ni))); };
+	QXmlName name(const QXmlNodeModelIndex & ni) const { return *static_cast<QXmlName*>(callbackQSimpleXmlNodeModel_Name(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&ni))); };
+	QXmlNodeModelIndex nextFromSimpleAxis(QAbstractXmlNodeModel::SimpleAxis axis, const QXmlNodeModelIndex & origin) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_NextFromSimpleAxis(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), axis, const_cast<QXmlNodeModelIndex*>(&origin))); };
+	QXmlNodeModelIndex root(const QXmlNodeModelIndex & n) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_Root(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&n))); };
+	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQSimpleXmlNodeModel_TypedValue(const_cast<MyQSimpleXmlNodeModel*>(this), this->objectNameAbs().toUtf8().data(), const_cast<QXmlNodeModelIndex*>(&node))); };
 };
 
 void* QSimpleXmlNodeModel_BaseUri(void* ptr, void* node)
@@ -470,6 +507,16 @@ void* QSimpleXmlNodeModel_BaseUri(void* ptr, void* node)
 void* QSimpleXmlNodeModel_BaseUriDefault(void* ptr, void* node)
 {
 	return new QUrl(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::baseUri(*static_cast<QXmlNodeModelIndex*>(node)));
+}
+
+void* QSimpleXmlNodeModel_ElementById(void* ptr, void* id)
+{
+	return new QXmlNodeModelIndex(static_cast<QSimpleXmlNodeModel*>(ptr)->elementById(*static_cast<QXmlName*>(id)));
+}
+
+void* QSimpleXmlNodeModel_ElementByIdDefault(void* ptr, void* id)
+{
+	return new QXmlNodeModelIndex(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::elementById(*static_cast<QXmlName*>(id)));
 }
 
 void* QSimpleXmlNodeModel_NamePool(void* ptr)
@@ -615,14 +662,18 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQXmlFormatter(const QXmlQuery &query, QIODevice *outputDevice) : QXmlFormatter(query, outputDevice) {};
-	void atomicValue(const QVariant & value) { callbackQXmlFormatter_AtomicValue(this, this->objectNameAbs().toUtf8().data(), new QVariant(value)); };
-	void characters(const QStringRef & value) { callbackQXmlFormatter_Characters(this, this->objectNameAbs().toUtf8().data(), new QStringRef(value)); };
+	void atomicValue(const QVariant & value) { callbackQXmlFormatter_AtomicValue(this, this->objectNameAbs().toUtf8().data(), const_cast<QVariant*>(&value)); };
+	void attribute(const QXmlName & name, const QStringRef & value) { callbackQXmlFormatter_Attribute(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
+	void characters(const QStringRef & value) { callbackQXmlFormatter_Characters(this, this->objectNameAbs().toUtf8().data(), const_cast<QStringRef*>(&value)); };
 	void comment(const QString & value) { callbackQXmlFormatter_Comment(this, this->objectNameAbs().toUtf8().data(), value.toUtf8().data()); };
 	void endDocument() { callbackQXmlFormatter_EndDocument(this, this->objectNameAbs().toUtf8().data()); };
 	void endElement() { callbackQXmlFormatter_EndElement(this, this->objectNameAbs().toUtf8().data()); };
 	void endOfSequence() { callbackQXmlFormatter_EndOfSequence(this, this->objectNameAbs().toUtf8().data()); };
+	void processingInstruction(const QXmlName & name, const QString & value) { callbackQXmlFormatter_ProcessingInstruction(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name), value.toUtf8().data()); };
 	void startDocument() { callbackQXmlFormatter_StartDocument(this, this->objectNameAbs().toUtf8().data()); };
+	void startElement(const QXmlName & name) { callbackQXmlFormatter_StartElement(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQXmlFormatter_StartOfSequence(this, this->objectNameAbs().toUtf8().data()); };
+	void namespaceBinding(const QXmlName & nb) { callbackQXmlFormatter_NamespaceBinding(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&nb)); };
 };
 
 void* QXmlFormatter_NewQXmlFormatter(void* query, void* outputDevice)
@@ -638,6 +689,16 @@ void QXmlFormatter_AtomicValue(void* ptr, void* value)
 void QXmlFormatter_AtomicValueDefault(void* ptr, void* value)
 {
 	static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::atomicValue(*static_cast<QVariant*>(value));
+}
+
+void QXmlFormatter_Attribute(void* ptr, void* name, void* value)
+{
+	static_cast<QXmlFormatter*>(ptr)->attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
+}
+
+void QXmlFormatter_AttributeDefault(void* ptr, void* name, void* value)
+{
+	static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
 }
 
 void QXmlFormatter_Characters(void* ptr, void* value)
@@ -695,6 +756,16 @@ int QXmlFormatter_IndentationDepth(void* ptr)
 	return static_cast<QXmlFormatter*>(ptr)->indentationDepth();
 }
 
+void QXmlFormatter_ProcessingInstruction(void* ptr, void* name, char* value)
+{
+	static_cast<QXmlFormatter*>(ptr)->processingInstruction(*static_cast<QXmlName*>(name), QString(value));
+}
+
+void QXmlFormatter_ProcessingInstructionDefault(void* ptr, void* name, char* value)
+{
+	static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::processingInstruction(*static_cast<QXmlName*>(name), QString(value));
+}
+
 void QXmlFormatter_SetIndentationDepth(void* ptr, int depth)
 {
 	static_cast<QXmlFormatter*>(ptr)->setIndentationDepth(depth);
@@ -708,6 +779,16 @@ void QXmlFormatter_StartDocument(void* ptr)
 void QXmlFormatter_StartDocumentDefault(void* ptr)
 {
 	static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::startDocument();
+}
+
+void QXmlFormatter_StartElement(void* ptr, void* name)
+{
+	static_cast<QXmlFormatter*>(ptr)->startElement(*static_cast<QXmlName*>(name));
+}
+
+void QXmlFormatter_StartElementDefault(void* ptr, void* name)
+{
+	static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::startElement(*static_cast<QXmlName*>(name));
 }
 
 void QXmlFormatter_StartOfSequence(void* ptr)
@@ -733,6 +814,16 @@ void QXmlFormatter_SetObjectNameAbs(void* ptr, char* name)
 	if (dynamic_cast<MyQXmlFormatter*>(static_cast<QXmlFormatter*>(ptr))) {
 		static_cast<MyQXmlFormatter*>(ptr)->setObjectNameAbs(QString(name));
 	}
+}
+
+void QXmlFormatter_NamespaceBinding(void* ptr, void* nb)
+{
+	static_cast<QXmlFormatter*>(ptr)->namespaceBinding(*static_cast<QXmlName*>(nb));
+}
+
+void QXmlFormatter_NamespaceBindingDefault(void* ptr, void* nb)
+{
+	static_cast<QXmlFormatter*>(ptr)->QXmlFormatter::namespaceBinding(*static_cast<QXmlName*>(nb));
 }
 
 void* QXmlItem_NewQXmlItem()
@@ -1251,13 +1342,17 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQXmlSerializer(const QXmlQuery &query, QIODevice *outputDevice) : QXmlSerializer(query, outputDevice) {};
-	void atomicValue(const QVariant & value) { callbackQXmlSerializer_AtomicValue(this, this->objectNameAbs().toUtf8().data(), new QVariant(value)); };
-	void characters(const QStringRef & value) { callbackQXmlSerializer_Characters(this, this->objectNameAbs().toUtf8().data(), new QStringRef(value)); };
+	void atomicValue(const QVariant & value) { callbackQXmlSerializer_AtomicValue(this, this->objectNameAbs().toUtf8().data(), const_cast<QVariant*>(&value)); };
+	void attribute(const QXmlName & name, const QStringRef & value) { callbackQXmlSerializer_Attribute(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
+	void characters(const QStringRef & value) { callbackQXmlSerializer_Characters(this, this->objectNameAbs().toUtf8().data(), const_cast<QStringRef*>(&value)); };
 	void comment(const QString & value) { callbackQXmlSerializer_Comment(this, this->objectNameAbs().toUtf8().data(), value.toUtf8().data()); };
 	void endDocument() { callbackQXmlSerializer_EndDocument(this, this->objectNameAbs().toUtf8().data()); };
 	void endElement() { callbackQXmlSerializer_EndElement(this, this->objectNameAbs().toUtf8().data()); };
 	void endOfSequence() { callbackQXmlSerializer_EndOfSequence(this, this->objectNameAbs().toUtf8().data()); };
+	void namespaceBinding(const QXmlName & nb) { callbackQXmlSerializer_NamespaceBinding(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&nb)); };
+	void processingInstruction(const QXmlName & name, const QString & value) { callbackQXmlSerializer_ProcessingInstruction(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name), value.toUtf8().data()); };
 	void startDocument() { callbackQXmlSerializer_StartDocument(this, this->objectNameAbs().toUtf8().data()); };
+	void startElement(const QXmlName & name) { callbackQXmlSerializer_StartElement(this, this->objectNameAbs().toUtf8().data(), const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQXmlSerializer_StartOfSequence(this, this->objectNameAbs().toUtf8().data()); };
 };
 
@@ -1274,6 +1369,16 @@ void QXmlSerializer_AtomicValue(void* ptr, void* value)
 void QXmlSerializer_AtomicValueDefault(void* ptr, void* value)
 {
 	static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::atomicValue(*static_cast<QVariant*>(value));
+}
+
+void QXmlSerializer_Attribute(void* ptr, void* name, void* value)
+{
+	static_cast<QXmlSerializer*>(ptr)->attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
+}
+
+void QXmlSerializer_AttributeDefault(void* ptr, void* name, void* value)
+{
+	static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::attribute(*static_cast<QXmlName*>(name), *static_cast<QStringRef*>(value));
 }
 
 void QXmlSerializer_Characters(void* ptr, void* value)
@@ -1331,9 +1436,29 @@ void QXmlSerializer_EndOfSequenceDefault(void* ptr)
 	static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::endOfSequence();
 }
 
+void QXmlSerializer_NamespaceBinding(void* ptr, void* nb)
+{
+	static_cast<QXmlSerializer*>(ptr)->namespaceBinding(*static_cast<QXmlName*>(nb));
+}
+
+void QXmlSerializer_NamespaceBindingDefault(void* ptr, void* nb)
+{
+	static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::namespaceBinding(*static_cast<QXmlName*>(nb));
+}
+
 void* QXmlSerializer_OutputDevice(void* ptr)
 {
 	return static_cast<QXmlSerializer*>(ptr)->outputDevice();
+}
+
+void QXmlSerializer_ProcessingInstruction(void* ptr, void* name, char* value)
+{
+	static_cast<QXmlSerializer*>(ptr)->processingInstruction(*static_cast<QXmlName*>(name), QString(value));
+}
+
+void QXmlSerializer_ProcessingInstructionDefault(void* ptr, void* name, char* value)
+{
+	static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::processingInstruction(*static_cast<QXmlName*>(name), QString(value));
 }
 
 void QXmlSerializer_SetCodec(void* ptr, void* outputCodec)
@@ -1349,6 +1474,16 @@ void QXmlSerializer_StartDocument(void* ptr)
 void QXmlSerializer_StartDocumentDefault(void* ptr)
 {
 	static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::startDocument();
+}
+
+void QXmlSerializer_StartElement(void* ptr, void* name)
+{
+	static_cast<QXmlSerializer*>(ptr)->startElement(*static_cast<QXmlName*>(name));
+}
+
+void QXmlSerializer_StartElementDefault(void* ptr, void* name)
+{
+	static_cast<QXmlSerializer*>(ptr)->QXmlSerializer::startElement(*static_cast<QXmlName*>(name));
 }
 
 void QXmlSerializer_StartOfSequence(void* ptr)

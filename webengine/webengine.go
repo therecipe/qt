@@ -2,6 +2,7 @@
 
 package webengine
 
+//#include <stdlib.h>
 //#include "webengine.h"
 import "C"
 import (
@@ -11,6 +12,7 @@ import (
 	"github.com/therecipe/qt/network"
 	"github.com/therecipe/qt/webchannel"
 	"github.com/therecipe/qt/widgets"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -78,6 +80,11 @@ func newQQuickWebEngineProfileFromPointer(ptr unsafe.Pointer) *QQuickWebEnginePr
 		n.SetObjectName("QQuickWebEngineProfile_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QQuickWebEngineProfile) DestroyQQuickWebEngineProfile() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QQuickWebEngineProfile) CachePath() string {
@@ -156,7 +163,9 @@ func (ptr *QQuickWebEngineProfile) SetCachePath(path string) {
 	defer qt.Recovering("QQuickWebEngineProfile::setCachePath")
 
 	if ptr.Pointer() != nil {
-		C.QQuickWebEngineProfile_SetCachePath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QQuickWebEngineProfile_SetCachePath(ptr.Pointer(), pathC)
 	}
 }
 
@@ -164,7 +173,9 @@ func (ptr *QQuickWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage stri
 	defer qt.Recovering("QQuickWebEngineProfile::setHttpAcceptLanguage")
 
 	if ptr.Pointer() != nil {
-		C.QQuickWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), C.CString(httpAcceptLanguage))
+		var httpAcceptLanguageC = C.CString(httpAcceptLanguage)
+		defer C.free(unsafe.Pointer(httpAcceptLanguageC))
+		C.QQuickWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), httpAcceptLanguageC)
 	}
 }
 
@@ -188,7 +199,9 @@ func (ptr *QQuickWebEngineProfile) SetHttpUserAgent(userAgent string) {
 	defer qt.Recovering("QQuickWebEngineProfile::setHttpUserAgent")
 
 	if ptr.Pointer() != nil {
-		C.QQuickWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), C.CString(userAgent))
+		var userAgentC = C.CString(userAgent)
+		defer C.free(unsafe.Pointer(userAgentC))
+		C.QQuickWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), userAgentC)
 	}
 }
 
@@ -212,7 +225,9 @@ func (ptr *QQuickWebEngineProfile) SetPersistentStoragePath(path string) {
 	defer qt.Recovering("QQuickWebEngineProfile::setPersistentStoragePath")
 
 	if ptr.Pointer() != nil {
-		C.QQuickWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QQuickWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), pathC)
 	}
 }
 
@@ -220,7 +235,9 @@ func (ptr *QQuickWebEngineProfile) SetStorageName(name string) {
 	defer qt.Recovering("QQuickWebEngineProfile::setStorageName")
 
 	if ptr.Pointer() != nil {
-		C.QQuickWebEngineProfile_SetStorageName(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QQuickWebEngineProfile_SetStorageName(ptr.Pointer(), nameC)
 	}
 }
 
@@ -452,7 +469,9 @@ func (ptr *QQuickWebEngineProfile) InstallUrlSchemeHandler(scheme string, handle
 	defer qt.Recovering("QQuickWebEngineProfile::installUrlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		C.QQuickWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), C.CString(scheme), PointerFromQWebEngineUrlSchemeHandler(handler))
+		var schemeC = C.CString(scheme)
+		defer C.free(unsafe.Pointer(schemeC))
+		C.QQuickWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), schemeC, PointerFromQWebEngineUrlSchemeHandler(handler))
 	}
 }
 
@@ -576,7 +595,9 @@ func (ptr *QQuickWebEngineProfile) RemoveUrlScheme(scheme string) {
 	defer qt.Recovering("QQuickWebEngineProfile::removeUrlScheme")
 
 	if ptr.Pointer() != nil {
-		C.QQuickWebEngineProfile_RemoveUrlScheme(ptr.Pointer(), C.CString(scheme))
+		var schemeC = C.CString(scheme)
+		defer C.free(unsafe.Pointer(schemeC))
+		C.QQuickWebEngineProfile_RemoveUrlScheme(ptr.Pointer(), schemeC)
 	}
 }
 
@@ -636,7 +657,9 @@ func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUr
 	defer qt.Recovering("QQuickWebEngineProfile::urlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		return NewQWebEngineUrlSchemeHandlerFromPointer(C.QQuickWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), C.CString(scheme)))
+		var schemeC = C.CString(scheme)
+		defer C.free(unsafe.Pointer(schemeC))
+		return NewQWebEngineUrlSchemeHandlerFromPointer(C.QQuickWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), schemeC))
 	}
 	return nil
 }
@@ -1118,6 +1141,11 @@ func newQWebEngineCertificateErrorFromPointer(ptr unsafe.Pointer) *QWebEngineCer
 	return n
 }
 
+func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QWebEngineCertificateError) Error() QWebEngineCertificateError__Error {
 	defer qt.Recovering("QWebEngineCertificateError::error")
 
@@ -1149,7 +1177,9 @@ func (ptr *QWebEngineCertificateError) Url() *core.QUrl {
 	defer qt.Recovering("QWebEngineCertificateError::url")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineCertificateError_Url(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineCertificateError_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -1253,7 +1283,9 @@ func (ptr *QWebEngineContextMenuData) LinkUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineContextMenuData::linkUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineContextMenuData_LinkUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineContextMenuData_LinkUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -1271,7 +1303,9 @@ func (ptr *QWebEngineContextMenuData) MediaUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineContextMenuData::mediaUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineContextMenuData_MediaUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineContextMenuData_MediaUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -1280,7 +1314,9 @@ func (ptr *QWebEngineContextMenuData) Position() *core.QPoint {
 	defer qt.Recovering("QWebEngineContextMenuData::position")
 
 	if ptr.Pointer() != nil {
-		return core.NewQPointFromPointer(C.QWebEngineContextMenuData_Position(ptr.Pointer()))
+		var tmpValue = core.NewQPointFromPointer(C.QWebEngineContextMenuData_Position(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -1955,6 +1991,11 @@ func newQWebEngineDownloadItemFromPointer(ptr unsafe.Pointer) *QWebEngineDownloa
 	return n
 }
 
+func (ptr *QWebEngineDownloadItem) DestroyQWebEngineDownloadItem() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQWebEngineDownloadItem_Accept
 func callbackQWebEngineDownloadItem_Accept(ptr unsafe.Pointer, ptrName *C.char) {
 	defer qt.Recovering("callback QWebEngineDownloadItem::accept")
@@ -2148,7 +2189,9 @@ func (ptr *QWebEngineDownloadItem) SetPath(path string) {
 	defer qt.Recovering("QWebEngineDownloadItem::setPath")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineDownloadItem_SetPath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QWebEngineDownloadItem_SetPath(ptr.Pointer(), pathC)
 	}
 }
 
@@ -2218,7 +2261,9 @@ func (ptr *QWebEngineDownloadItem) Url() *core.QUrl {
 	defer qt.Recovering("QWebEngineDownloadItem::url")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineDownloadItem_Url(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineDownloadItem_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -2681,6 +2726,11 @@ func newQWebEngineFullScreenRequestFromPointer(ptr unsafe.Pointer) *QWebEngineFu
 	return n
 }
 
+func (ptr *QWebEngineFullScreenRequest) DestroyQWebEngineFullScreenRequest() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QWebEngineFullScreenRequest) Accept() {
 	defer qt.Recovering("QWebEngineFullScreenRequest::accept")
 
@@ -2758,6 +2808,11 @@ func newQWebEngineHistoryFromPointer(ptr unsafe.Pointer) *QWebEngineHistory {
 	return n
 }
 
+func (ptr *QWebEngineHistory) DestroyQWebEngineHistory() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QWebEngineHistory) Back() {
 	defer qt.Recovering("QWebEngineHistory::back")
 
@@ -2770,7 +2825,9 @@ func (ptr *QWebEngineHistory) BackItem() *QWebEngineHistoryItem {
 	defer qt.Recovering("QWebEngineHistory::backItem")
 
 	if ptr.Pointer() != nil {
-		return NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_BackItem(ptr.Pointer()))
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_BackItem(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -2814,7 +2871,9 @@ func (ptr *QWebEngineHistory) CurrentItem() *QWebEngineHistoryItem {
 	defer qt.Recovering("QWebEngineHistory::currentItem")
 
 	if ptr.Pointer() != nil {
-		return NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_CurrentItem(ptr.Pointer()))
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_CurrentItem(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -2840,7 +2899,9 @@ func (ptr *QWebEngineHistory) ForwardItem() *QWebEngineHistoryItem {
 	defer qt.Recovering("QWebEngineHistory::forwardItem")
 
 	if ptr.Pointer() != nil {
-		return NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ForwardItem(ptr.Pointer()))
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ForwardItem(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -2857,7 +2918,9 @@ func (ptr *QWebEngineHistory) ItemAt(i int) *QWebEngineHistoryItem {
 	defer qt.Recovering("QWebEngineHistory::itemAt")
 
 	if ptr.Pointer() != nil {
-		return NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ItemAt(ptr.Pointer(), C.int(i)))
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ItemAt(ptr.Pointer(), C.int(i)))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
+		return tmpValue
 	}
 	return nil
 }
@@ -2924,7 +2987,9 @@ func (ptr *QWebEngineHistoryItem) LastVisited() *core.QDateTime {
 	defer qt.Recovering("QWebEngineHistoryItem::lastVisited")
 
 	if ptr.Pointer() != nil {
-		return core.NewQDateTimeFromPointer(C.QWebEngineHistoryItem_LastVisited(ptr.Pointer()))
+		var tmpValue = core.NewQDateTimeFromPointer(C.QWebEngineHistoryItem_LastVisited(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -2933,7 +2998,9 @@ func (ptr *QWebEngineHistoryItem) OriginalUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineHistoryItem::originalUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineHistoryItem_OriginalUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineHistoryItem_OriginalUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -2951,7 +3018,9 @@ func (ptr *QWebEngineHistoryItem) Url() *core.QUrl {
 	defer qt.Recovering("QWebEngineHistoryItem::url")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineHistoryItem_Url(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineHistoryItem_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -2969,7 +3038,9 @@ func (ptr *QWebEngineHistoryItem) IconUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineHistoryItem::iconUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineHistoryItem_IconUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineHistoryItem_IconUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -3212,9 +3283,58 @@ func (ptr *QWebEnginePage) BackgroundColor() *gui.QColor {
 	defer qt.Recovering("QWebEnginePage::backgroundColor")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQColorFromPointer(C.QWebEnginePage_BackgroundColor(ptr.Pointer()))
+		var tmpValue = gui.NewQColorFromPointer(C.QWebEnginePage_BackgroundColor(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
+		return tmpValue
 	}
 	return nil
+}
+
+//export callbackQWebEnginePage_CertificateError
+func callbackQWebEnginePage_CertificateError(ptr unsafe.Pointer, ptrName *C.char, certificateError unsafe.Pointer) C.int {
+	defer qt.Recovering("callback QWebEnginePage::certificateError")
+
+	if signal := qt.GetSignal(C.GoString(ptrName), "certificateError"); signal != nil {
+		return C.int(qt.GoBoolToInt(signal.(func(*QWebEngineCertificateError) bool)(NewQWebEngineCertificateErrorFromPointer(certificateError))))
+	}
+
+	return C.int(qt.GoBoolToInt(NewQWebEnginePageFromPointer(ptr).CertificateErrorDefault(NewQWebEngineCertificateErrorFromPointer(certificateError))))
+}
+
+func (ptr *QWebEnginePage) ConnectCertificateError(f func(certificateError *QWebEngineCertificateError) bool) {
+	defer qt.Recovering("connect QWebEnginePage::certificateError")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(ptr.ObjectName(), "certificateError", f)
+	}
+}
+
+func (ptr *QWebEnginePage) DisconnectCertificateError() {
+	defer qt.Recovering("disconnect QWebEnginePage::certificateError")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(ptr.ObjectName(), "certificateError")
+	}
+}
+
+func (ptr *QWebEnginePage) CertificateError(certificateError QWebEngineCertificateError_ITF) bool {
+	defer qt.Recovering("QWebEnginePage::certificateError")
+
+	if ptr.Pointer() != nil {
+		return C.QWebEnginePage_CertificateError(ptr.Pointer(), PointerFromQWebEngineCertificateError(certificateError)) != 0
+	}
+	return false
+}
+
+func (ptr *QWebEnginePage) CertificateErrorDefault(certificateError QWebEngineCertificateError_ITF) bool {
+	defer qt.Recovering("QWebEnginePage::certificateError")
+
+	if ptr.Pointer() != nil {
+		return C.QWebEnginePage_CertificateErrorDefault(ptr.Pointer(), PointerFromQWebEngineCertificateError(certificateError)) != 0
+	}
+	return false
 }
 
 //export callbackQWebEnginePage_ChooseFiles
@@ -3250,7 +3370,11 @@ func (ptr *QWebEnginePage) ChooseFiles(mode QWebEnginePage__FileSelectionMode, o
 	defer qt.Recovering("QWebEnginePage::chooseFiles")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QWebEnginePage_ChooseFiles(ptr.Pointer(), C.int(mode), C.CString(strings.Join(oldFiles, "|")), C.CString(strings.Join(acceptedMimeTypes, "|")))), "|")
+		var oldFilesC = C.CString(strings.Join(oldFiles, "|"))
+		defer C.free(unsafe.Pointer(oldFilesC))
+		var acceptedMimeTypesC = C.CString(strings.Join(acceptedMimeTypes, "|"))
+		defer C.free(unsafe.Pointer(acceptedMimeTypesC))
+		return strings.Split(C.GoString(C.QWebEnginePage_ChooseFiles(ptr.Pointer(), C.int(mode), oldFilesC, acceptedMimeTypesC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -3259,7 +3383,11 @@ func (ptr *QWebEnginePage) ChooseFilesDefault(mode QWebEnginePage__FileSelection
 	defer qt.Recovering("QWebEnginePage::chooseFiles")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QWebEnginePage_ChooseFilesDefault(ptr.Pointer(), C.int(mode), C.CString(strings.Join(oldFiles, "|")), C.CString(strings.Join(acceptedMimeTypes, "|")))), "|")
+		var oldFilesC = C.CString(strings.Join(oldFiles, "|"))
+		defer C.free(unsafe.Pointer(oldFilesC))
+		var acceptedMimeTypesC = C.CString(strings.Join(acceptedMimeTypes, "|"))
+		defer C.free(unsafe.Pointer(acceptedMimeTypesC))
+		return strings.Split(C.GoString(C.QWebEnginePage_ChooseFilesDefault(ptr.Pointer(), C.int(mode), oldFilesC, acceptedMimeTypesC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -3268,7 +3396,9 @@ func (ptr *QWebEnginePage) ContentsSize() *core.QSizeF {
 	defer qt.Recovering("QWebEnginePage::contentsSize")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFFromPointer(C.QWebEnginePage_ContentsSize(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFFromPointer(C.QWebEnginePage_ContentsSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -3351,7 +3481,9 @@ func (ptr *QWebEnginePage) Icon() *gui.QIcon {
 	defer qt.Recovering("QWebEnginePage::icon")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQIconFromPointer(C.QWebEnginePage_Icon(ptr.Pointer()))
+		var tmpValue = gui.NewQIconFromPointer(C.QWebEnginePage_Icon(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		return tmpValue
 	}
 	return nil
 }
@@ -3360,7 +3492,9 @@ func (ptr *QWebEnginePage) IconUrl() *core.QUrl {
 	defer qt.Recovering("QWebEnginePage::iconUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEnginePage_IconUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEnginePage_IconUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -3407,7 +3541,9 @@ func (ptr *QWebEnginePage) JavaScriptAlert(securityOrigin core.QUrl_ITF, msg str
 	defer qt.Recovering("QWebEnginePage::javaScriptAlert")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_JavaScriptAlert(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.CString(msg))
+		var msgC = C.CString(msg)
+		defer C.free(unsafe.Pointer(msgC))
+		C.QWebEnginePage_JavaScriptAlert(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC)
 	}
 }
 
@@ -3415,7 +3551,9 @@ func (ptr *QWebEnginePage) JavaScriptAlertDefault(securityOrigin core.QUrl_ITF, 
 	defer qt.Recovering("QWebEnginePage::javaScriptAlert")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_JavaScriptAlertDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.CString(msg))
+		var msgC = C.CString(msg)
+		defer C.free(unsafe.Pointer(msgC))
+		C.QWebEnginePage_JavaScriptAlertDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC)
 	}
 }
 
@@ -3452,7 +3590,9 @@ func (ptr *QWebEnginePage) JavaScriptConfirm(securityOrigin core.QUrl_ITF, msg s
 	defer qt.Recovering("QWebEnginePage::javaScriptConfirm")
 
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_JavaScriptConfirm(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.CString(msg)) != 0
+		var msgC = C.CString(msg)
+		defer C.free(unsafe.Pointer(msgC))
+		return C.QWebEnginePage_JavaScriptConfirm(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC) != 0
 	}
 	return false
 }
@@ -3461,7 +3601,9 @@ func (ptr *QWebEnginePage) JavaScriptConfirmDefault(securityOrigin core.QUrl_ITF
 	defer qt.Recovering("QWebEnginePage::javaScriptConfirm")
 
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_JavaScriptConfirmDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.CString(msg)) != 0
+		var msgC = C.CString(msg)
+		defer C.free(unsafe.Pointer(msgC))
+		return C.QWebEnginePage_JavaScriptConfirmDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC) != 0
 	}
 	return false
 }
@@ -3499,7 +3641,11 @@ func (ptr *QWebEnginePage) JavaScriptConsoleMessage(level QWebEnginePage__JavaSc
 	defer qt.Recovering("QWebEnginePage::javaScriptConsoleMessage")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_JavaScriptConsoleMessage(ptr.Pointer(), C.int(level), C.CString(message), C.int(lineNumber), C.CString(sourceID))
+		var messageC = C.CString(message)
+		defer C.free(unsafe.Pointer(messageC))
+		var sourceIDC = C.CString(sourceID)
+		defer C.free(unsafe.Pointer(sourceIDC))
+		C.QWebEnginePage_JavaScriptConsoleMessage(ptr.Pointer(), C.int(level), messageC, C.int(lineNumber), sourceIDC)
 	}
 }
 
@@ -3507,7 +3653,11 @@ func (ptr *QWebEnginePage) JavaScriptConsoleMessageDefault(level QWebEnginePage_
 	defer qt.Recovering("QWebEnginePage::javaScriptConsoleMessage")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_JavaScriptConsoleMessageDefault(ptr.Pointer(), C.int(level), C.CString(message), C.int(lineNumber), C.CString(sourceID))
+		var messageC = C.CString(message)
+		defer C.free(unsafe.Pointer(messageC))
+		var sourceIDC = C.CString(sourceID)
+		defer C.free(unsafe.Pointer(sourceIDC))
+		C.QWebEnginePage_JavaScriptConsoleMessageDefault(ptr.Pointer(), C.int(level), messageC, C.int(lineNumber), sourceIDC)
 	}
 }
 
@@ -3544,7 +3694,13 @@ func (ptr *QWebEnginePage) JavaScriptPrompt(securityOrigin core.QUrl_ITF, msg st
 	defer qt.Recovering("QWebEnginePage::javaScriptPrompt")
 
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_JavaScriptPrompt(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.CString(msg), C.CString(defaultValue), C.CString(result)) != 0
+		var msgC = C.CString(msg)
+		defer C.free(unsafe.Pointer(msgC))
+		var defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+		var resultC = C.CString(result)
+		defer C.free(unsafe.Pointer(resultC))
+		return C.QWebEnginePage_JavaScriptPrompt(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC, defaultValueC, resultC) != 0
 	}
 	return false
 }
@@ -3553,7 +3709,13 @@ func (ptr *QWebEnginePage) JavaScriptPromptDefault(securityOrigin core.QUrl_ITF,
 	defer qt.Recovering("QWebEnginePage::javaScriptPrompt")
 
 	if ptr.Pointer() != nil {
-		return C.QWebEnginePage_JavaScriptPromptDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.CString(msg), C.CString(defaultValue), C.CString(result)) != 0
+		var msgC = C.CString(msg)
+		defer C.free(unsafe.Pointer(msgC))
+		var defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+		var resultC = C.CString(result)
+		defer C.free(unsafe.Pointer(resultC))
+		return C.QWebEnginePage_JavaScriptPromptDefault(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), msgC, defaultValueC, resultC) != 0
 	}
 	return false
 }
@@ -3579,7 +3741,9 @@ func (ptr *QWebEnginePage) RequestedUrl() *core.QUrl {
 	defer qt.Recovering("QWebEnginePage::requestedUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEnginePage_RequestedUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEnginePage_RequestedUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -3588,7 +3752,9 @@ func (ptr *QWebEnginePage) RunJavaScript4(scriptSource string) {
 	defer qt.Recovering("QWebEnginePage::runJavaScript")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_RunJavaScript4(ptr.Pointer(), C.CString(scriptSource))
+		var scriptSourceC = C.CString(scriptSource)
+		defer C.free(unsafe.Pointer(scriptSourceC))
+		C.QWebEnginePage_RunJavaScript4(ptr.Pointer(), scriptSourceC)
 	}
 }
 
@@ -3596,7 +3762,9 @@ func (ptr *QWebEnginePage) ScrollPosition() *core.QPointF {
 	defer qt.Recovering("QWebEnginePage::scrollPosition")
 
 	if ptr.Pointer() != nil {
-		return core.NewQPointFFromPointer(C.QWebEnginePage_ScrollPosition(ptr.Pointer()))
+		var tmpValue = core.NewQPointFFromPointer(C.QWebEnginePage_ScrollPosition(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -3630,7 +3798,11 @@ func (ptr *QWebEnginePage) SetContent(data string, mimeType string, baseUrl core
 	defer qt.Recovering("QWebEnginePage::setContent")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_SetContent(ptr.Pointer(), C.CString(data), C.CString(mimeType), core.PointerFromQUrl(baseUrl))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		var mimeTypeC = C.CString(mimeType)
+		defer C.free(unsafe.Pointer(mimeTypeC))
+		C.QWebEnginePage_SetContent(ptr.Pointer(), dataC, mimeTypeC, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -3646,7 +3818,9 @@ func (ptr *QWebEnginePage) SetHtml(html string, baseUrl core.QUrl_ITF) {
 	defer qt.Recovering("QWebEnginePage::setHtml")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_SetHtml(ptr.Pointer(), C.CString(html), core.PointerFromQUrl(baseUrl))
+		var htmlC = C.CString(html)
+		defer C.free(unsafe.Pointer(htmlC))
+		C.QWebEnginePage_SetHtml(ptr.Pointer(), htmlC, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -3741,7 +3915,9 @@ func (ptr *QWebEnginePage) Url() *core.QUrl {
 	defer qt.Recovering("QWebEnginePage::url")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEnginePage_Url(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEnginePage_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -4020,7 +4196,9 @@ func (ptr *QWebEnginePage) FindText(subString string, options QWebEnginePage__Fi
 	defer qt.Recovering("QWebEnginePage::findText")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_FindText(ptr.Pointer(), C.CString(subString), C.int(options))
+		var subStringC = C.CString(subString)
+		defer C.free(unsafe.Pointer(subStringC))
+		C.QWebEnginePage_FindText(ptr.Pointer(), subStringC, C.int(options))
 	}
 }
 
@@ -4164,7 +4342,9 @@ func (ptr *QWebEnginePage) LinkHovered(url string) {
 	defer qt.Recovering("QWebEnginePage::linkHovered")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_LinkHovered(ptr.Pointer(), C.CString(url))
+		var urlC = C.CString(url)
+		defer C.free(unsafe.Pointer(urlC))
+		C.QWebEnginePage_LinkHovered(ptr.Pointer(), urlC)
 	}
 }
 
@@ -4280,7 +4460,9 @@ func (ptr *QWebEnginePage) PrintToPdf(filePath string, pageLayout gui.QPageLayou
 	defer qt.Recovering("QWebEnginePage::printToPdf")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_PrintToPdf(ptr.Pointer(), C.CString(filePath), gui.PointerFromQPageLayout(pageLayout))
+		var filePathC = C.CString(filePath)
+		defer C.free(unsafe.Pointer(filePathC))
+		C.QWebEnginePage_PrintToPdf(ptr.Pointer(), filePathC, gui.PointerFromQPageLayout(pageLayout))
 	}
 }
 
@@ -4325,7 +4507,9 @@ func (ptr *QWebEnginePage) ProxyAuthenticationRequired(requestUrl core.QUrl_ITF,
 	defer qt.Recovering("QWebEnginePage::proxyAuthenticationRequired")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_ProxyAuthenticationRequired(ptr.Pointer(), core.PointerFromQUrl(requestUrl), network.PointerFromQAuthenticator(authenticator), C.CString(proxyHost))
+		var proxyHostC = C.CString(proxyHost)
+		defer C.free(unsafe.Pointer(proxyHostC))
+		C.QWebEnginePage_ProxyAuthenticationRequired(ptr.Pointer(), core.PointerFromQUrl(requestUrl), network.PointerFromQAuthenticator(authenticator), proxyHostC)
 	}
 }
 
@@ -4513,7 +4697,9 @@ func (ptr *QWebEnginePage) TitleChanged(title string) {
 	defer qt.Recovering("QWebEnginePage::titleChanged")
 
 	if ptr.Pointer() != nil {
-		C.QWebEnginePage_TitleChanged(ptr.Pointer(), C.CString(title))
+		var titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+		C.QWebEnginePage_TitleChanged(ptr.Pointer(), titleC)
 	}
 }
 
@@ -5031,6 +5217,11 @@ func newQWebEngineProfileFromPointer(ptr unsafe.Pointer) *QWebEngineProfile {
 	return n
 }
 
+func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
 	defer qt.Recovering("QWebEngineProfile::QWebEngineProfile")
 
@@ -5040,7 +5231,9 @@ func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
 func NewQWebEngineProfile2(storageName string, parent core.QObject_ITF) *QWebEngineProfile {
 	defer qt.Recovering("QWebEngineProfile::QWebEngineProfile")
 
-	return newQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(C.CString(storageName), core.PointerFromQObject(parent)))
+	var storageNameC = C.CString(storageName)
+	defer C.free(unsafe.Pointer(storageNameC))
+	return newQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(storageNameC, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QWebEngineProfile) CachePath() string {
@@ -5165,7 +5358,9 @@ func (ptr *QWebEngineProfile) InstallUrlSchemeHandler(scheme string, handler QWe
 	defer qt.Recovering("QWebEngineProfile::installUrlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), C.CString(scheme), PointerFromQWebEngineUrlSchemeHandler(handler))
+		var schemeC = C.CString(scheme)
+		defer C.free(unsafe.Pointer(schemeC))
+		C.QWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), schemeC, PointerFromQWebEngineUrlSchemeHandler(handler))
 	}
 }
 
@@ -5208,7 +5403,9 @@ func (ptr *QWebEngineProfile) RemoveUrlScheme(scheme string) {
 	defer qt.Recovering("QWebEngineProfile::removeUrlScheme")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_RemoveUrlScheme(ptr.Pointer(), C.CString(scheme))
+		var schemeC = C.CString(scheme)
+		defer C.free(unsafe.Pointer(schemeC))
+		C.QWebEngineProfile_RemoveUrlScheme(ptr.Pointer(), schemeC)
 	}
 }
 
@@ -5233,7 +5430,9 @@ func (ptr *QWebEngineProfile) SetCachePath(path string) {
 	defer qt.Recovering("QWebEngineProfile::setCachePath")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_SetCachePath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QWebEngineProfile_SetCachePath(ptr.Pointer(), pathC)
 	}
 }
 
@@ -5241,7 +5440,9 @@ func (ptr *QWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage string) {
 	defer qt.Recovering("QWebEngineProfile::setHttpAcceptLanguage")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), C.CString(httpAcceptLanguage))
+		var httpAcceptLanguageC = C.CString(httpAcceptLanguage)
+		defer C.free(unsafe.Pointer(httpAcceptLanguageC))
+		C.QWebEngineProfile_SetHttpAcceptLanguage(ptr.Pointer(), httpAcceptLanguageC)
 	}
 }
 
@@ -5265,7 +5466,9 @@ func (ptr *QWebEngineProfile) SetHttpUserAgent(userAgent string) {
 	defer qt.Recovering("QWebEngineProfile::setHttpUserAgent")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), C.CString(userAgent))
+		var userAgentC = C.CString(userAgent)
+		defer C.free(unsafe.Pointer(userAgentC))
+		C.QWebEngineProfile_SetHttpUserAgent(ptr.Pointer(), userAgentC)
 	}
 }
 
@@ -5281,7 +5484,9 @@ func (ptr *QWebEngineProfile) SetPersistentStoragePath(path string) {
 	defer qt.Recovering("QWebEngineProfile::setPersistentStoragePath")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QWebEngineProfile_SetPersistentStoragePath(ptr.Pointer(), pathC)
 	}
 }
 
@@ -5315,7 +5520,9 @@ func (ptr *QWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUrlSche
 	defer qt.Recovering("QWebEngineProfile::urlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		return NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), C.CString(scheme)))
+		var schemeC = C.CString(scheme)
+		defer C.free(unsafe.Pointer(schemeC))
+		return NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), schemeC))
 	}
 	return nil
 }
@@ -5865,7 +6072,9 @@ func (ptr *QWebEngineScript) SetName(scriptName string) {
 	defer qt.Recovering("QWebEngineScript::setName")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineScript_SetName(ptr.Pointer(), C.CString(scriptName))
+		var scriptNameC = C.CString(scriptName)
+		defer C.free(unsafe.Pointer(scriptNameC))
+		C.QWebEngineScript_SetName(ptr.Pointer(), scriptNameC)
 	}
 }
 
@@ -5881,7 +6090,9 @@ func (ptr *QWebEngineScript) SetSourceCode(scriptSource string) {
 	defer qt.Recovering("QWebEngineScript::setSourceCode")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineScript_SetSourceCode(ptr.Pointer(), C.CString(scriptSource))
+		var scriptSourceC = C.CString(scriptSource)
+		defer C.free(unsafe.Pointer(scriptSourceC))
+		C.QWebEngineScript_SetSourceCode(ptr.Pointer(), scriptSourceC)
 	}
 }
 
@@ -5984,7 +6195,11 @@ func (ptr *QWebEngineScriptCollection) FindScript(name string) *QWebEngineScript
 	defer qt.Recovering("QWebEngineScriptCollection::findScript")
 
 	if ptr.Pointer() != nil {
-		return NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_FindScript(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_FindScript(ptr.Pointer(), nameC))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
+		return tmpValue
 	}
 	return nil
 }
@@ -6125,6 +6340,11 @@ func newQWebEngineSettingsFromPointer(ptr unsafe.Pointer) *QWebEngineSettings {
 	return n
 }
 
+func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QWebEngineSettings) DefaultTextEncoding() string {
 	defer qt.Recovering("QWebEngineSettings::defaultTextEncoding")
 
@@ -6200,7 +6420,9 @@ func (ptr *QWebEngineSettings) SetDefaultTextEncoding(encoding string) {
 	defer qt.Recovering("QWebEngineSettings::setDefaultTextEncoding")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineSettings_SetDefaultTextEncoding(ptr.Pointer(), C.CString(encoding))
+		var encodingC = C.CString(encoding)
+		defer C.free(unsafe.Pointer(encodingC))
+		C.QWebEngineSettings_SetDefaultTextEncoding(ptr.Pointer(), encodingC)
 	}
 }
 
@@ -6208,7 +6430,9 @@ func (ptr *QWebEngineSettings) SetFontFamily(which QWebEngineSettings__FontFamil
 	defer qt.Recovering("QWebEngineSettings::setFontFamily")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineSettings_SetFontFamily(ptr.Pointer(), C.int(which), C.CString(family))
+		var familyC = C.CString(family)
+		defer C.free(unsafe.Pointer(familyC))
+		C.QWebEngineSettings_SetFontFamily(ptr.Pointer(), C.int(which), familyC)
 	}
 }
 
@@ -6321,6 +6545,11 @@ func newQWebEngineUrlRequestInfoFromPointer(ptr unsafe.Pointer) *QWebEngineUrlRe
 	return n
 }
 
+func (ptr *QWebEngineUrlRequestInfo) DestroyQWebEngineUrlRequestInfo() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QWebEngineUrlRequestInfo) Block(shouldBlock bool) {
 	defer qt.Recovering("QWebEngineUrlRequestInfo::block")
 
@@ -6333,7 +6562,9 @@ func (ptr *QWebEngineUrlRequestInfo) FirstPartyUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineUrlRequestInfo::firstPartyUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_FirstPartyUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_FirstPartyUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -6368,7 +6599,9 @@ func (ptr *QWebEngineUrlRequestInfo) RequestUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineUrlRequestInfo::requestUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_RequestUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_RequestUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -6386,7 +6619,11 @@ func (ptr *QWebEngineUrlRequestInfo) SetHttpHeader(name string, value string) {
 	defer qt.Recovering("QWebEngineUrlRequestInfo::setHttpHeader")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineUrlRequestInfo_SetHttpHeader(ptr.Pointer(), C.CString(name), C.CString(value))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QWebEngineUrlRequestInfo_SetHttpHeader(ptr.Pointer(), nameC, valueC)
 	}
 }
 
@@ -6435,6 +6672,11 @@ func newQWebEngineUrlRequestInterceptorFromPointer(ptr unsafe.Pointer) *QWebEngi
 		n.SetObjectName("QWebEngineUrlRequestInterceptor_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QWebEngineUrlRequestInterceptor) DestroyQWebEngineUrlRequestInterceptor() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //export callbackQWebEngineUrlRequestInterceptor_TimerEvent
@@ -6911,6 +7153,11 @@ func newQWebEngineUrlRequestJobFromPointer(ptr unsafe.Pointer) *QWebEngineUrlReq
 	return n
 }
 
+func (ptr *QWebEngineUrlRequestJob) DestroyQWebEngineUrlRequestJob() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QWebEngineUrlRequestJob) Fail(r QWebEngineUrlRequestJob__Error) {
 	defer qt.Recovering("QWebEngineUrlRequestJob::fail")
 
@@ -6931,7 +7178,9 @@ func (ptr *QWebEngineUrlRequestJob) Reply(contentType string, device core.QIODev
 	defer qt.Recovering("QWebEngineUrlRequestJob::reply")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineUrlRequestJob_Reply(ptr.Pointer(), C.CString(contentType), core.PointerFromQIODevice(device))
+		var contentTypeC = C.CString(contentType)
+		defer C.free(unsafe.Pointer(contentTypeC))
+		C.QWebEngineUrlRequestJob_Reply(ptr.Pointer(), contentTypeC, core.PointerFromQIODevice(device))
 	}
 }
 
@@ -6948,7 +7197,9 @@ func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineUrlRequestJob::requestUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineUrlRequestJob_RequestUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineUrlRequestJob_RequestUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -8074,7 +8325,9 @@ func (ptr *QWebEngineView) Icon() *gui.QIcon {
 	defer qt.Recovering("QWebEngineView::icon")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQIconFromPointer(C.QWebEngineView_Icon(ptr.Pointer()))
+		var tmpValue = gui.NewQIconFromPointer(C.QWebEngineView_Icon(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
+		return tmpValue
 	}
 	return nil
 }
@@ -8083,7 +8336,9 @@ func (ptr *QWebEngineView) IconUrl() *core.QUrl {
 	defer qt.Recovering("QWebEngineView::iconUrl")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineView_IconUrl(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineView_IconUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -8163,7 +8418,11 @@ func (ptr *QWebEngineView) SetContent(data string, mimeType string, baseUrl core
 	defer qt.Recovering("QWebEngineView::setContent")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_SetContent(ptr.Pointer(), C.CString(data), C.CString(mimeType), core.PointerFromQUrl(baseUrl))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		var mimeTypeC = C.CString(mimeType)
+		defer C.free(unsafe.Pointer(mimeTypeC))
+		C.QWebEngineView_SetContent(ptr.Pointer(), dataC, mimeTypeC, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -8171,7 +8430,9 @@ func (ptr *QWebEngineView) SetHtml(html string, baseUrl core.QUrl_ITF) {
 	defer qt.Recovering("QWebEngineView::setHtml")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_SetHtml(ptr.Pointer(), C.CString(html), core.PointerFromQUrl(baseUrl))
+		var htmlC = C.CString(html)
+		defer C.free(unsafe.Pointer(htmlC))
+		C.QWebEngineView_SetHtml(ptr.Pointer(), htmlC, core.PointerFromQUrl(baseUrl))
 	}
 }
 
@@ -8265,7 +8526,9 @@ func (ptr *QWebEngineView) Url() *core.QUrl {
 	defer qt.Recovering("QWebEngineView::url")
 
 	if ptr.Pointer() != nil {
-		return core.NewQUrlFromPointer(C.QWebEngineView_Url(ptr.Pointer()))
+		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineView_Url(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -8417,7 +8680,9 @@ func (ptr *QWebEngineView) FindText(subString string, options QWebEnginePage__Fi
 	defer qt.Recovering("QWebEngineView::findText")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_FindText(ptr.Pointer(), C.CString(subString), C.int(options))
+		var subStringC = C.CString(subString)
+		defer C.free(unsafe.Pointer(subStringC))
+		C.QWebEngineView_FindText(ptr.Pointer(), subStringC, C.int(options))
 	}
 }
 
@@ -8796,7 +9061,9 @@ func (ptr *QWebEngineView) SizeHint() *core.QSize {
 	defer qt.Recovering("QWebEngineView::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QWebEngineView_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -8805,7 +9072,9 @@ func (ptr *QWebEngineView) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("QWebEngineView::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QWebEngineView_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -8842,7 +9111,9 @@ func (ptr *QWebEngineView) TitleChanged(title string) {
 	defer qt.Recovering("QWebEngineView::titleChanged")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_TitleChanged(ptr.Pointer(), C.CString(title))
+		var titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+		C.QWebEngineView_TitleChanged(ptr.Pointer(), titleC)
 	}
 }
 
@@ -9140,7 +9411,9 @@ func (ptr *QWebEngineView) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QWebEngineView::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QWebEngineView_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -9149,7 +9422,9 @@ func (ptr *QWebEngineView) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QWebEngineView::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QWebEngineView_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -9322,7 +9597,9 @@ func (ptr *QWebEngineView) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QWebEngineView::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QWebEngineView_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -9330,7 +9607,9 @@ func (ptr *QWebEngineView) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("QWebEngineView::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QWebEngineView_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -9457,7 +9736,9 @@ func (ptr *QWebEngineView) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QWebEngineView::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QWebEngineView_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -9465,7 +9746,9 @@ func (ptr *QWebEngineView) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QWebEngineView::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QWebEngineView_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QWebEngineView_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -9870,7 +10153,9 @@ func (ptr *QWebEngineView) InputMethodQuery(query core.Qt__InputMethodQuery) *co
 	defer qt.Recovering("QWebEngineView::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QWebEngineView_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QWebEngineView_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -9879,7 +10164,9 @@ func (ptr *QWebEngineView) InputMethodQueryDefault(query core.Qt__InputMethodQue
 	defer qt.Recovering("QWebEngineView::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QWebEngineView_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QWebEngineView_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -10232,7 +10519,9 @@ func (ptr *QWebEngineView) NativeEvent(eventType string, message unsafe.Pointer,
 	defer qt.Recovering("QWebEngineView::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QWebEngineView_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -10241,7 +10530,9 @@ func (ptr *QWebEngineView) NativeEventDefault(eventType string, message unsafe.P
 	defer qt.Recovering("QWebEngineView::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QWebEngineView_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QWebEngineView_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }

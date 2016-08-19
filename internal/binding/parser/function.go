@@ -25,6 +25,7 @@ type Function struct {
 	Default        bool
 	TmpName        string
 	Export         bool
+	NeedsFinalizer bool
 }
 
 type Parameter struct {

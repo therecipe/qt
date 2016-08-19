@@ -2,6 +2,7 @@
 
 package androidextras
 
+//#include <stdlib.h>
 //#include "androidextras_android.h"
 import "C"
 import (
@@ -53,6 +54,11 @@ func newQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 		n.SetObjectNameAbs("QAndroidActivityResultReceiver_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //export callbackQAndroidActivityResultReceiver_HandleActivityResult

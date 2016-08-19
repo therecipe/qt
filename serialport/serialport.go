@@ -2,6 +2,7 @@
 
 package serialport
 
+//#include <stdlib.h>
 //#include "serialport.h"
 import "C"
 import (
@@ -319,7 +320,9 @@ func NewQSerialPort3(serialPortInfo QSerialPortInfo_ITF, parent core.QObject_ITF
 func NewQSerialPort2(name string, parent core.QObject_ITF) *QSerialPort {
 	defer qt.Recovering("QSerialPort::QSerialPort")
 
-	return newQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(C.CString(name), core.PointerFromQObject(parent)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(nameC, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSerialPort) AtEnd() bool {
@@ -649,7 +652,9 @@ func (ptr *QSerialPort) ReadLineData(data string, maxSize int64) int64 {
 	defer qt.Recovering("QSerialPort::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QSerialPort_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSerialPort_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -702,7 +707,9 @@ func (ptr *QSerialPort) SetPortName(name string) {
 	defer qt.Recovering("QSerialPort::setPortName")
 
 	if ptr.Pointer() != nil {
-		C.QSerialPort_SetPortName(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QSerialPort_SetPortName(ptr.Pointer(), nameC)
 	}
 }
 
@@ -772,7 +779,9 @@ func (ptr *QSerialPort) WriteData(data string, maxSize int64) int64 {
 	defer qt.Recovering("QSerialPort::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QSerialPort_WriteData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSerialPort_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -1462,7 +1471,9 @@ func NewQSerialPortInfo4(other QSerialPortInfo_ITF) *QSerialPortInfo {
 func NewQSerialPortInfo3(name string) *QSerialPortInfo {
 	defer qt.Recovering("QSerialPortInfo::QSerialPortInfo")
 
-	return newQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQSerialPortInfoFromPointer(C.QSerialPortInfo_NewQSerialPortInfo3(nameC))
 }
 
 func (ptr *QSerialPortInfo) Description() string {

@@ -2,10 +2,12 @@
 
 package core
 
+//#include <stdlib.h>
 //#include "core.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -1248,7 +1250,9 @@ func (ptr *QAbstractEventDispatcher) FilterNativeEvent(eventType string, message
 	defer qt.Recovering("QAbstractEventDispatcher::filterNativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QAbstractEventDispatcher_FilterNativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QAbstractEventDispatcher_FilterNativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -2246,7 +2250,9 @@ func (ptr *QAbstractItemModel) Sibling(row int, column int, index QModelIndex_IT
 	defer qt.Recovering("QAbstractItemModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractItemModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2255,7 +2261,9 @@ func (ptr *QAbstractItemModel) SiblingDefault(row int, column int, index QModelI
 	defer qt.Recovering("QAbstractItemModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractItemModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2357,7 +2365,9 @@ func (ptr *QAbstractItemModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractItemModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractItemModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2366,7 +2376,9 @@ func (ptr *QAbstractItemModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex 
 	defer qt.Recovering("QAbstractItemModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractItemModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2683,7 +2695,9 @@ func (ptr *QAbstractItemModel) CreateIndex(row int, column int, p unsafe.Pointer
 	defer qt.Recovering("QAbstractItemModel::createIndex")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractItemModel_CreateIndex(ptr.Pointer(), C.int(row), C.int(column), p))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_CreateIndex(ptr.Pointer(), C.int(row), C.int(column), p))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -2721,7 +2735,9 @@ func (ptr *QAbstractItemModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	defer qt.Recovering("QAbstractItemModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractItemModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractItemModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -3010,7 +3026,9 @@ func (ptr *QAbstractItemModel) HeaderData(section int, orientation Qt__Orientati
 	defer qt.Recovering("QAbstractItemModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractItemModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractItemModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -3019,7 +3037,9 @@ func (ptr *QAbstractItemModel) HeaderDataDefault(section int, orientation Qt__Or
 	defer qt.Recovering("QAbstractItemModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractItemModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractItemModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -3093,7 +3113,9 @@ func (ptr *QAbstractItemModel) Index(row int, column int, parent QModelIndex_ITF
 	defer qt.Recovering("QAbstractItemModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractItemModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -3458,7 +3480,9 @@ func (ptr *QAbstractItemModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractItemModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractItemModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -4034,7 +4058,9 @@ func (ptr *QAbstractItemModel) Span(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractItemModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractItemModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractItemModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -4043,7 +4069,9 @@ func (ptr *QAbstractItemModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractItemModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractItemModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractItemModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -4694,7 +4722,9 @@ func (ptr *QAbstractListModel) Index(row int, column int, parent QModelIndex_ITF
 	defer qt.Recovering("QAbstractListModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -4703,7 +4733,9 @@ func (ptr *QAbstractListModel) IndexDefault(row int, column int, parent QModelIn
 	defer qt.Recovering("QAbstractListModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -4841,7 +4873,9 @@ func (ptr *QAbstractListModel) Sibling(row int, column int, idx QModelIndex_ITF)
 	defer qt.Recovering("QAbstractListModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -4850,7 +4884,9 @@ func (ptr *QAbstractListModel) SiblingDefault(row int, column int, idx QModelInd
 	defer qt.Recovering("QAbstractListModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -4898,7 +4934,9 @@ func (ptr *QAbstractListModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractListModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -4907,7 +4945,9 @@ func (ptr *QAbstractListModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex 
 	defer qt.Recovering("QAbstractListModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -5086,7 +5126,9 @@ func (ptr *QAbstractListModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	defer qt.Recovering("QAbstractListModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractListModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractListModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -5216,7 +5258,9 @@ func (ptr *QAbstractListModel) HeaderData(section int, orientation Qt__Orientati
 	defer qt.Recovering("QAbstractListModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractListModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractListModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -5225,7 +5269,9 @@ func (ptr *QAbstractListModel) HeaderDataDefault(section int, orientation Qt__Or
 	defer qt.Recovering("QAbstractListModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractListModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractListModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -5498,7 +5544,9 @@ func (ptr *QAbstractListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractListModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -5507,7 +5555,9 @@ func (ptr *QAbstractListModel) ParentDefault(index QModelIndex_ITF) *QModelIndex
 	defer qt.Recovering("QAbstractListModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractListModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -5906,7 +5956,9 @@ func (ptr *QAbstractListModel) Span(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractListModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractListModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractListModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -5915,7 +5967,9 @@ func (ptr *QAbstractListModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractListModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractListModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractListModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -6561,7 +6615,9 @@ func (ptr *QAbstractNativeEventFilter) NativeEventFilter(eventType string, messa
 	defer qt.Recovering("QAbstractNativeEventFilter::nativeEventFilter")
 
 	if ptr.Pointer() != nil {
-		return C.QAbstractNativeEventFilter_NativeEventFilter(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QAbstractNativeEventFilter_NativeEventFilter(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -6589,7 +6645,9 @@ func (ptr *QAbstractNativeEventFilter) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QAbstractNativeEventFilter::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QAbstractNativeEventFilter_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAbstractNativeEventFilter_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -6679,7 +6737,9 @@ func (ptr *QAbstractProxyModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractProxyModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -6688,7 +6748,9 @@ func (ptr *QAbstractProxyModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex
 	defer qt.Recovering("QAbstractProxyModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -6820,7 +6882,9 @@ func (ptr *QAbstractProxyModel) Data(proxyIndex QModelIndex_ITF, role int) *QVar
 	defer qt.Recovering("QAbstractProxyModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -6829,7 +6893,9 @@ func (ptr *QAbstractProxyModel) DataDefault(proxyIndex QModelIndex_ITF, role int
 	defer qt.Recovering("QAbstractProxyModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -7053,7 +7119,9 @@ func (ptr *QAbstractProxyModel) HeaderData(section int, orientation Qt__Orientat
 	defer qt.Recovering("QAbstractProxyModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -7062,7 +7130,9 @@ func (ptr *QAbstractProxyModel) HeaderDataDefault(section int, orientation Qt__O
 	defer qt.Recovering("QAbstractProxyModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractProxyModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractProxyModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -7100,7 +7170,9 @@ func (ptr *QAbstractProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QMod
 	defer qt.Recovering("QAbstractProxyModel::mapFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -7138,7 +7210,9 @@ func (ptr *QAbstractProxyModel) MapSelectionFromSource(sourceSelection QItemSele
 	defer qt.Recovering("QAbstractProxyModel::mapSelectionFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionFromSource(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionFromSource(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -7147,7 +7221,9 @@ func (ptr *QAbstractProxyModel) MapSelectionFromSourceDefault(sourceSelection QI
 	defer qt.Recovering("QAbstractProxyModel::mapSelectionFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionFromSourceDefault(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionFromSourceDefault(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -7185,7 +7261,9 @@ func (ptr *QAbstractProxyModel) MapSelectionToSource(proxySelection QItemSelecti
 	defer qt.Recovering("QAbstractProxyModel::mapSelectionToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionToSource(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionToSource(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -7194,7 +7272,9 @@ func (ptr *QAbstractProxyModel) MapSelectionToSourceDefault(proxySelection QItem
 	defer qt.Recovering("QAbstractProxyModel::mapSelectionToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionToSourceDefault(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QAbstractProxyModel_MapSelectionToSourceDefault(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -7232,7 +7312,9 @@ func (ptr *QAbstractProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelI
 	defer qt.Recovering("QAbstractProxyModel::mapToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -7537,7 +7619,9 @@ func (ptr *QAbstractProxyModel) Sibling(row int, column int, idx QModelIndex_ITF
 	defer qt.Recovering("QAbstractProxyModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -7546,7 +7630,9 @@ func (ptr *QAbstractProxyModel) SiblingDefault(row int, column int, idx QModelIn
 	defer qt.Recovering("QAbstractProxyModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -7666,7 +7752,9 @@ func (ptr *QAbstractProxyModel) Span(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractProxyModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -7675,7 +7763,9 @@ func (ptr *QAbstractProxyModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractProxyModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractProxyModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractProxyModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -7902,7 +7992,9 @@ func (ptr *QAbstractProxyModel) Index(row int, column int, parent QModelIndex_IT
 	defer qt.Recovering("QAbstractProxyModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -8128,7 +8220,9 @@ func (ptr *QAbstractProxyModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractProxyModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9429,7 +9523,9 @@ func (ptr *QAbstractTableModel) Index(row int, column int, parent QModelIndex_IT
 	defer qt.Recovering("QAbstractTableModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9438,7 +9534,9 @@ func (ptr *QAbstractTableModel) IndexDefault(row int, column int, parent QModelI
 	defer qt.Recovering("QAbstractTableModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9576,7 +9674,9 @@ func (ptr *QAbstractTableModel) Sibling(row int, column int, idx QModelIndex_ITF
 	defer qt.Recovering("QAbstractTableModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9585,7 +9685,9 @@ func (ptr *QAbstractTableModel) SiblingDefault(row int, column int, idx QModelIn
 	defer qt.Recovering("QAbstractTableModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9633,7 +9735,9 @@ func (ptr *QAbstractTableModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractTableModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9642,7 +9746,9 @@ func (ptr *QAbstractTableModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex
 	defer qt.Recovering("QAbstractTableModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -9812,7 +9918,9 @@ func (ptr *QAbstractTableModel) Data(index QModelIndex_ITF, role int) *QVariant 
 	defer qt.Recovering("QAbstractTableModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractTableModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractTableModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -9942,7 +10050,9 @@ func (ptr *QAbstractTableModel) HeaderData(section int, orientation Qt__Orientat
 	defer qt.Recovering("QAbstractTableModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractTableModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractTableModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -9951,7 +10061,9 @@ func (ptr *QAbstractTableModel) HeaderDataDefault(section int, orientation Qt__O
 	defer qt.Recovering("QAbstractTableModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAbstractTableModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QAbstractTableModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -10224,7 +10336,9 @@ func (ptr *QAbstractTableModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QAbstractTableModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -10233,7 +10347,9 @@ func (ptr *QAbstractTableModel) ParentDefault(index QModelIndex_ITF) *QModelInde
 	defer qt.Recovering("QAbstractTableModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QAbstractTableModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -10632,7 +10748,9 @@ func (ptr *QAbstractTableModel) Span(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractTableModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractTableModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractTableModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -10641,7 +10759,9 @@ func (ptr *QAbstractTableModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QAbstractTableModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QAbstractTableModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QAbstractTableModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -12938,6 +13058,11 @@ func newQAssociativeIterableFromPointer(ptr unsafe.Pointer) *QAssociativeIterabl
 	return n
 }
 
+func (ptr *QAssociativeIterable) DestroyQAssociativeIterable() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QAssociativeIterable) Size() int {
 	defer qt.Recovering("QAssociativeIterable::size")
 
@@ -12951,7 +13076,9 @@ func (ptr *QAssociativeIterable) Value(key QVariant_ITF) *QVariant {
 	defer qt.Recovering("QAssociativeIterable::value")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QAssociativeIterable_Value(ptr.Pointer(), PointerFromQVariant(key)))
+		var tmpValue = NewQVariantFromPointer(C.QAssociativeIterable_Value(ptr.Pointer(), PointerFromQVariant(key)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -13000,6 +13127,11 @@ func newQAtomicIntFromPointer(ptr unsafe.Pointer) *QAtomicInt {
 	return n
 }
 
+func (ptr *QAtomicInt) DestroyQAtomicInt() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QAtomicInteger struct {
 	ptr unsafe.Pointer
 }
@@ -13043,6 +13175,11 @@ func newQAtomicIntegerFromPointer(ptr unsafe.Pointer) *QAtomicInteger {
 	return n
 }
 
+func (ptr *QAtomicInteger) DestroyQAtomicInteger() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QAtomicPointer struct {
 	ptr unsafe.Pointer
 }
@@ -13084,6 +13221,11 @@ func NewQAtomicPointerFromPointer(ptr unsafe.Pointer) *QAtomicPointer {
 func newQAtomicPointerFromPointer(ptr unsafe.Pointer) *QAtomicPointer {
 	var n = NewQAtomicPointerFromPointer(ptr)
 	return n
+}
+
+func (ptr *QAtomicPointer) DestroyQAtomicPointer() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QBasicTimer struct {
@@ -13227,6 +13369,11 @@ func NewQBitArrayFromPointer(ptr unsafe.Pointer) *QBitArray {
 func newQBitArrayFromPointer(ptr unsafe.Pointer) *QBitArray {
 	var n = NewQBitArrayFromPointer(ptr)
 	return n
+}
+
+func (ptr *QBitArray) DestroyQBitArray() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func NewQBitArray() *QBitArray {
@@ -13448,7 +13595,9 @@ func newQBufferFromPointer(ptr unsafe.Pointer) *QBuffer {
 func NewQBuffer2(byteArray string, parent QObject_ITF) *QBuffer {
 	defer qt.Recovering("QBuffer::QBuffer")
 
-	return newQBufferFromPointer(C.QBuffer_NewQBuffer2(C.CString(byteArray), PointerFromQObject(parent)))
+	var byteArrayC = C.CString(byteArray)
+	defer C.free(unsafe.Pointer(byteArrayC))
+	return newQBufferFromPointer(C.QBuffer_NewQBuffer2(byteArrayC, PointerFromQObject(parent)))
 }
 
 func NewQBuffer(parent QObject_ITF) *QBuffer {
@@ -13768,7 +13917,9 @@ func (ptr *QBuffer) SetBuffer(byteArray string) {
 	defer qt.Recovering("QBuffer::setBuffer")
 
 	if ptr.Pointer() != nil {
-		C.QBuffer_SetBuffer(ptr.Pointer(), C.CString(byteArray))
+		var byteArrayC = C.CString(byteArray)
+		defer C.free(unsafe.Pointer(byteArrayC))
+		C.QBuffer_SetBuffer(ptr.Pointer(), byteArrayC)
 	}
 }
 
@@ -13776,7 +13927,9 @@ func (ptr *QBuffer) SetData(data string) {
 	defer qt.Recovering("QBuffer::setData")
 
 	if ptr.Pointer() != nil {
-		C.QBuffer_SetData(ptr.Pointer(), C.CString(data))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QBuffer_SetData(ptr.Pointer(), dataC)
 	}
 }
 
@@ -13784,7 +13937,9 @@ func (ptr *QBuffer) SetData2(data string, size int) {
 	defer qt.Recovering("QBuffer::setData")
 
 	if ptr.Pointer() != nil {
-		C.QBuffer_SetData2(ptr.Pointer(), C.CString(data), C.int(size))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QBuffer_SetData2(ptr.Pointer(), dataC, C.int(size))
 	}
 }
 
@@ -13868,7 +14023,9 @@ func (ptr *QBuffer) WriteData(data string, len int64) int64 {
 	defer qt.Recovering("QBuffer::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QBuffer_WriteData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QBuffer_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -13877,7 +14034,9 @@ func (ptr *QBuffer) WriteDataDefault(data string, len int64) int64 {
 	defer qt.Recovering("QBuffer::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QBuffer_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QBuffer_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -14066,7 +14225,9 @@ func (ptr *QBuffer) ReadLineData(data string, maxSize int64) int64 {
 	defer qt.Recovering("QBuffer::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QBuffer_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QBuffer_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -14075,7 +14236,9 @@ func (ptr *QBuffer) ReadLineDataDefault(data string, maxSize int64) int64 {
 	defer qt.Recovering("QBuffer::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QBuffer_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QBuffer_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -14733,6 +14896,11 @@ func newQByteArrayListFromPointer(ptr unsafe.Pointer) *QByteArrayList {
 	return n
 }
 
+func (ptr *QByteArrayList) DestroyQByteArrayList() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QByteArrayList) Join() string {
 	defer qt.Recovering("QByteArrayList::join")
 
@@ -14746,7 +14914,9 @@ func (ptr *QByteArrayList) Join3(separator string) string {
 	defer qt.Recovering("QByteArrayList::join")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QByteArrayList_Join3(ptr.Pointer(), C.CString(separator)))
+		var separatorC = C.CString(separator)
+		defer C.free(unsafe.Pointer(separatorC))
+		return C.GoString(C.QByteArrayList_Join3(ptr.Pointer(), separatorC))
 	}
 	return ""
 }
@@ -14755,7 +14925,9 @@ func (ptr *QByteArrayList) Join2(separator string) string {
 	defer qt.Recovering("QByteArrayList::join")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QByteArrayList_Join2(ptr.Pointer(), C.CString(separator)))
+		var separatorC = C.CString(separator)
+		defer C.free(unsafe.Pointer(separatorC))
+		return C.GoString(C.QByteArrayList_Join2(ptr.Pointer(), separatorC))
 	}
 	return ""
 }
@@ -14812,7 +14984,9 @@ func NewQByteArrayMatcher() *QByteArrayMatcher {
 func NewQByteArrayMatcher2(pattern string) *QByteArrayMatcher {
 	defer qt.Recovering("QByteArrayMatcher::QByteArrayMatcher")
 
-	return newQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher2(C.CString(pattern)))
+	var patternC = C.CString(pattern)
+	defer C.free(unsafe.Pointer(patternC))
+	return newQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher2(patternC))
 }
 
 func NewQByteArrayMatcher4(other QByteArrayMatcher_ITF) *QByteArrayMatcher {
@@ -14824,14 +14998,18 @@ func NewQByteArrayMatcher4(other QByteArrayMatcher_ITF) *QByteArrayMatcher {
 func NewQByteArrayMatcher3(pattern string, length int) *QByteArrayMatcher {
 	defer qt.Recovering("QByteArrayMatcher::QByteArrayMatcher")
 
-	return newQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher3(C.CString(pattern), C.int(length)))
+	var patternC = C.CString(pattern)
+	defer C.free(unsafe.Pointer(patternC))
+	return newQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher3(patternC, C.int(length)))
 }
 
 func (ptr *QByteArrayMatcher) IndexIn(ba string, from int) int {
 	defer qt.Recovering("QByteArrayMatcher::indexIn")
 
 	if ptr.Pointer() != nil {
-		return int(C.QByteArrayMatcher_IndexIn(ptr.Pointer(), C.CString(ba), C.int(from)))
+		var baC = C.CString(ba)
+		defer C.free(unsafe.Pointer(baC))
+		return int(C.QByteArrayMatcher_IndexIn(ptr.Pointer(), baC, C.int(from)))
 	}
 	return 0
 }
@@ -14840,7 +15018,9 @@ func (ptr *QByteArrayMatcher) IndexIn2(str string, len int, from int) int {
 	defer qt.Recovering("QByteArrayMatcher::indexIn")
 
 	if ptr.Pointer() != nil {
-		return int(C.QByteArrayMatcher_IndexIn2(ptr.Pointer(), C.CString(str), C.int(len), C.int(from)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return int(C.QByteArrayMatcher_IndexIn2(ptr.Pointer(), strC, C.int(len), C.int(from)))
 	}
 	return 0
 }
@@ -14858,7 +15038,9 @@ func (ptr *QByteArrayMatcher) SetPattern(pattern string) {
 	defer qt.Recovering("QByteArrayMatcher::setPattern")
 
 	if ptr.Pointer() != nil {
-		C.QByteArrayMatcher_SetPattern(ptr.Pointer(), C.CString(pattern))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QByteArrayMatcher_SetPattern(ptr.Pointer(), patternC)
 	}
 }
 
@@ -15241,6 +15423,11 @@ func newQCharFromPointer(ptr unsafe.Pointer) *QChar {
 	return n
 }
 
+func (ptr *QChar) DestroyQChar() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQChar() *QChar {
 	defer qt.Recovering("QChar::QChar")
 
@@ -15262,7 +15449,9 @@ func NewQChar7(ch QChar__SpecialCharacter) *QChar {
 func NewQChar9(ch string) *QChar {
 	defer qt.Recovering("QChar::QChar")
 
-	return newQCharFromPointer(C.QChar_NewQChar9(C.CString(ch)))
+	var chC = C.CString(ch)
+	defer C.free(unsafe.Pointer(chC))
+	return newQCharFromPointer(C.QChar_NewQChar9(chC))
 }
 
 func NewQChar6(code int) *QChar {
@@ -15570,6 +15759,11 @@ func newQChildEventFromPointer(ptr unsafe.Pointer) *QChildEvent {
 	return n
 }
 
+func (ptr *QChildEvent) DestroyQChildEvent() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQChildEvent(ty QEvent__Type, child QObject_ITF) *QChildEvent {
 	defer qt.Recovering("QChildEvent::QChildEvent")
 
@@ -15745,7 +15939,9 @@ func (ptr *QCollator) Locale() *QLocale {
 	defer qt.Recovering("QCollator::locale")
 
 	if ptr.Pointer() != nil {
-		return NewQLocaleFromPointer(C.QCollator_Locale(ptr.Pointer()))
+		var tmpValue = NewQLocaleFromPointer(C.QCollator_Locale(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		return tmpValue
 	}
 	return nil
 }
@@ -15788,7 +15984,11 @@ func (ptr *QCollator) Compare(s1 string, s2 string) int {
 	defer qt.Recovering("QCollator::compare")
 
 	if ptr.Pointer() != nil {
-		return int(C.QCollator_Compare(ptr.Pointer(), C.CString(s1), C.CString(s2)))
+		var s1C = C.CString(s1)
+		defer C.free(unsafe.Pointer(s1C))
+		var s2C = C.CString(s2)
+		defer C.free(unsafe.Pointer(s2C))
+		return int(C.QCollator_Compare(ptr.Pointer(), s1C, s2C))
 	}
 	return 0
 }
@@ -15806,7 +16006,11 @@ func (ptr *QCollator) SortKey(stri string) *QCollatorSortKey {
 	defer qt.Recovering("QCollator::sortKey")
 
 	if ptr.Pointer() != nil {
-		return NewQCollatorSortKeyFromPointer(C.QCollator_SortKey(ptr.Pointer(), C.CString(stri)))
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var tmpValue = NewQCollatorSortKeyFromPointer(C.QCollator_SortKey(ptr.Pointer(), striC))
+		runtime.SetFinalizer(tmpValue, (*QCollatorSortKey).DestroyQCollatorSortKey)
+		return tmpValue
 	}
 	return nil
 }
@@ -15938,25 +16142,45 @@ func NewQCommandLineOption5(other QCommandLineOption_ITF) *QCommandLineOption {
 func NewQCommandLineOption(name string) *QCommandLineOption {
 	defer qt.Recovering("QCommandLineOption::QCommandLineOption")
 
-	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption(nameC))
 }
 
 func NewQCommandLineOption3(name string, description string, valueName string, defaultValue string) *QCommandLineOption {
 	defer qt.Recovering("QCommandLineOption::QCommandLineOption")
 
-	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption3(C.CString(name), C.CString(description), C.CString(valueName), C.CString(defaultValue)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var descriptionC = C.CString(description)
+	defer C.free(unsafe.Pointer(descriptionC))
+	var valueNameC = C.CString(valueName)
+	defer C.free(unsafe.Pointer(valueNameC))
+	var defaultValueC = C.CString(defaultValue)
+	defer C.free(unsafe.Pointer(defaultValueC))
+	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption3(nameC, descriptionC, valueNameC, defaultValueC))
 }
 
 func NewQCommandLineOption2(names []string) *QCommandLineOption {
 	defer qt.Recovering("QCommandLineOption::QCommandLineOption")
 
-	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption2(C.CString(strings.Join(names, "|"))))
+	var namesC = C.CString(strings.Join(names, "|"))
+	defer C.free(unsafe.Pointer(namesC))
+	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption2(namesC))
 }
 
 func NewQCommandLineOption4(names []string, description string, valueName string, defaultValue string) *QCommandLineOption {
 	defer qt.Recovering("QCommandLineOption::QCommandLineOption")
 
-	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(C.CString(strings.Join(names, "|")), C.CString(description), C.CString(valueName), C.CString(defaultValue)))
+	var namesC = C.CString(strings.Join(names, "|"))
+	defer C.free(unsafe.Pointer(namesC))
+	var descriptionC = C.CString(description)
+	defer C.free(unsafe.Pointer(descriptionC))
+	var valueNameC = C.CString(valueName)
+	defer C.free(unsafe.Pointer(valueNameC))
+	var defaultValueC = C.CString(defaultValue)
+	defer C.free(unsafe.Pointer(defaultValueC))
+	return newQCommandLineOptionFromPointer(C.QCommandLineOption_NewQCommandLineOption4(namesC, descriptionC, valueNameC, defaultValueC))
 }
 
 func (ptr *QCommandLineOption) DefaultValues() []string {
@@ -15999,7 +16223,9 @@ func (ptr *QCommandLineOption) SetDefaultValue(defaultValue string) {
 	defer qt.Recovering("QCommandLineOption::setDefaultValue")
 
 	if ptr.Pointer() != nil {
-		C.QCommandLineOption_SetDefaultValue(ptr.Pointer(), C.CString(defaultValue))
+		var defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+		C.QCommandLineOption_SetDefaultValue(ptr.Pointer(), defaultValueC)
 	}
 }
 
@@ -16007,7 +16233,9 @@ func (ptr *QCommandLineOption) SetDefaultValues(defaultValues []string) {
 	defer qt.Recovering("QCommandLineOption::setDefaultValues")
 
 	if ptr.Pointer() != nil {
-		C.QCommandLineOption_SetDefaultValues(ptr.Pointer(), C.CString(strings.Join(defaultValues, "|")))
+		var defaultValuesC = C.CString(strings.Join(defaultValues, "|"))
+		defer C.free(unsafe.Pointer(defaultValuesC))
+		C.QCommandLineOption_SetDefaultValues(ptr.Pointer(), defaultValuesC)
 	}
 }
 
@@ -16015,7 +16243,9 @@ func (ptr *QCommandLineOption) SetDescription(description string) {
 	defer qt.Recovering("QCommandLineOption::setDescription")
 
 	if ptr.Pointer() != nil {
-		C.QCommandLineOption_SetDescription(ptr.Pointer(), C.CString(description))
+		var descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+		C.QCommandLineOption_SetDescription(ptr.Pointer(), descriptionC)
 	}
 }
 
@@ -16031,7 +16261,9 @@ func (ptr *QCommandLineOption) SetValueName(valueName string) {
 	defer qt.Recovering("QCommandLineOption::setValueName")
 
 	if ptr.Pointer() != nil {
-		C.QCommandLineOption_SetValueName(ptr.Pointer(), C.CString(valueName))
+		var valueNameC = C.CString(valueName)
+		defer C.free(unsafe.Pointer(valueNameC))
+		C.QCommandLineOption_SetValueName(ptr.Pointer(), valueNameC)
 	}
 }
 
@@ -16130,7 +16362,9 @@ func (ptr *QCommandLineParser) AddHelpOption() *QCommandLineOption {
 	defer qt.Recovering("QCommandLineParser::addHelpOption")
 
 	if ptr.Pointer() != nil {
-		return NewQCommandLineOptionFromPointer(C.QCommandLineParser_AddHelpOption(ptr.Pointer()))
+		var tmpValue = NewQCommandLineOptionFromPointer(C.QCommandLineParser_AddHelpOption(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+		return tmpValue
 	}
 	return nil
 }
@@ -16148,7 +16382,13 @@ func (ptr *QCommandLineParser) AddPositionalArgument(name string, description st
 	defer qt.Recovering("QCommandLineParser::addPositionalArgument")
 
 	if ptr.Pointer() != nil {
-		C.QCommandLineParser_AddPositionalArgument(ptr.Pointer(), C.CString(name), C.CString(description), C.CString(syntax))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+		var syntaxC = C.CString(syntax)
+		defer C.free(unsafe.Pointer(syntaxC))
+		C.QCommandLineParser_AddPositionalArgument(ptr.Pointer(), nameC, descriptionC, syntaxC)
 	}
 }
 
@@ -16156,7 +16396,9 @@ func (ptr *QCommandLineParser) AddVersionOption() *QCommandLineOption {
 	defer qt.Recovering("QCommandLineParser::addVersionOption")
 
 	if ptr.Pointer() != nil {
-		return NewQCommandLineOptionFromPointer(C.QCommandLineParser_AddVersionOption(ptr.Pointer()))
+		var tmpValue = NewQCommandLineOptionFromPointer(C.QCommandLineParser_AddVersionOption(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QCommandLineOption).DestroyQCommandLineOption)
+		return tmpValue
 	}
 	return nil
 }
@@ -16209,7 +16451,9 @@ func (ptr *QCommandLineParser) IsSet(name string) bool {
 	defer qt.Recovering("QCommandLineParser::isSet")
 
 	if ptr.Pointer() != nil {
-		return C.QCommandLineParser_IsSet(ptr.Pointer(), C.CString(name)) != 0
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return C.QCommandLineParser_IsSet(ptr.Pointer(), nameC) != 0
 	}
 	return false
 }
@@ -16227,7 +16471,9 @@ func (ptr *QCommandLineParser) Parse(arguments []string) bool {
 	defer qt.Recovering("QCommandLineParser::parse")
 
 	if ptr.Pointer() != nil {
-		return C.QCommandLineParser_Parse(ptr.Pointer(), C.CString(strings.Join(arguments, "|"))) != 0
+		var argumentsC = C.CString(strings.Join(arguments, "|"))
+		defer C.free(unsafe.Pointer(argumentsC))
+		return C.QCommandLineParser_Parse(ptr.Pointer(), argumentsC) != 0
 	}
 	return false
 }
@@ -16253,7 +16499,9 @@ func (ptr *QCommandLineParser) Process(arguments []string) {
 	defer qt.Recovering("QCommandLineParser::process")
 
 	if ptr.Pointer() != nil {
-		C.QCommandLineParser_Process(ptr.Pointer(), C.CString(strings.Join(arguments, "|")))
+		var argumentsC = C.CString(strings.Join(arguments, "|"))
+		defer C.free(unsafe.Pointer(argumentsC))
+		C.QCommandLineParser_Process(ptr.Pointer(), argumentsC)
 	}
 }
 
@@ -16261,7 +16509,9 @@ func (ptr *QCommandLineParser) SetApplicationDescription(description string) {
 	defer qt.Recovering("QCommandLineParser::setApplicationDescription")
 
 	if ptr.Pointer() != nil {
-		C.QCommandLineParser_SetApplicationDescription(ptr.Pointer(), C.CString(description))
+		var descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+		C.QCommandLineParser_SetApplicationDescription(ptr.Pointer(), descriptionC)
 	}
 }
 
@@ -16319,7 +16569,9 @@ func (ptr *QCommandLineParser) Value(optionName string) string {
 	defer qt.Recovering("QCommandLineParser::value")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCommandLineParser_Value(ptr.Pointer(), C.CString(optionName)))
+		var optionNameC = C.CString(optionName)
+		defer C.free(unsafe.Pointer(optionNameC))
+		return C.GoString(C.QCommandLineParser_Value(ptr.Pointer(), optionNameC))
 	}
 	return ""
 }
@@ -16337,7 +16589,9 @@ func (ptr *QCommandLineParser) Values(optionName string) []string {
 	defer qt.Recovering("QCommandLineParser::values")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QCommandLineParser_Values(ptr.Pointer(), C.CString(optionName))), "|")
+		var optionNameC = C.CString(optionName)
+		defer C.free(unsafe.Pointer(optionNameC))
+		return strings.Split(C.GoString(C.QCommandLineParser_Values(ptr.Pointer(), optionNameC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -16504,49 +16758,65 @@ func (ptr *QCoreApplication) OrganizationName() string {
 func QCoreApplication_SetApplicationName(application string) {
 	defer qt.Recovering("QCoreApplication::setApplicationName")
 
-	C.QCoreApplication_QCoreApplication_SetApplicationName(C.CString(application))
+	var applicationC = C.CString(application)
+	defer C.free(unsafe.Pointer(applicationC))
+	C.QCoreApplication_QCoreApplication_SetApplicationName(applicationC)
 }
 
 func (ptr *QCoreApplication) SetApplicationName(application string) {
 	defer qt.Recovering("QCoreApplication::setApplicationName")
 
-	C.QCoreApplication_QCoreApplication_SetApplicationName(C.CString(application))
+	var applicationC = C.CString(application)
+	defer C.free(unsafe.Pointer(applicationC))
+	C.QCoreApplication_QCoreApplication_SetApplicationName(applicationC)
 }
 
 func QCoreApplication_SetApplicationVersion(version string) {
 	defer qt.Recovering("QCoreApplication::setApplicationVersion")
 
-	C.QCoreApplication_QCoreApplication_SetApplicationVersion(C.CString(version))
+	var versionC = C.CString(version)
+	defer C.free(unsafe.Pointer(versionC))
+	C.QCoreApplication_QCoreApplication_SetApplicationVersion(versionC)
 }
 
 func (ptr *QCoreApplication) SetApplicationVersion(version string) {
 	defer qt.Recovering("QCoreApplication::setApplicationVersion")
 
-	C.QCoreApplication_QCoreApplication_SetApplicationVersion(C.CString(version))
+	var versionC = C.CString(version)
+	defer C.free(unsafe.Pointer(versionC))
+	C.QCoreApplication_QCoreApplication_SetApplicationVersion(versionC)
 }
 
 func QCoreApplication_SetOrganizationDomain(orgDomain string) {
 	defer qt.Recovering("QCoreApplication::setOrganizationDomain")
 
-	C.QCoreApplication_QCoreApplication_SetOrganizationDomain(C.CString(orgDomain))
+	var orgDomainC = C.CString(orgDomain)
+	defer C.free(unsafe.Pointer(orgDomainC))
+	C.QCoreApplication_QCoreApplication_SetOrganizationDomain(orgDomainC)
 }
 
 func (ptr *QCoreApplication) SetOrganizationDomain(orgDomain string) {
 	defer qt.Recovering("QCoreApplication::setOrganizationDomain")
 
-	C.QCoreApplication_QCoreApplication_SetOrganizationDomain(C.CString(orgDomain))
+	var orgDomainC = C.CString(orgDomain)
+	defer C.free(unsafe.Pointer(orgDomainC))
+	C.QCoreApplication_QCoreApplication_SetOrganizationDomain(orgDomainC)
 }
 
 func QCoreApplication_SetOrganizationName(orgName string) {
 	defer qt.Recovering("QCoreApplication::setOrganizationName")
 
-	C.QCoreApplication_QCoreApplication_SetOrganizationName(C.CString(orgName))
+	var orgNameC = C.CString(orgName)
+	defer C.free(unsafe.Pointer(orgNameC))
+	C.QCoreApplication_QCoreApplication_SetOrganizationName(orgNameC)
 }
 
 func (ptr *QCoreApplication) SetOrganizationName(orgName string) {
 	defer qt.Recovering("QCoreApplication::setOrganizationName")
 
-	C.QCoreApplication_QCoreApplication_SetOrganizationName(C.CString(orgName))
+	var orgNameC = C.CString(orgName)
+	defer C.free(unsafe.Pointer(orgNameC))
+	C.QCoreApplication_QCoreApplication_SetOrganizationName(orgNameC)
 }
 
 func QCoreApplication_SetQuitLockEnabled(enabled bool) {
@@ -16564,7 +16834,9 @@ func (ptr *QCoreApplication) SetQuitLockEnabled(enabled bool) {
 func NewQCoreApplication(argc int, argv []string) *QCoreApplication {
 	defer qt.Recovering("QCoreApplication::QCoreApplication")
 
-	return newQCoreApplicationFromPointer(C.QCoreApplication_NewQCoreApplication(C.int(argc), C.CString(strings.Join(argv, "|"))))
+	var argvC = C.CString(strings.Join(argv, "|"))
+	defer C.free(unsafe.Pointer(argvC))
+	return newQCoreApplicationFromPointer(C.QCoreApplication_NewQCoreApplication(C.int(argc), argvC))
 }
 
 //export callbackQCoreApplication_AboutToQuit
@@ -16598,13 +16870,17 @@ func (ptr *QCoreApplication) DisconnectAboutToQuit() {
 func QCoreApplication_AddLibraryPath(path string) {
 	defer qt.Recovering("QCoreApplication::addLibraryPath")
 
-	C.QCoreApplication_QCoreApplication_AddLibraryPath(C.CString(path))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QCoreApplication_QCoreApplication_AddLibraryPath(pathC)
 }
 
 func (ptr *QCoreApplication) AddLibraryPath(path string) {
 	defer qt.Recovering("QCoreApplication::addLibraryPath")
 
-	C.QCoreApplication_QCoreApplication_AddLibraryPath(C.CString(path))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QCoreApplication_QCoreApplication_AddLibraryPath(pathC)
 }
 
 func QCoreApplication_ApplicationDirPath() string {
@@ -16893,13 +17169,17 @@ func (ptr *QCoreApplication) Quit() {
 func QCoreApplication_RemoveLibraryPath(path string) {
 	defer qt.Recovering("QCoreApplication::removeLibraryPath")
 
-	C.QCoreApplication_QCoreApplication_RemoveLibraryPath(C.CString(path))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QCoreApplication_QCoreApplication_RemoveLibraryPath(pathC)
 }
 
 func (ptr *QCoreApplication) RemoveLibraryPath(path string) {
 	defer qt.Recovering("QCoreApplication::removeLibraryPath")
 
-	C.QCoreApplication_QCoreApplication_RemoveLibraryPath(C.CString(path))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QCoreApplication_QCoreApplication_RemoveLibraryPath(pathC)
 }
 
 func (ptr *QCoreApplication) RemoveNativeEventFilter(filterObject QAbstractNativeEventFilter_ITF) {
@@ -16985,13 +17265,17 @@ func (ptr *QCoreApplication) SetEventDispatcher(eventDispatcher QAbstractEventDi
 func QCoreApplication_SetLibraryPaths(paths []string) {
 	defer qt.Recovering("QCoreApplication::setLibraryPaths")
 
-	C.QCoreApplication_QCoreApplication_SetLibraryPaths(C.CString(strings.Join(paths, "|")))
+	var pathsC = C.CString(strings.Join(paths, "|"))
+	defer C.free(unsafe.Pointer(pathsC))
+	C.QCoreApplication_QCoreApplication_SetLibraryPaths(pathsC)
 }
 
 func (ptr *QCoreApplication) SetLibraryPaths(paths []string) {
 	defer qt.Recovering("QCoreApplication::setLibraryPaths")
 
-	C.QCoreApplication_QCoreApplication_SetLibraryPaths(C.CString(strings.Join(paths, "|")))
+	var pathsC = C.CString(strings.Join(paths, "|"))
+	defer C.free(unsafe.Pointer(pathsC))
+	C.QCoreApplication_QCoreApplication_SetLibraryPaths(pathsC)
 }
 
 func QCoreApplication_SetSetuidAllowed(allow bool) {
@@ -17033,13 +17317,25 @@ func (ptr *QCoreApplication) TestAttribute(attribute Qt__ApplicationAttribute) b
 func QCoreApplication_Translate(context string, sourceText string, disambiguation string, n int) string {
 	defer qt.Recovering("QCoreApplication::translate")
 
-	return C.GoString(C.QCoreApplication_QCoreApplication_Translate(C.CString(context), C.CString(sourceText), C.CString(disambiguation), C.int(n)))
+	var contextC = C.CString(context)
+	defer C.free(unsafe.Pointer(contextC))
+	var sourceTextC = C.CString(sourceText)
+	defer C.free(unsafe.Pointer(sourceTextC))
+	var disambiguationC = C.CString(disambiguation)
+	defer C.free(unsafe.Pointer(disambiguationC))
+	return C.GoString(C.QCoreApplication_QCoreApplication_Translate(contextC, sourceTextC, disambiguationC, C.int(n)))
 }
 
 func (ptr *QCoreApplication) Translate(context string, sourceText string, disambiguation string, n int) string {
 	defer qt.Recovering("QCoreApplication::translate")
 
-	return C.GoString(C.QCoreApplication_QCoreApplication_Translate(C.CString(context), C.CString(sourceText), C.CString(disambiguation), C.int(n)))
+	var contextC = C.CString(context)
+	defer C.free(unsafe.Pointer(contextC))
+	var sourceTextC = C.CString(sourceText)
+	defer C.free(unsafe.Pointer(sourceTextC))
+	var disambiguationC = C.CString(disambiguation)
+	defer C.free(unsafe.Pointer(disambiguationC))
+	return C.GoString(C.QCoreApplication_QCoreApplication_Translate(contextC, sourceTextC, disambiguationC, C.int(n)))
 }
 
 func (ptr *QCoreApplication) DestroyQCoreApplication() {
@@ -17511,7 +17807,9 @@ func (ptr *QCryptographicHash) AddData2(data string) {
 	defer qt.Recovering("QCryptographicHash::addData")
 
 	if ptr.Pointer() != nil {
-		C.QCryptographicHash_AddData2(ptr.Pointer(), C.CString(data))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QCryptographicHash_AddData2(ptr.Pointer(), dataC)
 	}
 }
 
@@ -17519,20 +17817,26 @@ func (ptr *QCryptographicHash) AddData(data string, length int) {
 	defer qt.Recovering("QCryptographicHash::addData")
 
 	if ptr.Pointer() != nil {
-		C.QCryptographicHash_AddData(ptr.Pointer(), C.CString(data), C.int(length))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QCryptographicHash_AddData(ptr.Pointer(), dataC, C.int(length))
 	}
 }
 
 func QCryptographicHash_Hash(data string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QCryptographicHash::hash")
 
-	return C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(C.CString(data), C.int(method)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	return C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(dataC, C.int(method)))
 }
 
 func (ptr *QCryptographicHash) Hash(data string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QCryptographicHash::hash")
 
-	return C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(C.CString(data), C.int(method)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	return C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(dataC, C.int(method)))
 }
 
 func (ptr *QCryptographicHash) Reset() {
@@ -17664,7 +17968,9 @@ func newQDataStreamFromPointer(ptr unsafe.Pointer) *QDataStream {
 func NewQDataStream3(a string, mode QIODevice__OpenModeFlag) *QDataStream {
 	defer qt.Recovering("QDataStream::QDataStream")
 
-	return newQDataStreamFromPointer(C.QDataStream_NewQDataStream3(C.CString(a), C.int(mode)))
+	var aC = C.CString(a)
+	defer C.free(unsafe.Pointer(aC))
+	return newQDataStreamFromPointer(C.QDataStream_NewQDataStream3(aC, C.int(mode)))
 }
 
 func (ptr *QDataStream) AtEnd() bool {
@@ -17691,7 +17997,9 @@ func NewQDataStream2(d QIODevice_ITF) *QDataStream {
 func NewQDataStream4(a string) *QDataStream {
 	defer qt.Recovering("QDataStream::QDataStream")
 
-	return newQDataStreamFromPointer(C.QDataStream_NewQDataStream4(C.CString(a)))
+	var aC = C.CString(a)
+	defer C.free(unsafe.Pointer(aC))
+	return newQDataStreamFromPointer(C.QDataStream_NewQDataStream4(aC))
 }
 
 func (ptr *QDataStream) AbortTransaction() {
@@ -17742,7 +18050,9 @@ func (ptr *QDataStream) ReadRawData(s string, len int) int {
 	defer qt.Recovering("QDataStream::readRawData")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDataStream_ReadRawData(ptr.Pointer(), C.CString(s), C.int(len)))
+		var sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+		return int(C.QDataStream_ReadRawData(ptr.Pointer(), sC, C.int(len)))
 	}
 	return 0
 }
@@ -17842,7 +18152,9 @@ func (ptr *QDataStream) WriteRawData(s string, len int) int {
 	defer qt.Recovering("QDataStream::writeRawData")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDataStream_WriteRawData(ptr.Pointer(), C.CString(s), C.int(len)))
+		var sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+		return int(C.QDataStream_WriteRawData(ptr.Pointer(), sC, C.int(len)))
 	}
 	return 0
 }
@@ -17905,6 +18217,11 @@ func NewQDateFromPointer(ptr unsafe.Pointer) *QDate {
 func newQDateFromPointer(ptr unsafe.Pointer) *QDate {
 	var n = NewQDateFromPointer(ptr)
 	return n
+}
+
+func (ptr *QDate) DestroyQDate() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func QDate_IsLeapYear(year int) bool {
@@ -18111,7 +18428,9 @@ func (ptr *QDate) ToString(format string) string {
 	defer qt.Recovering("QDate::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDate_ToString(ptr.Pointer(), C.CString(format)))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.GoString(C.QDate_ToString(ptr.Pointer(), formatC))
 	}
 	return ""
 }
@@ -18180,25 +18499,33 @@ func newQDateTimeFromPointer(ptr unsafe.Pointer) *QDateTime {
 func QDateTime_CurrentDateTime() *QDateTime {
 	defer qt.Recovering("QDateTime::currentDateTime")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTime())
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTime())
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) CurrentDateTime() *QDateTime {
 	defer qt.Recovering("QDateTime::currentDateTime")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTime())
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTime())
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func QDateTime_CurrentDateTimeUtc() *QDateTime {
 	defer qt.Recovering("QDateTime::currentDateTimeUtc")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) CurrentDateTimeUtc() *QDateTime {
 	defer qt.Recovering("QDateTime::currentDateTimeUtc")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_CurrentDateTimeUtc())
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func QDateTime_CurrentMSecsSinceEpoch() int64 {
@@ -18216,32 +18543,54 @@ func (ptr *QDateTime) CurrentMSecsSinceEpoch() int64 {
 func QDateTime_FromString(stri string, format Qt__DateFormat) *QDateTime {
 	defer qt.Recovering("QDateTime::fromString")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(C.CString(stri), C.int(format)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(striC, C.int(format)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) FromString(stri string, format Qt__DateFormat) *QDateTime {
 	defer qt.Recovering("QDateTime::fromString")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(C.CString(stri), C.int(format)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString(striC, C.int(format)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func QDateTime_FromString2(stri string, format string) *QDateTime {
 	defer qt.Recovering("QDateTime::fromString")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(C.CString(stri), C.CString(format)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(striC, formatC))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) FromString2(stri string, format string) *QDateTime {
 	defer qt.Recovering("QDateTime::fromString")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(C.CString(stri), C.CString(format)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromString2(striC, formatC))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) ToOffsetFromUtc(offsetSeconds int) *QDateTime {
 	defer qt.Recovering("QDateTime::toOffsetFromUtc")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_ToOffsetFromUtc(ptr.Pointer(), C.int(offsetSeconds)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_ToOffsetFromUtc(ptr.Pointer(), C.int(offsetSeconds)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18259,7 +18608,9 @@ func (ptr *QDateTime) ToTimeSpec(spec Qt__TimeSpec) *QDateTime {
 	defer qt.Recovering("QDateTime::toTimeSpec")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_ToTimeSpec(ptr.Pointer(), C.int(spec)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_ToTimeSpec(ptr.Pointer(), C.int(spec)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18304,7 +18655,9 @@ func (ptr *QDateTime) AddDays(ndays int64) *QDateTime {
 	defer qt.Recovering("QDateTime::addDays")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_AddDays(ptr.Pointer(), C.longlong(ndays)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_AddDays(ptr.Pointer(), C.longlong(ndays)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18313,7 +18666,9 @@ func (ptr *QDateTime) AddMSecs(msecs int64) *QDateTime {
 	defer qt.Recovering("QDateTime::addMSecs")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_AddMSecs(ptr.Pointer(), C.longlong(msecs)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_AddMSecs(ptr.Pointer(), C.longlong(msecs)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18322,7 +18677,9 @@ func (ptr *QDateTime) AddMonths(nmonths int) *QDateTime {
 	defer qt.Recovering("QDateTime::addMonths")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_AddMonths(ptr.Pointer(), C.int(nmonths)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_AddMonths(ptr.Pointer(), C.int(nmonths)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18331,7 +18688,9 @@ func (ptr *QDateTime) AddSecs(s int64) *QDateTime {
 	defer qt.Recovering("QDateTime::addSecs")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_AddSecs(ptr.Pointer(), C.longlong(s)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_AddSecs(ptr.Pointer(), C.longlong(s)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18340,7 +18699,9 @@ func (ptr *QDateTime) AddYears(nyears int) *QDateTime {
 	defer qt.Recovering("QDateTime::addYears")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_AddYears(ptr.Pointer(), C.int(nyears)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_AddYears(ptr.Pointer(), C.int(nyears)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18357,37 +18718,49 @@ func (ptr *QDateTime) DaysTo(other QDateTime_ITF) int64 {
 func QDateTime_FromMSecsSinceEpoch(msecs int64) *QDateTime {
 	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch(C.longlong(msecs)))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch(C.longlong(msecs)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) FromMSecsSinceEpoch(msecs int64) *QDateTime {
 	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch(C.longlong(msecs)))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch(C.longlong(msecs)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func QDateTime_FromMSecsSinceEpoch2(msecs int64, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
 	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch2(C.longlong(msecs), C.int(spec), C.int(offsetSeconds)))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch2(C.longlong(msecs), C.int(spec), C.int(offsetSeconds)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) FromMSecsSinceEpoch2(msecs int64, spec Qt__TimeSpec, offsetSeconds int) *QDateTime {
 	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch2(C.longlong(msecs), C.int(spec), C.int(offsetSeconds)))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch2(C.longlong(msecs), C.int(spec), C.int(offsetSeconds)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func QDateTime_FromMSecsSinceEpoch3(msecs int64, timeZone QTimeZone_ITF) *QDateTime {
 	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch3(C.longlong(msecs), PointerFromQTimeZone(timeZone)))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch3(C.longlong(msecs), PointerFromQTimeZone(timeZone)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) FromMSecsSinceEpoch3(msecs int64, timeZone QTimeZone_ITF) *QDateTime {
 	defer qt.Recovering("QDateTime::fromMSecsSinceEpoch")
 
-	return NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch3(C.longlong(msecs), PointerFromQTimeZone(timeZone)))
+	var tmpValue = NewQDateTimeFromPointer(C.QDateTime_QDateTime_FromMSecsSinceEpoch3(C.longlong(msecs), PointerFromQTimeZone(timeZone)))
+	runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+	return tmpValue
 }
 
 func (ptr *QDateTime) IsDaylightTime() bool {
@@ -18513,7 +18886,9 @@ func (ptr *QDateTime) TimeZone() *QTimeZone {
 	defer qt.Recovering("QDateTime::timeZone")
 
 	if ptr.Pointer() != nil {
-		return NewQTimeZoneFromPointer(C.QDateTime_TimeZone(ptr.Pointer()))
+		var tmpValue = NewQTimeZoneFromPointer(C.QDateTime_TimeZone(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+		return tmpValue
 	}
 	return nil
 }
@@ -18531,7 +18906,9 @@ func (ptr *QDateTime) ToLocalTime() *QDateTime {
 	defer qt.Recovering("QDateTime::toLocalTime")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_ToLocalTime(ptr.Pointer()))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_ToLocalTime(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18549,7 +18926,9 @@ func (ptr *QDateTime) ToString(format string) string {
 	defer qt.Recovering("QDateTime::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDateTime_ToString(ptr.Pointer(), C.CString(format)))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.GoString(C.QDateTime_ToString(ptr.Pointer(), formatC))
 	}
 	return ""
 }
@@ -18558,7 +18937,9 @@ func (ptr *QDateTime) ToTimeZone(timeZone QTimeZone_ITF) *QDateTime {
 	defer qt.Recovering("QDateTime::toTimeZone")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_ToTimeZone(ptr.Pointer(), PointerFromQTimeZone(timeZone)))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_ToTimeZone(ptr.Pointer(), PointerFromQTimeZone(timeZone)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18567,7 +18948,9 @@ func (ptr *QDateTime) ToUTC() *QDateTime {
 	defer qt.Recovering("QDateTime::toUTC")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QDateTime_ToUTC(ptr.Pointer()))
+		var tmpValue = NewQDateTimeFromPointer(C.QDateTime_ToUTC(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -18642,7 +19025,9 @@ func NewQDebug(device QIODevice_ITF) *QDebug {
 func NewQDebug2(stri string) *QDebug {
 	defer qt.Recovering("QDebug::QDebug")
 
-	return newQDebugFromPointer(C.QDebug_NewQDebug2(C.CString(stri)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	return newQDebugFromPointer(C.QDebug_NewQDebug2(striC))
 }
 
 func NewQDebug4(other QDebug_ITF) *QDebug {
@@ -18664,7 +19049,11 @@ func (ptr *QDebug) MaybeQuote(c string) *QDebug {
 	defer qt.Recovering("QDebug::maybeQuote")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QDebug_MaybeQuote(ptr.Pointer(), C.CString(c)))
+		var cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+		var tmpValue = NewQDebugFromPointer(C.QDebug_MaybeQuote(ptr.Pointer(), cC))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -18673,7 +19062,9 @@ func (ptr *QDebug) MaybeSpace() *QDebug {
 	defer qt.Recovering("QDebug::maybeSpace")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QDebug_MaybeSpace(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QDebug_MaybeSpace(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -18682,7 +19073,9 @@ func (ptr *QDebug) Noquote() *QDebug {
 	defer qt.Recovering("QDebug::noquote")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QDebug_Noquote(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QDebug_Noquote(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -18691,7 +19084,9 @@ func (ptr *QDebug) Nospace() *QDebug {
 	defer qt.Recovering("QDebug::nospace")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QDebug_Nospace(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QDebug_Nospace(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -18700,7 +19095,9 @@ func (ptr *QDebug) Quote() *QDebug {
 	defer qt.Recovering("QDebug::quote")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QDebug_Quote(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QDebug_Quote(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -18709,7 +19106,9 @@ func (ptr *QDebug) ResetFormat() *QDebug {
 	defer qt.Recovering("QDebug::resetFormat")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QDebug_ResetFormat(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QDebug_ResetFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -18734,7 +19133,9 @@ func (ptr *QDebug) Space() *QDebug {
 	defer qt.Recovering("QDebug::space")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QDebug_Space(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QDebug_Space(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -18910,20 +19311,28 @@ func NewQDir(dir QDir_ITF) *QDir {
 func NewQDir2(path string) *QDir {
 	defer qt.Recovering("QDir::QDir")
 
-	return newQDirFromPointer(C.QDir_NewQDir2(C.CString(path)))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return newQDirFromPointer(C.QDir_NewQDir2(pathC))
 }
 
 func NewQDir3(path string, nameFilter string, sort QDir__SortFlag, filters QDir__Filter) *QDir {
 	defer qt.Recovering("QDir::QDir")
 
-	return newQDirFromPointer(C.QDir_NewQDir3(C.CString(path), C.CString(nameFilter), C.int(sort), C.int(filters)))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	var nameFilterC = C.CString(nameFilter)
+	defer C.free(unsafe.Pointer(nameFilterC))
+	return newQDirFromPointer(C.QDir_NewQDir3(pathC, nameFilterC, C.int(sort), C.int(filters)))
 }
 
 func (ptr *QDir) AbsoluteFilePath(fileName string) string {
 	defer qt.Recovering("QDir::absoluteFilePath")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDir_AbsoluteFilePath(ptr.Pointer(), C.CString(fileName)))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		return C.GoString(C.QDir_AbsoluteFilePath(ptr.Pointer(), fileNameC))
 	}
 	return ""
 }
@@ -18940,13 +19349,21 @@ func (ptr *QDir) AbsolutePath() string {
 func QDir_AddSearchPath(prefix string, path string) {
 	defer qt.Recovering("QDir::addSearchPath")
 
-	C.QDir_QDir_AddSearchPath(C.CString(prefix), C.CString(path))
+	var prefixC = C.CString(prefix)
+	defer C.free(unsafe.Pointer(prefixC))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QDir_QDir_AddSearchPath(prefixC, pathC)
 }
 
 func (ptr *QDir) AddSearchPath(prefix string, path string) {
 	defer qt.Recovering("QDir::addSearchPath")
 
-	C.QDir_QDir_AddSearchPath(C.CString(prefix), C.CString(path))
+	var prefixC = C.CString(prefix)
+	defer C.free(unsafe.Pointer(prefixC))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QDir_QDir_AddSearchPath(prefixC, pathC)
 }
 
 func (ptr *QDir) CanonicalPath() string {
@@ -18962,7 +19379,9 @@ func (ptr *QDir) Cd(dirName string) bool {
 	defer qt.Recovering("QDir::cd")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Cd(ptr.Pointer(), C.CString(dirName)) != 0
+		var dirNameC = C.CString(dirName)
+		defer C.free(unsafe.Pointer(dirNameC))
+		return C.QDir_Cd(ptr.Pointer(), dirNameC) != 0
 	}
 	return false
 }
@@ -18979,25 +19398,33 @@ func (ptr *QDir) CdUp() bool {
 func QDir_CleanPath(path string) string {
 	defer qt.Recovering("QDir::cleanPath")
 
-	return C.GoString(C.QDir_QDir_CleanPath(C.CString(path)))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.GoString(C.QDir_QDir_CleanPath(pathC))
 }
 
 func (ptr *QDir) CleanPath(path string) string {
 	defer qt.Recovering("QDir::cleanPath")
 
-	return C.GoString(C.QDir_QDir_CleanPath(C.CString(path)))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.GoString(C.QDir_QDir_CleanPath(pathC))
 }
 
 func QDir_Current() *QDir {
 	defer qt.Recovering("QDir::current")
 
-	return NewQDirFromPointer(C.QDir_QDir_Current())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Current())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func (ptr *QDir) Current() *QDir {
 	defer qt.Recovering("QDir::current")
 
-	return NewQDirFromPointer(C.QDir_QDir_Current())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Current())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func QDir_CurrentPath() string {
@@ -19034,7 +19461,9 @@ func (ptr *QDir) EntryList(nameFilters []string, filters QDir__Filter, sort QDir
 	defer qt.Recovering("QDir::entryList")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QDir_EntryList(ptr.Pointer(), C.CString(strings.Join(nameFilters, "|")), C.int(filters), C.int(sort))), "|")
+		var nameFiltersC = C.CString(strings.Join(nameFilters, "|"))
+		defer C.free(unsafe.Pointer(nameFiltersC))
+		return strings.Split(C.GoString(C.QDir_EntryList(ptr.Pointer(), nameFiltersC, C.int(filters), C.int(sort))), "|")
 	}
 	return make([]string, 0)
 }
@@ -19052,7 +19481,9 @@ func (ptr *QDir) Exists(name string) bool {
 	defer qt.Recovering("QDir::exists")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Exists(ptr.Pointer(), C.CString(name)) != 0
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return C.QDir_Exists(ptr.Pointer(), nameC) != 0
 	}
 	return false
 }
@@ -19061,7 +19492,9 @@ func (ptr *QDir) FilePath(fileName string) string {
 	defer qt.Recovering("QDir::filePath")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDir_FilePath(ptr.Pointer(), C.CString(fileName)))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		return C.GoString(C.QDir_FilePath(ptr.Pointer(), fileNameC))
 	}
 	return ""
 }
@@ -19078,25 +19511,33 @@ func (ptr *QDir) Filter() QDir__Filter {
 func QDir_FromNativeSeparators(pathName string) string {
 	defer qt.Recovering("QDir::fromNativeSeparators")
 
-	return C.GoString(C.QDir_QDir_FromNativeSeparators(C.CString(pathName)))
+	var pathNameC = C.CString(pathName)
+	defer C.free(unsafe.Pointer(pathNameC))
+	return C.GoString(C.QDir_QDir_FromNativeSeparators(pathNameC))
 }
 
 func (ptr *QDir) FromNativeSeparators(pathName string) string {
 	defer qt.Recovering("QDir::fromNativeSeparators")
 
-	return C.GoString(C.QDir_QDir_FromNativeSeparators(C.CString(pathName)))
+	var pathNameC = C.CString(pathName)
+	defer C.free(unsafe.Pointer(pathNameC))
+	return C.GoString(C.QDir_QDir_FromNativeSeparators(pathNameC))
 }
 
 func QDir_Home() *QDir {
 	defer qt.Recovering("QDir::home")
 
-	return NewQDirFromPointer(C.QDir_QDir_Home())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Home())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func (ptr *QDir) Home() *QDir {
 	defer qt.Recovering("QDir::home")
 
-	return NewQDirFromPointer(C.QDir_QDir_Home())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Home())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func QDir_HomePath() string {
@@ -19123,13 +19564,17 @@ func (ptr *QDir) IsAbsolute() bool {
 func QDir_IsAbsolutePath(path string) bool {
 	defer qt.Recovering("QDir::isAbsolutePath")
 
-	return C.QDir_QDir_IsAbsolutePath(C.CString(path)) != 0
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QDir_QDir_IsAbsolutePath(pathC) != 0
 }
 
 func (ptr *QDir) IsAbsolutePath(path string) bool {
 	defer qt.Recovering("QDir::isAbsolutePath")
 
-	return C.QDir_QDir_IsAbsolutePath(C.CString(path)) != 0
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QDir_QDir_IsAbsolutePath(pathC) != 0
 }
 
 func (ptr *QDir) IsReadable() bool {
@@ -19153,13 +19598,17 @@ func (ptr *QDir) IsRelative() bool {
 func QDir_IsRelativePath(path string) bool {
 	defer qt.Recovering("QDir::isRelativePath")
 
-	return C.QDir_QDir_IsRelativePath(C.CString(path)) != 0
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QDir_QDir_IsRelativePath(pathC) != 0
 }
 
 func (ptr *QDir) IsRelativePath(path string) bool {
 	defer qt.Recovering("QDir::isRelativePath")
 
-	return C.QDir_QDir_IsRelativePath(C.CString(path)) != 0
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QDir_QDir_IsRelativePath(pathC) != 0
 }
 
 func (ptr *QDir) IsRoot() bool {
@@ -19183,32 +19632,50 @@ func (ptr *QDir) MakeAbsolute() bool {
 func QDir_Match(filter string, fileName string) bool {
 	defer qt.Recovering("QDir::match")
 
-	return C.QDir_QDir_Match(C.CString(filter), C.CString(fileName)) != 0
+	var filterC = C.CString(filter)
+	defer C.free(unsafe.Pointer(filterC))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QDir_QDir_Match(filterC, fileNameC) != 0
 }
 
 func (ptr *QDir) Match(filter string, fileName string) bool {
 	defer qt.Recovering("QDir::match")
 
-	return C.QDir_QDir_Match(C.CString(filter), C.CString(fileName)) != 0
+	var filterC = C.CString(filter)
+	defer C.free(unsafe.Pointer(filterC))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QDir_QDir_Match(filterC, fileNameC) != 0
 }
 
 func QDir_Match2(filters []string, fileName string) bool {
 	defer qt.Recovering("QDir::match")
 
-	return C.QDir_QDir_Match2(C.CString(strings.Join(filters, "|")), C.CString(fileName)) != 0
+	var filtersC = C.CString(strings.Join(filters, "|"))
+	defer C.free(unsafe.Pointer(filtersC))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QDir_QDir_Match2(filtersC, fileNameC) != 0
 }
 
 func (ptr *QDir) Match2(filters []string, fileName string) bool {
 	defer qt.Recovering("QDir::match")
 
-	return C.QDir_QDir_Match2(C.CString(strings.Join(filters, "|")), C.CString(fileName)) != 0
+	var filtersC = C.CString(strings.Join(filters, "|"))
+	defer C.free(unsafe.Pointer(filtersC))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QDir_QDir_Match2(filtersC, fileNameC) != 0
 }
 
 func (ptr *QDir) Mkdir(dirName string) bool {
 	defer qt.Recovering("QDir::mkdir")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Mkdir(ptr.Pointer(), C.CString(dirName)) != 0
+		var dirNameC = C.CString(dirName)
+		defer C.free(unsafe.Pointer(dirNameC))
+		return C.QDir_Mkdir(ptr.Pointer(), dirNameC) != 0
 	}
 	return false
 }
@@ -19217,7 +19684,9 @@ func (ptr *QDir) Mkpath(dirPath string) bool {
 	defer qt.Recovering("QDir::mkpath")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Mkpath(ptr.Pointer(), C.CString(dirPath)) != 0
+		var dirPathC = C.CString(dirPath)
+		defer C.free(unsafe.Pointer(dirPathC))
+		return C.QDir_Mkpath(ptr.Pointer(), dirPathC) != 0
 	}
 	return false
 }
@@ -19252,7 +19721,9 @@ func (ptr *QDir) RelativeFilePath(fileName string) string {
 	defer qt.Recovering("QDir::relativeFilePath")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDir_RelativeFilePath(ptr.Pointer(), C.CString(fileName)))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		return C.GoString(C.QDir_RelativeFilePath(ptr.Pointer(), fileNameC))
 	}
 	return ""
 }
@@ -19261,7 +19732,9 @@ func (ptr *QDir) Remove(fileName string) bool {
 	defer qt.Recovering("QDir::remove")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Remove(ptr.Pointer(), C.CString(fileName)) != 0
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		return C.QDir_Remove(ptr.Pointer(), fileNameC) != 0
 	}
 	return false
 }
@@ -19279,7 +19752,11 @@ func (ptr *QDir) Rename(oldName string, newName string) bool {
 	defer qt.Recovering("QDir::rename")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Rename(ptr.Pointer(), C.CString(oldName), C.CString(newName)) != 0
+		var oldNameC = C.CString(oldName)
+		defer C.free(unsafe.Pointer(oldNameC))
+		var newNameC = C.CString(newName)
+		defer C.free(unsafe.Pointer(newNameC))
+		return C.QDir_Rename(ptr.Pointer(), oldNameC, newNameC) != 0
 	}
 	return false
 }
@@ -19288,7 +19765,9 @@ func (ptr *QDir) Rmdir(dirName string) bool {
 	defer qt.Recovering("QDir::rmdir")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Rmdir(ptr.Pointer(), C.CString(dirName)) != 0
+		var dirNameC = C.CString(dirName)
+		defer C.free(unsafe.Pointer(dirNameC))
+		return C.QDir_Rmdir(ptr.Pointer(), dirNameC) != 0
 	}
 	return false
 }
@@ -19297,7 +19776,9 @@ func (ptr *QDir) Rmpath(dirPath string) bool {
 	defer qt.Recovering("QDir::rmpath")
 
 	if ptr.Pointer() != nil {
-		return C.QDir_Rmpath(ptr.Pointer(), C.CString(dirPath)) != 0
+		var dirPathC = C.CString(dirPath)
+		defer C.free(unsafe.Pointer(dirPathC))
+		return C.QDir_Rmpath(ptr.Pointer(), dirPathC) != 0
 	}
 	return false
 }
@@ -19305,13 +19786,17 @@ func (ptr *QDir) Rmpath(dirPath string) bool {
 func QDir_Root() *QDir {
 	defer qt.Recovering("QDir::root")
 
-	return NewQDirFromPointer(C.QDir_QDir_Root())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Root())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func (ptr *QDir) Root() *QDir {
 	defer qt.Recovering("QDir::root")
 
-	return NewQDirFromPointer(C.QDir_QDir_Root())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Root())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func QDir_RootPath() string {
@@ -19329,25 +19814,33 @@ func (ptr *QDir) RootPath() string {
 func QDir_SearchPaths(prefix string) []string {
 	defer qt.Recovering("QDir::searchPaths")
 
-	return strings.Split(C.GoString(C.QDir_QDir_SearchPaths(C.CString(prefix))), "|")
+	var prefixC = C.CString(prefix)
+	defer C.free(unsafe.Pointer(prefixC))
+	return strings.Split(C.GoString(C.QDir_QDir_SearchPaths(prefixC)), "|")
 }
 
 func (ptr *QDir) SearchPaths(prefix string) []string {
 	defer qt.Recovering("QDir::searchPaths")
 
-	return strings.Split(C.GoString(C.QDir_QDir_SearchPaths(C.CString(prefix))), "|")
+	var prefixC = C.CString(prefix)
+	defer C.free(unsafe.Pointer(prefixC))
+	return strings.Split(C.GoString(C.QDir_QDir_SearchPaths(prefixC)), "|")
 }
 
 func QDir_SetCurrent(path string) bool {
 	defer qt.Recovering("QDir::setCurrent")
 
-	return C.QDir_QDir_SetCurrent(C.CString(path)) != 0
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QDir_QDir_SetCurrent(pathC) != 0
 }
 
 func (ptr *QDir) SetCurrent(path string) bool {
 	defer qt.Recovering("QDir::setCurrent")
 
-	return C.QDir_QDir_SetCurrent(C.CString(path)) != 0
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QDir_QDir_SetCurrent(pathC) != 0
 }
 
 func (ptr *QDir) SetFilter(filters QDir__Filter) {
@@ -19362,7 +19855,9 @@ func (ptr *QDir) SetNameFilters(nameFilters []string) {
 	defer qt.Recovering("QDir::setNameFilters")
 
 	if ptr.Pointer() != nil {
-		C.QDir_SetNameFilters(ptr.Pointer(), C.CString(strings.Join(nameFilters, "|")))
+		var nameFiltersC = C.CString(strings.Join(nameFilters, "|"))
+		defer C.free(unsafe.Pointer(nameFiltersC))
+		C.QDir_SetNameFilters(ptr.Pointer(), nameFiltersC)
 	}
 }
 
@@ -19370,20 +19865,30 @@ func (ptr *QDir) SetPath(path string) {
 	defer qt.Recovering("QDir::setPath")
 
 	if ptr.Pointer() != nil {
-		C.QDir_SetPath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QDir_SetPath(ptr.Pointer(), pathC)
 	}
 }
 
 func QDir_SetSearchPaths(prefix string, searchPaths []string) {
 	defer qt.Recovering("QDir::setSearchPaths")
 
-	C.QDir_QDir_SetSearchPaths(C.CString(prefix), C.CString(strings.Join(searchPaths, "|")))
+	var prefixC = C.CString(prefix)
+	defer C.free(unsafe.Pointer(prefixC))
+	var searchPathsC = C.CString(strings.Join(searchPaths, "|"))
+	defer C.free(unsafe.Pointer(searchPathsC))
+	C.QDir_QDir_SetSearchPaths(prefixC, searchPathsC)
 }
 
 func (ptr *QDir) SetSearchPaths(prefix string, searchPaths []string) {
 	defer qt.Recovering("QDir::setSearchPaths")
 
-	C.QDir_QDir_SetSearchPaths(C.CString(prefix), C.CString(strings.Join(searchPaths, "|")))
+	var prefixC = C.CString(prefix)
+	defer C.free(unsafe.Pointer(prefixC))
+	var searchPathsC = C.CString(strings.Join(searchPaths, "|"))
+	defer C.free(unsafe.Pointer(searchPathsC))
+	C.QDir_QDir_SetSearchPaths(prefixC, searchPathsC)
 }
 
 func (ptr *QDir) SetSorting(sort QDir__SortFlag) {
@@ -19414,13 +19919,17 @@ func (ptr *QDir) Swap(other QDir_ITF) {
 func QDir_Temp() *QDir {
 	defer qt.Recovering("QDir::temp")
 
-	return NewQDirFromPointer(C.QDir_QDir_Temp())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Temp())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func (ptr *QDir) Temp() *QDir {
 	defer qt.Recovering("QDir::temp")
 
-	return NewQDirFromPointer(C.QDir_QDir_Temp())
+	var tmpValue = NewQDirFromPointer(C.QDir_QDir_Temp())
+	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+	return tmpValue
 }
 
 func QDir_TempPath() string {
@@ -19438,13 +19947,17 @@ func (ptr *QDir) TempPath() string {
 func QDir_ToNativeSeparators(pathName string) string {
 	defer qt.Recovering("QDir::toNativeSeparators")
 
-	return C.GoString(C.QDir_QDir_ToNativeSeparators(C.CString(pathName)))
+	var pathNameC = C.CString(pathName)
+	defer C.free(unsafe.Pointer(pathNameC))
+	return C.GoString(C.QDir_QDir_ToNativeSeparators(pathNameC))
 }
 
 func (ptr *QDir) ToNativeSeparators(pathName string) string {
 	defer qt.Recovering("QDir::toNativeSeparators")
 
-	return C.GoString(C.QDir_QDir_ToNativeSeparators(C.CString(pathName)))
+	var pathNameC = C.CString(pathName)
+	defer C.free(unsafe.Pointer(pathNameC))
+	return C.GoString(C.QDir_QDir_ToNativeSeparators(pathNameC))
 }
 
 func (ptr *QDir) DestroyQDir() {
@@ -19552,10 +20065,17 @@ func newQDynamicPropertyChangeEventFromPointer(ptr unsafe.Pointer) *QDynamicProp
 	return n
 }
 
+func (ptr *QDynamicPropertyChangeEvent) DestroyQDynamicPropertyChangeEvent() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQDynamicPropertyChangeEvent(name string) *QDynamicPropertyChangeEvent {
 	defer qt.Recovering("QDynamicPropertyChangeEvent::QDynamicPropertyChangeEvent")
 
-	return newQDynamicPropertyChangeEventFromPointer(C.QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQDynamicPropertyChangeEventFromPointer(C.QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(nameC))
 }
 
 func (ptr *QDynamicPropertyChangeEvent) PropertyName() string {
@@ -19847,6 +20367,11 @@ func newQElapsedTimerFromPointer(ptr unsafe.Pointer) *QElapsedTimer {
 	return n
 }
 
+func (ptr *QElapsedTimer) DestroyQElapsedTimer() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQElapsedTimer() *QElapsedTimer {
 	defer qt.Recovering("QElapsedTimer::QElapsedTimer")
 
@@ -20006,6 +20531,11 @@ func NewQEnableSharedFromThisFromPointer(ptr unsafe.Pointer) *QEnableSharedFromT
 func newQEnableSharedFromThisFromPointer(ptr unsafe.Pointer) *QEnableSharedFromThis {
 	var n = NewQEnableSharedFromThisFromPointer(ptr)
 	return n
+}
+
+func (ptr *QEnableSharedFromThis) DestroyQEnableSharedFromThis() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //QEvent::Type
@@ -20325,7 +20855,9 @@ func (ptr *QEvent) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QEvent::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QEvent_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QEvent_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -21630,6 +22162,11 @@ func newQExceptionFromPointer(ptr unsafe.Pointer) *QException {
 	return n
 }
 
+func (ptr *QException) DestroyQException() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QExplicitlySharedDataPointer struct {
 	ptr unsafe.Pointer
 }
@@ -21735,32 +22272,46 @@ func NewQFile3(parent QObject_ITF) *QFile {
 func NewQFile2(name string) *QFile {
 	defer qt.Recovering("QFile::QFile")
 
-	return newQFileFromPointer(C.QFile_NewQFile2(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQFileFromPointer(C.QFile_NewQFile2(nameC))
 }
 
 func NewQFile4(name string, parent QObject_ITF) *QFile {
 	defer qt.Recovering("QFile::QFile")
 
-	return newQFileFromPointer(C.QFile_NewQFile4(C.CString(name), PointerFromQObject(parent)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQFileFromPointer(C.QFile_NewQFile4(nameC, PointerFromQObject(parent)))
 }
 
 func QFile_Copy2(fileName string, newName string) bool {
 	defer qt.Recovering("QFile::copy")
 
-	return C.QFile_QFile_Copy2(C.CString(fileName), C.CString(newName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	var newNameC = C.CString(newName)
+	defer C.free(unsafe.Pointer(newNameC))
+	return C.QFile_QFile_Copy2(fileNameC, newNameC) != 0
 }
 
 func (ptr *QFile) Copy2(fileName string, newName string) bool {
 	defer qt.Recovering("QFile::copy")
 
-	return C.QFile_QFile_Copy2(C.CString(fileName), C.CString(newName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	var newNameC = C.CString(newName)
+	defer C.free(unsafe.Pointer(newNameC))
+	return C.QFile_QFile_Copy2(fileNameC, newNameC) != 0
 }
 
 func (ptr *QFile) Copy(newName string) bool {
 	defer qt.Recovering("QFile::copy")
 
 	if ptr.Pointer() != nil {
-		return C.QFile_Copy(ptr.Pointer(), C.CString(newName)) != 0
+		var newNameC = C.CString(newName)
+		defer C.free(unsafe.Pointer(newNameC))
+		return C.QFile_Copy(ptr.Pointer(), newNameC) != 0
 	}
 	return false
 }
@@ -21768,49 +22319,65 @@ func (ptr *QFile) Copy(newName string) bool {
 func QFile_DecodeName(localFileName string) string {
 	defer qt.Recovering("QFile::decodeName")
 
-	return C.GoString(C.QFile_QFile_DecodeName(C.CString(localFileName)))
+	var localFileNameC = C.CString(localFileName)
+	defer C.free(unsafe.Pointer(localFileNameC))
+	return C.GoString(C.QFile_QFile_DecodeName(localFileNameC))
 }
 
 func (ptr *QFile) DecodeName(localFileName string) string {
 	defer qt.Recovering("QFile::decodeName")
 
-	return C.GoString(C.QFile_QFile_DecodeName(C.CString(localFileName)))
+	var localFileNameC = C.CString(localFileName)
+	defer C.free(unsafe.Pointer(localFileNameC))
+	return C.GoString(C.QFile_QFile_DecodeName(localFileNameC))
 }
 
 func QFile_DecodeName2(localFileName string) string {
 	defer qt.Recovering("QFile::decodeName")
 
-	return C.GoString(C.QFile_QFile_DecodeName2(C.CString(localFileName)))
+	var localFileNameC = C.CString(localFileName)
+	defer C.free(unsafe.Pointer(localFileNameC))
+	return C.GoString(C.QFile_QFile_DecodeName2(localFileNameC))
 }
 
 func (ptr *QFile) DecodeName2(localFileName string) string {
 	defer qt.Recovering("QFile::decodeName")
 
-	return C.GoString(C.QFile_QFile_DecodeName2(C.CString(localFileName)))
+	var localFileNameC = C.CString(localFileName)
+	defer C.free(unsafe.Pointer(localFileNameC))
+	return C.GoString(C.QFile_QFile_DecodeName2(localFileNameC))
 }
 
 func QFile_EncodeName(fileName string) string {
 	defer qt.Recovering("QFile::encodeName")
 
-	return C.GoString(C.QFile_QFile_EncodeName(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.GoString(C.QFile_QFile_EncodeName(fileNameC))
 }
 
 func (ptr *QFile) EncodeName(fileName string) string {
 	defer qt.Recovering("QFile::encodeName")
 
-	return C.GoString(C.QFile_QFile_EncodeName(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.GoString(C.QFile_QFile_EncodeName(fileNameC))
 }
 
 func QFile_Exists(fileName string) bool {
 	defer qt.Recovering("QFile::exists")
 
-	return C.QFile_QFile_Exists(C.CString(fileName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_Exists(fileNameC) != 0
 }
 
 func (ptr *QFile) Exists(fileName string) bool {
 	defer qt.Recovering("QFile::exists")
 
-	return C.QFile_QFile_Exists(C.CString(fileName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_Exists(fileNameC) != 0
 }
 
 func (ptr *QFile) Exists2() bool {
@@ -21872,20 +22439,30 @@ func (ptr *QFile) FileNameDefault() string {
 func QFile_Link2(fileName string, linkName string) bool {
 	defer qt.Recovering("QFile::link")
 
-	return C.QFile_QFile_Link2(C.CString(fileName), C.CString(linkName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	var linkNameC = C.CString(linkName)
+	defer C.free(unsafe.Pointer(linkNameC))
+	return C.QFile_QFile_Link2(fileNameC, linkNameC) != 0
 }
 
 func (ptr *QFile) Link2(fileName string, linkName string) bool {
 	defer qt.Recovering("QFile::link")
 
-	return C.QFile_QFile_Link2(C.CString(fileName), C.CString(linkName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	var linkNameC = C.CString(linkName)
+	defer C.free(unsafe.Pointer(linkNameC))
+	return C.QFile_QFile_Link2(fileNameC, linkNameC) != 0
 }
 
 func (ptr *QFile) Link(linkName string) bool {
 	defer qt.Recovering("QFile::link")
 
 	if ptr.Pointer() != nil {
-		return C.QFile_Link(ptr.Pointer(), C.CString(linkName)) != 0
+		var linkNameC = C.CString(linkName)
+		defer C.free(unsafe.Pointer(linkNameC))
+		return C.QFile_Link(ptr.Pointer(), linkNameC) != 0
 	}
 	return false
 }
@@ -21949,13 +22526,17 @@ func (ptr *QFile) Open3(fd int, mode QIODevice__OpenModeFlag, handleFlags QFileD
 func QFile_Permissions2(fileName string) QFileDevice__Permission {
 	defer qt.Recovering("QFile::permissions")
 
-	return QFileDevice__Permission(C.QFile_QFile_Permissions2(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return QFileDevice__Permission(C.QFile_QFile_Permissions2(fileNameC))
 }
 
 func (ptr *QFile) Permissions2(fileName string) QFileDevice__Permission {
 	defer qt.Recovering("QFile::permissions")
 
-	return QFileDevice__Permission(C.QFile_QFile_Permissions2(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return QFileDevice__Permission(C.QFile_QFile_Permissions2(fileNameC))
 }
 
 //export callbackQFile_Permissions
@@ -22017,20 +22598,26 @@ func (ptr *QFile) Remove() bool {
 func QFile_Remove2(fileName string) bool {
 	defer qt.Recovering("QFile::remove")
 
-	return C.QFile_QFile_Remove2(C.CString(fileName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_Remove2(fileNameC) != 0
 }
 
 func (ptr *QFile) Remove2(fileName string) bool {
 	defer qt.Recovering("QFile::remove")
 
-	return C.QFile_QFile_Remove2(C.CString(fileName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_Remove2(fileNameC) != 0
 }
 
 func (ptr *QFile) Rename(newName string) bool {
 	defer qt.Recovering("QFile::rename")
 
 	if ptr.Pointer() != nil {
-		return C.QFile_Rename(ptr.Pointer(), C.CString(newName)) != 0
+		var newNameC = C.CString(newName)
+		defer C.free(unsafe.Pointer(newNameC))
+		return C.QFile_Rename(ptr.Pointer(), newNameC) != 0
 	}
 	return false
 }
@@ -22038,25 +22625,37 @@ func (ptr *QFile) Rename(newName string) bool {
 func QFile_Rename2(oldName string, newName string) bool {
 	defer qt.Recovering("QFile::rename")
 
-	return C.QFile_QFile_Rename2(C.CString(oldName), C.CString(newName)) != 0
+	var oldNameC = C.CString(oldName)
+	defer C.free(unsafe.Pointer(oldNameC))
+	var newNameC = C.CString(newName)
+	defer C.free(unsafe.Pointer(newNameC))
+	return C.QFile_QFile_Rename2(oldNameC, newNameC) != 0
 }
 
 func (ptr *QFile) Rename2(oldName string, newName string) bool {
 	defer qt.Recovering("QFile::rename")
 
-	return C.QFile_QFile_Rename2(C.CString(oldName), C.CString(newName)) != 0
+	var oldNameC = C.CString(oldName)
+	defer C.free(unsafe.Pointer(oldNameC))
+	var newNameC = C.CString(newName)
+	defer C.free(unsafe.Pointer(newNameC))
+	return C.QFile_QFile_Rename2(oldNameC, newNameC) != 0
 }
 
 func QFile_Resize2(fileName string, sz int64) bool {
 	defer qt.Recovering("QFile::resize")
 
-	return C.QFile_QFile_Resize2(C.CString(fileName), C.longlong(sz)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_Resize2(fileNameC, C.longlong(sz)) != 0
 }
 
 func (ptr *QFile) Resize2(fileName string, sz int64) bool {
 	defer qt.Recovering("QFile::resize")
 
-	return C.QFile_QFile_Resize2(C.CString(fileName), C.longlong(sz)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_Resize2(fileNameC, C.longlong(sz)) != 0
 }
 
 //export callbackQFile_Resize
@@ -22110,7 +22709,9 @@ func (ptr *QFile) SetFileName(name string) {
 	defer qt.Recovering("QFile::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QFile_SetFileName(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QFile_SetFileName(ptr.Pointer(), nameC)
 	}
 }
 
@@ -22164,13 +22765,17 @@ func (ptr *QFile) SetPermissionsDefault(permissions QFileDevice__Permission) boo
 func QFile_SetPermissions2(fileName string, permissions QFileDevice__Permission) bool {
 	defer qt.Recovering("QFile::setPermissions")
 
-	return C.QFile_QFile_SetPermissions2(C.CString(fileName), C.int(permissions)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_SetPermissions2(fileNameC, C.int(permissions)) != 0
 }
 
 func (ptr *QFile) SetPermissions2(fileName string, permissions QFileDevice__Permission) bool {
 	defer qt.Recovering("QFile::setPermissions")
 
-	return C.QFile_QFile_SetPermissions2(C.CString(fileName), C.int(permissions)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QFile_QFile_SetPermissions2(fileNameC, C.int(permissions)) != 0
 }
 
 //export callbackQFile_Size
@@ -22223,13 +22828,17 @@ func (ptr *QFile) SizeDefault() int64 {
 func QFile_SymLinkTarget(fileName string) string {
 	defer qt.Recovering("QFile::symLinkTarget")
 
-	return C.GoString(C.QFile_QFile_SymLinkTarget(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.GoString(C.QFile_QFile_SymLinkTarget(fileNameC))
 }
 
 func (ptr *QFile) SymLinkTarget(fileName string) string {
 	defer qt.Recovering("QFile::symLinkTarget")
 
-	return C.GoString(C.QFile_QFile_SymLinkTarget(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.GoString(C.QFile_QFile_SymLinkTarget(fileNameC))
 }
 
 func (ptr *QFile) SymLinkTarget2() string {
@@ -22517,7 +23126,9 @@ func (ptr *QFile) ReadLineData(data string, maxlen int64) int64 {
 	defer qt.Recovering("QFile::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFile_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFile_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -22526,7 +23137,9 @@ func (ptr *QFile) ReadLineDataDefault(data string, maxlen int64) int64 {
 	defer qt.Recovering("QFile::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFile_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFile_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -22564,7 +23177,9 @@ func (ptr *QFile) WriteData(data string, len int64) int64 {
 	defer qt.Recovering("QFile::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFile_WriteData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFile_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -22573,7 +23188,9 @@ func (ptr *QFile) WriteDataDefault(data string, len int64) int64 {
 	defer qt.Recovering("QFile::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFile_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFile_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -23764,7 +24381,9 @@ func (ptr *QFileDevice) ReadLineData(data string, maxlen int64) int64 {
 	defer qt.Recovering("QFileDevice::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFileDevice_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFileDevice_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -23773,7 +24392,9 @@ func (ptr *QFileDevice) ReadLineDataDefault(data string, maxlen int64) int64 {
 	defer qt.Recovering("QFileDevice::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFileDevice_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFileDevice_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -23960,7 +24581,9 @@ func (ptr *QFileDevice) WriteData(data string, len int64) int64 {
 	defer qt.Recovering("QFileDevice::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFileDevice_WriteData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFileDevice_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -23969,7 +24592,9 @@ func (ptr *QFileDevice) WriteDataDefault(data string, len int64) int64 {
 	defer qt.Recovering("QFileDevice::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QFileDevice_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QFileDevice_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -24780,7 +25405,9 @@ func NewQFileInfo() *QFileInfo {
 func NewQFileInfo5(dir QDir_ITF, file string) *QFileInfo {
 	defer qt.Recovering("QFileInfo::QFileInfo")
 
-	return newQFileInfoFromPointer(C.QFileInfo_NewQFileInfo5(PointerFromQDir(dir), C.CString(file)))
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	return newQFileInfoFromPointer(C.QFileInfo_NewQFileInfo5(PointerFromQDir(dir), fileC))
 }
 
 func NewQFileInfo4(file QFile_ITF) *QFileInfo {
@@ -24798,14 +25425,18 @@ func NewQFileInfo6(fileinfo QFileInfo_ITF) *QFileInfo {
 func NewQFileInfo3(file string) *QFileInfo {
 	defer qt.Recovering("QFileInfo::QFileInfo")
 
-	return newQFileInfoFromPointer(C.QFileInfo_NewQFileInfo3(C.CString(file)))
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	return newQFileInfoFromPointer(C.QFileInfo_NewQFileInfo3(fileC))
 }
 
 func (ptr *QFileInfo) AbsoluteDir() *QDir {
 	defer qt.Recovering("QFileInfo::absoluteDir")
 
 	if ptr.Pointer() != nil {
-		return NewQDirFromPointer(C.QFileInfo_AbsoluteDir(ptr.Pointer()))
+		var tmpValue = NewQDirFromPointer(C.QFileInfo_AbsoluteDir(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+		return tmpValue
 	}
 	return nil
 }
@@ -24895,7 +25526,9 @@ func (ptr *QFileInfo) Created() *QDateTime {
 	defer qt.Recovering("QFileInfo::created")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QFileInfo_Created(ptr.Pointer()))
+		var tmpValue = NewQDateTimeFromPointer(C.QFileInfo_Created(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -24904,7 +25537,9 @@ func (ptr *QFileInfo) Dir() *QDir {
 	defer qt.Recovering("QFileInfo::dir")
 
 	if ptr.Pointer() != nil {
-		return NewQDirFromPointer(C.QFileInfo_Dir(ptr.Pointer()))
+		var tmpValue = NewQDirFromPointer(C.QFileInfo_Dir(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
+		return tmpValue
 	}
 	return nil
 }
@@ -24912,13 +25547,17 @@ func (ptr *QFileInfo) Dir() *QDir {
 func QFileInfo_Exists2(file string) bool {
 	defer qt.Recovering("QFileInfo::exists")
 
-	return C.QFileInfo_QFileInfo_Exists2(C.CString(file)) != 0
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	return C.QFileInfo_QFileInfo_Exists2(fileC) != 0
 }
 
 func (ptr *QFileInfo) Exists2(file string) bool {
 	defer qt.Recovering("QFileInfo::exists")
 
-	return C.QFileInfo_QFileInfo_Exists2(C.CString(file)) != 0
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	return C.QFileInfo_QFileInfo_Exists2(fileC) != 0
 }
 
 func (ptr *QFileInfo) Exists() bool {
@@ -25069,7 +25708,9 @@ func (ptr *QFileInfo) LastModified() *QDateTime {
 	defer qt.Recovering("QFileInfo::lastModified")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QFileInfo_LastModified(ptr.Pointer()))
+		var tmpValue = NewQDateTimeFromPointer(C.QFileInfo_LastModified(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -25078,7 +25719,9 @@ func (ptr *QFileInfo) LastRead() *QDateTime {
 	defer qt.Recovering("QFileInfo::lastRead")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QFileInfo_LastRead(ptr.Pointer()))
+		var tmpValue = NewQDateTimeFromPointer(C.QFileInfo_LastRead(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -25130,7 +25773,9 @@ func (ptr *QFileInfo) SetFile3(dir QDir_ITF, file string) {
 	defer qt.Recovering("QFileInfo::setFile")
 
 	if ptr.Pointer() != nil {
-		C.QFileInfo_SetFile3(ptr.Pointer(), PointerFromQDir(dir), C.CString(file))
+		var fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+		C.QFileInfo_SetFile3(ptr.Pointer(), PointerFromQDir(dir), fileC)
 	}
 }
 
@@ -25146,7 +25791,9 @@ func (ptr *QFileInfo) SetFile(file string) {
 	defer qt.Recovering("QFileInfo::setFile")
 
 	if ptr.Pointer() != nil {
-		C.QFileInfo_SetFile(ptr.Pointer(), C.CString(file))
+		var fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+		C.QFileInfo_SetFile(ptr.Pointer(), fileC)
 	}
 }
 
@@ -25269,7 +25916,9 @@ func (ptr *QFileSelector) Select(filePath string) string {
 	defer qt.Recovering("QFileSelector::select")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileSelector_Select(ptr.Pointer(), C.CString(filePath)))
+		var filePathC = C.CString(filePath)
+		defer C.free(unsafe.Pointer(filePathC))
+		return C.GoString(C.QFileSelector_Select(ptr.Pointer(), filePathC))
 	}
 	return ""
 }
@@ -25278,7 +25927,9 @@ func (ptr *QFileSelector) Select2(filePath QUrl_ITF) *QUrl {
 	defer qt.Recovering("QFileSelector::select")
 
 	if ptr.Pointer() != nil {
-		return NewQUrlFromPointer(C.QFileSelector_Select2(ptr.Pointer(), PointerFromQUrl(filePath)))
+		var tmpValue = NewQUrlFromPointer(C.QFileSelector_Select2(ptr.Pointer(), PointerFromQUrl(filePath)))
+		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -25287,7 +25938,9 @@ func (ptr *QFileSelector) SetExtraSelectors(list []string) {
 	defer qt.Recovering("QFileSelector::setExtraSelectors")
 
 	if ptr.Pointer() != nil {
-		C.QFileSelector_SetExtraSelectors(ptr.Pointer(), C.CString(strings.Join(list, "|")))
+		var listC = C.CString(strings.Join(list, "|"))
+		defer C.free(unsafe.Pointer(listC))
+		C.QFileSelector_SetExtraSelectors(ptr.Pointer(), listC)
 	}
 }
 
@@ -25787,14 +26440,18 @@ func NewQFileSystemWatcher(parent QObject_ITF) *QFileSystemWatcher {
 func NewQFileSystemWatcher2(paths []string, parent QObject_ITF) *QFileSystemWatcher {
 	defer qt.Recovering("QFileSystemWatcher::QFileSystemWatcher")
 
-	return newQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher2(C.CString(strings.Join(paths, "|")), PointerFromQObject(parent)))
+	var pathsC = C.CString(strings.Join(paths, "|"))
+	defer C.free(unsafe.Pointer(pathsC))
+	return newQFileSystemWatcherFromPointer(C.QFileSystemWatcher_NewQFileSystemWatcher2(pathsC, PointerFromQObject(parent)))
 }
 
 func (ptr *QFileSystemWatcher) AddPath(path string) bool {
 	defer qt.Recovering("QFileSystemWatcher::addPath")
 
 	if ptr.Pointer() != nil {
-		return C.QFileSystemWatcher_AddPath(ptr.Pointer(), C.CString(path)) != 0
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		return C.QFileSystemWatcher_AddPath(ptr.Pointer(), pathC) != 0
 	}
 	return false
 }
@@ -25803,7 +26460,9 @@ func (ptr *QFileSystemWatcher) AddPaths(paths []string) []string {
 	defer qt.Recovering("QFileSystemWatcher::addPaths")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFileSystemWatcher_AddPaths(ptr.Pointer(), C.CString(strings.Join(paths, "|")))), "|")
+		var pathsC = C.CString(strings.Join(paths, "|"))
+		defer C.free(unsafe.Pointer(pathsC))
+		return strings.Split(C.GoString(C.QFileSystemWatcher_AddPaths(ptr.Pointer(), pathsC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -25868,7 +26527,9 @@ func (ptr *QFileSystemWatcher) RemovePath(path string) bool {
 	defer qt.Recovering("QFileSystemWatcher::removePath")
 
 	if ptr.Pointer() != nil {
-		return C.QFileSystemWatcher_RemovePath(ptr.Pointer(), C.CString(path)) != 0
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		return C.QFileSystemWatcher_RemovePath(ptr.Pointer(), pathC) != 0
 	}
 	return false
 }
@@ -25877,7 +26538,9 @@ func (ptr *QFileSystemWatcher) RemovePaths(paths []string) []string {
 	defer qt.Recovering("QFileSystemWatcher::removePaths")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFileSystemWatcher_RemovePaths(ptr.Pointer(), C.CString(strings.Join(paths, "|")))), "|")
+		var pathsC = C.CString(strings.Join(paths, "|"))
+		defer C.free(unsafe.Pointer(pathsC))
+		return strings.Split(C.GoString(C.QFileSystemWatcher_RemovePaths(ptr.Pointer(), pathsC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -26918,6 +27581,11 @@ func newQFlagFromPointer(ptr unsafe.Pointer) *QFlag {
 	return n
 }
 
+func (ptr *QFlag) DestroyQFlag() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQFlag(value int) *QFlag {
 	defer qt.Recovering("QFlag::QFlag")
 
@@ -26965,6 +27633,11 @@ func NewQFlagsFromPointer(ptr unsafe.Pointer) *QFlags {
 func newQFlagsFromPointer(ptr unsafe.Pointer) *QFlags {
 	var n = NewQFlagsFromPointer(ptr)
 	return n
+}
+
+func (ptr *QFlags) DestroyQFlags() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QFuture struct {
@@ -27051,6 +27724,11 @@ func NewQFutureIteratorFromPointer(ptr unsafe.Pointer) *QFutureIterator {
 func newQFutureIteratorFromPointer(ptr unsafe.Pointer) *QFutureIterator {
 	var n = NewQFutureIteratorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QFutureIterator) DestroyQFutureIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QFutureSynchronizer struct {
@@ -27183,10 +27861,17 @@ func newQGenericArgumentFromPointer(ptr unsafe.Pointer) *QGenericArgument {
 	return n
 }
 
+func (ptr *QGenericArgument) DestroyQGenericArgument() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQGenericArgument(name string, data unsafe.Pointer) *QGenericArgument {
 	defer qt.Recovering("QGenericArgument::QGenericArgument")
 
-	return newQGenericArgumentFromPointer(C.QGenericArgument_NewQGenericArgument(C.CString(name), data))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQGenericArgumentFromPointer(C.QGenericArgument_NewQGenericArgument(nameC, data))
 }
 
 func (ptr *QGenericArgument) Data() unsafe.Pointer {
@@ -27251,10 +27936,17 @@ func newQGenericReturnArgumentFromPointer(ptr unsafe.Pointer) *QGenericReturnArg
 	return n
 }
 
+func (ptr *QGenericReturnArgument) DestroyQGenericReturnArgument() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQGenericReturnArgument(name string, data unsafe.Pointer) *QGenericReturnArgument {
 	defer qt.Recovering("QGenericReturnArgument::QGenericReturnArgument")
 
-	return newQGenericReturnArgumentFromPointer(C.QGenericReturnArgument_NewQGenericReturnArgument(C.CString(name), data))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQGenericReturnArgumentFromPointer(C.QGenericReturnArgument_NewQGenericReturnArgument(nameC, data))
 }
 
 type QGlobalStatic struct {
@@ -27298,6 +27990,11 @@ func NewQGlobalStaticFromPointer(ptr unsafe.Pointer) *QGlobalStatic {
 func newQGlobalStaticFromPointer(ptr unsafe.Pointer) *QGlobalStatic {
 	var n = NewQGlobalStaticFromPointer(ptr)
 	return n
+}
+
+func (ptr *QGlobalStatic) DestroyQGlobalStatic() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QHash struct {
@@ -27384,6 +28081,11 @@ func NewQHashIteratorFromPointer(ptr unsafe.Pointer) *QHashIterator {
 func newQHashIteratorFromPointer(ptr unsafe.Pointer) *QHashIterator {
 	var n = NewQHashIteratorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QHashIterator) DestroyQHashIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //QHistoryState::HistoryType
@@ -28160,6 +28862,11 @@ func newQHooksFromPointer(ptr unsafe.Pointer) *QHooks {
 	return n
 }
 
+func (ptr *QHooks) DestroyQHooks() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QIODevice::OpenModeFlag
 type QIODevice__OpenModeFlag int64
 
@@ -28225,7 +28932,9 @@ func (ptr *QIODevice) GetChar(c string) bool {
 	defer qt.Recovering("QIODevice::getChar")
 
 	if ptr.Pointer() != nil {
-		return C.QIODevice_GetChar(ptr.Pointer(), C.CString(c)) != 0
+		var cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+		return C.QIODevice_GetChar(ptr.Pointer(), cC) != 0
 	}
 	return false
 }
@@ -28234,7 +28943,9 @@ func (ptr *QIODevice) PutChar(c string) bool {
 	defer qt.Recovering("QIODevice::putChar")
 
 	if ptr.Pointer() != nil {
-		return C.QIODevice_PutChar(ptr.Pointer(), C.CString(c)) != 0
+		var cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+		return C.QIODevice_PutChar(ptr.Pointer(), cC) != 0
 	}
 	return false
 }
@@ -28812,7 +29523,9 @@ func (ptr *QIODevice) Peek(data string, maxSize int64) int64 {
 	defer qt.Recovering("QIODevice::peek")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_Peek(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_Peek(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -28877,7 +29590,9 @@ func (ptr *QIODevice) Read(data string, maxSize int64) int64 {
 	defer qt.Recovering("QIODevice::read")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_Read(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_Read(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -28949,7 +29664,9 @@ func (ptr *QIODevice) ReadLine(data string, maxSize int64) int64 {
 	defer qt.Recovering("QIODevice::readLine")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_ReadLine(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_ReadLine(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -28987,7 +29704,9 @@ func (ptr *QIODevice) ReadLineData(data string, maxSize int64) int64 {
 	defer qt.Recovering("QIODevice::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -28996,7 +29715,9 @@ func (ptr *QIODevice) ReadLineDataDefault(data string, maxSize int64) int64 {
 	defer qt.Recovering("QIODevice::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -29159,7 +29880,9 @@ func (ptr *QIODevice) SetErrorString(str string) {
 	defer qt.Recovering("QIODevice::setErrorString")
 
 	if ptr.Pointer() != nil {
-		C.QIODevice_SetErrorString(ptr.Pointer(), C.CString(str))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		C.QIODevice_SetErrorString(ptr.Pointer(), strC)
 	}
 }
 
@@ -29238,7 +29961,9 @@ func (ptr *QIODevice) UngetChar(c string) {
 	defer qt.Recovering("QIODevice::ungetChar")
 
 	if ptr.Pointer() != nil {
-		C.QIODevice_UngetChar(ptr.Pointer(), C.CString(c))
+		var cC = C.CString(c)
+		defer C.free(unsafe.Pointer(cC))
+		C.QIODevice_UngetChar(ptr.Pointer(), cC)
 	}
 }
 
@@ -29340,7 +30065,9 @@ func (ptr *QIODevice) Write3(byteArray string) int64 {
 	defer qt.Recovering("QIODevice::write")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_Write3(ptr.Pointer(), C.CString(byteArray)))
+		var byteArrayC = C.CString(byteArray)
+		defer C.free(unsafe.Pointer(byteArrayC))
+		return int64(C.QIODevice_Write3(ptr.Pointer(), byteArrayC))
 	}
 	return 0
 }
@@ -29349,7 +30076,9 @@ func (ptr *QIODevice) Write2(data string) int64 {
 	defer qt.Recovering("QIODevice::write")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_Write2(ptr.Pointer(), C.CString(data)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_Write2(ptr.Pointer(), dataC))
 	}
 	return 0
 }
@@ -29358,7 +30087,9 @@ func (ptr *QIODevice) Write(data string, maxSize int64) int64 {
 	defer qt.Recovering("QIODevice::write")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_Write(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_Write(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -29405,7 +30136,9 @@ func (ptr *QIODevice) WriteData(data string, maxSize int64) int64 {
 	defer qt.Recovering("QIODevice::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QIODevice_WriteData(ptr.Pointer(), C.CString(data), C.longlong(maxSize)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QIODevice_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -30015,7 +30748,9 @@ func (ptr *QIdentityProxyModel) HeaderData(section int, orientation Qt__Orientat
 	defer qt.Recovering("QIdentityProxyModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QIdentityProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QIdentityProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -30024,7 +30759,9 @@ func (ptr *QIdentityProxyModel) HeaderDataDefault(section int, orientation Qt__O
 	defer qt.Recovering("QIdentityProxyModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QIdentityProxyModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QIdentityProxyModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -30062,7 +30799,9 @@ func (ptr *QIdentityProxyModel) Index(row int, column int, parent QModelIndex_IT
 	defer qt.Recovering("QIdentityProxyModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30071,7 +30810,9 @@ func (ptr *QIdentityProxyModel) IndexDefault(row int, column int, parent QModelI
 	defer qt.Recovering("QIdentityProxyModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30203,7 +30944,9 @@ func (ptr *QIdentityProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QMod
 	defer qt.Recovering("QIdentityProxyModel::mapFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30212,7 +30955,9 @@ func (ptr *QIdentityProxyModel) MapFromSourceDefault(sourceIndex QModelIndex_ITF
 	defer qt.Recovering("QIdentityProxyModel::mapFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSourceDefault(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_MapFromSourceDefault(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30250,7 +30995,9 @@ func (ptr *QIdentityProxyModel) MapSelectionFromSource(selection QItemSelection_
 	defer qt.Recovering("QIdentityProxyModel::mapSelectionFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionFromSource(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionFromSource(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -30259,7 +31006,9 @@ func (ptr *QIdentityProxyModel) MapSelectionFromSourceDefault(selection QItemSel
 	defer qt.Recovering("QIdentityProxyModel::mapSelectionFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionFromSourceDefault(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionFromSourceDefault(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -30297,7 +31046,9 @@ func (ptr *QIdentityProxyModel) MapSelectionToSource(selection QItemSelection_IT
 	defer qt.Recovering("QIdentityProxyModel::mapSelectionToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionToSource(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionToSource(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -30306,7 +31057,9 @@ func (ptr *QIdentityProxyModel) MapSelectionToSourceDefault(selection QItemSelec
 	defer qt.Recovering("QIdentityProxyModel::mapSelectionToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionToSourceDefault(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QIdentityProxyModel_MapSelectionToSourceDefault(ptr.Pointer(), PointerFromQItemSelection(selection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -30344,7 +31097,9 @@ func (ptr *QIdentityProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelI
 	defer qt.Recovering("QIdentityProxyModel::mapToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30353,7 +31108,9 @@ func (ptr *QIdentityProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF) *
 	defer qt.Recovering("QIdentityProxyModel::mapToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30391,7 +31148,9 @@ func (ptr *QIdentityProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QIdentityProxyModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30400,7 +31159,9 @@ func (ptr *QIdentityProxyModel) ParentDefault(child QModelIndex_ITF) *QModelInde
 	defer qt.Recovering("QIdentityProxyModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(child)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(child)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30624,7 +31385,9 @@ func (ptr *QIdentityProxyModel) Sibling(row int, column int, idx QModelIndex_ITF
 	defer qt.Recovering("QIdentityProxyModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30633,7 +31396,9 @@ func (ptr *QIdentityProxyModel) SiblingDefault(row int, column int, idx QModelIn
 	defer qt.Recovering("QIdentityProxyModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30681,7 +31446,9 @@ func (ptr *QIdentityProxyModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QIdentityProxyModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30690,7 +31457,9 @@ func (ptr *QIdentityProxyModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex
 	defer qt.Recovering("QIdentityProxyModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QIdentityProxyModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -30822,7 +31591,9 @@ func (ptr *QIdentityProxyModel) Data(proxyIndex QModelIndex_ITF, role int) *QVar
 	defer qt.Recovering("QIdentityProxyModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QIdentityProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QIdentityProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -30831,7 +31602,9 @@ func (ptr *QIdentityProxyModel) DataDefault(proxyIndex QModelIndex_ITF, role int
 	defer qt.Recovering("QIdentityProxyModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QIdentityProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QIdentityProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -31284,7 +32057,9 @@ func (ptr *QIdentityProxyModel) Span(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QIdentityProxyModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QIdentityProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QIdentityProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -31293,7 +32068,9 @@ func (ptr *QIdentityProxyModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QIdentityProxyModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QIdentityProxyModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QIdentityProxyModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -31992,6 +32769,11 @@ func newQItemSelectionFromPointer(ptr unsafe.Pointer) *QItemSelection {
 	return n
 }
 
+func (ptr *QItemSelection) DestroyQItemSelection() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQItemSelection() *QItemSelection {
 	defer qt.Recovering("QItemSelection::QItemSelection")
 
@@ -32328,7 +33110,9 @@ func (ptr *QItemSelectionModel) CurrentIndex() *QModelIndex {
 	defer qt.Recovering("QItemSelectionModel::currentIndex")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QItemSelectionModel_CurrentIndex(ptr.Pointer()))
+		var tmpValue = NewQModelIndexFromPointer(C.QItemSelectionModel_CurrentIndex(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -32615,7 +33399,9 @@ func (ptr *QItemSelectionModel) Selection() *QItemSelection {
 	defer qt.Recovering("QItemSelectionModel::selection")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QItemSelectionModel_Selection(ptr.Pointer()))
+		var tmpValue = NewQItemSelectionFromPointer(C.QItemSelectionModel_Selection(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -33177,11 +33963,18 @@ func newQItemSelectionRangeFromPointer(ptr unsafe.Pointer) *QItemSelectionRange 
 	return n
 }
 
+func (ptr *QItemSelectionRange) DestroyQItemSelectionRange() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QItemSelectionRange) Intersected(other QItemSelectionRange_ITF) *QItemSelectionRange {
 	defer qt.Recovering("QItemSelectionRange::intersected")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionRangeFromPointer(C.QItemSelectionRange_Intersected(ptr.Pointer(), PointerFromQItemSelectionRange(other)))
+		var tmpValue = NewQItemSelectionRangeFromPointer(C.QItemSelectionRange_Intersected(ptr.Pointer(), PointerFromQItemSelectionRange(other)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelectionRange).DestroyQItemSelectionRange)
+		return tmpValue
 	}
 	return nil
 }
@@ -33310,7 +34103,9 @@ func (ptr *QItemSelectionRange) Parent() *QModelIndex {
 	defer qt.Recovering("QItemSelectionRange::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QItemSelectionRange_Parent(ptr.Pointer()))
+		var tmpValue = NewQModelIndexFromPointer(C.QItemSelectionRange_Parent(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -33426,7 +34221,9 @@ func (ptr *QJsonArray) At(i int) *QJsonValue {
 	defer qt.Recovering("QJsonArray::at")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QJsonArray_At(ptr.Pointer(), C.int(i)))
+		var tmpValue = NewQJsonValueFromPointer(C.QJsonArray_At(ptr.Pointer(), C.int(i)))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -33462,7 +34259,9 @@ func (ptr *QJsonArray) First() *QJsonValue {
 	defer qt.Recovering("QJsonArray::first")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QJsonArray_First(ptr.Pointer()))
+		var tmpValue = NewQJsonValueFromPointer(C.QJsonArray_First(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -33470,13 +34269,21 @@ func (ptr *QJsonArray) First() *QJsonValue {
 func QJsonArray_FromStringList(list []string) *QJsonArray {
 	defer qt.Recovering("QJsonArray::fromStringList")
 
-	return NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.CString(strings.Join(list, "|"))))
+	var listC = C.CString(strings.Join(list, "|"))
+	defer C.free(unsafe.Pointer(listC))
+	var tmpValue = NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(listC))
+	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	return tmpValue
 }
 
 func (ptr *QJsonArray) FromStringList(list []string) *QJsonArray {
 	defer qt.Recovering("QJsonArray::fromStringList")
 
-	return NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(C.CString(strings.Join(list, "|"))))
+	var listC = C.CString(strings.Join(list, "|"))
+	defer C.free(unsafe.Pointer(listC))
+	var tmpValue = NewQJsonArrayFromPointer(C.QJsonArray_QJsonArray_FromStringList(listC))
+	runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+	return tmpValue
 }
 
 func (ptr *QJsonArray) Insert(i int, value QJsonValue_ITF) {
@@ -33500,7 +34307,9 @@ func (ptr *QJsonArray) Last() *QJsonValue {
 	defer qt.Recovering("QJsonArray::last")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QJsonArray_Last(ptr.Pointer()))
+		var tmpValue = NewQJsonValueFromPointer(C.QJsonArray_Last(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -33590,7 +34399,9 @@ func (ptr *QJsonArray) TakeAt(i int) *QJsonValue {
 	defer qt.Recovering("QJsonArray::takeAt")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QJsonArray_TakeAt(ptr.Pointer(), C.int(i)))
+		var tmpValue = NewQJsonValueFromPointer(C.QJsonArray_TakeAt(ptr.Pointer(), C.int(i)))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -33691,7 +34502,9 @@ func (ptr *QJsonDocument) Array() *QJsonArray {
 	defer qt.Recovering("QJsonDocument::array")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonArrayFromPointer(C.QJsonDocument_Array(ptr.Pointer()))
+		var tmpValue = NewQJsonArrayFromPointer(C.QJsonDocument_Array(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		return tmpValue
 	}
 	return nil
 }
@@ -33699,49 +34512,77 @@ func (ptr *QJsonDocument) Array() *QJsonArray {
 func QJsonDocument_FromBinaryData(data string, validation QJsonDocument__DataValidation) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromBinaryData")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(C.CString(data), C.int(validation)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(dataC, C.int(validation)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromBinaryData(data string, validation QJsonDocument__DataValidation) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromBinaryData")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(C.CString(data), C.int(validation)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(dataC, C.int(validation)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func QJsonDocument_FromJson(json string, error QJsonParseError_ITF) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromJson")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(C.CString(json), PointerFromQJsonParseError(error)))
+	var jsonC = C.CString(json)
+	defer C.free(unsafe.Pointer(jsonC))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(jsonC, PointerFromQJsonParseError(error)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromJson(json string, error QJsonParseError_ITF) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromJson")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(C.CString(json), PointerFromQJsonParseError(error)))
+	var jsonC = C.CString(json)
+	defer C.free(unsafe.Pointer(jsonC))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(jsonC, PointerFromQJsonParseError(error)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func QJsonDocument_FromRawData(data string, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromRawData")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(C.CString(data), C.int(size), C.int(validation)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(size), C.int(validation)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromRawData(data string, size int, validation QJsonDocument__DataValidation) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromRawData")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(C.CString(data), C.int(size), C.int(validation)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromRawData(dataC, C.int(size), C.int(validation)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func QJsonDocument_FromVariant(variant QVariant_ITF) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromVariant")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromVariant(PointerFromQVariant(variant)))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromVariant(PointerFromQVariant(variant)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func (ptr *QJsonDocument) FromVariant(variant QVariant_ITF) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromVariant")
 
-	return NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromVariant(PointerFromQVariant(variant)))
+	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromVariant(PointerFromQVariant(variant)))
+	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+	return tmpValue
 }
 
 func (ptr *QJsonDocument) IsArray() bool {
@@ -33784,7 +34625,9 @@ func (ptr *QJsonDocument) Object() *QJsonObject {
 	defer qt.Recovering("QJsonDocument::object")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonObjectFromPointer(C.QJsonDocument_Object(ptr.Pointer()))
+		var tmpValue = NewQJsonObjectFromPointer(C.QJsonDocument_Object(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
 	}
 	return nil
 }
@@ -33836,7 +34679,9 @@ func (ptr *QJsonDocument) ToVariant() *QVariant {
 	defer qt.Recovering("QJsonDocument::toVariant")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QJsonDocument_ToVariant(ptr.Pointer()))
+		var tmpValue = NewQVariantFromPointer(C.QJsonDocument_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -33918,7 +34763,9 @@ func (ptr *QJsonObject) Contains(key string) bool {
 	defer qt.Recovering("QJsonObject::contains")
 
 	if ptr.Pointer() != nil {
-		return C.QJsonObject_Contains(ptr.Pointer(), C.CString(key)) != 0
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return C.QJsonObject_Contains(ptr.Pointer(), keyC) != 0
 	}
 	return false
 }
@@ -33972,7 +34819,9 @@ func (ptr *QJsonObject) Remove(key string) {
 	defer qt.Recovering("QJsonObject::remove")
 
 	if ptr.Pointer() != nil {
-		C.QJsonObject_Remove(ptr.Pointer(), C.CString(key))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QJsonObject_Remove(ptr.Pointer(), keyC)
 	}
 }
 
@@ -33989,7 +34838,11 @@ func (ptr *QJsonObject) Take(key string) *QJsonValue {
 	defer qt.Recovering("QJsonObject::take")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QJsonObject_Take(ptr.Pointer(), C.CString(key)))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		var tmpValue = NewQJsonValueFromPointer(C.QJsonObject_Take(ptr.Pointer(), keyC))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -33998,7 +34851,9 @@ func (ptr *QJsonObject) Value2(key QLatin1String_ITF) *QJsonValue {
 	defer qt.Recovering("QJsonObject::value")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QJsonObject_Value2(ptr.Pointer(), PointerFromQLatin1String(key)))
+		var tmpValue = NewQJsonValueFromPointer(C.QJsonObject_Value2(ptr.Pointer(), PointerFromQLatin1String(key)))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -34007,7 +34862,11 @@ func (ptr *QJsonObject) Value(key string) *QJsonValue {
 	defer qt.Recovering("QJsonObject::value")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QJsonObject_Value(ptr.Pointer(), C.CString(key)))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		var tmpValue = NewQJsonValueFromPointer(C.QJsonObject_Value(ptr.Pointer(), keyC))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -34083,6 +34942,11 @@ func NewQJsonParseErrorFromPointer(ptr unsafe.Pointer) *QJsonParseError {
 func newQJsonParseErrorFromPointer(ptr unsafe.Pointer) *QJsonParseError {
 	var n = NewQJsonParseErrorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QJsonParseError) DestroyQJsonParseError() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QJsonParseError) ErrorString() string {
@@ -34223,13 +35087,17 @@ func NewQJsonValue11(other QJsonValue_ITF) *QJsonValue {
 func NewQJsonValue6(s string) *QJsonValue {
 	defer qt.Recovering("QJsonValue::QJsonValue")
 
-	return newQJsonValueFromPointer(C.QJsonValue_NewQJsonValue6(C.CString(s)))
+	var sC = C.CString(s)
+	defer C.free(unsafe.Pointer(sC))
+	return newQJsonValueFromPointer(C.QJsonValue_NewQJsonValue6(sC))
 }
 
 func NewQJsonValue8(s string) *QJsonValue {
 	defer qt.Recovering("QJsonValue::QJsonValue")
 
-	return newQJsonValueFromPointer(C.QJsonValue_NewQJsonValue8(C.CString(s)))
+	var sC = C.CString(s)
+	defer C.free(unsafe.Pointer(sC))
+	return newQJsonValueFromPointer(C.QJsonValue_NewQJsonValue8(sC))
 }
 
 func NewQJsonValue4(n int) *QJsonValue {
@@ -34247,13 +35115,17 @@ func NewQJsonValue5(n int64) *QJsonValue {
 func QJsonValue_FromVariant(variant QVariant_ITF) *QJsonValue {
 	defer qt.Recovering("QJsonValue::fromVariant")
 
-	return NewQJsonValueFromPointer(C.QJsonValue_QJsonValue_FromVariant(PointerFromQVariant(variant)))
+	var tmpValue = NewQJsonValueFromPointer(C.QJsonValue_QJsonValue_FromVariant(PointerFromQVariant(variant)))
+	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	return tmpValue
 }
 
 func (ptr *QJsonValue) FromVariant(variant QVariant_ITF) *QJsonValue {
 	defer qt.Recovering("QJsonValue::fromVariant")
 
-	return NewQJsonValueFromPointer(C.QJsonValue_QJsonValue_FromVariant(PointerFromQVariant(variant)))
+	var tmpValue = NewQJsonValueFromPointer(C.QJsonValue_QJsonValue_FromVariant(PointerFromQVariant(variant)))
+	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+	return tmpValue
 }
 
 func (ptr *QJsonValue) IsArray() bool {
@@ -34323,7 +35195,9 @@ func (ptr *QJsonValue) ToArray2() *QJsonArray {
 	defer qt.Recovering("QJsonValue::toArray")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonArrayFromPointer(C.QJsonValue_ToArray2(ptr.Pointer()))
+		var tmpValue = NewQJsonArrayFromPointer(C.QJsonValue_ToArray2(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		return tmpValue
 	}
 	return nil
 }
@@ -34332,7 +35206,9 @@ func (ptr *QJsonValue) ToArray(defaultValue QJsonArray_ITF) *QJsonArray {
 	defer qt.Recovering("QJsonValue::toArray")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonArrayFromPointer(C.QJsonValue_ToArray(ptr.Pointer(), PointerFromQJsonArray(defaultValue)))
+		var tmpValue = NewQJsonArrayFromPointer(C.QJsonValue_ToArray(ptr.Pointer(), PointerFromQJsonArray(defaultValue)))
+		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		return tmpValue
 	}
 	return nil
 }
@@ -34359,7 +35235,9 @@ func (ptr *QJsonValue) ToObject2() *QJsonObject {
 	defer qt.Recovering("QJsonValue::toObject")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonObjectFromPointer(C.QJsonValue_ToObject2(ptr.Pointer()))
+		var tmpValue = NewQJsonObjectFromPointer(C.QJsonValue_ToObject2(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
 	}
 	return nil
 }
@@ -34368,7 +35246,9 @@ func (ptr *QJsonValue) ToObject(defaultValue QJsonObject_ITF) *QJsonObject {
 	defer qt.Recovering("QJsonValue::toObject")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonObjectFromPointer(C.QJsonValue_ToObject(ptr.Pointer(), PointerFromQJsonObject(defaultValue)))
+		var tmpValue = NewQJsonObjectFromPointer(C.QJsonValue_ToObject(ptr.Pointer(), PointerFromQJsonObject(defaultValue)))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
 	}
 	return nil
 }
@@ -34386,7 +35266,9 @@ func (ptr *QJsonValue) ToString2(defaultValue string) string {
 	defer qt.Recovering("QJsonValue::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QJsonValue_ToString2(ptr.Pointer(), C.CString(defaultValue)))
+		var defaultValueC = C.CString(defaultValue)
+		defer C.free(unsafe.Pointer(defaultValueC))
+		return C.GoString(C.QJsonValue_ToString2(ptr.Pointer(), defaultValueC))
 	}
 	return ""
 }
@@ -34395,7 +35277,9 @@ func (ptr *QJsonValue) ToVariant() *QVariant {
 	defer qt.Recovering("QJsonValue::toVariant")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QJsonValue_ToVariant(ptr.Pointer()))
+		var tmpValue = NewQVariantFromPointer(C.QJsonValue_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -34461,10 +35345,17 @@ func newQLatin1CharFromPointer(ptr unsafe.Pointer) *QLatin1Char {
 	return n
 }
 
+func (ptr *QLatin1Char) DestroyQLatin1Char() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQLatin1Char(c string) *QLatin1Char {
 	defer qt.Recovering("QLatin1Char::QLatin1Char")
 
-	return newQLatin1CharFromPointer(C.QLatin1Char_NewQLatin1Char(C.CString(c)))
+	var cC = C.CString(c)
+	defer C.free(unsafe.Pointer(cC))
+	return newQLatin1CharFromPointer(C.QLatin1Char_NewQLatin1Char(cC))
 }
 
 func (ptr *QLatin1Char) ToLatin1() string {
@@ -34519,6 +35410,11 @@ func newQLatin1StringFromPointer(ptr unsafe.Pointer) *QLatin1String {
 	return n
 }
 
+func (ptr *QLatin1String) DestroyQLatin1String() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQLatin1String() *QLatin1String {
 	defer qt.Recovering("QLatin1String::QLatin1String")
 
@@ -34528,19 +35424,25 @@ func NewQLatin1String() *QLatin1String {
 func NewQLatin1String4(str string) *QLatin1String {
 	defer qt.Recovering("QLatin1String::QLatin1String")
 
-	return newQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String4(C.CString(str)))
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return newQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String4(strC))
 }
 
 func NewQLatin1String2(str string) *QLatin1String {
 	defer qt.Recovering("QLatin1String::QLatin1String")
 
-	return newQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String2(C.CString(str)))
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return newQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String2(strC))
 }
 
 func NewQLatin1String3(str string, size int) *QLatin1String {
 	defer qt.Recovering("QLatin1String::QLatin1String")
 
-	return newQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String3(C.CString(str), C.int(size)))
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return newQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String3(strC, C.int(size)))
 }
 
 func (ptr *QLatin1String) Data() string {
@@ -34650,7 +35552,9 @@ func (ptr *QLibrary) SetFileName(fileName string) {
 	defer qt.Recovering("QLibrary::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QLibrary_SetFileName(ptr.Pointer(), C.CString(fileName))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QLibrary_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
 
@@ -34658,7 +35562,9 @@ func (ptr *QLibrary) SetFileNameAndVersion(fileName string, versionNumber int) {
 	defer qt.Recovering("QLibrary::setFileNameAndVersion")
 
 	if ptr.Pointer() != nil {
-		C.QLibrary_SetFileNameAndVersion(ptr.Pointer(), C.CString(fileName), C.int(versionNumber))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QLibrary_SetFileNameAndVersion(ptr.Pointer(), fileNameC, C.int(versionNumber))
 	}
 }
 
@@ -34679,19 +35585,27 @@ func NewQLibrary(parent QObject_ITF) *QLibrary {
 func NewQLibrary2(fileName string, parent QObject_ITF) *QLibrary {
 	defer qt.Recovering("QLibrary::QLibrary")
 
-	return newQLibraryFromPointer(C.QLibrary_NewQLibrary2(C.CString(fileName), PointerFromQObject(parent)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return newQLibraryFromPointer(C.QLibrary_NewQLibrary2(fileNameC, PointerFromQObject(parent)))
 }
 
 func NewQLibrary4(fileName string, version string, parent QObject_ITF) *QLibrary {
 	defer qt.Recovering("QLibrary::QLibrary")
 
-	return newQLibraryFromPointer(C.QLibrary_NewQLibrary4(C.CString(fileName), C.CString(version), PointerFromQObject(parent)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	var versionC = C.CString(version)
+	defer C.free(unsafe.Pointer(versionC))
+	return newQLibraryFromPointer(C.QLibrary_NewQLibrary4(fileNameC, versionC, PointerFromQObject(parent)))
 }
 
 func NewQLibrary3(fileName string, verNum int, parent QObject_ITF) *QLibrary {
 	defer qt.Recovering("QLibrary::QLibrary")
 
-	return newQLibraryFromPointer(C.QLibrary_NewQLibrary3(C.CString(fileName), C.int(verNum), PointerFromQObject(parent)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return newQLibraryFromPointer(C.QLibrary_NewQLibrary3(fileNameC, C.int(verNum), PointerFromQObject(parent)))
 }
 
 func (ptr *QLibrary) ErrorString() string {
@@ -34706,13 +35620,17 @@ func (ptr *QLibrary) ErrorString() string {
 func QLibrary_IsLibrary(fileName string) bool {
 	defer qt.Recovering("QLibrary::isLibrary")
 
-	return C.QLibrary_QLibrary_IsLibrary(C.CString(fileName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QLibrary_QLibrary_IsLibrary(fileNameC) != 0
 }
 
 func (ptr *QLibrary) IsLibrary(fileName string) bool {
 	defer qt.Recovering("QLibrary::isLibrary")
 
-	return C.QLibrary_QLibrary_IsLibrary(C.CString(fileName)) != 0
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.QLibrary_QLibrary_IsLibrary(fileNameC) != 0
 }
 
 func (ptr *QLibrary) IsLoaded() bool {
@@ -34737,7 +35655,11 @@ func (ptr *QLibrary) SetFileNameAndVersion2(fileName string, version string) {
 	defer qt.Recovering("QLibrary::setFileNameAndVersion")
 
 	if ptr.Pointer() != nil {
-		C.QLibrary_SetFileNameAndVersion2(ptr.Pointer(), C.CString(fileName), C.CString(version))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		var versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+		C.QLibrary_SetFileNameAndVersion2(ptr.Pointer(), fileNameC, versionC)
 	}
 }
 
@@ -35236,6 +36158,11 @@ func newQLibraryInfoFromPointer(ptr unsafe.Pointer) *QLibraryInfo {
 	return n
 }
 
+func (ptr *QLibraryInfo) DestroyQLibraryInfo() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func QLibraryInfo_IsDebugBuild() bool {
 	defer qt.Recovering("QLibraryInfo::isDebugBuild")
 
@@ -35327,6 +36254,11 @@ func newQLineFromPointer(ptr unsafe.Pointer) *QLine {
 	return n
 }
 
+func (ptr *QLine) DestroyQLine() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQLine() *QLine {
 	defer qt.Recovering("QLine::QLine")
 
@@ -35376,7 +36308,9 @@ func (ptr *QLine) P1() *QPoint {
 	defer qt.Recovering("QLine::p1")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QLine_P1(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QLine_P1(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -35385,7 +36319,9 @@ func (ptr *QLine) P2() *QPoint {
 	defer qt.Recovering("QLine::p2")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QLine_P2(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QLine_P2(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -35442,7 +36378,9 @@ func (ptr *QLine) Translated(offset QPoint_ITF) *QLine {
 	defer qt.Recovering("QLine::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFromPointer(C.QLine_Translated(ptr.Pointer(), PointerFromQPoint(offset)))
+		var tmpValue = NewQLineFromPointer(C.QLine_Translated(ptr.Pointer(), PointerFromQPoint(offset)))
+		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		return tmpValue
 	}
 	return nil
 }
@@ -35451,7 +36389,9 @@ func (ptr *QLine) Translated2(dx int, dy int) *QLine {
 	defer qt.Recovering("QLine::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFromPointer(C.QLine_Translated2(ptr.Pointer(), C.int(dx), C.int(dy)))
+		var tmpValue = NewQLineFromPointer(C.QLine_Translated2(ptr.Pointer(), C.int(dx), C.int(dy)))
+		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		return tmpValue
 	}
 	return nil
 }
@@ -35544,6 +36484,11 @@ func newQLineFFromPointer(ptr unsafe.Pointer) *QLineF {
 	return n
 }
 
+func (ptr *QLineF) DestroyQLineF() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QLineF) AngleTo(line QLineF_ITF) float64 {
 	defer qt.Recovering("QLineF::angleTo")
 
@@ -35616,13 +36561,17 @@ func (ptr *QLineF) Dy() float64 {
 func QLineF_FromPolar(length float64, angle float64) *QLineF {
 	defer qt.Recovering("QLineF::fromPolar")
 
-	return NewQLineFFromPointer(C.QLineF_QLineF_FromPolar(C.double(length), C.double(angle)))
+	var tmpValue = NewQLineFFromPointer(C.QLineF_QLineF_FromPolar(C.double(length), C.double(angle)))
+	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	return tmpValue
 }
 
 func (ptr *QLineF) FromPolar(length float64, angle float64) *QLineF {
 	defer qt.Recovering("QLineF::fromPolar")
 
-	return NewQLineFFromPointer(C.QLineF_QLineF_FromPolar(C.double(length), C.double(angle)))
+	var tmpValue = NewQLineFFromPointer(C.QLineF_QLineF_FromPolar(C.double(length), C.double(angle)))
+	runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+	return tmpValue
 }
 
 func (ptr *QLineF) IsNull() bool {
@@ -35647,7 +36596,9 @@ func (ptr *QLineF) NormalVector() *QLineF {
 	defer qt.Recovering("QLineF::normalVector")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFFromPointer(C.QLineF_NormalVector(ptr.Pointer()))
+		var tmpValue = NewQLineFFromPointer(C.QLineF_NormalVector(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		return tmpValue
 	}
 	return nil
 }
@@ -35656,7 +36607,9 @@ func (ptr *QLineF) P1() *QPointF {
 	defer qt.Recovering("QLineF::p1")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QLineF_P1(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QLineF_P1(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -35665,7 +36618,9 @@ func (ptr *QLineF) P2() *QPointF {
 	defer qt.Recovering("QLineF::p2")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QLineF_P2(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QLineF_P2(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -35674,7 +36629,9 @@ func (ptr *QLineF) PointAt(t float64) *QPointF {
 	defer qt.Recovering("QLineF::pointAt")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QLineF_PointAt(ptr.Pointer(), C.double(t)))
+		var tmpValue = NewQPointFFromPointer(C.QLineF_PointAt(ptr.Pointer(), C.double(t)))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -35731,7 +36688,9 @@ func (ptr *QLineF) ToLine() *QLine {
 	defer qt.Recovering("QLineF::toLine")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFromPointer(C.QLineF_ToLine(ptr.Pointer()))
+		var tmpValue = NewQLineFromPointer(C.QLineF_ToLine(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		return tmpValue
 	}
 	return nil
 }
@@ -35756,7 +36715,9 @@ func (ptr *QLineF) Translated(offset QPointF_ITF) *QLineF {
 	defer qt.Recovering("QLineF::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFFromPointer(C.QLineF_Translated(ptr.Pointer(), PointerFromQPointF(offset)))
+		var tmpValue = NewQLineFFromPointer(C.QLineF_Translated(ptr.Pointer(), PointerFromQPointF(offset)))
+		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		return tmpValue
 	}
 	return nil
 }
@@ -35765,7 +36726,9 @@ func (ptr *QLineF) Translated2(dx float64, dy float64) *QLineF {
 	defer qt.Recovering("QLineF::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFFromPointer(C.QLineF_Translated2(ptr.Pointer(), C.double(dx), C.double(dy)))
+		var tmpValue = NewQLineFFromPointer(C.QLineF_Translated2(ptr.Pointer(), C.double(dx), C.double(dy)))
+		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		return tmpValue
 	}
 	return nil
 }
@@ -35774,7 +36737,9 @@ func (ptr *QLineF) UnitVector() *QLineF {
 	defer qt.Recovering("QLineF::unitVector")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFFromPointer(C.QLineF_UnitVector(ptr.Pointer()))
+		var tmpValue = NewQLineFFromPointer(C.QLineF_UnitVector(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		return tmpValue
 	}
 	return nil
 }
@@ -35901,6 +36866,11 @@ func newQLinkedListIteratorFromPointer(ptr unsafe.Pointer) *QLinkedListIterator 
 	return n
 }
 
+func (ptr *QLinkedListIterator) DestroyQLinkedListIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QList struct {
 	ptr unsafe.Pointer
 }
@@ -35985,6 +36955,11 @@ func NewQListIteratorFromPointer(ptr unsafe.Pointer) *QListIterator {
 func newQListIteratorFromPointer(ptr unsafe.Pointer) *QListIterator {
 	var n = NewQListIteratorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QListIterator) DestroyQListIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //QLocale::Country
@@ -36918,7 +37893,9 @@ func NewQLocale5(other QLocale_ITF) *QLocale {
 func NewQLocale2(name string) *QLocale {
 	defer qt.Recovering("QLocale::QLocale")
 
-	return newQLocaleFromPointer(C.QLocale_NewQLocale2(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQLocaleFromPointer(C.QLocale_NewQLocale2(nameC))
 }
 
 func (ptr *QLocale) AmText() string {
@@ -36942,13 +37919,17 @@ func (ptr *QLocale) Bcp47Name() string {
 func QLocale_C() *QLocale {
 	defer qt.Recovering("QLocale::c")
 
-	return NewQLocaleFromPointer(C.QLocale_QLocale_C())
+	var tmpValue = NewQLocaleFromPointer(C.QLocale_QLocale_C())
+	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	return tmpValue
 }
 
 func (ptr *QLocale) C() *QLocale {
 	defer qt.Recovering("QLocale::c")
 
-	return NewQLocaleFromPointer(C.QLocale_QLocale_C())
+	var tmpValue = NewQLocaleFromPointer(C.QLocale_QLocale_C())
+	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	return tmpValue
 }
 
 func (ptr *QLocale) Country() QLocale__Country {
@@ -36976,7 +37957,9 @@ func (ptr *QLocale) CreateSeparatedList(list []string) string {
 	defer qt.Recovering("QLocale::createSeparatedList")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_CreateSeparatedList(ptr.Pointer(), C.CString(strings.Join(list, "|"))))
+		var listC = C.CString(strings.Join(list, "|"))
+		defer C.free(unsafe.Pointer(listC))
+		return C.GoString(C.QLocale_CreateSeparatedList(ptr.Pointer(), listC))
 	}
 	return ""
 }
@@ -37114,7 +38097,9 @@ func (ptr *QLocale) QuoteString(str string, style QLocale__QuotationStyle) strin
 	defer qt.Recovering("QLocale::quoteString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_QuoteString(ptr.Pointer(), C.CString(str), C.int(style)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.GoString(C.QLocale_QuoteString(ptr.Pointer(), strC, C.int(style)))
 	}
 	return ""
 }
@@ -37198,13 +38183,17 @@ func (ptr *QLocale) Swap(other QLocale_ITF) {
 func QLocale_System() *QLocale {
 	defer qt.Recovering("QLocale::system")
 
-	return NewQLocaleFromPointer(C.QLocale_QLocale_System())
+	var tmpValue = NewQLocaleFromPointer(C.QLocale_QLocale_System())
+	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	return tmpValue
 }
 
 func (ptr *QLocale) System() *QLocale {
 	defer qt.Recovering("QLocale::system")
 
-	return NewQLocaleFromPointer(C.QLocale_QLocale_System())
+	var tmpValue = NewQLocaleFromPointer(C.QLocale_QLocale_System())
+	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+	return tmpValue
 }
 
 func (ptr *QLocale) TextDirection() Qt__LayoutDirection {
@@ -37229,7 +38218,9 @@ func (ptr *QLocale) ToCurrencyString5(value int, symbol string) string {
 	defer qt.Recovering("QLocale::toCurrencyString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToCurrencyString5(ptr.Pointer(), C.int(value), C.CString(symbol)))
+		var symbolC = C.CString(symbol)
+		defer C.free(unsafe.Pointer(symbolC))
+		return C.GoString(C.QLocale_ToCurrencyString5(ptr.Pointer(), C.int(value), symbolC))
 	}
 	return ""
 }
@@ -37238,7 +38229,11 @@ func (ptr *QLocale) ToDateTime(stri string, format QLocale__FormatType) *QDateTi
 	defer qt.Recovering("QLocale::toDateTime")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QLocale_ToDateTime(ptr.Pointer(), C.CString(stri), C.int(format)))
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var tmpValue = NewQDateTimeFromPointer(C.QLocale_ToDateTime(ptr.Pointer(), striC, C.int(format)))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -37247,7 +38242,13 @@ func (ptr *QLocale) ToDateTime2(stri string, format string) *QDateTime {
 	defer qt.Recovering("QLocale::toDateTime")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QLocale_ToDateTime2(ptr.Pointer(), C.CString(stri), C.CString(format)))
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		var tmpValue = NewQDateTimeFromPointer(C.QLocale_ToDateTime2(ptr.Pointer(), striC, formatC))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -37256,7 +38257,9 @@ func (ptr *QLocale) ToInt(s string, ok bool) int {
 	defer qt.Recovering("QLocale::toInt")
 
 	if ptr.Pointer() != nil {
-		return int(C.QLocale_ToInt(ptr.Pointer(), C.CString(s), C.int(qt.GoBoolToInt(ok))))
+		var sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+		return int(C.QLocale_ToInt(ptr.Pointer(), sC, C.int(qt.GoBoolToInt(ok))))
 	}
 	return 0
 }
@@ -37274,7 +38277,9 @@ func (ptr *QLocale) ToLower(str string) string {
 	defer qt.Recovering("QLocale::toLower")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToLower(ptr.Pointer(), C.CString(str)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.GoString(C.QLocale_ToLower(ptr.Pointer(), strC))
 	}
 	return ""
 }
@@ -37292,7 +38297,9 @@ func (ptr *QLocale) ToString9(date QDate_ITF, format string) string {
 	defer qt.Recovering("QLocale::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString9(ptr.Pointer(), PointerFromQDate(date), C.CString(format)))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.GoString(C.QLocale_ToString9(ptr.Pointer(), PointerFromQDate(date), formatC))
 	}
 	return ""
 }
@@ -37310,7 +38317,9 @@ func (ptr *QLocale) ToString14(dateTime QDateTime_ITF, format string) string {
 	defer qt.Recovering("QLocale::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString14(ptr.Pointer(), PointerFromQDateTime(dateTime), C.CString(format)))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.GoString(C.QLocale_ToString14(ptr.Pointer(), PointerFromQDateTime(dateTime), formatC))
 	}
 	return ""
 }
@@ -37328,7 +38337,9 @@ func (ptr *QLocale) ToString11(time QTime_ITF, format string) string {
 	defer qt.Recovering("QLocale::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToString11(ptr.Pointer(), PointerFromQTime(time), C.CString(format)))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.GoString(C.QLocale_ToString11(ptr.Pointer(), PointerFromQTime(time), formatC))
 	}
 	return ""
 }
@@ -37346,7 +38357,9 @@ func (ptr *QLocale) ToUpper(str string) string {
 	defer qt.Recovering("QLocale::toUpper")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLocale_ToUpper(ptr.Pointer(), C.CString(str)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.GoString(C.QLocale_ToUpper(ptr.Pointer(), strC))
 	}
 	return ""
 }
@@ -37425,7 +38438,9 @@ func newQLockFileFromPointer(ptr unsafe.Pointer) *QLockFile {
 func NewQLockFile(fileName string) *QLockFile {
 	defer qt.Recovering("QLockFile::QLockFile")
 
-	return newQLockFileFromPointer(C.QLockFile_NewQLockFile(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return newQLockFileFromPointer(C.QLockFile_NewQLockFile(fileNameC))
 }
 
 func (ptr *QLockFile) Error() QLockFile__LockError {
@@ -37553,7 +38568,9 @@ func newQLoggingCategoryFromPointer(ptr unsafe.Pointer) *QLoggingCategory {
 func NewQLoggingCategory(category string) *QLoggingCategory {
 	defer qt.Recovering("QLoggingCategory::QLoggingCategory")
 
-	return newQLoggingCategoryFromPointer(C.QLoggingCategory_NewQLoggingCategory(C.CString(category)))
+	var categoryC = C.CString(category)
+	defer C.free(unsafe.Pointer(categoryC))
+	return newQLoggingCategoryFromPointer(C.QLoggingCategory_NewQLoggingCategory(categoryC))
 }
 
 func (ptr *QLoggingCategory) CategoryName() string {
@@ -37616,13 +38633,17 @@ func (ptr *QLoggingCategory) IsWarningEnabled() bool {
 func QLoggingCategory_SetFilterRules(rules string) {
 	defer qt.Recovering("QLoggingCategory::setFilterRules")
 
-	C.QLoggingCategory_QLoggingCategory_SetFilterRules(C.CString(rules))
+	var rulesC = C.CString(rules)
+	defer C.free(unsafe.Pointer(rulesC))
+	C.QLoggingCategory_QLoggingCategory_SetFilterRules(rulesC)
 }
 
 func (ptr *QLoggingCategory) SetFilterRules(rules string) {
 	defer qt.Recovering("QLoggingCategory::setFilterRules")
 
-	C.QLoggingCategory_QLoggingCategory_SetFilterRules(C.CString(rules))
+	var rulesC = C.CString(rules)
+	defer C.free(unsafe.Pointer(rulesC))
+	C.QLoggingCategory_QLoggingCategory_SetFilterRules(rulesC)
 }
 
 func (ptr *QLoggingCategory) DestroyQLoggingCategory() {
@@ -37720,6 +38741,11 @@ func newQMapIteratorFromPointer(ptr unsafe.Pointer) *QMapIterator {
 	return n
 }
 
+func (ptr *QMapIterator) DestroyQMapIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QMargins struct {
 	ptr unsafe.Pointer
 }
@@ -37761,6 +38787,11 @@ func NewQMarginsFromPointer(ptr unsafe.Pointer) *QMargins {
 func newQMarginsFromPointer(ptr unsafe.Pointer) *QMargins {
 	var n = NewQMarginsFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMargins) DestroyQMargins() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func NewQMargins() *QMargins {
@@ -37895,6 +38926,11 @@ func newQMarginsFFromPointer(ptr unsafe.Pointer) *QMarginsF {
 	return n
 }
 
+func (ptr *QMarginsF) DestroyQMarginsF() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQMarginsF() *QMarginsF {
 	defer qt.Recovering("QMarginsF::QMarginsF")
 
@@ -37985,7 +39021,9 @@ func (ptr *QMarginsF) ToMargins() *QMargins {
 	defer qt.Recovering("QMarginsF::toMargins")
 
 	if ptr.Pointer() != nil {
-		return NewQMarginsFromPointer(C.QMarginsF_ToMargins(ptr.Pointer()))
+		var tmpValue = NewQMarginsFromPointer(C.QMarginsF_ToMargins(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QMargins).DestroyQMargins)
+		return tmpValue
 	}
 	return nil
 }
@@ -38045,7 +39083,9 @@ func newQMessageAuthenticationCodeFromPointer(ptr unsafe.Pointer) *QMessageAuthe
 func NewQMessageAuthenticationCode(method QCryptographicHash__Algorithm, key string) *QMessageAuthenticationCode {
 	defer qt.Recovering("QMessageAuthenticationCode::QMessageAuthenticationCode")
 
-	return newQMessageAuthenticationCodeFromPointer(C.QMessageAuthenticationCode_NewQMessageAuthenticationCode(C.int(method), C.CString(key)))
+	var keyC = C.CString(key)
+	defer C.free(unsafe.Pointer(keyC))
+	return newQMessageAuthenticationCodeFromPointer(C.QMessageAuthenticationCode_NewQMessageAuthenticationCode(C.int(method), keyC))
 }
 
 func (ptr *QMessageAuthenticationCode) AddData3(device QIODevice_ITF) bool {
@@ -38061,7 +39101,9 @@ func (ptr *QMessageAuthenticationCode) AddData2(data string) {
 	defer qt.Recovering("QMessageAuthenticationCode::addData")
 
 	if ptr.Pointer() != nil {
-		C.QMessageAuthenticationCode_AddData2(ptr.Pointer(), C.CString(data))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QMessageAuthenticationCode_AddData2(ptr.Pointer(), dataC)
 	}
 }
 
@@ -38069,20 +39111,30 @@ func (ptr *QMessageAuthenticationCode) AddData(data string, length int) {
 	defer qt.Recovering("QMessageAuthenticationCode::addData")
 
 	if ptr.Pointer() != nil {
-		C.QMessageAuthenticationCode_AddData(ptr.Pointer(), C.CString(data), C.int(length))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QMessageAuthenticationCode_AddData(ptr.Pointer(), dataC, C.int(length))
 	}
 }
 
 func QMessageAuthenticationCode_Hash(message string, key string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QMessageAuthenticationCode::hash")
 
-	return C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(C.CString(message), C.CString(key), C.int(method)))
+	var messageC = C.CString(message)
+	defer C.free(unsafe.Pointer(messageC))
+	var keyC = C.CString(key)
+	defer C.free(unsafe.Pointer(keyC))
+	return C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(messageC, keyC, C.int(method)))
 }
 
 func (ptr *QMessageAuthenticationCode) Hash(message string, key string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QMessageAuthenticationCode::hash")
 
-	return C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(C.CString(message), C.CString(key), C.int(method)))
+	var messageC = C.CString(message)
+	defer C.free(unsafe.Pointer(messageC))
+	var keyC = C.CString(key)
+	defer C.free(unsafe.Pointer(keyC))
+	return C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(messageC, keyC, C.int(method)))
 }
 
 func (ptr *QMessageAuthenticationCode) Reset() {
@@ -38106,7 +39158,9 @@ func (ptr *QMessageAuthenticationCode) SetKey(key string) {
 	defer qt.Recovering("QMessageAuthenticationCode::setKey")
 
 	if ptr.Pointer() != nil {
-		C.QMessageAuthenticationCode_SetKey(ptr.Pointer(), C.CString(key))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QMessageAuthenticationCode_SetKey(ptr.Pointer(), keyC)
 	}
 }
 
@@ -38160,6 +39214,11 @@ func NewQMessageLogContextFromPointer(ptr unsafe.Pointer) *QMessageLogContext {
 func newQMessageLogContextFromPointer(ptr unsafe.Pointer) *QMessageLogContext {
 	var n = NewQMessageLogContextFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMessageLogContext) DestroyQMessageLogContext() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QMessageLogContext) Category() string {
@@ -38266,6 +39325,11 @@ func newQMessageLoggerFromPointer(ptr unsafe.Pointer) *QMessageLogger {
 	return n
 }
 
+func (ptr *QMessageLogger) DestroyQMessageLogger() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQMessageLogger() *QMessageLogger {
 	defer qt.Recovering("QMessageLogger::QMessageLogger")
 
@@ -38275,20 +39339,32 @@ func NewQMessageLogger() *QMessageLogger {
 func NewQMessageLogger2(file string, line int, function string) *QMessageLogger {
 	defer qt.Recovering("QMessageLogger::QMessageLogger")
 
-	return newQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger2(C.CString(file), C.int(line), C.CString(function)))
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	var functionC = C.CString(function)
+	defer C.free(unsafe.Pointer(functionC))
+	return newQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger2(fileC, C.int(line), functionC))
 }
 
 func NewQMessageLogger3(file string, line int, function string, category string) *QMessageLogger {
 	defer qt.Recovering("QMessageLogger::QMessageLogger")
 
-	return newQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger3(C.CString(file), C.int(line), C.CString(function), C.CString(category)))
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	var functionC = C.CString(function)
+	defer C.free(unsafe.Pointer(functionC))
+	var categoryC = C.CString(category)
+	defer C.free(unsafe.Pointer(categoryC))
+	return newQMessageLoggerFromPointer(C.QMessageLogger_NewQMessageLogger3(fileC, C.int(line), functionC, categoryC))
 }
 
 func (ptr *QMessageLogger) Critical4() *QDebug {
 	defer qt.Recovering("QMessageLogger::critical")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Critical4(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Critical4(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38297,7 +39373,9 @@ func (ptr *QMessageLogger) Critical5(cat QLoggingCategory_ITF) *QDebug {
 	defer qt.Recovering("QMessageLogger::critical")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Critical5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Critical5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38306,7 +39384,9 @@ func (ptr *QMessageLogger) Debug4() *QDebug {
 	defer qt.Recovering("QMessageLogger::debug")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Debug4(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Debug4(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38315,7 +39395,9 @@ func (ptr *QMessageLogger) Debug5(cat QLoggingCategory_ITF) *QDebug {
 	defer qt.Recovering("QMessageLogger::debug")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Debug5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Debug5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38324,7 +39406,9 @@ func (ptr *QMessageLogger) Info4() *QDebug {
 	defer qt.Recovering("QMessageLogger::info")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Info4(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Info4(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38333,7 +39417,9 @@ func (ptr *QMessageLogger) Info5(cat QLoggingCategory_ITF) *QDebug {
 	defer qt.Recovering("QMessageLogger::info")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Info5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Info5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38342,7 +39428,9 @@ func (ptr *QMessageLogger) Warning4() *QDebug {
 	defer qt.Recovering("QMessageLogger::warning")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Warning4(ptr.Pointer()))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Warning4(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38351,7 +39439,9 @@ func (ptr *QMessageLogger) Warning5(cat QLoggingCategory_ITF) *QDebug {
 	defer qt.Recovering("QMessageLogger::warning")
 
 	if ptr.Pointer() != nil {
-		return NewQDebugFromPointer(C.QMessageLogger_Warning5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		var tmpValue = NewQDebugFromPointer(C.QMessageLogger_Warning5(ptr.Pointer(), PointerFromQLoggingCategory(cat)))
+		runtime.SetFinalizer(tmpValue, (*QDebug).DestroyQDebug)
+		return tmpValue
 	}
 	return nil
 }
@@ -38397,6 +39487,11 @@ func NewQMetaClassInfoFromPointer(ptr unsafe.Pointer) *QMetaClassInfo {
 func newQMetaClassInfoFromPointer(ptr unsafe.Pointer) *QMetaClassInfo {
 	var n = NewQMetaClassInfoFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMetaClassInfo) DestroyQMetaClassInfo() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QMetaClassInfo) Name() string {
@@ -38460,6 +39555,11 @@ func newQMetaEnumFromPointer(ptr unsafe.Pointer) *QMetaEnum {
 	return n
 }
 
+func (ptr *QMetaEnum) DestroyQMetaEnum() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QMetaEnum) IsFlag() bool {
 	defer qt.Recovering("QMetaEnum::isFlag")
 
@@ -38500,7 +39600,9 @@ func (ptr *QMetaEnum) KeyToValue(key string, ok bool) int {
 	defer qt.Recovering("QMetaEnum::keyToValue")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaEnum_KeyToValue(ptr.Pointer(), C.CString(key), C.int(qt.GoBoolToInt(ok))))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return int(C.QMetaEnum_KeyToValue(ptr.Pointer(), keyC, C.int(qt.GoBoolToInt(ok))))
 	}
 	return 0
 }
@@ -38509,7 +39611,9 @@ func (ptr *QMetaEnum) KeysToValue(keys string, ok bool) int {
 	defer qt.Recovering("QMetaEnum::keysToValue")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaEnum_KeysToValue(ptr.Pointer(), C.CString(keys), C.int(qt.GoBoolToInt(ok))))
+		var keysC = C.CString(keys)
+		defer C.free(unsafe.Pointer(keysC))
+		return int(C.QMetaEnum_KeysToValue(ptr.Pointer(), keysC, C.int(qt.GoBoolToInt(ok))))
 	}
 	return 0
 }
@@ -38619,6 +39723,11 @@ func NewQMetaMethodFromPointer(ptr unsafe.Pointer) *QMetaMethod {
 func newQMetaMethodFromPointer(ptr unsafe.Pointer) *QMetaMethod {
 	var n = NewQMetaMethodFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMetaMethod) DestroyQMetaMethod() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QMetaMethod) Access() QMetaMethod__Access {
@@ -38826,6 +39935,11 @@ func newQMetaObjectFromPointer(ptr unsafe.Pointer) *QMetaObject {
 	return n
 }
 
+func (ptr *QMetaObject) DestroyQMetaObject() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func QMetaObject_ConnectSlotsByName(object QObject_ITF) {
 	defer qt.Recovering("QMetaObject::connectSlotsByName")
 
@@ -38853,13 +39967,21 @@ func (ptr *QMetaObject) CheckConnectArgs2(sign QMetaMethod_ITF, method QMetaMeth
 func QMetaObject_CheckConnectArgs(sign string, method string) bool {
 	defer qt.Recovering("QMetaObject::checkConnectArgs")
 
-	return C.QMetaObject_QMetaObject_CheckConnectArgs(C.CString(sign), C.CString(method)) != 0
+	var signC = C.CString(sign)
+	defer C.free(unsafe.Pointer(signC))
+	var methodC = C.CString(method)
+	defer C.free(unsafe.Pointer(methodC))
+	return C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC) != 0
 }
 
 func (ptr *QMetaObject) CheckConnectArgs(sign string, method string) bool {
 	defer qt.Recovering("QMetaObject::checkConnectArgs")
 
-	return C.QMetaObject_QMetaObject_CheckConnectArgs(C.CString(sign), C.CString(method)) != 0
+	var signC = C.CString(sign)
+	defer C.free(unsafe.Pointer(signC))
+	var methodC = C.CString(method)
+	defer C.free(unsafe.Pointer(methodC))
+	return C.QMetaObject_QMetaObject_CheckConnectArgs(signC, methodC) != 0
 }
 
 func (ptr *QMetaObject) ClassInfoCount() int {
@@ -38893,7 +40015,9 @@ func (ptr *QMetaObject) Constructor(index int) *QMetaMethod {
 	defer qt.Recovering("QMetaObject::constructor")
 
 	if ptr.Pointer() != nil {
-		return NewQMetaMethodFromPointer(C.QMetaObject_Constructor(ptr.Pointer(), C.int(index)))
+		var tmpValue = NewQMetaMethodFromPointer(C.QMetaObject_Constructor(ptr.Pointer(), C.int(index)))
+		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		return tmpValue
 	}
 	return nil
 }
@@ -38929,7 +40053,9 @@ func (ptr *QMetaObject) IndexOfClassInfo(name string) int {
 	defer qt.Recovering("QMetaObject::indexOfClassInfo")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfClassInfo(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QMetaObject_IndexOfClassInfo(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -38938,7 +40064,9 @@ func (ptr *QMetaObject) IndexOfConstructor(constructor string) int {
 	defer qt.Recovering("QMetaObject::indexOfConstructor")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfConstructor(ptr.Pointer(), C.CString(constructor)))
+		var constructorC = C.CString(constructor)
+		defer C.free(unsafe.Pointer(constructorC))
+		return int(C.QMetaObject_IndexOfConstructor(ptr.Pointer(), constructorC))
 	}
 	return 0
 }
@@ -38947,7 +40075,9 @@ func (ptr *QMetaObject) IndexOfEnumerator(name string) int {
 	defer qt.Recovering("QMetaObject::indexOfEnumerator")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfEnumerator(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QMetaObject_IndexOfEnumerator(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -38956,7 +40086,9 @@ func (ptr *QMetaObject) IndexOfMethod(method string) int {
 	defer qt.Recovering("QMetaObject::indexOfMethod")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfMethod(ptr.Pointer(), C.CString(method)))
+		var methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+		return int(C.QMetaObject_IndexOfMethod(ptr.Pointer(), methodC))
 	}
 	return 0
 }
@@ -38965,7 +40097,9 @@ func (ptr *QMetaObject) IndexOfProperty(name string) int {
 	defer qt.Recovering("QMetaObject::indexOfProperty")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfProperty(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QMetaObject_IndexOfProperty(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -38974,7 +40108,9 @@ func (ptr *QMetaObject) IndexOfSignal(sign string) int {
 	defer qt.Recovering("QMetaObject::indexOfSignal")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfSignal(ptr.Pointer(), C.CString(sign)))
+		var signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+		return int(C.QMetaObject_IndexOfSignal(ptr.Pointer(), signC))
 	}
 	return 0
 }
@@ -38983,7 +40119,9 @@ func (ptr *QMetaObject) IndexOfSlot(slot string) int {
 	defer qt.Recovering("QMetaObject::indexOfSlot")
 
 	if ptr.Pointer() != nil {
-		return int(C.QMetaObject_IndexOfSlot(ptr.Pointer(), C.CString(slot)))
+		var slotC = C.CString(slot)
+		defer C.free(unsafe.Pointer(slotC))
+		return int(C.QMetaObject_IndexOfSlot(ptr.Pointer(), slotC))
 	}
 	return 0
 }
@@ -39000,56 +40138,74 @@ func (ptr *QMetaObject) Inherits(metaObject QMetaObject_ITF) bool {
 func QMetaObject_InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), C.CString(member), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod4(obj QObject_ITF, member string, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), C.CString(member), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod4(PointerFromQObject(obj), memberC, PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func QMetaObject_InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), C.CString(member), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod2(obj QObject_ITF, member string, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), C.CString(member), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod2(PointerFromQObject(obj), memberC, PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func QMetaObject_InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), C.CString(member), C.int(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.int(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod3(obj QObject_ITF, member string, ty Qt__ConnectionType, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), C.CString(member), C.int(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod3(PointerFromQObject(obj), memberC, C.int(ty), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func QMetaObject_InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), C.CString(member), C.int(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.int(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) InvokeMethod(obj QObject_ITF, member string, ty Qt__ConnectionType, ret QGenericReturnArgument_ITF, val0 QGenericArgument_ITF, val1 QGenericArgument_ITF, val2 QGenericArgument_ITF, val3 QGenericArgument_ITF, val4 QGenericArgument_ITF, val5 QGenericArgument_ITF, val6 QGenericArgument_ITF, val7 QGenericArgument_ITF, val8 QGenericArgument_ITF, val9 QGenericArgument_ITF) bool {
 	defer qt.Recovering("QMetaObject::invokeMethod")
 
-	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), C.CString(member), C.int(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	return C.QMetaObject_QMetaObject_InvokeMethod(PointerFromQObject(obj), memberC, C.int(ty), PointerFromQGenericReturnArgument(ret), PointerFromQGenericArgument(val0), PointerFromQGenericArgument(val1), PointerFromQGenericArgument(val2), PointerFromQGenericArgument(val3), PointerFromQGenericArgument(val4), PointerFromQGenericArgument(val5), PointerFromQGenericArgument(val6), PointerFromQGenericArgument(val7), PointerFromQGenericArgument(val8), PointerFromQGenericArgument(val9)) != 0
 }
 
 func (ptr *QMetaObject) Method(index int) *QMetaMethod {
 	defer qt.Recovering("QMetaObject::method")
 
 	if ptr.Pointer() != nil {
-		return NewQMetaMethodFromPointer(C.QMetaObject_Method(ptr.Pointer(), C.int(index)))
+		var tmpValue = NewQMetaMethodFromPointer(C.QMetaObject_Method(ptr.Pointer(), C.int(index)))
+		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		return tmpValue
 	}
 	return nil
 }
@@ -39084,25 +40240,33 @@ func (ptr *QMetaObject) NewInstance(val0 QGenericArgument_ITF, val1 QGenericArgu
 func QMetaObject_NormalizedSignature(method string) string {
 	defer qt.Recovering("QMetaObject::normalizedSignature")
 
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(C.CString(method)))
+	var methodC = C.CString(method)
+	defer C.free(unsafe.Pointer(methodC))
+	return C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
 }
 
 func (ptr *QMetaObject) NormalizedSignature(method string) string {
 	defer qt.Recovering("QMetaObject::normalizedSignature")
 
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(C.CString(method)))
+	var methodC = C.CString(method)
+	defer C.free(unsafe.Pointer(methodC))
+	return C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
 }
 
 func QMetaObject_NormalizedType(ty string) string {
 	defer qt.Recovering("QMetaObject::normalizedType")
 
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedType(C.CString(ty)))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	return C.GoString(C.QMetaObject_QMetaObject_NormalizedType(tyC))
 }
 
 func (ptr *QMetaObject) NormalizedType(ty string) string {
 	defer qt.Recovering("QMetaObject::normalizedType")
 
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedType(C.CString(ty)))
+	var tyC = C.CString(ty)
+	defer C.free(unsafe.Pointer(tyC))
+	return C.GoString(C.QMetaObject_QMetaObject_NormalizedType(tyC))
 }
 
 func (ptr *QMetaObject) PropertyCount() int {
@@ -39173,6 +40337,11 @@ func NewQMetaPropertyFromPointer(ptr unsafe.Pointer) *QMetaProperty {
 func newQMetaPropertyFromPointer(ptr unsafe.Pointer) *QMetaProperty {
 	var n = NewQMetaPropertyFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMetaProperty) DestroyQMetaProperty() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QMetaProperty) HasNotifySignal() bool {
@@ -39305,7 +40474,9 @@ func (ptr *QMetaProperty) NotifySignal() *QMetaMethod {
 	defer qt.Recovering("QMetaProperty::notifySignal")
 
 	if ptr.Pointer() != nil {
-		return NewQMetaMethodFromPointer(C.QMetaProperty_NotifySignal(ptr.Pointer()))
+		var tmpValue = NewQMetaMethodFromPointer(C.QMetaProperty_NotifySignal(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QMetaMethod).DestroyQMetaMethod)
+		return tmpValue
 	}
 	return nil
 }
@@ -39332,7 +40503,9 @@ func (ptr *QMetaProperty) Read(object QObject_ITF) *QVariant {
 	defer qt.Recovering("QMetaProperty::read")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QMetaProperty_Read(ptr.Pointer(), PointerFromQObject(object)))
+		var tmpValue = NewQVariantFromPointer(C.QMetaProperty_Read(ptr.Pointer(), PointerFromQObject(object)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -39341,7 +40514,9 @@ func (ptr *QMetaProperty) ReadOnGadget(gadget unsafe.Pointer) *QVariant {
 	defer qt.Recovering("QMetaProperty::readOnGadget")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QMetaProperty_ReadOnGadget(ptr.Pointer(), gadget))
+		var tmpValue = NewQVariantFromPointer(C.QMetaProperty_ReadOnGadget(ptr.Pointer(), gadget))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -39794,25 +40969,33 @@ func (ptr *QMetaType) SizeOf2() int {
 func QMetaType_Type2(typeName string) int {
 	defer qt.Recovering("QMetaType::type")
 
-	return int(C.QMetaType_QMetaType_Type2(C.CString(typeName)))
+	var typeNameC = C.CString(typeName)
+	defer C.free(unsafe.Pointer(typeNameC))
+	return int(C.QMetaType_QMetaType_Type2(typeNameC))
 }
 
 func (ptr *QMetaType) Type2(typeName string) int {
 	defer qt.Recovering("QMetaType::type")
 
-	return int(C.QMetaType_QMetaType_Type2(C.CString(typeName)))
+	var typeNameC = C.CString(typeName)
+	defer C.free(unsafe.Pointer(typeNameC))
+	return int(C.QMetaType_QMetaType_Type2(typeNameC))
 }
 
 func QMetaType_Type(typeName string) int {
 	defer qt.Recovering("QMetaType::type")
 
-	return int(C.QMetaType_QMetaType_Type(C.CString(typeName)))
+	var typeNameC = C.CString(typeName)
+	defer C.free(unsafe.Pointer(typeNameC))
+	return int(C.QMetaType_QMetaType_Type(typeNameC))
 }
 
 func (ptr *QMetaType) Type(typeName string) int {
 	defer qt.Recovering("QMetaType::type")
 
-	return int(C.QMetaType_QMetaType_Type(C.CString(typeName)))
+	var typeNameC = C.CString(typeName)
+	defer C.free(unsafe.Pointer(typeNameC))
+	return int(C.QMetaType_QMetaType_Type(typeNameC))
 }
 
 func QMetaType_TypeFlags(ty int) QMetaType__TypeFlag {
@@ -39913,7 +41096,9 @@ func (ptr *QMimeData) ColorData() *QVariant {
 	defer qt.Recovering("QMimeData::colorData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QMimeData_ColorData(ptr.Pointer()))
+		var tmpValue = NewQVariantFromPointer(C.QMimeData_ColorData(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -39922,7 +41107,9 @@ func (ptr *QMimeData) Data(mimeType string) string {
 	defer qt.Recovering("QMimeData::data")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMimeData_Data(ptr.Pointer(), C.CString(mimeType)))
+		var mimeTypeC = C.CString(mimeType)
+		defer C.free(unsafe.Pointer(mimeTypeC))
+		return C.GoString(C.QMimeData_Data(ptr.Pointer(), mimeTypeC))
 	}
 	return ""
 }
@@ -40016,7 +41203,9 @@ func (ptr *QMimeData) HasFormat(mimeType string) bool {
 	defer qt.Recovering("QMimeData::hasFormat")
 
 	if ptr.Pointer() != nil {
-		return C.QMimeData_HasFormat(ptr.Pointer(), C.CString(mimeType)) != 0
+		var mimeTypeC = C.CString(mimeType)
+		defer C.free(unsafe.Pointer(mimeTypeC))
+		return C.QMimeData_HasFormat(ptr.Pointer(), mimeTypeC) != 0
 	}
 	return false
 }
@@ -40025,7 +41214,9 @@ func (ptr *QMimeData) HasFormatDefault(mimeType string) bool {
 	defer qt.Recovering("QMimeData::hasFormat")
 
 	if ptr.Pointer() != nil {
-		return C.QMimeData_HasFormatDefault(ptr.Pointer(), C.CString(mimeType)) != 0
+		var mimeTypeC = C.CString(mimeType)
+		defer C.free(unsafe.Pointer(mimeTypeC))
+		return C.QMimeData_HasFormatDefault(ptr.Pointer(), mimeTypeC) != 0
 	}
 	return false
 }
@@ -40088,7 +41279,9 @@ func (ptr *QMimeData) RemoveFormat(mimeType string) {
 	defer qt.Recovering("QMimeData::removeFormat")
 
 	if ptr.Pointer() != nil {
-		C.QMimeData_RemoveFormat(ptr.Pointer(), C.CString(mimeType))
+		var mimeTypeC = C.CString(mimeType)
+		defer C.free(unsafe.Pointer(mimeTypeC))
+		C.QMimeData_RemoveFormat(ptr.Pointer(), mimeTypeC)
 	}
 }
 
@@ -40104,7 +41297,11 @@ func (ptr *QMimeData) SetData(mimeType string, data string) {
 	defer qt.Recovering("QMimeData::setData")
 
 	if ptr.Pointer() != nil {
-		C.QMimeData_SetData(ptr.Pointer(), C.CString(mimeType), C.CString(data))
+		var mimeTypeC = C.CString(mimeType)
+		defer C.free(unsafe.Pointer(mimeTypeC))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QMimeData_SetData(ptr.Pointer(), mimeTypeC, dataC)
 	}
 }
 
@@ -40112,7 +41309,9 @@ func (ptr *QMimeData) SetHtml(html string) {
 	defer qt.Recovering("QMimeData::setHtml")
 
 	if ptr.Pointer() != nil {
-		C.QMimeData_SetHtml(ptr.Pointer(), C.CString(html))
+		var htmlC = C.CString(html)
+		defer C.free(unsafe.Pointer(htmlC))
+		C.QMimeData_SetHtml(ptr.Pointer(), htmlC)
 	}
 }
 
@@ -40128,7 +41327,9 @@ func (ptr *QMimeData) SetText(text string) {
 	defer qt.Recovering("QMimeData::setText")
 
 	if ptr.Pointer() != nil {
-		C.QMimeData_SetText(ptr.Pointer(), C.CString(text))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QMimeData_SetText(ptr.Pointer(), textC)
 	}
 }
 
@@ -40628,7 +41829,11 @@ func (ptr *QMimeDatabase) MimeTypeForName(nameOrAlias string) *QMimeType {
 	defer qt.Recovering("QMimeDatabase::mimeTypeForName")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForName(ptr.Pointer(), C.CString(nameOrAlias)))
+		var nameOrAliasC = C.CString(nameOrAlias)
+		defer C.free(unsafe.Pointer(nameOrAliasC))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForName(ptr.Pointer(), nameOrAliasC))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40646,7 +41851,9 @@ func (ptr *QMimeDatabase) MimeTypeForData2(device QIODevice_ITF) *QMimeType {
 	defer qt.Recovering("QMimeDatabase::mimeTypeForData")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData2(ptr.Pointer(), PointerFromQIODevice(device)))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData2(ptr.Pointer(), PointerFromQIODevice(device)))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40655,7 +41862,11 @@ func (ptr *QMimeDatabase) MimeTypeForData(data string) *QMimeType {
 	defer qt.Recovering("QMimeDatabase::mimeTypeForData")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData(ptr.Pointer(), C.CString(data)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData(ptr.Pointer(), dataC))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40664,7 +41875,9 @@ func (ptr *QMimeDatabase) MimeTypeForFile(fileInfo QFileInfo_ITF, mode QMimeData
 	defer qt.Recovering("QMimeDatabase::mimeTypeForFile")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFile(ptr.Pointer(), PointerFromQFileInfo(fileInfo), C.int(mode)))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFile(ptr.Pointer(), PointerFromQFileInfo(fileInfo), C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40673,7 +41886,11 @@ func (ptr *QMimeDatabase) MimeTypeForFile2(fileName string, mode QMimeDatabase__
 	defer qt.Recovering("QMimeDatabase::mimeTypeForFile")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFile2(ptr.Pointer(), C.CString(fileName), C.int(mode)))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFile2(ptr.Pointer(), fileNameC, C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40682,7 +41899,11 @@ func (ptr *QMimeDatabase) MimeTypeForFileNameAndData(fileName string, device QIO
 	defer qt.Recovering("QMimeDatabase::mimeTypeForFileNameAndData")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData(ptr.Pointer(), C.CString(fileName), PointerFromQIODevice(device)))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData(ptr.Pointer(), fileNameC, PointerFromQIODevice(device)))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40691,7 +41912,13 @@ func (ptr *QMimeDatabase) MimeTypeForFileNameAndData2(fileName string, data stri
 	defer qt.Recovering("QMimeDatabase::mimeTypeForFileNameAndData")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData2(ptr.Pointer(), C.CString(fileName), C.CString(data)))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData2(ptr.Pointer(), fileNameC, dataC))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40700,7 +41927,9 @@ func (ptr *QMimeDatabase) MimeTypeForUrl(url QUrl_ITF) *QMimeType {
 	defer qt.Recovering("QMimeDatabase::mimeTypeForUrl")
 
 	if ptr.Pointer() != nil {
-		return NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForUrl(ptr.Pointer(), PointerFromQUrl(url)))
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForUrl(ptr.Pointer(), PointerFromQUrl(url)))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
 	}
 	return nil
 }
@@ -40709,7 +41938,9 @@ func (ptr *QMimeDatabase) SuffixForFileName(fileName string) string {
 	defer qt.Recovering("QMimeDatabase::suffixForFileName")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMimeDatabase_SuffixForFileName(ptr.Pointer(), C.CString(fileName)))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		return C.GoString(C.QMimeDatabase_SuffixForFileName(ptr.Pointer(), fileNameC))
 	}
 	return ""
 }
@@ -40809,7 +42040,9 @@ func (ptr *QMimeType) Inherits(mimeTypeName string) bool {
 	defer qt.Recovering("QMimeType::inherits")
 
 	if ptr.Pointer() != nil {
-		return C.QMimeType_Inherits(ptr.Pointer(), C.CString(mimeTypeName)) != 0
+		var mimeTypeNameC = C.CString(mimeTypeName)
+		defer C.free(unsafe.Pointer(mimeTypeNameC))
+		return C.QMimeType_Inherits(ptr.Pointer(), mimeTypeNameC) != 0
 	}
 	return false
 }
@@ -40955,6 +42188,11 @@ func newQModelIndexFromPointer(ptr unsafe.Pointer) *QModelIndex {
 	return n
 }
 
+func (ptr *QModelIndex) DestroyQModelIndex() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQModelIndex() *QModelIndex {
 	defer qt.Recovering("QModelIndex::QModelIndex")
 
@@ -40965,7 +42203,9 @@ func (ptr *QModelIndex) Child(row int, column int) *QModelIndex {
 	defer qt.Recovering("QModelIndex::child")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QModelIndex_Child(ptr.Pointer(), C.int(row), C.int(column)))
+		var tmpValue = NewQModelIndexFromPointer(C.QModelIndex_Child(ptr.Pointer(), C.int(row), C.int(column)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -40983,7 +42223,9 @@ func (ptr *QModelIndex) Data(role int) *QVariant {
 	defer qt.Recovering("QModelIndex::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QModelIndex_Data(ptr.Pointer(), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QModelIndex_Data(ptr.Pointer(), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -41028,7 +42270,9 @@ func (ptr *QModelIndex) Parent() *QModelIndex {
 	defer qt.Recovering("QModelIndex::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QModelIndex_Parent(ptr.Pointer()))
+		var tmpValue = NewQModelIndexFromPointer(C.QModelIndex_Parent(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -41046,7 +42290,9 @@ func (ptr *QModelIndex) Sibling(row int, column int) *QModelIndex {
 	defer qt.Recovering("QModelIndex::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QModelIndex_Sibling(ptr.Pointer(), C.int(row), C.int(column)))
+		var tmpValue = NewQModelIndexFromPointer(C.QModelIndex_Sibling(ptr.Pointer(), C.int(row), C.int(column)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -41105,6 +42351,11 @@ func newQModulesPrivateFromPointer(ptr unsafe.Pointer) *QModulesPrivate {
 	return n
 }
 
+func (ptr *QModulesPrivate) DestroyQModulesPrivate() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QMultiHash struct {
 	QHash
 }
@@ -41147,6 +42398,11 @@ func NewQMultiHashFromPointer(ptr unsafe.Pointer) *QMultiHash {
 func newQMultiHashFromPointer(ptr unsafe.Pointer) *QMultiHash {
 	var n = NewQMultiHashFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMultiHash) DestroyQMultiHash() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QMultiMap struct {
@@ -41193,6 +42449,11 @@ func newQMultiMapFromPointer(ptr unsafe.Pointer) *QMultiMap {
 	return n
 }
 
+func (ptr *QMultiMap) DestroyQMultiMap() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QMutableHashIterator struct {
 	ptr unsafe.Pointer
 }
@@ -41234,6 +42495,11 @@ func NewQMutableHashIteratorFromPointer(ptr unsafe.Pointer) *QMutableHashIterato
 func newQMutableHashIteratorFromPointer(ptr unsafe.Pointer) *QMutableHashIterator {
 	var n = NewQMutableHashIteratorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMutableHashIterator) DestroyQMutableHashIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QMutableLinkedListIterator struct {
@@ -41279,6 +42545,11 @@ func newQMutableLinkedListIteratorFromPointer(ptr unsafe.Pointer) *QMutableLinke
 	return n
 }
 
+func (ptr *QMutableLinkedListIterator) DestroyQMutableLinkedListIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QMutableListIterator struct {
 	ptr unsafe.Pointer
 }
@@ -41320,6 +42591,11 @@ func NewQMutableListIteratorFromPointer(ptr unsafe.Pointer) *QMutableListIterato
 func newQMutableListIteratorFromPointer(ptr unsafe.Pointer) *QMutableListIterator {
 	var n = NewQMutableListIteratorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMutableListIterator) DestroyQMutableListIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QMutableMapIterator struct {
@@ -41365,6 +42641,11 @@ func newQMutableMapIteratorFromPointer(ptr unsafe.Pointer) *QMutableMapIterator 
 	return n
 }
 
+func (ptr *QMutableMapIterator) DestroyQMutableMapIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QMutableSetIterator struct {
 	ptr unsafe.Pointer
 }
@@ -41408,6 +42689,11 @@ func newQMutableSetIteratorFromPointer(ptr unsafe.Pointer) *QMutableSetIterator 
 	return n
 }
 
+func (ptr *QMutableSetIterator) DestroyQMutableSetIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QMutableVectorIterator struct {
 	ptr unsafe.Pointer
 }
@@ -41449,6 +42735,11 @@ func NewQMutableVectorIteratorFromPointer(ptr unsafe.Pointer) *QMutableVectorIte
 func newQMutableVectorIteratorFromPointer(ptr unsafe.Pointer) *QMutableVectorIterator {
 	var n = NewQMutableVectorIteratorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMutableVectorIterator) DestroyQMutableVectorIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //QMutex::RecursionMode
@@ -41500,6 +42791,11 @@ func NewQMutexFromPointer(ptr unsafe.Pointer) *QMutex {
 func newQMutexFromPointer(ptr unsafe.Pointer) *QMutex {
 	var n = NewQMutexFromPointer(ptr)
 	return n
+}
+
+func (ptr *QMutex) DestroyQMutex() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QMutex) Lock() {
@@ -41692,7 +42988,9 @@ func (ptr *QObject) SetObjectName(name string) {
 	defer qt.Recovering("QObject::setObjectName")
 
 	if ptr.Pointer() != nil {
-		C.QObject_SetObjectName(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QObject_SetObjectName(ptr.Pointer(), nameC)
 	}
 }
 
@@ -41980,20 +43278,30 @@ func (ptr *QObject) Disconnect2(sender QObject_ITF, sign QMetaMethod_ITF, receiv
 func QObject_Disconnect(sender QObject_ITF, sign string, receiver QObject_ITF, method string) bool {
 	defer qt.Recovering("QObject::disconnect")
 
-	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), C.CString(sign), PointerFromQObject(receiver), C.CString(method)) != 0
+	var signC = C.CString(sign)
+	defer C.free(unsafe.Pointer(signC))
+	var methodC = C.CString(method)
+	defer C.free(unsafe.Pointer(methodC))
+	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC) != 0
 }
 
 func (ptr *QObject) Disconnect(sender QObject_ITF, sign string, receiver QObject_ITF, method string) bool {
 	defer qt.Recovering("QObject::disconnect")
 
-	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), C.CString(sign), PointerFromQObject(receiver), C.CString(method)) != 0
+	var signC = C.CString(sign)
+	defer C.free(unsafe.Pointer(signC))
+	var methodC = C.CString(method)
+	defer C.free(unsafe.Pointer(methodC))
+	return C.QObject_QObject_Disconnect(PointerFromQObject(sender), signC, PointerFromQObject(receiver), methodC) != 0
 }
 
 func (ptr *QObject) Disconnect4(receiver QObject_ITF, method string) bool {
 	defer qt.Recovering("QObject::disconnect")
 
 	if ptr.Pointer() != nil {
-		return C.QObject_Disconnect4(ptr.Pointer(), PointerFromQObject(receiver), C.CString(method)) != 0
+		var methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+		return C.QObject_Disconnect4(ptr.Pointer(), PointerFromQObject(receiver), methodC) != 0
 	}
 	return false
 }
@@ -42002,7 +43310,11 @@ func (ptr *QObject) Disconnect3(sign string, receiver QObject_ITF, method string
 	defer qt.Recovering("QObject::disconnect")
 
 	if ptr.Pointer() != nil {
-		return C.QObject_Disconnect3(ptr.Pointer(), C.CString(sign), PointerFromQObject(receiver), C.CString(method)) != 0
+		var signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+		var methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+		return C.QObject_Disconnect3(ptr.Pointer(), signC, PointerFromQObject(receiver), methodC) != 0
 	}
 	return false
 }
@@ -42166,7 +43478,9 @@ func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) unsafe.P
 	defer qt.Recovering("QObject::findChild")
 
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QObject_FindChild(ptr.Pointer(), C.CString(name), C.int(options)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return unsafe.Pointer(C.QObject_FindChild(ptr.Pointer(), nameC, C.int(options)))
 	}
 	return nil
 }
@@ -42175,7 +43489,9 @@ func (ptr *QObject) Inherits(className string) bool {
 	defer qt.Recovering("QObject::inherits")
 
 	if ptr.Pointer() != nil {
-		return C.QObject_Inherits(ptr.Pointer(), C.CString(className)) != 0
+		var classNameC = C.CString(className)
+		defer C.free(unsafe.Pointer(classNameC))
+		return C.QObject_Inherits(ptr.Pointer(), classNameC) != 0
 	}
 	return false
 }
@@ -42311,7 +43627,11 @@ func (ptr *QObject) Property(name string) *QVariant {
 	defer qt.Recovering("QObject::property")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QObject_Property(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var tmpValue = NewQVariantFromPointer(C.QObject_Property(ptr.Pointer(), nameC))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -42320,7 +43640,9 @@ func (ptr *QObject) Receivers(sign string) int {
 	defer qt.Recovering("QObject::receivers")
 
 	if ptr.Pointer() != nil {
-		return int(C.QObject_Receivers(ptr.Pointer(), C.CString(sign)))
+		var signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+		return int(C.QObject_Receivers(ptr.Pointer(), signC))
 	}
 	return 0
 }
@@ -42363,7 +43685,9 @@ func (ptr *QObject) SetProperty(name string, value QVariant_ITF) bool {
 	defer qt.Recovering("QObject::setProperty")
 
 	if ptr.Pointer() != nil {
-		return C.QObject_SetProperty(ptr.Pointer(), C.CString(name), PointerFromQVariant(value)) != 0
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return C.QObject_SetProperty(ptr.Pointer(), nameC, PointerFromQVariant(value)) != 0
 	}
 	return false
 }
@@ -42398,13 +43722,21 @@ func (ptr *QObject) Thread() *QThread {
 func QObject_Tr(sourceText string, disambiguation string, n int) string {
 	defer qt.Recovering("QObject::tr")
 
-	return C.GoString(C.QObject_QObject_Tr(C.CString(sourceText), C.CString(disambiguation), C.int(n)))
+	var sourceTextC = C.CString(sourceText)
+	defer C.free(unsafe.Pointer(sourceTextC))
+	var disambiguationC = C.CString(disambiguation)
+	defer C.free(unsafe.Pointer(disambiguationC))
+	return C.GoString(C.QObject_QObject_Tr(sourceTextC, disambiguationC, C.int(n)))
 }
 
 func (ptr *QObject) Tr(sourceText string, disambiguation string, n int) string {
 	defer qt.Recovering("QObject::tr")
 
-	return C.GoString(C.QObject_QObject_Tr(C.CString(sourceText), C.CString(disambiguation), C.int(n)))
+	var sourceTextC = C.CString(sourceText)
+	defer C.free(unsafe.Pointer(sourceTextC))
+	var disambiguationC = C.CString(disambiguation)
+	defer C.free(unsafe.Pointer(disambiguationC))
+	return C.GoString(C.QObject_QObject_Tr(sourceTextC, disambiguationC, C.int(n)))
 }
 
 func (ptr *QObject) DestroyQObject() {
@@ -42967,6 +44299,11 @@ func NewQPairFromPointer(ptr unsafe.Pointer) *QPair {
 func newQPairFromPointer(ptr unsafe.Pointer) *QPair {
 	var n = NewQPairFromPointer(ptr)
 	return n
+}
+
+func (ptr *QPair) DestroyQPair() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QParallelAnimationGroup struct {
@@ -44886,6 +46223,11 @@ func newQPersistentModelIndexFromPointer(ptr unsafe.Pointer) *QPersistentModelIn
 	return n
 }
 
+func (ptr *QPersistentModelIndex) DestroyQPersistentModelIndex() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQPersistentModelIndex3(other QPersistentModelIndex_ITF) *QPersistentModelIndex {
 	defer qt.Recovering("QPersistentModelIndex::QPersistentModelIndex")
 
@@ -44935,7 +46277,9 @@ func (ptr *QPersistentModelIndex) Child(row int, column int) *QModelIndex {
 	defer qt.Recovering("QPersistentModelIndex::child")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QPersistentModelIndex_Child(ptr.Pointer(), C.int(row), C.int(column)))
+		var tmpValue = NewQModelIndexFromPointer(C.QPersistentModelIndex_Child(ptr.Pointer(), C.int(row), C.int(column)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -44944,7 +46288,9 @@ func (ptr *QPersistentModelIndex) Data(role int) *QVariant {
 	defer qt.Recovering("QPersistentModelIndex::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QPersistentModelIndex_Data(ptr.Pointer(), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QPersistentModelIndex_Data(ptr.Pointer(), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -44971,7 +46317,9 @@ func (ptr *QPersistentModelIndex) Parent() *QModelIndex {
 	defer qt.Recovering("QPersistentModelIndex::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QPersistentModelIndex_Parent(ptr.Pointer()))
+		var tmpValue = NewQModelIndexFromPointer(C.QPersistentModelIndex_Parent(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -44980,7 +46328,9 @@ func (ptr *QPersistentModelIndex) Sibling(row int, column int) *QModelIndex {
 	defer qt.Recovering("QPersistentModelIndex::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QPersistentModelIndex_Sibling(ptr.Pointer(), C.int(row), C.int(column)))
+		var tmpValue = NewQModelIndexFromPointer(C.QPersistentModelIndex_Sibling(ptr.Pointer(), C.int(row), C.int(column)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -45062,7 +46412,9 @@ func (ptr *QPluginLoader) SetFileName(fileName string) {
 	defer qt.Recovering("QPluginLoader::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QPluginLoader_SetFileName(ptr.Pointer(), C.CString(fileName))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QPluginLoader_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
 
@@ -45083,7 +46435,9 @@ func NewQPluginLoader(parent QObject_ITF) *QPluginLoader {
 func NewQPluginLoader2(fileName string, parent QObject_ITF) *QPluginLoader {
 	defer qt.Recovering("QPluginLoader::QPluginLoader")
 
-	return newQPluginLoaderFromPointer(C.QPluginLoader_NewQPluginLoader2(C.CString(fileName), PointerFromQObject(parent)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return newQPluginLoaderFromPointer(C.QPluginLoader_NewQPluginLoader2(fileNameC, PointerFromQObject(parent)))
 }
 
 func (ptr *QPluginLoader) ErrorString() string {
@@ -45126,7 +46480,9 @@ func (ptr *QPluginLoader) MetaData() *QJsonObject {
 	defer qt.Recovering("QPluginLoader::metaData")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonObjectFromPointer(C.QPluginLoader_MetaData(ptr.Pointer()))
+		var tmpValue = NewQJsonObjectFromPointer(C.QPluginLoader_MetaData(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
 	}
 	return nil
 }
@@ -45605,6 +46961,11 @@ func newQPointFromPointer(ptr unsafe.Pointer) *QPoint {
 	return n
 }
 
+func (ptr *QPoint) DestroyQPoint() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQPoint() *QPoint {
 	defer qt.Recovering("QPoint::QPoint")
 
@@ -45742,6 +47103,11 @@ func newQPointFFromPointer(ptr unsafe.Pointer) *QPointF {
 	return n
 }
 
+func (ptr *QPointF) DestroyQPointF() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQPointF() *QPointF {
 	defer qt.Recovering("QPointF::QPointF")
 
@@ -45828,7 +47194,9 @@ func (ptr *QPointF) ToPoint() *QPoint {
 	defer qt.Recovering("QPointF::toPoint")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QPointF_ToPoint(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QPointF_ToPoint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -46097,7 +47465,9 @@ func (ptr *QPropertyAnimation) SetPropertyName(propertyName string) {
 	defer qt.Recovering("QPropertyAnimation::setPropertyName")
 
 	if ptr.Pointer() != nil {
-		C.QPropertyAnimation_SetPropertyName(ptr.Pointer(), C.CString(propertyName))
+		var propertyNameC = C.CString(propertyName)
+		defer C.free(unsafe.Pointer(propertyNameC))
+		C.QPropertyAnimation_SetPropertyName(ptr.Pointer(), propertyNameC)
 	}
 }
 
@@ -46127,7 +47497,9 @@ func NewQPropertyAnimation(parent QObject_ITF) *QPropertyAnimation {
 func NewQPropertyAnimation2(target QObject_ITF, propertyName string, parent QObject_ITF) *QPropertyAnimation {
 	defer qt.Recovering("QPropertyAnimation::QPropertyAnimation")
 
-	return newQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation2(PointerFromQObject(target), C.CString(propertyName), PointerFromQObject(parent)))
+	var propertyNameC = C.CString(propertyName)
+	defer C.free(unsafe.Pointer(propertyNameC))
+	return newQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation2(PointerFromQObject(target), propertyNameC, PointerFromQObject(parent)))
 }
 
 //export callbackQPropertyAnimation_Event
@@ -46357,7 +47729,9 @@ func (ptr *QPropertyAnimation) Interpolated(from QVariant_ITF, to QVariant_ITF, 
 	defer qt.Recovering("QPropertyAnimation::interpolated")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QPropertyAnimation_Interpolated(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		var tmpValue = NewQVariantFromPointer(C.QPropertyAnimation_Interpolated(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -46366,7 +47740,9 @@ func (ptr *QPropertyAnimation) InterpolatedDefault(from QVariant_ITF, to QVarian
 	defer qt.Recovering("QPropertyAnimation::interpolated")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QPropertyAnimation_InterpolatedDefault(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		var tmpValue = NewQVariantFromPointer(C.QPropertyAnimation_InterpolatedDefault(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -47143,6 +48519,11 @@ func newQQueueFromPointer(ptr unsafe.Pointer) *QQueue {
 	return n
 }
 
+func (ptr *QQueue) DestroyQQueue() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QReadLocker struct {
 	ptr unsafe.Pointer
 }
@@ -47395,6 +48776,11 @@ func newQRectFromPointer(ptr unsafe.Pointer) *QRect {
 	return n
 }
 
+func (ptr *QRect) DestroyQRect() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QRect) Contains(point QPoint_ITF, proper bool) bool {
 	defer qt.Recovering("QRect::contains")
 
@@ -47458,7 +48844,9 @@ func (ptr *QRect) Adjusted(dx1 int, dy1 int, dx2 int, dy2 int) *QRect {
 	defer qt.Recovering("QRect::adjusted")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_Adjusted(ptr.Pointer(), C.int(dx1), C.int(dy1), C.int(dx2), C.int(dy2)))
+		var tmpValue = NewQRectFromPointer(C.QRect_Adjusted(ptr.Pointer(), C.int(dx1), C.int(dy1), C.int(dx2), C.int(dy2)))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47476,7 +48864,9 @@ func (ptr *QRect) BottomLeft() *QPoint {
 	defer qt.Recovering("QRect::bottomLeft")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QRect_BottomLeft(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QRect_BottomLeft(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -47485,7 +48875,9 @@ func (ptr *QRect) BottomRight() *QPoint {
 	defer qt.Recovering("QRect::bottomRight")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QRect_BottomRight(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QRect_BottomRight(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -47494,7 +48886,9 @@ func (ptr *QRect) Center() *QPoint {
 	defer qt.Recovering("QRect::center")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QRect_Center(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QRect_Center(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -47546,7 +48940,9 @@ func (ptr *QRect) Intersected(rectangle QRect_ITF) *QRect {
 	defer qt.Recovering("QRect::intersected")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_Intersected(ptr.Pointer(), PointerFromQRect(rectangle)))
+		var tmpValue = NewQRectFromPointer(C.QRect_Intersected(ptr.Pointer(), PointerFromQRect(rectangle)))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47591,7 +48987,9 @@ func (ptr *QRect) MarginsAdded(margins QMargins_ITF) *QRect {
 	defer qt.Recovering("QRect::marginsAdded")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_MarginsAdded(ptr.Pointer(), PointerFromQMargins(margins)))
+		var tmpValue = NewQRectFromPointer(C.QRect_MarginsAdded(ptr.Pointer(), PointerFromQMargins(margins)))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47600,7 +48998,9 @@ func (ptr *QRect) MarginsRemoved(margins QMargins_ITF) *QRect {
 	defer qt.Recovering("QRect::marginsRemoved")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_MarginsRemoved(ptr.Pointer(), PointerFromQMargins(margins)))
+		var tmpValue = NewQRectFromPointer(C.QRect_MarginsRemoved(ptr.Pointer(), PointerFromQMargins(margins)))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47697,7 +49097,9 @@ func (ptr *QRect) Normalized() *QRect {
 	defer qt.Recovering("QRect::normalized")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_Normalized(ptr.Pointer()))
+		var tmpValue = NewQRectFromPointer(C.QRect_Normalized(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47835,7 +49237,9 @@ func (ptr *QRect) Size() *QSize {
 	defer qt.Recovering("QRect::size")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QRect_Size(ptr.Pointer()))
+		var tmpValue = NewQSizeFromPointer(C.QRect_Size(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -47853,7 +49257,9 @@ func (ptr *QRect) TopLeft() *QPoint {
 	defer qt.Recovering("QRect::topLeft")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QRect_TopLeft(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QRect_TopLeft(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -47862,7 +49268,9 @@ func (ptr *QRect) TopRight() *QPoint {
 	defer qt.Recovering("QRect::topRight")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QRect_TopRight(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QRect_TopRight(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -47887,7 +49295,9 @@ func (ptr *QRect) Translated2(offset QPoint_ITF) *QRect {
 	defer qt.Recovering("QRect::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_Translated2(ptr.Pointer(), PointerFromQPoint(offset)))
+		var tmpValue = NewQRectFromPointer(C.QRect_Translated2(ptr.Pointer(), PointerFromQPoint(offset)))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47896,7 +49306,9 @@ func (ptr *QRect) Translated(dx int, dy int) *QRect {
 	defer qt.Recovering("QRect::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_Translated(ptr.Pointer(), C.int(dx), C.int(dy)))
+		var tmpValue = NewQRectFromPointer(C.QRect_Translated(ptr.Pointer(), C.int(dx), C.int(dy)))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47905,7 +49317,9 @@ func (ptr *QRect) Transposed() *QRect {
 	defer qt.Recovering("QRect::transposed")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_Transposed(ptr.Pointer()))
+		var tmpValue = NewQRectFromPointer(C.QRect_Transposed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47914,7 +49328,9 @@ func (ptr *QRect) United(rectangle QRect_ITF) *QRect {
 	defer qt.Recovering("QRect::united")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRect_United(ptr.Pointer(), PointerFromQRect(rectangle)))
+		var tmpValue = NewQRectFromPointer(C.QRect_United(ptr.Pointer(), PointerFromQRect(rectangle)))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -47989,6 +49405,11 @@ func newQRectFFromPointer(ptr unsafe.Pointer) *QRectF {
 	return n
 }
 
+func (ptr *QRectF) DestroyQRectF() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QRectF) Contains(point QPointF_ITF) bool {
 	defer qt.Recovering("QRectF::contains")
 
@@ -48020,7 +49441,9 @@ func (ptr *QRectF) ToAlignedRect() *QRect {
 	defer qt.Recovering("QRectF::toAlignedRect")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRectF_ToAlignedRect(ptr.Pointer()))
+		var tmpValue = NewQRectFromPointer(C.QRectF_ToAlignedRect(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -48067,7 +49490,9 @@ func (ptr *QRectF) Adjusted(dx1 float64, dy1 float64, dx2 float64, dy2 float64) 
 	defer qt.Recovering("QRectF::adjusted")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_Adjusted(ptr.Pointer(), C.double(dx1), C.double(dy1), C.double(dx2), C.double(dy2)))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_Adjusted(ptr.Pointer(), C.double(dx1), C.double(dy1), C.double(dx2), C.double(dy2)))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48085,7 +49510,9 @@ func (ptr *QRectF) BottomLeft() *QPointF {
 	defer qt.Recovering("QRectF::bottomLeft")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QRectF_BottomLeft(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QRectF_BottomLeft(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48094,7 +49521,9 @@ func (ptr *QRectF) BottomRight() *QPointF {
 	defer qt.Recovering("QRectF::bottomRight")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QRectF_BottomRight(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QRectF_BottomRight(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48103,7 +49532,9 @@ func (ptr *QRectF) Center() *QPointF {
 	defer qt.Recovering("QRectF::center")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QRectF_Center(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QRectF_Center(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48130,7 +49561,9 @@ func (ptr *QRectF) Intersected(rectangle QRectF_ITF) *QRectF {
 	defer qt.Recovering("QRectF::intersected")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_Intersected(ptr.Pointer(), PointerFromQRectF(rectangle)))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_Intersected(ptr.Pointer(), PointerFromQRectF(rectangle)))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48175,7 +49608,9 @@ func (ptr *QRectF) MarginsAdded(margins QMarginsF_ITF) *QRectF {
 	defer qt.Recovering("QRectF::marginsAdded")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_MarginsAdded(ptr.Pointer(), PointerFromQMarginsF(margins)))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_MarginsAdded(ptr.Pointer(), PointerFromQMarginsF(margins)))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48184,7 +49619,9 @@ func (ptr *QRectF) MarginsRemoved(margins QMarginsF_ITF) *QRectF {
 	defer qt.Recovering("QRectF::marginsRemoved")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_MarginsRemoved(ptr.Pointer(), PointerFromQMarginsF(margins)))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_MarginsRemoved(ptr.Pointer(), PointerFromQMarginsF(margins)))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48281,7 +49718,9 @@ func (ptr *QRectF) Normalized() *QRectF {
 	defer qt.Recovering("QRectF::normalized")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_Normalized(ptr.Pointer()))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_Normalized(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48419,7 +49858,9 @@ func (ptr *QRectF) Size() *QSizeF {
 	defer qt.Recovering("QRectF::size")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFFromPointer(C.QRectF_Size(ptr.Pointer()))
+		var tmpValue = NewQSizeFFromPointer(C.QRectF_Size(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48428,7 +49869,9 @@ func (ptr *QRectF) ToRect() *QRect {
 	defer qt.Recovering("QRectF::toRect")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QRectF_ToRect(ptr.Pointer()))
+		var tmpValue = NewQRectFromPointer(C.QRectF_ToRect(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -48446,7 +49889,9 @@ func (ptr *QRectF) TopLeft() *QPointF {
 	defer qt.Recovering("QRectF::topLeft")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QRectF_TopLeft(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QRectF_TopLeft(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48455,7 +49900,9 @@ func (ptr *QRectF) TopRight() *QPointF {
 	defer qt.Recovering("QRectF::topRight")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QRectF_TopRight(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QRectF_TopRight(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48480,7 +49927,9 @@ func (ptr *QRectF) Translated2(offset QPointF_ITF) *QRectF {
 	defer qt.Recovering("QRectF::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_Translated2(ptr.Pointer(), PointerFromQPointF(offset)))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_Translated2(ptr.Pointer(), PointerFromQPointF(offset)))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48489,7 +49938,9 @@ func (ptr *QRectF) Translated(dx float64, dy float64) *QRectF {
 	defer qt.Recovering("QRectF::translated")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_Translated(ptr.Pointer(), C.double(dx), C.double(dy)))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_Translated(ptr.Pointer(), C.double(dx), C.double(dy)))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48498,7 +49949,9 @@ func (ptr *QRectF) Transposed() *QRectF {
 	defer qt.Recovering("QRectF::transposed")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_Transposed(ptr.Pointer()))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_Transposed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48507,7 +49960,9 @@ func (ptr *QRectF) United(rectangle QRectF_ITF) *QRectF {
 	defer qt.Recovering("QRectF::united")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QRectF_United(ptr.Pointer(), PointerFromQRectF(rectangle)))
+		var tmpValue = NewQRectFFromPointer(C.QRectF_United(ptr.Pointer(), PointerFromQRectF(rectangle)))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -48618,7 +50073,9 @@ func NewQRegExp3(rx QRegExp_ITF) *QRegExp {
 func NewQRegExp2(pattern string, cs Qt__CaseSensitivity, syntax QRegExp__PatternSyntax) *QRegExp {
 	defer qt.Recovering("QRegExp::QRegExp")
 
-	return newQRegExpFromPointer(C.QRegExp_NewQRegExp2(C.CString(pattern), C.int(cs), C.int(syntax)))
+	var patternC = C.CString(pattern)
+	defer C.free(unsafe.Pointer(patternC))
+	return newQRegExpFromPointer(C.QRegExp_NewQRegExp2(patternC, C.int(cs), C.int(syntax)))
 }
 
 func (ptr *QRegExp) Cap(nth int) string {
@@ -48669,20 +50126,26 @@ func (ptr *QRegExp) CaseSensitivity() Qt__CaseSensitivity {
 func QRegExp_Escape(str string) string {
 	defer qt.Recovering("QRegExp::escape")
 
-	return C.GoString(C.QRegExp_QRegExp_Escape(C.CString(str)))
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return C.GoString(C.QRegExp_QRegExp_Escape(strC))
 }
 
 func (ptr *QRegExp) Escape(str string) string {
 	defer qt.Recovering("QRegExp::escape")
 
-	return C.GoString(C.QRegExp_QRegExp_Escape(C.CString(str)))
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return C.GoString(C.QRegExp_QRegExp_Escape(strC))
 }
 
 func (ptr *QRegExp) ExactMatch(str string) bool {
 	defer qt.Recovering("QRegExp::exactMatch")
 
 	if ptr.Pointer() != nil {
-		return C.QRegExp_ExactMatch(ptr.Pointer(), C.CString(str)) != 0
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.QRegExp_ExactMatch(ptr.Pointer(), strC) != 0
 	}
 	return false
 }
@@ -48691,7 +50154,9 @@ func (ptr *QRegExp) IndexIn(str string, offset int, caretMode QRegExp__CaretMode
 	defer qt.Recovering("QRegExp::indexIn")
 
 	if ptr.Pointer() != nil {
-		return int(C.QRegExp_IndexIn(ptr.Pointer(), C.CString(str), C.int(offset), C.int(caretMode)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return int(C.QRegExp_IndexIn(ptr.Pointer(), strC, C.int(offset), C.int(caretMode)))
 	}
 	return 0
 }
@@ -48727,7 +50192,9 @@ func (ptr *QRegExp) LastIndexIn(str string, offset int, caretMode QRegExp__Caret
 	defer qt.Recovering("QRegExp::lastIndexIn")
 
 	if ptr.Pointer() != nil {
-		return int(C.QRegExp_LastIndexIn(ptr.Pointer(), C.CString(str), C.int(offset), C.int(caretMode)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return int(C.QRegExp_LastIndexIn(ptr.Pointer(), strC, C.int(offset), C.int(caretMode)))
 	}
 	return 0
 }
@@ -48788,7 +50255,9 @@ func (ptr *QRegExp) SetPattern(pattern string) {
 	defer qt.Recovering("QRegExp::setPattern")
 
 	if ptr.Pointer() != nil {
-		C.QRegExp_SetPattern(ptr.Pointer(), C.CString(pattern))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QRegExp_SetPattern(ptr.Pointer(), patternC)
 	}
 }
 
@@ -48910,7 +50379,9 @@ func NewQRegularExpression3(re QRegularExpression_ITF) *QRegularExpression {
 func NewQRegularExpression2(pattern string, options QRegularExpression__PatternOption) *QRegularExpression {
 	defer qt.Recovering("QRegularExpression::QRegularExpression")
 
-	return newQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression2(C.CString(pattern), C.int(options)))
+	var patternC = C.CString(pattern)
+	defer C.free(unsafe.Pointer(patternC))
+	return newQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression2(patternC, C.int(options)))
 }
 
 func (ptr *QRegularExpression) CaptureCount() int {
@@ -48934,20 +50405,26 @@ func (ptr *QRegularExpression) ErrorString() string {
 func QRegularExpression_Escape(str string) string {
 	defer qt.Recovering("QRegularExpression::escape")
 
-	return C.GoString(C.QRegularExpression_QRegularExpression_Escape(C.CString(str)))
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return C.GoString(C.QRegularExpression_QRegularExpression_Escape(strC))
 }
 
 func (ptr *QRegularExpression) Escape(str string) string {
 	defer qt.Recovering("QRegularExpression::escape")
 
-	return C.GoString(C.QRegularExpression_QRegularExpression_Escape(C.CString(str)))
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return C.GoString(C.QRegularExpression_QRegularExpression_Escape(strC))
 }
 
 func (ptr *QRegularExpression) GlobalMatch(subject string, offset int, matchType QRegularExpression__MatchType, matchOptions QRegularExpression__MatchOption) *QRegularExpressionMatchIterator {
 	defer qt.Recovering("QRegularExpression::globalMatch")
 
 	if ptr.Pointer() != nil {
-		return NewQRegularExpressionMatchIteratorFromPointer(C.QRegularExpression_GlobalMatch(ptr.Pointer(), C.CString(subject), C.int(offset), C.int(matchType), C.int(matchOptions)))
+		var subjectC = C.CString(subject)
+		defer C.free(unsafe.Pointer(subjectC))
+		return NewQRegularExpressionMatchIteratorFromPointer(C.QRegularExpression_GlobalMatch(ptr.Pointer(), subjectC, C.int(offset), C.int(matchType), C.int(matchOptions)))
 	}
 	return nil
 }
@@ -48974,7 +50451,11 @@ func (ptr *QRegularExpression) Match(subject string, offset int, matchType QRegu
 	defer qt.Recovering("QRegularExpression::match")
 
 	if ptr.Pointer() != nil {
-		return NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match(ptr.Pointer(), C.CString(subject), C.int(offset), C.int(matchType), C.int(matchOptions)))
+		var subjectC = C.CString(subject)
+		defer C.free(unsafe.Pointer(subjectC))
+		var tmpValue = NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match(ptr.Pointer(), subjectC, C.int(offset), C.int(matchType), C.int(matchOptions)))
+		runtime.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
+		return tmpValue
 	}
 	return nil
 }
@@ -48983,7 +50464,9 @@ func (ptr *QRegularExpression) Match2(subjectRef QStringRef_ITF, offset int, mat
 	defer qt.Recovering("QRegularExpression::match")
 
 	if ptr.Pointer() != nil {
-		return NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match2(ptr.Pointer(), PointerFromQStringRef(subjectRef), C.int(offset), C.int(matchType), C.int(matchOptions)))
+		var tmpValue = NewQRegularExpressionMatchFromPointer(C.QRegularExpression_Match2(ptr.Pointer(), PointerFromQStringRef(subjectRef), C.int(offset), C.int(matchType), C.int(matchOptions)))
+		runtime.SetFinalizer(tmpValue, (*QRegularExpressionMatch).DestroyQRegularExpressionMatch)
+		return tmpValue
 	}
 	return nil
 }
@@ -49036,7 +50519,9 @@ func (ptr *QRegularExpression) SetPattern(pattern string) {
 	defer qt.Recovering("QRegularExpression::setPattern")
 
 	if ptr.Pointer() != nil {
-		C.QRegularExpression_SetPattern(ptr.Pointer(), C.CString(pattern))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QRegularExpression_SetPattern(ptr.Pointer(), patternC)
 	}
 }
 
@@ -49124,7 +50609,9 @@ func (ptr *QRegularExpressionMatch) Captured2(name string) string {
 	defer qt.Recovering("QRegularExpressionMatch::captured")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRegularExpressionMatch_Captured2(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return C.GoString(C.QRegularExpressionMatch_Captured2(ptr.Pointer(), nameC))
 	}
 	return ""
 }
@@ -49142,7 +50629,9 @@ func (ptr *QRegularExpressionMatch) CapturedEnd2(name string) int {
 	defer qt.Recovering("QRegularExpressionMatch::capturedEnd")
 
 	if ptr.Pointer() != nil {
-		return int(C.QRegularExpressionMatch_CapturedEnd2(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QRegularExpressionMatch_CapturedEnd2(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -49160,7 +50649,9 @@ func (ptr *QRegularExpressionMatch) CapturedLength2(name string) int {
 	defer qt.Recovering("QRegularExpressionMatch::capturedLength")
 
 	if ptr.Pointer() != nil {
-		return int(C.QRegularExpressionMatch_CapturedLength2(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QRegularExpressionMatch_CapturedLength2(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -49178,7 +50669,11 @@ func (ptr *QRegularExpressionMatch) CapturedRef2(name string) *QStringRef {
 	defer qt.Recovering("QRegularExpressionMatch::capturedRef")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef2(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var tmpValue = NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef2(ptr.Pointer(), nameC))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -49187,7 +50682,9 @@ func (ptr *QRegularExpressionMatch) CapturedRef(nth int) *QStringRef {
 	defer qt.Recovering("QRegularExpressionMatch::capturedRef")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef(ptr.Pointer(), C.int(nth)))
+		var tmpValue = NewQStringRefFromPointer(C.QRegularExpressionMatch_CapturedRef(ptr.Pointer(), C.int(nth)))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -49196,7 +50693,9 @@ func (ptr *QRegularExpressionMatch) CapturedStart2(name string) int {
 	defer qt.Recovering("QRegularExpressionMatch::capturedStart")
 
 	if ptr.Pointer() != nil {
-		return int(C.QRegularExpressionMatch_CapturedStart2(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return int(C.QRegularExpressionMatch_CapturedStart2(ptr.Pointer(), nameC))
 	}
 	return 0
 }
@@ -49277,7 +50776,9 @@ func (ptr *QRegularExpressionMatch) RegularExpression() *QRegularExpression {
 	defer qt.Recovering("QRegularExpressionMatch::regularExpression")
 
 	if ptr.Pointer() != nil {
-		return NewQRegularExpressionFromPointer(C.QRegularExpressionMatch_RegularExpression(ptr.Pointer()))
+		var tmpValue = NewQRegularExpressionFromPointer(C.QRegularExpressionMatch_RegularExpression(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+		return tmpValue
 	}
 	return nil
 }
@@ -49388,31 +50889,49 @@ func newQResourceFromPointer(ptr unsafe.Pointer) *QResource {
 func QResource_RegisterResource(rccFileName string, mapRoot string) bool {
 	defer qt.Recovering("QResource::registerResource")
 
-	return C.QResource_QResource_RegisterResource(C.CString(rccFileName), C.CString(mapRoot)) != 0
+	var rccFileNameC = C.CString(rccFileName)
+	defer C.free(unsafe.Pointer(rccFileNameC))
+	var mapRootC = C.CString(mapRoot)
+	defer C.free(unsafe.Pointer(mapRootC))
+	return C.QResource_QResource_RegisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func (ptr *QResource) RegisterResource(rccFileName string, mapRoot string) bool {
 	defer qt.Recovering("QResource::registerResource")
 
-	return C.QResource_QResource_RegisterResource(C.CString(rccFileName), C.CString(mapRoot)) != 0
+	var rccFileNameC = C.CString(rccFileName)
+	defer C.free(unsafe.Pointer(rccFileNameC))
+	var mapRootC = C.CString(mapRoot)
+	defer C.free(unsafe.Pointer(mapRootC))
+	return C.QResource_QResource_RegisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func QResource_UnregisterResource(rccFileName string, mapRoot string) bool {
 	defer qt.Recovering("QResource::unregisterResource")
 
-	return C.QResource_QResource_UnregisterResource(C.CString(rccFileName), C.CString(mapRoot)) != 0
+	var rccFileNameC = C.CString(rccFileName)
+	defer C.free(unsafe.Pointer(rccFileNameC))
+	var mapRootC = C.CString(mapRoot)
+	defer C.free(unsafe.Pointer(mapRootC))
+	return C.QResource_QResource_UnregisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func (ptr *QResource) UnregisterResource(rccFileName string, mapRoot string) bool {
 	defer qt.Recovering("QResource::unregisterResource")
 
-	return C.QResource_QResource_UnregisterResource(C.CString(rccFileName), C.CString(mapRoot)) != 0
+	var rccFileNameC = C.CString(rccFileName)
+	defer C.free(unsafe.Pointer(rccFileNameC))
+	var mapRootC = C.CString(mapRoot)
+	defer C.free(unsafe.Pointer(mapRootC))
+	return C.QResource_QResource_UnregisterResource(rccFileNameC, mapRootC) != 0
 }
 
 func NewQResource(file string, locale QLocale_ITF) *QResource {
 	defer qt.Recovering("QResource::QResource")
 
-	return newQResourceFromPointer(C.QResource_NewQResource(C.CString(file), PointerFromQLocale(locale)))
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	return newQResourceFromPointer(C.QResource_NewQResource(fileC, PointerFromQLocale(locale)))
 }
 
 func (ptr *QResource) AbsoluteFilePath() string {
@@ -49482,7 +51001,9 @@ func (ptr *QResource) Locale() *QLocale {
 	defer qt.Recovering("QResource::locale")
 
 	if ptr.Pointer() != nil {
-		return NewQLocaleFromPointer(C.QResource_Locale(ptr.Pointer()))
+		var tmpValue = NewQLocaleFromPointer(C.QResource_Locale(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		return tmpValue
 	}
 	return nil
 }
@@ -49491,7 +51012,9 @@ func (ptr *QResource) SetFileName(file string) {
 	defer qt.Recovering("QResource::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QResource_SetFileName(ptr.Pointer(), C.CString(file))
+		var fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+		C.QResource_SetFileName(ptr.Pointer(), fileC)
 	}
 }
 
@@ -49649,7 +51172,9 @@ func (ptr *QRunnable) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QRunnable::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QRunnable_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QRunnable_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -49709,13 +51234,17 @@ func NewQSaveFile2(parent QObject_ITF) *QSaveFile {
 func NewQSaveFile(name string) *QSaveFile {
 	defer qt.Recovering("QSaveFile::QSaveFile")
 
-	return newQSaveFileFromPointer(C.QSaveFile_NewQSaveFile(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQSaveFileFromPointer(C.QSaveFile_NewQSaveFile(nameC))
 }
 
 func NewQSaveFile3(name string, parent QObject_ITF) *QSaveFile {
 	defer qt.Recovering("QSaveFile::QSaveFile")
 
-	return newQSaveFileFromPointer(C.QSaveFile_NewQSaveFile3(C.CString(name), PointerFromQObject(parent)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return newQSaveFileFromPointer(C.QSaveFile_NewQSaveFile3(nameC, PointerFromQObject(parent)))
 }
 
 func (ptr *QSaveFile) CancelWriting() {
@@ -49850,7 +51379,9 @@ func (ptr *QSaveFile) SetFileName(name string) {
 	defer qt.Recovering("QSaveFile::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QSaveFile_SetFileName(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QSaveFile_SetFileName(ptr.Pointer(), nameC)
 	}
 }
 
@@ -49887,7 +51418,9 @@ func (ptr *QSaveFile) WriteData(data string, len int64) int64 {
 	defer qt.Recovering("QSaveFile::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QSaveFile_WriteData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSaveFile_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -49896,7 +51429,9 @@ func (ptr *QSaveFile) WriteDataDefault(data string, len int64) int64 {
 	defer qt.Recovering("QSaveFile::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QSaveFile_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSaveFile_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -50224,7 +51759,9 @@ func (ptr *QSaveFile) ReadLineData(data string, maxlen int64) int64 {
 	defer qt.Recovering("QSaveFile::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QSaveFile_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSaveFile_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -50233,7 +51770,9 @@ func (ptr *QSaveFile) ReadLineDataDefault(data string, maxlen int64) int64 {
 	defer qt.Recovering("QSaveFile::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QSaveFile_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSaveFile_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -51118,6 +52657,11 @@ func NewQScopedArrayPointerFromPointer(ptr unsafe.Pointer) *QScopedArrayPointer 
 func newQScopedArrayPointerFromPointer(ptr unsafe.Pointer) *QScopedArrayPointer {
 	var n = NewQScopedArrayPointerFromPointer(ptr)
 	return n
+}
+
+func (ptr *QScopedArrayPointer) DestroyQScopedArrayPointer() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QScopedPointer struct {
@@ -52343,11 +53887,18 @@ func newQSequentialIterableFromPointer(ptr unsafe.Pointer) *QSequentialIterable 
 	return n
 }
 
+func (ptr *QSequentialIterable) DestroyQSequentialIterable() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QSequentialIterable) At(idx int) *QVariant {
 	defer qt.Recovering("QSequentialIterable::at")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QSequentialIterable_At(ptr.Pointer(), C.int(idx)))
+		var tmpValue = NewQVariantFromPointer(C.QSequentialIterable_At(ptr.Pointer(), C.int(idx)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -52413,6 +53964,11 @@ func newQSetFromPointer(ptr unsafe.Pointer) *QSet {
 	return n
 }
 
+func (ptr *QSet) DestroyQSet() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QSetIterator struct {
 	ptr unsafe.Pointer
 }
@@ -52454,6 +54010,11 @@ func NewQSetIteratorFromPointer(ptr unsafe.Pointer) *QSetIterator {
 func newQSetIteratorFromPointer(ptr unsafe.Pointer) *QSetIterator {
 	var n = NewQSetIteratorFromPointer(ptr)
 	return n
+}
+
+func (ptr *QSetIterator) DestroyQSetIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //QSettings::Format
@@ -52550,7 +54111,11 @@ func newQSettingsFromPointer(ptr unsafe.Pointer) *QSettings {
 func NewQSettings3(format QSettings__Format, scope QSettings__Scope, organization string, application string, parent QObject_ITF) *QSettings {
 	defer qt.Recovering("QSettings::QSettings")
 
-	return newQSettingsFromPointer(C.QSettings_NewQSettings3(C.int(format), C.int(scope), C.CString(organization), C.CString(application), PointerFromQObject(parent)))
+	var organizationC = C.CString(organization)
+	defer C.free(unsafe.Pointer(organizationC))
+	var applicationC = C.CString(application)
+	defer C.free(unsafe.Pointer(applicationC))
+	return newQSettingsFromPointer(C.QSettings_NewQSettings3(C.int(format), C.int(scope), organizationC, applicationC, PointerFromQObject(parent)))
 }
 
 func NewQSettings5(parent QObject_ITF) *QSettings {
@@ -52562,19 +54127,29 @@ func NewQSettings5(parent QObject_ITF) *QSettings {
 func NewQSettings2(scope QSettings__Scope, organization string, application string, parent QObject_ITF) *QSettings {
 	defer qt.Recovering("QSettings::QSettings")
 
-	return newQSettingsFromPointer(C.QSettings_NewQSettings2(C.int(scope), C.CString(organization), C.CString(application), PointerFromQObject(parent)))
+	var organizationC = C.CString(organization)
+	defer C.free(unsafe.Pointer(organizationC))
+	var applicationC = C.CString(application)
+	defer C.free(unsafe.Pointer(applicationC))
+	return newQSettingsFromPointer(C.QSettings_NewQSettings2(C.int(scope), organizationC, applicationC, PointerFromQObject(parent)))
 }
 
 func NewQSettings4(fileName string, format QSettings__Format, parent QObject_ITF) *QSettings {
 	defer qt.Recovering("QSettings::QSettings")
 
-	return newQSettingsFromPointer(C.QSettings_NewQSettings4(C.CString(fileName), C.int(format), PointerFromQObject(parent)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return newQSettingsFromPointer(C.QSettings_NewQSettings4(fileNameC, C.int(format), PointerFromQObject(parent)))
 }
 
 func NewQSettings(organization string, application string, parent QObject_ITF) *QSettings {
 	defer qt.Recovering("QSettings::QSettings")
 
-	return newQSettingsFromPointer(C.QSettings_NewQSettings(C.CString(organization), C.CString(application), PointerFromQObject(parent)))
+	var organizationC = C.CString(organization)
+	defer C.free(unsafe.Pointer(organizationC))
+	var applicationC = C.CString(application)
+	defer C.free(unsafe.Pointer(applicationC))
+	return newQSettingsFromPointer(C.QSettings_NewQSettings(organizationC, applicationC, PointerFromQObject(parent)))
 }
 
 func (ptr *QSettings) AllKeys() []string {
@@ -52599,7 +54174,9 @@ func (ptr *QSettings) BeginGroup(prefix string) {
 	defer qt.Recovering("QSettings::beginGroup")
 
 	if ptr.Pointer() != nil {
-		C.QSettings_BeginGroup(ptr.Pointer(), C.CString(prefix))
+		var prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+		C.QSettings_BeginGroup(ptr.Pointer(), prefixC)
 	}
 }
 
@@ -52607,7 +54184,9 @@ func (ptr *QSettings) BeginReadArray(prefix string) int {
 	defer qt.Recovering("QSettings::beginReadArray")
 
 	if ptr.Pointer() != nil {
-		return int(C.QSettings_BeginReadArray(ptr.Pointer(), C.CString(prefix)))
+		var prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+		return int(C.QSettings_BeginReadArray(ptr.Pointer(), prefixC))
 	}
 	return 0
 }
@@ -52616,7 +54195,9 @@ func (ptr *QSettings) BeginWriteArray(prefix string, size int) {
 	defer qt.Recovering("QSettings::beginWriteArray")
 
 	if ptr.Pointer() != nil {
-		C.QSettings_BeginWriteArray(ptr.Pointer(), C.CString(prefix), C.int(size))
+		var prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+		C.QSettings_BeginWriteArray(ptr.Pointer(), prefixC, C.int(size))
 	}
 }
 
@@ -52650,7 +54231,9 @@ func (ptr *QSettings) Contains(key string) bool {
 	defer qt.Recovering("QSettings::contains")
 
 	if ptr.Pointer() != nil {
-		return C.QSettings_Contains(ptr.Pointer(), C.CString(key)) != 0
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return C.QSettings_Contains(ptr.Pointer(), keyC) != 0
 	}
 	return false
 }
@@ -52797,7 +54380,9 @@ func (ptr *QSettings) Remove(key string) {
 	defer qt.Recovering("QSettings::remove")
 
 	if ptr.Pointer() != nil {
-		C.QSettings_Remove(ptr.Pointer(), C.CString(key))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QSettings_Remove(ptr.Pointer(), keyC)
 	}
 }
 
@@ -52850,27 +54435,35 @@ func (ptr *QSettings) SetIniCodec2(codecName string) {
 	defer qt.Recovering("QSettings::setIniCodec")
 
 	if ptr.Pointer() != nil {
-		C.QSettings_SetIniCodec2(ptr.Pointer(), C.CString(codecName))
+		var codecNameC = C.CString(codecName)
+		defer C.free(unsafe.Pointer(codecNameC))
+		C.QSettings_SetIniCodec2(ptr.Pointer(), codecNameC)
 	}
 }
 
 func QSettings_SetPath(format QSettings__Format, scope QSettings__Scope, path string) {
 	defer qt.Recovering("QSettings::setPath")
 
-	C.QSettings_QSettings_SetPath(C.int(format), C.int(scope), C.CString(path))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QSettings_QSettings_SetPath(C.int(format), C.int(scope), pathC)
 }
 
 func (ptr *QSettings) SetPath(format QSettings__Format, scope QSettings__Scope, path string) {
 	defer qt.Recovering("QSettings::setPath")
 
-	C.QSettings_QSettings_SetPath(C.int(format), C.int(scope), C.CString(path))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	C.QSettings_QSettings_SetPath(C.int(format), C.int(scope), pathC)
 }
 
 func (ptr *QSettings) SetValue(key string, value QVariant_ITF) {
 	defer qt.Recovering("QSettings::setValue")
 
 	if ptr.Pointer() != nil {
-		C.QSettings_SetValue(ptr.Pointer(), C.CString(key), PointerFromQVariant(value))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QSettings_SetValue(ptr.Pointer(), keyC, PointerFromQVariant(value))
 	}
 }
 
@@ -52895,7 +54488,11 @@ func (ptr *QSettings) Value(key string, defaultValue QVariant_ITF) *QVariant {
 	defer qt.Recovering("QSettings::value")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QSettings_Value(ptr.Pointer(), C.CString(key), PointerFromQVariant(defaultValue)))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		var tmpValue = NewQVariantFromPointer(C.QSettings_Value(ptr.Pointer(), keyC, PointerFromQVariant(defaultValue)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -53321,6 +54918,11 @@ func newQSharedDataFromPointer(ptr unsafe.Pointer) *QSharedData {
 	return n
 }
 
+func (ptr *QSharedData) DestroyQSharedData() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQSharedData() *QSharedData {
 	defer qt.Recovering("QSharedData::QSharedData")
 
@@ -53455,7 +55057,9 @@ func NewQSharedMemory2(parent QObject_ITF) *QSharedMemory {
 func NewQSharedMemory(key string, parent QObject_ITF) *QSharedMemory {
 	defer qt.Recovering("QSharedMemory::QSharedMemory")
 
-	return newQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory(C.CString(key), PointerFromQObject(parent)))
+	var keyC = C.CString(key)
+	defer C.free(unsafe.Pointer(keyC))
+	return newQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory(keyC, PointerFromQObject(parent)))
 }
 
 func (ptr *QSharedMemory) Attach(mode QSharedMemory__AccessMode) bool {
@@ -53570,7 +55174,9 @@ func (ptr *QSharedMemory) SetKey(key string) {
 	defer qt.Recovering("QSharedMemory::setKey")
 
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_SetKey(ptr.Pointer(), C.CString(key))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QSharedMemory_SetKey(ptr.Pointer(), keyC)
 	}
 }
 
@@ -53578,7 +55184,9 @@ func (ptr *QSharedMemory) SetNativeKey(key string) {
 	defer qt.Recovering("QSharedMemory::setNativeKey")
 
 	if ptr.Pointer() != nil {
-		C.QSharedMemory_SetNativeKey(ptr.Pointer(), C.CString(key))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QSharedMemory_SetNativeKey(ptr.Pointer(), keyC)
 	}
 }
 
@@ -54374,7 +55982,9 @@ func (ptr *QSignalMapper) Mapped2(text string) {
 	defer qt.Recovering("QSignalMapper::mapped")
 
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_Mapped2(ptr.Pointer(), C.CString(text))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QSignalMapper_Mapped2(ptr.Pointer(), textC)
 	}
 }
 
@@ -54436,7 +56046,9 @@ func (ptr *QSignalMapper) Mapping2(id string) *QObject {
 	defer qt.Recovering("QSignalMapper::mapping")
 
 	if ptr.Pointer() != nil {
-		return NewQObjectFromPointer(C.QSignalMapper_Mapping2(ptr.Pointer(), C.CString(id)))
+		var idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+		return NewQObjectFromPointer(C.QSignalMapper_Mapping2(ptr.Pointer(), idC))
 	}
 	return nil
 }
@@ -54478,7 +56090,9 @@ func (ptr *QSignalMapper) SetMapping2(sender QObject_ITF, text string) {
 	defer qt.Recovering("QSignalMapper::setMapping")
 
 	if ptr.Pointer() != nil {
-		C.QSignalMapper_SetMapping2(ptr.Pointer(), PointerFromQObject(sender), C.CString(text))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QSignalMapper_SetMapping2(ptr.Pointer(), PointerFromQObject(sender), textC)
 	}
 }
 
@@ -54971,7 +56585,9 @@ func NewQSignalTransition(sourceState QState_ITF) *QSignalTransition {
 func NewQSignalTransition2(sender QObject_ITF, sign string, sourceState QState_ITF) *QSignalTransition {
 	defer qt.Recovering("QSignalTransition::QSignalTransition")
 
-	return newQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), C.CString(sign), PointerFromQState(sourceState)))
+	var signC = C.CString(sign)
+	defer C.free(unsafe.Pointer(signC))
+	return newQSignalTransitionFromPointer(C.QSignalTransition_NewQSignalTransition2(PointerFromQObject(sender), signC, PointerFromQState(sourceState)))
 }
 
 //export callbackQSignalTransition_Event
@@ -55162,7 +56778,9 @@ func (ptr *QSignalTransition) SetSignal(sign string) {
 	defer qt.Recovering("QSignalTransition::setSignal")
 
 	if ptr.Pointer() != nil {
-		C.QSignalTransition_SetSignal(ptr.Pointer(), C.CString(sign))
+		var signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+		C.QSignalTransition_SetSignal(ptr.Pointer(), signC)
 	}
 }
 
@@ -55624,6 +57242,11 @@ func newQSizeFromPointer(ptr unsafe.Pointer) *QSize {
 	return n
 }
 
+func (ptr *QSize) DestroyQSize() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQSize() *QSize {
 	defer qt.Recovering("QSize::QSize")
 
@@ -55640,7 +57263,9 @@ func (ptr *QSize) BoundedTo(otherSize QSize_ITF) *QSize {
 	defer qt.Recovering("QSize::boundedTo")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSize_BoundedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
+		var tmpValue = NewQSizeFromPointer(C.QSize_BoundedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -55649,7 +57274,9 @@ func (ptr *QSize) ExpandedTo(otherSize QSize_ITF) *QSize {
 	defer qt.Recovering("QSize::expandedTo")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSize_ExpandedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
+		var tmpValue = NewQSizeFromPointer(C.QSize_ExpandedTo(ptr.Pointer(), PointerFromQSize(otherSize)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -55728,7 +57355,9 @@ func (ptr *QSize) Scaled2(s QSize_ITF, mode Qt__AspectRatioMode) *QSize {
 	defer qt.Recovering("QSize::scaled")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSize_Scaled2(ptr.Pointer(), PointerFromQSize(s), C.int(mode)))
+		var tmpValue = NewQSizeFromPointer(C.QSize_Scaled2(ptr.Pointer(), PointerFromQSize(s), C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -55737,7 +57366,9 @@ func (ptr *QSize) Scaled(width int, height int, mode Qt__AspectRatioMode) *QSize
 	defer qt.Recovering("QSize::scaled")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSize_Scaled(ptr.Pointer(), C.int(width), C.int(height), C.int(mode)))
+		var tmpValue = NewQSizeFromPointer(C.QSize_Scaled(ptr.Pointer(), C.int(width), C.int(height), C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -55770,7 +57401,9 @@ func (ptr *QSize) Transposed() *QSize {
 	defer qt.Recovering("QSize::transposed")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSize_Transposed(ptr.Pointer()))
+		var tmpValue = NewQSizeFromPointer(C.QSize_Transposed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -55827,6 +57460,11 @@ func newQSizeFFromPointer(ptr unsafe.Pointer) *QSizeF {
 	return n
 }
 
+func (ptr *QSizeF) DestroyQSizeF() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQSizeF() *QSizeF {
 	defer qt.Recovering("QSizeF::QSizeF")
 
@@ -55849,7 +57487,9 @@ func (ptr *QSizeF) BoundedTo(otherSize QSizeF_ITF) *QSizeF {
 	defer qt.Recovering("QSizeF::boundedTo")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFFromPointer(C.QSizeF_BoundedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
+		var tmpValue = NewQSizeFFromPointer(C.QSizeF_BoundedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
+		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -55858,7 +57498,9 @@ func (ptr *QSizeF) ExpandedTo(otherSize QSizeF_ITF) *QSizeF {
 	defer qt.Recovering("QSizeF::expandedTo")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFFromPointer(C.QSizeF_ExpandedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
+		var tmpValue = NewQSizeFFromPointer(C.QSizeF_ExpandedTo(ptr.Pointer(), PointerFromQSizeF(otherSize)))
+		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -55937,7 +57579,9 @@ func (ptr *QSizeF) Scaled2(s QSizeF_ITF, mode Qt__AspectRatioMode) *QSizeF {
 	defer qt.Recovering("QSizeF::scaled")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFFromPointer(C.QSizeF_Scaled2(ptr.Pointer(), PointerFromQSizeF(s), C.int(mode)))
+		var tmpValue = NewQSizeFFromPointer(C.QSizeF_Scaled2(ptr.Pointer(), PointerFromQSizeF(s), C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -55946,7 +57590,9 @@ func (ptr *QSizeF) Scaled(width float64, height float64, mode Qt__AspectRatioMod
 	defer qt.Recovering("QSizeF::scaled")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFFromPointer(C.QSizeF_Scaled(ptr.Pointer(), C.double(width), C.double(height), C.int(mode)))
+		var tmpValue = NewQSizeFFromPointer(C.QSizeF_Scaled(ptr.Pointer(), C.double(width), C.double(height), C.int(mode)))
+		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -55971,7 +57617,9 @@ func (ptr *QSizeF) ToSize() *QSize {
 	defer qt.Recovering("QSizeF::toSize")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSizeF_ToSize(ptr.Pointer()))
+		var tmpValue = NewQSizeFromPointer(C.QSizeF_ToSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -55988,7 +57636,9 @@ func (ptr *QSizeF) Transposed() *QSizeF {
 	defer qt.Recovering("QSizeF::transposed")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFFromPointer(C.QSizeF_Transposed(ptr.Pointer()))
+		var tmpValue = NewQSizeFFromPointer(C.QSizeF_Transposed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -56643,7 +58293,9 @@ func (ptr *QSortFilterProxyModel) FilterRegExp() *QRegExp {
 	defer qt.Recovering("QSortFilterProxyModel::filterRegExp")
 
 	if ptr.Pointer() != nil {
-		return NewQRegExpFromPointer(C.QSortFilterProxyModel_FilterRegExp(ptr.Pointer()))
+		var tmpValue = NewQRegExpFromPointer(C.QSortFilterProxyModel_FilterRegExp(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+		return tmpValue
 	}
 	return nil
 }
@@ -56787,7 +58439,9 @@ func (ptr *QSortFilterProxyModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QSortFilterProxyModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -56796,7 +58450,9 @@ func (ptr *QSortFilterProxyModel) BuddyDefault(index QModelIndex_ITF) *QModelInd
 	defer qt.Recovering("QSortFilterProxyModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -56928,7 +58584,9 @@ func (ptr *QSortFilterProxyModel) Data(index QModelIndex_ITF, role int) *QVarian
 	defer qt.Recovering("QSortFilterProxyModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QSortFilterProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QSortFilterProxyModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -56937,7 +58595,9 @@ func (ptr *QSortFilterProxyModel) DataDefault(index QModelIndex_ITF, role int) *
 	defer qt.Recovering("QSortFilterProxyModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QSortFilterProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QSortFilterProxyModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -57255,7 +58915,9 @@ func (ptr *QSortFilterProxyModel) HeaderData(section int, orientation Qt__Orient
 	defer qt.Recovering("QSortFilterProxyModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QSortFilterProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QSortFilterProxyModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -57264,7 +58926,9 @@ func (ptr *QSortFilterProxyModel) HeaderDataDefault(section int, orientation Qt_
 	defer qt.Recovering("QSortFilterProxyModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QSortFilterProxyModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QSortFilterProxyModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -57302,7 +58966,9 @@ func (ptr *QSortFilterProxyModel) Index(row int, column int, parent QModelIndex_
 	defer qt.Recovering("QSortFilterProxyModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -57311,7 +58977,9 @@ func (ptr *QSortFilterProxyModel) IndexDefault(row int, column int, parent QMode
 	defer qt.Recovering("QSortFilterProxyModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -57534,7 +59202,9 @@ func (ptr *QSortFilterProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QM
 	defer qt.Recovering("QSortFilterProxyModel::mapFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapFromSource(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -57543,7 +59213,9 @@ func (ptr *QSortFilterProxyModel) MapFromSourceDefault(sourceIndex QModelIndex_I
 	defer qt.Recovering("QSortFilterProxyModel::mapFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapFromSourceDefault(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapFromSourceDefault(ptr.Pointer(), PointerFromQModelIndex(sourceIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -57581,7 +59253,9 @@ func (ptr *QSortFilterProxyModel) MapSelectionFromSource(sourceSelection QItemSe
 	defer qt.Recovering("QSortFilterProxyModel::mapSelectionFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionFromSource(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionFromSource(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -57590,7 +59264,9 @@ func (ptr *QSortFilterProxyModel) MapSelectionFromSourceDefault(sourceSelection 
 	defer qt.Recovering("QSortFilterProxyModel::mapSelectionFromSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionFromSourceDefault(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionFromSourceDefault(ptr.Pointer(), PointerFromQItemSelection(sourceSelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -57628,7 +59304,9 @@ func (ptr *QSortFilterProxyModel) MapSelectionToSource(proxySelection QItemSelec
 	defer qt.Recovering("QSortFilterProxyModel::mapSelectionToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionToSource(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionToSource(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -57637,7 +59315,9 @@ func (ptr *QSortFilterProxyModel) MapSelectionToSourceDefault(proxySelection QIt
 	defer qt.Recovering("QSortFilterProxyModel::mapSelectionToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionToSourceDefault(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		var tmpValue = NewQItemSelectionFromPointer(C.QSortFilterProxyModel_MapSelectionToSourceDefault(ptr.Pointer(), PointerFromQItemSelection(proxySelection)))
+		runtime.SetFinalizer(tmpValue, (*QItemSelection).DestroyQItemSelection)
+		return tmpValue
 	}
 	return nil
 }
@@ -57675,7 +59355,9 @@ func (ptr *QSortFilterProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QMode
 	defer qt.Recovering("QSortFilterProxyModel::mapToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapToSource(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -57684,7 +59366,9 @@ func (ptr *QSortFilterProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF)
 	defer qt.Recovering("QSortFilterProxyModel::mapToSource")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -57769,7 +59453,9 @@ func (ptr *QSortFilterProxyModel) Parent(child QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QSortFilterProxyModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_Parent(ptr.Pointer(), PointerFromQModelIndex(child)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -57778,7 +59464,9 @@ func (ptr *QSortFilterProxyModel) ParentDefault(child QModelIndex_ITF) *QModelIn
 	defer qt.Recovering("QSortFilterProxyModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(child)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(child)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -58003,7 +59691,9 @@ func (ptr *QSortFilterProxyModel) SetFilterFixedString(pattern string) {
 	defer qt.Recovering("QSortFilterProxyModel::setFilterFixedString")
 
 	if ptr.Pointer() != nil {
-		C.QSortFilterProxyModel_SetFilterFixedString(ptr.Pointer(), C.CString(pattern))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QSortFilterProxyModel_SetFilterFixedString(ptr.Pointer(), patternC)
 	}
 }
 
@@ -58039,7 +59729,9 @@ func (ptr *QSortFilterProxyModel) SetFilterRegExp2(pattern string) {
 	defer qt.Recovering("QSortFilterProxyModel::setFilterRegExp")
 
 	if ptr.Pointer() != nil {
-		C.QSortFilterProxyModel_SetFilterRegExp2(ptr.Pointer(), C.CString(pattern))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QSortFilterProxyModel_SetFilterRegExp2(ptr.Pointer(), patternC)
 	}
 }
 
@@ -58075,7 +59767,9 @@ func (ptr *QSortFilterProxyModel) SetFilterWildcard(pattern string) {
 	defer qt.Recovering("QSortFilterProxyModel::setFilterWildcard")
 
 	if ptr.Pointer() != nil {
-		C.QSortFilterProxyModel_SetFilterWildcard(ptr.Pointer(), C.CString(pattern))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QSortFilterProxyModel_SetFilterWildcard(ptr.Pointer(), patternC)
 	}
 }
 
@@ -58204,7 +59898,9 @@ func (ptr *QSortFilterProxyModel) Sibling(row int, column int, idx QModelIndex_I
 	defer qt.Recovering("QSortFilterProxyModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -58213,7 +59909,9 @@ func (ptr *QSortFilterProxyModel) SiblingDefault(row int, column int, idx QModel
 	defer qt.Recovering("QSortFilterProxyModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QSortFilterProxyModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -58314,7 +60012,9 @@ func (ptr *QSortFilterProxyModel) Span(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QSortFilterProxyModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSortFilterProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QSortFilterProxyModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -58323,7 +60023,9 @@ func (ptr *QSortFilterProxyModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QSortFilterProxyModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QSortFilterProxyModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QSortFilterProxyModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -59169,6 +60871,11 @@ func newQStackFromPointer(ptr unsafe.Pointer) *QStack {
 	return n
 }
 
+func (ptr *QStack) DestroyQStack() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QStandardPaths::LocateOption
 type QStandardPaths__LocateOption int64
 
@@ -59246,6 +60953,11 @@ func newQStandardPathsFromPointer(ptr unsafe.Pointer) *QStandardPaths {
 	return n
 }
 
+func (ptr *QStandardPaths) DestroyQStandardPaths() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func QStandardPaths_SetTestModeEnabled(testMode bool) {
 	defer qt.Recovering("QStandardPaths::setTestModeEnabled")
 
@@ -59261,37 +60973,53 @@ func (ptr *QStandardPaths) SetTestModeEnabled(testMode bool) {
 func QStandardPaths_FindExecutable(executableName string, paths []string) string {
 	defer qt.Recovering("QStandardPaths::findExecutable")
 
-	return C.GoString(C.QStandardPaths_QStandardPaths_FindExecutable(C.CString(executableName), C.CString(strings.Join(paths, "|"))))
+	var executableNameC = C.CString(executableName)
+	defer C.free(unsafe.Pointer(executableNameC))
+	var pathsC = C.CString(strings.Join(paths, "|"))
+	defer C.free(unsafe.Pointer(pathsC))
+	return C.GoString(C.QStandardPaths_QStandardPaths_FindExecutable(executableNameC, pathsC))
 }
 
 func (ptr *QStandardPaths) FindExecutable(executableName string, paths []string) string {
 	defer qt.Recovering("QStandardPaths::findExecutable")
 
-	return C.GoString(C.QStandardPaths_QStandardPaths_FindExecutable(C.CString(executableName), C.CString(strings.Join(paths, "|"))))
+	var executableNameC = C.CString(executableName)
+	defer C.free(unsafe.Pointer(executableNameC))
+	var pathsC = C.CString(strings.Join(paths, "|"))
+	defer C.free(unsafe.Pointer(pathsC))
+	return C.GoString(C.QStandardPaths_QStandardPaths_FindExecutable(executableNameC, pathsC))
 }
 
 func QStandardPaths_Locate(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) string {
 	defer qt.Recovering("QStandardPaths::locate")
 
-	return C.GoString(C.QStandardPaths_QStandardPaths_Locate(C.int(ty), C.CString(fileName), C.int(options)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.GoString(C.QStandardPaths_QStandardPaths_Locate(C.int(ty), fileNameC, C.int(options)))
 }
 
 func (ptr *QStandardPaths) Locate(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) string {
 	defer qt.Recovering("QStandardPaths::locate")
 
-	return C.GoString(C.QStandardPaths_QStandardPaths_Locate(C.int(ty), C.CString(fileName), C.int(options)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return C.GoString(C.QStandardPaths_QStandardPaths_Locate(C.int(ty), fileNameC, C.int(options)))
 }
 
 func QStandardPaths_LocateAll(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) []string {
 	defer qt.Recovering("QStandardPaths::locateAll")
 
-	return strings.Split(C.GoString(C.QStandardPaths_QStandardPaths_LocateAll(C.int(ty), C.CString(fileName), C.int(options))), "|")
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return strings.Split(C.GoString(C.QStandardPaths_QStandardPaths_LocateAll(C.int(ty), fileNameC, C.int(options))), "|")
 }
 
 func (ptr *QStandardPaths) LocateAll(ty QStandardPaths__StandardLocation, fileName string, options QStandardPaths__LocateOption) []string {
 	defer qt.Recovering("QStandardPaths::locateAll")
 
-	return strings.Split(C.GoString(C.QStandardPaths_QStandardPaths_LocateAll(C.int(ty), C.CString(fileName), C.int(options))), "|")
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return strings.Split(C.GoString(C.QStandardPaths_QStandardPaths_LocateAll(C.int(ty), fileNameC, C.int(options))), "|")
 }
 
 func QStandardPaths_DisplayName(ty QStandardPaths__StandardLocation) string {
@@ -59418,7 +61146,9 @@ func (ptr *QState) AddTransition2(sender QObject_ITF, sign string, target QAbstr
 	defer qt.Recovering("QState::addTransition")
 
 	if ptr.Pointer() != nil {
-		return NewQSignalTransitionFromPointer(C.QState_AddTransition2(ptr.Pointer(), PointerFromQObject(sender), C.CString(sign), PointerFromQAbstractState(target)))
+		var signC = C.CString(sign)
+		defer C.free(unsafe.Pointer(signC))
+		return NewQSignalTransitionFromPointer(C.QState_AddTransition2(ptr.Pointer(), PointerFromQObject(sender), signC, PointerFromQAbstractState(target)))
 	}
 	return nil
 }
@@ -59435,7 +61165,9 @@ func (ptr *QState) AssignProperty(object QObject_ITF, name string, value QVarian
 	defer qt.Recovering("QState::assignProperty")
 
 	if ptr.Pointer() != nil {
-		C.QState_AssignProperty(ptr.Pointer(), PointerFromQObject(object), C.CString(name), PointerFromQVariant(value))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QState_AssignProperty(ptr.Pointer(), PointerFromQObject(object), nameC, PointerFromQVariant(value))
 	}
 }
 
@@ -61115,6 +62847,11 @@ func newQStaticPluginFromPointer(ptr unsafe.Pointer) *QStaticPlugin {
 	return n
 }
 
+func (ptr *QStaticPlugin) DestroyQStaticPlugin() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QStaticPlugin) Instance() *QObject {
 	defer qt.Recovering("QStaticPlugin::instance")
 
@@ -61128,7 +62865,9 @@ func (ptr *QStaticPlugin) MetaData() *QJsonObject {
 	defer qt.Recovering("QStaticPlugin::metaData")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonObjectFromPointer(C.QStaticPlugin_MetaData(ptr.Pointer()))
+		var tmpValue = NewQJsonObjectFromPointer(C.QStaticPlugin_MetaData(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
 	}
 	return nil
 }
@@ -61206,7 +62945,9 @@ func NewQStorageInfo4(other QStorageInfo_ITF) *QStorageInfo {
 func NewQStorageInfo2(path string) *QStorageInfo {
 	defer qt.Recovering("QStorageInfo::QStorageInfo")
 
-	return newQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo2(C.CString(path)))
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return newQStorageInfoFromPointer(C.QStorageInfo_NewQStorageInfo2(pathC))
 }
 
 func (ptr *QStorageInfo) BlockSize() int {
@@ -61328,13 +63069,17 @@ func (ptr *QStorageInfo) Refresh() {
 func QStorageInfo_Root() *QStorageInfo {
 	defer qt.Recovering("QStorageInfo::root")
 
-	return NewQStorageInfoFromPointer(C.QStorageInfo_QStorageInfo_Root())
+	var tmpValue = NewQStorageInfoFromPointer(C.QStorageInfo_QStorageInfo_Root())
+	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	return tmpValue
 }
 
 func (ptr *QStorageInfo) Root() *QStorageInfo {
 	defer qt.Recovering("QStorageInfo::root")
 
-	return NewQStorageInfoFromPointer(C.QStorageInfo_QStorageInfo_Root())
+	var tmpValue = NewQStorageInfoFromPointer(C.QStorageInfo_QStorageInfo_Root())
+	runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+	return tmpValue
 }
 
 func (ptr *QStorageInfo) RootPath() string {
@@ -61350,7 +63095,9 @@ func (ptr *QStorageInfo) SetPath(path string) {
 	defer qt.Recovering("QStorageInfo::setPath")
 
 	if ptr.Pointer() != nil {
-		C.QStorageInfo_SetPath(ptr.Pointer(), C.CString(path))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QStorageInfo_SetPath(ptr.Pointer(), pathC)
 	}
 }
 
@@ -61487,6 +63234,11 @@ func newQStringListFromPointer(ptr unsafe.Pointer) *QStringList {
 	return n
 }
 
+func (ptr *QStringList) DestroyQStringList() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QStringListModel struct {
 	QAbstractListModel
 }
@@ -61534,6 +63286,11 @@ func newQStringListModelFromPointer(ptr unsafe.Pointer) *QStringListModel {
 	return n
 }
 
+func (ptr *QStringListModel) DestroyQStringListModel() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQStringListModel(parent QObject_ITF) *QStringListModel {
 	defer qt.Recovering("QStringListModel::QStringListModel")
 
@@ -61543,7 +63300,9 @@ func NewQStringListModel(parent QObject_ITF) *QStringListModel {
 func NewQStringListModel2(strin []string, parent QObject_ITF) *QStringListModel {
 	defer qt.Recovering("QStringListModel::QStringListModel")
 
-	return newQStringListModelFromPointer(C.QStringListModel_NewQStringListModel2(C.CString(strings.Join(strin, "|")), PointerFromQObject(parent)))
+	var strinC = C.CString(strings.Join(strin, "|"))
+	defer C.free(unsafe.Pointer(strinC))
+	return newQStringListModelFromPointer(C.QStringListModel_NewQStringListModel2(strinC, PointerFromQObject(parent)))
 }
 
 //export callbackQStringListModel_Data
@@ -61579,7 +63338,9 @@ func (ptr *QStringListModel) Data(index QModelIndex_ITF, role int) *QVariant {
 	defer qt.Recovering("QStringListModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QStringListModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QStringListModel_Data(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -61588,7 +63349,9 @@ func (ptr *QStringListModel) DataDefault(index QModelIndex_ITF, role int) *QVari
 	defer qt.Recovering("QStringListModel::data")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QStringListModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QStringListModel_DataDefault(ptr.Pointer(), PointerFromQModelIndex(index), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -61832,7 +63595,9 @@ func (ptr *QStringListModel) SetStringList(strin []string) {
 	defer qt.Recovering("QStringListModel::setStringList")
 
 	if ptr.Pointer() != nil {
-		C.QStringListModel_SetStringList(ptr.Pointer(), C.CString(strings.Join(strin, "|")))
+		var strinC = C.CString(strings.Join(strin, "|"))
+		defer C.free(unsafe.Pointer(strinC))
+		C.QStringListModel_SetStringList(ptr.Pointer(), strinC)
 	}
 }
 
@@ -61869,7 +63634,9 @@ func (ptr *QStringListModel) Sibling(row int, column int, idx QModelIndex_ITF) *
 	defer qt.Recovering("QStringListModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_Sibling(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -61878,7 +63645,9 @@ func (ptr *QStringListModel) SiblingDefault(row int, column int, idx QModelIndex
 	defer qt.Recovering("QStringListModel::sibling")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_SiblingDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -62017,7 +63786,9 @@ func (ptr *QStringListModel) Index(row int, column int, parent QModelIndex_ITF) 
 	defer qt.Recovering("QStringListModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_Index(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -62026,7 +63797,9 @@ func (ptr *QStringListModel) IndexDefault(row int, column int, parent QModelInde
 	defer qt.Recovering("QStringListModel::index")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_IndexDefault(ptr.Pointer(), C.int(row), C.int(column), PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -62111,7 +63884,9 @@ func (ptr *QStringListModel) Buddy(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QStringListModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_Buddy(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -62120,7 +63895,9 @@ func (ptr *QStringListModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QStringListModel::buddy")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_BuddyDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -62391,7 +64168,9 @@ func (ptr *QStringListModel) HeaderData(section int, orientation Qt__Orientation
 	defer qt.Recovering("QStringListModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QStringListModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QStringListModel_HeaderData(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -62400,7 +64179,9 @@ func (ptr *QStringListModel) HeaderDataDefault(section int, orientation Qt__Orie
 	defer qt.Recovering("QStringListModel::headerData")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QStringListModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		var tmpValue = NewQVariantFromPointer(C.QStringListModel_HeaderDataDefault(ptr.Pointer(), C.int(section), C.int(orientation), C.int(role)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -62626,7 +64407,9 @@ func (ptr *QStringListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QStringListModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -62635,7 +64418,9 @@ func (ptr *QStringListModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
 	defer qt.Recovering("QStringListModel::parent")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QStringListModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -62857,7 +64642,9 @@ func (ptr *QStringListModel) Span(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QStringListModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QStringListModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QStringListModel_Span(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -62866,7 +64653,9 @@ func (ptr *QStringListModel) SpanDefault(index QModelIndex_ITF) *QSize {
 	defer qt.Recovering("QStringListModel::span")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QStringListModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		var tmpValue = NewQSizeFromPointer(C.QStringListModel_SpanDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -63447,7 +65236,9 @@ func NewQStringMatcher() *QStringMatcher {
 func NewQStringMatcher2(pattern string, cs Qt__CaseSensitivity) *QStringMatcher {
 	defer qt.Recovering("QStringMatcher::QStringMatcher")
 
-	return newQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher2(C.CString(pattern), C.int(cs)))
+	var patternC = C.CString(pattern)
+	defer C.free(unsafe.Pointer(patternC))
+	return newQStringMatcherFromPointer(C.QStringMatcher_NewQStringMatcher2(patternC, C.int(cs)))
 }
 
 func NewQStringMatcher4(other QStringMatcher_ITF) *QStringMatcher {
@@ -63478,7 +65269,9 @@ func (ptr *QStringMatcher) IndexIn(str string, from int) int {
 	defer qt.Recovering("QStringMatcher::indexIn")
 
 	if ptr.Pointer() != nil {
-		return int(C.QStringMatcher_IndexIn(ptr.Pointer(), C.CString(str), C.int(from)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return int(C.QStringMatcher_IndexIn(ptr.Pointer(), strC, C.int(from)))
 	}
 	return 0
 }
@@ -63495,7 +65288,9 @@ func (ptr *QStringMatcher) SetPattern(pattern string) {
 	defer qt.Recovering("QStringMatcher::setPattern")
 
 	if ptr.Pointer() != nil {
-		C.QStringMatcher_SetPattern(ptr.Pointer(), C.CString(pattern))
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QStringMatcher_SetPattern(ptr.Pointer(), patternC)
 	}
 }
 
@@ -63555,7 +65350,9 @@ func (ptr *QStringRef) Left(n int) *QStringRef {
 	defer qt.Recovering("QStringRef::left")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QStringRef_Left(ptr.Pointer(), C.int(n)))
+		var tmpValue = NewQStringRefFromPointer(C.QStringRef_Left(ptr.Pointer(), C.int(n)))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -63564,7 +65361,9 @@ func (ptr *QStringRef) Mid(position int, n int) *QStringRef {
 	defer qt.Recovering("QStringRef::mid")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QStringRef_Mid(ptr.Pointer(), C.int(position), C.int(n)))
+		var tmpValue = NewQStringRefFromPointer(C.QStringRef_Mid(ptr.Pointer(), C.int(position), C.int(n)))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -63573,7 +65372,9 @@ func (ptr *QStringRef) Right(n int) *QStringRef {
 	defer qt.Recovering("QStringRef::right")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QStringRef_Right(ptr.Pointer(), C.int(n)))
+		var tmpValue = NewQStringRefFromPointer(C.QStringRef_Right(ptr.Pointer(), C.int(n)))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -63602,13 +65403,17 @@ func NewQStringRef5(other QStringRef_ITF) *QStringRef {
 func NewQStringRef3(stri string) *QStringRef {
 	defer qt.Recovering("QStringRef::QStringRef")
 
-	return newQStringRefFromPointer(C.QStringRef_NewQStringRef3(C.CString(stri)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	return newQStringRefFromPointer(C.QStringRef_NewQStringRef3(striC))
 }
 
 func NewQStringRef2(stri string, position int, length int) *QStringRef {
 	defer qt.Recovering("QStringRef::QStringRef")
 
-	return newQStringRefFromPointer(C.QStringRef_NewQStringRef2(C.CString(stri), C.int(position), C.int(length)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	return newQStringRefFromPointer(C.QStringRef_NewQStringRef2(striC, C.int(position), C.int(length)))
 }
 
 func NewQStringRef4(other QStringRef_ITF) *QStringRef {
@@ -63621,7 +65426,11 @@ func (ptr *QStringRef) AppendTo(stri string) *QStringRef {
 	defer qt.Recovering("QStringRef::appendTo")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QStringRef_AppendTo(ptr.Pointer(), C.CString(stri)))
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var tmpValue = NewQStringRefFromPointer(C.QStringRef_AppendTo(ptr.Pointer(), striC))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -63649,13 +65458,17 @@ func (ptr *QStringRef) Compare6(s1 QStringRef_ITF, s2 QLatin1String_ITF, cs Qt__
 func QStringRef_Compare(s1 QStringRef_ITF, s2 string, cs Qt__CaseSensitivity) int {
 	defer qt.Recovering("QStringRef::compare")
 
-	return int(C.QStringRef_QStringRef_Compare(PointerFromQStringRef(s1), C.CString(s2), C.int(cs)))
+	var s2C = C.CString(s2)
+	defer C.free(unsafe.Pointer(s2C))
+	return int(C.QStringRef_QStringRef_Compare(PointerFromQStringRef(s1), s2C, C.int(cs)))
 }
 
 func (ptr *QStringRef) Compare(s1 QStringRef_ITF, s2 string, cs Qt__CaseSensitivity) int {
 	defer qt.Recovering("QStringRef::compare")
 
-	return int(C.QStringRef_QStringRef_Compare(PointerFromQStringRef(s1), C.CString(s2), C.int(cs)))
+	var s2C = C.CString(s2)
+	defer C.free(unsafe.Pointer(s2C))
+	return int(C.QStringRef_QStringRef_Compare(PointerFromQStringRef(s1), s2C, C.int(cs)))
 }
 
 func QStringRef_Compare5(s1 QStringRef_ITF, s2 QStringRef_ITF, cs Qt__CaseSensitivity) int {
@@ -63683,7 +65496,9 @@ func (ptr *QStringRef) Compare4(other string, cs Qt__CaseSensitivity) int {
 	defer qt.Recovering("QStringRef::compare")
 
 	if ptr.Pointer() != nil {
-		return int(C.QStringRef_Compare4(ptr.Pointer(), C.CString(other), C.int(cs)))
+		var otherC = C.CString(other)
+		defer C.free(unsafe.Pointer(otherC))
+		return int(C.QStringRef_Compare4(ptr.Pointer(), otherC, C.int(cs)))
 	}
 	return 0
 }
@@ -63728,7 +65543,9 @@ func (ptr *QStringRef) Contains(str string, cs Qt__CaseSensitivity) bool {
 	defer qt.Recovering("QStringRef::contains")
 
 	if ptr.Pointer() != nil {
-		return C.QStringRef_Contains(ptr.Pointer(), C.CString(str), C.int(cs)) != 0
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.QStringRef_Contains(ptr.Pointer(), strC, C.int(cs)) != 0
 	}
 	return false
 }
@@ -63764,7 +65581,9 @@ func (ptr *QStringRef) Count2(str string, cs Qt__CaseSensitivity) int {
 	defer qt.Recovering("QStringRef::count")
 
 	if ptr.Pointer() != nil {
-		return int(C.QStringRef_Count2(ptr.Pointer(), C.CString(str), C.int(cs)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return int(C.QStringRef_Count2(ptr.Pointer(), strC, C.int(cs)))
 	}
 	return 0
 }
@@ -63809,7 +65628,9 @@ func (ptr *QStringRef) EndsWith(str string, cs Qt__CaseSensitivity) bool {
 	defer qt.Recovering("QStringRef::endsWith")
 
 	if ptr.Pointer() != nil {
-		return C.QStringRef_EndsWith(ptr.Pointer(), C.CString(str), C.int(cs)) != 0
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.QStringRef_EndsWith(ptr.Pointer(), strC, C.int(cs)) != 0
 	}
 	return false
 }
@@ -63845,7 +65666,9 @@ func (ptr *QStringRef) IndexOf(str string, from int, cs Qt__CaseSensitivity) int
 	defer qt.Recovering("QStringRef::indexOf")
 
 	if ptr.Pointer() != nil {
-		return int(C.QStringRef_IndexOf(ptr.Pointer(), C.CString(str), C.int(from), C.int(cs)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return int(C.QStringRef_IndexOf(ptr.Pointer(), strC, C.int(from), C.int(cs)))
 	}
 	return 0
 }
@@ -63899,7 +65722,9 @@ func (ptr *QStringRef) LastIndexOf(str string, from int, cs Qt__CaseSensitivity)
 	defer qt.Recovering("QStringRef::lastIndexOf")
 
 	if ptr.Pointer() != nil {
-		return int(C.QStringRef_LastIndexOf(ptr.Pointer(), C.CString(str), C.int(from), C.int(cs)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return int(C.QStringRef_LastIndexOf(ptr.Pointer(), strC, C.int(from), C.int(cs)))
 	}
 	return 0
 }
@@ -63925,13 +65750,17 @@ func (ptr *QStringRef) Length() int {
 func QStringRef_LocaleAwareCompare(s1 QStringRef_ITF, s2 string) int {
 	defer qt.Recovering("QStringRef::localeAwareCompare")
 
-	return int(C.QStringRef_QStringRef_LocaleAwareCompare(PointerFromQStringRef(s1), C.CString(s2)))
+	var s2C = C.CString(s2)
+	defer C.free(unsafe.Pointer(s2C))
+	return int(C.QStringRef_QStringRef_LocaleAwareCompare(PointerFromQStringRef(s1), s2C))
 }
 
 func (ptr *QStringRef) LocaleAwareCompare(s1 QStringRef_ITF, s2 string) int {
 	defer qt.Recovering("QStringRef::localeAwareCompare")
 
-	return int(C.QStringRef_QStringRef_LocaleAwareCompare(PointerFromQStringRef(s1), C.CString(s2)))
+	var s2C = C.CString(s2)
+	defer C.free(unsafe.Pointer(s2C))
+	return int(C.QStringRef_QStringRef_LocaleAwareCompare(PointerFromQStringRef(s1), s2C))
 }
 
 func QStringRef_LocaleAwareCompare4(s1 QStringRef_ITF, s2 QStringRef_ITF) int {
@@ -63950,7 +65779,9 @@ func (ptr *QStringRef) LocaleAwareCompare3(other string) int {
 	defer qt.Recovering("QStringRef::localeAwareCompare")
 
 	if ptr.Pointer() != nil {
-		return int(C.QStringRef_LocaleAwareCompare3(ptr.Pointer(), C.CString(other)))
+		var otherC = C.CString(other)
+		defer C.free(unsafe.Pointer(otherC))
+		return int(C.QStringRef_LocaleAwareCompare3(ptr.Pointer(), otherC))
 	}
 	return 0
 }
@@ -64004,7 +65835,9 @@ func (ptr *QStringRef) StartsWith(str string, cs Qt__CaseSensitivity) bool {
 	defer qt.Recovering("QStringRef::startsWith")
 
 	if ptr.Pointer() != nil {
-		return C.QStringRef_StartsWith(ptr.Pointer(), C.CString(str), C.int(cs)) != 0
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.QStringRef_StartsWith(ptr.Pointer(), strC, C.int(cs)) != 0
 	}
 	return false
 }
@@ -64076,7 +65909,9 @@ func (ptr *QStringRef) Trimmed() *QStringRef {
 	defer qt.Recovering("QStringRef::trimmed")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QStringRef_Trimmed(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QStringRef_Trimmed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -64246,6 +66081,11 @@ func NewQSysInfoFromPointer(ptr unsafe.Pointer) *QSysInfo {
 func newQSysInfoFromPointer(ptr unsafe.Pointer) *QSysInfo {
 	var n = NewQSysInfoFromPointer(ptr)
 	return n
+}
+
+func (ptr *QSysInfo) DestroyQSysInfo() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func QSysInfo_MacVersion() QSysInfo__MacVersion {
@@ -64459,7 +66299,9 @@ func newQSystemSemaphoreFromPointer(ptr unsafe.Pointer) *QSystemSemaphore {
 func NewQSystemSemaphore(key string, initialValue int, mode QSystemSemaphore__AccessMode) *QSystemSemaphore {
 	defer qt.Recovering("QSystemSemaphore::QSystemSemaphore")
 
-	return newQSystemSemaphoreFromPointer(C.QSystemSemaphore_NewQSystemSemaphore(C.CString(key), C.int(initialValue), C.int(mode)))
+	var keyC = C.CString(key)
+	defer C.free(unsafe.Pointer(keyC))
+	return newQSystemSemaphoreFromPointer(C.QSystemSemaphore_NewQSystemSemaphore(keyC, C.int(initialValue), C.int(mode)))
 }
 
 func (ptr *QSystemSemaphore) Acquire() bool {
@@ -64511,7 +66353,9 @@ func (ptr *QSystemSemaphore) SetKey(key string, initialValue int, mode QSystemSe
 	defer qt.Recovering("QSystemSemaphore::setKey")
 
 	if ptr.Pointer() != nil {
-		C.QSystemSemaphore_SetKey(ptr.Pointer(), C.CString(key), C.int(initialValue), C.int(mode))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QSystemSemaphore_SetKey(ptr.Pointer(), keyC, C.int(initialValue), C.int(mode))
 	}
 }
 
@@ -64576,7 +66420,9 @@ func NewQTemporaryDir() *QTemporaryDir {
 func NewQTemporaryDir2(templatePath string) *QTemporaryDir {
 	defer qt.Recovering("QTemporaryDir::QTemporaryDir")
 
-	return newQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir2(C.CString(templatePath)))
+	var templatePathC = C.CString(templatePath)
+	defer C.free(unsafe.Pointer(templatePathC))
+	return newQTemporaryDirFromPointer(C.QTemporaryDir_NewQTemporaryDir2(templatePathC))
 }
 
 func (ptr *QTemporaryDir) AutoRemove() bool {
@@ -64703,13 +66549,17 @@ func NewQTemporaryFile3(parent QObject_ITF) *QTemporaryFile {
 func NewQTemporaryFile2(templateName string) *QTemporaryFile {
 	defer qt.Recovering("QTemporaryFile::QTemporaryFile")
 
-	return newQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile2(C.CString(templateName)))
+	var templateNameC = C.CString(templateName)
+	defer C.free(unsafe.Pointer(templateNameC))
+	return newQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile2(templateNameC))
 }
 
 func NewQTemporaryFile4(templateName string, parent QObject_ITF) *QTemporaryFile {
 	defer qt.Recovering("QTemporaryFile::QTemporaryFile")
 
-	return newQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile4(C.CString(templateName), PointerFromQObject(parent)))
+	var templateNameC = C.CString(templateName)
+	defer C.free(unsafe.Pointer(templateNameC))
+	return newQTemporaryFileFromPointer(C.QTemporaryFile_NewQTemporaryFile4(templateNameC, PointerFromQObject(parent)))
 }
 
 func (ptr *QTemporaryFile) AutoRemove() bool {
@@ -64736,13 +66586,17 @@ func (ptr *QTemporaryFile) CreateNativeFile(file QFile_ITF) *QTemporaryFile {
 func QTemporaryFile_CreateNativeFile2(fileName string) *QTemporaryFile {
 	defer qt.Recovering("QTemporaryFile::createNativeFile")
 
-	return NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(fileNameC))
 }
 
 func (ptr *QTemporaryFile) CreateNativeFile2(fileName string) *QTemporaryFile {
 	defer qt.Recovering("QTemporaryFile::createNativeFile")
 
-	return NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(C.CString(fileName)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return NewQTemporaryFileFromPointer(C.QTemporaryFile_QTemporaryFile_CreateNativeFile2(fileNameC))
 }
 
 //export callbackQTemporaryFile_FileName
@@ -64869,7 +66723,9 @@ func (ptr *QTemporaryFile) SetFileTemplate(name string) {
 	defer qt.Recovering("QTemporaryFile::setFileTemplate")
 
 	if ptr.Pointer() != nil {
-		C.QTemporaryFile_SetFileTemplate(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QTemporaryFile_SetFileTemplate(ptr.Pointer(), nameC)
 	}
 }
 
@@ -65337,7 +67193,9 @@ func (ptr *QTemporaryFile) ReadLineData(data string, maxlen int64) int64 {
 	defer qt.Recovering("QTemporaryFile::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QTemporaryFile_ReadLineData(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTemporaryFile_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -65346,7 +67204,9 @@ func (ptr *QTemporaryFile) ReadLineDataDefault(data string, maxlen int64) int64 
 	defer qt.Recovering("QTemporaryFile::readLineData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QTemporaryFile_ReadLineDataDefault(ptr.Pointer(), C.CString(data), C.longlong(maxlen)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTemporaryFile_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxlen)))
 	}
 	return 0
 }
@@ -65384,7 +67244,9 @@ func (ptr *QTemporaryFile) WriteData(data string, len int64) int64 {
 	defer qt.Recovering("QTemporaryFile::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QTemporaryFile_WriteData(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTemporaryFile_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -65393,7 +67255,9 @@ func (ptr *QTemporaryFile) WriteDataDefault(data string, len int64) int64 {
 	defer qt.Recovering("QTemporaryFile::writeData")
 
 	if ptr.Pointer() != nil {
-		return int64(C.QTemporaryFile_WriteDataDefault(ptr.Pointer(), C.CString(data), C.longlong(len)))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTemporaryFile_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }
@@ -66169,7 +68033,9 @@ func NewQTextBoundaryFinder() *QTextBoundaryFinder {
 func NewQTextBoundaryFinder3(ty QTextBoundaryFinder__BoundaryType, stri string) *QTextBoundaryFinder {
 	defer qt.Recovering("QTextBoundaryFinder::QTextBoundaryFinder")
 
-	return newQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder3(C.int(ty), C.CString(stri)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	return newQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder3(C.int(ty), striC))
 }
 
 func NewQTextBoundaryFinder2(other QTextBoundaryFinder_ITF) *QTextBoundaryFinder {
@@ -66352,7 +68218,9 @@ func (ptr *QTextCodec) CanEncode2(s string) bool {
 	defer qt.Recovering("QTextCodec::canEncode")
 
 	if ptr.Pointer() != nil {
-		return C.QTextCodec_CanEncode2(ptr.Pointer(), C.CString(s)) != 0
+		var sC = C.CString(s)
+		defer C.free(unsafe.Pointer(sC))
+		return C.QTextCodec_CanEncode2(ptr.Pointer(), sC) != 0
 	}
 	return false
 }
@@ -66360,25 +68228,33 @@ func (ptr *QTextCodec) CanEncode2(s string) bool {
 func QTextCodec_CodecForHtml2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml2(C.CString(ba)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml2(baC))
 }
 
 func (ptr *QTextCodec) CodecForHtml2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml2(C.CString(ba)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml2(baC))
 }
 
 func QTextCodec_CodecForHtml(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml(C.CString(ba), PointerFromQTextCodec(defaultCodec)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml(baC, PointerFromQTextCodec(defaultCodec)))
 }
 
 func (ptr *QTextCodec) CodecForHtml(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml(C.CString(ba), PointerFromQTextCodec(defaultCodec)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml(baC, PointerFromQTextCodec(defaultCodec)))
 }
 
 func QTextCodec_CodecForLocale() *QTextCodec {
@@ -66408,56 +68284,74 @@ func (ptr *QTextCodec) CodecForMib(mib int) *QTextCodec {
 func QTextCodec_CodecForName(name string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForName")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName(nameC))
 }
 
 func (ptr *QTextCodec) CodecForName(name string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForName")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName(nameC))
 }
 
 func QTextCodec_CodecForName2(name string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForName")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName2(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName2(nameC))
 }
 
 func (ptr *QTextCodec) CodecForName2(name string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForName")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName2(C.CString(name)))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName2(nameC))
 }
 
 func QTextCodec_CodecForUtfText2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText2(C.CString(ba)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText2(baC))
 }
 
 func (ptr *QTextCodec) CodecForUtfText2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText2(C.CString(ba)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText2(baC))
 }
 
 func QTextCodec_CodecForUtfText(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText(C.CString(ba), PointerFromQTextCodec(defaultCodec)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText(baC, PointerFromQTextCodec(defaultCodec)))
 }
 
 func (ptr *QTextCodec) CodecForUtfText(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText(C.CString(ba), PointerFromQTextCodec(defaultCodec)))
+	var baC = C.CString(ba)
+	defer C.free(unsafe.Pointer(baC))
+	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText(baC, PointerFromQTextCodec(defaultCodec)))
 }
 
 func (ptr *QTextCodec) FromUnicode(str string) string {
 	defer qt.Recovering("QTextCodec::fromUnicode")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCodec_FromUnicode(ptr.Pointer(), C.CString(str)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.GoString(C.QTextCodec_FromUnicode(ptr.Pointer(), strC))
 	}
 	return ""
 }
@@ -66572,7 +68466,9 @@ func (ptr *QTextCodec) ToUnicode(a string) string {
 	defer qt.Recovering("QTextCodec::toUnicode")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCodec_ToUnicode(ptr.Pointer(), C.CString(a)))
+		var aC = C.CString(a)
+		defer C.free(unsafe.Pointer(aC))
+		return C.GoString(C.QTextCodec_ToUnicode(ptr.Pointer(), aC))
 	}
 	return ""
 }
@@ -66581,7 +68477,9 @@ func (ptr *QTextCodec) ToUnicode2(chars string) string {
 	defer qt.Recovering("QTextCodec::toUnicode")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCodec_ToUnicode2(ptr.Pointer(), C.CString(chars)))
+		var charsC = C.CString(chars)
+		defer C.free(unsafe.Pointer(charsC))
+		return C.GoString(C.QTextCodec_ToUnicode2(ptr.Pointer(), charsC))
 	}
 	return ""
 }
@@ -66609,7 +68507,9 @@ func (ptr *QTextCodec) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QTextCodec::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QTextCodec_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QTextCodec_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -66660,7 +68560,9 @@ func (ptr *QTextDecoder) ToUnicode(chars string, len int) string {
 	defer qt.Recovering("QTextDecoder::toUnicode")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDecoder_ToUnicode(ptr.Pointer(), C.CString(chars), C.int(len)))
+		var charsC = C.CString(chars)
+		defer C.free(unsafe.Pointer(charsC))
+		return C.GoString(C.QTextDecoder_ToUnicode(ptr.Pointer(), charsC, C.int(len)))
 	}
 	return ""
 }
@@ -66681,7 +68583,9 @@ func (ptr *QTextDecoder) ToUnicode2(ba string) string {
 	defer qt.Recovering("QTextDecoder::toUnicode")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDecoder_ToUnicode2(ptr.Pointer(), C.CString(ba)))
+		var baC = C.CString(ba)
+		defer C.free(unsafe.Pointer(baC))
+		return C.GoString(C.QTextDecoder_ToUnicode2(ptr.Pointer(), baC))
 	}
 	return ""
 }
@@ -66690,7 +68594,11 @@ func (ptr *QTextDecoder) ToUnicode3(target string, chars string, len int) {
 	defer qt.Recovering("QTextDecoder::toUnicode")
 
 	if ptr.Pointer() != nil {
-		C.QTextDecoder_ToUnicode3(ptr.Pointer(), C.CString(target), C.CString(chars), C.int(len))
+		var targetC = C.CString(target)
+		defer C.free(unsafe.Pointer(targetC))
+		var charsC = C.CString(chars)
+		defer C.free(unsafe.Pointer(charsC))
+		C.QTextDecoder_ToUnicode3(ptr.Pointer(), targetC, charsC, C.int(len))
 	}
 }
 
@@ -66771,7 +68679,9 @@ func (ptr *QTextEncoder) FromUnicode(str string) string {
 	defer qt.Recovering("QTextEncoder::fromUnicode")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextEncoder_FromUnicode(ptr.Pointer(), C.CString(str)))
+		var strC = C.CString(str)
+		defer C.free(unsafe.Pointer(strC))
+		return C.GoString(C.QTextEncoder_FromUnicode(ptr.Pointer(), strC))
 	}
 	return ""
 }
@@ -66880,7 +68790,9 @@ func NewQTextStream() *QTextStream {
 func NewQTextStream5(array string, openMode QIODevice__OpenModeFlag) *QTextStream {
 	defer qt.Recovering("QTextStream::QTextStream")
 
-	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream5(C.CString(array), C.int(openMode)))
+	var arrayC = C.CString(array)
+	defer C.free(unsafe.Pointer(arrayC))
+	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream5(arrayC, C.int(openMode)))
 }
 
 func NewQTextStream2(device QIODevice_ITF) *QTextStream {
@@ -66892,13 +68804,17 @@ func NewQTextStream2(device QIODevice_ITF) *QTextStream {
 func NewQTextStream4(stri string, openMode QIODevice__OpenModeFlag) *QTextStream {
 	defer qt.Recovering("QTextStream::QTextStream")
 
-	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream4(C.CString(stri), C.int(openMode)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream4(striC, C.int(openMode)))
 }
 
 func NewQTextStream6(array string, openMode QIODevice__OpenModeFlag) *QTextStream {
 	defer qt.Recovering("QTextStream::QTextStream")
 
-	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream6(C.CString(array), C.int(openMode)))
+	var arrayC = C.CString(array)
+	defer C.free(unsafe.Pointer(arrayC))
+	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream6(arrayC, C.int(openMode)))
 }
 
 func (ptr *QTextStream) AtEnd() bool {
@@ -66985,7 +68901,9 @@ func (ptr *QTextStream) Locale() *QLocale {
 	defer qt.Recovering("QTextStream::locale")
 
 	if ptr.Pointer() != nil {
-		return NewQLocaleFromPointer(C.QTextStream_Locale(ptr.Pointer()))
+		var tmpValue = NewQLocaleFromPointer(C.QTextStream_Locale(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		return tmpValue
 	}
 	return nil
 }
@@ -67039,7 +68957,9 @@ func (ptr *QTextStream) ReadLineInto(line string, maxlen int64) bool {
 	defer qt.Recovering("QTextStream::readLineInto")
 
 	if ptr.Pointer() != nil {
-		return C.QTextStream_ReadLineInto(ptr.Pointer(), C.CString(line), C.longlong(maxlen)) != 0
+		var lineC = C.CString(line)
+		defer C.free(unsafe.Pointer(lineC))
+		return C.QTextStream_ReadLineInto(ptr.Pointer(), lineC, C.longlong(maxlen)) != 0
 	}
 	return false
 }
@@ -67107,7 +69027,9 @@ func (ptr *QTextStream) SetCodec2(codecName string) {
 	defer qt.Recovering("QTextStream::setCodec")
 
 	if ptr.Pointer() != nil {
-		C.QTextStream_SetCodec2(ptr.Pointer(), C.CString(codecName))
+		var codecNameC = C.CString(codecName)
+		defer C.free(unsafe.Pointer(codecNameC))
+		C.QTextStream_SetCodec2(ptr.Pointer(), codecNameC)
 	}
 }
 
@@ -67203,7 +69125,9 @@ func (ptr *QTextStream) SetString(stri string, openMode QIODevice__OpenModeFlag)
 	defer qt.Recovering("QTextStream::setString")
 
 	if ptr.Pointer() != nil {
-		C.QTextStream_SetString(ptr.Pointer(), C.CString(stri), C.int(openMode))
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		C.QTextStream_SetString(ptr.Pointer(), striC, C.int(openMode))
 	}
 }
 
@@ -67256,7 +69180,9 @@ func (ptr *QTextStream) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QTextStream::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QTextStream_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QTextStream_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -68778,6 +70704,11 @@ func newQTimeFromPointer(ptr unsafe.Pointer) *QTime {
 	return n
 }
 
+func (ptr *QTime) DestroyQTime() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQTime() *QTime {
 	defer qt.Recovering("QTime::QTime")
 
@@ -68931,7 +70862,9 @@ func (ptr *QTime) ToString(format string) string {
 	defer qt.Recovering("QTime::toString")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTime_ToString(ptr.Pointer(), C.CString(format)))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.GoString(C.QTime_ToString(ptr.Pointer(), formatC))
 	}
 	return ""
 }
@@ -69052,7 +70985,9 @@ func (ptr *QTimeLine) EasingCurve() *QEasingCurve {
 	defer qt.Recovering("QTimeLine::easingCurve")
 
 	if ptr.Pointer() != nil {
-		return NewQEasingCurveFromPointer(C.QTimeLine_EasingCurve(ptr.Pointer()))
+		var tmpValue = NewQEasingCurveFromPointer(C.QTimeLine_EasingCurve(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+		return tmpValue
 	}
 	return nil
 }
@@ -70078,13 +72013,23 @@ func NewQTimeZone() *QTimeZone {
 func NewQTimeZone2(ianaId string) *QTimeZone {
 	defer qt.Recovering("QTimeZone::QTimeZone")
 
-	return newQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone2(C.CString(ianaId)))
+	var ianaIdC = C.CString(ianaId)
+	defer C.free(unsafe.Pointer(ianaIdC))
+	return newQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone2(ianaIdC))
 }
 
 func NewQTimeZone4(ianaId string, offsetSeconds int, name string, abbreviation string, country QLocale__Country, comment string) *QTimeZone {
 	defer qt.Recovering("QTimeZone::QTimeZone")
 
-	return newQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone4(C.CString(ianaId), C.int(offsetSeconds), C.CString(name), C.CString(abbreviation), C.int(country), C.CString(comment)))
+	var ianaIdC = C.CString(ianaId)
+	defer C.free(unsafe.Pointer(ianaIdC))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var abbreviationC = C.CString(abbreviation)
+	defer C.free(unsafe.Pointer(abbreviationC))
+	var commentC = C.CString(comment)
+	defer C.free(unsafe.Pointer(commentC))
+	return newQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone4(ianaIdC, C.int(offsetSeconds), nameC, abbreviationC, C.int(country), commentC))
 }
 
 func NewQTimeZone5(other QTimeZone_ITF) *QTimeZone {
@@ -70174,13 +72119,17 @@ func (ptr *QTimeZone) HasTransitions() bool {
 func QTimeZone_IanaIdToWindowsId(ianaId string) string {
 	defer qt.Recovering("QTimeZone::ianaIdToWindowsId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(C.CString(ianaId)))
+	var ianaIdC = C.CString(ianaId)
+	defer C.free(unsafe.Pointer(ianaIdC))
+	return C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(ianaIdC))
 }
 
 func (ptr *QTimeZone) IanaIdToWindowsId(ianaId string) string {
 	defer qt.Recovering("QTimeZone::ianaIdToWindowsId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(C.CString(ianaId)))
+	var ianaIdC = C.CString(ianaId)
+	defer C.free(unsafe.Pointer(ianaIdC))
+	return C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(ianaIdC))
 }
 
 func (ptr *QTimeZone) Id() string {
@@ -70204,13 +72153,17 @@ func (ptr *QTimeZone) IsDaylightTime(atDateTime QDateTime_ITF) bool {
 func QTimeZone_IsTimeZoneIdAvailable(ianaId string) bool {
 	defer qt.Recovering("QTimeZone::isTimeZoneIdAvailable")
 
-	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(C.CString(ianaId)) != 0
+	var ianaIdC = C.CString(ianaId)
+	defer C.free(unsafe.Pointer(ianaIdC))
+	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(ianaIdC) != 0
 }
 
 func (ptr *QTimeZone) IsTimeZoneIdAvailable(ianaId string) bool {
 	defer qt.Recovering("QTimeZone::isTimeZoneIdAvailable")
 
-	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(C.CString(ianaId)) != 0
+	var ianaIdC = C.CString(ianaId)
+	defer C.free(unsafe.Pointer(ianaIdC))
+	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(ianaIdC) != 0
 }
 
 func (ptr *QTimeZone) IsValid() bool {
@@ -70251,13 +72204,17 @@ func (ptr *QTimeZone) Swap(other QTimeZone_ITF) {
 func QTimeZone_SystemTimeZone() *QTimeZone {
 	defer qt.Recovering("QTimeZone::systemTimeZone")
 
-	return NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_SystemTimeZone())
+	var tmpValue = NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_SystemTimeZone())
+	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	return tmpValue
 }
 
 func (ptr *QTimeZone) SystemTimeZone() *QTimeZone {
 	defer qt.Recovering("QTimeZone::systemTimeZone")
 
-	return NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_SystemTimeZone())
+	var tmpValue = NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_SystemTimeZone())
+	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	return tmpValue
 }
 
 func QTimeZone_SystemTimeZoneId() string {
@@ -70275,37 +72232,49 @@ func (ptr *QTimeZone) SystemTimeZoneId() string {
 func QTimeZone_Utc() *QTimeZone {
 	defer qt.Recovering("QTimeZone::utc")
 
-	return NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_Utc())
+	var tmpValue = NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_Utc())
+	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	return tmpValue
 }
 
 func (ptr *QTimeZone) Utc() *QTimeZone {
 	defer qt.Recovering("QTimeZone::utc")
 
-	return NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_Utc())
+	var tmpValue = NewQTimeZoneFromPointer(C.QTimeZone_QTimeZone_Utc())
+	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
+	return tmpValue
 }
 
 func QTimeZone_WindowsIdToDefaultIanaId(windowsId string) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(C.CString(windowsId)))
+	var windowsIdC = C.CString(windowsId)
+	defer C.free(unsafe.Pointer(windowsIdC))
+	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(windowsIdC))
 }
 
 func (ptr *QTimeZone) WindowsIdToDefaultIanaId(windowsId string) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(C.CString(windowsId)))
+	var windowsIdC = C.CString(windowsId)
+	defer C.free(unsafe.Pointer(windowsIdC))
+	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(windowsIdC))
 }
 
 func QTimeZone_WindowsIdToDefaultIanaId2(windowsId string, country QLocale__Country) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(C.CString(windowsId), C.int(country)))
+	var windowsIdC = C.CString(windowsId)
+	defer C.free(unsafe.Pointer(windowsIdC))
+	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(windowsIdC, C.int(country)))
 }
 
 func (ptr *QTimeZone) WindowsIdToDefaultIanaId2(windowsId string, country QLocale__Country) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(C.CString(windowsId), C.int(country)))
+	var windowsIdC = C.CString(windowsId)
+	defer C.free(unsafe.Pointer(windowsIdC))
+	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(windowsIdC, C.int(country)))
 }
 
 func (ptr *QTimeZone) DestroyQTimeZone() {
@@ -70433,25 +72402,33 @@ func (ptr *QTimer) SetTimerType(atype Qt__TimerType) {
 func QTimer_SingleShot2(msec int, timerType Qt__TimerType, receiver QObject_ITF, member string) {
 	defer qt.Recovering("QTimer::singleShot")
 
-	C.QTimer_QTimer_SingleShot2(C.int(msec), C.int(timerType), PointerFromQObject(receiver), C.CString(member))
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	C.QTimer_QTimer_SingleShot2(C.int(msec), C.int(timerType), PointerFromQObject(receiver), memberC)
 }
 
 func (ptr *QTimer) SingleShot2(msec int, timerType Qt__TimerType, receiver QObject_ITF, member string) {
 	defer qt.Recovering("QTimer::singleShot")
 
-	C.QTimer_QTimer_SingleShot2(C.int(msec), C.int(timerType), PointerFromQObject(receiver), C.CString(member))
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	C.QTimer_QTimer_SingleShot2(C.int(msec), C.int(timerType), PointerFromQObject(receiver), memberC)
 }
 
 func QTimer_SingleShot(msec int, receiver QObject_ITF, member string) {
 	defer qt.Recovering("QTimer::singleShot")
 
-	C.QTimer_QTimer_SingleShot(C.int(msec), PointerFromQObject(receiver), C.CString(member))
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	C.QTimer_QTimer_SingleShot(C.int(msec), PointerFromQObject(receiver), memberC)
 }
 
 func (ptr *QTimer) SingleShot(msec int, receiver QObject_ITF, member string) {
 	defer qt.Recovering("QTimer::singleShot")
 
-	C.QTimer_QTimer_SingleShot(C.int(msec), PointerFromQObject(receiver), C.CString(member))
+	var memberC = C.CString(member)
+	defer C.free(unsafe.Pointer(memberC))
+	C.QTimer_QTimer_SingleShot(C.int(msec), PointerFromQObject(receiver), memberC)
 }
 
 //export callbackQTimer_Start2
@@ -71077,6 +73054,11 @@ func newQTimerEventFromPointer(ptr unsafe.Pointer) *QTimerEvent {
 	return n
 }
 
+func (ptr *QTimerEvent) DestroyQTimerEvent() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQTimerEvent(timerId int) *QTimerEvent {
 	defer qt.Recovering("QTimerEvent::QTimerEvent")
 
@@ -71213,7 +73195,15 @@ func (ptr *QTranslator) Load2(locale QLocale_ITF, filename string, prefix string
 	defer qt.Recovering("QTranslator::load")
 
 	if ptr.Pointer() != nil {
-		return C.QTranslator_Load2(ptr.Pointer(), PointerFromQLocale(locale), C.CString(filename), C.CString(prefix), C.CString(directory), C.CString(suffix)) != 0
+		var filenameC = C.CString(filename)
+		defer C.free(unsafe.Pointer(filenameC))
+		var prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+		var directoryC = C.CString(directory)
+		defer C.free(unsafe.Pointer(directoryC))
+		var suffixC = C.CString(suffix)
+		defer C.free(unsafe.Pointer(suffixC))
+		return C.QTranslator_Load2(ptr.Pointer(), PointerFromQLocale(locale), filenameC, prefixC, directoryC, suffixC) != 0
 	}
 	return false
 }
@@ -71222,7 +73212,15 @@ func (ptr *QTranslator) Load(filename string, directory string, search_delimiter
 	defer qt.Recovering("QTranslator::load")
 
 	if ptr.Pointer() != nil {
-		return C.QTranslator_Load(ptr.Pointer(), C.CString(filename), C.CString(directory), C.CString(search_delimiters), C.CString(suffix)) != 0
+		var filenameC = C.CString(filename)
+		defer C.free(unsafe.Pointer(filenameC))
+		var directoryC = C.CString(directory)
+		defer C.free(unsafe.Pointer(directoryC))
+		var search_delimitersC = C.CString(search_delimiters)
+		defer C.free(unsafe.Pointer(search_delimitersC))
+		var suffixC = C.CString(suffix)
+		defer C.free(unsafe.Pointer(suffixC))
+		return C.QTranslator_Load(ptr.Pointer(), filenameC, directoryC, search_delimitersC, suffixC) != 0
 	}
 	return false
 }
@@ -71260,7 +73258,13 @@ func (ptr *QTranslator) Translate(context string, sourceText string, disambiguat
 	defer qt.Recovering("QTranslator::translate")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTranslator_Translate(ptr.Pointer(), C.CString(context), C.CString(sourceText), C.CString(disambiguation), C.int(n)))
+		var contextC = C.CString(context)
+		defer C.free(unsafe.Pointer(contextC))
+		var sourceTextC = C.CString(sourceText)
+		defer C.free(unsafe.Pointer(sourceTextC))
+		var disambiguationC = C.CString(disambiguation)
+		defer C.free(unsafe.Pointer(disambiguationC))
+		return C.GoString(C.QTranslator_Translate(ptr.Pointer(), contextC, sourceTextC, disambiguationC, C.int(n)))
 	}
 	return ""
 }
@@ -71269,7 +73273,13 @@ func (ptr *QTranslator) TranslateDefault(context string, sourceText string, disa
 	defer qt.Recovering("QTranslator::translate")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTranslator_TranslateDefault(ptr.Pointer(), C.CString(context), C.CString(sourceText), C.CString(disambiguation), C.int(n)))
+		var contextC = C.CString(context)
+		defer C.free(unsafe.Pointer(contextC))
+		var sourceTextC = C.CString(sourceText)
+		defer C.free(unsafe.Pointer(sourceTextC))
+		var disambiguationC = C.CString(disambiguation)
+		defer C.free(unsafe.Pointer(disambiguationC))
+		return C.GoString(C.QTranslator_TranslateDefault(ptr.Pointer(), contextC, sourceTextC, disambiguationC, C.int(n)))
 	}
 	return ""
 }
@@ -71743,6 +73753,11 @@ func newQUnhandledExceptionFromPointer(ptr unsafe.Pointer) *QUnhandledException 
 	return n
 }
 
+func (ptr *QUnhandledException) DestroyQUnhandledException() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QUnicodeTables::GraphemeBreakClass
 type QUnicodeTables__GraphemeBreakClass int64
 
@@ -71889,6 +73904,11 @@ func newQUnicodeTablesFromPointer(ptr unsafe.Pointer) *QUnicodeTables {
 	return n
 }
 
+func (ptr *QUnicodeTables) DestroyQUnicodeTables() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QUnicodeTools::CharAttributeOption
 type QUnicodeTools__CharAttributeOption int64
 
@@ -71943,6 +73963,11 @@ func NewQUnicodeToolsFromPointer(ptr unsafe.Pointer) *QUnicodeTools {
 func newQUnicodeToolsFromPointer(ptr unsafe.Pointer) *QUnicodeTools {
 	var n = NewQUnicodeToolsFromPointer(ptr)
 	return n
+}
+
+func (ptr *QUnicodeTools) DestroyQUnicodeTools() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 //QUrl::ComponentFormattingOption
@@ -72041,13 +74066,21 @@ func newQUrlFromPointer(ptr unsafe.Pointer) *QUrl {
 func QUrl_FromEncoded(input string, parsingMode QUrl__ParsingMode) *QUrl {
 	defer qt.Recovering("QUrl::fromEncoded")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(C.CString(input), C.int(parsingMode)))
+	var inputC = C.CString(input)
+	defer C.free(unsafe.Pointer(inputC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(inputC, C.int(parsingMode)))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func (ptr *QUrl) FromEncoded(input string, parsingMode QUrl__ParsingMode) *QUrl {
 	defer qt.Recovering("QUrl::fromEncoded")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(C.CString(input), C.int(parsingMode)))
+	var inputC = C.CString(input)
+	defer C.free(unsafe.Pointer(inputC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(inputC, C.int(parsingMode)))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func NewQUrl() *QUrl {
@@ -72065,7 +74098,9 @@ func NewQUrl4(other QUrl_ITF) *QUrl {
 func NewQUrl3(url string, parsingMode QUrl__ParsingMode) *QUrl {
 	defer qt.Recovering("QUrl::QUrl")
 
-	return newQUrlFromPointer(C.QUrl_NewQUrl3(C.CString(url), C.int(parsingMode)))
+	var urlC = C.CString(url)
+	defer C.free(unsafe.Pointer(urlC))
+	return newQUrlFromPointer(C.QUrl_NewQUrl3(urlC, C.int(parsingMode)))
 }
 
 func NewQUrl2(other QUrl_ITF) *QUrl {
@@ -72078,7 +74113,9 @@ func (ptr *QUrl) Adjusted(options QUrl__UrlFormattingOption) *QUrl {
 	defer qt.Recovering("QUrl::adjusted")
 
 	if ptr.Pointer() != nil {
-		return NewQUrlFromPointer(C.QUrl_Adjusted(ptr.Pointer(), C.int(options)))
+		var tmpValue = NewQUrlFromPointer(C.QUrl_Adjusted(ptr.Pointer(), C.int(options)))
+		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -72130,61 +74167,97 @@ func (ptr *QUrl) Fragment(options QUrl__ComponentFormattingOption) string {
 func QUrl_FromAce(domain string) string {
 	defer qt.Recovering("QUrl::fromAce")
 
-	return C.GoString(C.QUrl_QUrl_FromAce(C.CString(domain)))
+	var domainC = C.CString(domain)
+	defer C.free(unsafe.Pointer(domainC))
+	return C.GoString(C.QUrl_QUrl_FromAce(domainC))
 }
 
 func (ptr *QUrl) FromAce(domain string) string {
 	defer qt.Recovering("QUrl::fromAce")
 
-	return C.GoString(C.QUrl_QUrl_FromAce(C.CString(domain)))
+	var domainC = C.CString(domain)
+	defer C.free(unsafe.Pointer(domainC))
+	return C.GoString(C.QUrl_QUrl_FromAce(domainC))
 }
 
 func QUrl_FromLocalFile(localFile string) *QUrl {
 	defer qt.Recovering("QUrl::fromLocalFile")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(C.CString(localFile)))
+	var localFileC = C.CString(localFile)
+	defer C.free(unsafe.Pointer(localFileC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(localFileC))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func (ptr *QUrl) FromLocalFile(localFile string) *QUrl {
 	defer qt.Recovering("QUrl::fromLocalFile")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(C.CString(localFile)))
+	var localFileC = C.CString(localFile)
+	defer C.free(unsafe.Pointer(localFileC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromLocalFile(localFileC))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func QUrl_FromPercentEncoding(input string) string {
 	defer qt.Recovering("QUrl::fromPercentEncoding")
 
-	return C.GoString(C.QUrl_QUrl_FromPercentEncoding(C.CString(input)))
+	var inputC = C.CString(input)
+	defer C.free(unsafe.Pointer(inputC))
+	return C.GoString(C.QUrl_QUrl_FromPercentEncoding(inputC))
 }
 
 func (ptr *QUrl) FromPercentEncoding(input string) string {
 	defer qt.Recovering("QUrl::fromPercentEncoding")
 
-	return C.GoString(C.QUrl_QUrl_FromPercentEncoding(C.CString(input)))
+	var inputC = C.CString(input)
+	defer C.free(unsafe.Pointer(inputC))
+	return C.GoString(C.QUrl_QUrl_FromPercentEncoding(inputC))
 }
 
 func QUrl_FromUserInput(userInput string) *QUrl {
 	defer qt.Recovering("QUrl::fromUserInput")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(C.CString(userInput)))
+	var userInputC = C.CString(userInput)
+	defer C.free(unsafe.Pointer(userInputC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(userInputC))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func (ptr *QUrl) FromUserInput(userInput string) *QUrl {
 	defer qt.Recovering("QUrl::fromUserInput")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(C.CString(userInput)))
+	var userInputC = C.CString(userInput)
+	defer C.free(unsafe.Pointer(userInputC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput(userInputC))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func QUrl_FromUserInput2(userInput string, workingDirectory string, options QUrl__UserInputResolutionOption) *QUrl {
 	defer qt.Recovering("QUrl::fromUserInput")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(C.CString(userInput), C.CString(workingDirectory), C.int(options)))
+	var userInputC = C.CString(userInput)
+	defer C.free(unsafe.Pointer(userInputC))
+	var workingDirectoryC = C.CString(workingDirectory)
+	defer C.free(unsafe.Pointer(workingDirectoryC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(userInputC, workingDirectoryC, C.int(options)))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func (ptr *QUrl) FromUserInput2(userInput string, workingDirectory string, options QUrl__UserInputResolutionOption) *QUrl {
 	defer qt.Recovering("QUrl::fromUserInput")
 
-	return NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(C.CString(userInput), C.CString(workingDirectory), C.int(options)))
+	var userInputC = C.CString(userInput)
+	defer C.free(unsafe.Pointer(userInputC))
+	var workingDirectoryC = C.CString(workingDirectory)
+	defer C.free(unsafe.Pointer(workingDirectoryC))
+	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromUserInput2(userInputC, workingDirectoryC, C.int(options)))
+	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+	return tmpValue
 }
 
 func (ptr *QUrl) HasFragment() bool {
@@ -72320,7 +74393,9 @@ func (ptr *QUrl) Resolved(relative QUrl_ITF) *QUrl {
 	defer qt.Recovering("QUrl::resolved")
 
 	if ptr.Pointer() != nil {
-		return NewQUrlFromPointer(C.QUrl_Resolved(ptr.Pointer(), PointerFromQUrl(relative)))
+		var tmpValue = NewQUrlFromPointer(C.QUrl_Resolved(ptr.Pointer(), PointerFromQUrl(relative)))
+		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -72338,7 +74413,9 @@ func (ptr *QUrl) SetAuthority(authority string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setAuthority")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetAuthority(ptr.Pointer(), C.CString(authority), C.int(mode))
+		var authorityC = C.CString(authority)
+		defer C.free(unsafe.Pointer(authorityC))
+		C.QUrl_SetAuthority(ptr.Pointer(), authorityC, C.int(mode))
 	}
 }
 
@@ -72346,7 +74423,9 @@ func (ptr *QUrl) SetFragment(fragment string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setFragment")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetFragment(ptr.Pointer(), C.CString(fragment), C.int(mode))
+		var fragmentC = C.CString(fragment)
+		defer C.free(unsafe.Pointer(fragmentC))
+		C.QUrl_SetFragment(ptr.Pointer(), fragmentC, C.int(mode))
 	}
 }
 
@@ -72354,27 +74433,35 @@ func (ptr *QUrl) SetHost(host string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setHost")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetHost(ptr.Pointer(), C.CString(host), C.int(mode))
+		var hostC = C.CString(host)
+		defer C.free(unsafe.Pointer(hostC))
+		C.QUrl_SetHost(ptr.Pointer(), hostC, C.int(mode))
 	}
 }
 
 func QUrl_SetIdnWhitelist(list []string) {
 	defer qt.Recovering("QUrl::setIdnWhitelist")
 
-	C.QUrl_QUrl_SetIdnWhitelist(C.CString(strings.Join(list, "|")))
+	var listC = C.CString(strings.Join(list, "|"))
+	defer C.free(unsafe.Pointer(listC))
+	C.QUrl_QUrl_SetIdnWhitelist(listC)
 }
 
 func (ptr *QUrl) SetIdnWhitelist(list []string) {
 	defer qt.Recovering("QUrl::setIdnWhitelist")
 
-	C.QUrl_QUrl_SetIdnWhitelist(C.CString(strings.Join(list, "|")))
+	var listC = C.CString(strings.Join(list, "|"))
+	defer C.free(unsafe.Pointer(listC))
+	C.QUrl_QUrl_SetIdnWhitelist(listC)
 }
 
 func (ptr *QUrl) SetPassword(password string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setPassword")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetPassword(ptr.Pointer(), C.CString(password), C.int(mode))
+		var passwordC = C.CString(password)
+		defer C.free(unsafe.Pointer(passwordC))
+		C.QUrl_SetPassword(ptr.Pointer(), passwordC, C.int(mode))
 	}
 }
 
@@ -72382,7 +74469,9 @@ func (ptr *QUrl) SetPath(path string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setPath")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetPath(ptr.Pointer(), C.CString(path), C.int(mode))
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QUrl_SetPath(ptr.Pointer(), pathC, C.int(mode))
 	}
 }
 
@@ -72398,7 +74487,9 @@ func (ptr *QUrl) SetQuery(query string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setQuery")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetQuery(ptr.Pointer(), C.CString(query), C.int(mode))
+		var queryC = C.CString(query)
+		defer C.free(unsafe.Pointer(queryC))
+		C.QUrl_SetQuery(ptr.Pointer(), queryC, C.int(mode))
 	}
 }
 
@@ -72414,7 +74505,9 @@ func (ptr *QUrl) SetScheme(scheme string) {
 	defer qt.Recovering("QUrl::setScheme")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetScheme(ptr.Pointer(), C.CString(scheme))
+		var schemeC = C.CString(scheme)
+		defer C.free(unsafe.Pointer(schemeC))
+		C.QUrl_SetScheme(ptr.Pointer(), schemeC)
 	}
 }
 
@@ -72422,7 +74515,9 @@ func (ptr *QUrl) SetUrl(url string, parsingMode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setUrl")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetUrl(ptr.Pointer(), C.CString(url), C.int(parsingMode))
+		var urlC = C.CString(url)
+		defer C.free(unsafe.Pointer(urlC))
+		C.QUrl_SetUrl(ptr.Pointer(), urlC, C.int(parsingMode))
 	}
 }
 
@@ -72430,7 +74525,9 @@ func (ptr *QUrl) SetUserInfo(userInfo string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setUserInfo")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetUserInfo(ptr.Pointer(), C.CString(userInfo), C.int(mode))
+		var userInfoC = C.CString(userInfo)
+		defer C.free(unsafe.Pointer(userInfoC))
+		C.QUrl_SetUserInfo(ptr.Pointer(), userInfoC, C.int(mode))
 	}
 }
 
@@ -72438,7 +74535,9 @@ func (ptr *QUrl) SetUserName(userName string, mode QUrl__ParsingMode) {
 	defer qt.Recovering("QUrl::setUserName")
 
 	if ptr.Pointer() != nil {
-		C.QUrl_SetUserName(ptr.Pointer(), C.CString(userName), C.int(mode))
+		var userNameC = C.CString(userName)
+		defer C.free(unsafe.Pointer(userNameC))
+		C.QUrl_SetUserName(ptr.Pointer(), userNameC, C.int(mode))
 	}
 }
 
@@ -72453,13 +74552,17 @@ func (ptr *QUrl) Swap(other QUrl_ITF) {
 func QUrl_ToAce(domain string) string {
 	defer qt.Recovering("QUrl::toAce")
 
-	return C.GoString(C.QUrl_QUrl_ToAce(C.CString(domain)))
+	var domainC = C.CString(domain)
+	defer C.free(unsafe.Pointer(domainC))
+	return C.GoString(C.QUrl_QUrl_ToAce(domainC))
 }
 
 func (ptr *QUrl) ToAce(domain string) string {
 	defer qt.Recovering("QUrl::toAce")
 
-	return C.GoString(C.QUrl_QUrl_ToAce(C.CString(domain)))
+	var domainC = C.CString(domain)
+	defer C.free(unsafe.Pointer(domainC))
+	return C.GoString(C.QUrl_QUrl_ToAce(domainC))
 }
 
 func (ptr *QUrl) ToDisplayString(options QUrl__UrlFormattingOption) string {
@@ -72492,13 +74595,25 @@ func (ptr *QUrl) ToLocalFile() string {
 func QUrl_ToPercentEncoding(input string, exclude string, include string) string {
 	defer qt.Recovering("QUrl::toPercentEncoding")
 
-	return C.GoString(C.QUrl_QUrl_ToPercentEncoding(C.CString(input), C.CString(exclude), C.CString(include)))
+	var inputC = C.CString(input)
+	defer C.free(unsafe.Pointer(inputC))
+	var excludeC = C.CString(exclude)
+	defer C.free(unsafe.Pointer(excludeC))
+	var includeC = C.CString(include)
+	defer C.free(unsafe.Pointer(includeC))
+	return C.GoString(C.QUrl_QUrl_ToPercentEncoding(inputC, excludeC, includeC))
 }
 
 func (ptr *QUrl) ToPercentEncoding(input string, exclude string, include string) string {
 	defer qt.Recovering("QUrl::toPercentEncoding")
 
-	return C.GoString(C.QUrl_QUrl_ToPercentEncoding(C.CString(input), C.CString(exclude), C.CString(include)))
+	var inputC = C.CString(input)
+	defer C.free(unsafe.Pointer(inputC))
+	var excludeC = C.CString(exclude)
+	defer C.free(unsafe.Pointer(excludeC))
+	var includeC = C.CString(include)
+	defer C.free(unsafe.Pointer(includeC))
+	return C.GoString(C.QUrl_QUrl_ToPercentEncoding(inputC, excludeC, includeC))
 }
 
 func (ptr *QUrl) ToString(options QUrl__UrlFormattingOption) string {
@@ -72607,7 +74722,9 @@ func NewQUrlQuery() *QUrlQuery {
 func NewQUrlQuery3(queryString string) *QUrlQuery {
 	defer qt.Recovering("QUrlQuery::QUrlQuery")
 
-	return newQUrlQueryFromPointer(C.QUrlQuery_NewQUrlQuery3(C.CString(queryString)))
+	var queryStringC = C.CString(queryString)
+	defer C.free(unsafe.Pointer(queryStringC))
+	return newQUrlQueryFromPointer(C.QUrlQuery_NewQUrlQuery3(queryStringC))
 }
 
 func NewQUrlQuery2(url QUrl_ITF) *QUrlQuery {
@@ -72626,7 +74743,11 @@ func (ptr *QUrlQuery) AddQueryItem(key string, value string) {
 	defer qt.Recovering("QUrlQuery::addQueryItem")
 
 	if ptr.Pointer() != nil {
-		C.QUrlQuery_AddQueryItem(ptr.Pointer(), C.CString(key), C.CString(value))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QUrlQuery_AddQueryItem(ptr.Pointer(), keyC, valueC)
 	}
 }
 
@@ -72634,7 +74755,9 @@ func (ptr *QUrlQuery) AllQueryItemValues(key string, encoding QUrl__ComponentFor
 	defer qt.Recovering("QUrlQuery::allQueryItemValues")
 
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QUrlQuery_AllQueryItemValues(ptr.Pointer(), C.CString(key), C.int(encoding))), "|")
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return strings.Split(C.GoString(C.QUrlQuery_AllQueryItemValues(ptr.Pointer(), keyC, C.int(encoding))), "|")
 	}
 	return make([]string, 0)
 }
@@ -72651,7 +74774,9 @@ func (ptr *QUrlQuery) HasQueryItem(key string) bool {
 	defer qt.Recovering("QUrlQuery::hasQueryItem")
 
 	if ptr.Pointer() != nil {
-		return C.QUrlQuery_HasQueryItem(ptr.Pointer(), C.CString(key)) != 0
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return C.QUrlQuery_HasQueryItem(ptr.Pointer(), keyC) != 0
 	}
 	return false
 }
@@ -72678,7 +74803,9 @@ func (ptr *QUrlQuery) QueryItemValue(key string, encoding QUrl__ComponentFormatt
 	defer qt.Recovering("QUrlQuery::queryItemValue")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUrlQuery_QueryItemValue(ptr.Pointer(), C.CString(key), C.int(encoding)))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		return C.GoString(C.QUrlQuery_QueryItemValue(ptr.Pointer(), keyC, C.int(encoding)))
 	}
 	return ""
 }
@@ -72687,7 +74814,9 @@ func (ptr *QUrlQuery) RemoveAllQueryItems(key string) {
 	defer qt.Recovering("QUrlQuery::removeAllQueryItems")
 
 	if ptr.Pointer() != nil {
-		C.QUrlQuery_RemoveAllQueryItems(ptr.Pointer(), C.CString(key))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QUrlQuery_RemoveAllQueryItems(ptr.Pointer(), keyC)
 	}
 }
 
@@ -72695,7 +74824,9 @@ func (ptr *QUrlQuery) RemoveQueryItem(key string) {
 	defer qt.Recovering("QUrlQuery::removeQueryItem")
 
 	if ptr.Pointer() != nil {
-		C.QUrlQuery_RemoveQueryItem(ptr.Pointer(), C.CString(key))
+		var keyC = C.CString(key)
+		defer C.free(unsafe.Pointer(keyC))
+		C.QUrlQuery_RemoveQueryItem(ptr.Pointer(), keyC)
 	}
 }
 
@@ -72703,7 +74834,9 @@ func (ptr *QUrlQuery) SetQuery(queryString string) {
 	defer qt.Recovering("QUrlQuery::setQuery")
 
 	if ptr.Pointer() != nil {
-		C.QUrlQuery_SetQuery(ptr.Pointer(), C.CString(queryString))
+		var queryStringC = C.CString(queryString)
+		defer C.free(unsafe.Pointer(queryStringC))
+		C.QUrlQuery_SetQuery(ptr.Pointer(), queryStringC)
 	}
 }
 
@@ -72808,6 +74941,11 @@ func newQUuidFromPointer(ptr unsafe.Pointer) *QUuid {
 	return n
 }
 
+func (ptr *QUuid) DestroyQUuid() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func (ptr *QUuid) Variant() QUuid__Variant {
 	defer qt.Recovering("QUuid::variant")
 
@@ -72835,13 +74973,17 @@ func NewQUuid() *QUuid {
 func NewQUuid5(text string) *QUuid {
 	defer qt.Recovering("QUuid::QUuid")
 
-	return newQUuidFromPointer(C.QUuid_NewQUuid5(C.CString(text)))
+	var textC = C.CString(text)
+	defer C.free(unsafe.Pointer(textC))
+	return newQUuidFromPointer(C.QUuid_NewQUuid5(textC))
 }
 
 func NewQUuid3(text string) *QUuid {
 	defer qt.Recovering("QUuid::QUuid")
 
-	return newQUuidFromPointer(C.QUuid_NewQUuid3(C.CString(text)))
+	var textC = C.CString(text)
+	defer C.free(unsafe.Pointer(textC))
+	return newQUuidFromPointer(C.QUuid_NewQUuid3(textC))
 }
 
 func (ptr *QUuid) IsNull() bool {
@@ -72993,7 +75135,9 @@ func NewQVariant16(val QBitArray_ITF) *QVariant {
 func NewQVariant15(val string) *QVariant {
 	defer qt.Recovering("QVariant::QVariant")
 
-	return newQVariantFromPointer(C.QVariant_NewQVariant15(C.CString(val)))
+	var valC = C.CString(val)
+	defer C.free(unsafe.Pointer(valC))
+	return newQVariantFromPointer(C.QVariant_NewQVariant15(valC))
 }
 
 func NewQVariant21(val QDate_ITF) *QVariant {
@@ -73119,13 +75263,17 @@ func NewQVariant28(val QSizeF_ITF) *QVariant {
 func NewQVariant17(val string) *QVariant {
 	defer qt.Recovering("QVariant::QVariant")
 
-	return newQVariantFromPointer(C.QVariant_NewQVariant17(C.CString(val)))
+	var valC = C.CString(val)
+	defer C.free(unsafe.Pointer(valC))
+	return newQVariantFromPointer(C.QVariant_NewQVariant17(valC))
 }
 
 func NewQVariant19(val []string) *QVariant {
 	defer qt.Recovering("QVariant::QVariant")
 
-	return newQVariantFromPointer(C.QVariant_NewQVariant19(C.CString(strings.Join(val, "|"))))
+	var valC = C.CString(strings.Join(val, "|"))
+	defer C.free(unsafe.Pointer(valC))
+	return newQVariantFromPointer(C.QVariant_NewQVariant19(valC))
 }
 
 func NewQVariant22(val QTime_ITF) *QVariant {
@@ -73155,7 +75303,9 @@ func NewQVariant5(p QVariant_ITF) *QVariant {
 func NewQVariant14(val string) *QVariant {
 	defer qt.Recovering("QVariant::QVariant")
 
-	return newQVariantFromPointer(C.QVariant_NewQVariant14(C.CString(val)))
+	var valC = C.CString(val)
+	defer C.free(unsafe.Pointer(valC))
+	return newQVariantFromPointer(C.QVariant_NewQVariant14(valC))
 }
 
 func NewQVariant3(typeId int, copy unsafe.Pointer) *QVariant {
@@ -73183,7 +75333,9 @@ func (ptr *QVariant) ToDateTime() *QDateTime {
 	defer qt.Recovering("QVariant::toDateTime")
 
 	if ptr.Pointer() != nil {
-		return NewQDateTimeFromPointer(C.QVariant_ToDateTime(ptr.Pointer()))
+		var tmpValue = NewQDateTimeFromPointer(C.QVariant_ToDateTime(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -73192,7 +75344,9 @@ func (ptr *QVariant) ToEasingCurve() *QEasingCurve {
 	defer qt.Recovering("QVariant::toEasingCurve")
 
 	if ptr.Pointer() != nil {
-		return NewQEasingCurveFromPointer(C.QVariant_ToEasingCurve(ptr.Pointer()))
+		var tmpValue = NewQEasingCurveFromPointer(C.QVariant_ToEasingCurve(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+		return tmpValue
 	}
 	return nil
 }
@@ -73201,7 +75355,9 @@ func (ptr *QVariant) ToLine() *QLine {
 	defer qt.Recovering("QVariant::toLine")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFromPointer(C.QVariant_ToLine(ptr.Pointer()))
+		var tmpValue = NewQLineFromPointer(C.QVariant_ToLine(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLine).DestroyQLine)
+		return tmpValue
 	}
 	return nil
 }
@@ -73210,7 +75366,9 @@ func (ptr *QVariant) ToLineF() *QLineF {
 	defer qt.Recovering("QVariant::toLineF")
 
 	if ptr.Pointer() != nil {
-		return NewQLineFFromPointer(C.QVariant_ToLineF(ptr.Pointer()))
+		var tmpValue = NewQLineFFromPointer(C.QVariant_ToLineF(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLineF).DestroyQLineF)
+		return tmpValue
 	}
 	return nil
 }
@@ -73219,7 +75377,9 @@ func (ptr *QVariant) ToLocale() *QLocale {
 	defer qt.Recovering("QVariant::toLocale")
 
 	if ptr.Pointer() != nil {
-		return NewQLocaleFromPointer(C.QVariant_ToLocale(ptr.Pointer()))
+		var tmpValue = NewQLocaleFromPointer(C.QVariant_ToLocale(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		return tmpValue
 	}
 	return nil
 }
@@ -73228,7 +75388,9 @@ func (ptr *QVariant) ToPoint() *QPoint {
 	defer qt.Recovering("QVariant::toPoint")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFromPointer(C.QVariant_ToPoint(ptr.Pointer()))
+		var tmpValue = NewQPointFromPointer(C.QVariant_ToPoint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPoint).DestroyQPoint)
+		return tmpValue
 	}
 	return nil
 }
@@ -73237,7 +75399,9 @@ func (ptr *QVariant) ToPointF() *QPointF {
 	defer qt.Recovering("QVariant::toPointF")
 
 	if ptr.Pointer() != nil {
-		return NewQPointFFromPointer(C.QVariant_ToPointF(ptr.Pointer()))
+		var tmpValue = NewQPointFFromPointer(C.QVariant_ToPointF(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
 	}
 	return nil
 }
@@ -73246,7 +75410,9 @@ func (ptr *QVariant) ToRect() *QRect {
 	defer qt.Recovering("QVariant::toRect")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFromPointer(C.QVariant_ToRect(ptr.Pointer()))
+		var tmpValue = NewQRectFromPointer(C.QVariant_ToRect(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -73255,7 +75421,9 @@ func (ptr *QVariant) ToRectF() *QRectF {
 	defer qt.Recovering("QVariant::toRectF")
 
 	if ptr.Pointer() != nil {
-		return NewQRectFFromPointer(C.QVariant_ToRectF(ptr.Pointer()))
+		var tmpValue = NewQRectFFromPointer(C.QVariant_ToRectF(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -73264,7 +75432,9 @@ func (ptr *QVariant) ToRegExp() *QRegExp {
 	defer qt.Recovering("QVariant::toRegExp")
 
 	if ptr.Pointer() != nil {
-		return NewQRegExpFromPointer(C.QVariant_ToRegExp(ptr.Pointer()))
+		var tmpValue = NewQRegExpFromPointer(C.QVariant_ToRegExp(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
+		return tmpValue
 	}
 	return nil
 }
@@ -73273,7 +75443,9 @@ func (ptr *QVariant) ToRegularExpression() *QRegularExpression {
 	defer qt.Recovering("QVariant::toRegularExpression")
 
 	if ptr.Pointer() != nil {
-		return NewQRegularExpressionFromPointer(C.QVariant_ToRegularExpression(ptr.Pointer()))
+		var tmpValue = NewQRegularExpressionFromPointer(C.QVariant_ToRegularExpression(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
+		return tmpValue
 	}
 	return nil
 }
@@ -73282,7 +75454,9 @@ func (ptr *QVariant) ToSize() *QSize {
 	defer qt.Recovering("QVariant::toSize")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFromPointer(C.QVariant_ToSize(ptr.Pointer()))
+		var tmpValue = NewQSizeFromPointer(C.QVariant_ToSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -73291,7 +75465,9 @@ func (ptr *QVariant) ToSizeF() *QSizeF {
 	defer qt.Recovering("QVariant::toSizeF")
 
 	if ptr.Pointer() != nil {
-		return NewQSizeFFromPointer(C.QVariant_ToSizeF(ptr.Pointer()))
+		var tmpValue = NewQSizeFFromPointer(C.QVariant_ToSizeF(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QSizeF).DestroyQSizeF)
+		return tmpValue
 	}
 	return nil
 }
@@ -73309,7 +75485,9 @@ func (ptr *QVariant) ToUrl() *QUrl {
 	defer qt.Recovering("QVariant::toUrl")
 
 	if ptr.Pointer() != nil {
-		return NewQUrlFromPointer(C.QVariant_ToUrl(ptr.Pointer()))
+		var tmpValue = NewQUrlFromPointer(C.QVariant_ToUrl(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		return tmpValue
 	}
 	return nil
 }
@@ -73388,7 +75566,9 @@ func (ptr *QVariant) ToBitArray() *QBitArray {
 	defer qt.Recovering("QVariant::toBitArray")
 
 	if ptr.Pointer() != nil {
-		return NewQBitArrayFromPointer(C.QVariant_ToBitArray(ptr.Pointer()))
+		var tmpValue = NewQBitArrayFromPointer(C.QVariant_ToBitArray(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QBitArray).DestroyQBitArray)
+		return tmpValue
 	}
 	return nil
 }
@@ -73415,7 +75595,9 @@ func (ptr *QVariant) ToJsonArray() *QJsonArray {
 	defer qt.Recovering("QVariant::toJsonArray")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonArrayFromPointer(C.QVariant_ToJsonArray(ptr.Pointer()))
+		var tmpValue = NewQJsonArrayFromPointer(C.QVariant_ToJsonArray(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonArray).DestroyQJsonArray)
+		return tmpValue
 	}
 	return nil
 }
@@ -73424,7 +75606,9 @@ func (ptr *QVariant) ToJsonDocument() *QJsonDocument {
 	defer qt.Recovering("QVariant::toJsonDocument")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonDocumentFromPointer(C.QVariant_ToJsonDocument(ptr.Pointer()))
+		var tmpValue = NewQJsonDocumentFromPointer(C.QVariant_ToJsonDocument(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
+		return tmpValue
 	}
 	return nil
 }
@@ -73433,7 +75617,9 @@ func (ptr *QVariant) ToJsonObject() *QJsonObject {
 	defer qt.Recovering("QVariant::toJsonObject")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonObjectFromPointer(C.QVariant_ToJsonObject(ptr.Pointer()))
+		var tmpValue = NewQJsonObjectFromPointer(C.QVariant_ToJsonObject(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonObject).DestroyQJsonObject)
+		return tmpValue
 	}
 	return nil
 }
@@ -73442,7 +75628,9 @@ func (ptr *QVariant) ToJsonValue() *QJsonValue {
 	defer qt.Recovering("QVariant::toJsonValue")
 
 	if ptr.Pointer() != nil {
-		return NewQJsonValueFromPointer(C.QVariant_ToJsonValue(ptr.Pointer()))
+		var tmpValue = NewQJsonValueFromPointer(C.QVariant_ToJsonValue(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
+		return tmpValue
 	}
 	return nil
 }
@@ -73451,7 +75639,9 @@ func (ptr *QVariant) ToModelIndex() *QModelIndex {
 	defer qt.Recovering("QVariant::toModelIndex")
 
 	if ptr.Pointer() != nil {
-		return NewQModelIndexFromPointer(C.QVariant_ToModelIndex(ptr.Pointer()))
+		var tmpValue = NewQModelIndexFromPointer(C.QVariant_ToModelIndex(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -73460,7 +75650,9 @@ func (ptr *QVariant) ToPersistentModelIndex() *QPersistentModelIndex {
 	defer qt.Recovering("QVariant::toPersistentModelIndex")
 
 	if ptr.Pointer() != nil {
-		return NewQPersistentModelIndexFromPointer(C.QVariant_ToPersistentModelIndex(ptr.Pointer()))
+		var tmpValue = NewQPersistentModelIndexFromPointer(C.QVariant_ToPersistentModelIndex(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPersistentModelIndex).DestroyQPersistentModelIndex)
+		return tmpValue
 	}
 	return nil
 }
@@ -73564,7 +75756,9 @@ func (ptr *QVariantAnimation) CurrentValue() *QVariant {
 	defer qt.Recovering("QVariantAnimation::currentValue")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QVariantAnimation_CurrentValue(ptr.Pointer()))
+		var tmpValue = NewQVariantFromPointer(C.QVariantAnimation_CurrentValue(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -73620,7 +75814,9 @@ func (ptr *QVariantAnimation) EasingCurve() *QEasingCurve {
 	defer qt.Recovering("QVariantAnimation::easingCurve")
 
 	if ptr.Pointer() != nil {
-		return NewQEasingCurveFromPointer(C.QVariantAnimation_EasingCurve(ptr.Pointer()))
+		var tmpValue = NewQEasingCurveFromPointer(C.QVariantAnimation_EasingCurve(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
+		return tmpValue
 	}
 	return nil
 }
@@ -73629,7 +75825,9 @@ func (ptr *QVariantAnimation) EndValue() *QVariant {
 	defer qt.Recovering("QVariantAnimation::endValue")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QVariantAnimation_EndValue(ptr.Pointer()))
+		var tmpValue = NewQVariantFromPointer(C.QVariantAnimation_EndValue(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -73670,7 +75868,9 @@ func (ptr *QVariantAnimation) StartValue() *QVariant {
 	defer qt.Recovering("QVariantAnimation::startValue")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QVariantAnimation_StartValue(ptr.Pointer()))
+		var tmpValue = NewQVariantFromPointer(C.QVariantAnimation_StartValue(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -73685,7 +75885,9 @@ func (ptr *QVariantAnimation) KeyValueAt(step float64) *QVariant {
 	defer qt.Recovering("QVariantAnimation::keyValueAt")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QVariantAnimation_KeyValueAt(ptr.Pointer(), C.double(step)))
+		var tmpValue = NewQVariantFromPointer(C.QVariantAnimation_KeyValueAt(ptr.Pointer(), C.double(step)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -73770,7 +75972,9 @@ func (ptr *QVariantAnimation) Interpolated(from QVariant_ITF, to QVariant_ITF, p
 	defer qt.Recovering("QVariantAnimation::interpolated")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QVariantAnimation_Interpolated(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		var tmpValue = NewQVariantFromPointer(C.QVariantAnimation_Interpolated(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -73779,7 +75983,9 @@ func (ptr *QVariantAnimation) InterpolatedDefault(from QVariant_ITF, to QVariant
 	defer qt.Recovering("QVariantAnimation::interpolated")
 
 	if ptr.Pointer() != nil {
-		return NewQVariantFromPointer(C.QVariantAnimation_InterpolatedDefault(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		var tmpValue = NewQVariantFromPointer(C.QVariantAnimation_InterpolatedDefault(ptr.Pointer(), PointerFromQVariant(from), PointerFromQVariant(to), C.double(progress)))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -74742,6 +76948,11 @@ func newQVectorIteratorFromPointer(ptr unsafe.Pointer) *QVectorIterator {
 	return n
 }
 
+func (ptr *QVectorIterator) DestroyQVectorIterator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QVersionNumber struct {
 	ptr unsafe.Pointer
 }
@@ -74783,6 +76994,11 @@ func NewQVersionNumberFromPointer(ptr unsafe.Pointer) *QVersionNumber {
 func newQVersionNumberFromPointer(ptr unsafe.Pointer) *QVersionNumber {
 	var n = NewQVersionNumberFromPointer(ptr)
 	return n
+}
+
+func (ptr *QVersionNumber) DestroyQVersionNumber() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func QVersionNumber_Compare(v1 QVersionNumber_ITF, v2 QVersionNumber_ITF) int {
@@ -75204,13 +77420,23 @@ func NewQXmlStreamAttribute5(other QXmlStreamAttribute_ITF) *QXmlStreamAttribute
 func NewQXmlStreamAttribute3(namespaceUri string, name string, value string) *QXmlStreamAttribute {
 	defer qt.Recovering("QXmlStreamAttribute::QXmlStreamAttribute")
 
-	return newQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute3(C.CString(namespaceUri), C.CString(name), C.CString(value)))
+	var namespaceUriC = C.CString(namespaceUri)
+	defer C.free(unsafe.Pointer(namespaceUriC))
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var valueC = C.CString(value)
+	defer C.free(unsafe.Pointer(valueC))
+	return newQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute3(namespaceUriC, nameC, valueC))
 }
 
 func NewQXmlStreamAttribute2(qualifiedName string, value string) *QXmlStreamAttribute {
 	defer qt.Recovering("QXmlStreamAttribute::QXmlStreamAttribute")
 
-	return newQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute2(C.CString(qualifiedName), C.CString(value)))
+	var qualifiedNameC = C.CString(qualifiedName)
+	defer C.free(unsafe.Pointer(qualifiedNameC))
+	var valueC = C.CString(value)
+	defer C.free(unsafe.Pointer(valueC))
+	return newQXmlStreamAttributeFromPointer(C.QXmlStreamAttribute_NewQXmlStreamAttribute2(qualifiedNameC, valueC))
 }
 
 func NewQXmlStreamAttribute4(other QXmlStreamAttribute_ITF) *QXmlStreamAttribute {
@@ -75232,7 +77458,9 @@ func (ptr *QXmlStreamAttribute) Name() *QStringRef {
 	defer qt.Recovering("QXmlStreamAttribute::name")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Name(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttribute_Name(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75241,7 +77469,9 @@ func (ptr *QXmlStreamAttribute) NamespaceUri() *QStringRef {
 	defer qt.Recovering("QXmlStreamAttribute::namespaceUri")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttribute_NamespaceUri(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttribute_NamespaceUri(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75250,7 +77480,9 @@ func (ptr *QXmlStreamAttribute) Prefix() *QStringRef {
 	defer qt.Recovering("QXmlStreamAttribute::prefix")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Prefix(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttribute_Prefix(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75259,7 +77491,9 @@ func (ptr *QXmlStreamAttribute) QualifiedName() *QStringRef {
 	defer qt.Recovering("QXmlStreamAttribute::qualifiedName")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttribute_QualifiedName(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttribute_QualifiedName(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75268,7 +77502,9 @@ func (ptr *QXmlStreamAttribute) Value() *QStringRef {
 	defer qt.Recovering("QXmlStreamAttribute::value")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttribute_Value(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttribute_Value(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75326,6 +77562,11 @@ func newQXmlStreamAttributesFromPointer(ptr unsafe.Pointer) *QXmlStreamAttribute
 	return n
 }
 
+func (ptr *QXmlStreamAttributes) DestroyQXmlStreamAttributes() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQXmlStreamAttributes() *QXmlStreamAttributes {
 	defer qt.Recovering("QXmlStreamAttributes::QXmlStreamAttributes")
 
@@ -75336,7 +77577,13 @@ func (ptr *QXmlStreamAttributes) Append(namespaceUri string, name string, value 
 	defer qt.Recovering("QXmlStreamAttributes::append")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamAttributes_Append(ptr.Pointer(), C.CString(namespaceUri), C.CString(name), C.CString(value))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QXmlStreamAttributes_Append(ptr.Pointer(), namespaceUriC, nameC, valueC)
 	}
 }
 
@@ -75344,7 +77591,11 @@ func (ptr *QXmlStreamAttributes) Append2(qualifiedName string, value string) {
 	defer qt.Recovering("QXmlStreamAttributes::append")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamAttributes_Append2(ptr.Pointer(), C.CString(qualifiedName), C.CString(value))
+		var qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QXmlStreamAttributes_Append2(ptr.Pointer(), qualifiedNameC, valueC)
 	}
 }
 
@@ -75361,7 +77612,11 @@ func (ptr *QXmlStreamAttributes) HasAttribute3(namespaceUri string, name string)
 	defer qt.Recovering("QXmlStreamAttributes::hasAttribute")
 
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamAttributes_HasAttribute3(ptr.Pointer(), C.CString(namespaceUri), C.CString(name)) != 0
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return C.QXmlStreamAttributes_HasAttribute3(ptr.Pointer(), namespaceUriC, nameC) != 0
 	}
 	return false
 }
@@ -75370,7 +77625,9 @@ func (ptr *QXmlStreamAttributes) HasAttribute(qualifiedName string) bool {
 	defer qt.Recovering("QXmlStreamAttributes::hasAttribute")
 
 	if ptr.Pointer() != nil {
-		return C.QXmlStreamAttributes_HasAttribute(ptr.Pointer(), C.CString(qualifiedName)) != 0
+		var qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+		return C.QXmlStreamAttributes_HasAttribute(ptr.Pointer(), qualifiedNameC) != 0
 	}
 	return false
 }
@@ -75379,7 +77636,9 @@ func (ptr *QXmlStreamAttributes) Value3(namespaceUri QLatin1String_ITF, name QLa
 	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value3(ptr.Pointer(), PointerFromQLatin1String(namespaceUri), PointerFromQLatin1String(name)))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value3(ptr.Pointer(), PointerFromQLatin1String(namespaceUri), PointerFromQLatin1String(name)))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75388,7 +77647,9 @@ func (ptr *QXmlStreamAttributes) Value5(qualifiedName QLatin1String_ITF) *QStrin
 	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value5(ptr.Pointer(), PointerFromQLatin1String(qualifiedName)))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value5(ptr.Pointer(), PointerFromQLatin1String(qualifiedName)))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75397,7 +77658,11 @@ func (ptr *QXmlStreamAttributes) Value2(namespaceUri string, name QLatin1String_
 	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value2(ptr.Pointer(), C.CString(namespaceUri), PointerFromQLatin1String(name)))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value2(ptr.Pointer(), namespaceUriC, PointerFromQLatin1String(name)))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75406,7 +77671,13 @@ func (ptr *QXmlStreamAttributes) Value(namespaceUri string, name string) *QStrin
 	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value(ptr.Pointer(), C.CString(namespaceUri), C.CString(name)))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value(ptr.Pointer(), namespaceUriC, nameC))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75415,7 +77686,11 @@ func (ptr *QXmlStreamAttributes) Value4(qualifiedName string) *QStringRef {
 	defer qt.Recovering("QXmlStreamAttributes::value")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamAttributes_Value4(ptr.Pointer(), C.CString(qualifiedName)))
+		var qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamAttributes_Value4(ptr.Pointer(), qualifiedNameC))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75485,7 +77760,9 @@ func (ptr *QXmlStreamEntityDeclaration) Name() *QStringRef {
 	defer qt.Recovering("QXmlStreamEntityDeclaration::name")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Name(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Name(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75494,7 +77771,9 @@ func (ptr *QXmlStreamEntityDeclaration) NotationName() *QStringRef {
 	defer qt.Recovering("QXmlStreamEntityDeclaration::notationName")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_NotationName(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_NotationName(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75503,7 +77782,9 @@ func (ptr *QXmlStreamEntityDeclaration) PublicId() *QStringRef {
 	defer qt.Recovering("QXmlStreamEntityDeclaration::publicId")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_PublicId(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_PublicId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75512,7 +77793,9 @@ func (ptr *QXmlStreamEntityDeclaration) SystemId() *QStringRef {
 	defer qt.Recovering("QXmlStreamEntityDeclaration::systemId")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_SystemId(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_SystemId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75521,7 +77804,9 @@ func (ptr *QXmlStreamEntityDeclaration) Value() *QStringRef {
 	defer qt.Recovering("QXmlStreamEntityDeclaration::value")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Value(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamEntityDeclaration_Value(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75614,7 +77899,9 @@ func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntity(name string) string
 	defer qt.Recovering("QXmlStreamEntityResolver::resolveUndeclaredEntity")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntity(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return C.GoString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntity(ptr.Pointer(), nameC))
 	}
 	return ""
 }
@@ -75623,7 +77910,9 @@ func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntityDefault(name string)
 	defer qt.Recovering("QXmlStreamEntityResolver::resolveUndeclaredEntity")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntityDefault(ptr.Pointer(), C.CString(name)))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return C.GoString(C.QXmlStreamEntityResolver_ResolveUndeclaredEntityDefault(ptr.Pointer(), nameC))
 	}
 	return ""
 }
@@ -75651,7 +77940,9 @@ func (ptr *QXmlStreamEntityResolver) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QXmlStreamEntityResolver::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamEntityResolver_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QXmlStreamEntityResolver_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -75713,7 +78004,11 @@ func NewQXmlStreamNamespaceDeclaration3(other QXmlStreamNamespaceDeclaration_ITF
 func NewQXmlStreamNamespaceDeclaration4(prefix string, namespaceUri string) *QXmlStreamNamespaceDeclaration {
 	defer qt.Recovering("QXmlStreamNamespaceDeclaration::QXmlStreamNamespaceDeclaration")
 
-	return newQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration4(C.CString(prefix), C.CString(namespaceUri)))
+	var prefixC = C.CString(prefix)
+	defer C.free(unsafe.Pointer(prefixC))
+	var namespaceUriC = C.CString(namespaceUri)
+	defer C.free(unsafe.Pointer(namespaceUriC))
+	return newQXmlStreamNamespaceDeclarationFromPointer(C.QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration4(prefixC, namespaceUriC))
 }
 
 func NewQXmlStreamNamespaceDeclaration2(other QXmlStreamNamespaceDeclaration_ITF) *QXmlStreamNamespaceDeclaration {
@@ -75726,7 +78021,9 @@ func (ptr *QXmlStreamNamespaceDeclaration) NamespaceUri() *QStringRef {
 	defer qt.Recovering("QXmlStreamNamespaceDeclaration::namespaceUri")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_NamespaceUri(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_NamespaceUri(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75735,7 +78032,9 @@ func (ptr *QXmlStreamNamespaceDeclaration) Prefix() *QStringRef {
 	defer qt.Recovering("QXmlStreamNamespaceDeclaration::prefix")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_Prefix(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamNamespaceDeclaration_Prefix(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75814,7 +78113,9 @@ func (ptr *QXmlStreamNotationDeclaration) Name() *QStringRef {
 	defer qt.Recovering("QXmlStreamNotationDeclaration::name")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_Name(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_Name(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75823,7 +78124,9 @@ func (ptr *QXmlStreamNotationDeclaration) PublicId() *QStringRef {
 	defer qt.Recovering("QXmlStreamNotationDeclaration::publicId")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_PublicId(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_PublicId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75832,7 +78135,9 @@ func (ptr *QXmlStreamNotationDeclaration) SystemId() *QStringRef {
 	defer qt.Recovering("QXmlStreamNotationDeclaration::systemId")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_SystemId(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamNotationDeclaration_SystemId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -75958,26 +78263,34 @@ func NewQXmlStreamReader2(device QIODevice_ITF) *QXmlStreamReader {
 func NewQXmlStreamReader3(data string) *QXmlStreamReader {
 	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
-	return newQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader3(C.CString(data)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	return newQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader3(dataC))
 }
 
 func NewQXmlStreamReader4(data string) *QXmlStreamReader {
 	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
-	return newQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader4(C.CString(data)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	return newQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader4(dataC))
 }
 
 func NewQXmlStreamReader5(data string) *QXmlStreamReader {
 	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
-	return newQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader5(C.CString(data)))
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	return newQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader5(dataC))
 }
 
 func (ptr *QXmlStreamReader) AddData(data string) {
 	defer qt.Recovering("QXmlStreamReader::addData")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamReader_AddData(ptr.Pointer(), C.CString(data))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QXmlStreamReader_AddData(ptr.Pointer(), dataC)
 	}
 }
 
@@ -75985,7 +78298,9 @@ func (ptr *QXmlStreamReader) AddData2(data string) {
 	defer qt.Recovering("QXmlStreamReader::addData")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamReader_AddData2(ptr.Pointer(), C.CString(data))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QXmlStreamReader_AddData2(ptr.Pointer(), dataC)
 	}
 }
 
@@ -75993,7 +78308,9 @@ func (ptr *QXmlStreamReader) AddData3(data string) {
 	defer qt.Recovering("QXmlStreamReader::addData")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamReader_AddData3(ptr.Pointer(), C.CString(data))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QXmlStreamReader_AddData3(ptr.Pointer(), dataC)
 	}
 }
 
@@ -76053,7 +78370,9 @@ func (ptr *QXmlStreamReader) DocumentEncoding() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::documentEncoding")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_DocumentEncoding(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_DocumentEncoding(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76062,7 +78381,9 @@ func (ptr *QXmlStreamReader) DocumentVersion() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::documentVersion")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_DocumentVersion(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_DocumentVersion(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76071,7 +78392,9 @@ func (ptr *QXmlStreamReader) DtdName() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::dtdName")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_DtdName(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_DtdName(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76080,7 +78403,9 @@ func (ptr *QXmlStreamReader) DtdPublicId() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::dtdPublicId")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_DtdPublicId(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_DtdPublicId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76089,7 +78414,9 @@ func (ptr *QXmlStreamReader) DtdSystemId() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::dtdSystemId")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_DtdSystemId(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_DtdSystemId(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76251,7 +78578,9 @@ func (ptr *QXmlStreamReader) Name() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::name")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_Name(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_Name(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76260,7 +78589,9 @@ func (ptr *QXmlStreamReader) NamespaceUri() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::namespaceUri")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_NamespaceUri(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_NamespaceUri(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76269,7 +78600,9 @@ func (ptr *QXmlStreamReader) Prefix() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::prefix")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_Prefix(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_Prefix(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76278,7 +78611,9 @@ func (ptr *QXmlStreamReader) ProcessingInstructionData() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::processingInstructionData")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionData(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionData(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76287,7 +78622,9 @@ func (ptr *QXmlStreamReader) ProcessingInstructionTarget() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::processingInstructionTarget")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionTarget(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_ProcessingInstructionTarget(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76296,7 +78633,9 @@ func (ptr *QXmlStreamReader) QualifiedName() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::qualifiedName")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_QualifiedName(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_QualifiedName(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76305,7 +78644,9 @@ func (ptr *QXmlStreamReader) RaiseError(message string) {
 	defer qt.Recovering("QXmlStreamReader::raiseError")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamReader_RaiseError(ptr.Pointer(), C.CString(message))
+		var messageC = C.CString(message)
+		defer C.free(unsafe.Pointer(messageC))
+		C.QXmlStreamReader_RaiseError(ptr.Pointer(), messageC)
 	}
 }
 
@@ -76364,7 +78705,9 @@ func (ptr *QXmlStreamReader) Text() *QStringRef {
 	defer qt.Recovering("QXmlStreamReader::text")
 
 	if ptr.Pointer() != nil {
-		return NewQStringRefFromPointer(C.QXmlStreamReader_Text(ptr.Pointer()))
+		var tmpValue = NewQStringRefFromPointer(C.QXmlStreamReader_Text(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
 	}
 	return nil
 }
@@ -76465,7 +78808,9 @@ func NewQXmlStreamWriter() *QXmlStreamWriter {
 func NewQXmlStreamWriter3(array string) *QXmlStreamWriter {
 	defer qt.Recovering("QXmlStreamWriter::QXmlStreamWriter")
 
-	return newQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter3(C.CString(array)))
+	var arrayC = C.CString(array)
+	defer C.free(unsafe.Pointer(arrayC))
+	return newQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter3(arrayC))
 }
 
 func NewQXmlStreamWriter2(device QIODevice_ITF) *QXmlStreamWriter {
@@ -76477,7 +78822,9 @@ func NewQXmlStreamWriter2(device QIODevice_ITF) *QXmlStreamWriter {
 func NewQXmlStreamWriter4(stri string) *QXmlStreamWriter {
 	defer qt.Recovering("QXmlStreamWriter::QXmlStreamWriter")
 
-	return newQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter4(C.CString(stri)))
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	return newQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter4(striC))
 }
 
 func (ptr *QXmlStreamWriter) AutoFormatting() bool {
@@ -76536,7 +78883,9 @@ func (ptr *QXmlStreamWriter) SetCodec2(codecName string) {
 	defer qt.Recovering("QXmlStreamWriter::setCodec")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_SetCodec2(ptr.Pointer(), C.CString(codecName))
+		var codecNameC = C.CString(codecName)
+		defer C.free(unsafe.Pointer(codecNameC))
+		C.QXmlStreamWriter_SetCodec2(ptr.Pointer(), codecNameC)
 	}
 }
 
@@ -76552,7 +78901,13 @@ func (ptr *QXmlStreamWriter) WriteAttribute(namespaceUri string, name string, va
 	defer qt.Recovering("QXmlStreamWriter::writeAttribute")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteAttribute(ptr.Pointer(), C.CString(namespaceUri), C.CString(name), C.CString(value))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QXmlStreamWriter_WriteAttribute(ptr.Pointer(), namespaceUriC, nameC, valueC)
 	}
 }
 
@@ -76560,7 +78915,11 @@ func (ptr *QXmlStreamWriter) WriteAttribute2(qualifiedName string, value string)
 	defer qt.Recovering("QXmlStreamWriter::writeAttribute")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteAttribute2(ptr.Pointer(), C.CString(qualifiedName), C.CString(value))
+		var qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QXmlStreamWriter_WriteAttribute2(ptr.Pointer(), qualifiedNameC, valueC)
 	}
 }
 
@@ -76584,7 +78943,9 @@ func (ptr *QXmlStreamWriter) WriteCDATA(text string) {
 	defer qt.Recovering("QXmlStreamWriter::writeCDATA")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteCDATA(ptr.Pointer(), C.CString(text))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QXmlStreamWriter_WriteCDATA(ptr.Pointer(), textC)
 	}
 }
 
@@ -76592,7 +78953,9 @@ func (ptr *QXmlStreamWriter) WriteCharacters(text string) {
 	defer qt.Recovering("QXmlStreamWriter::writeCharacters")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteCharacters(ptr.Pointer(), C.CString(text))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QXmlStreamWriter_WriteCharacters(ptr.Pointer(), textC)
 	}
 }
 
@@ -76600,7 +78963,9 @@ func (ptr *QXmlStreamWriter) WriteComment(text string) {
 	defer qt.Recovering("QXmlStreamWriter::writeComment")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteComment(ptr.Pointer(), C.CString(text))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QXmlStreamWriter_WriteComment(ptr.Pointer(), textC)
 	}
 }
 
@@ -76616,7 +78981,9 @@ func (ptr *QXmlStreamWriter) WriteDTD(dtd string) {
 	defer qt.Recovering("QXmlStreamWriter::writeDTD")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteDTD(ptr.Pointer(), C.CString(dtd))
+		var dtdC = C.CString(dtd)
+		defer C.free(unsafe.Pointer(dtdC))
+		C.QXmlStreamWriter_WriteDTD(ptr.Pointer(), dtdC)
 	}
 }
 
@@ -76624,7 +78991,9 @@ func (ptr *QXmlStreamWriter) WriteDefaultNamespace(namespaceUri string) {
 	defer qt.Recovering("QXmlStreamWriter::writeDefaultNamespace")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteDefaultNamespace(ptr.Pointer(), C.CString(namespaceUri))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		C.QXmlStreamWriter_WriteDefaultNamespace(ptr.Pointer(), namespaceUriC)
 	}
 }
 
@@ -76632,7 +79001,11 @@ func (ptr *QXmlStreamWriter) WriteEmptyElement(namespaceUri string, name string)
 	defer qt.Recovering("QXmlStreamWriter::writeEmptyElement")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteEmptyElement(ptr.Pointer(), C.CString(namespaceUri), C.CString(name))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QXmlStreamWriter_WriteEmptyElement(ptr.Pointer(), namespaceUriC, nameC)
 	}
 }
 
@@ -76640,7 +79013,9 @@ func (ptr *QXmlStreamWriter) WriteEmptyElement2(qualifiedName string) {
 	defer qt.Recovering("QXmlStreamWriter::writeEmptyElement")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteEmptyElement2(ptr.Pointer(), C.CString(qualifiedName))
+		var qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+		C.QXmlStreamWriter_WriteEmptyElement2(ptr.Pointer(), qualifiedNameC)
 	}
 }
 
@@ -76664,7 +79039,9 @@ func (ptr *QXmlStreamWriter) WriteEntityReference(name string) {
 	defer qt.Recovering("QXmlStreamWriter::writeEntityReference")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteEntityReference(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QXmlStreamWriter_WriteEntityReference(ptr.Pointer(), nameC)
 	}
 }
 
@@ -76672,7 +79049,11 @@ func (ptr *QXmlStreamWriter) WriteNamespace(namespaceUri string, prefix string) 
 	defer qt.Recovering("QXmlStreamWriter::writeNamespace")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteNamespace(ptr.Pointer(), C.CString(namespaceUri), C.CString(prefix))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var prefixC = C.CString(prefix)
+		defer C.free(unsafe.Pointer(prefixC))
+		C.QXmlStreamWriter_WriteNamespace(ptr.Pointer(), namespaceUriC, prefixC)
 	}
 }
 
@@ -76680,7 +79061,11 @@ func (ptr *QXmlStreamWriter) WriteProcessingInstruction(target string, data stri
 	defer qt.Recovering("QXmlStreamWriter::writeProcessingInstruction")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteProcessingInstruction(ptr.Pointer(), C.CString(target), C.CString(data))
+		var targetC = C.CString(target)
+		defer C.free(unsafe.Pointer(targetC))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QXmlStreamWriter_WriteProcessingInstruction(ptr.Pointer(), targetC, dataC)
 	}
 }
 
@@ -76696,7 +79081,9 @@ func (ptr *QXmlStreamWriter) WriteStartDocument(version string) {
 	defer qt.Recovering("QXmlStreamWriter::writeStartDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteStartDocument(ptr.Pointer(), C.CString(version))
+		var versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+		C.QXmlStreamWriter_WriteStartDocument(ptr.Pointer(), versionC)
 	}
 }
 
@@ -76704,7 +79091,9 @@ func (ptr *QXmlStreamWriter) WriteStartDocument3(version string, standalone bool
 	defer qt.Recovering("QXmlStreamWriter::writeStartDocument")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteStartDocument3(ptr.Pointer(), C.CString(version), C.int(qt.GoBoolToInt(standalone)))
+		var versionC = C.CString(version)
+		defer C.free(unsafe.Pointer(versionC))
+		C.QXmlStreamWriter_WriteStartDocument3(ptr.Pointer(), versionC, C.int(qt.GoBoolToInt(standalone)))
 	}
 }
 
@@ -76712,7 +79101,11 @@ func (ptr *QXmlStreamWriter) WriteStartElement(namespaceUri string, name string)
 	defer qt.Recovering("QXmlStreamWriter::writeStartElement")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteStartElement(ptr.Pointer(), C.CString(namespaceUri), C.CString(name))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QXmlStreamWriter_WriteStartElement(ptr.Pointer(), namespaceUriC, nameC)
 	}
 }
 
@@ -76720,7 +79113,9 @@ func (ptr *QXmlStreamWriter) WriteStartElement2(qualifiedName string) {
 	defer qt.Recovering("QXmlStreamWriter::writeStartElement")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteStartElement2(ptr.Pointer(), C.CString(qualifiedName))
+		var qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+		C.QXmlStreamWriter_WriteStartElement2(ptr.Pointer(), qualifiedNameC)
 	}
 }
 
@@ -76728,7 +79123,13 @@ func (ptr *QXmlStreamWriter) WriteTextElement(namespaceUri string, name string, 
 	defer qt.Recovering("QXmlStreamWriter::writeTextElement")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteTextElement(ptr.Pointer(), C.CString(namespaceUri), C.CString(name), C.CString(text))
+		var namespaceUriC = C.CString(namespaceUri)
+		defer C.free(unsafe.Pointer(namespaceUriC))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QXmlStreamWriter_WriteTextElement(ptr.Pointer(), namespaceUriC, nameC, textC)
 	}
 }
 
@@ -76736,7 +79137,11 @@ func (ptr *QXmlStreamWriter) WriteTextElement2(qualifiedName string, text string
 	defer qt.Recovering("QXmlStreamWriter::writeTextElement")
 
 	if ptr.Pointer() != nil {
-		C.QXmlStreamWriter_WriteTextElement2(ptr.Pointer(), C.CString(qualifiedName), C.CString(text))
+		var qualifiedNameC = C.CString(qualifiedName)
+		defer C.free(unsafe.Pointer(qualifiedNameC))
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QXmlStreamWriter_WriteTextElement2(ptr.Pointer(), qualifiedNameC, textC)
 	}
 }
 
@@ -78427,6 +80832,11 @@ func newQtFromPointer(ptr unsafe.Pointer) *Qt {
 	return n
 }
 
+func (ptr *Qt) DestroyQt() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QtGlobalStatic::GuardValues
 type QtGlobalStatic__GuardValues int64
 
@@ -78480,6 +80890,11 @@ func newQtGlobalStaticFromPointer(ptr unsafe.Pointer) *QtGlobalStatic {
 	return n
 }
 
+func (ptr *QtGlobalStatic) DestroyQtGlobalStatic() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QtMetaTypePrivate::IteratorCapability
 type QtMetaTypePrivate__IteratorCapability int64
 
@@ -78530,4 +80945,9 @@ func NewQtMetaTypePrivateFromPointer(ptr unsafe.Pointer) *QtMetaTypePrivate {
 func newQtMetaTypePrivateFromPointer(ptr unsafe.Pointer) *QtMetaTypePrivate {
 	var n = NewQtMetaTypePrivateFromPointer(ptr)
 	return n
+}
+
+func (ptr *QtMetaTypePrivate) DestroyQtMetaTypePrivate() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }

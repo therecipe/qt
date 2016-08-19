@@ -196,6 +196,8 @@ int QWebEnginePage_AcceptNavigationRequest(void* ptr, void* url, int ty, int isM
 int QWebEnginePage_AcceptNavigationRequestDefault(void* ptr, void* url, int ty, int isMainFrame);
 void* QWebEnginePage_Action(void* ptr, int action);
 void* QWebEnginePage_BackgroundColor(void* ptr);
+int QWebEnginePage_CertificateError(void* ptr, void* certificateError);
+int QWebEnginePage_CertificateErrorDefault(void* ptr, void* certificateError);
 char* QWebEnginePage_ChooseFiles(void* ptr, int mode, char* oldFiles, char* acceptedMimeTypes);
 char* QWebEnginePage_ChooseFilesDefault(void* ptr, int mode, char* oldFiles, char* acceptedMimeTypes);
 void* QWebEnginePage_ContentsSize(void* ptr);

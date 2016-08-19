@@ -2,6 +2,7 @@
 
 package webchannel
 
+//#include <stdlib.h>
 //#include "webchannel.h"
 import "C"
 import (
@@ -200,7 +201,9 @@ func (ptr *QWebChannel) RegisterObject(id string, object core.QObject_ITF) {
 	defer qt.Recovering("QWebChannel::registerObject")
 
 	if ptr.Pointer() != nil {
-		C.QWebChannel_RegisterObject(ptr.Pointer(), C.CString(id), core.PointerFromQObject(object))
+		var idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+		C.QWebChannel_RegisterObject(ptr.Pointer(), idC, core.PointerFromQObject(object))
 	}
 }
 

@@ -2,11 +2,13 @@
 
 package purchasing
 
+//#include <stdlib.h>
 //#include "purchasing.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"runtime"
 	"unsafe"
 )
 
@@ -63,6 +65,11 @@ func newQInAppProductFromPointer(ptr unsafe.Pointer) *QInAppProduct {
 		n.SetObjectName("QInAppProduct_" + qt.Identifier())
 	}
 	return n
+}
+
+func (ptr *QInAppProduct) DestroyQInAppProduct() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 func (ptr *QInAppProduct) Description() string {
@@ -682,7 +689,9 @@ func (ptr *QInAppStore) ProductUnknown(productType QInAppProduct__ProductType, i
 	defer qt.Recovering("QInAppStore::productUnknown")
 
 	if ptr.Pointer() != nil {
-		C.QInAppStore_ProductUnknown(ptr.Pointer(), C.int(productType), C.CString(identifier))
+		var identifierC = C.CString(identifier)
+		defer C.free(unsafe.Pointer(identifierC))
+		C.QInAppStore_ProductUnknown(ptr.Pointer(), C.int(productType), identifierC)
 	}
 }
 
@@ -690,7 +699,9 @@ func (ptr *QInAppStore) RegisterProduct(productType QInAppProduct__ProductType, 
 	defer qt.Recovering("QInAppStore::registerProduct")
 
 	if ptr.Pointer() != nil {
-		C.QInAppStore_RegisterProduct(ptr.Pointer(), C.int(productType), C.CString(identifier))
+		var identifierC = C.CString(identifier)
+		defer C.free(unsafe.Pointer(identifierC))
+		C.QInAppStore_RegisterProduct(ptr.Pointer(), C.int(productType), identifierC)
 	}
 }
 
@@ -698,7 +709,9 @@ func (ptr *QInAppStore) RegisteredProduct(identifier string) *QInAppProduct {
 	defer qt.Recovering("QInAppStore::registeredProduct")
 
 	if ptr.Pointer() != nil {
-		return NewQInAppProductFromPointer(C.QInAppStore_RegisteredProduct(ptr.Pointer(), C.CString(identifier)))
+		var identifierC = C.CString(identifier)
+		defer C.free(unsafe.Pointer(identifierC))
+		return NewQInAppProductFromPointer(C.QInAppStore_RegisteredProduct(ptr.Pointer(), identifierC))
 	}
 	return nil
 }
@@ -715,7 +728,11 @@ func (ptr *QInAppStore) SetPlatformProperty(propertyName string, value string) {
 	defer qt.Recovering("QInAppStore::setPlatformProperty")
 
 	if ptr.Pointer() != nil {
-		C.QInAppStore_SetPlatformProperty(ptr.Pointer(), C.CString(propertyName), C.CString(value))
+		var propertyNameC = C.CString(propertyName)
+		defer C.free(unsafe.Pointer(propertyNameC))
+		var valueC = C.CString(value)
+		defer C.free(unsafe.Pointer(valueC))
+		C.QInAppStore_SetPlatformProperty(ptr.Pointer(), propertyNameC, valueC)
 	}
 }
 
@@ -1246,6 +1263,11 @@ func newQInAppTransactionFromPointer(ptr unsafe.Pointer) *QInAppTransaction {
 	return n
 }
 
+func (ptr *QInAppTransaction) DestroyQInAppTransaction() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //export callbackQInAppTransaction_ErrorString
 func callbackQInAppTransaction_ErrorString(ptr unsafe.Pointer, ptrName *C.char) *C.char {
 	defer qt.Recovering("callback QInAppTransaction::errorString")
@@ -1438,7 +1460,9 @@ func (ptr *QInAppTransaction) Timestamp() *core.QDateTime {
 	defer qt.Recovering("QInAppTransaction::timestamp")
 
 	if ptr.Pointer() != nil {
-		return core.NewQDateTimeFromPointer(C.QInAppTransaction_Timestamp(ptr.Pointer()))
+		var tmpValue = core.NewQDateTimeFromPointer(C.QInAppTransaction_Timestamp(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -1447,7 +1471,9 @@ func (ptr *QInAppTransaction) TimestampDefault() *core.QDateTime {
 	defer qt.Recovering("QInAppTransaction::timestamp")
 
 	if ptr.Pointer() != nil {
-		return core.NewQDateTimeFromPointer(C.QInAppTransaction_TimestampDefault(ptr.Pointer()))
+		var tmpValue = core.NewQDateTimeFromPointer(C.QInAppTransaction_TimestampDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
+		return tmpValue
 	}
 	return nil
 }
@@ -1521,7 +1547,9 @@ func (ptr *QInAppTransaction) PlatformProperty(propertyName string) string {
 	defer qt.Recovering("QInAppTransaction::platformProperty")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppTransaction_PlatformProperty(ptr.Pointer(), C.CString(propertyName)))
+		var propertyNameC = C.CString(propertyName)
+		defer C.free(unsafe.Pointer(propertyNameC))
+		return C.GoString(C.QInAppTransaction_PlatformProperty(ptr.Pointer(), propertyNameC))
 	}
 	return ""
 }
@@ -1530,7 +1558,9 @@ func (ptr *QInAppTransaction) PlatformPropertyDefault(propertyName string) strin
 	defer qt.Recovering("QInAppTransaction::platformProperty")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppTransaction_PlatformPropertyDefault(ptr.Pointer(), C.CString(propertyName)))
+		var propertyNameC = C.CString(propertyName)
+		defer C.free(unsafe.Pointer(propertyNameC))
+		return C.GoString(C.QInAppTransaction_PlatformPropertyDefault(ptr.Pointer(), propertyNameC))
 	}
 	return ""
 }

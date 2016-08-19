@@ -2,12 +2,14 @@
 
 package location
 
+//#include <stdlib.h>
 //#include "location.h"
 import "C"
 import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/positioning"
+	"runtime"
 	"strings"
 	"unsafe"
 )
@@ -270,7 +272,9 @@ func (ptr *QGeoManeuver) Position() *positioning.QGeoCoordinate {
 	defer qt.Recovering("QGeoManeuver::position")
 
 	if ptr.Pointer() != nil {
-		return positioning.NewQGeoCoordinateFromPointer(C.QGeoManeuver_Position(ptr.Pointer()))
+		var tmpValue = positioning.NewQGeoCoordinateFromPointer(C.QGeoManeuver_Position(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*positioning.QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
 	}
 	return nil
 }
@@ -295,7 +299,9 @@ func (ptr *QGeoManeuver) SetInstructionText(instructionText string) {
 	defer qt.Recovering("QGeoManeuver::setInstructionText")
 
 	if ptr.Pointer() != nil {
-		C.QGeoManeuver_SetInstructionText(ptr.Pointer(), C.CString(instructionText))
+		var instructionTextC = C.CString(instructionText)
+		defer C.free(unsafe.Pointer(instructionTextC))
+		C.QGeoManeuver_SetInstructionText(ptr.Pointer(), instructionTextC)
 	}
 }
 
@@ -336,7 +342,9 @@ func (ptr *QGeoManeuver) Waypoint() *positioning.QGeoCoordinate {
 	defer qt.Recovering("QGeoManeuver::waypoint")
 
 	if ptr.Pointer() != nil {
-		return positioning.NewQGeoCoordinateFromPointer(C.QGeoManeuver_Waypoint(ptr.Pointer()))
+		var tmpValue = positioning.NewQGeoCoordinateFromPointer(C.QGeoManeuver_Waypoint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*positioning.QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
 	}
 	return nil
 }
@@ -409,7 +417,9 @@ func (ptr *QGeoRoute) Bounds() *positioning.QGeoRectangle {
 	defer qt.Recovering("QGeoRoute::bounds")
 
 	if ptr.Pointer() != nil {
-		return positioning.NewQGeoRectangleFromPointer(C.QGeoRoute_Bounds(ptr.Pointer()))
+		var tmpValue = positioning.NewQGeoRectangleFromPointer(C.QGeoRoute_Bounds(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*positioning.QGeoRectangle).DestroyQGeoRectangle)
+		return tmpValue
 	}
 	return nil
 }
@@ -427,7 +437,9 @@ func (ptr *QGeoRoute) FirstRouteSegment() *QGeoRouteSegment {
 	defer qt.Recovering("QGeoRoute::firstRouteSegment")
 
 	if ptr.Pointer() != nil {
-		return NewQGeoRouteSegmentFromPointer(C.QGeoRoute_FirstRouteSegment(ptr.Pointer()))
+		var tmpValue = NewQGeoRouteSegmentFromPointer(C.QGeoRoute_FirstRouteSegment(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QGeoRouteSegment).DestroyQGeoRouteSegment)
+		return tmpValue
 	}
 	return nil
 }
@@ -436,7 +448,9 @@ func (ptr *QGeoRoute) Request() *QGeoRouteRequest {
 	defer qt.Recovering("QGeoRoute::request")
 
 	if ptr.Pointer() != nil {
-		return NewQGeoRouteRequestFromPointer(C.QGeoRoute_Request(ptr.Pointer()))
+		var tmpValue = NewQGeoRouteRequestFromPointer(C.QGeoRoute_Request(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QGeoRouteRequest).DestroyQGeoRouteRequest)
+		return tmpValue
 	}
 	return nil
 }
@@ -486,7 +500,9 @@ func (ptr *QGeoRoute) SetRouteId(id string) {
 	defer qt.Recovering("QGeoRoute::setRouteId")
 
 	if ptr.Pointer() != nil {
-		C.QGeoRoute_SetRouteId(ptr.Pointer(), C.CString(id))
+		var idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+		C.QGeoRoute_SetRouteId(ptr.Pointer(), idC)
 	}
 }
 
@@ -595,7 +611,9 @@ func newQGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
 func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent core.QObject_ITF) *QGeoRouteReply {
 	defer qt.Recovering("QGeoRouteReply::QGeoRouteReply")
 
-	return newQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.int(error), C.CString(errorString), core.PointerFromQObject(parent)))
+	var errorStringC = C.CString(errorString)
+	defer C.free(unsafe.Pointer(errorStringC))
+	return newQGeoRouteReplyFromPointer(C.QGeoRouteReply_NewQGeoRouteReply(C.int(error), errorStringC, core.PointerFromQObject(parent)))
 }
 
 func NewQGeoRouteReply2(request QGeoRouteRequest_ITF, parent core.QObject_ITF) *QGeoRouteReply {
@@ -681,7 +699,9 @@ func (ptr *QGeoRouteReply) Error2(error QGeoRouteReply__Error, errorString strin
 	defer qt.Recovering("QGeoRouteReply::error")
 
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_Error2(ptr.Pointer(), C.int(error), C.CString(errorString))
+		var errorStringC = C.CString(errorString)
+		defer C.free(unsafe.Pointer(errorStringC))
+		C.QGeoRouteReply_Error2(ptr.Pointer(), C.int(error), errorStringC)
 	}
 }
 
@@ -752,7 +772,9 @@ func (ptr *QGeoRouteReply) Request() *QGeoRouteRequest {
 	defer qt.Recovering("QGeoRouteReply::request")
 
 	if ptr.Pointer() != nil {
-		return NewQGeoRouteRequestFromPointer(C.QGeoRouteReply_Request(ptr.Pointer()))
+		var tmpValue = NewQGeoRouteRequestFromPointer(C.QGeoRouteReply_Request(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QGeoRouteRequest).DestroyQGeoRouteRequest)
+		return tmpValue
 	}
 	return nil
 }
@@ -761,7 +783,9 @@ func (ptr *QGeoRouteReply) SetError(error QGeoRouteReply__Error, errorString str
 	defer qt.Recovering("QGeoRouteReply::setError")
 
 	if ptr.Pointer() != nil {
-		C.QGeoRouteReply_SetError(ptr.Pointer(), C.int(error), C.CString(errorString))
+		var errorStringC = C.CString(errorString)
+		defer C.free(unsafe.Pointer(errorStringC))
+		C.QGeoRouteReply_SetError(ptr.Pointer(), C.int(error), errorStringC)
 	}
 }
 
@@ -1504,7 +1528,9 @@ func (ptr *QGeoRouteSegment) Maneuver() *QGeoManeuver {
 	defer qt.Recovering("QGeoRouteSegment::maneuver")
 
 	if ptr.Pointer() != nil {
-		return NewQGeoManeuverFromPointer(C.QGeoRouteSegment_Maneuver(ptr.Pointer()))
+		var tmpValue = NewQGeoManeuverFromPointer(C.QGeoRouteSegment_Maneuver(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QGeoManeuver).DestroyQGeoManeuver)
+		return tmpValue
 	}
 	return nil
 }
@@ -1513,7 +1539,9 @@ func (ptr *QGeoRouteSegment) NextRouteSegment() *QGeoRouteSegment {
 	defer qt.Recovering("QGeoRouteSegment::nextRouteSegment")
 
 	if ptr.Pointer() != nil {
-		return NewQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NextRouteSegment(ptr.Pointer()))
+		var tmpValue = NewQGeoRouteSegmentFromPointer(C.QGeoRouteSegment_NextRouteSegment(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QGeoRouteSegment).DestroyQGeoRouteSegment)
+		return tmpValue
 	}
 	return nil
 }
@@ -1656,7 +1684,9 @@ func (ptr *QGeoRoutingManager) Error(reply QGeoRouteReply_ITF, error QGeoRouteRe
 	defer qt.Recovering("QGeoRoutingManager::error")
 
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManager_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.int(error), C.CString(errorString))
+		var errorStringC = C.CString(errorString)
+		defer C.free(unsafe.Pointer(errorStringC))
+		C.QGeoRoutingManager_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.int(error), errorStringC)
 	}
 }
 
@@ -1700,7 +1730,9 @@ func (ptr *QGeoRoutingManager) Locale() *core.QLocale {
 	defer qt.Recovering("QGeoRoutingManager::locale")
 
 	if ptr.Pointer() != nil {
-		return core.NewQLocaleFromPointer(C.QGeoRoutingManager_Locale(ptr.Pointer()))
+		var tmpValue = core.NewQLocaleFromPointer(C.QGeoRoutingManager_Locale(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
+		return tmpValue
 	}
 	return nil
 }
@@ -2353,7 +2385,9 @@ func (ptr *QGeoRoutingManagerEngine) Error(reply QGeoRouteReply_ITF, error QGeoR
 	defer qt.Recovering("QGeoRoutingManagerEngine::error")
 
 	if ptr.Pointer() != nil {
-		C.QGeoRoutingManagerEngine_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.int(error), C.CString(errorString))
+		var errorStringC = C.CString(errorString)
+		defer C.free(unsafe.Pointer(errorStringC))
+		C.QGeoRoutingManagerEngine_Error(ptr.Pointer(), PointerFromQGeoRouteReply(reply), C.int(error), errorStringC)
 	}
 }
 
@@ -2397,7 +2431,9 @@ func (ptr *QGeoRoutingManagerEngine) Locale() *core.QLocale {
 	defer qt.Recovering("QGeoRoutingManagerEngine::locale")
 
 	if ptr.Pointer() != nil {
-		return core.NewQLocaleFromPointer(C.QGeoRoutingManagerEngine_Locale(ptr.Pointer()))
+		var tmpValue = core.NewQLocaleFromPointer(C.QGeoRoutingManagerEngine_Locale(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QLocale).DestroyQLocale)
+		return tmpValue
 	}
 	return nil
 }
@@ -3733,7 +3769,9 @@ func (ptr *QGeoServiceProviderFactory) SetObjectNameAbs(name string) {
 	defer qt.Recovering("QGeoServiceProviderFactory::setObjectNameAbs")
 
 	if ptr.Pointer() != nil {
-		C.QGeoServiceProviderFactory_SetObjectNameAbs(ptr.Pointer(), C.CString(name))
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QGeoServiceProviderFactory_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 

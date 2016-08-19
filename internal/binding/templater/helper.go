@@ -63,7 +63,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 	}
 
 	if Minimal {
-		return f.Export
+		return f.Export || f.Meta == parser.DESTRUCTOR
 	}
 
 	return true
@@ -449,4 +449,13 @@ func manualWeakLink(module string) {
 			}
 		}
 	}
+}
+
+func classNeedsDestructor(c *parser.Class) bool {
+	for _, f := range c.Functions {
+		if f.Meta == parser.DESTRUCTOR {
+			return false
+		}
+	}
+	return true
 }

@@ -2,6 +2,7 @@
 
 package svg
 
+//#include <stdlib.h>
 //#include "svg.h"
 import "C"
 import (
@@ -9,6 +10,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
+	"runtime"
 	"unsafe"
 )
 
@@ -59,6 +61,11 @@ func newQGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
 	return n
 }
 
+func (ptr *QGraphicsSvgItem) DestroyQGraphicsSvgItem() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 func NewQGraphicsSvgItem(parent widgets.QGraphicsItem_ITF) *QGraphicsSvgItem {
 	defer qt.Recovering("QGraphicsSvgItem::QGraphicsSvgItem")
 
@@ -68,7 +75,9 @@ func NewQGraphicsSvgItem(parent widgets.QGraphicsItem_ITF) *QGraphicsSvgItem {
 func NewQGraphicsSvgItem2(fileName string, parent widgets.QGraphicsItem_ITF) *QGraphicsSvgItem {
 	defer qt.Recovering("QGraphicsSvgItem::QGraphicsSvgItem")
 
-	return newQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem2(C.CString(fileName), widgets.PointerFromQGraphicsItem(parent)))
+	var fileNameC = C.CString(fileName)
+	defer C.free(unsafe.Pointer(fileNameC))
+	return newQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem2(fileNameC, widgets.PointerFromQGraphicsItem(parent)))
 }
 
 //export callbackQGraphicsSvgItem_BoundingRect
@@ -104,7 +113,9 @@ func (ptr *QGraphicsSvgItem) BoundingRect() *core.QRectF {
 	defer qt.Recovering("QGraphicsSvgItem::boundingRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFFromPointer(C.QGraphicsSvgItem_BoundingRect(ptr.Pointer()))
+		var tmpValue = core.NewQRectFFromPointer(C.QGraphicsSvgItem_BoundingRect(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -113,7 +124,9 @@ func (ptr *QGraphicsSvgItem) BoundingRectDefault() *core.QRectF {
 	defer qt.Recovering("QGraphicsSvgItem::boundingRect")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFFromPointer(C.QGraphicsSvgItem_BoundingRectDefault(ptr.Pointer()))
+		var tmpValue = core.NewQRectFFromPointer(C.QGraphicsSvgItem_BoundingRectDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -131,7 +144,9 @@ func (ptr *QGraphicsSvgItem) MaximumCacheSize() *core.QSize {
 	defer qt.Recovering("QGraphicsSvgItem::maximumCacheSize")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QGraphicsSvgItem_MaximumCacheSize(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QGraphicsSvgItem_MaximumCacheSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -194,7 +209,9 @@ func (ptr *QGraphicsSvgItem) SetElementId(id string) {
 	defer qt.Recovering("QGraphicsSvgItem::setElementId")
 
 	if ptr.Pointer() != nil {
-		C.QGraphicsSvgItem_SetElementId(ptr.Pointer(), C.CString(id))
+		var idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+		C.QGraphicsSvgItem_SetElementId(ptr.Pointer(), idC)
 	}
 }
 
@@ -1388,7 +1405,9 @@ func (ptr *QGraphicsSvgItem) InputMethodQuery(query core.Qt__InputMethodQuery) *
 	defer qt.Recovering("QGraphicsSvgItem::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QGraphicsSvgItem_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QGraphicsSvgItem_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -1397,7 +1416,9 @@ func (ptr *QGraphicsSvgItem) InputMethodQueryDefault(query core.Qt__InputMethodQ
 	defer qt.Recovering("QGraphicsSvgItem::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QGraphicsSvgItem_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QGraphicsSvgItem_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -1482,7 +1503,9 @@ func (ptr *QGraphicsSvgItem) ItemChange(change widgets.QGraphicsItem__GraphicsIt
 	defer qt.Recovering("QGraphicsSvgItem::itemChange")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QGraphicsSvgItem_ItemChange(ptr.Pointer(), C.int(change), core.PointerFromQVariant(value)))
+		var tmpValue = core.NewQVariantFromPointer(C.QGraphicsSvgItem_ItemChange(ptr.Pointer(), C.int(change), core.PointerFromQVariant(value)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -1491,7 +1514,9 @@ func (ptr *QGraphicsSvgItem) ItemChangeDefault(change widgets.QGraphicsItem__Gra
 	defer qt.Recovering("QGraphicsSvgItem::itemChange")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QGraphicsSvgItem_ItemChangeDefault(ptr.Pointer(), C.int(change), core.PointerFromQVariant(value)))
+		var tmpValue = core.NewQVariantFromPointer(C.QGraphicsSvgItem_ItemChangeDefault(ptr.Pointer(), C.int(change), core.PointerFromQVariant(value)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -1799,7 +1824,9 @@ func (ptr *QGraphicsSvgItem) OpaqueArea() *gui.QPainterPath {
 	defer qt.Recovering("QGraphicsSvgItem::opaqueArea")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_OpaqueArea(ptr.Pointer()))
+		var tmpValue = gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_OpaqueArea(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		return tmpValue
 	}
 	return nil
 }
@@ -1808,7 +1835,9 @@ func (ptr *QGraphicsSvgItem) OpaqueAreaDefault() *gui.QPainterPath {
 	defer qt.Recovering("QGraphicsSvgItem::opaqueArea")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_OpaqueAreaDefault(ptr.Pointer()))
+		var tmpValue = gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_OpaqueAreaDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		return tmpValue
 	}
 	return nil
 }
@@ -1940,7 +1969,9 @@ func (ptr *QGraphicsSvgItem) Shape() *gui.QPainterPath {
 	defer qt.Recovering("QGraphicsSvgItem::shape")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_Shape(ptr.Pointer()))
+		var tmpValue = gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_Shape(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		return tmpValue
 	}
 	return nil
 }
@@ -1949,7 +1980,9 @@ func (ptr *QGraphicsSvgItem) ShapeDefault() *gui.QPainterPath {
 	defer qt.Recovering("QGraphicsSvgItem::shape")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_ShapeDefault(ptr.Pointer()))
+		var tmpValue = gui.NewQPainterPathFromPointer(C.QGraphicsSvgItem_ShapeDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QPainterPath).DestroyQPainterPath)
+		return tmpValue
 	}
 	return nil
 }
@@ -2083,7 +2116,9 @@ func (ptr *QSvgGenerator) SetDescription(description string) {
 	defer qt.Recovering("QSvgGenerator::setDescription")
 
 	if ptr.Pointer() != nil {
-		C.QSvgGenerator_SetDescription(ptr.Pointer(), C.CString(description))
+		var descriptionC = C.CString(description)
+		defer C.free(unsafe.Pointer(descriptionC))
+		C.QSvgGenerator_SetDescription(ptr.Pointer(), descriptionC)
 	}
 }
 
@@ -2091,7 +2126,9 @@ func (ptr *QSvgGenerator) SetFileName(fileName string) {
 	defer qt.Recovering("QSvgGenerator::setFileName")
 
 	if ptr.Pointer() != nil {
-		C.QSvgGenerator_SetFileName(ptr.Pointer(), C.CString(fileName))
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QSvgGenerator_SetFileName(ptr.Pointer(), fileNameC)
 	}
 }
 
@@ -2123,7 +2160,9 @@ func (ptr *QSvgGenerator) SetTitle(title string) {
 	defer qt.Recovering("QSvgGenerator::setTitle")
 
 	if ptr.Pointer() != nil {
-		C.QSvgGenerator_SetTitle(ptr.Pointer(), C.CString(title))
+		var titleC = C.CString(title)
+		defer C.free(unsafe.Pointer(titleC))
+		C.QSvgGenerator_SetTitle(ptr.Pointer(), titleC)
 	}
 }
 
@@ -2147,7 +2186,9 @@ func (ptr *QSvgGenerator) Size() *core.QSize {
 	defer qt.Recovering("QSvgGenerator::size")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QSvgGenerator_Size(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QSvgGenerator_Size(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -2165,7 +2206,9 @@ func (ptr *QSvgGenerator) ViewBoxF() *core.QRectF {
 	defer qt.Recovering("QSvgGenerator::viewBoxF")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFFromPointer(C.QSvgGenerator_ViewBoxF(ptr.Pointer()))
+		var tmpValue = core.NewQRectFFromPointer(C.QSvgGenerator_ViewBoxF(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -2198,7 +2241,9 @@ func (ptr *QSvgGenerator) ViewBox() *core.QRect {
 	defer qt.Recovering("QSvgGenerator::viewBox")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QSvgGenerator_ViewBox(ptr.Pointer()))
+		var tmpValue = core.NewQRectFromPointer(C.QSvgGenerator_ViewBox(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -2296,7 +2341,9 @@ func (ptr *QSvgRenderer) ViewBoxF() *core.QRectF {
 	defer qt.Recovering("QSvgRenderer::viewBoxF")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFFromPointer(C.QSvgRenderer_ViewBoxF(ptr.Pointer()))
+		var tmpValue = core.NewQRectFFromPointer(C.QSvgRenderer_ViewBoxF(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -2316,13 +2363,17 @@ func NewQSvgRenderer4(contents core.QXmlStreamReader_ITF, parent core.QObject_IT
 func NewQSvgRenderer3(contents string, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(C.CString(contents), core.PointerFromQObject(parent)))
+	var contentsC = C.CString(contents)
+	defer C.free(unsafe.Pointer(contentsC))
+	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(contentsC, core.PointerFromQObject(parent)))
 }
 
 func NewQSvgRenderer2(filename string, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(C.CString(filename), core.PointerFromQObject(parent)))
+	var filenameC = C.CString(filename)
+	defer C.free(unsafe.Pointer(filenameC))
+	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(filenameC, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QSvgRenderer) Animated() bool {
@@ -2338,7 +2389,11 @@ func (ptr *QSvgRenderer) BoundsOnElement(id string) *core.QRectF {
 	defer qt.Recovering("QSvgRenderer::boundsOnElement")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFFromPointer(C.QSvgRenderer_BoundsOnElement(ptr.Pointer(), C.CString(id)))
+		var idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+		var tmpValue = core.NewQRectFFromPointer(C.QSvgRenderer_BoundsOnElement(ptr.Pointer(), idC))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
 	}
 	return nil
 }
@@ -2347,7 +2402,9 @@ func (ptr *QSvgRenderer) DefaultSize() *core.QSize {
 	defer qt.Recovering("QSvgRenderer::defaultSize")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QSvgRenderer_DefaultSize(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QSvgRenderer_DefaultSize(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -2356,7 +2413,9 @@ func (ptr *QSvgRenderer) ElementExists(id string) bool {
 	defer qt.Recovering("QSvgRenderer::elementExists")
 
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_ElementExists(ptr.Pointer(), C.CString(id)) != 0
+		var idC = C.CString(id)
+		defer C.free(unsafe.Pointer(idC))
+		return C.QSvgRenderer_ElementExists(ptr.Pointer(), idC) != 0
 	}
 	return false
 }
@@ -2441,7 +2500,9 @@ func (ptr *QSvgRenderer) Load2(contents string) bool {
 	defer qt.Recovering("QSvgRenderer::load")
 
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Load2(ptr.Pointer(), C.CString(contents)) != 0
+		var contentsC = C.CString(contents)
+		defer C.free(unsafe.Pointer(contentsC))
+		return C.QSvgRenderer_Load2(ptr.Pointer(), contentsC) != 0
 	}
 	return false
 }
@@ -2479,7 +2540,9 @@ func (ptr *QSvgRenderer) Load(filename string) bool {
 	defer qt.Recovering("QSvgRenderer::load")
 
 	if ptr.Pointer() != nil {
-		return C.QSvgRenderer_Load(ptr.Pointer(), C.CString(filename)) != 0
+		var filenameC = C.CString(filename)
+		defer C.free(unsafe.Pointer(filenameC))
+		return C.QSvgRenderer_Load(ptr.Pointer(), filenameC) != 0
 	}
 	return false
 }
@@ -2588,7 +2651,9 @@ func (ptr *QSvgRenderer) Render3(painter gui.QPainter_ITF, elementId string, bou
 	defer qt.Recovering("QSvgRenderer::render")
 
 	if ptr.Pointer() != nil {
-		C.QSvgRenderer_Render3(ptr.Pointer(), gui.PointerFromQPainter(painter), C.CString(elementId), core.PointerFromQRectF(bounds))
+		var elementIdC = C.CString(elementId)
+		defer C.free(unsafe.Pointer(elementIdC))
+		C.QSvgRenderer_Render3(ptr.Pointer(), gui.PointerFromQPainter(painter), elementIdC, core.PointerFromQRectF(bounds))
 	}
 }
 
@@ -2632,7 +2697,9 @@ func (ptr *QSvgRenderer) ViewBox() *core.QRect {
 	defer qt.Recovering("QSvgRenderer::viewBox")
 
 	if ptr.Pointer() != nil {
-		return core.NewQRectFromPointer(C.QSvgRenderer_ViewBox(ptr.Pointer()))
+		var tmpValue = core.NewQRectFromPointer(C.QSvgRenderer_ViewBox(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
+		return tmpValue
 	}
 	return nil
 }
@@ -3118,7 +3185,9 @@ func NewQSvgWidget(parent widgets.QWidget_ITF) *QSvgWidget {
 func NewQSvgWidget2(file string, parent widgets.QWidget_ITF) *QSvgWidget {
 	defer qt.Recovering("QSvgWidget::QSvgWidget")
 
-	return newQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(C.CString(file), widgets.PointerFromQWidget(parent)))
+	var fileC = C.CString(file)
+	defer C.free(unsafe.Pointer(fileC))
+	return newQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(fileC, widgets.PointerFromQWidget(parent)))
 }
 
 //export callbackQSvgWidget_Load2
@@ -3153,7 +3222,9 @@ func (ptr *QSvgWidget) Load2(contents string) {
 	defer qt.Recovering("QSvgWidget::load")
 
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_Load2(ptr.Pointer(), C.CString(contents))
+		var contentsC = C.CString(contents)
+		defer C.free(unsafe.Pointer(contentsC))
+		C.QSvgWidget_Load2(ptr.Pointer(), contentsC)
 	}
 }
 
@@ -3189,7 +3260,9 @@ func (ptr *QSvgWidget) Load(file string) {
 	defer qt.Recovering("QSvgWidget::load")
 
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_Load(ptr.Pointer(), C.CString(file))
+		var fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+		C.QSvgWidget_Load(ptr.Pointer(), fileC)
 	}
 }
 
@@ -3214,7 +3287,9 @@ func (ptr *QSvgWidget) SizeHint() *core.QSize {
 	defer qt.Recovering("QSvgWidget::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QSvgWidget_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QSvgWidget_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -3712,7 +3787,9 @@ func (ptr *QSvgWidget) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("QSvgWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QSvgWidget_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QSvgWidget_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -3721,7 +3798,9 @@ func (ptr *QSvgWidget) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("QSvgWidget::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.QSvgWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.QSvgWidget_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -3849,7 +3928,9 @@ func (ptr *QSvgWidget) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("QSvgWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QSvgWidget_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -3857,7 +3938,9 @@ func (ptr *QSvgWidget) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("QSvgWidget::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.QSvgWidget_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -3984,7 +4067,9 @@ func (ptr *QSvgWidget) SetWindowTitle(vqs string) {
 	defer qt.Recovering("QSvgWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QSvgWidget_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -3992,7 +4077,9 @@ func (ptr *QSvgWidget) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("QSvgWidget::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.QSvgWidget_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QSvgWidget_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -4487,7 +4574,9 @@ func (ptr *QSvgWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.Q
 	defer qt.Recovering("QSvgWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSvgWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QSvgWidget_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -4496,7 +4585,9 @@ func (ptr *QSvgWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) 
 	defer qt.Recovering("QSvgWidget::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.QSvgWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QSvgWidget_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -4849,7 +4940,9 @@ func (ptr *QSvgWidget) NativeEvent(eventType string, message unsafe.Pointer, res
 	defer qt.Recovering("QSvgWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QSvgWidget_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QSvgWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -4858,7 +4951,9 @@ func (ptr *QSvgWidget) NativeEventDefault(eventType string, message unsafe.Point
 	defer qt.Recovering("QSvgWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.QSvgWidget_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.QSvgWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }

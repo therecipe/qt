@@ -1,5 +1,6 @@
 package main
 
+//#include <stdlib.h>
 //#include "moc.h"
 import "C"
 import (
@@ -7,6 +8,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
+	"runtime"
 	"unsafe"
 )
 
@@ -183,7 +185,9 @@ func (ptr *DropArea) SetText(vqs string) {
 	defer qt.Recovering("DropArea::setText")
 
 	if ptr.Pointer() != nil {
-		C.DropArea_SetText(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.DropArea_SetText(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -191,7 +195,9 @@ func (ptr *DropArea) SetTextDefault(vqs string) {
 	defer qt.Recovering("DropArea::setText")
 
 	if ptr.Pointer() != nil {
-		C.DropArea_SetTextDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.DropArea_SetTextDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -592,7 +598,9 @@ func (ptr *DropArea) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("DropArea::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropArea_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropArea_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -601,7 +609,9 @@ func (ptr *DropArea) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("DropArea::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropArea_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropArea_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -965,7 +975,9 @@ func (ptr *DropArea) SizeHint() *core.QSize {
 	defer qt.Recovering("DropArea::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropArea_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropArea_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -974,7 +986,9 @@ func (ptr *DropArea) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("DropArea::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropArea_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropArea_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -1462,7 +1476,9 @@ func (ptr *DropArea) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("DropArea::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.DropArea_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.DropArea_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -1470,7 +1486,9 @@ func (ptr *DropArea) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("DropArea::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.DropArea_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.DropArea_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -1597,7 +1615,9 @@ func (ptr *DropArea) SetWindowTitle(vqs string) {
 	defer qt.Recovering("DropArea::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.DropArea_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.DropArea_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -1605,7 +1625,9 @@ func (ptr *DropArea) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("DropArea::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.DropArea_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.DropArea_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -1916,7 +1938,9 @@ func (ptr *DropArea) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVa
 	defer qt.Recovering("DropArea::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.DropArea_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.DropArea_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -1925,7 +1949,9 @@ func (ptr *DropArea) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *c
 	defer qt.Recovering("DropArea::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.DropArea_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.DropArea_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -2098,7 +2124,9 @@ func (ptr *DropArea) NativeEvent(eventType string, message unsafe.Pointer, resul
 	defer qt.Recovering("DropArea::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.DropArea_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.DropArea_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -2107,7 +2135,9 @@ func (ptr *DropArea) NativeEventDefault(eventType string, message unsafe.Pointer
 	defer qt.Recovering("DropArea::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.DropArea_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.DropArea_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -3688,7 +3718,9 @@ func (ptr *DropSiteWindow) MinimumSizeHint() *core.QSize {
 	defer qt.Recovering("DropSiteWindow::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropSiteWindow_MinimumSizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropSiteWindow_MinimumSizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -3697,7 +3729,9 @@ func (ptr *DropSiteWindow) MinimumSizeHintDefault() *core.QSize {
 	defer qt.Recovering("DropSiteWindow::minimumSizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropSiteWindow_MinimumSizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropSiteWindow_MinimumSizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -3870,7 +3904,9 @@ func (ptr *DropSiteWindow) SetStyleSheet(styleSheet string) {
 	defer qt.Recovering("DropSiteWindow::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.DropSiteWindow_SetStyleSheet(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.DropSiteWindow_SetStyleSheet(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -3878,7 +3914,9 @@ func (ptr *DropSiteWindow) SetStyleSheetDefault(styleSheet string) {
 	defer qt.Recovering("DropSiteWindow::setStyleSheet")
 
 	if ptr.Pointer() != nil {
-		C.DropSiteWindow_SetStyleSheetDefault(ptr.Pointer(), C.CString(styleSheet))
+		var styleSheetC = C.CString(styleSheet)
+		defer C.free(unsafe.Pointer(styleSheetC))
+		C.DropSiteWindow_SetStyleSheetDefault(ptr.Pointer(), styleSheetC)
 	}
 }
 
@@ -4005,7 +4043,9 @@ func (ptr *DropSiteWindow) SetWindowTitle(vqs string) {
 	defer qt.Recovering("DropSiteWindow::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.DropSiteWindow_SetWindowTitle(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.DropSiteWindow_SetWindowTitle(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -4013,7 +4053,9 @@ func (ptr *DropSiteWindow) SetWindowTitleDefault(vqs string) {
 	defer qt.Recovering("DropSiteWindow::setWindowTitle")
 
 	if ptr.Pointer() != nil {
-		C.DropSiteWindow_SetWindowTitleDefault(ptr.Pointer(), C.CString(vqs))
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.DropSiteWindow_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
 }
 
@@ -4095,7 +4137,9 @@ func (ptr *DropSiteWindow) SizeHint() *core.QSize {
 	defer qt.Recovering("DropSiteWindow::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropSiteWindow_SizeHint(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropSiteWindow_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -4104,7 +4148,9 @@ func (ptr *DropSiteWindow) SizeHintDefault() *core.QSize {
 	defer qt.Recovering("DropSiteWindow::sizeHint")
 
 	if ptr.Pointer() != nil {
-		return core.NewQSizeFromPointer(C.DropSiteWindow_SizeHintDefault(ptr.Pointer()))
+		var tmpValue = core.NewQSizeFromPointer(C.DropSiteWindow_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
 	}
 	return nil
 }
@@ -4555,7 +4601,9 @@ func (ptr *DropSiteWindow) InputMethodQuery(query core.Qt__InputMethodQuery) *co
 	defer qt.Recovering("DropSiteWindow::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.DropSiteWindow_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.DropSiteWindow_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -4564,7 +4612,9 @@ func (ptr *DropSiteWindow) InputMethodQueryDefault(query core.Qt__InputMethodQue
 	defer qt.Recovering("DropSiteWindow::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		return core.NewQVariantFromPointer(C.DropSiteWindow_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.DropSiteWindow_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -4917,7 +4967,9 @@ func (ptr *DropSiteWindow) NativeEvent(eventType string, message unsafe.Pointer,
 	defer qt.Recovering("DropSiteWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.DropSiteWindow_NativeEvent(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.DropSiteWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }
@@ -4926,7 +4978,9 @@ func (ptr *DropSiteWindow) NativeEventDefault(eventType string, message unsafe.P
 	defer qt.Recovering("DropSiteWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		return C.DropSiteWindow_NativeEventDefault(ptr.Pointer(), C.CString(eventType), message, C.long(result)) != 0
+		var eventTypeC = C.CString(eventType)
+		defer C.free(unsafe.Pointer(eventTypeC))
+		return C.DropSiteWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
 	return false
 }

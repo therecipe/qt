@@ -33,10 +33,10 @@ public:
 	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, this->objectName().toUtf8().data(), className.toUtf8().data(), parent, name.toUtf8().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQUiLoader_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQUiLoader_ConnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void connectNotify(const QMetaMethod & sign) { callbackQUiLoader_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQUiLoader_CustomEvent(this, this->objectName().toUtf8().data(), event); };
 	void deleteLater() { callbackQUiLoader_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQUiLoader_DisconnectNotify(this, this->objectName().toUtf8().data(), new QMetaMethod(sign)); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQUiLoader_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
 	bool event(QEvent * e) { return callbackQUiLoader_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUiLoader_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<MyQUiLoader*>(this), this->objectName().toUtf8().data())); };

@@ -371,6 +371,8 @@ char* QSqlRelationalTableModel_SelectStatement(void* ptr);
 char* QSqlRelationalTableModel_SelectStatementDefault(void* ptr);
 int QSqlRelationalTableModel_SetData(void* ptr, void* index, void* value, int role);
 void QSqlRelationalTableModel_SetJoinMode(void* ptr, int joinMode);
+void QSqlRelationalTableModel_SetRelation(void* ptr, int column, void* relation);
+void QSqlRelationalTableModel_SetRelationDefault(void* ptr, int column, void* relation);
 void QSqlRelationalTableModel_SetTable(void* ptr, char* table);
 void QSqlRelationalTableModel_SetTableDefault(void* ptr, char* table);
 int QSqlRelationalTableModel_UpdateRowInTable(void* ptr, int row, void* values);

@@ -1,5 +1,6 @@
 package main
 
+//#include <stdlib.h>
 //#include "moc.h"
 import "C"
 import (
@@ -83,7 +84,13 @@ func (ptr *QmlBridge) SendToQml(source string, action string, data string) {
 	defer qt.Recovering("QmlBridge::sendToQml")
 
 	if ptr.Pointer() != nil {
-		C.QmlBridge_SendToQml(ptr.Pointer(), C.CString(source), C.CString(action), C.CString(data))
+		var sourceC = C.CString(source)
+		defer C.free(unsafe.Pointer(sourceC))
+		var actionC = C.CString(action)
+		defer C.free(unsafe.Pointer(actionC))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QmlBridge_SendToQml(ptr.Pointer(), sourceC, actionC, dataC)
 	}
 }
 
@@ -119,7 +126,13 @@ func (ptr *QmlBridge) SendToGo(source string, action string, data string) {
 	defer qt.Recovering("QmlBridge::sendToGo")
 
 	if ptr.Pointer() != nil {
-		C.QmlBridge_SendToGo(ptr.Pointer(), C.CString(source), C.CString(action), C.CString(data))
+		var sourceC = C.CString(source)
+		defer C.free(unsafe.Pointer(sourceC))
+		var actionC = C.CString(action)
+		defer C.free(unsafe.Pointer(actionC))
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		C.QmlBridge_SendToGo(ptr.Pointer(), sourceC, actionC, dataC)
 	}
 }
 
@@ -191,7 +204,9 @@ func (ptr *QmlBridge) DeregisterToGo(objectName string) {
 	defer qt.Recovering("QmlBridge::deregisterToGo")
 
 	if ptr.Pointer() != nil {
-		C.QmlBridge_DeregisterToGo(ptr.Pointer(), C.CString(objectName))
+		var objectNameC = C.CString(objectName)
+		defer C.free(unsafe.Pointer(objectNameC))
+		C.QmlBridge_DeregisterToGo(ptr.Pointer(), objectNameC)
 	}
 }
 
