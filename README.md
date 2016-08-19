@@ -38,9 +38,9 @@
 ## Windows / Mac OS X / Linux
 
 1. Install Go >= 1.7.0 and setup a proper [**GOPATH**](http://golang.org/doc/code.html#GOPATH)
-	* http://storage.googleapis.com/golang/go1.7.0.windows-amd64.msi
-	* http://storage.googleapis.com/golang/go1.7.0.darwin-amd64.pkg
-	* http://storage.googleapis.com/golang/go1.7.0.linux-amd64.tar.gz
+	* http://storage.googleapis.com/golang/go1.7.windows-amd64.msi
+	* http://storage.googleapis.com/golang/go1.7.darwin-amd64.pkg
+	* http://storage.googleapis.com/golang/go1.7.linux-amd64.tar.gz
 
 2. Install Qt 5.7.0 in `C:\Qt\Qt5.7.0\` or `/usr/local/Qt5.7.0/`
 	* http://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
