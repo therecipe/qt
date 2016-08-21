@@ -88,7 +88,7 @@ func (ptr *QSignalSpy) Signal() string {
 	defer qt.Recovering("QSignalSpy::signal")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSignalSpy_Signal(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSignalSpy_Signal(ptr.Pointer())))
 	}
 	return ""
 }

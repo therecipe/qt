@@ -6,6 +6,7 @@ package xml
 //#include "xml.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -725,7 +726,7 @@ func (ptr *QDomDocument) SetContent5(buffer string, errorMsg string, errorLine i
 	defer qt.Recovering("QDomDocument::setContent")
 
 	if ptr.Pointer() != nil {
-		var bufferC = C.CString(buffer)
+		var bufferC = C.CString(hex.EncodeToString([]byte(buffer)))
 		defer C.free(unsafe.Pointer(bufferC))
 		var errorMsgC = C.CString(errorMsg)
 		defer C.free(unsafe.Pointer(errorMsgC))
@@ -738,7 +739,7 @@ func (ptr *QDomDocument) SetContent(data string, namespaceProcessing bool, error
 	defer qt.Recovering("QDomDocument::setContent")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		var errorMsgC = C.CString(errorMsg)
 		defer C.free(unsafe.Pointer(errorMsgC))
@@ -777,7 +778,7 @@ func (ptr *QDomDocument) ToByteArray(indent int) string {
 	defer qt.Recovering("QDomDocument::toByteArray")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDomDocument_ToByteArray(ptr.Pointer(), C.int(indent)))
+		return qt.HexDecodeToString(C.GoString(C.QDomDocument_ToByteArray(ptr.Pointer(), C.int(indent))))
 	}
 	return ""
 }
@@ -6309,10 +6310,10 @@ func callbackQXmlInputSource_FromRawData(ptr unsafe.Pointer, ptrName *C.char, da
 	defer qt.Recovering("callback QXmlInputSource::fromRawData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "fromRawData"); signal != nil {
-		return C.CString(signal.(func(string, bool) string)(C.GoString(data), int(beginning) != 0))
+		return C.CString(signal.(func(string, bool) string)(qt.HexDecodeToString(C.GoString(data)), int(beginning) != 0))
 	}
 
-	return C.CString(NewQXmlInputSourceFromPointer(ptr).FromRawDataDefault(C.GoString(data), int(beginning) != 0))
+	return C.CString(NewQXmlInputSourceFromPointer(ptr).FromRawDataDefault(qt.HexDecodeToString(C.GoString(data)), int(beginning) != 0))
 }
 
 func (ptr *QXmlInputSource) ConnectFromRawData(f func(data string, beginning bool) string) {
@@ -6337,7 +6338,7 @@ func (ptr *QXmlInputSource) FromRawData(data string, beginning bool) string {
 	defer qt.Recovering("QXmlInputSource::fromRawData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		return C.GoString(C.QXmlInputSource_FromRawData(ptr.Pointer(), dataC, C.int(qt.GoBoolToInt(beginning))))
 	}
@@ -6348,7 +6349,7 @@ func (ptr *QXmlInputSource) FromRawDataDefault(data string, beginning bool) stri
 	defer qt.Recovering("QXmlInputSource::fromRawData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		return C.GoString(C.QXmlInputSource_FromRawDataDefault(ptr.Pointer(), dataC, C.int(qt.GoBoolToInt(beginning))))
 	}
@@ -6452,9 +6453,9 @@ func callbackQXmlInputSource_SetData2(ptr unsafe.Pointer, ptrName *C.char, dat *
 	defer qt.Recovering("callback QXmlInputSource::setData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setData2"); signal != nil {
-		signal.(func(string))(C.GoString(dat))
+		signal.(func(string))(qt.HexDecodeToString(C.GoString(dat)))
 	} else {
-		NewQXmlInputSourceFromPointer(ptr).SetData2Default(C.GoString(dat))
+		NewQXmlInputSourceFromPointer(ptr).SetData2Default(qt.HexDecodeToString(C.GoString(dat)))
 	}
 }
 
@@ -6480,7 +6481,7 @@ func (ptr *QXmlInputSource) SetData2(dat string) {
 	defer qt.Recovering("QXmlInputSource::setData")
 
 	if ptr.Pointer() != nil {
-		var datC = C.CString(dat)
+		var datC = C.CString(hex.EncodeToString([]byte(dat)))
 		defer C.free(unsafe.Pointer(datC))
 		C.QXmlInputSource_SetData2(ptr.Pointer(), datC)
 	}
@@ -6490,7 +6491,7 @@ func (ptr *QXmlInputSource) SetData2Default(dat string) {
 	defer qt.Recovering("QXmlInputSource::setData")
 
 	if ptr.Pointer() != nil {
-		var datC = C.CString(dat)
+		var datC = C.CString(hex.EncodeToString([]byte(dat)))
 		defer C.free(unsafe.Pointer(datC))
 		C.QXmlInputSource_SetData2Default(ptr.Pointer(), datC)
 	}

@@ -106,7 +106,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQAbstractPrintDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQAbstractPrintDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQAbstractPrintDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQAbstractPrintDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQAbstractPrintDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQAbstractPrintDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -609,12 +609,12 @@ void QAbstractPrintDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QAbstractPrintDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractPrintDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractPrintDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QAbstractPrintDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractPrintDialog_Raise(void* ptr)
@@ -1261,12 +1261,12 @@ void QPageSetupDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QPageSetupDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPageSetupDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPageSetupDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QPageSetupDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QPageSetupDialog_Raise(void* ptr)
@@ -1525,7 +1525,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQPrintDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQPrintDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQPrintDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQPrintDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQPrintDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQPrintDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -2023,12 +2023,12 @@ void QPrintDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QPrintDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPrintDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPrintDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QPrintDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QPrintDialog_Raise(void* ptr)
@@ -2351,7 +2351,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQPrintPreviewDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQPrintPreviewDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQPrintPreviewDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQPrintPreviewDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQPrintPreviewDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQPrintPreviewDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -2831,12 +2831,12 @@ void QPrintPreviewDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QPrintPreviewDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPrintPreviewDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPrintPreviewDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QPrintPreviewDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QPrintPreviewDialog_Raise(void* ptr)
@@ -3108,7 +3108,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQPrintPreviewWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQPrintPreviewWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQPrintPreviewWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQPrintPreviewWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQPrintPreviewWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQPrintPreviewWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -3658,12 +3658,12 @@ void QPrintPreviewWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QPrintPreviewWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPrintPreviewWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPrintPreviewWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QPrintPreviewWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QPrintPreviewWidget_Raise(void* ptr)

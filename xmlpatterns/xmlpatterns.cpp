@@ -1212,7 +1212,7 @@ int QXmlSchema_Load2(void* ptr, void* source, void* documentUri)
 
 int QXmlSchema_Load3(void* ptr, char* data, void* documentUri)
 {
-	return static_cast<QXmlSchema*>(ptr)->load(QByteArray(data), *static_cast<QUrl*>(documentUri));
+	return static_cast<QXmlSchema*>(ptr)->load(QByteArray::fromHex(QString(data).toUtf8()), *static_cast<QUrl*>(documentUri));
 }
 
 int QXmlSchema_Load(void* ptr, void* source)
@@ -1322,7 +1322,7 @@ int QXmlSchemaValidator_Validate2(void* ptr, void* source, void* documentUri)
 
 int QXmlSchemaValidator_Validate3(void* ptr, char* data, void* documentUri)
 {
-	return static_cast<QXmlSchemaValidator*>(ptr)->validate(QByteArray(data), *static_cast<QUrl*>(documentUri));
+	return static_cast<QXmlSchemaValidator*>(ptr)->validate(QByteArray::fromHex(QString(data).toUtf8()), *static_cast<QUrl*>(documentUri));
 }
 
 int QXmlSchemaValidator_Validate(void* ptr, void* source)

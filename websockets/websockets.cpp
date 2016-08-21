@@ -148,8 +148,8 @@ class MyQWebSocket: public QWebSocket
 {
 public:
 	void Signal_AboutToClose() { callbackQWebSocket_AboutToClose(this, this->objectName().toUtf8().data()); };
-	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, this->objectName().toUtf8().data(), QString(frame).toUtf8().data(), isLastFrame); };
-	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, this->objectName().toUtf8().data(), QString(message).toUtf8().data()); };
+	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, this->objectName().toUtf8().data(), frame.toHex().data(), isLastFrame); };
+	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, this->objectName().toUtf8().data(), message.toHex().data()); };
 	void Signal_BytesWritten(qint64 bytes) { callbackQWebSocket_BytesWritten(this, this->objectName().toUtf8().data(), static_cast<long long>(bytes)); };
 	void Signal_Connected() { callbackQWebSocket_Connected(this, this->objectName().toUtf8().data()); };
 	void Signal_Disconnected() { callbackQWebSocket_Disconnected(this, this->objectName().toUtf8().data()); };
@@ -157,7 +157,7 @@ public:
 	void ignoreSslErrors() { callbackQWebSocket_IgnoreSslErrors(this, this->objectName().toUtf8().data()); };
 	void open(const QNetworkRequest & request) { callbackQWebSocket_Open2(this, this->objectName().toUtf8().data(), const_cast<QNetworkRequest*>(&request)); };
 	void open(const QUrl & url) { callbackQWebSocket_Open(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
-	void ping(const QByteArray & payload) { callbackQWebSocket_Ping(this, this->objectName().toUtf8().data(), QString(payload).toUtf8().data()); };
+	void ping(const QByteArray & payload) { callbackQWebSocket_Ping(this, this->objectName().toUtf8().data(), payload.toHex().data()); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQWebSocket_ProxyAuthenticationRequired(this, this->objectName().toUtf8().data(), const_cast<QNetworkProxy*>(&proxy), authenticator); };
 	void Signal_ReadChannelFinished() { callbackQWebSocket_ReadChannelFinished(this, this->objectName().toUtf8().data()); };
 	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocket_StateChanged(this, this->objectName().toUtf8().data(), state); };
@@ -206,7 +206,7 @@ void QWebSocket_DisconnectBinaryFrameReceived(void* ptr)
 
 void QWebSocket_BinaryFrameReceived(void* ptr, char* frame, int isLastFrame)
 {
-	static_cast<QWebSocket*>(ptr)->binaryFrameReceived(QByteArray(frame), isLastFrame != 0);
+	static_cast<QWebSocket*>(ptr)->binaryFrameReceived(QByteArray::fromHex(QString(frame).toUtf8()), isLastFrame != 0);
 }
 
 void QWebSocket_ConnectBinaryMessageReceived(void* ptr)
@@ -221,7 +221,7 @@ void QWebSocket_DisconnectBinaryMessageReceived(void* ptr)
 
 void QWebSocket_BinaryMessageReceived(void* ptr, char* message)
 {
-	static_cast<QWebSocket*>(ptr)->binaryMessageReceived(QByteArray(message));
+	static_cast<QWebSocket*>(ptr)->binaryMessageReceived(QByteArray::fromHex(QString(message).toUtf8()));
 }
 
 void QWebSocket_ConnectBytesWritten(void* ptr)
@@ -356,7 +356,7 @@ char* QWebSocket_PeerName(void* ptr)
 
 void QWebSocket_Ping(void* ptr, char* payload)
 {
-	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ping", Q_ARG(QByteArray, QByteArray(payload)));
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ping", Q_ARG(QByteArray, QByteArray::fromHex(QString(payload).toUtf8())));
 }
 
 void* QWebSocket_Proxy(void* ptr)
@@ -421,7 +421,7 @@ void QWebSocket_Resume(void* ptr)
 
 long long QWebSocket_SendBinaryMessage(void* ptr, char* data)
 {
-	return static_cast<long long>(static_cast<QWebSocket*>(ptr)->sendBinaryMessage(QByteArray(data)));
+	return static_cast<long long>(static_cast<QWebSocket*>(ptr)->sendBinaryMessage(QByteArray::fromHex(QString(data).toUtf8())));
 }
 
 long long QWebSocket_SendTextMessage(void* ptr, char* message)

@@ -6,6 +6,7 @@ package core
 //#include "core.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"runtime"
 	"strings"
@@ -1250,7 +1251,7 @@ func (ptr *QAbstractEventDispatcher) FilterNativeEvent(eventType string, message
 	defer qt.Recovering("QAbstractEventDispatcher::filterNativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QAbstractEventDispatcher_FilterNativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -6587,7 +6588,7 @@ func callbackQAbstractNativeEventFilter_NativeEventFilter(ptr unsafe.Pointer, pt
 	defer qt.Recovering("callback QAbstractNativeEventFilter::nativeEventFilter")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
 	return C.int(qt.GoBoolToInt(false))
@@ -6615,7 +6616,7 @@ func (ptr *QAbstractNativeEventFilter) NativeEventFilter(eventType string, messa
 	defer qt.Recovering("QAbstractNativeEventFilter::nativeEventFilter")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QAbstractNativeEventFilter_NativeEventFilter(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -13595,7 +13596,7 @@ func newQBufferFromPointer(ptr unsafe.Pointer) *QBuffer {
 func NewQBuffer2(byteArray string, parent QObject_ITF) *QBuffer {
 	defer qt.Recovering("QBuffer::QBuffer")
 
-	var byteArrayC = C.CString(byteArray)
+	var byteArrayC = C.CString(hex.EncodeToString([]byte(byteArray)))
 	defer C.free(unsafe.Pointer(byteArrayC))
 	return newQBufferFromPointer(C.QBuffer_NewQBuffer2(byteArrayC, PointerFromQObject(parent)))
 }
@@ -13657,7 +13658,7 @@ func (ptr *QBuffer) Buffer() string {
 	defer qt.Recovering("QBuffer::buffer")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QBuffer_Buffer(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QBuffer_Buffer(ptr.Pointer())))
 	}
 	return ""
 }
@@ -13666,7 +13667,7 @@ func (ptr *QBuffer) Buffer2() string {
 	defer qt.Recovering("QBuffer::buffer")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QBuffer_Buffer2(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QBuffer_Buffer2(ptr.Pointer())))
 	}
 	return ""
 }
@@ -13767,7 +13768,7 @@ func (ptr *QBuffer) Data() string {
 	defer qt.Recovering("QBuffer::data")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QBuffer_Data(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QBuffer_Data(ptr.Pointer())))
 	}
 	return ""
 }
@@ -13917,7 +13918,7 @@ func (ptr *QBuffer) SetBuffer(byteArray string) {
 	defer qt.Recovering("QBuffer::setBuffer")
 
 	if ptr.Pointer() != nil {
-		var byteArrayC = C.CString(byteArray)
+		var byteArrayC = C.CString(hex.EncodeToString([]byte(byteArray)))
 		defer C.free(unsafe.Pointer(byteArrayC))
 		C.QBuffer_SetBuffer(ptr.Pointer(), byteArrayC)
 	}
@@ -13927,7 +13928,7 @@ func (ptr *QBuffer) SetData(data string) {
 	defer qt.Recovering("QBuffer::setData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QBuffer_SetData(ptr.Pointer(), dataC)
 	}
@@ -14905,7 +14906,7 @@ func (ptr *QByteArrayList) Join() string {
 	defer qt.Recovering("QByteArrayList::join")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QByteArrayList_Join(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QByteArrayList_Join(ptr.Pointer())))
 	}
 	return ""
 }
@@ -14916,7 +14917,7 @@ func (ptr *QByteArrayList) Join3(separator string) string {
 	if ptr.Pointer() != nil {
 		var separatorC = C.CString(separator)
 		defer C.free(unsafe.Pointer(separatorC))
-		return C.GoString(C.QByteArrayList_Join3(ptr.Pointer(), separatorC))
+		return qt.HexDecodeToString(C.GoString(C.QByteArrayList_Join3(ptr.Pointer(), separatorC)))
 	}
 	return ""
 }
@@ -14925,9 +14926,9 @@ func (ptr *QByteArrayList) Join2(separator string) string {
 	defer qt.Recovering("QByteArrayList::join")
 
 	if ptr.Pointer() != nil {
-		var separatorC = C.CString(separator)
+		var separatorC = C.CString(hex.EncodeToString([]byte(separator)))
 		defer C.free(unsafe.Pointer(separatorC))
-		return C.GoString(C.QByteArrayList_Join2(ptr.Pointer(), separatorC))
+		return qt.HexDecodeToString(C.GoString(C.QByteArrayList_Join2(ptr.Pointer(), separatorC)))
 	}
 	return ""
 }
@@ -14984,7 +14985,7 @@ func NewQByteArrayMatcher() *QByteArrayMatcher {
 func NewQByteArrayMatcher2(pattern string) *QByteArrayMatcher {
 	defer qt.Recovering("QByteArrayMatcher::QByteArrayMatcher")
 
-	var patternC = C.CString(pattern)
+	var patternC = C.CString(hex.EncodeToString([]byte(pattern)))
 	defer C.free(unsafe.Pointer(patternC))
 	return newQByteArrayMatcherFromPointer(C.QByteArrayMatcher_NewQByteArrayMatcher2(patternC))
 }
@@ -15007,7 +15008,7 @@ func (ptr *QByteArrayMatcher) IndexIn(ba string, from int) int {
 	defer qt.Recovering("QByteArrayMatcher::indexIn")
 
 	if ptr.Pointer() != nil {
-		var baC = C.CString(ba)
+		var baC = C.CString(hex.EncodeToString([]byte(ba)))
 		defer C.free(unsafe.Pointer(baC))
 		return int(C.QByteArrayMatcher_IndexIn(ptr.Pointer(), baC, C.int(from)))
 	}
@@ -15029,7 +15030,7 @@ func (ptr *QByteArrayMatcher) Pattern() string {
 	defer qt.Recovering("QByteArrayMatcher::pattern")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QByteArrayMatcher_Pattern(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QByteArrayMatcher_Pattern(ptr.Pointer())))
 	}
 	return ""
 }
@@ -15038,7 +15039,7 @@ func (ptr *QByteArrayMatcher) SetPattern(pattern string) {
 	defer qt.Recovering("QByteArrayMatcher::setPattern")
 
 	if ptr.Pointer() != nil {
-		var patternC = C.CString(pattern)
+		var patternC = C.CString(hex.EncodeToString([]byte(pattern)))
 		defer C.free(unsafe.Pointer(patternC))
 		C.QByteArrayMatcher_SetPattern(ptr.Pointer(), patternC)
 	}
@@ -17807,7 +17808,7 @@ func (ptr *QCryptographicHash) AddData2(data string) {
 	defer qt.Recovering("QCryptographicHash::addData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QCryptographicHash_AddData2(ptr.Pointer(), dataC)
 	}
@@ -17826,17 +17827,17 @@ func (ptr *QCryptographicHash) AddData(data string, length int) {
 func QCryptographicHash_Hash(data string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QCryptographicHash::hash")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
-	return C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(dataC, C.int(method)))
+	return qt.HexDecodeToString(C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(dataC, C.int(method))))
 }
 
 func (ptr *QCryptographicHash) Hash(data string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QCryptographicHash::hash")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
-	return C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(dataC, C.int(method)))
+	return qt.HexDecodeToString(C.GoString(C.QCryptographicHash_QCryptographicHash_Hash(dataC, C.int(method))))
 }
 
 func (ptr *QCryptographicHash) Reset() {
@@ -17851,7 +17852,7 @@ func (ptr *QCryptographicHash) Result() string {
 	defer qt.Recovering("QCryptographicHash::result")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCryptographicHash_Result(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QCryptographicHash_Result(ptr.Pointer())))
 	}
 	return ""
 }
@@ -17968,7 +17969,7 @@ func newQDataStreamFromPointer(ptr unsafe.Pointer) *QDataStream {
 func NewQDataStream3(a string, mode QIODevice__OpenModeFlag) *QDataStream {
 	defer qt.Recovering("QDataStream::QDataStream")
 
-	var aC = C.CString(a)
+	var aC = C.CString(hex.EncodeToString([]byte(a)))
 	defer C.free(unsafe.Pointer(aC))
 	return newQDataStreamFromPointer(C.QDataStream_NewQDataStream3(aC, C.int(mode)))
 }
@@ -17997,7 +17998,7 @@ func NewQDataStream2(d QIODevice_ITF) *QDataStream {
 func NewQDataStream4(a string) *QDataStream {
 	defer qt.Recovering("QDataStream::QDataStream")
 
-	var aC = C.CString(a)
+	var aC = C.CString(hex.EncodeToString([]byte(a)))
 	defer C.free(unsafe.Pointer(aC))
 	return newQDataStreamFromPointer(C.QDataStream_NewQDataStream4(aC))
 }
@@ -20073,7 +20074,7 @@ func (ptr *QDynamicPropertyChangeEvent) DestroyQDynamicPropertyChangeEvent() {
 func NewQDynamicPropertyChangeEvent(name string) *QDynamicPropertyChangeEvent {
 	defer qt.Recovering("QDynamicPropertyChangeEvent::QDynamicPropertyChangeEvent")
 
-	var nameC = C.CString(name)
+	var nameC = C.CString(hex.EncodeToString([]byte(name)))
 	defer C.free(unsafe.Pointer(nameC))
 	return newQDynamicPropertyChangeEventFromPointer(C.QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(nameC))
 }
@@ -20082,7 +20083,7 @@ func (ptr *QDynamicPropertyChangeEvent) PropertyName() string {
 	defer qt.Recovering("QDynamicPropertyChangeEvent::propertyName")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDynamicPropertyChangeEvent_PropertyName(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QDynamicPropertyChangeEvent_PropertyName(ptr.Pointer())))
 	}
 	return ""
 }
@@ -22319,7 +22320,7 @@ func (ptr *QFile) Copy(newName string) bool {
 func QFile_DecodeName(localFileName string) string {
 	defer qt.Recovering("QFile::decodeName")
 
-	var localFileNameC = C.CString(localFileName)
+	var localFileNameC = C.CString(hex.EncodeToString([]byte(localFileName)))
 	defer C.free(unsafe.Pointer(localFileNameC))
 	return C.GoString(C.QFile_QFile_DecodeName(localFileNameC))
 }
@@ -22327,7 +22328,7 @@ func QFile_DecodeName(localFileName string) string {
 func (ptr *QFile) DecodeName(localFileName string) string {
 	defer qt.Recovering("QFile::decodeName")
 
-	var localFileNameC = C.CString(localFileName)
+	var localFileNameC = C.CString(hex.EncodeToString([]byte(localFileName)))
 	defer C.free(unsafe.Pointer(localFileNameC))
 	return C.GoString(C.QFile_QFile_DecodeName(localFileNameC))
 }
@@ -22353,7 +22354,7 @@ func QFile_EncodeName(fileName string) string {
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	return C.GoString(C.QFile_QFile_EncodeName(fileNameC))
+	return qt.HexDecodeToString(C.GoString(C.QFile_QFile_EncodeName(fileNameC)))
 }
 
 func (ptr *QFile) EncodeName(fileName string) string {
@@ -22361,7 +22362,7 @@ func (ptr *QFile) EncodeName(fileName string) string {
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	return C.GoString(C.QFile_QFile_EncodeName(fileNameC))
+	return qt.HexDecodeToString(C.GoString(C.QFile_QFile_EncodeName(fileNameC)))
 }
 
 func QFile_Exists(fileName string) bool {
@@ -29514,7 +29515,7 @@ func (ptr *QIODevice) Peek2(maxSize int64) string {
 	defer qt.Recovering("QIODevice::peek")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIODevice_Peek2(ptr.Pointer(), C.longlong(maxSize)))
+		return qt.HexDecodeToString(C.GoString(C.QIODevice_Peek2(ptr.Pointer(), C.longlong(maxSize))))
 	}
 	return ""
 }
@@ -29581,7 +29582,7 @@ func (ptr *QIODevice) Read2(maxSize int64) string {
 	defer qt.Recovering("QIODevice::read")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIODevice_Read2(ptr.Pointer(), C.longlong(maxSize)))
+		return qt.HexDecodeToString(C.GoString(C.QIODevice_Read2(ptr.Pointer(), C.longlong(maxSize))))
 	}
 	return ""
 }
@@ -29601,7 +29602,7 @@ func (ptr *QIODevice) ReadAll() string {
 	defer qt.Recovering("QIODevice::readAll")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIODevice_ReadAll(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QIODevice_ReadAll(ptr.Pointer())))
 	}
 	return ""
 }
@@ -29655,7 +29656,7 @@ func (ptr *QIODevice) ReadLine2(maxSize int64) string {
 	defer qt.Recovering("QIODevice::readLine")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIODevice_ReadLine2(ptr.Pointer(), C.longlong(maxSize)))
+		return qt.HexDecodeToString(C.GoString(C.QIODevice_ReadLine2(ptr.Pointer(), C.longlong(maxSize))))
 	}
 	return ""
 }
@@ -30065,7 +30066,7 @@ func (ptr *QIODevice) Write3(byteArray string) int64 {
 	defer qt.Recovering("QIODevice::write")
 
 	if ptr.Pointer() != nil {
-		var byteArrayC = C.CString(byteArray)
+		var byteArrayC = C.CString(hex.EncodeToString([]byte(byteArray)))
 		defer C.free(unsafe.Pointer(byteArrayC))
 		return int64(C.QIODevice_Write3(ptr.Pointer(), byteArrayC))
 	}
@@ -34512,7 +34513,7 @@ func (ptr *QJsonDocument) Array() *QJsonArray {
 func QJsonDocument_FromBinaryData(data string, validation QJsonDocument__DataValidation) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromBinaryData")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(dataC, C.int(validation)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
@@ -34522,7 +34523,7 @@ func QJsonDocument_FromBinaryData(data string, validation QJsonDocument__DataVal
 func (ptr *QJsonDocument) FromBinaryData(data string, validation QJsonDocument__DataValidation) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromBinaryData")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromBinaryData(dataC, C.int(validation)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
@@ -34532,7 +34533,7 @@ func (ptr *QJsonDocument) FromBinaryData(data string, validation QJsonDocument__
 func QJsonDocument_FromJson(json string, error QJsonParseError_ITF) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromJson")
 
-	var jsonC = C.CString(json)
+	var jsonC = C.CString(hex.EncodeToString([]byte(json)))
 	defer C.free(unsafe.Pointer(jsonC))
 	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(jsonC, PointerFromQJsonParseError(error)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
@@ -34542,7 +34543,7 @@ func QJsonDocument_FromJson(json string, error QJsonParseError_ITF) *QJsonDocume
 func (ptr *QJsonDocument) FromJson(json string, error QJsonParseError_ITF) *QJsonDocument {
 	defer qt.Recovering("QJsonDocument::fromJson")
 
-	var jsonC = C.CString(json)
+	var jsonC = C.CString(hex.EncodeToString([]byte(json)))
 	defer C.free(unsafe.Pointer(jsonC))
 	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_QJsonDocument_FromJson(jsonC, PointerFromQJsonParseError(error)))
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
@@ -34661,7 +34662,7 @@ func (ptr *QJsonDocument) ToBinaryData() string {
 	defer qt.Recovering("QJsonDocument::toBinaryData")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QJsonDocument_ToBinaryData(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QJsonDocument_ToBinaryData(ptr.Pointer())))
 	}
 	return ""
 }
@@ -34670,7 +34671,7 @@ func (ptr *QJsonDocument) ToJson(format QJsonDocument__JsonFormat) string {
 	defer qt.Recovering("QJsonDocument::toJson")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QJsonDocument_ToJson(ptr.Pointer(), C.int(format)))
+		return qt.HexDecodeToString(C.GoString(C.QJsonDocument_ToJson(ptr.Pointer(), C.int(format))))
 	}
 	return ""
 }
@@ -35424,7 +35425,7 @@ func NewQLatin1String() *QLatin1String {
 func NewQLatin1String4(str string) *QLatin1String {
 	defer qt.Recovering("QLatin1String::QLatin1String")
 
-	var strC = C.CString(str)
+	var strC = C.CString(hex.EncodeToString([]byte(str)))
 	defer C.free(unsafe.Pointer(strC))
 	return newQLatin1StringFromPointer(C.QLatin1String_NewQLatin1String4(strC))
 }
@@ -39083,7 +39084,7 @@ func newQMessageAuthenticationCodeFromPointer(ptr unsafe.Pointer) *QMessageAuthe
 func NewQMessageAuthenticationCode(method QCryptographicHash__Algorithm, key string) *QMessageAuthenticationCode {
 	defer qt.Recovering("QMessageAuthenticationCode::QMessageAuthenticationCode")
 
-	var keyC = C.CString(key)
+	var keyC = C.CString(hex.EncodeToString([]byte(key)))
 	defer C.free(unsafe.Pointer(keyC))
 	return newQMessageAuthenticationCodeFromPointer(C.QMessageAuthenticationCode_NewQMessageAuthenticationCode(C.int(method), keyC))
 }
@@ -39101,7 +39102,7 @@ func (ptr *QMessageAuthenticationCode) AddData2(data string) {
 	defer qt.Recovering("QMessageAuthenticationCode::addData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QMessageAuthenticationCode_AddData2(ptr.Pointer(), dataC)
 	}
@@ -39120,21 +39121,21 @@ func (ptr *QMessageAuthenticationCode) AddData(data string, length int) {
 func QMessageAuthenticationCode_Hash(message string, key string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QMessageAuthenticationCode::hash")
 
-	var messageC = C.CString(message)
+	var messageC = C.CString(hex.EncodeToString([]byte(message)))
 	defer C.free(unsafe.Pointer(messageC))
-	var keyC = C.CString(key)
+	var keyC = C.CString(hex.EncodeToString([]byte(key)))
 	defer C.free(unsafe.Pointer(keyC))
-	return C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(messageC, keyC, C.int(method)))
+	return qt.HexDecodeToString(C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(messageC, keyC, C.int(method))))
 }
 
 func (ptr *QMessageAuthenticationCode) Hash(message string, key string, method QCryptographicHash__Algorithm) string {
 	defer qt.Recovering("QMessageAuthenticationCode::hash")
 
-	var messageC = C.CString(message)
+	var messageC = C.CString(hex.EncodeToString([]byte(message)))
 	defer C.free(unsafe.Pointer(messageC))
-	var keyC = C.CString(key)
+	var keyC = C.CString(hex.EncodeToString([]byte(key)))
 	defer C.free(unsafe.Pointer(keyC))
-	return C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(messageC, keyC, C.int(method)))
+	return qt.HexDecodeToString(C.GoString(C.QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(messageC, keyC, C.int(method))))
 }
 
 func (ptr *QMessageAuthenticationCode) Reset() {
@@ -39149,7 +39150,7 @@ func (ptr *QMessageAuthenticationCode) Result() string {
 	defer qt.Recovering("QMessageAuthenticationCode::result")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMessageAuthenticationCode_Result(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QMessageAuthenticationCode_Result(ptr.Pointer())))
 	}
 	return ""
 }
@@ -39158,7 +39159,7 @@ func (ptr *QMessageAuthenticationCode) SetKey(key string) {
 	defer qt.Recovering("QMessageAuthenticationCode::setKey")
 
 	if ptr.Pointer() != nil {
-		var keyC = C.CString(key)
+		var keyC = C.CString(hex.EncodeToString([]byte(key)))
 		defer C.free(unsafe.Pointer(keyC))
 		C.QMessageAuthenticationCode_SetKey(ptr.Pointer(), keyC)
 	}
@@ -39658,7 +39659,7 @@ func (ptr *QMetaEnum) ValueToKeys(value int) string {
 	defer qt.Recovering("QMetaEnum::valueToKeys")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMetaEnum_ValueToKeys(ptr.Pointer(), C.int(value)))
+		return qt.HexDecodeToString(C.GoString(C.QMetaEnum_ValueToKeys(ptr.Pointer(), C.int(value))))
 	}
 	return ""
 }
@@ -39815,7 +39816,7 @@ func (ptr *QMetaMethod) MethodSignature() string {
 	defer qt.Recovering("QMetaMethod::methodSignature")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMetaMethod_MethodSignature(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QMetaMethod_MethodSignature(ptr.Pointer())))
 	}
 	return ""
 }
@@ -39833,7 +39834,7 @@ func (ptr *QMetaMethod) Name() string {
 	defer qt.Recovering("QMetaMethod::name")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMetaMethod_Name(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QMetaMethod_Name(ptr.Pointer())))
 	}
 	return ""
 }
@@ -40242,7 +40243,7 @@ func QMetaObject_NormalizedSignature(method string) string {
 
 	var methodC = C.CString(method)
 	defer C.free(unsafe.Pointer(methodC))
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
+	return qt.HexDecodeToString(C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(methodC)))
 }
 
 func (ptr *QMetaObject) NormalizedSignature(method string) string {
@@ -40250,7 +40251,7 @@ func (ptr *QMetaObject) NormalizedSignature(method string) string {
 
 	var methodC = C.CString(method)
 	defer C.free(unsafe.Pointer(methodC))
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(methodC))
+	return qt.HexDecodeToString(C.GoString(C.QMetaObject_QMetaObject_NormalizedSignature(methodC)))
 }
 
 func QMetaObject_NormalizedType(ty string) string {
@@ -40258,7 +40259,7 @@ func QMetaObject_NormalizedType(ty string) string {
 
 	var tyC = C.CString(ty)
 	defer C.free(unsafe.Pointer(tyC))
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedType(tyC))
+	return qt.HexDecodeToString(C.GoString(C.QMetaObject_QMetaObject_NormalizedType(tyC)))
 }
 
 func (ptr *QMetaObject) NormalizedType(ty string) string {
@@ -40266,7 +40267,7 @@ func (ptr *QMetaObject) NormalizedType(ty string) string {
 
 	var tyC = C.CString(ty)
 	defer C.free(unsafe.Pointer(tyC))
-	return C.GoString(C.QMetaObject_QMetaObject_NormalizedType(tyC))
+	return qt.HexDecodeToString(C.GoString(C.QMetaObject_QMetaObject_NormalizedType(tyC)))
 }
 
 func (ptr *QMetaObject) PropertyCount() int {
@@ -40969,7 +40970,7 @@ func (ptr *QMetaType) SizeOf2() int {
 func QMetaType_Type2(typeName string) int {
 	defer qt.Recovering("QMetaType::type")
 
-	var typeNameC = C.CString(typeName)
+	var typeNameC = C.CString(hex.EncodeToString([]byte(typeName)))
 	defer C.free(unsafe.Pointer(typeNameC))
 	return int(C.QMetaType_QMetaType_Type2(typeNameC))
 }
@@ -40977,7 +40978,7 @@ func QMetaType_Type2(typeName string) int {
 func (ptr *QMetaType) Type2(typeName string) int {
 	defer qt.Recovering("QMetaType::type")
 
-	var typeNameC = C.CString(typeName)
+	var typeNameC = C.CString(hex.EncodeToString([]byte(typeName)))
 	defer C.free(unsafe.Pointer(typeNameC))
 	return int(C.QMetaType_QMetaType_Type2(typeNameC))
 }
@@ -41109,7 +41110,7 @@ func (ptr *QMimeData) Data(mimeType string) string {
 	if ptr.Pointer() != nil {
 		var mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
-		return C.GoString(C.QMimeData_Data(ptr.Pointer(), mimeTypeC))
+		return qt.HexDecodeToString(C.GoString(C.QMimeData_Data(ptr.Pointer(), mimeTypeC)))
 	}
 	return ""
 }
@@ -41299,7 +41300,7 @@ func (ptr *QMimeData) SetData(mimeType string, data string) {
 	if ptr.Pointer() != nil {
 		var mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QMimeData_SetData(ptr.Pointer(), mimeTypeC, dataC)
 	}
@@ -41862,7 +41863,7 @@ func (ptr *QMimeDatabase) MimeTypeForData(data string) *QMimeType {
 	defer qt.Recovering("QMimeDatabase::mimeTypeForData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData(ptr.Pointer(), dataC))
 		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
@@ -41914,7 +41915,7 @@ func (ptr *QMimeDatabase) MimeTypeForFileNameAndData2(fileName string, data stri
 	if ptr.Pointer() != nil {
 		var fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForFileNameAndData2(ptr.Pointer(), fileNameC, dataC))
 		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
@@ -47456,7 +47457,7 @@ func (ptr *QPropertyAnimation) PropertyName() string {
 	defer qt.Recovering("QPropertyAnimation::propertyName")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPropertyAnimation_PropertyName(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QPropertyAnimation_PropertyName(ptr.Pointer())))
 	}
 	return ""
 }
@@ -47465,7 +47466,7 @@ func (ptr *QPropertyAnimation) SetPropertyName(propertyName string) {
 	defer qt.Recovering("QPropertyAnimation::setPropertyName")
 
 	if ptr.Pointer() != nil {
-		var propertyNameC = C.CString(propertyName)
+		var propertyNameC = C.CString(hex.EncodeToString([]byte(propertyName)))
 		defer C.free(unsafe.Pointer(propertyNameC))
 		C.QPropertyAnimation_SetPropertyName(ptr.Pointer(), propertyNameC)
 	}
@@ -47497,7 +47498,7 @@ func NewQPropertyAnimation(parent QObject_ITF) *QPropertyAnimation {
 func NewQPropertyAnimation2(target QObject_ITF, propertyName string, parent QObject_ITF) *QPropertyAnimation {
 	defer qt.Recovering("QPropertyAnimation::QPropertyAnimation")
 
-	var propertyNameC = C.CString(propertyName)
+	var propertyNameC = C.CString(hex.EncodeToString([]byte(propertyName)))
 	defer C.free(unsafe.Pointer(propertyNameC))
 	return newQPropertyAnimationFromPointer(C.QPropertyAnimation_NewQPropertyAnimation2(PointerFromQObject(target), propertyNameC, PointerFromQObject(parent)))
 }
@@ -56778,7 +56779,7 @@ func (ptr *QSignalTransition) SetSignal(sign string) {
 	defer qt.Recovering("QSignalTransition::setSignal")
 
 	if ptr.Pointer() != nil {
-		var signC = C.CString(sign)
+		var signC = C.CString(hex.EncodeToString([]byte(sign)))
 		defer C.free(unsafe.Pointer(signC))
 		C.QSignalTransition_SetSignal(ptr.Pointer(), signC)
 	}
@@ -56788,7 +56789,7 @@ func (ptr *QSignalTransition) Signal() string {
 	defer qt.Recovering("QSignalTransition::signal")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSignalTransition_Signal(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSignalTransition_Signal(ptr.Pointer())))
 	}
 	return ""
 }
@@ -62990,7 +62991,7 @@ func (ptr *QStorageInfo) Device() string {
 	defer qt.Recovering("QStorageInfo::device")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStorageInfo_Device(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QStorageInfo_Device(ptr.Pointer())))
 	}
 	return ""
 }
@@ -63008,7 +63009,7 @@ func (ptr *QStorageInfo) FileSystemType() string {
 	defer qt.Recovering("QStorageInfo::fileSystemType")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStorageInfo_FileSystemType(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QStorageInfo_FileSystemType(ptr.Pointer())))
 	}
 	return ""
 }
@@ -65873,7 +65874,7 @@ func (ptr *QStringRef) ToLatin1() string {
 	defer qt.Recovering("QStringRef::toLatin1")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStringRef_ToLatin1(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QStringRef_ToLatin1(ptr.Pointer())))
 	}
 	return ""
 }
@@ -65882,7 +65883,7 @@ func (ptr *QStringRef) ToLocal8Bit() string {
 	defer qt.Recovering("QStringRef::toLocal8Bit")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStringRef_ToLocal8Bit(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QStringRef_ToLocal8Bit(ptr.Pointer())))
 	}
 	return ""
 }
@@ -65900,7 +65901,7 @@ func (ptr *QStringRef) ToUtf8() string {
 	defer qt.Recovering("QStringRef::toUtf8")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStringRef_ToUtf8(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QStringRef_ToUtf8(ptr.Pointer())))
 	}
 	return ""
 }
@@ -68228,7 +68229,7 @@ func (ptr *QTextCodec) CanEncode2(s string) bool {
 func QTextCodec_CodecForHtml2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml2(baC))
 }
@@ -68236,7 +68237,7 @@ func QTextCodec_CodecForHtml2(ba string) *QTextCodec {
 func (ptr *QTextCodec) CodecForHtml2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml2(baC))
 }
@@ -68244,7 +68245,7 @@ func (ptr *QTextCodec) CodecForHtml2(ba string) *QTextCodec {
 func QTextCodec_CodecForHtml(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml(baC, PointerFromQTextCodec(defaultCodec)))
 }
@@ -68252,7 +68253,7 @@ func QTextCodec_CodecForHtml(ba string, defaultCodec QTextCodec_ITF) *QTextCodec
 func (ptr *QTextCodec) CodecForHtml(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForHtml")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForHtml(baC, PointerFromQTextCodec(defaultCodec)))
 }
@@ -68284,7 +68285,7 @@ func (ptr *QTextCodec) CodecForMib(mib int) *QTextCodec {
 func QTextCodec_CodecForName(name string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForName")
 
-	var nameC = C.CString(name)
+	var nameC = C.CString(hex.EncodeToString([]byte(name)))
 	defer C.free(unsafe.Pointer(nameC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName(nameC))
 }
@@ -68292,7 +68293,7 @@ func QTextCodec_CodecForName(name string) *QTextCodec {
 func (ptr *QTextCodec) CodecForName(name string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForName")
 
-	var nameC = C.CString(name)
+	var nameC = C.CString(hex.EncodeToString([]byte(name)))
 	defer C.free(unsafe.Pointer(nameC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForName(nameC))
 }
@@ -68316,7 +68317,7 @@ func (ptr *QTextCodec) CodecForName2(name string) *QTextCodec {
 func QTextCodec_CodecForUtfText2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText2(baC))
 }
@@ -68324,7 +68325,7 @@ func QTextCodec_CodecForUtfText2(ba string) *QTextCodec {
 func (ptr *QTextCodec) CodecForUtfText2(ba string) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText2(baC))
 }
@@ -68332,7 +68333,7 @@ func (ptr *QTextCodec) CodecForUtfText2(ba string) *QTextCodec {
 func QTextCodec_CodecForUtfText(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText(baC, PointerFromQTextCodec(defaultCodec)))
 }
@@ -68340,7 +68341,7 @@ func QTextCodec_CodecForUtfText(ba string, defaultCodec QTextCodec_ITF) *QTextCo
 func (ptr *QTextCodec) CodecForUtfText(ba string, defaultCodec QTextCodec_ITF) *QTextCodec {
 	defer qt.Recovering("QTextCodec::codecForUtfText")
 
-	var baC = C.CString(ba)
+	var baC = C.CString(hex.EncodeToString([]byte(ba)))
 	defer C.free(unsafe.Pointer(baC))
 	return NewQTextCodecFromPointer(C.QTextCodec_QTextCodec_CodecForUtfText(baC, PointerFromQTextCodec(defaultCodec)))
 }
@@ -68351,7 +68352,7 @@ func (ptr *QTextCodec) FromUnicode(str string) string {
 	if ptr.Pointer() != nil {
 		var strC = C.CString(str)
 		defer C.free(unsafe.Pointer(strC))
-		return C.GoString(C.QTextCodec_FromUnicode(ptr.Pointer(), strC))
+		return qt.HexDecodeToString(C.GoString(C.QTextCodec_FromUnicode(ptr.Pointer(), strC)))
 	}
 	return ""
 }
@@ -68417,10 +68418,10 @@ func callbackQTextCodec_Name(ptr unsafe.Pointer, ptrName *C.char) *C.char {
 	defer qt.Recovering("callback QTextCodec::name")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "name"); signal != nil {
-		return C.CString(signal.(func() string)())
+		return C.CString(hex.EncodeToString([]byte(signal.(func() string)())))
 	}
 
-	return C.CString("")
+	return C.CString(hex.EncodeToString([]byte("")))
 }
 
 func (ptr *QTextCodec) ConnectName(f func() string) {
@@ -68445,7 +68446,7 @@ func (ptr *QTextCodec) Name() string {
 	defer qt.Recovering("QTextCodec::name")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCodec_Name(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QTextCodec_Name(ptr.Pointer())))
 	}
 	return ""
 }
@@ -68466,7 +68467,7 @@ func (ptr *QTextCodec) ToUnicode(a string) string {
 	defer qt.Recovering("QTextCodec::toUnicode")
 
 	if ptr.Pointer() != nil {
-		var aC = C.CString(a)
+		var aC = C.CString(hex.EncodeToString([]byte(a)))
 		defer C.free(unsafe.Pointer(aC))
 		return C.GoString(C.QTextCodec_ToUnicode(ptr.Pointer(), aC))
 	}
@@ -68583,7 +68584,7 @@ func (ptr *QTextDecoder) ToUnicode2(ba string) string {
 	defer qt.Recovering("QTextDecoder::toUnicode")
 
 	if ptr.Pointer() != nil {
-		var baC = C.CString(ba)
+		var baC = C.CString(hex.EncodeToString([]byte(ba)))
 		defer C.free(unsafe.Pointer(baC))
 		return C.GoString(C.QTextDecoder_ToUnicode2(ptr.Pointer(), baC))
 	}
@@ -68670,7 +68671,7 @@ func (ptr *QTextEncoder) FromUnicode2(uc QChar_ITF, len int) string {
 	defer qt.Recovering("QTextEncoder::fromUnicode")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextEncoder_FromUnicode2(ptr.Pointer(), PointerFromQChar(uc), C.int(len)))
+		return qt.HexDecodeToString(C.GoString(C.QTextEncoder_FromUnicode2(ptr.Pointer(), PointerFromQChar(uc), C.int(len))))
 	}
 	return ""
 }
@@ -68681,7 +68682,7 @@ func (ptr *QTextEncoder) FromUnicode(str string) string {
 	if ptr.Pointer() != nil {
 		var strC = C.CString(str)
 		defer C.free(unsafe.Pointer(strC))
-		return C.GoString(C.QTextEncoder_FromUnicode(ptr.Pointer(), strC))
+		return qt.HexDecodeToString(C.GoString(C.QTextEncoder_FromUnicode(ptr.Pointer(), strC)))
 	}
 	return ""
 }
@@ -68790,7 +68791,7 @@ func NewQTextStream() *QTextStream {
 func NewQTextStream5(array string, openMode QIODevice__OpenModeFlag) *QTextStream {
 	defer qt.Recovering("QTextStream::QTextStream")
 
-	var arrayC = C.CString(array)
+	var arrayC = C.CString(hex.EncodeToString([]byte(array)))
 	defer C.free(unsafe.Pointer(arrayC))
 	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream5(arrayC, C.int(openMode)))
 }
@@ -68812,7 +68813,7 @@ func NewQTextStream4(stri string, openMode QIODevice__OpenModeFlag) *QTextStream
 func NewQTextStream6(array string, openMode QIODevice__OpenModeFlag) *QTextStream {
 	defer qt.Recovering("QTextStream::QTextStream")
 
-	var arrayC = C.CString(array)
+	var arrayC = C.CString(hex.EncodeToString([]byte(array)))
 	defer C.free(unsafe.Pointer(arrayC))
 	return newQTextStreamFromPointer(C.QTextStream_NewQTextStream6(arrayC, C.int(openMode)))
 }
@@ -72013,7 +72014,7 @@ func NewQTimeZone() *QTimeZone {
 func NewQTimeZone2(ianaId string) *QTimeZone {
 	defer qt.Recovering("QTimeZone::QTimeZone")
 
-	var ianaIdC = C.CString(ianaId)
+	var ianaIdC = C.CString(hex.EncodeToString([]byte(ianaId)))
 	defer C.free(unsafe.Pointer(ianaIdC))
 	return newQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone2(ianaIdC))
 }
@@ -72021,7 +72022,7 @@ func NewQTimeZone2(ianaId string) *QTimeZone {
 func NewQTimeZone4(ianaId string, offsetSeconds int, name string, abbreviation string, country QLocale__Country, comment string) *QTimeZone {
 	defer qt.Recovering("QTimeZone::QTimeZone")
 
-	var ianaIdC = C.CString(ianaId)
+	var ianaIdC = C.CString(hex.EncodeToString([]byte(ianaId)))
 	defer C.free(unsafe.Pointer(ianaIdC))
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
@@ -72119,24 +72120,24 @@ func (ptr *QTimeZone) HasTransitions() bool {
 func QTimeZone_IanaIdToWindowsId(ianaId string) string {
 	defer qt.Recovering("QTimeZone::ianaIdToWindowsId")
 
-	var ianaIdC = C.CString(ianaId)
+	var ianaIdC = C.CString(hex.EncodeToString([]byte(ianaId)))
 	defer C.free(unsafe.Pointer(ianaIdC))
-	return C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(ianaIdC))
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(ianaIdC)))
 }
 
 func (ptr *QTimeZone) IanaIdToWindowsId(ianaId string) string {
 	defer qt.Recovering("QTimeZone::ianaIdToWindowsId")
 
-	var ianaIdC = C.CString(ianaId)
+	var ianaIdC = C.CString(hex.EncodeToString([]byte(ianaId)))
 	defer C.free(unsafe.Pointer(ianaIdC))
-	return C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(ianaIdC))
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_IanaIdToWindowsId(ianaIdC)))
 }
 
 func (ptr *QTimeZone) Id() string {
 	defer qt.Recovering("QTimeZone::id")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTimeZone_Id(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QTimeZone_Id(ptr.Pointer())))
 	}
 	return ""
 }
@@ -72153,7 +72154,7 @@ func (ptr *QTimeZone) IsDaylightTime(atDateTime QDateTime_ITF) bool {
 func QTimeZone_IsTimeZoneIdAvailable(ianaId string) bool {
 	defer qt.Recovering("QTimeZone::isTimeZoneIdAvailable")
 
-	var ianaIdC = C.CString(ianaId)
+	var ianaIdC = C.CString(hex.EncodeToString([]byte(ianaId)))
 	defer C.free(unsafe.Pointer(ianaIdC))
 	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(ianaIdC) != 0
 }
@@ -72161,7 +72162,7 @@ func QTimeZone_IsTimeZoneIdAvailable(ianaId string) bool {
 func (ptr *QTimeZone) IsTimeZoneIdAvailable(ianaId string) bool {
 	defer qt.Recovering("QTimeZone::isTimeZoneIdAvailable")
 
-	var ianaIdC = C.CString(ianaId)
+	var ianaIdC = C.CString(hex.EncodeToString([]byte(ianaId)))
 	defer C.free(unsafe.Pointer(ianaIdC))
 	return C.QTimeZone_QTimeZone_IsTimeZoneIdAvailable(ianaIdC) != 0
 }
@@ -72220,13 +72221,13 @@ func (ptr *QTimeZone) SystemTimeZone() *QTimeZone {
 func QTimeZone_SystemTimeZoneId() string {
 	defer qt.Recovering("QTimeZone::systemTimeZoneId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_SystemTimeZoneId())
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_SystemTimeZoneId()))
 }
 
 func (ptr *QTimeZone) SystemTimeZoneId() string {
 	defer qt.Recovering("QTimeZone::systemTimeZoneId")
 
-	return C.GoString(C.QTimeZone_QTimeZone_SystemTimeZoneId())
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_SystemTimeZoneId()))
 }
 
 func QTimeZone_Utc() *QTimeZone {
@@ -72248,33 +72249,33 @@ func (ptr *QTimeZone) Utc() *QTimeZone {
 func QTimeZone_WindowsIdToDefaultIanaId(windowsId string) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	var windowsIdC = C.CString(windowsId)
+	var windowsIdC = C.CString(hex.EncodeToString([]byte(windowsId)))
 	defer C.free(unsafe.Pointer(windowsIdC))
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(windowsIdC))
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(windowsIdC)))
 }
 
 func (ptr *QTimeZone) WindowsIdToDefaultIanaId(windowsId string) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	var windowsIdC = C.CString(windowsId)
+	var windowsIdC = C.CString(hex.EncodeToString([]byte(windowsId)))
 	defer C.free(unsafe.Pointer(windowsIdC))
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(windowsIdC))
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(windowsIdC)))
 }
 
 func QTimeZone_WindowsIdToDefaultIanaId2(windowsId string, country QLocale__Country) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	var windowsIdC = C.CString(windowsId)
+	var windowsIdC = C.CString(hex.EncodeToString([]byte(windowsId)))
 	defer C.free(unsafe.Pointer(windowsIdC))
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(windowsIdC, C.int(country)))
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(windowsIdC, C.int(country))))
 }
 
 func (ptr *QTimeZone) WindowsIdToDefaultIanaId2(windowsId string, country QLocale__Country) string {
 	defer qt.Recovering("QTimeZone::windowsIdToDefaultIanaId")
 
-	var windowsIdC = C.CString(windowsId)
+	var windowsIdC = C.CString(hex.EncodeToString([]byte(windowsId)))
 	defer C.free(unsafe.Pointer(windowsIdC))
-	return C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(windowsIdC, C.int(country)))
+	return qt.HexDecodeToString(C.GoString(C.QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(windowsIdC, C.int(country))))
 }
 
 func (ptr *QTimeZone) DestroyQTimeZone() {
@@ -74066,7 +74067,7 @@ func newQUrlFromPointer(ptr unsafe.Pointer) *QUrl {
 func QUrl_FromEncoded(input string, parsingMode QUrl__ParsingMode) *QUrl {
 	defer qt.Recovering("QUrl::fromEncoded")
 
-	var inputC = C.CString(input)
+	var inputC = C.CString(hex.EncodeToString([]byte(input)))
 	defer C.free(unsafe.Pointer(inputC))
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(inputC, C.int(parsingMode)))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
@@ -74076,7 +74077,7 @@ func QUrl_FromEncoded(input string, parsingMode QUrl__ParsingMode) *QUrl {
 func (ptr *QUrl) FromEncoded(input string, parsingMode QUrl__ParsingMode) *QUrl {
 	defer qt.Recovering("QUrl::fromEncoded")
 
-	var inputC = C.CString(input)
+	var inputC = C.CString(hex.EncodeToString([]byte(input)))
 	defer C.free(unsafe.Pointer(inputC))
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(inputC, C.int(parsingMode)))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
@@ -74167,7 +74168,7 @@ func (ptr *QUrl) Fragment(options QUrl__ComponentFormattingOption) string {
 func QUrl_FromAce(domain string) string {
 	defer qt.Recovering("QUrl::fromAce")
 
-	var domainC = C.CString(domain)
+	var domainC = C.CString(hex.EncodeToString([]byte(domain)))
 	defer C.free(unsafe.Pointer(domainC))
 	return C.GoString(C.QUrl_QUrl_FromAce(domainC))
 }
@@ -74175,7 +74176,7 @@ func QUrl_FromAce(domain string) string {
 func (ptr *QUrl) FromAce(domain string) string {
 	defer qt.Recovering("QUrl::fromAce")
 
-	var domainC = C.CString(domain)
+	var domainC = C.CString(hex.EncodeToString([]byte(domain)))
 	defer C.free(unsafe.Pointer(domainC))
 	return C.GoString(C.QUrl_QUrl_FromAce(domainC))
 }
@@ -74203,7 +74204,7 @@ func (ptr *QUrl) FromLocalFile(localFile string) *QUrl {
 func QUrl_FromPercentEncoding(input string) string {
 	defer qt.Recovering("QUrl::fromPercentEncoding")
 
-	var inputC = C.CString(input)
+	var inputC = C.CString(hex.EncodeToString([]byte(input)))
 	defer C.free(unsafe.Pointer(inputC))
 	return C.GoString(C.QUrl_QUrl_FromPercentEncoding(inputC))
 }
@@ -74211,7 +74212,7 @@ func QUrl_FromPercentEncoding(input string) string {
 func (ptr *QUrl) FromPercentEncoding(input string) string {
 	defer qt.Recovering("QUrl::fromPercentEncoding")
 
-	var inputC = C.CString(input)
+	var inputC = C.CString(hex.EncodeToString([]byte(input)))
 	defer C.free(unsafe.Pointer(inputC))
 	return C.GoString(C.QUrl_QUrl_FromPercentEncoding(inputC))
 }
@@ -74554,7 +74555,7 @@ func QUrl_ToAce(domain string) string {
 
 	var domainC = C.CString(domain)
 	defer C.free(unsafe.Pointer(domainC))
-	return C.GoString(C.QUrl_QUrl_ToAce(domainC))
+	return qt.HexDecodeToString(C.GoString(C.QUrl_QUrl_ToAce(domainC)))
 }
 
 func (ptr *QUrl) ToAce(domain string) string {
@@ -74562,7 +74563,7 @@ func (ptr *QUrl) ToAce(domain string) string {
 
 	var domainC = C.CString(domain)
 	defer C.free(unsafe.Pointer(domainC))
-	return C.GoString(C.QUrl_QUrl_ToAce(domainC))
+	return qt.HexDecodeToString(C.GoString(C.QUrl_QUrl_ToAce(domainC)))
 }
 
 func (ptr *QUrl) ToDisplayString(options QUrl__UrlFormattingOption) string {
@@ -74578,7 +74579,7 @@ func (ptr *QUrl) ToEncoded(options QUrl__UrlFormattingOption) string {
 	defer qt.Recovering("QUrl::toEncoded")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUrl_ToEncoded(ptr.Pointer(), C.int(options)))
+		return qt.HexDecodeToString(C.GoString(C.QUrl_ToEncoded(ptr.Pointer(), C.int(options))))
 	}
 	return ""
 }
@@ -74597,11 +74598,11 @@ func QUrl_ToPercentEncoding(input string, exclude string, include string) string
 
 	var inputC = C.CString(input)
 	defer C.free(unsafe.Pointer(inputC))
-	var excludeC = C.CString(exclude)
+	var excludeC = C.CString(hex.EncodeToString([]byte(exclude)))
 	defer C.free(unsafe.Pointer(excludeC))
-	var includeC = C.CString(include)
+	var includeC = C.CString(hex.EncodeToString([]byte(include)))
 	defer C.free(unsafe.Pointer(includeC))
-	return C.GoString(C.QUrl_QUrl_ToPercentEncoding(inputC, excludeC, includeC))
+	return qt.HexDecodeToString(C.GoString(C.QUrl_QUrl_ToPercentEncoding(inputC, excludeC, includeC)))
 }
 
 func (ptr *QUrl) ToPercentEncoding(input string, exclude string, include string) string {
@@ -74609,11 +74610,11 @@ func (ptr *QUrl) ToPercentEncoding(input string, exclude string, include string)
 
 	var inputC = C.CString(input)
 	defer C.free(unsafe.Pointer(inputC))
-	var excludeC = C.CString(exclude)
+	var excludeC = C.CString(hex.EncodeToString([]byte(exclude)))
 	defer C.free(unsafe.Pointer(excludeC))
-	var includeC = C.CString(include)
+	var includeC = C.CString(hex.EncodeToString([]byte(include)))
 	defer C.free(unsafe.Pointer(includeC))
-	return C.GoString(C.QUrl_QUrl_ToPercentEncoding(inputC, excludeC, includeC))
+	return qt.HexDecodeToString(C.GoString(C.QUrl_QUrl_ToPercentEncoding(inputC, excludeC, includeC)))
 }
 
 func (ptr *QUrl) ToString(options QUrl__UrlFormattingOption) string {
@@ -74973,7 +74974,7 @@ func NewQUuid() *QUuid {
 func NewQUuid5(text string) *QUuid {
 	defer qt.Recovering("QUuid::QUuid")
 
-	var textC = C.CString(text)
+	var textC = C.CString(hex.EncodeToString([]byte(text)))
 	defer C.free(unsafe.Pointer(textC))
 	return newQUuidFromPointer(C.QUuid_NewQUuid5(textC))
 }
@@ -74999,7 +75000,7 @@ func (ptr *QUuid) ToByteArray() string {
 	defer qt.Recovering("QUuid::toByteArray")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUuid_ToByteArray(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QUuid_ToByteArray(ptr.Pointer())))
 	}
 	return ""
 }
@@ -75008,7 +75009,7 @@ func (ptr *QUuid) ToRfc4122() string {
 	defer qt.Recovering("QUuid::toRfc4122")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUuid_ToRfc4122(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QUuid_ToRfc4122(ptr.Pointer())))
 	}
 	return ""
 }
@@ -75135,7 +75136,7 @@ func NewQVariant16(val QBitArray_ITF) *QVariant {
 func NewQVariant15(val string) *QVariant {
 	defer qt.Recovering("QVariant::QVariant")
 
-	var valC = C.CString(val)
+	var valC = C.CString(hex.EncodeToString([]byte(val)))
 	defer C.free(unsafe.Pointer(valC))
 	return newQVariantFromPointer(C.QVariant_NewQVariant15(valC))
 }
@@ -75324,7 +75325,7 @@ func (ptr *QVariant) ToByteArray() string {
 	defer qt.Recovering("QVariant::toByteArray")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QVariant_ToByteArray(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QVariant_ToByteArray(ptr.Pointer())))
 	}
 	return ""
 }
@@ -78263,7 +78264,7 @@ func NewQXmlStreamReader2(device QIODevice_ITF) *QXmlStreamReader {
 func NewQXmlStreamReader3(data string) *QXmlStreamReader {
 	defer qt.Recovering("QXmlStreamReader::QXmlStreamReader")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	return newQXmlStreamReaderFromPointer(C.QXmlStreamReader_NewQXmlStreamReader3(dataC))
 }
@@ -78288,7 +78289,7 @@ func (ptr *QXmlStreamReader) AddData(data string) {
 	defer qt.Recovering("QXmlStreamReader::addData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QXmlStreamReader_AddData(ptr.Pointer(), dataC)
 	}
@@ -78808,7 +78809,7 @@ func NewQXmlStreamWriter() *QXmlStreamWriter {
 func NewQXmlStreamWriter3(array string) *QXmlStreamWriter {
 	defer qt.Recovering("QXmlStreamWriter::QXmlStreamWriter")
 
-	var arrayC = C.CString(array)
+	var arrayC = C.CString(hex.EncodeToString([]byte(array)))
 	defer C.free(unsafe.Pointer(arrayC))
 	return newQXmlStreamWriterFromPointer(C.QXmlStreamWriter_NewQXmlStreamWriter3(arrayC))
 }

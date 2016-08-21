@@ -23,7 +23,7 @@ func goInput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 		}
 
-	case "uchar", "char", "QString", "QByteArray":
+	case "uchar", "char", "QString":
 		{
 			if strings.Contains(vOld, "&") {
 				if strings.Contains(vOld, "const") {
@@ -36,6 +36,21 @@ func goInput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 			}
 			return fmt.Sprintf("C.CString(%v)", name)
+		}
+
+	case "QByteArray":
+		{
+			if strings.Contains(vOld, "&") {
+				if strings.Contains(vOld, "const") {
+					return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(%v)))", name)
+				}
+				return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(%v)))", name)
+			}
+
+			if strings.Contains(vOld, "**") {
+				return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(strings.Join(%v, \"|\"))))", name)
+			}
+			return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(%v)))", name)
 		}
 
 	case "bool":
@@ -160,7 +175,7 @@ func cppInput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.split(\"|\", QString::SkipEmptyParts)", cppInput(name, "QString", f))
 		}
 
-	case "QString", "QByteArray":
+	case "QString":
 		{
 			if strings.Contains(vOld, "&") {
 				if strings.Contains(vOld, "const") {
@@ -174,6 +189,22 @@ func cppInput(name, value string, f *parser.Function) string {
 			}
 
 			return fmt.Sprintf("%v(%v)", value, name)
+		}
+
+	case "QByteArray":
+		{
+			if strings.Contains(vOld, "&") {
+				if strings.Contains(vOld, "const") {
+					return fmt.Sprintf("%v::fromHex(QString(%v).toUtf8())", value, name)
+				}
+				return fmt.Sprintf("*(new %v(%v::fromHex(QString(%v).toUtf8())))", value, value, name)
+			}
+
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("new %v(%v::fromHex(QString(%v).toUtf8()))", value, value, name)
+			}
+
+			return fmt.Sprintf("%v::fromHex(QString(%v).toUtf8())", value, name)
 		}
 
 	case "bool":

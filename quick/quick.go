@@ -6,6 +6,7 @@ package quick
 //#include "quick.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -11315,10 +11316,10 @@ func callbackQQuickView_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventTy
 	defer qt.Recovering("callback QQuickView::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQQuickViewFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQQuickViewFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QQuickView) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -11343,7 +11344,7 @@ func (ptr *QQuickView) NativeEvent(eventType string, message unsafe.Pointer, res
 	defer qt.Recovering("QQuickView::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QQuickView_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -11354,7 +11355,7 @@ func (ptr *QQuickView) NativeEventDefault(eventType string, message unsafe.Point
 	defer qt.Recovering("QQuickView::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QQuickView_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -14360,10 +14361,10 @@ func callbackQQuickWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, event
 	defer qt.Recovering("callback QQuickWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQQuickWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQQuickWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QQuickWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -14388,7 +14389,7 @@ func (ptr *QQuickWidget) NativeEvent(eventType string, message unsafe.Pointer, r
 	defer qt.Recovering("QQuickWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QQuickWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -14399,7 +14400,7 @@ func (ptr *QQuickWidget) NativeEventDefault(eventType string, message unsafe.Poi
 	defer qt.Recovering("QQuickWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QQuickWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -17184,10 +17185,10 @@ func callbackQQuickWindow_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, event
 	defer qt.Recovering("callback QQuickWindow::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQQuickWindowFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQQuickWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QQuickWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -17212,7 +17213,7 @@ func (ptr *QQuickWindow) NativeEvent(eventType string, message unsafe.Pointer, r
 	defer qt.Recovering("QQuickWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QQuickWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -17223,7 +17224,7 @@ func (ptr *QQuickWindow) NativeEventDefault(eventType string, message unsafe.Poi
 	defer qt.Recovering("QQuickWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QQuickWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

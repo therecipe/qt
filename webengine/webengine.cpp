@@ -285,7 +285,7 @@ void QQuickWebEngineProfile_HttpUserAgentChanged(void* ptr)
 
 void QQuickWebEngineProfile_InstallUrlSchemeHandler(void* ptr, char* scheme, void* handler)
 {
-	static_cast<QQuickWebEngineProfile*>(ptr)->installUrlSchemeHandler(QByteArray(scheme), static_cast<QWebEngineUrlSchemeHandler*>(handler));
+	static_cast<QQuickWebEngineProfile*>(ptr)->installUrlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8()), static_cast<QWebEngineUrlSchemeHandler*>(handler));
 }
 
 void QQuickWebEngineProfile_ConnectOffTheRecordChanged(void* ptr)
@@ -340,7 +340,7 @@ void QQuickWebEngineProfile_RemoveAllUrlSchemeHandlers(void* ptr)
 
 void QQuickWebEngineProfile_RemoveUrlScheme(void* ptr, char* scheme)
 {
-	static_cast<QQuickWebEngineProfile*>(ptr)->removeUrlScheme(QByteArray(scheme));
+	static_cast<QQuickWebEngineProfile*>(ptr)->removeUrlScheme(QByteArray::fromHex(QString(scheme).toUtf8()));
 }
 
 void QQuickWebEngineProfile_RemoveUrlSchemeHandler(void* ptr, void* handler)
@@ -370,7 +370,7 @@ void QQuickWebEngineProfile_StorageNameChanged(void* ptr)
 
 void* QQuickWebEngineProfile_UrlSchemeHandler(void* ptr, char* scheme)
 {
-	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QQuickWebEngineProfile*>(ptr)->urlSchemeHandler(QByteArray(scheme)));
+	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QQuickWebEngineProfile*>(ptr)->urlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8())));
 }
 
 void QQuickWebEngineProfile_TimerEvent(void* ptr, void* event)
@@ -1260,7 +1260,7 @@ void QWebEnginePage_SetBackgroundColor(void* ptr, void* color)
 
 void QWebEnginePage_SetContent(void* ptr, char* data, char* mimeType, void* baseUrl)
 {
-	static_cast<QWebEnginePage*>(ptr)->setContent(QByteArray(data), QString(mimeType), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebEnginePage*>(ptr)->setContent(QByteArray::fromHex(QString(data).toUtf8()), QString(mimeType), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebEnginePage_SetFeaturePermission(void* ptr, void* securityOrigin, int feature, int policy)
@@ -1842,7 +1842,7 @@ char* QWebEngineProfile_HttpUserAgent(void* ptr)
 
 void QWebEngineProfile_InstallUrlSchemeHandler(void* ptr, char* scheme, void* handler)
 {
-	static_cast<QWebEngineProfile*>(ptr)->installUrlSchemeHandler(QByteArray(scheme), static_cast<QWebEngineUrlSchemeHandler*>(handler));
+	static_cast<QWebEngineProfile*>(ptr)->installUrlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8()), static_cast<QWebEngineUrlSchemeHandler*>(handler));
 }
 
 int QWebEngineProfile_IsOffTheRecord(void* ptr)
@@ -1867,7 +1867,7 @@ void QWebEngineProfile_RemoveAllUrlSchemeHandlers(void* ptr)
 
 void QWebEngineProfile_RemoveUrlScheme(void* ptr, char* scheme)
 {
-	static_cast<QWebEngineProfile*>(ptr)->removeUrlScheme(QByteArray(scheme));
+	static_cast<QWebEngineProfile*>(ptr)->removeUrlScheme(QByteArray::fromHex(QString(scheme).toUtf8()));
 }
 
 void QWebEngineProfile_RemoveUrlSchemeHandler(void* ptr, void* handler)
@@ -1932,7 +1932,7 @@ char* QWebEngineProfile_StorageName(void* ptr)
 
 void* QWebEngineProfile_UrlSchemeHandler(void* ptr, char* scheme)
 {
-	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QWebEngineProfile*>(ptr)->urlSchemeHandler(QByteArray(scheme)));
+	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QWebEngineProfile*>(ptr)->urlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8())));
 }
 
 int QWebEngineProfile_VisitedLinksContainsUrl(void* ptr, void* url)
@@ -2227,7 +2227,7 @@ void QWebEngineUrlRequestInfo_Redirect(void* ptr, void* url)
 
 char* QWebEngineUrlRequestInfo_RequestMethod(void* ptr)
 {
-	return QString(static_cast<QWebEngineUrlRequestInfo*>(ptr)->requestMethod()).toUtf8().data();
+	return static_cast<QWebEngineUrlRequestInfo*>(ptr)->requestMethod().toHex().data();
 }
 
 void* QWebEngineUrlRequestInfo_RequestUrl(void* ptr)
@@ -2242,7 +2242,7 @@ int QWebEngineUrlRequestInfo_ResourceType(void* ptr)
 
 void QWebEngineUrlRequestInfo_SetHttpHeader(void* ptr, char* name, char* value)
 {
-	static_cast<QWebEngineUrlRequestInfo*>(ptr)->setHttpHeader(QByteArray(name), QByteArray(value));
+	static_cast<QWebEngineUrlRequestInfo*>(ptr)->setHttpHeader(QByteArray::fromHex(QString(name).toUtf8()), QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 class MyQWebEngineUrlRequestInterceptor: public QWebEngineUrlRequestInterceptor
@@ -2361,12 +2361,12 @@ void QWebEngineUrlRequestJob_Redirect(void* ptr, void* url)
 
 void QWebEngineUrlRequestJob_Reply(void* ptr, char* contentType, void* device)
 {
-	static_cast<QWebEngineUrlRequestJob*>(ptr)->reply(QByteArray(contentType), static_cast<QIODevice*>(device));
+	static_cast<QWebEngineUrlRequestJob*>(ptr)->reply(QByteArray::fromHex(QString(contentType).toUtf8()), static_cast<QIODevice*>(device));
 }
 
 char* QWebEngineUrlRequestJob_RequestMethod(void* ptr)
 {
-	return QString(static_cast<QWebEngineUrlRequestJob*>(ptr)->requestMethod()).toUtf8().data();
+	return static_cast<QWebEngineUrlRequestJob*>(ptr)->requestMethod().toHex().data();
 }
 
 void* QWebEngineUrlRequestJob_RequestUrl(void* ptr)
@@ -2637,7 +2637,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQWebEngineView_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQWebEngineView_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQWebEngineView_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWebEngineView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWebEngineView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQWebEngineView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQWebEngineView_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQWebEngineView_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -2735,7 +2735,7 @@ char* QWebEngineView_SelectedText(void* ptr)
 
 void QWebEngineView_SetContent(void* ptr, char* data, char* mimeType, void* baseUrl)
 {
-	static_cast<QWebEngineView*>(ptr)->setContent(QByteArray(data), QString(mimeType), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebEngineView*>(ptr)->setContent(QByteArray::fromHex(QString(data).toUtf8()), QString(mimeType), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebEngineView_SetHtml(void* ptr, char* html, void* baseUrl)
@@ -3297,12 +3297,12 @@ void QWebEngineView_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QWebEngineView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWebEngineView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWebEngineView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QWebEngineView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QWebEngineView_Raise(void* ptr)

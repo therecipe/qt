@@ -4,6 +4,7 @@ package main
 //#include "moc.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -2096,10 +2097,10 @@ func callbackDropArea_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventType
 	defer qt.Recovering("callback DropArea::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewDropAreaFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewDropAreaFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *DropArea) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -2124,7 +2125,7 @@ func (ptr *DropArea) NativeEvent(eventType string, message unsafe.Pointer, resul
 	defer qt.Recovering("DropArea::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.DropArea_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -2135,7 +2136,7 @@ func (ptr *DropArea) NativeEventDefault(eventType string, message unsafe.Pointer
 	defer qt.Recovering("DropArea::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.DropArea_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -4939,10 +4940,10 @@ func callbackDropSiteWindow_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eve
 	defer qt.Recovering("callback DropSiteWindow::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewDropSiteWindowFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewDropSiteWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *DropSiteWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -4967,7 +4968,7 @@ func (ptr *DropSiteWindow) NativeEvent(eventType string, message unsafe.Pointer,
 	defer qt.Recovering("DropSiteWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.DropSiteWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -4978,7 +4979,7 @@ func (ptr *DropSiteWindow) NativeEventDefault(eventType string, message unsafe.P
 	defer qt.Recovering("DropSiteWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.DropSiteWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

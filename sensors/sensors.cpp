@@ -4439,7 +4439,7 @@ int QSensor_Error(void* ptr)
 
 char* QSensor_Identifier(void* ptr)
 {
-	return QString(static_cast<QSensor*>(ptr)->identifier()).toUtf8().data();
+	return static_cast<QSensor*>(ptr)->identifier().toHex().data();
 }
 
 int QSensor_IsActive(void* ptr)
@@ -4504,7 +4504,7 @@ void QSensor_SetDataRate(void* ptr, int rate)
 
 void QSensor_SetIdentifier(void* ptr, char* identifier)
 {
-	static_cast<QSensor*>(ptr)->setIdentifier(QByteArray(identifier));
+	static_cast<QSensor*>(ptr)->setIdentifier(QByteArray::fromHex(QString(identifier).toUtf8()));
 }
 
 void QSensor_SetOutputRange(void* ptr, int index)
@@ -4524,7 +4524,7 @@ int QSensor_SkipDuplicates(void* ptr)
 
 char* QSensor_Type(void* ptr)
 {
-	return QString(static_cast<QSensor*>(ptr)->type()).toUtf8().data();
+	return static_cast<QSensor*>(ptr)->type().toHex().data();
 }
 
 int QSensor_UserOrientation(void* ptr)
@@ -4534,7 +4534,7 @@ int QSensor_UserOrientation(void* ptr)
 
 void* QSensor_NewQSensor(char* ty, void* parent)
 {
-	return new MyQSensor(QByteArray(ty), static_cast<QObject*>(parent));
+	return new MyQSensor(QByteArray::fromHex(QString(ty).toUtf8()), static_cast<QObject*>(parent));
 }
 
 void QSensor_ConnectActiveChanged(void* ptr)
@@ -4669,7 +4669,7 @@ void QSensor_DataRateChanged(void* ptr)
 
 char* QSensor_QSensor_DefaultSensorForType(char* ty)
 {
-	return QString(QSensor::defaultSensorForType(QByteArray(ty))).toUtf8().data();
+	return QSensor::defaultSensorForType(QByteArray::fromHex(QString(ty).toUtf8())).toHex().data();
 }
 
 void QSensor_ConnectEfficientBufferSizeChanged(void* ptr)
@@ -5726,22 +5726,22 @@ void* QSensorManager_QSensorManager_CreateBackend(void* sensor)
 
 int QSensorManager_QSensorManager_IsBackendRegistered(char* ty, char* identifier)
 {
-	return QSensorManager::isBackendRegistered(QByteArray(ty), QByteArray(identifier));
+	return QSensorManager::isBackendRegistered(QByteArray::fromHex(QString(ty).toUtf8()), QByteArray::fromHex(QString(identifier).toUtf8()));
 }
 
 void QSensorManager_QSensorManager_RegisterBackend(char* ty, char* identifier, void* factory)
 {
-	QSensorManager::registerBackend(QByteArray(ty), QByteArray(identifier), static_cast<QSensorBackendFactory*>(factory));
+	QSensorManager::registerBackend(QByteArray::fromHex(QString(ty).toUtf8()), QByteArray::fromHex(QString(identifier).toUtf8()), static_cast<QSensorBackendFactory*>(factory));
 }
 
 void QSensorManager_QSensorManager_SetDefaultBackend(char* ty, char* identifier)
 {
-	QSensorManager::setDefaultBackend(QByteArray(ty), QByteArray(identifier));
+	QSensorManager::setDefaultBackend(QByteArray::fromHex(QString(ty).toUtf8()), QByteArray::fromHex(QString(identifier).toUtf8()));
 }
 
 void QSensorManager_QSensorManager_UnregisterBackend(char* ty, char* identifier)
 {
-	QSensorManager::unregisterBackend(QByteArray(ty), QByteArray(identifier));
+	QSensorManager::unregisterBackend(QByteArray::fromHex(QString(ty).toUtf8()), QByteArray::fromHex(QString(identifier).toUtf8()));
 }
 
 class MyQSensorPluginInterface: public QSensorPluginInterface

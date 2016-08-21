@@ -6,6 +6,7 @@ package serialbus
 //#include "serialbus.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -68,7 +69,7 @@ func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string) *QCanBusDe
 	defer qt.Recovering("QCanBus::createDevice")
 
 	if ptr.Pointer() != nil {
-		var pluginC = C.CString(plugin)
+		var pluginC = C.CString(hex.EncodeToString([]byte(plugin)))
 		defer C.free(unsafe.Pointer(pluginC))
 		var interfaceNameC = C.CString(interfaceName)
 		defer C.free(unsafe.Pointer(interfaceNameC))
@@ -1690,7 +1691,7 @@ func (ptr *QCanBusFrame) Payload() string {
 	defer qt.Recovering("QCanBusFrame::payload")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCanBusFrame_Payload(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QCanBusFrame_Payload(ptr.Pointer())))
 	}
 	return ""
 }
@@ -1723,7 +1724,7 @@ func (ptr *QCanBusFrame) SetPayload(data string) {
 	defer qt.Recovering("QCanBusFrame::setPayload")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QCanBusFrame_SetPayload(ptr.Pointer(), dataC)
 	}
@@ -3694,7 +3695,7 @@ func NewQModbusPdu() *QModbusPdu {
 func NewQModbusPdu2(code QModbusPdu__FunctionCode, data string) *QModbusPdu {
 	defer qt.Recovering("QModbusPdu::QModbusPdu")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	return newQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu2(C.int(code), dataC))
 }
@@ -3709,7 +3710,7 @@ func (ptr *QModbusPdu) Data() string {
 	defer qt.Recovering("QModbusPdu::data")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QModbusPdu_Data(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QModbusPdu_Data(ptr.Pointer())))
 	}
 	return ""
 }
@@ -3754,7 +3755,7 @@ func (ptr *QModbusPdu) SetData(data string) {
 	defer qt.Recovering("QModbusPdu::setData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QModbusPdu_SetData(ptr.Pointer(), dataC)
 	}
@@ -4490,7 +4491,7 @@ func NewQModbusRequest() *QModbusRequest {
 func NewQModbusRequest3(code QModbusPdu__FunctionCode, data string) *QModbusRequest {
 	defer qt.Recovering("QModbusRequest::QModbusRequest")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	return newQModbusRequestFromPointer(C.QModbusRequest_NewQModbusRequest3(C.int(code), dataC))
 }
@@ -4628,7 +4629,7 @@ func NewQModbusResponse() *QModbusResponse {
 func NewQModbusResponse3(code QModbusPdu__FunctionCode, data string) *QModbusResponse {
 	defer qt.Recovering("QModbusResponse::QModbusResponse")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	return newQModbusResponseFromPointer(C.QModbusResponse_NewQModbusResponse3(C.int(code), dataC))
 }

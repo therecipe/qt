@@ -6,6 +6,7 @@ package nfc
 //#include "nfc.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -180,7 +181,7 @@ func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
 func QNdefMessage_FromByteArray(message string) *QNdefMessage {
 	defer qt.Recovering("QNdefMessage::fromByteArray")
 
-	var messageC = C.CString(message)
+	var messageC = C.CString(hex.EncodeToString([]byte(message)))
 	defer C.free(unsafe.Pointer(messageC))
 	var tmpValue = NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(messageC))
 	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
@@ -190,7 +191,7 @@ func QNdefMessage_FromByteArray(message string) *QNdefMessage {
 func (ptr *QNdefMessage) FromByteArray(message string) *QNdefMessage {
 	defer qt.Recovering("QNdefMessage::fromByteArray")
 
-	var messageC = C.CString(message)
+	var messageC = C.CString(hex.EncodeToString([]byte(message)))
 	defer C.free(unsafe.Pointer(messageC))
 	var tmpValue = NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(messageC))
 	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
@@ -201,7 +202,7 @@ func (ptr *QNdefMessage) ToByteArray() string {
 	defer qt.Recovering("QNdefMessage::toByteArray")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefMessage_ToByteArray(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNdefMessage_ToByteArray(ptr.Pointer())))
 	}
 	return ""
 }
@@ -291,9 +292,9 @@ func (ptr *QNdefNfcSmartPosterRecord) AddIcon2(ty string, data string) {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::addIcon")
 
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(ty)
+		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 		defer C.free(unsafe.Pointer(tyC))
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QNdefNfcSmartPosterRecord_AddIcon2(ptr.Pointer(), tyC, dataC)
 	}
@@ -334,7 +335,7 @@ func (ptr *QNdefNfcSmartPosterRecord) HasIcon(mimetype string) bool {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::hasIcon")
 
 	if ptr.Pointer() != nil {
-		var mimetypeC = C.CString(mimetype)
+		var mimetypeC = C.CString(hex.EncodeToString([]byte(mimetype)))
 		defer C.free(unsafe.Pointer(mimetypeC))
 		return C.QNdefNfcSmartPosterRecord_HasIcon(ptr.Pointer(), mimetypeC) != 0
 	}
@@ -374,9 +375,9 @@ func (ptr *QNdefNfcSmartPosterRecord) Icon(mimetype string) string {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::icon")
 
 	if ptr.Pointer() != nil {
-		var mimetypeC = C.CString(mimetype)
+		var mimetypeC = C.CString(hex.EncodeToString([]byte(mimetype)))
 		defer C.free(unsafe.Pointer(mimetypeC))
-		return C.GoString(C.QNdefNfcSmartPosterRecord_Icon(ptr.Pointer(), mimetypeC))
+		return qt.HexDecodeToString(C.GoString(C.QNdefNfcSmartPosterRecord_Icon(ptr.Pointer(), mimetypeC)))
 	}
 	return ""
 }
@@ -394,7 +395,7 @@ func (ptr *QNdefNfcSmartPosterRecord) RemoveIcon2(ty string) bool {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::removeIcon")
 
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(ty)
+		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 		defer C.free(unsafe.Pointer(tyC))
 		return C.QNdefNfcSmartPosterRecord_RemoveIcon2(ptr.Pointer(), tyC) != 0
 	}
@@ -433,7 +434,7 @@ func (ptr *QNdefNfcSmartPosterRecord) SetTypeInfo(ty string) {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::setTypeInfo")
 
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(ty)
+		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 		defer C.free(unsafe.Pointer(tyC))
 		C.QNdefNfcSmartPosterRecord_SetTypeInfo(ptr.Pointer(), tyC)
 	}
@@ -479,7 +480,7 @@ func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() string {
 	defer qt.Recovering("QNdefNfcSmartPosterRecord::typeInfo")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer())))
 	}
 	return ""
 }
@@ -779,7 +780,7 @@ func (ptr *QNdefRecord) Id() string {
 	defer qt.Recovering("QNdefRecord::id")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefRecord_Id(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNdefRecord_Id(ptr.Pointer())))
 	}
 	return ""
 }
@@ -797,7 +798,7 @@ func (ptr *QNdefRecord) Payload() string {
 	defer qt.Recovering("QNdefRecord::payload")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefRecord_Payload(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNdefRecord_Payload(ptr.Pointer())))
 	}
 	return ""
 }
@@ -806,7 +807,7 @@ func (ptr *QNdefRecord) SetId(id string) {
 	defer qt.Recovering("QNdefRecord::setId")
 
 	if ptr.Pointer() != nil {
-		var idC = C.CString(id)
+		var idC = C.CString(hex.EncodeToString([]byte(id)))
 		defer C.free(unsafe.Pointer(idC))
 		C.QNdefRecord_SetId(ptr.Pointer(), idC)
 	}
@@ -816,7 +817,7 @@ func (ptr *QNdefRecord) SetPayload(payload string) {
 	defer qt.Recovering("QNdefRecord::setPayload")
 
 	if ptr.Pointer() != nil {
-		var payloadC = C.CString(payload)
+		var payloadC = C.CString(hex.EncodeToString([]byte(payload)))
 		defer C.free(unsafe.Pointer(payloadC))
 		C.QNdefRecord_SetPayload(ptr.Pointer(), payloadC)
 	}
@@ -826,7 +827,7 @@ func (ptr *QNdefRecord) SetType(ty string) {
 	defer qt.Recovering("QNdefRecord::setType")
 
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(ty)
+		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 		defer C.free(unsafe.Pointer(tyC))
 		C.QNdefRecord_SetType(ptr.Pointer(), tyC)
 	}
@@ -844,7 +845,7 @@ func (ptr *QNdefRecord) Type() string {
 	defer qt.Recovering("QNdefRecord::type")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefRecord_Type(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNdefRecord_Type(ptr.Pointer())))
 	}
 	return ""
 }
@@ -963,7 +964,7 @@ func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRe
 	defer qt.Recovering("QNearFieldManager::registerNdefMessageHandler")
 
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(ty)
+		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 		defer C.free(unsafe.Pointer(tyC))
 		var methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
@@ -3085,10 +3086,10 @@ func callbackQNearFieldTarget_Uid(ptr unsafe.Pointer, ptrName *C.char) *C.char {
 	defer qt.Recovering("callback QNearFieldTarget::uid")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "uid"); signal != nil {
-		return C.CString(signal.(func() string)())
+		return C.CString(hex.EncodeToString([]byte(signal.(func() string)())))
 	}
 
-	return C.CString("")
+	return C.CString(hex.EncodeToString([]byte("")))
 }
 
 func (ptr *QNearFieldTarget) ConnectUid(f func() string) {
@@ -3113,7 +3114,7 @@ func (ptr *QNearFieldTarget) Uid() string {
 	defer qt.Recovering("QNearFieldTarget::uid")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNearFieldTarget_Uid(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNearFieldTarget_Uid(ptr.Pointer())))
 	}
 	return ""
 }

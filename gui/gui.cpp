@@ -4276,7 +4276,7 @@ int QFontDatabase_QFontDatabase_AddApplicationFont(char* fileName)
 
 int QFontDatabase_QFontDatabase_AddApplicationFontFromData(char* fontData)
 {
-	return QFontDatabase::addApplicationFontFromData(QByteArray(fontData));
+	return QFontDatabase::addApplicationFontFromData(QByteArray::fromHex(QString(fontData).toUtf8()));
 }
 
 char* QFontDatabase_QFontDatabase_ApplicationFontFamilies(int id)
@@ -6172,7 +6172,7 @@ int QImage_Format(void* ptr)
 
 void* QImage_QImage_FromData2(char* data, char* format)
 {
-	return new QImage(QImage::fromData(QByteArray(data), const_cast<const char*>(format)));
+	return new QImage(QImage::fromData(QByteArray::fromHex(QString(data).toUtf8()), const_cast<const char*>(format)));
 }
 
 int QImage_HasAlphaChannel(void* ptr)
@@ -6202,7 +6202,7 @@ int QImage_Load(void* ptr, char* fileName, char* format)
 
 int QImage_LoadFromData2(void* ptr, char* data, char* format)
 {
-	return static_cast<QImage*>(ptr)->loadFromData(QByteArray(data), const_cast<const char*>(format));
+	return static_cast<QImage*>(ptr)->loadFromData(QByteArray::fromHex(QString(data).toUtf8()), const_cast<const char*>(format));
 }
 
 void* QImage_PixelColor(void* ptr, void* position)
@@ -6409,7 +6409,7 @@ void* QImageIOHandler_Device(void* ptr)
 
 char* QImageIOHandler_Format(void* ptr)
 {
-	return QString(static_cast<QImageIOHandler*>(ptr)->format()).toUtf8().data();
+	return static_cast<QImageIOHandler*>(ptr)->format().toHex().data();
 }
 
 int QImageIOHandler_ImageCount(void* ptr)
@@ -6484,12 +6484,12 @@ void QImageIOHandler_SetDevice(void* ptr, void* device)
 
 void QImageIOHandler_SetFormat(void* ptr, char* format)
 {
-	static_cast<QImageIOHandler*>(ptr)->setFormat(QByteArray(format));
+	static_cast<QImageIOHandler*>(ptr)->setFormat(QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void QImageIOHandler_SetFormat2(void* ptr, char* format)
 {
-	static_cast<QImageIOHandler*>(ptr)->setFormat(QByteArray(format));
+	static_cast<QImageIOHandler*>(ptr)->setFormat(QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void QImageIOHandler_SetOption(void* ptr, int option, void* value)
@@ -6546,8 +6546,8 @@ class MyQImageIOPlugin: public QImageIOPlugin
 {
 public:
 	MyQImageIOPlugin(QObject *parent) : QImageIOPlugin(parent) {};
-	Capabilities capabilities(QIODevice * device, const QByteArray & format) const { return static_cast<QImageIOPlugin::Capability>(callbackQImageIOPlugin_Capabilities(const_cast<MyQImageIOPlugin*>(this), this->objectName().toUtf8().data(), device, QString(format).toUtf8().data())); };
-	QImageIOHandler * create(QIODevice * device, const QByteArray & format) const { return static_cast<QImageIOHandler*>(callbackQImageIOPlugin_Create(const_cast<MyQImageIOPlugin*>(this), this->objectName().toUtf8().data(), device, QString(format).toUtf8().data())); };
+	Capabilities capabilities(QIODevice * device, const QByteArray & format) const { return static_cast<QImageIOPlugin::Capability>(callbackQImageIOPlugin_Capabilities(const_cast<MyQImageIOPlugin*>(this), this->objectName().toUtf8().data(), device, format.toHex().data())); };
+	QImageIOHandler * create(QIODevice * device, const QByteArray & format) const { return static_cast<QImageIOHandler*>(callbackQImageIOPlugin_Create(const_cast<MyQImageIOPlugin*>(this), this->objectName().toUtf8().data(), device, format.toHex().data())); };
 	void timerEvent(QTimerEvent * event) { callbackQImageIOPlugin_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQImageIOPlugin_ChildEvent(this, this->objectName().toUtf8().data(), event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQImageIOPlugin_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
@@ -6566,12 +6566,12 @@ void* QImageIOPlugin_NewQImageIOPlugin(void* parent)
 
 int QImageIOPlugin_Capabilities(void* ptr, void* device, char* format)
 {
-	return static_cast<QImageIOPlugin*>(ptr)->capabilities(static_cast<QIODevice*>(device), QByteArray(format));
+	return static_cast<QImageIOPlugin*>(ptr)->capabilities(static_cast<QIODevice*>(device), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void* QImageIOPlugin_Create(void* ptr, void* device, char* format)
 {
-	return static_cast<QImageIOPlugin*>(ptr)->create(static_cast<QIODevice*>(device), QByteArray(format));
+	return static_cast<QImageIOPlugin*>(ptr)->create(static_cast<QIODevice*>(device), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void QImageIOPlugin_DestroyQImageIOPlugin(void* ptr)
@@ -6676,12 +6676,12 @@ void* QImageReader_NewQImageReader()
 
 void* QImageReader_NewQImageReader2(void* device, char* format)
 {
-	return new QImageReader(static_cast<QIODevice*>(device), QByteArray(format));
+	return new QImageReader(static_cast<QIODevice*>(device), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void* QImageReader_NewQImageReader3(char* fileName, char* format)
 {
-	return new QImageReader(QString(fileName), QByteArray(format));
+	return new QImageReader(QString(fileName), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 int QImageReader_AutoDetectImageFormat(void* ptr)
@@ -6746,7 +6746,7 @@ char* QImageReader_FileName(void* ptr)
 
 char* QImageReader_Format(void* ptr)
 {
-	return QString(static_cast<QImageReader*>(ptr)->format()).toUtf8().data();
+	return static_cast<QImageReader*>(ptr)->format().toHex().data();
 }
 
 int QImageReader_ImageCount(void* ptr)
@@ -6756,12 +6756,12 @@ int QImageReader_ImageCount(void* ptr)
 
 char* QImageReader_QImageReader_ImageFormat3(void* device)
 {
-	return QString(QImageReader::imageFormat(static_cast<QIODevice*>(device))).toUtf8().data();
+	return QImageReader::imageFormat(static_cast<QIODevice*>(device)).toHex().data();
 }
 
 char* QImageReader_QImageReader_ImageFormat2(char* fileName)
 {
-	return QString(QImageReader::imageFormat(QString(fileName))).toUtf8().data();
+	return QImageReader::imageFormat(QString(fileName)).toHex().data();
 }
 
 int QImageReader_ImageFormat(void* ptr)
@@ -6851,7 +6851,7 @@ void QImageReader_SetFileName(void* ptr, char* fileName)
 
 void QImageReader_SetFormat(void* ptr, char* format)
 {
-	static_cast<QImageReader*>(ptr)->setFormat(QByteArray(format));
+	static_cast<QImageReader*>(ptr)->setFormat(QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void QImageReader_SetQuality(void* ptr, int quality)
@@ -6876,7 +6876,7 @@ void* QImageReader_Size(void* ptr)
 
 char* QImageReader_SubType(void* ptr)
 {
-	return QString(static_cast<QImageReader*>(ptr)->subType()).toUtf8().data();
+	return static_cast<QImageReader*>(ptr)->subType().toHex().data();
 }
 
 int QImageReader_SupportsAnimation(void* ptr)
@@ -6916,12 +6916,12 @@ void* QImageWriter_NewQImageWriter()
 
 void* QImageWriter_NewQImageWriter2(void* device, char* format)
 {
-	return new QImageWriter(static_cast<QIODevice*>(device), QByteArray(format));
+	return new QImageWriter(static_cast<QIODevice*>(device), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void* QImageWriter_NewQImageWriter3(char* fileName, char* format)
 {
-	return new QImageWriter(QString(fileName), QByteArray(format));
+	return new QImageWriter(QString(fileName), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 int QImageWriter_CanWrite(void* ptr)
@@ -6956,7 +6956,7 @@ char* QImageWriter_FileName(void* ptr)
 
 char* QImageWriter_Format(void* ptr)
 {
-	return QString(static_cast<QImageWriter*>(ptr)->format()).toUtf8().data();
+	return static_cast<QImageWriter*>(ptr)->format().toHex().data();
 }
 
 int QImageWriter_OptimizedWrite(void* ptr)
@@ -6991,7 +6991,7 @@ void QImageWriter_SetFileName(void* ptr, char* fileName)
 
 void QImageWriter_SetFormat(void* ptr, char* format)
 {
-	static_cast<QImageWriter*>(ptr)->setFormat(QByteArray(format));
+	static_cast<QImageWriter*>(ptr)->setFormat(QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void QImageWriter_SetOptimizedWrite(void* ptr, int optimize)
@@ -7011,7 +7011,7 @@ void QImageWriter_SetQuality(void* ptr, int quality)
 
 void QImageWriter_SetSubType(void* ptr, char* ty)
 {
-	static_cast<QImageWriter*>(ptr)->setSubType(QByteArray(ty));
+	static_cast<QImageWriter*>(ptr)->setSubType(QByteArray::fromHex(QString(ty).toUtf8()));
 }
 
 void QImageWriter_SetText(void* ptr, char* key, char* text)
@@ -7026,7 +7026,7 @@ void QImageWriter_SetTransformation(void* ptr, int transform)
 
 char* QImageWriter_SubType(void* ptr)
 {
-	return QString(static_cast<QImageWriter*>(ptr)->subType()).toUtf8().data();
+	return static_cast<QImageWriter*>(ptr)->subType().toHex().data();
 }
 
 int QImageWriter_SupportsOption(void* ptr, int option)
@@ -8082,7 +8082,7 @@ int QMovie_Speed(void* ptr)
 
 void* QMovie_NewQMovie2(void* device, char* format, void* parent)
 {
-	return new MyQMovie(static_cast<QIODevice*>(device), QByteArray(format), static_cast<QObject*>(parent));
+	return new MyQMovie(static_cast<QIODevice*>(device), QByteArray::fromHex(QString(format).toUtf8()), static_cast<QObject*>(parent));
 }
 
 void* QMovie_NewQMovie(void* parent)
@@ -8092,7 +8092,7 @@ void* QMovie_NewQMovie(void* parent)
 
 void* QMovie_NewQMovie3(char* fileName, char* format, void* parent)
 {
-	return new MyQMovie(QString(fileName), QByteArray(format), static_cast<QObject*>(parent));
+	return new MyQMovie(QString(fileName), QByteArray::fromHex(QString(format).toUtf8()), static_cast<QObject*>(parent));
 }
 
 void* QMovie_BackgroundColor(void* ptr)
@@ -8157,7 +8157,7 @@ void QMovie_Finished(void* ptr)
 
 char* QMovie_Format(void* ptr)
 {
-	return QString(static_cast<QMovie*>(ptr)->format()).toUtf8().data();
+	return static_cast<QMovie*>(ptr)->format().toHex().data();
 }
 
 void QMovie_ConnectFrameChanged(void* ptr)
@@ -8249,7 +8249,7 @@ void QMovie_SetFileName(void* ptr, char* fileName)
 
 void QMovie_SetFormat(void* ptr, char* format)
 {
-	static_cast<QMovie*>(ptr)->setFormat(QByteArray(format));
+	static_cast<QMovie*>(ptr)->setFormat(QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void QMovie_SetPaused(void* ptr, int paused)
@@ -9306,7 +9306,7 @@ public:
 	void mousePressEvent(QMouseEvent * ev) { callbackQPaintDeviceWindow_MousePressEvent(this, this->objectName().toUtf8().data(), ev); };
 	void mouseReleaseEvent(QMouseEvent * ev) { callbackQPaintDeviceWindow_MouseReleaseEvent(this, this->objectName().toUtf8().data(), ev); };
 	void moveEvent(QMoveEvent * ev) { callbackQPaintDeviceWindow_MoveEvent(this, this->objectName().toUtf8().data(), ev); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPaintDeviceWindow_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPaintDeviceWindow_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQPaintDeviceWindow_Raise(this, this->objectName().toUtf8().data()); };
 	void requestActivate() { callbackQPaintDeviceWindow_RequestActivate(this, this->objectName().toUtf8().data()); };
 	void requestUpdate() { callbackQPaintDeviceWindow_RequestUpdate(this, this->objectName().toUtf8().data()); };
@@ -9643,12 +9643,12 @@ void QPaintDeviceWindow_MoveEventDefault(void* ptr, void* ev)
 
 int QPaintDeviceWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QPaintDeviceWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QPaintDeviceWindow_Raise(void* ptr)
@@ -12534,7 +12534,7 @@ int QPixmap_Load(void* ptr, char* fileName, char* format, int flags)
 
 int QPixmap_LoadFromData2(void* ptr, char* data, char* format, int flags)
 {
-	return static_cast<QPixmap*>(ptr)->loadFromData(QByteArray(data), const_cast<const char*>(format), static_cast<Qt::ImageConversionFlag>(flags));
+	return static_cast<QPixmap*>(ptr)->loadFromData(QByteArray::fromHex(QString(data).toUtf8()), const_cast<const char*>(format), static_cast<Qt::ImageConversionFlag>(flags));
 }
 
 int QPixmap_Save2(void* ptr, void* device, char* format, int quality)
@@ -13306,12 +13306,12 @@ void QRasterWindow_MoveEventDefault(void* ptr, void* ev)
 
 int QRasterWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QRasterWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QRasterWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QRasterWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QRasterWindow*>(ptr)->QRasterWindow::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QRasterWindow*>(ptr)->QRasterWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QRasterWindow_Raise(void* ptr)
@@ -13571,7 +13571,7 @@ void* QRawFont_NewQRawFont()
 
 void* QRawFont_NewQRawFont3(char* fontData, double pixelSize, int hintingPreference)
 {
-	return new QRawFont(QByteArray(fontData), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
+	return new QRawFont(QByteArray::fromHex(QString(fontData).toUtf8()), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
 }
 
 void* QRawFont_NewQRawFont4(void* other)
@@ -13606,7 +13606,7 @@ char* QRawFont_FamilyName(void* ptr)
 
 char* QRawFont_FontTable(void* ptr, char* tagName)
 {
-	return QString(static_cast<QRawFont*>(ptr)->fontTable(const_cast<const char*>(tagName))).toUtf8().data();
+	return static_cast<QRawFont*>(ptr)->fontTable(const_cast<const char*>(tagName)).toHex().data();
 }
 
 void* QRawFont_QRawFont_FromFont(void* font, int writingSystem)
@@ -13636,7 +13636,7 @@ double QRawFont_LineThickness(void* ptr)
 
 void QRawFont_LoadFromData(void* ptr, char* fontData, double pixelSize, int hintingPreference)
 {
-	static_cast<QRawFont*>(ptr)->loadFromData(QByteArray(fontData), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
+	static_cast<QRawFont*>(ptr)->loadFromData(QByteArray::fromHex(QString(fontData).toUtf8()), static_cast<double>(pixelSize), static_cast<QFont::HintingPreference>(hintingPreference));
 }
 
 void QRawFont_LoadFromFile(void* ptr, char* fileName, double pixelSize, int hintingPreference)
@@ -18400,7 +18400,7 @@ void QTextDocument_SetPlainText(void* ptr, char* text)
 
 char* QTextDocument_ToHtml(void* ptr, char* encoding)
 {
-	return static_cast<QTextDocument*>(ptr)->toHtml(QByteArray(encoding)).toUtf8().data();
+	return static_cast<QTextDocument*>(ptr)->toHtml(QByteArray::fromHex(QString(encoding).toUtf8())).toUtf8().data();
 }
 
 char* QTextDocument_ToPlainText(void* ptr)
@@ -18585,7 +18585,7 @@ int QTextDocumentFragment_IsEmpty(void* ptr)
 
 char* QTextDocumentFragment_ToHtml(void* ptr, char* encoding)
 {
-	return static_cast<QTextDocumentFragment*>(ptr)->toHtml(QByteArray(encoding)).toUtf8().data();
+	return static_cast<QTextDocumentFragment*>(ptr)->toHtml(QByteArray::fromHex(QString(encoding).toUtf8())).toUtf8().data();
 }
 
 char* QTextDocumentFragment_ToPlainText(void* ptr)
@@ -18605,12 +18605,12 @@ void* QTextDocumentWriter_NewQTextDocumentWriter()
 
 void* QTextDocumentWriter_NewQTextDocumentWriter2(void* device, char* format)
 {
-	return new QTextDocumentWriter(static_cast<QIODevice*>(device), QByteArray(format));
+	return new QTextDocumentWriter(static_cast<QIODevice*>(device), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void* QTextDocumentWriter_NewQTextDocumentWriter3(char* fileName, char* format)
 {
-	return new QTextDocumentWriter(QString(fileName), QByteArray(format));
+	return new QTextDocumentWriter(QString(fileName), QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 void* QTextDocumentWriter_Codec(void* ptr)
@@ -18630,7 +18630,7 @@ char* QTextDocumentWriter_FileName(void* ptr)
 
 char* QTextDocumentWriter_Format(void* ptr)
 {
-	return QString(static_cast<QTextDocumentWriter*>(ptr)->format()).toUtf8().data();
+	return static_cast<QTextDocumentWriter*>(ptr)->format().toHex().data();
 }
 
 void QTextDocumentWriter_SetCodec(void* ptr, void* codec)
@@ -18650,7 +18650,7 @@ void QTextDocumentWriter_SetFileName(void* ptr, char* fileName)
 
 void QTextDocumentWriter_SetFormat(void* ptr, char* format)
 {
-	static_cast<QTextDocumentWriter*>(ptr)->setFormat(QByteArray(format));
+	static_cast<QTextDocumentWriter*>(ptr)->setFormat(QByteArray::fromHex(QString(format).toUtf8()));
 }
 
 int QTextDocumentWriter_Write(void* ptr, void* document)
@@ -21328,7 +21328,7 @@ public:
 	void mousePressEvent(QMouseEvent * ev) { callbackQWindow_MousePressEvent(this, this->objectName().toUtf8().data(), ev); };
 	void mouseReleaseEvent(QMouseEvent * ev) { callbackQWindow_MouseReleaseEvent(this, this->objectName().toUtf8().data(), ev); };
 	void moveEvent(QMoveEvent * ev) { callbackQWindow_MoveEvent(this, this->objectName().toUtf8().data(), ev); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWindow_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void Signal_OpacityChanged(qreal opacity) { callbackQWindow_OpacityChanged(this, this->objectName().toUtf8().data(), static_cast<double>(opacity)); };
 	void raise() { callbackQWindow_Raise(this, this->objectName().toUtf8().data()); };
 	void requestActivate() { callbackQWindow_RequestActivate(this, this->objectName().toUtf8().data()); };
@@ -21917,12 +21917,12 @@ void QWindow_MoveEventDefault(void* ptr, void* ev)
 
 int QWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QWindow_ConnectOpacityChanged(void* ptr)

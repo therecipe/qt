@@ -32,7 +32,7 @@ int QSignalSpy_IsValid(void* ptr)
 
 char* QSignalSpy_Signal(void* ptr)
 {
-	return QString(static_cast<QSignalSpy*>(ptr)->signal()).toUtf8().data();
+	return static_cast<QSignalSpy*>(ptr)->signal().toHex().data();
 }
 
 int QSignalSpy_Wait(void* ptr, int timeout)

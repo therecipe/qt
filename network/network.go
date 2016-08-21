@@ -6,6 +6,7 @@ package network
 //#include "network.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -4304,7 +4305,7 @@ func (ptr *QHttpMultiPart) Boundary() string {
 	defer qt.Recovering("QHttpMultiPart::boundary")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHttpMultiPart_Boundary(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QHttpMultiPart_Boundary(ptr.Pointer())))
 	}
 	return ""
 }
@@ -4313,7 +4314,7 @@ func (ptr *QHttpMultiPart) SetBoundary(boundary string) {
 	defer qt.Recovering("QHttpMultiPart::setBoundary")
 
 	if ptr.Pointer() != nil {
-		var boundaryC = C.CString(boundary)
+		var boundaryC = C.CString(hex.EncodeToString([]byte(boundary)))
 		defer C.free(unsafe.Pointer(boundaryC))
 		C.QHttpMultiPart_SetBoundary(ptr.Pointer(), boundaryC)
 	}
@@ -4808,7 +4809,7 @@ func (ptr *QHttpPart) SetBody(body string) {
 	defer qt.Recovering("QHttpPart::setBody")
 
 	if ptr.Pointer() != nil {
-		var bodyC = C.CString(body)
+		var bodyC = C.CString(hex.EncodeToString([]byte(body)))
 		defer C.free(unsafe.Pointer(bodyC))
 		C.QHttpPart_SetBody(ptr.Pointer(), bodyC)
 	}
@@ -4834,9 +4835,9 @@ func (ptr *QHttpPart) SetRawHeader(headerName string, headerValue string) {
 	defer qt.Recovering("QHttpPart::setRawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
-		var headerValueC = C.CString(headerValue)
+		var headerValueC = C.CString(hex.EncodeToString([]byte(headerValue)))
 		defer C.free(unsafe.Pointer(headerValueC))
 		C.QHttpPart_SetRawHeader(ptr.Pointer(), headerNameC, headerValueC)
 	}
@@ -7399,7 +7400,7 @@ func (ptr *QNetworkAccessManager) Post2(request QNetworkRequest_ITF, data string
 	defer qt.Recovering("QNetworkAccessManager::post")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post2(ptr.Pointer(), PointerFromQNetworkRequest(request), dataC))
 	}
@@ -7511,7 +7512,7 @@ func (ptr *QNetworkAccessManager) Put2(request QNetworkRequest_ITF, data string)
 	defer qt.Recovering("QNetworkAccessManager::put")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put2(ptr.Pointer(), PointerFromQNetworkRequest(request), dataC))
 	}
@@ -7522,7 +7523,7 @@ func (ptr *QNetworkAccessManager) SendCustomRequest(request QNetworkRequest_ITF,
 	defer qt.Recovering("QNetworkAccessManager::sendCustomRequest")
 
 	if ptr.Pointer() != nil {
-		var verbC = C.CString(verb)
+		var verbC = C.CString(hex.EncodeToString([]byte(verb)))
 		defer C.free(unsafe.Pointer(verbC))
 		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_SendCustomRequest(ptr.Pointer(), PointerFromQNetworkRequest(request), verbC, core.PointerFromQIODevice(data)))
 	}
@@ -9364,9 +9365,9 @@ func newQNetworkCookieFromPointer(ptr unsafe.Pointer) *QNetworkCookie {
 func NewQNetworkCookie(name string, value string) *QNetworkCookie {
 	defer qt.Recovering("QNetworkCookie::QNetworkCookie")
 
-	var nameC = C.CString(name)
+	var nameC = C.CString(hex.EncodeToString([]byte(name)))
 	defer C.free(unsafe.Pointer(nameC))
-	var valueC = C.CString(value)
+	var valueC = C.CString(hex.EncodeToString([]byte(value)))
 	defer C.free(unsafe.Pointer(valueC))
 	return newQNetworkCookieFromPointer(C.QNetworkCookie_NewQNetworkCookie(nameC, valueC))
 }
@@ -9437,7 +9438,7 @@ func (ptr *QNetworkCookie) Name() string {
 	defer qt.Recovering("QNetworkCookie::name")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkCookie_Name(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNetworkCookie_Name(ptr.Pointer())))
 	}
 	return ""
 }
@@ -9489,7 +9490,7 @@ func (ptr *QNetworkCookie) SetName(cookieName string) {
 	defer qt.Recovering("QNetworkCookie::setName")
 
 	if ptr.Pointer() != nil {
-		var cookieNameC = C.CString(cookieName)
+		var cookieNameC = C.CString(hex.EncodeToString([]byte(cookieName)))
 		defer C.free(unsafe.Pointer(cookieNameC))
 		C.QNetworkCookie_SetName(ptr.Pointer(), cookieNameC)
 	}
@@ -9517,7 +9518,7 @@ func (ptr *QNetworkCookie) SetValue(value string) {
 	defer qt.Recovering("QNetworkCookie::setValue")
 
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
+		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
 		C.QNetworkCookie_SetValue(ptr.Pointer(), valueC)
 	}
@@ -9535,7 +9536,7 @@ func (ptr *QNetworkCookie) ToRawForm(form QNetworkCookie__RawForm) string {
 	defer qt.Recovering("QNetworkCookie::toRawForm")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkCookie_ToRawForm(ptr.Pointer(), C.int(form)))
+		return qt.HexDecodeToString(C.GoString(C.QNetworkCookie_ToRawForm(ptr.Pointer(), C.int(form))))
 	}
 	return ""
 }
@@ -9544,7 +9545,7 @@ func (ptr *QNetworkCookie) Value() string {
 	defer qt.Recovering("QNetworkCookie::value")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNetworkCookie_Value(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QNetworkCookie_Value(ptr.Pointer())))
 	}
 	return ""
 }
@@ -11481,7 +11482,7 @@ func (ptr *QNetworkProxy) HasRawHeader(headerName string) bool {
 	defer qt.Recovering("QNetworkProxy::hasRawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
 		return C.QNetworkProxy_HasRawHeader(ptr.Pointer(), headerNameC) != 0
 	}
@@ -11539,9 +11540,9 @@ func (ptr *QNetworkProxy) RawHeader(headerName string) string {
 	defer qt.Recovering("QNetworkProxy::rawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
-		return C.GoString(C.QNetworkProxy_RawHeader(ptr.Pointer(), headerNameC))
+		return qt.HexDecodeToString(C.GoString(C.QNetworkProxy_RawHeader(ptr.Pointer(), headerNameC)))
 	}
 	return ""
 }
@@ -11598,9 +11599,9 @@ func (ptr *QNetworkProxy) SetRawHeader(headerName string, headerValue string) {
 	defer qt.Recovering("QNetworkProxy::setRawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
-		var headerValueC = C.CString(headerValue)
+		var headerValueC = C.CString(hex.EncodeToString([]byte(headerValue)))
 		defer C.free(unsafe.Pointer(headerValueC))
 		C.QNetworkProxy_SetRawHeader(ptr.Pointer(), headerNameC, headerValueC)
 	}
@@ -12425,7 +12426,7 @@ func (ptr *QNetworkReply) HasRawHeader(headerName string) bool {
 	defer qt.Recovering("QNetworkReply::hasRawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
 		return C.QNetworkReply_HasRawHeader(ptr.Pointer(), headerNameC) != 0
 	}
@@ -12600,9 +12601,9 @@ func (ptr *QNetworkReply) RawHeader(headerName string) string {
 	defer qt.Recovering("QNetworkReply::rawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
-		return C.GoString(C.QNetworkReply_RawHeader(ptr.Pointer(), headerNameC))
+		return qt.HexDecodeToString(C.GoString(C.QNetworkReply_RawHeader(ptr.Pointer(), headerNameC)))
 	}
 	return ""
 }
@@ -12709,9 +12710,9 @@ func (ptr *QNetworkReply) SetRawHeader(headerName string, value string) {
 	defer qt.Recovering("QNetworkReply::setRawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
-		var valueC = C.CString(value)
+		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
 		C.QNetworkReply_SetRawHeader(ptr.Pointer(), headerNameC, valueC)
 	}
@@ -14077,7 +14078,7 @@ func (ptr *QNetworkRequest) HasRawHeader(headerName string) bool {
 	defer qt.Recovering("QNetworkRequest::hasRawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
 		return C.QNetworkRequest_HasRawHeader(ptr.Pointer(), headerNameC) != 0
 	}
@@ -14126,9 +14127,9 @@ func (ptr *QNetworkRequest) RawHeader(headerName string) string {
 	defer qt.Recovering("QNetworkRequest::rawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
-		return C.GoString(C.QNetworkRequest_RawHeader(ptr.Pointer(), headerNameC))
+		return qt.HexDecodeToString(C.GoString(C.QNetworkRequest_RawHeader(ptr.Pointer(), headerNameC)))
 	}
 	return ""
 }
@@ -14177,9 +14178,9 @@ func (ptr *QNetworkRequest) SetRawHeader(headerName string, headerValue string) 
 	defer qt.Recovering("QNetworkRequest::setRawHeader")
 
 	if ptr.Pointer() != nil {
-		var headerNameC = C.CString(headerName)
+		var headerNameC = C.CString(hex.EncodeToString([]byte(headerName)))
 		defer C.free(unsafe.Pointer(headerNameC))
-		var headerValueC = C.CString(headerValue)
+		var headerValueC = C.CString(hex.EncodeToString([]byte(headerValue)))
 		defer C.free(unsafe.Pointer(headerValueC))
 		C.QNetworkRequest_SetRawHeader(ptr.Pointer(), headerNameC, headerValueC)
 	}
@@ -15429,7 +15430,7 @@ func (ptr *QSslCertificate) Digest(algorithm core.QCryptographicHash__Algorithm)
 	defer qt.Recovering("QSslCertificate::digest")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslCertificate_Digest(ptr.Pointer(), C.int(algorithm)))
+		return qt.HexDecodeToString(C.GoString(C.QSslCertificate_Digest(ptr.Pointer(), C.int(algorithm))))
 	}
 	return ""
 }
@@ -15513,7 +15514,7 @@ func (ptr *QSslCertificate) IssuerInfo2(attribute string) []string {
 	defer qt.Recovering("QSslCertificate::issuerInfo")
 
 	if ptr.Pointer() != nil {
-		var attributeC = C.CString(attribute)
+		var attributeC = C.CString(hex.EncodeToString([]byte(attribute)))
 		defer C.free(unsafe.Pointer(attributeC))
 		return strings.Split(C.GoString(C.QSslCertificate_IssuerInfo2(ptr.Pointer(), attributeC)), "|")
 	}
@@ -15535,7 +15536,7 @@ func (ptr *QSslCertificate) SerialNumber() string {
 	defer qt.Recovering("QSslCertificate::serialNumber")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslCertificate_SerialNumber(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslCertificate_SerialNumber(ptr.Pointer())))
 	}
 	return ""
 }
@@ -15553,7 +15554,7 @@ func (ptr *QSslCertificate) SubjectInfo2(attribute string) []string {
 	defer qt.Recovering("QSslCertificate::subjectInfo")
 
 	if ptr.Pointer() != nil {
-		var attributeC = C.CString(attribute)
+		var attributeC = C.CString(hex.EncodeToString([]byte(attribute)))
 		defer C.free(unsafe.Pointer(attributeC))
 		return strings.Split(C.GoString(C.QSslCertificate_SubjectInfo2(ptr.Pointer(), attributeC)), "|")
 	}
@@ -15564,7 +15565,7 @@ func (ptr *QSslCertificate) ToDer() string {
 	defer qt.Recovering("QSslCertificate::toDer")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslCertificate_ToDer(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslCertificate_ToDer(ptr.Pointer())))
 	}
 	return ""
 }
@@ -15573,7 +15574,7 @@ func (ptr *QSslCertificate) ToPem() string {
 	defer qt.Recovering("QSslCertificate::toPem")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslCertificate_ToPem(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslCertificate_ToPem(ptr.Pointer())))
 	}
 	return ""
 }
@@ -15591,7 +15592,7 @@ func (ptr *QSslCertificate) Version() string {
 	defer qt.Recovering("QSslCertificate::version")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslCertificate_Version(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslCertificate_Version(ptr.Pointer())))
 	}
 	return ""
 }
@@ -15982,7 +15983,7 @@ func (ptr *QSslConfiguration) NextNegotiatedProtocol() string {
 	defer qt.Recovering("QSslConfiguration::nextNegotiatedProtocol")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslConfiguration_NextNegotiatedProtocol(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslConfiguration_NextNegotiatedProtocol(ptr.Pointer())))
 	}
 	return ""
 }
@@ -16051,7 +16052,7 @@ func (ptr *QSslConfiguration) SessionTicket() string {
 	defer qt.Recovering("QSslConfiguration::sessionTicket")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslConfiguration_SessionTicket(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslConfiguration_SessionTicket(ptr.Pointer())))
 	}
 	return ""
 }
@@ -16113,7 +16114,7 @@ func (ptr *QSslConfiguration) SetSessionTicket(sessionTicket string) {
 	defer qt.Recovering("QSslConfiguration::setSessionTicket")
 
 	if ptr.Pointer() != nil {
-		var sessionTicketC = C.CString(sessionTicket)
+		var sessionTicketC = C.CString(hex.EncodeToString([]byte(sessionTicket)))
 		defer C.free(unsafe.Pointer(sessionTicketC))
 		C.QSslConfiguration_SetSessionTicket(ptr.Pointer(), sessionTicketC)
 	}
@@ -16464,9 +16465,9 @@ func (ptr *QSslKey) ToDer(passPhrase string) string {
 	defer qt.Recovering("QSslKey::toDer")
 
 	if ptr.Pointer() != nil {
-		var passPhraseC = C.CString(passPhrase)
+		var passPhraseC = C.CString(hex.EncodeToString([]byte(passPhrase)))
 		defer C.free(unsafe.Pointer(passPhraseC))
-		return C.GoString(C.QSslKey_ToDer(ptr.Pointer(), passPhraseC))
+		return qt.HexDecodeToString(C.GoString(C.QSslKey_ToDer(ptr.Pointer(), passPhraseC)))
 	}
 	return ""
 }
@@ -16475,9 +16476,9 @@ func (ptr *QSslKey) ToPem(passPhrase string) string {
 	defer qt.Recovering("QSslKey::toPem")
 
 	if ptr.Pointer() != nil {
-		var passPhraseC = C.CString(passPhrase)
+		var passPhraseC = C.CString(hex.EncodeToString([]byte(passPhrase)))
 		defer C.free(unsafe.Pointer(passPhraseC))
-		return C.GoString(C.QSslKey_ToPem(ptr.Pointer(), passPhraseC))
+		return qt.HexDecodeToString(C.GoString(C.QSslKey_ToPem(ptr.Pointer(), passPhraseC)))
 	}
 	return ""
 }
@@ -16550,7 +16551,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) Identity() string {
 	defer qt.Recovering("QSslPreSharedKeyAuthenticator::identity")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslPreSharedKeyAuthenticator_Identity(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslPreSharedKeyAuthenticator_Identity(ptr.Pointer())))
 	}
 	return ""
 }
@@ -16559,7 +16560,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) IdentityHint() string {
 	defer qt.Recovering("QSslPreSharedKeyAuthenticator::identityHint")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslPreSharedKeyAuthenticator_IdentityHint(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslPreSharedKeyAuthenticator_IdentityHint(ptr.Pointer())))
 	}
 	return ""
 }
@@ -16586,7 +16587,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) PreSharedKey() string {
 	defer qt.Recovering("QSslPreSharedKeyAuthenticator::preSharedKey")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSslPreSharedKeyAuthenticator_PreSharedKey(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSslPreSharedKeyAuthenticator_PreSharedKey(ptr.Pointer())))
 	}
 	return ""
 }
@@ -16595,7 +16596,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) SetIdentity(identity string) {
 	defer qt.Recovering("QSslPreSharedKeyAuthenticator::setIdentity")
 
 	if ptr.Pointer() != nil {
-		var identityC = C.CString(identity)
+		var identityC = C.CString(hex.EncodeToString([]byte(identity)))
 		defer C.free(unsafe.Pointer(identityC))
 		C.QSslPreSharedKeyAuthenticator_SetIdentity(ptr.Pointer(), identityC)
 	}
@@ -16605,7 +16606,7 @@ func (ptr *QSslPreSharedKeyAuthenticator) SetPreSharedKey(preSharedKey string) {
 	defer qt.Recovering("QSslPreSharedKeyAuthenticator::setPreSharedKey")
 
 	if ptr.Pointer() != nil {
-		var preSharedKeyC = C.CString(preSharedKey)
+		var preSharedKeyC = C.CString(hex.EncodeToString([]byte(preSharedKey)))
 		defer C.free(unsafe.Pointer(preSharedKeyC))
 		C.QSslPreSharedKeyAuthenticator_SetPreSharedKey(ptr.Pointer(), preSharedKeyC)
 	}

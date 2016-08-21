@@ -670,7 +670,7 @@ public:
 	MyQSvgRenderer(const QByteArray &contents, QObject *parent) : QSvgRenderer(contents, parent) {};
 	MyQSvgRenderer(const QString &filename, QObject *parent) : QSvgRenderer(filename, parent) {};
 	bool load(QXmlStreamReader * contents) { return callbackQSvgRenderer_Load3(this, this->objectName().toUtf8().data(), contents) != 0; };
-	bool load(const QByteArray & contents) { return callbackQSvgRenderer_Load2(this, this->objectName().toUtf8().data(), QString(contents).toUtf8().data()) != 0; };
+	bool load(const QByteArray & contents) { return callbackQSvgRenderer_Load2(this, this->objectName().toUtf8().data(), contents.toHex().data()) != 0; };
 	bool load(const QString & filename) { return callbackQSvgRenderer_Load(this, this->objectName().toUtf8().data(), filename.toUtf8().data()) != 0; };
 	void render(QPainter * painter) { callbackQSvgRenderer_Render(this, this->objectName().toUtf8().data(), painter); };
 	void render(QPainter * painter, const QRectF & bounds) { callbackQSvgRenderer_Render2(this, this->objectName().toUtf8().data(), painter, const_cast<QRectF*>(&bounds)); };
@@ -724,7 +724,7 @@ void* QSvgRenderer_NewQSvgRenderer4(void* contents, void* parent)
 
 void* QSvgRenderer_NewQSvgRenderer3(char* contents, void* parent)
 {
-	return new MyQSvgRenderer(QByteArray(contents), static_cast<QObject*>(parent));
+	return new MyQSvgRenderer(QByteArray::fromHex(QString(contents).toUtf8()), static_cast<QObject*>(parent));
 }
 
 void* QSvgRenderer_NewQSvgRenderer2(char* filename, void* parent)
@@ -767,7 +767,7 @@ int QSvgRenderer_Load3(void* ptr, void* contents)
 int QSvgRenderer_Load2(void* ptr, char* contents)
 {
 	bool returnArg;
-	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_RETURN_ARG(bool, returnArg), Q_ARG(QByteArray, QByteArray(contents)));
+	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_RETURN_ARG(bool, returnArg), Q_ARG(QByteArray, QByteArray::fromHex(QString(contents).toUtf8())));
 	return returnArg;
 }
 
@@ -913,7 +913,7 @@ class MyQSvgWidget: public QSvgWidget
 public:
 	MyQSvgWidget(QWidget *parent) : QSvgWidget(parent) {};
 	MyQSvgWidget(const QString &file, QWidget *parent) : QSvgWidget(file, parent) {};
-	void load(const QByteArray & contents) { callbackQSvgWidget_Load2(this, this->objectName().toUtf8().data(), QString(contents).toUtf8().data()); };
+	void load(const QByteArray & contents) { callbackQSvgWidget_Load2(this, this->objectName().toUtf8().data(), contents.toHex().data()); };
 	void load(const QString & file) { callbackQSvgWidget_Load(this, this->objectName().toUtf8().data(), file.toUtf8().data()); };
 	void actionEvent(QActionEvent * event) { callbackQSvgWidget_ActionEvent(this, this->objectName().toUtf8().data(), event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQSvgWidget_DragEnterEvent(this, this->objectName().toUtf8().data(), event); };
@@ -950,7 +950,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQSvgWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQSvgWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQSvgWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSvgWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSvgWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQSvgWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQSvgWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQSvgWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -988,7 +988,7 @@ void* QSvgWidget_NewQSvgWidget2(char* file, void* parent)
 
 void QSvgWidget_Load2(void* ptr, char* contents)
 {
-	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QByteArray, QByteArray(contents)));
+	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QByteArray, QByteArray::fromHex(QString(contents).toUtf8())));
 }
 
 void QSvgWidget_Load(void* ptr, char* file)
@@ -1370,12 +1370,12 @@ void QSvgWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QSvgWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSvgWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSvgWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QSvgWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QSvgWidget_Raise(void* ptr)

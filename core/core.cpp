@@ -535,7 +535,7 @@ void QAbstractEventDispatcher_Awake(void* ptr)
 
 int QAbstractEventDispatcher_FilterNativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractEventDispatcher*>(ptr)->filterNativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractEventDispatcher*>(ptr)->filterNativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractEventDispatcher_Flush(void* ptr)
@@ -1869,7 +1869,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQAbstractNativeEventFilter() : QAbstractNativeEventFilter() {};
-	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, this->objectNameAbs().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, this->objectNameAbs().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 };
 
 void* QAbstractNativeEventFilter_NewQAbstractNativeEventFilter()
@@ -1879,7 +1879,7 @@ void* QAbstractNativeEventFilter_NewQAbstractNativeEventFilter()
 
 int QAbstractNativeEventFilter_NativeEventFilter(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractNativeEventFilter*>(ptr)->nativeEventFilter(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractNativeEventFilter*>(ptr)->nativeEventFilter(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr)
@@ -3651,7 +3651,7 @@ public:
 
 void* QBuffer_NewQBuffer2(char* byteArray, void* parent)
 {
-	return new MyQBuffer(new QByteArray(byteArray), static_cast<QObject*>(parent));
+	return new MyQBuffer(new QByteArray(QByteArray::fromHex(QString(byteArray).toUtf8())), static_cast<QObject*>(parent));
 }
 
 void* QBuffer_NewQBuffer(void* parent)
@@ -3671,12 +3671,12 @@ int QBuffer_AtEndDefault(void* ptr)
 
 char* QBuffer_Buffer(void* ptr)
 {
-	return QString(static_cast<QBuffer*>(ptr)->buffer()).toUtf8().data();
+	return static_cast<QBuffer*>(ptr)->buffer().toHex().data();
 }
 
 char* QBuffer_Buffer2(void* ptr)
 {
-	return QString(static_cast<QBuffer*>(ptr)->buffer()).toUtf8().data();
+	return static_cast<QBuffer*>(ptr)->buffer().toHex().data();
 }
 
 int QBuffer_CanReadLine(void* ptr)
@@ -3701,7 +3701,7 @@ void QBuffer_CloseDefault(void* ptr)
 
 char* QBuffer_Data(void* ptr)
 {
-	return QString(static_cast<QBuffer*>(ptr)->data()).toUtf8().data();
+	return static_cast<QBuffer*>(ptr)->data().toHex().data();
 }
 
 int QBuffer_Open(void* ptr, int flags)
@@ -3736,12 +3736,12 @@ int QBuffer_SeekDefault(void* ptr, long long pos)
 
 void QBuffer_SetBuffer(void* ptr, char* byteArray)
 {
-	static_cast<QBuffer*>(ptr)->setBuffer(new QByteArray(byteArray));
+	static_cast<QBuffer*>(ptr)->setBuffer(new QByteArray(QByteArray::fromHex(QString(byteArray).toUtf8())));
 }
 
 void QBuffer_SetData(void* ptr, char* data)
 {
-	static_cast<QBuffer*>(ptr)->setData(QByteArray(data));
+	static_cast<QBuffer*>(ptr)->setData(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QBuffer_SetData2(void* ptr, char* data, int size)
@@ -3936,17 +3936,17 @@ void* QBuffer_MetaObjectDefault(void* ptr)
 
 char* QByteArrayList_Join(void* ptr)
 {
-	return QString(static_cast<QByteArrayList*>(ptr)->join()).toUtf8().data();
+	return static_cast<QByteArrayList*>(ptr)->join().toHex().data();
 }
 
 char* QByteArrayList_Join3(void* ptr, char* separator)
 {
-	return QString(static_cast<QByteArrayList*>(ptr)->join(*separator)).toUtf8().data();
+	return static_cast<QByteArrayList*>(ptr)->join(*separator).toHex().data();
 }
 
 char* QByteArrayList_Join2(void* ptr, char* separator)
 {
-	return QString(static_cast<QByteArrayList*>(ptr)->join(QByteArray(separator))).toUtf8().data();
+	return static_cast<QByteArrayList*>(ptr)->join(QByteArray::fromHex(QString(separator).toUtf8())).toHex().data();
 }
 
 void* QByteArrayMatcher_NewQByteArrayMatcher()
@@ -3956,7 +3956,7 @@ void* QByteArrayMatcher_NewQByteArrayMatcher()
 
 void* QByteArrayMatcher_NewQByteArrayMatcher2(char* pattern)
 {
-	return new QByteArrayMatcher(QByteArray(pattern));
+	return new QByteArrayMatcher(QByteArray::fromHex(QString(pattern).toUtf8()));
 }
 
 void* QByteArrayMatcher_NewQByteArrayMatcher4(void* other)
@@ -3971,7 +3971,7 @@ void* QByteArrayMatcher_NewQByteArrayMatcher3(char* pattern, int length)
 
 int QByteArrayMatcher_IndexIn(void* ptr, char* ba, int from)
 {
-	return static_cast<QByteArrayMatcher*>(ptr)->indexIn(QByteArray(ba), from);
+	return static_cast<QByteArrayMatcher*>(ptr)->indexIn(QByteArray::fromHex(QString(ba).toUtf8()), from);
 }
 
 int QByteArrayMatcher_IndexIn2(void* ptr, char* str, int len, int from)
@@ -3981,12 +3981,12 @@ int QByteArrayMatcher_IndexIn2(void* ptr, char* str, int len, int from)
 
 char* QByteArrayMatcher_Pattern(void* ptr)
 {
-	return QString(static_cast<QByteArrayMatcher*>(ptr)->pattern()).toUtf8().data();
+	return static_cast<QByteArrayMatcher*>(ptr)->pattern().toHex().data();
 }
 
 void QByteArrayMatcher_SetPattern(void* ptr, char* pattern)
 {
-	static_cast<QByteArrayMatcher*>(ptr)->setPattern(QByteArray(pattern));
+	static_cast<QByteArrayMatcher*>(ptr)->setPattern(QByteArray::fromHex(QString(pattern).toUtf8()));
 }
 
 void QByteArrayMatcher_DestroyQByteArrayMatcher(void* ptr)
@@ -4879,7 +4879,7 @@ int QCryptographicHash_AddData3(void* ptr, void* device)
 
 void QCryptographicHash_AddData2(void* ptr, char* data)
 {
-	static_cast<QCryptographicHash*>(ptr)->addData(QByteArray(data));
+	static_cast<QCryptographicHash*>(ptr)->addData(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QCryptographicHash_AddData(void* ptr, char* data, int length)
@@ -4889,7 +4889,7 @@ void QCryptographicHash_AddData(void* ptr, char* data, int length)
 
 char* QCryptographicHash_QCryptographicHash_Hash(char* data, int method)
 {
-	return QString(QCryptographicHash::hash(QByteArray(data), static_cast<QCryptographicHash::Algorithm>(method))).toUtf8().data();
+	return QCryptographicHash::hash(QByteArray::fromHex(QString(data).toUtf8()), static_cast<QCryptographicHash::Algorithm>(method)).toHex().data();
 }
 
 void QCryptographicHash_Reset(void* ptr)
@@ -4899,7 +4899,7 @@ void QCryptographicHash_Reset(void* ptr)
 
 char* QCryptographicHash_Result(void* ptr)
 {
-	return QString(static_cast<QCryptographicHash*>(ptr)->result()).toUtf8().data();
+	return static_cast<QCryptographicHash*>(ptr)->result().toHex().data();
 }
 
 void QCryptographicHash_DestroyQCryptographicHash(void* ptr)
@@ -4909,7 +4909,7 @@ void QCryptographicHash_DestroyQCryptographicHash(void* ptr)
 
 void* QDataStream_NewQDataStream3(char* a, int mode)
 {
-	return new QDataStream(new QByteArray(a), static_cast<QIODevice::OpenModeFlag>(mode));
+	return new QDataStream(new QByteArray(QByteArray::fromHex(QString(a).toUtf8())), static_cast<QIODevice::OpenModeFlag>(mode));
 }
 
 int QDataStream_AtEnd(void* ptr)
@@ -4929,7 +4929,7 @@ void* QDataStream_NewQDataStream2(void* d)
 
 void* QDataStream_NewQDataStream4(char* a)
 {
-	return new QDataStream(QByteArray(a));
+	return new QDataStream(QByteArray::fromHex(QString(a).toUtf8()));
 }
 
 void QDataStream_AbortTransaction(void* ptr)
@@ -5749,12 +5749,12 @@ void QDir_DestroyQDir(void* ptr)
 
 void* QDynamicPropertyChangeEvent_NewQDynamicPropertyChangeEvent(char* name)
 {
-	return new QDynamicPropertyChangeEvent(QByteArray(name));
+	return new QDynamicPropertyChangeEvent(QByteArray::fromHex(QString(name).toUtf8()));
 }
 
 char* QDynamicPropertyChangeEvent_PropertyName(void* ptr)
 {
-	return QString(static_cast<QDynamicPropertyChangeEvent*>(ptr)->propertyName()).toUtf8().data();
+	return static_cast<QDynamicPropertyChangeEvent*>(ptr)->propertyName().toHex().data();
 }
 
 void* QEasingCurve_NewQEasingCurve3(void* other)
@@ -6374,7 +6374,7 @@ int QFile_Copy(void* ptr, char* newName)
 
 char* QFile_QFile_DecodeName(char* localFileName)
 {
-	return QFile::decodeName(QByteArray(localFileName)).toUtf8().data();
+	return QFile::decodeName(QByteArray::fromHex(QString(localFileName).toUtf8())).toUtf8().data();
 }
 
 char* QFile_QFile_DecodeName2(char* localFileName)
@@ -6384,7 +6384,7 @@ char* QFile_QFile_DecodeName2(char* localFileName)
 
 char* QFile_QFile_EncodeName(char* fileName)
 {
-	return QString(QFile::encodeName(QString(fileName))).toUtf8().data();
+	return QFile::encodeName(QString(fileName)).toHex().data();
 }
 
 int QFile_QFile_Exists(char* fileName)
@@ -8223,7 +8223,7 @@ int QIODevice_OpenMode(void* ptr)
 
 char* QIODevice_Peek2(void* ptr, long long maxSize)
 {
-	return QString(static_cast<QIODevice*>(ptr)->peek(static_cast<long long>(maxSize))).toUtf8().data();
+	return static_cast<QIODevice*>(ptr)->peek(static_cast<long long>(maxSize)).toHex().data();
 }
 
 long long QIODevice_Peek(void* ptr, char* data, long long maxSize)
@@ -8243,7 +8243,7 @@ long long QIODevice_PosDefault(void* ptr)
 
 char* QIODevice_Read2(void* ptr, long long maxSize)
 {
-	return QString(static_cast<QIODevice*>(ptr)->read(static_cast<long long>(maxSize))).toUtf8().data();
+	return static_cast<QIODevice*>(ptr)->read(static_cast<long long>(maxSize)).toHex().data();
 }
 
 long long QIODevice_Read(void* ptr, char* data, long long maxSize)
@@ -8253,7 +8253,7 @@ long long QIODevice_Read(void* ptr, char* data, long long maxSize)
 
 char* QIODevice_ReadAll(void* ptr)
 {
-	return QString(static_cast<QIODevice*>(ptr)->readAll()).toUtf8().data();
+	return static_cast<QIODevice*>(ptr)->readAll().toHex().data();
 }
 
 int QIODevice_ReadChannelCount(void* ptr)
@@ -8278,7 +8278,7 @@ void QIODevice_ReadChannelFinished(void* ptr)
 
 char* QIODevice_ReadLine2(void* ptr, long long maxSize)
 {
-	return QString(static_cast<QIODevice*>(ptr)->readLine(static_cast<long long>(maxSize))).toUtf8().data();
+	return static_cast<QIODevice*>(ptr)->readLine(static_cast<long long>(maxSize)).toHex().data();
 }
 
 long long QIODevice_ReadLine(void* ptr, char* data, long long maxSize)
@@ -8403,7 +8403,7 @@ int QIODevice_WaitForReadyReadDefault(void* ptr, int msecs)
 
 long long QIODevice_Write3(void* ptr, char* byteArray)
 {
-	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(QByteArray(byteArray)));
+	return static_cast<long long>(static_cast<QIODevice*>(ptr)->write(QByteArray::fromHex(QString(byteArray).toUtf8())));
 }
 
 long long QIODevice_Write2(void* ptr, char* data)
@@ -9641,12 +9641,12 @@ void* QJsonDocument_Array(void* ptr)
 
 void* QJsonDocument_QJsonDocument_FromBinaryData(char* data, int validation)
 {
-	return new QJsonDocument(QJsonDocument::fromBinaryData(QByteArray(data), static_cast<QJsonDocument::DataValidation>(validation)));
+	return new QJsonDocument(QJsonDocument::fromBinaryData(QByteArray::fromHex(QString(data).toUtf8()), static_cast<QJsonDocument::DataValidation>(validation)));
 }
 
 void* QJsonDocument_QJsonDocument_FromJson(char* json, void* error)
 {
-	return new QJsonDocument(QJsonDocument::fromJson(QByteArray(json), static_cast<QJsonParseError*>(error)));
+	return new QJsonDocument(QJsonDocument::fromJson(QByteArray::fromHex(QString(json).toUtf8()), static_cast<QJsonParseError*>(error)));
 }
 
 void* QJsonDocument_QJsonDocument_FromRawData(char* data, int size, int validation)
@@ -9701,12 +9701,12 @@ void QJsonDocument_SetObject(void* ptr, void* object)
 
 char* QJsonDocument_ToBinaryData(void* ptr)
 {
-	return QString(static_cast<QJsonDocument*>(ptr)->toBinaryData()).toUtf8().data();
+	return static_cast<QJsonDocument*>(ptr)->toBinaryData().toHex().data();
 }
 
 char* QJsonDocument_ToJson(void* ptr, int format)
 {
-	return QString(static_cast<QJsonDocument*>(ptr)->toJson(static_cast<QJsonDocument::JsonFormat>(format))).toUtf8().data();
+	return static_cast<QJsonDocument*>(ptr)->toJson(static_cast<QJsonDocument::JsonFormat>(format)).toHex().data();
 }
 
 void* QJsonDocument_ToVariant(void* ptr)
@@ -9981,7 +9981,7 @@ void* QLatin1String_NewQLatin1String()
 
 void* QLatin1String_NewQLatin1String4(char* str)
 {
-	return new QLatin1String(QByteArray(str));
+	return new QLatin1String(QByteArray::fromHex(QString(str).toUtf8()));
 }
 
 void* QLatin1String_NewQLatin1String2(char* str)
@@ -10941,7 +10941,7 @@ double QMarginsF_Top(void* ptr)
 
 void* QMessageAuthenticationCode_NewQMessageAuthenticationCode(int method, char* key)
 {
-	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), QByteArray(key));
+	return new QMessageAuthenticationCode(static_cast<QCryptographicHash::Algorithm>(method), QByteArray::fromHex(QString(key).toUtf8()));
 }
 
 int QMessageAuthenticationCode_AddData3(void* ptr, void* device)
@@ -10951,7 +10951,7 @@ int QMessageAuthenticationCode_AddData3(void* ptr, void* device)
 
 void QMessageAuthenticationCode_AddData2(void* ptr, char* data)
 {
-	static_cast<QMessageAuthenticationCode*>(ptr)->addData(QByteArray(data));
+	static_cast<QMessageAuthenticationCode*>(ptr)->addData(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QMessageAuthenticationCode_AddData(void* ptr, char* data, int length)
@@ -10961,7 +10961,7 @@ void QMessageAuthenticationCode_AddData(void* ptr, char* data, int length)
 
 char* QMessageAuthenticationCode_QMessageAuthenticationCode_Hash(char* message, char* key, int method)
 {
-	return QString(QMessageAuthenticationCode::hash(QByteArray(message), QByteArray(key), static_cast<QCryptographicHash::Algorithm>(method))).toUtf8().data();
+	return QMessageAuthenticationCode::hash(QByteArray::fromHex(QString(message).toUtf8()), QByteArray::fromHex(QString(key).toUtf8()), static_cast<QCryptographicHash::Algorithm>(method)).toHex().data();
 }
 
 void QMessageAuthenticationCode_Reset(void* ptr)
@@ -10971,12 +10971,12 @@ void QMessageAuthenticationCode_Reset(void* ptr)
 
 char* QMessageAuthenticationCode_Result(void* ptr)
 {
-	return QString(static_cast<QMessageAuthenticationCode*>(ptr)->result()).toUtf8().data();
+	return static_cast<QMessageAuthenticationCode*>(ptr)->result().toHex().data();
 }
 
 void QMessageAuthenticationCode_SetKey(void* ptr, char* key)
 {
-	static_cast<QMessageAuthenticationCode*>(ptr)->setKey(QByteArray(key));
+	static_cast<QMessageAuthenticationCode*>(ptr)->setKey(QByteArray::fromHex(QString(key).toUtf8()));
 }
 
 void QMessageAuthenticationCode_DestroyQMessageAuthenticationCode(void* ptr)
@@ -11136,7 +11136,7 @@ char* QMetaEnum_ValueToKey(void* ptr, int value)
 
 char* QMetaEnum_ValueToKeys(void* ptr, int value)
 {
-	return QString(static_cast<QMetaEnum*>(ptr)->valueToKeys(value)).toUtf8().data();
+	return static_cast<QMetaEnum*>(ptr)->valueToKeys(value).toHex().data();
 }
 
 int QMetaMethod_Access(void* ptr)
@@ -11186,7 +11186,7 @@ int QMetaMethod_MethodIndex(void* ptr)
 
 char* QMetaMethod_MethodSignature(void* ptr)
 {
-	return QString(static_cast<QMetaMethod*>(ptr)->methodSignature()).toUtf8().data();
+	return static_cast<QMetaMethod*>(ptr)->methodSignature().toHex().data();
 }
 
 int QMetaMethod_MethodType(void* ptr)
@@ -11196,7 +11196,7 @@ int QMetaMethod_MethodType(void* ptr)
 
 char* QMetaMethod_Name(void* ptr)
 {
-	return QString(static_cast<QMetaMethod*>(ptr)->name()).toUtf8().data();
+	return static_cast<QMetaMethod*>(ptr)->name().toHex().data();
 }
 
 int QMetaMethod_ParameterCount(void* ptr)
@@ -11361,12 +11361,12 @@ void* QMetaObject_NewInstance(void* ptr, void* val0, void* val1, void* val2, voi
 
 char* QMetaObject_QMetaObject_NormalizedSignature(char* method)
 {
-	return QString(QMetaObject::normalizedSignature(const_cast<const char*>(method))).toUtf8().data();
+	return QMetaObject::normalizedSignature(const_cast<const char*>(method)).toHex().data();
 }
 
 char* QMetaObject_QMetaObject_NormalizedType(char* ty)
 {
-	return QString(QMetaObject::normalizedType(const_cast<const char*>(ty))).toUtf8().data();
+	return QMetaObject::normalizedType(const_cast<const char*>(ty)).toHex().data();
 }
 
 int QMetaObject_PropertyCount(void* ptr)
@@ -11631,7 +11631,7 @@ int QMetaType_SizeOf2(void* ptr)
 
 int QMetaType_QMetaType_Type2(char* typeName)
 {
-	return QMetaType::type(QByteArray(typeName));
+	return QMetaType::type(QByteArray::fromHex(QString(typeName).toUtf8()));
 }
 
 int QMetaType_QMetaType_Type(char* typeName)
@@ -11688,7 +11688,7 @@ void* QMimeData_ColorData(void* ptr)
 
 char* QMimeData_Data(void* ptr, char* mimeType)
 {
-	return QString(static_cast<QMimeData*>(ptr)->data(QString(mimeType))).toUtf8().data();
+	return static_cast<QMimeData*>(ptr)->data(QString(mimeType)).toHex().data();
 }
 
 char* QMimeData_Formats(void* ptr)
@@ -11758,7 +11758,7 @@ void QMimeData_SetColorData(void* ptr, void* color)
 
 void QMimeData_SetData(void* ptr, char* mimeType, char* data)
 {
-	static_cast<QMimeData*>(ptr)->setData(QString(mimeType), QByteArray(data));
+	static_cast<QMimeData*>(ptr)->setData(QString(mimeType), QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QMimeData_SetHtml(void* ptr, char* html)
@@ -11898,7 +11898,7 @@ void* QMimeDatabase_MimeTypeForData2(void* ptr, void* device)
 
 void* QMimeDatabase_MimeTypeForData(void* ptr, char* data)
 {
-	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForData(QByteArray(data)));
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForData(QByteArray::fromHex(QString(data).toUtf8())));
 }
 
 void* QMimeDatabase_MimeTypeForFile(void* ptr, void* fileInfo, int mode)
@@ -11918,7 +11918,7 @@ void* QMimeDatabase_MimeTypeForFileNameAndData(void* ptr, char* fileName, void* 
 
 void* QMimeDatabase_MimeTypeForFileNameAndData2(void* ptr, char* fileName, char* data)
 {
-	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForFileNameAndData(QString(fileName), QByteArray(data)));
+	return new QMimeType(static_cast<QMimeDatabase*>(ptr)->mimeTypeForFileNameAndData(QString(fileName), QByteArray::fromHex(QString(data).toUtf8())));
 }
 
 void* QMimeDatabase_MimeTypeForUrl(void* ptr, void* url)
@@ -13359,12 +13359,12 @@ public:
 
 char* QPropertyAnimation_PropertyName(void* ptr)
 {
-	return QString(static_cast<QPropertyAnimation*>(ptr)->propertyName()).toUtf8().data();
+	return static_cast<QPropertyAnimation*>(ptr)->propertyName().toHex().data();
 }
 
 void QPropertyAnimation_SetPropertyName(void* ptr, char* propertyName)
 {
-	static_cast<QPropertyAnimation*>(ptr)->setPropertyName(QByteArray(propertyName));
+	static_cast<QPropertyAnimation*>(ptr)->setPropertyName(QByteArray::fromHex(QString(propertyName).toUtf8()));
 }
 
 void QPropertyAnimation_SetTargetObject(void* ptr, void* target)
@@ -13384,7 +13384,7 @@ void* QPropertyAnimation_NewQPropertyAnimation(void* parent)
 
 void* QPropertyAnimation_NewQPropertyAnimation2(void* target, char* propertyName, void* parent)
 {
-	return new MyQPropertyAnimation(static_cast<QObject*>(target), QByteArray(propertyName), static_cast<QObject*>(parent));
+	return new MyQPropertyAnimation(static_cast<QObject*>(target), QByteArray::fromHex(QString(propertyName).toUtf8()), static_cast<QObject*>(parent));
 }
 
 int QPropertyAnimation_Event(void* ptr, void* event)
@@ -16291,12 +16291,12 @@ void QSignalTransition_SetSenderObject(void* ptr, void* sender)
 
 void QSignalTransition_SetSignal(void* ptr, char* sign)
 {
-	static_cast<QSignalTransition*>(ptr)->setSignal(QByteArray(sign));
+	static_cast<QSignalTransition*>(ptr)->setSignal(QByteArray::fromHex(QString(sign).toUtf8()));
 }
 
 char* QSignalTransition_Signal(void* ptr)
 {
-	return QString(static_cast<QSignalTransition*>(ptr)->signal()).toUtf8().data();
+	return static_cast<QSignalTransition*>(ptr)->signal().toHex().data();
 }
 
 void QSignalTransition_ConnectSignalChanged(void* ptr)
@@ -18001,7 +18001,7 @@ long long QStorageInfo_BytesTotal(void* ptr)
 
 char* QStorageInfo_Device(void* ptr)
 {
-	return QString(static_cast<QStorageInfo*>(ptr)->device()).toUtf8().data();
+	return static_cast<QStorageInfo*>(ptr)->device().toHex().data();
 }
 
 char* QStorageInfo_DisplayName(void* ptr)
@@ -18011,7 +18011,7 @@ char* QStorageInfo_DisplayName(void* ptr)
 
 char* QStorageInfo_FileSystemType(void* ptr)
 {
-	return QString(static_cast<QStorageInfo*>(ptr)->fileSystemType()).toUtf8().data();
+	return static_cast<QStorageInfo*>(ptr)->fileSystemType().toHex().data();
 }
 
 int QStorageInfo_IsReadOnly(void* ptr)
@@ -18854,12 +18854,12 @@ int QStringRef_ToInt(void* ptr, int ok, int base)
 
 char* QStringRef_ToLatin1(void* ptr)
 {
-	return QString(static_cast<QStringRef*>(ptr)->toLatin1()).toUtf8().data();
+	return static_cast<QStringRef*>(ptr)->toLatin1().toHex().data();
 }
 
 char* QStringRef_ToLocal8Bit(void* ptr)
 {
-	return QString(static_cast<QStringRef*>(ptr)->toLocal8Bit()).toUtf8().data();
+	return static_cast<QStringRef*>(ptr)->toLocal8Bit().toHex().data();
 }
 
 char* QStringRef_ToString(void* ptr)
@@ -18869,7 +18869,7 @@ char* QStringRef_ToString(void* ptr)
 
 char* QStringRef_ToUtf8(void* ptr)
 {
-	return QString(static_cast<QStringRef*>(ptr)->toUtf8()).toUtf8().data();
+	return static_cast<QStringRef*>(ptr)->toUtf8().toHex().data();
 }
 
 void* QStringRef_Trimmed(void* ptr)
@@ -19749,7 +19749,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	int mibEnum() const { return callbackQTextCodec_MibEnum(const_cast<MyQTextCodec*>(this), this->objectNameAbs().toUtf8().data()); };
-	QByteArray name() const { return QByteArray(callbackQTextCodec_Name(const_cast<MyQTextCodec*>(this), this->objectNameAbs().toUtf8().data())); };
+	QByteArray name() const { return QByteArray::fromHex(QString(callbackQTextCodec_Name(const_cast<MyQTextCodec*>(this), this->objectNameAbs().toUtf8().data())).toUtf8()); };
 };
 
 int QTextCodec_CanEncode(void* ptr, void* ch)
@@ -19764,12 +19764,12 @@ int QTextCodec_CanEncode2(void* ptr, char* s)
 
 void* QTextCodec_QTextCodec_CodecForHtml2(char* ba)
 {
-	return QTextCodec::codecForHtml(QByteArray(ba));
+	return QTextCodec::codecForHtml(QByteArray::fromHex(QString(ba).toUtf8()));
 }
 
 void* QTextCodec_QTextCodec_CodecForHtml(char* ba, void* defaultCodec)
 {
-	return QTextCodec::codecForHtml(QByteArray(ba), static_cast<QTextCodec*>(defaultCodec));
+	return QTextCodec::codecForHtml(QByteArray::fromHex(QString(ba).toUtf8()), static_cast<QTextCodec*>(defaultCodec));
 }
 
 void* QTextCodec_QTextCodec_CodecForLocale()
@@ -19784,7 +19784,7 @@ void* QTextCodec_QTextCodec_CodecForMib(int mib)
 
 void* QTextCodec_QTextCodec_CodecForName(char* name)
 {
-	return QTextCodec::codecForName(QByteArray(name));
+	return QTextCodec::codecForName(QByteArray::fromHex(QString(name).toUtf8()));
 }
 
 void* QTextCodec_QTextCodec_CodecForName2(char* name)
@@ -19794,17 +19794,17 @@ void* QTextCodec_QTextCodec_CodecForName2(char* name)
 
 void* QTextCodec_QTextCodec_CodecForUtfText2(char* ba)
 {
-	return QTextCodec::codecForUtfText(QByteArray(ba));
+	return QTextCodec::codecForUtfText(QByteArray::fromHex(QString(ba).toUtf8()));
 }
 
 void* QTextCodec_QTextCodec_CodecForUtfText(char* ba, void* defaultCodec)
 {
-	return QTextCodec::codecForUtfText(QByteArray(ba), static_cast<QTextCodec*>(defaultCodec));
+	return QTextCodec::codecForUtfText(QByteArray::fromHex(QString(ba).toUtf8()), static_cast<QTextCodec*>(defaultCodec));
 }
 
 char* QTextCodec_FromUnicode(void* ptr, char* str)
 {
-	return QString(static_cast<QTextCodec*>(ptr)->fromUnicode(QString(str))).toUtf8().data();
+	return static_cast<QTextCodec*>(ptr)->fromUnicode(QString(str)).toHex().data();
 }
 
 void* QTextCodec_MakeDecoder(void* ptr, int flags)
@@ -19824,7 +19824,7 @@ int QTextCodec_MibEnum(void* ptr)
 
 char* QTextCodec_Name(void* ptr)
 {
-	return QString(static_cast<QTextCodec*>(ptr)->name()).toUtf8().data();
+	return static_cast<QTextCodec*>(ptr)->name().toHex().data();
 }
 
 void QTextCodec_QTextCodec_SetCodecForLocale(void* c)
@@ -19834,7 +19834,7 @@ void QTextCodec_QTextCodec_SetCodecForLocale(void* c)
 
 char* QTextCodec_ToUnicode(void* ptr, char* a)
 {
-	return static_cast<QTextCodec*>(ptr)->toUnicode(QByteArray(a)).toUtf8().data();
+	return static_cast<QTextCodec*>(ptr)->toUnicode(QByteArray::fromHex(QString(a).toUtf8())).toUtf8().data();
 }
 
 char* QTextCodec_ToUnicode2(void* ptr, char* chars)
@@ -19879,7 +19879,7 @@ void* QTextDecoder_NewQTextDecoder2(void* codec, int flags)
 
 char* QTextDecoder_ToUnicode2(void* ptr, char* ba)
 {
-	return static_cast<QTextDecoder*>(ptr)->toUnicode(QByteArray(ba)).toUtf8().data();
+	return static_cast<QTextDecoder*>(ptr)->toUnicode(QByteArray::fromHex(QString(ba).toUtf8())).toUtf8().data();
 }
 
 void QTextDecoder_ToUnicode3(void* ptr, char* target, char* chars, int len)
@@ -19904,12 +19904,12 @@ void* QTextEncoder_NewQTextEncoder2(void* codec, int flags)
 
 char* QTextEncoder_FromUnicode2(void* ptr, void* uc, int len)
 {
-	return QString(static_cast<QTextEncoder*>(ptr)->fromUnicode(static_cast<QChar*>(uc), len)).toUtf8().data();
+	return static_cast<QTextEncoder*>(ptr)->fromUnicode(static_cast<QChar*>(uc), len).toHex().data();
 }
 
 char* QTextEncoder_FromUnicode(void* ptr, char* str)
 {
-	return QString(static_cast<QTextEncoder*>(ptr)->fromUnicode(QString(str))).toUtf8().data();
+	return static_cast<QTextEncoder*>(ptr)->fromUnicode(QString(str)).toHex().data();
 }
 
 void QTextEncoder_DestroyQTextEncoder(void* ptr)
@@ -19937,7 +19937,7 @@ void* QTextStream_NewQTextStream()
 
 void* QTextStream_NewQTextStream5(char* array, int openMode)
 {
-	return new MyQTextStream(new QByteArray(array), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new MyQTextStream(new QByteArray(QByteArray::fromHex(QString(array).toUtf8())), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 void* QTextStream_NewQTextStream2(void* device)
@@ -19952,7 +19952,7 @@ void* QTextStream_NewQTextStream4(char* stri, int openMode)
 
 void* QTextStream_NewQTextStream6(char* array, int openMode)
 {
-	return new MyQTextStream(QByteArray(array), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new MyQTextStream(QByteArray::fromHex(QString(array).toUtf8()), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 int QTextStream_AtEnd(void* ptr)
@@ -20989,12 +20989,12 @@ void* QTimeZone_NewQTimeZone()
 
 void* QTimeZone_NewQTimeZone2(char* ianaId)
 {
-	return new QTimeZone(QByteArray(ianaId));
+	return new QTimeZone(QByteArray::fromHex(QString(ianaId).toUtf8()));
 }
 
 void* QTimeZone_NewQTimeZone4(char* ianaId, int offsetSeconds, char* name, char* abbreviation, int country, char* comment)
 {
-	return new QTimeZone(QByteArray(ianaId), offsetSeconds, QString(name), QString(abbreviation), static_cast<QLocale::Country>(country), QString(comment));
+	return new QTimeZone(QByteArray::fromHex(QString(ianaId).toUtf8()), offsetSeconds, QString(name), QString(abbreviation), static_cast<QLocale::Country>(country), QString(comment));
 }
 
 void* QTimeZone_NewQTimeZone5(void* other)
@@ -21049,12 +21049,12 @@ int QTimeZone_HasTransitions(void* ptr)
 
 char* QTimeZone_QTimeZone_IanaIdToWindowsId(char* ianaId)
 {
-	return QString(QTimeZone::ianaIdToWindowsId(QByteArray(ianaId))).toUtf8().data();
+	return QTimeZone::ianaIdToWindowsId(QByteArray::fromHex(QString(ianaId).toUtf8())).toHex().data();
 }
 
 char* QTimeZone_Id(void* ptr)
 {
-	return QString(static_cast<QTimeZone*>(ptr)->id()).toUtf8().data();
+	return static_cast<QTimeZone*>(ptr)->id().toHex().data();
 }
 
 int QTimeZone_IsDaylightTime(void* ptr, void* atDateTime)
@@ -21064,7 +21064,7 @@ int QTimeZone_IsDaylightTime(void* ptr, void* atDateTime)
 
 int QTimeZone_QTimeZone_IsTimeZoneIdAvailable(char* ianaId)
 {
-	return QTimeZone::isTimeZoneIdAvailable(QByteArray(ianaId));
+	return QTimeZone::isTimeZoneIdAvailable(QByteArray::fromHex(QString(ianaId).toUtf8()));
 }
 
 int QTimeZone_IsValid(void* ptr)
@@ -21094,7 +21094,7 @@ void* QTimeZone_QTimeZone_SystemTimeZone()
 
 char* QTimeZone_QTimeZone_SystemTimeZoneId()
 {
-	return QString(QTimeZone::systemTimeZoneId()).toUtf8().data();
+	return QTimeZone::systemTimeZoneId().toHex().data();
 }
 
 void* QTimeZone_QTimeZone_Utc()
@@ -21104,12 +21104,12 @@ void* QTimeZone_QTimeZone_Utc()
 
 char* QTimeZone_QTimeZone_WindowsIdToDefaultIanaId(char* windowsId)
 {
-	return QString(QTimeZone::windowsIdToDefaultIanaId(QByteArray(windowsId))).toUtf8().data();
+	return QTimeZone::windowsIdToDefaultIanaId(QByteArray::fromHex(QString(windowsId).toUtf8())).toHex().data();
 }
 
 char* QTimeZone_QTimeZone_WindowsIdToDefaultIanaId2(char* windowsId, int country)
 {
-	return QString(QTimeZone::windowsIdToDefaultIanaId(QByteArray(windowsId), static_cast<QLocale::Country>(country))).toUtf8().data();
+	return QTimeZone::windowsIdToDefaultIanaId(QByteArray::fromHex(QString(windowsId).toUtf8()), static_cast<QLocale::Country>(country)).toHex().data();
 }
 
 void QTimeZone_DestroyQTimeZone(void* ptr)
@@ -21485,7 +21485,7 @@ void* QTranslator_MetaObjectDefault(void* ptr)
 
 void* QUrl_QUrl_FromEncoded(char* input, int parsingMode)
 {
-	return new QUrl(QUrl::fromEncoded(QByteArray(input), static_cast<QUrl::ParsingMode>(parsingMode)));
+	return new QUrl(QUrl::fromEncoded(QByteArray::fromHex(QString(input).toUtf8()), static_cast<QUrl::ParsingMode>(parsingMode)));
 }
 
 void* QUrl_NewQUrl()
@@ -21540,7 +21540,7 @@ char* QUrl_Fragment(void* ptr, int options)
 
 char* QUrl_QUrl_FromAce(char* domain)
 {
-	return QUrl::fromAce(QByteArray(domain)).toUtf8().data();
+	return QUrl::fromAce(QByteArray::fromHex(QString(domain).toUtf8())).toUtf8().data();
 }
 
 void* QUrl_QUrl_FromLocalFile(char* localFile)
@@ -21550,7 +21550,7 @@ void* QUrl_QUrl_FromLocalFile(char* localFile)
 
 char* QUrl_QUrl_FromPercentEncoding(char* input)
 {
-	return QUrl::fromPercentEncoding(QByteArray(input)).toUtf8().data();
+	return QUrl::fromPercentEncoding(QByteArray::fromHex(QString(input).toUtf8())).toUtf8().data();
 }
 
 void* QUrl_QUrl_FromUserInput(char* userInput)
@@ -21715,7 +21715,7 @@ void QUrl_Swap(void* ptr, void* other)
 
 char* QUrl_QUrl_ToAce(char* domain)
 {
-	return QString(QUrl::toAce(QString(domain))).toUtf8().data();
+	return QUrl::toAce(QString(domain)).toHex().data();
 }
 
 char* QUrl_ToDisplayString(void* ptr, int options)
@@ -21725,7 +21725,7 @@ char* QUrl_ToDisplayString(void* ptr, int options)
 
 char* QUrl_ToEncoded(void* ptr, int options)
 {
-	return QString(static_cast<QUrl*>(ptr)->toEncoded(static_cast<QUrl::UrlFormattingOption>(options))).toUtf8().data();
+	return static_cast<QUrl*>(ptr)->toEncoded(static_cast<QUrl::UrlFormattingOption>(options)).toHex().data();
 }
 
 char* QUrl_ToLocalFile(void* ptr)
@@ -21735,7 +21735,7 @@ char* QUrl_ToLocalFile(void* ptr)
 
 char* QUrl_QUrl_ToPercentEncoding(char* input, char* exclude, char* include)
 {
-	return QString(QUrl::toPercentEncoding(QString(input), QByteArray(exclude), QByteArray(include))).toUtf8().data();
+	return QUrl::toPercentEncoding(QString(input), QByteArray::fromHex(QString(exclude).toUtf8()), QByteArray::fromHex(QString(include).toUtf8())).toHex().data();
 }
 
 char* QUrl_ToString(void* ptr, int options)
@@ -21875,7 +21875,7 @@ void* QUuid_NewQUuid()
 
 void* QUuid_NewQUuid5(char* text)
 {
-	return new QUuid(QByteArray(text));
+	return new QUuid(QByteArray::fromHex(QString(text).toUtf8()));
 }
 
 void* QUuid_NewQUuid3(char* text)
@@ -21890,12 +21890,12 @@ int QUuid_IsNull(void* ptr)
 
 char* QUuid_ToByteArray(void* ptr)
 {
-	return QString(static_cast<QUuid*>(ptr)->toByteArray()).toUtf8().data();
+	return static_cast<QUuid*>(ptr)->toByteArray().toHex().data();
 }
 
 char* QUuid_ToRfc4122(void* ptr)
 {
-	return QString(static_cast<QUuid*>(ptr)->toRfc4122()).toUtf8().data();
+	return static_cast<QUuid*>(ptr)->toRfc4122().toHex().data();
 }
 
 char* QUuid_ToString(void* ptr)
@@ -21925,7 +21925,7 @@ void* QVariant_NewQVariant16(void* val)
 
 void* QVariant_NewQVariant15(char* val)
 {
-	return new QVariant(QByteArray(val));
+	return new QVariant(QByteArray::fromHex(QString(val).toUtf8()));
 }
 
 void* QVariant_NewQVariant21(void* val)
@@ -22075,7 +22075,7 @@ void* QVariant_NewQVariant7(int val)
 
 char* QVariant_ToByteArray(void* ptr)
 {
-	return QString(static_cast<QVariant*>(ptr)->toByteArray()).toUtf8().data();
+	return static_cast<QVariant*>(ptr)->toByteArray().toHex().data();
 }
 
 void* QVariant_ToDateTime(void* ptr)
@@ -22987,7 +22987,7 @@ void* QXmlStreamReader_NewQXmlStreamReader2(void* device)
 
 void* QXmlStreamReader_NewQXmlStreamReader3(char* data)
 {
-	return new QXmlStreamReader(QByteArray(data));
+	return new QXmlStreamReader(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void* QXmlStreamReader_NewQXmlStreamReader4(char* data)
@@ -23002,7 +23002,7 @@ void* QXmlStreamReader_NewQXmlStreamReader5(char* data)
 
 void QXmlStreamReader_AddData(void* ptr, char* data)
 {
-	static_cast<QXmlStreamReader*>(ptr)->addData(QByteArray(data));
+	static_cast<QXmlStreamReader*>(ptr)->addData(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QXmlStreamReader_AddData2(void* ptr, char* data)
@@ -23257,7 +23257,7 @@ void* QXmlStreamWriter_NewQXmlStreamWriter()
 
 void* QXmlStreamWriter_NewQXmlStreamWriter3(char* array)
 {
-	return new QXmlStreamWriter(new QByteArray(array));
+	return new QXmlStreamWriter(new QByteArray(QByteArray::fromHex(QString(array).toUtf8())));
 }
 
 void* QXmlStreamWriter_NewQXmlStreamWriter2(void* device)

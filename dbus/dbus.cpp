@@ -542,7 +542,7 @@ void* QDBusConnection_LastError(void* ptr)
 
 char* QDBusConnection_QDBusConnection_LocalMachineId()
 {
-	return QString(QDBusConnection::localMachineId()).toUtf8().data();
+	return QDBusConnection::localMachineId().toHex().data();
 }
 
 char* QDBusConnection_Name(void* ptr)

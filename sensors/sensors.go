@@ -6,6 +6,7 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -18283,7 +18284,7 @@ func (ptr *QSensor) Identifier() string {
 	defer qt.Recovering("QSensor::identifier")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSensor_Identifier(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSensor_Identifier(ptr.Pointer())))
 	}
 	return ""
 }
@@ -18395,7 +18396,7 @@ func (ptr *QSensor) SetIdentifier(identifier string) {
 	defer qt.Recovering("QSensor::setIdentifier")
 
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(identifier)
+		var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 		defer C.free(unsafe.Pointer(identifierC))
 		C.QSensor_SetIdentifier(ptr.Pointer(), identifierC)
 	}
@@ -18430,7 +18431,7 @@ func (ptr *QSensor) Type() string {
 	defer qt.Recovering("QSensor::type")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSensor_Type(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QSensor_Type(ptr.Pointer())))
 	}
 	return ""
 }
@@ -18447,7 +18448,7 @@ func (ptr *QSensor) UserOrientation() int {
 func NewQSensor(ty string, parent core.QObject_ITF) *QSensor {
 	defer qt.Recovering("QSensor::QSensor")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
 	return newQSensorFromPointer(C.QSensor_NewQSensor(tyC, core.PointerFromQObject(parent)))
 }
@@ -18760,17 +18761,17 @@ func (ptr *QSensor) DataRateChanged() {
 func QSensor_DefaultSensorForType(ty string) string {
 	defer qt.Recovering("QSensor::defaultSensorForType")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	return C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC))
+	return qt.HexDecodeToString(C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC)))
 }
 
 func (ptr *QSensor) DefaultSensorForType(ty string) string {
 	defer qt.Recovering("QSensor::defaultSensorForType")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	return C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC))
+	return qt.HexDecodeToString(C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC)))
 }
 
 //export callbackQSensor_EfficientBufferSizeChanged
@@ -22631,9 +22632,9 @@ func (ptr *QSensorManager) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 func QSensorManager_IsBackendRegistered(ty string, identifier string) bool {
 	defer qt.Recovering("QSensorManager::isBackendRegistered")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	return C.QSensorManager_QSensorManager_IsBackendRegistered(tyC, identifierC) != 0
 }
@@ -22641,9 +22642,9 @@ func QSensorManager_IsBackendRegistered(ty string, identifier string) bool {
 func (ptr *QSensorManager) IsBackendRegistered(ty string, identifier string) bool {
 	defer qt.Recovering("QSensorManager::isBackendRegistered")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	return C.QSensorManager_QSensorManager_IsBackendRegistered(tyC, identifierC) != 0
 }
@@ -22651,9 +22652,9 @@ func (ptr *QSensorManager) IsBackendRegistered(ty string, identifier string) boo
 func QSensorManager_RegisterBackend(ty string, identifier string, factory QSensorBackendFactory_ITF) {
 	defer qt.Recovering("QSensorManager::registerBackend")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	C.QSensorManager_QSensorManager_RegisterBackend(tyC, identifierC, PointerFromQSensorBackendFactory(factory))
 }
@@ -22661,9 +22662,9 @@ func QSensorManager_RegisterBackend(ty string, identifier string, factory QSenso
 func (ptr *QSensorManager) RegisterBackend(ty string, identifier string, factory QSensorBackendFactory_ITF) {
 	defer qt.Recovering("QSensorManager::registerBackend")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	C.QSensorManager_QSensorManager_RegisterBackend(tyC, identifierC, PointerFromQSensorBackendFactory(factory))
 }
@@ -22671,9 +22672,9 @@ func (ptr *QSensorManager) RegisterBackend(ty string, identifier string, factory
 func QSensorManager_SetDefaultBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::setDefaultBackend")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	C.QSensorManager_QSensorManager_SetDefaultBackend(tyC, identifierC)
 }
@@ -22681,9 +22682,9 @@ func QSensorManager_SetDefaultBackend(ty string, identifier string) {
 func (ptr *QSensorManager) SetDefaultBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::setDefaultBackend")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	C.QSensorManager_QSensorManager_SetDefaultBackend(tyC, identifierC)
 }
@@ -22691,9 +22692,9 @@ func (ptr *QSensorManager) SetDefaultBackend(ty string, identifier string) {
 func QSensorManager_UnregisterBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::unregisterBackend")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	C.QSensorManager_QSensorManager_UnregisterBackend(tyC, identifierC)
 }
@@ -22701,9 +22702,9 @@ func QSensorManager_UnregisterBackend(ty string, identifier string) {
 func (ptr *QSensorManager) UnregisterBackend(ty string, identifier string) {
 	defer qt.Recovering("QSensorManager::unregisterBackend")
 
-	var tyC = C.CString(ty)
+	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(identifier)
+	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
 	defer C.free(unsafe.Pointer(identifierC))
 	C.QSensorManager_QSensorManager_UnregisterBackend(tyC, identifierC)
 }

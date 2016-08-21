@@ -6,6 +6,7 @@ package help
 //#include "help.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -6272,10 +6273,10 @@ func callbackQHelpContentWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.char,
 	defer qt.Recovering("callback QHelpContentWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QHelpContentWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -6300,7 +6301,7 @@ func (ptr *QHelpContentWidget) NativeEvent(eventType string, message unsafe.Poin
 	defer qt.Recovering("QHelpContentWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpContentWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -6311,7 +6312,7 @@ func (ptr *QHelpContentWidget) NativeEventDefault(eventType string, message unsa
 	defer qt.Recovering("QHelpContentWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpContentWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -7921,7 +7922,7 @@ func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) string {
 	defer qt.Recovering("QHelpEngineCore::fileData")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url)))
+		return qt.HexDecodeToString(C.GoString(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url))))
 	}
 	return ""
 }
@@ -14415,10 +14416,10 @@ func callbackQHelpIndexWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, e
 	defer qt.Recovering("callback QHelpIndexWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QHelpIndexWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -14443,7 +14444,7 @@ func (ptr *QHelpIndexWidget) NativeEvent(eventType string, message unsafe.Pointe
 	defer qt.Recovering("QHelpIndexWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpIndexWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -14454,7 +14455,7 @@ func (ptr *QHelpIndexWidget) NativeEventDefault(eventType string, message unsafe
 	defer qt.Recovering("QHelpIndexWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpIndexWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -18019,10 +18020,10 @@ func callbackQHelpSearchQueryWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.c
 	defer qt.Recovering("callback QHelpSearchQueryWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQHelpSearchQueryWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQHelpSearchQueryWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -18047,7 +18048,7 @@ func (ptr *QHelpSearchQueryWidget) NativeEvent(eventType string, message unsafe.
 	defer qt.Recovering("QHelpSearchQueryWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpSearchQueryWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -18058,7 +18059,7 @@ func (ptr *QHelpSearchQueryWidget) NativeEventDefault(eventType string, message 
 	defer qt.Recovering("QHelpSearchQueryWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpSearchQueryWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -20916,10 +20917,10 @@ func callbackQHelpSearchResultWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.
 	defer qt.Recovering("callback QHelpSearchResultWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQHelpSearchResultWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQHelpSearchResultWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -20944,7 +20945,7 @@ func (ptr *QHelpSearchResultWidget) NativeEvent(eventType string, message unsafe
 	defer qt.Recovering("QHelpSearchResultWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpSearchResultWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -20955,7 +20956,7 @@ func (ptr *QHelpSearchResultWidget) NativeEventDefault(eventType string, message
 	defer qt.Recovering("QHelpSearchResultWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QHelpSearchResultWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

@@ -38,7 +38,7 @@
 
 void* QCanBus_CreateDevice(void* ptr, char* plugin, char* interfaceName)
 {
-	return static_cast<QCanBus*>(ptr)->createDevice(QByteArray(plugin), QString(interfaceName));
+	return static_cast<QCanBus*>(ptr)->createDevice(QByteArray::fromHex(QString(plugin).toUtf8()), QString(interfaceName));
 }
 
 void* QCanBus_QCanBus_Instance()
@@ -516,7 +516,7 @@ int QCanBusFrame_IsValid(void* ptr)
 
 char* QCanBusFrame_Payload(void* ptr)
 {
-	return QString(static_cast<QCanBusFrame*>(ptr)->payload()).toUtf8().data();
+	return static_cast<QCanBusFrame*>(ptr)->payload().toHex().data();
 }
 
 void QCanBusFrame_SetError(void* ptr, int error)
@@ -536,7 +536,7 @@ void QCanBusFrame_SetFrameType(void* ptr, int newType)
 
 void QCanBusFrame_SetPayload(void* ptr, char* data)
 {
-	static_cast<QCanBusFrame*>(ptr)->setPayload(QByteArray(data));
+	static_cast<QCanBusFrame*>(ptr)->setPayload(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 class MyQModbusClient: public QModbusClient
@@ -1078,7 +1078,7 @@ void* QModbusPdu_NewQModbusPdu()
 
 void* QModbusPdu_NewQModbusPdu2(int code, char* data)
 {
-	return new MyQModbusPdu(static_cast<QModbusPdu::FunctionCode>(code), QByteArray(data));
+	return new MyQModbusPdu(static_cast<QModbusPdu::FunctionCode>(code), QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void* QModbusPdu_NewQModbusPdu3(void* other)
@@ -1088,7 +1088,7 @@ void* QModbusPdu_NewQModbusPdu3(void* other)
 
 char* QModbusPdu_Data(void* ptr)
 {
-	return QString(static_cast<QModbusPdu*>(ptr)->data()).toUtf8().data();
+	return static_cast<QModbusPdu*>(ptr)->data().toHex().data();
 }
 
 int QModbusPdu_ExceptionCode(void* ptr)
@@ -1113,7 +1113,7 @@ int QModbusPdu_IsValid(void* ptr)
 
 void QModbusPdu_SetData(void* ptr, char* data)
 {
-	static_cast<QModbusPdu*>(ptr)->setData(QByteArray(data));
+	static_cast<QModbusPdu*>(ptr)->setData(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QModbusPdu_SetFunctionCode(void* ptr, int code)
@@ -1320,7 +1320,7 @@ void* QModbusRequest_NewQModbusRequest()
 
 void* QModbusRequest_NewQModbusRequest3(int code, char* data)
 {
-	return new QModbusRequest(static_cast<QModbusPdu::FunctionCode>(code), QByteArray(data));
+	return new QModbusRequest(static_cast<QModbusPdu::FunctionCode>(code), QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void* QModbusRequest_NewQModbusRequest2(void* pdu)
@@ -1355,7 +1355,7 @@ void* QModbusResponse_NewQModbusResponse()
 
 void* QModbusResponse_NewQModbusResponse3(int code, char* data)
 {
-	return new QModbusResponse(static_cast<QModbusPdu::FunctionCode>(code), QByteArray(data));
+	return new QModbusResponse(static_cast<QModbusPdu::FunctionCode>(code), QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void* QModbusResponse_NewQModbusResponse2(void* pdu)

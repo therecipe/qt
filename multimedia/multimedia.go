@@ -6,6 +6,7 @@ package multimedia
 //#include "multimedia.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -2183,7 +2184,7 @@ func NewQAudioBuffer3(other QAudioBuffer_ITF) *QAudioBuffer {
 func NewQAudioBuffer4(data string, format QAudioFormat_ITF, startTime int64) *QAudioBuffer {
 	defer qt.Recovering("QAudioBuffer::QAudioBuffer")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	return newQAudioBufferFromPointer(C.QAudioBuffer_NewQAudioBuffer4(dataC, PointerFromQAudioFormat(format), C.longlong(startTime)))
 }
@@ -11205,7 +11206,7 @@ func NewQCamera(parent core.QObject_ITF) *QCamera {
 func NewQCamera2(deviceName string, parent core.QObject_ITF) *QCamera {
 	defer qt.Recovering("QCamera::QCamera")
 
-	var deviceNameC = C.CString(deviceName)
+	var deviceNameC = C.CString(hex.EncodeToString([]byte(deviceName)))
 	defer C.free(unsafe.Pointer(deviceNameC))
 	return newQCameraFromPointer(C.QCamera_NewQCamera2(deviceNameC, core.PointerFromQObject(parent)))
 }
@@ -23261,7 +23262,7 @@ func newQCameraInfoFromPointer(ptr unsafe.Pointer) *QCameraInfo {
 func NewQCameraInfo(name string) *QCameraInfo {
 	defer qt.Recovering("QCameraInfo::QCameraInfo")
 
-	var nameC = C.CString(name)
+	var nameC = C.CString(hex.EncodeToString([]byte(name)))
 	defer C.free(unsafe.Pointer(nameC))
 	return newQCameraInfoFromPointer(C.QCameraInfo_NewQCameraInfo(nameC))
 }
@@ -26468,10 +26469,10 @@ func callbackQCameraViewfinder_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, 
 	defer qt.Recovering("callback QCameraViewfinder::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQCameraViewfinderFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQCameraViewfinderFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QCameraViewfinder) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -26496,7 +26497,7 @@ func (ptr *QCameraViewfinder) NativeEvent(eventType string, message unsafe.Point
 	defer qt.Recovering("QCameraViewfinder::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QCameraViewfinder_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -26507,7 +26508,7 @@ func (ptr *QCameraViewfinder) NativeEventDefault(eventType string, message unsaf
 	defer qt.Recovering("QCameraViewfinder::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QCameraViewfinder_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -36570,7 +36571,7 @@ func (ptr *QMediaObject) AddPropertyWatch(name string) {
 	defer qt.Recovering("QMediaObject::addPropertyWatch")
 
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
+		var nameC = C.CString(hex.EncodeToString([]byte(name)))
 		defer C.free(unsafe.Pointer(nameC))
 		C.QMediaObject_AddPropertyWatch(ptr.Pointer(), nameC)
 	}
@@ -36970,7 +36971,7 @@ func (ptr *QMediaObject) RemovePropertyWatch(name string) {
 	defer qt.Recovering("QMediaObject::removePropertyWatch")
 
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
+		var nameC = C.CString(hex.EncodeToString([]byte(name)))
 		defer C.free(unsafe.Pointer(nameC))
 		C.QMediaObject_RemovePropertyWatch(ptr.Pointer(), nameC)
 	}
@@ -46099,7 +46100,7 @@ func callbackQMediaServiceCameraInfoInterface_CameraOrientation(ptr unsafe.Point
 	defer qt.Recovering("callback QMediaServiceCameraInfoInterface::cameraOrientation")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cameraOrientation"); signal != nil {
-		return C.int(signal.(func(string) int)(C.GoString(device)))
+		return C.int(signal.(func(string) int)(qt.HexDecodeToString(C.GoString(device))))
 	}
 
 	return C.int(0)
@@ -46127,7 +46128,7 @@ func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device string) in
 	defer qt.Recovering("QMediaServiceCameraInfoInterface::cameraOrientation")
 
 	if ptr.Pointer() != nil {
-		var deviceC = C.CString(device)
+		var deviceC = C.CString(hex.EncodeToString([]byte(device)))
 		defer C.free(unsafe.Pointer(deviceC))
 		return int(C.QMediaServiceCameraInfoInterface_CameraOrientation(ptr.Pointer(), deviceC))
 	}
@@ -46139,7 +46140,7 @@ func callbackQMediaServiceCameraInfoInterface_CameraPosition(ptr unsafe.Pointer,
 	defer qt.Recovering("callback QMediaServiceCameraInfoInterface::cameraPosition")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "cameraPosition"); signal != nil {
-		return C.int(signal.(func(string) QCamera__Position)(C.GoString(device)))
+		return C.int(signal.(func(string) QCamera__Position)(qt.HexDecodeToString(C.GoString(device))))
 	}
 
 	return C.int(0)
@@ -46167,7 +46168,7 @@ func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device string) QCame
 	defer qt.Recovering("QMediaServiceCameraInfoInterface::cameraPosition")
 
 	if ptr.Pointer() != nil {
-		var deviceC = C.CString(device)
+		var deviceC = C.CString(hex.EncodeToString([]byte(device)))
 		defer C.free(unsafe.Pointer(deviceC))
 		return QCamera__Position(C.QMediaServiceCameraInfoInterface_CameraPosition(ptr.Pointer(), deviceC))
 	}
@@ -46254,10 +46255,10 @@ func callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(ptr unsafe.Pointe
 	defer qt.Recovering("callback QMediaServiceDefaultDeviceInterface::defaultDevice")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "defaultDevice"); signal != nil {
-		return C.CString(signal.(func(string) string)(C.GoString(service)))
+		return C.CString(hex.EncodeToString([]byte(signal.(func(string) string)(qt.HexDecodeToString(C.GoString(service))))))
 	}
 
-	return C.CString("")
+	return C.CString(hex.EncodeToString([]byte("")))
 }
 
 func (ptr *QMediaServiceDefaultDeviceInterface) ConnectDefaultDevice(f func(service string) string) {
@@ -46282,9 +46283,9 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service string) st
 	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::defaultDevice")
 
 	if ptr.Pointer() != nil {
-		var serviceC = C.CString(service)
+		var serviceC = C.CString(hex.EncodeToString([]byte(service)))
 		defer C.free(unsafe.Pointer(serviceC))
-		return C.GoString(C.QMediaServiceDefaultDeviceInterface_DefaultDevice(ptr.Pointer(), serviceC))
+		return qt.HexDecodeToString(C.GoString(C.QMediaServiceDefaultDeviceInterface_DefaultDevice(ptr.Pointer(), serviceC)))
 	}
 	return ""
 }
@@ -46987,7 +46988,7 @@ func callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(ptr unsafe
 	defer qt.Recovering("callback QMediaServiceSupportedDevicesInterface::deviceDescription")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "deviceDescription"); signal != nil {
-		return C.CString(signal.(func(string, string) string)(C.GoString(service), C.GoString(device)))
+		return C.CString(signal.(func(string, string) string)(qt.HexDecodeToString(C.GoString(service)), qt.HexDecodeToString(C.GoString(device))))
 	}
 
 	return C.CString("")
@@ -47015,9 +47016,9 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service str
 	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::deviceDescription")
 
 	if ptr.Pointer() != nil {
-		var serviceC = C.CString(service)
+		var serviceC = C.CString(hex.EncodeToString([]byte(service)))
 		defer C.free(unsafe.Pointer(serviceC))
-		var deviceC = C.CString(device)
+		var deviceC = C.CString(hex.EncodeToString([]byte(device)))
 		defer C.free(unsafe.Pointer(deviceC))
 		return C.GoString(C.QMediaServiceSupportedDevicesInterface_DeviceDescription(ptr.Pointer(), serviceC, deviceC))
 	}
@@ -63302,10 +63303,10 @@ func callbackQVideoWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, event
 	defer qt.Recovering("callback QVideoWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQVideoWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQVideoWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QVideoWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -63330,7 +63331,7 @@ func (ptr *QVideoWidget) NativeEvent(eventType string, message unsafe.Pointer, r
 	defer qt.Recovering("QVideoWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QVideoWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -63341,7 +63342,7 @@ func (ptr *QVideoWidget) NativeEventDefault(eventType string, message unsafe.Poi
 	defer qt.Recovering("QVideoWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QVideoWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

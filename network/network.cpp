@@ -1342,12 +1342,12 @@ void QHttpMultiPart_Append(void* ptr, void* httpPart)
 
 char* QHttpMultiPart_Boundary(void* ptr)
 {
-	return QString(static_cast<QHttpMultiPart*>(ptr)->boundary()).toUtf8().data();
+	return static_cast<QHttpMultiPart*>(ptr)->boundary().toHex().data();
 }
 
 void QHttpMultiPart_SetBoundary(void* ptr, char* boundary)
 {
-	static_cast<QHttpMultiPart*>(ptr)->setBoundary(QByteArray(boundary));
+	static_cast<QHttpMultiPart*>(ptr)->setBoundary(QByteArray::fromHex(QString(boundary).toUtf8()));
 }
 
 void QHttpMultiPart_SetContentType(void* ptr, int contentType)
@@ -1462,7 +1462,7 @@ void* QHttpPart_NewQHttpPart2(void* other)
 
 void QHttpPart_SetBody(void* ptr, char* body)
 {
-	static_cast<QHttpPart*>(ptr)->setBody(QByteArray(body));
+	static_cast<QHttpPart*>(ptr)->setBody(QByteArray::fromHex(QString(body).toUtf8()));
 }
 
 void QHttpPart_SetBodyDevice(void* ptr, void* device)
@@ -1477,7 +1477,7 @@ void QHttpPart_SetHeader(void* ptr, int header, void* value)
 
 void QHttpPart_SetRawHeader(void* ptr, char* headerName, char* headerValue)
 {
-	static_cast<QHttpPart*>(ptr)->setRawHeader(QByteArray(headerName), QByteArray(headerValue));
+	static_cast<QHttpPart*>(ptr)->setRawHeader(QByteArray::fromHex(QString(headerName).toUtf8()), QByteArray::fromHex(QString(headerValue).toUtf8()));
 }
 
 void QHttpPart_Swap(void* ptr, void* other)
@@ -2275,7 +2275,7 @@ void* QNetworkAccessManager_Post(void* ptr, void* request, void* data)
 
 void* QNetworkAccessManager_Post2(void* ptr, void* request, char* data)
 {
-	return static_cast<QNetworkAccessManager*>(ptr)->post(*static_cast<QNetworkRequest*>(request), QByteArray(data));
+	return static_cast<QNetworkAccessManager*>(ptr)->post(*static_cast<QNetworkRequest*>(request), QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(void* ptr)
@@ -2325,12 +2325,12 @@ void* QNetworkAccessManager_Put(void* ptr, void* request, void* data)
 
 void* QNetworkAccessManager_Put2(void* ptr, void* request, char* data)
 {
-	return static_cast<QNetworkAccessManager*>(ptr)->put(*static_cast<QNetworkRequest*>(request), QByteArray(data));
+	return static_cast<QNetworkAccessManager*>(ptr)->put(*static_cast<QNetworkRequest*>(request), QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void* QNetworkAccessManager_SendCustomRequest(void* ptr, void* request, char* verb, void* data)
 {
-	return static_cast<QNetworkAccessManager*>(ptr)->sendCustomRequest(*static_cast<QNetworkRequest*>(request), QByteArray(verb), static_cast<QIODevice*>(data));
+	return static_cast<QNetworkAccessManager*>(ptr)->sendCustomRequest(*static_cast<QNetworkRequest*>(request), QByteArray::fromHex(QString(verb).toUtf8()), static_cast<QIODevice*>(data));
 }
 
 void QNetworkAccessManager_SetCache(void* ptr, void* cache)
@@ -2888,7 +2888,7 @@ void* QNetworkConfigurationManager_MetaObjectDefault(void* ptr)
 
 void* QNetworkCookie_NewQNetworkCookie(char* name, char* value)
 {
-	return new QNetworkCookie(QByteArray(name), QByteArray(value));
+	return new QNetworkCookie(QByteArray::fromHex(QString(name).toUtf8()), QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void* QNetworkCookie_NewQNetworkCookie2(void* other)
@@ -2928,7 +2928,7 @@ int QNetworkCookie_IsSessionCookie(void* ptr)
 
 char* QNetworkCookie_Name(void* ptr)
 {
-	return QString(static_cast<QNetworkCookie*>(ptr)->name()).toUtf8().data();
+	return static_cast<QNetworkCookie*>(ptr)->name().toHex().data();
 }
 
 void QNetworkCookie_Normalize(void* ptr, void* url)
@@ -2958,7 +2958,7 @@ void QNetworkCookie_SetHttpOnly(void* ptr, int enable)
 
 void QNetworkCookie_SetName(void* ptr, char* cookieName)
 {
-	static_cast<QNetworkCookie*>(ptr)->setName(QByteArray(cookieName));
+	static_cast<QNetworkCookie*>(ptr)->setName(QByteArray::fromHex(QString(cookieName).toUtf8()));
 }
 
 void QNetworkCookie_SetPath(void* ptr, char* path)
@@ -2973,7 +2973,7 @@ void QNetworkCookie_SetSecure(void* ptr, int enable)
 
 void QNetworkCookie_SetValue(void* ptr, char* value)
 {
-	static_cast<QNetworkCookie*>(ptr)->setValue(QByteArray(value));
+	static_cast<QNetworkCookie*>(ptr)->setValue(QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void QNetworkCookie_Swap(void* ptr, void* other)
@@ -2983,12 +2983,12 @@ void QNetworkCookie_Swap(void* ptr, void* other)
 
 char* QNetworkCookie_ToRawForm(void* ptr, int form)
 {
-	return QString(static_cast<QNetworkCookie*>(ptr)->toRawForm(static_cast<QNetworkCookie::RawForm>(form))).toUtf8().data();
+	return static_cast<QNetworkCookie*>(ptr)->toRawForm(static_cast<QNetworkCookie::RawForm>(form)).toHex().data();
 }
 
 char* QNetworkCookie_Value(void* ptr)
 {
-	return QString(static_cast<QNetworkCookie*>(ptr)->value()).toUtf8().data();
+	return static_cast<QNetworkCookie*>(ptr)->value().toHex().data();
 }
 
 void QNetworkCookie_DestroyQNetworkCookie(void* ptr)
@@ -3486,7 +3486,7 @@ int QNetworkProxy_Capabilities(void* ptr)
 
 int QNetworkProxy_HasRawHeader(void* ptr, char* headerName)
 {
-	return static_cast<QNetworkProxy*>(ptr)->hasRawHeader(QByteArray(headerName));
+	return static_cast<QNetworkProxy*>(ptr)->hasRawHeader(QByteArray::fromHex(QString(headerName).toUtf8()));
 }
 
 void* QNetworkProxy_Header(void* ptr, int header)
@@ -3516,7 +3516,7 @@ char* QNetworkProxy_Password(void* ptr)
 
 char* QNetworkProxy_RawHeader(void* ptr, char* headerName)
 {
-	return QString(static_cast<QNetworkProxy*>(ptr)->rawHeader(QByteArray(headerName))).toUtf8().data();
+	return static_cast<QNetworkProxy*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().data();
 }
 
 void QNetworkProxy_QNetworkProxy_SetApplicationProxy(void* networkProxy)
@@ -3546,7 +3546,7 @@ void QNetworkProxy_SetPassword(void* ptr, char* password)
 
 void QNetworkProxy_SetRawHeader(void* ptr, char* headerName, char* headerValue)
 {
-	static_cast<QNetworkProxy*>(ptr)->setRawHeader(QByteArray(headerName), QByteArray(headerValue));
+	static_cast<QNetworkProxy*>(ptr)->setRawHeader(QByteArray::fromHex(QString(headerName).toUtf8()), QByteArray::fromHex(QString(headerValue).toUtf8()));
 }
 
 void QNetworkProxy_SetType(void* ptr, int ty)
@@ -3876,7 +3876,7 @@ void QNetworkReply_Finished(void* ptr)
 
 int QNetworkReply_HasRawHeader(void* ptr, char* headerName)
 {
-	return static_cast<QNetworkReply*>(ptr)->hasRawHeader(QByteArray(headerName));
+	return static_cast<QNetworkReply*>(ptr)->hasRawHeader(QByteArray::fromHex(QString(headerName).toUtf8()));
 }
 
 void* QNetworkReply_Header(void* ptr, int header)
@@ -3946,7 +3946,7 @@ void QNetworkReply_PreSharedKeyAuthenticationRequired(void* ptr, void* authentic
 
 char* QNetworkReply_RawHeader(void* ptr, char* headerName)
 {
-	return QString(static_cast<QNetworkReply*>(ptr)->rawHeader(QByteArray(headerName))).toUtf8().data();
+	return static_cast<QNetworkReply*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().data();
 }
 
 long long QNetworkReply_ReadBufferSize(void* ptr)
@@ -4001,7 +4001,7 @@ void QNetworkReply_SetOperation(void* ptr, int operation)
 
 void QNetworkReply_SetRawHeader(void* ptr, char* headerName, char* value)
 {
-	static_cast<QNetworkReply*>(ptr)->setRawHeader(QByteArray(headerName), QByteArray(value));
+	static_cast<QNetworkReply*>(ptr)->setRawHeader(QByteArray::fromHex(QString(headerName).toUtf8()), QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void QNetworkReply_SetReadBufferSize(void* ptr, long long size)
@@ -4306,7 +4306,7 @@ void* QNetworkRequest_Attribute(void* ptr, int code, void* defaultValue)
 
 int QNetworkRequest_HasRawHeader(void* ptr, char* headerName)
 {
-	return static_cast<QNetworkRequest*>(ptr)->hasRawHeader(QByteArray(headerName));
+	return static_cast<QNetworkRequest*>(ptr)->hasRawHeader(QByteArray::fromHex(QString(headerName).toUtf8()));
 }
 
 void* QNetworkRequest_Header(void* ptr, int header)
@@ -4331,7 +4331,7 @@ int QNetworkRequest_Priority(void* ptr)
 
 char* QNetworkRequest_RawHeader(void* ptr, char* headerName)
 {
-	return QString(static_cast<QNetworkRequest*>(ptr)->rawHeader(QByteArray(headerName))).toUtf8().data();
+	return static_cast<QNetworkRequest*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().data();
 }
 
 void QNetworkRequest_SetAttribute(void* ptr, int code, void* value)
@@ -4361,7 +4361,7 @@ void QNetworkRequest_SetPriority(void* ptr, int priority)
 
 void QNetworkRequest_SetRawHeader(void* ptr, char* headerName, char* headerValue)
 {
-	static_cast<QNetworkRequest*>(ptr)->setRawHeader(QByteArray(headerName), QByteArray(headerValue));
+	static_cast<QNetworkRequest*>(ptr)->setRawHeader(QByteArray::fromHex(QString(headerName).toUtf8()), QByteArray::fromHex(QString(headerValue).toUtf8()));
 }
 
 void QNetworkRequest_SetSslConfiguration(void* ptr, void* config)
@@ -4725,7 +4725,7 @@ void QSslCertificate_Clear(void* ptr)
 
 char* QSslCertificate_Digest(void* ptr, int algorithm)
 {
-	return QString(static_cast<QSslCertificate*>(ptr)->digest(static_cast<QCryptographicHash::Algorithm>(algorithm))).toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->digest(static_cast<QCryptographicHash::Algorithm>(algorithm)).toHex().data();
 }
 
 int QSslCertificate_IsBlacklisted(void* ptr)
@@ -4770,7 +4770,7 @@ char* QSslCertificate_IssuerInfo(void* ptr, int subject)
 
 char* QSslCertificate_IssuerInfo2(void* ptr, char* attribute)
 {
-	return static_cast<QSslCertificate*>(ptr)->issuerInfo(QByteArray(attribute)).join("|").toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->issuerInfo(QByteArray::fromHex(QString(attribute).toUtf8())).join("|").toUtf8().data();
 }
 
 void* QSslCertificate_PublicKey(void* ptr)
@@ -4780,7 +4780,7 @@ void* QSslCertificate_PublicKey(void* ptr)
 
 char* QSslCertificate_SerialNumber(void* ptr)
 {
-	return QString(static_cast<QSslCertificate*>(ptr)->serialNumber()).toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->serialNumber().toHex().data();
 }
 
 char* QSslCertificate_SubjectInfo(void* ptr, int subject)
@@ -4790,17 +4790,17 @@ char* QSslCertificate_SubjectInfo(void* ptr, int subject)
 
 char* QSslCertificate_SubjectInfo2(void* ptr, char* attribute)
 {
-	return static_cast<QSslCertificate*>(ptr)->subjectInfo(QByteArray(attribute)).join("|").toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->subjectInfo(QByteArray::fromHex(QString(attribute).toUtf8())).join("|").toUtf8().data();
 }
 
 char* QSslCertificate_ToDer(void* ptr)
 {
-	return QString(static_cast<QSslCertificate*>(ptr)->toDer()).toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->toDer().toHex().data();
 }
 
 char* QSslCertificate_ToPem(void* ptr)
 {
-	return QString(static_cast<QSslCertificate*>(ptr)->toPem()).toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->toPem().toHex().data();
 }
 
 char* QSslCertificate_ToText(void* ptr)
@@ -4810,7 +4810,7 @@ char* QSslCertificate_ToText(void* ptr)
 
 char* QSslCertificate_Version(void* ptr)
 {
-	return QString(static_cast<QSslCertificate*>(ptr)->version()).toUtf8().data();
+	return static_cast<QSslCertificate*>(ptr)->version().toHex().data();
 }
 
 void* QSslCertificateExtension_NewQSslCertificateExtension()
@@ -4955,7 +4955,7 @@ void* QSslConfiguration_LocalCertificate(void* ptr)
 
 char* QSslConfiguration_NextNegotiatedProtocol(void* ptr)
 {
-	return QString(static_cast<QSslConfiguration*>(ptr)->nextNegotiatedProtocol()).toUtf8().data();
+	return static_cast<QSslConfiguration*>(ptr)->nextNegotiatedProtocol().toHex().data();
 }
 
 int QSslConfiguration_NextProtocolNegotiationStatus(void* ptr)
@@ -4990,7 +4990,7 @@ void* QSslConfiguration_SessionCipher(void* ptr)
 
 char* QSslConfiguration_SessionTicket(void* ptr)
 {
-	return QString(static_cast<QSslConfiguration*>(ptr)->sessionTicket()).toUtf8().data();
+	return static_cast<QSslConfiguration*>(ptr)->sessionTicket().toHex().data();
 }
 
 int QSslConfiguration_SessionTicketLifeTimeHint(void* ptr)
@@ -5025,7 +5025,7 @@ void QSslConfiguration_SetPrivateKey(void* ptr, void* key)
 
 void QSslConfiguration_SetSessionTicket(void* ptr, char* sessionTicket)
 {
-	static_cast<QSslConfiguration*>(ptr)->setSessionTicket(QByteArray(sessionTicket));
+	static_cast<QSslConfiguration*>(ptr)->setSessionTicket(QByteArray::fromHex(QString(sessionTicket).toUtf8()));
 }
 
 void QSslConfiguration_Swap(void* ptr, void* other)
@@ -5140,12 +5140,12 @@ void QSslKey_Swap(void* ptr, void* other)
 
 char* QSslKey_ToDer(void* ptr, char* passPhrase)
 {
-	return QString(static_cast<QSslKey*>(ptr)->toDer(QByteArray(passPhrase))).toUtf8().data();
+	return static_cast<QSslKey*>(ptr)->toDer(QByteArray::fromHex(QString(passPhrase).toUtf8())).toHex().data();
 }
 
 char* QSslKey_ToPem(void* ptr, char* passPhrase)
 {
-	return QString(static_cast<QSslKey*>(ptr)->toPem(QByteArray(passPhrase))).toUtf8().data();
+	return static_cast<QSslKey*>(ptr)->toPem(QByteArray::fromHex(QString(passPhrase).toUtf8())).toHex().data();
 }
 
 void QSslKey_DestroyQSslKey(void* ptr)
@@ -5165,12 +5165,12 @@ void* QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(void* auth
 
 char* QSslPreSharedKeyAuthenticator_Identity(void* ptr)
 {
-	return QString(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identity()).toUtf8().data();
+	return static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identity().toHex().data();
 }
 
 char* QSslPreSharedKeyAuthenticator_IdentityHint(void* ptr)
 {
-	return QString(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identityHint()).toUtf8().data();
+	return static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identityHint().toHex().data();
 }
 
 int QSslPreSharedKeyAuthenticator_MaximumIdentityLength(void* ptr)
@@ -5185,17 +5185,17 @@ int QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(void* ptr)
 
 char* QSslPreSharedKeyAuthenticator_PreSharedKey(void* ptr)
 {
-	return QString(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->preSharedKey()).toUtf8().data();
+	return static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->preSharedKey().toHex().data();
 }
 
 void QSslPreSharedKeyAuthenticator_SetIdentity(void* ptr, char* identity)
 {
-	static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->setIdentity(QByteArray(identity));
+	static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->setIdentity(QByteArray::fromHex(QString(identity).toUtf8()));
 }
 
 void QSslPreSharedKeyAuthenticator_SetPreSharedKey(void* ptr, char* preSharedKey)
 {
-	static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->setPreSharedKey(QByteArray(preSharedKey));
+	static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->setPreSharedKey(QByteArray::fromHex(QString(preSharedKey).toUtf8()));
 }
 
 void QSslPreSharedKeyAuthenticator_Swap(void* ptr, void* authenticator)

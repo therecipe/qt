@@ -6,6 +6,7 @@ package bluetooth
 //#include "bluetooth.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
@@ -7415,7 +7416,7 @@ func (ptr *QLowEnergyAdvertisingData) ManufacturerData() string {
 	defer qt.Recovering("QLowEnergyAdvertisingData::manufacturerData")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLowEnergyAdvertisingData_ManufacturerData(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QLowEnergyAdvertisingData_ManufacturerData(ptr.Pointer())))
 	}
 	return ""
 }
@@ -7424,7 +7425,7 @@ func (ptr *QLowEnergyAdvertisingData) RawData() string {
 	defer qt.Recovering("QLowEnergyAdvertisingData::rawData")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLowEnergyAdvertisingData_RawData(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QLowEnergyAdvertisingData_RawData(ptr.Pointer())))
 	}
 	return ""
 }
@@ -7459,7 +7460,7 @@ func (ptr *QLowEnergyAdvertisingData) SetRawData(data string) {
 	defer qt.Recovering("QLowEnergyAdvertisingData::setRawData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QLowEnergyAdvertisingData_SetRawData(ptr.Pointer(), dataC)
 	}
@@ -7740,7 +7741,7 @@ func (ptr *QLowEnergyCharacteristic) Value() string {
 	defer qt.Recovering("QLowEnergyCharacteristic::value")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLowEnergyCharacteristic_Value(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QLowEnergyCharacteristic_Value(ptr.Pointer())))
 	}
 	return ""
 }
@@ -7873,7 +7874,7 @@ func (ptr *QLowEnergyCharacteristicData) SetValue(value string) {
 	defer qt.Recovering("QLowEnergyCharacteristicData::setValue")
 
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
+		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
 		C.QLowEnergyCharacteristicData_SetValue(ptr.Pointer(), valueC)
 	}
@@ -7910,7 +7911,7 @@ func (ptr *QLowEnergyCharacteristicData) Value() string {
 	defer qt.Recovering("QLowEnergyCharacteristicData::value")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLowEnergyCharacteristicData_Value(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QLowEnergyCharacteristicData_Value(ptr.Pointer())))
 	}
 	return ""
 }
@@ -9067,7 +9068,7 @@ func (ptr *QLowEnergyDescriptor) Value() string {
 	defer qt.Recovering("QLowEnergyDescriptor::value")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLowEnergyDescriptor_Value(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QLowEnergyDescriptor_Value(ptr.Pointer())))
 	}
 	return ""
 }
@@ -9133,7 +9134,7 @@ func NewQLowEnergyDescriptorData() *QLowEnergyDescriptorData {
 func NewQLowEnergyDescriptorData2(uuid QBluetoothUuid_ITF, value string) *QLowEnergyDescriptorData {
 	defer qt.Recovering("QLowEnergyDescriptorData::QLowEnergyDescriptorData")
 
-	var valueC = C.CString(value)
+	var valueC = C.CString(hex.EncodeToString([]byte(value)))
 	defer C.free(unsafe.Pointer(valueC))
 	return newQLowEnergyDescriptorDataFromPointer(C.QLowEnergyDescriptorData_NewQLowEnergyDescriptorData2(PointerFromQBluetoothUuid(uuid), valueC))
 }
@@ -9183,7 +9184,7 @@ func (ptr *QLowEnergyDescriptorData) SetValue(value string) {
 	defer qt.Recovering("QLowEnergyDescriptorData::setValue")
 
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
+		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
 		C.QLowEnergyDescriptorData_SetValue(ptr.Pointer(), valueC)
 	}
@@ -9212,7 +9213,7 @@ func (ptr *QLowEnergyDescriptorData) Value() string {
 	defer qt.Recovering("QLowEnergyDescriptorData::value")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QLowEnergyDescriptorData_Value(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QLowEnergyDescriptorData_Value(ptr.Pointer())))
 	}
 	return ""
 }
@@ -9319,7 +9320,7 @@ func callbackQLowEnergyService_CharacteristicChanged(ptr unsafe.Pointer, ptrName
 	defer qt.Recovering("callback QLowEnergyService::characteristicChanged")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "characteristicChanged"); signal != nil {
-		signal.(func(*QLowEnergyCharacteristic, string))(NewQLowEnergyCharacteristicFromPointer(characteristic), C.GoString(newValue))
+		signal.(func(*QLowEnergyCharacteristic, string))(NewQLowEnergyCharacteristicFromPointer(characteristic), qt.HexDecodeToString(C.GoString(newValue)))
 	}
 
 }
@@ -9346,7 +9347,7 @@ func (ptr *QLowEnergyService) CharacteristicChanged(characteristic QLowEnergyCha
 	defer qt.Recovering("QLowEnergyService::characteristicChanged")
 
 	if ptr.Pointer() != nil {
-		var newValueC = C.CString(newValue)
+		var newValueC = C.CString(hex.EncodeToString([]byte(newValue)))
 		defer C.free(unsafe.Pointer(newValueC))
 		C.QLowEnergyService_CharacteristicChanged(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic), newValueC)
 	}
@@ -9357,7 +9358,7 @@ func callbackQLowEnergyService_CharacteristicRead(ptr unsafe.Pointer, ptrName *C
 	defer qt.Recovering("callback QLowEnergyService::characteristicRead")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "characteristicRead"); signal != nil {
-		signal.(func(*QLowEnergyCharacteristic, string))(NewQLowEnergyCharacteristicFromPointer(characteristic), C.GoString(value))
+		signal.(func(*QLowEnergyCharacteristic, string))(NewQLowEnergyCharacteristicFromPointer(characteristic), qt.HexDecodeToString(C.GoString(value)))
 	}
 
 }
@@ -9384,7 +9385,7 @@ func (ptr *QLowEnergyService) CharacteristicRead(characteristic QLowEnergyCharac
 	defer qt.Recovering("QLowEnergyService::characteristicRead")
 
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
+		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
 		C.QLowEnergyService_CharacteristicRead(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic), valueC)
 	}
@@ -9395,7 +9396,7 @@ func callbackQLowEnergyService_CharacteristicWritten(ptr unsafe.Pointer, ptrName
 	defer qt.Recovering("callback QLowEnergyService::characteristicWritten")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "characteristicWritten"); signal != nil {
-		signal.(func(*QLowEnergyCharacteristic, string))(NewQLowEnergyCharacteristicFromPointer(characteristic), C.GoString(newValue))
+		signal.(func(*QLowEnergyCharacteristic, string))(NewQLowEnergyCharacteristicFromPointer(characteristic), qt.HexDecodeToString(C.GoString(newValue)))
 	}
 
 }
@@ -9422,7 +9423,7 @@ func (ptr *QLowEnergyService) CharacteristicWritten(characteristic QLowEnergyCha
 	defer qt.Recovering("QLowEnergyService::characteristicWritten")
 
 	if ptr.Pointer() != nil {
-		var newValueC = C.CString(newValue)
+		var newValueC = C.CString(hex.EncodeToString([]byte(newValue)))
 		defer C.free(unsafe.Pointer(newValueC))
 		C.QLowEnergyService_CharacteristicWritten(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic), newValueC)
 	}
@@ -9433,7 +9434,7 @@ func callbackQLowEnergyService_DescriptorRead(ptr unsafe.Pointer, ptrName *C.cha
 	defer qt.Recovering("callback QLowEnergyService::descriptorRead")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "descriptorRead"); signal != nil {
-		signal.(func(*QLowEnergyDescriptor, string))(NewQLowEnergyDescriptorFromPointer(descriptor), C.GoString(value))
+		signal.(func(*QLowEnergyDescriptor, string))(NewQLowEnergyDescriptorFromPointer(descriptor), qt.HexDecodeToString(C.GoString(value)))
 	}
 
 }
@@ -9460,7 +9461,7 @@ func (ptr *QLowEnergyService) DescriptorRead(descriptor QLowEnergyDescriptor_ITF
 	defer qt.Recovering("QLowEnergyService::descriptorRead")
 
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(value)
+		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
 		C.QLowEnergyService_DescriptorRead(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor), valueC)
 	}
@@ -9471,7 +9472,7 @@ func callbackQLowEnergyService_DescriptorWritten(ptr unsafe.Pointer, ptrName *C.
 	defer qt.Recovering("callback QLowEnergyService::descriptorWritten")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "descriptorWritten"); signal != nil {
-		signal.(func(*QLowEnergyDescriptor, string))(NewQLowEnergyDescriptorFromPointer(descriptor), C.GoString(newValue))
+		signal.(func(*QLowEnergyDescriptor, string))(NewQLowEnergyDescriptorFromPointer(descriptor), qt.HexDecodeToString(C.GoString(newValue)))
 	}
 
 }
@@ -9498,7 +9499,7 @@ func (ptr *QLowEnergyService) DescriptorWritten(descriptor QLowEnergyDescriptor_
 	defer qt.Recovering("QLowEnergyService::descriptorWritten")
 
 	if ptr.Pointer() != nil {
-		var newValueC = C.CString(newValue)
+		var newValueC = C.CString(hex.EncodeToString([]byte(newValue)))
 		defer C.free(unsafe.Pointer(newValueC))
 		C.QLowEnergyService_DescriptorWritten(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor), newValueC)
 	}
@@ -9680,7 +9681,7 @@ func (ptr *QLowEnergyService) WriteCharacteristic(characteristic QLowEnergyChara
 	defer qt.Recovering("QLowEnergyService::writeCharacteristic")
 
 	if ptr.Pointer() != nil {
-		var newValueC = C.CString(newValue)
+		var newValueC = C.CString(hex.EncodeToString([]byte(newValue)))
 		defer C.free(unsafe.Pointer(newValueC))
 		C.QLowEnergyService_WriteCharacteristic(ptr.Pointer(), PointerFromQLowEnergyCharacteristic(characteristic), newValueC, C.int(mode))
 	}
@@ -9690,7 +9691,7 @@ func (ptr *QLowEnergyService) WriteDescriptor(descriptor QLowEnergyDescriptor_IT
 	defer qt.Recovering("QLowEnergyService::writeDescriptor")
 
 	if ptr.Pointer() != nil {
-		var newValueC = C.CString(newValue)
+		var newValueC = C.CString(hex.EncodeToString([]byte(newValue)))
 		defer C.free(unsafe.Pointer(newValueC))
 		C.QLowEnergyService_WriteDescriptor(ptr.Pointer(), PointerFromQLowEnergyDescriptor(descriptor), newValueC)
 	}

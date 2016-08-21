@@ -705,7 +705,7 @@ void* QAudioBuffer_NewQAudioBuffer3(void* other)
 
 void* QAudioBuffer_NewQAudioBuffer4(char* data, void* format, long long startTime)
 {
-	return new QAudioBuffer(QByteArray(data), *static_cast<QAudioFormat*>(format), static_cast<long long>(startTime));
+	return new QAudioBuffer(QByteArray::fromHex(QString(data).toUtf8()), *static_cast<QAudioFormat*>(format), static_cast<long long>(startTime));
 }
 
 void* QAudioBuffer_NewQAudioBuffer5(int numFrames, void* format, long long startTime)
@@ -3309,7 +3309,7 @@ void* QCamera_NewQCamera(void* parent)
 
 void* QCamera_NewQCamera2(char* deviceName, void* parent)
 {
-	return new MyQCamera(QByteArray(deviceName), static_cast<QObject*>(parent));
+	return new MyQCamera(QByteArray::fromHex(QString(deviceName).toUtf8()), static_cast<QObject*>(parent));
 }
 
 void* QCamera_NewQCamera3(void* cameraInfo, void* parent)
@@ -6489,7 +6489,7 @@ void* QCameraImageProcessingControl_MetaObjectDefault(void* ptr)
 
 void* QCameraInfo_NewQCameraInfo(char* name)
 {
-	return new QCameraInfo(QByteArray(name));
+	return new QCameraInfo(QByteArray::fromHex(QString(name).toUtf8()));
 }
 
 void* QCameraInfo_NewQCameraInfo2(void* camera)
@@ -6863,7 +6863,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQCameraViewfinder_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQCameraViewfinder_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQCameraViewfinder_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCameraViewfinder_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCameraViewfinder_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQCameraViewfinder_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQCameraViewfinder_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQCameraViewfinder_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -7302,12 +7302,12 @@ void QCameraViewfinder_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QCameraViewfinder_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCameraViewfinder*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCameraViewfinder*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QCameraViewfinder_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QCameraViewfinder_Raise(void* ptr)
@@ -9838,7 +9838,7 @@ void* QMediaObject_NewQMediaObject(void* parent, void* service)
 
 void QMediaObject_AddPropertyWatch(void* ptr, char* name)
 {
-	static_cast<QMediaObject*>(ptr)->addPropertyWatch(QByteArray(name));
+	static_cast<QMediaObject*>(ptr)->addPropertyWatch(QByteArray::fromHex(QString(name).toUtf8()));
 }
 
 int QMediaObject_Availability(void* ptr)
@@ -9978,7 +9978,7 @@ void QMediaObject_NotifyIntervalChanged(void* ptr, int milliseconds)
 
 void QMediaObject_RemovePropertyWatch(void* ptr, char* name)
 {
-	static_cast<QMediaObject*>(ptr)->removePropertyWatch(QByteArray(name));
+	static_cast<QMediaObject*>(ptr)->removePropertyWatch(QByteArray::fromHex(QString(name).toUtf8()));
 }
 
 void* QMediaObject_Service(void* ptr)
@@ -12699,18 +12699,18 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	int cameraOrientation(const QByteArray & device) const { return callbackQMediaServiceCameraInfoInterface_CameraOrientation(const_cast<MyQMediaServiceCameraInfoInterface*>(this), this->objectNameAbs().toUtf8().data(), QString(device).toUtf8().data()); };
-	QCamera::Position cameraPosition(const QByteArray & device) const { return static_cast<QCamera::Position>(callbackQMediaServiceCameraInfoInterface_CameraPosition(const_cast<MyQMediaServiceCameraInfoInterface*>(this), this->objectNameAbs().toUtf8().data(), QString(device).toUtf8().data())); };
+	int cameraOrientation(const QByteArray & device) const { return callbackQMediaServiceCameraInfoInterface_CameraOrientation(const_cast<MyQMediaServiceCameraInfoInterface*>(this), this->objectNameAbs().toUtf8().data(), device.toHex().data()); };
+	QCamera::Position cameraPosition(const QByteArray & device) const { return static_cast<QCamera::Position>(callbackQMediaServiceCameraInfoInterface_CameraPosition(const_cast<MyQMediaServiceCameraInfoInterface*>(this), this->objectNameAbs().toUtf8().data(), device.toHex().data())); };
 };
 
 int QMediaServiceCameraInfoInterface_CameraOrientation(void* ptr, char* device)
 {
-	return static_cast<QMediaServiceCameraInfoInterface*>(ptr)->cameraOrientation(QByteArray(device));
+	return static_cast<QMediaServiceCameraInfoInterface*>(ptr)->cameraOrientation(QByteArray::fromHex(QString(device).toUtf8()));
 }
 
 int QMediaServiceCameraInfoInterface_CameraPosition(void* ptr, char* device)
 {
-	return static_cast<QMediaServiceCameraInfoInterface*>(ptr)->cameraPosition(QByteArray(device));
+	return static_cast<QMediaServiceCameraInfoInterface*>(ptr)->cameraPosition(QByteArray::fromHex(QString(device).toUtf8()));
 }
 
 void QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(void* ptr)
@@ -12739,12 +12739,12 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	QByteArray defaultDevice(const QByteArray & service) const { return QByteArray(callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(const_cast<MyQMediaServiceDefaultDeviceInterface*>(this), this->objectNameAbs().toUtf8().data(), QString(service).toUtf8().data())); };
+	QByteArray defaultDevice(const QByteArray & service) const { return QByteArray::fromHex(QString(callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(const_cast<MyQMediaServiceDefaultDeviceInterface*>(this), this->objectNameAbs().toUtf8().data(), service.toHex().data())).toUtf8()); };
 };
 
 char* QMediaServiceDefaultDeviceInterface_DefaultDevice(void* ptr, char* service)
 {
-	return QString(static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->defaultDevice(QByteArray(service))).toUtf8().data();
+	return static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->defaultDevice(QByteArray::fromHex(QString(service).toUtf8())).toHex().data();
 }
 
 void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(void* ptr)
@@ -12917,12 +12917,12 @@ public:
 	QString _objectName;
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	QString deviceDescription(const QByteArray & service, const QByteArray & device) { return QString(callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(this, this->objectNameAbs().toUtf8().data(), QString(service).toUtf8().data(), QString(device).toUtf8().data())); };
+	QString deviceDescription(const QByteArray & service, const QByteArray & device) { return QString(callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(this, this->objectNameAbs().toUtf8().data(), service.toHex().data(), device.toHex().data())); };
 };
 
 char* QMediaServiceSupportedDevicesInterface_DeviceDescription(void* ptr, char* service, char* device)
 {
-	return static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(QByteArray(service), QByteArray(device)).toUtf8().data();
+	return static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(QByteArray::fromHex(QString(service).toUtf8()), QByteArray::fromHex(QString(device).toUtf8())).toUtf8().data();
 }
 
 void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(void* ptr)
@@ -16927,7 +16927,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQVideoWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQVideoWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQVideoWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQVideoWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQVideoWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQVideoWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQVideoWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQVideoWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -17467,12 +17467,12 @@ void QVideoWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QVideoWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QVideoWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QVideoWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QVideoWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QVideoWidget*>(ptr)->QVideoWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QVideoWidget*>(ptr)->QVideoWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QVideoWidget_Raise(void* ptr)

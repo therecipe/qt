@@ -662,7 +662,7 @@ public:
 	void hide() { callbackQHelpContentWidget_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQHelpContentWidget_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQHelpContentWidget_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpContentWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpContentWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQHelpContentWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQHelpContentWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQHelpContentWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -1628,12 +1628,12 @@ void QHelpContentWidget_LowerDefault(void* ptr)
 
 int QHelpContentWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpContentWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpContentWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QHelpContentWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QHelpContentWidget_Raise(void* ptr)
@@ -2053,7 +2053,7 @@ char* QHelpEngineCore_Error(void* ptr)
 
 char* QHelpEngineCore_FileData(void* ptr, void* url)
 {
-	return QString(static_cast<QHelpEngineCore*>(ptr)->fileData(*static_cast<QUrl*>(url))).toUtf8().data();
+	return static_cast<QHelpEngineCore*>(ptr)->fileData(*static_cast<QUrl*>(url)).toHex().data();
 }
 
 char* QHelpEngineCore_FilterAttributes(void* ptr)
@@ -2838,7 +2838,7 @@ public:
 	void hide() { callbackQHelpIndexWidget_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQHelpIndexWidget_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQHelpIndexWidget_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpIndexWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpIndexWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQHelpIndexWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQHelpIndexWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQHelpIndexWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -3669,12 +3669,12 @@ void QHelpIndexWidget_LowerDefault(void* ptr)
 
 int QHelpIndexWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpIndexWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpIndexWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QHelpIndexWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QHelpIndexWidget_Raise(void* ptr)
@@ -4151,7 +4151,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQHelpSearchQueryWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQHelpSearchQueryWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQHelpSearchQueryWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchQueryWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchQueryWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQHelpSearchQueryWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQHelpSearchQueryWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQHelpSearchQueryWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4591,12 +4591,12 @@ void QHelpSearchQueryWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QHelpSearchQueryWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QHelpSearchQueryWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QHelpSearchQueryWidget_Raise(void* ptr)
@@ -4870,7 +4870,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQHelpSearchResultWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQHelpSearchResultWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQHelpSearchResultWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchResultWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHelpSearchResultWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQHelpSearchResultWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQHelpSearchResultWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQHelpSearchResultWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -5295,12 +5295,12 @@ void QHelpSearchResultWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QHelpSearchResultWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpSearchResultWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpSearchResultWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QHelpSearchResultWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QHelpSearchResultWidget_Raise(void* ptr)

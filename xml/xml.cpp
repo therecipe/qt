@@ -282,12 +282,12 @@ int QDomDocument_SetContent4(void* ptr, void* source, int namespaceProcessing, c
 
 int QDomDocument_SetContent5(void* ptr, char* buffer, char* errorMsg, int errorLine, int errorColumn)
 {
-	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray(buffer), new QString(errorMsg), &errorLine, &errorColumn);
+	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray::fromHex(QString(buffer).toUtf8()), new QString(errorMsg), &errorLine, &errorColumn);
 }
 
 int QDomDocument_SetContent(void* ptr, char* data, int namespaceProcessing, char* errorMsg, int errorLine, int errorColumn)
 {
-	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray(data), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
+	return static_cast<QDomDocument*>(ptr)->setContent(QByteArray::fromHex(QString(data).toUtf8()), namespaceProcessing != 0, new QString(errorMsg), &errorLine, &errorColumn);
 }
 
 int QDomDocument_SetContent6(void* ptr, char* text, char* errorMsg, int errorLine, int errorColumn)
@@ -302,7 +302,7 @@ int QDomDocument_SetContent2(void* ptr, char* text, int namespaceProcessing, cha
 
 char* QDomDocument_ToByteArray(void* ptr, int indent)
 {
-	return QString(static_cast<QDomDocument*>(ptr)->toByteArray(indent)).toUtf8().data();
+	return static_cast<QDomDocument*>(ptr)->toByteArray(indent).toHex().data();
 }
 
 char* QDomDocument_ToString(void* ptr, int indent)
@@ -1857,10 +1857,10 @@ public:
 	MyQXmlInputSource(QIODevice *dev) : QXmlInputSource(dev) {};
 	QString data() const { return QString(callbackQXmlInputSource_Data(const_cast<MyQXmlInputSource*>(this), this->objectNameAbs().toUtf8().data())); };
 	void fetchData() { callbackQXmlInputSource_FetchData(this, this->objectNameAbs().toUtf8().data()); };
-	QString fromRawData(const QByteArray & data, bool beginning) { return QString(callbackQXmlInputSource_FromRawData(this, this->objectNameAbs().toUtf8().data(), QString(data).toUtf8().data(), beginning)); };
+	QString fromRawData(const QByteArray & data, bool beginning) { return QString(callbackQXmlInputSource_FromRawData(this, this->objectNameAbs().toUtf8().data(), data.toHex().data(), beginning)); };
 	QChar next() { return *static_cast<QChar*>(callbackQXmlInputSource_Next(this, this->objectNameAbs().toUtf8().data())); };
 	void reset() { callbackQXmlInputSource_Reset(this, this->objectNameAbs().toUtf8().data()); };
-	void setData(const QByteArray & dat) { callbackQXmlInputSource_SetData2(this, this->objectNameAbs().toUtf8().data(), QString(dat).toUtf8().data()); };
+	void setData(const QByteArray & dat) { callbackQXmlInputSource_SetData2(this, this->objectNameAbs().toUtf8().data(), dat.toHex().data()); };
 	void setData(const QString & dat) { callbackQXmlInputSource_SetData(this, this->objectNameAbs().toUtf8().data(), dat.toUtf8().data()); };
 };
 
@@ -1896,12 +1896,12 @@ void QXmlInputSource_FetchDataDefault(void* ptr)
 
 char* QXmlInputSource_FromRawData(void* ptr, char* data, int beginning)
 {
-	return static_cast<QXmlInputSource*>(ptr)->fromRawData(QByteArray(data), beginning != 0).toUtf8().data();
+	return static_cast<QXmlInputSource*>(ptr)->fromRawData(QByteArray::fromHex(QString(data).toUtf8()), beginning != 0).toUtf8().data();
 }
 
 char* QXmlInputSource_FromRawDataDefault(void* ptr, char* data, int beginning)
 {
-	return static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fromRawData(QByteArray(data), beginning != 0).toUtf8().data();
+	return static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fromRawData(QByteArray::fromHex(QString(data).toUtf8()), beginning != 0).toUtf8().data();
 }
 
 
@@ -1920,12 +1920,12 @@ void QXmlInputSource_ResetDefault(void* ptr)
 
 void QXmlInputSource_SetData2(void* ptr, char* dat)
 {
-	static_cast<QXmlInputSource*>(ptr)->setData(QByteArray(dat));
+	static_cast<QXmlInputSource*>(ptr)->setData(QByteArray::fromHex(QString(dat).toUtf8()));
 }
 
 void QXmlInputSource_SetData2Default(void* ptr, char* dat)
 {
-	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::setData(QByteArray(dat));
+	static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::setData(QByteArray::fromHex(QString(dat).toUtf8()));
 }
 
 void QXmlInputSource_SetData(void* ptr, char* dat)

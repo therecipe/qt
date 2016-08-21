@@ -19,9 +19,14 @@ func goOutput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("strings.Split(%v, \"|\")", goOutput(name, "QString", f))
 		}
 
-	case "uchar", "char", "QString", "QByteArray":
+	case "uchar", "char", "QString":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
+		}
+
+	case "QByteArray":
+		{
+			return fmt.Sprintf("qt.HexDecodeToString(C.GoString(%v))", name)
 		}
 
 	case "int", "long":
@@ -202,9 +207,14 @@ func cgoOutput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("strings.Split(%v, \"|\")", cgoOutput(name, "QString", f))
 		}
 
-	case "uchar", "char", "QString", "QByteArray":
+	case "uchar", "char", "QString":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
+		}
+
+	case "QByteArray":
+		{
+			return fmt.Sprintf("qt.HexDecodeToString(C.GoString(%v))", name)
 		}
 
 	case "int", "long":
@@ -294,9 +304,14 @@ func cppOutput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("%v.toUtf8().data()", name)
 		}
 
-	case "QByteArray", "char":
+	case "char":
 		{
 			return cppOutput(fmt.Sprintf("QString(%v)", name), "QString", f)
+		}
+
+	case "QByteArray":
+		{
+			return fmt.Sprintf("%v.toHex().data()", name)
 		}
 
 	case "bool", "int", "long", "void", "", "T", "JavaVM", "jclass", "jobject":

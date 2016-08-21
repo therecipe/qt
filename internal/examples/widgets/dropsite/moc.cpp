@@ -96,7 +96,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackDropArea_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackDropArea_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackDropArea_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropArea_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropArea_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackDropArea_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackDropArea_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackDropArea_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -588,12 +588,12 @@ void DropArea_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int DropArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<DropArea*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<DropArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int DropArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<DropArea*>(ptr)->QLabel::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<DropArea*>(ptr)->QLabel::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void DropArea_Raise(void* ptr)
@@ -862,7 +862,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackDropSiteWindow_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropSiteWindow_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropSiteWindow_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackDropSiteWindow_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackDropSiteWindow_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackDropSiteWindow_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -1280,12 +1280,12 @@ void DropSiteWindow_MouseReleaseEventDefault(void* ptr, void* event)
 
 int DropSiteWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<DropSiteWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<DropSiteWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int DropSiteWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<DropSiteWindow*>(ptr)->QWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<DropSiteWindow*>(ptr)->QWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void DropSiteWindow_Raise(void* ptr)

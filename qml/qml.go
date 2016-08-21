@@ -6,6 +6,7 @@ package qml
 //#include "qml.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
@@ -1263,7 +1264,7 @@ func callbackQQmlApplicationEngine_LoadData(ptr unsafe.Pointer, ptrName *C.char,
 	defer qt.Recovering("callback QQmlApplicationEngine::loadData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "loadData"); signal != nil {
-		signal.(func(string, *core.QUrl))(C.GoString(data), core.NewQUrlFromPointer(url))
+		signal.(func(string, *core.QUrl))(qt.HexDecodeToString(C.GoString(data)), core.NewQUrlFromPointer(url))
 	}
 
 }
@@ -1290,7 +1291,7 @@ func (ptr *QQmlApplicationEngine) LoadData(data string, url core.QUrl_ITF) {
 	defer qt.Recovering("QQmlApplicationEngine::loadData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), dataC, core.PointerFromQUrl(url))
 	}
@@ -2190,7 +2191,7 @@ func callbackQQmlComponent_SetData(ptr unsafe.Pointer, ptrName *C.char, data *C.
 	defer qt.Recovering("callback QQmlComponent::setData")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "setData"); signal != nil {
-		signal.(func(string, *core.QUrl))(C.GoString(data), core.NewQUrlFromPointer(url))
+		signal.(func(string, *core.QUrl))(qt.HexDecodeToString(C.GoString(data)), core.NewQUrlFromPointer(url))
 	}
 
 }
@@ -2217,7 +2218,7 @@ func (ptr *QQmlComponent) SetData(data string, url core.QUrl_ITF) {
 	defer qt.Recovering("QQmlComponent::setData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		C.QQmlComponent_SetData(ptr.Pointer(), dataC, core.PointerFromQUrl(url))
 	}

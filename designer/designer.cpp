@@ -265,7 +265,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDesignerActionEditorInterface_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDesignerActionEditorInterface_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDesignerActionEditorInterface_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerActionEditorInterface_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerActionEditorInterface_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDesignerActionEditorInterface_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDesignerActionEditorInterface_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQDesignerActionEditorInterface_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -700,12 +700,12 @@ void QDesignerActionEditorInterface_MouseReleaseEventDefault(void* ptr, void* ev
 
 int QDesignerActionEditorInterface_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDesignerActionEditorInterface_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDesignerActionEditorInterface_Raise(void* ptr)
@@ -1614,7 +1614,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDesignerFormWindowInterface_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDesignerFormWindowInterface_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDesignerFormWindowInterface_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerFormWindowInterface_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerFormWindowInterface_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDesignerFormWindowInterface_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDesignerFormWindowInterface_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQDesignerFormWindowInterface_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -2456,12 +2456,12 @@ void QDesignerFormWindowInterface_MouseReleaseEventDefault(void* ptr, void* even
 
 int QDesignerFormWindowInterface_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDesignerFormWindowInterface_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDesignerFormWindowInterface_Raise(void* ptr)
@@ -3094,7 +3094,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDesignerObjectInspectorInterface_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDesignerObjectInspectorInterface_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDesignerObjectInspectorInterface_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerObjectInspectorInterface_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerObjectInspectorInterface_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDesignerObjectInspectorInterface_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDesignerObjectInspectorInterface_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQDesignerObjectInspectorInterface_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -3519,12 +3519,12 @@ void QDesignerObjectInspectorInterface_MouseReleaseEventDefault(void* ptr, void*
 
 int QDesignerObjectInspectorInterface_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDesignerObjectInspectorInterface_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDesignerObjectInspectorInterface_Raise(void* ptr)
@@ -3806,7 +3806,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDesignerPropertyEditorInterface_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDesignerPropertyEditorInterface_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDesignerPropertyEditorInterface_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerPropertyEditorInterface_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerPropertyEditorInterface_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDesignerPropertyEditorInterface_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDesignerPropertyEditorInterface_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQDesignerPropertyEditorInterface_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4271,12 +4271,12 @@ void QDesignerPropertyEditorInterface_MouseReleaseEventDefault(void* ptr, void* 
 
 int QDesignerPropertyEditorInterface_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDesignerPropertyEditorInterface_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDesignerPropertyEditorInterface_Raise(void* ptr)
@@ -4721,7 +4721,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDesignerWidgetBoxInterface_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDesignerWidgetBoxInterface_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDesignerWidgetBoxInterface_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerWidgetBoxInterface_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesignerWidgetBoxInterface_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDesignerWidgetBoxInterface_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDesignerWidgetBoxInterface_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQDesignerWidgetBoxInterface_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -5146,12 +5146,12 @@ void QDesignerWidgetBoxInterface_MouseReleaseEventDefault(void* ptr, void* event
 
 int QDesignerWidgetBoxInterface_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDesignerWidgetBoxInterface_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDesignerWidgetBoxInterface_Raise(void* ptr)

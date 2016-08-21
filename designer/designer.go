@@ -6,6 +6,7 @@ package designer
 //#include "designer.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -2444,10 +2445,10 @@ func callbackQDesignerActionEditorInterface_NativeEvent(ptr unsafe.Pointer, ptrN
 	defer qt.Recovering("callback QDesignerActionEditorInterface::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QDesignerActionEditorInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -2472,7 +2473,7 @@ func (ptr *QDesignerActionEditorInterface) NativeEvent(eventType string, message
 	defer qt.Recovering("QDesignerActionEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerActionEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -2483,7 +2484,7 @@ func (ptr *QDesignerActionEditorInterface) NativeEventDefault(eventType string, 
 	defer qt.Recovering("QDesignerActionEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerActionEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -9997,10 +9998,10 @@ func callbackQDesignerFormWindowInterface_NativeEvent(ptr unsafe.Pointer, ptrNam
 	defer qt.Recovering("callback QDesignerFormWindowInterface::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -10025,7 +10026,7 @@ func (ptr *QDesignerFormWindowInterface) NativeEvent(eventType string, message u
 	defer qt.Recovering("QDesignerFormWindowInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerFormWindowInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -10036,7 +10037,7 @@ func (ptr *QDesignerFormWindowInterface) NativeEventDefault(eventType string, me
 	defer qt.Recovering("QDesignerFormWindowInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerFormWindowInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -14638,10 +14639,10 @@ func callbackQDesignerObjectInspectorInterface_NativeEvent(ptr unsafe.Pointer, p
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QDesignerObjectInspectorInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -14666,7 +14667,7 @@ func (ptr *QDesignerObjectInspectorInterface) NativeEvent(eventType string, mess
 	defer qt.Recovering("QDesignerObjectInspectorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerObjectInspectorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -14677,7 +14678,7 @@ func (ptr *QDesignerObjectInspectorInterface) NativeEventDefault(eventType strin
 	defer qt.Recovering("QDesignerObjectInspectorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerObjectInspectorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -17803,10 +17804,10 @@ func callbackQDesignerPropertyEditorInterface_NativeEvent(ptr unsafe.Pointer, pt
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -17831,7 +17832,7 @@ func (ptr *QDesignerPropertyEditorInterface) NativeEvent(eventType string, messa
 	defer qt.Recovering("QDesignerPropertyEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerPropertyEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -17842,7 +17843,7 @@ func (ptr *QDesignerPropertyEditorInterface) NativeEventDefault(eventType string
 	defer qt.Recovering("QDesignerPropertyEditorInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerPropertyEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -21615,10 +21616,10 @@ func callbackQDesignerWidgetBoxInterface_NativeEvent(ptr unsafe.Pointer, ptrName
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -21643,7 +21644,7 @@ func (ptr *QDesignerWidgetBoxInterface) NativeEvent(eventType string, message un
 	defer qt.Recovering("QDesignerWidgetBoxInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerWidgetBoxInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -21654,7 +21655,7 @@ func (ptr *QDesignerWidgetBoxInterface) NativeEventDefault(eventType string, mes
 	defer qt.Recovering("QDesignerWidgetBoxInterface::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QDesignerWidgetBoxInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

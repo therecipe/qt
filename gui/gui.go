@@ -6,6 +6,7 @@ package gui
 //#include "gui.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -13625,7 +13626,7 @@ func (ptr *QFontDatabase) AddApplicationFont(fileName string) int {
 func QFontDatabase_AddApplicationFontFromData(fontData string) int {
 	defer qt.Recovering("QFontDatabase::addApplicationFontFromData")
 
-	var fontDataC = C.CString(fontData)
+	var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
 	defer C.free(unsafe.Pointer(fontDataC))
 	return int(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(fontDataC))
 }
@@ -13633,7 +13634,7 @@ func QFontDatabase_AddApplicationFontFromData(fontData string) int {
 func (ptr *QFontDatabase) AddApplicationFontFromData(fontData string) int {
 	defer qt.Recovering("QFontDatabase::addApplicationFontFromData")
 
-	var fontDataC = C.CString(fontData)
+	var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
 	defer C.free(unsafe.Pointer(fontDataC))
 	return int(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(fontDataC))
 }
@@ -19206,7 +19207,7 @@ func (ptr *QImage) Format() QImage__Format {
 func QImage_FromData2(data string, format string) *QImage {
 	defer qt.Recovering("QImage::fromData")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	var formatC = C.CString(format)
 	defer C.free(unsafe.Pointer(formatC))
@@ -19218,7 +19219,7 @@ func QImage_FromData2(data string, format string) *QImage {
 func (ptr *QImage) FromData2(data string, format string) *QImage {
 	defer qt.Recovering("QImage::fromData")
 
-	var dataC = C.CString(data)
+	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	var formatC = C.CString(format)
 	defer C.free(unsafe.Pointer(formatC))
@@ -19281,7 +19282,7 @@ func (ptr *QImage) LoadFromData2(data string, format string) bool {
 	defer qt.Recovering("QImage::loadFromData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		var formatC = C.CString(format)
 		defer C.free(unsafe.Pointer(formatC))
@@ -19870,7 +19871,7 @@ func (ptr *QImageIOHandler) Format() string {
 	defer qt.Recovering("QImageIOHandler::format")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageIOHandler_Format(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QImageIOHandler_Format(ptr.Pointer())))
 	}
 	return ""
 }
@@ -20211,7 +20212,7 @@ func (ptr *QImageIOHandler) SetFormat(format string) {
 	defer qt.Recovering("QImageIOHandler::setFormat")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		C.QImageIOHandler_SetFormat(ptr.Pointer(), formatC)
 	}
@@ -20221,7 +20222,7 @@ func (ptr *QImageIOHandler) SetFormat2(format string) {
 	defer qt.Recovering("QImageIOHandler::setFormat")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		C.QImageIOHandler_SetFormat2(ptr.Pointer(), formatC)
 	}
@@ -20462,7 +20463,7 @@ func callbackQImageIOPlugin_Capabilities(ptr unsafe.Pointer, ptrName *C.char, de
 	defer qt.Recovering("callback QImageIOPlugin::capabilities")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "capabilities"); signal != nil {
-		return C.int(signal.(func(*core.QIODevice, string) QImageIOPlugin__Capability)(core.NewQIODeviceFromPointer(device), C.GoString(format)))
+		return C.int(signal.(func(*core.QIODevice, string) QImageIOPlugin__Capability)(core.NewQIODeviceFromPointer(device), qt.HexDecodeToString(C.GoString(format))))
 	}
 
 	return C.int(0)
@@ -20490,7 +20491,7 @@ func (ptr *QImageIOPlugin) Capabilities(device core.QIODevice_ITF, format string
 	defer qt.Recovering("QImageIOPlugin::capabilities")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		return QImageIOPlugin__Capability(C.QImageIOPlugin_Capabilities(ptr.Pointer(), core.PointerFromQIODevice(device), formatC))
 	}
@@ -20502,7 +20503,7 @@ func callbackQImageIOPlugin_Create(ptr unsafe.Pointer, ptrName *C.char, device u
 	defer qt.Recovering("callback QImageIOPlugin::create")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "create"); signal != nil {
-		return PointerFromQImageIOHandler(signal.(func(*core.QIODevice, string) *QImageIOHandler)(core.NewQIODeviceFromPointer(device), C.GoString(format)))
+		return PointerFromQImageIOHandler(signal.(func(*core.QIODevice, string) *QImageIOHandler)(core.NewQIODeviceFromPointer(device), qt.HexDecodeToString(C.GoString(format))))
 	}
 
 	return PointerFromQImageIOHandler(nil)
@@ -20530,7 +20531,7 @@ func (ptr *QImageIOPlugin) Create(device core.QIODevice_ITF, format string) *QIm
 	defer qt.Recovering("QImageIOPlugin::create")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		return NewQImageIOHandlerFromPointer(C.QImageIOPlugin_Create(ptr.Pointer(), core.PointerFromQIODevice(device), formatC))
 	}
@@ -21025,7 +21026,7 @@ func NewQImageReader() *QImageReader {
 func NewQImageReader2(device core.QIODevice_ITF, format string) *QImageReader {
 	defer qt.Recovering("QImageReader::QImageReader")
 
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQImageReaderFromPointer(C.QImageReader_NewQImageReader2(core.PointerFromQIODevice(device), formatC))
 }
@@ -21035,7 +21036,7 @@ func NewQImageReader3(fileName string, format string) *QImageReader {
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQImageReaderFromPointer(C.QImageReader_NewQImageReader3(fileNameC, formatC))
 }
@@ -21158,7 +21159,7 @@ func (ptr *QImageReader) Format() string {
 	defer qt.Recovering("QImageReader::format")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageReader_Format(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QImageReader_Format(ptr.Pointer())))
 	}
 	return ""
 }
@@ -21175,13 +21176,13 @@ func (ptr *QImageReader) ImageCount() int {
 func QImageReader_ImageFormat3(device core.QIODevice_ITF) string {
 	defer qt.Recovering("QImageReader::imageFormat")
 
-	return C.GoString(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device)))
+	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device))))
 }
 
 func (ptr *QImageReader) ImageFormat3(device core.QIODevice_ITF) string {
 	defer qt.Recovering("QImageReader::imageFormat")
 
-	return C.GoString(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device)))
+	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device))))
 }
 
 func QImageReader_ImageFormat2(fileName string) string {
@@ -21189,7 +21190,7 @@ func QImageReader_ImageFormat2(fileName string) string {
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	return C.GoString(C.QImageReader_QImageReader_ImageFormat2(fileNameC))
+	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat2(fileNameC)))
 }
 
 func (ptr *QImageReader) ImageFormat2(fileName string) string {
@@ -21197,7 +21198,7 @@ func (ptr *QImageReader) ImageFormat2(fileName string) string {
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	return C.GoString(C.QImageReader_QImageReader_ImageFormat2(fileNameC))
+	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat2(fileNameC)))
 }
 
 func (ptr *QImageReader) ImageFormat() QImage__Format {
@@ -21358,7 +21359,7 @@ func (ptr *QImageReader) SetFormat(format string) {
 	defer qt.Recovering("QImageReader::setFormat")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		C.QImageReader_SetFormat(ptr.Pointer(), formatC)
 	}
@@ -21403,7 +21404,7 @@ func (ptr *QImageReader) SubType() string {
 	defer qt.Recovering("QImageReader::subType")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageReader_SubType(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QImageReader_SubType(ptr.Pointer())))
 	}
 	return ""
 }
@@ -21525,7 +21526,7 @@ func NewQImageWriter() *QImageWriter {
 func NewQImageWriter2(device core.QIODevice_ITF, format string) *QImageWriter {
 	defer qt.Recovering("QImageWriter::QImageWriter")
 
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQImageWriterFromPointer(C.QImageWriter_NewQImageWriter2(core.PointerFromQIODevice(device), formatC))
 }
@@ -21535,7 +21536,7 @@ func NewQImageWriter3(fileName string, format string) *QImageWriter {
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(fileNameC, formatC))
 }
@@ -21598,7 +21599,7 @@ func (ptr *QImageWriter) Format() string {
 	defer qt.Recovering("QImageWriter::format")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageWriter_Format(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QImageWriter_Format(ptr.Pointer())))
 	}
 	return ""
 }
@@ -21660,7 +21661,7 @@ func (ptr *QImageWriter) SetFormat(format string) {
 	defer qt.Recovering("QImageWriter::setFormat")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		C.QImageWriter_SetFormat(ptr.Pointer(), formatC)
 	}
@@ -21694,7 +21695,7 @@ func (ptr *QImageWriter) SetSubType(ty string) {
 	defer qt.Recovering("QImageWriter::setSubType")
 
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(ty)
+		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
 		defer C.free(unsafe.Pointer(tyC))
 		C.QImageWriter_SetSubType(ptr.Pointer(), tyC)
 	}
@@ -21724,7 +21725,7 @@ func (ptr *QImageWriter) SubType() string {
 	defer qt.Recovering("QImageWriter::subType")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageWriter_SubType(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QImageWriter_SubType(ptr.Pointer())))
 	}
 	return ""
 }
@@ -25029,7 +25030,7 @@ func (ptr *QMovie) Speed() int {
 func NewQMovie2(device core.QIODevice_ITF, format string, parent core.QObject_ITF) *QMovie {
 	defer qt.Recovering("QMovie::QMovie")
 
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQMovieFromPointer(C.QMovie_NewQMovie2(core.PointerFromQIODevice(device), formatC, core.PointerFromQObject(parent)))
 }
@@ -25045,7 +25046,7 @@ func NewQMovie3(fileName string, format string, parent core.QObject_ITF) *QMovie
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQMovieFromPointer(C.QMovie_NewQMovie3(fileNameC, formatC, core.PointerFromQObject(parent)))
 }
@@ -25186,7 +25187,7 @@ func (ptr *QMovie) Format() string {
 	defer qt.Recovering("QMovie::format")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMovie_Format(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QMovie_Format(ptr.Pointer())))
 	}
 	return ""
 }
@@ -25398,7 +25399,7 @@ func (ptr *QMovie) SetFormat(format string) {
 	defer qt.Recovering("QMovie::setFormat")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		C.QMovie_SetFormat(ptr.Pointer(), formatC)
 	}
@@ -32690,10 +32691,10 @@ func callbackQPaintDeviceWindow_NativeEvent(ptr unsafe.Pointer, ptrName *C.char,
 	defer qt.Recovering("callback QPaintDeviceWindow::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQPaintDeviceWindowFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQPaintDeviceWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QPaintDeviceWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -32718,7 +32719,7 @@ func (ptr *QPaintDeviceWindow) NativeEvent(eventType string, message unsafe.Poin
 	defer qt.Recovering("QPaintDeviceWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPaintDeviceWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -32729,7 +32730,7 @@ func (ptr *QPaintDeviceWindow) NativeEventDefault(eventType string, message unsa
 	defer qt.Recovering("QPaintDeviceWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPaintDeviceWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -40154,7 +40155,7 @@ func (ptr *QPixmap) LoadFromData2(data string, format string, flags core.Qt__Ima
 	defer qt.Recovering("QPixmap::loadFromData")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		var formatC = C.CString(format)
 		defer C.free(unsafe.Pointer(formatC))
@@ -42929,10 +42930,10 @@ func callbackQRasterWindow_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, even
 	defer qt.Recovering("callback QRasterWindow::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQRasterWindowFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQRasterWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QRasterWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -42957,7 +42958,7 @@ func (ptr *QRasterWindow) NativeEvent(eventType string, message unsafe.Pointer, 
 	defer qt.Recovering("QRasterWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QRasterWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -42968,7 +42969,7 @@ func (ptr *QRasterWindow) NativeEventDefault(eventType string, message unsafe.Po
 	defer qt.Recovering("QRasterWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QRasterWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -44187,7 +44188,7 @@ func NewQRawFont() *QRawFont {
 func NewQRawFont3(fontData string, pixelSize float64, hintingPreference QFont__HintingPreference) *QRawFont {
 	defer qt.Recovering("QRawFont::QRawFont")
 
-	var fontDataC = C.CString(fontData)
+	var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
 	defer C.free(unsafe.Pointer(fontDataC))
 	return newQRawFontFromPointer(C.QRawFont_NewQRawFont3(fontDataC, C.double(pixelSize), C.int(hintingPreference)))
 }
@@ -44248,7 +44249,7 @@ func (ptr *QRawFont) FontTable(tagName string) string {
 	if ptr.Pointer() != nil {
 		var tagNameC = C.CString(tagName)
 		defer C.free(unsafe.Pointer(tagNameC))
-		return C.GoString(C.QRawFont_FontTable(ptr.Pointer(), tagNameC))
+		return qt.HexDecodeToString(C.GoString(C.QRawFont_FontTable(ptr.Pointer(), tagNameC)))
 	}
 	return ""
 }
@@ -44309,7 +44310,7 @@ func (ptr *QRawFont) LoadFromData(fontData string, pixelSize float64, hintingPre
 	defer qt.Recovering("QRawFont::loadFromData")
 
 	if ptr.Pointer() != nil {
-		var fontDataC = C.CString(fontData)
+		var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
 		defer C.free(unsafe.Pointer(fontDataC))
 		C.QRawFont_LoadFromData(ptr.Pointer(), fontDataC, C.double(pixelSize), C.int(hintingPreference))
 	}
@@ -57181,7 +57182,7 @@ func (ptr *QTextDocument) ToHtml(encoding string) string {
 	defer qt.Recovering("QTextDocument::toHtml")
 
 	if ptr.Pointer() != nil {
-		var encodingC = C.CString(encoding)
+		var encodingC = C.CString(hex.EncodeToString([]byte(encoding)))
 		defer C.free(unsafe.Pointer(encodingC))
 		return C.GoString(C.QTextDocument_ToHtml(ptr.Pointer(), encodingC))
 	}
@@ -57878,7 +57879,7 @@ func (ptr *QTextDocumentFragment) ToHtml(encoding string) string {
 	defer qt.Recovering("QTextDocumentFragment::toHtml")
 
 	if ptr.Pointer() != nil {
-		var encodingC = C.CString(encoding)
+		var encodingC = C.CString(hex.EncodeToString([]byte(encoding)))
 		defer C.free(unsafe.Pointer(encodingC))
 		return C.GoString(C.QTextDocumentFragment_ToHtml(ptr.Pointer(), encodingC))
 	}
@@ -57955,7 +57956,7 @@ func NewQTextDocumentWriter() *QTextDocumentWriter {
 func NewQTextDocumentWriter2(device core.QIODevice_ITF, format string) *QTextDocumentWriter {
 	defer qt.Recovering("QTextDocumentWriter::QTextDocumentWriter")
 
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(core.PointerFromQIODevice(device), formatC))
 }
@@ -57965,7 +57966,7 @@ func NewQTextDocumentWriter3(fileName string, format string) *QTextDocumentWrite
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(format)
+	var formatC = C.CString(hex.EncodeToString([]byte(format)))
 	defer C.free(unsafe.Pointer(formatC))
 	return newQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(fileNameC, formatC))
 }
@@ -58001,7 +58002,7 @@ func (ptr *QTextDocumentWriter) Format() string {
 	defer qt.Recovering("QTextDocumentWriter::format")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDocumentWriter_Format(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QTextDocumentWriter_Format(ptr.Pointer())))
 	}
 	return ""
 }
@@ -58036,7 +58037,7 @@ func (ptr *QTextDocumentWriter) SetFormat(format string) {
 	defer qt.Recovering("QTextDocumentWriter::setFormat")
 
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(format)
+		var formatC = C.CString(hex.EncodeToString([]byte(format)))
 		defer C.free(unsafe.Pointer(formatC))
 		C.QTextDocumentWriter_SetFormat(ptr.Pointer(), formatC)
 	}
@@ -67634,10 +67635,10 @@ func callbackQWindow_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventType 
 	defer qt.Recovering("callback QWindow::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQWindowFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -67662,7 +67663,7 @@ func (ptr *QWindow) NativeEvent(eventType string, message unsafe.Pointer, result
 	defer qt.Recovering("QWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -67673,7 +67674,7 @@ func (ptr *QWindow) NativeEventDefault(eventType string, message unsafe.Pointer,
 	defer qt.Recovering("QWindow::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

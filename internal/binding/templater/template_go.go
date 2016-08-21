@@ -371,13 +371,18 @@ import (
 		}(),
 	)
 
-	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime") {
+	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime", "hex") {
 		m = strings.ToLower(m)
 		if strings.Contains(string(input), fmt.Sprintf("%v.", m)) {
 			switch m {
 			case "strings", "unsafe", "log", "runtime":
 				{
 					fmt.Fprintf(bb, "\"%v\"\n", m)
+				}
+
+			case "hex":
+				{
+					fmt.Fprintln(bb, "\"encoding/hex\"")
 				}
 
 			case "qt":

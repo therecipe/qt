@@ -2144,12 +2144,12 @@ char* QLowEnergyAdvertisingData_LocalName(void* ptr)
 
 char* QLowEnergyAdvertisingData_ManufacturerData(void* ptr)
 {
-	return QString(static_cast<QLowEnergyAdvertisingData*>(ptr)->manufacturerData()).toUtf8().data();
+	return static_cast<QLowEnergyAdvertisingData*>(ptr)->manufacturerData().toHex().data();
 }
 
 char* QLowEnergyAdvertisingData_RawData(void* ptr)
 {
-	return QString(static_cast<QLowEnergyAdvertisingData*>(ptr)->rawData()).toUtf8().data();
+	return static_cast<QLowEnergyAdvertisingData*>(ptr)->rawData().toHex().data();
 }
 
 void QLowEnergyAdvertisingData_SetDiscoverability(void* ptr, int mode)
@@ -2169,7 +2169,7 @@ void QLowEnergyAdvertisingData_SetLocalName(void* ptr, char* name)
 
 void QLowEnergyAdvertisingData_SetRawData(void* ptr, char* data)
 {
-	static_cast<QLowEnergyAdvertisingData*>(ptr)->setRawData(QByteArray(data));
+	static_cast<QLowEnergyAdvertisingData*>(ptr)->setRawData(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
 void QLowEnergyAdvertisingData_Swap(void* ptr, void* other)
@@ -2264,7 +2264,7 @@ void* QLowEnergyCharacteristic_Uuid(void* ptr)
 
 char* QLowEnergyCharacteristic_Value(void* ptr)
 {
-	return QString(static_cast<QLowEnergyCharacteristic*>(ptr)->value()).toUtf8().data();
+	return static_cast<QLowEnergyCharacteristic*>(ptr)->value().toHex().data();
 }
 
 void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(void* ptr)
@@ -2319,7 +2319,7 @@ void QLowEnergyCharacteristicData_SetUuid(void* ptr, void* uuid)
 
 void QLowEnergyCharacteristicData_SetValue(void* ptr, char* value)
 {
-	static_cast<QLowEnergyCharacteristicData*>(ptr)->setValue(QByteArray(value));
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->setValue(QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void QLowEnergyCharacteristicData_SetValueLength(void* ptr, int minimum, int maximum)
@@ -2339,7 +2339,7 @@ void* QLowEnergyCharacteristicData_Uuid(void* ptr)
 
 char* QLowEnergyCharacteristicData_Value(void* ptr)
 {
-	return QString(static_cast<QLowEnergyCharacteristicData*>(ptr)->value()).toUtf8().data();
+	return static_cast<QLowEnergyCharacteristicData*>(ptr)->value().toHex().data();
 }
 
 void QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(void* ptr)
@@ -2735,7 +2735,7 @@ void* QLowEnergyDescriptor_Uuid(void* ptr)
 
 char* QLowEnergyDescriptor_Value(void* ptr)
 {
-	return QString(static_cast<QLowEnergyDescriptor*>(ptr)->value()).toUtf8().data();
+	return static_cast<QLowEnergyDescriptor*>(ptr)->value().toHex().data();
 }
 
 void QLowEnergyDescriptor_DestroyQLowEnergyDescriptor(void* ptr)
@@ -2750,7 +2750,7 @@ void* QLowEnergyDescriptorData_NewQLowEnergyDescriptorData()
 
 void* QLowEnergyDescriptorData_NewQLowEnergyDescriptorData2(void* uuid, char* value)
 {
-	return new QLowEnergyDescriptorData(*static_cast<QBluetoothUuid*>(uuid), QByteArray(value));
+	return new QLowEnergyDescriptorData(*static_cast<QBluetoothUuid*>(uuid), QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void* QLowEnergyDescriptorData_NewQLowEnergyDescriptorData3(void* other)
@@ -2780,7 +2780,7 @@ void QLowEnergyDescriptorData_SetUuid(void* ptr, void* uuid)
 
 void QLowEnergyDescriptorData_SetValue(void* ptr, char* value)
 {
-	static_cast<QLowEnergyDescriptorData*>(ptr)->setValue(QByteArray(value));
+	static_cast<QLowEnergyDescriptorData*>(ptr)->setValue(QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void QLowEnergyDescriptorData_Swap(void* ptr, void* other)
@@ -2795,7 +2795,7 @@ void* QLowEnergyDescriptorData_Uuid(void* ptr)
 
 char* QLowEnergyDescriptorData_Value(void* ptr)
 {
-	return QString(static_cast<QLowEnergyDescriptorData*>(ptr)->value()).toUtf8().data();
+	return static_cast<QLowEnergyDescriptorData*>(ptr)->value().toHex().data();
 }
 
 void QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(void* ptr)
@@ -2806,11 +2806,11 @@ void QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(void* ptr)
 class MyQLowEnergyService: public QLowEnergyService
 {
 public:
-	void Signal_CharacteristicChanged(const QLowEnergyCharacteristic & characteristic, const QByteArray & newValue) { callbackQLowEnergyService_CharacteristicChanged(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyCharacteristic*>(&characteristic), QString(newValue).toUtf8().data()); };
-	void Signal_CharacteristicRead(const QLowEnergyCharacteristic & characteristic, const QByteArray & value) { callbackQLowEnergyService_CharacteristicRead(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyCharacteristic*>(&characteristic), QString(value).toUtf8().data()); };
-	void Signal_CharacteristicWritten(const QLowEnergyCharacteristic & characteristic, const QByteArray & newValue) { callbackQLowEnergyService_CharacteristicWritten(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyCharacteristic*>(&characteristic), QString(newValue).toUtf8().data()); };
-	void Signal_DescriptorRead(const QLowEnergyDescriptor & descriptor, const QByteArray & value) { callbackQLowEnergyService_DescriptorRead(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyDescriptor*>(&descriptor), QString(value).toUtf8().data()); };
-	void Signal_DescriptorWritten(const QLowEnergyDescriptor & descriptor, const QByteArray & newValue) { callbackQLowEnergyService_DescriptorWritten(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyDescriptor*>(&descriptor), QString(newValue).toUtf8().data()); };
+	void Signal_CharacteristicChanged(const QLowEnergyCharacteristic & characteristic, const QByteArray & newValue) { callbackQLowEnergyService_CharacteristicChanged(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyCharacteristic*>(&characteristic), newValue.toHex().data()); };
+	void Signal_CharacteristicRead(const QLowEnergyCharacteristic & characteristic, const QByteArray & value) { callbackQLowEnergyService_CharacteristicRead(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyCharacteristic*>(&characteristic), value.toHex().data()); };
+	void Signal_CharacteristicWritten(const QLowEnergyCharacteristic & characteristic, const QByteArray & newValue) { callbackQLowEnergyService_CharacteristicWritten(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyCharacteristic*>(&characteristic), newValue.toHex().data()); };
+	void Signal_DescriptorRead(const QLowEnergyDescriptor & descriptor, const QByteArray & value) { callbackQLowEnergyService_DescriptorRead(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyDescriptor*>(&descriptor), value.toHex().data()); };
+	void Signal_DescriptorWritten(const QLowEnergyDescriptor & descriptor, const QByteArray & newValue) { callbackQLowEnergyService_DescriptorWritten(this, this->objectName().toUtf8().data(), const_cast<QLowEnergyDescriptor*>(&descriptor), newValue.toHex().data()); };
 	void Signal_Error2(QLowEnergyService::ServiceError newError) { callbackQLowEnergyService_Error2(this, this->objectName().toUtf8().data(), newError); };
 	void Signal_StateChanged(QLowEnergyService::ServiceState newState) { callbackQLowEnergyService_StateChanged(this, this->objectName().toUtf8().data(), newState); };
 	void timerEvent(QTimerEvent * event) { callbackQLowEnergyService_TimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -2836,7 +2836,7 @@ void QLowEnergyService_DisconnectCharacteristicChanged(void* ptr)
 
 void QLowEnergyService_CharacteristicChanged(void* ptr, void* characteristic, char* newValue)
 {
-	static_cast<QLowEnergyService*>(ptr)->characteristicChanged(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray(newValue));
+	static_cast<QLowEnergyService*>(ptr)->characteristicChanged(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray::fromHex(QString(newValue).toUtf8()));
 }
 
 void QLowEnergyService_ConnectCharacteristicRead(void* ptr)
@@ -2851,7 +2851,7 @@ void QLowEnergyService_DisconnectCharacteristicRead(void* ptr)
 
 void QLowEnergyService_CharacteristicRead(void* ptr, void* characteristic, char* value)
 {
-	static_cast<QLowEnergyService*>(ptr)->characteristicRead(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray(value));
+	static_cast<QLowEnergyService*>(ptr)->characteristicRead(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void QLowEnergyService_ConnectCharacteristicWritten(void* ptr)
@@ -2866,7 +2866,7 @@ void QLowEnergyService_DisconnectCharacteristicWritten(void* ptr)
 
 void QLowEnergyService_CharacteristicWritten(void* ptr, void* characteristic, char* newValue)
 {
-	static_cast<QLowEnergyService*>(ptr)->characteristicWritten(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray(newValue));
+	static_cast<QLowEnergyService*>(ptr)->characteristicWritten(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray::fromHex(QString(newValue).toUtf8()));
 }
 
 void QLowEnergyService_ConnectDescriptorRead(void* ptr)
@@ -2881,7 +2881,7 @@ void QLowEnergyService_DisconnectDescriptorRead(void* ptr)
 
 void QLowEnergyService_DescriptorRead(void* ptr, void* descriptor, char* value)
 {
-	static_cast<QLowEnergyService*>(ptr)->descriptorRead(*static_cast<QLowEnergyDescriptor*>(descriptor), QByteArray(value));
+	static_cast<QLowEnergyService*>(ptr)->descriptorRead(*static_cast<QLowEnergyDescriptor*>(descriptor), QByteArray::fromHex(QString(value).toUtf8()));
 }
 
 void QLowEnergyService_ConnectDescriptorWritten(void* ptr)
@@ -2896,7 +2896,7 @@ void QLowEnergyService_DisconnectDescriptorWritten(void* ptr)
 
 void QLowEnergyService_DescriptorWritten(void* ptr, void* descriptor, char* newValue)
 {
-	static_cast<QLowEnergyService*>(ptr)->descriptorWritten(*static_cast<QLowEnergyDescriptor*>(descriptor), QByteArray(newValue));
+	static_cast<QLowEnergyService*>(ptr)->descriptorWritten(*static_cast<QLowEnergyDescriptor*>(descriptor), QByteArray::fromHex(QString(newValue).toUtf8()));
 }
 
 void QLowEnergyService_ConnectError2(void* ptr)
@@ -2986,12 +2986,12 @@ int QLowEnergyService_Type(void* ptr)
 
 void QLowEnergyService_WriteCharacteristic(void* ptr, void* characteristic, char* newValue, int mode)
 {
-	static_cast<QLowEnergyService*>(ptr)->writeCharacteristic(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray(newValue), static_cast<QLowEnergyService::WriteMode>(mode));
+	static_cast<QLowEnergyService*>(ptr)->writeCharacteristic(*static_cast<QLowEnergyCharacteristic*>(characteristic), QByteArray::fromHex(QString(newValue).toUtf8()), static_cast<QLowEnergyService::WriteMode>(mode));
 }
 
 void QLowEnergyService_WriteDescriptor(void* ptr, void* descriptor, char* newValue)
 {
-	static_cast<QLowEnergyService*>(ptr)->writeDescriptor(*static_cast<QLowEnergyDescriptor*>(descriptor), QByteArray(newValue));
+	static_cast<QLowEnergyService*>(ptr)->writeDescriptor(*static_cast<QLowEnergyDescriptor*>(descriptor), QByteArray::fromHex(QString(newValue).toUtf8()));
 }
 
 void QLowEnergyService_DestroyQLowEnergyService(void* ptr)

@@ -6,6 +6,7 @@ package webengine
 //#include "webengine.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -469,7 +470,7 @@ func (ptr *QQuickWebEngineProfile) InstallUrlSchemeHandler(scheme string, handle
 	defer qt.Recovering("QQuickWebEngineProfile::installUrlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		var schemeC = C.CString(scheme)
+		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
 		C.QQuickWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), schemeC, PointerFromQWebEngineUrlSchemeHandler(handler))
 	}
@@ -595,7 +596,7 @@ func (ptr *QQuickWebEngineProfile) RemoveUrlScheme(scheme string) {
 	defer qt.Recovering("QQuickWebEngineProfile::removeUrlScheme")
 
 	if ptr.Pointer() != nil {
-		var schemeC = C.CString(scheme)
+		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
 		C.QQuickWebEngineProfile_RemoveUrlScheme(ptr.Pointer(), schemeC)
 	}
@@ -657,7 +658,7 @@ func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUr
 	defer qt.Recovering("QQuickWebEngineProfile::urlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		var schemeC = C.CString(scheme)
+		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
 		return NewQWebEngineUrlSchemeHandlerFromPointer(C.QQuickWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), schemeC))
 	}
@@ -3798,7 +3799,7 @@ func (ptr *QWebEnginePage) SetContent(data string, mimeType string, baseUrl core
 	defer qt.Recovering("QWebEnginePage::setContent")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		var mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
@@ -5358,7 +5359,7 @@ func (ptr *QWebEngineProfile) InstallUrlSchemeHandler(scheme string, handler QWe
 	defer qt.Recovering("QWebEngineProfile::installUrlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		var schemeC = C.CString(scheme)
+		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
 		C.QWebEngineProfile_InstallUrlSchemeHandler(ptr.Pointer(), schemeC, PointerFromQWebEngineUrlSchemeHandler(handler))
 	}
@@ -5403,7 +5404,7 @@ func (ptr *QWebEngineProfile) RemoveUrlScheme(scheme string) {
 	defer qt.Recovering("QWebEngineProfile::removeUrlScheme")
 
 	if ptr.Pointer() != nil {
-		var schemeC = C.CString(scheme)
+		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
 		C.QWebEngineProfile_RemoveUrlScheme(ptr.Pointer(), schemeC)
 	}
@@ -5520,7 +5521,7 @@ func (ptr *QWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUrlSche
 	defer qt.Recovering("QWebEngineProfile::urlSchemeHandler")
 
 	if ptr.Pointer() != nil {
-		var schemeC = C.CString(scheme)
+		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
 		return NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), schemeC))
 	}
@@ -6590,7 +6591,7 @@ func (ptr *QWebEngineUrlRequestInfo) RequestMethod() string {
 	defer qt.Recovering("QWebEngineUrlRequestInfo::requestMethod")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebEngineUrlRequestInfo_RequestMethod(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QWebEngineUrlRequestInfo_RequestMethod(ptr.Pointer())))
 	}
 	return ""
 }
@@ -6619,9 +6620,9 @@ func (ptr *QWebEngineUrlRequestInfo) SetHttpHeader(name string, value string) {
 	defer qt.Recovering("QWebEngineUrlRequestInfo::setHttpHeader")
 
 	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
+		var nameC = C.CString(hex.EncodeToString([]byte(name)))
 		defer C.free(unsafe.Pointer(nameC))
-		var valueC = C.CString(value)
+		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
 		C.QWebEngineUrlRequestInfo_SetHttpHeader(ptr.Pointer(), nameC, valueC)
 	}
@@ -7178,7 +7179,7 @@ func (ptr *QWebEngineUrlRequestJob) Reply(contentType string, device core.QIODev
 	defer qt.Recovering("QWebEngineUrlRequestJob::reply")
 
 	if ptr.Pointer() != nil {
-		var contentTypeC = C.CString(contentType)
+		var contentTypeC = C.CString(hex.EncodeToString([]byte(contentType)))
 		defer C.free(unsafe.Pointer(contentTypeC))
 		C.QWebEngineUrlRequestJob_Reply(ptr.Pointer(), contentTypeC, core.PointerFromQIODevice(device))
 	}
@@ -7188,7 +7189,7 @@ func (ptr *QWebEngineUrlRequestJob) RequestMethod() string {
 	defer qt.Recovering("QWebEngineUrlRequestJob::requestMethod")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebEngineUrlRequestJob_RequestMethod(ptr.Pointer()))
+		return qt.HexDecodeToString(C.GoString(C.QWebEngineUrlRequestJob_RequestMethod(ptr.Pointer())))
 	}
 	return ""
 }
@@ -8418,7 +8419,7 @@ func (ptr *QWebEngineView) SetContent(data string, mimeType string, baseUrl core
 	defer qt.Recovering("QWebEngineView::setContent")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		var mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
@@ -10491,10 +10492,10 @@ func callbackQWebEngineView_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eve
 	defer qt.Recovering("callback QWebEngineView::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQWebEngineViewFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQWebEngineViewFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QWebEngineView) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -10519,7 +10520,7 @@ func (ptr *QWebEngineView) NativeEvent(eventType string, message unsafe.Pointer,
 	defer qt.Recovering("QWebEngineView::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QWebEngineView_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -10530,7 +10531,7 @@ func (ptr *QWebEngineView) NativeEventDefault(eventType string, message unsafe.P
 	defer qt.Recovering("QWebEngineView::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QWebEngineView_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

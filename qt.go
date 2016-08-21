@@ -1,6 +1,7 @@
 package qt
 
 import (
+	"encoding/hex"
 	"runtime"
 	"strconv"
 	"strings"
@@ -74,4 +75,12 @@ func Recovering(fn string) {
 	if recover() != nil {
 		println("recovered in:", fn)
 	}
+}
+
+func HexDecodeToString(in string) string {
+	var out, err = hex.DecodeString(in)
+	if err != nil {
+		return ""
+	}
+	return string(out)
 }

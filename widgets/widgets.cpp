@@ -354,7 +354,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQAbstractButton_InputMethodQuery(const_cast<MyQAbstractButton*>(this), this->objectName().toUtf8().data(), query)); };
 	void lower() { callbackQAbstractButton_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQAbstractButton_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractButton_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractButton_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQAbstractButton_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQAbstractButton_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQAbstractButton_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -988,12 +988,12 @@ void QAbstractButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QAbstractButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractButton*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QAbstractButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractButton*>(ptr)->QAbstractButton::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractButton*>(ptr)->QAbstractButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractButton_Raise(void* ptr)
@@ -1957,7 +1957,7 @@ public:
 	void hide() { callbackQAbstractItemView_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQAbstractItemView_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQAbstractItemView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractItemView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractItemView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQAbstractItemView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQAbstractItemView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQAbstractItemView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -3103,12 +3103,12 @@ void QAbstractItemView_LowerDefault(void* ptr)
 
 int QAbstractItemView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractItemView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractItemView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QAbstractItemView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractItemView_Raise(void* ptr)
@@ -3348,7 +3348,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQAbstractScrollArea_InputMethodQuery(const_cast<MyQAbstractScrollArea*>(this), this->objectName().toUtf8().data(), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQAbstractScrollArea_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQAbstractScrollArea_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractScrollArea_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractScrollArea_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQAbstractScrollArea_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQAbstractScrollArea_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQAbstractScrollArea_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -3916,12 +3916,12 @@ void QAbstractScrollArea_LowerDefault(void* ptr)
 
 int QAbstractScrollArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractScrollArea*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractScrollArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QAbstractScrollArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractScrollArea_Raise(void* ptr)
@@ -4186,7 +4186,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQAbstractSlider_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQAbstractSlider_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQAbstractSlider_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSlider_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSlider_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQAbstractSlider_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQAbstractSlider_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQAbstractSlider_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4844,12 +4844,12 @@ void QAbstractSlider_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QAbstractSlider_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSlider*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractSlider*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QAbstractSlider_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractSlider_Raise(void* ptr)
@@ -5114,7 +5114,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQAbstractSpinBox_InputMethodEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQAbstractSpinBox_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQAbstractSpinBox_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSpinBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSpinBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQAbstractSpinBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQAbstractSpinBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQAbstractSpinBox_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -5761,12 +5761,12 @@ void QAbstractSpinBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QAbstractSpinBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSpinBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractSpinBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QAbstractSpinBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QAbstractSpinBox_Raise(void* ptr)
@@ -7971,7 +7971,7 @@ public:
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQCalendarWidget_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQCalendarWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQCalendarWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCalendarWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCalendarWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQCalendarWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQCalendarWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQCalendarWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -8639,12 +8639,12 @@ void QCalendarWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QCalendarWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCalendarWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCalendarWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QCalendarWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QCalendarWidget_Raise(void* ptr)
@@ -8908,7 +8908,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQCheckBox_InputMethodQuery(const_cast<MyQCheckBox*>(this), this->objectName().toUtf8().data(), query)); };
 	void lower() { callbackQCheckBox_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQCheckBox_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCheckBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCheckBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQCheckBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQCheckBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQCheckBox_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -9447,12 +9447,12 @@ void QCheckBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QCheckBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCheckBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCheckBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QCheckBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCheckBox*>(ptr)->QCheckBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCheckBox*>(ptr)->QCheckBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QCheckBox_Raise(void* ptr)
@@ -9724,7 +9724,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQColorDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQColorDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQColorDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColorDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColorDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQColorDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQColorDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQColorDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -10289,12 +10289,12 @@ void QColorDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QColorDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QColorDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QColorDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QColorDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QColorDialog*>(ptr)->QColorDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QColorDialog*>(ptr)->QColorDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QColorDialog_Raise(void* ptr)
@@ -10621,7 +10621,7 @@ public:
 	void hide() { callbackQColumnView_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQColumnView_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQColumnView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColumnView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColumnView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQColumnView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQColumnView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQColumnView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -11487,12 +11487,12 @@ void QColumnView_LowerDefault(void* ptr)
 
 int QColumnView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QColumnView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QColumnView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QColumnView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QColumnView*>(ptr)->QColumnView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QColumnView*>(ptr)->QColumnView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QColumnView_Raise(void* ptr)
@@ -11743,7 +11743,7 @@ public:
 	void lower() { callbackQComboBox_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQComboBox_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQComboBox_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQComboBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQComboBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQComboBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQComboBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQComboBox_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -12616,12 +12616,12 @@ void QComboBox_MouseMoveEventDefault(void* ptr, void* event)
 
 int QComboBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QComboBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QComboBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QComboBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QComboBox*>(ptr)->QComboBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QComboBox*>(ptr)->QComboBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QComboBox_Raise(void* ptr)
@@ -12886,7 +12886,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQCommandLinkButton_InputMethodQuery(const_cast<MyQCommandLinkButton*>(this), this->objectName().toUtf8().data(), query)); };
 	void lower() { callbackQCommandLinkButton_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQCommandLinkButton_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCommandLinkButton_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCommandLinkButton_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQCommandLinkButton_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQCommandLinkButton_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQCommandLinkButton_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -13410,12 +13410,12 @@ void QCommandLinkButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QCommandLinkButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCommandLinkButton*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCommandLinkButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QCommandLinkButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QCommandLinkButton_Raise(void* ptr)
@@ -14436,7 +14436,7 @@ void QDataWidgetMapper_AddMapping(void* ptr, void* widget, int section)
 
 void QDataWidgetMapper_AddMapping2(void* ptr, void* widget, int section, char* propertyName)
 {
-	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section, QByteArray(propertyName));
+	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section, QByteArray::fromHex(QString(propertyName).toUtf8()));
 }
 
 void QDataWidgetMapper_ClearMapping(void* ptr)
@@ -14466,7 +14466,7 @@ void* QDataWidgetMapper_ItemDelegate(void* ptr)
 
 char* QDataWidgetMapper_MappedPropertyName(void* ptr, void* widget)
 {
-	return QString(static_cast<QDataWidgetMapper*>(ptr)->mappedPropertyName(static_cast<QWidget*>(widget))).toUtf8().data();
+	return static_cast<QDataWidgetMapper*>(ptr)->mappedPropertyName(static_cast<QWidget*>(widget)).toHex().data();
 }
 
 int QDataWidgetMapper_MappedSection(void* ptr, void* widget)
@@ -15180,12 +15180,12 @@ void QDateEdit_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QDateEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDateEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDateEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDateEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDateEdit*>(ptr)->QDateEdit::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDateEdit*>(ptr)->QDateEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDateEdit_Raise(void* ptr)
@@ -15450,7 +15450,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQDateTimeEdit_InputMethodEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQDateTimeEdit_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQDateTimeEdit_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDateTimeEdit_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDateTimeEdit_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDateTimeEdit_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDateTimeEdit_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQDateTimeEdit_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -16237,12 +16237,12 @@ void QDateTimeEdit_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QDateTimeEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDateTimeEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDateTimeEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDateTimeEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDateTimeEdit_Raise(void* ptr)
@@ -16490,7 +16490,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDesktopWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDesktopWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDesktopWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesktopWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesktopWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDesktopWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDesktopWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQDesktopWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -17019,12 +17019,12 @@ void QDesktopWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QDesktopWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesktopWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesktopWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDesktopWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDesktopWidget_Raise(void* ptr)
@@ -17296,7 +17296,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQDial_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQDial_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQDial_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDial_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDial_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDial_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDial_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQDial_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -17803,12 +17803,12 @@ void QDial_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QDial_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDial*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDial*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDial_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDial*>(ptr)->QDial::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDial*>(ptr)->QDial::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDial_Raise(void* ptr)
@@ -18061,7 +18061,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -18611,12 +18611,12 @@ void QDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDialog*>(ptr)->QDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDialog*>(ptr)->QDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDialog_Raise(void* ptr)
@@ -18877,7 +18877,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDialogButtonBox_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDialogButtonBox_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDialogButtonBox_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialogButtonBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialogButtonBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDialogButtonBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDialogButtonBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQDialogButtonBox_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -19437,12 +19437,12 @@ void QDialogButtonBox_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QDialogButtonBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDialogButtonBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDialogButtonBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDialogButtonBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDialogButtonBox_Raise(void* ptr)
@@ -19722,7 +19722,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDockWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDockWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDockWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDockWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDockWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDockWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDockWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQDockWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -20282,12 +20282,12 @@ void QDockWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QDockWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDockWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDockWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDockWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDockWidget*>(ptr)->QDockWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDockWidget*>(ptr)->QDockWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDockWidget_Raise(void* ptr)
@@ -20572,7 +20572,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQDoubleSpinBox_InputMethodEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQDoubleSpinBox_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQDoubleSpinBox_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDoubleSpinBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDoubleSpinBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQDoubleSpinBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQDoubleSpinBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQDoubleSpinBox_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -21129,12 +21129,12 @@ void QDoubleSpinBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QDoubleSpinBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDoubleSpinBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDoubleSpinBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QDoubleSpinBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QDoubleSpinBox_Raise(void* ptr)
@@ -21386,7 +21386,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQErrorMessage_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQErrorMessage_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQErrorMessage_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQErrorMessage_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQErrorMessage_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQErrorMessage_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQErrorMessage_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQErrorMessage_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -21871,12 +21871,12 @@ void QErrorMessage_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QErrorMessage_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QErrorMessage*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QErrorMessage*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QErrorMessage_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QErrorMessage_Raise(void* ptr)
@@ -22144,7 +22144,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFileDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFileDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFileDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFileDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFileDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQFileDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQFileDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQFileDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -22505,12 +22505,12 @@ void* QFileDialog_ProxyModel(void* ptr)
 
 int QFileDialog_RestoreState(void* ptr, char* state)
 {
-	return static_cast<QFileDialog*>(ptr)->restoreState(QByteArray(state));
+	return static_cast<QFileDialog*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()));
 }
 
 char* QFileDialog_SaveState(void* ptr)
 {
-	return QString(static_cast<QFileDialog*>(ptr)->saveState()).toUtf8().data();
+	return static_cast<QFileDialog*>(ptr)->saveState().toHex().data();
 }
 
 void QFileDialog_SelectFile(void* ptr, char* filename)
@@ -23029,12 +23029,12 @@ void QFileDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QFileDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFileDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFileDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QFileDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFileDialog*>(ptr)->QFileDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFileDialog*>(ptr)->QFileDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QFileDialog_Raise(void* ptr)
@@ -23907,7 +23907,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFocusFrame_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFocusFrame_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFocusFrame_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFocusFrame_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFocusFrame_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQFocusFrame_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQFocusFrame_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQFocusFrame_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -24341,12 +24341,12 @@ void QFocusFrame_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QFocusFrame_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFocusFrame*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFocusFrame*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QFocusFrame_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFocusFrame*>(ptr)->QFocusFrame::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFocusFrame*>(ptr)->QFocusFrame::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QFocusFrame_Raise(void* ptr)
@@ -24621,7 +24621,7 @@ public:
 	void lower() { callbackQFontComboBox_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQFontComboBox_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFontComboBox_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontComboBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontComboBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQFontComboBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQFontComboBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQFontComboBox_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -25169,12 +25169,12 @@ void QFontComboBox_MouseMoveEventDefault(void* ptr, void* event)
 
 int QFontComboBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFontComboBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFontComboBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QFontComboBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QFontComboBox_Raise(void* ptr)
@@ -25436,7 +25436,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFontDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFontDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFontDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQFontDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQFontDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQFontDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -25976,12 +25976,12 @@ void QFontDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QFontDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFontDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFontDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QFontDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFontDialog*>(ptr)->QFontDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFontDialog*>(ptr)->QFontDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QFontDialog_Raise(void* ptr)
@@ -26724,7 +26724,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFrame_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFrame_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFrame_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFrame_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFrame_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQFrame_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQFrame_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQFrame_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -27209,12 +27209,12 @@ void QFrame_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QFrame_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFrame*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFrame*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QFrame_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QFrame*>(ptr)->QFrame::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QFrame*>(ptr)->QFrame::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QFrame_Raise(void* ptr)
@@ -38217,7 +38217,7 @@ public:
 	int heightForWidth(int w) const { return callbackQGraphicsView_HeightForWidth(const_cast<MyQGraphicsView*>(this), this->objectName().toUtf8().data(), w); };
 	void hide() { callbackQGraphicsView_Hide(this, this->objectName().toUtf8().data()); };
 	void lower() { callbackQGraphicsView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGraphicsView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGraphicsView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQGraphicsView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQGraphicsView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQGraphicsView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -39075,12 +39075,12 @@ void QGraphicsView_LowerDefault(void* ptr)
 
 int QGraphicsView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QGraphicsView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QGraphicsView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QGraphicsView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QGraphicsView_Raise(void* ptr)
@@ -40724,7 +40724,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQGroupBox_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQGroupBox_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQGroupBox_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGroupBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGroupBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQGroupBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQGroupBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQGroupBox_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -41242,12 +41242,12 @@ void QGroupBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QGroupBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QGroupBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QGroupBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QGroupBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QGroupBox*>(ptr)->QGroupBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QGroupBox*>(ptr)->QGroupBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QGroupBox_Raise(void* ptr)
@@ -41856,7 +41856,7 @@ public:
 	void hide() { callbackQHeaderView_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQHeaderView_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQHeaderView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHeaderView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHeaderView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQHeaderView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQHeaderView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQHeaderView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -42175,12 +42175,12 @@ void QHeaderView_ResizeSections2(void* ptr)
 
 int QHeaderView_RestoreState(void* ptr, char* state)
 {
-	return static_cast<QHeaderView*>(ptr)->restoreState(QByteArray(state));
+	return static_cast<QHeaderView*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()));
 }
 
 char* QHeaderView_SaveState(void* ptr)
 {
-	return QString(static_cast<QHeaderView*>(ptr)->saveState()).toUtf8().data();
+	return static_cast<QHeaderView*>(ptr)->saveState().toHex().data();
 }
 
 void QHeaderView_ConnectSectionClicked(void* ptr)
@@ -43172,12 +43172,12 @@ void QHeaderView_LowerDefault(void* ptr)
 
 int QHeaderView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHeaderView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHeaderView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QHeaderView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QHeaderView*>(ptr)->QHeaderView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QHeaderView*>(ptr)->QHeaderView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QHeaderView_Raise(void* ptr)
@@ -43420,7 +43420,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQInputDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQInputDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQInputDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQInputDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQInputDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQInputDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQInputDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQInputDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -44120,12 +44120,12 @@ void QInputDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QInputDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QInputDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QInputDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QInputDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QInputDialog*>(ptr)->QInputDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QInputDialog*>(ptr)->QInputDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QInputDialog_Raise(void* ptr)
@@ -44622,7 +44622,7 @@ public:
 	QString objectNameAbs() const { return this->_objectName; };
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	QWidget * createWidget(QWidget * parent) const { return static_cast<QWidget*>(callbackQItemEditorCreatorBase_CreateWidget(const_cast<MyQItemEditorCreatorBase*>(this), this->objectNameAbs().toUtf8().data(), parent)); };
-	QByteArray valuePropertyName() const { return QByteArray(callbackQItemEditorCreatorBase_ValuePropertyName(const_cast<MyQItemEditorCreatorBase*>(this), this->objectNameAbs().toUtf8().data())); };
+	QByteArray valuePropertyName() const { return QByteArray::fromHex(QString(callbackQItemEditorCreatorBase_ValuePropertyName(const_cast<MyQItemEditorCreatorBase*>(this), this->objectNameAbs().toUtf8().data())).toUtf8()); };
 };
 
 void QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(void* ptr)
@@ -44637,7 +44637,7 @@ void* QItemEditorCreatorBase_CreateWidget(void* ptr, void* parent)
 
 char* QItemEditorCreatorBase_ValuePropertyName(void* ptr)
 {
-	return QString(static_cast<QItemEditorCreatorBase*>(ptr)->valuePropertyName()).toUtf8().data();
+	return static_cast<QItemEditorCreatorBase*>(ptr)->valuePropertyName().toHex().data();
 }
 
 char* QItemEditorCreatorBase_ObjectNameAbs(void* ptr)
@@ -44663,7 +44663,7 @@ public:
 	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQItemEditorFactory() : QItemEditorFactory() {};
 	QWidget * createEditor(int userType, QWidget * parent) const { return static_cast<QWidget*>(callbackQItemEditorFactory_CreateEditor(const_cast<MyQItemEditorFactory*>(this), this->objectNameAbs().toUtf8().data(), userType, parent)); };
-	QByteArray valuePropertyName(int userType) const { return QByteArray(callbackQItemEditorFactory_ValuePropertyName(const_cast<MyQItemEditorFactory*>(this), this->objectNameAbs().toUtf8().data(), userType)); };
+	QByteArray valuePropertyName(int userType) const { return QByteArray::fromHex(QString(callbackQItemEditorFactory_ValuePropertyName(const_cast<MyQItemEditorFactory*>(this), this->objectNameAbs().toUtf8().data(), userType)).toUtf8()); };
 };
 
 void* QItemEditorFactory_NewQItemEditorFactory()
@@ -44698,12 +44698,12 @@ void QItemEditorFactory_QItemEditorFactory_SetDefaultFactory(void* factory)
 
 char* QItemEditorFactory_ValuePropertyName(void* ptr, int userType)
 {
-	return QString(static_cast<QItemEditorFactory*>(ptr)->valuePropertyName(userType)).toUtf8().data();
+	return static_cast<QItemEditorFactory*>(ptr)->valuePropertyName(userType).toHex().data();
 }
 
 char* QItemEditorFactory_ValuePropertyNameDefault(void* ptr, int userType)
 {
-	return QString(static_cast<QItemEditorFactory*>(ptr)->QItemEditorFactory::valuePropertyName(userType)).toUtf8().data();
+	return static_cast<QItemEditorFactory*>(ptr)->QItemEditorFactory::valuePropertyName(userType).toHex().data();
 }
 
 void QItemEditorFactory_DestroyQItemEditorFactory(void* ptr)
@@ -44907,7 +44907,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQKeySequenceEdit_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQKeySequenceEdit_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQKeySequenceEdit_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQKeySequenceEdit_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQKeySequenceEdit_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQKeySequenceEdit_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQKeySequenceEdit_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQKeySequenceEdit_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -45376,12 +45376,12 @@ void QKeySequenceEdit_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QKeySequenceEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QKeySequenceEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QKeySequenceEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QKeySequenceEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QKeySequenceEdit_Raise(void* ptr)
@@ -45653,7 +45653,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQLCDNumber_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQLCDNumber_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQLCDNumber_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLCDNumber_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLCDNumber_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQLCDNumber_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQLCDNumber_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQLCDNumber_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -46163,12 +46163,12 @@ void QLCDNumber_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QLCDNumber_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QLCDNumber*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QLCDNumber*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QLCDNumber_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QLCDNumber*>(ptr)->QLCDNumber::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QLCDNumber*>(ptr)->QLCDNumber::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QLCDNumber_Raise(void* ptr)
@@ -46451,7 +46451,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQLabel_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQLabel_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQLabel_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLabel_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLabel_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQLabel_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQLabel_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQLabel_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -47061,12 +47061,12 @@ void QLabel_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QLabel_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QLabel*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QLabel*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QLabel_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QLabel*>(ptr)->QLabel::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QLabel*>(ptr)->QLabel::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QLabel_Raise(void* ptr)
@@ -47976,7 +47976,7 @@ public:
 	void hide() { callbackQLineEdit_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQLineEdit_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQLineEdit_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLineEdit_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLineEdit_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQLineEdit_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQLineEdit_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQLineEdit_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -48811,12 +48811,12 @@ void QLineEdit_LowerDefault(void* ptr)
 
 int QLineEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QLineEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QLineEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QLineEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QLineEdit*>(ptr)->QLineEdit::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QLineEdit*>(ptr)->QLineEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QLineEdit_Raise(void* ptr)
@@ -49131,7 +49131,7 @@ public:
 	void hide() { callbackQListView_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQListView_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQListView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQListView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQListView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQListView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -50112,12 +50112,12 @@ void QListView_LowerDefault(void* ptr)
 
 int QListView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QListView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QListView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QListView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QListView*>(ptr)->QListView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QListView*>(ptr)->QListView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QListView_Raise(void* ptr)
@@ -50407,7 +50407,7 @@ public:
 	void hide() { callbackQListWidget_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQListWidget_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQListWidget_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQListWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQListWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQListWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -51568,12 +51568,12 @@ void QListWidget_LowerDefault(void* ptr)
 
 int QListWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QListWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QListWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QListWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QListWidget*>(ptr)->QListWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QListWidget*>(ptr)->QListWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QListWidget_Raise(void* ptr)
@@ -52041,7 +52041,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacCocoaViewContainer_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacCocoaViewContainer_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMacCocoaViewContainer_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMacCocoaViewContainer_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQMacCocoaViewContainer_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -52534,13 +52534,13 @@ void QMacCocoaViewContainer_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QMacCocoaViewContainer_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMacCocoaViewContainer*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMacCocoaViewContainer*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMacCocoaViewContainer_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 #else
 	return false;
 #endif
@@ -52866,7 +52866,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMacNativeWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMacNativeWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMacNativeWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacNativeWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacNativeWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMacNativeWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMacNativeWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQMacNativeWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -53364,13 +53364,13 @@ void QMacNativeWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QMacNativeWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMacNativeWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMacNativeWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMacNativeWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 #else
 	return false;
 #endif
@@ -53703,7 +53703,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMainWindow_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMainWindow_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMainWindow_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMainWindow_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMainWindow_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMainWindow_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMainWindow_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQMainWindow_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -53951,12 +53951,12 @@ int QMainWindow_RestoreDockWidget(void* ptr, void* dockwidget)
 
 int QMainWindow_RestoreState(void* ptr, char* state, int version)
 {
-	return static_cast<QMainWindow*>(ptr)->restoreState(QByteArray(state), version);
+	return static_cast<QMainWindow*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()), version);
 }
 
 char* QMainWindow_SaveState(void* ptr, int version)
 {
-	return QString(static_cast<QMainWindow*>(ptr)->saveState(version)).toUtf8().data();
+	return static_cast<QMainWindow*>(ptr)->saveState(version).toHex().data();
 }
 
 void QMainWindow_SetCentralWidget(void* ptr, void* widget)
@@ -54398,12 +54398,12 @@ void QMainWindow_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QMainWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMainWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMainWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMainWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMainWindow*>(ptr)->QMainWindow::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMainWindow*>(ptr)->QMainWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QMainWindow_Raise(void* ptr)
@@ -54691,7 +54691,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQMdiArea_InputMethodQuery(const_cast<MyQMdiArea*>(this), this->objectName().toUtf8().data(), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMdiArea_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQMdiArea_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiArea_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiArea_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMdiArea_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMdiArea_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQMdiArea_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -55336,12 +55336,12 @@ void QMdiArea_LowerDefault(void* ptr)
 
 int QMdiArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMdiArea*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMdiArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMdiArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMdiArea*>(ptr)->QMdiArea::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMdiArea*>(ptr)->QMdiArea::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QMdiArea_Raise(void* ptr)
@@ -55570,7 +55570,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQMdiSubWindow_InputMethodQuery(const_cast<MyQMdiSubWindow*>(this), this->objectName().toUtf8().data(), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMdiSubWindow_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQMdiSubWindow_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiSubWindow_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiSubWindow_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMdiSubWindow_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMdiSubWindow_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQMdiSubWindow_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -56106,12 +56106,12 @@ void QMdiSubWindow_LowerDefault(void* ptr)
 
 int QMdiSubWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMdiSubWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMdiSubWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMdiSubWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QMdiSubWindow_Raise(void* ptr)
@@ -56351,7 +56351,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMenu_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQMenu_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQMenu_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenu_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenu_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMenu_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMenu_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQMenu_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -57061,12 +57061,12 @@ void QMenu_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QMenu_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMenu*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMenu*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMenu_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMenu*>(ptr)->QMenu::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMenu*>(ptr)->QMenu::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QMenu_Raise(void* ptr)
@@ -57323,7 +57323,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMenuBar_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQMenuBar_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQMenuBar_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenuBar_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenuBar_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMenuBar_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMenuBar_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQMenuBar_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -57901,12 +57901,12 @@ void QMenuBar_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QMenuBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMenuBar*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMenuBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMenuBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMenuBar*>(ptr)->QMenuBar::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMenuBar*>(ptr)->QMenuBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QMenuBar_Raise(void* ptr)
@@ -58161,7 +58161,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMessageBox_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMessageBox_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMessageBox_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMessageBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMessageBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQMessageBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQMessageBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQMessageBox_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -58841,12 +58841,12 @@ void QMessageBox_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QMessageBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMessageBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMessageBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QMessageBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QMessageBox*>(ptr)->QMessageBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QMessageBox*>(ptr)->QMessageBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QMessageBox_Raise(void* ptr)
@@ -59764,7 +59764,7 @@ public:
 	int heightForWidth(int w) const { return callbackQPlainTextEdit_HeightForWidth(const_cast<MyQPlainTextEdit*>(this), this->objectName().toUtf8().data(), w); };
 	void hide() { callbackQPlainTextEdit_Hide(this, this->objectName().toUtf8().data()); };
 	void lower() { callbackQPlainTextEdit_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPlainTextEdit_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPlainTextEdit_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQPlainTextEdit_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQPlainTextEdit_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQPlainTextEdit_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -60744,12 +60744,12 @@ void QPlainTextEdit_LowerDefault(void* ptr)
 
 int QPlainTextEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPlainTextEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPlainTextEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QPlainTextEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QPlainTextEdit_Raise(void* ptr)
@@ -61011,7 +61011,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQProgressBar_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQProgressBar_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQProgressBar_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressBar_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressBar_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQProgressBar_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQProgressBar_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQProgressBar_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -61561,12 +61561,12 @@ void QProgressBar_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QProgressBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QProgressBar*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QProgressBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QProgressBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QProgressBar*>(ptr)->QProgressBar::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QProgressBar*>(ptr)->QProgressBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QProgressBar_Raise(void* ptr)
@@ -61857,7 +61857,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQProgressDialog_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQProgressDialog_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQProgressDialog_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressDialog_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressDialog_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQProgressDialog_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQProgressDialog_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQProgressDialog_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -62457,12 +62457,12 @@ void QProgressDialog_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QProgressDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QProgressDialog*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QProgressDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QProgressDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QProgressDialog_Raise(void* ptr)
@@ -63105,7 +63105,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQPushButton_InputMethodQuery(const_cast<MyQPushButton*>(this), this->objectName().toUtf8().data(), query)); };
 	void lower() { callbackQPushButton_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQPushButton_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPushButton_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPushButton_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQPushButton_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQPushButton_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQPushButton_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -63659,12 +63659,12 @@ void QPushButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QPushButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPushButton*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPushButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QPushButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QPushButton*>(ptr)->QPushButton::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QPushButton*>(ptr)->QPushButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QPushButton_Raise(void* ptr)
@@ -63937,7 +63937,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQRadioButton_InputMethodQuery(const_cast<MyQRadioButton*>(this), this->objectName().toUtf8().data(), query)); };
 	void lower() { callbackQRadioButton_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQRadioButton_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRadioButton_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRadioButton_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQRadioButton_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQRadioButton_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQRadioButton_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -64441,12 +64441,12 @@ void QRadioButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QRadioButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QRadioButton*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QRadioButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QRadioButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QRadioButton*>(ptr)->QRadioButton::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QRadioButton*>(ptr)->QRadioButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QRadioButton_Raise(void* ptr)
@@ -64711,7 +64711,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQRubberBand_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQRubberBand_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQRubberBand_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRubberBand_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRubberBand_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQRubberBand_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQRubberBand_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQRubberBand_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -65175,12 +65175,12 @@ void QRubberBand_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QRubberBand_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QRubberBand*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QRubberBand*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QRubberBand_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QRubberBand*>(ptr)->QRubberBand::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QRubberBand*>(ptr)->QRubberBand::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QRubberBand_Raise(void* ptr)
@@ -65450,7 +65450,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQScrollArea_InputMethodQuery(const_cast<MyQScrollArea*>(this), this->objectName().toUtf8().data(), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQScrollArea_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQScrollArea_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollArea_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollArea_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQScrollArea_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQScrollArea_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQScrollArea_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -65972,12 +65972,12 @@ void QScrollArea_LowerDefault(void* ptr)
 
 int QScrollArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QScrollArea*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QScrollArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QScrollArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QScrollArea*>(ptr)->QScrollArea::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QScrollArea*>(ptr)->QScrollArea::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QScrollArea_Raise(void* ptr)
@@ -66227,7 +66227,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQScrollBar_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQScrollBar_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQScrollBar_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollBar_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollBar_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQScrollBar_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQScrollBar_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQScrollBar_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -66700,12 +66700,12 @@ void QScrollBar_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QScrollBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QScrollBar*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QScrollBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QScrollBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QScrollBar*>(ptr)->QScrollBar::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QScrollBar*>(ptr)->QScrollBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QScrollBar_Raise(void* ptr)
@@ -67484,7 +67484,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQSizeGrip_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQSizeGrip_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSizeGrip_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSizeGrip_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSizeGrip_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQSizeGrip_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQSizeGrip_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQSizeGrip_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -67903,12 +67903,12 @@ void QSizeGrip_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QSizeGrip_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSizeGrip*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSizeGrip*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QSizeGrip_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSizeGrip*>(ptr)->QSizeGrip::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSizeGrip*>(ptr)->QSizeGrip::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QSizeGrip_Raise(void* ptr)
@@ -68278,7 +68278,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQSlider_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQSlider_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSlider_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSlider_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSlider_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQSlider_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQSlider_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQSlider_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -68771,12 +68771,12 @@ void QSlider_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QSlider_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSlider*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSlider*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QSlider_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSlider*>(ptr)->QSlider::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSlider*>(ptr)->QSlider::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QSlider_Raise(void* ptr)
@@ -69249,7 +69249,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQSpinBox_InputMethodEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQSpinBox_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSpinBox_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSpinBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSpinBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQSpinBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQSpinBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQSpinBox_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -69891,12 +69891,12 @@ void QSpinBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QSpinBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSpinBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSpinBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QSpinBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSpinBox*>(ptr)->QSpinBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSpinBox*>(ptr)->QSpinBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QSpinBox_Raise(void* ptr)
@@ -70145,7 +70145,7 @@ public:
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSplashScreen_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQSplashScreen_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQSplashScreen_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplashScreen_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplashScreen_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQSplashScreen_Raise(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQSplashScreen_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
 	void setDisabled(bool disable) { callbackQSplashScreen_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -70624,12 +70624,12 @@ void QSplashScreen_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QSplashScreen_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSplashScreen*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSplashScreen*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QSplashScreen_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QSplashScreen_Raise(void* ptr)
@@ -70897,7 +70897,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQSplitter_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQSplitter_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQSplitter_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitter_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitter_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQSplitter_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQSplitter_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQSplitter_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -71073,12 +71073,12 @@ void QSplitter_ResizeEventDefault(void* ptr, void* vqr)
 
 int QSplitter_RestoreState(void* ptr, char* state)
 {
-	return static_cast<QSplitter*>(ptr)->restoreState(QByteArray(state));
+	return static_cast<QSplitter*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()));
 }
 
 char* QSplitter_SaveState(void* ptr)
 {
-	return QString(static_cast<QSplitter*>(ptr)->saveState()).toUtf8().data();
+	return static_cast<QSplitter*>(ptr)->saveState().toHex().data();
 }
 
 void QSplitter_SetCollapsible(void* ptr, int index, int collapse)
@@ -71475,12 +71475,12 @@ void QSplitter_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QSplitter_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSplitter*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSplitter*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QSplitter_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSplitter*>(ptr)->QSplitter::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSplitter*>(ptr)->QSplitter::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QSplitter_Raise(void* ptr)
@@ -71735,7 +71735,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQSplitterHandle_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQSplitterHandle_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSplitterHandle_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitterHandle_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitterHandle_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQSplitterHandle_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQSplitterHandle_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQSplitterHandle_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -72189,12 +72189,12 @@ void QSplitterHandle_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QSplitterHandle_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSplitterHandle*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSplitterHandle*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QSplitterHandle_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QSplitterHandle_Raise(void* ptr)
@@ -72866,7 +72866,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQStackedWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQStackedWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQStackedWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStackedWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStackedWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQStackedWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQStackedWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQStackedWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -73361,12 +73361,12 @@ void QStackedWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QStackedWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QStackedWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QStackedWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QStackedWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QStackedWidget_Raise(void* ptr)
@@ -73644,7 +73644,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQStatusBar_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQStatusBar_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQStatusBar_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStatusBar_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStatusBar_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQStatusBar_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQStatusBar_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQStatusBar_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -74143,12 +74143,12 @@ void QStatusBar_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QStatusBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QStatusBar*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QStatusBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QStatusBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QStatusBar*>(ptr)->QStatusBar::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QStatusBar*>(ptr)->QStatusBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QStatusBar_Raise(void* ptr)
@@ -78919,7 +78919,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTabBar_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQTabBar_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTabBar_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabBar_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabBar_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTabBar_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTabBar_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTabBar_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -79741,12 +79741,12 @@ void QTabBar_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QTabBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTabBar*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTabBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTabBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTabBar*>(ptr)->QTabBar::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTabBar*>(ptr)->QTabBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTabBar_Raise(void* ptr)
@@ -79999,7 +79999,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQTabWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQTabWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTabWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTabWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTabWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTabWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -80733,12 +80733,12 @@ void QTabWidget_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QTabWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTabWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTabWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTabWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTabWidget*>(ptr)->QTabWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTabWidget*>(ptr)->QTabWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTabWidget_Raise(void* ptr)
@@ -81060,7 +81060,7 @@ public:
 	void hide() { callbackQTableView_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTableView_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQTableView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTableView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTableView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTableView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -82116,12 +82116,12 @@ void QTableView_LowerDefault(void* ptr)
 
 int QTableView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTableView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTableView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTableView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTableView*>(ptr)->QTableView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTableView*>(ptr)->QTableView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTableView_Raise(void* ptr)
@@ -82439,7 +82439,7 @@ public:
 	void hide() { callbackQTableWidget_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTableWidget_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQTableWidget_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTableWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTableWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTableWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -83930,12 +83930,12 @@ void QTableWidget_LowerDefault(void* ptr)
 
 int QTableWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTableWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTableWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTableWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTableWidget*>(ptr)->QTableWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTableWidget*>(ptr)->QTableWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTableWidget_Raise(void* ptr)
@@ -84722,7 +84722,7 @@ public:
 	int heightForWidth(int w) const { return callbackQTextBrowser_HeightForWidth(const_cast<MyQTextBrowser*>(this), this->objectName().toUtf8().data(), w); };
 	void hide() { callbackQTextBrowser_Hide(this, this->objectName().toUtf8().data()); };
 	void lower() { callbackQTextBrowser_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextBrowser_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextBrowser_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTextBrowser_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTextBrowser_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTextBrowser_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -85710,12 +85710,12 @@ void QTextBrowser_LowerDefault(void* ptr)
 
 int QTextBrowser_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTextBrowser*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTextBrowser*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTextBrowser_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTextBrowser*>(ptr)->QTextBrowser::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTextBrowser*>(ptr)->QTextBrowser::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTextBrowser_Raise(void* ptr)
@@ -86012,7 +86012,7 @@ public:
 	int heightForWidth(int w) const { return callbackQTextEdit_HeightForWidth(const_cast<MyQTextEdit*>(this), this->objectName().toUtf8().data(), w); };
 	void hide() { callbackQTextEdit_Hide(this, this->objectName().toUtf8().data()); };
 	void lower() { callbackQTextEdit_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextEdit_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextEdit_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTextEdit_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTextEdit_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTextEdit_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -87042,12 +87042,12 @@ void QTextEdit_LowerDefault(void* ptr)
 
 int QTextEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTextEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTextEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTextEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTextEdit*>(ptr)->QTextEdit::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTextEdit*>(ptr)->QTextEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTextEdit_Raise(void* ptr)
@@ -87829,12 +87829,12 @@ void QTimeEdit_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QTimeEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTimeEdit*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTimeEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTimeEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTimeEdit_Raise(void* ptr)
@@ -88089,7 +88089,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQToolBar_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQToolBar_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQToolBar_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBar_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBar_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQToolBar_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQToolBar_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQToolBar_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -88764,12 +88764,12 @@ void QToolBar_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QToolBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QToolBar*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QToolBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QToolBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QToolBar*>(ptr)->QToolBar::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QToolBar*>(ptr)->QToolBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QToolBar_Raise(void* ptr)
@@ -89048,7 +89048,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQToolBox_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQToolBox_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQToolBox_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBox_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBox_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQToolBox_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQToolBox_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQToolBox_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -89598,12 +89598,12 @@ void QToolBox_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QToolBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QToolBox*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QToolBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QToolBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QToolBox*>(ptr)->QToolBox::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QToolBox*>(ptr)->QToolBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QToolBox_Raise(void* ptr)
@@ -89889,7 +89889,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQToolButton_InputMethodQuery(const_cast<MyQToolButton*>(this), this->objectName().toUtf8().data(), query)); };
 	void lower() { callbackQToolButton_Lower(this, this->objectName().toUtf8().data()); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQToolButton_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolButton_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolButton_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQToolButton_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQToolButton_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQToolButton_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -90473,12 +90473,12 @@ void QToolButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 
 int QToolButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QToolButton*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QToolButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QToolButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QToolButton*>(ptr)->QToolButton::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QToolButton*>(ptr)->QToolButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QToolButton_Raise(void* ptr)
@@ -90849,7 +90849,7 @@ public:
 	void hide() { callbackQTreeView_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTreeView_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQTreeView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTreeView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTreeView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTreeView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -92005,12 +92005,12 @@ void QTreeView_LowerDefault(void* ptr)
 
 int QTreeView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTreeView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTreeView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTreeView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTreeView*>(ptr)->QTreeView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTreeView*>(ptr)->QTreeView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTreeView_Raise(void* ptr)
@@ -92316,7 +92316,7 @@ public:
 	void hide() { callbackQTreeWidget_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTreeWidget_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQTreeWidget_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQTreeWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQTreeWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQTreeWidget_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -93652,12 +93652,12 @@ void QTreeWidget_LowerDefault(void* ptr)
 
 int QTreeWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTreeWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTreeWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QTreeWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QTreeWidget_Raise(void* ptr)
@@ -95036,7 +95036,7 @@ public:
 	void hide() { callbackQUndoView_Hide(this, this->objectName().toUtf8().data()); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQUndoView_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
 	void lower() { callbackQUndoView_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQUndoView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQUndoView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQUndoView_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQUndoView_Repaint(this, this->objectName().toUtf8().data()); };
 	void setDisabled(bool disable) { callbackQUndoView_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
@@ -95902,12 +95902,12 @@ void QUndoView_LowerDefault(void* ptr)
 
 int QUndoView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QUndoView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QUndoView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QUndoView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QUndoView*>(ptr)->QUndoView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QUndoView*>(ptr)->QUndoView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QUndoView_Raise(void* ptr)
@@ -96467,7 +96467,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQWidget_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQWidget_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQWidget_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -97600,12 +97600,12 @@ void QWidget_Move2(void* ptr, int x, int y)
 
 int QWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWidget*>(ptr)->QWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWidget*>(ptr)->QWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void* QWidget_NativeParentWidget(void* ptr)
@@ -97700,12 +97700,12 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 
 int QWidget_RestoreGeometry(void* ptr, char* geometry)
 {
-	return static_cast<QWidget*>(ptr)->restoreGeometry(QByteArray(geometry));
+	return static_cast<QWidget*>(ptr)->restoreGeometry(QByteArray::fromHex(QString(geometry).toUtf8()));
 }
 
 char* QWidget_SaveGeometry(void* ptr)
 {
-	return QString(static_cast<QWidget*>(ptr)->saveGeometry()).toUtf8().data();
+	return static_cast<QWidget*>(ptr)->saveGeometry().toHex().data();
 }
 
 void QWidget_Scroll(void* ptr, int dx, int dy)
@@ -98609,7 +98609,7 @@ public:
 	void Signal_CustomButtonClicked(int which) { callbackQWizard_CustomButtonClicked(this, this->objectName().toUtf8().data(), which); };
 	void done(int result) { callbackQWizard_Done(this, this->objectName().toUtf8().data(), result); };
 	void Signal_HelpRequested() { callbackQWizard_HelpRequested(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizard_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizard_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void next() { callbackQWizard_Next(this, this->objectName().toUtf8().data()); };
 	int nextId() const { return callbackQWizard_NextId(const_cast<MyQWizard*>(this), this->objectName().toUtf8().data()); };
 	void Signal_PageAdded(int id) { callbackQWizard_PageAdded(this, this->objectName().toUtf8().data(), id); };
@@ -98868,12 +98868,12 @@ void QWizard_HelpRequested(void* ptr)
 
 int QWizard_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWizard*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWizard*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QWizard_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWizard*>(ptr)->QWizard::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWizard*>(ptr)->QWizard::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QWizard_Next(void* ptr)
@@ -99677,7 +99677,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQWizardPage_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQWizardPage_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQWizardPage_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizardPage_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizardPage_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQWizardPage_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQWizardPage_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQWizardPage_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -100232,12 +100232,12 @@ void QWizardPage_MouseReleaseEventDefault(void* ptr, void* event)
 
 int QWizardPage_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWizardPage*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWizardPage*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QWizardPage_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QWizardPage*>(ptr)->QWizardPage::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QWizardPage*>(ptr)->QWizardPage::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QWizardPage_Raise(void* ptr)

@@ -6,6 +6,7 @@ package xmlpatterns
 //#include "xmlpatterns.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
@@ -4329,7 +4330,7 @@ func (ptr *QXmlSchema) Load3(data string, documentUri core.QUrl_ITF) bool {
 	defer qt.Recovering("QXmlSchema::load")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		return C.QXmlSchema_Load3(ptr.Pointer(), dataC, core.PointerFromQUrl(documentUri)) != 0
 	}
@@ -4565,7 +4566,7 @@ func (ptr *QXmlSchemaValidator) Validate3(data string, documentUri core.QUrl_ITF
 	defer qt.Recovering("QXmlSchemaValidator::validate")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		return C.QXmlSchemaValidator_Validate3(ptr.Pointer(), dataC, core.PointerFromQUrl(documentUri)) != 0
 	}

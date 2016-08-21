@@ -2988,7 +2988,7 @@ public:
 	void hide() { callbackQQuickView_Hide(this, this->objectName().toUtf8().data()); };
 	void lower() { callbackQQuickView_Lower(this, this->objectName().toUtf8().data()); };
 	void moveEvent(QMoveEvent * ev) { callbackQQuickView_MoveEvent(this, this->objectName().toUtf8().data(), ev); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickView_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickView_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQQuickView_Raise(this, this->objectName().toUtf8().data()); };
 	void requestActivate() { callbackQQuickView_RequestActivate(this, this->objectName().toUtf8().data()); };
 	void requestUpdate() { callbackQQuickView_RequestUpdate(this, this->objectName().toUtf8().data()); };
@@ -3310,12 +3310,12 @@ void QQuickView_MoveEventDefault(void* ptr, void* ev)
 
 int QQuickView_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QQuickView*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QQuickView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QQuickView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QQuickView*>(ptr)->QQuickView::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QQuickView*>(ptr)->QQuickView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QQuickView_Raise(void* ptr)
@@ -3565,7 +3565,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQQuickWidget_InputMethodEvent(this, this->objectName().toUtf8().data(), event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQQuickWidget_InputMethodQuery(const_cast<MyQQuickWidget*>(this), this->objectName().toUtf8().data(), query)); };
 	void lower() { callbackQQuickWidget_Lower(this, this->objectName().toUtf8().data()); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWidget_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWidget_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQQuickWidget_Raise(this, this->objectName().toUtf8().data()); };
 	void repaint() { callbackQQuickWidget_Repaint(this, this->objectName().toUtf8().data()); };
 	void resizeEvent(QResizeEvent * event) { callbackQQuickWidget_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
@@ -4099,12 +4099,12 @@ void QQuickWidget_LowerDefault(void* ptr)
 
 int QQuickWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QQuickWidget*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QQuickWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QQuickWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QQuickWidget*>(ptr)->QQuickWidget::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QQuickWidget*>(ptr)->QQuickWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QQuickWidget_Raise(void* ptr)
@@ -4363,7 +4363,7 @@ public:
 	void hide() { callbackQQuickWindow_Hide(this, this->objectName().toUtf8().data()); };
 	void lower() { callbackQQuickWindow_Lower(this, this->objectName().toUtf8().data()); };
 	void moveEvent(QMoveEvent * ev) { callbackQQuickWindow_MoveEvent(this, this->objectName().toUtf8().data(), ev); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWindow_NativeEvent(this, this->objectName().toUtf8().data(), QString(eventType).toUtf8().data(), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQQuickWindow_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
 	void raise() { callbackQQuickWindow_Raise(this, this->objectName().toUtf8().data()); };
 	void requestActivate() { callbackQQuickWindow_RequestActivate(this, this->objectName().toUtf8().data()); };
 	void requestUpdate() { callbackQQuickWindow_RequestUpdate(this, this->objectName().toUtf8().data()); };
@@ -4980,12 +4980,12 @@ void QQuickWindow_MoveEventDefault(void* ptr, void* ev)
 
 int QQuickWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QQuickWindow*>(ptr)->nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QQuickWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 int QQuickWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
-	return static_cast<QQuickWindow*>(ptr)->QQuickWindow::nativeEvent(QByteArray(eventType), message, &result);
+	return static_cast<QQuickWindow*>(ptr)->QQuickWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
 void QQuickWindow_Raise(void* ptr)

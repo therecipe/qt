@@ -6,6 +6,7 @@ package svg
 //#include "svg.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -2363,7 +2364,7 @@ func NewQSvgRenderer4(contents core.QXmlStreamReader_ITF, parent core.QObject_IT
 func NewQSvgRenderer3(contents string, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	var contentsC = C.CString(contents)
+	var contentsC = C.CString(hex.EncodeToString([]byte(contents)))
 	defer C.free(unsafe.Pointer(contentsC))
 	return newQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(contentsC, core.PointerFromQObject(parent)))
 }
@@ -2472,7 +2473,7 @@ func callbackQSvgRenderer_Load2(ptr unsafe.Pointer, ptrName *C.char, contents *C
 	defer qt.Recovering("callback QSvgRenderer::load")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "load2"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(contents))))
+		return C.int(qt.GoBoolToInt(signal.(func(string) bool)(qt.HexDecodeToString(C.GoString(contents)))))
 	}
 
 	return C.int(qt.GoBoolToInt(false))
@@ -2500,7 +2501,7 @@ func (ptr *QSvgRenderer) Load2(contents string) bool {
 	defer qt.Recovering("QSvgRenderer::load")
 
 	if ptr.Pointer() != nil {
-		var contentsC = C.CString(contents)
+		var contentsC = C.CString(hex.EncodeToString([]byte(contents)))
 		defer C.free(unsafe.Pointer(contentsC))
 		return C.QSvgRenderer_Load2(ptr.Pointer(), contentsC) != 0
 	}
@@ -3195,7 +3196,7 @@ func callbackQSvgWidget_Load2(ptr unsafe.Pointer, ptrName *C.char, contents *C.c
 	defer qt.Recovering("callback QSvgWidget::load")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "load2"); signal != nil {
-		signal.(func(string))(C.GoString(contents))
+		signal.(func(string))(qt.HexDecodeToString(C.GoString(contents)))
 	}
 
 }
@@ -3222,7 +3223,7 @@ func (ptr *QSvgWidget) Load2(contents string) {
 	defer qt.Recovering("QSvgWidget::load")
 
 	if ptr.Pointer() != nil {
-		var contentsC = C.CString(contents)
+		var contentsC = C.CString(hex.EncodeToString([]byte(contents)))
 		defer C.free(unsafe.Pointer(contentsC))
 		C.QSvgWidget_Load2(ptr.Pointer(), contentsC)
 	}
@@ -4912,10 +4913,10 @@ func callbackQSvgWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventTy
 	defer qt.Recovering("callback QSvgWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQSvgWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQSvgWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QSvgWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -4940,7 +4941,7 @@ func (ptr *QSvgWidget) NativeEvent(eventType string, message unsafe.Pointer, res
 	defer qt.Recovering("QSvgWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QSvgWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -4951,7 +4952,7 @@ func (ptr *QSvgWidget) NativeEventDefault(eventType string, message unsafe.Point
 	defer qt.Recovering("QSvgWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QSvgWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

@@ -1768,13 +1768,13 @@ func (ptr *QDBusConnection) LastError() *QDBusError {
 func QDBusConnection_LocalMachineId() string {
 	defer qt.Recovering("QDBusConnection::localMachineId")
 
-	return C.GoString(C.QDBusConnection_QDBusConnection_LocalMachineId())
+	return qt.HexDecodeToString(C.GoString(C.QDBusConnection_QDBusConnection_LocalMachineId()))
 }
 
 func (ptr *QDBusConnection) LocalMachineId() string {
 	defer qt.Recovering("QDBusConnection::localMachineId")
 
-	return C.GoString(C.QDBusConnection_QDBusConnection_LocalMachineId())
+	return qt.HexDecodeToString(C.GoString(C.QDBusConnection_QDBusConnection_LocalMachineId()))
 }
 
 func (ptr *QDBusConnection) Name() string {

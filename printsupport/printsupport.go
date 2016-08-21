@@ -6,6 +6,7 @@ package printsupport
 //#include "printsupport.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -2142,10 +2143,10 @@ func callbackQAbstractPrintDialog_NativeEvent(ptr unsafe.Pointer, ptrName *C.cha
 	defer qt.Recovering("callback QAbstractPrintDialog::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QAbstractPrintDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -2170,7 +2171,7 @@ func (ptr *QAbstractPrintDialog) NativeEvent(eventType string, message unsafe.Po
 	defer qt.Recovering("QAbstractPrintDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QAbstractPrintDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -2181,7 +2182,7 @@ func (ptr *QAbstractPrintDialog) NativeEventDefault(eventType string, message un
 	defer qt.Recovering("QAbstractPrintDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QAbstractPrintDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -5045,10 +5046,10 @@ func callbackQPageSetupDialog_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, e
 	defer qt.Recovering("callback QPageSetupDialog::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QPageSetupDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -5073,7 +5074,7 @@ func (ptr *QPageSetupDialog) NativeEvent(eventType string, message unsafe.Pointe
 	defer qt.Recovering("QPageSetupDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPageSetupDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -5084,7 +5085,7 @@ func (ptr *QPageSetupDialog) NativeEventDefault(eventType string, message unsafe
 	defer qt.Recovering("QPageSetupDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPageSetupDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -8055,10 +8056,10 @@ func callbackQPrintDialog_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, event
 	defer qt.Recovering("callback QPrintDialog::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QPrintDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -8083,7 +8084,7 @@ func (ptr *QPrintDialog) NativeEvent(eventType string, message unsafe.Pointer, r
 	defer qt.Recovering("QPrintDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPrintDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -8094,7 +8095,7 @@ func (ptr *QPrintDialog) NativeEventDefault(eventType string, message unsafe.Poi
 	defer qt.Recovering("QPrintDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPrintDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -11374,10 +11375,10 @@ func callbackQPrintPreviewDialog_NativeEvent(ptr unsafe.Pointer, ptrName *C.char
 	defer qt.Recovering("callback QPrintPreviewDialog::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QPrintPreviewDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -11402,7 +11403,7 @@ func (ptr *QPrintPreviewDialog) NativeEvent(eventType string, message unsafe.Poi
 	defer qt.Recovering("QPrintPreviewDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPrintPreviewDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -11413,7 +11414,7 @@ func (ptr *QPrintPreviewDialog) NativeEventDefault(eventType string, message uns
 	defer qt.Recovering("QPrintPreviewDialog::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPrintPreviewDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -14827,10 +14828,10 @@ func callbackQPrintPreviewWidget_NativeEvent(ptr unsafe.Pointer, ptrName *C.char
 	defer qt.Recovering("callback QPrintPreviewWidget::nativeEvent")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(C.GoString(eventType), message, int(result))))
+		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).NativeEventDefault(C.GoString(eventType), message, int(result))))
+	return C.int(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
 }
 
 func (ptr *QPrintPreviewWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -14855,7 +14856,7 @@ func (ptr *QPrintPreviewWidget) NativeEvent(eventType string, message unsafe.Poi
 	defer qt.Recovering("QPrintPreviewWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPrintPreviewWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}
@@ -14866,7 +14867,7 @@ func (ptr *QPrintPreviewWidget) NativeEventDefault(eventType string, message uns
 	defer qt.Recovering("QPrintPreviewWidget::nativeEvent")
 
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(eventType)
+		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
 		return C.QPrintPreviewWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
 	}

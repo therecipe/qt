@@ -425,7 +425,7 @@ public:
 	MyQQmlApplicationEngine(const QUrl &url, QObject *parent) : QQmlApplicationEngine(url, parent) {};
 	void load(const QString & filePath) { callbackQQmlApplicationEngine_Load2(this, this->objectName().toUtf8().data(), filePath.toUtf8().data()); };
 	void load(const QUrl & url) { callbackQQmlApplicationEngine_Load(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
-	void loadData(const QByteArray & data, const QUrl & url) { callbackQQmlApplicationEngine_LoadData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), const_cast<QUrl*>(&url)); };
+	void loadData(const QByteArray & data, const QUrl & url) { callbackQQmlApplicationEngine_LoadData(this, this->objectName().toUtf8().data(), data.toHex().data(), const_cast<QUrl*>(&url)); };
 	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngine_ObjectCreated(this, this->objectName().toUtf8().data(), object, const_cast<QUrl*>(&url)); };
 	bool event(QEvent * e) { return callbackQQmlApplicationEngine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQQmlApplicationEngine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
@@ -465,7 +465,7 @@ void QQmlApplicationEngine_Load(void* ptr, void* url)
 
 void QQmlApplicationEngine_LoadData(void* ptr, char* data, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, QByteArray(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, QByteArray::fromHex(QString(data).toUtf8())), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlApplicationEngine_ConnectObjectCreated(void* ptr)
@@ -592,7 +592,7 @@ public:
 	void loadUrl(const QUrl & url) { callbackQQmlComponent_LoadUrl(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url)); };
 	void loadUrl(const QUrl & url, QQmlComponent::CompilationMode mode) { callbackQQmlComponent_LoadUrl2(this, this->objectName().toUtf8().data(), const_cast<QUrl*>(&url), mode); };
 	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponent_ProgressChanged(this, this->objectName().toUtf8().data(), static_cast<double>(progress)); };
-	void setData(const QByteArray & data, const QUrl & url) { callbackQQmlComponent_SetData(this, this->objectName().toUtf8().data(), QString(data).toUtf8().data(), const_cast<QUrl*>(&url)); };
+	void setData(const QByteArray & data, const QUrl & url) { callbackQQmlComponent_SetData(this, this->objectName().toUtf8().data(), data.toHex().data(), const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponent_StatusChanged(this, this->objectName().toUtf8().data(), status); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlComponent_TimerEvent(this, this->objectName().toUtf8().data(), event); };
 	void childEvent(QChildEvent * event) { callbackQQmlComponent_ChildEvent(this, this->objectName().toUtf8().data(), event); };
@@ -732,7 +732,7 @@ void QQmlComponent_ProgressChanged(void* ptr, double progress)
 
 void QQmlComponent_SetData(void* ptr, char* data, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, QByteArray(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, QByteArray::fromHex(QString(data).toUtf8())), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlComponent_ConnectStatusChanged(void* ptr)

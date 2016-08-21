@@ -6,6 +6,7 @@ package websockets
 //#include "websockets.h"
 import "C"
 import (
+	"encoding/hex"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
@@ -619,7 +620,7 @@ func callbackQWebSocket_BinaryFrameReceived(ptr unsafe.Pointer, ptrName *C.char,
 	defer qt.Recovering("callback QWebSocket::binaryFrameReceived")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "binaryFrameReceived"); signal != nil {
-		signal.(func(string, bool))(C.GoString(frame), int(isLastFrame) != 0)
+		signal.(func(string, bool))(qt.HexDecodeToString(C.GoString(frame)), int(isLastFrame) != 0)
 	}
 
 }
@@ -646,7 +647,7 @@ func (ptr *QWebSocket) BinaryFrameReceived(frame string, isLastFrame bool) {
 	defer qt.Recovering("QWebSocket::binaryFrameReceived")
 
 	if ptr.Pointer() != nil {
-		var frameC = C.CString(frame)
+		var frameC = C.CString(hex.EncodeToString([]byte(frame)))
 		defer C.free(unsafe.Pointer(frameC))
 		C.QWebSocket_BinaryFrameReceived(ptr.Pointer(), frameC, C.int(qt.GoBoolToInt(isLastFrame)))
 	}
@@ -657,7 +658,7 @@ func callbackQWebSocket_BinaryMessageReceived(ptr unsafe.Pointer, ptrName *C.cha
 	defer qt.Recovering("callback QWebSocket::binaryMessageReceived")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "binaryMessageReceived"); signal != nil {
-		signal.(func(string))(C.GoString(message))
+		signal.(func(string))(qt.HexDecodeToString(C.GoString(message)))
 	}
 
 }
@@ -684,7 +685,7 @@ func (ptr *QWebSocket) BinaryMessageReceived(message string) {
 	defer qt.Recovering("QWebSocket::binaryMessageReceived")
 
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(message)
+		var messageC = C.CString(hex.EncodeToString([]byte(message)))
 		defer C.free(unsafe.Pointer(messageC))
 		C.QWebSocket_BinaryMessageReceived(ptr.Pointer(), messageC)
 	}
@@ -1050,7 +1051,7 @@ func callbackQWebSocket_Ping(ptr unsafe.Pointer, ptrName *C.char, payload *C.cha
 	defer qt.Recovering("callback QWebSocket::ping")
 
 	if signal := qt.GetSignal(C.GoString(ptrName), "ping"); signal != nil {
-		signal.(func(string))(C.GoString(payload))
+		signal.(func(string))(qt.HexDecodeToString(C.GoString(payload)))
 	}
 
 }
@@ -1077,7 +1078,7 @@ func (ptr *QWebSocket) Ping(payload string) {
 	defer qt.Recovering("QWebSocket::ping")
 
 	if ptr.Pointer() != nil {
-		var payloadC = C.CString(payload)
+		var payloadC = C.CString(hex.EncodeToString([]byte(payload)))
 		defer C.free(unsafe.Pointer(payloadC))
 		C.QWebSocket_Ping(ptr.Pointer(), payloadC)
 	}
@@ -1218,7 +1219,7 @@ func (ptr *QWebSocket) SendBinaryMessage(data string) int64 {
 	defer qt.Recovering("QWebSocket::sendBinaryMessage")
 
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(data)
+		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
 		return int64(C.QWebSocket_SendBinaryMessage(ptr.Pointer(), dataC))
 	}
