@@ -1,6 +1,6 @@
 go get golang.org/x/crypto/ssh
 if %errorlevel% neq 0 exit /b %errorlevel%
-go get github.com/emirpasic/gods
+go get github.com/emirpasic/gods/lists/arraylist
 if %errorlevel% neq 0 exit /b %errorlevel%
 go run ./internal/setup/check.go %*
 if %errorlevel% neq 0 exit /b %errorlevel%
