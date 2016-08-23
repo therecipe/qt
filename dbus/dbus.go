@@ -2,10 +2,12 @@
 
 package dbus
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "dbus.h"
 import "C"
 import (
+	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
@@ -51,19 +53,10 @@ func NewQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdapto
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusAbstractAdaptorFromPointer(ptr unsafe.Pointer) *QDBusAbstractAdaptor {
-	var n = NewQDBusAbstractAdaptorFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusAbstractAdaptor_") {
-		n.SetObjectName("QDBusAbstractAdaptor_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDBusAbstractAdaptor(obj core.QObject_ITF) *QDBusAbstractAdaptor {
 	defer qt.Recovering("QDBusAbstractAdaptor::QDBusAbstractAdaptor")
 
-	return newQDBusAbstractAdaptorFromPointer(C.QDBusAbstractAdaptor_NewQDBusAbstractAdaptor(core.PointerFromQObject(obj)))
+	return NewQDBusAbstractAdaptorFromPointer(C.QDBusAbstractAdaptor_NewQDBusAbstractAdaptor(core.PointerFromQObject(obj)))
 }
 
 func (ptr *QDBusAbstractAdaptor) AutoRelaySignals() bool {
@@ -79,7 +72,7 @@ func (ptr *QDBusAbstractAdaptor) SetAutoRelaySignals(enable bool) {
 	defer qt.Recovering("QDBusAbstractAdaptor::setAutoRelaySignals")
 
 	if ptr.Pointer() != nil {
-		C.QDBusAbstractAdaptor_SetAutoRelaySignals(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
+		C.QDBusAbstractAdaptor_SetAutoRelaySignals(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
 	}
 }
 
@@ -93,10 +86,10 @@ func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
 }
 
 //export callbackQDBusAbstractAdaptor_TimerEvent
-func callbackQDBusAbstractAdaptor_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusAbstractAdaptor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusAbstractAdaptorFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -108,7 +101,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectTimerEvent(f func(event *core.QTimerEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -117,7 +110,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -138,10 +131,10 @@ func (ptr *QDBusAbstractAdaptor) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQDBusAbstractAdaptor_ChildEvent
-func callbackQDBusAbstractAdaptor_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusAbstractAdaptor_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusAbstractAdaptorFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -153,7 +146,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectChildEvent(f func(event *core.QChildEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -162,7 +155,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -183,10 +176,10 @@ func (ptr *QDBusAbstractAdaptor) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQDBusAbstractAdaptor_ConnectNotify
-func callbackQDBusAbstractAdaptor_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusAbstractAdaptor_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusAbstractAdaptorFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -198,7 +191,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectConnectNotify(f func(sign *core.QMetaMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -207,7 +200,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -228,10 +221,10 @@ func (ptr *QDBusAbstractAdaptor) ConnectNotifyDefault(sign core.QMetaMethod_ITF)
 }
 
 //export callbackQDBusAbstractAdaptor_CustomEvent
-func callbackQDBusAbstractAdaptor_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusAbstractAdaptor_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusAbstractAdaptorFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -243,7 +236,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectCustomEvent(f func(event *core.QEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -252,7 +245,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -273,10 +266,10 @@ func (ptr *QDBusAbstractAdaptor) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusAbstractAdaptor_DeleteLater
-func callbackQDBusAbstractAdaptor_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusAbstractAdaptor_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusAbstractAdaptorFromPointer(ptr).DeleteLaterDefault()
@@ -288,7 +281,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -297,7 +290,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -320,10 +313,10 @@ func (ptr *QDBusAbstractAdaptor) DeleteLaterDefault() {
 }
 
 //export callbackQDBusAbstractAdaptor_DisconnectNotify
-func callbackQDBusAbstractAdaptor_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusAbstractAdaptor_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusAbstractAdaptorFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -335,7 +328,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectDisconnectNotify(f func(sign *core.QMeta
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -344,7 +337,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -365,14 +358,14 @@ func (ptr *QDBusAbstractAdaptor) DisconnectNotifyDefault(sign core.QMetaMethod_I
 }
 
 //export callbackQDBusAbstractAdaptor_Event
-func callbackQDBusAbstractAdaptor_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusAbstractAdaptor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusAbstractAdaptorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusAbstractAdaptorFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusAbstractAdaptor) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -380,7 +373,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -389,7 +382,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -412,14 +405,14 @@ func (ptr *QDBusAbstractAdaptor) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusAbstractAdaptor_EventFilter
-func callbackQDBusAbstractAdaptor_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusAbstractAdaptor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusAbstractAdaptorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusAbstractAdaptorFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusAbstractAdaptor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -427,7 +420,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectEventFilter(f func(watched *core.QObject
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -436,7 +429,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -459,10 +452,10 @@ func (ptr *QDBusAbstractAdaptor) EventFilterDefault(watched core.QObject_ITF, ev
 }
 
 //export callbackQDBusAbstractAdaptor_MetaObject
-func callbackQDBusAbstractAdaptor_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusAbstractAdaptor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusAbstractAdaptor::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -474,7 +467,7 @@ func (ptr *QDBusAbstractAdaptor) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -483,7 +476,7 @@ func (ptr *QDBusAbstractAdaptor) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractAdaptor(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -543,15 +536,6 @@ func NewQDBusAbstractInterfaceFromPointer(ptr unsafe.Pointer) *QDBusAbstractInte
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusAbstractInterfaceFromPointer(ptr unsafe.Pointer) *QDBusAbstractInterface {
-	var n = NewQDBusAbstractInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusAbstractInterface_") {
-		n.SetObjectName("QDBusAbstractInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QDBusAbstractInterface) AsyncCall(method string, arg1 core.QVariant_ITF, arg2 core.QVariant_ITF, arg3 core.QVariant_ITF, arg4 core.QVariant_ITF, arg5 core.QVariant_ITF, arg6 core.QVariant_ITF, arg7 core.QVariant_ITF, arg8 core.QVariant_ITF) *QDBusPendingCall {
 	defer qt.Recovering("QDBusAbstractInterface::asyncCall")
 
@@ -640,7 +624,7 @@ func (ptr *QDBusAbstractInterface) SetTimeout(timeout int) {
 	defer qt.Recovering("QDBusAbstractInterface::setTimeout")
 
 	if ptr.Pointer() != nil {
-		C.QDBusAbstractInterface_SetTimeout(ptr.Pointer(), C.int(timeout))
+		C.QDBusAbstractInterface_SetTimeout(ptr.Pointer(), C.int(int32(timeout)))
 	}
 }
 
@@ -648,7 +632,7 @@ func (ptr *QDBusAbstractInterface) Timeout() int {
 	defer qt.Recovering("QDBusAbstractInterface::timeout")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDBusAbstractInterface_Timeout(ptr.Pointer()))
+		return int(int32(C.QDBusAbstractInterface_Timeout(ptr.Pointer())))
 	}
 	return 0
 }
@@ -657,17 +641,17 @@ func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
 	defer qt.Recovering("QDBusAbstractInterface::~QDBusAbstractInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()))
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusAbstractInterface_TimerEvent
-func callbackQDBusAbstractInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusAbstractInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusAbstractInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -679,7 +663,7 @@ func (ptr *QDBusAbstractInterface) ConnectTimerEvent(f func(event *core.QTimerEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -688,7 +672,7 @@ func (ptr *QDBusAbstractInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -709,10 +693,10 @@ func (ptr *QDBusAbstractInterface) TimerEventDefault(event core.QTimerEvent_ITF)
 }
 
 //export callbackQDBusAbstractInterface_ChildEvent
-func callbackQDBusAbstractInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusAbstractInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusAbstractInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -724,7 +708,7 @@ func (ptr *QDBusAbstractInterface) ConnectChildEvent(f func(event *core.QChildEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -733,7 +717,7 @@ func (ptr *QDBusAbstractInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -754,10 +738,10 @@ func (ptr *QDBusAbstractInterface) ChildEventDefault(event core.QChildEvent_ITF)
 }
 
 //export callbackQDBusAbstractInterface_ConnectNotify
-func callbackQDBusAbstractInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusAbstractInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusAbstractInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -769,7 +753,7 @@ func (ptr *QDBusAbstractInterface) ConnectConnectNotify(f func(sign *core.QMetaM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -778,7 +762,7 @@ func (ptr *QDBusAbstractInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -799,10 +783,10 @@ func (ptr *QDBusAbstractInterface) ConnectNotifyDefault(sign core.QMetaMethod_IT
 }
 
 //export callbackQDBusAbstractInterface_CustomEvent
-func callbackQDBusAbstractInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusAbstractInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusAbstractInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -814,7 +798,7 @@ func (ptr *QDBusAbstractInterface) ConnectCustomEvent(f func(event *core.QEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -823,7 +807,7 @@ func (ptr *QDBusAbstractInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -844,10 +828,10 @@ func (ptr *QDBusAbstractInterface) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusAbstractInterface_DeleteLater
-func callbackQDBusAbstractInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusAbstractInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusAbstractInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -859,7 +843,7 @@ func (ptr *QDBusAbstractInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -868,7 +852,7 @@ func (ptr *QDBusAbstractInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -876,7 +860,7 @@ func (ptr *QDBusAbstractInterface) DeleteLater() {
 	defer qt.Recovering("QDBusAbstractInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()))
 		C.QDBusAbstractInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -886,17 +870,17 @@ func (ptr *QDBusAbstractInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusAbstractInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()))
 		C.QDBusAbstractInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusAbstractInterface_DisconnectNotify
-func callbackQDBusAbstractInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusAbstractInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusAbstractInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusAbstractInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -908,7 +892,7 @@ func (ptr *QDBusAbstractInterface) ConnectDisconnectNotify(f func(sign *core.QMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -917,7 +901,7 @@ func (ptr *QDBusAbstractInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -938,14 +922,14 @@ func (ptr *QDBusAbstractInterface) DisconnectNotifyDefault(sign core.QMetaMethod
 }
 
 //export callbackQDBusAbstractInterface_Event
-func callbackQDBusAbstractInterface_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusAbstractInterface_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusAbstractInterface::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusAbstractInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusAbstractInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusAbstractInterface) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -953,7 +937,7 @@ func (ptr *QDBusAbstractInterface) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -962,7 +946,7 @@ func (ptr *QDBusAbstractInterface) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -985,14 +969,14 @@ func (ptr *QDBusAbstractInterface) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusAbstractInterface_EventFilter
-func callbackQDBusAbstractInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusAbstractInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusAbstractInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusAbstractInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusAbstractInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusAbstractInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -1000,7 +984,7 @@ func (ptr *QDBusAbstractInterface) ConnectEventFilter(f func(watched *core.QObje
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -1009,7 +993,7 @@ func (ptr *QDBusAbstractInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -1032,10 +1016,10 @@ func (ptr *QDBusAbstractInterface) EventFilterDefault(watched core.QObject_ITF, 
 }
 
 //export callbackQDBusAbstractInterface_MetaObject
-func callbackQDBusAbstractInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusAbstractInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusAbstractInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -1047,7 +1031,7 @@ func (ptr *QDBusAbstractInterface) ConnectMetaObject(f func() *core.QMetaObject)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -1056,7 +1040,7 @@ func (ptr *QDBusAbstractInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusAbstractInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -1128,28 +1112,28 @@ func NewQDBusArgumentFromPointer(ptr unsafe.Pointer) *QDBusArgument {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusArgumentFromPointer(ptr unsafe.Pointer) *QDBusArgument {
-	var n = NewQDBusArgumentFromPointer(ptr)
-	return n
-}
-
 func NewQDBusArgument() *QDBusArgument {
 	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
-	return newQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
+	var tmpValue = NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
+	runtime.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
+	return tmpValue
 }
 
 func NewQDBusArgument3(other QDBusArgument_ITF) *QDBusArgument {
 	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
-	return newQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument3(PointerFromQDBusArgument(other)))
+	var tmpValue = NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument3(PointerFromQDBusArgument(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
+	return tmpValue
 }
 
 func NewQDBusArgument2(other QDBusArgument_ITF) *QDBusArgument {
 	defer qt.Recovering("QDBusArgument::QDBusArgument")
 
-	return newQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument2(PointerFromQDBusArgument(other)))
+	var tmpValue = NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument2(PointerFromQDBusArgument(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
+	return tmpValue
 }
 
 func (ptr *QDBusArgument) AsVariant() *core.QVariant {
@@ -1176,7 +1160,7 @@ func (ptr *QDBusArgument) BeginArray(id int) {
 	defer qt.Recovering("QDBusArgument::beginArray")
 
 	if ptr.Pointer() != nil {
-		C.QDBusArgument_BeginArray(ptr.Pointer(), C.int(id))
+		C.QDBusArgument_BeginArray(ptr.Pointer(), C.int(int32(id)))
 	}
 }
 
@@ -1192,7 +1176,7 @@ func (ptr *QDBusArgument) BeginMap(kid int, vid int) {
 	defer qt.Recovering("QDBusArgument::beginMap")
 
 	if ptr.Pointer() != nil {
-		C.QDBusArgument_BeginMap(ptr.Pointer(), C.int(kid), C.int(vid))
+		C.QDBusArgument_BeginMap(ptr.Pointer(), C.int(int32(kid)), C.int(int32(vid)))
 	}
 }
 
@@ -1410,12 +1394,6 @@ func NewQDBusConnectionFromPointer(ptr unsafe.Pointer) *QDBusConnection {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusConnectionFromPointer(ptr unsafe.Pointer) *QDBusConnection {
-	var n = NewQDBusConnectionFromPointer(ptr)
-	return n
-}
-
 func QDBusConnection_SessionBus() *QDBusConnection {
 	defer qt.Recovering("QDBusConnection::sessionBus")
 
@@ -1451,13 +1429,17 @@ func (ptr *QDBusConnection) SystemBus() *QDBusConnection {
 func NewQDBusConnection3(other QDBusConnection_ITF) *QDBusConnection {
 	defer qt.Recovering("QDBusConnection::QDBusConnection")
 
-	return newQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection3(PointerFromQDBusConnection(other)))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection3(PointerFromQDBusConnection(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	return tmpValue
 }
 
 func NewQDBusConnection2(other QDBusConnection_ITF) *QDBusConnection {
 	defer qt.Recovering("QDBusConnection::QDBusConnection")
 
-	return newQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection2(PointerFromQDBusConnection(other)))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection2(PointerFromQDBusConnection(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	return tmpValue
 }
 
 func NewQDBusConnection(name string) *QDBusConnection {
@@ -1465,7 +1447,9 @@ func NewQDBusConnection(name string) *QDBusConnection {
 
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
-	return newQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(nameC))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_NewQDBusConnection(nameC))
+	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
+	return tmpValue
 }
 
 func (ptr *QDBusConnection) BaseService() string {
@@ -1481,7 +1465,7 @@ func (ptr *QDBusConnection) AsyncCall(message QDBusMessage_ITF, timeout int) *QD
 	defer qt.Recovering("QDBusConnection::asyncCall")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusConnection_AsyncCall(ptr.Pointer(), PointerFromQDBusMessage(message), C.int(timeout)))
+		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusConnection_AsyncCall(ptr.Pointer(), PointerFromQDBusMessage(message), C.int(int32(timeout))))
 		runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
 		return tmpValue
 	}
@@ -1496,7 +1480,7 @@ func (ptr *QDBusConnection) CallWithCallback(message QDBusMessage_ITF, receiver 
 		defer C.free(unsafe.Pointer(returnMethodC))
 		var errorMethodC = C.CString(errorMethod)
 		defer C.free(unsafe.Pointer(errorMethodC))
-		return C.QDBusConnection_CallWithCallback(ptr.Pointer(), PointerFromQDBusMessage(message), core.PointerFromQObject(receiver), returnMethodC, errorMethodC, C.int(timeout)) != 0
+		return C.QDBusConnection_CallWithCallback(ptr.Pointer(), PointerFromQDBusMessage(message), core.PointerFromQObject(receiver), returnMethodC, errorMethodC, C.int(int32(timeout))) != 0
 	}
 	return false
 }
@@ -1569,7 +1553,7 @@ func QDBusConnection_ConnectToBus(ty QDBusConnection__BusType, name string) *QDB
 
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.int(ty), nameC))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), nameC))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1579,7 +1563,7 @@ func (ptr *QDBusConnection) ConnectToBus(ty QDBusConnection__BusType, name strin
 
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
-	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.int(ty), nameC))
+	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_ConnectToBus(C.longlong(ty), nameC))
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
 	return tmpValue
 }
@@ -1803,7 +1787,7 @@ func (ptr *QDBusConnection) RegisterObject(path string, object core.QObject_ITF,
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
-		return C.QDBusConnection_RegisterObject(ptr.Pointer(), pathC, core.PointerFromQObject(object), C.int(options)) != 0
+		return C.QDBusConnection_RegisterObject(ptr.Pointer(), pathC, core.PointerFromQObject(object), C.longlong(options)) != 0
 	}
 	return false
 }
@@ -1816,7 +1800,7 @@ func (ptr *QDBusConnection) RegisterObject2(path string, interfa string, object 
 		defer C.free(unsafe.Pointer(pathC))
 		var interfaC = C.CString(interfa)
 		defer C.free(unsafe.Pointer(interfaC))
-		return C.QDBusConnection_RegisterObject2(ptr.Pointer(), pathC, interfaC, core.PointerFromQObject(object), C.int(options)) != 0
+		return C.QDBusConnection_RegisterObject2(ptr.Pointer(), pathC, interfaC, core.PointerFromQObject(object), C.longlong(options)) != 0
 	}
 	return false
 }
@@ -1855,7 +1839,7 @@ func (ptr *QDBusConnection) UnregisterObject(path string, mode QDBusConnection__
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
-		C.QDBusConnection_UnregisterObject(ptr.Pointer(), pathC, C.int(mode))
+		C.QDBusConnection_UnregisterObject(ptr.Pointer(), pathC, C.longlong(mode))
 	}
 }
 
@@ -1944,24 +1928,16 @@ func NewQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnection
 	return n
 }
 
-func newQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnectionInterface {
-	var n = NewQDBusConnectionInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusConnectionInterface_") {
-		n.SetObjectName("QDBusConnectionInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QDBusConnectionInterface) DestroyQDBusConnectionInterface() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
 }
 
 //export callbackQDBusConnectionInterface_CallWithCallbackFailed
-func callbackQDBusConnectionInterface_CallWithCallbackFailed(ptr unsafe.Pointer, ptrName *C.char, error unsafe.Pointer, call unsafe.Pointer) {
+func callbackQDBusConnectionInterface_CallWithCallbackFailed(ptr unsafe.Pointer, error unsafe.Pointer, call unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::callWithCallbackFailed")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "callWithCallbackFailed"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "callWithCallbackFailed"); signal != nil {
 		signal.(func(*QDBusError, *QDBusMessage))(NewQDBusErrorFromPointer(error), NewQDBusMessageFromPointer(call))
 	}
 
@@ -1972,7 +1948,7 @@ func (ptr *QDBusConnectionInterface) ConnectCallWithCallbackFailed(f func(error 
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_ConnectCallWithCallbackFailed(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "callWithCallbackFailed", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "callWithCallbackFailed", f)
 	}
 }
 
@@ -1981,7 +1957,7 @@ func (ptr *QDBusConnectionInterface) DisconnectCallWithCallbackFailed() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_DisconnectCallWithCallbackFailed(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "callWithCallbackFailed")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "callWithCallbackFailed")
 	}
 }
 
@@ -1994,10 +1970,10 @@ func (ptr *QDBusConnectionInterface) CallWithCallbackFailed(error QDBusError_ITF
 }
 
 //export callbackQDBusConnectionInterface_ServiceRegistered
-func callbackQDBusConnectionInterface_ServiceRegistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
+func callbackQDBusConnectionInterface_ServiceRegistered(ptr unsafe.Pointer, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusConnectionInterface::serviceRegistered")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "serviceRegistered"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "serviceRegistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
@@ -2008,7 +1984,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceRegistered(f func(serviceName
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_ConnectServiceRegistered(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "serviceRegistered", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "serviceRegistered", f)
 	}
 }
 
@@ -2017,7 +1993,7 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceRegistered() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_DisconnectServiceRegistered(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "serviceRegistered")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "serviceRegistered")
 	}
 }
 
@@ -2032,10 +2008,10 @@ func (ptr *QDBusConnectionInterface) ServiceRegistered(serviceName string) {
 }
 
 //export callbackQDBusConnectionInterface_ServiceUnregistered
-func callbackQDBusConnectionInterface_ServiceUnregistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
+func callbackQDBusConnectionInterface_ServiceUnregistered(ptr unsafe.Pointer, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusConnectionInterface::serviceUnregistered")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "serviceUnregistered"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "serviceUnregistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
@@ -2046,7 +2022,7 @@ func (ptr *QDBusConnectionInterface) ConnectServiceUnregistered(f func(serviceNa
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_ConnectServiceUnregistered(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "serviceUnregistered", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "serviceUnregistered", f)
 	}
 }
 
@@ -2055,7 +2031,7 @@ func (ptr *QDBusConnectionInterface) DisconnectServiceUnregistered() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusConnectionInterface_DisconnectServiceUnregistered(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "serviceUnregistered")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "serviceUnregistered")
 	}
 }
 
@@ -2070,10 +2046,10 @@ func (ptr *QDBusConnectionInterface) ServiceUnregistered(serviceName string) {
 }
 
 //export callbackQDBusConnectionInterface_TimerEvent
-func callbackQDBusConnectionInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusConnectionInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusConnectionInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2085,7 +2061,7 @@ func (ptr *QDBusConnectionInterface) ConnectTimerEvent(f func(event *core.QTimer
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -2094,7 +2070,7 @@ func (ptr *QDBusConnectionInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -2115,10 +2091,10 @@ func (ptr *QDBusConnectionInterface) TimerEventDefault(event core.QTimerEvent_IT
 }
 
 //export callbackQDBusConnectionInterface_ChildEvent
-func callbackQDBusConnectionInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusConnectionInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusConnectionInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -2130,7 +2106,7 @@ func (ptr *QDBusConnectionInterface) ConnectChildEvent(f func(event *core.QChild
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -2139,7 +2115,7 @@ func (ptr *QDBusConnectionInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -2160,10 +2136,10 @@ func (ptr *QDBusConnectionInterface) ChildEventDefault(event core.QChildEvent_IT
 }
 
 //export callbackQDBusConnectionInterface_ConnectNotify
-func callbackQDBusConnectionInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusConnectionInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusConnectionInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2175,7 +2151,7 @@ func (ptr *QDBusConnectionInterface) ConnectConnectNotify(f func(sign *core.QMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -2184,7 +2160,7 @@ func (ptr *QDBusConnectionInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -2205,10 +2181,10 @@ func (ptr *QDBusConnectionInterface) ConnectNotifyDefault(sign core.QMetaMethod_
 }
 
 //export callbackQDBusConnectionInterface_CustomEvent
-func callbackQDBusConnectionInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusConnectionInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusConnectionInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -2220,7 +2196,7 @@ func (ptr *QDBusConnectionInterface) ConnectCustomEvent(f func(event *core.QEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -2229,7 +2205,7 @@ func (ptr *QDBusConnectionInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -2250,10 +2226,10 @@ func (ptr *QDBusConnectionInterface) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusConnectionInterface_DeleteLater
-func callbackQDBusConnectionInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusConnectionInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusConnectionInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -2265,7 +2241,7 @@ func (ptr *QDBusConnectionInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -2274,7 +2250,7 @@ func (ptr *QDBusConnectionInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -2282,7 +2258,7 @@ func (ptr *QDBusConnectionInterface) DeleteLater() {
 	defer qt.Recovering("QDBusConnectionInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()))
 		C.QDBusConnectionInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -2292,17 +2268,17 @@ func (ptr *QDBusConnectionInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusConnectionInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()))
 		C.QDBusConnectionInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusConnectionInterface_DisconnectNotify
-func callbackQDBusConnectionInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusConnectionInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusConnectionInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusConnectionInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2314,7 +2290,7 @@ func (ptr *QDBusConnectionInterface) ConnectDisconnectNotify(f func(sign *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -2323,7 +2299,7 @@ func (ptr *QDBusConnectionInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -2344,14 +2320,14 @@ func (ptr *QDBusConnectionInterface) DisconnectNotifyDefault(sign core.QMetaMeth
 }
 
 //export callbackQDBusConnectionInterface_Event
-func callbackQDBusConnectionInterface_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusConnectionInterface_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusConnectionInterface::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusConnectionInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusConnectionInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusConnectionInterface) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -2359,7 +2335,7 @@ func (ptr *QDBusConnectionInterface) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -2368,7 +2344,7 @@ func (ptr *QDBusConnectionInterface) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -2391,14 +2367,14 @@ func (ptr *QDBusConnectionInterface) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusConnectionInterface_EventFilter
-func callbackQDBusConnectionInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusConnectionInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusConnectionInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusConnectionInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusConnectionInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusConnectionInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -2406,7 +2382,7 @@ func (ptr *QDBusConnectionInterface) ConnectEventFilter(f func(watched *core.QOb
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -2415,7 +2391,7 @@ func (ptr *QDBusConnectionInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -2438,10 +2414,10 @@ func (ptr *QDBusConnectionInterface) EventFilterDefault(watched core.QObject_ITF
 }
 
 //export callbackQDBusConnectionInterface_MetaObject
-func callbackQDBusConnectionInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusConnectionInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusConnectionInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -2453,7 +2429,7 @@ func (ptr *QDBusConnectionInterface) ConnectMetaObject(f func() *core.QMetaObjec
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -2462,7 +2438,7 @@ func (ptr *QDBusConnectionInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusConnectionInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -2521,16 +2497,12 @@ func NewQDBusContextFromPointer(ptr unsafe.Pointer) *QDBusContext {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusContextFromPointer(ptr unsafe.Pointer) *QDBusContext {
-	var n = NewQDBusContextFromPointer(ptr)
-	return n
-}
-
 func NewQDBusContext() *QDBusContext {
 	defer qt.Recovering("QDBusContext::QDBusContext")
 
-	return newQDBusContextFromPointer(C.QDBusContext_NewQDBusContext())
+	var tmpValue = NewQDBusContextFromPointer(C.QDBusContext_NewQDBusContext())
+	runtime.SetFinalizer(tmpValue, (*QDBusContext).DestroyQDBusContext)
+	return tmpValue
 }
 
 func (ptr *QDBusContext) CalledFromDBus() bool {
@@ -2577,7 +2549,7 @@ func (ptr *QDBusContext) SendErrorReply2(ty QDBusError__ErrorType, msg string) {
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
-		C.QDBusContext_SendErrorReply2(ptr.Pointer(), C.int(ty), msgC)
+		C.QDBusContext_SendErrorReply2(ptr.Pointer(), C.longlong(ty), msgC)
 	}
 }
 
@@ -2597,7 +2569,7 @@ func (ptr *QDBusContext) SetDelayedReply(enable bool) {
 	defer qt.Recovering("QDBusContext::setDelayedReply")
 
 	if ptr.Pointer() != nil {
-		C.QDBusContext_SetDelayedReply(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
+		C.QDBusContext_SetDelayedReply(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
 	}
 }
 
@@ -2682,11 +2654,6 @@ func NewQDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
 	return n
 }
 
-func newQDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
-	var n = NewQDBusErrorFromPointer(ptr)
-	return n
-}
-
 func (ptr *QDBusError) DestroyQDBusError() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -2695,19 +2662,21 @@ func (ptr *QDBusError) DestroyQDBusError() {
 func NewQDBusError(other QDBusError_ITF) *QDBusError {
 	defer qt.Recovering("QDBusError::QDBusError")
 
-	return newQDBusErrorFromPointer(C.QDBusError_NewQDBusError(PointerFromQDBusError(other)))
+	var tmpValue = NewQDBusErrorFromPointer(C.QDBusError_NewQDBusError(PointerFromQDBusError(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusError).DestroyQDBusError)
+	return tmpValue
 }
 
 func QDBusError_ErrorString(error QDBusError__ErrorType) string {
 	defer qt.Recovering("QDBusError::errorString")
 
-	return C.GoString(C.QDBusError_QDBusError_ErrorString(C.int(error)))
+	return C.GoString(C.QDBusError_QDBusError_ErrorString(C.longlong(error)))
 }
 
 func (ptr *QDBusError) ErrorString(error QDBusError__ErrorType) string {
 	defer qt.Recovering("QDBusError::errorString")
 
-	return C.GoString(C.QDBusError_QDBusError_ErrorString(C.int(error)))
+	return C.GoString(C.QDBusError_QDBusError_ErrorString(C.longlong(error)))
 }
 
 func (ptr *QDBusError) IsValid() bool {
@@ -2792,15 +2761,6 @@ func NewQDBusInterfaceFromPointer(ptr unsafe.Pointer) *QDBusInterface {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusInterfaceFromPointer(ptr unsafe.Pointer) *QDBusInterface {
-	var n = NewQDBusInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusInterface_") {
-		n.SetObjectName("QDBusInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDBusInterface(service string, path string, interfa string, connection QDBusConnection_ITF, parent core.QObject_ITF) *QDBusInterface {
 	defer qt.Recovering("QDBusInterface::QDBusInterface")
 
@@ -2810,7 +2770,7 @@ func NewQDBusInterface(service string, path string, interfa string, connection Q
 	defer C.free(unsafe.Pointer(pathC))
 	var interfaC = C.CString(interfa)
 	defer C.free(unsafe.Pointer(interfaC))
-	return newQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(serviceC, pathC, interfaC, PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
+	return NewQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(serviceC, pathC, interfaC, PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusInterface) DestroyQDBusInterface() {
@@ -2823,10 +2783,10 @@ func (ptr *QDBusInterface) DestroyQDBusInterface() {
 }
 
 //export callbackQDBusInterface_TimerEvent
-func callbackQDBusInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2838,7 +2798,7 @@ func (ptr *QDBusInterface) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -2847,7 +2807,7 @@ func (ptr *QDBusInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -2868,10 +2828,10 @@ func (ptr *QDBusInterface) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQDBusInterface_ChildEvent
-func callbackQDBusInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -2883,7 +2843,7 @@ func (ptr *QDBusInterface) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -2892,7 +2852,7 @@ func (ptr *QDBusInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -2913,10 +2873,10 @@ func (ptr *QDBusInterface) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQDBusInterface_ConnectNotify
-func callbackQDBusInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2928,7 +2888,7 @@ func (ptr *QDBusInterface) ConnectConnectNotify(f func(sign *core.QMetaMethod)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -2937,7 +2897,7 @@ func (ptr *QDBusInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -2958,10 +2918,10 @@ func (ptr *QDBusInterface) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQDBusInterface_CustomEvent
-func callbackQDBusInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -2973,7 +2933,7 @@ func (ptr *QDBusInterface) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -2982,7 +2942,7 @@ func (ptr *QDBusInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -3003,10 +2963,10 @@ func (ptr *QDBusInterface) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusInterface_DeleteLater
-func callbackQDBusInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -3018,7 +2978,7 @@ func (ptr *QDBusInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -3027,7 +2987,7 @@ func (ptr *QDBusInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -3050,10 +3010,10 @@ func (ptr *QDBusInterface) DeleteLaterDefault() {
 }
 
 //export callbackQDBusInterface_DisconnectNotify
-func callbackQDBusInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3065,7 +3025,7 @@ func (ptr *QDBusInterface) ConnectDisconnectNotify(f func(sign *core.QMetaMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -3074,7 +3034,7 @@ func (ptr *QDBusInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -3095,14 +3055,14 @@ func (ptr *QDBusInterface) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQDBusInterface_Event
-func callbackQDBusInterface_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusInterface_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusInterface::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusInterface) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -3110,7 +3070,7 @@ func (ptr *QDBusInterface) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -3119,7 +3079,7 @@ func (ptr *QDBusInterface) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -3142,14 +3102,14 @@ func (ptr *QDBusInterface) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusInterface_EventFilter
-func callbackQDBusInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -3157,7 +3117,7 @@ func (ptr *QDBusInterface) ConnectEventFilter(f func(watched *core.QObject, even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -3166,7 +3126,7 @@ func (ptr *QDBusInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -3189,10 +3149,10 @@ func (ptr *QDBusInterface) EventFilterDefault(watched core.QObject_ITF, event co
 }
 
 //export callbackQDBusInterface_MetaObject
-func callbackQDBusInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -3204,7 +3164,7 @@ func (ptr *QDBusInterface) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -3213,7 +3173,7 @@ func (ptr *QDBusInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -3283,19 +3243,13 @@ func NewQDBusMessageFromPointer(ptr unsafe.Pointer) *QDBusMessage {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusMessageFromPointer(ptr unsafe.Pointer) *QDBusMessage {
-	var n = NewQDBusMessageFromPointer(ptr)
-	return n
-}
-
 func (ptr *QDBusMessage) CreateErrorReply3(ty QDBusError__ErrorType, msg string) *QDBusMessage {
 	defer qt.Recovering("QDBusMessage::createErrorReply")
 
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
-		var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply3(ptr.Pointer(), C.int(ty), msgC))
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_CreateErrorReply3(ptr.Pointer(), C.longlong(ty), msgC))
 		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
@@ -3305,13 +3259,17 @@ func (ptr *QDBusMessage) CreateErrorReply3(ty QDBusError__ErrorType, msg string)
 func NewQDBusMessage() *QDBusMessage {
 	defer qt.Recovering("QDBusMessage::QDBusMessage")
 
-	return newQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage())
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage())
+	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	return tmpValue
 }
 
 func NewQDBusMessage2(other QDBusMessage_ITF) *QDBusMessage {
 	defer qt.Recovering("QDBusMessage::QDBusMessage")
 
-	return newQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage2(PointerFromQDBusMessage(other)))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_NewQDBusMessage2(PointerFromQDBusMessage(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
+	return tmpValue
 }
 
 func (ptr *QDBusMessage) AutoStartService() bool {
@@ -3328,7 +3286,7 @@ func QDBusMessage_CreateError3(ty QDBusError__ErrorType, msg string) *QDBusMessa
 
 	var msgC = C.CString(msg)
 	defer C.free(unsafe.Pointer(msgC))
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.int(ty), msgC))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), msgC))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -3338,7 +3296,7 @@ func (ptr *QDBusMessage) CreateError3(ty QDBusError__ErrorType, msg string) *QDB
 
 	var msgC = C.CString(msg)
 	defer C.free(unsafe.Pointer(msgC))
-	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.int(ty), msgC))
+	var tmpValue = NewQDBusMessageFromPointer(C.QDBusMessage_QDBusMessage_CreateError3(C.longlong(ty), msgC))
 	runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 	return tmpValue
 }
@@ -3588,7 +3546,7 @@ func (ptr *QDBusMessage) SetAutoStartService(enable bool) {
 	defer qt.Recovering("QDBusMessage::setAutoStartService")
 
 	if ptr.Pointer() != nil {
-		C.QDBusMessage_SetAutoStartService(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
+		C.QDBusMessage_SetAutoStartService(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
 	}
 }
 
@@ -3596,7 +3554,7 @@ func (ptr *QDBusMessage) SetDelayedReply(enable bool) {
 	defer qt.Recovering("QDBusMessage::setDelayedReply")
 
 	if ptr.Pointer() != nil {
-		C.QDBusMessage_SetDelayedReply(ptr.Pointer(), C.int(qt.GoBoolToInt(enable)))
+		C.QDBusMessage_SetDelayedReply(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
 	}
 }
 
@@ -3673,11 +3631,6 @@ func NewQDBusObjectPathFromPointer(ptr unsafe.Pointer) *QDBusObjectPath {
 	return n
 }
 
-func newQDBusObjectPathFromPointer(ptr unsafe.Pointer) *QDBusObjectPath {
-	var n = NewQDBusObjectPathFromPointer(ptr)
-	return n
-}
-
 func (ptr *QDBusObjectPath) DestroyQDBusObjectPath() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -3686,13 +3639,17 @@ func (ptr *QDBusObjectPath) DestroyQDBusObjectPath() {
 func NewQDBusObjectPath() *QDBusObjectPath {
 	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
 
-	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath())
+	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath())
+	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	return tmpValue
 }
 
 func NewQDBusObjectPath3(path core.QLatin1String_ITF) *QDBusObjectPath {
 	defer qt.Recovering("QDBusObjectPath::QDBusObjectPath")
 
-	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath3(core.PointerFromQLatin1String(path)))
+	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath3(core.PointerFromQLatin1String(path)))
+	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	return tmpValue
 }
 
 func NewQDBusObjectPath5(p string) *QDBusObjectPath {
@@ -3700,7 +3657,9 @@ func NewQDBusObjectPath5(p string) *QDBusObjectPath {
 
 	var pC = C.CString(p)
 	defer C.free(unsafe.Pointer(pC))
-	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath5(pC))
+	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath5(pC))
+	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	return tmpValue
 }
 
 func NewQDBusObjectPath4(path string) *QDBusObjectPath {
@@ -3708,7 +3667,9 @@ func NewQDBusObjectPath4(path string) *QDBusObjectPath {
 
 	var pathC = C.CString(path)
 	defer C.free(unsafe.Pointer(pathC))
-	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(pathC))
+	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath4(pathC))
+	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	return tmpValue
 }
 
 func NewQDBusObjectPath2(path string) *QDBusObjectPath {
@@ -3716,7 +3677,9 @@ func NewQDBusObjectPath2(path string) *QDBusObjectPath {
 
 	var pathC = C.CString(path)
 	defer C.free(unsafe.Pointer(pathC))
-	return newQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath2(pathC))
+	var tmpValue = NewQDBusObjectPathFromPointer(C.QDBusObjectPath_NewQDBusObjectPath2(pathC))
+	runtime.SetFinalizer(tmpValue, (*QDBusObjectPath).DestroyQDBusObjectPath)
+	return tmpValue
 }
 
 func (ptr *QDBusObjectPath) Path() string {
@@ -3783,16 +3746,12 @@ func NewQDBusPendingCallFromPointer(ptr unsafe.Pointer) *QDBusPendingCall {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusPendingCallFromPointer(ptr unsafe.Pointer) *QDBusPendingCall {
-	var n = NewQDBusPendingCallFromPointer(ptr)
-	return n
-}
-
 func NewQDBusPendingCall(other QDBusPendingCall_ITF) *QDBusPendingCall {
 	defer qt.Recovering("QDBusPendingCall::QDBusPendingCall")
 
-	return newQDBusPendingCallFromPointer(C.QDBusPendingCall_NewQDBusPendingCall(PointerFromQDBusPendingCall(other)))
+	var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusPendingCall_NewQDBusPendingCall(PointerFromQDBusPendingCall(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+	return tmpValue
 }
 
 func QDBusPendingCall_FromCompletedCall(msg QDBusMessage_ITF) *QDBusPendingCall {
@@ -3885,15 +3844,6 @@ func NewQDBusPendingCallWatcherFromPointer(ptr unsafe.Pointer) *QDBusPendingCall
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusPendingCallWatcherFromPointer(ptr unsafe.Pointer) *QDBusPendingCallWatcher {
-	var n = NewQDBusPendingCallWatcherFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusPendingCallWatcher_") {
-		n.SetObjectName("QDBusPendingCallWatcher_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QDBusPendingCallWatcher) WaitForFinished() {
 	defer qt.Recovering("QDBusPendingCallWatcher::waitForFinished")
 
@@ -3905,14 +3855,14 @@ func (ptr *QDBusPendingCallWatcher) WaitForFinished() {
 func NewQDBusPendingCallWatcher(call QDBusPendingCall_ITF, parent core.QObject_ITF) *QDBusPendingCallWatcher {
 	defer qt.Recovering("QDBusPendingCallWatcher::QDBusPendingCallWatcher")
 
-	return newQDBusPendingCallWatcherFromPointer(C.QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(PointerFromQDBusPendingCall(call), core.PointerFromQObject(parent)))
+	return NewQDBusPendingCallWatcherFromPointer(C.QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(PointerFromQDBusPendingCall(call), core.PointerFromQObject(parent)))
 }
 
 //export callbackQDBusPendingCallWatcher_Finished
-func callbackQDBusPendingCallWatcher_Finished(ptr unsafe.Pointer, ptrName *C.char, self unsafe.Pointer) {
+func callbackQDBusPendingCallWatcher_Finished(ptr unsafe.Pointer, self unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::finished")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "finished"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "finished"); signal != nil {
 		signal.(func(*QDBusPendingCallWatcher))(NewQDBusPendingCallWatcherFromPointer(self))
 	}
 
@@ -3923,7 +3873,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectFinished(f func(self *QDBusPendingCal
 
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "finished", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "finished", f)
 	}
 }
 
@@ -3932,7 +3882,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectFinished() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusPendingCallWatcher_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "finished")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "finished")
 	}
 }
 
@@ -3957,17 +3907,17 @@ func (ptr *QDBusPendingCallWatcher) DestroyQDBusPendingCallWatcher() {
 	defer qt.Recovering("QDBusPendingCallWatcher::~QDBusPendingCallWatcher")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()))
 		C.QDBusPendingCallWatcher_DestroyQDBusPendingCallWatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusPendingCallWatcher_TimerEvent
-func callbackQDBusPendingCallWatcher_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusPendingCallWatcher_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusPendingCallWatcherFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -3979,7 +3929,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectTimerEvent(f func(event *core.QTimerE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -3988,7 +3938,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -4009,10 +3959,10 @@ func (ptr *QDBusPendingCallWatcher) TimerEventDefault(event core.QTimerEvent_ITF
 }
 
 //export callbackQDBusPendingCallWatcher_ChildEvent
-func callbackQDBusPendingCallWatcher_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusPendingCallWatcher_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusPendingCallWatcherFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -4024,7 +3974,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectChildEvent(f func(event *core.QChildE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -4033,7 +3983,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -4054,10 +4004,10 @@ func (ptr *QDBusPendingCallWatcher) ChildEventDefault(event core.QChildEvent_ITF
 }
 
 //export callbackQDBusPendingCallWatcher_ConnectNotify
-func callbackQDBusPendingCallWatcher_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusPendingCallWatcher_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusPendingCallWatcherFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -4069,7 +4019,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectConnectNotify(f func(sign *core.QMeta
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -4078,7 +4028,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -4099,10 +4049,10 @@ func (ptr *QDBusPendingCallWatcher) ConnectNotifyDefault(sign core.QMetaMethod_I
 }
 
 //export callbackQDBusPendingCallWatcher_CustomEvent
-func callbackQDBusPendingCallWatcher_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusPendingCallWatcher_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusPendingCallWatcherFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -4114,7 +4064,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectCustomEvent(f func(event *core.QEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -4123,7 +4073,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -4144,10 +4094,10 @@ func (ptr *QDBusPendingCallWatcher) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusPendingCallWatcher_DeleteLater
-func callbackQDBusPendingCallWatcher_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusPendingCallWatcher_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusPendingCallWatcherFromPointer(ptr).DeleteLaterDefault()
@@ -4159,7 +4109,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -4168,7 +4118,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -4176,7 +4126,7 @@ func (ptr *QDBusPendingCallWatcher) DeleteLater() {
 	defer qt.Recovering("QDBusPendingCallWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()))
 		C.QDBusPendingCallWatcher_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4186,17 +4136,17 @@ func (ptr *QDBusPendingCallWatcher) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusPendingCallWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()))
 		C.QDBusPendingCallWatcher_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusPendingCallWatcher_DisconnectNotify
-func callbackQDBusPendingCallWatcher_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusPendingCallWatcher_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusPendingCallWatcherFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -4208,7 +4158,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectDisconnectNotify(f func(sign *core.QM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -4217,7 +4167,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -4238,14 +4188,14 @@ func (ptr *QDBusPendingCallWatcher) DisconnectNotifyDefault(sign core.QMetaMetho
 }
 
 //export callbackQDBusPendingCallWatcher_Event
-func callbackQDBusPendingCallWatcher_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusPendingCallWatcher_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusPendingCallWatcherFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusPendingCallWatcherFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusPendingCallWatcher) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -4253,7 +4203,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -4262,7 +4212,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -4285,14 +4235,14 @@ func (ptr *QDBusPendingCallWatcher) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusPendingCallWatcher_EventFilter
-func callbackQDBusPendingCallWatcher_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusPendingCallWatcher_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusPendingCallWatcherFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusPendingCallWatcherFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusPendingCallWatcher) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -4300,7 +4250,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectEventFilter(f func(watched *core.QObj
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -4309,7 +4259,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -4332,10 +4282,10 @@ func (ptr *QDBusPendingCallWatcher) EventFilterDefault(watched core.QObject_ITF,
 }
 
 //export callbackQDBusPendingCallWatcher_MetaObject
-func callbackQDBusPendingCallWatcher_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusPendingCallWatcher_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusPendingCallWatcher::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -4347,7 +4297,7 @@ func (ptr *QDBusPendingCallWatcher) ConnectMetaObject(f func() *core.QMetaObject
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -4356,7 +4306,7 @@ func (ptr *QDBusPendingCallWatcher) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusPendingCallWatcher(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -4417,11 +4367,6 @@ func NewQDBusPendingReplyFromPointer(ptr unsafe.Pointer) *QDBusPendingReply {
 	return n
 }
 
-func newQDBusPendingReplyFromPointer(ptr unsafe.Pointer) *QDBusPendingReply {
-	var n = NewQDBusPendingReplyFromPointer(ptr)
-	return n
-}
-
 func (ptr *QDBusPendingReply) DestroyQDBusPendingReply() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -4462,11 +4407,6 @@ func PointerFromQDBusReply(ptr QDBusReply_ITF) unsafe.Pointer {
 func NewQDBusReplyFromPointer(ptr unsafe.Pointer) *QDBusReply {
 	var n = new(QDBusReply)
 	n.SetPointer(ptr)
-	return n
-}
-
-func newQDBusReplyFromPointer(ptr unsafe.Pointer) *QDBusReply {
-	var n = NewQDBusReplyFromPointer(ptr)
 	return n
 }
 
@@ -4513,19 +4453,10 @@ func NewQDBusServerFromPointer(ptr unsafe.Pointer) *QDBusServer {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusServerFromPointer(ptr unsafe.Pointer) *QDBusServer {
-	var n = NewQDBusServerFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusServer_") {
-		n.SetObjectName("QDBusServer_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDBusServer2(parent core.QObject_ITF) *QDBusServer {
 	defer qt.Recovering("QDBusServer::QDBusServer")
 
-	return newQDBusServerFromPointer(C.QDBusServer_NewQDBusServer2(core.PointerFromQObject(parent)))
+	return NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer2(core.PointerFromQObject(parent)))
 }
 
 func NewQDBusServer(address string, parent core.QObject_ITF) *QDBusServer {
@@ -4533,7 +4464,7 @@ func NewQDBusServer(address string, parent core.QObject_ITF) *QDBusServer {
 
 	var addressC = C.CString(address)
 	defer C.free(unsafe.Pointer(addressC))
-	return newQDBusServerFromPointer(C.QDBusServer_NewQDBusServer(addressC, core.PointerFromQObject(parent)))
+	return NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer(addressC, core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusServer) Address() string {
@@ -4575,10 +4506,10 @@ func (ptr *QDBusServer) LastError() *QDBusError {
 }
 
 //export callbackQDBusServer_NewConnection
-func callbackQDBusServer_NewConnection(ptr unsafe.Pointer, ptrName *C.char, connection unsafe.Pointer) {
+func callbackQDBusServer_NewConnection(ptr unsafe.Pointer, connection unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::newConnection")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "newConnection"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "newConnection"); signal != nil {
 		signal.(func(*QDBusConnection))(NewQDBusConnectionFromPointer(connection))
 	}
 
@@ -4589,7 +4520,7 @@ func (ptr *QDBusServer) ConnectNewConnection(f func(connection *QDBusConnection)
 
 	if ptr.Pointer() != nil {
 		C.QDBusServer_ConnectNewConnection(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "newConnection", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "newConnection", f)
 	}
 }
 
@@ -4598,7 +4529,7 @@ func (ptr *QDBusServer) DisconnectNewConnection() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DisconnectNewConnection(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "newConnection")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "newConnection")
 	}
 }
 
@@ -4614,7 +4545,7 @@ func (ptr *QDBusServer) SetAnonymousAuthenticationAllowed(value bool) {
 	defer qt.Recovering("QDBusServer::setAnonymousAuthenticationAllowed")
 
 	if ptr.Pointer() != nil {
-		C.QDBusServer_SetAnonymousAuthenticationAllowed(ptr.Pointer(), C.int(qt.GoBoolToInt(value)))
+		C.QDBusServer_SetAnonymousAuthenticationAllowed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(value))))
 	}
 }
 
@@ -4622,17 +4553,17 @@ func (ptr *QDBusServer) DestroyQDBusServer() {
 	defer qt.Recovering("QDBusServer::~QDBusServer")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()))
 		C.QDBusServer_DestroyQDBusServer(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusServer_TimerEvent
-func callbackQDBusServer_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusServerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -4644,7 +4575,7 @@ func (ptr *QDBusServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -4653,7 +4584,7 @@ func (ptr *QDBusServer) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -4674,10 +4605,10 @@ func (ptr *QDBusServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQDBusServer_ChildEvent
-func callbackQDBusServer_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusServerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -4689,7 +4620,7 @@ func (ptr *QDBusServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -4698,7 +4629,7 @@ func (ptr *QDBusServer) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -4719,10 +4650,10 @@ func (ptr *QDBusServer) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQDBusServer_ConnectNotify
-func callbackQDBusServer_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusServerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -4734,7 +4665,7 @@ func (ptr *QDBusServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -4743,7 +4674,7 @@ func (ptr *QDBusServer) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -4764,10 +4695,10 @@ func (ptr *QDBusServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQDBusServer_CustomEvent
-func callbackQDBusServer_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusServerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -4779,7 +4710,7 @@ func (ptr *QDBusServer) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -4788,7 +4719,7 @@ func (ptr *QDBusServer) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -4809,10 +4740,10 @@ func (ptr *QDBusServer) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusServer_DeleteLater
-func callbackQDBusServer_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusServer_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusServerFromPointer(ptr).DeleteLaterDefault()
@@ -4824,7 +4755,7 @@ func (ptr *QDBusServer) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -4833,7 +4764,7 @@ func (ptr *QDBusServer) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -4841,7 +4772,7 @@ func (ptr *QDBusServer) DeleteLater() {
 	defer qt.Recovering("QDBusServer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()))
 		C.QDBusServer_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -4851,17 +4782,17 @@ func (ptr *QDBusServer) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusServer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()))
 		C.QDBusServer_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusServer_DisconnectNotify
-func callbackQDBusServer_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServer::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusServerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -4873,7 +4804,7 @@ func (ptr *QDBusServer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -4882,7 +4813,7 @@ func (ptr *QDBusServer) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -4903,14 +4834,14 @@ func (ptr *QDBusServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQDBusServer_Event
-func callbackQDBusServer_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusServer::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusServerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusServerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusServer) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -4918,7 +4849,7 @@ func (ptr *QDBusServer) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -4927,7 +4858,7 @@ func (ptr *QDBusServer) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -4950,14 +4881,14 @@ func (ptr *QDBusServer) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusServer_EventFilter
-func callbackQDBusServer_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusServer::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusServerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusServerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusServer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -4965,7 +4896,7 @@ func (ptr *QDBusServer) ConnectEventFilter(f func(watched *core.QObject, event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -4974,7 +4905,7 @@ func (ptr *QDBusServer) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -4997,10 +4928,10 @@ func (ptr *QDBusServer) EventFilterDefault(watched core.QObject_ITF, event core.
 }
 
 //export callbackQDBusServer_MetaObject
-func callbackQDBusServer_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusServer::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServer(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -5012,7 +4943,7 @@ func (ptr *QDBusServer) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -5021,7 +4952,7 @@ func (ptr *QDBusServer) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServer(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -5090,20 +5021,11 @@ func NewQDBusServiceWatcherFromPointer(ptr unsafe.Pointer) *QDBusServiceWatcher 
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusServiceWatcherFromPointer(ptr unsafe.Pointer) *QDBusServiceWatcher {
-	var n = NewQDBusServiceWatcherFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusServiceWatcher_") {
-		n.SetObjectName("QDBusServiceWatcher_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QDBusServiceWatcher) SetWatchMode(mode QDBusServiceWatcher__WatchModeFlag) {
 	defer qt.Recovering("QDBusServiceWatcher::setWatchMode")
 
 	if ptr.Pointer() != nil {
-		C.QDBusServiceWatcher_SetWatchMode(ptr.Pointer(), C.int(mode))
+		C.QDBusServiceWatcher_SetWatchMode(ptr.Pointer(), C.longlong(mode))
 	}
 }
 
@@ -5119,7 +5041,7 @@ func (ptr *QDBusServiceWatcher) WatchMode() QDBusServiceWatcher__WatchModeFlag {
 func NewQDBusServiceWatcher(parent core.QObject_ITF) *QDBusServiceWatcher {
 	defer qt.Recovering("QDBusServiceWatcher::QDBusServiceWatcher")
 
-	return newQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher(core.PointerFromQObject(parent)))
+	return NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher(core.PointerFromQObject(parent)))
 }
 
 func NewQDBusServiceWatcher2(service string, connection QDBusConnection_ITF, watchMode QDBusServiceWatcher__WatchModeFlag, parent core.QObject_ITF) *QDBusServiceWatcher {
@@ -5127,7 +5049,7 @@ func NewQDBusServiceWatcher2(service string, connection QDBusConnection_ITF, wat
 
 	var serviceC = C.CString(service)
 	defer C.free(unsafe.Pointer(serviceC))
-	return newQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(serviceC, PointerFromQDBusConnection(connection), C.int(watchMode), core.PointerFromQObject(parent)))
+	return NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(serviceC, PointerFromQDBusConnection(connection), C.longlong(watchMode), core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDBusServiceWatcher) AddWatchedService(newService string) {
@@ -5163,10 +5085,10 @@ func (ptr *QDBusServiceWatcher) RemoveWatchedService(service string) bool {
 }
 
 //export callbackQDBusServiceWatcher_ServiceOwnerChanged
-func callbackQDBusServiceWatcher_ServiceOwnerChanged(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char, oldOwner *C.char, newOwner *C.char) {
+func callbackQDBusServiceWatcher_ServiceOwnerChanged(ptr unsafe.Pointer, serviceName *C.char, oldOwner *C.char, newOwner *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceOwnerChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "serviceOwnerChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "serviceOwnerChanged"); signal != nil {
 		signal.(func(string, string, string))(C.GoString(serviceName), C.GoString(oldOwner), C.GoString(newOwner))
 	}
 
@@ -5177,7 +5099,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceOwnerChanged(f func(serviceName st
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_ConnectServiceOwnerChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "serviceOwnerChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "serviceOwnerChanged", f)
 	}
 }
 
@@ -5186,7 +5108,7 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceOwnerChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DisconnectServiceOwnerChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "serviceOwnerChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "serviceOwnerChanged")
 	}
 }
 
@@ -5205,10 +5127,10 @@ func (ptr *QDBusServiceWatcher) ServiceOwnerChanged(serviceName string, oldOwner
 }
 
 //export callbackQDBusServiceWatcher_ServiceRegistered
-func callbackQDBusServiceWatcher_ServiceRegistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
+func callbackQDBusServiceWatcher_ServiceRegistered(ptr unsafe.Pointer, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceRegistered")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "serviceRegistered"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "serviceRegistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
@@ -5219,7 +5141,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceRegistered(f func(serviceName stri
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_ConnectServiceRegistered(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "serviceRegistered", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "serviceRegistered", f)
 	}
 }
 
@@ -5228,7 +5150,7 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceRegistered() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DisconnectServiceRegistered(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "serviceRegistered")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "serviceRegistered")
 	}
 }
 
@@ -5243,10 +5165,10 @@ func (ptr *QDBusServiceWatcher) ServiceRegistered(serviceName string) {
 }
 
 //export callbackQDBusServiceWatcher_ServiceUnregistered
-func callbackQDBusServiceWatcher_ServiceUnregistered(ptr unsafe.Pointer, ptrName *C.char, serviceName *C.char) {
+func callbackQDBusServiceWatcher_ServiceUnregistered(ptr unsafe.Pointer, serviceName *C.char) {
 	defer qt.Recovering("callback QDBusServiceWatcher::serviceUnregistered")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "serviceUnregistered"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "serviceUnregistered"); signal != nil {
 		signal.(func(string))(C.GoString(serviceName))
 	}
 
@@ -5257,7 +5179,7 @@ func (ptr *QDBusServiceWatcher) ConnectServiceUnregistered(f func(serviceName st
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_ConnectServiceUnregistered(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "serviceUnregistered", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "serviceUnregistered", f)
 	}
 }
 
@@ -5266,7 +5188,7 @@ func (ptr *QDBusServiceWatcher) DisconnectServiceUnregistered() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_DisconnectServiceUnregistered(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "serviceUnregistered")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "serviceUnregistered")
 	}
 }
 
@@ -5311,17 +5233,17 @@ func (ptr *QDBusServiceWatcher) DestroyQDBusServiceWatcher() {
 	defer qt.Recovering("QDBusServiceWatcher::~QDBusServiceWatcher")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()))
 		C.QDBusServiceWatcher_DestroyQDBusServiceWatcher(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusServiceWatcher_TimerEvent
-func callbackQDBusServiceWatcher_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusServiceWatcher_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusServiceWatcherFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -5333,7 +5255,7 @@ func (ptr *QDBusServiceWatcher) ConnectTimerEvent(f func(event *core.QTimerEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -5342,7 +5264,7 @@ func (ptr *QDBusServiceWatcher) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -5363,10 +5285,10 @@ func (ptr *QDBusServiceWatcher) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQDBusServiceWatcher_ChildEvent
-func callbackQDBusServiceWatcher_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusServiceWatcher_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusServiceWatcherFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -5378,7 +5300,7 @@ func (ptr *QDBusServiceWatcher) ConnectChildEvent(f func(event *core.QChildEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -5387,7 +5309,7 @@ func (ptr *QDBusServiceWatcher) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -5408,10 +5330,10 @@ func (ptr *QDBusServiceWatcher) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQDBusServiceWatcher_ConnectNotify
-func callbackQDBusServiceWatcher_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusServiceWatcher_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusServiceWatcherFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5423,7 +5345,7 @@ func (ptr *QDBusServiceWatcher) ConnectConnectNotify(f func(sign *core.QMetaMeth
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -5432,7 +5354,7 @@ func (ptr *QDBusServiceWatcher) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -5453,10 +5375,10 @@ func (ptr *QDBusServiceWatcher) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 }
 
 //export callbackQDBusServiceWatcher_CustomEvent
-func callbackQDBusServiceWatcher_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusServiceWatcher_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusServiceWatcherFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -5468,7 +5390,7 @@ func (ptr *QDBusServiceWatcher) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -5477,7 +5399,7 @@ func (ptr *QDBusServiceWatcher) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -5498,10 +5420,10 @@ func (ptr *QDBusServiceWatcher) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusServiceWatcher_DeleteLater
-func callbackQDBusServiceWatcher_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusServiceWatcher_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusServiceWatcherFromPointer(ptr).DeleteLaterDefault()
@@ -5513,7 +5435,7 @@ func (ptr *QDBusServiceWatcher) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -5522,7 +5444,7 @@ func (ptr *QDBusServiceWatcher) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -5530,7 +5452,7 @@ func (ptr *QDBusServiceWatcher) DeleteLater() {
 	defer qt.Recovering("QDBusServiceWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()))
 		C.QDBusServiceWatcher_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5540,17 +5462,17 @@ func (ptr *QDBusServiceWatcher) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusServiceWatcher::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()))
 		C.QDBusServiceWatcher_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusServiceWatcher_DisconnectNotify
-func callbackQDBusServiceWatcher_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusServiceWatcher_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusServiceWatcher::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusServiceWatcherFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5562,7 +5484,7 @@ func (ptr *QDBusServiceWatcher) ConnectDisconnectNotify(f func(sign *core.QMetaM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -5571,7 +5493,7 @@ func (ptr *QDBusServiceWatcher) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -5592,14 +5514,14 @@ func (ptr *QDBusServiceWatcher) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 }
 
 //export callbackQDBusServiceWatcher_Event
-func callbackQDBusServiceWatcher_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusServiceWatcher_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusServiceWatcher::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusServiceWatcherFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusServiceWatcherFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusServiceWatcher) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -5607,7 +5529,7 @@ func (ptr *QDBusServiceWatcher) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -5616,7 +5538,7 @@ func (ptr *QDBusServiceWatcher) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -5639,14 +5561,14 @@ func (ptr *QDBusServiceWatcher) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusServiceWatcher_EventFilter
-func callbackQDBusServiceWatcher_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusServiceWatcher_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusServiceWatcher::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusServiceWatcherFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusServiceWatcherFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusServiceWatcher) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -5654,7 +5576,7 @@ func (ptr *QDBusServiceWatcher) ConnectEventFilter(f func(watched *core.QObject,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -5663,7 +5585,7 @@ func (ptr *QDBusServiceWatcher) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -5686,10 +5608,10 @@ func (ptr *QDBusServiceWatcher) EventFilterDefault(watched core.QObject_ITF, eve
 }
 
 //export callbackQDBusServiceWatcher_MetaObject
-func callbackQDBusServiceWatcher_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusServiceWatcher_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusServiceWatcher::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -5701,7 +5623,7 @@ func (ptr *QDBusServiceWatcher) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -5710,7 +5632,7 @@ func (ptr *QDBusServiceWatcher) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusServiceWatcher(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -5770,11 +5692,6 @@ func NewQDBusSignatureFromPointer(ptr unsafe.Pointer) *QDBusSignature {
 	return n
 }
 
-func newQDBusSignatureFromPointer(ptr unsafe.Pointer) *QDBusSignature {
-	var n = NewQDBusSignatureFromPointer(ptr)
-	return n
-}
-
 func (ptr *QDBusSignature) DestroyQDBusSignature() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -5783,13 +5700,17 @@ func (ptr *QDBusSignature) DestroyQDBusSignature() {
 func NewQDBusSignature() *QDBusSignature {
 	defer qt.Recovering("QDBusSignature::QDBusSignature")
 
-	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature())
+	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature())
+	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	return tmpValue
 }
 
 func NewQDBusSignature3(signature core.QLatin1String_ITF) *QDBusSignature {
 	defer qt.Recovering("QDBusSignature::QDBusSignature")
 
-	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
+	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature3(core.PointerFromQLatin1String(signature)))
+	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	return tmpValue
 }
 
 func NewQDBusSignature5(sig string) *QDBusSignature {
@@ -5797,7 +5718,9 @@ func NewQDBusSignature5(sig string) *QDBusSignature {
 
 	var sigC = C.CString(sig)
 	defer C.free(unsafe.Pointer(sigC))
-	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature5(sigC))
+	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature5(sigC))
+	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	return tmpValue
 }
 
 func NewQDBusSignature4(signature string) *QDBusSignature {
@@ -5805,7 +5728,9 @@ func NewQDBusSignature4(signature string) *QDBusSignature {
 
 	var signatureC = C.CString(signature)
 	defer C.free(unsafe.Pointer(signatureC))
-	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(signatureC))
+	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature4(signatureC))
+	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	return tmpValue
 }
 
 func NewQDBusSignature2(signature string) *QDBusSignature {
@@ -5813,7 +5738,9 @@ func NewQDBusSignature2(signature string) *QDBusSignature {
 
 	var signatureC = C.CString(signature)
 	defer C.free(unsafe.Pointer(signatureC))
-	return newQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature2(signatureC))
+	var tmpValue = NewQDBusSignatureFromPointer(C.QDBusSignature_NewQDBusSignature2(signatureC))
+	runtime.SetFinalizer(tmpValue, (*QDBusSignature).DestroyQDBusSignature)
+	return tmpValue
 }
 
 func (ptr *QDBusSignature) SetSignature(signature string) {
@@ -5880,35 +5807,35 @@ func NewQDBusUnixFileDescriptorFromPointer(ptr unsafe.Pointer) *QDBusUnixFileDes
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusUnixFileDescriptorFromPointer(ptr unsafe.Pointer) *QDBusUnixFileDescriptor {
-	var n = NewQDBusUnixFileDescriptorFromPointer(ptr)
-	return n
-}
-
 func NewQDBusUnixFileDescriptor() *QDBusUnixFileDescriptor {
 	defer qt.Recovering("QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
 
-	return newQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor())
+	var tmpValue = NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor())
+	runtime.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
+	return tmpValue
 }
 
 func NewQDBusUnixFileDescriptor3(other QDBusUnixFileDescriptor_ITF) *QDBusUnixFileDescriptor {
 	defer qt.Recovering("QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
 
-	return newQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(PointerFromQDBusUnixFileDescriptor(other)))
+	var tmpValue = NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor3(PointerFromQDBusUnixFileDescriptor(other)))
+	runtime.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
+	return tmpValue
 }
 
 func NewQDBusUnixFileDescriptor2(fileDescriptor int) *QDBusUnixFileDescriptor {
 	defer qt.Recovering("QDBusUnixFileDescriptor::QDBusUnixFileDescriptor")
 
-	return newQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(fileDescriptor)))
+	var tmpValue = NewQDBusUnixFileDescriptorFromPointer(C.QDBusUnixFileDescriptor_NewQDBusUnixFileDescriptor2(C.int(int32(fileDescriptor))))
+	runtime.SetFinalizer(tmpValue, (*QDBusUnixFileDescriptor).DestroyQDBusUnixFileDescriptor)
+	return tmpValue
 }
 
 func (ptr *QDBusUnixFileDescriptor) FileDescriptor() int {
 	defer qt.Recovering("QDBusUnixFileDescriptor::fileDescriptor")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDBusUnixFileDescriptor_FileDescriptor(ptr.Pointer()))
+		return int(int32(C.QDBusUnixFileDescriptor_FileDescriptor(ptr.Pointer())))
 	}
 	return 0
 }
@@ -5938,7 +5865,7 @@ func (ptr *QDBusUnixFileDescriptor) SetFileDescriptor(fileDescriptor int) {
 	defer qt.Recovering("QDBusUnixFileDescriptor::setFileDescriptor")
 
 	if ptr.Pointer() != nil {
-		C.QDBusUnixFileDescriptor_SetFileDescriptor(ptr.Pointer(), C.int(fileDescriptor))
+		C.QDBusUnixFileDescriptor_SetFileDescriptor(ptr.Pointer(), C.int(int32(fileDescriptor)))
 	}
 }
 
@@ -5997,11 +5924,6 @@ func NewQDBusVariantFromPointer(ptr unsafe.Pointer) *QDBusVariant {
 	return n
 }
 
-func newQDBusVariantFromPointer(ptr unsafe.Pointer) *QDBusVariant {
-	var n = NewQDBusVariantFromPointer(ptr)
-	return n
-}
-
 func (ptr *QDBusVariant) DestroyQDBusVariant() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -6010,19 +5932,25 @@ func (ptr *QDBusVariant) DestroyQDBusVariant() {
 func NewQDBusVariant() *QDBusVariant {
 	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
-	return newQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
+	var tmpValue = NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant())
+	runtime.SetFinalizer(tmpValue, (*QDBusVariant).DestroyQDBusVariant)
+	return tmpValue
 }
 
 func NewQDBusVariant3(v core.QVariant_ITF) *QDBusVariant {
 	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
-	return newQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant3(core.PointerFromQVariant(v)))
+	var tmpValue = NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant3(core.PointerFromQVariant(v)))
+	runtime.SetFinalizer(tmpValue, (*QDBusVariant).DestroyQDBusVariant)
+	return tmpValue
 }
 
 func NewQDBusVariant2(variant core.QVariant_ITF) *QDBusVariant {
 	defer qt.Recovering("QDBusVariant::QDBusVariant")
 
-	return newQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant2(core.PointerFromQVariant(variant)))
+	var tmpValue = NewQDBusVariantFromPointer(C.QDBusVariant_NewQDBusVariant2(core.PointerFromQVariant(variant)))
+	runtime.SetFinalizer(tmpValue, (*QDBusVariant).DestroyQDBusVariant)
+	return tmpValue
 }
 
 func (ptr *QDBusVariant) SetVariant(variant core.QVariant_ITF) {
@@ -6090,30 +6018,21 @@ func NewQDBusVirtualObjectFromPointer(ptr unsafe.Pointer) *QDBusVirtualObject {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDBusVirtualObjectFromPointer(ptr unsafe.Pointer) *QDBusVirtualObject {
-	var n = NewQDBusVirtualObjectFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDBusVirtualObject_") {
-		n.SetObjectName("QDBusVirtualObject_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDBusVirtualObject(parent core.QObject_ITF) *QDBusVirtualObject {
 	defer qt.Recovering("QDBusVirtualObject::QDBusVirtualObject")
 
-	return newQDBusVirtualObjectFromPointer(C.QDBusVirtualObject_NewQDBusVirtualObject(core.PointerFromQObject(parent)))
+	return NewQDBusVirtualObjectFromPointer(C.QDBusVirtualObject_NewQDBusVirtualObject(core.PointerFromQObject(parent)))
 }
 
 //export callbackQDBusVirtualObject_HandleMessage
-func callbackQDBusVirtualObject_HandleMessage(ptr unsafe.Pointer, ptrName *C.char, message unsafe.Pointer, connection unsafe.Pointer) C.int {
+func callbackQDBusVirtualObject_HandleMessage(ptr unsafe.Pointer, message unsafe.Pointer, connection unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusVirtualObject::handleMessage")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "handleMessage"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*QDBusMessage, *QDBusConnection) bool)(NewQDBusMessageFromPointer(message), NewQDBusConnectionFromPointer(connection))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "handleMessage"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QDBusMessage, *QDBusConnection) bool)(NewQDBusMessageFromPointer(message), NewQDBusConnectionFromPointer(connection)))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDBusVirtualObject) ConnectHandleMessage(f func(message *QDBusMessage, connection *QDBusConnection) bool) {
@@ -6121,7 +6040,7 @@ func (ptr *QDBusVirtualObject) ConnectHandleMessage(f func(message *QDBusMessage
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "handleMessage", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "handleMessage", f)
 	}
 }
 
@@ -6130,7 +6049,7 @@ func (ptr *QDBusVirtualObject) DisconnectHandleMessage(message QDBusMessage_ITF,
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "handleMessage")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "handleMessage")
 	}
 }
 
@@ -6144,10 +6063,10 @@ func (ptr *QDBusVirtualObject) HandleMessage(message QDBusMessage_ITF, connectio
 }
 
 //export callbackQDBusVirtualObject_Introspect
-func callbackQDBusVirtualObject_Introspect(ptr unsafe.Pointer, ptrName *C.char, path *C.char) *C.char {
+func callbackQDBusVirtualObject_Introspect(ptr unsafe.Pointer, path *C.char) *C.char {
 	defer qt.Recovering("callback QDBusVirtualObject::introspect")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "introspect"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "introspect"); signal != nil {
 		return C.CString(signal.(func(string) string)(C.GoString(path)))
 	}
 
@@ -6159,7 +6078,7 @@ func (ptr *QDBusVirtualObject) ConnectIntrospect(f func(path string) string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "introspect", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "introspect", f)
 	}
 }
 
@@ -6168,7 +6087,7 @@ func (ptr *QDBusVirtualObject) DisconnectIntrospect(path string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "introspect")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "introspect")
 	}
 }
 
@@ -6187,17 +6106,17 @@ func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 	defer qt.Recovering("QDBusVirtualObject::~QDBusVirtualObject")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()))
 		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusVirtualObject_TimerEvent
-func callbackQDBusVirtualObject_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusVirtualObject_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDBusVirtualObjectFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -6209,7 +6128,7 @@ func (ptr *QDBusVirtualObject) ConnectTimerEvent(f func(event *core.QTimerEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -6218,7 +6137,7 @@ func (ptr *QDBusVirtualObject) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -6239,10 +6158,10 @@ func (ptr *QDBusVirtualObject) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQDBusVirtualObject_ChildEvent
-func callbackQDBusVirtualObject_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusVirtualObject_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDBusVirtualObjectFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -6254,7 +6173,7 @@ func (ptr *QDBusVirtualObject) ConnectChildEvent(f func(event *core.QChildEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -6263,7 +6182,7 @@ func (ptr *QDBusVirtualObject) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -6284,10 +6203,10 @@ func (ptr *QDBusVirtualObject) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQDBusVirtualObject_ConnectNotify
-func callbackQDBusVirtualObject_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusVirtualObject_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusVirtualObjectFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -6299,7 +6218,7 @@ func (ptr *QDBusVirtualObject) ConnectConnectNotify(f func(sign *core.QMetaMetho
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -6308,7 +6227,7 @@ func (ptr *QDBusVirtualObject) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -6329,10 +6248,10 @@ func (ptr *QDBusVirtualObject) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQDBusVirtualObject_CustomEvent
-func callbackQDBusVirtualObject_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDBusVirtualObject_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDBusVirtualObjectFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -6344,7 +6263,7 @@ func (ptr *QDBusVirtualObject) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -6353,7 +6272,7 @@ func (ptr *QDBusVirtualObject) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -6374,10 +6293,10 @@ func (ptr *QDBusVirtualObject) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQDBusVirtualObject_DeleteLater
-func callbackQDBusVirtualObject_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDBusVirtualObject_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDBusVirtualObjectFromPointer(ptr).DeleteLaterDefault()
@@ -6389,7 +6308,7 @@ func (ptr *QDBusVirtualObject) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -6398,7 +6317,7 @@ func (ptr *QDBusVirtualObject) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -6406,7 +6325,7 @@ func (ptr *QDBusVirtualObject) DeleteLater() {
 	defer qt.Recovering("QDBusVirtualObject::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()))
 		C.QDBusVirtualObject_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -6416,17 +6335,17 @@ func (ptr *QDBusVirtualObject) DeleteLaterDefault() {
 	defer qt.Recovering("QDBusVirtualObject::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()))
 		C.QDBusVirtualObject_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDBusVirtualObject_DisconnectNotify
-func callbackQDBusVirtualObject_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDBusVirtualObject_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDBusVirtualObject::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDBusVirtualObjectFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -6438,7 +6357,7 @@ func (ptr *QDBusVirtualObject) ConnectDisconnectNotify(f func(sign *core.QMetaMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -6447,7 +6366,7 @@ func (ptr *QDBusVirtualObject) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -6468,14 +6387,14 @@ func (ptr *QDBusVirtualObject) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 }
 
 //export callbackQDBusVirtualObject_Event
-func callbackQDBusVirtualObject_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDBusVirtualObject_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusVirtualObject::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusVirtualObjectFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusVirtualObjectFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDBusVirtualObject) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -6483,7 +6402,7 @@ func (ptr *QDBusVirtualObject) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -6492,7 +6411,7 @@ func (ptr *QDBusVirtualObject) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -6515,14 +6434,14 @@ func (ptr *QDBusVirtualObject) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDBusVirtualObject_EventFilter
-func callbackQDBusVirtualObject_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDBusVirtualObject_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDBusVirtualObject::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDBusVirtualObjectFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDBusVirtualObjectFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDBusVirtualObject) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -6530,7 +6449,7 @@ func (ptr *QDBusVirtualObject) ConnectEventFilter(f func(watched *core.QObject, 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -6539,7 +6458,7 @@ func (ptr *QDBusVirtualObject) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -6562,10 +6481,10 @@ func (ptr *QDBusVirtualObject) EventFilterDefault(watched core.QObject_ITF, even
 }
 
 //export callbackQDBusVirtualObject_MetaObject
-func callbackQDBusVirtualObject_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDBusVirtualObject_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDBusVirtualObject::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -6577,7 +6496,7 @@ func (ptr *QDBusVirtualObject) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -6586,7 +6505,7 @@ func (ptr *QDBusVirtualObject) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDBusVirtualObject(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 

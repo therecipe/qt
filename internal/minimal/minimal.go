@@ -117,9 +117,6 @@ func Minimal(path string) {
 		}
 	}
 
-	exportFunction(parser.ClassMap["QObject"], &parser.Function{Name: "objectName"})
-	exportFunction(parser.ClassMap["QObject"], &parser.Function{Name: "setObjectName"})
-
 	if BuildTarget == "sailfish" || BuildTarget == "sailfish-emulator" {
 		parser.ClassMap["QQuickWidget"].Export = false
 	}

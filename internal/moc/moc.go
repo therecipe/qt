@@ -125,10 +125,10 @@ func moc(appPath string) {
 
 										var meta string
 										if strings.Contains(tag, "signal:") {
-											meta = "signal"
+											meta = parser.SIGNAL
 										}
 										if strings.Contains(tag, "slot:") {
-											meta = "slot"
+											meta = parser.SLOT
 										}
 
 										if meta != "" {
@@ -137,7 +137,7 @@ func moc(appPath string) {
 												f    = &parser.Function{Access: "public", Fullname: class.Name + "::" + name, Meta: meta, Name: name, Output: "void", Status: "public", Virtual: "non", Signature: "()"}
 											)
 											f.Parameters = getParameters(_type)
-											if f.Meta == "slot" {
+											if f.Meta == parser.SLOT {
 												f.Output = getCppTypeFromGoType(strings.TrimSpace(strings.Split(_type, ")")[1]))
 											}
 											class.Functions = append(class.Functions, f)
@@ -185,7 +185,7 @@ func moc(appPath string) {
 			for _, c := range module.Namespace.Classes {
 				if bc, exists := parser.ClassMap[c.Bases]; exists {
 					for _, bcf := range bc.Functions {
-						if bcf.Meta == "constructor" || bcf.Meta == "destructor" {
+						if bcf.Meta == parser.CONSTRUCTOR || bcf.Meta == parser.DESTRUCTOR {
 							var f = *bcf
 							f.Fullname = strings.Replace(f.Fullname, bcf.Class(), c.Name, -1)
 							f.Name = strings.Replace(f.Name, bcf.Class(), c.Name, -1)
@@ -317,19 +317,44 @@ func getCppTypeFromGoType(t string) string {
 			return "QStringList"
 		}
 
-	case "unsafe.Pointer", "uintptr":
-		{
-			return "void*"
-		}
-
 	case "bool":
 		{
 			return "bool"
 		}
 
-	case "int":
+	case "int16":
 		{
-			return "int"
+			return "qint16"
+		}
+
+	case "uint16":
+		{
+			return "quint16"
+		}
+
+	case "int", "int32":
+		{
+			return "qint32"
+		}
+
+	case "uint", "uint32":
+		{
+			return "quint32"
+		}
+
+	case "int64":
+		{
+			return "qint64"
+		}
+
+	case "uint64":
+		{
+			return "quint64"
+		}
+
+	case "float32":
+		{
+			return "float"
 		}
 
 	case "float64":
@@ -337,9 +362,14 @@ func getCppTypeFromGoType(t string) string {
 			return "qreal"
 		}
 
-	case "int64":
+	case "uintptr":
 		{
-			return "qint64"
+			return "quintptr"
+		}
+
+	case "unsafe.Pointer":
+		{
+			return "void*"
 		}
 	}
 

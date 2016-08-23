@@ -106,22 +106,22 @@ void QCanBus_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QCanBus*>(ptr)->QCanBus::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QCanBus_Event(void* ptr, void* e)
+char QCanBus_Event(void* ptr, void* e)
 {
 	return static_cast<QCanBus*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QCanBus_EventDefault(void* ptr, void* e)
+char QCanBus_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QCanBus*>(ptr)->QCanBus::event(static_cast<QEvent*>(e));
 }
 
-int QCanBus_EventFilter(void* ptr, void* watched, void* event)
+char QCanBus_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QCanBus*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QCanBus_EventFilterDefault(void* ptr, void* watched, void* event)
+char QCanBus_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QCanBus*>(ptr)->QCanBus::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -140,34 +140,34 @@ class MyQCanBusDevice: public QCanBusDevice
 {
 public:
 	MyQCanBusDevice(QObject *parent) : QCanBusDevice(parent) {};
-	void close() { callbackQCanBusDevice_Close(this, this->objectName().toUtf8().data()); };
-	void Signal_ErrorOccurred(QCanBusDevice::CanBusError error) { callbackQCanBusDevice_ErrorOccurred(this, this->objectName().toUtf8().data(), error); };
-	void Signal_FramesReceived() { callbackQCanBusDevice_FramesReceived(this, this->objectName().toUtf8().data()); };
-	void Signal_FramesWritten(qint64 framesCount) { callbackQCanBusDevice_FramesWritten(this, this->objectName().toUtf8().data(), static_cast<long long>(framesCount)); };
-	QString interpretErrorFrame(const QCanBusFrame & frame) { return QString(callbackQCanBusDevice_InterpretErrorFrame(this, this->objectName().toUtf8().data(), const_cast<QCanBusFrame*>(&frame))); };
-	bool open() { return callbackQCanBusDevice_Open(this, this->objectName().toUtf8().data()) != 0; };
-	void setConfigurationParameter(int key, const QVariant & value) { callbackQCanBusDevice_SetConfigurationParameter(this, this->objectName().toUtf8().data(), key, const_cast<QVariant*>(&value)); };
-	void Signal_StateChanged(QCanBusDevice::CanBusDeviceState state) { callbackQCanBusDevice_StateChanged(this, this->objectName().toUtf8().data(), state); };
-	bool writeFrame(const QCanBusFrame & frame) { return callbackQCanBusDevice_WriteFrame(this, this->objectName().toUtf8().data(), const_cast<QCanBusFrame*>(&frame)) != 0; };
-	void timerEvent(QTimerEvent * event) { callbackQCanBusDevice_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQCanBusDevice_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQCanBusDevice_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQCanBusDevice_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQCanBusDevice_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQCanBusDevice_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQCanBusDevice_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCanBusDevice_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBusDevice_MetaObject(const_cast<MyQCanBusDevice*>(this), this->objectName().toUtf8().data())); };
+	void close() { callbackQCanBusDevice_Close(this); };
+	void Signal_ErrorOccurred(QCanBusDevice::CanBusError error) { callbackQCanBusDevice_ErrorOccurred(this, error); };
+	void Signal_FramesReceived() { callbackQCanBusDevice_FramesReceived(this); };
+	void Signal_FramesWritten(qint64 framesCount) { callbackQCanBusDevice_FramesWritten(this, framesCount); };
+	QString interpretErrorFrame(const QCanBusFrame & frame) { return QString(callbackQCanBusDevice_InterpretErrorFrame(this, const_cast<QCanBusFrame*>(&frame))); };
+	bool open() { return callbackQCanBusDevice_Open(this) != 0; };
+	void setConfigurationParameter(int key, const QVariant & value) { callbackQCanBusDevice_SetConfigurationParameter(this, key, const_cast<QVariant*>(&value)); };
+	void Signal_StateChanged(QCanBusDevice::CanBusDeviceState state) { callbackQCanBusDevice_StateChanged(this, state); };
+	bool writeFrame(const QCanBusFrame & frame) { return callbackQCanBusDevice_WriteFrame(this, const_cast<QCanBusFrame*>(&frame)) != 0; };
+	void timerEvent(QTimerEvent * event) { callbackQCanBusDevice_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQCanBusDevice_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQCanBusDevice_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQCanBusDevice_CustomEvent(this, event); };
+	void deleteLater() { callbackQCanBusDevice_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQCanBusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQCanBusDevice_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCanBusDevice_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCanBusDevice_MetaObject(const_cast<MyQCanBusDevice*>(this))); };
 };
 
 long long QCanBusDevice_FramesAvailable(void* ptr)
 {
-	return static_cast<long long>(static_cast<QCanBusDevice*>(ptr)->framesAvailable());
+	return static_cast<QCanBusDevice*>(ptr)->framesAvailable();
 }
 
 long long QCanBusDevice_FramesToWrite(void* ptr)
 {
-	return static_cast<long long>(static_cast<QCanBusDevice*>(ptr)->framesToWrite());
+	return static_cast<QCanBusDevice*>(ptr)->framesToWrite();
 }
 
 void* QCanBusDevice_NewQCanBusDevice(void* parent)
@@ -185,7 +185,7 @@ void* QCanBusDevice_ConfigurationParameter(void* ptr, int key)
 	return new QVariant(static_cast<QCanBusDevice*>(ptr)->configurationParameter(key));
 }
 
-int QCanBusDevice_ConnectDevice(void* ptr)
+char QCanBusDevice_ConnectDevice(void* ptr)
 {
 	return static_cast<QCanBusDevice*>(ptr)->connectDevice();
 }
@@ -200,7 +200,7 @@ void QCanBusDevice_EnqueueOutgoingFrame(void* ptr, void* newFrame)
 	static_cast<QCanBusDevice*>(ptr)->enqueueOutgoingFrame(*static_cast<QCanBusFrame*>(newFrame));
 }
 
-int QCanBusDevice_Error(void* ptr)
+long long QCanBusDevice_Error(void* ptr)
 {
 	return static_cast<QCanBusDevice*>(ptr)->error();
 }
@@ -215,14 +215,14 @@ void QCanBusDevice_DisconnectErrorOccurred(void* ptr)
 	QObject::disconnect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusError)>(&QCanBusDevice::errorOccurred), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusError)>(&MyQCanBusDevice::Signal_ErrorOccurred));
 }
 
-void QCanBusDevice_ErrorOccurred(void* ptr, int error)
+void QCanBusDevice_ErrorOccurred(void* ptr, long long error)
 {
 	static_cast<QCanBusDevice*>(ptr)->errorOccurred(static_cast<QCanBusDevice::CanBusError>(error));
 }
 
 char* QCanBusDevice_ErrorString(void* ptr)
 {
-	return static_cast<QCanBusDevice*>(ptr)->errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QCanBusDevice*>(ptr)->errorString().toUtf8().constData());
 }
 
 void QCanBusDevice_ConnectFramesReceived(void* ptr)
@@ -252,20 +252,20 @@ void QCanBusDevice_DisconnectFramesWritten(void* ptr)
 
 void QCanBusDevice_FramesWritten(void* ptr, long long framesCount)
 {
-	static_cast<QCanBusDevice*>(ptr)->framesWritten(static_cast<long long>(framesCount));
+	static_cast<QCanBusDevice*>(ptr)->framesWritten(framesCount);
 }
 
-int QCanBusDevice_HasOutgoingFrames(void* ptr)
+char QCanBusDevice_HasOutgoingFrames(void* ptr)
 {
 	return static_cast<QCanBusDevice*>(ptr)->hasOutgoingFrames();
 }
 
 char* QCanBusDevice_InterpretErrorFrame(void* ptr, void* frame)
 {
-	return static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(frame)).toUtf8().data();
+	return const_cast<char*>(static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(frame)).toUtf8().constData());
 }
 
-int QCanBusDevice_Open(void* ptr)
+char QCanBusDevice_Open(void* ptr)
 {
 	return static_cast<QCanBusDevice*>(ptr)->open();
 }
@@ -280,17 +280,17 @@ void QCanBusDevice_SetConfigurationParameterDefault(void* ptr, int key, void* va
 	static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::setConfigurationParameter(key, *static_cast<QVariant*>(value));
 }
 
-void QCanBusDevice_SetError(void* ptr, char* errorText, int errorId)
+void QCanBusDevice_SetError(void* ptr, char* errorText, long long errorId)
 {
 	static_cast<QCanBusDevice*>(ptr)->setError(QString(errorText), static_cast<QCanBusDevice::CanBusError>(errorId));
 }
 
-void QCanBusDevice_SetState(void* ptr, int newState)
+void QCanBusDevice_SetState(void* ptr, long long newState)
 {
 	static_cast<QCanBusDevice*>(ptr)->setState(static_cast<QCanBusDevice::CanBusDeviceState>(newState));
 }
 
-int QCanBusDevice_State(void* ptr)
+long long QCanBusDevice_State(void* ptr)
 {
 	return static_cast<QCanBusDevice*>(ptr)->state();
 }
@@ -305,12 +305,12 @@ void QCanBusDevice_DisconnectStateChanged(void* ptr)
 	QObject::disconnect(static_cast<QCanBusDevice*>(ptr), static_cast<void (QCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&QCanBusDevice::stateChanged), static_cast<MyQCanBusDevice*>(ptr), static_cast<void (MyQCanBusDevice::*)(QCanBusDevice::CanBusDeviceState)>(&MyQCanBusDevice::Signal_StateChanged));
 }
 
-void QCanBusDevice_StateChanged(void* ptr, int state)
+void QCanBusDevice_StateChanged(void* ptr, long long state)
 {
 	static_cast<QCanBusDevice*>(ptr)->stateChanged(static_cast<QCanBusDevice::CanBusDeviceState>(state));
 }
 
-int QCanBusDevice_WriteFrame(void* ptr, void* frame)
+char QCanBusDevice_WriteFrame(void* ptr, void* frame)
 {
 	return static_cast<QCanBusDevice*>(ptr)->writeFrame(*static_cast<QCanBusFrame*>(frame));
 }
@@ -375,22 +375,22 @@ void QCanBusDevice_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QCanBusDevice_Event(void* ptr, void* e)
+char QCanBusDevice_Event(void* ptr, void* e)
 {
 	return static_cast<QCanBusDevice*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QCanBusDevice_EventDefault(void* ptr, void* e)
+char QCanBusDevice_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::event(static_cast<QEvent*>(e));
 }
 
-int QCanBusDevice_EventFilter(void* ptr, void* watched, void* event)
+char QCanBusDevice_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QCanBusDevice*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QCanBusDevice_EventFilterDefault(void* ptr, void* watched, void* event)
+char QCanBusDevice_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QCanBusDevice*>(ptr)->QCanBusDevice::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -408,30 +408,12 @@ void* QCanBusDevice_MetaObjectDefault(void* ptr)
 class MyQCanBusFactory: public QCanBusFactory
 {
 public:
-	QString _objectName;
-	QString objectNameAbs() const { return this->_objectName; };
-	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	QCanBusDevice * createDevice(const QString & interfaceName) const { return static_cast<QCanBusDevice*>(callbackQCanBusFactory_CreateDevice(const_cast<MyQCanBusFactory*>(this), this->objectNameAbs().toUtf8().data(), interfaceName.toUtf8().data())); };
+	QCanBusDevice * createDevice(const QString & interfaceName) const { return static_cast<QCanBusDevice*>(callbackQCanBusFactory_CreateDevice(const_cast<MyQCanBusFactory*>(this), const_cast<char*>(interfaceName.toUtf8().constData()))); };
 };
 
 void* QCanBusFactory_CreateDevice(void* ptr, char* interfaceName)
 {
 	return static_cast<QCanBusFactory*>(ptr)->createDevice(QString(interfaceName));
-}
-
-char* QCanBusFactory_ObjectNameAbs(void* ptr)
-{
-	if (dynamic_cast<MyQCanBusFactory*>(static_cast<QCanBusFactory*>(ptr))) {
-		return static_cast<MyQCanBusFactory*>(ptr)->objectNameAbs().toUtf8().data();
-	}
-	return QString("QCanBusFactory_BASE").toUtf8().data();
-}
-
-void QCanBusFactory_SetObjectNameAbs(void* ptr, char* name)
-{
-	if (dynamic_cast<MyQCanBusFactory*>(static_cast<QCanBusFactory*>(ptr))) {
-		static_cast<MyQCanBusFactory*>(ptr)->setObjectNameAbs(QString(name));
-	}
 }
 
 int QCanBusFrame_TransmissionTimeoutError_Type()
@@ -489,47 +471,62 @@ int QCanBusFrame_AnyError_Type()
 	return QCanBusFrame::AnyError;
 }
 
-void* QCanBusFrame_NewQCanBusFrame(int ty)
+void* QCanBusFrame_NewQCanBusFrame(long long ty)
 {
 	return new QCanBusFrame(static_cast<QCanBusFrame::FrameType>(ty));
 }
 
-int QCanBusFrame_Error(void* ptr)
+void* QCanBusFrame_NewQCanBusFrame2(unsigned int identifier, char* data)
+{
+	return new QCanBusFrame(identifier, QByteArray::fromHex(QString(data).toUtf8()));
+}
+
+long long QCanBusFrame_Error(void* ptr)
 {
 	return static_cast<QCanBusFrame*>(ptr)->error();
 }
 
-int QCanBusFrame_FrameType(void* ptr)
+unsigned int QCanBusFrame_FrameId(void* ptr)
+{
+	return static_cast<QCanBusFrame*>(ptr)->frameId();
+}
+
+long long QCanBusFrame_FrameType(void* ptr)
 {
 	return static_cast<QCanBusFrame*>(ptr)->frameType();
 }
 
-int QCanBusFrame_HasExtendedFrameFormat(void* ptr)
+char QCanBusFrame_HasExtendedFrameFormat(void* ptr)
 {
 	return static_cast<QCanBusFrame*>(ptr)->hasExtendedFrameFormat();
 }
 
-int QCanBusFrame_IsValid(void* ptr)
+char QCanBusFrame_IsValid(void* ptr)
 {
 	return static_cast<QCanBusFrame*>(ptr)->isValid();
 }
 
 char* QCanBusFrame_Payload(void* ptr)
 {
-	return static_cast<QCanBusFrame*>(ptr)->payload().toHex().data();
+	return const_cast<char*>(static_cast<QCanBusFrame*>(ptr)->payload().toHex().constData());
 }
 
-void QCanBusFrame_SetError(void* ptr, int error)
+void QCanBusFrame_SetError(void* ptr, long long error)
 {
 	static_cast<QCanBusFrame*>(ptr)->setError(static_cast<QCanBusFrame::FrameError>(error));
 }
 
-void QCanBusFrame_SetExtendedFrameFormat(void* ptr, int isExtended)
+void QCanBusFrame_SetExtendedFrameFormat(void* ptr, char isExtended)
 {
 	static_cast<QCanBusFrame*>(ptr)->setExtendedFrameFormat(isExtended != 0);
 }
 
-void QCanBusFrame_SetFrameType(void* ptr, int newType)
+void QCanBusFrame_SetFrameId(void* ptr, unsigned int newFrameId)
+{
+	static_cast<QCanBusFrame*>(ptr)->setFrameId(newFrameId);
+}
+
+void QCanBusFrame_SetFrameType(void* ptr, long long newType)
 {
 	static_cast<QCanBusFrame*>(ptr)->setFrameType(static_cast<QCanBusFrame::FrameType>(newType));
 }
@@ -543,20 +540,20 @@ class MyQModbusClient: public QModbusClient
 {
 public:
 	MyQModbusClient(QObject *parent) : QModbusClient(parent) {};
-	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, this->objectName().toUtf8().data(), newTimeout); };
-	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, this->objectName().toUtf8().data(), const_cast<QModbusResponse*>(&response), data) != 0; };
-	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, this->objectName().toUtf8().data(), const_cast<QModbusResponse*>(&response), data) != 0; };
-	void close() { callbackQModbusClient_Close(this, this->objectName().toUtf8().data()); };
-	bool open() { return callbackQModbusClient_Open(this, this->objectName().toUtf8().data()) != 0; };
-	void timerEvent(QTimerEvent * event) { callbackQModbusClient_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQModbusClient_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQModbusClient_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQModbusClient_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQModbusClient_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusClient_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQModbusClient_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusClient_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusClient_MetaObject(const_cast<MyQModbusClient*>(this), this->objectName().toUtf8().data())); };
+	void Signal_TimeoutChanged(int newTimeout) { callbackQModbusClient_TimeoutChanged(this, newTimeout); };
+	bool processPrivateResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessPrivateResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
+	bool processResponse(const QModbusResponse & response, QModbusDataUnit * data) { return callbackQModbusClient_ProcessResponse(this, const_cast<QModbusResponse*>(&response), data) != 0; };
+	void close() { callbackQModbusClient_Close(this); };
+	bool open() { return callbackQModbusClient_Open(this) != 0; };
+	void timerEvent(QTimerEvent * event) { callbackQModbusClient_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQModbusClient_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQModbusClient_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQModbusClient_CustomEvent(this, event); };
+	void deleteLater() { callbackQModbusClient_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusClient_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQModbusClient_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusClient_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusClient_MetaObject(const_cast<MyQModbusClient*>(this))); };
 };
 
 int QModbusClient_Timeout(void* ptr)
@@ -619,22 +616,22 @@ void QModbusClient_TimeoutChanged(void* ptr, int newTimeout)
 	static_cast<QModbusClient*>(ptr)->timeoutChanged(newTimeout);
 }
 
-int QModbusClient_ProcessPrivateResponse(void* ptr, void* response, void* data)
+char QModbusClient_ProcessPrivateResponse(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusClient*>(ptr)->processPrivateResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusClient_ProcessPrivateResponseDefault(void* ptr, void* response, void* data)
+char QModbusClient_ProcessPrivateResponseDefault(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusClient*>(ptr)->QModbusClient::processPrivateResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusClient_ProcessResponse(void* ptr, void* response, void* data)
+char QModbusClient_ProcessResponse(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusClient*>(ptr)->processResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusClient_ProcessResponseDefault(void* ptr, void* response, void* data)
+char QModbusClient_ProcessResponseDefault(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusClient*>(ptr)->QModbusClient::processResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
@@ -646,7 +643,7 @@ void QModbusClient_Close(void* ptr)
 
 
 
-int QModbusClient_Open(void* ptr)
+char QModbusClient_Open(void* ptr)
 {
 	return static_cast<QModbusClient*>(ptr)->open();
 }
@@ -713,22 +710,22 @@ void QModbusClient_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusClient*>(ptr)->QModbusClient::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusClient_Event(void* ptr, void* e)
+char QModbusClient_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusClient*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusClient_EventDefault(void* ptr, void* e)
+char QModbusClient_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusClient*>(ptr)->QModbusClient::event(static_cast<QEvent*>(e));
 }
 
-int QModbusClient_EventFilter(void* ptr, void* watched, void* event)
+char QModbusClient_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusClient*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusClient_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusClient_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusClient*>(ptr)->QModbusClient::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -748,22 +745,27 @@ void* QModbusDataUnit_NewQModbusDataUnit()
 	return new QModbusDataUnit();
 }
 
-void* QModbusDataUnit_NewQModbusDataUnit2(int ty)
+void* QModbusDataUnit_NewQModbusDataUnit2(long long ty)
 {
 	return new QModbusDataUnit(static_cast<QModbusDataUnit::RegisterType>(ty));
 }
 
-int QModbusDataUnit_IsValid(void* ptr)
+void* QModbusDataUnit_NewQModbusDataUnit3(long long ty, int address, unsigned short size)
+{
+	return new QModbusDataUnit(static_cast<QModbusDataUnit::RegisterType>(ty), address, size);
+}
+
+char QModbusDataUnit_IsValid(void* ptr)
 {
 	return static_cast<QModbusDataUnit*>(ptr)->isValid();
 }
 
-int QModbusDataUnit_RegisterType(void* ptr)
+long long QModbusDataUnit_RegisterType(void* ptr)
 {
 	return static_cast<QModbusDataUnit*>(ptr)->registerType();
 }
 
-void QModbusDataUnit_SetRegisterType(void* ptr, int ty)
+void QModbusDataUnit_SetRegisterType(void* ptr, long long ty)
 {
 	static_cast<QModbusDataUnit*>(ptr)->setRegisterType(static_cast<QModbusDataUnit::RegisterType>(ty));
 }
@@ -773,28 +775,48 @@ void QModbusDataUnit_SetStartAddress(void* ptr, int address)
 	static_cast<QModbusDataUnit*>(ptr)->setStartAddress(address);
 }
 
+void QModbusDataUnit_SetValue(void* ptr, int index, unsigned short value)
+{
+	static_cast<QModbusDataUnit*>(ptr)->setValue(index, value);
+}
+
+void QModbusDataUnit_SetValueCount(void* ptr, unsigned int newCount)
+{
+	static_cast<QModbusDataUnit*>(ptr)->setValueCount(newCount);
+}
+
 int QModbusDataUnit_StartAddress(void* ptr)
 {
 	return static_cast<QModbusDataUnit*>(ptr)->startAddress();
+}
+
+unsigned short QModbusDataUnit_Value(void* ptr, int index)
+{
+	return static_cast<QModbusDataUnit*>(ptr)->value(index);
+}
+
+unsigned int QModbusDataUnit_ValueCount(void* ptr)
+{
+	return static_cast<QModbusDataUnit*>(ptr)->valueCount();
 }
 
 class MyQModbusDevice: public QModbusDevice
 {
 public:
 	MyQModbusDevice(QObject *parent) : QModbusDevice(parent) {};
-	void close() { callbackQModbusDevice_Close(this, this->objectName().toUtf8().data()); };
-	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, this->objectName().toUtf8().data(), error); };
-	bool open() { return callbackQModbusDevice_Open(this, this->objectName().toUtf8().data()) != 0; };
-	void Signal_StateChanged(QModbusDevice::State state) { callbackQModbusDevice_StateChanged(this, this->objectName().toUtf8().data(), state); };
-	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQModbusDevice_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQModbusDevice_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQModbusDevice_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQModbusDevice_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQModbusDevice_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusDevice_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<MyQModbusDevice*>(this), this->objectName().toUtf8().data())); };
+	void close() { callbackQModbusDevice_Close(this); };
+	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusDevice_ErrorOccurred(this, error); };
+	bool open() { return callbackQModbusDevice_Open(this) != 0; };
+	void Signal_StateChanged(QModbusDevice::State state) { callbackQModbusDevice_StateChanged(this, state); };
+	void timerEvent(QTimerEvent * event) { callbackQModbusDevice_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQModbusDevice_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQModbusDevice_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQModbusDevice_CustomEvent(this, event); };
+	void deleteLater() { callbackQModbusDevice_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusDevice_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQModbusDevice_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusDevice_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusDevice_MetaObject(const_cast<MyQModbusDevice*>(this))); };
 };
 
 void* QModbusDevice_NewQModbusDevice(void* parent)
@@ -807,7 +829,7 @@ void QModbusDevice_Close(void* ptr)
 	static_cast<QModbusDevice*>(ptr)->close();
 }
 
-int QModbusDevice_ConnectDevice(void* ptr)
+char QModbusDevice_ConnectDevice(void* ptr)
 {
 	return static_cast<QModbusDevice*>(ptr)->connectDevice();
 }
@@ -822,7 +844,7 @@ void QModbusDevice_DisconnectDevice(void* ptr)
 	static_cast<QModbusDevice*>(ptr)->disconnectDevice();
 }
 
-int QModbusDevice_Error(void* ptr)
+long long QModbusDevice_Error(void* ptr)
 {
 	return static_cast<QModbusDevice*>(ptr)->error();
 }
@@ -837,17 +859,17 @@ void QModbusDevice_DisconnectErrorOccurred(void* ptr)
 	QObject::disconnect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::Error)>(&QModbusDevice::errorOccurred), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::Error)>(&MyQModbusDevice::Signal_ErrorOccurred));
 }
 
-void QModbusDevice_ErrorOccurred(void* ptr, int error)
+void QModbusDevice_ErrorOccurred(void* ptr, long long error)
 {
 	static_cast<QModbusDevice*>(ptr)->errorOccurred(static_cast<QModbusDevice::Error>(error));
 }
 
 char* QModbusDevice_ErrorString(void* ptr)
 {
-	return static_cast<QModbusDevice*>(ptr)->errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QModbusDevice*>(ptr)->errorString().toUtf8().constData());
 }
 
-int QModbusDevice_Open(void* ptr)
+char QModbusDevice_Open(void* ptr)
 {
 	return static_cast<QModbusDevice*>(ptr)->open();
 }
@@ -857,17 +879,17 @@ void QModbusDevice_SetConnectionParameter(void* ptr, int parameter, void* value)
 	static_cast<QModbusDevice*>(ptr)->setConnectionParameter(parameter, *static_cast<QVariant*>(value));
 }
 
-void QModbusDevice_SetError(void* ptr, char* errorText, int error)
+void QModbusDevice_SetError(void* ptr, char* errorText, long long error)
 {
 	static_cast<QModbusDevice*>(ptr)->setError(QString(errorText), static_cast<QModbusDevice::Error>(error));
 }
 
-void QModbusDevice_SetState(void* ptr, int newState)
+void QModbusDevice_SetState(void* ptr, long long newState)
 {
 	static_cast<QModbusDevice*>(ptr)->setState(static_cast<QModbusDevice::State>(newState));
 }
 
-int QModbusDevice_State(void* ptr)
+long long QModbusDevice_State(void* ptr)
 {
 	return static_cast<QModbusDevice*>(ptr)->state();
 }
@@ -882,7 +904,7 @@ void QModbusDevice_DisconnectStateChanged(void* ptr)
 	QObject::disconnect(static_cast<QModbusDevice*>(ptr), static_cast<void (QModbusDevice::*)(QModbusDevice::State)>(&QModbusDevice::stateChanged), static_cast<MyQModbusDevice*>(ptr), static_cast<void (MyQModbusDevice::*)(QModbusDevice::State)>(&MyQModbusDevice::Signal_StateChanged));
 }
 
-void QModbusDevice_StateChanged(void* ptr, int state)
+void QModbusDevice_StateChanged(void* ptr, long long state)
 {
 	static_cast<QModbusDevice*>(ptr)->stateChanged(static_cast<QModbusDevice::State>(state));
 }
@@ -952,22 +974,22 @@ void QModbusDevice_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusDevice*>(ptr)->QModbusDevice::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusDevice_Event(void* ptr, void* e)
+char QModbusDevice_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusDevice*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusDevice_EventDefault(void* ptr, void* e)
+char QModbusDevice_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusDevice*>(ptr)->QModbusDevice::event(static_cast<QEvent*>(e));
 }
 
-int QModbusDevice_EventFilter(void* ptr, void* watched, void* event)
+char QModbusDevice_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusDevice*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusDevice_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusDevice_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusDevice*>(ptr)->QModbusDevice::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -987,31 +1009,48 @@ void* QModbusDeviceIdentification_NewQModbusDeviceIdentification()
 	return new QModbusDeviceIdentification();
 }
 
-int QModbusDeviceIdentification_ConformityLevel(void* ptr)
+long long QModbusDeviceIdentification_ConformityLevel(void* ptr)
 {
 	return static_cast<QModbusDeviceIdentification*>(ptr)->conformityLevel();
 }
 
-int QModbusDeviceIdentification_IsValid(void* ptr)
+char QModbusDeviceIdentification_Contains(void* ptr, unsigned int objectId)
+{
+	return static_cast<QModbusDeviceIdentification*>(ptr)->contains(objectId);
+}
+
+char QModbusDeviceIdentification_Insert(void* ptr, unsigned int objectId, char* value)
+{
+	return static_cast<QModbusDeviceIdentification*>(ptr)->insert(objectId, QByteArray::fromHex(QString(value).toUtf8()));
+}
+
+char QModbusDeviceIdentification_IsValid(void* ptr)
 {
 	return static_cast<QModbusDeviceIdentification*>(ptr)->isValid();
 }
 
-void QModbusDeviceIdentification_SetConformityLevel(void* ptr, int level)
+void QModbusDeviceIdentification_Remove(void* ptr, unsigned int objectId)
+{
+	static_cast<QModbusDeviceIdentification*>(ptr)->remove(objectId);
+}
+
+void QModbusDeviceIdentification_SetConformityLevel(void* ptr, long long level)
 {
 	static_cast<QModbusDeviceIdentification*>(ptr)->setConformityLevel(static_cast<QModbusDeviceIdentification::ConformityLevel>(level));
+}
+
+char* QModbusDeviceIdentification_Value(void* ptr, unsigned int objectId)
+{
+	return const_cast<char*>(static_cast<QModbusDeviceIdentification*>(ptr)->value(objectId).toHex().constData());
 }
 
 class MyQModbusExceptionResponse: public QModbusExceptionResponse
 {
 public:
-	QString _objectName;
-	QString objectNameAbs() const { return this->_objectName; };
-	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQModbusExceptionResponse() : QModbusExceptionResponse() {};
 	MyQModbusExceptionResponse(FunctionCode code, ExceptionCode ec) : QModbusExceptionResponse(code, ec) {};
 	MyQModbusExceptionResponse(const QModbusPdu &pdu) : QModbusExceptionResponse(pdu) {};
-	void setFunctionCode(QModbusPdu::FunctionCode c) { callbackQModbusExceptionResponse_SetFunctionCode(this, this->objectNameAbs().toUtf8().data(), c); };
+	void setFunctionCode(QModbusPdu::FunctionCode c) { callbackQModbusExceptionResponse_SetFunctionCode(this, c); };
 };
 
 void* QModbusExceptionResponse_NewQModbusExceptionResponse()
@@ -1019,7 +1058,7 @@ void* QModbusExceptionResponse_NewQModbusExceptionResponse()
 	return new MyQModbusExceptionResponse();
 }
 
-void* QModbusExceptionResponse_NewQModbusExceptionResponse3(int code, int ec)
+void* QModbusExceptionResponse_NewQModbusExceptionResponse3(long long code, long long ec)
 {
 	return new MyQModbusExceptionResponse(static_cast<QModbusPdu::FunctionCode>(code), static_cast<QModbusPdu::ExceptionCode>(ec));
 }
@@ -1029,46 +1068,28 @@ void* QModbusExceptionResponse_NewQModbusExceptionResponse2(void* pdu)
 	return new MyQModbusExceptionResponse(*static_cast<QModbusPdu*>(pdu));
 }
 
-void QModbusExceptionResponse_SetExceptionCode(void* ptr, int ec)
+void QModbusExceptionResponse_SetExceptionCode(void* ptr, long long ec)
 {
 	static_cast<QModbusExceptionResponse*>(ptr)->setExceptionCode(static_cast<QModbusPdu::ExceptionCode>(ec));
 }
 
-void QModbusExceptionResponse_SetFunctionCode(void* ptr, int c)
+void QModbusExceptionResponse_SetFunctionCode(void* ptr, long long c)
 {
 	static_cast<QModbusExceptionResponse*>(ptr)->setFunctionCode(static_cast<QModbusPdu::FunctionCode>(c));
 }
 
-void QModbusExceptionResponse_SetFunctionCodeDefault(void* ptr, int c)
+void QModbusExceptionResponse_SetFunctionCodeDefault(void* ptr, long long c)
 {
 	static_cast<QModbusExceptionResponse*>(ptr)->QModbusExceptionResponse::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(c));
-}
-
-char* QModbusExceptionResponse_ObjectNameAbs(void* ptr)
-{
-	if (dynamic_cast<MyQModbusExceptionResponse*>(static_cast<QModbusExceptionResponse*>(ptr))) {
-		return static_cast<MyQModbusExceptionResponse*>(ptr)->objectNameAbs().toUtf8().data();
-	}
-	return QString("QModbusExceptionResponse_BASE").toUtf8().data();
-}
-
-void QModbusExceptionResponse_SetObjectNameAbs(void* ptr, char* name)
-{
-	if (dynamic_cast<MyQModbusExceptionResponse*>(static_cast<QModbusExceptionResponse*>(ptr))) {
-		static_cast<MyQModbusExceptionResponse*>(ptr)->setObjectNameAbs(QString(name));
-	}
 }
 
 class MyQModbusPdu: public QModbusPdu
 {
 public:
-	QString _objectName;
-	QString objectNameAbs() const { return this->_objectName; };
-	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 	MyQModbusPdu() : QModbusPdu() {};
 	MyQModbusPdu(FunctionCode code, const QByteArray &data) : QModbusPdu(code, data) {};
 	MyQModbusPdu(const QModbusPdu &other) : QModbusPdu(other) {};
-	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, this->objectNameAbs().toUtf8().data(), code); };
+	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
 };
 
 void* QModbusPdu_NewQModbusPdu()
@@ -1076,7 +1097,7 @@ void* QModbusPdu_NewQModbusPdu()
 	return new MyQModbusPdu();
 }
 
-void* QModbusPdu_NewQModbusPdu2(int code, char* data)
+void* QModbusPdu_NewQModbusPdu2(long long code, char* data)
 {
 	return new MyQModbusPdu(static_cast<QModbusPdu::FunctionCode>(code), QByteArray::fromHex(QString(data).toUtf8()));
 }
@@ -1086,27 +1107,32 @@ void* QModbusPdu_NewQModbusPdu3(void* other)
 	return new MyQModbusPdu(*static_cast<QModbusPdu*>(other));
 }
 
-char* QModbusPdu_Data(void* ptr)
+short QModbusPdu_DataSize(void* ptr)
 {
-	return static_cast<QModbusPdu*>(ptr)->data().toHex().data();
+	return static_cast<QModbusPdu*>(ptr)->dataSize();
 }
 
-int QModbusPdu_ExceptionCode(void* ptr)
+char* QModbusPdu_Data(void* ptr)
+{
+	return const_cast<char*>(static_cast<QModbusPdu*>(ptr)->data().toHex().constData());
+}
+
+long long QModbusPdu_ExceptionCode(void* ptr)
 {
 	return static_cast<QModbusPdu*>(ptr)->exceptionCode();
 }
 
-int QModbusPdu_FunctionCode(void* ptr)
+long long QModbusPdu_FunctionCode(void* ptr)
 {
 	return static_cast<QModbusPdu*>(ptr)->functionCode();
 }
 
-int QModbusPdu_IsException(void* ptr)
+char QModbusPdu_IsException(void* ptr)
 {
 	return static_cast<QModbusPdu*>(ptr)->isException();
 }
 
-int QModbusPdu_IsValid(void* ptr)
+char QModbusPdu_IsValid(void* ptr)
 {
 	return static_cast<QModbusPdu*>(ptr)->isValid();
 }
@@ -1116,14 +1142,19 @@ void QModbusPdu_SetData(void* ptr, char* data)
 	static_cast<QModbusPdu*>(ptr)->setData(QByteArray::fromHex(QString(data).toUtf8()));
 }
 
-void QModbusPdu_SetFunctionCode(void* ptr, int code)
+void QModbusPdu_SetFunctionCode(void* ptr, long long code)
 {
 	static_cast<QModbusPdu*>(ptr)->setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
 }
 
-void QModbusPdu_SetFunctionCodeDefault(void* ptr, int code)
+void QModbusPdu_SetFunctionCodeDefault(void* ptr, long long code)
 {
 	static_cast<QModbusPdu*>(ptr)->QModbusPdu::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
+}
+
+short QModbusPdu_Size(void* ptr)
+{
+	return static_cast<QModbusPdu*>(ptr)->size();
 }
 
 void QModbusPdu_DestroyQModbusPdu(void* ptr)
@@ -1131,44 +1162,29 @@ void QModbusPdu_DestroyQModbusPdu(void* ptr)
 	static_cast<QModbusPdu*>(ptr)->~QModbusPdu();
 }
 
-char* QModbusPdu_ObjectNameAbs(void* ptr)
-{
-	if (dynamic_cast<MyQModbusPdu*>(static_cast<QModbusPdu*>(ptr))) {
-		return static_cast<MyQModbusPdu*>(ptr)->objectNameAbs().toUtf8().data();
-	}
-	return QString("QModbusPdu_BASE").toUtf8().data();
-}
-
-void QModbusPdu_SetObjectNameAbs(void* ptr, char* name)
-{
-	if (dynamic_cast<MyQModbusPdu*>(static_cast<QModbusPdu*>(ptr))) {
-		static_cast<MyQModbusPdu*>(ptr)->setObjectNameAbs(QString(name));
-	}
-}
-
 class MyQModbusReply: public QModbusReply
 {
 public:
 	MyQModbusReply(ReplyType type, int serverAddress, QObject *parent) : QModbusReply(type, serverAddress, parent) {};
-	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusReply_ErrorOccurred(this, this->objectName().toUtf8().data(), error); };
-	void Signal_Finished() { callbackQModbusReply_Finished(this, this->objectName().toUtf8().data()); };
-	void timerEvent(QTimerEvent * event) { callbackQModbusReply_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQModbusReply_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQModbusReply_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQModbusReply_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQModbusReply_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusReply_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQModbusReply_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusReply_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusReply_MetaObject(const_cast<MyQModbusReply*>(this), this->objectName().toUtf8().data())); };
+	void Signal_ErrorOccurred(QModbusDevice::Error error) { callbackQModbusReply_ErrorOccurred(this, error); };
+	void Signal_Finished() { callbackQModbusReply_Finished(this); };
+	void timerEvent(QTimerEvent * event) { callbackQModbusReply_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQModbusReply_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQModbusReply_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQModbusReply_CustomEvent(this, event); };
+	void deleteLater() { callbackQModbusReply_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusReply_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQModbusReply_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusReply_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusReply_MetaObject(const_cast<MyQModbusReply*>(this))); };
 };
 
-void* QModbusReply_NewQModbusReply(int ty, int serverAddress, void* parent)
+void* QModbusReply_NewQModbusReply(long long ty, int serverAddress, void* parent)
 {
 	return new MyQModbusReply(static_cast<QModbusReply::ReplyType>(ty), serverAddress, static_cast<QObject*>(parent));
 }
 
-int QModbusReply_Error(void* ptr)
+long long QModbusReply_Error(void* ptr)
 {
 	return static_cast<QModbusReply*>(ptr)->error();
 }
@@ -1183,14 +1199,14 @@ void QModbusReply_DisconnectErrorOccurred(void* ptr)
 	QObject::disconnect(static_cast<QModbusReply*>(ptr), static_cast<void (QModbusReply::*)(QModbusDevice::Error)>(&QModbusReply::errorOccurred), static_cast<MyQModbusReply*>(ptr), static_cast<void (MyQModbusReply::*)(QModbusDevice::Error)>(&MyQModbusReply::Signal_ErrorOccurred));
 }
 
-void QModbusReply_ErrorOccurred(void* ptr, int error)
+void QModbusReply_ErrorOccurred(void* ptr, long long error)
 {
 	static_cast<QModbusReply*>(ptr)->errorOccurred(static_cast<QModbusDevice::Error>(error));
 }
 
 char* QModbusReply_ErrorString(void* ptr)
 {
-	return static_cast<QModbusReply*>(ptr)->errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QModbusReply*>(ptr)->errorString().toUtf8().constData());
 }
 
 void QModbusReply_ConnectFinished(void* ptr)
@@ -1208,7 +1224,7 @@ void QModbusReply_Finished(void* ptr)
 	static_cast<QModbusReply*>(ptr)->finished();
 }
 
-int QModbusReply_IsFinished(void* ptr)
+char QModbusReply_IsFinished(void* ptr)
 {
 	return static_cast<QModbusReply*>(ptr)->isFinished();
 }
@@ -1218,7 +1234,7 @@ int QModbusReply_ServerAddress(void* ptr)
 	return static_cast<QModbusReply*>(ptr)->serverAddress();
 }
 
-int QModbusReply_Type(void* ptr)
+long long QModbusReply_Type(void* ptr)
 {
 	return static_cast<QModbusReply*>(ptr)->type();
 }
@@ -1283,22 +1299,22 @@ void QModbusReply_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusReply*>(ptr)->QModbusReply::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusReply_Event(void* ptr, void* e)
+char QModbusReply_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusReply*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusReply_EventDefault(void* ptr, void* e)
+char QModbusReply_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusReply*>(ptr)->QModbusReply::event(static_cast<QEvent*>(e));
 }
 
-int QModbusReply_EventFilter(void* ptr, void* watched, void* event)
+char QModbusReply_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusReply*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusReply_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusReply_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusReply*>(ptr)->QModbusReply::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -1318,7 +1334,7 @@ void* QModbusRequest_NewQModbusRequest()
 	return new QModbusRequest();
 }
 
-void* QModbusRequest_NewQModbusRequest3(int code, char* data)
+void* QModbusRequest_NewQModbusRequest3(long long code, char* data)
 {
 	return new QModbusRequest(static_cast<QModbusPdu::FunctionCode>(code), QByteArray::fromHex(QString(data).toUtf8()));
 }
@@ -1338,12 +1354,12 @@ int QModbusRequest_QModbusRequest_MinimumDataSize(void* request)
 	return QModbusRequest::minimumDataSize(*static_cast<QModbusRequest*>(request));
 }
 
-void QModbusRequest_SetFunctionCode(void* ptr, int code)
+void QModbusRequest_SetFunctionCode(void* ptr, long long code)
 {
 	static_cast<QModbusRequest*>(ptr)->setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
 }
 
-void QModbusRequest_SetFunctionCodeDefault(void* ptr, int code)
+void QModbusRequest_SetFunctionCodeDefault(void* ptr, long long code)
 {
 	static_cast<QModbusRequest*>(ptr)->QModbusRequest::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
 }
@@ -1353,7 +1369,7 @@ void* QModbusResponse_NewQModbusResponse()
 	return new QModbusResponse();
 }
 
-void* QModbusResponse_NewQModbusResponse3(int code, char* data)
+void* QModbusResponse_NewQModbusResponse3(long long code, char* data)
 {
 	return new QModbusResponse(static_cast<QModbusPdu::FunctionCode>(code), QByteArray::fromHex(QString(data).toUtf8()));
 }
@@ -1373,12 +1389,12 @@ int QModbusResponse_QModbusResponse_MinimumDataSize(void* response)
 	return QModbusResponse::minimumDataSize(*static_cast<QModbusResponse*>(response));
 }
 
-void QModbusResponse_SetFunctionCode(void* ptr, int code)
+void QModbusResponse_SetFunctionCode(void* ptr, long long code)
 {
 	static_cast<QModbusResponse*>(ptr)->setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
 }
 
-void QModbusResponse_SetFunctionCodeDefault(void* ptr, int code)
+void QModbusResponse_SetFunctionCodeDefault(void* ptr, long long code)
 {
 	static_cast<QModbusResponse*>(ptr)->QModbusResponse::setFunctionCode(static_cast<QModbusPdu::FunctionCode>(code));
 }
@@ -1398,22 +1414,22 @@ void QModbusRtuSerialMaster_SetInterFrameDelay(void* ptr, int microseconds)
 	static_cast<QModbusRtuSerialMaster*>(ptr)->setInterFrameDelay(microseconds);
 }
 
-int QModbusRtuSerialMaster_ProcessPrivateResponse(void* ptr, void* response, void* data)
+char QModbusRtuSerialMaster_ProcessPrivateResponse(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->processPrivateResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusRtuSerialMaster_ProcessPrivateResponseDefault(void* ptr, void* response, void* data)
+char QModbusRtuSerialMaster_ProcessPrivateResponseDefault(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::processPrivateResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusRtuSerialMaster_ProcessResponse(void* ptr, void* response, void* data)
+char QModbusRtuSerialMaster_ProcessResponse(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->processResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusRtuSerialMaster_ProcessResponseDefault(void* ptr, void* response, void* data)
+char QModbusRtuSerialMaster_ProcessResponseDefault(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::processResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
@@ -1428,12 +1444,12 @@ void QModbusRtuSerialMaster_CloseDefault(void* ptr)
 	static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::close();
 }
 
-int QModbusRtuSerialMaster_Open(void* ptr)
+char QModbusRtuSerialMaster_Open(void* ptr)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->open();
 }
 
-int QModbusRtuSerialMaster_OpenDefault(void* ptr)
+char QModbusRtuSerialMaster_OpenDefault(void* ptr)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::open();
 }
@@ -1498,22 +1514,22 @@ void QModbusRtuSerialMaster_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusRtuSerialMaster_Event(void* ptr, void* e)
+char QModbusRtuSerialMaster_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusRtuSerialMaster_EventDefault(void* ptr, void* e)
+char QModbusRtuSerialMaster_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::event(static_cast<QEvent*>(e));
 }
 
-int QModbusRtuSerialMaster_EventFilter(void* ptr, void* watched, void* event)
+char QModbusRtuSerialMaster_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusRtuSerialMaster_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusRtuSerialMaster_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -1546,22 +1562,22 @@ void QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(void* ptr)
 
 
 
-int QModbusRtuSerialSlave_ProcessesBroadcast(void* ptr)
+char QModbusRtuSerialSlave_ProcessesBroadcast(void* ptr)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->processesBroadcast();
 }
 
-int QModbusRtuSerialSlave_ProcessesBroadcastDefault(void* ptr)
+char QModbusRtuSerialSlave_ProcessesBroadcastDefault(void* ptr)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::processesBroadcast();
 }
 
-int QModbusRtuSerialSlave_SetValue(void* ptr, int option, void* newValue)
+char QModbusRtuSerialSlave_SetValue(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->setValue(option, *static_cast<QVariant*>(newValue));
 }
 
-int QModbusRtuSerialSlave_SetValueDefault(void* ptr, int option, void* newValue)
+char QModbusRtuSerialSlave_SetValueDefault(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::setValue(option, *static_cast<QVariant*>(newValue));
 }
@@ -1576,12 +1592,12 @@ void* QModbusRtuSerialSlave_ValueDefault(void* ptr, int option)
 	return new QVariant(static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::value(option));
 }
 
-int QModbusRtuSerialSlave_WriteData(void* ptr, void* newData)
+char QModbusRtuSerialSlave_WriteData(void* ptr, void* newData)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->writeData(*static_cast<QModbusDataUnit*>(newData));
 }
 
-int QModbusRtuSerialSlave_WriteDataDefault(void* ptr, void* newData)
+char QModbusRtuSerialSlave_WriteDataDefault(void* ptr, void* newData)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::writeData(*static_cast<QModbusDataUnit*>(newData));
 }
@@ -1596,12 +1612,12 @@ void QModbusRtuSerialSlave_CloseDefault(void* ptr)
 	static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::close();
 }
 
-int QModbusRtuSerialSlave_Open(void* ptr)
+char QModbusRtuSerialSlave_Open(void* ptr)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->open();
 }
 
-int QModbusRtuSerialSlave_OpenDefault(void* ptr)
+char QModbusRtuSerialSlave_OpenDefault(void* ptr)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::open();
 }
@@ -1666,22 +1682,22 @@ void QModbusRtuSerialSlave_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusRtuSerialSlave_Event(void* ptr, void* e)
+char QModbusRtuSerialSlave_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusRtuSerialSlave_EventDefault(void* ptr, void* e)
+char QModbusRtuSerialSlave_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::event(static_cast<QEvent*>(e));
 }
 
-int QModbusRtuSerialSlave_EventFilter(void* ptr, void* watched, void* event)
+char QModbusRtuSerialSlave_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusRtuSerialSlave_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusRtuSerialSlave_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -1700,24 +1716,24 @@ class MyQModbusServer: public QModbusServer
 {
 public:
 	MyQModbusServer(QObject *parent) : QModbusServer(parent) {};
-	void Signal_DataWritten(QModbusDataUnit::RegisterType regist, int address, int size) { callbackQModbusServer_DataWritten(this, this->objectName().toUtf8().data(), regist, address, size); };
-	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, this->objectName().toUtf8().data(), const_cast<QModbusPdu*>(&request))); };
-	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, this->objectName().toUtf8().data(), const_cast<QModbusPdu*>(&request))); };
-	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<MyQModbusServer*>(this), this->objectName().toUtf8().data()) != 0; };
-	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, this->objectName().toUtf8().data(), option, const_cast<QVariant*>(&newValue)) != 0; };
-	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<MyQModbusServer*>(this), this->objectName().toUtf8().data(), option)); };
-	bool writeData(const QModbusDataUnit & newData) { return callbackQModbusServer_WriteData(this, this->objectName().toUtf8().data(), const_cast<QModbusDataUnit*>(&newData)) != 0; };
-	void close() { callbackQModbusServer_Close(this, this->objectName().toUtf8().data()); };
-	bool open() { return callbackQModbusServer_Open(this, this->objectName().toUtf8().data()) != 0; };
-	void timerEvent(QTimerEvent * event) { callbackQModbusServer_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQModbusServer_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQModbusServer_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQModbusServer_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQModbusServer_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusServer_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQModbusServer_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusServer_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusServer_MetaObject(const_cast<MyQModbusServer*>(this), this->objectName().toUtf8().data())); };
+	void Signal_DataWritten(QModbusDataUnit::RegisterType regist, int address, int size) { callbackQModbusServer_DataWritten(this, regist, address, size); };
+	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
+	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
+	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<MyQModbusServer*>(this)) != 0; };
+	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
+	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<MyQModbusServer*>(this), option)); };
+	bool writeData(const QModbusDataUnit & newData) { return callbackQModbusServer_WriteData(this, const_cast<QModbusDataUnit*>(&newData)) != 0; };
+	void close() { callbackQModbusServer_Close(this); };
+	bool open() { return callbackQModbusServer_Open(this) != 0; };
+	void timerEvent(QTimerEvent * event) { callbackQModbusServer_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQModbusServer_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQModbusServer_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQModbusServer_CustomEvent(this, event); };
+	void deleteLater() { callbackQModbusServer_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQModbusServer_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQModbusServer_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQModbusServer_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQModbusServer_MetaObject(const_cast<MyQModbusServer*>(this))); };
 };
 
 void* QModbusServer_NewQModbusServer(void* parent)
@@ -1725,9 +1741,14 @@ void* QModbusServer_NewQModbusServer(void* parent)
 	return new MyQModbusServer(static_cast<QObject*>(parent));
 }
 
-int QModbusServer_Data(void* ptr, void* newData)
+char QModbusServer_Data(void* ptr, void* newData)
 {
 	return static_cast<QModbusServer*>(ptr)->data(static_cast<QModbusDataUnit*>(newData));
+}
+
+char QModbusServer_Data2(void* ptr, long long table, unsigned short address, unsigned short data)
+{
+	return static_cast<QModbusServer*>(ptr)->data(static_cast<QModbusDataUnit::RegisterType>(table), address, &data);
 }
 
 void QModbusServer_ConnectDataWritten(void* ptr)
@@ -1740,7 +1761,7 @@ void QModbusServer_DisconnectDataWritten(void* ptr)
 	QObject::disconnect(static_cast<QModbusServer*>(ptr), static_cast<void (QModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&QModbusServer::dataWritten), static_cast<MyQModbusServer*>(ptr), static_cast<void (MyQModbusServer::*)(QModbusDataUnit::RegisterType, int, int)>(&MyQModbusServer::Signal_DataWritten));
 }
 
-void QModbusServer_DataWritten(void* ptr, int regist, int address, int size)
+void QModbusServer_DataWritten(void* ptr, long long regist, int address, int size)
 {
 	static_cast<QModbusServer*>(ptr)->dataWritten(static_cast<QModbusDataUnit::RegisterType>(regist), address, size);
 }
@@ -1753,12 +1774,12 @@ void QModbusServer_DataWritten(void* ptr, int regist, int address, int size)
 
 
 
-int QModbusServer_ProcessesBroadcast(void* ptr)
+char QModbusServer_ProcessesBroadcast(void* ptr)
 {
 	return static_cast<QModbusServer*>(ptr)->processesBroadcast();
 }
 
-int QModbusServer_ProcessesBroadcastDefault(void* ptr)
+char QModbusServer_ProcessesBroadcastDefault(void* ptr)
 {
 	return static_cast<QModbusServer*>(ptr)->QModbusServer::processesBroadcast();
 }
@@ -1768,7 +1789,12 @@ int QModbusServer_ServerAddress(void* ptr)
 	return static_cast<QModbusServer*>(ptr)->serverAddress();
 }
 
-int QModbusServer_SetData(void* ptr, void* newData)
+char QModbusServer_SetData2(void* ptr, long long table, unsigned short address, unsigned short data)
+{
+	return static_cast<QModbusServer*>(ptr)->setData(static_cast<QModbusDataUnit::RegisterType>(table), address, data);
+}
+
+char QModbusServer_SetData(void* ptr, void* newData)
 {
 	return static_cast<QModbusServer*>(ptr)->setData(*static_cast<QModbusDataUnit*>(newData));
 }
@@ -1778,12 +1804,12 @@ void QModbusServer_SetServerAddress(void* ptr, int serverAddress)
 	static_cast<QModbusServer*>(ptr)->setServerAddress(serverAddress);
 }
 
-int QModbusServer_SetValue(void* ptr, int option, void* newValue)
+char QModbusServer_SetValue(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusServer*>(ptr)->setValue(option, *static_cast<QVariant*>(newValue));
 }
 
-int QModbusServer_SetValueDefault(void* ptr, int option, void* newValue)
+char QModbusServer_SetValueDefault(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusServer*>(ptr)->QModbusServer::setValue(option, *static_cast<QVariant*>(newValue));
 }
@@ -1798,12 +1824,12 @@ void* QModbusServer_ValueDefault(void* ptr, int option)
 	return new QVariant(static_cast<QModbusServer*>(ptr)->QModbusServer::value(option));
 }
 
-int QModbusServer_WriteData(void* ptr, void* newData)
+char QModbusServer_WriteData(void* ptr, void* newData)
 {
 	return static_cast<QModbusServer*>(ptr)->writeData(*static_cast<QModbusDataUnit*>(newData));
 }
 
-int QModbusServer_WriteDataDefault(void* ptr, void* newData)
+char QModbusServer_WriteDataDefault(void* ptr, void* newData)
 {
 	return static_cast<QModbusServer*>(ptr)->QModbusServer::writeData(*static_cast<QModbusDataUnit*>(newData));
 }
@@ -1815,7 +1841,7 @@ void QModbusServer_Close(void* ptr)
 
 
 
-int QModbusServer_Open(void* ptr)
+char QModbusServer_Open(void* ptr)
 {
 	return static_cast<QModbusServer*>(ptr)->open();
 }
@@ -1882,22 +1908,22 @@ void QModbusServer_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusServer*>(ptr)->QModbusServer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusServer_Event(void* ptr, void* e)
+char QModbusServer_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusServer*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusServer_EventDefault(void* ptr, void* e)
+char QModbusServer_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusServer*>(ptr)->QModbusServer::event(static_cast<QEvent*>(e));
 }
 
-int QModbusServer_EventFilter(void* ptr, void* watched, void* event)
+char QModbusServer_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusServer*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusServer_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusServer_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusServer*>(ptr)->QModbusServer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -1922,22 +1948,22 @@ void QModbusTcpClient_DestroyQModbusTcpClient(void* ptr)
 	static_cast<QModbusTcpClient*>(ptr)->~QModbusTcpClient();
 }
 
-int QModbusTcpClient_ProcessPrivateResponse(void* ptr, void* response, void* data)
+char QModbusTcpClient_ProcessPrivateResponse(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->processPrivateResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusTcpClient_ProcessPrivateResponseDefault(void* ptr, void* response, void* data)
+char QModbusTcpClient_ProcessPrivateResponseDefault(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::processPrivateResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusTcpClient_ProcessResponse(void* ptr, void* response, void* data)
+char QModbusTcpClient_ProcessResponse(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->processResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
 
-int QModbusTcpClient_ProcessResponseDefault(void* ptr, void* response, void* data)
+char QModbusTcpClient_ProcessResponseDefault(void* ptr, void* response, void* data)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::processResponse(*static_cast<QModbusResponse*>(response), static_cast<QModbusDataUnit*>(data));
 }
@@ -1952,12 +1978,12 @@ void QModbusTcpClient_CloseDefault(void* ptr)
 	static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::close();
 }
 
-int QModbusTcpClient_Open(void* ptr)
+char QModbusTcpClient_Open(void* ptr)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->open();
 }
 
-int QModbusTcpClient_OpenDefault(void* ptr)
+char QModbusTcpClient_OpenDefault(void* ptr)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::open();
 }
@@ -2022,22 +2048,22 @@ void QModbusTcpClient_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusTcpClient_Event(void* ptr, void* e)
+char QModbusTcpClient_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusTcpClient_EventDefault(void* ptr, void* e)
+char QModbusTcpClient_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::event(static_cast<QEvent*>(e));
 }
 
-int QModbusTcpClient_EventFilter(void* ptr, void* watched, void* event)
+char QModbusTcpClient_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusTcpClient_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusTcpClient_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -2070,22 +2096,22 @@ void QModbusTcpServer_DestroyQModbusTcpServer(void* ptr)
 
 
 
-int QModbusTcpServer_ProcessesBroadcast(void* ptr)
+char QModbusTcpServer_ProcessesBroadcast(void* ptr)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->processesBroadcast();
 }
 
-int QModbusTcpServer_ProcessesBroadcastDefault(void* ptr)
+char QModbusTcpServer_ProcessesBroadcastDefault(void* ptr)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::processesBroadcast();
 }
 
-int QModbusTcpServer_SetValue(void* ptr, int option, void* newValue)
+char QModbusTcpServer_SetValue(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->setValue(option, *static_cast<QVariant*>(newValue));
 }
 
-int QModbusTcpServer_SetValueDefault(void* ptr, int option, void* newValue)
+char QModbusTcpServer_SetValueDefault(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::setValue(option, *static_cast<QVariant*>(newValue));
 }
@@ -2100,12 +2126,12 @@ void* QModbusTcpServer_ValueDefault(void* ptr, int option)
 	return new QVariant(static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::value(option));
 }
 
-int QModbusTcpServer_WriteData(void* ptr, void* newData)
+char QModbusTcpServer_WriteData(void* ptr, void* newData)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->writeData(*static_cast<QModbusDataUnit*>(newData));
 }
 
-int QModbusTcpServer_WriteDataDefault(void* ptr, void* newData)
+char QModbusTcpServer_WriteDataDefault(void* ptr, void* newData)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::writeData(*static_cast<QModbusDataUnit*>(newData));
 }
@@ -2120,12 +2146,12 @@ void QModbusTcpServer_CloseDefault(void* ptr)
 	static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::close();
 }
 
-int QModbusTcpServer_Open(void* ptr)
+char QModbusTcpServer_Open(void* ptr)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->open();
 }
 
-int QModbusTcpServer_OpenDefault(void* ptr)
+char QModbusTcpServer_OpenDefault(void* ptr)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::open();
 }
@@ -2190,22 +2216,22 @@ void QModbusTcpServer_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QModbusTcpServer_Event(void* ptr, void* e)
+char QModbusTcpServer_Event(void* ptr, void* e)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QModbusTcpServer_EventDefault(void* ptr, void* e)
+char QModbusTcpServer_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::event(static_cast<QEvent*>(e));
 }
 
-int QModbusTcpServer_EventFilter(void* ptr, void* watched, void* event)
+char QModbusTcpServer_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QModbusTcpServer_EventFilterDefault(void* ptr, void* watched, void* event)
+char QModbusTcpServer_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }

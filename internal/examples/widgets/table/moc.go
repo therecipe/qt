@@ -1,9 +1,11 @@
 package main
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "moc.h"
 import "C"
 import (
+	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -46,19 +48,10 @@ func NewDelegateFromPointer(ptr unsafe.Pointer) *Delegate {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newDelegateFromPointer(ptr unsafe.Pointer) *Delegate {
-	var n = NewDelegateFromPointer(ptr)
-	for len(n.ObjectName()) < len("Delegate_") {
-		n.SetObjectName("Delegate_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewDelegate(parent core.QObject_ITF) *Delegate {
 	defer qt.Recovering("Delegate::Delegate")
 
-	return newDelegateFromPointer(C.Delegate_NewDelegate(core.PointerFromQObject(parent)))
+	return NewDelegateFromPointer(C.Delegate_NewDelegate(core.PointerFromQObject(parent)))
 }
 
 func (ptr *Delegate) DestroyDelegate() {
@@ -71,10 +64,10 @@ func (ptr *Delegate) DestroyDelegate() {
 }
 
 //export callbackDelegate_CreateEditor
-func callbackDelegate_CreateEditor(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func callbackDelegate_CreateEditor(ptr unsafe.Pointer, parent unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback Delegate::createEditor")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "createEditor"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "createEditor"); signal != nil {
 		return widgets.PointerFromQWidget(signal.(func(*widgets.QWidget, *widgets.QStyleOptionViewItem, *core.QModelIndex) *widgets.QWidget)(widgets.NewQWidgetFromPointer(parent), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
 	}
 
@@ -86,7 +79,7 @@ func (ptr *Delegate) ConnectCreateEditor(f func(parent *widgets.QWidget, option 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "createEditor", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "createEditor", f)
 	}
 }
 
@@ -95,7 +88,7 @@ func (ptr *Delegate) DisconnectCreateEditor() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "createEditor")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "createEditor")
 	}
 }
 
@@ -118,10 +111,10 @@ func (ptr *Delegate) CreateEditorDefault(parent widgets.QWidget_ITF, option widg
 }
 
 //export callbackDelegate_DisplayText
-func callbackDelegate_DisplayText(ptr unsafe.Pointer, ptrName *C.char, value unsafe.Pointer, locale unsafe.Pointer) *C.char {
+func callbackDelegate_DisplayText(ptr unsafe.Pointer, value unsafe.Pointer, locale unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback Delegate::displayText")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "displayText"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "displayText"); signal != nil {
 		return C.CString(signal.(func(*core.QVariant, *core.QLocale) string)(core.NewQVariantFromPointer(value), core.NewQLocaleFromPointer(locale)))
 	}
 
@@ -133,7 +126,7 @@ func (ptr *Delegate) ConnectDisplayText(f func(value *core.QVariant, locale *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "displayText", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "displayText", f)
 	}
 }
 
@@ -142,7 +135,7 @@ func (ptr *Delegate) DisconnectDisplayText() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "displayText")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "displayText")
 	}
 }
 
@@ -165,14 +158,14 @@ func (ptr *Delegate) DisplayTextDefault(value core.QVariant_ITF, locale core.QLo
 }
 
 //export callbackDelegate_EditorEvent
-func callbackDelegate_EditorEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer, model unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.int {
+func callbackDelegate_EditorEvent(ptr unsafe.Pointer, event unsafe.Pointer, model unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
 	defer qt.Recovering("callback Delegate::editorEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "editorEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent, *core.QAbstractItemModel, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "editorEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent, *core.QAbstractItemModel, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewDelegateFromPointer(ptr).EditorEventDefault(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))))
+	return C.char(int8(qt.GoBoolToInt(NewDelegateFromPointer(ptr).EditorEventDefault(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
 }
 
 func (ptr *Delegate) ConnectEditorEvent(f func(event *core.QEvent, model *core.QAbstractItemModel, option *widgets.QStyleOptionViewItem, index *core.QModelIndex) bool) {
@@ -180,7 +173,7 @@ func (ptr *Delegate) ConnectEditorEvent(f func(event *core.QEvent, model *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "editorEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "editorEvent", f)
 	}
 }
 
@@ -189,7 +182,7 @@ func (ptr *Delegate) DisconnectEditorEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "editorEvent")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "editorEvent")
 	}
 }
 
@@ -212,10 +205,10 @@ func (ptr *Delegate) EditorEventDefault(event core.QEvent_ITF, model core.QAbstr
 }
 
 //export callbackDelegate_InitStyleOption
-func callbackDelegate_InitStyleOption(ptr unsafe.Pointer, ptrName *C.char, option unsafe.Pointer, index unsafe.Pointer) {
+func callbackDelegate_InitStyleOption(ptr unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::initStyleOption")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "initStyleOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "initStyleOption"); signal != nil {
 		signal.(func(*widgets.QStyleOptionViewItem, *core.QModelIndex))(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
 	} else {
 		NewDelegateFromPointer(ptr).InitStyleOptionDefault(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
@@ -227,7 +220,7 @@ func (ptr *Delegate) ConnectInitStyleOption(f func(option *widgets.QStyleOptionV
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "initStyleOption", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "initStyleOption", f)
 	}
 }
 
@@ -236,7 +229,7 @@ func (ptr *Delegate) DisconnectInitStyleOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "initStyleOption")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "initStyleOption")
 	}
 }
 
@@ -257,10 +250,10 @@ func (ptr *Delegate) InitStyleOptionDefault(option widgets.QStyleOptionViewItem_
 }
 
 //export callbackDelegate_Paint
-func callbackDelegate_Paint(ptr unsafe.Pointer, ptrName *C.char, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
+func callbackDelegate_Paint(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::paint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "paint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "paint"); signal != nil {
 		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
 	} else {
 		NewDelegateFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
@@ -272,7 +265,7 @@ func (ptr *Delegate) ConnectPaint(f func(painter *gui.QPainter, option *widgets.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "paint", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "paint", f)
 	}
 }
 
@@ -281,7 +274,7 @@ func (ptr *Delegate) DisconnectPaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "paint")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "paint")
 	}
 }
 
@@ -302,10 +295,10 @@ func (ptr *Delegate) PaintDefault(painter gui.QPainter_ITF, option widgets.QStyl
 }
 
 //export callbackDelegate_SetEditorData
-func callbackDelegate_SetEditorData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) {
+func callbackDelegate_SetEditorData(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::setEditorData")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setEditorData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "setEditorData"); signal != nil {
 		signal.(func(*widgets.QWidget, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
 	} else {
 		NewDelegateFromPointer(ptr).SetEditorDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
@@ -317,7 +310,7 @@ func (ptr *Delegate) ConnectSetEditorData(f func(editor *widgets.QWidget, index 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setEditorData", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "setEditorData", f)
 	}
 }
 
@@ -326,7 +319,7 @@ func (ptr *Delegate) DisconnectSetEditorData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setEditorData")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "setEditorData")
 	}
 }
 
@@ -347,10 +340,10 @@ func (ptr *Delegate) SetEditorDataDefault(editor widgets.QWidget_ITF, index core
 }
 
 //export callbackDelegate_SetModelData
-func callbackDelegate_SetModelData(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) {
+func callbackDelegate_SetModelData(ptr unsafe.Pointer, editor unsafe.Pointer, model unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::setModelData")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setModelData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "setModelData"); signal != nil {
 		signal.(func(*widgets.QWidget, *core.QAbstractItemModel, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
 	} else {
 		NewDelegateFromPointer(ptr).SetModelDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQAbstractItemModelFromPointer(model), core.NewQModelIndexFromPointer(index))
@@ -362,7 +355,7 @@ func (ptr *Delegate) ConnectSetModelData(f func(editor *widgets.QWidget, model *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setModelData", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "setModelData", f)
 	}
 }
 
@@ -371,7 +364,7 @@ func (ptr *Delegate) DisconnectSetModelData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setModelData")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "setModelData")
 	}
 }
 
@@ -392,10 +385,10 @@ func (ptr *Delegate) SetModelDataDefault(editor widgets.QWidget_ITF, model core.
 }
 
 //export callbackDelegate_SizeHint
-func callbackDelegate_SizeHint(ptr unsafe.Pointer, ptrName *C.char, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+func callbackDelegate_SizeHint(ptr unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback Delegate::sizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func(*widgets.QStyleOptionViewItem, *core.QModelIndex) *core.QSize)(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
 	}
 
@@ -407,7 +400,7 @@ func (ptr *Delegate) ConnectSizeHint(f func(option *widgets.QStyleOptionViewItem
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "sizeHint", f)
 	}
 }
 
@@ -416,7 +409,7 @@ func (ptr *Delegate) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "sizeHint")
 	}
 }
 
@@ -443,10 +436,10 @@ func (ptr *Delegate) SizeHintDefault(option widgets.QStyleOptionViewItem_ITF, in
 }
 
 //export callbackDelegate_UpdateEditorGeometry
-func callbackDelegate_UpdateEditorGeometry(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
+func callbackDelegate_UpdateEditorGeometry(ptr unsafe.Pointer, editor unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::updateEditorGeometry")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "updateEditorGeometry"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "updateEditorGeometry"); signal != nil {
 		signal.(func(*widgets.QWidget, *widgets.QStyleOptionViewItem, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
 	} else {
 		NewDelegateFromPointer(ptr).UpdateEditorGeometryDefault(widgets.NewQWidgetFromPointer(editor), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
@@ -458,7 +451,7 @@ func (ptr *Delegate) ConnectUpdateEditorGeometry(f func(editor *widgets.QWidget,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "updateEditorGeometry", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "updateEditorGeometry", f)
 	}
 }
 
@@ -467,7 +460,7 @@ func (ptr *Delegate) DisconnectUpdateEditorGeometry() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "updateEditorGeometry")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "updateEditorGeometry")
 	}
 }
 
@@ -488,10 +481,10 @@ func (ptr *Delegate) UpdateEditorGeometryDefault(editor widgets.QWidget_ITF, opt
 }
 
 //export callbackDelegate_DestroyEditor
-func callbackDelegate_DestroyEditor(ptr unsafe.Pointer, ptrName *C.char, editor unsafe.Pointer, index unsafe.Pointer) {
+func callbackDelegate_DestroyEditor(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::destroyEditor")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "destroyEditor"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "destroyEditor"); signal != nil {
 		signal.(func(*widgets.QWidget, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
 	} else {
 		NewDelegateFromPointer(ptr).DestroyEditorDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
@@ -503,7 +496,7 @@ func (ptr *Delegate) ConnectDestroyEditor(f func(editor *widgets.QWidget, index 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "destroyEditor", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "destroyEditor", f)
 	}
 }
 
@@ -512,7 +505,7 @@ func (ptr *Delegate) DisconnectDestroyEditor() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "destroyEditor")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "destroyEditor")
 	}
 }
 
@@ -533,14 +526,14 @@ func (ptr *Delegate) DestroyEditorDefault(editor widgets.QWidget_ITF, index core
 }
 
 //export callbackDelegate_HelpEvent
-func callbackDelegate_HelpEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer, view unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.int {
+func callbackDelegate_HelpEvent(ptr unsafe.Pointer, event unsafe.Pointer, view unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
 	defer qt.Recovering("callback Delegate::helpEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "helpEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*gui.QHelpEvent, *widgets.QAbstractItemView, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "helpEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*gui.QHelpEvent, *widgets.QAbstractItemView, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewDelegateFromPointer(ptr).HelpEventDefault(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))))
+	return C.char(int8(qt.GoBoolToInt(NewDelegateFromPointer(ptr).HelpEventDefault(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
 }
 
 func (ptr *Delegate) ConnectHelpEvent(f func(event *gui.QHelpEvent, view *widgets.QAbstractItemView, option *widgets.QStyleOptionViewItem, index *core.QModelIndex) bool) {
@@ -548,7 +541,7 @@ func (ptr *Delegate) ConnectHelpEvent(f func(event *gui.QHelpEvent, view *widget
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "helpEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "helpEvent", f)
 	}
 }
 
@@ -557,7 +550,7 @@ func (ptr *Delegate) DisconnectHelpEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "helpEvent")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "helpEvent")
 	}
 }
 
@@ -580,10 +573,10 @@ func (ptr *Delegate) HelpEventDefault(event gui.QHelpEvent_ITF, view widgets.QAb
 }
 
 //export callbackDelegate_TimerEvent
-func callbackDelegate_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackDelegate_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewDelegateFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -595,7 +588,7 @@ func (ptr *Delegate) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -604,7 +597,7 @@ func (ptr *Delegate) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -625,10 +618,10 @@ func (ptr *Delegate) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackDelegate_ChildEvent
-func callbackDelegate_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackDelegate_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewDelegateFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -640,7 +633,7 @@ func (ptr *Delegate) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -649,7 +642,7 @@ func (ptr *Delegate) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -670,10 +663,10 @@ func (ptr *Delegate) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackDelegate_ConnectNotify
-func callbackDelegate_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackDelegate_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewDelegateFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -685,7 +678,7 @@ func (ptr *Delegate) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -694,7 +687,7 @@ func (ptr *Delegate) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -715,10 +708,10 @@ func (ptr *Delegate) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackDelegate_CustomEvent
-func callbackDelegate_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackDelegate_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDelegateFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -730,7 +723,7 @@ func (ptr *Delegate) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -739,7 +732,7 @@ func (ptr *Delegate) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -760,10 +753,10 @@ func (ptr *Delegate) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackDelegate_DeleteLater
-func callbackDelegate_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackDelegate_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDelegateFromPointer(ptr).DeleteLaterDefault()
@@ -775,7 +768,7 @@ func (ptr *Delegate) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -784,7 +777,7 @@ func (ptr *Delegate) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -807,10 +800,10 @@ func (ptr *Delegate) DeleteLaterDefault() {
 }
 
 //export callbackDelegate_DisconnectNotify
-func callbackDelegate_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackDelegate_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback Delegate::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewDelegateFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -822,7 +815,7 @@ func (ptr *Delegate) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -831,7 +824,7 @@ func (ptr *Delegate) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -852,14 +845,14 @@ func (ptr *Delegate) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackDelegate_Event
-func callbackDelegate_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackDelegate_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback Delegate::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("Delegate(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewDelegateFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewDelegateFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *Delegate) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -867,7 +860,7 @@ func (ptr *Delegate) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -876,7 +869,7 @@ func (ptr *Delegate) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("Delegate(%v)", ptr.Pointer()), "event")
 	}
 }
 

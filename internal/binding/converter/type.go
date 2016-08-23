@@ -13,31 +13,47 @@ func goType(f *parser.Function, value string) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QByteArray":
+	case "char", "qint8", "uchar", "quint8", "QString", "QByteArray", "QStringList":
 		{
-			if strings.Contains(vOld, "**") {
+			if strings.Contains(vOld, "**") || value == "QStringList" {
 				return "[]string"
 			}
 
 			return "string"
 		}
 
-	case "QStringList":
-		{
-			return "[]string"
-		}
-
-	case "void":
+	case "void", "":
 		{
 			if strings.Contains(vOld, "*") {
 				return "unsafe.Pointer"
 			}
+
 			return ""
 		}
 
-	case "bool", "int", "":
+	case "bool":
 		{
-			return value
+			return "bool"
+		}
+
+	case "short", "qint16":
+		{
+			return "int16"
+		}
+
+	case "ushort", "unsigned short", "quint16":
+		{
+			return "uint16"
+		}
+
+	case "int", "qint32":
+		{
+			return "int"
+		}
+
+	case "uint", "unsigned int", "quint32":
+		{
+			return "uint"
 		}
 
 	case "long":
@@ -45,17 +61,49 @@ func goType(f *parser.Function, value string) string {
 			return "int"
 		}
 
+	case "ulong", "unsigned long":
+		{
+			return "uint"
+		}
+
+	case "longlong", "long long", "qlonglong", "qint64":
+		{
+			return "int64"
+		}
+
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
+		{
+			return "uint64"
+		}
+
+	case "float":
+		{
+			return "float32"
+		}
+
+	case "double", "qreal":
+		{
+			return "float64"
+		}
+
+	case "uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			return "uintptr"
+		}
+
+		//non std types
+
 	case "T":
 		{
 			switch f.TemplateMode {
-			case "Int":
-				{
-					return "int"
-				}
-
 			case "Boolean":
 				{
 					return "bool"
+				}
+
+			case "Int":
+				{
+					return "int"
 				}
 
 			case "Void":
@@ -81,21 +129,6 @@ func goType(f *parser.Function, value string) string {
 			if parser.ClassMap[f.Class()].Module == "QtAndroidExtras" {
 				return "...interface{}"
 			}
-		}
-
-	case "qreal":
-		{
-			return "float64"
-		}
-
-	case "qint64":
-		{
-			return "int64"
-		}
-
-	case "WId":
-		{
-			return "uintptr"
 		}
 	}
 
@@ -139,19 +172,9 @@ func cgoType(f *parser.Function, value string) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QByteArray", "QStringList":
+	case "char", "qint8", "uchar", "quint8", "QString", "QByteArray", "QStringList":
 		{
 			return "*C.char"
-		}
-
-	case "bool", "int":
-		{
-			return "C.int"
-		}
-
-	case "long":
-		{
-			return "C.long"
 		}
 
 	case "void", "":
@@ -159,29 +182,75 @@ func cgoType(f *parser.Function, value string) string {
 			if strings.Contains(vOld, "*") {
 				return "unsafe.Pointer"
 			}
+
 			return ""
 		}
 
-	case "qreal":
+	case "bool":
 		{
-			return "C.double"
+			return "C.char"
 		}
 
-	case "qint64":
+	case "short", "qint16":
+		{
+			return "C.short"
+		}
+
+	case "ushort", "unsigned short", "quint16":
+		{
+			return "C.ushort"
+		}
+
+	case "int", "qint32":
+		{
+			return "C.int"
+		}
+
+	case "uint", "unsigned int", "quint32":
+		{
+			return "C.uint"
+		}
+
+	case "long":
+		{
+			return "C.long"
+		}
+
+	case "ulong", "unsigned long":
+		{
+			return "C.ulong"
+		}
+
+	case "longlong", "long long", "qlonglong", "qint64":
 		{
 			return "C.longlong"
 		}
 
-	case "WId":
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
 		{
 			return "C.ulonglong"
+		}
+
+	case "float":
+		{
+			return "C.float"
+		}
+
+	case "double", "qreal":
+		{
+			return "C.double"
+		}
+
+	case "uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			return "C.uintptr_t"
 		}
 	}
 
 	switch {
 	case isEnum(f.Class(), value):
 		{
-			return "C.int"
+			return "C.longlong"
 		}
 
 	case isClass(value):
@@ -200,19 +269,9 @@ func cppType(f *parser.Function, value string) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "uchar", "char", "QString", "QByteArray", "QStringList":
+	case "char", "qint8", "uchar", "quint8", "QString", "QByteArray", "QStringList":
 		{
 			return "char*"
-		}
-
-	case "bool", "int":
-		{
-			return "int"
-		}
-
-	case "long":
-		{
-			return "long"
 		}
 
 	case "void", "":
@@ -220,18 +279,81 @@ func cppType(f *parser.Function, value string) string {
 			if strings.Contains(vOld, "*") {
 				return "void*"
 			}
+
 			return "void"
 		}
+
+	case "bool":
+		{
+			return "char"
+		}
+
+	case "short", "qint16":
+		{
+			return "short"
+		}
+
+	case "ushort", "unsigned short", "quint16":
+		{
+			return "unsigned short"
+		}
+
+	case "int", "qint32":
+		{
+			return "int"
+		}
+
+	case "uint", "unsigned int", "quint32":
+		{
+			return "unsigned int"
+		}
+
+	case "long":
+		{
+			return "long"
+		}
+
+	case "ulong", "unsigned long":
+		{
+			return "unsigned long"
+		}
+
+	case "longlong", "long long", "qlonglong", "qint64":
+		{
+			return "long long"
+		}
+
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
+		{
+			return "unsigned long long"
+		}
+
+	case "float":
+		{
+			return "float"
+		}
+
+	case "double", "qreal":
+		{
+			return "double"
+		}
+
+	case "uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			return "uintptr_t"
+		}
+
+		//non std types
 
 	case "T":
 		{
 			switch f.TemplateMode {
-			case "Int":
+			case "Boolean":
 				{
-					return "int"
+					return "char"
 				}
 
-			case "Boolean":
+			case "Int":
 				{
 					return "int"
 				}
@@ -252,37 +374,22 @@ func cppType(f *parser.Function, value string) string {
 
 	case "...":
 		{
-			var tmp string
+			var tmp = make([]string, 10)
 			for i := 0; i < 10; i++ {
 				if i == 9 {
-					tmp += "void*"
+					tmp[i] = "void*"
 				} else {
-					tmp += fmt.Sprintf("void* %v%v, ", "v", i)
+					tmp[i] = fmt.Sprintf("void* v%v", i)
 				}
 			}
-			return strings.TrimSuffix(tmp, ", ")
-		}
-
-	case "qreal":
-		{
-			return "double"
-		}
-
-	case "qint64":
-		{
-			return "long long"
-		}
-
-	case "WId":
-		{
-			return "unsigned long long"
+			return strings.Join(tmp, ", ")
 		}
 	}
 
 	switch {
 	case isEnum(f.Class(), value):
 		{
-			return "int"
+			return "long long"
 		}
 
 	case isClass(value):

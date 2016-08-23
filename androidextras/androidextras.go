@@ -2,11 +2,11 @@
 
 package androidextras
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "androidextras_android.h"
 import "C"
 import (
-	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -48,21 +48,13 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 	return n
 }
 
-func newQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidActivityResultReceiver {
-	var n = NewQAndroidActivityResultReceiverFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QAndroidActivityResultReceiver_") {
-		n.SetObjectNameAbs("QAndroidActivityResultReceiver_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
 }
 
 //export callbackQAndroidActivityResultReceiver_HandleActivityResult
-func callbackQAndroidActivityResultReceiver_HandleActivityResult(ptr unsafe.Pointer, ptrName *C.char, receiverRequestCode C.int, resultCode C.int, data unsafe.Pointer) {
+func callbackQAndroidActivityResultReceiver_HandleActivityResult(ptr unsafe.Pointer, receiverRequestCode C.int, resultCode C.int, data unsafe.Pointer) {
 
 }
 
@@ -75,15 +67,6 @@ func (ptr *QAndroidActivityResultReceiver) DisconnectHandleActivityResult(receiv
 }
 
 func (ptr *QAndroidActivityResultReceiver) HandleActivityResult(receiverRequestCode int, resultCode int, data QAndroidJniObject_ITF) {
-
-}
-
-func (ptr *QAndroidActivityResultReceiver) ObjectNameAbs() string {
-
-	return ""
-}
-
-func (ptr *QAndroidActivityResultReceiver) SetObjectNameAbs(name string) {
 
 }
 
@@ -124,12 +107,6 @@ func NewQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) *QAndroidJniEnviro
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQAndroidJniEnvironmentFromPointer(ptr unsafe.Pointer) *QAndroidJniEnvironment {
-	var n = NewQAndroidJniEnvironmentFromPointer(ptr)
-	return n
-}
-
 func NewQAndroidJniEnvironment() *QAndroidJniEnvironment {
 
 	return nil
@@ -186,12 +163,6 @@ func NewQAndroidJniObjectFromPointer(ptr unsafe.Pointer) *QAndroidJniObject {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQAndroidJniObjectFromPointer(ptr unsafe.Pointer) *QAndroidJniObject {
-	var n = NewQAndroidJniObjectFromPointer(ptr)
-	return n
-}
-
 func NewQAndroidJniObject() *QAndroidJniObject {
 
 	return nil

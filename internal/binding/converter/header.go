@@ -9,7 +9,7 @@ import (
 
 func GoHeaderName(f *parser.Function) (o string) {
 
-	if f.SignalMode == "callback" {
+	if f.SignalMode == parser.CALLBACK {
 		return fmt.Sprintf("callback%v_%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1), f.OverloadNumber)
 	}
 
@@ -18,12 +18,12 @@ func GoHeaderName(f *parser.Function) (o string) {
 	}
 
 	switch f.Meta {
-	case "constructor":
+	case parser.CONSTRUCTOR:
 		{
 			o += "New"
 		}
 
-	case "destructor":
+	case parser.DESTRUCTOR:
 		{
 			o += "Destroy"
 		}
@@ -63,17 +63,17 @@ func CppHeaderName(f *parser.Function) string {
 
 func GoHeaderOutput(f *parser.Function) string {
 
-	if f.SignalMode == "callback" {
+	if f.SignalMode == parser.CALLBACK {
 		return cgoType(f, f.Output)
 	}
 
-	if f.SignalMode == "Connect" || f.SignalMode == "Disconnect" {
+	if f.SignalMode == parser.CONNECT || f.SignalMode == parser.DISCONNECT {
 		return ""
 	}
 
 	var value = f.Output
 
-	if f.Meta == "constructor" && f.Output == "" {
+	if f.Meta == parser.CONSTRUCTOR && f.Output == "" {
 		value = f.Name
 	}
 
@@ -88,7 +88,7 @@ func CppHeaderOutput(f *parser.Function) string {
 
 	var value = f.Output
 
-	if f.Meta == "constructor" && f.Output == "" {
+	if f.Meta == parser.CONSTRUCTOR && f.Output == "" {
 		value = f.Name
 	}
 
@@ -97,8 +97,8 @@ func CppHeaderOutput(f *parser.Function) string {
 
 func GoHeaderInput(f *parser.Function) (o string) {
 
-	if f.SignalMode == "callback" {
-		o += "ptr unsafe.Pointer, ptrName *C.char"
+	if f.SignalMode == parser.CALLBACK {
+		o += "ptr unsafe.Pointer"
 		for _, p := range f.Parameters {
 			if v := cgoType(f, p.Value); v != "" {
 				o += fmt.Sprintf(", %v %v", cleanName(p.Name, p.Value), v)
@@ -107,12 +107,12 @@ func GoHeaderInput(f *parser.Function) (o string) {
 		return strings.TrimSuffix(o, ", ")
 	}
 
-	if f.SignalMode == "Connect" {
+	if f.SignalMode == parser.CONNECT {
 		o += "f func ("
 	}
 
-	if (f.Meta == "signal" || strings.Contains(f.Virtual, "impure")) && f.SignalMode != "Connect" {
-		if strings.Contains(f.Virtual, "impure") && f.SignalMode == "" {
+	if (f.Meta == parser.SIGNAL || strings.Contains(f.Virtual, parser.IMPURE)) && f.SignalMode != parser.CONNECT {
+		if strings.Contains(f.Virtual, parser.IMPURE) && f.SignalMode == "" {
 		} else {
 			return
 		}
@@ -121,7 +121,7 @@ func GoHeaderInput(f *parser.Function) (o string) {
 	for _, p := range f.Parameters {
 		if v := goType(f, p.Value); v != "" {
 			if isClass(v) {
-				if f.SignalMode == "Connect" {
+				if f.SignalMode == parser.CONNECT {
 					o += fmt.Sprintf("%v *%v, ", cleanName(p.Name, p.Value), v)
 				} else {
 					o += fmt.Sprintf("%v %v_ITF, ", cleanName(p.Name, p.Value), v)
@@ -137,11 +137,11 @@ func GoHeaderInput(f *parser.Function) (o string) {
 
 	o = strings.TrimSuffix(o, ", ")
 
-	if f.SignalMode == "Connect" {
+	if f.SignalMode == parser.CONNECT {
 		o += ")"
 	}
 
-	if f.SignalMode == "Connect" {
+	if f.SignalMode == parser.CONNECT {
 		if isClass(goType(f, f.Output)) {
 			o += " *" + goType(f, f.Output)
 		} else {
@@ -173,7 +173,7 @@ func GoHeaderInputSignalFunction(f *parser.Function) (o string) {
 
 	o += ")"
 
-	if f.SignalMode == "callback" {
+	if f.SignalMode == parser.CALLBACK {
 		if isClass(goType(f, f.Output)) {
 			o += " *" + goType(f, f.Output)
 		} else {
@@ -185,11 +185,11 @@ func GoHeaderInputSignalFunction(f *parser.Function) (o string) {
 }
 
 func CppHeaderInput(f *parser.Function) (o string) {
-	if !(f.Static || f.Meta == "constructor") {
+	if !(f.Static || f.Meta == parser.CONSTRUCTOR) {
 		o += "void* ptr, "
 	}
 
-	if f.Meta == "signal" {
+	if f.Meta == parser.SIGNAL {
 		return strings.TrimSuffix(o, ", ")
 	}
 

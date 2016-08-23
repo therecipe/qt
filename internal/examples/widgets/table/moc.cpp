@@ -34,24 +34,24 @@ class Delegate: public QStyledItemDelegate
 Q_OBJECT
 public:
 	Delegate(QObject *parent) : QStyledItemDelegate(parent) {};
-	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackDelegate_CreateEditor(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
-	QString displayText(const QVariant & value, const QLocale & locale) const { return QString(callbackDelegate_DisplayText(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), const_cast<QVariant*>(&value), const_cast<QLocale*>(&locale))); };
-	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackDelegate_EditorEvent(this, this->objectName().toUtf8().data(), event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
-	void initStyleOption(QStyleOptionViewItem * option, const QModelIndex & index) const { callbackDelegate_InitStyleOption(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), option, const_cast<QModelIndex*>(&index)); };
-	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackDelegate_Paint(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
-	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackDelegate_SetEditorData(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), editor, const_cast<QModelIndex*>(&index)); };
-	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackDelegate_SetModelData(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), editor, model, const_cast<QModelIndex*>(&index)); };
-	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackDelegate_SizeHint(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
-	void updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackDelegate_UpdateEditorGeometry(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), editor, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
-	void destroyEditor(QWidget * editor, const QModelIndex & index) const { callbackDelegate_DestroyEditor(const_cast<Delegate*>(this), this->objectName().toUtf8().data(), editor, const_cast<QModelIndex*>(&index)); };
-	bool helpEvent(QHelpEvent * event, QAbstractItemView * view, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackDelegate_HelpEvent(this, this->objectName().toUtf8().data(), event, view, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
-	void timerEvent(QTimerEvent * event) { callbackDelegate_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackDelegate_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackDelegate_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackDelegate_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackDelegate_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackDelegate_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackDelegate_Event(this, this->objectName().toUtf8().data(), e) != 0; };
+	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackDelegate_CreateEditor(const_cast<Delegate*>(this), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	QString displayText(const QVariant & value, const QLocale & locale) const { return QString(callbackDelegate_DisplayText(const_cast<Delegate*>(this), const_cast<QVariant*>(&value), const_cast<QLocale*>(&locale))); };
+	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
+	void initStyleOption(QStyleOptionViewItem * option, const QModelIndex & index) const { callbackDelegate_InitStyleOption(const_cast<Delegate*>(this), option, const_cast<QModelIndex*>(&index)); };
+	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackDelegate_Paint(const_cast<Delegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
+	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackDelegate_SetEditorData(const_cast<Delegate*>(this), editor, const_cast<QModelIndex*>(&index)); };
+	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackDelegate_SetModelData(const_cast<Delegate*>(this), editor, model, const_cast<QModelIndex*>(&index)); };
+	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackDelegate_SizeHint(const_cast<Delegate*>(this), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	void updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackDelegate_UpdateEditorGeometry(const_cast<Delegate*>(this), editor, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
+	void destroyEditor(QWidget * editor, const QModelIndex & index) const { callbackDelegate_DestroyEditor(const_cast<Delegate*>(this), editor, const_cast<QModelIndex*>(&index)); };
+	bool helpEvent(QHelpEvent * event, QAbstractItemView * view, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackDelegate_HelpEvent(this, event, view, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
+	void timerEvent(QTimerEvent * event) { callbackDelegate_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackDelegate_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackDelegate_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackDelegate_CustomEvent(this, event); };
+	void deleteLater() { callbackDelegate_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackDelegate_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackDelegate_Event(this, e) != 0; };
 	
 signals:
 public slots:
@@ -79,20 +79,20 @@ void* Delegate_CreateEditorDefault(void* ptr, void* parent, void* option, void* 
 
 char* Delegate_DisplayText(void* ptr, void* value, void* locale)
 {
-	return static_cast<Delegate*>(ptr)->displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8().data();
+	return const_cast<char*>(static_cast<Delegate*>(ptr)->displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8().constData());
 }
 
 char* Delegate_DisplayTextDefault(void* ptr, void* value, void* locale)
 {
-	return static_cast<Delegate*>(ptr)->QStyledItemDelegate::displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8().data();
+	return const_cast<char*>(static_cast<Delegate*>(ptr)->QStyledItemDelegate::displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8().constData());
 }
 
-int Delegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index)
+char Delegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index)
 {
 	return static_cast<Delegate*>(ptr)->editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-int Delegate_EditorEventDefault(void* ptr, void* event, void* model, void* option, void* index)
+char Delegate_EditorEventDefault(void* ptr, void* event, void* model, void* option, void* index)
 {
 	return static_cast<Delegate*>(ptr)->QStyledItemDelegate::editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
@@ -167,12 +167,12 @@ void Delegate_DestroyEditorDefault(void* ptr, void* editor, void* index)
 	static_cast<Delegate*>(ptr)->QStyledItemDelegate::destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
 }
 
-int Delegate_HelpEvent(void* ptr, void* event, void* view, void* option, void* index)
+char Delegate_HelpEvent(void* ptr, void* event, void* view, void* option, void* index)
 {
 	return static_cast<Delegate*>(ptr)->helpEvent(static_cast<QHelpEvent*>(event), static_cast<QAbstractItemView*>(view), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-int Delegate_HelpEventDefault(void* ptr, void* event, void* view, void* option, void* index)
+char Delegate_HelpEventDefault(void* ptr, void* event, void* view, void* option, void* index)
 {
 	return static_cast<Delegate*>(ptr)->QStyledItemDelegate::helpEvent(static_cast<QHelpEvent*>(event), static_cast<QAbstractItemView*>(view), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
@@ -237,12 +237,12 @@ void Delegate_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<Delegate*>(ptr)->QStyledItemDelegate::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int Delegate_Event(void* ptr, void* e)
+char Delegate_Event(void* ptr, void* e)
 {
 	return static_cast<Delegate*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int Delegate_EventDefault(void* ptr, void* e)
+char Delegate_EventDefault(void* ptr, void* e)
 {
 	return static_cast<Delegate*>(ptr)->QStyledItemDelegate::event(static_cast<QEvent*>(e));
 }

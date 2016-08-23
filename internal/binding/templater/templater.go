@@ -3,7 +3,6 @@ package templater
 import (
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -37,11 +36,6 @@ func GenModule(name string) {
 			utils.Save(utils.GetQtPkgPath(pkgName, "utils-androidextras_android.go"), utils.Load(utils.GetQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
 		}
 		manualWeakLink("Qt" + name)
-		for _, c := range parser.ClassMap {
-			if strings.TrimPrefix(c.Module, "Qt") == name {
-				addCallbackNameFunctions(c)
-			}
-		}
 
 		//dry run
 		CppTemplate("Qt" + name)

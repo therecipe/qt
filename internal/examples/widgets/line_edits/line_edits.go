@@ -150,7 +150,7 @@ func validatorChanged(validatorLineEdit *widgets.QLineEdit, index int) {
 
 	case 2:
 		{
-			validatorLineEdit.SetValidator(gui.NewQDoubleValidator(validatorLineEdit)) //TODO: gui.NewQDoubleValidator2(-999.0, 999.0, 2, validatorLineEdit)
+			validatorLineEdit.SetValidator(gui.NewQDoubleValidator2(-999.0, 999.0, 2, validatorLineEdit))
 		}
 	}
 

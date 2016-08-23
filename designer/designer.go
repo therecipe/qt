@@ -2,11 +2,13 @@
 
 package designer
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "designer.h"
 import "C"
 import (
 	"encoding/hex"
+	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
@@ -54,19 +56,11 @@ func NewQAbstractExtensionFactoryFromPointer(ptr unsafe.Pointer) *QAbstractExten
 	return n
 }
 
-func newQAbstractExtensionFactoryFromPointer(ptr unsafe.Pointer) *QAbstractExtensionFactory {
-	var n = NewQAbstractExtensionFactoryFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QAbstractExtensionFactory_") {
-		n.SetObjectNameAbs("QAbstractExtensionFactory_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQAbstractExtensionFactory_Extension
-func callbackQAbstractExtensionFactory_Extension(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
+func callbackQAbstractExtensionFactory_Extension(ptr unsafe.Pointer, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractExtensionFactory::extension")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "extension"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QAbstractExtensionFactory(%v)", ptr), "extension"); signal != nil {
 		return core.PointerFromQObject(signal.(func(*core.QObject, string) *core.QObject)(core.NewQObjectFromPointer(object), C.GoString(iid)))
 	}
 
@@ -78,7 +72,7 @@ func (ptr *QAbstractExtensionFactory) ConnectExtension(f func(object *core.QObje
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "extension", f)
+		qt.ConnectSignal(fmt.Sprintf("QAbstractExtensionFactory(%v)", ptr.Pointer()), "extension", f)
 	}
 }
 
@@ -87,7 +81,7 @@ func (ptr *QAbstractExtensionFactory) DisconnectExtension(object core.QObject_IT
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "extension")
+		qt.DisconnectSignal(fmt.Sprintf("QAbstractExtensionFactory(%v)", ptr.Pointer()), "extension")
 	}
 }
 
@@ -106,28 +100,9 @@ func (ptr *QAbstractExtensionFactory) DestroyQAbstractExtensionFactory() {
 	defer qt.Recovering("QAbstractExtensionFactory::~QAbstractExtensionFactory")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractExtensionFactory(%v)", ptr.Pointer()))
 		C.QAbstractExtensionFactory_DestroyQAbstractExtensionFactory(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QAbstractExtensionFactory) ObjectNameAbs() string {
-	defer qt.Recovering("QAbstractExtensionFactory::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QAbstractExtensionFactory_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QAbstractExtensionFactory) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QAbstractExtensionFactory::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QAbstractExtensionFactory_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -169,19 +144,11 @@ func NewQAbstractExtensionManagerFromPointer(ptr unsafe.Pointer) *QAbstractExten
 	return n
 }
 
-func newQAbstractExtensionManagerFromPointer(ptr unsafe.Pointer) *QAbstractExtensionManager {
-	var n = NewQAbstractExtensionManagerFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QAbstractExtensionManager_") {
-		n.SetObjectNameAbs("QAbstractExtensionManager_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQAbstractExtensionManager_Extension
-func callbackQAbstractExtensionManager_Extension(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
+func callbackQAbstractExtensionManager_Extension(ptr unsafe.Pointer, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractExtensionManager::extension")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "extension"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr), "extension"); signal != nil {
 		return core.PointerFromQObject(signal.(func(*core.QObject, string) *core.QObject)(core.NewQObjectFromPointer(object), C.GoString(iid)))
 	}
 
@@ -193,7 +160,7 @@ func (ptr *QAbstractExtensionManager) ConnectExtension(f func(object *core.QObje
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "extension", f)
+		qt.ConnectSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr.Pointer()), "extension", f)
 	}
 }
 
@@ -202,7 +169,7 @@ func (ptr *QAbstractExtensionManager) DisconnectExtension(object core.QObject_IT
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "extension")
+		qt.DisconnectSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr.Pointer()), "extension")
 	}
 }
 
@@ -218,10 +185,10 @@ func (ptr *QAbstractExtensionManager) Extension(object core.QObject_ITF, iid str
 }
 
 //export callbackQAbstractExtensionManager_RegisterExtensions
-func callbackQAbstractExtensionManager_RegisterExtensions(ptr unsafe.Pointer, ptrName *C.char, factory unsafe.Pointer, iid *C.char) {
+func callbackQAbstractExtensionManager_RegisterExtensions(ptr unsafe.Pointer, factory unsafe.Pointer, iid *C.char) {
 	defer qt.Recovering("callback QAbstractExtensionManager::registerExtensions")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "registerExtensions"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr), "registerExtensions"); signal != nil {
 		signal.(func(*QAbstractExtensionFactory, string))(NewQAbstractExtensionFactoryFromPointer(factory), C.GoString(iid))
 	}
 
@@ -232,7 +199,7 @@ func (ptr *QAbstractExtensionManager) ConnectRegisterExtensions(f func(factory *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "registerExtensions", f)
+		qt.ConnectSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr.Pointer()), "registerExtensions", f)
 	}
 }
 
@@ -241,7 +208,7 @@ func (ptr *QAbstractExtensionManager) DisconnectRegisterExtensions(factory QAbst
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "registerExtensions")
+		qt.DisconnectSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr.Pointer()), "registerExtensions")
 	}
 }
 
@@ -256,10 +223,10 @@ func (ptr *QAbstractExtensionManager) RegisterExtensions(factory QAbstractExtens
 }
 
 //export callbackQAbstractExtensionManager_UnregisterExtensions
-func callbackQAbstractExtensionManager_UnregisterExtensions(ptr unsafe.Pointer, ptrName *C.char, factory unsafe.Pointer, iid *C.char) {
+func callbackQAbstractExtensionManager_UnregisterExtensions(ptr unsafe.Pointer, factory unsafe.Pointer, iid *C.char) {
 	defer qt.Recovering("callback QAbstractExtensionManager::unregisterExtensions")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "unregisterExtensions"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr), "unregisterExtensions"); signal != nil {
 		signal.(func(*QAbstractExtensionFactory, string))(NewQAbstractExtensionFactoryFromPointer(factory), C.GoString(iid))
 	}
 
@@ -270,7 +237,7 @@ func (ptr *QAbstractExtensionManager) ConnectUnregisterExtensions(f func(factory
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "unregisterExtensions", f)
+		qt.ConnectSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr.Pointer()), "unregisterExtensions", f)
 	}
 }
 
@@ -279,7 +246,7 @@ func (ptr *QAbstractExtensionManager) DisconnectUnregisterExtensions(factory QAb
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "unregisterExtensions")
+		qt.DisconnectSignal(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr.Pointer()), "unregisterExtensions")
 	}
 }
 
@@ -297,28 +264,9 @@ func (ptr *QAbstractExtensionManager) DestroyQAbstractExtensionManager() {
 	defer qt.Recovering("QAbstractExtensionManager::~QAbstractExtensionManager")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractExtensionManager(%v)", ptr.Pointer()))
 		C.QAbstractExtensionManager_DestroyQAbstractExtensionManager(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QAbstractExtensionManager) ObjectNameAbs() string {
-	defer qt.Recovering("QAbstractExtensionManager::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QAbstractExtensionManager_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QAbstractExtensionManager) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QAbstractExtensionManager::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QAbstractExtensionManager_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -360,19 +308,11 @@ func NewQAbstractFormBuilderFromPointer(ptr unsafe.Pointer) *QAbstractFormBuilde
 	return n
 }
 
-func newQAbstractFormBuilderFromPointer(ptr unsafe.Pointer) *QAbstractFormBuilder {
-	var n = NewQAbstractFormBuilderFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QAbstractFormBuilder_") {
-		n.SetObjectNameAbs("QAbstractFormBuilder_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQAbstractFormBuilder_Load
-func callbackQAbstractFormBuilder_Load(ptr unsafe.Pointer, ptrName *C.char, device unsafe.Pointer, parent unsafe.Pointer) unsafe.Pointer {
+func callbackQAbstractFormBuilder_Load(ptr unsafe.Pointer, device unsafe.Pointer, parent unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractFormBuilder::load")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "load"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QAbstractFormBuilder(%v)", ptr), "load"); signal != nil {
 		return widgets.PointerFromQWidget(signal.(func(*core.QIODevice, *widgets.QWidget) *widgets.QWidget)(core.NewQIODeviceFromPointer(device), widgets.NewQWidgetFromPointer(parent)))
 	}
 
@@ -384,7 +324,7 @@ func (ptr *QAbstractFormBuilder) ConnectLoad(f func(device *core.QIODevice, pare
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "load", f)
+		qt.ConnectSignal(fmt.Sprintf("QAbstractFormBuilder(%v)", ptr.Pointer()), "load", f)
 	}
 }
 
@@ -393,7 +333,7 @@ func (ptr *QAbstractFormBuilder) DisconnectLoad() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "load")
+		qt.DisconnectSignal(fmt.Sprintf("QAbstractFormBuilder(%v)", ptr.Pointer()), "load")
 	}
 }
 
@@ -416,10 +356,10 @@ func (ptr *QAbstractFormBuilder) LoadDefault(device core.QIODevice_ITF, parent w
 }
 
 //export callbackQAbstractFormBuilder_Save
-func callbackQAbstractFormBuilder_Save(ptr unsafe.Pointer, ptrName *C.char, device unsafe.Pointer, widget unsafe.Pointer) {
+func callbackQAbstractFormBuilder_Save(ptr unsafe.Pointer, device unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractFormBuilder::save")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "save"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QAbstractFormBuilder(%v)", ptr), "save"); signal != nil {
 		signal.(func(*core.QIODevice, *widgets.QWidget))(core.NewQIODeviceFromPointer(device), widgets.NewQWidgetFromPointer(widget))
 	} else {
 		NewQAbstractFormBuilderFromPointer(ptr).SaveDefault(core.NewQIODeviceFromPointer(device), widgets.NewQWidgetFromPointer(widget))
@@ -431,7 +371,7 @@ func (ptr *QAbstractFormBuilder) ConnectSave(f func(device *core.QIODevice, widg
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "save", f)
+		qt.ConnectSignal(fmt.Sprintf("QAbstractFormBuilder(%v)", ptr.Pointer()), "save", f)
 	}
 }
 
@@ -440,7 +380,7 @@ func (ptr *QAbstractFormBuilder) DisconnectSave() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "save")
+		qt.DisconnectSignal(fmt.Sprintf("QAbstractFormBuilder(%v)", ptr.Pointer()), "save")
 	}
 }
 
@@ -463,7 +403,9 @@ func (ptr *QAbstractFormBuilder) SaveDefault(device core.QIODevice_ITF, widget w
 func NewQAbstractFormBuilder() *QAbstractFormBuilder {
 	defer qt.Recovering("QAbstractFormBuilder::QAbstractFormBuilder")
 
-	return newQAbstractFormBuilderFromPointer(C.QAbstractFormBuilder_NewQAbstractFormBuilder())
+	var tmpValue = NewQAbstractFormBuilderFromPointer(C.QAbstractFormBuilder_NewQAbstractFormBuilder())
+	runtime.SetFinalizer(tmpValue, (*QAbstractFormBuilder).DestroyQAbstractFormBuilder)
+	return tmpValue
 }
 
 func (ptr *QAbstractFormBuilder) ErrorString() string {
@@ -498,28 +440,9 @@ func (ptr *QAbstractFormBuilder) DestroyQAbstractFormBuilder() {
 	defer qt.Recovering("QAbstractFormBuilder::~QAbstractFormBuilder")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractFormBuilder(%v)", ptr.Pointer()))
 		C.QAbstractFormBuilder_DestroyQAbstractFormBuilder(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QAbstractFormBuilder) ObjectNameAbs() string {
-	defer qt.Recovering("QAbstractFormBuilder::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QAbstractFormBuilder_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QAbstractFormBuilder) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QAbstractFormBuilder::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QAbstractFormBuilder_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -561,26 +484,17 @@ func NewQDesignerActionEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesigner
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDesignerActionEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerActionEditorInterface {
-	var n = NewQDesignerActionEditorInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDesignerActionEditorInterface_") {
-		n.SetObjectName("QDesignerActionEditorInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDesignerActionEditorInterface(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QDesignerActionEditorInterface {
 	defer qt.Recovering("QDesignerActionEditorInterface::QDesignerActionEditorInterface")
 
-	return newQDesignerActionEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(widgets.PointerFromQWidget(parent), C.int(flags)))
+	return NewQDesignerActionEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 }
 
 //export callbackQDesignerActionEditorInterface_Core
-func callbackQDesignerActionEditorInterface_Core(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerActionEditorInterface_Core(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::core")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "core"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "core"); signal != nil {
 		return PointerFromQDesignerFormEditorInterface(signal.(func() *QDesignerFormEditorInterface)())
 	}
 
@@ -592,7 +506,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectCore(f func() *QDesignerFormEd
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "core", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "core", f)
 	}
 }
 
@@ -601,7 +515,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectCore() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "core")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "core")
 	}
 }
 
@@ -624,10 +538,10 @@ func (ptr *QDesignerActionEditorInterface) CoreDefault() *QDesignerFormEditorInt
 }
 
 //export callbackQDesignerActionEditorInterface_ManageAction
-func callbackQDesignerActionEditorInterface_ManageAction(ptr unsafe.Pointer, ptrName *C.char, action unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ManageAction(ptr unsafe.Pointer, action unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::manageAction")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "manageAction"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "manageAction"); signal != nil {
 		signal.(func(*widgets.QAction))(widgets.NewQActionFromPointer(action))
 	}
 
@@ -638,7 +552,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectManageAction(f func(action *wi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "manageAction", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "manageAction", f)
 	}
 }
 
@@ -647,7 +561,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectManageAction(action widgets
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "manageAction")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "manageAction")
 	}
 }
 
@@ -660,10 +574,10 @@ func (ptr *QDesignerActionEditorInterface) ManageAction(action widgets.QAction_I
 }
 
 //export callbackQDesignerActionEditorInterface_SetFormWindow
-func callbackQDesignerActionEditorInterface_SetFormWindow(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_SetFormWindow(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setFormWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFormWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setFormWindow"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -674,7 +588,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetFormWindow(f func(formWindo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFormWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setFormWindow", f)
 	}
 }
 
@@ -683,7 +597,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetFormWindow(formWindow QD
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFormWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setFormWindow")
 	}
 }
 
@@ -696,10 +610,10 @@ func (ptr *QDesignerActionEditorInterface) SetFormWindow(formWindow QDesignerFor
 }
 
 //export callbackQDesignerActionEditorInterface_UnmanageAction
-func callbackQDesignerActionEditorInterface_UnmanageAction(ptr unsafe.Pointer, ptrName *C.char, action unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_UnmanageAction(ptr unsafe.Pointer, action unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::unmanageAction")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "unmanageAction"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "unmanageAction"); signal != nil {
 		signal.(func(*widgets.QAction))(widgets.NewQActionFromPointer(action))
 	}
 
@@ -710,7 +624,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectUnmanageAction(f func(action *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "unmanageAction", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "unmanageAction", f)
 	}
 }
 
@@ -719,7 +633,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectUnmanageAction(action widge
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "unmanageAction")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "unmanageAction")
 	}
 }
 
@@ -735,17 +649,17 @@ func (ptr *QDesignerActionEditorInterface) DestroyQDesignerActionEditorInterface
 	defer qt.Recovering("QDesignerActionEditorInterface::~QDesignerActionEditorInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerActionEditorInterface_ActionEvent
-func callbackQDesignerActionEditorInterface_ActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::actionEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -757,7 +671,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectActionEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "actionEvent", f)
 	}
 }
 
@@ -766,7 +680,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "actionEvent")
 	}
 }
 
@@ -787,10 +701,10 @@ func (ptr *QDesignerActionEditorInterface) ActionEventDefault(event gui.QActionE
 }
 
 //export callbackQDesignerActionEditorInterface_DragEnterEvent
-func callbackQDesignerActionEditorInterface_DragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::dragEnterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -802,7 +716,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectDragEnterEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dragEnterEvent", f)
 	}
 }
 
@@ -811,7 +725,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dragEnterEvent")
 	}
 }
 
@@ -832,10 +746,10 @@ func (ptr *QDesignerActionEditorInterface) DragEnterEventDefault(event gui.QDrag
 }
 
 //export callbackQDesignerActionEditorInterface_DragLeaveEvent
-func callbackQDesignerActionEditorInterface_DragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::dragLeaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -847,7 +761,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectDragLeaveEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dragLeaveEvent", f)
 	}
 }
 
@@ -856,7 +770,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dragLeaveEvent")
 	}
 }
 
@@ -877,10 +791,10 @@ func (ptr *QDesignerActionEditorInterface) DragLeaveEventDefault(event gui.QDrag
 }
 
 //export callbackQDesignerActionEditorInterface_DragMoveEvent
-func callbackQDesignerActionEditorInterface_DragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::dragMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -892,7 +806,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectDragMoveEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dragMoveEvent", f)
 	}
 }
 
@@ -901,7 +815,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dragMoveEvent")
 	}
 }
 
@@ -922,10 +836,10 @@ func (ptr *QDesignerActionEditorInterface) DragMoveEventDefault(event gui.QDragM
 }
 
 //export callbackQDesignerActionEditorInterface_DropEvent
-func callbackQDesignerActionEditorInterface_DropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::dropEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -937,7 +851,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectDropEvent(f func(event *gui.QD
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dropEvent", f)
 	}
 }
 
@@ -946,7 +860,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "dropEvent")
 	}
 }
 
@@ -967,10 +881,10 @@ func (ptr *QDesignerActionEditorInterface) DropEventDefault(event gui.QDropEvent
 }
 
 //export callbackQDesignerActionEditorInterface_EnterEvent
-func callbackQDesignerActionEditorInterface_EnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::enterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -982,7 +896,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectEnterEvent(f func(event *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "enterEvent", f)
 	}
 }
 
@@ -991,7 +905,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "enterEvent")
 	}
 }
 
@@ -1012,10 +926,10 @@ func (ptr *QDesignerActionEditorInterface) EnterEventDefault(event core.QEvent_I
 }
 
 //export callbackQDesignerActionEditorInterface_FocusInEvent
-func callbackQDesignerActionEditorInterface_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::focusInEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -1027,7 +941,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectFocusInEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "focusInEvent", f)
 	}
 }
 
@@ -1036,7 +950,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "focusInEvent")
 	}
 }
 
@@ -1057,10 +971,10 @@ func (ptr *QDesignerActionEditorInterface) FocusInEventDefault(event gui.QFocusE
 }
 
 //export callbackQDesignerActionEditorInterface_FocusOutEvent
-func callbackQDesignerActionEditorInterface_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::focusOutEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -1072,7 +986,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectFocusOutEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "focusOutEvent", f)
 	}
 }
 
@@ -1081,7 +995,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "focusOutEvent")
 	}
 }
 
@@ -1102,10 +1016,10 @@ func (ptr *QDesignerActionEditorInterface) FocusOutEventDefault(event gui.QFocus
 }
 
 //export callbackQDesignerActionEditorInterface_HideEvent
-func callbackQDesignerActionEditorInterface_HideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::hideEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -1117,7 +1031,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectHideEvent(f func(event *gui.QH
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "hideEvent", f)
 	}
 }
 
@@ -1126,7 +1040,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "hideEvent")
 	}
 }
 
@@ -1147,10 +1061,10 @@ func (ptr *QDesignerActionEditorInterface) HideEventDefault(event gui.QHideEvent
 }
 
 //export callbackQDesignerActionEditorInterface_LeaveEvent
-func callbackQDesignerActionEditorInterface_LeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::leaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -1162,7 +1076,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectLeaveEvent(f func(event *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "leaveEvent", f)
 	}
 }
 
@@ -1171,7 +1085,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "leaveEvent")
 	}
 }
 
@@ -1192,10 +1106,10 @@ func (ptr *QDesignerActionEditorInterface) LeaveEventDefault(event core.QEvent_I
 }
 
 //export callbackQDesignerActionEditorInterface_MinimumSizeHint
-func callbackQDesignerActionEditorInterface_MinimumSizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerActionEditorInterface_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::minimumSizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -1207,7 +1121,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectMinimumSizeHint(f func() *core
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "minimumSizeHint", f)
 	}
 }
 
@@ -1216,7 +1130,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "minimumSizeHint")
 	}
 }
 
@@ -1243,10 +1157,10 @@ func (ptr *QDesignerActionEditorInterface) MinimumSizeHintDefault() *core.QSize 
 }
 
 //export callbackQDesignerActionEditorInterface_MoveEvent
-func callbackQDesignerActionEditorInterface_MoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::moveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -1258,7 +1172,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectMoveEvent(f func(event *gui.QM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "moveEvent", f)
 	}
 }
 
@@ -1267,7 +1181,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "moveEvent")
 	}
 }
 
@@ -1288,10 +1202,10 @@ func (ptr *QDesignerActionEditorInterface) MoveEventDefault(event gui.QMoveEvent
 }
 
 //export callbackQDesignerActionEditorInterface_PaintEvent
-func callbackQDesignerActionEditorInterface_PaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::paintEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -1303,7 +1217,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectPaintEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "paintEvent", f)
 	}
 }
 
@@ -1312,7 +1226,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "paintEvent")
 	}
 }
 
@@ -1333,13 +1247,13 @@ func (ptr *QDesignerActionEditorInterface) PaintEventDefault(event gui.QPaintEve
 }
 
 //export callbackQDesignerActionEditorInterface_SetEnabled
-func callbackQDesignerActionEditorInterface_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerActionEditorInterface_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setEnabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
+		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
 	}
 }
 
@@ -1348,7 +1262,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setEnabled", f)
 	}
 }
 
@@ -1357,7 +1271,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setEnabled")
 	}
 }
 
@@ -1365,7 +1279,7 @@ func (ptr *QDesignerActionEditorInterface) SetEnabled(vbo bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerActionEditorInterface_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -1373,15 +1287,15 @@ func (ptr *QDesignerActionEditorInterface) SetEnabledDefault(vbo bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerActionEditorInterface_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerActionEditorInterface_SetStyleSheet
-func callbackQDesignerActionEditorInterface_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
+func callbackQDesignerActionEditorInterface_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setStyleSheet")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -1393,7 +1307,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetStyleSheet(f func(styleShee
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setStyleSheet", f)
 	}
 }
 
@@ -1402,7 +1316,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setStyleSheet")
 	}
 }
 
@@ -1427,13 +1341,13 @@ func (ptr *QDesignerActionEditorInterface) SetStyleSheetDefault(styleSheet strin
 }
 
 //export callbackQDesignerActionEditorInterface_SetVisible
-func callbackQDesignerActionEditorInterface_SetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQDesignerActionEditorInterface_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
-		signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setVisible"); signal != nil {
+		signal.(func(bool))(int8(visible) != 0)
 	} else {
-		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
 	}
 }
 
@@ -1442,7 +1356,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetVisible(f func(visible bool
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setVisible", f)
 	}
 }
 
@@ -1451,7 +1365,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setVisible")
 	}
 }
 
@@ -1459,7 +1373,7 @@ func (ptr *QDesignerActionEditorInterface) SetVisible(visible bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerActionEditorInterface_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
@@ -1467,18 +1381,18 @@ func (ptr *QDesignerActionEditorInterface) SetVisibleDefault(visible bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerActionEditorInterface_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 //export callbackQDesignerActionEditorInterface_SetWindowModified
-func callbackQDesignerActionEditorInterface_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerActionEditorInterface_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setWindowModified")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
+		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
 	}
 }
 
@@ -1487,7 +1401,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetWindowModified(f func(vbo b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setWindowModified", f)
 	}
 }
 
@@ -1496,7 +1410,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setWindowModified")
 	}
 }
 
@@ -1504,7 +1418,7 @@ func (ptr *QDesignerActionEditorInterface) SetWindowModified(vbo bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetWindowModified(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerActionEditorInterface_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -1512,15 +1426,15 @@ func (ptr *QDesignerActionEditorInterface) SetWindowModifiedDefault(vbo bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerActionEditorInterface_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerActionEditorInterface_SetWindowTitle
-func callbackQDesignerActionEditorInterface_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
+func callbackQDesignerActionEditorInterface_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setWindowTitle")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -1532,7 +1446,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetWindowTitle(f func(vqs stri
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setWindowTitle", f)
 	}
 }
 
@@ -1541,7 +1455,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setWindowTitle")
 	}
 }
 
@@ -1566,10 +1480,10 @@ func (ptr *QDesignerActionEditorInterface) SetWindowTitleDefault(vqs string) {
 }
 
 //export callbackQDesignerActionEditorInterface_ShowEvent
-func callbackQDesignerActionEditorInterface_ShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::showEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -1581,7 +1495,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectShowEvent(f func(event *gui.QS
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showEvent", f)
 	}
 }
 
@@ -1590,7 +1504,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showEvent")
 	}
 }
 
@@ -1611,10 +1525,10 @@ func (ptr *QDesignerActionEditorInterface) ShowEventDefault(event gui.QShowEvent
 }
 
 //export callbackQDesignerActionEditorInterface_SizeHint
-func callbackQDesignerActionEditorInterface_SizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerActionEditorInterface_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::sizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -1626,7 +1540,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSizeHint(f func() *core.QSize)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "sizeHint", f)
 	}
 }
 
@@ -1635,7 +1549,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "sizeHint")
 	}
 }
 
@@ -1662,10 +1576,10 @@ func (ptr *QDesignerActionEditorInterface) SizeHintDefault() *core.QSize {
 }
 
 //export callbackQDesignerActionEditorInterface_ChangeEvent
-func callbackQDesignerActionEditorInterface_ChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::changeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -1677,7 +1591,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectChangeEvent(f func(event *core
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "changeEvent", f)
 	}
 }
 
@@ -1686,7 +1600,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "changeEvent")
 	}
 }
 
@@ -1707,14 +1621,14 @@ func (ptr *QDesignerActionEditorInterface) ChangeEventDefault(event core.QEvent_
 }
 
 //export callbackQDesignerActionEditorInterface_Close
-func callbackQDesignerActionEditorInterface_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerActionEditorInterface_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::close")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).CloseDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).CloseDefault())))
 }
 
 func (ptr *QDesignerActionEditorInterface) ConnectClose(f func() bool) {
@@ -1722,7 +1636,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "close", f)
 	}
 }
 
@@ -1731,7 +1645,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "close")
 	}
 }
 
@@ -1754,10 +1668,10 @@ func (ptr *QDesignerActionEditorInterface) CloseDefault() bool {
 }
 
 //export callbackQDesignerActionEditorInterface_CloseEvent
-func callbackQDesignerActionEditorInterface_CloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::closeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -1769,7 +1683,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectCloseEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "closeEvent", f)
 	}
 }
 
@@ -1778,7 +1692,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "closeEvent")
 	}
 }
 
@@ -1799,10 +1713,10 @@ func (ptr *QDesignerActionEditorInterface) CloseEventDefault(event gui.QCloseEve
 }
 
 //export callbackQDesignerActionEditorInterface_ContextMenuEvent
-func callbackQDesignerActionEditorInterface_ContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::contextMenuEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -1814,7 +1728,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectContextMenuEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "contextMenuEvent", f)
 	}
 }
 
@@ -1823,7 +1737,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "contextMenuEvent")
 	}
 }
 
@@ -1844,14 +1758,14 @@ func (ptr *QDesignerActionEditorInterface) ContextMenuEventDefault(event gui.QCo
 }
 
 //export callbackQDesignerActionEditorInterface_FocusNextPrevChild
-func callbackQDesignerActionEditorInterface_FocusNextPrevChild(ptr unsafe.Pointer, ptrName *C.char, next C.int) C.int {
+func callbackQDesignerActionEditorInterface_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::focusNextPrevChild")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusNextPrevChild"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(bool) bool)(int(next) != 0)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int(next) != 0)))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
 }
 
 func (ptr *QDesignerActionEditorInterface) ConnectFocusNextPrevChild(f func(next bool) bool) {
@@ -1859,7 +1773,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectFocusNextPrevChild(f func(next
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "focusNextPrevChild", f)
 	}
 }
 
@@ -1868,7 +1782,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "focusNextPrevChild")
 	}
 }
 
@@ -1876,7 +1790,7 @@ func (ptr *QDesignerActionEditorInterface) FocusNextPrevChild(next bool) bool {
 	defer qt.Recovering("QDesignerActionEditorInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerActionEditorInterface_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
@@ -1885,20 +1799,20 @@ func (ptr *QDesignerActionEditorInterface) FocusNextPrevChildDefault(next bool) 
 	defer qt.Recovering("QDesignerActionEditorInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerActionEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerActionEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerActionEditorInterface_HasHeightForWidth
-func callbackQDesignerActionEditorInterface_HasHeightForWidth(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerActionEditorInterface_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::hasHeightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasHeightForWidth"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).HasHeightForWidthDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).HasHeightForWidthDefault())))
 }
 
 func (ptr *QDesignerActionEditorInterface) ConnectHasHeightForWidth(f func() bool) {
@@ -1906,7 +1820,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectHasHeightForWidth(f func() boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "hasHeightForWidth", f)
 	}
 }
 
@@ -1915,7 +1829,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "hasHeightForWidth")
 	}
 }
 
@@ -1938,14 +1852,14 @@ func (ptr *QDesignerActionEditorInterface) HasHeightForWidthDefault() bool {
 }
 
 //export callbackQDesignerActionEditorInterface_HeightForWidth
-func callbackQDesignerActionEditorInterface_HeightForWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) C.int {
+func callbackQDesignerActionEditorInterface_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::heightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "heightForWidth"); signal != nil {
-		return C.int(signal.(func(int) int)(int(w)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
-	return C.int(NewQDesignerActionEditorInterfaceFromPointer(ptr).HeightForWidthDefault(int(w)))
+	return C.int(int32(NewQDesignerActionEditorInterfaceFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
 }
 
 func (ptr *QDesignerActionEditorInterface) ConnectHeightForWidth(f func(w int) int) {
@@ -1953,7 +1867,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectHeightForWidth(f func(w int) i
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "heightForWidth", f)
 	}
 }
 
@@ -1962,7 +1876,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "heightForWidth")
 	}
 }
 
@@ -1970,7 +1884,7 @@ func (ptr *QDesignerActionEditorInterface) HeightForWidth(w int) int {
 	defer qt.Recovering("QDesignerActionEditorInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerActionEditorInterface_HeightForWidth(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerActionEditorInterface_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
@@ -1979,16 +1893,16 @@ func (ptr *QDesignerActionEditorInterface) HeightForWidthDefault(w int) int {
 	defer qt.Recovering("QDesignerActionEditorInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerActionEditorInterface_HeightForWidthDefault(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerActionEditorInterface_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
 
 //export callbackQDesignerActionEditorInterface_Hide
-func callbackQDesignerActionEditorInterface_Hide(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::hide")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).HideDefault()
@@ -2000,7 +1914,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hide", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "hide", f)
 	}
 }
 
@@ -2009,7 +1923,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hide")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "hide")
 	}
 }
 
@@ -2030,10 +1944,10 @@ func (ptr *QDesignerActionEditorInterface) HideDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_InputMethodEvent
-func callbackQDesignerActionEditorInterface_InputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::inputMethodEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -2045,7 +1959,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectInputMethodEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "inputMethodEvent", f)
 	}
 }
 
@@ -2054,7 +1968,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "inputMethodEvent")
 	}
 }
 
@@ -2075,10 +1989,10 @@ func (ptr *QDesignerActionEditorInterface) InputMethodEventDefault(event gui.QIn
 }
 
 //export callbackQDesignerActionEditorInterface_InputMethodQuery
-func callbackQDesignerActionEditorInterface_InputMethodQuery(ptr unsafe.Pointer, ptrName *C.char, query C.int) unsafe.Pointer {
+func callbackQDesignerActionEditorInterface_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::inputMethodQuery")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -2090,7 +2004,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectInputMethodQuery(f func(query 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "inputMethodQuery", f)
 	}
 }
 
@@ -2099,7 +2013,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "inputMethodQuery")
 	}
 }
 
@@ -2107,7 +2021,7 @@ func (ptr *QDesignerActionEditorInterface) InputMethodQuery(query core.Qt__Input
 	defer qt.Recovering("QDesignerActionEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2118,7 +2032,7 @@ func (ptr *QDesignerActionEditorInterface) InputMethodQueryDefault(query core.Qt
 	defer qt.Recovering("QDesignerActionEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerActionEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -2126,10 +2040,10 @@ func (ptr *QDesignerActionEditorInterface) InputMethodQueryDefault(query core.Qt
 }
 
 //export callbackQDesignerActionEditorInterface_KeyPressEvent
-func callbackQDesignerActionEditorInterface_KeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::keyPressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -2141,7 +2055,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectKeyPressEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "keyPressEvent", f)
 	}
 }
 
@@ -2150,7 +2064,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "keyPressEvent")
 	}
 }
 
@@ -2171,10 +2085,10 @@ func (ptr *QDesignerActionEditorInterface) KeyPressEventDefault(event gui.QKeyEv
 }
 
 //export callbackQDesignerActionEditorInterface_KeyReleaseEvent
-func callbackQDesignerActionEditorInterface_KeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::keyReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -2186,7 +2100,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectKeyReleaseEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "keyReleaseEvent", f)
 	}
 }
 
@@ -2195,7 +2109,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "keyReleaseEvent")
 	}
 }
 
@@ -2216,10 +2130,10 @@ func (ptr *QDesignerActionEditorInterface) KeyReleaseEventDefault(event gui.QKey
 }
 
 //export callbackQDesignerActionEditorInterface_Lower
-func callbackQDesignerActionEditorInterface_Lower(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::lower")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).LowerDefault()
@@ -2231,7 +2145,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "lower", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "lower", f)
 	}
 }
 
@@ -2240,7 +2154,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "lower")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "lower")
 	}
 }
 
@@ -2261,10 +2175,10 @@ func (ptr *QDesignerActionEditorInterface) LowerDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_MouseDoubleClickEvent
-func callbackQDesignerActionEditorInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2276,7 +2190,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectMouseDoubleClickEvent(f func(e
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
 	}
 }
 
@@ -2285,7 +2199,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
 	}
 }
 
@@ -2306,10 +2220,10 @@ func (ptr *QDesignerActionEditorInterface) MouseDoubleClickEventDefault(event gu
 }
 
 //export callbackQDesignerActionEditorInterface_MouseMoveEvent
-func callbackQDesignerActionEditorInterface_MouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::mouseMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2321,7 +2235,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectMouseMoveEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mouseMoveEvent", f)
 	}
 }
 
@@ -2330,7 +2244,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mouseMoveEvent")
 	}
 }
 
@@ -2351,10 +2265,10 @@ func (ptr *QDesignerActionEditorInterface) MouseMoveEventDefault(event gui.QMous
 }
 
 //export callbackQDesignerActionEditorInterface_MousePressEvent
-func callbackQDesignerActionEditorInterface_MousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::mousePressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2366,7 +2280,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectMousePressEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mousePressEvent", f)
 	}
 }
 
@@ -2375,7 +2289,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mousePressEvent")
 	}
 }
 
@@ -2396,10 +2310,10 @@ func (ptr *QDesignerActionEditorInterface) MousePressEventDefault(event gui.QMou
 }
 
 //export callbackQDesignerActionEditorInterface_MouseReleaseEvent
-func callbackQDesignerActionEditorInterface_MouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2411,7 +2325,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectMouseReleaseEvent(f func(event
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
 	}
 }
 
@@ -2420,7 +2334,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "mouseReleaseEvent")
 	}
 }
 
@@ -2441,14 +2355,14 @@ func (ptr *QDesignerActionEditorInterface) MouseReleaseEventDefault(event gui.QM
 }
 
 //export callbackQDesignerActionEditorInterface_NativeEvent
-func callbackQDesignerActionEditorInterface_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventType *C.char, message unsafe.Pointer, result C.long) C.int {
+func callbackQDesignerActionEditorInterface_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::nativeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 }
 
 func (ptr *QDesignerActionEditorInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -2456,7 +2370,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectNativeEvent(f func(eventType s
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "nativeEvent", f)
 	}
 }
 
@@ -2465,7 +2379,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "nativeEvent")
 	}
 }
 
@@ -2475,7 +2389,7 @@ func (ptr *QDesignerActionEditorInterface) NativeEvent(eventType string, message
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerActionEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerActionEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -2486,16 +2400,16 @@ func (ptr *QDesignerActionEditorInterface) NativeEventDefault(eventType string, 
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerActionEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerActionEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerActionEditorInterface_Raise
-func callbackQDesignerActionEditorInterface_Raise(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::raise")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).RaiseDefault()
@@ -2507,7 +2421,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "raise", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "raise", f)
 	}
 }
 
@@ -2516,7 +2430,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "raise")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "raise")
 	}
 }
 
@@ -2537,10 +2451,10 @@ func (ptr *QDesignerActionEditorInterface) RaiseDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_Repaint
-func callbackQDesignerActionEditorInterface_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::repaint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).RepaintDefault()
@@ -2552,7 +2466,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "repaint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "repaint", f)
 	}
 }
 
@@ -2561,7 +2475,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "repaint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "repaint")
 	}
 }
 
@@ -2582,10 +2496,10 @@ func (ptr *QDesignerActionEditorInterface) RepaintDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_ResizeEvent
-func callbackQDesignerActionEditorInterface_ResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::resizeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -2597,7 +2511,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectResizeEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "resizeEvent", f)
 	}
 }
 
@@ -2606,7 +2520,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "resizeEvent")
 	}
 }
 
@@ -2627,13 +2541,13 @@ func (ptr *QDesignerActionEditorInterface) ResizeEventDefault(event gui.QResizeE
 }
 
 //export callbackQDesignerActionEditorInterface_SetDisabled
-func callbackQDesignerActionEditorInterface_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
+func callbackQDesignerActionEditorInterface_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setDisabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
-		signal.(func(bool))(int(disable) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setDisabled"); signal != nil {
+		signal.(func(bool))(int8(disable) != 0)
 	} else {
-		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
+		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
 	}
 }
 
@@ -2642,7 +2556,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetDisabled(f func(disable boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setDisabled", f)
 	}
 }
 
@@ -2651,7 +2565,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setDisabled")
 	}
 }
 
@@ -2659,7 +2573,7 @@ func (ptr *QDesignerActionEditorInterface) SetDisabled(disable bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerActionEditorInterface_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
@@ -2667,15 +2581,15 @@ func (ptr *QDesignerActionEditorInterface) SetDisabledDefault(disable bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerActionEditorInterface_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 //export callbackQDesignerActionEditorInterface_SetFocus2
-func callbackQDesignerActionEditorInterface_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetFocus2Default()
@@ -2687,7 +2601,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setFocus2", f)
 	}
 }
 
@@ -2696,7 +2610,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setFocus2")
 	}
 }
 
@@ -2717,13 +2631,13 @@ func (ptr *QDesignerActionEditorInterface) SetFocus2Default() {
 }
 
 //export callbackQDesignerActionEditorInterface_SetHidden
-func callbackQDesignerActionEditorInterface_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
+func callbackQDesignerActionEditorInterface_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::setHidden")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
-		signal.(func(bool))(int(hidden) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "setHidden"); signal != nil {
+		signal.(func(bool))(int8(hidden) != 0)
 	} else {
-		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
+		NewQDesignerActionEditorInterfaceFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
 	}
 }
 
@@ -2732,7 +2646,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetHidden(f func(hidden bool))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setHidden", f)
 	}
 }
 
@@ -2741,7 +2655,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setHidden")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "setHidden")
 	}
 }
 
@@ -2749,7 +2663,7 @@ func (ptr *QDesignerActionEditorInterface) SetHidden(hidden bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerActionEditorInterface_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
@@ -2757,15 +2671,15 @@ func (ptr *QDesignerActionEditorInterface) SetHiddenDefault(hidden bool) {
 	defer qt.Recovering("QDesignerActionEditorInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerActionEditorInterface_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerActionEditorInterface_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 //export callbackQDesignerActionEditorInterface_Show
-func callbackQDesignerActionEditorInterface_Show(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::show")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ShowDefault()
@@ -2777,7 +2691,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "show", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "show", f)
 	}
 }
 
@@ -2786,7 +2700,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "show")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "show")
 	}
 }
 
@@ -2807,10 +2721,10 @@ func (ptr *QDesignerActionEditorInterface) ShowDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_ShowFullScreen
-func callbackQDesignerActionEditorInterface_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::showFullScreen")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ShowFullScreenDefault()
@@ -2822,7 +2736,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showFullScreen", f)
 	}
 }
 
@@ -2831,7 +2745,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showFullScreen")
 	}
 }
 
@@ -2852,10 +2766,10 @@ func (ptr *QDesignerActionEditorInterface) ShowFullScreenDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_ShowMaximized
-func callbackQDesignerActionEditorInterface_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::showMaximized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ShowMaximizedDefault()
@@ -2867,7 +2781,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showMaximized", f)
 	}
 }
 
@@ -2876,7 +2790,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showMaximized")
 	}
 }
 
@@ -2897,10 +2811,10 @@ func (ptr *QDesignerActionEditorInterface) ShowMaximizedDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_ShowMinimized
-func callbackQDesignerActionEditorInterface_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::showMinimized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ShowMinimizedDefault()
@@ -2912,7 +2826,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showMinimized", f)
 	}
 }
 
@@ -2921,7 +2835,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showMinimized")
 	}
 }
 
@@ -2942,10 +2856,10 @@ func (ptr *QDesignerActionEditorInterface) ShowMinimizedDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_ShowNormal
-func callbackQDesignerActionEditorInterface_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::showNormal")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ShowNormalDefault()
@@ -2957,7 +2871,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showNormal", f)
 	}
 }
 
@@ -2966,7 +2880,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showNormal")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "showNormal")
 	}
 }
 
@@ -2987,10 +2901,10 @@ func (ptr *QDesignerActionEditorInterface) ShowNormalDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_TabletEvent
-func callbackQDesignerActionEditorInterface_TabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::tabletEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -3002,7 +2916,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectTabletEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "tabletEvent", f)
 	}
 }
 
@@ -3011,7 +2925,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "tabletEvent")
 	}
 }
 
@@ -3032,10 +2946,10 @@ func (ptr *QDesignerActionEditorInterface) TabletEventDefault(event gui.QTabletE
 }
 
 //export callbackQDesignerActionEditorInterface_Update
-func callbackQDesignerActionEditorInterface_Update(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::update")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).UpdateDefault()
@@ -3047,7 +2961,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "update", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "update", f)
 	}
 }
 
@@ -3056,7 +2970,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "update")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "update")
 	}
 }
 
@@ -3077,10 +2991,10 @@ func (ptr *QDesignerActionEditorInterface) UpdateDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_UpdateMicroFocus
-func callbackQDesignerActionEditorInterface_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::updateMicroFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).UpdateMicroFocusDefault()
@@ -3092,7 +3006,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "updateMicroFocus", f)
 	}
 }
 
@@ -3101,7 +3015,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "updateMicroFocus")
 	}
 }
 
@@ -3122,10 +3036,10 @@ func (ptr *QDesignerActionEditorInterface) UpdateMicroFocusDefault() {
 }
 
 //export callbackQDesignerActionEditorInterface_WheelEvent
-func callbackQDesignerActionEditorInterface_WheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::wheelEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -3137,7 +3051,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectWheelEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "wheelEvent", f)
 	}
 }
 
@@ -3146,7 +3060,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "wheelEvent")
 	}
 }
 
@@ -3167,10 +3081,10 @@ func (ptr *QDesignerActionEditorInterface) WheelEventDefault(event gui.QWheelEve
 }
 
 //export callbackQDesignerActionEditorInterface_TimerEvent
-func callbackQDesignerActionEditorInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -3182,7 +3096,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectTimerEvent(f func(event *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -3191,7 +3105,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -3212,10 +3126,10 @@ func (ptr *QDesignerActionEditorInterface) TimerEventDefault(event core.QTimerEv
 }
 
 //export callbackQDesignerActionEditorInterface_ChildEvent
-func callbackQDesignerActionEditorInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -3227,7 +3141,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectChildEvent(f func(event *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -3236,7 +3150,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -3257,10 +3171,10 @@ func (ptr *QDesignerActionEditorInterface) ChildEventDefault(event core.QChildEv
 }
 
 //export callbackQDesignerActionEditorInterface_ConnectNotify
-func callbackQDesignerActionEditorInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3272,7 +3186,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectConnectNotify(f func(sign *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -3281,7 +3195,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -3302,10 +3216,10 @@ func (ptr *QDesignerActionEditorInterface) ConnectNotifyDefault(sign core.QMetaM
 }
 
 //export callbackQDesignerActionEditorInterface_CustomEvent
-func callbackQDesignerActionEditorInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -3317,7 +3231,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectCustomEvent(f func(event *core
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -3326,7 +3240,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -3347,10 +3261,10 @@ func (ptr *QDesignerActionEditorInterface) CustomEventDefault(event core.QEvent_
 }
 
 //export callbackQDesignerActionEditorInterface_DeleteLater
-func callbackQDesignerActionEditorInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerActionEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -3362,7 +3276,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -3371,7 +3285,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -3379,7 +3293,7 @@ func (ptr *QDesignerActionEditorInterface) DeleteLater() {
 	defer qt.Recovering("QDesignerActionEditorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerActionEditorInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -3389,17 +3303,17 @@ func (ptr *QDesignerActionEditorInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDesignerActionEditorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerActionEditorInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerActionEditorInterface_DisconnectNotify
-func callbackQDesignerActionEditorInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerActionEditorInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerActionEditorInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3411,7 +3325,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectDisconnectNotify(f func(sign *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -3420,7 +3334,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -3441,14 +3355,14 @@ func (ptr *QDesignerActionEditorInterface) DisconnectNotifyDefault(sign core.QMe
 }
 
 //export callbackQDesignerActionEditorInterface_EventFilter
-func callbackQDesignerActionEditorInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDesignerActionEditorInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerActionEditorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDesignerActionEditorInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -3456,7 +3370,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectEventFilter(f func(watched *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -3465,7 +3379,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -3488,10 +3402,10 @@ func (ptr *QDesignerActionEditorInterface) EventFilterDefault(watched core.QObje
 }
 
 //export callbackQDesignerActionEditorInterface_MetaObject
-func callbackQDesignerActionEditorInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerActionEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerActionEditorInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -3503,7 +3417,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectMetaObject(f func() *core.QMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -3512,7 +3426,7 @@ func (ptr *QDesignerActionEditorInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerActionEditorInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -3572,19 +3486,11 @@ func NewQDesignerContainerExtensionFromPointer(ptr unsafe.Pointer) *QDesignerCon
 	return n
 }
 
-func newQDesignerContainerExtensionFromPointer(ptr unsafe.Pointer) *QDesignerContainerExtension {
-	var n = NewQDesignerContainerExtensionFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerContainerExtension_") {
-		n.SetObjectNameAbs("QDesignerContainerExtension_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerContainerExtension_AddWidget
-func callbackQDesignerContainerExtension_AddWidget(ptr unsafe.Pointer, ptrName *C.char, page unsafe.Pointer) {
+func callbackQDesignerContainerExtension_AddWidget(ptr unsafe.Pointer, page unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerContainerExtension::addWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "addWidget"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "addWidget"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(page))
 	}
 
@@ -3595,7 +3501,7 @@ func (ptr *QDesignerContainerExtension) ConnectAddWidget(f func(page *widgets.QW
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "addWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "addWidget", f)
 	}
 }
 
@@ -3604,7 +3510,7 @@ func (ptr *QDesignerContainerExtension) DisconnectAddWidget(page widgets.QWidget
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "addWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "addWidget")
 	}
 }
 
@@ -3617,14 +3523,14 @@ func (ptr *QDesignerContainerExtension) AddWidget(page widgets.QWidget_ITF) {
 }
 
 //export callbackQDesignerContainerExtension_CanAddWidget
-func callbackQDesignerContainerExtension_CanAddWidget(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerContainerExtension_CanAddWidget(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerContainerExtension::canAddWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "canAddWidget"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "canAddWidget"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerContainerExtensionFromPointer(ptr).CanAddWidgetDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerContainerExtensionFromPointer(ptr).CanAddWidgetDefault())))
 }
 
 func (ptr *QDesignerContainerExtension) ConnectCanAddWidget(f func() bool) {
@@ -3632,7 +3538,7 @@ func (ptr *QDesignerContainerExtension) ConnectCanAddWidget(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "canAddWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "canAddWidget", f)
 	}
 }
 
@@ -3641,7 +3547,7 @@ func (ptr *QDesignerContainerExtension) DisconnectCanAddWidget() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "canAddWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "canAddWidget")
 	}
 }
 
@@ -3664,14 +3570,14 @@ func (ptr *QDesignerContainerExtension) CanAddWidgetDefault() bool {
 }
 
 //export callbackQDesignerContainerExtension_CanRemove
-func callbackQDesignerContainerExtension_CanRemove(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerContainerExtension_CanRemove(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerContainerExtension::canRemove")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "canRemove"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "canRemove"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerContainerExtensionFromPointer(ptr).CanRemoveDefault(int(index))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerContainerExtensionFromPointer(ptr).CanRemoveDefault(int(int32(index))))))
 }
 
 func (ptr *QDesignerContainerExtension) ConnectCanRemove(f func(index int) bool) {
@@ -3679,7 +3585,7 @@ func (ptr *QDesignerContainerExtension) ConnectCanRemove(f func(index int) bool)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "canRemove", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "canRemove", f)
 	}
 }
 
@@ -3688,7 +3594,7 @@ func (ptr *QDesignerContainerExtension) DisconnectCanRemove() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "canRemove")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "canRemove")
 	}
 }
 
@@ -3696,7 +3602,7 @@ func (ptr *QDesignerContainerExtension) CanRemove(index int) bool {
 	defer qt.Recovering("QDesignerContainerExtension::canRemove")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerContainerExtension_CanRemove(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerContainerExtension_CanRemove(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
@@ -3705,20 +3611,20 @@ func (ptr *QDesignerContainerExtension) CanRemoveDefault(index int) bool {
 	defer qt.Recovering("QDesignerContainerExtension::canRemove")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerContainerExtension_CanRemoveDefault(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerContainerExtension_CanRemoveDefault(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerContainerExtension_Count
-func callbackQDesignerContainerExtension_Count(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerContainerExtension_Count(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerContainerExtension::count")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "count"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "count"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerContainerExtension) ConnectCount(f func() int) {
@@ -3726,7 +3632,7 @@ func (ptr *QDesignerContainerExtension) ConnectCount(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "count", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "count", f)
 	}
 }
 
@@ -3735,7 +3641,7 @@ func (ptr *QDesignerContainerExtension) DisconnectCount() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "count")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "count")
 	}
 }
 
@@ -3743,20 +3649,20 @@ func (ptr *QDesignerContainerExtension) Count() int {
 	defer qt.Recovering("QDesignerContainerExtension::count")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerContainerExtension_Count(ptr.Pointer()))
+		return int(int32(C.QDesignerContainerExtension_Count(ptr.Pointer())))
 	}
 	return 0
 }
 
 //export callbackQDesignerContainerExtension_CurrentIndex
-func callbackQDesignerContainerExtension_CurrentIndex(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerContainerExtension_CurrentIndex(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerContainerExtension::currentIndex")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "currentIndex"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "currentIndex"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerContainerExtension) ConnectCurrentIndex(f func() int) {
@@ -3764,7 +3670,7 @@ func (ptr *QDesignerContainerExtension) ConnectCurrentIndex(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "currentIndex", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "currentIndex", f)
 	}
 }
 
@@ -3773,7 +3679,7 @@ func (ptr *QDesignerContainerExtension) DisconnectCurrentIndex() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "currentIndex")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "currentIndex")
 	}
 }
 
@@ -3781,17 +3687,17 @@ func (ptr *QDesignerContainerExtension) CurrentIndex() int {
 	defer qt.Recovering("QDesignerContainerExtension::currentIndex")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerContainerExtension_CurrentIndex(ptr.Pointer()))
+		return int(int32(C.QDesignerContainerExtension_CurrentIndex(ptr.Pointer())))
 	}
 	return 0
 }
 
 //export callbackQDesignerContainerExtension_InsertWidget
-func callbackQDesignerContainerExtension_InsertWidget(ptr unsafe.Pointer, ptrName *C.char, index C.int, page unsafe.Pointer) {
+func callbackQDesignerContainerExtension_InsertWidget(ptr unsafe.Pointer, index C.int, page unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerContainerExtension::insertWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "insertWidget"); signal != nil {
-		signal.(func(int, *widgets.QWidget))(int(index), widgets.NewQWidgetFromPointer(page))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "insertWidget"); signal != nil {
+		signal.(func(int, *widgets.QWidget))(int(int32(index)), widgets.NewQWidgetFromPointer(page))
 	}
 
 }
@@ -3801,7 +3707,7 @@ func (ptr *QDesignerContainerExtension) ConnectInsertWidget(f func(index int, pa
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "insertWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "insertWidget", f)
 	}
 }
 
@@ -3810,7 +3716,7 @@ func (ptr *QDesignerContainerExtension) DisconnectInsertWidget(index int, page w
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "insertWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "insertWidget")
 	}
 }
 
@@ -3818,16 +3724,16 @@ func (ptr *QDesignerContainerExtension) InsertWidget(index int, page widgets.QWi
 	defer qt.Recovering("QDesignerContainerExtension::insertWidget")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerContainerExtension_InsertWidget(ptr.Pointer(), C.int(index), widgets.PointerFromQWidget(page))
+		C.QDesignerContainerExtension_InsertWidget(ptr.Pointer(), C.int(int32(index)), widgets.PointerFromQWidget(page))
 	}
 }
 
 //export callbackQDesignerContainerExtension_Remove
-func callbackQDesignerContainerExtension_Remove(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
+func callbackQDesignerContainerExtension_Remove(ptr unsafe.Pointer, index C.int) {
 	defer qt.Recovering("callback QDesignerContainerExtension::remove")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "remove"); signal != nil {
-		signal.(func(int))(int(index))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "remove"); signal != nil {
+		signal.(func(int))(int(int32(index)))
 	}
 
 }
@@ -3837,7 +3743,7 @@ func (ptr *QDesignerContainerExtension) ConnectRemove(f func(index int)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "remove", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "remove", f)
 	}
 }
 
@@ -3846,7 +3752,7 @@ func (ptr *QDesignerContainerExtension) DisconnectRemove(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "remove")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "remove")
 	}
 }
 
@@ -3854,16 +3760,16 @@ func (ptr *QDesignerContainerExtension) Remove(index int) {
 	defer qt.Recovering("QDesignerContainerExtension::remove")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerContainerExtension_Remove(ptr.Pointer(), C.int(index))
+		C.QDesignerContainerExtension_Remove(ptr.Pointer(), C.int(int32(index)))
 	}
 }
 
 //export callbackQDesignerContainerExtension_SetCurrentIndex
-func callbackQDesignerContainerExtension_SetCurrentIndex(ptr unsafe.Pointer, ptrName *C.char, index C.int) {
+func callbackQDesignerContainerExtension_SetCurrentIndex(ptr unsafe.Pointer, index C.int) {
 	defer qt.Recovering("callback QDesignerContainerExtension::setCurrentIndex")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setCurrentIndex"); signal != nil {
-		signal.(func(int))(int(index))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "setCurrentIndex"); signal != nil {
+		signal.(func(int))(int(int32(index)))
 	}
 
 }
@@ -3873,7 +3779,7 @@ func (ptr *QDesignerContainerExtension) ConnectSetCurrentIndex(f func(index int)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setCurrentIndex", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "setCurrentIndex", f)
 	}
 }
 
@@ -3882,7 +3788,7 @@ func (ptr *QDesignerContainerExtension) DisconnectSetCurrentIndex(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setCurrentIndex")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "setCurrentIndex")
 	}
 }
 
@@ -3890,16 +3796,16 @@ func (ptr *QDesignerContainerExtension) SetCurrentIndex(index int) {
 	defer qt.Recovering("QDesignerContainerExtension::setCurrentIndex")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerContainerExtension_SetCurrentIndex(ptr.Pointer(), C.int(index))
+		C.QDesignerContainerExtension_SetCurrentIndex(ptr.Pointer(), C.int(int32(index)))
 	}
 }
 
 //export callbackQDesignerContainerExtension_Widget
-func callbackQDesignerContainerExtension_Widget(ptr unsafe.Pointer, ptrName *C.char, index C.int) unsafe.Pointer {
+func callbackQDesignerContainerExtension_Widget(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerContainerExtension::widget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "widget"); signal != nil {
-		return widgets.PointerFromQWidget(signal.(func(int) *widgets.QWidget)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr), "widget"); signal != nil {
+		return widgets.PointerFromQWidget(signal.(func(int) *widgets.QWidget)(int(int32(index))))
 	}
 
 	return widgets.PointerFromQWidget(nil)
@@ -3910,7 +3816,7 @@ func (ptr *QDesignerContainerExtension) ConnectWidget(f func(index int) *widgets
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "widget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "widget", f)
 	}
 }
 
@@ -3919,7 +3825,7 @@ func (ptr *QDesignerContainerExtension) DisconnectWidget(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "widget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()), "widget")
 	}
 }
 
@@ -3927,7 +3833,7 @@ func (ptr *QDesignerContainerExtension) Widget(index int) *widgets.QWidget {
 	defer qt.Recovering("QDesignerContainerExtension::widget")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQWidgetFromPointer(C.QDesignerContainerExtension_Widget(ptr.Pointer(), C.int(index)))
+		return widgets.NewQWidgetFromPointer(C.QDesignerContainerExtension_Widget(ptr.Pointer(), C.int(int32(index))))
 	}
 	return nil
 }
@@ -3936,28 +3842,9 @@ func (ptr *QDesignerContainerExtension) DestroyQDesignerContainerExtension() {
 	defer qt.Recovering("QDesignerContainerExtension::~QDesignerContainerExtension")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerContainerExtension(%v)", ptr.Pointer()))
 		C.QDesignerContainerExtension_DestroyQDesignerContainerExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerContainerExtension) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerContainerExtension::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerContainerExtension_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerContainerExtension) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerContainerExtension::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerContainerExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -3998,41 +3885,13 @@ func NewQDesignerCustomWidgetCollectionInterfaceFromPointer(ptr unsafe.Pointer) 
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDesignerCustomWidgetCollectionInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerCustomWidgetCollectionInterface {
-	var n = NewQDesignerCustomWidgetCollectionInterfaceFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerCustomWidgetCollectionInterface_") {
-		n.SetObjectNameAbs("QDesignerCustomWidgetCollectionInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QDesignerCustomWidgetCollectionInterface) DestroyQDesignerCustomWidgetCollectionInterface() {
 	defer qt.Recovering("QDesignerCustomWidgetCollectionInterface::~QDesignerCustomWidgetCollectionInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerCustomWidgetCollectionInterface(%v)", ptr.Pointer()))
 		C.QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerCustomWidgetCollectionInterface) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerCustomWidgetCollectionInterface::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerCustomWidgetCollectionInterface_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerCustomWidgetCollectionInterface) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerCustomWidgetCollectionInterface::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerCustomWidgetCollectionInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -4074,19 +3933,11 @@ func NewQDesignerCustomWidgetInterfaceFromPointer(ptr unsafe.Pointer) *QDesigner
 	return n
 }
 
-func newQDesignerCustomWidgetInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerCustomWidgetInterface {
-	var n = NewQDesignerCustomWidgetInterfaceFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerCustomWidgetInterface_") {
-		n.SetObjectNameAbs("QDesignerCustomWidgetInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerCustomWidgetInterface_CodeTemplate
-func callbackQDesignerCustomWidgetInterface_CodeTemplate(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerCustomWidgetInterface_CodeTemplate(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::codeTemplate")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "codeTemplate"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "codeTemplate"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -4098,7 +3949,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectCodeTemplate(f func() string) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "codeTemplate", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "codeTemplate", f)
 	}
 }
 
@@ -4107,7 +3958,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectCodeTemplate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "codeTemplate")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "codeTemplate")
 	}
 }
 
@@ -4130,10 +3981,10 @@ func (ptr *QDesignerCustomWidgetInterface) CodeTemplateDefault() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_CreateWidget
-func callbackQDesignerCustomWidgetInterface_CreateWidget(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer) unsafe.Pointer {
+func callbackQDesignerCustomWidgetInterface_CreateWidget(ptr unsafe.Pointer, parent unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::createWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "createWidget"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "createWidget"); signal != nil {
 		return widgets.PointerFromQWidget(signal.(func(*widgets.QWidget) *widgets.QWidget)(widgets.NewQWidgetFromPointer(parent)))
 	}
 
@@ -4145,7 +3996,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectCreateWidget(f func(parent *wi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "createWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "createWidget", f)
 	}
 }
 
@@ -4154,7 +4005,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectCreateWidget(parent widgets
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "createWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "createWidget")
 	}
 }
 
@@ -4168,10 +4019,10 @@ func (ptr *QDesignerCustomWidgetInterface) CreateWidget(parent widgets.QWidget_I
 }
 
 //export callbackQDesignerCustomWidgetInterface_DomXml
-func callbackQDesignerCustomWidgetInterface_DomXml(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerCustomWidgetInterface_DomXml(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::domXml")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "domXml"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "domXml"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -4183,7 +4034,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectDomXml(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "domXml", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "domXml", f)
 	}
 }
 
@@ -4192,7 +4043,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectDomXml() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "domXml")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "domXml")
 	}
 }
 
@@ -4215,10 +4066,10 @@ func (ptr *QDesignerCustomWidgetInterface) DomXmlDefault() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_Group
-func callbackQDesignerCustomWidgetInterface_Group(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerCustomWidgetInterface_Group(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::group")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "group"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "group"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -4230,7 +4081,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectGroup(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "group", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "group", f)
 	}
 }
 
@@ -4239,7 +4090,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectGroup() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "group")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "group")
 	}
 }
 
@@ -4253,10 +4104,10 @@ func (ptr *QDesignerCustomWidgetInterface) Group() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_Icon
-func callbackQDesignerCustomWidgetInterface_Icon(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerCustomWidgetInterface_Icon(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::icon")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "icon"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "icon"); signal != nil {
 		return gui.PointerFromQIcon(signal.(func() *gui.QIcon)())
 	}
 
@@ -4268,7 +4119,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectIcon(f func() *gui.QIcon) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "icon", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "icon", f)
 	}
 }
 
@@ -4277,7 +4128,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIcon() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "icon")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "icon")
 	}
 }
 
@@ -4293,10 +4144,10 @@ func (ptr *QDesignerCustomWidgetInterface) Icon() *gui.QIcon {
 }
 
 //export callbackQDesignerCustomWidgetInterface_IncludeFile
-func callbackQDesignerCustomWidgetInterface_IncludeFile(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerCustomWidgetInterface_IncludeFile(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::includeFile")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "includeFile"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "includeFile"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -4308,7 +4159,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectIncludeFile(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "includeFile", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "includeFile", f)
 	}
 }
 
@@ -4317,7 +4168,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIncludeFile() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "includeFile")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "includeFile")
 	}
 }
 
@@ -4331,10 +4182,10 @@ func (ptr *QDesignerCustomWidgetInterface) IncludeFile() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_Initialize
-func callbackQDesignerCustomWidgetInterface_Initialize(ptr unsafe.Pointer, ptrName *C.char, formEditor unsafe.Pointer) {
+func callbackQDesignerCustomWidgetInterface_Initialize(ptr unsafe.Pointer, formEditor unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::initialize")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "initialize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "initialize"); signal != nil {
 		signal.(func(*QDesignerFormEditorInterface))(NewQDesignerFormEditorInterfaceFromPointer(formEditor))
 	} else {
 		NewQDesignerCustomWidgetInterfaceFromPointer(ptr).InitializeDefault(NewQDesignerFormEditorInterfaceFromPointer(formEditor))
@@ -4346,7 +4197,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectInitialize(f func(formEditor *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "initialize", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "initialize", f)
 	}
 }
 
@@ -4355,7 +4206,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectInitialize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "initialize")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "initialize")
 	}
 }
 
@@ -4376,14 +4227,14 @@ func (ptr *QDesignerCustomWidgetInterface) InitializeDefault(formEditor QDesigne
 }
 
 //export callbackQDesignerCustomWidgetInterface_IsContainer
-func callbackQDesignerCustomWidgetInterface_IsContainer(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerCustomWidgetInterface_IsContainer(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::isContainer")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isContainer"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "isContainer"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectIsContainer(f func() bool) {
@@ -4391,7 +4242,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectIsContainer(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isContainer", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "isContainer", f)
 	}
 }
 
@@ -4400,7 +4251,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIsContainer() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isContainer")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "isContainer")
 	}
 }
 
@@ -4414,14 +4265,14 @@ func (ptr *QDesignerCustomWidgetInterface) IsContainer() bool {
 }
 
 //export callbackQDesignerCustomWidgetInterface_IsInitialized
-func callbackQDesignerCustomWidgetInterface_IsInitialized(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerCustomWidgetInterface_IsInitialized(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::isInitialized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isInitialized"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "isInitialized"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerCustomWidgetInterfaceFromPointer(ptr).IsInitializedDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerCustomWidgetInterfaceFromPointer(ptr).IsInitializedDefault())))
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectIsInitialized(f func() bool) {
@@ -4429,7 +4280,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectIsInitialized(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isInitialized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "isInitialized", f)
 	}
 }
 
@@ -4438,7 +4289,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectIsInitialized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isInitialized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "isInitialized")
 	}
 }
 
@@ -4461,10 +4312,10 @@ func (ptr *QDesignerCustomWidgetInterface) IsInitializedDefault() bool {
 }
 
 //export callbackQDesignerCustomWidgetInterface_Name
-func callbackQDesignerCustomWidgetInterface_Name(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerCustomWidgetInterface_Name(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::name")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "name"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "name"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -4476,7 +4327,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectName(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "name", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "name", f)
 	}
 }
 
@@ -4485,7 +4336,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectName() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "name")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "name")
 	}
 }
 
@@ -4499,10 +4350,10 @@ func (ptr *QDesignerCustomWidgetInterface) Name() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_ToolTip
-func callbackQDesignerCustomWidgetInterface_ToolTip(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerCustomWidgetInterface_ToolTip(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::toolTip")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "toolTip"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "toolTip"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -4514,7 +4365,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectToolTip(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "toolTip", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "toolTip", f)
 	}
 }
 
@@ -4523,7 +4374,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectToolTip() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "toolTip")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "toolTip")
 	}
 }
 
@@ -4537,10 +4388,10 @@ func (ptr *QDesignerCustomWidgetInterface) ToolTip() string {
 }
 
 //export callbackQDesignerCustomWidgetInterface_WhatsThis
-func callbackQDesignerCustomWidgetInterface_WhatsThis(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerCustomWidgetInterface_WhatsThis(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerCustomWidgetInterface::whatsThis")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "whatsThis"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr), "whatsThis"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -4552,7 +4403,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectWhatsThis(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "whatsThis", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "whatsThis", f)
 	}
 }
 
@@ -4561,7 +4412,7 @@ func (ptr *QDesignerCustomWidgetInterface) DisconnectWhatsThis() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "whatsThis")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()), "whatsThis")
 	}
 }
 
@@ -4578,28 +4429,9 @@ func (ptr *QDesignerCustomWidgetInterface) DestroyQDesignerCustomWidgetInterface
 	defer qt.Recovering("QDesignerCustomWidgetInterface::~QDesignerCustomWidgetInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerCustomWidgetInterface(%v)", ptr.Pointer()))
 		C.QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerCustomWidgetInterface) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerCustomWidgetInterface::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerCustomWidgetInterface_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerCustomWidgetInterface) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerCustomWidgetInterface::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerCustomWidgetInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -4641,23 +4473,15 @@ func NewQDesignerDynamicPropertySheetExtensionFromPointer(ptr unsafe.Pointer) *Q
 	return n
 }
 
-func newQDesignerDynamicPropertySheetExtensionFromPointer(ptr unsafe.Pointer) *QDesignerDynamicPropertySheetExtension {
-	var n = NewQDesignerDynamicPropertySheetExtensionFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerDynamicPropertySheetExtension_") {
-		n.SetObjectNameAbs("QDesignerDynamicPropertySheetExtension_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerDynamicPropertySheetExtension_AddDynamicProperty
-func callbackQDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr unsafe.Pointer, ptrName *C.char, propertyName *C.char, value unsafe.Pointer) C.int {
+func callbackQDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr unsafe.Pointer, propertyName *C.char, value unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerDynamicPropertySheetExtension::addDynamicProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "addDynamicProperty"); signal != nil {
-		return C.int(signal.(func(string, *core.QVariant) int)(C.GoString(propertyName), core.NewQVariantFromPointer(value)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr), "addDynamicProperty"); signal != nil {
+		return C.int(int32(signal.(func(string, *core.QVariant) int)(C.GoString(propertyName), core.NewQVariantFromPointer(value))))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerDynamicPropertySheetExtension) ConnectAddDynamicProperty(f func(propertyName string, value *core.QVariant) int) {
@@ -4665,7 +4489,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectAddDynamicProperty(f f
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "addDynamicProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "addDynamicProperty", f)
 	}
 }
 
@@ -4674,7 +4498,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectAddDynamicProperty(
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "addDynamicProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "addDynamicProperty")
 	}
 }
 
@@ -4684,20 +4508,20 @@ func (ptr *QDesignerDynamicPropertySheetExtension) AddDynamicProperty(propertyNa
 	if ptr.Pointer() != nil {
 		var propertyNameC = C.CString(propertyName)
 		defer C.free(unsafe.Pointer(propertyNameC))
-		return int(C.QDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr.Pointer(), propertyNameC, core.PointerFromQVariant(value)))
+		return int(int32(C.QDesignerDynamicPropertySheetExtension_AddDynamicProperty(ptr.Pointer(), propertyNameC, core.PointerFromQVariant(value))))
 	}
 	return 0
 }
 
 //export callbackQDesignerDynamicPropertySheetExtension_CanAddDynamicProperty
-func callbackQDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr unsafe.Pointer, ptrName *C.char, propertyName *C.char) C.int {
+func callbackQDesignerDynamicPropertySheetExtension_CanAddDynamicProperty(ptr unsafe.Pointer, propertyName *C.char) C.char {
 	defer qt.Recovering("callback QDesignerDynamicPropertySheetExtension::canAddDynamicProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "canAddDynamicProperty"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(propertyName))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr), "canAddDynamicProperty"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(propertyName)))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerDynamicPropertySheetExtension) ConnectCanAddDynamicProperty(f func(propertyName string) bool) {
@@ -4705,7 +4529,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectCanAddDynamicProperty(
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "canAddDynamicProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "canAddDynamicProperty", f)
 	}
 }
 
@@ -4714,7 +4538,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectCanAddDynamicProper
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "canAddDynamicProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "canAddDynamicProperty")
 	}
 }
 
@@ -4730,14 +4554,14 @@ func (ptr *QDesignerDynamicPropertySheetExtension) CanAddDynamicProperty(propert
 }
 
 //export callbackQDesignerDynamicPropertySheetExtension_DynamicPropertiesAllowed
-func callbackQDesignerDynamicPropertySheetExtension_DynamicPropertiesAllowed(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerDynamicPropertySheetExtension_DynamicPropertiesAllowed(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerDynamicPropertySheetExtension::dynamicPropertiesAllowed")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dynamicPropertiesAllowed"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr), "dynamicPropertiesAllowed"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerDynamicPropertySheetExtension) ConnectDynamicPropertiesAllowed(f func() bool) {
@@ -4745,7 +4569,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectDynamicPropertiesAllow
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "dynamicPropertiesAllowed", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "dynamicPropertiesAllowed", f)
 	}
 }
 
@@ -4754,7 +4578,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectDynamicPropertiesAl
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "dynamicPropertiesAllowed")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "dynamicPropertiesAllowed")
 	}
 }
 
@@ -4768,14 +4592,14 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DynamicPropertiesAllowed() bo
 }
 
 //export callbackQDesignerDynamicPropertySheetExtension_IsDynamicProperty
-func callbackQDesignerDynamicPropertySheetExtension_IsDynamicProperty(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerDynamicPropertySheetExtension_IsDynamicProperty(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerDynamicPropertySheetExtension::isDynamicProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isDynamicProperty"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr), "isDynamicProperty"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerDynamicPropertySheetExtension) ConnectIsDynamicProperty(f func(index int) bool) {
@@ -4783,7 +4607,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectIsDynamicProperty(f fu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isDynamicProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "isDynamicProperty", f)
 	}
 }
 
@@ -4792,7 +4616,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectIsDynamicProperty(i
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isDynamicProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "isDynamicProperty")
 	}
 }
 
@@ -4800,20 +4624,20 @@ func (ptr *QDesignerDynamicPropertySheetExtension) IsDynamicProperty(index int) 
 	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::isDynamicProperty")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerDynamicPropertySheetExtension_IsDynamicProperty(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerDynamicPropertySheetExtension_IsDynamicProperty(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerDynamicPropertySheetExtension_RemoveDynamicProperty
-func callbackQDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerDynamicPropertySheetExtension::removeDynamicProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeDynamicProperty"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr), "removeDynamicProperty"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerDynamicPropertySheetExtension) ConnectRemoveDynamicProperty(f func(index int) bool) {
@@ -4821,7 +4645,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectRemoveDynamicProperty(
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "removeDynamicProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "removeDynamicProperty", f)
 	}
 }
 
@@ -4830,7 +4654,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectRemoveDynamicProper
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "removeDynamicProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()), "removeDynamicProperty")
 	}
 }
 
@@ -4838,7 +4662,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) RemoveDynamicProperty(index i
 	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::removeDynamicProperty")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
@@ -4847,28 +4671,9 @@ func (ptr *QDesignerDynamicPropertySheetExtension) DestroyQDesignerDynamicProper
 	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::~QDesignerDynamicPropertySheetExtension")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerDynamicPropertySheetExtension(%v)", ptr.Pointer()))
 		C.QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerDynamicPropertySheetExtension) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerDynamicPropertySheetExtension_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerDynamicPropertySheetExtension) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerDynamicPropertySheetExtension::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerDynamicPropertySheetExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -4910,19 +4715,10 @@ func NewQDesignerFormEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFo
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDesignerFormEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormEditorInterface {
-	var n = NewQDesignerFormEditorInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDesignerFormEditorInterface_") {
-		n.SetObjectName("QDesignerFormEditorInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDesignerFormEditorInterface(parent core.QObject_ITF) *QDesignerFormEditorInterface {
 	defer qt.Recovering("QDesignerFormEditorInterface::QDesignerFormEditorInterface")
 
-	return newQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(core.PointerFromQObject(parent)))
+	return NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QDesignerFormEditorInterface) ActionEditor() *QDesignerActionEditorInterface {
@@ -5024,17 +4820,17 @@ func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterface() {
 	defer qt.Recovering("QDesignerFormEditorInterface::~QDesignerFormEditorInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerFormEditorInterface_TimerEvent
-func callbackQDesignerFormEditorInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormEditorInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDesignerFormEditorInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -5046,7 +4842,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectTimerEvent(f func(event *core.QT
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -5055,7 +4851,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -5076,10 +4872,10 @@ func (ptr *QDesignerFormEditorInterface) TimerEventDefault(event core.QTimerEven
 }
 
 //export callbackQDesignerFormEditorInterface_ChildEvent
-func callbackQDesignerFormEditorInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormEditorInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDesignerFormEditorInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -5091,7 +4887,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectChildEvent(f func(event *core.QC
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -5100,7 +4896,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -5121,10 +4917,10 @@ func (ptr *QDesignerFormEditorInterface) ChildEventDefault(event core.QChildEven
 }
 
 //export callbackQDesignerFormEditorInterface_ConnectNotify
-func callbackQDesignerFormEditorInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerFormEditorInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerFormEditorInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5136,7 +4932,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectConnectNotify(f func(sign *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -5145,7 +4941,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -5166,10 +4962,10 @@ func (ptr *QDesignerFormEditorInterface) ConnectNotifyDefault(sign core.QMetaMet
 }
 
 //export callbackQDesignerFormEditorInterface_CustomEvent
-func callbackQDesignerFormEditorInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormEditorInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerFormEditorInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -5181,7 +4977,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectCustomEvent(f func(event *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -5190,7 +4986,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -5211,10 +5007,10 @@ func (ptr *QDesignerFormEditorInterface) CustomEventDefault(event core.QEvent_IT
 }
 
 //export callbackQDesignerFormEditorInterface_DeleteLater
-func callbackQDesignerFormEditorInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormEditorInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -5226,7 +5022,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -5235,7 +5031,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -5243,7 +5039,7 @@ func (ptr *QDesignerFormEditorInterface) DeleteLater() {
 	defer qt.Recovering("QDesignerFormEditorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormEditorInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -5253,17 +5049,17 @@ func (ptr *QDesignerFormEditorInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDesignerFormEditorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormEditorInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerFormEditorInterface_DisconnectNotify
-func callbackQDesignerFormEditorInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerFormEditorInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerFormEditorInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5275,7 +5071,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectDisconnectNotify(f func(sign *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -5284,7 +5080,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -5305,14 +5101,14 @@ func (ptr *QDesignerFormEditorInterface) DisconnectNotifyDefault(sign core.QMeta
 }
 
 //export callbackQDesignerFormEditorInterface_Event
-func callbackQDesignerFormEditorInterface_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDesignerFormEditorInterface_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormEditorInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormEditorInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDesignerFormEditorInterface) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -5320,7 +5116,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectEvent(f func(e *core.QEvent) boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -5329,7 +5125,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -5352,14 +5148,14 @@ func (ptr *QDesignerFormEditorInterface) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQDesignerFormEditorInterface_EventFilter
-func callbackQDesignerFormEditorInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDesignerFormEditorInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormEditorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormEditorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDesignerFormEditorInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -5367,7 +5163,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectEventFilter(f func(watched *core
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -5376,7 +5172,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -5399,10 +5195,10 @@ func (ptr *QDesignerFormEditorInterface) EventFilterDefault(watched core.QObject
 }
 
 //export callbackQDesignerFormEditorInterface_MetaObject
-func callbackQDesignerFormEditorInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormEditorInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -5414,7 +5210,7 @@ func (ptr *QDesignerFormEditorInterface) ConnectMetaObject(f func() *core.QMetaO
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -5423,7 +5219,7 @@ func (ptr *QDesignerFormEditorInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormEditorInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -5506,19 +5302,11 @@ func NewQDesignerFormWindowCursorInterfaceFromPointer(ptr unsafe.Pointer) *QDesi
 	return n
 }
 
-func newQDesignerFormWindowCursorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormWindowCursorInterface {
-	var n = NewQDesignerFormWindowCursorInterfaceFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerFormWindowCursorInterface_") {
-		n.SetObjectNameAbs("QDesignerFormWindowCursorInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerFormWindowCursorInterface_Current
-func callbackQDesignerFormWindowCursorInterface_Current(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowCursorInterface_Current(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::current")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "current"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "current"); signal != nil {
 		return widgets.PointerFromQWidget(signal.(func() *widgets.QWidget)())
 	}
 
@@ -5530,7 +5318,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectCurrent(f func() *widgets.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "current", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "current", f)
 	}
 }
 
@@ -5539,7 +5327,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectCurrent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "current")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "current")
 	}
 }
 
@@ -5553,10 +5341,10 @@ func (ptr *QDesignerFormWindowCursorInterface) Current() *widgets.QWidget {
 }
 
 //export callbackQDesignerFormWindowCursorInterface_FormWindow
-func callbackQDesignerFormWindowCursorInterface_FormWindow(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowCursorInterface_FormWindow(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::formWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "formWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "formWindow"); signal != nil {
 		return PointerFromQDesignerFormWindowInterface(signal.(func() *QDesignerFormWindowInterface)())
 	}
 
@@ -5568,7 +5356,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectFormWindow(f func() *QDesi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "formWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "formWindow", f)
 	}
 }
 
@@ -5577,7 +5365,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectFormWindow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "formWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "formWindow")
 	}
 }
 
@@ -5591,14 +5379,14 @@ func (ptr *QDesignerFormWindowCursorInterface) FormWindow() *QDesignerFormWindow
 }
 
 //export callbackQDesignerFormWindowCursorInterface_HasSelection
-func callbackQDesignerFormWindowCursorInterface_HasSelection(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowCursorInterface_HasSelection(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::hasSelection")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasSelection"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "hasSelection"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerFormWindowCursorInterface) ConnectHasSelection(f func() bool) {
@@ -5606,7 +5394,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectHasSelection(f func() bool
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "hasSelection", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "hasSelection", f)
 	}
 }
 
@@ -5615,7 +5403,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectHasSelection() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "hasSelection")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "hasSelection")
 	}
 }
 
@@ -5638,14 +5426,14 @@ func (ptr *QDesignerFormWindowCursorInterface) IsWidgetSelected(widget widgets.Q
 }
 
 //export callbackQDesignerFormWindowCursorInterface_MovePosition
-func callbackQDesignerFormWindowCursorInterface_MovePosition(ptr unsafe.Pointer, ptrName *C.char, operation C.int, mode C.int) C.int {
+func callbackQDesignerFormWindowCursorInterface_MovePosition(ptr unsafe.Pointer, operation C.longlong, mode C.longlong) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::movePosition")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "movePosition"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(QDesignerFormWindowCursorInterface__MoveOperation, QDesignerFormWindowCursorInterface__MoveMode) bool)(QDesignerFormWindowCursorInterface__MoveOperation(operation), QDesignerFormWindowCursorInterface__MoveMode(mode))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "movePosition"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(QDesignerFormWindowCursorInterface__MoveOperation, QDesignerFormWindowCursorInterface__MoveMode) bool)(QDesignerFormWindowCursorInterface__MoveOperation(operation), QDesignerFormWindowCursorInterface__MoveMode(mode)))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerFormWindowCursorInterface) ConnectMovePosition(f func(operation QDesignerFormWindowCursorInterface__MoveOperation, mode QDesignerFormWindowCursorInterface__MoveMode) bool) {
@@ -5653,7 +5441,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectMovePosition(f func(operat
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "movePosition", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "movePosition", f)
 	}
 }
 
@@ -5662,7 +5450,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectMovePosition(operation 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "movePosition")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "movePosition")
 	}
 }
 
@@ -5670,20 +5458,20 @@ func (ptr *QDesignerFormWindowCursorInterface) MovePosition(operation QDesignerF
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::movePosition")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowCursorInterface_MovePosition(ptr.Pointer(), C.int(operation), C.int(mode)) != 0
+		return C.QDesignerFormWindowCursorInterface_MovePosition(ptr.Pointer(), C.longlong(operation), C.longlong(mode)) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerFormWindowCursorInterface_Position
-func callbackQDesignerFormWindowCursorInterface_Position(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowCursorInterface_Position(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::position")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "position"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "position"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerFormWindowCursorInterface) ConnectPosition(f func() int) {
@@ -5691,7 +5479,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectPosition(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "position", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "position", f)
 	}
 }
 
@@ -5700,7 +5488,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectPosition() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "position")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "position")
 	}
 }
 
@@ -5708,16 +5496,16 @@ func (ptr *QDesignerFormWindowCursorInterface) Position() int {
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::position")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerFormWindowCursorInterface_Position(ptr.Pointer()))
+		return int(int32(C.QDesignerFormWindowCursorInterface_Position(ptr.Pointer())))
 	}
 	return 0
 }
 
 //export callbackQDesignerFormWindowCursorInterface_ResetWidgetProperty
-func callbackQDesignerFormWindowCursorInterface_ResetWidgetProperty(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer, name *C.char) {
+func callbackQDesignerFormWindowCursorInterface_ResetWidgetProperty(ptr unsafe.Pointer, widget unsafe.Pointer, name *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::resetWidgetProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resetWidgetProperty"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "resetWidgetProperty"); signal != nil {
 		signal.(func(*widgets.QWidget, string))(widgets.NewQWidgetFromPointer(widget), C.GoString(name))
 	}
 
@@ -5728,7 +5516,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectResetWidgetProperty(f func
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "resetWidgetProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "resetWidgetProperty", f)
 	}
 }
 
@@ -5737,7 +5525,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectResetWidgetProperty(wid
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "resetWidgetProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "resetWidgetProperty")
 	}
 }
 
@@ -5752,11 +5540,11 @@ func (ptr *QDesignerFormWindowCursorInterface) ResetWidgetProperty(widget widget
 }
 
 //export callbackQDesignerFormWindowCursorInterface_SelectedWidget
-func callbackQDesignerFormWindowCursorInterface_SelectedWidget(ptr unsafe.Pointer, ptrName *C.char, index C.int) unsafe.Pointer {
+func callbackQDesignerFormWindowCursorInterface_SelectedWidget(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::selectedWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "selectedWidget"); signal != nil {
-		return widgets.PointerFromQWidget(signal.(func(int) *widgets.QWidget)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "selectedWidget"); signal != nil {
+		return widgets.PointerFromQWidget(signal.(func(int) *widgets.QWidget)(int(int32(index))))
 	}
 
 	return widgets.PointerFromQWidget(nil)
@@ -5767,7 +5555,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSelectedWidget(f func(inde
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "selectedWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "selectedWidget", f)
 	}
 }
 
@@ -5776,7 +5564,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSelectedWidget(index in
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "selectedWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "selectedWidget")
 	}
 }
 
@@ -5784,20 +5572,20 @@ func (ptr *QDesignerFormWindowCursorInterface) SelectedWidget(index int) *widget
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::selectedWidget")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_SelectedWidget(ptr.Pointer(), C.int(index)))
+		return widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_SelectedWidget(ptr.Pointer(), C.int(int32(index))))
 	}
 	return nil
 }
 
 //export callbackQDesignerFormWindowCursorInterface_SelectedWidgetCount
-func callbackQDesignerFormWindowCursorInterface_SelectedWidgetCount(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowCursorInterface_SelectedWidgetCount(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::selectedWidgetCount")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "selectedWidgetCount"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "selectedWidgetCount"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerFormWindowCursorInterface) ConnectSelectedWidgetCount(f func() int) {
@@ -5805,7 +5593,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSelectedWidgetCount(f func
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "selectedWidgetCount", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "selectedWidgetCount", f)
 	}
 }
 
@@ -5814,7 +5602,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSelectedWidgetCount() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "selectedWidgetCount")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "selectedWidgetCount")
 	}
 }
 
@@ -5822,17 +5610,17 @@ func (ptr *QDesignerFormWindowCursorInterface) SelectedWidgetCount() int {
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::selectedWidgetCount")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerFormWindowCursorInterface_SelectedWidgetCount(ptr.Pointer()))
+		return int(int32(C.QDesignerFormWindowCursorInterface_SelectedWidgetCount(ptr.Pointer())))
 	}
 	return 0
 }
 
 //export callbackQDesignerFormWindowCursorInterface_SetPosition
-func callbackQDesignerFormWindowCursorInterface_SetPosition(ptr unsafe.Pointer, ptrName *C.char, position C.int, mode C.int) {
+func callbackQDesignerFormWindowCursorInterface_SetPosition(ptr unsafe.Pointer, position C.int, mode C.longlong) {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::setPosition")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setPosition"); signal != nil {
-		signal.(func(int, QDesignerFormWindowCursorInterface__MoveMode))(int(position), QDesignerFormWindowCursorInterface__MoveMode(mode))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "setPosition"); signal != nil {
+		signal.(func(int, QDesignerFormWindowCursorInterface__MoveMode))(int(int32(position)), QDesignerFormWindowCursorInterface__MoveMode(mode))
 	}
 
 }
@@ -5842,7 +5630,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSetPosition(f func(positio
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setPosition", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "setPosition", f)
 	}
 }
 
@@ -5851,7 +5639,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetPosition(position in
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setPosition")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "setPosition")
 	}
 }
 
@@ -5859,15 +5647,15 @@ func (ptr *QDesignerFormWindowCursorInterface) SetPosition(position int, mode QD
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::setPosition")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowCursorInterface_SetPosition(ptr.Pointer(), C.int(position), C.int(mode))
+		C.QDesignerFormWindowCursorInterface_SetPosition(ptr.Pointer(), C.int(int32(position)), C.longlong(mode))
 	}
 }
 
 //export callbackQDesignerFormWindowCursorInterface_SetProperty
-func callbackQDesignerFormWindowCursorInterface_SetProperty(ptr unsafe.Pointer, ptrName *C.char, name *C.char, value unsafe.Pointer) {
+func callbackQDesignerFormWindowCursorInterface_SetProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::setProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setProperty"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "setProperty"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(name), core.NewQVariantFromPointer(value))
 	}
 
@@ -5878,7 +5666,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSetProperty(f func(name st
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "setProperty", f)
 	}
 }
 
@@ -5887,7 +5675,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetProperty(name string
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "setProperty")
 	}
 }
 
@@ -5902,10 +5690,10 @@ func (ptr *QDesignerFormWindowCursorInterface) SetProperty(name string, value co
 }
 
 //export callbackQDesignerFormWindowCursorInterface_SetWidgetProperty
-func callbackQDesignerFormWindowCursorInterface_SetWidgetProperty(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer, name *C.char, value unsafe.Pointer) {
+func callbackQDesignerFormWindowCursorInterface_SetWidgetProperty(ptr unsafe.Pointer, widget unsafe.Pointer, name *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::setWidgetProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWidgetProperty"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "setWidgetProperty"); signal != nil {
 		signal.(func(*widgets.QWidget, string, *core.QVariant))(widgets.NewQWidgetFromPointer(widget), C.GoString(name), core.NewQVariantFromPointer(value))
 	}
 
@@ -5916,7 +5704,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSetWidgetProperty(f func(w
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setWidgetProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "setWidgetProperty", f)
 	}
 }
 
@@ -5925,7 +5713,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetWidgetProperty(widge
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setWidgetProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "setWidgetProperty")
 	}
 }
 
@@ -5940,11 +5728,11 @@ func (ptr *QDesignerFormWindowCursorInterface) SetWidgetProperty(widget widgets.
 }
 
 //export callbackQDesignerFormWindowCursorInterface_Widget
-func callbackQDesignerFormWindowCursorInterface_Widget(ptr unsafe.Pointer, ptrName *C.char, index C.int) unsafe.Pointer {
+func callbackQDesignerFormWindowCursorInterface_Widget(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::widget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "widget"); signal != nil {
-		return widgets.PointerFromQWidget(signal.(func(int) *widgets.QWidget)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "widget"); signal != nil {
+		return widgets.PointerFromQWidget(signal.(func(int) *widgets.QWidget)(int(int32(index))))
 	}
 
 	return widgets.PointerFromQWidget(nil)
@@ -5955,7 +5743,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectWidget(f func(index int) *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "widget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "widget", f)
 	}
 }
 
@@ -5964,7 +5752,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectWidget(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "widget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "widget")
 	}
 }
 
@@ -5972,20 +5760,20 @@ func (ptr *QDesignerFormWindowCursorInterface) Widget(index int) *widgets.QWidge
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::widget")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Widget(ptr.Pointer(), C.int(index)))
+		return widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Widget(ptr.Pointer(), C.int(int32(index))))
 	}
 	return nil
 }
 
 //export callbackQDesignerFormWindowCursorInterface_WidgetCount
-func callbackQDesignerFormWindowCursorInterface_WidgetCount(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowCursorInterface_WidgetCount(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerFormWindowCursorInterface::widgetCount")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "widgetCount"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr), "widgetCount"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerFormWindowCursorInterface) ConnectWidgetCount(f func() int) {
@@ -5993,7 +5781,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectWidgetCount(f func() int) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "widgetCount", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "widgetCount", f)
 	}
 }
 
@@ -6002,7 +5790,7 @@ func (ptr *QDesignerFormWindowCursorInterface) DisconnectWidgetCount() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "widgetCount")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()), "widgetCount")
 	}
 }
 
@@ -6010,7 +5798,7 @@ func (ptr *QDesignerFormWindowCursorInterface) WidgetCount() int {
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::widgetCount")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerFormWindowCursorInterface_WidgetCount(ptr.Pointer()))
+		return int(int32(C.QDesignerFormWindowCursorInterface_WidgetCount(ptr.Pointer())))
 	}
 	return 0
 }
@@ -6019,28 +5807,9 @@ func (ptr *QDesignerFormWindowCursorInterface) DestroyQDesignerFormWindowCursorI
 	defer qt.Recovering("QDesignerFormWindowCursorInterface::~QDesignerFormWindowCursorInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormWindowCursorInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerFormWindowCursorInterface) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerFormWindowCursorInterface::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerFormWindowCursorInterface_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerFormWindowCursorInterface) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerFormWindowCursorInterface::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerFormWindowCursorInterface_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -6101,15 +5870,6 @@ func NewQDesignerFormWindowInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFo
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDesignerFormWindowInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormWindowInterface {
-	var n = NewQDesignerFormWindowInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDesignerFormWindowInterface_") {
-		n.SetObjectName("QDesignerFormWindowInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func QDesignerFormWindowInterface_FindFormWindow2(object core.QObject_ITF) *QDesignerFormWindowInterface {
 	defer qt.Recovering("QDesignerFormWindowInterface::findFormWindow")
 
@@ -6135,10 +5895,10 @@ func (ptr *QDesignerFormWindowInterface) FindFormWindow(widget widgets.QWidget_I
 }
 
 //export callbackQDesignerFormWindowInterface_AboutToUnmanageWidget
-func callbackQDesignerFormWindowInterface_AboutToUnmanageWidget(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_AboutToUnmanageWidget(ptr unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::aboutToUnmanageWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "aboutToUnmanageWidget"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "aboutToUnmanageWidget"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(widget))
 	}
 
@@ -6149,7 +5909,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectAboutToUnmanageWidget(f func(wid
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectAboutToUnmanageWidget(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "aboutToUnmanageWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "aboutToUnmanageWidget", f)
 	}
 }
 
@@ -6158,7 +5918,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectAboutToUnmanageWidget() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectAboutToUnmanageWidget(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "aboutToUnmanageWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "aboutToUnmanageWidget")
 	}
 }
 
@@ -6171,10 +5931,10 @@ func (ptr *QDesignerFormWindowInterface) AboutToUnmanageWidget(widget widgets.QW
 }
 
 //export callbackQDesignerFormWindowInterface_AbsoluteDir
-func callbackQDesignerFormWindowInterface_AbsoluteDir(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_AbsoluteDir(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::absoluteDir")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "absoluteDir"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "absoluteDir"); signal != nil {
 		return core.PointerFromQDir(signal.(func() *core.QDir)())
 	}
 
@@ -6186,7 +5946,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectAbsoluteDir(f func() *core.QDir)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "absoluteDir", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "absoluteDir", f)
 	}
 }
 
@@ -6195,7 +5955,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectAbsoluteDir() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "absoluteDir")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "absoluteDir")
 	}
 }
 
@@ -6211,11 +5971,11 @@ func (ptr *QDesignerFormWindowInterface) AbsoluteDir() *core.QDir {
 }
 
 //export callbackQDesignerFormWindowInterface_ActivateResourceFilePaths
-func callbackQDesignerFormWindowInterface_ActivateResourceFilePaths(ptr unsafe.Pointer, ptrName *C.char, paths *C.char, errorCount C.int, errorMessages *C.char) {
+func callbackQDesignerFormWindowInterface_ActivateResourceFilePaths(ptr unsafe.Pointer, paths *C.char, errorCount C.int, errorMessages *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::activateResourceFilePaths")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "activateResourceFilePaths"); signal != nil {
-		signal.(func([]string, int, string))(strings.Split(C.GoString(paths), "|"), int(errorCount), C.GoString(errorMessages))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "activateResourceFilePaths"); signal != nil {
+		signal.(func([]string, int, string))(strings.Split(C.GoString(paths), "|"), int(int32(errorCount)), C.GoString(errorMessages))
 	}
 
 }
@@ -6225,7 +5985,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectActivateResourceFilePaths(f func
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "activateResourceFilePaths", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "activateResourceFilePaths", f)
 	}
 }
 
@@ -6234,7 +5994,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectActivateResourceFilePaths(pat
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "activateResourceFilePaths")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "activateResourceFilePaths")
 	}
 }
 
@@ -6246,15 +6006,15 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []strin
 		defer C.free(unsafe.Pointer(pathsC))
 		var errorMessagesC = C.CString(errorMessages)
 		defer C.free(unsafe.Pointer(errorMessagesC))
-		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), pathsC, C.int(errorCount), errorMessagesC)
+		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), pathsC, C.int(int32(errorCount)), errorMessagesC)
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_Activated
-func callbackQDesignerFormWindowInterface_Activated(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_Activated(ptr unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::activated")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "activated"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "activated"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(widget))
 	}
 
@@ -6265,7 +6025,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectActivated(f func(widget *widgets
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectActivated(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "activated", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "activated", f)
 	}
 }
 
@@ -6274,7 +6034,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectActivated() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectActivated(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "activated")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "activated")
 	}
 }
 
@@ -6296,10 +6056,10 @@ func (ptr *QDesignerFormWindowInterface) ActiveResourceFilePaths() []string {
 }
 
 //export callbackQDesignerFormWindowInterface_AddResourceFile
-func callbackQDesignerFormWindowInterface_AddResourceFile(ptr unsafe.Pointer, ptrName *C.char, path *C.char) {
+func callbackQDesignerFormWindowInterface_AddResourceFile(ptr unsafe.Pointer, path *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::addResourceFile")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "addResourceFile"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "addResourceFile"); signal != nil {
 		signal.(func(string))(C.GoString(path))
 	}
 
@@ -6310,7 +6070,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectAddResourceFile(f func(path stri
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "addResourceFile", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "addResourceFile", f)
 	}
 }
 
@@ -6319,7 +6079,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectAddResourceFile(path string) 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "addResourceFile")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "addResourceFile")
 	}
 }
 
@@ -6334,10 +6094,10 @@ func (ptr *QDesignerFormWindowInterface) AddResourceFile(path string) {
 }
 
 //export callbackQDesignerFormWindowInterface_Author
-func callbackQDesignerFormWindowInterface_Author(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_Author(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::author")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "author"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "author"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -6349,7 +6109,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectAuthor(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "author", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "author", f)
 	}
 }
 
@@ -6358,7 +6118,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectAuthor() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "author")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "author")
 	}
 }
 
@@ -6372,10 +6132,10 @@ func (ptr *QDesignerFormWindowInterface) Author() string {
 }
 
 //export callbackQDesignerFormWindowInterface_Changed
-func callbackQDesignerFormWindowInterface_Changed(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_Changed(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::changed")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "changed"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "changed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -6386,7 +6146,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectChanged(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "changed", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "changed", f)
 	}
 }
 
@@ -6395,7 +6155,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "changed")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "changed")
 	}
 }
 
@@ -6408,10 +6168,10 @@ func (ptr *QDesignerFormWindowInterface) Changed() {
 }
 
 //export callbackQDesignerFormWindowInterface_CheckContents
-func callbackQDesignerFormWindowInterface_CheckContents(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_CheckContents(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::checkContents")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "checkContents"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "checkContents"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
 
@@ -6423,7 +6183,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectCheckContents(f func() []string)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "checkContents", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "checkContents", f)
 	}
 }
 
@@ -6432,7 +6192,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectCheckContents() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "checkContents")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "checkContents")
 	}
 }
 
@@ -6446,11 +6206,11 @@ func (ptr *QDesignerFormWindowInterface) CheckContents() []string {
 }
 
 //export callbackQDesignerFormWindowInterface_ClearSelection
-func callbackQDesignerFormWindowInterface_ClearSelection(ptr unsafe.Pointer, ptrName *C.char, update C.int) {
+func callbackQDesignerFormWindowInterface_ClearSelection(ptr unsafe.Pointer, update C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::clearSelection")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "clearSelection"); signal != nil {
-		signal.(func(bool))(int(update) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "clearSelection"); signal != nil {
+		signal.(func(bool))(int8(update) != 0)
 	}
 
 }
@@ -6460,7 +6220,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectClearSelection(f func(update boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "clearSelection", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "clearSelection", f)
 	}
 }
 
@@ -6469,7 +6229,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectClearSelection(update bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "clearSelection")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "clearSelection")
 	}
 }
 
@@ -6477,15 +6237,15 @@ func (ptr *QDesignerFormWindowInterface) ClearSelection(update bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::clearSelection")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_ClearSelection(ptr.Pointer(), C.int(qt.GoBoolToInt(update)))
+		C.QDesignerFormWindowInterface_ClearSelection(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(update))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_Comment
-func callbackQDesignerFormWindowInterface_Comment(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_Comment(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::comment")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "comment"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "comment"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -6497,7 +6257,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectComment(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "comment", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "comment", f)
 	}
 }
 
@@ -6506,7 +6266,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectComment() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "comment")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "comment")
 	}
 }
 
@@ -6520,10 +6280,10 @@ func (ptr *QDesignerFormWindowInterface) Comment() string {
 }
 
 //export callbackQDesignerFormWindowInterface_Contents
-func callbackQDesignerFormWindowInterface_Contents(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_Contents(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::contents")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "contents"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "contents"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -6535,7 +6295,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectContents(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "contents", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "contents", f)
 	}
 }
 
@@ -6544,7 +6304,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectContents() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "contents")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "contents")
 	}
 }
 
@@ -6558,10 +6318,10 @@ func (ptr *QDesignerFormWindowInterface) Contents() string {
 }
 
 //export callbackQDesignerFormWindowInterface_Core
-func callbackQDesignerFormWindowInterface_Core(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_Core(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::core")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "core"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "core"); signal != nil {
 		return PointerFromQDesignerFormEditorInterface(signal.(func() *QDesignerFormEditorInterface)())
 	}
 
@@ -6573,7 +6333,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectCore(f func() *QDesignerFormEdit
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "core", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "core", f)
 	}
 }
 
@@ -6582,7 +6342,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectCore() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "core")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "core")
 	}
 }
 
@@ -6605,10 +6365,10 @@ func (ptr *QDesignerFormWindowInterface) CoreDefault() *QDesignerFormEditorInter
 }
 
 //export callbackQDesignerFormWindowInterface_Cursor
-func callbackQDesignerFormWindowInterface_Cursor(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_Cursor(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::cursor")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "cursor"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "cursor"); signal != nil {
 		return PointerFromQDesignerFormWindowCursorInterface(signal.(func() *QDesignerFormWindowCursorInterface)())
 	}
 
@@ -6620,7 +6380,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectCursor(f func() *QDesignerFormWi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "cursor", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "cursor", f)
 	}
 }
 
@@ -6629,7 +6389,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectCursor() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "cursor")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "cursor")
 	}
 }
 
@@ -6643,10 +6403,10 @@ func (ptr *QDesignerFormWindowInterface) Cursor() *QDesignerFormWindowCursorInte
 }
 
 //export callbackQDesignerFormWindowInterface_EmitSelectionChanged
-func callbackQDesignerFormWindowInterface_EmitSelectionChanged(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_EmitSelectionChanged(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::emitSelectionChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "emitSelectionChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "emitSelectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -6657,7 +6417,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectEmitSelectionChanged(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "emitSelectionChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "emitSelectionChanged", f)
 	}
 }
 
@@ -6666,7 +6426,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectEmitSelectionChanged() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "emitSelectionChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "emitSelectionChanged")
 	}
 }
 
@@ -6679,10 +6439,10 @@ func (ptr *QDesignerFormWindowInterface) EmitSelectionChanged() {
 }
 
 //export callbackQDesignerFormWindowInterface_ExportMacro
-func callbackQDesignerFormWindowInterface_ExportMacro(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_ExportMacro(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::exportMacro")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "exportMacro"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "exportMacro"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -6694,7 +6454,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectExportMacro(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "exportMacro", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "exportMacro", f)
 	}
 }
 
@@ -6703,7 +6463,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectExportMacro() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "exportMacro")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "exportMacro")
 	}
 }
 
@@ -6717,10 +6477,10 @@ func (ptr *QDesignerFormWindowInterface) ExportMacro() string {
 }
 
 //export callbackQDesignerFormWindowInterface_FeatureChanged
-func callbackQDesignerFormWindowInterface_FeatureChanged(ptr unsafe.Pointer, ptrName *C.char, feature C.int) {
+func callbackQDesignerFormWindowInterface_FeatureChanged(ptr unsafe.Pointer, feature C.longlong) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::featureChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "featureChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "featureChanged"); signal != nil {
 		signal.(func(QDesignerFormWindowInterface__FeatureFlag))(QDesignerFormWindowInterface__FeatureFlag(feature))
 	}
 
@@ -6731,7 +6491,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFeatureChanged(f func(feature QD
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectFeatureChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "featureChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "featureChanged", f)
 	}
 }
 
@@ -6740,7 +6500,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFeatureChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectFeatureChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "featureChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "featureChanged")
 	}
 }
 
@@ -6748,19 +6508,19 @@ func (ptr *QDesignerFormWindowInterface) FeatureChanged(feature QDesignerFormWin
 	defer qt.Recovering("QDesignerFormWindowInterface::featureChanged")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_FeatureChanged(ptr.Pointer(), C.int(feature))
+		C.QDesignerFormWindowInterface_FeatureChanged(ptr.Pointer(), C.longlong(feature))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_Features
-func callbackQDesignerFormWindowInterface_Features(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowInterface_Features(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::features")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "features"); signal != nil {
-		return C.int(signal.(func() QDesignerFormWindowInterface__FeatureFlag)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "features"); signal != nil {
+		return C.longlong(signal.(func() QDesignerFormWindowInterface__FeatureFlag)())
 	}
 
-	return C.int(0)
+	return C.longlong(0)
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectFeatures(f func() QDesignerFormWindowInterface__FeatureFlag) {
@@ -6768,7 +6528,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFeatures(f func() QDesignerFormW
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "features", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "features", f)
 	}
 }
 
@@ -6777,7 +6537,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFeatures() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "features")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "features")
 	}
 }
 
@@ -6791,10 +6551,10 @@ func (ptr *QDesignerFormWindowInterface) Features() QDesignerFormWindowInterface
 }
 
 //export callbackQDesignerFormWindowInterface_FileName
-func callbackQDesignerFormWindowInterface_FileName(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_FileName(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::fileName")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "fileName"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "fileName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -6806,7 +6566,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFileName(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "fileName", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "fileName", f)
 	}
 }
 
@@ -6815,7 +6575,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFileName() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "fileName")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "fileName")
 	}
 }
 
@@ -6829,10 +6589,10 @@ func (ptr *QDesignerFormWindowInterface) FileName() string {
 }
 
 //export callbackQDesignerFormWindowInterface_FileNameChanged
-func callbackQDesignerFormWindowInterface_FileNameChanged(ptr unsafe.Pointer, ptrName *C.char, fileName *C.char) {
+func callbackQDesignerFormWindowInterface_FileNameChanged(ptr unsafe.Pointer, fileName *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::fileNameChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "fileNameChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "fileNameChanged"); signal != nil {
 		signal.(func(string))(C.GoString(fileName))
 	}
 
@@ -6843,7 +6603,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFileNameChanged(f func(fileName 
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectFileNameChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "fileNameChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "fileNameChanged", f)
 	}
 }
 
@@ -6852,7 +6612,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFileNameChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectFileNameChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "fileNameChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "fileNameChanged")
 	}
 }
 
@@ -6867,10 +6627,10 @@ func (ptr *QDesignerFormWindowInterface) FileNameChanged(fileName string) {
 }
 
 //export callbackQDesignerFormWindowInterface_FormContainer
-func callbackQDesignerFormWindowInterface_FormContainer(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_FormContainer(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::formContainer")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "formContainer"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "formContainer"); signal != nil {
 		return widgets.PointerFromQWidget(signal.(func() *widgets.QWidget)())
 	}
 
@@ -6882,7 +6642,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFormContainer(f func() *widgets.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "formContainer", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "formContainer", f)
 	}
 }
 
@@ -6891,7 +6651,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFormContainer() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "formContainer")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "formContainer")
 	}
 }
 
@@ -6905,10 +6665,10 @@ func (ptr *QDesignerFormWindowInterface) FormContainer() *widgets.QWidget {
 }
 
 //export callbackQDesignerFormWindowInterface_GeometryChanged
-func callbackQDesignerFormWindowInterface_GeometryChanged(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_GeometryChanged(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::geometryChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "geometryChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "geometryChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -6919,7 +6679,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectGeometryChanged(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectGeometryChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "geometryChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "geometryChanged", f)
 	}
 }
 
@@ -6928,7 +6688,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectGeometryChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectGeometryChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "geometryChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "geometryChanged")
 	}
 }
 
@@ -6941,10 +6701,10 @@ func (ptr *QDesignerFormWindowInterface) GeometryChanged() {
 }
 
 //export callbackQDesignerFormWindowInterface_Grid
-func callbackQDesignerFormWindowInterface_Grid(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_Grid(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::grid")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "grid"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "grid"); signal != nil {
 		return core.PointerFromQPoint(signal.(func() *core.QPoint)())
 	}
 
@@ -6956,7 +6716,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectGrid(f func() *core.QPoint) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "grid", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "grid", f)
 	}
 }
 
@@ -6965,7 +6725,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectGrid() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "grid")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "grid")
 	}
 }
 
@@ -6981,14 +6741,14 @@ func (ptr *QDesignerFormWindowInterface) Grid() *core.QPoint {
 }
 
 //export callbackQDesignerFormWindowInterface_HasFeature
-func callbackQDesignerFormWindowInterface_HasFeature(ptr unsafe.Pointer, ptrName *C.char, feature C.int) C.int {
+func callbackQDesignerFormWindowInterface_HasFeature(ptr unsafe.Pointer, feature C.longlong) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::hasFeature")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasFeature"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(QDesignerFormWindowInterface__FeatureFlag) bool)(QDesignerFormWindowInterface__FeatureFlag(feature))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "hasFeature"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(QDesignerFormWindowInterface__FeatureFlag) bool)(QDesignerFormWindowInterface__FeatureFlag(feature)))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectHasFeature(f func(feature QDesignerFormWindowInterface__FeatureFlag) bool) {
@@ -6996,7 +6756,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectHasFeature(f func(feature QDesig
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hasFeature", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hasFeature", f)
 	}
 }
 
@@ -7005,7 +6765,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectHasFeature(feature QDesignerF
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hasFeature")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hasFeature")
 	}
 }
 
@@ -7013,16 +6773,16 @@ func (ptr *QDesignerFormWindowInterface) HasFeature(feature QDesignerFormWindowI
 	defer qt.Recovering("QDesignerFormWindowInterface::hasFeature")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_HasFeature(ptr.Pointer(), C.int(feature)) != 0
+		return C.QDesignerFormWindowInterface_HasFeature(ptr.Pointer(), C.longlong(feature)) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerFormWindowInterface_IncludeHints
-func callbackQDesignerFormWindowInterface_IncludeHints(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_IncludeHints(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::includeHints")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "includeHints"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "includeHints"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
 
@@ -7034,7 +6794,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectIncludeHints(f func() []string) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "includeHints", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "includeHints", f)
 	}
 }
 
@@ -7043,7 +6803,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectIncludeHints() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "includeHints")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "includeHints")
 	}
 }
 
@@ -7057,14 +6817,14 @@ func (ptr *QDesignerFormWindowInterface) IncludeHints() []string {
 }
 
 //export callbackQDesignerFormWindowInterface_IsDirty
-func callbackQDesignerFormWindowInterface_IsDirty(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowInterface_IsDirty(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::isDirty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isDirty"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "isDirty"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectIsDirty(f func() bool) {
@@ -7072,7 +6832,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectIsDirty(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "isDirty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "isDirty", f)
 	}
 }
 
@@ -7081,7 +6841,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectIsDirty() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "isDirty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "isDirty")
 	}
 }
 
@@ -7095,14 +6855,14 @@ func (ptr *QDesignerFormWindowInterface) IsDirty() bool {
 }
 
 //export callbackQDesignerFormWindowInterface_IsManaged
-func callbackQDesignerFormWindowInterface_IsManaged(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) C.int {
+func callbackQDesignerFormWindowInterface_IsManaged(ptr unsafe.Pointer, widget unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::isManaged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isManaged"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*widgets.QWidget) bool)(widgets.NewQWidgetFromPointer(widget))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "isManaged"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*widgets.QWidget) bool)(widgets.NewQWidgetFromPointer(widget)))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectIsManaged(f func(widget *widgets.QWidget) bool) {
@@ -7110,7 +6870,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectIsManaged(f func(widget *widgets
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "isManaged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "isManaged", f)
 	}
 }
 
@@ -7119,7 +6879,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectIsManaged(widget widgets.QWid
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "isManaged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "isManaged")
 	}
 }
 
@@ -7133,11 +6893,11 @@ func (ptr *QDesignerFormWindowInterface) IsManaged(widget widgets.QWidget_ITF) b
 }
 
 //export callbackQDesignerFormWindowInterface_LayoutDefault
-func callbackQDesignerFormWindowInterface_LayoutDefault(ptr unsafe.Pointer, ptrName *C.char, margin C.int, spacing C.int) {
+func callbackQDesignerFormWindowInterface_LayoutDefault(ptr unsafe.Pointer, margin C.int, spacing C.int) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::layoutDefault")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "layoutDefault"); signal != nil {
-		signal.(func(int, int))(int(margin), int(spacing))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "layoutDefault"); signal != nil {
+		signal.(func(int, int))(int(int32(margin)), int(int32(spacing)))
 	}
 
 }
@@ -7147,7 +6907,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectLayoutDefault(f func(margin int,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "layoutDefault", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "layoutDefault", f)
 	}
 }
 
@@ -7156,7 +6916,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectLayoutDefault(margin int, spa
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "layoutDefault")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "layoutDefault")
 	}
 }
 
@@ -7164,15 +6924,15 @@ func (ptr *QDesignerFormWindowInterface) LayoutDefault(margin int, spacing int) 
 	defer qt.Recovering("QDesignerFormWindowInterface::layoutDefault")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_LayoutDefault(ptr.Pointer(), C.int(margin), C.int(spacing))
+		C.QDesignerFormWindowInterface_LayoutDefault(ptr.Pointer(), C.int(int32(margin)), C.int(int32(spacing)))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_LayoutFunction
-func callbackQDesignerFormWindowInterface_LayoutFunction(ptr unsafe.Pointer, ptrName *C.char, margin *C.char, spacing *C.char) {
+func callbackQDesignerFormWindowInterface_LayoutFunction(ptr unsafe.Pointer, margin *C.char, spacing *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::layoutFunction")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "layoutFunction"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "layoutFunction"); signal != nil {
 		signal.(func(string, string))(C.GoString(margin), C.GoString(spacing))
 	}
 
@@ -7183,7 +6943,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectLayoutFunction(f func(margin str
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "layoutFunction", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "layoutFunction", f)
 	}
 }
 
@@ -7192,7 +6952,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectLayoutFunction(margin string,
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "layoutFunction")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "layoutFunction")
 	}
 }
 
@@ -7209,10 +6969,10 @@ func (ptr *QDesignerFormWindowInterface) LayoutFunction(margin string, spacing s
 }
 
 //export callbackQDesignerFormWindowInterface_MainContainerChanged
-func callbackQDesignerFormWindowInterface_MainContainerChanged(ptr unsafe.Pointer, ptrName *C.char, mainContainer unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_MainContainerChanged(ptr unsafe.Pointer, mainContainer unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::mainContainerChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mainContainerChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "mainContainerChanged"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(mainContainer))
 	}
 
@@ -7223,7 +6983,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMainContainerChanged(f func(main
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectMainContainerChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "mainContainerChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mainContainerChanged", f)
 	}
 }
 
@@ -7232,7 +6992,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMainContainerChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectMainContainerChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "mainContainerChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mainContainerChanged")
 	}
 }
 
@@ -7245,10 +7005,10 @@ func (ptr *QDesignerFormWindowInterface) MainContainerChanged(mainContainer widg
 }
 
 //export callbackQDesignerFormWindowInterface_ManageWidget
-func callbackQDesignerFormWindowInterface_ManageWidget(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ManageWidget(ptr unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::manageWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "manageWidget"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "manageWidget"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(widget))
 	}
 
@@ -7259,7 +7019,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectManageWidget(f func(widget *widg
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "manageWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "manageWidget", f)
 	}
 }
 
@@ -7268,7 +7028,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectManageWidget(widget widgets.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "manageWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "manageWidget")
 	}
 }
 
@@ -7281,10 +7041,10 @@ func (ptr *QDesignerFormWindowInterface) ManageWidget(widget widgets.QWidget_ITF
 }
 
 //export callbackQDesignerFormWindowInterface_ObjectRemoved
-func callbackQDesignerFormWindowInterface_ObjectRemoved(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ObjectRemoved(ptr unsafe.Pointer, object unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::objectRemoved")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "objectRemoved"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "objectRemoved"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	}
 
@@ -7295,7 +7055,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectObjectRemoved(f func(object *cor
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectObjectRemoved(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "objectRemoved", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "objectRemoved", f)
 	}
 }
 
@@ -7304,7 +7064,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectObjectRemoved() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectObjectRemoved(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "objectRemoved")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "objectRemoved")
 	}
 }
 
@@ -7317,10 +7077,10 @@ func (ptr *QDesignerFormWindowInterface) ObjectRemoved(object core.QObject_ITF) 
 }
 
 //export callbackQDesignerFormWindowInterface_PixmapFunction
-func callbackQDesignerFormWindowInterface_PixmapFunction(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_PixmapFunction(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::pixmapFunction")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "pixmapFunction"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "pixmapFunction"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -7332,7 +7092,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectPixmapFunction(f func() string) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "pixmapFunction", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "pixmapFunction", f)
 	}
 }
 
@@ -7341,7 +7101,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectPixmapFunction() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "pixmapFunction")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "pixmapFunction")
 	}
 }
 
@@ -7355,10 +7115,10 @@ func (ptr *QDesignerFormWindowInterface) PixmapFunction() string {
 }
 
 //export callbackQDesignerFormWindowInterface_RemoveResourceFile
-func callbackQDesignerFormWindowInterface_RemoveResourceFile(ptr unsafe.Pointer, ptrName *C.char, path *C.char) {
+func callbackQDesignerFormWindowInterface_RemoveResourceFile(ptr unsafe.Pointer, path *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::removeResourceFile")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeResourceFile"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "removeResourceFile"); signal != nil {
 		signal.(func(string))(C.GoString(path))
 	}
 
@@ -7369,7 +7129,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectRemoveResourceFile(f func(path s
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "removeResourceFile", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "removeResourceFile", f)
 	}
 }
 
@@ -7378,7 +7138,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectRemoveResourceFile(path strin
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "removeResourceFile")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "removeResourceFile")
 	}
 }
 
@@ -7393,14 +7153,14 @@ func (ptr *QDesignerFormWindowInterface) RemoveResourceFile(path string) {
 }
 
 //export callbackQDesignerFormWindowInterface_ResourceFileSaveMode
-func callbackQDesignerFormWindowInterface_ResourceFileSaveMode(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowInterface_ResourceFileSaveMode(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::resourceFileSaveMode")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resourceFileSaveMode"); signal != nil {
-		return C.int(signal.(func() QDesignerFormWindowInterface__ResourceFileSaveMode)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "resourceFileSaveMode"); signal != nil {
+		return C.longlong(signal.(func() QDesignerFormWindowInterface__ResourceFileSaveMode)())
 	}
 
-	return C.int(0)
+	return C.longlong(0)
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectResourceFileSaveMode(f func() QDesignerFormWindowInterface__ResourceFileSaveMode) {
@@ -7408,7 +7168,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectResourceFileSaveMode(f func() QD
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "resourceFileSaveMode", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resourceFileSaveMode", f)
 	}
 }
 
@@ -7417,7 +7177,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectResourceFileSaveMode() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "resourceFileSaveMode")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resourceFileSaveMode")
 	}
 }
 
@@ -7431,10 +7191,10 @@ func (ptr *QDesignerFormWindowInterface) ResourceFileSaveMode() QDesignerFormWin
 }
 
 //export callbackQDesignerFormWindowInterface_ResourceFiles
-func callbackQDesignerFormWindowInterface_ResourceFiles(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerFormWindowInterface_ResourceFiles(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::resourceFiles")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resourceFiles"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "resourceFiles"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
 
@@ -7446,7 +7206,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectResourceFiles(f func() []string)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "resourceFiles", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resourceFiles", f)
 	}
 }
 
@@ -7455,7 +7215,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectResourceFiles() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "resourceFiles")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resourceFiles")
 	}
 }
 
@@ -7469,10 +7229,10 @@ func (ptr *QDesignerFormWindowInterface) ResourceFiles() []string {
 }
 
 //export callbackQDesignerFormWindowInterface_ResourceFilesChanged
-func callbackQDesignerFormWindowInterface_ResourceFilesChanged(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_ResourceFilesChanged(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::resourceFilesChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resourceFilesChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "resourceFilesChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -7483,7 +7243,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectResourceFilesChanged(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectResourceFilesChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "resourceFilesChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resourceFilesChanged", f)
 	}
 }
 
@@ -7492,7 +7252,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectResourceFilesChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectResourceFilesChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "resourceFilesChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resourceFilesChanged")
 	}
 }
 
@@ -7505,11 +7265,11 @@ func (ptr *QDesignerFormWindowInterface) ResourceFilesChanged() {
 }
 
 //export callbackQDesignerFormWindowInterface_SelectWidget
-func callbackQDesignerFormWindowInterface_SelectWidget(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer, sele C.int) {
+func callbackQDesignerFormWindowInterface_SelectWidget(ptr unsafe.Pointer, widget unsafe.Pointer, sele C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::selectWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "selectWidget"); signal != nil {
-		signal.(func(*widgets.QWidget, bool))(widgets.NewQWidgetFromPointer(widget), int(sele) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "selectWidget"); signal != nil {
+		signal.(func(*widgets.QWidget, bool))(widgets.NewQWidgetFromPointer(widget), int8(sele) != 0)
 	}
 
 }
@@ -7519,7 +7279,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSelectWidget(f func(widget *widg
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "selectWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "selectWidget", f)
 	}
 }
 
@@ -7528,7 +7288,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSelectWidget(widget widgets.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "selectWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "selectWidget")
 	}
 }
 
@@ -7536,15 +7296,15 @@ func (ptr *QDesignerFormWindowInterface) SelectWidget(widget widgets.QWidget_ITF
 	defer qt.Recovering("QDesignerFormWindowInterface::selectWidget")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SelectWidget(ptr.Pointer(), widgets.PointerFromQWidget(widget), C.int(qt.GoBoolToInt(sele)))
+		C.QDesignerFormWindowInterface_SelectWidget(ptr.Pointer(), widgets.PointerFromQWidget(widget), C.char(int8(qt.GoBoolToInt(sele))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SelectionChanged
-func callbackQDesignerFormWindowInterface_SelectionChanged(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_SelectionChanged(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::selectionChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "selectionChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "selectionChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -7555,7 +7315,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSelectionChanged(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectSelectionChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "selectionChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "selectionChanged", f)
 	}
 }
 
@@ -7564,7 +7324,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSelectionChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectSelectionChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "selectionChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "selectionChanged")
 	}
 }
 
@@ -7577,10 +7337,10 @@ func (ptr *QDesignerFormWindowInterface) SelectionChanged() {
 }
 
 //export callbackQDesignerFormWindowInterface_SetAuthor
-func callbackQDesignerFormWindowInterface_SetAuthor(ptr unsafe.Pointer, ptrName *C.char, author *C.char) {
+func callbackQDesignerFormWindowInterface_SetAuthor(ptr unsafe.Pointer, author *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setAuthor")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setAuthor"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setAuthor"); signal != nil {
 		signal.(func(string))(C.GoString(author))
 	}
 
@@ -7591,7 +7351,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetAuthor(f func(author string))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setAuthor", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setAuthor", f)
 	}
 }
 
@@ -7600,7 +7360,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetAuthor(author string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setAuthor")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setAuthor")
 	}
 }
 
@@ -7615,10 +7375,10 @@ func (ptr *QDesignerFormWindowInterface) SetAuthor(author string) {
 }
 
 //export callbackQDesignerFormWindowInterface_SetComment
-func callbackQDesignerFormWindowInterface_SetComment(ptr unsafe.Pointer, ptrName *C.char, comment *C.char) {
+func callbackQDesignerFormWindowInterface_SetComment(ptr unsafe.Pointer, comment *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setComment")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setComment"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setComment"); signal != nil {
 		signal.(func(string))(C.GoString(comment))
 	}
 
@@ -7629,7 +7389,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetComment(f func(comment string
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setComment", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setComment", f)
 	}
 }
 
@@ -7638,7 +7398,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetComment(comment string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setComment")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setComment")
 	}
 }
 
@@ -7653,14 +7413,14 @@ func (ptr *QDesignerFormWindowInterface) SetComment(comment string) {
 }
 
 //export callbackQDesignerFormWindowInterface_SetContents
-func callbackQDesignerFormWindowInterface_SetContents(ptr unsafe.Pointer, ptrName *C.char, device unsafe.Pointer, errorMessage *C.char) C.int {
+func callbackQDesignerFormWindowInterface_SetContents(ptr unsafe.Pointer, device unsafe.Pointer, errorMessage *C.char) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setContents")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setContents"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QIODevice, string) bool)(core.NewQIODeviceFromPointer(device), C.GoString(errorMessage))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setContents"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QIODevice, string) bool)(core.NewQIODeviceFromPointer(device), C.GoString(errorMessage)))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectSetContents(f func(device *core.QIODevice, errorMessage string) bool) {
@@ -7668,7 +7428,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetContents(f func(device *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setContents", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setContents", f)
 	}
 }
 
@@ -7677,7 +7437,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetContents(device core.QIODe
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setContents")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setContents")
 	}
 }
 
@@ -7693,14 +7453,14 @@ func (ptr *QDesignerFormWindowInterface) SetContents(device core.QIODevice_ITF, 
 }
 
 //export callbackQDesignerFormWindowInterface_SetContents2
-func callbackQDesignerFormWindowInterface_SetContents2(ptr unsafe.Pointer, ptrName *C.char, contents *C.char) C.int {
+func callbackQDesignerFormWindowInterface_SetContents2(ptr unsafe.Pointer, contents *C.char) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setContents")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setContents2"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(contents))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setContents2"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(contents)))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectSetContents2(f func(contents string) bool) {
@@ -7708,7 +7468,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetContents2(f func(contents str
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setContents2", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setContents2", f)
 	}
 }
 
@@ -7717,7 +7477,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetContents2(contents string)
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setContents2")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setContents2")
 	}
 }
 
@@ -7733,11 +7493,11 @@ func (ptr *QDesignerFormWindowInterface) SetContents2(contents string) bool {
 }
 
 //export callbackQDesignerFormWindowInterface_SetDirty
-func callbackQDesignerFormWindowInterface_SetDirty(ptr unsafe.Pointer, ptrName *C.char, dirty C.int) {
+func callbackQDesignerFormWindowInterface_SetDirty(ptr unsafe.Pointer, dirty C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setDirty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setDirty"); signal != nil {
-		signal.(func(bool))(int(dirty) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setDirty"); signal != nil {
+		signal.(func(bool))(int8(dirty) != 0)
 	}
 
 }
@@ -7747,7 +7507,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetDirty(f func(dirty bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setDirty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setDirty", f)
 	}
 }
 
@@ -7756,7 +7516,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetDirty(dirty bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setDirty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setDirty")
 	}
 }
 
@@ -7764,15 +7524,15 @@ func (ptr *QDesignerFormWindowInterface) SetDirty(dirty bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setDirty")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetDirty(ptr.Pointer(), C.int(qt.GoBoolToInt(dirty)))
+		C.QDesignerFormWindowInterface_SetDirty(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(dirty))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SetExportMacro
-func callbackQDesignerFormWindowInterface_SetExportMacro(ptr unsafe.Pointer, ptrName *C.char, exportMacro *C.char) {
+func callbackQDesignerFormWindowInterface_SetExportMacro(ptr unsafe.Pointer, exportMacro *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setExportMacro")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setExportMacro"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setExportMacro"); signal != nil {
 		signal.(func(string))(C.GoString(exportMacro))
 	}
 
@@ -7783,7 +7543,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetExportMacro(f func(exportMacr
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setExportMacro", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setExportMacro", f)
 	}
 }
 
@@ -7792,7 +7552,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetExportMacro(exportMacro st
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setExportMacro")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setExportMacro")
 	}
 }
 
@@ -7807,10 +7567,10 @@ func (ptr *QDesignerFormWindowInterface) SetExportMacro(exportMacro string) {
 }
 
 //export callbackQDesignerFormWindowInterface_SetFeatures
-func callbackQDesignerFormWindowInterface_SetFeatures(ptr unsafe.Pointer, ptrName *C.char, features C.int) {
+func callbackQDesignerFormWindowInterface_SetFeatures(ptr unsafe.Pointer, features C.longlong) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setFeatures")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFeatures"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setFeatures"); signal != nil {
 		signal.(func(QDesignerFormWindowInterface__FeatureFlag))(QDesignerFormWindowInterface__FeatureFlag(features))
 	}
 
@@ -7821,7 +7581,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetFeatures(f func(features QDes
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFeatures", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setFeatures", f)
 	}
 }
 
@@ -7830,7 +7590,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetFeatures(features QDesigne
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFeatures")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setFeatures")
 	}
 }
 
@@ -7838,15 +7598,15 @@ func (ptr *QDesignerFormWindowInterface) SetFeatures(features QDesignerFormWindo
 	defer qt.Recovering("QDesignerFormWindowInterface::setFeatures")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetFeatures(ptr.Pointer(), C.int(features))
+		C.QDesignerFormWindowInterface_SetFeatures(ptr.Pointer(), C.longlong(features))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SetFileName
-func callbackQDesignerFormWindowInterface_SetFileName(ptr unsafe.Pointer, ptrName *C.char, fileName *C.char) {
+func callbackQDesignerFormWindowInterface_SetFileName(ptr unsafe.Pointer, fileName *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setFileName")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFileName"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setFileName"); signal != nil {
 		signal.(func(string))(C.GoString(fileName))
 	}
 
@@ -7857,7 +7617,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetFileName(f func(fileName stri
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFileName", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setFileName", f)
 	}
 }
 
@@ -7866,7 +7626,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetFileName(fileName string) 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFileName")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setFileName")
 	}
 }
 
@@ -7881,10 +7641,10 @@ func (ptr *QDesignerFormWindowInterface) SetFileName(fileName string) {
 }
 
 //export callbackQDesignerFormWindowInterface_SetGrid
-func callbackQDesignerFormWindowInterface_SetGrid(ptr unsafe.Pointer, ptrName *C.char, grid unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_SetGrid(ptr unsafe.Pointer, grid unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setGrid")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setGrid"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setGrid"); signal != nil {
 		signal.(func(*core.QPoint))(core.NewQPointFromPointer(grid))
 	}
 
@@ -7895,7 +7655,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetGrid(f func(grid *core.QPoint
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setGrid", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setGrid", f)
 	}
 }
 
@@ -7904,7 +7664,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetGrid(grid core.QPoint_ITF)
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setGrid")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setGrid")
 	}
 }
 
@@ -7917,10 +7677,10 @@ func (ptr *QDesignerFormWindowInterface) SetGrid(grid core.QPoint_ITF) {
 }
 
 //export callbackQDesignerFormWindowInterface_SetIncludeHints
-func callbackQDesignerFormWindowInterface_SetIncludeHints(ptr unsafe.Pointer, ptrName *C.char, includeHints *C.char) {
+func callbackQDesignerFormWindowInterface_SetIncludeHints(ptr unsafe.Pointer, includeHints *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setIncludeHints")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setIncludeHints"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setIncludeHints"); signal != nil {
 		signal.(func([]string))(strings.Split(C.GoString(includeHints), "|"))
 	}
 
@@ -7931,7 +7691,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetIncludeHints(f func(includeHi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setIncludeHints", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setIncludeHints", f)
 	}
 }
 
@@ -7940,7 +7700,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetIncludeHints(includeHints 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setIncludeHints")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setIncludeHints")
 	}
 }
 
@@ -7955,11 +7715,11 @@ func (ptr *QDesignerFormWindowInterface) SetIncludeHints(includeHints []string) 
 }
 
 //export callbackQDesignerFormWindowInterface_SetLayoutDefault
-func callbackQDesignerFormWindowInterface_SetLayoutDefault(ptr unsafe.Pointer, ptrName *C.char, margin C.int, spacing C.int) {
+func callbackQDesignerFormWindowInterface_SetLayoutDefault(ptr unsafe.Pointer, margin C.int, spacing C.int) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setLayoutDefault")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setLayoutDefault"); signal != nil {
-		signal.(func(int, int))(int(margin), int(spacing))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setLayoutDefault"); signal != nil {
+		signal.(func(int, int))(int(int32(margin)), int(int32(spacing)))
 	}
 
 }
@@ -7969,7 +7729,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetLayoutDefault(f func(margin i
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setLayoutDefault", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setLayoutDefault", f)
 	}
 }
 
@@ -7978,7 +7738,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetLayoutDefault(margin int, 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setLayoutDefault")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setLayoutDefault")
 	}
 }
 
@@ -7986,15 +7746,15 @@ func (ptr *QDesignerFormWindowInterface) SetLayoutDefault(margin int, spacing in
 	defer qt.Recovering("QDesignerFormWindowInterface::setLayoutDefault")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetLayoutDefault(ptr.Pointer(), C.int(margin), C.int(spacing))
+		C.QDesignerFormWindowInterface_SetLayoutDefault(ptr.Pointer(), C.int(int32(margin)), C.int(int32(spacing)))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SetLayoutFunction
-func callbackQDesignerFormWindowInterface_SetLayoutFunction(ptr unsafe.Pointer, ptrName *C.char, margin *C.char, spacing *C.char) {
+func callbackQDesignerFormWindowInterface_SetLayoutFunction(ptr unsafe.Pointer, margin *C.char, spacing *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setLayoutFunction")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setLayoutFunction"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setLayoutFunction"); signal != nil {
 		signal.(func(string, string))(C.GoString(margin), C.GoString(spacing))
 	}
 
@@ -8005,7 +7765,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetLayoutFunction(f func(margin 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setLayoutFunction", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setLayoutFunction", f)
 	}
 }
 
@@ -8014,7 +7774,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetLayoutFunction(margin stri
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setLayoutFunction")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setLayoutFunction")
 	}
 }
 
@@ -8031,10 +7791,10 @@ func (ptr *QDesignerFormWindowInterface) SetLayoutFunction(margin string, spacin
 }
 
 //export callbackQDesignerFormWindowInterface_SetMainContainer
-func callbackQDesignerFormWindowInterface_SetMainContainer(ptr unsafe.Pointer, ptrName *C.char, mainContainer unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_SetMainContainer(ptr unsafe.Pointer, mainContainer unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setMainContainer")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setMainContainer"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setMainContainer"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(mainContainer))
 	}
 
@@ -8045,7 +7805,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetMainContainer(f func(mainCont
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setMainContainer", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setMainContainer", f)
 	}
 }
 
@@ -8054,7 +7814,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetMainContainer(mainContaine
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setMainContainer")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setMainContainer")
 	}
 }
 
@@ -8067,10 +7827,10 @@ func (ptr *QDesignerFormWindowInterface) SetMainContainer(mainContainer widgets.
 }
 
 //export callbackQDesignerFormWindowInterface_SetPixmapFunction
-func callbackQDesignerFormWindowInterface_SetPixmapFunction(ptr unsafe.Pointer, ptrName *C.char, pixmapFunction *C.char) {
+func callbackQDesignerFormWindowInterface_SetPixmapFunction(ptr unsafe.Pointer, pixmapFunction *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setPixmapFunction")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setPixmapFunction"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setPixmapFunction"); signal != nil {
 		signal.(func(string))(C.GoString(pixmapFunction))
 	}
 
@@ -8081,7 +7841,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetPixmapFunction(f func(pixmapF
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setPixmapFunction", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setPixmapFunction", f)
 	}
 }
 
@@ -8090,7 +7850,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetPixmapFunction(pixmapFunct
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setPixmapFunction")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setPixmapFunction")
 	}
 }
 
@@ -8105,10 +7865,10 @@ func (ptr *QDesignerFormWindowInterface) SetPixmapFunction(pixmapFunction string
 }
 
 //export callbackQDesignerFormWindowInterface_SetResourceFileSaveMode
-func callbackQDesignerFormWindowInterface_SetResourceFileSaveMode(ptr unsafe.Pointer, ptrName *C.char, behaviour C.int) {
+func callbackQDesignerFormWindowInterface_SetResourceFileSaveMode(ptr unsafe.Pointer, behaviour C.longlong) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setResourceFileSaveMode")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setResourceFileSaveMode"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setResourceFileSaveMode"); signal != nil {
 		signal.(func(QDesignerFormWindowInterface__ResourceFileSaveMode))(QDesignerFormWindowInterface__ResourceFileSaveMode(behaviour))
 	}
 
@@ -8119,7 +7879,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetResourceFileSaveMode(f func(b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setResourceFileSaveMode", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setResourceFileSaveMode", f)
 	}
 }
 
@@ -8128,7 +7888,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetResourceFileSaveMode(behav
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setResourceFileSaveMode")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setResourceFileSaveMode")
 	}
 }
 
@@ -8136,15 +7896,15 @@ func (ptr *QDesignerFormWindowInterface) SetResourceFileSaveMode(behaviour QDesi
 	defer qt.Recovering("QDesignerFormWindowInterface::setResourceFileSaveMode")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetResourceFileSaveMode(ptr.Pointer(), C.int(behaviour))
+		C.QDesignerFormWindowInterface_SetResourceFileSaveMode(ptr.Pointer(), C.longlong(behaviour))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_UnmanageWidget
-func callbackQDesignerFormWindowInterface_UnmanageWidget(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_UnmanageWidget(ptr unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::unmanageWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "unmanageWidget"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "unmanageWidget"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(widget))
 	}
 
@@ -8155,7 +7915,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectUnmanageWidget(f func(widget *wi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "unmanageWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "unmanageWidget", f)
 	}
 }
 
@@ -8164,7 +7924,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectUnmanageWidget(widget widgets
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "unmanageWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "unmanageWidget")
 	}
 }
 
@@ -8177,10 +7937,10 @@ func (ptr *QDesignerFormWindowInterface) UnmanageWidget(widget widgets.QWidget_I
 }
 
 //export callbackQDesignerFormWindowInterface_WidgetManaged
-func callbackQDesignerFormWindowInterface_WidgetManaged(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_WidgetManaged(ptr unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::widgetManaged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "widgetManaged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "widgetManaged"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(widget))
 	}
 
@@ -8191,7 +7951,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectWidgetManaged(f func(widget *wid
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectWidgetManaged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "widgetManaged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "widgetManaged", f)
 	}
 }
 
@@ -8200,7 +7960,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectWidgetManaged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectWidgetManaged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "widgetManaged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "widgetManaged")
 	}
 }
 
@@ -8213,10 +7973,10 @@ func (ptr *QDesignerFormWindowInterface) WidgetManaged(widget widgets.QWidget_IT
 }
 
 //export callbackQDesignerFormWindowInterface_WidgetRemoved
-func callbackQDesignerFormWindowInterface_WidgetRemoved(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_WidgetRemoved(ptr unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::widgetRemoved")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "widgetRemoved"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "widgetRemoved"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(widget))
 	}
 
@@ -8227,7 +7987,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectWidgetRemoved(f func(widget *wid
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectWidgetRemoved(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "widgetRemoved", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "widgetRemoved", f)
 	}
 }
 
@@ -8236,7 +7996,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectWidgetRemoved() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectWidgetRemoved(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "widgetRemoved")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "widgetRemoved")
 	}
 }
 
@@ -8249,10 +8009,10 @@ func (ptr *QDesignerFormWindowInterface) WidgetRemoved(widget widgets.QWidget_IT
 }
 
 //export callbackQDesignerFormWindowInterface_WidgetUnmanaged
-func callbackQDesignerFormWindowInterface_WidgetUnmanaged(ptr unsafe.Pointer, ptrName *C.char, widget unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_WidgetUnmanaged(ptr unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::widgetUnmanaged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "widgetUnmanaged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "widgetUnmanaged"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(widget))
 	}
 
@@ -8263,7 +8023,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectWidgetUnmanaged(f func(widget *w
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_ConnectWidgetUnmanaged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "widgetUnmanaged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "widgetUnmanaged", f)
 	}
 }
 
@@ -8272,7 +8032,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectWidgetUnmanaged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowInterface_DisconnectWidgetUnmanaged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "widgetUnmanaged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "widgetUnmanaged")
 	}
 }
 
@@ -8288,17 +8048,17 @@ func (ptr *QDesignerFormWindowInterface) DestroyQDesignerFormWindowInterface() {
 	defer qt.Recovering("QDesignerFormWindowInterface::~QDesignerFormWindowInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_ActionEvent
-func callbackQDesignerFormWindowInterface_ActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::actionEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -8310,7 +8070,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectActionEvent(f func(event *gui.QA
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "actionEvent", f)
 	}
 }
 
@@ -8319,7 +8079,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "actionEvent")
 	}
 }
 
@@ -8340,10 +8100,10 @@ func (ptr *QDesignerFormWindowInterface) ActionEventDefault(event gui.QActionEve
 }
 
 //export callbackQDesignerFormWindowInterface_DragEnterEvent
-func callbackQDesignerFormWindowInterface_DragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::dragEnterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -8355,7 +8115,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectDragEnterEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dragEnterEvent", f)
 	}
 }
 
@@ -8364,7 +8124,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dragEnterEvent")
 	}
 }
 
@@ -8385,10 +8145,10 @@ func (ptr *QDesignerFormWindowInterface) DragEnterEventDefault(event gui.QDragEn
 }
 
 //export callbackQDesignerFormWindowInterface_DragLeaveEvent
-func callbackQDesignerFormWindowInterface_DragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::dragLeaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -8400,7 +8160,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectDragLeaveEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dragLeaveEvent", f)
 	}
 }
 
@@ -8409,7 +8169,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dragLeaveEvent")
 	}
 }
 
@@ -8430,10 +8190,10 @@ func (ptr *QDesignerFormWindowInterface) DragLeaveEventDefault(event gui.QDragLe
 }
 
 //export callbackQDesignerFormWindowInterface_DragMoveEvent
-func callbackQDesignerFormWindowInterface_DragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::dragMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -8445,7 +8205,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectDragMoveEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dragMoveEvent", f)
 	}
 }
 
@@ -8454,7 +8214,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dragMoveEvent")
 	}
 }
 
@@ -8475,10 +8235,10 @@ func (ptr *QDesignerFormWindowInterface) DragMoveEventDefault(event gui.QDragMov
 }
 
 //export callbackQDesignerFormWindowInterface_DropEvent
-func callbackQDesignerFormWindowInterface_DropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::dropEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -8490,7 +8250,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectDropEvent(f func(event *gui.QDro
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dropEvent", f)
 	}
 }
 
@@ -8499,7 +8259,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "dropEvent")
 	}
 }
 
@@ -8520,10 +8280,10 @@ func (ptr *QDesignerFormWindowInterface) DropEventDefault(event gui.QDropEvent_I
 }
 
 //export callbackQDesignerFormWindowInterface_EnterEvent
-func callbackQDesignerFormWindowInterface_EnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::enterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -8535,7 +8295,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectEnterEvent(f func(event *core.QE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "enterEvent", f)
 	}
 }
 
@@ -8544,7 +8304,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "enterEvent")
 	}
 }
 
@@ -8565,10 +8325,10 @@ func (ptr *QDesignerFormWindowInterface) EnterEventDefault(event core.QEvent_ITF
 }
 
 //export callbackQDesignerFormWindowInterface_FocusInEvent
-func callbackQDesignerFormWindowInterface_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::focusInEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -8580,7 +8340,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFocusInEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "focusInEvent", f)
 	}
 }
 
@@ -8589,7 +8349,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "focusInEvent")
 	}
 }
 
@@ -8610,10 +8370,10 @@ func (ptr *QDesignerFormWindowInterface) FocusInEventDefault(event gui.QFocusEve
 }
 
 //export callbackQDesignerFormWindowInterface_FocusOutEvent
-func callbackQDesignerFormWindowInterface_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::focusOutEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -8625,7 +8385,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFocusOutEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "focusOutEvent", f)
 	}
 }
 
@@ -8634,7 +8394,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "focusOutEvent")
 	}
 }
 
@@ -8655,10 +8415,10 @@ func (ptr *QDesignerFormWindowInterface) FocusOutEventDefault(event gui.QFocusEv
 }
 
 //export callbackQDesignerFormWindowInterface_HideEvent
-func callbackQDesignerFormWindowInterface_HideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::hideEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -8670,7 +8430,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectHideEvent(f func(event *gui.QHid
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hideEvent", f)
 	}
 }
 
@@ -8679,7 +8439,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hideEvent")
 	}
 }
 
@@ -8700,10 +8460,10 @@ func (ptr *QDesignerFormWindowInterface) HideEventDefault(event gui.QHideEvent_I
 }
 
 //export callbackQDesignerFormWindowInterface_LeaveEvent
-func callbackQDesignerFormWindowInterface_LeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::leaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -8715,7 +8475,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectLeaveEvent(f func(event *core.QE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "leaveEvent", f)
 	}
 }
 
@@ -8724,7 +8484,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "leaveEvent")
 	}
 }
 
@@ -8745,10 +8505,10 @@ func (ptr *QDesignerFormWindowInterface) LeaveEventDefault(event core.QEvent_ITF
 }
 
 //export callbackQDesignerFormWindowInterface_MinimumSizeHint
-func callbackQDesignerFormWindowInterface_MinimumSizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::minimumSizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -8760,7 +8520,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMinimumSizeHint(f func() *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "minimumSizeHint", f)
 	}
 }
 
@@ -8769,7 +8529,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "minimumSizeHint")
 	}
 }
 
@@ -8796,10 +8556,10 @@ func (ptr *QDesignerFormWindowInterface) MinimumSizeHintDefault() *core.QSize {
 }
 
 //export callbackQDesignerFormWindowInterface_MoveEvent
-func callbackQDesignerFormWindowInterface_MoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::moveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -8811,7 +8571,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMoveEvent(f func(event *gui.QMov
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "moveEvent", f)
 	}
 }
 
@@ -8820,7 +8580,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "moveEvent")
 	}
 }
 
@@ -8841,10 +8601,10 @@ func (ptr *QDesignerFormWindowInterface) MoveEventDefault(event gui.QMoveEvent_I
 }
 
 //export callbackQDesignerFormWindowInterface_PaintEvent
-func callbackQDesignerFormWindowInterface_PaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::paintEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -8856,7 +8616,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectPaintEvent(f func(event *gui.QPa
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "paintEvent", f)
 	}
 }
 
@@ -8865,7 +8625,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "paintEvent")
 	}
 }
 
@@ -8886,13 +8646,13 @@ func (ptr *QDesignerFormWindowInterface) PaintEventDefault(event gui.QPaintEvent
 }
 
 //export callbackQDesignerFormWindowInterface_SetEnabled
-func callbackQDesignerFormWindowInterface_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerFormWindowInterface_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setEnabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
 	}
 }
 
@@ -8901,7 +8661,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setEnabled", f)
 	}
 }
 
@@ -8910,7 +8670,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setEnabled")
 	}
 }
 
@@ -8918,7 +8678,7 @@ func (ptr *QDesignerFormWindowInterface) SetEnabled(vbo bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerFormWindowInterface_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -8926,15 +8686,15 @@ func (ptr *QDesignerFormWindowInterface) SetEnabledDefault(vbo bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerFormWindowInterface_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SetStyleSheet
-func callbackQDesignerFormWindowInterface_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
+func callbackQDesignerFormWindowInterface_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setStyleSheet")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -8946,7 +8706,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetStyleSheet(f func(styleSheet 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setStyleSheet", f)
 	}
 }
 
@@ -8955,7 +8715,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setStyleSheet")
 	}
 }
 
@@ -8980,13 +8740,13 @@ func (ptr *QDesignerFormWindowInterface) SetStyleSheetDefault(styleSheet string)
 }
 
 //export callbackQDesignerFormWindowInterface_SetVisible
-func callbackQDesignerFormWindowInterface_SetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQDesignerFormWindowInterface_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
-		signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setVisible"); signal != nil {
+		signal.(func(bool))(int8(visible) != 0)
 	} else {
-		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
 	}
 }
 
@@ -8995,7 +8755,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetVisible(f func(visible bool))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setVisible", f)
 	}
 }
 
@@ -9004,7 +8764,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setVisible")
 	}
 }
 
@@ -9012,7 +8772,7 @@ func (ptr *QDesignerFormWindowInterface) SetVisible(visible bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerFormWindowInterface_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
@@ -9020,18 +8780,18 @@ func (ptr *QDesignerFormWindowInterface) SetVisibleDefault(visible bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerFormWindowInterface_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SetWindowModified
-func callbackQDesignerFormWindowInterface_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerFormWindowInterface_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setWindowModified")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
 	}
 }
 
@@ -9040,7 +8800,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetWindowModified(f func(vbo boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setWindowModified", f)
 	}
 }
 
@@ -9049,7 +8809,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setWindowModified")
 	}
 }
 
@@ -9057,7 +8817,7 @@ func (ptr *QDesignerFormWindowInterface) SetWindowModified(vbo bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetWindowModified(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerFormWindowInterface_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -9065,15 +8825,15 @@ func (ptr *QDesignerFormWindowInterface) SetWindowModifiedDefault(vbo bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerFormWindowInterface_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SetWindowTitle
-func callbackQDesignerFormWindowInterface_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
+func callbackQDesignerFormWindowInterface_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setWindowTitle")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -9085,7 +8845,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetWindowTitle(f func(vqs string
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setWindowTitle", f)
 	}
 }
 
@@ -9094,7 +8854,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setWindowTitle")
 	}
 }
 
@@ -9119,10 +8879,10 @@ func (ptr *QDesignerFormWindowInterface) SetWindowTitleDefault(vqs string) {
 }
 
 //export callbackQDesignerFormWindowInterface_ShowEvent
-func callbackQDesignerFormWindowInterface_ShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::showEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -9134,7 +8894,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectShowEvent(f func(event *gui.QSho
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showEvent", f)
 	}
 }
 
@@ -9143,7 +8903,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showEvent")
 	}
 }
 
@@ -9164,10 +8924,10 @@ func (ptr *QDesignerFormWindowInterface) ShowEventDefault(event gui.QShowEvent_I
 }
 
 //export callbackQDesignerFormWindowInterface_SizeHint
-func callbackQDesignerFormWindowInterface_SizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::sizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -9179,7 +8939,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "sizeHint", f)
 	}
 }
 
@@ -9188,7 +8948,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "sizeHint")
 	}
 }
 
@@ -9215,10 +8975,10 @@ func (ptr *QDesignerFormWindowInterface) SizeHintDefault() *core.QSize {
 }
 
 //export callbackQDesignerFormWindowInterface_ChangeEvent
-func callbackQDesignerFormWindowInterface_ChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::changeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -9230,7 +8990,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectChangeEvent(f func(event *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "changeEvent", f)
 	}
 }
 
@@ -9239,7 +8999,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "changeEvent")
 	}
 }
 
@@ -9260,14 +9020,14 @@ func (ptr *QDesignerFormWindowInterface) ChangeEventDefault(event core.QEvent_IT
 }
 
 //export callbackQDesignerFormWindowInterface_Close
-func callbackQDesignerFormWindowInterface_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowInterface_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::close")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).CloseDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).CloseDefault())))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectClose(f func() bool) {
@@ -9275,7 +9035,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "close", f)
 	}
 }
 
@@ -9284,7 +9044,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "close")
 	}
 }
 
@@ -9307,10 +9067,10 @@ func (ptr *QDesignerFormWindowInterface) CloseDefault() bool {
 }
 
 //export callbackQDesignerFormWindowInterface_CloseEvent
-func callbackQDesignerFormWindowInterface_CloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::closeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -9322,7 +9082,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectCloseEvent(f func(event *gui.QCl
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "closeEvent", f)
 	}
 }
 
@@ -9331,7 +9091,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "closeEvent")
 	}
 }
 
@@ -9352,10 +9112,10 @@ func (ptr *QDesignerFormWindowInterface) CloseEventDefault(event gui.QCloseEvent
 }
 
 //export callbackQDesignerFormWindowInterface_ContextMenuEvent
-func callbackQDesignerFormWindowInterface_ContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::contextMenuEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -9367,7 +9127,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectContextMenuEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "contextMenuEvent", f)
 	}
 }
 
@@ -9376,7 +9136,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "contextMenuEvent")
 	}
 }
 
@@ -9397,14 +9157,14 @@ func (ptr *QDesignerFormWindowInterface) ContextMenuEventDefault(event gui.QCont
 }
 
 //export callbackQDesignerFormWindowInterface_FocusNextPrevChild
-func callbackQDesignerFormWindowInterface_FocusNextPrevChild(ptr unsafe.Pointer, ptrName *C.char, next C.int) C.int {
+func callbackQDesignerFormWindowInterface_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::focusNextPrevChild")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusNextPrevChild"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(bool) bool)(int(next) != 0)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int(next) != 0)))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectFocusNextPrevChild(f func(next bool) bool) {
@@ -9412,7 +9172,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectFocusNextPrevChild(f func(next b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "focusNextPrevChild", f)
 	}
 }
 
@@ -9421,7 +9181,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "focusNextPrevChild")
 	}
 }
 
@@ -9429,7 +9189,7 @@ func (ptr *QDesignerFormWindowInterface) FocusNextPrevChild(next bool) bool {
 	defer qt.Recovering("QDesignerFormWindowInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerFormWindowInterface_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
@@ -9438,20 +9198,20 @@ func (ptr *QDesignerFormWindowInterface) FocusNextPrevChildDefault(next bool) bo
 	defer qt.Recovering("QDesignerFormWindowInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerFormWindowInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerFormWindowInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerFormWindowInterface_HasHeightForWidth
-func callbackQDesignerFormWindowInterface_HasHeightForWidth(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowInterface_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::hasHeightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasHeightForWidth"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).HasHeightForWidthDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).HasHeightForWidthDefault())))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectHasHeightForWidth(f func() bool) {
@@ -9459,7 +9219,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectHasHeightForWidth(f func() bool)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hasHeightForWidth", f)
 	}
 }
 
@@ -9468,7 +9228,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hasHeightForWidth")
 	}
 }
 
@@ -9491,14 +9251,14 @@ func (ptr *QDesignerFormWindowInterface) HasHeightForWidthDefault() bool {
 }
 
 //export callbackQDesignerFormWindowInterface_HeightForWidth
-func callbackQDesignerFormWindowInterface_HeightForWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) C.int {
+func callbackQDesignerFormWindowInterface_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::heightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "heightForWidth"); signal != nil {
-		return C.int(signal.(func(int) int)(int(w)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
-	return C.int(NewQDesignerFormWindowInterfaceFromPointer(ptr).HeightForWidthDefault(int(w)))
+	return C.int(int32(NewQDesignerFormWindowInterfaceFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectHeightForWidth(f func(w int) int) {
@@ -9506,7 +9266,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectHeightForWidth(f func(w int) int
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "heightForWidth", f)
 	}
 }
 
@@ -9515,7 +9275,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "heightForWidth")
 	}
 }
 
@@ -9523,7 +9283,7 @@ func (ptr *QDesignerFormWindowInterface) HeightForWidth(w int) int {
 	defer qt.Recovering("QDesignerFormWindowInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerFormWindowInterface_HeightForWidth(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerFormWindowInterface_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
@@ -9532,16 +9292,16 @@ func (ptr *QDesignerFormWindowInterface) HeightForWidthDefault(w int) int {
 	defer qt.Recovering("QDesignerFormWindowInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerFormWindowInterface_HeightForWidthDefault(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerFormWindowInterface_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
 
 //export callbackQDesignerFormWindowInterface_Hide
-func callbackQDesignerFormWindowInterface_Hide(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::hide")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).HideDefault()
@@ -9553,7 +9313,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hide", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hide", f)
 	}
 }
 
@@ -9562,7 +9322,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hide")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "hide")
 	}
 }
 
@@ -9583,10 +9343,10 @@ func (ptr *QDesignerFormWindowInterface) HideDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_InputMethodEvent
-func callbackQDesignerFormWindowInterface_InputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::inputMethodEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -9598,7 +9358,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectInputMethodEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "inputMethodEvent", f)
 	}
 }
 
@@ -9607,7 +9367,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "inputMethodEvent")
 	}
 }
 
@@ -9628,10 +9388,10 @@ func (ptr *QDesignerFormWindowInterface) InputMethodEventDefault(event gui.QInpu
 }
 
 //export callbackQDesignerFormWindowInterface_InputMethodQuery
-func callbackQDesignerFormWindowInterface_InputMethodQuery(ptr unsafe.Pointer, ptrName *C.char, query C.int) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::inputMethodQuery")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -9643,7 +9403,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectInputMethodQuery(f func(query co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "inputMethodQuery", f)
 	}
 }
 
@@ -9652,7 +9412,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "inputMethodQuery")
 	}
 }
 
@@ -9660,7 +9420,7 @@ func (ptr *QDesignerFormWindowInterface) InputMethodQuery(query core.Qt__InputMe
 	defer qt.Recovering("QDesignerFormWindowInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -9671,7 +9431,7 @@ func (ptr *QDesignerFormWindowInterface) InputMethodQueryDefault(query core.Qt__
 	defer qt.Recovering("QDesignerFormWindowInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerFormWindowInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -9679,10 +9439,10 @@ func (ptr *QDesignerFormWindowInterface) InputMethodQueryDefault(query core.Qt__
 }
 
 //export callbackQDesignerFormWindowInterface_KeyPressEvent
-func callbackQDesignerFormWindowInterface_KeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::keyPressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -9694,7 +9454,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectKeyPressEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "keyPressEvent", f)
 	}
 }
 
@@ -9703,7 +9463,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "keyPressEvent")
 	}
 }
 
@@ -9724,10 +9484,10 @@ func (ptr *QDesignerFormWindowInterface) KeyPressEventDefault(event gui.QKeyEven
 }
 
 //export callbackQDesignerFormWindowInterface_KeyReleaseEvent
-func callbackQDesignerFormWindowInterface_KeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::keyReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -9739,7 +9499,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectKeyReleaseEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "keyReleaseEvent", f)
 	}
 }
 
@@ -9748,7 +9508,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "keyReleaseEvent")
 	}
 }
 
@@ -9769,10 +9529,10 @@ func (ptr *QDesignerFormWindowInterface) KeyReleaseEventDefault(event gui.QKeyEv
 }
 
 //export callbackQDesignerFormWindowInterface_Lower
-func callbackQDesignerFormWindowInterface_Lower(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::lower")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).LowerDefault()
@@ -9784,7 +9544,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "lower", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "lower", f)
 	}
 }
 
@@ -9793,7 +9553,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "lower")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "lower")
 	}
 }
 
@@ -9814,10 +9574,10 @@ func (ptr *QDesignerFormWindowInterface) LowerDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_MouseDoubleClickEvent
-func callbackQDesignerFormWindowInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -9829,7 +9589,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMouseDoubleClickEvent(f func(eve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
 	}
 }
 
@@ -9838,7 +9598,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
 	}
 }
 
@@ -9859,10 +9619,10 @@ func (ptr *QDesignerFormWindowInterface) MouseDoubleClickEventDefault(event gui.
 }
 
 //export callbackQDesignerFormWindowInterface_MouseMoveEvent
-func callbackQDesignerFormWindowInterface_MouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::mouseMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -9874,7 +9634,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMouseMoveEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mouseMoveEvent", f)
 	}
 }
 
@@ -9883,7 +9643,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mouseMoveEvent")
 	}
 }
 
@@ -9904,10 +9664,10 @@ func (ptr *QDesignerFormWindowInterface) MouseMoveEventDefault(event gui.QMouseE
 }
 
 //export callbackQDesignerFormWindowInterface_MousePressEvent
-func callbackQDesignerFormWindowInterface_MousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::mousePressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -9919,7 +9679,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMousePressEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mousePressEvent", f)
 	}
 }
 
@@ -9928,7 +9688,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mousePressEvent")
 	}
 }
 
@@ -9949,10 +9709,10 @@ func (ptr *QDesignerFormWindowInterface) MousePressEventDefault(event gui.QMouse
 }
 
 //export callbackQDesignerFormWindowInterface_MouseReleaseEvent
-func callbackQDesignerFormWindowInterface_MouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -9964,7 +9724,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMouseReleaseEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
 	}
 }
 
@@ -9973,7 +9733,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "mouseReleaseEvent")
 	}
 }
 
@@ -9994,14 +9754,14 @@ func (ptr *QDesignerFormWindowInterface) MouseReleaseEventDefault(event gui.QMou
 }
 
 //export callbackQDesignerFormWindowInterface_NativeEvent
-func callbackQDesignerFormWindowInterface_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventType *C.char, message unsafe.Pointer, result C.long) C.int {
+func callbackQDesignerFormWindowInterface_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::nativeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -10009,7 +9769,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectNativeEvent(f func(eventType str
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "nativeEvent", f)
 	}
 }
 
@@ -10018,7 +9778,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "nativeEvent")
 	}
 }
 
@@ -10028,7 +9788,7 @@ func (ptr *QDesignerFormWindowInterface) NativeEvent(eventType string, message u
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerFormWindowInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerFormWindowInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -10039,16 +9799,16 @@ func (ptr *QDesignerFormWindowInterface) NativeEventDefault(eventType string, me
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerFormWindowInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerFormWindowInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerFormWindowInterface_Raise
-func callbackQDesignerFormWindowInterface_Raise(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::raise")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).RaiseDefault()
@@ -10060,7 +9820,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "raise", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "raise", f)
 	}
 }
 
@@ -10069,7 +9829,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "raise")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "raise")
 	}
 }
 
@@ -10090,10 +9850,10 @@ func (ptr *QDesignerFormWindowInterface) RaiseDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_Repaint
-func callbackQDesignerFormWindowInterface_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::repaint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).RepaintDefault()
@@ -10105,7 +9865,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "repaint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "repaint", f)
 	}
 }
 
@@ -10114,7 +9874,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "repaint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "repaint")
 	}
 }
 
@@ -10135,10 +9895,10 @@ func (ptr *QDesignerFormWindowInterface) RepaintDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_ResizeEvent
-func callbackQDesignerFormWindowInterface_ResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::resizeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -10150,7 +9910,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectResizeEvent(f func(event *gui.QR
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resizeEvent", f)
 	}
 }
 
@@ -10159,7 +9919,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "resizeEvent")
 	}
 }
 
@@ -10180,13 +9940,13 @@ func (ptr *QDesignerFormWindowInterface) ResizeEventDefault(event gui.QResizeEve
 }
 
 //export callbackQDesignerFormWindowInterface_SetDisabled
-func callbackQDesignerFormWindowInterface_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
+func callbackQDesignerFormWindowInterface_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setDisabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
-		signal.(func(bool))(int(disable) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setDisabled"); signal != nil {
+		signal.(func(bool))(int8(disable) != 0)
 	} else {
-		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
 	}
 }
 
@@ -10195,7 +9955,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetDisabled(f func(disable bool)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setDisabled", f)
 	}
 }
 
@@ -10204,7 +9964,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setDisabled")
 	}
 }
 
@@ -10212,7 +9972,7 @@ func (ptr *QDesignerFormWindowInterface) SetDisabled(disable bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerFormWindowInterface_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
@@ -10220,15 +9980,15 @@ func (ptr *QDesignerFormWindowInterface) SetDisabledDefault(disable bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerFormWindowInterface_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_SetFocus2
-func callbackQDesignerFormWindowInterface_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetFocus2Default()
@@ -10240,7 +10000,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setFocus2", f)
 	}
 }
 
@@ -10249,7 +10009,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setFocus2")
 	}
 }
 
@@ -10270,13 +10030,13 @@ func (ptr *QDesignerFormWindowInterface) SetFocus2Default() {
 }
 
 //export callbackQDesignerFormWindowInterface_SetHidden
-func callbackQDesignerFormWindowInterface_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
+func callbackQDesignerFormWindowInterface_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::setHidden")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
-		signal.(func(bool))(int(hidden) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "setHidden"); signal != nil {
+		signal.(func(bool))(int8(hidden) != 0)
 	} else {
-		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
 	}
 }
 
@@ -10285,7 +10045,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setHidden", f)
 	}
 }
 
@@ -10294,7 +10054,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setHidden")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "setHidden")
 	}
 }
 
@@ -10302,7 +10062,7 @@ func (ptr *QDesignerFormWindowInterface) SetHidden(hidden bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerFormWindowInterface_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
@@ -10310,15 +10070,15 @@ func (ptr *QDesignerFormWindowInterface) SetHiddenDefault(hidden bool) {
 	defer qt.Recovering("QDesignerFormWindowInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerFormWindowInterface_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerFormWindowInterface_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_Show
-func callbackQDesignerFormWindowInterface_Show(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::show")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ShowDefault()
@@ -10330,7 +10090,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "show", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "show", f)
 	}
 }
 
@@ -10339,7 +10099,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "show")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "show")
 	}
 }
 
@@ -10360,10 +10120,10 @@ func (ptr *QDesignerFormWindowInterface) ShowDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_ShowFullScreen
-func callbackQDesignerFormWindowInterface_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::showFullScreen")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ShowFullScreenDefault()
@@ -10375,7 +10135,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showFullScreen", f)
 	}
 }
 
@@ -10384,7 +10144,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showFullScreen")
 	}
 }
 
@@ -10405,10 +10165,10 @@ func (ptr *QDesignerFormWindowInterface) ShowFullScreenDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_ShowMaximized
-func callbackQDesignerFormWindowInterface_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::showMaximized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ShowMaximizedDefault()
@@ -10420,7 +10180,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showMaximized", f)
 	}
 }
 
@@ -10429,7 +10189,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showMaximized")
 	}
 }
 
@@ -10450,10 +10210,10 @@ func (ptr *QDesignerFormWindowInterface) ShowMaximizedDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_ShowMinimized
-func callbackQDesignerFormWindowInterface_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::showMinimized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ShowMinimizedDefault()
@@ -10465,7 +10225,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showMinimized", f)
 	}
 }
 
@@ -10474,7 +10234,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showMinimized")
 	}
 }
 
@@ -10495,10 +10255,10 @@ func (ptr *QDesignerFormWindowInterface) ShowMinimizedDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_ShowNormal
-func callbackQDesignerFormWindowInterface_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::showNormal")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ShowNormalDefault()
@@ -10510,7 +10270,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showNormal", f)
 	}
 }
 
@@ -10519,7 +10279,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showNormal")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "showNormal")
 	}
 }
 
@@ -10540,10 +10300,10 @@ func (ptr *QDesignerFormWindowInterface) ShowNormalDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_TabletEvent
-func callbackQDesignerFormWindowInterface_TabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::tabletEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -10555,7 +10315,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectTabletEvent(f func(event *gui.QT
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "tabletEvent", f)
 	}
 }
 
@@ -10564,7 +10324,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "tabletEvent")
 	}
 }
 
@@ -10585,10 +10345,10 @@ func (ptr *QDesignerFormWindowInterface) TabletEventDefault(event gui.QTabletEve
 }
 
 //export callbackQDesignerFormWindowInterface_Update
-func callbackQDesignerFormWindowInterface_Update(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::update")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).UpdateDefault()
@@ -10600,7 +10360,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "update", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "update", f)
 	}
 }
 
@@ -10609,7 +10369,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "update")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "update")
 	}
 }
 
@@ -10630,10 +10390,10 @@ func (ptr *QDesignerFormWindowInterface) UpdateDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_UpdateMicroFocus
-func callbackQDesignerFormWindowInterface_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::updateMicroFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).UpdateMicroFocusDefault()
@@ -10645,7 +10405,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "updateMicroFocus", f)
 	}
 }
 
@@ -10654,7 +10414,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "updateMicroFocus")
 	}
 }
 
@@ -10675,10 +10435,10 @@ func (ptr *QDesignerFormWindowInterface) UpdateMicroFocusDefault() {
 }
 
 //export callbackQDesignerFormWindowInterface_WheelEvent
-func callbackQDesignerFormWindowInterface_WheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::wheelEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -10690,7 +10450,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectWheelEvent(f func(event *gui.QWh
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "wheelEvent", f)
 	}
 }
 
@@ -10699,7 +10459,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "wheelEvent")
 	}
 }
 
@@ -10720,10 +10480,10 @@ func (ptr *QDesignerFormWindowInterface) WheelEventDefault(event gui.QWheelEvent
 }
 
 //export callbackQDesignerFormWindowInterface_TimerEvent
-func callbackQDesignerFormWindowInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -10735,7 +10495,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectTimerEvent(f func(event *core.QT
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -10744,7 +10504,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -10765,10 +10525,10 @@ func (ptr *QDesignerFormWindowInterface) TimerEventDefault(event core.QTimerEven
 }
 
 //export callbackQDesignerFormWindowInterface_ChildEvent
-func callbackQDesignerFormWindowInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -10780,7 +10540,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectChildEvent(f func(event *core.QC
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -10789,7 +10549,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -10810,10 +10570,10 @@ func (ptr *QDesignerFormWindowInterface) ChildEventDefault(event core.QChildEven
 }
 
 //export callbackQDesignerFormWindowInterface_ConnectNotify
-func callbackQDesignerFormWindowInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -10825,7 +10585,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectConnectNotify(f func(sign *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -10834,7 +10594,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -10855,10 +10615,10 @@ func (ptr *QDesignerFormWindowInterface) ConnectNotifyDefault(sign core.QMetaMet
 }
 
 //export callbackQDesignerFormWindowInterface_CustomEvent
-func callbackQDesignerFormWindowInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -10870,7 +10630,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectCustomEvent(f func(event *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -10879,7 +10639,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -10900,10 +10660,10 @@ func (ptr *QDesignerFormWindowInterface) CustomEventDefault(event core.QEvent_IT
 }
 
 //export callbackQDesignerFormWindowInterface_DeleteLater
-func callbackQDesignerFormWindowInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -10915,7 +10675,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -10924,7 +10684,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -10932,7 +10692,7 @@ func (ptr *QDesignerFormWindowInterface) DeleteLater() {
 	defer qt.Recovering("QDesignerFormWindowInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormWindowInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -10942,17 +10702,17 @@ func (ptr *QDesignerFormWindowInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDesignerFormWindowInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormWindowInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerFormWindowInterface_DisconnectNotify
-func callbackQDesignerFormWindowInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerFormWindowInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerFormWindowInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -10964,7 +10724,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectDisconnectNotify(f func(sign *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -10973,7 +10733,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -10994,14 +10754,14 @@ func (ptr *QDesignerFormWindowInterface) DisconnectNotifyDefault(sign core.QMeta
 }
 
 //export callbackQDesignerFormWindowInterface_EventFilter
-func callbackQDesignerFormWindowInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDesignerFormWindowInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormWindowInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -11009,7 +10769,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectEventFilter(f func(watched *core
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -11018,7 +10778,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -11041,10 +10801,10 @@ func (ptr *QDesignerFormWindowInterface) EventFilterDefault(watched core.QObject
 }
 
 //export callbackQDesignerFormWindowInterface_MetaObject
-func callbackQDesignerFormWindowInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -11056,7 +10816,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectMetaObject(f func() *core.QMetaO
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -11065,7 +10825,7 @@ func (ptr *QDesignerFormWindowInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -11159,19 +10919,11 @@ func NewQDesignerFormWindowManagerInterfaceFromPointer(ptr unsafe.Pointer) *QDes
 	return n
 }
 
-func newQDesignerFormWindowManagerInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFormWindowManagerInterface {
-	var n = NewQDesignerFormWindowManagerInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDesignerFormWindowManagerInterface_") {
-		n.SetObjectName("QDesignerFormWindowManagerInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerFormWindowManagerInterface_Action
-func callbackQDesignerFormWindowManagerInterface_Action(ptr unsafe.Pointer, ptrName *C.char, action C.int) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_Action(ptr unsafe.Pointer, action C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::action")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "action"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "action"); signal != nil {
 		return widgets.PointerFromQAction(signal.(func(QDesignerFormWindowManagerInterface__Action) *widgets.QAction)(QDesignerFormWindowManagerInterface__Action(action)))
 	}
 
@@ -11183,7 +10935,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectAction(f func(action QDes
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "action", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "action", f)
 	}
 }
 
@@ -11192,7 +10944,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectAction(action QDesigne
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "action")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "action")
 	}
 }
 
@@ -11200,16 +10952,16 @@ func (ptr *QDesignerFormWindowManagerInterface) Action(action QDesignerFormWindo
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::action")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQActionFromPointer(C.QDesignerFormWindowManagerInterface_Action(ptr.Pointer(), C.int(action)))
+		return widgets.NewQActionFromPointer(C.QDesignerFormWindowManagerInterface_Action(ptr.Pointer(), C.longlong(action)))
 	}
 	return nil
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ActionGroup
-func callbackQDesignerFormWindowManagerInterface_ActionGroup(ptr unsafe.Pointer, ptrName *C.char, actionGroup C.int) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_ActionGroup(ptr unsafe.Pointer, actionGroup C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::actionGroup")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "actionGroup"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "actionGroup"); signal != nil {
 		return widgets.PointerFromQActionGroup(signal.(func(QDesignerFormWindowManagerInterface__ActionGroup) *widgets.QActionGroup)(QDesignerFormWindowManagerInterface__ActionGroup(actionGroup)))
 	}
 
@@ -11221,7 +10973,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectActionGroup(f func(action
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "actionGroup", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "actionGroup", f)
 	}
 }
 
@@ -11230,7 +10982,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectActionGroup(actionGrou
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "actionGroup")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "actionGroup")
 	}
 }
 
@@ -11238,16 +10990,16 @@ func (ptr *QDesignerFormWindowManagerInterface) ActionGroup(actionGroup QDesigne
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::actionGroup")
 
 	if ptr.Pointer() != nil {
-		return widgets.NewQActionGroupFromPointer(C.QDesignerFormWindowManagerInterface_ActionGroup(ptr.Pointer(), C.int(actionGroup)))
+		return widgets.NewQActionGroupFromPointer(C.QDesignerFormWindowManagerInterface_ActionGroup(ptr.Pointer(), C.longlong(actionGroup)))
 	}
 	return nil
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ActiveFormWindow
-func callbackQDesignerFormWindowManagerInterface_ActiveFormWindow(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_ActiveFormWindow(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::activeFormWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "activeFormWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "activeFormWindow"); signal != nil {
 		return PointerFromQDesignerFormWindowInterface(signal.(func() *QDesignerFormWindowInterface)())
 	}
 
@@ -11259,7 +11011,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectActiveFormWindow(f func()
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "activeFormWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "activeFormWindow", f)
 	}
 }
 
@@ -11268,7 +11020,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectActiveFormWindow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "activeFormWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "activeFormWindow")
 	}
 }
 
@@ -11282,10 +11034,10 @@ func (ptr *QDesignerFormWindowManagerInterface) ActiveFormWindow() *QDesignerFor
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ActiveFormWindowChanged
-func callbackQDesignerFormWindowManagerInterface_ActiveFormWindowChanged(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_ActiveFormWindowChanged(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::activeFormWindowChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "activeFormWindowChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "activeFormWindowChanged"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -11296,7 +11048,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectActiveFormWindowChanged(f
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_ConnectActiveFormWindowChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "activeFormWindowChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "activeFormWindowChanged", f)
 	}
 }
 
@@ -11305,7 +11057,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectActiveFormWindowChange
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DisconnectActiveFormWindowChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "activeFormWindowChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "activeFormWindowChanged")
 	}
 }
 
@@ -11318,10 +11070,10 @@ func (ptr *QDesignerFormWindowManagerInterface) ActiveFormWindowChanged(formWind
 }
 
 //export callbackQDesignerFormWindowManagerInterface_AddFormWindow
-func callbackQDesignerFormWindowManagerInterface_AddFormWindow(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_AddFormWindow(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::addFormWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "addFormWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "addFormWindow"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -11332,7 +11084,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectAddFormWindow(f func(form
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "addFormWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "addFormWindow", f)
 	}
 }
 
@@ -11341,7 +11093,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectAddFormWindow(formWind
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "addFormWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "addFormWindow")
 	}
 }
 
@@ -11354,10 +11106,10 @@ func (ptr *QDesignerFormWindowManagerInterface) AddFormWindow(formWindow QDesign
 }
 
 //export callbackQDesignerFormWindowManagerInterface_CloseAllPreviews
-func callbackQDesignerFormWindowManagerInterface_CloseAllPreviews(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowManagerInterface_CloseAllPreviews(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::closeAllPreviews")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "closeAllPreviews"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "closeAllPreviews"); signal != nil {
 		signal.(func())()
 	}
 
@@ -11368,7 +11120,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectCloseAllPreviews(f func()
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "closeAllPreviews", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "closeAllPreviews", f)
 	}
 }
 
@@ -11377,7 +11129,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCloseAllPreviews() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "closeAllPreviews")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "closeAllPreviews")
 	}
 }
 
@@ -11390,10 +11142,10 @@ func (ptr *QDesignerFormWindowManagerInterface) CloseAllPreviews() {
 }
 
 //export callbackQDesignerFormWindowManagerInterface_Core
-func callbackQDesignerFormWindowManagerInterface_Core(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_Core(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::core")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "core"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "core"); signal != nil {
 		return PointerFromQDesignerFormEditorInterface(signal.(func() *QDesignerFormEditorInterface)())
 	}
 
@@ -11405,7 +11157,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectCore(f func() *QDesignerF
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "core", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "core", f)
 	}
 }
 
@@ -11414,7 +11166,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCore() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "core")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "core")
 	}
 }
 
@@ -11428,10 +11180,10 @@ func (ptr *QDesignerFormWindowManagerInterface) Core() *QDesignerFormEditorInter
 }
 
 //export callbackQDesignerFormWindowManagerInterface_CreateFormWindow
-func callbackQDesignerFormWindowManagerInterface_CreateFormWindow(ptr unsafe.Pointer, ptrName *C.char, parent unsafe.Pointer, flags C.int) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_CreateFormWindow(ptr unsafe.Pointer, parent unsafe.Pointer, flags C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::createFormWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "createFormWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "createFormWindow"); signal != nil {
 		return PointerFromQDesignerFormWindowInterface(signal.(func(*widgets.QWidget, core.Qt__WindowType) *QDesignerFormWindowInterface)(widgets.NewQWidgetFromPointer(parent), core.Qt__WindowType(flags)))
 	}
 
@@ -11443,7 +11195,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectCreateFormWindow(f func(p
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "createFormWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "createFormWindow", f)
 	}
 }
 
@@ -11452,7 +11204,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCreateFormWindow(paren
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "createFormWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "createFormWindow")
 	}
 }
 
@@ -11460,16 +11212,16 @@ func (ptr *QDesignerFormWindowManagerInterface) CreateFormWindow(parent widgets.
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::createFormWindow")
 
 	if ptr.Pointer() != nil {
-		return NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_CreateFormWindow(ptr.Pointer(), widgets.PointerFromQWidget(parent), C.int(flags)))
+		return NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_CreateFormWindow(ptr.Pointer(), widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	}
 	return nil
 }
 
 //export callbackQDesignerFormWindowManagerInterface_CreatePreviewPixmap
-func callbackQDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::createPreviewPixmap")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "createPreviewPixmap"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "createPreviewPixmap"); signal != nil {
 		return gui.PointerFromQPixmap(signal.(func() *gui.QPixmap)())
 	}
 
@@ -11481,7 +11233,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectCreatePreviewPixmap(f fun
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "createPreviewPixmap", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "createPreviewPixmap", f)
 	}
 }
 
@@ -11490,7 +11242,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCreatePreviewPixmap() 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "createPreviewPixmap")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "createPreviewPixmap")
 	}
 }
 
@@ -11506,11 +11258,11 @@ func (ptr *QDesignerFormWindowManagerInterface) CreatePreviewPixmap() *gui.QPixm
 }
 
 //export callbackQDesignerFormWindowManagerInterface_FormWindow
-func callbackQDesignerFormWindowManagerInterface_FormWindow(ptr unsafe.Pointer, ptrName *C.char, index C.int) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_FormWindow(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::formWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "formWindow"); signal != nil {
-		return PointerFromQDesignerFormWindowInterface(signal.(func(int) *QDesignerFormWindowInterface)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "formWindow"); signal != nil {
+		return PointerFromQDesignerFormWindowInterface(signal.(func(int) *QDesignerFormWindowInterface)(int(int32(index))))
 	}
 
 	return PointerFromQDesignerFormWindowInterface(nil)
@@ -11521,7 +11273,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindow(f func(index i
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "formWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindow", f)
 	}
 }
 
@@ -11530,7 +11282,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindow(index int) 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "formWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindow")
 	}
 }
 
@@ -11538,16 +11290,16 @@ func (ptr *QDesignerFormWindowManagerInterface) FormWindow(index int) *QDesigner
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::formWindow")
 
 	if ptr.Pointer() != nil {
-		return NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_FormWindow(ptr.Pointer(), C.int(index)))
+		return NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_FormWindow(ptr.Pointer(), C.int(int32(index))))
 	}
 	return nil
 }
 
 //export callbackQDesignerFormWindowManagerInterface_FormWindowAdded
-func callbackQDesignerFormWindowManagerInterface_FormWindowAdded(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_FormWindowAdded(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::formWindowAdded")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "formWindowAdded"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "formWindowAdded"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -11558,7 +11310,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowAdded(f func(fo
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_ConnectFormWindowAdded(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "formWindowAdded", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowAdded", f)
 	}
 }
 
@@ -11567,7 +11319,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindowAdded() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DisconnectFormWindowAdded(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "formWindowAdded")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowAdded")
 	}
 }
 
@@ -11580,14 +11332,14 @@ func (ptr *QDesignerFormWindowManagerInterface) FormWindowAdded(formWindow QDesi
 }
 
 //export callbackQDesignerFormWindowManagerInterface_FormWindowCount
-func callbackQDesignerFormWindowManagerInterface_FormWindowCount(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerFormWindowManagerInterface_FormWindowCount(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::formWindowCount")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "formWindowCount"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "formWindowCount"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowCount(f func() int) {
@@ -11595,7 +11347,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowCount(f func() 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "formWindowCount", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowCount", f)
 	}
 }
 
@@ -11604,7 +11356,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindowCount() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "formWindowCount")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowCount")
 	}
 }
 
@@ -11612,16 +11364,16 @@ func (ptr *QDesignerFormWindowManagerInterface) FormWindowCount() int {
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::formWindowCount")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerFormWindowManagerInterface_FormWindowCount(ptr.Pointer()))
+		return int(int32(C.QDesignerFormWindowManagerInterface_FormWindowCount(ptr.Pointer())))
 	}
 	return 0
 }
 
 //export callbackQDesignerFormWindowManagerInterface_FormWindowRemoved
-func callbackQDesignerFormWindowManagerInterface_FormWindowRemoved(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_FormWindowRemoved(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::formWindowRemoved")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "formWindowRemoved"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "formWindowRemoved"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -11632,7 +11384,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowRemoved(f func(
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_ConnectFormWindowRemoved(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "formWindowRemoved", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowRemoved", f)
 	}
 }
 
@@ -11641,7 +11393,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindowRemoved() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DisconnectFormWindowRemoved(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "formWindowRemoved")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowRemoved")
 	}
 }
 
@@ -11654,10 +11406,10 @@ func (ptr *QDesignerFormWindowManagerInterface) FormWindowRemoved(formWindow QDe
 }
 
 //export callbackQDesignerFormWindowManagerInterface_FormWindowSettingsChanged
-func callbackQDesignerFormWindowManagerInterface_FormWindowSettingsChanged(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_FormWindowSettingsChanged(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::formWindowSettingsChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "formWindowSettingsChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "formWindowSettingsChanged"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -11668,7 +11420,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindowSettingsChanged
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_ConnectFormWindowSettingsChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "formWindowSettingsChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowSettingsChanged", f)
 	}
 }
 
@@ -11677,7 +11429,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindowSettingsChan
 
 	if ptr.Pointer() != nil {
 		C.QDesignerFormWindowManagerInterface_DisconnectFormWindowSettingsChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "formWindowSettingsChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "formWindowSettingsChanged")
 	}
 }
 
@@ -11690,10 +11442,10 @@ func (ptr *QDesignerFormWindowManagerInterface) FormWindowSettingsChanged(formWi
 }
 
 //export callbackQDesignerFormWindowManagerInterface_RemoveFormWindow
-func callbackQDesignerFormWindowManagerInterface_RemoveFormWindow(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_RemoveFormWindow(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::removeFormWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "removeFormWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "removeFormWindow"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -11704,7 +11456,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectRemoveFormWindow(f func(f
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "removeFormWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "removeFormWindow", f)
 	}
 }
 
@@ -11713,7 +11465,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectRemoveFormWindow(formW
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "removeFormWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "removeFormWindow")
 	}
 }
 
@@ -11726,10 +11478,10 @@ func (ptr *QDesignerFormWindowManagerInterface) RemoveFormWindow(formWindow QDes
 }
 
 //export callbackQDesignerFormWindowManagerInterface_SetActiveFormWindow
-func callbackQDesignerFormWindowManagerInterface_SetActiveFormWindow(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_SetActiveFormWindow(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::setActiveFormWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setActiveFormWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "setActiveFormWindow"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -11740,7 +11492,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectSetActiveFormWindow(f fun
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setActiveFormWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "setActiveFormWindow", f)
 	}
 }
 
@@ -11749,7 +11501,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectSetActiveFormWindow(fo
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setActiveFormWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "setActiveFormWindow")
 	}
 }
 
@@ -11762,10 +11514,10 @@ func (ptr *QDesignerFormWindowManagerInterface) SetActiveFormWindow(formWindow Q
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ShowPluginDialog
-func callbackQDesignerFormWindowManagerInterface_ShowPluginDialog(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowManagerInterface_ShowPluginDialog(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::showPluginDialog")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showPluginDialog"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "showPluginDialog"); signal != nil {
 		signal.(func())()
 	}
 
@@ -11776,7 +11528,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectShowPluginDialog(f func()
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showPluginDialog", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "showPluginDialog", f)
 	}
 }
 
@@ -11785,7 +11537,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectShowPluginDialog() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showPluginDialog")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "showPluginDialog")
 	}
 }
 
@@ -11798,10 +11550,10 @@ func (ptr *QDesignerFormWindowManagerInterface) ShowPluginDialog() {
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ShowPreview
-func callbackQDesignerFormWindowManagerInterface_ShowPreview(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowManagerInterface_ShowPreview(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::showPreview")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showPreview"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "showPreview"); signal != nil {
 		signal.(func())()
 	}
 
@@ -11812,7 +11564,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectShowPreview(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showPreview", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "showPreview", f)
 	}
 }
 
@@ -11821,7 +11573,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectShowPreview() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showPreview")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "showPreview")
 	}
 }
 
@@ -11837,17 +11589,17 @@ func (ptr *QDesignerFormWindowManagerInterface) DestroyQDesignerFormWindowManage
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::~QDesignerFormWindowManagerInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerFormWindowManagerInterface_TimerEvent
-func callbackQDesignerFormWindowManagerInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -11859,7 +11611,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectTimerEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -11868,7 +11620,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -11889,10 +11641,10 @@ func (ptr *QDesignerFormWindowManagerInterface) TimerEventDefault(event core.QTi
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ChildEvent
-func callbackQDesignerFormWindowManagerInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -11904,7 +11656,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectChildEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -11913,7 +11665,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -11934,10 +11686,10 @@ func (ptr *QDesignerFormWindowManagerInterface) ChildEventDefault(event core.QCh
 }
 
 //export callbackQDesignerFormWindowManagerInterface_ConnectNotify
-func callbackQDesignerFormWindowManagerInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -11949,7 +11701,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectConnectNotify(f func(sign
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -11958,7 +11710,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -11979,10 +11731,10 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectNotifyDefault(sign core.Q
 }
 
 //export callbackQDesignerFormWindowManagerInterface_CustomEvent
-func callbackQDesignerFormWindowManagerInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -11994,7 +11746,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectCustomEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -12003,7 +11755,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -12024,10 +11776,10 @@ func (ptr *QDesignerFormWindowManagerInterface) CustomEventDefault(event core.QE
 }
 
 //export callbackQDesignerFormWindowManagerInterface_DeleteLater
-func callbackQDesignerFormWindowManagerInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerFormWindowManagerInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -12039,7 +11791,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -12048,7 +11800,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -12056,7 +11808,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DeleteLater() {
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormWindowManagerInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -12066,17 +11818,17 @@ func (ptr *QDesignerFormWindowManagerInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDesignerFormWindowManagerInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()))
 		C.QDesignerFormWindowManagerInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerFormWindowManagerInterface_DisconnectNotify
-func callbackQDesignerFormWindowManagerInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerFormWindowManagerInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -12088,7 +11840,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectDisconnectNotify(f func(s
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -12097,7 +11849,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -12118,14 +11870,14 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectNotifyDefault(sign cor
 }
 
 //export callbackQDesignerFormWindowManagerInterface_Event
-func callbackQDesignerFormWindowManagerInterface_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQDesignerFormWindowManagerInterface_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -12133,7 +11885,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectEvent(f func(e *core.QEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -12142,7 +11894,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -12165,14 +11917,14 @@ func (ptr *QDesignerFormWindowManagerInterface) EventDefault(e core.QEvent_ITF) 
 }
 
 //export callbackQDesignerFormWindowManagerInterface_EventFilter
-func callbackQDesignerFormWindowManagerInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDesignerFormWindowManagerInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerFormWindowManagerInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -12180,7 +11932,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectEventFilter(f func(watche
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -12189,7 +11941,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -12212,10 +11964,10 @@ func (ptr *QDesignerFormWindowManagerInterface) EventFilterDefault(watched core.
 }
 
 //export callbackQDesignerFormWindowManagerInterface_MetaObject
-func callbackQDesignerFormWindowManagerInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerFormWindowManagerInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerFormWindowManagerInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -12227,7 +11979,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectMetaObject(f func() *core
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -12236,7 +11988,7 @@ func (ptr *QDesignerFormWindowManagerInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerFormWindowManagerInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -12296,23 +12048,15 @@ func NewQDesignerMemberSheetExtensionFromPointer(ptr unsafe.Pointer) *QDesignerM
 	return n
 }
 
-func newQDesignerMemberSheetExtensionFromPointer(ptr unsafe.Pointer) *QDesignerMemberSheetExtension {
-	var n = NewQDesignerMemberSheetExtensionFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerMemberSheetExtension_") {
-		n.SetObjectNameAbs("QDesignerMemberSheetExtension_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerMemberSheetExtension_Count
-func callbackQDesignerMemberSheetExtension_Count(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerMemberSheetExtension_Count(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::count")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "count"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "count"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectCount(f func() int) {
@@ -12320,7 +12064,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectCount(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "count", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "count", f)
 	}
 }
 
@@ -12329,7 +12073,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectCount() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "count")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "count")
 	}
 }
 
@@ -12337,17 +12081,17 @@ func (ptr *QDesignerMemberSheetExtension) Count() int {
 	defer qt.Recovering("QDesignerMemberSheetExtension::count")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerMemberSheetExtension_Count(ptr.Pointer()))
+		return int(int32(C.QDesignerMemberSheetExtension_Count(ptr.Pointer())))
 	}
 	return 0
 }
 
 //export callbackQDesignerMemberSheetExtension_DeclaredInClass
-func callbackQDesignerMemberSheetExtension_DeclaredInClass(ptr unsafe.Pointer, ptrName *C.char, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_DeclaredInClass(ptr unsafe.Pointer, index C.int) *C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::declaredInClass")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "declaredInClass"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "declaredInClass"); signal != nil {
+		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
 
 	return C.CString("")
@@ -12358,7 +12102,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectDeclaredInClass(f func(index in
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "declaredInClass", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "declaredInClass", f)
 	}
 }
 
@@ -12367,7 +12111,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectDeclaredInClass(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "declaredInClass")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "declaredInClass")
 	}
 }
 
@@ -12375,20 +12119,20 @@ func (ptr *QDesignerMemberSheetExtension) DeclaredInClass(index int) string {
 	defer qt.Recovering("QDesignerMemberSheetExtension::declaredInClass")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerMemberSheetExtension_DeclaredInClass(ptr.Pointer(), C.int(index)))
+		return C.GoString(C.QDesignerMemberSheetExtension_DeclaredInClass(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
 
 //export callbackQDesignerMemberSheetExtension_IndexOf
-func callbackQDesignerMemberSheetExtension_IndexOf(ptr unsafe.Pointer, ptrName *C.char, name *C.char) C.int {
+func callbackQDesignerMemberSheetExtension_IndexOf(ptr unsafe.Pointer, name *C.char) C.int {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::indexOf")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "indexOf"); signal != nil {
-		return C.int(signal.(func(string) int)(C.GoString(name)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "indexOf"); signal != nil {
+		return C.int(int32(signal.(func(string) int)(C.GoString(name))))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectIndexOf(f func(name string) int) {
@@ -12396,7 +12140,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIndexOf(f func(name string) int
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "indexOf", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "indexOf", f)
 	}
 }
 
@@ -12405,7 +12149,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIndexOf(name string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "indexOf")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "indexOf")
 	}
 }
 
@@ -12415,20 +12159,20 @@ func (ptr *QDesignerMemberSheetExtension) IndexOf(name string) int {
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
-		return int(C.QDesignerMemberSheetExtension_IndexOf(ptr.Pointer(), nameC))
+		return int(int32(C.QDesignerMemberSheetExtension_IndexOf(ptr.Pointer(), nameC)))
 	}
 	return 0
 }
 
 //export callbackQDesignerMemberSheetExtension_InheritedFromWidget
-func callbackQDesignerMemberSheetExtension_InheritedFromWidget(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerMemberSheetExtension_InheritedFromWidget(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::inheritedFromWidget")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inheritedFromWidget"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "inheritedFromWidget"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectInheritedFromWidget(f func(index int) bool) {
@@ -12436,7 +12180,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectInheritedFromWidget(f func(inde
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "inheritedFromWidget", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "inheritedFromWidget", f)
 	}
 }
 
@@ -12445,7 +12189,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectInheritedFromWidget(index in
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "inheritedFromWidget")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "inheritedFromWidget")
 	}
 }
 
@@ -12453,20 +12197,20 @@ func (ptr *QDesignerMemberSheetExtension) InheritedFromWidget(index int) bool {
 	defer qt.Recovering("QDesignerMemberSheetExtension::inheritedFromWidget")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_InheritedFromWidget(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerMemberSheetExtension_InheritedFromWidget(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerMemberSheetExtension_IsSignal
-func callbackQDesignerMemberSheetExtension_IsSignal(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerMemberSheetExtension_IsSignal(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::isSignal")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isSignal"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "isSignal"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectIsSignal(f func(index int) bool) {
@@ -12474,7 +12218,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIsSignal(f func(index int) bool
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isSignal", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "isSignal", f)
 	}
 }
 
@@ -12483,7 +12227,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIsSignal(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isSignal")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "isSignal")
 	}
 }
 
@@ -12491,20 +12235,20 @@ func (ptr *QDesignerMemberSheetExtension) IsSignal(index int) bool {
 	defer qt.Recovering("QDesignerMemberSheetExtension::isSignal")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_IsSignal(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerMemberSheetExtension_IsSignal(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerMemberSheetExtension_IsSlot
-func callbackQDesignerMemberSheetExtension_IsSlot(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerMemberSheetExtension_IsSlot(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::isSlot")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isSlot"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "isSlot"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectIsSlot(f func(index int) bool) {
@@ -12512,7 +12256,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIsSlot(f func(index int) bool) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isSlot", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "isSlot", f)
 	}
 }
 
@@ -12521,7 +12265,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIsSlot(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isSlot")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "isSlot")
 	}
 }
 
@@ -12529,20 +12273,20 @@ func (ptr *QDesignerMemberSheetExtension) IsSlot(index int) bool {
 	defer qt.Recovering("QDesignerMemberSheetExtension::isSlot")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_IsSlot(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerMemberSheetExtension_IsSlot(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerMemberSheetExtension_IsVisible
-func callbackQDesignerMemberSheetExtension_IsVisible(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerMemberSheetExtension_IsVisible(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::isVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isVisible"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "isVisible"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerMemberSheetExtension) ConnectIsVisible(f func(index int) bool) {
@@ -12550,7 +12294,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIsVisible(f func(index int) boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "isVisible", f)
 	}
 }
 
@@ -12559,7 +12303,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectIsVisible(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "isVisible")
 	}
 }
 
@@ -12567,17 +12311,17 @@ func (ptr *QDesignerMemberSheetExtension) IsVisible(index int) bool {
 	defer qt.Recovering("QDesignerMemberSheetExtension::isVisible")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerMemberSheetExtension_IsVisible(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerMemberSheetExtension_IsVisible(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerMemberSheetExtension_MemberGroup
-func callbackQDesignerMemberSheetExtension_MemberGroup(ptr unsafe.Pointer, ptrName *C.char, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_MemberGroup(ptr unsafe.Pointer, index C.int) *C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::memberGroup")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "memberGroup"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "memberGroup"); signal != nil {
+		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
 
 	return C.CString("")
@@ -12588,7 +12332,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectMemberGroup(f func(index int) s
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "memberGroup", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "memberGroup", f)
 	}
 }
 
@@ -12597,7 +12341,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectMemberGroup(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "memberGroup")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "memberGroup")
 	}
 }
 
@@ -12605,17 +12349,17 @@ func (ptr *QDesignerMemberSheetExtension) MemberGroup(index int) string {
 	defer qt.Recovering("QDesignerMemberSheetExtension::memberGroup")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerMemberSheetExtension_MemberGroup(ptr.Pointer(), C.int(index)))
+		return C.GoString(C.QDesignerMemberSheetExtension_MemberGroup(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
 
 //export callbackQDesignerMemberSheetExtension_MemberName
-func callbackQDesignerMemberSheetExtension_MemberName(ptr unsafe.Pointer, ptrName *C.char, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_MemberName(ptr unsafe.Pointer, index C.int) *C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::memberName")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "memberName"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "memberName"); signal != nil {
+		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
 
 	return C.CString("")
@@ -12626,7 +12370,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectMemberName(f func(index int) st
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "memberName", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "memberName", f)
 	}
 }
 
@@ -12635,7 +12379,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectMemberName(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "memberName")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "memberName")
 	}
 }
 
@@ -12643,17 +12387,17 @@ func (ptr *QDesignerMemberSheetExtension) MemberName(index int) string {
 	defer qt.Recovering("QDesignerMemberSheetExtension::memberName")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerMemberSheetExtension_MemberName(ptr.Pointer(), C.int(index)))
+		return C.GoString(C.QDesignerMemberSheetExtension_MemberName(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
 
 //export callbackQDesignerMemberSheetExtension_SetMemberGroup
-func callbackQDesignerMemberSheetExtension_SetMemberGroup(ptr unsafe.Pointer, ptrName *C.char, index C.int, group *C.char) {
+func callbackQDesignerMemberSheetExtension_SetMemberGroup(ptr unsafe.Pointer, index C.int, group *C.char) {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::setMemberGroup")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setMemberGroup"); signal != nil {
-		signal.(func(int, string))(int(index), C.GoString(group))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "setMemberGroup"); signal != nil {
+		signal.(func(int, string))(int(int32(index)), C.GoString(group))
 	}
 
 }
@@ -12663,7 +12407,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectSetMemberGroup(f func(index int
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setMemberGroup", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "setMemberGroup", f)
 	}
 }
 
@@ -12672,7 +12416,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectSetMemberGroup(index int, gr
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setMemberGroup")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "setMemberGroup")
 	}
 }
 
@@ -12682,16 +12426,16 @@ func (ptr *QDesignerMemberSheetExtension) SetMemberGroup(index int, group string
 	if ptr.Pointer() != nil {
 		var groupC = C.CString(group)
 		defer C.free(unsafe.Pointer(groupC))
-		C.QDesignerMemberSheetExtension_SetMemberGroup(ptr.Pointer(), C.int(index), groupC)
+		C.QDesignerMemberSheetExtension_SetMemberGroup(ptr.Pointer(), C.int(int32(index)), groupC)
 	}
 }
 
 //export callbackQDesignerMemberSheetExtension_SetVisible
-func callbackQDesignerMemberSheetExtension_SetVisible(ptr unsafe.Pointer, ptrName *C.char, index C.int, visible C.int) {
+func callbackQDesignerMemberSheetExtension_SetVisible(ptr unsafe.Pointer, index C.int, visible C.char) {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::setVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
-		signal.(func(int, bool))(int(index), int(visible) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "setVisible"); signal != nil {
+		signal.(func(int, bool))(int(int32(index)), int8(visible) != 0)
 	}
 
 }
@@ -12701,7 +12445,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectSetVisible(f func(index int, vi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "setVisible", f)
 	}
 }
 
@@ -12710,7 +12454,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectSetVisible(index int, visibl
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "setVisible")
 	}
 }
 
@@ -12718,16 +12462,16 @@ func (ptr *QDesignerMemberSheetExtension) SetVisible(index int, visible bool) {
 	defer qt.Recovering("QDesignerMemberSheetExtension::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerMemberSheetExtension_SetVisible(ptr.Pointer(), C.int(index), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerMemberSheetExtension_SetVisible(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 //export callbackQDesignerMemberSheetExtension_Signature
-func callbackQDesignerMemberSheetExtension_Signature(ptr unsafe.Pointer, ptrName *C.char, index C.int) *C.char {
+func callbackQDesignerMemberSheetExtension_Signature(ptr unsafe.Pointer, index C.int) *C.char {
 	defer qt.Recovering("callback QDesignerMemberSheetExtension::signature")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "signature"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr), "signature"); signal != nil {
+		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
 
 	return C.CString("")
@@ -12738,7 +12482,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectSignature(f func(index int) str
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "signature", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "signature", f)
 	}
 }
 
@@ -12747,7 +12491,7 @@ func (ptr *QDesignerMemberSheetExtension) DisconnectSignature(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "signature")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()), "signature")
 	}
 }
 
@@ -12755,7 +12499,7 @@ func (ptr *QDesignerMemberSheetExtension) Signature(index int) string {
 	defer qt.Recovering("QDesignerMemberSheetExtension::signature")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerMemberSheetExtension_Signature(ptr.Pointer(), C.int(index)))
+		return C.GoString(C.QDesignerMemberSheetExtension_Signature(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
@@ -12764,28 +12508,9 @@ func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtension()
 	defer qt.Recovering("QDesignerMemberSheetExtension::~QDesignerMemberSheetExtension")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerMemberSheetExtension(%v)", ptr.Pointer()))
 		C.QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerMemberSheetExtension) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerMemberSheetExtension::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerMemberSheetExtension_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerMemberSheetExtension) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerMemberSheetExtension::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerMemberSheetExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -12827,26 +12552,17 @@ func NewQDesignerObjectInspectorInterfaceFromPointer(ptr unsafe.Pointer) *QDesig
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDesignerObjectInspectorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerObjectInspectorInterface {
-	var n = NewQDesignerObjectInspectorInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDesignerObjectInspectorInterface_") {
-		n.SetObjectName("QDesignerObjectInspectorInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDesignerObjectInspectorInterface(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QDesignerObjectInspectorInterface {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::QDesignerObjectInspectorInterface")
 
-	return newQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(widgets.PointerFromQWidget(parent), C.int(flags)))
+	return NewQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 }
 
 //export callbackQDesignerObjectInspectorInterface_Core
-func callbackQDesignerObjectInspectorInterface_Core(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerObjectInspectorInterface_Core(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::core")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "core"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "core"); signal != nil {
 		return PointerFromQDesignerFormEditorInterface(signal.(func() *QDesignerFormEditorInterface)())
 	}
 
@@ -12858,7 +12574,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectCore(f func() *QDesignerFor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "core", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "core", f)
 	}
 }
 
@@ -12867,7 +12583,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectCore() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "core")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "core")
 	}
 }
 
@@ -12890,10 +12606,10 @@ func (ptr *QDesignerObjectInspectorInterface) CoreDefault() *QDesignerFormEditor
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetFormWindow
-func callbackQDesignerObjectInspectorInterface_SetFormWindow(ptr unsafe.Pointer, ptrName *C.char, formWindow unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_SetFormWindow(ptr unsafe.Pointer, formWindow unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setFormWindow")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFormWindow"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setFormWindow"); signal != nil {
 		signal.(func(*QDesignerFormWindowInterface))(NewQDesignerFormWindowInterfaceFromPointer(formWindow))
 	}
 
@@ -12904,7 +12620,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetFormWindow(f func(formWi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFormWindow", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setFormWindow", f)
 	}
 }
 
@@ -12913,7 +12629,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetFormWindow(formWindow
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFormWindow")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setFormWindow")
 	}
 }
 
@@ -12929,17 +12645,17 @@ func (ptr *QDesignerObjectInspectorInterface) DestroyQDesignerObjectInspectorInt
 	defer qt.Recovering("QDesignerObjectInspectorInterface::~QDesignerObjectInspectorInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()))
 		C.QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerObjectInspectorInterface_ActionEvent
-func callbackQDesignerObjectInspectorInterface_ActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::actionEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -12951,7 +12667,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectActionEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "actionEvent", f)
 	}
 }
 
@@ -12960,7 +12676,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "actionEvent")
 	}
 }
 
@@ -12981,10 +12697,10 @@ func (ptr *QDesignerObjectInspectorInterface) ActionEventDefault(event gui.QActi
 }
 
 //export callbackQDesignerObjectInspectorInterface_DragEnterEvent
-func callbackQDesignerObjectInspectorInterface_DragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::dragEnterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -12996,7 +12712,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectDragEnterEvent(f func(event
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dragEnterEvent", f)
 	}
 }
 
@@ -13005,7 +12721,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dragEnterEvent")
 	}
 }
 
@@ -13026,10 +12742,10 @@ func (ptr *QDesignerObjectInspectorInterface) DragEnterEventDefault(event gui.QD
 }
 
 //export callbackQDesignerObjectInspectorInterface_DragLeaveEvent
-func callbackQDesignerObjectInspectorInterface_DragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::dragLeaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -13041,7 +12757,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectDragLeaveEvent(f func(event
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dragLeaveEvent", f)
 	}
 }
 
@@ -13050,7 +12766,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dragLeaveEvent")
 	}
 }
 
@@ -13071,10 +12787,10 @@ func (ptr *QDesignerObjectInspectorInterface) DragLeaveEventDefault(event gui.QD
 }
 
 //export callbackQDesignerObjectInspectorInterface_DragMoveEvent
-func callbackQDesignerObjectInspectorInterface_DragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::dragMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -13086,7 +12802,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectDragMoveEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dragMoveEvent", f)
 	}
 }
 
@@ -13095,7 +12811,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dragMoveEvent")
 	}
 }
 
@@ -13116,10 +12832,10 @@ func (ptr *QDesignerObjectInspectorInterface) DragMoveEventDefault(event gui.QDr
 }
 
 //export callbackQDesignerObjectInspectorInterface_DropEvent
-func callbackQDesignerObjectInspectorInterface_DropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::dropEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -13131,7 +12847,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectDropEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dropEvent", f)
 	}
 }
 
@@ -13140,7 +12856,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "dropEvent")
 	}
 }
 
@@ -13161,10 +12877,10 @@ func (ptr *QDesignerObjectInspectorInterface) DropEventDefault(event gui.QDropEv
 }
 
 //export callbackQDesignerObjectInspectorInterface_EnterEvent
-func callbackQDesignerObjectInspectorInterface_EnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::enterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -13176,7 +12892,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectEnterEvent(f func(event *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "enterEvent", f)
 	}
 }
 
@@ -13185,7 +12901,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "enterEvent")
 	}
 }
 
@@ -13206,10 +12922,10 @@ func (ptr *QDesignerObjectInspectorInterface) EnterEventDefault(event core.QEven
 }
 
 //export callbackQDesignerObjectInspectorInterface_FocusInEvent
-func callbackQDesignerObjectInspectorInterface_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::focusInEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -13221,7 +12937,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectFocusInEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "focusInEvent", f)
 	}
 }
 
@@ -13230,7 +12946,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "focusInEvent")
 	}
 }
 
@@ -13251,10 +12967,10 @@ func (ptr *QDesignerObjectInspectorInterface) FocusInEventDefault(event gui.QFoc
 }
 
 //export callbackQDesignerObjectInspectorInterface_FocusOutEvent
-func callbackQDesignerObjectInspectorInterface_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::focusOutEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -13266,7 +12982,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectFocusOutEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "focusOutEvent", f)
 	}
 }
 
@@ -13275,7 +12991,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "focusOutEvent")
 	}
 }
 
@@ -13296,10 +13012,10 @@ func (ptr *QDesignerObjectInspectorInterface) FocusOutEventDefault(event gui.QFo
 }
 
 //export callbackQDesignerObjectInspectorInterface_HideEvent
-func callbackQDesignerObjectInspectorInterface_HideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::hideEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -13311,7 +13027,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectHideEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "hideEvent", f)
 	}
 }
 
@@ -13320,7 +13036,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "hideEvent")
 	}
 }
 
@@ -13341,10 +13057,10 @@ func (ptr *QDesignerObjectInspectorInterface) HideEventDefault(event gui.QHideEv
 }
 
 //export callbackQDesignerObjectInspectorInterface_LeaveEvent
-func callbackQDesignerObjectInspectorInterface_LeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::leaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -13356,7 +13072,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectLeaveEvent(f func(event *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "leaveEvent", f)
 	}
 }
 
@@ -13365,7 +13081,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "leaveEvent")
 	}
 }
 
@@ -13386,10 +13102,10 @@ func (ptr *QDesignerObjectInspectorInterface) LeaveEventDefault(event core.QEven
 }
 
 //export callbackQDesignerObjectInspectorInterface_MinimumSizeHint
-func callbackQDesignerObjectInspectorInterface_MinimumSizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerObjectInspectorInterface_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::minimumSizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -13401,7 +13117,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectMinimumSizeHint(f func() *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "minimumSizeHint", f)
 	}
 }
 
@@ -13410,7 +13126,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "minimumSizeHint")
 	}
 }
 
@@ -13437,10 +13153,10 @@ func (ptr *QDesignerObjectInspectorInterface) MinimumSizeHintDefault() *core.QSi
 }
 
 //export callbackQDesignerObjectInspectorInterface_MoveEvent
-func callbackQDesignerObjectInspectorInterface_MoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::moveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -13452,7 +13168,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectMoveEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "moveEvent", f)
 	}
 }
 
@@ -13461,7 +13177,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "moveEvent")
 	}
 }
 
@@ -13482,10 +13198,10 @@ func (ptr *QDesignerObjectInspectorInterface) MoveEventDefault(event gui.QMoveEv
 }
 
 //export callbackQDesignerObjectInspectorInterface_PaintEvent
-func callbackQDesignerObjectInspectorInterface_PaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::paintEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -13497,7 +13213,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectPaintEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "paintEvent", f)
 	}
 }
 
@@ -13506,7 +13222,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "paintEvent")
 	}
 }
 
@@ -13527,13 +13243,13 @@ func (ptr *QDesignerObjectInspectorInterface) PaintEventDefault(event gui.QPaint
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetEnabled
-func callbackQDesignerObjectInspectorInterface_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerObjectInspectorInterface_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setEnabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
+		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
 	}
 }
 
@@ -13542,7 +13258,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetEnabled(f func(vbo bool)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setEnabled", f)
 	}
 }
 
@@ -13551,7 +13267,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setEnabled")
 	}
 }
 
@@ -13559,7 +13275,7 @@ func (ptr *QDesignerObjectInspectorInterface) SetEnabled(vbo bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerObjectInspectorInterface_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -13567,15 +13283,15 @@ func (ptr *QDesignerObjectInspectorInterface) SetEnabledDefault(vbo bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerObjectInspectorInterface_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetStyleSheet
-func callbackQDesignerObjectInspectorInterface_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
+func callbackQDesignerObjectInspectorInterface_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setStyleSheet")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -13587,7 +13303,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetStyleSheet(f func(styleS
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setStyleSheet", f)
 	}
 }
 
@@ -13596,7 +13312,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setStyleSheet")
 	}
 }
 
@@ -13621,13 +13337,13 @@ func (ptr *QDesignerObjectInspectorInterface) SetStyleSheetDefault(styleSheet st
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetVisible
-func callbackQDesignerObjectInspectorInterface_SetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQDesignerObjectInspectorInterface_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
-		signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setVisible"); signal != nil {
+		signal.(func(bool))(int8(visible) != 0)
 	} else {
-		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
 	}
 }
 
@@ -13636,7 +13352,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetVisible(f func(visible b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setVisible", f)
 	}
 }
 
@@ -13645,7 +13361,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setVisible")
 	}
 }
 
@@ -13653,7 +13369,7 @@ func (ptr *QDesignerObjectInspectorInterface) SetVisible(visible bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerObjectInspectorInterface_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
@@ -13661,18 +13377,18 @@ func (ptr *QDesignerObjectInspectorInterface) SetVisibleDefault(visible bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerObjectInspectorInterface_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetWindowModified
-func callbackQDesignerObjectInspectorInterface_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerObjectInspectorInterface_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setWindowModified")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
+		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
 	}
 }
 
@@ -13681,7 +13397,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetWindowModified(f func(vb
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setWindowModified", f)
 	}
 }
 
@@ -13690,7 +13406,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setWindowModified")
 	}
 }
 
@@ -13698,7 +13414,7 @@ func (ptr *QDesignerObjectInspectorInterface) SetWindowModified(vbo bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetWindowModified(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerObjectInspectorInterface_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -13706,15 +13422,15 @@ func (ptr *QDesignerObjectInspectorInterface) SetWindowModifiedDefault(vbo bool)
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerObjectInspectorInterface_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetWindowTitle
-func callbackQDesignerObjectInspectorInterface_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
+func callbackQDesignerObjectInspectorInterface_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setWindowTitle")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -13726,7 +13442,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetWindowTitle(f func(vqs s
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setWindowTitle", f)
 	}
 }
 
@@ -13735,7 +13451,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setWindowTitle")
 	}
 }
 
@@ -13760,10 +13476,10 @@ func (ptr *QDesignerObjectInspectorInterface) SetWindowTitleDefault(vqs string) 
 }
 
 //export callbackQDesignerObjectInspectorInterface_ShowEvent
-func callbackQDesignerObjectInspectorInterface_ShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::showEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -13775,7 +13491,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectShowEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showEvent", f)
 	}
 }
 
@@ -13784,7 +13500,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showEvent")
 	}
 }
 
@@ -13805,10 +13521,10 @@ func (ptr *QDesignerObjectInspectorInterface) ShowEventDefault(event gui.QShowEv
 }
 
 //export callbackQDesignerObjectInspectorInterface_SizeHint
-func callbackQDesignerObjectInspectorInterface_SizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerObjectInspectorInterface_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::sizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -13820,7 +13536,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSizeHint(f func() *core.QSi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "sizeHint", f)
 	}
 }
 
@@ -13829,7 +13545,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "sizeHint")
 	}
 }
 
@@ -13856,10 +13572,10 @@ func (ptr *QDesignerObjectInspectorInterface) SizeHintDefault() *core.QSize {
 }
 
 //export callbackQDesignerObjectInspectorInterface_ChangeEvent
-func callbackQDesignerObjectInspectorInterface_ChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::changeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -13871,7 +13587,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectChangeEvent(f func(event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "changeEvent", f)
 	}
 }
 
@@ -13880,7 +13596,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "changeEvent")
 	}
 }
 
@@ -13901,14 +13617,14 @@ func (ptr *QDesignerObjectInspectorInterface) ChangeEventDefault(event core.QEve
 }
 
 //export callbackQDesignerObjectInspectorInterface_Close
-func callbackQDesignerObjectInspectorInterface_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerObjectInspectorInterface_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::close")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).CloseDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).CloseDefault())))
 }
 
 func (ptr *QDesignerObjectInspectorInterface) ConnectClose(f func() bool) {
@@ -13916,7 +13632,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "close", f)
 	}
 }
 
@@ -13925,7 +13641,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "close")
 	}
 }
 
@@ -13948,10 +13664,10 @@ func (ptr *QDesignerObjectInspectorInterface) CloseDefault() bool {
 }
 
 //export callbackQDesignerObjectInspectorInterface_CloseEvent
-func callbackQDesignerObjectInspectorInterface_CloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::closeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -13963,7 +13679,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectCloseEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "closeEvent", f)
 	}
 }
 
@@ -13972,7 +13688,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "closeEvent")
 	}
 }
 
@@ -13993,10 +13709,10 @@ func (ptr *QDesignerObjectInspectorInterface) CloseEventDefault(event gui.QClose
 }
 
 //export callbackQDesignerObjectInspectorInterface_ContextMenuEvent
-func callbackQDesignerObjectInspectorInterface_ContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::contextMenuEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -14008,7 +13724,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectContextMenuEvent(f func(eve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "contextMenuEvent", f)
 	}
 }
 
@@ -14017,7 +13733,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "contextMenuEvent")
 	}
 }
 
@@ -14038,14 +13754,14 @@ func (ptr *QDesignerObjectInspectorInterface) ContextMenuEventDefault(event gui.
 }
 
 //export callbackQDesignerObjectInspectorInterface_FocusNextPrevChild
-func callbackQDesignerObjectInspectorInterface_FocusNextPrevChild(ptr unsafe.Pointer, ptrName *C.char, next C.int) C.int {
+func callbackQDesignerObjectInspectorInterface_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::focusNextPrevChild")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusNextPrevChild"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(bool) bool)(int(next) != 0)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int(next) != 0)))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
 }
 
 func (ptr *QDesignerObjectInspectorInterface) ConnectFocusNextPrevChild(f func(next bool) bool) {
@@ -14053,7 +13769,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectFocusNextPrevChild(f func(n
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "focusNextPrevChild", f)
 	}
 }
 
@@ -14062,7 +13778,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "focusNextPrevChild")
 	}
 }
 
@@ -14070,7 +13786,7 @@ func (ptr *QDesignerObjectInspectorInterface) FocusNextPrevChild(next bool) bool
 	defer qt.Recovering("QDesignerObjectInspectorInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerObjectInspectorInterface_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
@@ -14079,20 +13795,20 @@ func (ptr *QDesignerObjectInspectorInterface) FocusNextPrevChildDefault(next boo
 	defer qt.Recovering("QDesignerObjectInspectorInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerObjectInspectorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerObjectInspectorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerObjectInspectorInterface_HasHeightForWidth
-func callbackQDesignerObjectInspectorInterface_HasHeightForWidth(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerObjectInspectorInterface_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::hasHeightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasHeightForWidth"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).HasHeightForWidthDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).HasHeightForWidthDefault())))
 }
 
 func (ptr *QDesignerObjectInspectorInterface) ConnectHasHeightForWidth(f func() bool) {
@@ -14100,7 +13816,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectHasHeightForWidth(f func() 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "hasHeightForWidth", f)
 	}
 }
 
@@ -14109,7 +13825,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "hasHeightForWidth")
 	}
 }
 
@@ -14132,14 +13848,14 @@ func (ptr *QDesignerObjectInspectorInterface) HasHeightForWidthDefault() bool {
 }
 
 //export callbackQDesignerObjectInspectorInterface_HeightForWidth
-func callbackQDesignerObjectInspectorInterface_HeightForWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) C.int {
+func callbackQDesignerObjectInspectorInterface_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::heightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "heightForWidth"); signal != nil {
-		return C.int(signal.(func(int) int)(int(w)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
-	return C.int(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).HeightForWidthDefault(int(w)))
+	return C.int(int32(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
 }
 
 func (ptr *QDesignerObjectInspectorInterface) ConnectHeightForWidth(f func(w int) int) {
@@ -14147,7 +13863,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectHeightForWidth(f func(w int
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "heightForWidth", f)
 	}
 }
 
@@ -14156,7 +13872,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "heightForWidth")
 	}
 }
 
@@ -14164,7 +13880,7 @@ func (ptr *QDesignerObjectInspectorInterface) HeightForWidth(w int) int {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerObjectInspectorInterface_HeightForWidth(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerObjectInspectorInterface_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
@@ -14173,16 +13889,16 @@ func (ptr *QDesignerObjectInspectorInterface) HeightForWidthDefault(w int) int {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerObjectInspectorInterface_HeightForWidthDefault(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerObjectInspectorInterface_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
 
 //export callbackQDesignerObjectInspectorInterface_Hide
-func callbackQDesignerObjectInspectorInterface_Hide(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::hide")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).HideDefault()
@@ -14194,7 +13910,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hide", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "hide", f)
 	}
 }
 
@@ -14203,7 +13919,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hide")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "hide")
 	}
 }
 
@@ -14224,10 +13940,10 @@ func (ptr *QDesignerObjectInspectorInterface) HideDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_InputMethodEvent
-func callbackQDesignerObjectInspectorInterface_InputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::inputMethodEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -14239,7 +13955,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectInputMethodEvent(f func(eve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "inputMethodEvent", f)
 	}
 }
 
@@ -14248,7 +13964,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "inputMethodEvent")
 	}
 }
 
@@ -14269,10 +13985,10 @@ func (ptr *QDesignerObjectInspectorInterface) InputMethodEventDefault(event gui.
 }
 
 //export callbackQDesignerObjectInspectorInterface_InputMethodQuery
-func callbackQDesignerObjectInspectorInterface_InputMethodQuery(ptr unsafe.Pointer, ptrName *C.char, query C.int) unsafe.Pointer {
+func callbackQDesignerObjectInspectorInterface_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::inputMethodQuery")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -14284,7 +14000,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectInputMethodQuery(f func(que
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "inputMethodQuery", f)
 	}
 }
 
@@ -14293,7 +14009,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "inputMethodQuery")
 	}
 }
 
@@ -14301,7 +14017,7 @@ func (ptr *QDesignerObjectInspectorInterface) InputMethodQuery(query core.Qt__In
 	defer qt.Recovering("QDesignerObjectInspectorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -14312,7 +14028,7 @@ func (ptr *QDesignerObjectInspectorInterface) InputMethodQueryDefault(query core
 	defer qt.Recovering("QDesignerObjectInspectorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerObjectInspectorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -14320,10 +14036,10 @@ func (ptr *QDesignerObjectInspectorInterface) InputMethodQueryDefault(query core
 }
 
 //export callbackQDesignerObjectInspectorInterface_KeyPressEvent
-func callbackQDesignerObjectInspectorInterface_KeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::keyPressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -14335,7 +14051,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectKeyPressEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "keyPressEvent", f)
 	}
 }
 
@@ -14344,7 +14060,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "keyPressEvent")
 	}
 }
 
@@ -14365,10 +14081,10 @@ func (ptr *QDesignerObjectInspectorInterface) KeyPressEventDefault(event gui.QKe
 }
 
 //export callbackQDesignerObjectInspectorInterface_KeyReleaseEvent
-func callbackQDesignerObjectInspectorInterface_KeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::keyReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -14380,7 +14096,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectKeyReleaseEvent(f func(even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "keyReleaseEvent", f)
 	}
 }
 
@@ -14389,7 +14105,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "keyReleaseEvent")
 	}
 }
 
@@ -14410,10 +14126,10 @@ func (ptr *QDesignerObjectInspectorInterface) KeyReleaseEventDefault(event gui.Q
 }
 
 //export callbackQDesignerObjectInspectorInterface_Lower
-func callbackQDesignerObjectInspectorInterface_Lower(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::lower")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).LowerDefault()
@@ -14425,7 +14141,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "lower", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "lower", f)
 	}
 }
 
@@ -14434,7 +14150,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "lower")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "lower")
 	}
 }
 
@@ -14455,10 +14171,10 @@ func (ptr *QDesignerObjectInspectorInterface) LowerDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_MouseDoubleClickEvent
-func callbackQDesignerObjectInspectorInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14470,7 +14186,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectMouseDoubleClickEvent(f fun
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
 	}
 }
 
@@ -14479,7 +14195,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectMouseDoubleClickEvent() 
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
 	}
 }
 
@@ -14500,10 +14216,10 @@ func (ptr *QDesignerObjectInspectorInterface) MouseDoubleClickEventDefault(event
 }
 
 //export callbackQDesignerObjectInspectorInterface_MouseMoveEvent
-func callbackQDesignerObjectInspectorInterface_MouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::mouseMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14515,7 +14231,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectMouseMoveEvent(f func(event
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mouseMoveEvent", f)
 	}
 }
 
@@ -14524,7 +14240,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mouseMoveEvent")
 	}
 }
 
@@ -14545,10 +14261,10 @@ func (ptr *QDesignerObjectInspectorInterface) MouseMoveEventDefault(event gui.QM
 }
 
 //export callbackQDesignerObjectInspectorInterface_MousePressEvent
-func callbackQDesignerObjectInspectorInterface_MousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::mousePressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14560,7 +14276,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectMousePressEvent(f func(even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mousePressEvent", f)
 	}
 }
 
@@ -14569,7 +14285,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mousePressEvent")
 	}
 }
 
@@ -14590,10 +14306,10 @@ func (ptr *QDesignerObjectInspectorInterface) MousePressEventDefault(event gui.Q
 }
 
 //export callbackQDesignerObjectInspectorInterface_MouseReleaseEvent
-func callbackQDesignerObjectInspectorInterface_MouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14605,7 +14321,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectMouseReleaseEvent(f func(ev
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
 	}
 }
 
@@ -14614,7 +14330,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "mouseReleaseEvent")
 	}
 }
 
@@ -14635,14 +14351,14 @@ func (ptr *QDesignerObjectInspectorInterface) MouseReleaseEventDefault(event gui
 }
 
 //export callbackQDesignerObjectInspectorInterface_NativeEvent
-func callbackQDesignerObjectInspectorInterface_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventType *C.char, message unsafe.Pointer, result C.long) C.int {
+func callbackQDesignerObjectInspectorInterface_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::nativeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 }
 
 func (ptr *QDesignerObjectInspectorInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -14650,7 +14366,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectNativeEvent(f func(eventTyp
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "nativeEvent", f)
 	}
 }
 
@@ -14659,7 +14375,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "nativeEvent")
 	}
 }
 
@@ -14669,7 +14385,7 @@ func (ptr *QDesignerObjectInspectorInterface) NativeEvent(eventType string, mess
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerObjectInspectorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerObjectInspectorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -14680,16 +14396,16 @@ func (ptr *QDesignerObjectInspectorInterface) NativeEventDefault(eventType strin
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerObjectInspectorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerObjectInspectorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerObjectInspectorInterface_Raise
-func callbackQDesignerObjectInspectorInterface_Raise(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::raise")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).RaiseDefault()
@@ -14701,7 +14417,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "raise", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "raise", f)
 	}
 }
 
@@ -14710,7 +14426,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "raise")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "raise")
 	}
 }
 
@@ -14731,10 +14447,10 @@ func (ptr *QDesignerObjectInspectorInterface) RaiseDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_Repaint
-func callbackQDesignerObjectInspectorInterface_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::repaint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).RepaintDefault()
@@ -14746,7 +14462,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "repaint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "repaint", f)
 	}
 }
 
@@ -14755,7 +14471,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "repaint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "repaint")
 	}
 }
 
@@ -14776,10 +14492,10 @@ func (ptr *QDesignerObjectInspectorInterface) RepaintDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_ResizeEvent
-func callbackQDesignerObjectInspectorInterface_ResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::resizeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -14791,7 +14507,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectResizeEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "resizeEvent", f)
 	}
 }
 
@@ -14800,7 +14516,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "resizeEvent")
 	}
 }
 
@@ -14821,13 +14537,13 @@ func (ptr *QDesignerObjectInspectorInterface) ResizeEventDefault(event gui.QResi
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetDisabled
-func callbackQDesignerObjectInspectorInterface_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
+func callbackQDesignerObjectInspectorInterface_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setDisabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
-		signal.(func(bool))(int(disable) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setDisabled"); signal != nil {
+		signal.(func(bool))(int8(disable) != 0)
 	} else {
-		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
+		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
 	}
 }
 
@@ -14836,7 +14552,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetDisabled(f func(disable 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setDisabled", f)
 	}
 }
 
@@ -14845,7 +14561,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setDisabled")
 	}
 }
 
@@ -14853,7 +14569,7 @@ func (ptr *QDesignerObjectInspectorInterface) SetDisabled(disable bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerObjectInspectorInterface_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
@@ -14861,15 +14577,15 @@ func (ptr *QDesignerObjectInspectorInterface) SetDisabledDefault(disable bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerObjectInspectorInterface_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetFocus2
-func callbackQDesignerObjectInspectorInterface_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetFocus2Default()
@@ -14881,7 +14597,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setFocus2", f)
 	}
 }
 
@@ -14890,7 +14606,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setFocus2")
 	}
 }
 
@@ -14911,13 +14627,13 @@ func (ptr *QDesignerObjectInspectorInterface) SetFocus2Default() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_SetHidden
-func callbackQDesignerObjectInspectorInterface_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
+func callbackQDesignerObjectInspectorInterface_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::setHidden")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
-		signal.(func(bool))(int(hidden) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "setHidden"); signal != nil {
+		signal.(func(bool))(int8(hidden) != 0)
 	} else {
-		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
+		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
 	}
 }
 
@@ -14926,7 +14642,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetHidden(f func(hidden boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setHidden", f)
 	}
 }
 
@@ -14935,7 +14651,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setHidden")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "setHidden")
 	}
 }
 
@@ -14943,7 +14659,7 @@ func (ptr *QDesignerObjectInspectorInterface) SetHidden(hidden bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerObjectInspectorInterface_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
@@ -14951,15 +14667,15 @@ func (ptr *QDesignerObjectInspectorInterface) SetHiddenDefault(hidden bool) {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerObjectInspectorInterface_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerObjectInspectorInterface_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 //export callbackQDesignerObjectInspectorInterface_Show
-func callbackQDesignerObjectInspectorInterface_Show(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::show")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ShowDefault()
@@ -14971,7 +14687,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "show", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "show", f)
 	}
 }
 
@@ -14980,7 +14696,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "show")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "show")
 	}
 }
 
@@ -15001,10 +14717,10 @@ func (ptr *QDesignerObjectInspectorInterface) ShowDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_ShowFullScreen
-func callbackQDesignerObjectInspectorInterface_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::showFullScreen")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ShowFullScreenDefault()
@@ -15016,7 +14732,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showFullScreen", f)
 	}
 }
 
@@ -15025,7 +14741,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showFullScreen")
 	}
 }
 
@@ -15046,10 +14762,10 @@ func (ptr *QDesignerObjectInspectorInterface) ShowFullScreenDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_ShowMaximized
-func callbackQDesignerObjectInspectorInterface_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::showMaximized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ShowMaximizedDefault()
@@ -15061,7 +14777,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showMaximized", f)
 	}
 }
 
@@ -15070,7 +14786,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showMaximized")
 	}
 }
 
@@ -15091,10 +14807,10 @@ func (ptr *QDesignerObjectInspectorInterface) ShowMaximizedDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_ShowMinimized
-func callbackQDesignerObjectInspectorInterface_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::showMinimized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ShowMinimizedDefault()
@@ -15106,7 +14822,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showMinimized", f)
 	}
 }
 
@@ -15115,7 +14831,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showMinimized")
 	}
 }
 
@@ -15136,10 +14852,10 @@ func (ptr *QDesignerObjectInspectorInterface) ShowMinimizedDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_ShowNormal
-func callbackQDesignerObjectInspectorInterface_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::showNormal")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ShowNormalDefault()
@@ -15151,7 +14867,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showNormal", f)
 	}
 }
 
@@ -15160,7 +14876,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showNormal")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "showNormal")
 	}
 }
 
@@ -15181,10 +14897,10 @@ func (ptr *QDesignerObjectInspectorInterface) ShowNormalDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_TabletEvent
-func callbackQDesignerObjectInspectorInterface_TabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::tabletEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -15196,7 +14912,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectTabletEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "tabletEvent", f)
 	}
 }
 
@@ -15205,7 +14921,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "tabletEvent")
 	}
 }
 
@@ -15226,10 +14942,10 @@ func (ptr *QDesignerObjectInspectorInterface) TabletEventDefault(event gui.QTabl
 }
 
 //export callbackQDesignerObjectInspectorInterface_Update
-func callbackQDesignerObjectInspectorInterface_Update(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::update")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).UpdateDefault()
@@ -15241,7 +14957,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "update", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "update", f)
 	}
 }
 
@@ -15250,7 +14966,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "update")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "update")
 	}
 }
 
@@ -15271,10 +14987,10 @@ func (ptr *QDesignerObjectInspectorInterface) UpdateDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_UpdateMicroFocus
-func callbackQDesignerObjectInspectorInterface_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::updateMicroFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).UpdateMicroFocusDefault()
@@ -15286,7 +15002,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectUpdateMicroFocus(f func()) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "updateMicroFocus", f)
 	}
 }
 
@@ -15295,7 +15011,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "updateMicroFocus")
 	}
 }
 
@@ -15316,10 +15032,10 @@ func (ptr *QDesignerObjectInspectorInterface) UpdateMicroFocusDefault() {
 }
 
 //export callbackQDesignerObjectInspectorInterface_WheelEvent
-func callbackQDesignerObjectInspectorInterface_WheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::wheelEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -15331,7 +15047,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectWheelEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "wheelEvent", f)
 	}
 }
 
@@ -15340,7 +15056,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "wheelEvent")
 	}
 }
 
@@ -15361,10 +15077,10 @@ func (ptr *QDesignerObjectInspectorInterface) WheelEventDefault(event gui.QWheel
 }
 
 //export callbackQDesignerObjectInspectorInterface_TimerEvent
-func callbackQDesignerObjectInspectorInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -15376,7 +15092,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectTimerEvent(f func(event *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -15385,7 +15101,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -15406,10 +15122,10 @@ func (ptr *QDesignerObjectInspectorInterface) TimerEventDefault(event core.QTime
 }
 
 //export callbackQDesignerObjectInspectorInterface_ChildEvent
-func callbackQDesignerObjectInspectorInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -15421,7 +15137,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectChildEvent(f func(event *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -15430,7 +15146,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -15451,10 +15167,10 @@ func (ptr *QDesignerObjectInspectorInterface) ChildEventDefault(event core.QChil
 }
 
 //export callbackQDesignerObjectInspectorInterface_ConnectNotify
-func callbackQDesignerObjectInspectorInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -15466,7 +15182,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectConnectNotify(f func(sign *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -15475,7 +15191,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -15496,10 +15212,10 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectNotifyDefault(sign core.QMe
 }
 
 //export callbackQDesignerObjectInspectorInterface_CustomEvent
-func callbackQDesignerObjectInspectorInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -15511,7 +15227,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectCustomEvent(f func(event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -15520,7 +15236,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -15541,10 +15257,10 @@ func (ptr *QDesignerObjectInspectorInterface) CustomEventDefault(event core.QEve
 }
 
 //export callbackQDesignerObjectInspectorInterface_DeleteLater
-func callbackQDesignerObjectInspectorInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerObjectInspectorInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -15556,7 +15272,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -15565,7 +15281,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -15573,7 +15289,7 @@ func (ptr *QDesignerObjectInspectorInterface) DeleteLater() {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()))
 		C.QDesignerObjectInspectorInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -15583,17 +15299,17 @@ func (ptr *QDesignerObjectInspectorInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDesignerObjectInspectorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()))
 		C.QDesignerObjectInspectorInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerObjectInspectorInterface_DisconnectNotify
-func callbackQDesignerObjectInspectorInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerObjectInspectorInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerObjectInspectorInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -15605,7 +15321,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectDisconnectNotify(f func(sig
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -15614,7 +15330,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -15635,14 +15351,14 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectNotifyDefault(sign core.
 }
 
 //export callbackQDesignerObjectInspectorInterface_EventFilter
-func callbackQDesignerObjectInspectorInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDesignerObjectInspectorInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerObjectInspectorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDesignerObjectInspectorInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -15650,7 +15366,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectEventFilter(f func(watched 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -15659,7 +15375,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -15682,10 +15398,10 @@ func (ptr *QDesignerObjectInspectorInterface) EventFilterDefault(watched core.QO
 }
 
 //export callbackQDesignerObjectInspectorInterface_MetaObject
-func callbackQDesignerObjectInspectorInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerObjectInspectorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerObjectInspectorInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -15697,7 +15413,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectMetaObject(f func() *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -15706,7 +15422,7 @@ func (ptr *QDesignerObjectInspectorInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerObjectInspectorInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -15766,26 +15482,17 @@ func NewQDesignerPropertyEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesign
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQDesignerPropertyEditorInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerPropertyEditorInterface {
-	var n = NewQDesignerPropertyEditorInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDesignerPropertyEditorInterface_") {
-		n.SetObjectName("QDesignerPropertyEditorInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQDesignerPropertyEditorInterface(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QDesignerPropertyEditorInterface {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::QDesignerPropertyEditorInterface")
 
-	return newQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(widgets.PointerFromQWidget(parent), C.int(flags)))
+	return NewQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 }
 
 //export callbackQDesignerPropertyEditorInterface_Core
-func callbackQDesignerPropertyEditorInterface_Core(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerPropertyEditorInterface_Core(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::core")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "core"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "core"); signal != nil {
 		return PointerFromQDesignerFormEditorInterface(signal.(func() *QDesignerFormEditorInterface)())
 	}
 
@@ -15797,7 +15504,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectCore(f func() *QDesignerForm
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "core", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "core", f)
 	}
 }
 
@@ -15806,7 +15513,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectCore() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "core")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "core")
 	}
 }
 
@@ -15829,10 +15536,10 @@ func (ptr *QDesignerPropertyEditorInterface) CoreDefault() *QDesignerFormEditorI
 }
 
 //export callbackQDesignerPropertyEditorInterface_CurrentPropertyName
-func callbackQDesignerPropertyEditorInterface_CurrentPropertyName(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerPropertyEditorInterface_CurrentPropertyName(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::currentPropertyName")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "currentPropertyName"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "currentPropertyName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -15844,7 +15551,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectCurrentPropertyName(f func()
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "currentPropertyName", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "currentPropertyName", f)
 	}
 }
 
@@ -15853,7 +15560,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectCurrentPropertyName() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "currentPropertyName")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "currentPropertyName")
 	}
 }
 
@@ -15867,14 +15574,14 @@ func (ptr *QDesignerPropertyEditorInterface) CurrentPropertyName() string {
 }
 
 //export callbackQDesignerPropertyEditorInterface_IsReadOnly
-func callbackQDesignerPropertyEditorInterface_IsReadOnly(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerPropertyEditorInterface_IsReadOnly(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::isReadOnly")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isReadOnly"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "isReadOnly"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectIsReadOnly(f func() bool) {
@@ -15882,7 +15589,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectIsReadOnly(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "isReadOnly", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "isReadOnly", f)
 	}
 }
 
@@ -15891,7 +15598,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectIsReadOnly() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "isReadOnly")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "isReadOnly")
 	}
 }
 
@@ -15905,10 +15612,10 @@ func (ptr *QDesignerPropertyEditorInterface) IsReadOnly() bool {
 }
 
 //export callbackQDesignerPropertyEditorInterface_Object
-func callbackQDesignerPropertyEditorInterface_Object(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerPropertyEditorInterface_Object(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::object")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "object"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "object"); signal != nil {
 		return core.PointerFromQObject(signal.(func() *core.QObject)())
 	}
 
@@ -15920,7 +15627,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectObject(f func() *core.QObjec
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "object", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "object", f)
 	}
 }
 
@@ -15929,7 +15636,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "object")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "object")
 	}
 }
 
@@ -15943,10 +15650,10 @@ func (ptr *QDesignerPropertyEditorInterface) Object() *core.QObject {
 }
 
 //export callbackQDesignerPropertyEditorInterface_PropertyChanged
-func callbackQDesignerPropertyEditorInterface_PropertyChanged(ptr unsafe.Pointer, ptrName *C.char, name *C.char, value unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_PropertyChanged(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::propertyChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "propertyChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "propertyChanged"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(name), core.NewQVariantFromPointer(value))
 	}
 
@@ -15957,7 +15664,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectPropertyChanged(f func(name 
 
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_ConnectPropertyChanged(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "propertyChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "propertyChanged", f)
 	}
 }
 
@@ -15966,7 +15673,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectPropertyChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDesignerPropertyEditorInterface_DisconnectPropertyChanged(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "propertyChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "propertyChanged")
 	}
 }
 
@@ -15981,10 +15688,10 @@ func (ptr *QDesignerPropertyEditorInterface) PropertyChanged(name string, value 
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetObject
-func callbackQDesignerPropertyEditorInterface_SetObject(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_SetObject(ptr unsafe.Pointer, object unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setObject"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	}
 
@@ -15995,7 +15702,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetObject(f func(object *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setObject", f)
 	}
 }
 
@@ -16004,7 +15711,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetObject(object core.QOb
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setObject")
 	}
 }
 
@@ -16017,11 +15724,11 @@ func (ptr *QDesignerPropertyEditorInterface) SetObject(object core.QObject_ITF) 
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetPropertyValue
-func callbackQDesignerPropertyEditorInterface_SetPropertyValue(ptr unsafe.Pointer, ptrName *C.char, name *C.char, value unsafe.Pointer, changed C.int) {
+func callbackQDesignerPropertyEditorInterface_SetPropertyValue(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, changed C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setPropertyValue")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setPropertyValue"); signal != nil {
-		signal.(func(string, *core.QVariant, bool))(C.GoString(name), core.NewQVariantFromPointer(value), int(changed) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setPropertyValue"); signal != nil {
+		signal.(func(string, *core.QVariant, bool))(C.GoString(name), core.NewQVariantFromPointer(value), int8(changed) != 0)
 	}
 
 }
@@ -16031,7 +15738,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetPropertyValue(f func(name
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setPropertyValue", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setPropertyValue", f)
 	}
 }
 
@@ -16040,7 +15747,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetPropertyValue(name str
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setPropertyValue")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setPropertyValue")
 	}
 }
 
@@ -16050,16 +15757,16 @@ func (ptr *QDesignerPropertyEditorInterface) SetPropertyValue(name string, value
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerPropertyEditorInterface_SetPropertyValue(ptr.Pointer(), nameC, core.PointerFromQVariant(value), C.int(qt.GoBoolToInt(changed)))
+		C.QDesignerPropertyEditorInterface_SetPropertyValue(ptr.Pointer(), nameC, core.PointerFromQVariant(value), C.char(int8(qt.GoBoolToInt(changed))))
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetReadOnly
-func callbackQDesignerPropertyEditorInterface_SetReadOnly(ptr unsafe.Pointer, ptrName *C.char, readOnly C.int) {
+func callbackQDesignerPropertyEditorInterface_SetReadOnly(ptr unsafe.Pointer, readOnly C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setReadOnly")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setReadOnly"); signal != nil {
-		signal.(func(bool))(int(readOnly) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setReadOnly"); signal != nil {
+		signal.(func(bool))(int8(readOnly) != 0)
 	}
 
 }
@@ -16069,7 +15776,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetReadOnly(f func(readOnly 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setReadOnly", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setReadOnly", f)
 	}
 }
 
@@ -16078,7 +15785,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetReadOnly(readOnly bool
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setReadOnly")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setReadOnly")
 	}
 }
 
@@ -16086,7 +15793,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetReadOnly(readOnly bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setReadOnly")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetReadOnly(ptr.Pointer(), C.int(qt.GoBoolToInt(readOnly)))
+		C.QDesignerPropertyEditorInterface_SetReadOnly(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(readOnly))))
 	}
 }
 
@@ -16094,17 +15801,17 @@ func (ptr *QDesignerPropertyEditorInterface) DestroyQDesignerPropertyEditorInter
 	defer qt.Recovering("QDesignerPropertyEditorInterface::~QDesignerPropertyEditorInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_ActionEvent
-func callbackQDesignerPropertyEditorInterface_ActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::actionEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -16116,7 +15823,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectActionEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "actionEvent", f)
 	}
 }
 
@@ -16125,7 +15832,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "actionEvent")
 	}
 }
 
@@ -16146,10 +15853,10 @@ func (ptr *QDesignerPropertyEditorInterface) ActionEventDefault(event gui.QActio
 }
 
 //export callbackQDesignerPropertyEditorInterface_DragEnterEvent
-func callbackQDesignerPropertyEditorInterface_DragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::dragEnterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -16161,7 +15868,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectDragEnterEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dragEnterEvent", f)
 	}
 }
 
@@ -16170,7 +15877,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dragEnterEvent")
 	}
 }
 
@@ -16191,10 +15898,10 @@ func (ptr *QDesignerPropertyEditorInterface) DragEnterEventDefault(event gui.QDr
 }
 
 //export callbackQDesignerPropertyEditorInterface_DragLeaveEvent
-func callbackQDesignerPropertyEditorInterface_DragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::dragLeaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -16206,7 +15913,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectDragLeaveEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dragLeaveEvent", f)
 	}
 }
 
@@ -16215,7 +15922,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dragLeaveEvent")
 	}
 }
 
@@ -16236,10 +15943,10 @@ func (ptr *QDesignerPropertyEditorInterface) DragLeaveEventDefault(event gui.QDr
 }
 
 //export callbackQDesignerPropertyEditorInterface_DragMoveEvent
-func callbackQDesignerPropertyEditorInterface_DragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::dragMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -16251,7 +15958,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectDragMoveEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dragMoveEvent", f)
 	}
 }
 
@@ -16260,7 +15967,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dragMoveEvent")
 	}
 }
 
@@ -16281,10 +15988,10 @@ func (ptr *QDesignerPropertyEditorInterface) DragMoveEventDefault(event gui.QDra
 }
 
 //export callbackQDesignerPropertyEditorInterface_DropEvent
-func callbackQDesignerPropertyEditorInterface_DropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::dropEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -16296,7 +16003,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectDropEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dropEvent", f)
 	}
 }
 
@@ -16305,7 +16012,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "dropEvent")
 	}
 }
 
@@ -16326,10 +16033,10 @@ func (ptr *QDesignerPropertyEditorInterface) DropEventDefault(event gui.QDropEve
 }
 
 //export callbackQDesignerPropertyEditorInterface_EnterEvent
-func callbackQDesignerPropertyEditorInterface_EnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::enterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -16341,7 +16048,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectEnterEvent(f func(event *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "enterEvent", f)
 	}
 }
 
@@ -16350,7 +16057,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "enterEvent")
 	}
 }
 
@@ -16371,10 +16078,10 @@ func (ptr *QDesignerPropertyEditorInterface) EnterEventDefault(event core.QEvent
 }
 
 //export callbackQDesignerPropertyEditorInterface_FocusInEvent
-func callbackQDesignerPropertyEditorInterface_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::focusInEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -16386,7 +16093,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectFocusInEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "focusInEvent", f)
 	}
 }
 
@@ -16395,7 +16102,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "focusInEvent")
 	}
 }
 
@@ -16416,10 +16123,10 @@ func (ptr *QDesignerPropertyEditorInterface) FocusInEventDefault(event gui.QFocu
 }
 
 //export callbackQDesignerPropertyEditorInterface_FocusOutEvent
-func callbackQDesignerPropertyEditorInterface_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::focusOutEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -16431,7 +16138,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectFocusOutEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "focusOutEvent", f)
 	}
 }
 
@@ -16440,7 +16147,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "focusOutEvent")
 	}
 }
 
@@ -16461,10 +16168,10 @@ func (ptr *QDesignerPropertyEditorInterface) FocusOutEventDefault(event gui.QFoc
 }
 
 //export callbackQDesignerPropertyEditorInterface_HideEvent
-func callbackQDesignerPropertyEditorInterface_HideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::hideEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -16476,7 +16183,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectHideEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "hideEvent", f)
 	}
 }
 
@@ -16485,7 +16192,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "hideEvent")
 	}
 }
 
@@ -16506,10 +16213,10 @@ func (ptr *QDesignerPropertyEditorInterface) HideEventDefault(event gui.QHideEve
 }
 
 //export callbackQDesignerPropertyEditorInterface_LeaveEvent
-func callbackQDesignerPropertyEditorInterface_LeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::leaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -16521,7 +16228,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectLeaveEvent(f func(event *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "leaveEvent", f)
 	}
 }
 
@@ -16530,7 +16237,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "leaveEvent")
 	}
 }
 
@@ -16551,10 +16258,10 @@ func (ptr *QDesignerPropertyEditorInterface) LeaveEventDefault(event core.QEvent
 }
 
 //export callbackQDesignerPropertyEditorInterface_MinimumSizeHint
-func callbackQDesignerPropertyEditorInterface_MinimumSizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerPropertyEditorInterface_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::minimumSizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -16566,7 +16273,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectMinimumSizeHint(f func() *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "minimumSizeHint", f)
 	}
 }
 
@@ -16575,7 +16282,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "minimumSizeHint")
 	}
 }
 
@@ -16602,10 +16309,10 @@ func (ptr *QDesignerPropertyEditorInterface) MinimumSizeHintDefault() *core.QSiz
 }
 
 //export callbackQDesignerPropertyEditorInterface_MoveEvent
-func callbackQDesignerPropertyEditorInterface_MoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::moveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -16617,7 +16324,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectMoveEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "moveEvent", f)
 	}
 }
 
@@ -16626,7 +16333,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "moveEvent")
 	}
 }
 
@@ -16647,10 +16354,10 @@ func (ptr *QDesignerPropertyEditorInterface) MoveEventDefault(event gui.QMoveEve
 }
 
 //export callbackQDesignerPropertyEditorInterface_PaintEvent
-func callbackQDesignerPropertyEditorInterface_PaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::paintEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -16662,7 +16369,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectPaintEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "paintEvent", f)
 	}
 }
 
@@ -16671,7 +16378,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "paintEvent")
 	}
 }
 
@@ -16692,13 +16399,13 @@ func (ptr *QDesignerPropertyEditorInterface) PaintEventDefault(event gui.QPaintE
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetEnabled
-func callbackQDesignerPropertyEditorInterface_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerPropertyEditorInterface_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setEnabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
+		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
 	}
 }
 
@@ -16707,7 +16414,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetEnabled(f func(vbo bool))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setEnabled", f)
 	}
 }
 
@@ -16716,7 +16423,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setEnabled")
 	}
 }
 
@@ -16724,7 +16431,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetEnabled(vbo bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerPropertyEditorInterface_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -16732,15 +16439,15 @@ func (ptr *QDesignerPropertyEditorInterface) SetEnabledDefault(vbo bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerPropertyEditorInterface_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetStyleSheet
-func callbackQDesignerPropertyEditorInterface_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
+func callbackQDesignerPropertyEditorInterface_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setStyleSheet")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -16752,7 +16459,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetStyleSheet(f func(styleSh
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setStyleSheet", f)
 	}
 }
 
@@ -16761,7 +16468,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setStyleSheet")
 	}
 }
 
@@ -16786,13 +16493,13 @@ func (ptr *QDesignerPropertyEditorInterface) SetStyleSheetDefault(styleSheet str
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetVisible
-func callbackQDesignerPropertyEditorInterface_SetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQDesignerPropertyEditorInterface_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
-		signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setVisible"); signal != nil {
+		signal.(func(bool))(int8(visible) != 0)
 	} else {
-		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
 	}
 }
 
@@ -16801,7 +16508,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetVisible(f func(visible bo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setVisible", f)
 	}
 }
 
@@ -16810,7 +16517,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setVisible")
 	}
 }
 
@@ -16818,7 +16525,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetVisible(visible bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerPropertyEditorInterface_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
@@ -16826,18 +16533,18 @@ func (ptr *QDesignerPropertyEditorInterface) SetVisibleDefault(visible bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerPropertyEditorInterface_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetWindowModified
-func callbackQDesignerPropertyEditorInterface_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerPropertyEditorInterface_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setWindowModified")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
+		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
 	}
 }
 
@@ -16846,7 +16553,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetWindowModified(f func(vbo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setWindowModified", f)
 	}
 }
 
@@ -16855,7 +16562,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setWindowModified")
 	}
 }
 
@@ -16863,7 +16570,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetWindowModified(vbo bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetWindowModified(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerPropertyEditorInterface_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -16871,15 +16578,15 @@ func (ptr *QDesignerPropertyEditorInterface) SetWindowModifiedDefault(vbo bool) 
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerPropertyEditorInterface_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetWindowTitle
-func callbackQDesignerPropertyEditorInterface_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
+func callbackQDesignerPropertyEditorInterface_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setWindowTitle")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -16891,7 +16598,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetWindowTitle(f func(vqs st
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setWindowTitle", f)
 	}
 }
 
@@ -16900,7 +16607,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setWindowTitle")
 	}
 }
 
@@ -16925,10 +16632,10 @@ func (ptr *QDesignerPropertyEditorInterface) SetWindowTitleDefault(vqs string) {
 }
 
 //export callbackQDesignerPropertyEditorInterface_ShowEvent
-func callbackQDesignerPropertyEditorInterface_ShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::showEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -16940,7 +16647,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectShowEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showEvent", f)
 	}
 }
 
@@ -16949,7 +16656,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showEvent")
 	}
 }
 
@@ -16970,10 +16677,10 @@ func (ptr *QDesignerPropertyEditorInterface) ShowEventDefault(event gui.QShowEve
 }
 
 //export callbackQDesignerPropertyEditorInterface_SizeHint
-func callbackQDesignerPropertyEditorInterface_SizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerPropertyEditorInterface_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::sizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -16985,7 +16692,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSizeHint(f func() *core.QSiz
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "sizeHint", f)
 	}
 }
 
@@ -16994,7 +16701,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "sizeHint")
 	}
 }
 
@@ -17021,10 +16728,10 @@ func (ptr *QDesignerPropertyEditorInterface) SizeHintDefault() *core.QSize {
 }
 
 //export callbackQDesignerPropertyEditorInterface_ChangeEvent
-func callbackQDesignerPropertyEditorInterface_ChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::changeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -17036,7 +16743,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectChangeEvent(f func(event *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "changeEvent", f)
 	}
 }
 
@@ -17045,7 +16752,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "changeEvent")
 	}
 }
 
@@ -17066,14 +16773,14 @@ func (ptr *QDesignerPropertyEditorInterface) ChangeEventDefault(event core.QEven
 }
 
 //export callbackQDesignerPropertyEditorInterface_Close
-func callbackQDesignerPropertyEditorInterface_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerPropertyEditorInterface_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::close")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).CloseDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).CloseDefault())))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectClose(f func() bool) {
@@ -17081,7 +16788,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "close", f)
 	}
 }
 
@@ -17090,7 +16797,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "close")
 	}
 }
 
@@ -17113,10 +16820,10 @@ func (ptr *QDesignerPropertyEditorInterface) CloseDefault() bool {
 }
 
 //export callbackQDesignerPropertyEditorInterface_CloseEvent
-func callbackQDesignerPropertyEditorInterface_CloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::closeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -17128,7 +16835,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectCloseEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "closeEvent", f)
 	}
 }
 
@@ -17137,7 +16844,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "closeEvent")
 	}
 }
 
@@ -17158,10 +16865,10 @@ func (ptr *QDesignerPropertyEditorInterface) CloseEventDefault(event gui.QCloseE
 }
 
 //export callbackQDesignerPropertyEditorInterface_ContextMenuEvent
-func callbackQDesignerPropertyEditorInterface_ContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::contextMenuEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -17173,7 +16880,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectContextMenuEvent(f func(even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "contextMenuEvent", f)
 	}
 }
 
@@ -17182,7 +16889,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "contextMenuEvent")
 	}
 }
 
@@ -17203,14 +16910,14 @@ func (ptr *QDesignerPropertyEditorInterface) ContextMenuEventDefault(event gui.Q
 }
 
 //export callbackQDesignerPropertyEditorInterface_FocusNextPrevChild
-func callbackQDesignerPropertyEditorInterface_FocusNextPrevChild(ptr unsafe.Pointer, ptrName *C.char, next C.int) C.int {
+func callbackQDesignerPropertyEditorInterface_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::focusNextPrevChild")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusNextPrevChild"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(bool) bool)(int(next) != 0)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int(next) != 0)))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectFocusNextPrevChild(f func(next bool) bool) {
@@ -17218,7 +16925,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectFocusNextPrevChild(f func(ne
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "focusNextPrevChild", f)
 	}
 }
 
@@ -17227,7 +16934,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "focusNextPrevChild")
 	}
 }
 
@@ -17235,7 +16942,7 @@ func (ptr *QDesignerPropertyEditorInterface) FocusNextPrevChild(next bool) bool 
 	defer qt.Recovering("QDesignerPropertyEditorInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerPropertyEditorInterface_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
@@ -17244,20 +16951,20 @@ func (ptr *QDesignerPropertyEditorInterface) FocusNextPrevChildDefault(next bool
 	defer qt.Recovering("QDesignerPropertyEditorInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertyEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerPropertyEditorInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertyEditorInterface_HasHeightForWidth
-func callbackQDesignerPropertyEditorInterface_HasHeightForWidth(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerPropertyEditorInterface_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::hasHeightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasHeightForWidth"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).HasHeightForWidthDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).HasHeightForWidthDefault())))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectHasHeightForWidth(f func() bool) {
@@ -17265,7 +16972,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectHasHeightForWidth(f func() b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "hasHeightForWidth", f)
 	}
 }
 
@@ -17274,7 +16981,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "hasHeightForWidth")
 	}
 }
 
@@ -17297,14 +17004,14 @@ func (ptr *QDesignerPropertyEditorInterface) HasHeightForWidthDefault() bool {
 }
 
 //export callbackQDesignerPropertyEditorInterface_HeightForWidth
-func callbackQDesignerPropertyEditorInterface_HeightForWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) C.int {
+func callbackQDesignerPropertyEditorInterface_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::heightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "heightForWidth"); signal != nil {
-		return C.int(signal.(func(int) int)(int(w)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
-	return C.int(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).HeightForWidthDefault(int(w)))
+	return C.int(int32(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectHeightForWidth(f func(w int) int) {
@@ -17312,7 +17019,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectHeightForWidth(f func(w int)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "heightForWidth", f)
 	}
 }
 
@@ -17321,7 +17028,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "heightForWidth")
 	}
 }
 
@@ -17329,7 +17036,7 @@ func (ptr *QDesignerPropertyEditorInterface) HeightForWidth(w int) int {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerPropertyEditorInterface_HeightForWidth(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerPropertyEditorInterface_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
@@ -17338,16 +17045,16 @@ func (ptr *QDesignerPropertyEditorInterface) HeightForWidthDefault(w int) int {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerPropertyEditorInterface_HeightForWidthDefault(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerPropertyEditorInterface_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
 
 //export callbackQDesignerPropertyEditorInterface_Hide
-func callbackQDesignerPropertyEditorInterface_Hide(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::hide")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).HideDefault()
@@ -17359,7 +17066,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hide", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "hide", f)
 	}
 }
 
@@ -17368,7 +17075,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hide")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "hide")
 	}
 }
 
@@ -17389,10 +17096,10 @@ func (ptr *QDesignerPropertyEditorInterface) HideDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_InputMethodEvent
-func callbackQDesignerPropertyEditorInterface_InputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::inputMethodEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -17404,7 +17111,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectInputMethodEvent(f func(even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "inputMethodEvent", f)
 	}
 }
 
@@ -17413,7 +17120,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "inputMethodEvent")
 	}
 }
 
@@ -17434,10 +17141,10 @@ func (ptr *QDesignerPropertyEditorInterface) InputMethodEventDefault(event gui.Q
 }
 
 //export callbackQDesignerPropertyEditorInterface_InputMethodQuery
-func callbackQDesignerPropertyEditorInterface_InputMethodQuery(ptr unsafe.Pointer, ptrName *C.char, query C.int) unsafe.Pointer {
+func callbackQDesignerPropertyEditorInterface_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::inputMethodQuery")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -17449,7 +17156,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectInputMethodQuery(f func(quer
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "inputMethodQuery", f)
 	}
 }
 
@@ -17458,7 +17165,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "inputMethodQuery")
 	}
 }
 
@@ -17466,7 +17173,7 @@ func (ptr *QDesignerPropertyEditorInterface) InputMethodQuery(query core.Qt__Inp
 	defer qt.Recovering("QDesignerPropertyEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -17477,7 +17184,7 @@ func (ptr *QDesignerPropertyEditorInterface) InputMethodQueryDefault(query core.
 	defer qt.Recovering("QDesignerPropertyEditorInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertyEditorInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -17485,10 +17192,10 @@ func (ptr *QDesignerPropertyEditorInterface) InputMethodQueryDefault(query core.
 }
 
 //export callbackQDesignerPropertyEditorInterface_KeyPressEvent
-func callbackQDesignerPropertyEditorInterface_KeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::keyPressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -17500,7 +17207,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectKeyPressEvent(f func(event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "keyPressEvent", f)
 	}
 }
 
@@ -17509,7 +17216,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "keyPressEvent")
 	}
 }
 
@@ -17530,10 +17237,10 @@ func (ptr *QDesignerPropertyEditorInterface) KeyPressEventDefault(event gui.QKey
 }
 
 //export callbackQDesignerPropertyEditorInterface_KeyReleaseEvent
-func callbackQDesignerPropertyEditorInterface_KeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::keyReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -17545,7 +17252,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectKeyReleaseEvent(f func(event
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "keyReleaseEvent", f)
 	}
 }
 
@@ -17554,7 +17261,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "keyReleaseEvent")
 	}
 }
 
@@ -17575,10 +17282,10 @@ func (ptr *QDesignerPropertyEditorInterface) KeyReleaseEventDefault(event gui.QK
 }
 
 //export callbackQDesignerPropertyEditorInterface_Lower
-func callbackQDesignerPropertyEditorInterface_Lower(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::lower")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).LowerDefault()
@@ -17590,7 +17297,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "lower", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "lower", f)
 	}
 }
 
@@ -17599,7 +17306,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "lower")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "lower")
 	}
 }
 
@@ -17620,10 +17327,10 @@ func (ptr *QDesignerPropertyEditorInterface) LowerDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_MouseDoubleClickEvent
-func callbackQDesignerPropertyEditorInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -17635,7 +17342,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectMouseDoubleClickEvent(f func
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
 	}
 }
 
@@ -17644,7 +17351,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
 	}
 }
 
@@ -17665,10 +17372,10 @@ func (ptr *QDesignerPropertyEditorInterface) MouseDoubleClickEventDefault(event 
 }
 
 //export callbackQDesignerPropertyEditorInterface_MouseMoveEvent
-func callbackQDesignerPropertyEditorInterface_MouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::mouseMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -17680,7 +17387,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectMouseMoveEvent(f func(event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mouseMoveEvent", f)
 	}
 }
 
@@ -17689,7 +17396,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mouseMoveEvent")
 	}
 }
 
@@ -17710,10 +17417,10 @@ func (ptr *QDesignerPropertyEditorInterface) MouseMoveEventDefault(event gui.QMo
 }
 
 //export callbackQDesignerPropertyEditorInterface_MousePressEvent
-func callbackQDesignerPropertyEditorInterface_MousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::mousePressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -17725,7 +17432,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectMousePressEvent(f func(event
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mousePressEvent", f)
 	}
 }
 
@@ -17734,7 +17441,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mousePressEvent")
 	}
 }
 
@@ -17755,10 +17462,10 @@ func (ptr *QDesignerPropertyEditorInterface) MousePressEventDefault(event gui.QM
 }
 
 //export callbackQDesignerPropertyEditorInterface_MouseReleaseEvent
-func callbackQDesignerPropertyEditorInterface_MouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -17770,7 +17477,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectMouseReleaseEvent(f func(eve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
 	}
 }
 
@@ -17779,7 +17486,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "mouseReleaseEvent")
 	}
 }
 
@@ -17800,14 +17507,14 @@ func (ptr *QDesignerPropertyEditorInterface) MouseReleaseEventDefault(event gui.
 }
 
 //export callbackQDesignerPropertyEditorInterface_NativeEvent
-func callbackQDesignerPropertyEditorInterface_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventType *C.char, message unsafe.Pointer, result C.long) C.int {
+func callbackQDesignerPropertyEditorInterface_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::nativeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -17815,7 +17522,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectNativeEvent(f func(eventType
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "nativeEvent", f)
 	}
 }
 
@@ -17824,7 +17531,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "nativeEvent")
 	}
 }
 
@@ -17834,7 +17541,7 @@ func (ptr *QDesignerPropertyEditorInterface) NativeEvent(eventType string, messa
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerPropertyEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerPropertyEditorInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -17845,16 +17552,16 @@ func (ptr *QDesignerPropertyEditorInterface) NativeEventDefault(eventType string
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerPropertyEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerPropertyEditorInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertyEditorInterface_Raise
-func callbackQDesignerPropertyEditorInterface_Raise(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::raise")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).RaiseDefault()
@@ -17866,7 +17573,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "raise", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "raise", f)
 	}
 }
 
@@ -17875,7 +17582,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "raise")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "raise")
 	}
 }
 
@@ -17896,10 +17603,10 @@ func (ptr *QDesignerPropertyEditorInterface) RaiseDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_Repaint
-func callbackQDesignerPropertyEditorInterface_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::repaint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).RepaintDefault()
@@ -17911,7 +17618,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "repaint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "repaint", f)
 	}
 }
 
@@ -17920,7 +17627,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "repaint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "repaint")
 	}
 }
 
@@ -17941,10 +17648,10 @@ func (ptr *QDesignerPropertyEditorInterface) RepaintDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_ResizeEvent
-func callbackQDesignerPropertyEditorInterface_ResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::resizeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -17956,7 +17663,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectResizeEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "resizeEvent", f)
 	}
 }
 
@@ -17965,7 +17672,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "resizeEvent")
 	}
 }
 
@@ -17986,13 +17693,13 @@ func (ptr *QDesignerPropertyEditorInterface) ResizeEventDefault(event gui.QResiz
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetDisabled
-func callbackQDesignerPropertyEditorInterface_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
+func callbackQDesignerPropertyEditorInterface_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setDisabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
-		signal.(func(bool))(int(disable) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setDisabled"); signal != nil {
+		signal.(func(bool))(int8(disable) != 0)
 	} else {
-		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
+		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
 	}
 }
 
@@ -18001,7 +17708,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetDisabled(f func(disable b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setDisabled", f)
 	}
 }
 
@@ -18010,7 +17717,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setDisabled")
 	}
 }
 
@@ -18018,7 +17725,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetDisabled(disable bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerPropertyEditorInterface_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
@@ -18026,15 +17733,15 @@ func (ptr *QDesignerPropertyEditorInterface) SetDisabledDefault(disable bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerPropertyEditorInterface_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetFocus2
-func callbackQDesignerPropertyEditorInterface_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetFocus2Default()
@@ -18046,7 +17753,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setFocus2", f)
 	}
 }
 
@@ -18055,7 +17762,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setFocus2")
 	}
 }
 
@@ -18076,13 +17783,13 @@ func (ptr *QDesignerPropertyEditorInterface) SetFocus2Default() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_SetHidden
-func callbackQDesignerPropertyEditorInterface_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
+func callbackQDesignerPropertyEditorInterface_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::setHidden")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
-		signal.(func(bool))(int(hidden) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "setHidden"); signal != nil {
+		signal.(func(bool))(int8(hidden) != 0)
 	} else {
-		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
+		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
 	}
 }
 
@@ -18091,7 +17798,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetHidden(f func(hidden bool
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setHidden", f)
 	}
 }
 
@@ -18100,7 +17807,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setHidden")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "setHidden")
 	}
 }
 
@@ -18108,7 +17815,7 @@ func (ptr *QDesignerPropertyEditorInterface) SetHidden(hidden bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerPropertyEditorInterface_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
@@ -18116,15 +17823,15 @@ func (ptr *QDesignerPropertyEditorInterface) SetHiddenDefault(hidden bool) {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertyEditorInterface_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerPropertyEditorInterface_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_Show
-func callbackQDesignerPropertyEditorInterface_Show(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::show")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ShowDefault()
@@ -18136,7 +17843,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "show", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "show", f)
 	}
 }
 
@@ -18145,7 +17852,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "show")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "show")
 	}
 }
 
@@ -18166,10 +17873,10 @@ func (ptr *QDesignerPropertyEditorInterface) ShowDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_ShowFullScreen
-func callbackQDesignerPropertyEditorInterface_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::showFullScreen")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ShowFullScreenDefault()
@@ -18181,7 +17888,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showFullScreen", f)
 	}
 }
 
@@ -18190,7 +17897,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showFullScreen")
 	}
 }
 
@@ -18211,10 +17918,10 @@ func (ptr *QDesignerPropertyEditorInterface) ShowFullScreenDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_ShowMaximized
-func callbackQDesignerPropertyEditorInterface_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::showMaximized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ShowMaximizedDefault()
@@ -18226,7 +17933,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showMaximized", f)
 	}
 }
 
@@ -18235,7 +17942,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showMaximized")
 	}
 }
 
@@ -18256,10 +17963,10 @@ func (ptr *QDesignerPropertyEditorInterface) ShowMaximizedDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_ShowMinimized
-func callbackQDesignerPropertyEditorInterface_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::showMinimized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ShowMinimizedDefault()
@@ -18271,7 +17978,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showMinimized", f)
 	}
 }
 
@@ -18280,7 +17987,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showMinimized")
 	}
 }
 
@@ -18301,10 +18008,10 @@ func (ptr *QDesignerPropertyEditorInterface) ShowMinimizedDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_ShowNormal
-func callbackQDesignerPropertyEditorInterface_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::showNormal")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ShowNormalDefault()
@@ -18316,7 +18023,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showNormal", f)
 	}
 }
 
@@ -18325,7 +18032,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showNormal")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "showNormal")
 	}
 }
 
@@ -18346,10 +18053,10 @@ func (ptr *QDesignerPropertyEditorInterface) ShowNormalDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_TabletEvent
-func callbackQDesignerPropertyEditorInterface_TabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::tabletEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -18361,7 +18068,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectTabletEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "tabletEvent", f)
 	}
 }
 
@@ -18370,7 +18077,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "tabletEvent")
 	}
 }
 
@@ -18391,10 +18098,10 @@ func (ptr *QDesignerPropertyEditorInterface) TabletEventDefault(event gui.QTable
 }
 
 //export callbackQDesignerPropertyEditorInterface_Update
-func callbackQDesignerPropertyEditorInterface_Update(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::update")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).UpdateDefault()
@@ -18406,7 +18113,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "update", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "update", f)
 	}
 }
 
@@ -18415,7 +18122,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "update")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "update")
 	}
 }
 
@@ -18436,10 +18143,10 @@ func (ptr *QDesignerPropertyEditorInterface) UpdateDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_UpdateMicroFocus
-func callbackQDesignerPropertyEditorInterface_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::updateMicroFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).UpdateMicroFocusDefault()
@@ -18451,7 +18158,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "updateMicroFocus", f)
 	}
 }
 
@@ -18460,7 +18167,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "updateMicroFocus")
 	}
 }
 
@@ -18481,10 +18188,10 @@ func (ptr *QDesignerPropertyEditorInterface) UpdateMicroFocusDefault() {
 }
 
 //export callbackQDesignerPropertyEditorInterface_WheelEvent
-func callbackQDesignerPropertyEditorInterface_WheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::wheelEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -18496,7 +18203,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectWheelEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "wheelEvent", f)
 	}
 }
 
@@ -18505,7 +18212,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "wheelEvent")
 	}
 }
 
@@ -18526,10 +18233,10 @@ func (ptr *QDesignerPropertyEditorInterface) WheelEventDefault(event gui.QWheelE
 }
 
 //export callbackQDesignerPropertyEditorInterface_TimerEvent
-func callbackQDesignerPropertyEditorInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -18541,7 +18248,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectTimerEvent(f func(event *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -18550,7 +18257,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -18571,10 +18278,10 @@ func (ptr *QDesignerPropertyEditorInterface) TimerEventDefault(event core.QTimer
 }
 
 //export callbackQDesignerPropertyEditorInterface_ChildEvent
-func callbackQDesignerPropertyEditorInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -18586,7 +18293,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectChildEvent(f func(event *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -18595,7 +18302,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -18616,10 +18323,10 @@ func (ptr *QDesignerPropertyEditorInterface) ChildEventDefault(event core.QChild
 }
 
 //export callbackQDesignerPropertyEditorInterface_ConnectNotify
-func callbackQDesignerPropertyEditorInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -18631,7 +18338,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectConnectNotify(f func(sign *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -18640,7 +18347,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -18661,10 +18368,10 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectNotifyDefault(sign core.QMet
 }
 
 //export callbackQDesignerPropertyEditorInterface_CustomEvent
-func callbackQDesignerPropertyEditorInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -18676,7 +18383,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectCustomEvent(f func(event *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -18685,7 +18392,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -18706,10 +18413,10 @@ func (ptr *QDesignerPropertyEditorInterface) CustomEventDefault(event core.QEven
 }
 
 //export callbackQDesignerPropertyEditorInterface_DeleteLater
-func callbackQDesignerPropertyEditorInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerPropertyEditorInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -18721,7 +18428,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -18730,7 +18437,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -18738,7 +18445,7 @@ func (ptr *QDesignerPropertyEditorInterface) DeleteLater() {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerPropertyEditorInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -18748,17 +18455,17 @@ func (ptr *QDesignerPropertyEditorInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDesignerPropertyEditorInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()))
 		C.QDesignerPropertyEditorInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerPropertyEditorInterface_DisconnectNotify
-func callbackQDesignerPropertyEditorInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerPropertyEditorInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerPropertyEditorInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -18770,7 +18477,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectDisconnectNotify(f func(sign
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -18779,7 +18486,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -18800,14 +18507,14 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectNotifyDefault(sign core.Q
 }
 
 //export callbackQDesignerPropertyEditorInterface_EventFilter
-func callbackQDesignerPropertyEditorInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDesignerPropertyEditorInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerPropertyEditorInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -18815,7 +18522,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectEventFilter(f func(watched *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -18824,7 +18531,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -18847,10 +18554,10 @@ func (ptr *QDesignerPropertyEditorInterface) EventFilterDefault(watched core.QOb
 }
 
 //export callbackQDesignerPropertyEditorInterface_MetaObject
-func callbackQDesignerPropertyEditorInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerPropertyEditorInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerPropertyEditorInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -18862,7 +18569,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectMetaObject(f func() *core.QM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -18871,7 +18578,7 @@ func (ptr *QDesignerPropertyEditorInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertyEditorInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -18931,23 +18638,15 @@ func NewQDesignerPropertySheetExtensionFromPointer(ptr unsafe.Pointer) *QDesigne
 	return n
 }
 
-func newQDesignerPropertySheetExtensionFromPointer(ptr unsafe.Pointer) *QDesignerPropertySheetExtension {
-	var n = NewQDesignerPropertySheetExtensionFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerPropertySheetExtension_") {
-		n.SetObjectNameAbs("QDesignerPropertySheetExtension_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerPropertySheetExtension_Count
-func callbackQDesignerPropertySheetExtension_Count(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerPropertySheetExtension_Count(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::count")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "count"); signal != nil {
-		return C.int(signal.(func() int)())
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "count"); signal != nil {
+		return C.int(int32(signal.(func() int)()))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectCount(f func() int) {
@@ -18955,7 +18654,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectCount(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "count", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "count", f)
 	}
 }
 
@@ -18964,7 +18663,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectCount() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "count")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "count")
 	}
 }
 
@@ -18972,20 +18671,20 @@ func (ptr *QDesignerPropertySheetExtension) Count() int {
 	defer qt.Recovering("QDesignerPropertySheetExtension::count")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerPropertySheetExtension_Count(ptr.Pointer()))
+		return int(int32(C.QDesignerPropertySheetExtension_Count(ptr.Pointer())))
 	}
 	return 0
 }
 
 //export callbackQDesignerPropertySheetExtension_HasReset
-func callbackQDesignerPropertySheetExtension_HasReset(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerPropertySheetExtension_HasReset(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::hasReset")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasReset"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "hasReset"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectHasReset(f func(index int) bool) {
@@ -18993,7 +18692,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectHasReset(f func(index int) bo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "hasReset", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "hasReset", f)
 	}
 }
 
@@ -19002,7 +18701,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectHasReset(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "hasReset")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "hasReset")
 	}
 }
 
@@ -19010,20 +18709,20 @@ func (ptr *QDesignerPropertySheetExtension) HasReset(index int) bool {
 	defer qt.Recovering("QDesignerPropertySheetExtension::hasReset")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_HasReset(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerPropertySheetExtension_HasReset(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertySheetExtension_IndexOf
-func callbackQDesignerPropertySheetExtension_IndexOf(ptr unsafe.Pointer, ptrName *C.char, name *C.char) C.int {
+func callbackQDesignerPropertySheetExtension_IndexOf(ptr unsafe.Pointer, name *C.char) C.int {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::indexOf")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "indexOf"); signal != nil {
-		return C.int(signal.(func(string) int)(C.GoString(name)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "indexOf"); signal != nil {
+		return C.int(int32(signal.(func(string) int)(C.GoString(name))))
 	}
 
-	return C.int(0)
+	return C.int(int32(0))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectIndexOf(f func(name string) int) {
@@ -19031,7 +18730,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIndexOf(f func(name string) i
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "indexOf", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "indexOf", f)
 	}
 }
 
@@ -19040,7 +18739,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIndexOf(name string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "indexOf")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "indexOf")
 	}
 }
 
@@ -19050,20 +18749,20 @@ func (ptr *QDesignerPropertySheetExtension) IndexOf(name string) int {
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
-		return int(C.QDesignerPropertySheetExtension_IndexOf(ptr.Pointer(), nameC))
+		return int(int32(C.QDesignerPropertySheetExtension_IndexOf(ptr.Pointer(), nameC)))
 	}
 	return 0
 }
 
 //export callbackQDesignerPropertySheetExtension_IsAttribute
-func callbackQDesignerPropertySheetExtension_IsAttribute(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerPropertySheetExtension_IsAttribute(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::isAttribute")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isAttribute"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "isAttribute"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectIsAttribute(f func(index int) bool) {
@@ -19071,7 +18770,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIsAttribute(f func(index int)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isAttribute", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isAttribute", f)
 	}
 }
 
@@ -19080,7 +18779,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsAttribute(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isAttribute")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isAttribute")
 	}
 }
 
@@ -19088,20 +18787,20 @@ func (ptr *QDesignerPropertySheetExtension) IsAttribute(index int) bool {
 	defer qt.Recovering("QDesignerPropertySheetExtension::isAttribute")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsAttribute(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerPropertySheetExtension_IsAttribute(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertySheetExtension_IsChanged
-func callbackQDesignerPropertySheetExtension_IsChanged(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerPropertySheetExtension_IsChanged(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::isChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isChanged"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "isChanged"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectIsChanged(f func(index int) bool) {
@@ -19109,7 +18808,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIsChanged(f func(index int) b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isChanged", f)
 	}
 }
 
@@ -19118,7 +18817,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsChanged(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isChanged")
 	}
 }
 
@@ -19126,20 +18825,20 @@ func (ptr *QDesignerPropertySheetExtension) IsChanged(index int) bool {
 	defer qt.Recovering("QDesignerPropertySheetExtension::isChanged")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsChanged(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerPropertySheetExtension_IsChanged(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertySheetExtension_IsEnabled
-func callbackQDesignerPropertySheetExtension_IsEnabled(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerPropertySheetExtension_IsEnabled(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::isEnabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isEnabled"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "isEnabled"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerPropertySheetExtensionFromPointer(ptr).IsEnabledDefault(int(index))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerPropertySheetExtensionFromPointer(ptr).IsEnabledDefault(int(int32(index))))))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectIsEnabled(f func(index int) bool) {
@@ -19147,7 +18846,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIsEnabled(f func(index int) b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isEnabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isEnabled", f)
 	}
 }
 
@@ -19156,7 +18855,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isEnabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isEnabled")
 	}
 }
 
@@ -19164,7 +18863,7 @@ func (ptr *QDesignerPropertySheetExtension) IsEnabled(index int) bool {
 	defer qt.Recovering("QDesignerPropertySheetExtension::isEnabled")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsEnabled(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerPropertySheetExtension_IsEnabled(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
@@ -19173,20 +18872,20 @@ func (ptr *QDesignerPropertySheetExtension) IsEnabledDefault(index int) bool {
 	defer qt.Recovering("QDesignerPropertySheetExtension::isEnabled")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsEnabledDefault(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerPropertySheetExtension_IsEnabledDefault(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertySheetExtension_IsVisible
-func callbackQDesignerPropertySheetExtension_IsVisible(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerPropertySheetExtension_IsVisible(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::isVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "isVisible"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "isVisible"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectIsVisible(f func(index int) bool) {
@@ -19194,7 +18893,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIsVisible(f func(index int) b
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "isVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isVisible", f)
 	}
 }
 
@@ -19203,7 +18902,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectIsVisible(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "isVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "isVisible")
 	}
 }
 
@@ -19211,17 +18910,17 @@ func (ptr *QDesignerPropertySheetExtension) IsVisible(index int) bool {
 	defer qt.Recovering("QDesignerPropertySheetExtension::isVisible")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_IsVisible(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerPropertySheetExtension_IsVisible(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertySheetExtension_Property
-func callbackQDesignerPropertySheetExtension_Property(ptr unsafe.Pointer, ptrName *C.char, index C.int) unsafe.Pointer {
+func callbackQDesignerPropertySheetExtension_Property(ptr unsafe.Pointer, index C.int) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::property")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "property"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(int) *core.QVariant)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "property"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(int) *core.QVariant)(int(int32(index))))
 	}
 
 	return core.PointerFromQVariant(nil)
@@ -19232,7 +18931,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectProperty(f func(index int) *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "property", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "property", f)
 	}
 }
 
@@ -19241,7 +18940,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectProperty(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "property")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "property")
 	}
 }
 
@@ -19249,7 +18948,7 @@ func (ptr *QDesignerPropertySheetExtension) Property(index int) *core.QVariant {
 	defer qt.Recovering("QDesignerPropertySheetExtension::property")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertySheetExtension_Property(ptr.Pointer(), C.int(index)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerPropertySheetExtension_Property(ptr.Pointer(), C.int(int32(index))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -19257,11 +18956,11 @@ func (ptr *QDesignerPropertySheetExtension) Property(index int) *core.QVariant {
 }
 
 //export callbackQDesignerPropertySheetExtension_PropertyGroup
-func callbackQDesignerPropertySheetExtension_PropertyGroup(ptr unsafe.Pointer, ptrName *C.char, index C.int) *C.char {
+func callbackQDesignerPropertySheetExtension_PropertyGroup(ptr unsafe.Pointer, index C.int) *C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::propertyGroup")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "propertyGroup"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "propertyGroup"); signal != nil {
+		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
 
 	return C.CString("")
@@ -19272,7 +18971,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectPropertyGroup(f func(index in
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "propertyGroup", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "propertyGroup", f)
 	}
 }
 
@@ -19281,7 +18980,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectPropertyGroup(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "propertyGroup")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "propertyGroup")
 	}
 }
 
@@ -19289,17 +18988,17 @@ func (ptr *QDesignerPropertySheetExtension) PropertyGroup(index int) string {
 	defer qt.Recovering("QDesignerPropertySheetExtension::propertyGroup")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerPropertySheetExtension_PropertyGroup(ptr.Pointer(), C.int(index)))
+		return C.GoString(C.QDesignerPropertySheetExtension_PropertyGroup(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
 
 //export callbackQDesignerPropertySheetExtension_PropertyName
-func callbackQDesignerPropertySheetExtension_PropertyName(ptr unsafe.Pointer, ptrName *C.char, index C.int) *C.char {
+func callbackQDesignerPropertySheetExtension_PropertyName(ptr unsafe.Pointer, index C.int) *C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::propertyName")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "propertyName"); signal != nil {
-		return C.CString(signal.(func(int) string)(int(index)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "propertyName"); signal != nil {
+		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
 
 	return C.CString("")
@@ -19310,7 +19009,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectPropertyName(f func(index int
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "propertyName", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "propertyName", f)
 	}
 }
 
@@ -19319,7 +19018,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectPropertyName(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "propertyName")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "propertyName")
 	}
 }
 
@@ -19327,20 +19026,20 @@ func (ptr *QDesignerPropertySheetExtension) PropertyName(index int) string {
 	defer qt.Recovering("QDesignerPropertySheetExtension::propertyName")
 
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerPropertySheetExtension_PropertyName(ptr.Pointer(), C.int(index)))
+		return C.GoString(C.QDesignerPropertySheetExtension_PropertyName(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
 
 //export callbackQDesignerPropertySheetExtension_Reset
-func callbackQDesignerPropertySheetExtension_Reset(ptr unsafe.Pointer, ptrName *C.char, index C.int) C.int {
+func callbackQDesignerPropertySheetExtension_Reset(ptr unsafe.Pointer, index C.int) C.char {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::reset")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "reset"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(int) bool)(int(index))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "reset"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(index))))))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectReset(f func(index int) bool) {
@@ -19348,7 +19047,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectReset(f func(index int) bool)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "reset", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "reset", f)
 	}
 }
 
@@ -19357,7 +19056,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectReset(index int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "reset")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "reset")
 	}
 }
 
@@ -19365,17 +19064,17 @@ func (ptr *QDesignerPropertySheetExtension) Reset(index int) bool {
 	defer qt.Recovering("QDesignerPropertySheetExtension::reset")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerPropertySheetExtension_Reset(ptr.Pointer(), C.int(index)) != 0
+		return C.QDesignerPropertySheetExtension_Reset(ptr.Pointer(), C.int(int32(index))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerPropertySheetExtension_SetAttribute
-func callbackQDesignerPropertySheetExtension_SetAttribute(ptr unsafe.Pointer, ptrName *C.char, index C.int, attribute C.int) {
+func callbackQDesignerPropertySheetExtension_SetAttribute(ptr unsafe.Pointer, index C.int, attribute C.char) {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::setAttribute")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setAttribute"); signal != nil {
-		signal.(func(int, bool))(int(index), int(attribute) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "setAttribute"); signal != nil {
+		signal.(func(int, bool))(int(int32(index)), int8(attribute) != 0)
 	}
 
 }
@@ -19385,7 +19084,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetAttribute(f func(index int
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setAttribute", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setAttribute", f)
 	}
 }
 
@@ -19394,7 +19093,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectSetAttribute(index int, at
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setAttribute")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setAttribute")
 	}
 }
 
@@ -19402,16 +19101,16 @@ func (ptr *QDesignerPropertySheetExtension) SetAttribute(index int, attribute bo
 	defer qt.Recovering("QDesignerPropertySheetExtension::setAttribute")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertySheetExtension_SetAttribute(ptr.Pointer(), C.int(index), C.int(qt.GoBoolToInt(attribute)))
+		C.QDesignerPropertySheetExtension_SetAttribute(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(attribute))))
 	}
 }
 
 //export callbackQDesignerPropertySheetExtension_SetChanged
-func callbackQDesignerPropertySheetExtension_SetChanged(ptr unsafe.Pointer, ptrName *C.char, index C.int, changed C.int) {
+func callbackQDesignerPropertySheetExtension_SetChanged(ptr unsafe.Pointer, index C.int, changed C.char) {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::setChanged")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setChanged"); signal != nil {
-		signal.(func(int, bool))(int(index), int(changed) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "setChanged"); signal != nil {
+		signal.(func(int, bool))(int(int32(index)), int8(changed) != 0)
 	}
 
 }
@@ -19421,7 +19120,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetChanged(f func(index int, 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setChanged", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setChanged", f)
 	}
 }
 
@@ -19430,7 +19129,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectSetChanged(index int, chan
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setChanged")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setChanged")
 	}
 }
 
@@ -19438,16 +19137,16 @@ func (ptr *QDesignerPropertySheetExtension) SetChanged(index int, changed bool) 
 	defer qt.Recovering("QDesignerPropertySheetExtension::setChanged")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertySheetExtension_SetChanged(ptr.Pointer(), C.int(index), C.int(qt.GoBoolToInt(changed)))
+		C.QDesignerPropertySheetExtension_SetChanged(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(changed))))
 	}
 }
 
 //export callbackQDesignerPropertySheetExtension_SetProperty
-func callbackQDesignerPropertySheetExtension_SetProperty(ptr unsafe.Pointer, ptrName *C.char, index C.int, value unsafe.Pointer) {
+func callbackQDesignerPropertySheetExtension_SetProperty(ptr unsafe.Pointer, index C.int, value unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::setProperty")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setProperty"); signal != nil {
-		signal.(func(int, *core.QVariant))(int(index), core.NewQVariantFromPointer(value))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "setProperty"); signal != nil {
+		signal.(func(int, *core.QVariant))(int(int32(index)), core.NewQVariantFromPointer(value))
 	}
 
 }
@@ -19457,7 +19156,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetProperty(f func(index int,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setProperty", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setProperty", f)
 	}
 }
 
@@ -19466,7 +19165,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectSetProperty(index int, val
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setProperty")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setProperty")
 	}
 }
 
@@ -19474,16 +19173,16 @@ func (ptr *QDesignerPropertySheetExtension) SetProperty(index int, value core.QV
 	defer qt.Recovering("QDesignerPropertySheetExtension::setProperty")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertySheetExtension_SetProperty(ptr.Pointer(), C.int(index), core.PointerFromQVariant(value))
+		C.QDesignerPropertySheetExtension_SetProperty(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(value))
 	}
 }
 
 //export callbackQDesignerPropertySheetExtension_SetPropertyGroup
-func callbackQDesignerPropertySheetExtension_SetPropertyGroup(ptr unsafe.Pointer, ptrName *C.char, index C.int, group *C.char) {
+func callbackQDesignerPropertySheetExtension_SetPropertyGroup(ptr unsafe.Pointer, index C.int, group *C.char) {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::setPropertyGroup")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setPropertyGroup"); signal != nil {
-		signal.(func(int, string))(int(index), C.GoString(group))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "setPropertyGroup"); signal != nil {
+		signal.(func(int, string))(int(int32(index)), C.GoString(group))
 	}
 
 }
@@ -19493,7 +19192,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetPropertyGroup(f func(index
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setPropertyGroup", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setPropertyGroup", f)
 	}
 }
 
@@ -19502,7 +19201,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectSetPropertyGroup(index int
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setPropertyGroup")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setPropertyGroup")
 	}
 }
 
@@ -19512,16 +19211,16 @@ func (ptr *QDesignerPropertySheetExtension) SetPropertyGroup(index int, group st
 	if ptr.Pointer() != nil {
 		var groupC = C.CString(group)
 		defer C.free(unsafe.Pointer(groupC))
-		C.QDesignerPropertySheetExtension_SetPropertyGroup(ptr.Pointer(), C.int(index), groupC)
+		C.QDesignerPropertySheetExtension_SetPropertyGroup(ptr.Pointer(), C.int(int32(index)), groupC)
 	}
 }
 
 //export callbackQDesignerPropertySheetExtension_SetVisible
-func callbackQDesignerPropertySheetExtension_SetVisible(ptr unsafe.Pointer, ptrName *C.char, index C.int, visible C.int) {
+func callbackQDesignerPropertySheetExtension_SetVisible(ptr unsafe.Pointer, index C.int, visible C.char) {
 	defer qt.Recovering("callback QDesignerPropertySheetExtension::setVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
-		signal.(func(int, bool))(int(index), int(visible) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr), "setVisible"); signal != nil {
+		signal.(func(int, bool))(int(int32(index)), int8(visible) != 0)
 	}
 
 }
@@ -19531,7 +19230,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetVisible(f func(index int, 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setVisible", f)
 	}
 }
 
@@ -19540,7 +19239,7 @@ func (ptr *QDesignerPropertySheetExtension) DisconnectSetVisible(index int, visi
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "setVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()), "setVisible")
 	}
 }
 
@@ -19548,7 +19247,7 @@ func (ptr *QDesignerPropertySheetExtension) SetVisible(index int, visible bool) 
 	defer qt.Recovering("QDesignerPropertySheetExtension::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerPropertySheetExtension_SetVisible(ptr.Pointer(), C.int(index), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerPropertySheetExtension_SetVisible(ptr.Pointer(), C.int(int32(index)), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
@@ -19556,28 +19255,9 @@ func (ptr *QDesignerPropertySheetExtension) DestroyQDesignerPropertySheetExtensi
 	defer qt.Recovering("QDesignerPropertySheetExtension::~QDesignerPropertySheetExtension")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerPropertySheetExtension(%v)", ptr.Pointer()))
 		C.QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerPropertySheetExtension) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerPropertySheetExtension::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerPropertySheetExtension_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerPropertySheetExtension) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerPropertySheetExtension::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerPropertySheetExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -19619,19 +19299,11 @@ func NewQDesignerTaskMenuExtensionFromPointer(ptr unsafe.Pointer) *QDesignerTask
 	return n
 }
 
-func newQDesignerTaskMenuExtensionFromPointer(ptr unsafe.Pointer) *QDesignerTaskMenuExtension {
-	var n = NewQDesignerTaskMenuExtensionFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QDesignerTaskMenuExtension_") {
-		n.SetObjectNameAbs("QDesignerTaskMenuExtension_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerTaskMenuExtension_PreferredEditAction
-func callbackQDesignerTaskMenuExtension_PreferredEditAction(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerTaskMenuExtension_PreferredEditAction(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerTaskMenuExtension::preferredEditAction")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "preferredEditAction"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerTaskMenuExtension(%v)", ptr), "preferredEditAction"); signal != nil {
 		return widgets.PointerFromQAction(signal.(func() *widgets.QAction)())
 	}
 
@@ -19643,7 +19315,7 @@ func (ptr *QDesignerTaskMenuExtension) ConnectPreferredEditAction(f func() *widg
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "preferredEditAction", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerTaskMenuExtension(%v)", ptr.Pointer()), "preferredEditAction", f)
 	}
 }
 
@@ -19652,7 +19324,7 @@ func (ptr *QDesignerTaskMenuExtension) DisconnectPreferredEditAction() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "preferredEditAction")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerTaskMenuExtension(%v)", ptr.Pointer()), "preferredEditAction")
 	}
 }
 
@@ -19678,28 +19350,9 @@ func (ptr *QDesignerTaskMenuExtension) DestroyQDesignerTaskMenuExtension() {
 	defer qt.Recovering("QDesignerTaskMenuExtension::~QDesignerTaskMenuExtension")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerTaskMenuExtension(%v)", ptr.Pointer()))
 		C.QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(ptr.Pointer())
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QDesignerTaskMenuExtension) ObjectNameAbs() string {
-	defer qt.Recovering("QDesignerTaskMenuExtension::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QDesignerTaskMenuExtension_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QDesignerTaskMenuExtension) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QDesignerTaskMenuExtension::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QDesignerTaskMenuExtension_SetObjectNameAbs(ptr.Pointer(), nameC)
 	}
 }
 
@@ -19742,19 +19395,11 @@ func NewQDesignerWidgetBoxInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerWid
 	return n
 }
 
-func newQDesignerWidgetBoxInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerWidgetBoxInterface {
-	var n = NewQDesignerWidgetBoxInterfaceFromPointer(ptr)
-	for len(n.ObjectName()) < len("QDesignerWidgetBoxInterface_") {
-		n.SetObjectName("QDesignerWidgetBoxInterface_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQDesignerWidgetBoxInterface_FileName
-func callbackQDesignerWidgetBoxInterface_FileName(ptr unsafe.Pointer, ptrName *C.char) *C.char {
+func callbackQDesignerWidgetBoxInterface_FileName(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::fileName")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "fileName"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "fileName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -19766,7 +19411,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectFileName(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "fileName", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "fileName", f)
 	}
 }
 
@@ -19775,7 +19420,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectFileName() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "fileName")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "fileName")
 	}
 }
 
@@ -19789,14 +19434,14 @@ func (ptr *QDesignerWidgetBoxInterface) FileName() string {
 }
 
 //export callbackQDesignerWidgetBoxInterface_Load
-func callbackQDesignerWidgetBoxInterface_Load(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerWidgetBoxInterface_Load(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::load")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "load"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "load"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectLoad(f func() bool) {
@@ -19804,7 +19449,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectLoad(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "load", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "load", f)
 	}
 }
 
@@ -19813,7 +19458,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectLoad() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "load")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "load")
 	}
 }
 
@@ -19827,14 +19472,14 @@ func (ptr *QDesignerWidgetBoxInterface) Load() bool {
 }
 
 //export callbackQDesignerWidgetBoxInterface_Save
-func callbackQDesignerWidgetBoxInterface_Save(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerWidgetBoxInterface_Save(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::save")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "save"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "save"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(false))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectSave(f func() bool) {
@@ -19842,7 +19487,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSave(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "save", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "save", f)
 	}
 }
 
@@ -19851,7 +19496,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSave() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "save")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "save")
 	}
 }
 
@@ -19865,10 +19510,10 @@ func (ptr *QDesignerWidgetBoxInterface) Save() bool {
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetFileName
-func callbackQDesignerWidgetBoxInterface_SetFileName(ptr unsafe.Pointer, ptrName *C.char, fileName *C.char) {
+func callbackQDesignerWidgetBoxInterface_SetFileName(ptr unsafe.Pointer, fileName *C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setFileName")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFileName"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setFileName"); signal != nil {
 		signal.(func(string))(C.GoString(fileName))
 	}
 
@@ -19879,7 +19524,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetFileName(f func(fileName strin
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFileName", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setFileName", f)
 	}
 }
 
@@ -19888,7 +19533,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetFileName(fileName string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFileName")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setFileName")
 	}
 }
 
@@ -19906,17 +19551,17 @@ func (ptr *QDesignerWidgetBoxInterface) DestroyQDesignerWidgetBoxInterface() {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::~QDesignerWidgetBoxInterface")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()))
 		C.QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerWidgetBoxInterface_ActionEvent
-func callbackQDesignerWidgetBoxInterface_ActionEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::actionEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -19928,7 +19573,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectActionEvent(f func(event *gui.QAc
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "actionEvent", f)
 	}
 }
 
@@ -19937,7 +19582,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "actionEvent")
 	}
 }
 
@@ -19958,10 +19603,10 @@ func (ptr *QDesignerWidgetBoxInterface) ActionEventDefault(event gui.QActionEven
 }
 
 //export callbackQDesignerWidgetBoxInterface_DragEnterEvent
-func callbackQDesignerWidgetBoxInterface_DragEnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::dragEnterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -19973,7 +19618,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectDragEnterEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dragEnterEvent", f)
 	}
 }
 
@@ -19982,7 +19627,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dragEnterEvent")
 	}
 }
 
@@ -20003,10 +19648,10 @@ func (ptr *QDesignerWidgetBoxInterface) DragEnterEventDefault(event gui.QDragEnt
 }
 
 //export callbackQDesignerWidgetBoxInterface_DragLeaveEvent
-func callbackQDesignerWidgetBoxInterface_DragLeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::dragLeaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -20018,7 +19663,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectDragLeaveEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dragLeaveEvent", f)
 	}
 }
 
@@ -20027,7 +19672,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dragLeaveEvent")
 	}
 }
 
@@ -20048,10 +19693,10 @@ func (ptr *QDesignerWidgetBoxInterface) DragLeaveEventDefault(event gui.QDragLea
 }
 
 //export callbackQDesignerWidgetBoxInterface_DragMoveEvent
-func callbackQDesignerWidgetBoxInterface_DragMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::dragMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -20063,7 +19708,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectDragMoveEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dragMoveEvent", f)
 	}
 }
 
@@ -20072,7 +19717,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dragMoveEvent")
 	}
 }
 
@@ -20093,10 +19738,10 @@ func (ptr *QDesignerWidgetBoxInterface) DragMoveEventDefault(event gui.QDragMove
 }
 
 //export callbackQDesignerWidgetBoxInterface_DropEvent
-func callbackQDesignerWidgetBoxInterface_DropEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::dropEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -20108,7 +19753,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectDropEvent(f func(event *gui.QDrop
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dropEvent", f)
 	}
 }
 
@@ -20117,7 +19762,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "dropEvent")
 	}
 }
 
@@ -20138,10 +19783,10 @@ func (ptr *QDesignerWidgetBoxInterface) DropEventDefault(event gui.QDropEvent_IT
 }
 
 //export callbackQDesignerWidgetBoxInterface_EnterEvent
-func callbackQDesignerWidgetBoxInterface_EnterEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::enterEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -20153,7 +19798,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectEnterEvent(f func(event *core.QEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "enterEvent", f)
 	}
 }
 
@@ -20162,7 +19807,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "enterEvent")
 	}
 }
 
@@ -20183,10 +19828,10 @@ func (ptr *QDesignerWidgetBoxInterface) EnterEventDefault(event core.QEvent_ITF)
 }
 
 //export callbackQDesignerWidgetBoxInterface_FocusInEvent
-func callbackQDesignerWidgetBoxInterface_FocusInEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::focusInEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -20198,7 +19843,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectFocusInEvent(f func(event *gui.QF
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "focusInEvent", f)
 	}
 }
 
@@ -20207,7 +19852,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "focusInEvent")
 	}
 }
 
@@ -20228,10 +19873,10 @@ func (ptr *QDesignerWidgetBoxInterface) FocusInEventDefault(event gui.QFocusEven
 }
 
 //export callbackQDesignerWidgetBoxInterface_FocusOutEvent
-func callbackQDesignerWidgetBoxInterface_FocusOutEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::focusOutEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -20243,7 +19888,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectFocusOutEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "focusOutEvent", f)
 	}
 }
 
@@ -20252,7 +19897,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "focusOutEvent")
 	}
 }
 
@@ -20273,10 +19918,10 @@ func (ptr *QDesignerWidgetBoxInterface) FocusOutEventDefault(event gui.QFocusEve
 }
 
 //export callbackQDesignerWidgetBoxInterface_HideEvent
-func callbackQDesignerWidgetBoxInterface_HideEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::hideEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -20288,7 +19933,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectHideEvent(f func(event *gui.QHide
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "hideEvent", f)
 	}
 }
 
@@ -20297,7 +19942,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "hideEvent")
 	}
 }
 
@@ -20318,10 +19963,10 @@ func (ptr *QDesignerWidgetBoxInterface) HideEventDefault(event gui.QHideEvent_IT
 }
 
 //export callbackQDesignerWidgetBoxInterface_LeaveEvent
-func callbackQDesignerWidgetBoxInterface_LeaveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::leaveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -20333,7 +19978,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectLeaveEvent(f func(event *core.QEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "leaveEvent", f)
 	}
 }
 
@@ -20342,7 +19987,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "leaveEvent")
 	}
 }
 
@@ -20363,10 +20008,10 @@ func (ptr *QDesignerWidgetBoxInterface) LeaveEventDefault(event core.QEvent_ITF)
 }
 
 //export callbackQDesignerWidgetBoxInterface_MinimumSizeHint
-func callbackQDesignerWidgetBoxInterface_MinimumSizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerWidgetBoxInterface_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::minimumSizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -20378,7 +20023,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectMinimumSizeHint(f func() *core.QS
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "minimumSizeHint", f)
 	}
 }
 
@@ -20387,7 +20032,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "minimumSizeHint")
 	}
 }
 
@@ -20414,10 +20059,10 @@ func (ptr *QDesignerWidgetBoxInterface) MinimumSizeHintDefault() *core.QSize {
 }
 
 //export callbackQDesignerWidgetBoxInterface_MoveEvent
-func callbackQDesignerWidgetBoxInterface_MoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::moveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -20429,7 +20074,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectMoveEvent(f func(event *gui.QMove
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "moveEvent", f)
 	}
 }
 
@@ -20438,7 +20083,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "moveEvent")
 	}
 }
 
@@ -20459,10 +20104,10 @@ func (ptr *QDesignerWidgetBoxInterface) MoveEventDefault(event gui.QMoveEvent_IT
 }
 
 //export callbackQDesignerWidgetBoxInterface_PaintEvent
-func callbackQDesignerWidgetBoxInterface_PaintEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::paintEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -20474,7 +20119,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectPaintEvent(f func(event *gui.QPai
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "paintEvent", f)
 	}
 }
 
@@ -20483,7 +20128,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "paintEvent")
 	}
 }
 
@@ -20504,13 +20149,13 @@ func (ptr *QDesignerWidgetBoxInterface) PaintEventDefault(event gui.QPaintEvent_
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetEnabled
-func callbackQDesignerWidgetBoxInterface_SetEnabled(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerWidgetBoxInterface_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setEnabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setEnabled"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setEnabled"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetEnabledDefault(int(vbo) != 0)
+		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
 	}
 }
 
@@ -20519,7 +20164,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setEnabled", f)
 	}
 }
 
@@ -20528,7 +20173,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setEnabled")
 	}
 }
 
@@ -20536,7 +20181,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetEnabled(vbo bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetEnabled(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerWidgetBoxInterface_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -20544,15 +20189,15 @@ func (ptr *QDesignerWidgetBoxInterface) SetEnabledDefault(vbo bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setEnabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetEnabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerWidgetBoxInterface_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetStyleSheet
-func callbackQDesignerWidgetBoxInterface_SetStyleSheet(ptr unsafe.Pointer, ptrName *C.char, styleSheet *C.char) {
+func callbackQDesignerWidgetBoxInterface_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setStyleSheet")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -20564,7 +20209,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetStyleSheet(f func(styleSheet s
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setStyleSheet", f)
 	}
 }
 
@@ -20573,7 +20218,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setStyleSheet")
 	}
 }
 
@@ -20598,13 +20243,13 @@ func (ptr *QDesignerWidgetBoxInterface) SetStyleSheetDefault(styleSheet string) 
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetVisible
-func callbackQDesignerWidgetBoxInterface_SetVisible(ptr unsafe.Pointer, ptrName *C.char, visible C.int) {
+func callbackQDesignerWidgetBoxInterface_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setVisible")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setVisible"); signal != nil {
-		signal.(func(bool))(int(visible) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setVisible"); signal != nil {
+		signal.(func(bool))(int8(visible) != 0)
 	} else {
-		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetVisibleDefault(int(visible) != 0)
+		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
 	}
 }
 
@@ -20613,7 +20258,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetVisible(f func(visible bool)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setVisible", f)
 	}
 }
 
@@ -20622,7 +20267,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setVisible")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setVisible")
 	}
 }
 
@@ -20630,7 +20275,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetVisible(visible bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetVisible(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerWidgetBoxInterface_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
@@ -20638,18 +20283,18 @@ func (ptr *QDesignerWidgetBoxInterface) SetVisibleDefault(visible bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setVisible")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetVisibleDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(visible)))
+		C.QDesignerWidgetBoxInterface_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetWindowModified
-func callbackQDesignerWidgetBoxInterface_SetWindowModified(ptr unsafe.Pointer, ptrName *C.char, vbo C.int) {
+func callbackQDesignerWidgetBoxInterface_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setWindowModified")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowModified"); signal != nil {
-		signal.(func(bool))(int(vbo) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setWindowModified"); signal != nil {
+		signal.(func(bool))(int8(vbo) != 0)
 	} else {
-		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetWindowModifiedDefault(int(vbo) != 0)
+		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
 	}
 }
 
@@ -20658,7 +20303,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetWindowModified(f func(vbo bool
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setWindowModified", f)
 	}
 }
 
@@ -20667,7 +20312,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setWindowModified")
 	}
 }
 
@@ -20675,7 +20320,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetWindowModified(vbo bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetWindowModified(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerWidgetBoxInterface_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
@@ -20683,15 +20328,15 @@ func (ptr *QDesignerWidgetBoxInterface) SetWindowModifiedDefault(vbo bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setWindowModified")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetWindowModifiedDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(vbo)))
+		C.QDesignerWidgetBoxInterface_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetWindowTitle
-func callbackQDesignerWidgetBoxInterface_SetWindowTitle(ptr unsafe.Pointer, ptrName *C.char, vqs *C.char) {
+func callbackQDesignerWidgetBoxInterface_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setWindowTitle")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -20703,7 +20348,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetWindowTitle(f func(vqs string)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setWindowTitle", f)
 	}
 }
 
@@ -20712,7 +20357,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setWindowTitle")
 	}
 }
 
@@ -20737,10 +20382,10 @@ func (ptr *QDesignerWidgetBoxInterface) SetWindowTitleDefault(vqs string) {
 }
 
 //export callbackQDesignerWidgetBoxInterface_ShowEvent
-func callbackQDesignerWidgetBoxInterface_ShowEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::showEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -20752,7 +20397,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectShowEvent(f func(event *gui.QShow
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showEvent", f)
 	}
 }
 
@@ -20761,7 +20406,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showEvent")
 	}
 }
 
@@ -20782,10 +20427,10 @@ func (ptr *QDesignerWidgetBoxInterface) ShowEventDefault(event gui.QShowEvent_IT
 }
 
 //export callbackQDesignerWidgetBoxInterface_SizeHint
-func callbackQDesignerWidgetBoxInterface_SizeHint(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerWidgetBoxInterface_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::sizeHint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -20797,7 +20442,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "sizeHint", f)
 	}
 }
 
@@ -20806,7 +20451,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "sizeHint")
 	}
 }
 
@@ -20833,10 +20478,10 @@ func (ptr *QDesignerWidgetBoxInterface) SizeHintDefault() *core.QSize {
 }
 
 //export callbackQDesignerWidgetBoxInterface_ChangeEvent
-func callbackQDesignerWidgetBoxInterface_ChangeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::changeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -20848,7 +20493,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectChangeEvent(f func(event *core.QE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "changeEvent", f)
 	}
 }
 
@@ -20857,7 +20502,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "changeEvent")
 	}
 }
 
@@ -20878,14 +20523,14 @@ func (ptr *QDesignerWidgetBoxInterface) ChangeEventDefault(event core.QEvent_ITF
 }
 
 //export callbackQDesignerWidgetBoxInterface_Close
-func callbackQDesignerWidgetBoxInterface_Close(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerWidgetBoxInterface_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::close")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "close"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "close"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).CloseDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).CloseDefault())))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectClose(f func() bool) {
@@ -20893,7 +20538,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "close", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "close", f)
 	}
 }
 
@@ -20902,7 +20547,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "close")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "close")
 	}
 }
 
@@ -20925,10 +20570,10 @@ func (ptr *QDesignerWidgetBoxInterface) CloseDefault() bool {
 }
 
 //export callbackQDesignerWidgetBoxInterface_CloseEvent
-func callbackQDesignerWidgetBoxInterface_CloseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::closeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -20940,7 +20585,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectCloseEvent(f func(event *gui.QClo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "closeEvent", f)
 	}
 }
 
@@ -20949,7 +20594,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "closeEvent")
 	}
 }
 
@@ -20970,10 +20615,10 @@ func (ptr *QDesignerWidgetBoxInterface) CloseEventDefault(event gui.QCloseEvent_
 }
 
 //export callbackQDesignerWidgetBoxInterface_ContextMenuEvent
-func callbackQDesignerWidgetBoxInterface_ContextMenuEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::contextMenuEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -20985,7 +20630,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectContextMenuEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "contextMenuEvent", f)
 	}
 }
 
@@ -20994,7 +20639,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "contextMenuEvent")
 	}
 }
 
@@ -21015,14 +20660,14 @@ func (ptr *QDesignerWidgetBoxInterface) ContextMenuEventDefault(event gui.QConte
 }
 
 //export callbackQDesignerWidgetBoxInterface_FocusNextPrevChild
-func callbackQDesignerWidgetBoxInterface_FocusNextPrevChild(ptr unsafe.Pointer, ptrName *C.char, next C.int) C.int {
+func callbackQDesignerWidgetBoxInterface_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::focusNextPrevChild")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "focusNextPrevChild"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(bool) bool)(int(next) != 0)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "focusNextPrevChild"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int(next) != 0)))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).FocusNextPrevChildDefault(int8(next) != 0))))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectFocusNextPrevChild(f func(next bool) bool) {
@@ -21030,7 +20675,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectFocusNextPrevChild(f func(next bo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "focusNextPrevChild", f)
 	}
 }
 
@@ -21039,7 +20684,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "focusNextPrevChild")
 	}
 }
 
@@ -21047,7 +20692,7 @@ func (ptr *QDesignerWidgetBoxInterface) FocusNextPrevChild(next bool) bool {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_FocusNextPrevChild(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerWidgetBoxInterface_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
@@ -21056,20 +20701,20 @@ func (ptr *QDesignerWidgetBoxInterface) FocusNextPrevChildDefault(next bool) boo
 	defer qt.Recovering("QDesignerWidgetBoxInterface::focusNextPrevChild")
 
 	if ptr.Pointer() != nil {
-		return C.QDesignerWidgetBoxInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(next))) != 0
+		return C.QDesignerWidgetBoxInterface_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerWidgetBoxInterface_HasHeightForWidth
-func callbackQDesignerWidgetBoxInterface_HasHeightForWidth(ptr unsafe.Pointer, ptrName *C.char) C.int {
+func callbackQDesignerWidgetBoxInterface_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::hasHeightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hasHeightForWidth"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func() bool)()))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "hasHeightForWidth"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).HasHeightForWidthDefault()))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).HasHeightForWidthDefault())))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectHasHeightForWidth(f func() bool) {
@@ -21077,7 +20722,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectHasHeightForWidth(f func() bool) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "hasHeightForWidth", f)
 	}
 }
 
@@ -21086,7 +20731,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "hasHeightForWidth")
 	}
 }
 
@@ -21109,14 +20754,14 @@ func (ptr *QDesignerWidgetBoxInterface) HasHeightForWidthDefault() bool {
 }
 
 //export callbackQDesignerWidgetBoxInterface_HeightForWidth
-func callbackQDesignerWidgetBoxInterface_HeightForWidth(ptr unsafe.Pointer, ptrName *C.char, w C.int) C.int {
+func callbackQDesignerWidgetBoxInterface_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::heightForWidth")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "heightForWidth"); signal != nil {
-		return C.int(signal.(func(int) int)(int(w)))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "heightForWidth"); signal != nil {
+		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
-	return C.int(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).HeightForWidthDefault(int(w)))
+	return C.int(int32(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).HeightForWidthDefault(int(int32(w)))))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectHeightForWidth(f func(w int) int) {
@@ -21124,7 +20769,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectHeightForWidth(f func(w int) int)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "heightForWidth", f)
 	}
 }
 
@@ -21133,7 +20778,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "heightForWidth")
 	}
 }
 
@@ -21141,7 +20786,7 @@ func (ptr *QDesignerWidgetBoxInterface) HeightForWidth(w int) int {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerWidgetBoxInterface_HeightForWidth(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerWidgetBoxInterface_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
@@ -21150,16 +20795,16 @@ func (ptr *QDesignerWidgetBoxInterface) HeightForWidthDefault(w int) int {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::heightForWidth")
 
 	if ptr.Pointer() != nil {
-		return int(C.QDesignerWidgetBoxInterface_HeightForWidthDefault(ptr.Pointer(), C.int(w)))
+		return int(int32(C.QDesignerWidgetBoxInterface_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
 	return 0
 }
 
 //export callbackQDesignerWidgetBoxInterface_Hide
-func callbackQDesignerWidgetBoxInterface_Hide(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::hide")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).HideDefault()
@@ -21171,7 +20816,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "hide", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "hide", f)
 	}
 }
 
@@ -21180,7 +20825,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "hide")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "hide")
 	}
 }
 
@@ -21201,10 +20846,10 @@ func (ptr *QDesignerWidgetBoxInterface) HideDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_InputMethodEvent
-func callbackQDesignerWidgetBoxInterface_InputMethodEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::inputMethodEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -21216,7 +20861,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectInputMethodEvent(f func(event *gu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "inputMethodEvent", f)
 	}
 }
 
@@ -21225,7 +20870,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "inputMethodEvent")
 	}
 }
 
@@ -21246,10 +20891,10 @@ func (ptr *QDesignerWidgetBoxInterface) InputMethodEventDefault(event gui.QInput
 }
 
 //export callbackQDesignerWidgetBoxInterface_InputMethodQuery
-func callbackQDesignerWidgetBoxInterface_InputMethodQuery(ptr unsafe.Pointer, ptrName *C.char, query C.int) unsafe.Pointer {
+func callbackQDesignerWidgetBoxInterface_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::inputMethodQuery")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -21261,7 +20906,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectInputMethodQuery(f func(query cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "inputMethodQuery", f)
 	}
 }
 
@@ -21270,7 +20915,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "inputMethodQuery")
 	}
 }
 
@@ -21278,7 +20923,7 @@ func (ptr *QDesignerWidgetBoxInterface) InputMethodQuery(query core.Qt__InputMet
 	defer qt.Recovering("QDesignerWidgetBoxInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQuery(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -21289,7 +20934,7 @@ func (ptr *QDesignerWidgetBoxInterface) InputMethodQueryDefault(query core.Qt__I
 	defer qt.Recovering("QDesignerWidgetBoxInterface::inputMethodQuery")
 
 	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQueryDefault(ptr.Pointer(), C.int(query)))
+		var tmpValue = core.NewQVariantFromPointer(C.QDesignerWidgetBoxInterface_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -21297,10 +20942,10 @@ func (ptr *QDesignerWidgetBoxInterface) InputMethodQueryDefault(query core.Qt__I
 }
 
 //export callbackQDesignerWidgetBoxInterface_KeyPressEvent
-func callbackQDesignerWidgetBoxInterface_KeyPressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::keyPressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -21312,7 +20957,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectKeyPressEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "keyPressEvent", f)
 	}
 }
 
@@ -21321,7 +20966,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "keyPressEvent")
 	}
 }
 
@@ -21342,10 +20987,10 @@ func (ptr *QDesignerWidgetBoxInterface) KeyPressEventDefault(event gui.QKeyEvent
 }
 
 //export callbackQDesignerWidgetBoxInterface_KeyReleaseEvent
-func callbackQDesignerWidgetBoxInterface_KeyReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::keyReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -21357,7 +21002,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectKeyReleaseEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "keyReleaseEvent", f)
 	}
 }
 
@@ -21366,7 +21011,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "keyReleaseEvent")
 	}
 }
 
@@ -21387,10 +21032,10 @@ func (ptr *QDesignerWidgetBoxInterface) KeyReleaseEventDefault(event gui.QKeyEve
 }
 
 //export callbackQDesignerWidgetBoxInterface_Lower
-func callbackQDesignerWidgetBoxInterface_Lower(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::lower")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).LowerDefault()
@@ -21402,7 +21047,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "lower", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "lower", f)
 	}
 }
 
@@ -21411,7 +21056,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "lower")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "lower")
 	}
 }
 
@@ -21432,10 +21077,10 @@ func (ptr *QDesignerWidgetBoxInterface) LowerDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_MouseDoubleClickEvent
-func callbackQDesignerWidgetBoxInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -21447,7 +21092,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectMouseDoubleClickEvent(f func(even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
 	}
 }
 
@@ -21456,7 +21101,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
 	}
 }
 
@@ -21477,10 +21122,10 @@ func (ptr *QDesignerWidgetBoxInterface) MouseDoubleClickEventDefault(event gui.Q
 }
 
 //export callbackQDesignerWidgetBoxInterface_MouseMoveEvent
-func callbackQDesignerWidgetBoxInterface_MouseMoveEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::mouseMoveEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -21492,7 +21137,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectMouseMoveEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mouseMoveEvent", f)
 	}
 }
 
@@ -21501,7 +21146,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mouseMoveEvent")
 	}
 }
 
@@ -21522,10 +21167,10 @@ func (ptr *QDesignerWidgetBoxInterface) MouseMoveEventDefault(event gui.QMouseEv
 }
 
 //export callbackQDesignerWidgetBoxInterface_MousePressEvent
-func callbackQDesignerWidgetBoxInterface_MousePressEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::mousePressEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -21537,7 +21182,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectMousePressEvent(f func(event *gui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mousePressEvent", f)
 	}
 }
 
@@ -21546,7 +21191,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mousePressEvent")
 	}
 }
 
@@ -21567,10 +21212,10 @@ func (ptr *QDesignerWidgetBoxInterface) MousePressEventDefault(event gui.QMouseE
 }
 
 //export callbackQDesignerWidgetBoxInterface_MouseReleaseEvent
-func callbackQDesignerWidgetBoxInterface_MouseReleaseEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -21582,7 +21227,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectMouseReleaseEvent(f func(event *g
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
 	}
 }
 
@@ -21591,7 +21236,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "mouseReleaseEvent")
 	}
 }
 
@@ -21612,14 +21257,14 @@ func (ptr *QDesignerWidgetBoxInterface) MouseReleaseEventDefault(event gui.QMous
 }
 
 //export callbackQDesignerWidgetBoxInterface_NativeEvent
-func callbackQDesignerWidgetBoxInterface_NativeEvent(ptr unsafe.Pointer, ptrName *C.char, eventType *C.char, message unsafe.Pointer, result C.long) C.int {
+func callbackQDesignerWidgetBoxInterface_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::nativeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "nativeEvent"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "nativeEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(result))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
@@ -21627,7 +21272,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectNativeEvent(f func(eventType stri
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "nativeEvent", f)
 	}
 }
 
@@ -21636,7 +21281,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "nativeEvent")
 	}
 }
 
@@ -21646,7 +21291,7 @@ func (ptr *QDesignerWidgetBoxInterface) NativeEvent(eventType string, message un
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerWidgetBoxInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerWidgetBoxInterface_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -21657,16 +21302,16 @@ func (ptr *QDesignerWidgetBoxInterface) NativeEventDefault(eventType string, mes
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QDesignerWidgetBoxInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(result)) != 0
+		return C.QDesignerWidgetBoxInterface_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
 //export callbackQDesignerWidgetBoxInterface_Raise
-func callbackQDesignerWidgetBoxInterface_Raise(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::raise")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).RaiseDefault()
@@ -21678,7 +21323,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "raise", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "raise", f)
 	}
 }
 
@@ -21687,7 +21332,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "raise")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "raise")
 	}
 }
 
@@ -21708,10 +21353,10 @@ func (ptr *QDesignerWidgetBoxInterface) RaiseDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_Repaint
-func callbackQDesignerWidgetBoxInterface_Repaint(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::repaint")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).RepaintDefault()
@@ -21723,7 +21368,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "repaint", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "repaint", f)
 	}
 }
 
@@ -21732,7 +21377,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "repaint")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "repaint")
 	}
 }
 
@@ -21753,10 +21398,10 @@ func (ptr *QDesignerWidgetBoxInterface) RepaintDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_ResizeEvent
-func callbackQDesignerWidgetBoxInterface_ResizeEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::resizeEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -21768,7 +21413,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectResizeEvent(f func(event *gui.QRe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "resizeEvent", f)
 	}
 }
 
@@ -21777,7 +21422,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "resizeEvent")
 	}
 }
 
@@ -21798,13 +21443,13 @@ func (ptr *QDesignerWidgetBoxInterface) ResizeEventDefault(event gui.QResizeEven
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetDisabled
-func callbackQDesignerWidgetBoxInterface_SetDisabled(ptr unsafe.Pointer, ptrName *C.char, disable C.int) {
+func callbackQDesignerWidgetBoxInterface_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setDisabled")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setDisabled"); signal != nil {
-		signal.(func(bool))(int(disable) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setDisabled"); signal != nil {
+		signal.(func(bool))(int8(disable) != 0)
 	} else {
-		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetDisabledDefault(int(disable) != 0)
+		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
 	}
 }
 
@@ -21813,7 +21458,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetDisabled(f func(disable bool))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setDisabled", f)
 	}
 }
 
@@ -21822,7 +21467,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setDisabled")
 	}
 }
 
@@ -21830,7 +21475,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetDisabled(disable bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetDisabled(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerWidgetBoxInterface_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
@@ -21838,15 +21483,15 @@ func (ptr *QDesignerWidgetBoxInterface) SetDisabledDefault(disable bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setDisabled")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetDisabledDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(disable)))
+		C.QDesignerWidgetBoxInterface_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetFocus2
-func callbackQDesignerWidgetBoxInterface_SetFocus2(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetFocus2Default()
@@ -21858,7 +21503,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setFocus2", f)
 	}
 }
 
@@ -21867,7 +21512,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setFocus2")
 	}
 }
 
@@ -21888,13 +21533,13 @@ func (ptr *QDesignerWidgetBoxInterface) SetFocus2Default() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_SetHidden
-func callbackQDesignerWidgetBoxInterface_SetHidden(ptr unsafe.Pointer, ptrName *C.char, hidden C.int) {
+func callbackQDesignerWidgetBoxInterface_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::setHidden")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "setHidden"); signal != nil {
-		signal.(func(bool))(int(hidden) != 0)
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "setHidden"); signal != nil {
+		signal.(func(bool))(int8(hidden) != 0)
 	} else {
-		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetHiddenDefault(int(hidden) != 0)
+		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
 	}
 }
 
@@ -21903,7 +21548,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setHidden", f)
 	}
 }
 
@@ -21912,7 +21557,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "setHidden")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "setHidden")
 	}
 }
 
@@ -21920,7 +21565,7 @@ func (ptr *QDesignerWidgetBoxInterface) SetHidden(hidden bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetHidden(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerWidgetBoxInterface_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
@@ -21928,15 +21573,15 @@ func (ptr *QDesignerWidgetBoxInterface) SetHiddenDefault(hidden bool) {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::setHidden")
 
 	if ptr.Pointer() != nil {
-		C.QDesignerWidgetBoxInterface_SetHiddenDefault(ptr.Pointer(), C.int(qt.GoBoolToInt(hidden)))
+		C.QDesignerWidgetBoxInterface_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 //export callbackQDesignerWidgetBoxInterface_Show
-func callbackQDesignerWidgetBoxInterface_Show(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::show")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ShowDefault()
@@ -21948,7 +21593,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "show", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "show", f)
 	}
 }
 
@@ -21957,7 +21602,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "show")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "show")
 	}
 }
 
@@ -21978,10 +21623,10 @@ func (ptr *QDesignerWidgetBoxInterface) ShowDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_ShowFullScreen
-func callbackQDesignerWidgetBoxInterface_ShowFullScreen(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::showFullScreen")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ShowFullScreenDefault()
@@ -21993,7 +21638,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showFullScreen", f)
 	}
 }
 
@@ -22002,7 +21647,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showFullScreen")
 	}
 }
 
@@ -22023,10 +21668,10 @@ func (ptr *QDesignerWidgetBoxInterface) ShowFullScreenDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_ShowMaximized
-func callbackQDesignerWidgetBoxInterface_ShowMaximized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::showMaximized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ShowMaximizedDefault()
@@ -22038,7 +21683,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showMaximized", f)
 	}
 }
 
@@ -22047,7 +21692,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showMaximized")
 	}
 }
 
@@ -22068,10 +21713,10 @@ func (ptr *QDesignerWidgetBoxInterface) ShowMaximizedDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_ShowMinimized
-func callbackQDesignerWidgetBoxInterface_ShowMinimized(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::showMinimized")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ShowMinimizedDefault()
@@ -22083,7 +21728,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showMinimized", f)
 	}
 }
 
@@ -22092,7 +21737,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showMinimized")
 	}
 }
 
@@ -22113,10 +21758,10 @@ func (ptr *QDesignerWidgetBoxInterface) ShowMinimizedDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_ShowNormal
-func callbackQDesignerWidgetBoxInterface_ShowNormal(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::showNormal")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ShowNormalDefault()
@@ -22128,7 +21773,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showNormal", f)
 	}
 }
 
@@ -22137,7 +21782,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "showNormal")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "showNormal")
 	}
 }
 
@@ -22158,10 +21803,10 @@ func (ptr *QDesignerWidgetBoxInterface) ShowNormalDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_TabletEvent
-func callbackQDesignerWidgetBoxInterface_TabletEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::tabletEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -22173,7 +21818,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectTabletEvent(f func(event *gui.QTa
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "tabletEvent", f)
 	}
 }
 
@@ -22182,7 +21827,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "tabletEvent")
 	}
 }
 
@@ -22203,10 +21848,10 @@ func (ptr *QDesignerWidgetBoxInterface) TabletEventDefault(event gui.QTabletEven
 }
 
 //export callbackQDesignerWidgetBoxInterface_Update
-func callbackQDesignerWidgetBoxInterface_Update(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::update")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).UpdateDefault()
@@ -22218,7 +21863,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "update", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "update", f)
 	}
 }
 
@@ -22227,7 +21872,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "update")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "update")
 	}
 }
 
@@ -22248,10 +21893,10 @@ func (ptr *QDesignerWidgetBoxInterface) UpdateDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_UpdateMicroFocus
-func callbackQDesignerWidgetBoxInterface_UpdateMicroFocus(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::updateMicroFocus")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).UpdateMicroFocusDefault()
@@ -22263,7 +21908,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "updateMicroFocus", f)
 	}
 }
 
@@ -22272,7 +21917,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "updateMicroFocus")
 	}
 }
 
@@ -22293,10 +21938,10 @@ func (ptr *QDesignerWidgetBoxInterface) UpdateMicroFocusDefault() {
 }
 
 //export callbackQDesignerWidgetBoxInterface_WheelEvent
-func callbackQDesignerWidgetBoxInterface_WheelEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::wheelEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -22308,7 +21953,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectWheelEvent(f func(event *gui.QWhe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "wheelEvent", f)
 	}
 }
 
@@ -22317,7 +21962,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "wheelEvent")
 	}
 }
 
@@ -22338,10 +21983,10 @@ func (ptr *QDesignerWidgetBoxInterface) WheelEventDefault(event gui.QWheelEvent_
 }
 
 //export callbackQDesignerWidgetBoxInterface_TimerEvent
-func callbackQDesignerWidgetBoxInterface_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -22353,7 +21998,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectTimerEvent(f func(event *core.QTi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -22362,7 +22007,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -22383,10 +22028,10 @@ func (ptr *QDesignerWidgetBoxInterface) TimerEventDefault(event core.QTimerEvent
 }
 
 //export callbackQDesignerWidgetBoxInterface_ChildEvent
-func callbackQDesignerWidgetBoxInterface_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -22398,7 +22043,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectChildEvent(f func(event *core.QCh
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -22407,7 +22052,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -22428,10 +22073,10 @@ func (ptr *QDesignerWidgetBoxInterface) ChildEventDefault(event core.QChildEvent
 }
 
 //export callbackQDesignerWidgetBoxInterface_ConnectNotify
-func callbackQDesignerWidgetBoxInterface_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -22443,7 +22088,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectConnectNotify(f func(sign *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -22452,7 +22097,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -22473,10 +22118,10 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectNotifyDefault(sign core.QMetaMeth
 }
 
 //export callbackQDesignerWidgetBoxInterface_CustomEvent
-func callbackQDesignerWidgetBoxInterface_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -22488,7 +22133,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectCustomEvent(f func(event *core.QE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -22497,7 +22142,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -22518,10 +22163,10 @@ func (ptr *QDesignerWidgetBoxInterface) CustomEventDefault(event core.QEvent_ITF
 }
 
 //export callbackQDesignerWidgetBoxInterface_DeleteLater
-func callbackQDesignerWidgetBoxInterface_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQDesignerWidgetBoxInterface_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).DeleteLaterDefault()
@@ -22533,7 +22178,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -22542,7 +22187,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -22550,7 +22195,7 @@ func (ptr *QDesignerWidgetBoxInterface) DeleteLater() {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()))
 		C.QDesignerWidgetBoxInterface_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -22560,17 +22205,17 @@ func (ptr *QDesignerWidgetBoxInterface) DeleteLaterDefault() {
 	defer qt.Recovering("QDesignerWidgetBoxInterface::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()))
 		C.QDesignerWidgetBoxInterface_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQDesignerWidgetBoxInterface_DisconnectNotify
-func callbackQDesignerWidgetBoxInterface_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQDesignerWidgetBoxInterface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDesignerWidgetBoxInterfaceFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -22582,7 +22227,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectDisconnectNotify(f func(sign *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -22591,7 +22236,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -22612,14 +22257,14 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectNotifyDefault(sign core.QMetaM
 }
 
 //export callbackQDesignerWidgetBoxInterface_EventFilter
-func callbackQDesignerWidgetBoxInterface_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQDesignerWidgetBoxInterface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQDesignerWidgetBoxInterfaceFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QDesignerWidgetBoxInterface) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -22627,7 +22272,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectEventFilter(f func(watched *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -22636,7 +22281,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -22659,10 +22304,10 @@ func (ptr *QDesignerWidgetBoxInterface) EventFilterDefault(watched core.QObject_
 }
 
 //export callbackQDesignerWidgetBoxInterface_MetaObject
-func callbackQDesignerWidgetBoxInterface_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQDesignerWidgetBoxInterface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDesignerWidgetBoxInterface::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -22674,7 +22319,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectMetaObject(f func() *core.QMetaOb
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -22683,7 +22328,7 @@ func (ptr *QDesignerWidgetBoxInterface) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QDesignerWidgetBoxInterface(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -22747,14 +22392,6 @@ func NewQExtensionFactoryFromPointer(ptr unsafe.Pointer) *QExtensionFactory {
 	return n
 }
 
-func newQExtensionFactoryFromPointer(ptr unsafe.Pointer) *QExtensionFactory {
-	var n = NewQExtensionFactoryFromPointer(ptr)
-	for len(n.ObjectName()) < len("QExtensionFactory_") {
-		n.SetObjectName("QExtensionFactory_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QExtensionFactory) DestroyQExtensionFactory() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -22763,14 +22400,14 @@ func (ptr *QExtensionFactory) DestroyQExtensionFactory() {
 func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
 	defer qt.Recovering("QExtensionFactory::QExtensionFactory")
 
-	return newQExtensionFactoryFromPointer(C.QExtensionFactory_NewQExtensionFactory(PointerFromQExtensionManager(parent)))
+	return NewQExtensionFactoryFromPointer(C.QExtensionFactory_NewQExtensionFactory(PointerFromQExtensionManager(parent)))
 }
 
 //export callbackQExtensionFactory_CreateExtension
-func callbackQExtensionFactory_CreateExtension(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer, iid *C.char, parent unsafe.Pointer) unsafe.Pointer {
+func callbackQExtensionFactory_CreateExtension(ptr unsafe.Pointer, object unsafe.Pointer, iid *C.char, parent unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QExtensionFactory::createExtension")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "createExtension"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "createExtension"); signal != nil {
 		return core.PointerFromQObject(signal.(func(*core.QObject, string, *core.QObject) *core.QObject)(core.NewQObjectFromPointer(object), C.GoString(iid), core.NewQObjectFromPointer(parent)))
 	}
 
@@ -22782,7 +22419,7 @@ func (ptr *QExtensionFactory) ConnectCreateExtension(f func(object *core.QObject
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "createExtension", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "createExtension", f)
 	}
 }
 
@@ -22791,7 +22428,7 @@ func (ptr *QExtensionFactory) DisconnectCreateExtension() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "createExtension")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "createExtension")
 	}
 }
 
@@ -22818,10 +22455,10 @@ func (ptr *QExtensionFactory) CreateExtensionDefault(object core.QObject_ITF, ii
 }
 
 //export callbackQExtensionFactory_Extension
-func callbackQExtensionFactory_Extension(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
+func callbackQExtensionFactory_Extension(ptr unsafe.Pointer, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QExtensionFactory::extension")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "extension"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "extension"); signal != nil {
 		return core.PointerFromQObject(signal.(func(*core.QObject, string) *core.QObject)(core.NewQObjectFromPointer(object), C.GoString(iid)))
 	}
 
@@ -22833,7 +22470,7 @@ func (ptr *QExtensionFactory) ConnectExtension(f func(object *core.QObject, iid 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "extension", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "extension", f)
 	}
 }
 
@@ -22842,7 +22479,7 @@ func (ptr *QExtensionFactory) DisconnectExtension() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "extension")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "extension")
 	}
 }
 
@@ -22878,10 +22515,10 @@ func (ptr *QExtensionFactory) ExtensionManager() *QExtensionManager {
 }
 
 //export callbackQExtensionFactory_TimerEvent
-func callbackQExtensionFactory_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQExtensionFactory_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionFactory::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQExtensionFactoryFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -22893,7 +22530,7 @@ func (ptr *QExtensionFactory) ConnectTimerEvent(f func(event *core.QTimerEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -22902,7 +22539,7 @@ func (ptr *QExtensionFactory) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -22923,10 +22560,10 @@ func (ptr *QExtensionFactory) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQExtensionFactory_ChildEvent
-func callbackQExtensionFactory_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQExtensionFactory_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionFactory::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQExtensionFactoryFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -22938,7 +22575,7 @@ func (ptr *QExtensionFactory) ConnectChildEvent(f func(event *core.QChildEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -22947,7 +22584,7 @@ func (ptr *QExtensionFactory) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -22968,10 +22605,10 @@ func (ptr *QExtensionFactory) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQExtensionFactory_ConnectNotify
-func callbackQExtensionFactory_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQExtensionFactory_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionFactory::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQExtensionFactoryFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -22983,7 +22620,7 @@ func (ptr *QExtensionFactory) ConnectConnectNotify(f func(sign *core.QMetaMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -22992,7 +22629,7 @@ func (ptr *QExtensionFactory) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -23013,10 +22650,10 @@ func (ptr *QExtensionFactory) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQExtensionFactory_CustomEvent
-func callbackQExtensionFactory_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQExtensionFactory_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionFactory::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQExtensionFactoryFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -23028,7 +22665,7 @@ func (ptr *QExtensionFactory) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -23037,7 +22674,7 @@ func (ptr *QExtensionFactory) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -23058,10 +22695,10 @@ func (ptr *QExtensionFactory) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQExtensionFactory_DeleteLater
-func callbackQExtensionFactory_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQExtensionFactory_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionFactory::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQExtensionFactoryFromPointer(ptr).DeleteLaterDefault()
@@ -23073,7 +22710,7 @@ func (ptr *QExtensionFactory) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -23082,7 +22719,7 @@ func (ptr *QExtensionFactory) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -23090,7 +22727,7 @@ func (ptr *QExtensionFactory) DeleteLater() {
 	defer qt.Recovering("QExtensionFactory::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()))
 		C.QExtensionFactory_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -23100,17 +22737,17 @@ func (ptr *QExtensionFactory) DeleteLaterDefault() {
 	defer qt.Recovering("QExtensionFactory::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()))
 		C.QExtensionFactory_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQExtensionFactory_DisconnectNotify
-func callbackQExtensionFactory_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQExtensionFactory_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionFactory::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQExtensionFactoryFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -23122,7 +22759,7 @@ func (ptr *QExtensionFactory) ConnectDisconnectNotify(f func(sign *core.QMetaMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -23131,7 +22768,7 @@ func (ptr *QExtensionFactory) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -23152,14 +22789,14 @@ func (ptr *QExtensionFactory) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 }
 
 //export callbackQExtensionFactory_Event
-func callbackQExtensionFactory_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQExtensionFactory_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QExtensionFactory::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQExtensionFactoryFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQExtensionFactoryFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QExtensionFactory) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -23167,7 +22804,7 @@ func (ptr *QExtensionFactory) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -23176,7 +22813,7 @@ func (ptr *QExtensionFactory) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -23199,14 +22836,14 @@ func (ptr *QExtensionFactory) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQExtensionFactory_EventFilter
-func callbackQExtensionFactory_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQExtensionFactory_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QExtensionFactory::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQExtensionFactoryFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQExtensionFactoryFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QExtensionFactory) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -23214,7 +22851,7 @@ func (ptr *QExtensionFactory) ConnectEventFilter(f func(watched *core.QObject, e
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -23223,7 +22860,7 @@ func (ptr *QExtensionFactory) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -23246,10 +22883,10 @@ func (ptr *QExtensionFactory) EventFilterDefault(watched core.QObject_ITF, event
 }
 
 //export callbackQExtensionFactory_MetaObject
-func callbackQExtensionFactory_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQExtensionFactory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QExtensionFactory::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -23261,7 +22898,7 @@ func (ptr *QExtensionFactory) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -23270,7 +22907,7 @@ func (ptr *QExtensionFactory) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionFactory(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -23333,26 +22970,17 @@ func NewQExtensionManagerFromPointer(ptr unsafe.Pointer) *QExtensionManager {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQExtensionManagerFromPointer(ptr unsafe.Pointer) *QExtensionManager {
-	var n = NewQExtensionManagerFromPointer(ptr)
-	for len(n.ObjectName()) < len("QExtensionManager_") {
-		n.SetObjectName("QExtensionManager_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQExtensionManager(parent core.QObject_ITF) *QExtensionManager {
 	defer qt.Recovering("QExtensionManager::QExtensionManager")
 
-	return newQExtensionManagerFromPointer(C.QExtensionManager_NewQExtensionManager(core.PointerFromQObject(parent)))
+	return NewQExtensionManagerFromPointer(C.QExtensionManager_NewQExtensionManager(core.PointerFromQObject(parent)))
 }
 
 //export callbackQExtensionManager_Extension
-func callbackQExtensionManager_Extension(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
+func callbackQExtensionManager_Extension(ptr unsafe.Pointer, object unsafe.Pointer, iid *C.char) unsafe.Pointer {
 	defer qt.Recovering("callback QExtensionManager::extension")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "extension"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "extension"); signal != nil {
 		return core.PointerFromQObject(signal.(func(*core.QObject, string) *core.QObject)(core.NewQObjectFromPointer(object), C.GoString(iid)))
 	}
 
@@ -23364,7 +22992,7 @@ func (ptr *QExtensionManager) ConnectExtension(f func(object *core.QObject, iid 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "extension", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "extension", f)
 	}
 }
 
@@ -23373,7 +23001,7 @@ func (ptr *QExtensionManager) DisconnectExtension() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "extension")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "extension")
 	}
 }
 
@@ -23400,10 +23028,10 @@ func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid stri
 }
 
 //export callbackQExtensionManager_RegisterExtensions
-func callbackQExtensionManager_RegisterExtensions(ptr unsafe.Pointer, ptrName *C.char, factory unsafe.Pointer, iid *C.char) {
+func callbackQExtensionManager_RegisterExtensions(ptr unsafe.Pointer, factory unsafe.Pointer, iid *C.char) {
 	defer qt.Recovering("callback QExtensionManager::registerExtensions")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "registerExtensions"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "registerExtensions"); signal != nil {
 		signal.(func(*QAbstractExtensionFactory, string))(NewQAbstractExtensionFactoryFromPointer(factory), C.GoString(iid))
 	} else {
 		NewQExtensionManagerFromPointer(ptr).RegisterExtensionsDefault(NewQAbstractExtensionFactoryFromPointer(factory), C.GoString(iid))
@@ -23415,7 +23043,7 @@ func (ptr *QExtensionManager) ConnectRegisterExtensions(f func(factory *QAbstrac
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "registerExtensions", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "registerExtensions", f)
 	}
 }
 
@@ -23424,7 +23052,7 @@ func (ptr *QExtensionManager) DisconnectRegisterExtensions() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "registerExtensions")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "registerExtensions")
 	}
 }
 
@@ -23449,10 +23077,10 @@ func (ptr *QExtensionManager) RegisterExtensionsDefault(factory QAbstractExtensi
 }
 
 //export callbackQExtensionManager_UnregisterExtensions
-func callbackQExtensionManager_UnregisterExtensions(ptr unsafe.Pointer, ptrName *C.char, factory unsafe.Pointer, iid *C.char) {
+func callbackQExtensionManager_UnregisterExtensions(ptr unsafe.Pointer, factory unsafe.Pointer, iid *C.char) {
 	defer qt.Recovering("callback QExtensionManager::unregisterExtensions")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "unregisterExtensions"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "unregisterExtensions"); signal != nil {
 		signal.(func(*QAbstractExtensionFactory, string))(NewQAbstractExtensionFactoryFromPointer(factory), C.GoString(iid))
 	} else {
 		NewQExtensionManagerFromPointer(ptr).UnregisterExtensionsDefault(NewQAbstractExtensionFactoryFromPointer(factory), C.GoString(iid))
@@ -23464,7 +23092,7 @@ func (ptr *QExtensionManager) ConnectUnregisterExtensions(f func(factory *QAbstr
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "unregisterExtensions", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "unregisterExtensions", f)
 	}
 }
 
@@ -23473,7 +23101,7 @@ func (ptr *QExtensionManager) DisconnectUnregisterExtensions() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "unregisterExtensions")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "unregisterExtensions")
 	}
 }
 
@@ -23501,17 +23129,17 @@ func (ptr *QExtensionManager) DestroyQExtensionManager() {
 	defer qt.Recovering("QExtensionManager::~QExtensionManager")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()))
 		C.QExtensionManager_DestroyQExtensionManager(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQExtensionManager_TimerEvent
-func callbackQExtensionManager_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQExtensionManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionManager::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQExtensionManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -23523,7 +23151,7 @@ func (ptr *QExtensionManager) ConnectTimerEvent(f func(event *core.QTimerEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -23532,7 +23160,7 @@ func (ptr *QExtensionManager) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -23553,10 +23181,10 @@ func (ptr *QExtensionManager) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQExtensionManager_ChildEvent
-func callbackQExtensionManager_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQExtensionManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionManager::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQExtensionManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -23568,7 +23196,7 @@ func (ptr *QExtensionManager) ConnectChildEvent(f func(event *core.QChildEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -23577,7 +23205,7 @@ func (ptr *QExtensionManager) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -23598,10 +23226,10 @@ func (ptr *QExtensionManager) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQExtensionManager_ConnectNotify
-func callbackQExtensionManager_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQExtensionManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionManager::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQExtensionManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -23613,7 +23241,7 @@ func (ptr *QExtensionManager) ConnectConnectNotify(f func(sign *core.QMetaMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -23622,7 +23250,7 @@ func (ptr *QExtensionManager) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -23643,10 +23271,10 @@ func (ptr *QExtensionManager) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQExtensionManager_CustomEvent
-func callbackQExtensionManager_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQExtensionManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionManager::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQExtensionManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -23658,7 +23286,7 @@ func (ptr *QExtensionManager) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -23667,7 +23295,7 @@ func (ptr *QExtensionManager) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -23688,10 +23316,10 @@ func (ptr *QExtensionManager) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQExtensionManager_DeleteLater
-func callbackQExtensionManager_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQExtensionManager_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionManager::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQExtensionManagerFromPointer(ptr).DeleteLaterDefault()
@@ -23703,7 +23331,7 @@ func (ptr *QExtensionManager) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -23712,7 +23340,7 @@ func (ptr *QExtensionManager) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -23720,7 +23348,7 @@ func (ptr *QExtensionManager) DeleteLater() {
 	defer qt.Recovering("QExtensionManager::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()))
 		C.QExtensionManager_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -23730,17 +23358,17 @@ func (ptr *QExtensionManager) DeleteLaterDefault() {
 	defer qt.Recovering("QExtensionManager::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()))
 		C.QExtensionManager_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQExtensionManager_DisconnectNotify
-func callbackQExtensionManager_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQExtensionManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QExtensionManager::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQExtensionManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -23752,7 +23380,7 @@ func (ptr *QExtensionManager) ConnectDisconnectNotify(f func(sign *core.QMetaMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -23761,7 +23389,7 @@ func (ptr *QExtensionManager) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -23782,14 +23410,14 @@ func (ptr *QExtensionManager) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 }
 
 //export callbackQExtensionManager_Event
-func callbackQExtensionManager_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQExtensionManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QExtensionManager::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQExtensionManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQExtensionManagerFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QExtensionManager) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -23797,7 +23425,7 @@ func (ptr *QExtensionManager) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -23806,7 +23434,7 @@ func (ptr *QExtensionManager) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -23829,14 +23457,14 @@ func (ptr *QExtensionManager) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQExtensionManager_EventFilter
-func callbackQExtensionManager_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQExtensionManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QExtensionManager::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQExtensionManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQExtensionManagerFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QExtensionManager) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -23844,7 +23472,7 @@ func (ptr *QExtensionManager) ConnectEventFilter(f func(watched *core.QObject, e
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -23853,7 +23481,7 @@ func (ptr *QExtensionManager) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -23876,10 +23504,10 @@ func (ptr *QExtensionManager) EventFilterDefault(watched core.QObject_ITF, event
 }
 
 //export callbackQExtensionManager_MetaObject
-func callbackQExtensionManager_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQExtensionManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QExtensionManager::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QExtensionManager(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -23891,7 +23519,7 @@ func (ptr *QExtensionManager) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -23900,7 +23528,7 @@ func (ptr *QExtensionManager) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QExtensionManager(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -23960,19 +23588,12 @@ func NewQFormBuilderFromPointer(ptr unsafe.Pointer) *QFormBuilder {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQFormBuilderFromPointer(ptr unsafe.Pointer) *QFormBuilder {
-	var n = NewQFormBuilderFromPointer(ptr)
-	for len(n.ObjectNameAbs()) < len("QFormBuilder_") {
-		n.SetObjectNameAbs("QFormBuilder_" + qt.Identifier())
-	}
-	return n
-}
-
 func NewQFormBuilder() *QFormBuilder {
 	defer qt.Recovering("QFormBuilder::QFormBuilder")
 
-	return newQFormBuilderFromPointer(C.QFormBuilder_NewQFormBuilder())
+	var tmpValue = NewQFormBuilderFromPointer(C.QFormBuilder_NewQFormBuilder())
+	runtime.SetFinalizer(tmpValue, (*QFormBuilder).DestroyQFormBuilder)
+	return tmpValue
 }
 
 func (ptr *QFormBuilder) AddPluginPath(pluginPath string) {
@@ -24016,36 +23637,17 @@ func (ptr *QFormBuilder) DestroyQFormBuilder() {
 	defer qt.Recovering("QFormBuilder::~QFormBuilder")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectNameAbs())
+		qt.DisconnectAllSignals(fmt.Sprintf("QFormBuilder(%v)", ptr.Pointer()))
 		C.QFormBuilder_DestroyQFormBuilder(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
-func (ptr *QFormBuilder) ObjectNameAbs() string {
-	defer qt.Recovering("QFormBuilder::objectNameAbs")
-
-	if ptr.Pointer() != nil {
-		return C.GoString(C.QFormBuilder_ObjectNameAbs(ptr.Pointer()))
-	}
-	return ""
-}
-
-func (ptr *QFormBuilder) SetObjectNameAbs(name string) {
-	defer qt.Recovering("QFormBuilder::setObjectNameAbs")
-
-	if ptr.Pointer() != nil {
-		var nameC = C.CString(name)
-		defer C.free(unsafe.Pointer(nameC))
-		C.QFormBuilder_SetObjectNameAbs(ptr.Pointer(), nameC)
-	}
-}
-
 //export callbackQFormBuilder_Load
-func callbackQFormBuilder_Load(ptr unsafe.Pointer, ptrName *C.char, device unsafe.Pointer, parent unsafe.Pointer) unsafe.Pointer {
+func callbackQFormBuilder_Load(ptr unsafe.Pointer, device unsafe.Pointer, parent unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QFormBuilder::load")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "load"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QFormBuilder(%v)", ptr), "load"); signal != nil {
 		return widgets.PointerFromQWidget(signal.(func(*core.QIODevice, *widgets.QWidget) *widgets.QWidget)(core.NewQIODeviceFromPointer(device), widgets.NewQWidgetFromPointer(parent)))
 	}
 
@@ -24057,7 +23659,7 @@ func (ptr *QFormBuilder) ConnectLoad(f func(device *core.QIODevice, parent *widg
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "load", f)
+		qt.ConnectSignal(fmt.Sprintf("QFormBuilder(%v)", ptr.Pointer()), "load", f)
 	}
 }
 
@@ -24066,7 +23668,7 @@ func (ptr *QFormBuilder) DisconnectLoad() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "load")
+		qt.DisconnectSignal(fmt.Sprintf("QFormBuilder(%v)", ptr.Pointer()), "load")
 	}
 }
 
@@ -24089,10 +23691,10 @@ func (ptr *QFormBuilder) LoadDefault(device core.QIODevice_ITF, parent widgets.Q
 }
 
 //export callbackQFormBuilder_Save
-func callbackQFormBuilder_Save(ptr unsafe.Pointer, ptrName *C.char, device unsafe.Pointer, widget unsafe.Pointer) {
+func callbackQFormBuilder_Save(ptr unsafe.Pointer, device unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QFormBuilder::save")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "save"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QFormBuilder(%v)", ptr), "save"); signal != nil {
 		signal.(func(*core.QIODevice, *widgets.QWidget))(core.NewQIODeviceFromPointer(device), widgets.NewQWidgetFromPointer(widget))
 	} else {
 		NewQFormBuilderFromPointer(ptr).SaveDefault(core.NewQIODeviceFromPointer(device), widgets.NewQWidgetFromPointer(widget))
@@ -24104,7 +23706,7 @@ func (ptr *QFormBuilder) ConnectSave(f func(device *core.QIODevice, widget *widg
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectNameAbs(), "save", f)
+		qt.ConnectSignal(fmt.Sprintf("QFormBuilder(%v)", ptr.Pointer()), "save", f)
 	}
 }
 
@@ -24113,7 +23715,7 @@ func (ptr *QFormBuilder) DisconnectSave() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectNameAbs(), "save")
+		qt.DisconnectSignal(fmt.Sprintf("QFormBuilder(%v)", ptr.Pointer()), "save")
 	}
 }
 

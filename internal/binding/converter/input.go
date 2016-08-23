@@ -18,106 +18,110 @@ func goInput(name, value string, f *parser.Function) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "QStringList":
+	case "char", "qint8":
 		{
-			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
-		}
-
-	case "uchar", "char", "QString":
-		{
-			if strings.Contains(vOld, "&") {
-				if strings.Contains(vOld, "const") {
-					return fmt.Sprintf("C.CString(%v)", name)
-				}
-				return fmt.Sprintf("C.CString(%v)", name)
-			}
-
 			if strings.Contains(vOld, "**") {
 				return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 			}
+
+			return fmt.Sprintf("C.CString(%v)", name)
+		}
+
+	case "uchar", "quint8", "QString":
+		{
 			return fmt.Sprintf("C.CString(%v)", name)
 		}
 
 	case "QByteArray":
 		{
-			if strings.Contains(vOld, "&") {
-				if strings.Contains(vOld, "const") {
-					return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(%v)))", name)
-				}
-				return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(%v)))", name)
-			}
-
-			if strings.Contains(vOld, "**") {
-				return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(strings.Join(%v, \"|\"))))", name)
-			}
 			return fmt.Sprintf("C.CString(hex.EncodeToString([]byte(%v)))", name)
+		}
+
+	case "QStringList":
+		{
+			return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
+		}
+
+	case "void" /*, ""*/ :
+		{
+			if strings.Contains(vOld, "*") {
+				return name
+			}
 		}
 
 	case "bool":
 		{
-			return fmt.Sprintf("C.int(qt.GoBoolToInt(%v))", name)
+			return fmt.Sprintf("C.char(int8(qt.GoBoolToInt(%v)))", name)
 		}
 
-	case "int", "long":
+	case "short", "qint16":
 		{
-			return fmt.Sprintf("C.%v(%v)", value, name)
+			return fmt.Sprintf("C.short(%v)", name)
 		}
 
-	case "qreal":
+	case "ushort", "unsigned short", "quint16":
 		{
-			if strings.Contains(vOld, "*") {
-				f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
-				return f.Access
-			}
-
-			return fmt.Sprintf("C.double(%v)", name)
+			return fmt.Sprintf("C.ushort(%v)", name)
 		}
 
-	case "qint64":
+	case "int", "qint32":
 		{
-			if strings.Contains(vOld, "*") {
-				f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
-				return f.Access
-			}
+			return fmt.Sprintf("C.int(int32(%v))", name)
+		}
 
+	case "uint", "unsigned int", "quint32":
+		{
+			return fmt.Sprintf("C.uint(uint32(%v))", name)
+		}
+
+	case "long":
+		{
+			return fmt.Sprintf("C.long(int32(%v))", name)
+		}
+
+	case "ulong", "unsigned long":
+		{
+			return fmt.Sprintf("C.ulong(uint32(%v))", name)
+		}
+
+	case "longlong", "long long", "qlonglong", "qint64":
+		{
 			return fmt.Sprintf("C.longlong(%v)", name)
 		}
 
-	case "WId":
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
 		{
-			if strings.Contains(vOld, "*") {
-				f.Access = fmt.Sprintf("unsupported_goInput(%v)", value)
-				return f.Access
-			}
-
 			return fmt.Sprintf("C.ulonglong(%v)", name)
 		}
 
-	case "jclass", "jobject":
+	case "float":
 		{
-			return name
+			return fmt.Sprintf("C.float(%v)", name)
 		}
 
-	case "...":
+	case "double", "qreal":
 		{
-			var tmp string
-			for i := 0; i < 10; i++ {
-				tmp += fmt.Sprintf("p%v, ", i)
-			}
-			return strings.TrimSuffix(tmp, ", ")
+			return fmt.Sprintf("C.double(%v)", name)
 		}
+
+	case "uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			return fmt.Sprintf("C.uintptr_t(%v)", name)
+		}
+
+		//non std types
 
 	case "T":
 		{
 			switch f.TemplateMode {
-			case "Int":
-				{
-					return fmt.Sprintf("C.int(%v)", name)
-				}
-
 			case "Boolean":
 				{
-					return fmt.Sprintf("C.int(qt.GoBoolToInt(%v))", name)
+					return fmt.Sprintf("C.char(int8(qt.GoBoolToInt(%v)))", name)
+				}
+
+			case "Int":
+				{
+					return fmt.Sprintf("C.int(int32(%v))", name)
 				}
 			}
 
@@ -126,18 +130,25 @@ func goInput(name, value string, f *parser.Function) string {
 			}
 		}
 
-	case "void":
+	case "JavaVM", "jclass", "jobject":
 		{
-			if strings.Contains(vOld, "*") {
-				return name
+			return name
+		}
+
+	case "...":
+		{
+			var tmp = make([]string, 10)
+			for i := range tmp {
+				tmp[i] = fmt.Sprintf("p%v", i)
 			}
+			return strings.Join(tmp, ", ")
 		}
 	}
 
 	switch {
 	case isEnum(f.Class(), value):
 		{
-			return fmt.Sprintf("C.int(%v)", name)
+			return fmt.Sprintf("C.longlong(%v)", name)
 		}
 
 	case isClass(value):
@@ -167,44 +178,71 @@ func cppInput(name, value string, f *parser.Function) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "QStringList":
+	case "char", "qint8":
 		{
-			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("new QStringList(%v.split(\"|\", QString::SkipEmptyParts))", cppInput(name, "QString", f))
+			if strings.Contains(vOld, "**") && name == "argv" {
+				return "argvs"
 			}
-			return fmt.Sprintf("%v.split(\"|\", QString::SkipEmptyParts)", cppInput(name, "QString", f))
+
+			if strings.Contains(vOld, "*") {
+				if strings.Contains(vOld, "const") {
+					return fmt.Sprintf("const_cast<const %v*>(%v)", value, name)
+				}
+				return name
+			}
+
+			return fmt.Sprintf("*%v", name)
+		}
+
+	case "uchar", "quint8":
+		{
+			//TODO: char to uchar
 		}
 
 	case "QString":
 		{
-			if strings.Contains(vOld, "&") {
-				if strings.Contains(vOld, "const") {
-					return fmt.Sprintf("%v(%v)", value, name)
-				}
-				return fmt.Sprintf("*(new %v(%v))", value, name)
-			}
-
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("new %v(%v)", value, name)
+				return fmt.Sprintf("new QString(%v)", name)
 			}
 
-			return fmt.Sprintf("%v(%v)", value, name)
+			if strings.Contains(vOld, "&") && !strings.Contains(vOld, "const") {
+				return fmt.Sprintf("*(%v)", cppInput(name, "QString*", f))
+			}
+
+			return fmt.Sprintf("QString(%v)", name)
 		}
 
 	case "QByteArray":
 		{
-			if strings.Contains(vOld, "&") {
-				if strings.Contains(vOld, "const") {
-					return fmt.Sprintf("%v::fromHex(QString(%v).toUtf8())", value, name)
-				}
-				return fmt.Sprintf("*(new %v(%v::fromHex(QString(%v).toUtf8())))", value, value, name)
-			}
-
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("new %v(%v::fromHex(QString(%v).toUtf8()))", value, value, name)
+				return fmt.Sprintf("new QByteArray(%v)", cppInput(name, "QByteArray", f))
 			}
 
-			return fmt.Sprintf("%v::fromHex(QString(%v).toUtf8())", value, name)
+			if strings.Contains(vOld, "&") && !strings.Contains(vOld, "const") {
+				return fmt.Sprintf("*(%v)", cppInput(name, "QByteArray*", f))
+			}
+
+			return fmt.Sprintf("QByteArray::fromHex(QString(%v).toUtf8())", name)
+		}
+
+	case "QStringList":
+		{
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("new QStringList(%v)", cppInput(name, "QStringList", f))
+			}
+
+			if strings.Contains(vOld, "&") && !strings.Contains(vOld, "const") {
+				return fmt.Sprintf("*(%v)", cppInput(name, "QStringList*", f))
+			}
+
+			return fmt.Sprintf("QString(%v).split(\"|\", QString::SkipEmptyParts)", name)
+		}
+
+	case "void" /*, ""*/ :
+		{
+			if strings.Contains(vOld, "*") {
+				return name
+			}
 		}
 
 	case "bool":
@@ -212,94 +250,48 @@ func cppInput(name, value string, f *parser.Function) string {
 			if strings.Contains(vOld, "*") {
 				return "NULL"
 			}
+
 			return fmt.Sprintf("%v != 0", name)
 		}
 
-	case "int", "long":
-		{
-			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("&%v", name)
-			}
+	case
+		"short", "qint16",
+		"ushort", "unsigned short", "quint16",
 
+		"int", "qint32",
+		"uint", "unsigned int", "quint32",
+
+		"long",
+		"ulong", "unsigned long",
+
+		"longlong", "long long", "qlonglong", "qint64",
+		"ulonglong", "unsigned long long", "qulonglong", "quint64",
+
+		"float",
+		"double", "qreal",
+
+		"uintptr_t", "uintptr", "quintptr", "WId":
+		{
 			if strings.Contains(vOld, "&") && name == "argc" {
 				return "argcs"
+			}
+
+			if strings.Contains(vOld, "*") {
+				if strings.Contains(vOld, "const") {
+					return fmt.Sprintf("const_cast<const %v*>(&%v)", value, name)
+				}
+				return fmt.Sprintf("&%v", name)
 			}
 
 			return name
 		}
 
-	case "char":
-		{
-			if strings.Contains(vOld, "const") {
-				if strings.Contains(vOld, "*") {
-					return fmt.Sprintf("const_cast<const %v*>(%v)", value, name)
-				}
-			}
-
-			if strings.Contains(vOld, "**") {
-				return "argvs"
-				//return "const_cast<char **>(argvs.data())"
-			}
-
-			if strings.Contains(vOld, "*") {
-				return name
-			}
-
-			return fmt.Sprintf("*%v", name)
-		}
-
-	case "qreal":
-		{
-			if strings.Contains(vOld, "*") {
-				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
-				return f.Access
-			}
-
-			return fmt.Sprintf("static_cast<double>(%v)", name)
-		}
-
-	case "qint64":
-		{
-			if strings.Contains(vOld, "*") {
-				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
-				return f.Access
-			}
-
-			return fmt.Sprintf("static_cast<long long>(%v)", name)
-		}
-
-	case "WId":
-		{
-			if strings.Contains(vOld, "*") {
-				f.Access = fmt.Sprintf("unsupported_cppInput(%v)", value)
-				return f.Access
-			}
-
-			return fmt.Sprintf("static_cast<unsigned long long>(%v)", name)
-		}
-
-	case "jclass", "jobject":
-		{
-			return fmt.Sprintf("static_cast<%v>(%v)", value, name)
-		}
-
-	case "...":
-		{
-			var tmp string
-			for i := 0; i < 10; i++ {
-				if i == 9 {
-					tmp += fmt.Sprintf("static_cast<jobject>(%v), ", name)
-				} else {
-					tmp += fmt.Sprintf("static_cast<jobject>(%v%v), ", name, i)
-				}
-			}
-			return strings.TrimSuffix(tmp, ", ")
-		}
+		//non std types
 
 	case "T":
 		{
 			switch f.TemplateMode {
-			case "Int", "Boolean":
+			case "Boolean", "Int":
 				{
 					return name
 				}
@@ -310,11 +302,22 @@ func cppInput(name, value string, f *parser.Function) string {
 			}
 		}
 
-	case "void":
+	case "JavaVM", "jclass", "jobject":
 		{
-			if strings.Contains(vOld, "*") {
-				return name
+			return fmt.Sprintf("static_cast<%v>(%v)", value, name)
+		}
+
+	case "...":
+		{
+			var tmp = make([]string, 10)
+			for i := range tmp {
+				if i == 9 {
+					tmp[i] = fmt.Sprintf("static_cast<jobject>(%v)", name)
+				} else {
+					tmp[i] = fmt.Sprintf("static_cast<jobject>(%v%v)", name, i)
+				}
 			}
+			return strings.Join(tmp, ", ")
 		}
 	}
 
@@ -328,10 +331,11 @@ func cppInput(name, value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
+			if strings.Contains(vOld, "*") && strings.Contains(vOld, "&") {
+				break
+			}
+
 			if strings.Contains(vOld, "*") {
-				if strings.Contains(vOld, "&") {
-					break
-				}
 				return fmt.Sprintf("static_cast<%v*>(%v)", value, name)
 			}
 

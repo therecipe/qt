@@ -5,6 +5,8 @@
 #ifndef GO_QTUITOOLS_H
 #define GO_QTUITOOLS_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -23,10 +25,10 @@ void* QUiLoader_CreateLayoutDefault(void* ptr, char* className, void* parent, ch
 void* QUiLoader_CreateWidget(void* ptr, char* className, void* parent, char* name);
 void* QUiLoader_CreateWidgetDefault(void* ptr, char* className, void* parent, char* name);
 char* QUiLoader_ErrorString(void* ptr);
-int QUiLoader_IsLanguageChangeEnabled(void* ptr);
+char QUiLoader_IsLanguageChangeEnabled(void* ptr);
 void* QUiLoader_Load(void* ptr, void* device, void* parentWidget);
 char* QUiLoader_PluginPaths(void* ptr);
-void QUiLoader_SetLanguageChangeEnabled(void* ptr, int enabled);
+void QUiLoader_SetLanguageChangeEnabled(void* ptr, char enabled);
 void QUiLoader_SetWorkingDirectory(void* ptr, void* dir);
 void* QUiLoader_WorkingDirectory(void* ptr);
 void QUiLoader_DestroyQUiLoader(void* ptr);
@@ -42,10 +44,10 @@ void QUiLoader_DeleteLater(void* ptr);
 void QUiLoader_DeleteLaterDefault(void* ptr);
 void QUiLoader_DisconnectNotify(void* ptr, void* sign);
 void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign);
-int QUiLoader_Event(void* ptr, void* e);
-int QUiLoader_EventDefault(void* ptr, void* e);
-int QUiLoader_EventFilter(void* ptr, void* watched, void* event);
-int QUiLoader_EventFilterDefault(void* ptr, void* watched, void* event);
+char QUiLoader_Event(void* ptr, void* e);
+char QUiLoader_EventDefault(void* ptr, void* e);
+char QUiLoader_EventFilter(void* ptr, void* watched, void* event);
+char QUiLoader_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QUiLoader_MetaObject(void* ptr);
 void* QUiLoader_MetaObjectDefault(void* ptr);
 

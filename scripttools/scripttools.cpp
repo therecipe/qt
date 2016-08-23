@@ -22,17 +22,17 @@ class MyQScriptEngineDebugger: public QScriptEngineDebugger
 {
 public:
 	MyQScriptEngineDebugger(QObject *parent) : QScriptEngineDebugger(parent) {};
-	void Signal_EvaluationResumed() { callbackQScriptEngineDebugger_EvaluationResumed(this, this->objectName().toUtf8().data()); };
-	void Signal_EvaluationSuspended() { callbackQScriptEngineDebugger_EvaluationSuspended(this, this->objectName().toUtf8().data()); };
-	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQScriptEngineDebugger_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQScriptEngineDebugger_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQScriptEngineDebugger_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngineDebugger_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<MyQScriptEngineDebugger*>(this), this->objectName().toUtf8().data())); };
+	void Signal_EvaluationResumed() { callbackQScriptEngineDebugger_EvaluationResumed(this); };
+	void Signal_EvaluationSuspended() { callbackQScriptEngineDebugger_EvaluationSuspended(this); };
+	void timerEvent(QTimerEvent * event) { callbackQScriptEngineDebugger_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQScriptEngineDebugger_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQScriptEngineDebugger_CustomEvent(this, event); };
+	void deleteLater() { callbackQScriptEngineDebugger_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQScriptEngineDebugger_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQScriptEngineDebugger_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScriptEngineDebugger_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScriptEngineDebugger_MetaObject(const_cast<MyQScriptEngineDebugger*>(this))); };
 };
 
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent)
@@ -40,7 +40,7 @@ void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent)
 	return new MyQScriptEngineDebugger(static_cast<QObject*>(parent));
 }
 
-void* QScriptEngineDebugger_Action(void* ptr, int action)
+void* QScriptEngineDebugger_Action(void* ptr, long long action)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->action(static_cast<QScriptEngineDebugger::DebuggerAction>(action));
 }
@@ -50,7 +50,7 @@ void QScriptEngineDebugger_AttachTo(void* ptr, void* engine)
 	static_cast<QScriptEngineDebugger*>(ptr)->attachTo(static_cast<QScriptEngine*>(engine));
 }
 
-int QScriptEngineDebugger_AutoShowStandardWindow(void* ptr)
+char QScriptEngineDebugger_AutoShowStandardWindow(void* ptr)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->autoShowStandardWindow();
 }
@@ -100,7 +100,7 @@ void QScriptEngineDebugger_EvaluationSuspended(void* ptr)
 	static_cast<QScriptEngineDebugger*>(ptr)->evaluationSuspended();
 }
 
-void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, int autoShow)
+void QScriptEngineDebugger_SetAutoShowStandardWindow(void* ptr, char autoShow)
 {
 	static_cast<QScriptEngineDebugger*>(ptr)->setAutoShowStandardWindow(autoShow != 0);
 }
@@ -110,12 +110,12 @@ void* QScriptEngineDebugger_StandardWindow(void* ptr)
 	return static_cast<QScriptEngineDebugger*>(ptr)->standardWindow();
 }
 
-int QScriptEngineDebugger_State(void* ptr)
+long long QScriptEngineDebugger_State(void* ptr)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->state();
 }
 
-void* QScriptEngineDebugger_Widget(void* ptr, int widget)
+void* QScriptEngineDebugger_Widget(void* ptr, long long widget)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->widget(static_cast<QScriptEngineDebugger::DebuggerWidget>(widget));
 }
@@ -185,22 +185,22 @@ void QScriptEngineDebugger_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QScriptEngineDebugger_Event(void* ptr, void* e)
+char QScriptEngineDebugger_Event(void* ptr, void* e)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QScriptEngineDebugger_EventDefault(void* ptr, void* e)
+char QScriptEngineDebugger_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::event(static_cast<QEvent*>(e));
 }
 
-int QScriptEngineDebugger_EventFilter(void* ptr, void* watched, void* event)
+char QScriptEngineDebugger_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QScriptEngineDebugger_EventFilterDefault(void* ptr, void* watched, void* event)
+char QScriptEngineDebugger_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QScriptEngineDebugger*>(ptr)->QScriptEngineDebugger::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }

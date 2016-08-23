@@ -18,7 +18,7 @@ void* SailfishApp_SailfishApp_Application(int argc, char* argv)
 	char *argvs[argc];
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
-	argvs[i] = aList[i].data();
+	argvs[i] = const_cast<char*>(aList[i].constData());
 
 	return SailfishApp::application(argcs, argvs);
 }
@@ -29,7 +29,7 @@ int SailfishApp_SailfishApp_Main(int argc, char* argv)
 	char *argvs[argc];
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
-	argvs[i] = aList[i].data();
+	argvs[i] = const_cast<char*>(aList[i].constData());
 
 	return SailfishApp::main(argcs, argvs);
 }

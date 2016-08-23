@@ -2,6 +2,7 @@
 
 package sailfish
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "sailfish_sailfish.h"
 import "C"
@@ -47,11 +48,6 @@ func PointerFromSailfishApp(ptr SailfishApp_ITF) unsafe.Pointer {
 func NewSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
 	var n = new(SailfishApp)
 	n.SetPointer(ptr)
-	return n
-}
-
-func newSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
-	var n = NewSailfishAppFromPointer(ptr)
 	return n
 }
 

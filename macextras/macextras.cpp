@@ -25,24 +25,21 @@
 class MyQMacPasteboardMime: public QMacPasteboardMime
 {
 public:
-	QString _objectName;
-	QString objectNameAbs() const { return this->_objectName; };
-	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	bool canConvert(const QString & mime, QString flav) { return callbackQMacPasteboardMime_CanConvert(this, this->objectNameAbs().toUtf8().data(), mime.toUtf8().data(), flav.toUtf8().data()) != 0; };
-	QString convertorName() { return QString(callbackQMacPasteboardMime_ConvertorName(this, this->objectNameAbs().toUtf8().data())); };
-	int count(QMimeData * mimeData) { return callbackQMacPasteboardMime_Count(this, this->objectNameAbs().toUtf8().data(), mimeData); };
-	QString flavorFor(const QString & mime) { return QString(callbackQMacPasteboardMime_FlavorFor(this, this->objectNameAbs().toUtf8().data(), mime.toUtf8().data())); };
-	QString mimeFor(QString flav) { return QString(callbackQMacPasteboardMime_MimeFor(this, this->objectNameAbs().toUtf8().data(), flav.toUtf8().data())); };
+	bool canConvert(const QString & mime, QString flav) { return callbackQMacPasteboardMime_CanConvert(this, const_cast<char*>(mime.toUtf8().constData()), const_cast<char*>(flav.toUtf8().constData())) != 0; };
+	QString convertorName() { return QString(callbackQMacPasteboardMime_ConvertorName(this)); };
+	int count(QMimeData * mimeData) { return callbackQMacPasteboardMime_Count(this, mimeData); };
+	QString flavorFor(const QString & mime) { return QString(callbackQMacPasteboardMime_FlavorFor(this, const_cast<char*>(mime.toUtf8().constData()))); };
+	QString mimeFor(QString flav) { return QString(callbackQMacPasteboardMime_MimeFor(this, const_cast<char*>(flav.toUtf8().constData()))); };
 };
 
-int QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
+char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
 {
 	return static_cast<QMacPasteboardMime*>(ptr)->canConvert(QString(mime), QString(flav));
 }
 
 char* QMacPasteboardMime_ConvertorName(void* ptr)
 {
-	return static_cast<QMacPasteboardMime*>(ptr)->convertorName().toUtf8().data();
+	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->convertorName().toUtf8().constData());
 }
 
 int QMacPasteboardMime_Count(void* ptr, void* mimeData)
@@ -61,32 +58,17 @@ int QMacPasteboardMime_CountDefault(void* ptr, void* mimeData)
 
 char* QMacPasteboardMime_FlavorFor(void* ptr, char* mime)
 {
-	return static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString(mime)).toUtf8().data();
+	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString(mime)).toUtf8().constData());
 }
 
 char* QMacPasteboardMime_MimeFor(void* ptr, char* flav)
 {
-	return static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString(flav)).toUtf8().data();
+	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString(flav)).toUtf8().constData());
 }
 
 void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr)
 {
 	static_cast<QMacPasteboardMime*>(ptr)->~QMacPasteboardMime();
-}
-
-char* QMacPasteboardMime_ObjectNameAbs(void* ptr)
-{
-	if (dynamic_cast<MyQMacPasteboardMime*>(static_cast<QMacPasteboardMime*>(ptr))) {
-		return static_cast<MyQMacPasteboardMime*>(ptr)->objectNameAbs().toUtf8().data();
-	}
-	return QString("QMacPasteboardMime_BASE").toUtf8().data();
-}
-
-void QMacPasteboardMime_SetObjectNameAbs(void* ptr, char* name)
-{
-	if (dynamic_cast<MyQMacPasteboardMime*>(static_cast<QMacPasteboardMime*>(ptr))) {
-		static_cast<MyQMacPasteboardMime*>(ptr)->setObjectNameAbs(QString(name));
-	}
 }
 
 void* QMacToolBar_NewQMacToolBar(void* parent)
@@ -201,12 +183,12 @@ void QMacToolBar_DisconnectNotifyDefault(void* ptr, void* sign)
 #endif
 }
 
-int QMacToolBar_Event(void* ptr, void* e)
+char QMacToolBar_Event(void* ptr, void* e)
 {
 	return static_cast<QMacToolBar*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QMacToolBar_EventDefault(void* ptr, void* e)
+char QMacToolBar_EventDefault(void* ptr, void* e)
 {
 #ifdef Q_OS_OSX
 	return static_cast<QMacToolBar*>(ptr)->QMacToolBar::event(static_cast<QEvent*>(e));
@@ -215,12 +197,12 @@ int QMacToolBar_EventDefault(void* ptr, void* e)
 #endif
 }
 
-int QMacToolBar_EventFilter(void* ptr, void* watched, void* event)
+char QMacToolBar_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QMacToolBar*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QMacToolBar_EventFilterDefault(void* ptr, void* watched, void* event)
+char QMacToolBar_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 #ifdef Q_OS_OSX
 	return static_cast<QMacToolBar*>(ptr)->QMacToolBar::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -247,16 +229,16 @@ class MyQMacToolBarItem: public QMacToolBarItem
 {
 public:
 	MyQMacToolBarItem(QObject *parent) : QMacToolBarItem(parent) {};
-	void Signal_Activated() { callbackQMacToolBarItem_Activated(this, this->objectName().toUtf8().data()); };
-	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItem_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQMacToolBarItem_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQMacToolBarItem_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQMacToolBarItem_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQMacToolBarItem_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacToolBarItem_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBarItem_MetaObject(const_cast<MyQMacToolBarItem*>(this), this->objectName().toUtf8().data())); };
+	void Signal_Activated() { callbackQMacToolBarItem_Activated(this); };
+	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItem_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQMacToolBarItem_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQMacToolBarItem_CustomEvent(this, event); };
+	void deleteLater() { callbackQMacToolBarItem_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQMacToolBarItem_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacToolBarItem_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacToolBarItem_MetaObject(const_cast<MyQMacToolBarItem*>(this))); };
 };
 
 void* QMacToolBarItem_NewQMacToolBarItem(void* parent)
@@ -289,7 +271,7 @@ void* QMacToolBarItem_Icon(void* ptr)
 	return new QIcon(static_cast<QMacToolBarItem*>(ptr)->icon());
 }
 
-int QMacToolBarItem_Selectable(void* ptr)
+char QMacToolBarItem_Selectable(void* ptr)
 {
 	return static_cast<QMacToolBarItem*>(ptr)->selectable();
 }
@@ -299,12 +281,12 @@ void QMacToolBarItem_SetIcon(void* ptr, void* icon)
 	static_cast<QMacToolBarItem*>(ptr)->setIcon(*static_cast<QIcon*>(icon));
 }
 
-void QMacToolBarItem_SetSelectable(void* ptr, int selectable)
+void QMacToolBarItem_SetSelectable(void* ptr, char selectable)
 {
 	static_cast<QMacToolBarItem*>(ptr)->setSelectable(selectable != 0);
 }
 
-void QMacToolBarItem_SetStandardItem(void* ptr, int standardItem)
+void QMacToolBarItem_SetStandardItem(void* ptr, long long standardItem)
 {
 	static_cast<QMacToolBarItem*>(ptr)->setStandardItem(static_cast<QMacToolBarItem::StandardItem>(standardItem));
 }
@@ -314,14 +296,14 @@ void QMacToolBarItem_SetText(void* ptr, char* text)
 	static_cast<QMacToolBarItem*>(ptr)->setText(QString(text));
 }
 
-int QMacToolBarItem_StandardItem(void* ptr)
+long long QMacToolBarItem_StandardItem(void* ptr)
 {
 	return static_cast<QMacToolBarItem*>(ptr)->standardItem();
 }
 
 char* QMacToolBarItem_Text(void* ptr)
 {
-	return static_cast<QMacToolBarItem*>(ptr)->text().toUtf8().data();
+	return const_cast<char*>(static_cast<QMacToolBarItem*>(ptr)->text().toUtf8().constData());
 }
 
 void QMacToolBarItem_TimerEvent(void* ptr, void* event)
@@ -396,12 +378,12 @@ void QMacToolBarItem_DisconnectNotifyDefault(void* ptr, void* sign)
 #endif
 }
 
-int QMacToolBarItem_Event(void* ptr, void* e)
+char QMacToolBarItem_Event(void* ptr, void* e)
 {
 	return static_cast<QMacToolBarItem*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QMacToolBarItem_EventDefault(void* ptr, void* e)
+char QMacToolBarItem_EventDefault(void* ptr, void* e)
 {
 #ifdef Q_OS_OSX
 	return static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::event(static_cast<QEvent*>(e));
@@ -410,12 +392,12 @@ int QMacToolBarItem_EventDefault(void* ptr, void* e)
 #endif
 }
 
-int QMacToolBarItem_EventFilter(void* ptr, void* watched, void* event)
+char QMacToolBarItem_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QMacToolBarItem*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QMacToolBarItem_EventFilterDefault(void* ptr, void* watched, void* event)
+char QMacToolBarItem_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 #ifdef Q_OS_OSX
 	return static_cast<QMacToolBarItem*>(ptr)->QMacToolBarItem::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));

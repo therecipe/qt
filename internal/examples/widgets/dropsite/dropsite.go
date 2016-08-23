@@ -3,6 +3,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/therecipe/qt/core"
@@ -66,7 +67,8 @@ func main() {
 
 			default:
 				{
-					text = "can't display data"
+					var data = []byte(mimeData.Data(format))
+					text = fmt.Sprintf("len %v: %v", len(data), data)
 				}
 			}
 

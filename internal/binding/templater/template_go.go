@@ -97,10 +97,6 @@ func GoTemplate(module string, stub bool) []byte {
 						return bb.String()
 					}(),
 				)
-
-				if !class.IsQObjectSubClass() && len(class.GetBases()) > 1 && !needsCallbackFunctions(class) {
-					fmt.Fprintf(bb, "func (p *%v)ObjectNameAbs() string {\nif p != nil {\nreturn p.%v_PTR().ObjectNameAbs()\n}\nreturn \"\"\n}\n\n", class.Name, class.GetBases()[0])
-				}
 			}
 
 			fmt.Fprintf(bb, `
@@ -110,7 +106,7 @@ return ptr.%v_PTR().Pointer()
 }
 return nil
 }
-`, class.Name, class.Name, class.Name)
+`, strings.Title(class.Name), class.Name, class.Name)
 
 			fmt.Fprintf(bb, `
 func New%vFromPointer(ptr unsafe.Pointer) *%v {
@@ -119,30 +115,6 @@ n.SetPointer(ptr)
 return n
 }
 `, strings.Title(class.Name), class.Name, class.Name)
-
-			fmt.Fprintf(bb, `
-func new%vFromPointer(ptr unsafe.Pointer) *%v {
-var n = New%vFromPointer(ptr)%v
-return n
-}
-
-`, strings.Title(class.Name), class.Name, strings.Title(class.Name),
-
-				func() string {
-					if classIsSupported(class) {
-						if class.IsQObjectSubClass() || needsCallbackFunctions(class) {
-
-							var abs string
-							if !class.IsQObjectSubClass() {
-								abs = "Abs"
-							}
-
-							return fmt.Sprintf("\nfor len(n.ObjectName%v()) < len(\"%v_\") {\nn.SetObjectName%v(\"%v_\" + qt.Identifier())\n}", abs, class.Name, abs, class.Name)
-						}
-					}
-					return ""
-				}(),
-			)
 
 			if classNeedsDestructor(class) {
 				fmt.Fprintf(bb, `
@@ -292,6 +264,7 @@ func preambleGo(module string, input []byte, stub bool) []byte {
 
 package %v
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "%v.h"
 import "C"
@@ -371,11 +344,11 @@ import (
 		}(),
 	)
 
-	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime", "hex") {
+	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime", "hex", "fmt") {
 		m = strings.ToLower(m)
 		if strings.Contains(string(input), fmt.Sprintf("%v.", m)) {
 			switch m {
-			case "strings", "unsafe", "log", "runtime":
+			case "strings", "unsafe", "log", "runtime", "fmt":
 				{
 					fmt.Fprintf(bb, "\"%v\"\n", m)
 				}

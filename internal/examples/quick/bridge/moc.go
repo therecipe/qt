@@ -1,9 +1,11 @@
 package main
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "moc.h"
 import "C"
 import (
+	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"unsafe"
@@ -44,19 +46,11 @@ func NewQmlBridgeFromPointer(ptr unsafe.Pointer) *QmlBridge {
 	return n
 }
 
-func newQmlBridgeFromPointer(ptr unsafe.Pointer) *QmlBridge {
-	var n = NewQmlBridgeFromPointer(ptr)
-	for len(n.ObjectName()) < len("QmlBridge_") {
-		n.SetObjectName("QmlBridge_" + qt.Identifier())
-	}
-	return n
-}
-
 //export callbackQmlBridge_SendToQml
-func callbackQmlBridge_SendToQml(ptr unsafe.Pointer, ptrName *C.char, source *C.char, action *C.char, data *C.char) {
+func callbackQmlBridge_SendToQml(ptr unsafe.Pointer, source *C.char, action *C.char, data *C.char) {
 	defer qt.Recovering("callback QmlBridge::sendToQml")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sendToQml"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "sendToQml"); signal != nil {
 		signal.(func(string, string, string))(C.GoString(source), C.GoString(action), C.GoString(data))
 	}
 
@@ -67,7 +61,7 @@ func (ptr *QmlBridge) ConnectSendToQml(f func(source string, action string, data
 
 	if ptr.Pointer() != nil {
 		C.QmlBridge_ConnectSendToQml(ptr.Pointer())
-		qt.ConnectSignal(ptr.ObjectName(), "sendToQml", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "sendToQml", f)
 	}
 }
 
@@ -76,7 +70,7 @@ func (ptr *QmlBridge) DisconnectSendToQml() {
 
 	if ptr.Pointer() != nil {
 		C.QmlBridge_DisconnectSendToQml(ptr.Pointer())
-		qt.DisconnectSignal(ptr.ObjectName(), "sendToQml")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "sendToQml")
 	}
 }
 
@@ -95,10 +89,10 @@ func (ptr *QmlBridge) SendToQml(source string, action string, data string) {
 }
 
 //export callbackQmlBridge_SendToGo
-func callbackQmlBridge_SendToGo(ptr unsafe.Pointer, ptrName *C.char, source *C.char, action *C.char, data *C.char) {
+func callbackQmlBridge_SendToGo(ptr unsafe.Pointer, source *C.char, action *C.char, data *C.char) {
 	defer qt.Recovering("callback QmlBridge::sendToGo")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "sendToGo"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "sendToGo"); signal != nil {
 		signal.(func(string, string, string))(C.GoString(source), C.GoString(action), C.GoString(data))
 	}
 
@@ -109,7 +103,7 @@ func (ptr *QmlBridge) ConnectSendToGo(f func(source string, action string, data 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "sendToGo", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "sendToGo", f)
 	}
 }
 
@@ -118,7 +112,7 @@ func (ptr *QmlBridge) DisconnectSendToGo(source string, action string, data stri
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "sendToGo")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "sendToGo")
 	}
 }
 
@@ -137,10 +131,10 @@ func (ptr *QmlBridge) SendToGo(source string, action string, data string) {
 }
 
 //export callbackQmlBridge_RegisterToGo
-func callbackQmlBridge_RegisterToGo(ptr unsafe.Pointer, ptrName *C.char, object unsafe.Pointer) {
+func callbackQmlBridge_RegisterToGo(ptr unsafe.Pointer, object unsafe.Pointer) {
 	defer qt.Recovering("callback QmlBridge::registerToGo")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "registerToGo"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "registerToGo"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	}
 
@@ -151,7 +145,7 @@ func (ptr *QmlBridge) ConnectRegisterToGo(f func(object *core.QObject)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "registerToGo", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "registerToGo", f)
 	}
 }
 
@@ -160,7 +154,7 @@ func (ptr *QmlBridge) DisconnectRegisterToGo(object core.QObject_ITF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "registerToGo")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "registerToGo")
 	}
 }
 
@@ -173,10 +167,10 @@ func (ptr *QmlBridge) RegisterToGo(object core.QObject_ITF) {
 }
 
 //export callbackQmlBridge_DeregisterToGo
-func callbackQmlBridge_DeregisterToGo(ptr unsafe.Pointer, ptrName *C.char, objectName *C.char) {
+func callbackQmlBridge_DeregisterToGo(ptr unsafe.Pointer, objectName *C.char) {
 	defer qt.Recovering("callback QmlBridge::deregisterToGo")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deregisterToGo"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "deregisterToGo"); signal != nil {
 		signal.(func(string))(C.GoString(objectName))
 	}
 
@@ -187,7 +181,7 @@ func (ptr *QmlBridge) ConnectDeregisterToGo(f func(objectName string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deregisterToGo", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "deregisterToGo", f)
 	}
 }
 
@@ -196,7 +190,7 @@ func (ptr *QmlBridge) DisconnectDeregisterToGo(objectName string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deregisterToGo")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "deregisterToGo")
 	}
 }
 
@@ -213,24 +207,24 @@ func (ptr *QmlBridge) DeregisterToGo(objectName string) {
 func NewQmlBridge(parent core.QObject_ITF) *QmlBridge {
 	defer qt.Recovering("QmlBridge::QmlBridge")
 
-	return newQmlBridgeFromPointer(C.QmlBridge_NewQmlBridge(core.PointerFromQObject(parent)))
+	return NewQmlBridgeFromPointer(C.QmlBridge_NewQmlBridge(core.PointerFromQObject(parent)))
 }
 
 func (ptr *QmlBridge) DestroyQmlBridge() {
 	defer qt.Recovering("QmlBridge::~QmlBridge")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()))
 		C.QmlBridge_DestroyQmlBridge(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQmlBridge_TimerEvent
-func callbackQmlBridge_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQmlBridge_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QmlBridge::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQmlBridgeFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -242,7 +236,7 @@ func (ptr *QmlBridge) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -251,7 +245,7 @@ func (ptr *QmlBridge) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -272,10 +266,10 @@ func (ptr *QmlBridge) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQmlBridge_ChildEvent
-func callbackQmlBridge_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQmlBridge_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QmlBridge::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQmlBridgeFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -287,7 +281,7 @@ func (ptr *QmlBridge) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -296,7 +290,7 @@ func (ptr *QmlBridge) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -317,10 +311,10 @@ func (ptr *QmlBridge) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQmlBridge_ConnectNotify
-func callbackQmlBridge_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQmlBridge_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QmlBridge::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQmlBridgeFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -332,7 +326,7 @@ func (ptr *QmlBridge) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -341,7 +335,7 @@ func (ptr *QmlBridge) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -362,10 +356,10 @@ func (ptr *QmlBridge) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQmlBridge_CustomEvent
-func callbackQmlBridge_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQmlBridge_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QmlBridge::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQmlBridgeFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -377,7 +371,7 @@ func (ptr *QmlBridge) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -386,7 +380,7 @@ func (ptr *QmlBridge) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -407,10 +401,10 @@ func (ptr *QmlBridge) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQmlBridge_DeleteLater
-func callbackQmlBridge_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQmlBridge_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QmlBridge::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQmlBridgeFromPointer(ptr).DeleteLaterDefault()
@@ -422,7 +416,7 @@ func (ptr *QmlBridge) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -431,7 +425,7 @@ func (ptr *QmlBridge) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -439,7 +433,7 @@ func (ptr *QmlBridge) DeleteLater() {
 	defer qt.Recovering("QmlBridge::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()))
 		C.QmlBridge_DeleteLater(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
@@ -449,17 +443,17 @@ func (ptr *QmlBridge) DeleteLaterDefault() {
 	defer qt.Recovering("QmlBridge::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(ptr.ObjectName())
+		qt.DisconnectAllSignals(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()))
 		C.QmlBridge_DeleteLaterDefault(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
 
 //export callbackQmlBridge_DisconnectNotify
-func callbackQmlBridge_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQmlBridge_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QmlBridge::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQmlBridgeFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -471,7 +465,7 @@ func (ptr *QmlBridge) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -480,7 +474,7 @@ func (ptr *QmlBridge) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -501,14 +495,14 @@ func (ptr *QmlBridge) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQmlBridge_Event
-func callbackQmlBridge_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQmlBridge_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QmlBridge::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQmlBridgeFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQmlBridgeFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QmlBridge) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -516,7 +510,7 @@ func (ptr *QmlBridge) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -525,7 +519,7 @@ func (ptr *QmlBridge) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -548,14 +542,14 @@ func (ptr *QmlBridge) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQmlBridge_EventFilter
-func callbackQmlBridge_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQmlBridge_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QmlBridge::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QmlBridge(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQmlBridgeFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQmlBridgeFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QmlBridge) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -563,7 +557,7 @@ func (ptr *QmlBridge) ConnectEventFilter(f func(watched *core.QObject, event *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -572,7 +566,7 @@ func (ptr *QmlBridge) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QmlBridge(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 

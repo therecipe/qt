@@ -90,7 +90,7 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 
 func CppInputParametersForCallbackBody(function *parser.Function) (o string) {
 
-	var input = make([]string, len(function.Parameters)+2)
+	var input = make([]string, len(function.Parameters)+1)
 
 	if strings.Contains(strings.Split(function.Signature, ")")[1], "const") {
 
@@ -109,21 +109,8 @@ func CppInputParametersForCallbackBody(function *parser.Function) (o string) {
 		input[0] = "this"
 	}
 
-	input[1] = cppOutput(
-		fmt.Sprintf("this->objectName%v()",
-
-			func() string {
-				if parser.ClassMap[function.Class()].IsQObjectSubClass() {
-					return ""
-				}
-				return "Abs"
-			}(),
-		),
-
-		"QString", function)
-
 	for i, parameter := range function.Parameters {
-		input[i+2] = cppOutput(parameter.Name, parameter.Value, function)
+		input[i+1] = cppOutput(parameter.Name, parameter.Value, function)
 	}
 
 	return strings.Join(input, ", ")

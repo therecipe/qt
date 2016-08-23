@@ -24,41 +24,41 @@
 class MyQInAppProduct: public QInAppProduct
 {
 public:
-	void purchase() { callbackQInAppProduct_Purchase(this, this->objectName().toUtf8().data()); };
-	void timerEvent(QTimerEvent * event) { callbackQInAppProduct_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQInAppProduct_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQInAppProduct_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQInAppProduct_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQInAppProduct_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQInAppProduct_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQInAppProduct_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppProduct_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppProduct_MetaObject(const_cast<MyQInAppProduct*>(this), this->objectName().toUtf8().data())); };
+	void purchase() { callbackQInAppProduct_Purchase(this); };
+	void timerEvent(QTimerEvent * event) { callbackQInAppProduct_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQInAppProduct_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQInAppProduct_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQInAppProduct_CustomEvent(this, event); };
+	void deleteLater() { callbackQInAppProduct_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQInAppProduct_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQInAppProduct_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppProduct_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppProduct_MetaObject(const_cast<MyQInAppProduct*>(this))); };
 };
 
 char* QInAppProduct_Description(void* ptr)
 {
-	return static_cast<QInAppProduct*>(ptr)->description().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->description().toUtf8().constData());
 }
 
 char* QInAppProduct_Identifier(void* ptr)
 {
-	return static_cast<QInAppProduct*>(ptr)->identifier().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->identifier().toUtf8().constData());
 }
 
 char* QInAppProduct_Price(void* ptr)
 {
-	return static_cast<QInAppProduct*>(ptr)->price().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->price().toUtf8().constData());
 }
 
-int QInAppProduct_ProductType(void* ptr)
+long long QInAppProduct_ProductType(void* ptr)
 {
 	return static_cast<QInAppProduct*>(ptr)->productType();
 }
 
 char* QInAppProduct_Title(void* ptr)
 {
-	return static_cast<QInAppProduct*>(ptr)->title().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->title().toUtf8().constData());
 }
 
 void QInAppProduct_Purchase(void* ptr)
@@ -126,22 +126,22 @@ void QInAppProduct_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QInAppProduct*>(ptr)->QInAppProduct::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QInAppProduct_Event(void* ptr, void* e)
+char QInAppProduct_Event(void* ptr, void* e)
 {
 	return static_cast<QInAppProduct*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QInAppProduct_EventDefault(void* ptr, void* e)
+char QInAppProduct_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QInAppProduct*>(ptr)->QInAppProduct::event(static_cast<QEvent*>(e));
 }
 
-int QInAppProduct_EventFilter(void* ptr, void* watched, void* event)
+char QInAppProduct_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QInAppProduct*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QInAppProduct_EventFilterDefault(void* ptr, void* watched, void* event)
+char QInAppProduct_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QInAppProduct*>(ptr)->QInAppProduct::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -160,18 +160,18 @@ class MyQInAppStore: public QInAppStore
 {
 public:
 	MyQInAppStore(QObject *parent) : QInAppStore(parent) {};
-	void Signal_ProductRegistered(QInAppProduct * product) { callbackQInAppStore_ProductRegistered(this, this->objectName().toUtf8().data(), product); };
-	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { callbackQInAppStore_ProductUnknown(this, this->objectName().toUtf8().data(), productType, identifier.toUtf8().data()); };
-	void Signal_TransactionReady(QInAppTransaction * transaction) { callbackQInAppStore_TransactionReady(this, this->objectName().toUtf8().data(), transaction); };
-	void timerEvent(QTimerEvent * event) { callbackQInAppStore_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQInAppStore_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQInAppStore_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQInAppStore_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQInAppStore_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQInAppStore_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQInAppStore_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppStore_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppStore_MetaObject(const_cast<MyQInAppStore*>(this), this->objectName().toUtf8().data())); };
+	void Signal_ProductRegistered(QInAppProduct * product) { callbackQInAppStore_ProductRegistered(this, product); };
+	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { callbackQInAppStore_ProductUnknown(this, productType, const_cast<char*>(identifier.toUtf8().constData())); };
+	void Signal_TransactionReady(QInAppTransaction * transaction) { callbackQInAppStore_TransactionReady(this, transaction); };
+	void timerEvent(QTimerEvent * event) { callbackQInAppStore_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQInAppStore_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQInAppStore_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQInAppStore_CustomEvent(this, event); };
+	void deleteLater() { callbackQInAppStore_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQInAppStore_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQInAppStore_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppStore_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppStore_MetaObject(const_cast<MyQInAppStore*>(this))); };
 };
 
 void* QInAppStore_NewQInAppStore(void* parent)
@@ -204,12 +204,12 @@ void QInAppStore_DisconnectProductUnknown(void* ptr)
 	QObject::disconnect(static_cast<QInAppStore*>(ptr), static_cast<void (QInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&QInAppStore::productUnknown), static_cast<MyQInAppStore*>(ptr), static_cast<void (MyQInAppStore::*)(QInAppProduct::ProductType, const QString &)>(&MyQInAppStore::Signal_ProductUnknown));
 }
 
-void QInAppStore_ProductUnknown(void* ptr, int productType, char* identifier)
+void QInAppStore_ProductUnknown(void* ptr, long long productType, char* identifier)
 {
 	static_cast<QInAppStore*>(ptr)->productUnknown(static_cast<QInAppProduct::ProductType>(productType), QString(identifier));
 }
 
-void QInAppStore_RegisterProduct(void* ptr, int productType, char* identifier)
+void QInAppStore_RegisterProduct(void* ptr, long long productType, char* identifier)
 {
 	static_cast<QInAppStore*>(ptr)->registerProduct(static_cast<QInAppProduct::ProductType>(productType), QString(identifier));
 }
@@ -309,22 +309,22 @@ void QInAppStore_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QInAppStore*>(ptr)->QInAppStore::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QInAppStore_Event(void* ptr, void* e)
+char QInAppStore_Event(void* ptr, void* e)
 {
 	return static_cast<QInAppStore*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QInAppStore_EventDefault(void* ptr, void* e)
+char QInAppStore_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QInAppStore*>(ptr)->QInAppStore::event(static_cast<QEvent*>(e));
 }
 
-int QInAppStore_EventFilter(void* ptr, void* watched, void* event)
+char QInAppStore_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QInAppStore*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QInAppStore_EventFilterDefault(void* ptr, void* watched, void* event)
+char QInAppStore_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QInAppStore*>(ptr)->QInAppStore::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -342,51 +342,51 @@ void* QInAppStore_MetaObjectDefault(void* ptr)
 class MyQInAppTransaction: public QInAppTransaction
 {
 public:
-	QString errorString() const { return QString(callbackQInAppTransaction_ErrorString(const_cast<MyQInAppTransaction*>(this), this->objectName().toUtf8().data())); };
-	FailureReason failureReason() const { return static_cast<QInAppTransaction::FailureReason>(callbackQInAppTransaction_FailureReason(const_cast<MyQInAppTransaction*>(this), this->objectName().toUtf8().data())); };
-	QString orderId() const { return QString(callbackQInAppTransaction_OrderId(const_cast<MyQInAppTransaction*>(this), this->objectName().toUtf8().data())); };
-	QDateTime timestamp() const { return *static_cast<QDateTime*>(callbackQInAppTransaction_Timestamp(const_cast<MyQInAppTransaction*>(this), this->objectName().toUtf8().data())); };
-	void finalize() { callbackQInAppTransaction_Finalize(this, this->objectName().toUtf8().data()); };
-	QString platformProperty(const QString & propertyName) const { return QString(callbackQInAppTransaction_PlatformProperty(const_cast<MyQInAppTransaction*>(this), this->objectName().toUtf8().data(), propertyName.toUtf8().data())); };
-	void timerEvent(QTimerEvent * event) { callbackQInAppTransaction_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQInAppTransaction_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQInAppTransaction_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQInAppTransaction_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQInAppTransaction_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQInAppTransaction_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQInAppTransaction_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppTransaction_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppTransaction_MetaObject(const_cast<MyQInAppTransaction*>(this), this->objectName().toUtf8().data())); };
+	QString errorString() const { return QString(callbackQInAppTransaction_ErrorString(const_cast<MyQInAppTransaction*>(this))); };
+	FailureReason failureReason() const { return static_cast<QInAppTransaction::FailureReason>(callbackQInAppTransaction_FailureReason(const_cast<MyQInAppTransaction*>(this))); };
+	QString orderId() const { return QString(callbackQInAppTransaction_OrderId(const_cast<MyQInAppTransaction*>(this))); };
+	QDateTime timestamp() const { return *static_cast<QDateTime*>(callbackQInAppTransaction_Timestamp(const_cast<MyQInAppTransaction*>(this))); };
+	void finalize() { callbackQInAppTransaction_Finalize(this); };
+	QString platformProperty(const QString & propertyName) const { return QString(callbackQInAppTransaction_PlatformProperty(const_cast<MyQInAppTransaction*>(this), const_cast<char*>(propertyName.toUtf8().constData()))); };
+	void timerEvent(QTimerEvent * event) { callbackQInAppTransaction_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQInAppTransaction_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQInAppTransaction_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQInAppTransaction_CustomEvent(this, event); };
+	void deleteLater() { callbackQInAppTransaction_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQInAppTransaction_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQInAppTransaction_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInAppTransaction_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppTransaction_MetaObject(const_cast<MyQInAppTransaction*>(this))); };
 };
 
 char* QInAppTransaction_ErrorString(void* ptr)
 {
-	return static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8().constData());
 }
 
 char* QInAppTransaction_ErrorStringDefault(void* ptr)
 {
-	return static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8().constData());
 }
 
-int QInAppTransaction_FailureReason(void* ptr)
+long long QInAppTransaction_FailureReason(void* ptr)
 {
 	return static_cast<QInAppTransaction*>(ptr)->failureReason();
 }
 
-int QInAppTransaction_FailureReasonDefault(void* ptr)
+long long QInAppTransaction_FailureReasonDefault(void* ptr)
 {
 	return static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::failureReason();
 }
 
 char* QInAppTransaction_OrderId(void* ptr)
 {
-	return static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8().constData());
 }
 
 char* QInAppTransaction_OrderIdDefault(void* ptr)
 {
-	return static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8().constData());
 }
 
 void* QInAppTransaction_Product(void* ptr)
@@ -394,7 +394,7 @@ void* QInAppTransaction_Product(void* ptr)
 	return static_cast<QInAppTransaction*>(ptr)->product();
 }
 
-int QInAppTransaction_Status(void* ptr)
+long long QInAppTransaction_Status(void* ptr)
 {
 	return static_cast<QInAppTransaction*>(ptr)->status();
 }
@@ -416,12 +416,12 @@ void QInAppTransaction_Finalize(void* ptr)
 
 char* QInAppTransaction_PlatformProperty(void* ptr, char* propertyName)
 {
-	return static_cast<QInAppTransaction*>(ptr)->platformProperty(QString(propertyName)).toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->platformProperty(QString(propertyName)).toUtf8().constData());
 }
 
 char* QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName)
 {
-	return static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8().data();
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8().constData());
 }
 
 void QInAppTransaction_TimerEvent(void* ptr, void* event)
@@ -484,22 +484,22 @@ void QInAppTransaction_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QInAppTransaction_Event(void* ptr, void* e)
+char QInAppTransaction_Event(void* ptr, void* e)
 {
 	return static_cast<QInAppTransaction*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QInAppTransaction_EventDefault(void* ptr, void* e)
+char QInAppTransaction_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::event(static_cast<QEvent*>(e));
 }
 
-int QInAppTransaction_EventFilter(void* ptr, void* watched, void* event)
+char QInAppTransaction_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QInAppTransaction*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QInAppTransaction_EventFilterDefault(void* ptr, void* watched, void* event)
+char QInAppTransaction_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }

@@ -93,12 +93,6 @@ func CppTemplate(module string) []byte {
 						return ""
 					}())
 
-				if !class.IsQObjectSubClass() {
-					fmt.Fprintln(bb, "\tQString _objectName;")
-					fmt.Fprintln(bb, "\tQString objectNameAbs() const { return this->_objectName; };")
-					fmt.Fprintln(bb, "\tvoid setObjectNameAbs(const QString &name) { this->_objectName = name; };")
-				}
-
 				if !hasUnimplementedPureVirtualFunctions(class.Name) {
 					for _, function := range class.Functions {
 						if function.Meta == parser.CONSTRUCTOR {

@@ -14,12 +14,7 @@ func goOutput(name, value string, f *parser.Function) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "QStringList":
-		{
-			return fmt.Sprintf("strings.Split(%v, \"|\")", goOutput(name, "QString", f))
-		}
-
-	case "uchar", "char", "QString":
+	case "char", "qint8", "uchar", "quint8", "QString":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
@@ -29,14 +24,9 @@ func goOutput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("qt.HexDecodeToString(C.GoString(%v))", name)
 		}
 
-	case "int", "long":
+	case "QStringList":
 		{
-			return fmt.Sprintf("int(%v)", name)
-		}
-
-	case "bool":
-		{
-			return fmt.Sprintf("%v != 0", name)
+			return fmt.Sprintf("strings.Split(C.GoString(%v), \"|\")", name)
 		}
 
 	case "void", "":
@@ -44,20 +34,83 @@ func goOutput(name, value string, f *parser.Function) string {
 			if strings.Contains(vOld, "*") {
 				return fmt.Sprintf("unsafe.Pointer(%v)", name)
 			}
+
 			return name
 		}
+
+	case "bool":
+		{
+			return fmt.Sprintf("%v != 0", name)
+		}
+
+	case "short", "qint16":
+		{
+			return fmt.Sprintf("int16(%v)", name)
+		}
+
+	case "ushort", "unsigned short", "quint16":
+		{
+			return fmt.Sprintf("uint16(%v)", name)
+		}
+
+	case "int", "qint32":
+		{
+			return fmt.Sprintf("int(int32(%v))", name)
+		}
+
+	case "uint", "unsigned int", "quint32":
+		{
+			return fmt.Sprintf("uint(uint32(%v))", name)
+		}
+
+	case "long":
+		{
+			return fmt.Sprintf("int(int32(%v))", name)
+		}
+
+	case "ulong", "unsigned long":
+		{
+			return fmt.Sprintf("uint(uint32(%v))", name)
+		}
+
+	case "longlong", "long long", "qlonglong", "qint64":
+		{
+			return fmt.Sprintf("int64(%v)", name)
+		}
+
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
+		{
+			return fmt.Sprintf("uint64(%v)", name)
+		}
+
+	case "float":
+		{
+			return fmt.Sprintf("float32(%v)", name)
+		}
+
+	case "double", "qreal":
+		{
+			return fmt.Sprintf("float64(%v)", name)
+		}
+
+	case "uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			return fmt.Sprintf("uintptr(%v)", name)
+		}
+
+		//non std types
 
 	case "T", "JavaVM", "jclass", "jobject":
 		{
 			switch f.TemplateMode {
-			case "Int":
-				{
-					return fmt.Sprintf("int(%v)", name)
-				}
-
 			case "Boolean":
 				{
-					return fmt.Sprintf("int(%v) != 0", name)
+					return fmt.Sprintf("int8(%v) != 0", name)
+				}
+
+			case "Int":
+				{
+					return fmt.Sprintf("int(int32(%v))", name)
 				}
 
 			case "Void":
@@ -65,22 +118,8 @@ func goOutput(name, value string, f *parser.Function) string {
 					return name
 				}
 			}
+
 			return fmt.Sprintf("unsafe.Pointer(%v)", name)
-		}
-
-	case "qreal":
-		{
-			return fmt.Sprintf("float64(%v)", name)
-		}
-
-	case "qint64":
-		{
-			return fmt.Sprintf("int64(%v)", name)
-		}
-
-	case "WId":
-		{
-			return fmt.Sprintf("uintptr(%v)", name)
 		}
 	}
 
@@ -105,10 +144,6 @@ func goOutput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
 			}
 
-			if f.Meta == "constructor" {
-				return fmt.Sprintf("new%vFromPointer(%v)", strings.Title(value), name)
-			}
-
 			return fmt.Sprintf("New%vFromPointer(%v)", strings.Title(value), name)
 		}
 	}
@@ -123,17 +158,7 @@ func goOutputFailed(value string, f *parser.Function) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "bool":
-		{
-			return "false"
-		}
-
-	case "int", "qreal", "qint64", "WId", "long":
-		{
-			return "0"
-		}
-
-	case "uchar", "char", "QString", "QByteArray":
+	case "char", "qint8", "uchar", "quint8", "QString", "QByteArray":
 		{
 			return "\"\""
 		}
@@ -148,20 +173,49 @@ func goOutputFailed(value string, f *parser.Function) string {
 			if strings.Contains(vOld, "*") {
 				return "nil"
 			}
+
 			return ""
 		}
+
+	case "bool":
+		{
+			return "false"
+		}
+
+	case
+		"short", "qint16",
+		"ushort", "unsigned short", "quint16",
+
+		"int", "qint32",
+		"uint", "unsigned int", "quint32",
+
+		"long",
+		"ulong", "unsigned long",
+
+		"longlong", "long long", "qlonglong", "qint64",
+		"ulonglong", "unsigned long long", "qulonglong", "quint64",
+
+		"float",
+		"double", "qreal",
+
+		"uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			return "0"
+		}
+
+		//non std types
 
 	case "T", "JavaVM", "jclass", "jobject":
 		{
 			switch f.TemplateMode {
-			case "Int":
-				{
-					return "0"
-				}
-
 			case "Boolean":
 				{
 					return "false"
+				}
+
+			case "Int":
+				{
+					return "0"
 				}
 
 			case "Void":
@@ -202,12 +256,7 @@ func cgoOutput(name, value string, f *parser.Function) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "QStringList":
-		{
-			return fmt.Sprintf("strings.Split(%v, \"|\")", cgoOutput(name, "QString", f))
-		}
-
-	case "uchar", "char", "QString":
+	case "char", "qint8", "uchar", "quint8", "QString":
 		{
 			return fmt.Sprintf("C.GoString(%v)", name)
 		}
@@ -217,14 +266,9 @@ func cgoOutput(name, value string, f *parser.Function) string {
 			return fmt.Sprintf("qt.HexDecodeToString(C.GoString(%v))", name)
 		}
 
-	case "int", "long":
+	case "QStringList":
 		{
-			return fmt.Sprintf("int(%v)", name)
-		}
-
-	case "bool":
-		{
-			return fmt.Sprintf("%v != 0", cgoOutput(name, "int", f))
+			return fmt.Sprintf("strings.Split(C.GoString(%v), \"|\")", name)
 		}
 
 	case "void", "":
@@ -232,20 +276,66 @@ func cgoOutput(name, value string, f *parser.Function) string {
 			if strings.Contains(vOld, "*") {
 				return name
 			}
+
 			return ""
 		}
 
-	case "qreal":
+	case "bool":
 		{
-			return fmt.Sprintf("float64(%v)", name)
+			return fmt.Sprintf("int8(%v) != 0", name)
 		}
 
-	case "qint64":
+	case "short", "qint16":
+		{
+			return fmt.Sprintf("int16(%v)", name)
+		}
+
+	case "ushort", "unsigned short", "quint16":
+		{
+			return fmt.Sprintf("uint16(%v)", name)
+		}
+
+	case "int", "qint32":
+		{
+			return fmt.Sprintf("int(int32(%v))", name)
+		}
+
+	case "uint", "unsigned int", "quint32":
+		{
+			return fmt.Sprintf("uint(uint32(%v))", name)
+		}
+
+	case "long":
+		{
+			return fmt.Sprintf("int(int32(%v))", name)
+		}
+
+	case "ulong", "unsigned long":
+		{
+			return fmt.Sprintf("uint(uint32(%v))", name)
+		}
+
+	case "longlong", "long long", "qlonglong", "qint64":
 		{
 			return fmt.Sprintf("int64(%v)", name)
 		}
 
-	case "WId":
+	case "ulonglong", "unsigned long long", "qulonglong", "quint64":
+		{
+			return fmt.Sprintf("uint64(%v)", name)
+		}
+
+	case "float":
+		{
+			return fmt.Sprintf("float32(%v)", name)
+		}
+
+	case "double", "qreal":
+		{
+			return fmt.Sprintf("float64(%v)", name)
+		}
+
+	case "uintptr_t", "uintptr", "quintptr", "WId":
 		{
 			return fmt.Sprintf("uintptr(%v)", name)
 		}
@@ -256,7 +346,7 @@ func cgoOutput(name, value string, f *parser.Function) string {
 		{
 			if c, exists := parser.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
 				if parser.ClassMap[f.Class()].WeakLink[c.Module] {
-					return fmt.Sprintf("unsafe.Pointer(%v)", name)
+					return fmt.Sprintf("int64%v)", name)
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
 			}
@@ -284,87 +374,87 @@ func CppOutput(name, value string, f *parser.Function) string {
 }
 
 func cppOutput(name, value string, f *parser.Function) string {
-
 	var vOld = value
 
 	name = cleanName(name, value)
 	value = CleanValue(value)
 
 	switch value {
-	case "QStringList":
+	case "char", "qint8":
 		{
-			return cppOutput(fmt.Sprintf("%v.join(\"|\")", name), "QString", f)
+			return cppOutput(fmt.Sprintf("QString(%v)", name), "QString", f)
+		}
+
+	case "uchar", "quint8":
+		{
+			if strings.Contains(vOld, "*") {
+				return cppOutput(fmt.Sprintf("QString(QChar(*%v))", name), "QString", f)
+			}
+
+			return cppOutput(fmt.Sprintf("QString(QChar(%v))", name), "QString", f)
 		}
 
 	case "QString":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("%v->toUtf8().data()", name)
+				return fmt.Sprintf("const_cast<char*>(%v->toUtf8().constData())", name)
 			}
-			return fmt.Sprintf("%v.toUtf8().data()", name)
-		}
 
-	case "char":
-		{
-			return cppOutput(fmt.Sprintf("QString(%v)", name), "QString", f)
+			return fmt.Sprintf("const_cast<char*>(%v.toUtf8().constData())", name)
 		}
 
 	case "QByteArray":
 		{
-			return fmt.Sprintf("%v.toHex().data()", name)
+			return fmt.Sprintf("const_cast<char*>(%v.toHex().constData())", name)
 		}
 
-	case "bool", "int", "long", "void", "", "T", "JavaVM", "jclass", "jobject":
+	case "QStringList":
 		{
-			if f.Fullname == "QMimeData::imageData" {
-				return fmt.Sprintf("new QImage(qvariant_cast<QImage>(%v))", name)
-			}
+			return cppOutput(fmt.Sprintf("%v.join(\"|\")", name), "QString", f)
+		}
 
-			if value == "void" {
-				if strings.Contains(vOld, "*") {
-					if strings.Contains(vOld, "const") {
-						return fmt.Sprintf("const_cast<%v*>(%v)", value, name)
-					}
-					return name
-				}
-			}
+	case
+		"bool",
 
-			switch value {
-			case "bool", "int", "long":
-				{
-					if strings.Contains(vOld, "*") {
-						return fmt.Sprintf("*%v", name)
-					}
-				}
-			}
+		"short", "qint16",
+		"ushort", "unsigned short", "quint16",
 
-			if value == "T" {
-				if strings.Contains(vOld, "*") {
-					if strings.Contains(vOld, "const") {
-						return fmt.Sprintf("const_cast<void*>(%v)", name)
-					}
-				}
+		"int", "qint32",
+		"uint", "unsigned int", "quint32",
+
+		"long",
+		"ulong", "unsigned long",
+
+		"longlong", "long long", "qlonglong", "qint64",
+		"ulonglong", "unsigned long long", "qulonglong", "quint64",
+
+		"float",
+		"double", "qreal",
+
+		"uintptr_t", "uintptr", "quintptr", "WId":
+		{
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("*%v", name)
 			}
 
 			return name
 		}
 
-	case "qreal":
+		//non std types
+
+	case "void", "", "T", "JavaVM", "jclass", "jobject":
 		{
-			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("*static_cast<double*>(%v)", name)
+			if f.Fullname == "QMimeData::imageData" {
+				return fmt.Sprintf("new QImage(qvariant_cast<QImage>(%v))", name)
 			}
-			return fmt.Sprintf("static_cast<double>(%v)", name)
-		}
 
-	case "qint64":
-		{
-			return fmt.Sprintf("static_cast<long long>(%v)", name)
-		}
+			if value == "void" || value == "T" {
+				if strings.Contains(vOld, "*") && strings.Contains(vOld, "const") {
+					return fmt.Sprintf("const_cast<void*>(%v)", name)
+				}
+			}
 
-	case "WId":
-		{
-			return fmt.Sprintf("static_cast<unsigned long long>(%v)", name)
+			return name
 		}
 	}
 
@@ -429,7 +519,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 			}
 
 			for _, f := range parser.ClassMap[value].Functions {
-				if f.Meta == "constructor" {
+				if f.Meta == parser.CONSTRUCTOR {
 					if len(f.Parameters) == 1 {
 						if CleanValue(f.Parameters[0].Value) == value {
 							return fmt.Sprintf("new %v(%v)", value, name)

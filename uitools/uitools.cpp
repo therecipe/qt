@@ -27,19 +27,19 @@ class MyQUiLoader: public QUiLoader
 {
 public:
 	MyQUiLoader(QObject *parent) : QUiLoader(parent) {};
-	QAction * createAction(QObject * parent, const QString & name) { return static_cast<QAction*>(callbackQUiLoader_CreateAction(this, this->objectName().toUtf8().data(), parent, name.toUtf8().data())); };
-	QActionGroup * createActionGroup(QObject * parent, const QString & name) { return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, this->objectName().toUtf8().data(), parent, name.toUtf8().data())); };
-	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, this->objectName().toUtf8().data(), className.toUtf8().data(), parent, name.toUtf8().data())); };
-	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, this->objectName().toUtf8().data(), className.toUtf8().data(), parent, name.toUtf8().data())); };
-	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQUiLoader_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQUiLoader_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQUiLoader_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQUiLoader_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQUiLoader_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQUiLoader_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUiLoader_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<MyQUiLoader*>(this), this->objectName().toUtf8().data())); };
+	QAction * createAction(QObject * parent, const QString & name) { return static_cast<QAction*>(callbackQUiLoader_CreateAction(this, parent, const_cast<char*>(name.toUtf8().constData()))); };
+	QActionGroup * createActionGroup(QObject * parent, const QString & name) { return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, parent, const_cast<char*>(name.toUtf8().constData()))); };
+	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, const_cast<char*>(className.toUtf8().constData()), parent, const_cast<char*>(name.toUtf8().constData()))); };
+	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, const_cast<char*>(className.toUtf8().constData()), parent, const_cast<char*>(name.toUtf8().constData()))); };
+	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQUiLoader_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQUiLoader_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQUiLoader_CustomEvent(this, event); };
+	void deleteLater() { callbackQUiLoader_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQUiLoader_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQUiLoader_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUiLoader_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUiLoader_MetaObject(const_cast<MyQUiLoader*>(this))); };
 };
 
 void* QUiLoader_NewQUiLoader(void* parent)
@@ -54,12 +54,12 @@ void QUiLoader_AddPluginPath(void* ptr, char* path)
 
 char* QUiLoader_AvailableLayouts(void* ptr)
 {
-	return static_cast<QUiLoader*>(ptr)->availableLayouts().join("|").toUtf8().data();
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->availableLayouts().join("|").toUtf8().constData());
 }
 
 char* QUiLoader_AvailableWidgets(void* ptr)
 {
-	return static_cast<QUiLoader*>(ptr)->availableWidgets().join("|").toUtf8().data();
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->availableWidgets().join("|").toUtf8().constData());
 }
 
 void QUiLoader_ClearPluginPaths(void* ptr)
@@ -109,10 +109,10 @@ void* QUiLoader_CreateWidgetDefault(void* ptr, char* className, void* parent, ch
 
 char* QUiLoader_ErrorString(void* ptr)
 {
-	return static_cast<QUiLoader*>(ptr)->errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->errorString().toUtf8().constData());
 }
 
-int QUiLoader_IsLanguageChangeEnabled(void* ptr)
+char QUiLoader_IsLanguageChangeEnabled(void* ptr)
 {
 	return static_cast<QUiLoader*>(ptr)->isLanguageChangeEnabled();
 }
@@ -124,10 +124,10 @@ void* QUiLoader_Load(void* ptr, void* device, void* parentWidget)
 
 char* QUiLoader_PluginPaths(void* ptr)
 {
-	return static_cast<QUiLoader*>(ptr)->pluginPaths().join("|").toUtf8().data();
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->pluginPaths().join("|").toUtf8().constData());
 }
 
-void QUiLoader_SetLanguageChangeEnabled(void* ptr, int enabled)
+void QUiLoader_SetLanguageChangeEnabled(void* ptr, char enabled)
 {
 	static_cast<QUiLoader*>(ptr)->setLanguageChangeEnabled(enabled != 0);
 }
@@ -207,22 +207,22 @@ void QUiLoader_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QUiLoader*>(ptr)->QUiLoader::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QUiLoader_Event(void* ptr, void* e)
+char QUiLoader_Event(void* ptr, void* e)
 {
 	return static_cast<QUiLoader*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QUiLoader_EventDefault(void* ptr, void* e)
+char QUiLoader_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QUiLoader*>(ptr)->QUiLoader::event(static_cast<QEvent*>(e));
 }
 
-int QUiLoader_EventFilter(void* ptr, void* watched, void* event)
+char QUiLoader_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QUiLoader*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QUiLoader_EventFilterDefault(void* ptr, void* watched, void* event)
+char QUiLoader_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QUiLoader*>(ptr)->QUiLoader::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }

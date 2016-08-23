@@ -5,6 +5,8 @@
 #ifndef GO_QTSAILFISH_H
 #define GO_QTSAILFISH_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif

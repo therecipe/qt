@@ -19,6 +19,8 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 		(f.Fullname == "QPixmapCache::remove" || f.Fullname == "QPixmapCache::insert") && f.OverloadNumber == "2",
 		f.Fullname == "QPixmapCache::replace",
 
+		f.Fullname == "QNdefFilter::appendRecord" && !f.Overload, //QNdefRecord::TypeNameFormat -> uint
+
 		f.Class() == "QSimpleXmlNodeModel" && f.Meta == parser.CONSTRUCTOR,
 
 		f.Fullname == "QSGMaterialShader::attributeNames",
@@ -404,32 +406,6 @@ func getSortedClassesForModule(module string) []*parser.Class {
 		output[i] = parser.ClassMap[name]
 	}
 	return output
-}
-
-//TODO: move to parser
-func addCallbackNameFunctions(c *parser.Class) {
-	if !c.IsQObjectSubClass() && needsCallbackFunctions(c) {
-		c.Functions = append(c.Functions, &parser.Function{
-			Name:     "objectNameAbs",
-			Fullname: c.Name + "::" + "objectNameAbs",
-			Access:   "public",
-			Meta:     parser.PLAIN,
-			Output:   "QString",
-			Export:   true,
-		})
-		c.Functions = append(c.Functions, &parser.Function{
-			Name:     "setObjectNameAbs",
-			Fullname: c.Name + "::" + "setObjectNameAbs",
-			Access:   "public",
-			Meta:     parser.PLAIN,
-			Output:   parser.VOID,
-			Parameters: []*parser.Parameter{&parser.Parameter{
-				Name:  "name",
-				Value: "QString",
-			}},
-			Export: true,
-		})
-	}
 }
 
 func manualWeakLink(module string) {

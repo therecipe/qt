@@ -5,6 +5,8 @@
 #ifndef GO_MAIN_H
 #define GO_MAIN_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,10 +29,10 @@ void QmlBridge_DeleteLater(void* ptr);
 void QmlBridge_DeleteLaterDefault(void* ptr);
 void QmlBridge_DisconnectNotify(void* ptr, void* sign);
 void QmlBridge_DisconnectNotifyDefault(void* ptr, void* sign);
-int QmlBridge_Event(void* ptr, void* e);
-int QmlBridge_EventDefault(void* ptr, void* e);
-int QmlBridge_EventFilter(void* ptr, void* watched, void* event);
-int QmlBridge_EventFilterDefault(void* ptr, void* watched, void* event);
+char QmlBridge_Event(void* ptr, void* e);
+char QmlBridge_EventDefault(void* ptr, void* e);
+char QmlBridge_EventFilter(void* ptr, void* watched, void* event);
+char QmlBridge_EventFilterDefault(void* ptr, void* watched, void* event);
 ;
 ;
 

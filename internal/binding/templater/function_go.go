@@ -86,13 +86,7 @@ func goFunctionBody(function *parser.Function) string {
 
 	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater")) && function.SignalMode == "" {
 		if needsCallbackFunctions(parser.ClassMap[function.Class()]) {
-			fmt.Fprintf(bb, "qt.DisconnectAllSignals(ptr.ObjectName%v())\n",
-				func() string {
-					if !parser.ClassMap[function.Class()].IsQObjectSubClass() {
-						return "Abs"
-					}
-					return ""
-				}())
+			fmt.Fprintf(bb, "qt.DisconnectAllSignals(fmt.Sprintf(\"%v(%%v)\", ptr.Pointer()))\n", function.Class())
 		}
 	}
 
@@ -126,7 +120,7 @@ func goFunctionBody(function *parser.Function) string {
 
 				fmt.Fprint(bb, func() string {
 					if converter.GoHeaderOutput(function) != "" {
-						if function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) {
+						if function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) || classIsSupported(parser.ClassMap[function.Class()]) && function.Meta == parser.CONSTRUCTOR && !parser.ClassMap[function.Class()].IsQObjectSubClass() {
 							return fmt.Sprintf(`var tmpValue = %v
 runtime.SetFinalizer(tmpValue, (%v).Destroy%v)
 return tmpValue%v`, body,
@@ -138,7 +132,18 @@ return tmpValue%v`, body,
 									return converter.GoHeaderOutput(function)
 								}(),
 
-								converter.CleanValue(function.Output),
+								func() string {
+									var out = strings.TrimPrefix(converter.GoHeaderOutput(function), "*")
+									if strings.Contains(out, ".") {
+										return strings.Split(out, ".")[1]
+									}
+
+									if function.TemplateMode != "" {
+										return converter.CleanValue(function.Output)
+									}
+
+									return out
+								}(),
 
 								func() string {
 									if function.TemplateMode == "String" {
@@ -163,14 +168,14 @@ return tmpValue%v`, body,
 	switch function.SignalMode {
 	case parser.CALLBACK:
 		{
-
-			fmt.Fprintf(bb, "%vif signal := qt.GetSignal(C.GoString(ptrName), \"%v%v\"); signal != nil {\n",
+			fmt.Fprintf(bb, "%vif signal := qt.GetSignal(fmt.Sprintf(\"%v(%%v)\", ptr), \"%v%v\"); signal != nil {\n",
 				func() string {
 					if function.Meta != parser.SLOT {
 						return "\n"
 					}
 					return ""
-				}(), function.Name, function.OverloadNumber)
+				}(),
+				function.Class(), function.Name, function.OverloadNumber)
 
 			if converter.GoHeaderOutput(function) == "" {
 				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
@@ -216,16 +221,10 @@ return tmpValue%v`, body,
 
 	case parser.CONNECT, parser.DISCONNECT:
 		{
-			fmt.Fprintf(bb, "\nqt.%vSignal(ptr.ObjectName%v(), \"%v%v\"%v)",
-
+			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprintf(\"%v(%%v)\", ptr.Pointer()), \"%v%v\"%v)",
 				function.SignalMode,
 
-				func() string {
-					if !parser.ClassMap[function.Class()].IsQObjectSubClass() {
-						return "Abs"
-					}
-					return ""
-				}(),
+				function.Class(),
 
 				function.Name,
 

@@ -21,22 +21,22 @@ class QmlBridge: public QObject
 Q_OBJECT
 public:
 	QmlBridge(QObject *parent) : QObject(parent) {};
-	void Signal_SendToQml(QString source, QString action, QString data) { callbackQmlBridge_SendToQml(this, this->objectName().toUtf8().data(), source.toUtf8().data(), action.toUtf8().data(), data.toUtf8().data()); };
-	void timerEvent(QTimerEvent * event) { callbackQmlBridge_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQmlBridge_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQmlBridge_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQmlBridge_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQmlBridge_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQmlBridge_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQmlBridge_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQmlBridge_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
+	void Signal_SendToQml(QString source, QString action, QString data) { callbackQmlBridge_SendToQml(this, const_cast<char*>(source.toUtf8().constData()), const_cast<char*>(action.toUtf8().constData()), const_cast<char*>(data.toUtf8().constData())); };
+	void timerEvent(QTimerEvent * event) { callbackQmlBridge_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQmlBridge_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQmlBridge_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQmlBridge_CustomEvent(this, event); };
+	void deleteLater() { callbackQmlBridge_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQmlBridge_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQmlBridge_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQmlBridge_EventFilter(this, watched, event) != 0; };
 	
 signals:
 	void sendToQml(QString source, QString action, QString data);
 public slots:
-	void sendToGo(QString source, QString action, QString data) { callbackQmlBridge_SendToGo(this, this->objectName().toUtf8().data(), source.toUtf8().data(), action.toUtf8().data(), data.toUtf8().data()); };
-	void registerToGo(QObject* object) { callbackQmlBridge_RegisterToGo(this, this->objectName().toUtf8().data(), object); };
-	void deregisterToGo(QString objectName) { callbackQmlBridge_DeregisterToGo(this, this->objectName().toUtf8().data(), objectName.toUtf8().data()); };
+	void sendToGo(QString source, QString action, QString data) { callbackQmlBridge_SendToGo(this, const_cast<char*>(source.toUtf8().constData()), const_cast<char*>(action.toUtf8().constData()), const_cast<char*>(data.toUtf8().constData())); };
+	void registerToGo(QObject* object) { callbackQmlBridge_RegisterToGo(this, object); };
+	void deregisterToGo(QString objectName) { callbackQmlBridge_DeregisterToGo(this, const_cast<char*>(objectName.toUtf8().constData())); };
 };
 
 void QmlBridge_ConnectSendToQml(void* ptr)
@@ -139,22 +139,22 @@ void QmlBridge_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QmlBridge*>(ptr)->QObject::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QmlBridge_Event(void* ptr, void* e)
+char QmlBridge_Event(void* ptr, void* e)
 {
 	return static_cast<QmlBridge*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QmlBridge_EventDefault(void* ptr, void* e)
+char QmlBridge_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QmlBridge*>(ptr)->QObject::event(static_cast<QEvent*>(e));
 }
 
-int QmlBridge_EventFilter(void* ptr, void* watched, void* event)
+char QmlBridge_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QmlBridge*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QmlBridge_EventFilterDefault(void* ptr, void* watched, void* event)
+char QmlBridge_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QmlBridge*>(ptr)->QObject::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }

@@ -181,29 +181,6 @@ func cppFunctionBodyFailed(function *parser.Function) string {
 
 func cppFunctionBody(function *parser.Function) string {
 
-	if function.Name == "objectNameAbs" || function.Name == "setObjectNameAbs" {
-		return fmt.Sprintf("\tif (dynamic_cast<My%v*>(static_cast<%v*>(ptr))) {\n\t\t%v%v;\n\t}%v",
-
-			function.Class(), function.Class(),
-
-			func() string {
-				if function.Name == "objectNameAbs" {
-					return "return "
-				}
-				return ""
-			}(),
-
-			converter.CppOutputParameters(function, fmt.Sprintf("static_cast<My%v*>(ptr)->%v%v(%v)", function.Class(), function.Name, converter.CppOutputParametersDeducedFromGeneric(function), converter.CppInputParameters(function))),
-
-			func() string {
-				if function.Name == "objectNameAbs" {
-					return fmt.Sprintf("\n\treturn QString(\"%v_BASE\").toUtf8().data();", function.Class())
-				}
-				return ""
-			}(),
-		)
-	}
-
 	switch function.Meta {
 	case parser.CONSTRUCTOR:
 		{
@@ -214,7 +191,7 @@ func cppFunctionBody(function *parser.Function) string {
 	char *argvs[argc];
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
-		argvs[i] = aList[i].data();
+		argvs[i] = const_cast<char*>(aList[i].constData());
 
 `
 					}
@@ -285,7 +262,7 @@ func cppFunctionBody(function *parser.Function) string {
 	char *argvs[argc];
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
-	argvs[i] = aList[i].data();
+	argvs[i] = const_cast<char*>(aList[i].constData());
 
 	return %v(%v);`,
 

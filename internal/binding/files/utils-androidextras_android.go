@@ -30,14 +30,64 @@ func assertion(key int, input ...interface{}) (unsafe.Pointer, func()) {
 				return jObject2.Object(), func() { jObject2.DestroyQAndroidJniObject() }
 			}
 
+		case bool:
+			{
+				return unsafe.Pointer(uintptr(C.char(int8(qt.GoBoolToInt(deduced))))), nil
+			}
+
+		case int16:
+			{
+				return unsafe.Pointer(uintptr(C.short(deduced))), nil
+			}
+
+		case uint16:
+			{
+				return unsafe.Pointer(uintptr(C.ushort(deduced))), nil
+			}
+
 		case int:
+			{
+				return unsafe.Pointer(uintptr(C.int(int32(deduced)))), nil
+			}
+
+		case uint:
+			{
+				return unsafe.Pointer(uintptr(C.uint(uint32(deduced)))), nil
+			}
+
+		case int32:
 			{
 				return unsafe.Pointer(uintptr(C.int(deduced))), nil
 			}
 
-		case bool:
+		case uint32:
 			{
-				return unsafe.Pointer(uintptr(C.int(qt.GoBoolToInt(deduced)))), nil
+				return unsafe.Pointer(uintptr(C.uint(deduced))), nil
+			}
+
+		case int64:
+			{
+				return unsafe.Pointer(uintptr(C.longlong(deduced))), nil
+			}
+
+		case uint64:
+			{
+				return unsafe.Pointer(uintptr(C.ulonglong(deduced))), nil
+			}
+
+		case float32:
+			{
+				return unsafe.Pointer(uintptr(C.float(deduced))), nil
+			}
+
+		case float64:
+			{
+				return unsafe.Pointer(uintptr(C.double(deduced))), nil
+			}
+
+		case uintptr:
+			{
+				return unsafe.Pointer(deduced), nil
 			}
 
 		case unsafe.Pointer:

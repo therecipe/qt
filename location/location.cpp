@@ -38,22 +38,22 @@ void* QGeoManeuver_NewQGeoManeuver2(void* other)
 	return new QGeoManeuver(*static_cast<QGeoManeuver*>(other));
 }
 
-int QGeoManeuver_Direction(void* ptr)
+long long QGeoManeuver_Direction(void* ptr)
 {
 	return static_cast<QGeoManeuver*>(ptr)->direction();
 }
 
 double QGeoManeuver_DistanceToNextInstruction(void* ptr)
 {
-	return static_cast<double>(static_cast<QGeoManeuver*>(ptr)->distanceToNextInstruction());
+	return static_cast<QGeoManeuver*>(ptr)->distanceToNextInstruction();
 }
 
 char* QGeoManeuver_InstructionText(void* ptr)
 {
-	return static_cast<QGeoManeuver*>(ptr)->instructionText().toUtf8().data();
+	return const_cast<char*>(static_cast<QGeoManeuver*>(ptr)->instructionText().toUtf8().constData());
 }
 
-int QGeoManeuver_IsValid(void* ptr)
+char QGeoManeuver_IsValid(void* ptr)
 {
 	return static_cast<QGeoManeuver*>(ptr)->isValid();
 }
@@ -63,14 +63,14 @@ void* QGeoManeuver_Position(void* ptr)
 	return new QGeoCoordinate(static_cast<QGeoManeuver*>(ptr)->position());
 }
 
-void QGeoManeuver_SetDirection(void* ptr, int direction)
+void QGeoManeuver_SetDirection(void* ptr, long long direction)
 {
 	static_cast<QGeoManeuver*>(ptr)->setDirection(static_cast<QGeoManeuver::InstructionDirection>(direction));
 }
 
 void QGeoManeuver_SetDistanceToNextInstruction(void* ptr, double distance)
 {
-	static_cast<QGeoManeuver*>(ptr)->setDistanceToNextInstruction(static_cast<double>(distance));
+	static_cast<QGeoManeuver*>(ptr)->setDistanceToNextInstruction(distance);
 }
 
 void QGeoManeuver_SetInstructionText(void* ptr, char* instructionText)
@@ -125,7 +125,7 @@ void* QGeoRoute_Bounds(void* ptr)
 
 double QGeoRoute_Distance(void* ptr)
 {
-	return static_cast<double>(static_cast<QGeoRoute*>(ptr)->distance());
+	return static_cast<QGeoRoute*>(ptr)->distance();
 }
 
 void* QGeoRoute_FirstRouteSegment(void* ptr)
@@ -140,7 +140,7 @@ void* QGeoRoute_Request(void* ptr)
 
 char* QGeoRoute_RouteId(void* ptr)
 {
-	return static_cast<QGeoRoute*>(ptr)->routeId().toUtf8().data();
+	return const_cast<char*>(static_cast<QGeoRoute*>(ptr)->routeId().toUtf8().constData());
 }
 
 void QGeoRoute_SetBounds(void* ptr, void* bounds)
@@ -150,7 +150,7 @@ void QGeoRoute_SetBounds(void* ptr, void* bounds)
 
 void QGeoRoute_SetDistance(void* ptr, double distance)
 {
-	static_cast<QGeoRoute*>(ptr)->setDistance(static_cast<double>(distance));
+	static_cast<QGeoRoute*>(ptr)->setDistance(distance);
 }
 
 void QGeoRoute_SetFirstRouteSegment(void* ptr, void* routeSegment)
@@ -168,7 +168,7 @@ void QGeoRoute_SetRouteId(void* ptr, char* id)
 	static_cast<QGeoRoute*>(ptr)->setRouteId(QString(id));
 }
 
-void QGeoRoute_SetTravelMode(void* ptr, int mode)
+void QGeoRoute_SetTravelMode(void* ptr, long long mode)
 {
 	static_cast<QGeoRoute*>(ptr)->setTravelMode(static_cast<QGeoRouteRequest::TravelMode>(mode));
 }
@@ -178,7 +178,7 @@ void QGeoRoute_SetTravelTime(void* ptr, int secs)
 	static_cast<QGeoRoute*>(ptr)->setTravelTime(secs);
 }
 
-int QGeoRoute_TravelMode(void* ptr)
+long long QGeoRoute_TravelMode(void* ptr)
 {
 	return static_cast<QGeoRoute*>(ptr)->travelMode();
 }
@@ -198,21 +198,21 @@ class MyQGeoRouteReply: public QGeoRouteReply
 public:
 	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent) : QGeoRouteReply(error, errorString, parent) {};
 	MyQGeoRouteReply(const QGeoRouteRequest &request, QObject *parent) : QGeoRouteReply(request, parent) {};
-	void abort() { callbackQGeoRouteReply_Abort(this, this->objectName().toUtf8().data()); };
-	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { callbackQGeoRouteReply_Error2(this, this->objectName().toUtf8().data(), error, errorString.toUtf8().data()); };
-	void Signal_Finished() { callbackQGeoRouteReply_Finished(this, this->objectName().toUtf8().data()); };
-	void timerEvent(QTimerEvent * event) { callbackQGeoRouteReply_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQGeoRouteReply_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQGeoRouteReply_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQGeoRouteReply_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQGeoRouteReply_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRouteReply_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQGeoRouteReply_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoRouteReply_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRouteReply_MetaObject(const_cast<MyQGeoRouteReply*>(this), this->objectName().toUtf8().data())); };
+	void abort() { callbackQGeoRouteReply_Abort(this); };
+	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { callbackQGeoRouteReply_Error2(this, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Finished() { callbackQGeoRouteReply_Finished(this); };
+	void timerEvent(QTimerEvent * event) { callbackQGeoRouteReply_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQGeoRouteReply_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQGeoRouteReply_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQGeoRouteReply_CustomEvent(this, event); };
+	void deleteLater() { callbackQGeoRouteReply_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRouteReply_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQGeoRouteReply_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoRouteReply_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRouteReply_MetaObject(const_cast<MyQGeoRouteReply*>(this))); };
 };
 
-void* QGeoRouteReply_NewQGeoRouteReply(int error, char* errorString, void* parent)
+void* QGeoRouteReply_NewQGeoRouteReply(long long error, char* errorString, void* parent)
 {
 	return new MyQGeoRouteReply(static_cast<QGeoRouteReply::Error>(error), QString(errorString), static_cast<QObject*>(parent));
 }
@@ -242,19 +242,19 @@ void QGeoRouteReply_DisconnectError2(void* ptr)
 	QObject::disconnect(static_cast<QGeoRouteReply*>(ptr), static_cast<void (QGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&QGeoRouteReply::error), static_cast<MyQGeoRouteReply*>(ptr), static_cast<void (MyQGeoRouteReply::*)(QGeoRouteReply::Error, const QString &)>(&MyQGeoRouteReply::Signal_Error2));
 }
 
-void QGeoRouteReply_Error2(void* ptr, int error, char* errorString)
+void QGeoRouteReply_Error2(void* ptr, long long error, char* errorString)
 {
 	static_cast<QGeoRouteReply*>(ptr)->error(static_cast<QGeoRouteReply::Error>(error), QString(errorString));
 }
 
-int QGeoRouteReply_Error(void* ptr)
+long long QGeoRouteReply_Error(void* ptr)
 {
 	return static_cast<QGeoRouteReply*>(ptr)->error();
 }
 
 char* QGeoRouteReply_ErrorString(void* ptr)
 {
-	return static_cast<QGeoRouteReply*>(ptr)->errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QGeoRouteReply*>(ptr)->errorString().toUtf8().constData());
 }
 
 void QGeoRouteReply_ConnectFinished(void* ptr)
@@ -272,7 +272,7 @@ void QGeoRouteReply_Finished(void* ptr)
 	static_cast<QGeoRouteReply*>(ptr)->finished();
 }
 
-int QGeoRouteReply_IsFinished(void* ptr)
+char QGeoRouteReply_IsFinished(void* ptr)
 {
 	return static_cast<QGeoRouteReply*>(ptr)->isFinished();
 }
@@ -282,12 +282,12 @@ void* QGeoRouteReply_Request(void* ptr)
 	return new QGeoRouteRequest(static_cast<QGeoRouteReply*>(ptr)->request());
 }
 
-void QGeoRouteReply_SetError(void* ptr, int error, char* errorString)
+void QGeoRouteReply_SetError(void* ptr, long long error, char* errorString)
 {
 	static_cast<QGeoRouteReply*>(ptr)->setError(static_cast<QGeoRouteReply::Error>(error), QString(errorString));
 }
 
-void QGeoRouteReply_SetFinished(void* ptr, int finished)
+void QGeoRouteReply_SetFinished(void* ptr, char finished)
 {
 	static_cast<QGeoRouteReply*>(ptr)->setFinished(finished != 0);
 }
@@ -357,22 +357,22 @@ void QGeoRouteReply_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QGeoRouteReply_Event(void* ptr, void* e)
+char QGeoRouteReply_Event(void* ptr, void* e)
 {
 	return static_cast<QGeoRouteReply*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QGeoRouteReply_EventDefault(void* ptr, void* e)
+char QGeoRouteReply_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::event(static_cast<QEvent*>(e));
 }
 
-int QGeoRouteReply_EventFilter(void* ptr, void* watched, void* event)
+char QGeoRouteReply_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoRouteReply*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QGeoRouteReply_EventFilterDefault(void* ptr, void* watched, void* event)
+char QGeoRouteReply_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoRouteReply*>(ptr)->QGeoRouteReply::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -397,12 +397,12 @@ void* QGeoRouteRequest_NewQGeoRouteRequest3(void* other)
 	return new QGeoRouteRequest(*static_cast<QGeoRouteRequest*>(other));
 }
 
-int QGeoRouteRequest_FeatureWeight(void* ptr, int featureType)
+long long QGeoRouteRequest_FeatureWeight(void* ptr, long long featureType)
 {
 	return static_cast<QGeoRouteRequest*>(ptr)->featureWeight(static_cast<QGeoRouteRequest::FeatureType>(featureType));
 }
 
-int QGeoRouteRequest_ManeuverDetail(void* ptr)
+long long QGeoRouteRequest_ManeuverDetail(void* ptr)
 {
 	return static_cast<QGeoRouteRequest*>(ptr)->maneuverDetail();
 }
@@ -412,22 +412,22 @@ int QGeoRouteRequest_NumberAlternativeRoutes(void* ptr)
 	return static_cast<QGeoRouteRequest*>(ptr)->numberAlternativeRoutes();
 }
 
-int QGeoRouteRequest_RouteOptimization(void* ptr)
+long long QGeoRouteRequest_RouteOptimization(void* ptr)
 {
 	return static_cast<QGeoRouteRequest*>(ptr)->routeOptimization();
 }
 
-int QGeoRouteRequest_SegmentDetail(void* ptr)
+long long QGeoRouteRequest_SegmentDetail(void* ptr)
 {
 	return static_cast<QGeoRouteRequest*>(ptr)->segmentDetail();
 }
 
-void QGeoRouteRequest_SetFeatureWeight(void* ptr, int featureType, int featureWeight)
+void QGeoRouteRequest_SetFeatureWeight(void* ptr, long long featureType, long long featureWeight)
 {
 	static_cast<QGeoRouteRequest*>(ptr)->setFeatureWeight(static_cast<QGeoRouteRequest::FeatureType>(featureType), static_cast<QGeoRouteRequest::FeatureWeight>(featureWeight));
 }
 
-void QGeoRouteRequest_SetManeuverDetail(void* ptr, int maneuverDetail)
+void QGeoRouteRequest_SetManeuverDetail(void* ptr, long long maneuverDetail)
 {
 	static_cast<QGeoRouteRequest*>(ptr)->setManeuverDetail(static_cast<QGeoRouteRequest::ManeuverDetail>(maneuverDetail));
 }
@@ -437,22 +437,22 @@ void QGeoRouteRequest_SetNumberAlternativeRoutes(void* ptr, int alternatives)
 	static_cast<QGeoRouteRequest*>(ptr)->setNumberAlternativeRoutes(alternatives);
 }
 
-void QGeoRouteRequest_SetRouteOptimization(void* ptr, int optimization)
+void QGeoRouteRequest_SetRouteOptimization(void* ptr, long long optimization)
 {
 	static_cast<QGeoRouteRequest*>(ptr)->setRouteOptimization(static_cast<QGeoRouteRequest::RouteOptimization>(optimization));
 }
 
-void QGeoRouteRequest_SetSegmentDetail(void* ptr, int segmentDetail)
+void QGeoRouteRequest_SetSegmentDetail(void* ptr, long long segmentDetail)
 {
 	static_cast<QGeoRouteRequest*>(ptr)->setSegmentDetail(static_cast<QGeoRouteRequest::SegmentDetail>(segmentDetail));
 }
 
-void QGeoRouteRequest_SetTravelModes(void* ptr, int travelModes)
+void QGeoRouteRequest_SetTravelModes(void* ptr, long long travelModes)
 {
 	static_cast<QGeoRouteRequest*>(ptr)->setTravelModes(static_cast<QGeoRouteRequest::TravelMode>(travelModes));
 }
 
-int QGeoRouteRequest_TravelModes(void* ptr)
+long long QGeoRouteRequest_TravelModes(void* ptr)
 {
 	return static_cast<QGeoRouteRequest*>(ptr)->travelModes();
 }
@@ -474,10 +474,10 @@ void* QGeoRouteSegment_NewQGeoRouteSegment2(void* other)
 
 double QGeoRouteSegment_Distance(void* ptr)
 {
-	return static_cast<double>(static_cast<QGeoRouteSegment*>(ptr)->distance());
+	return static_cast<QGeoRouteSegment*>(ptr)->distance();
 }
 
-int QGeoRouteSegment_IsValid(void* ptr)
+char QGeoRouteSegment_IsValid(void* ptr)
 {
 	return static_cast<QGeoRouteSegment*>(ptr)->isValid();
 }
@@ -494,7 +494,7 @@ void* QGeoRouteSegment_NextRouteSegment(void* ptr)
 
 void QGeoRouteSegment_SetDistance(void* ptr, double distance)
 {
-	static_cast<QGeoRouteSegment*>(ptr)->setDistance(static_cast<double>(distance));
+	static_cast<QGeoRouteSegment*>(ptr)->setDistance(distance);
 }
 
 void QGeoRouteSegment_SetManeuver(void* ptr, void* maneuver)
@@ -525,17 +525,17 @@ void QGeoRouteSegment_DestroyQGeoRouteSegment(void* ptr)
 class MyQGeoRoutingManager: public QGeoRoutingManager
 {
 public:
-	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManager_Error(this, this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data()); };
-	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManager_Finished(this, this->objectName().toUtf8().data(), reply); };
-	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManager_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQGeoRoutingManager_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManager_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQGeoRoutingManager_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQGeoRoutingManager_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManager_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQGeoRoutingManager_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoRoutingManager_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManager_MetaObject(const_cast<MyQGeoRoutingManager*>(this), this->objectName().toUtf8().data())); };
+	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManager_Error(this, reply, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManager_Finished(this, reply); };
+	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManager_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQGeoRoutingManager_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQGeoRoutingManager_CustomEvent(this, event); };
+	void deleteLater() { callbackQGeoRoutingManager_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManager_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQGeoRoutingManager_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoRoutingManager_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManager_MetaObject(const_cast<MyQGeoRoutingManager*>(this))); };
 };
 
 void* QGeoRoutingManager_CalculateRoute(void* ptr, void* request)
@@ -553,7 +553,7 @@ void QGeoRoutingManager_DisconnectError(void* ptr)
 	QObject::disconnect(static_cast<QGeoRoutingManager*>(ptr), static_cast<void (QGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManager::error), static_cast<MyQGeoRoutingManager*>(ptr), static_cast<void (MyQGeoRoutingManager::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManager::Signal_Error));
 }
 
-void QGeoRoutingManager_Error(void* ptr, void* reply, int error, char* errorString)
+void QGeoRoutingManager_Error(void* ptr, void* reply, long long error, char* errorString)
 {
 	static_cast<QGeoRoutingManager*>(ptr)->error(static_cast<QGeoRouteReply*>(reply), static_cast<QGeoRouteReply::Error>(error), QString(errorString));
 }
@@ -580,7 +580,7 @@ void* QGeoRoutingManager_Locale(void* ptr)
 
 char* QGeoRoutingManager_ManagerName(void* ptr)
 {
-	return static_cast<QGeoRoutingManager*>(ptr)->managerName().toUtf8().data();
+	return const_cast<char*>(static_cast<QGeoRoutingManager*>(ptr)->managerName().toUtf8().constData());
 }
 
 int QGeoRoutingManager_ManagerVersion(void* ptr)
@@ -588,7 +588,7 @@ int QGeoRoutingManager_ManagerVersion(void* ptr)
 	return static_cast<QGeoRoutingManager*>(ptr)->managerVersion();
 }
 
-int QGeoRoutingManager_MeasurementSystem(void* ptr)
+long long QGeoRoutingManager_MeasurementSystem(void* ptr)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->measurementSystem();
 }
@@ -598,37 +598,37 @@ void QGeoRoutingManager_SetLocale(void* ptr, void* locale)
 	static_cast<QGeoRoutingManager*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
 }
 
-void QGeoRoutingManager_SetMeasurementSystem(void* ptr, int system)
+void QGeoRoutingManager_SetMeasurementSystem(void* ptr, long long system)
 {
 	static_cast<QGeoRoutingManager*>(ptr)->setMeasurementSystem(static_cast<QLocale::MeasurementSystem>(system));
 }
 
-int QGeoRoutingManager_SupportedFeatureTypes(void* ptr)
+long long QGeoRoutingManager_SupportedFeatureTypes(void* ptr)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedFeatureTypes();
 }
 
-int QGeoRoutingManager_SupportedFeatureWeights(void* ptr)
+long long QGeoRoutingManager_SupportedFeatureWeights(void* ptr)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedFeatureWeights();
 }
 
-int QGeoRoutingManager_SupportedManeuverDetails(void* ptr)
+long long QGeoRoutingManager_SupportedManeuverDetails(void* ptr)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedManeuverDetails();
 }
 
-int QGeoRoutingManager_SupportedRouteOptimizations(void* ptr)
+long long QGeoRoutingManager_SupportedRouteOptimizations(void* ptr)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedRouteOptimizations();
 }
 
-int QGeoRoutingManager_SupportedSegmentDetails(void* ptr)
+long long QGeoRoutingManager_SupportedSegmentDetails(void* ptr)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedSegmentDetails();
 }
 
-int QGeoRoutingManager_SupportedTravelModes(void* ptr)
+long long QGeoRoutingManager_SupportedTravelModes(void* ptr)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->supportedTravelModes();
 }
@@ -703,22 +703,22 @@ void QGeoRoutingManager_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QGeoRoutingManager_Event(void* ptr, void* e)
+char QGeoRoutingManager_Event(void* ptr, void* e)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QGeoRoutingManager_EventDefault(void* ptr, void* e)
+char QGeoRoutingManager_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::event(static_cast<QEvent*>(e));
 }
 
-int QGeoRoutingManager_EventFilter(void* ptr, void* watched, void* event)
+char QGeoRoutingManager_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QGeoRoutingManager_EventFilterDefault(void* ptr, void* watched, void* event)
+char QGeoRoutingManager_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoRoutingManager*>(ptr)->QGeoRoutingManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -736,19 +736,19 @@ void* QGeoRoutingManager_MetaObjectDefault(void* ptr)
 class MyQGeoRoutingManagerEngine: public QGeoRoutingManagerEngine
 {
 public:
-	QGeoRouteReply * calculateRoute(const QGeoRouteRequest & request) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_CalculateRoute(this, this->objectName().toUtf8().data(), const_cast<QGeoRouteRequest*>(&request))); };
-	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManagerEngine_Error(this, this->objectName().toUtf8().data(), reply, error, errorString.toUtf8().data()); };
-	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManagerEngine_Finished(this, this->objectName().toUtf8().data(), reply); };
-	QGeoRouteReply * updateRoute(const QGeoRoute & route, const QGeoCoordinate & position) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_UpdateRoute(this, this->objectName().toUtf8().data(), const_cast<QGeoRoute*>(&route), const_cast<QGeoCoordinate*>(&position))); };
-	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManagerEngine_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackQGeoRoutingManagerEngine_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManagerEngine_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQGeoRoutingManagerEngine_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackQGeoRoutingManagerEngine_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManagerEngine_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQGeoRoutingManagerEngine_Event(this, this->objectName().toUtf8().data(), e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoRoutingManagerEngine_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManagerEngine_MetaObject(const_cast<MyQGeoRoutingManagerEngine*>(this), this->objectName().toUtf8().data())); };
+	QGeoRouteReply * calculateRoute(const QGeoRouteRequest & request) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_CalculateRoute(this, const_cast<QGeoRouteRequest*>(&request))); };
+	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManagerEngine_Error(this, reply, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManagerEngine_Finished(this, reply); };
+	QGeoRouteReply * updateRoute(const QGeoRoute & route, const QGeoCoordinate & position) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_UpdateRoute(this, const_cast<QGeoRoute*>(&route), const_cast<QGeoCoordinate*>(&position))); };
+	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManagerEngine_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQGeoRoutingManagerEngine_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManagerEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQGeoRoutingManagerEngine_CustomEvent(this, event); };
+	void deleteLater() { callbackQGeoRoutingManagerEngine_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQGeoRoutingManagerEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQGeoRoutingManagerEngine_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGeoRoutingManagerEngine_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGeoRoutingManagerEngine_MetaObject(const_cast<MyQGeoRoutingManagerEngine*>(this))); };
 };
 
 void* QGeoRoutingManagerEngine_CalculateRoute(void* ptr, void* request)
@@ -766,7 +766,7 @@ void QGeoRoutingManagerEngine_DisconnectError(void* ptr)
 	QObject::disconnect(static_cast<QGeoRoutingManagerEngine*>(ptr), static_cast<void (QGeoRoutingManagerEngine::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&QGeoRoutingManagerEngine::error), static_cast<MyQGeoRoutingManagerEngine*>(ptr), static_cast<void (MyQGeoRoutingManagerEngine::*)(QGeoRouteReply *, QGeoRouteReply::Error, QString)>(&MyQGeoRoutingManagerEngine::Signal_Error));
 }
 
-void QGeoRoutingManagerEngine_Error(void* ptr, void* reply, int error, char* errorString)
+void QGeoRoutingManagerEngine_Error(void* ptr, void* reply, long long error, char* errorString)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->error(static_cast<QGeoRouteReply*>(reply), static_cast<QGeoRouteReply::Error>(error), QString(errorString));
 }
@@ -793,7 +793,7 @@ void* QGeoRoutingManagerEngine_Locale(void* ptr)
 
 char* QGeoRoutingManagerEngine_ManagerName(void* ptr)
 {
-	return static_cast<QGeoRoutingManagerEngine*>(ptr)->managerName().toUtf8().data();
+	return const_cast<char*>(static_cast<QGeoRoutingManagerEngine*>(ptr)->managerName().toUtf8().constData());
 }
 
 int QGeoRoutingManagerEngine_ManagerVersion(void* ptr)
@@ -801,7 +801,7 @@ int QGeoRoutingManagerEngine_ManagerVersion(void* ptr)
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->managerVersion();
 }
 
-int QGeoRoutingManagerEngine_MeasurementSystem(void* ptr)
+long long QGeoRoutingManagerEngine_MeasurementSystem(void* ptr)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->measurementSystem();
 }
@@ -811,67 +811,67 @@ void QGeoRoutingManagerEngine_SetLocale(void* ptr, void* locale)
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setLocale(*static_cast<QLocale*>(locale));
 }
 
-void QGeoRoutingManagerEngine_SetMeasurementSystem(void* ptr, int system)
+void QGeoRoutingManagerEngine_SetMeasurementSystem(void* ptr, long long system)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setMeasurementSystem(static_cast<QLocale::MeasurementSystem>(system));
 }
 
-void QGeoRoutingManagerEngine_SetSupportedFeatureTypes(void* ptr, int featureTypes)
+void QGeoRoutingManagerEngine_SetSupportedFeatureTypes(void* ptr, long long featureTypes)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setSupportedFeatureTypes(static_cast<QGeoRouteRequest::FeatureType>(featureTypes));
 }
 
-void QGeoRoutingManagerEngine_SetSupportedFeatureWeights(void* ptr, int featureWeights)
+void QGeoRoutingManagerEngine_SetSupportedFeatureWeights(void* ptr, long long featureWeights)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setSupportedFeatureWeights(static_cast<QGeoRouteRequest::FeatureWeight>(featureWeights));
 }
 
-void QGeoRoutingManagerEngine_SetSupportedManeuverDetails(void* ptr, int maneuverDetails)
+void QGeoRoutingManagerEngine_SetSupportedManeuverDetails(void* ptr, long long maneuverDetails)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setSupportedManeuverDetails(static_cast<QGeoRouteRequest::ManeuverDetail>(maneuverDetails));
 }
 
-void QGeoRoutingManagerEngine_SetSupportedRouteOptimizations(void* ptr, int optimizations)
+void QGeoRoutingManagerEngine_SetSupportedRouteOptimizations(void* ptr, long long optimizations)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setSupportedRouteOptimizations(static_cast<QGeoRouteRequest::RouteOptimization>(optimizations));
 }
 
-void QGeoRoutingManagerEngine_SetSupportedSegmentDetails(void* ptr, int segmentDetails)
+void QGeoRoutingManagerEngine_SetSupportedSegmentDetails(void* ptr, long long segmentDetails)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setSupportedSegmentDetails(static_cast<QGeoRouteRequest::SegmentDetail>(segmentDetails));
 }
 
-void QGeoRoutingManagerEngine_SetSupportedTravelModes(void* ptr, int travelModes)
+void QGeoRoutingManagerEngine_SetSupportedTravelModes(void* ptr, long long travelModes)
 {
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->setSupportedTravelModes(static_cast<QGeoRouteRequest::TravelMode>(travelModes));
 }
 
-int QGeoRoutingManagerEngine_SupportedFeatureTypes(void* ptr)
+long long QGeoRoutingManagerEngine_SupportedFeatureTypes(void* ptr)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->supportedFeatureTypes();
 }
 
-int QGeoRoutingManagerEngine_SupportedFeatureWeights(void* ptr)
+long long QGeoRoutingManagerEngine_SupportedFeatureWeights(void* ptr)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->supportedFeatureWeights();
 }
 
-int QGeoRoutingManagerEngine_SupportedManeuverDetails(void* ptr)
+long long QGeoRoutingManagerEngine_SupportedManeuverDetails(void* ptr)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->supportedManeuverDetails();
 }
 
-int QGeoRoutingManagerEngine_SupportedRouteOptimizations(void* ptr)
+long long QGeoRoutingManagerEngine_SupportedRouteOptimizations(void* ptr)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->supportedRouteOptimizations();
 }
 
-int QGeoRoutingManagerEngine_SupportedSegmentDetails(void* ptr)
+long long QGeoRoutingManagerEngine_SupportedSegmentDetails(void* ptr)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->supportedSegmentDetails();
 }
 
-int QGeoRoutingManagerEngine_SupportedTravelModes(void* ptr)
+long long QGeoRoutingManagerEngine_SupportedTravelModes(void* ptr)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->supportedTravelModes();
 }
@@ -951,22 +951,22 @@ void QGeoRoutingManagerEngine_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QGeoRoutingManagerEngine_Event(void* ptr, void* e)
+char QGeoRoutingManagerEngine_Event(void* ptr, void* e)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QGeoRoutingManagerEngine_EventDefault(void* ptr, void* e)
+char QGeoRoutingManagerEngine_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::event(static_cast<QEvent*>(e));
 }
 
-int QGeoRoutingManagerEngine_EventFilter(void* ptr, void* watched, void* event)
+char QGeoRoutingManagerEngine_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QGeoRoutingManagerEngine_EventFilterDefault(void* ptr, void* watched, void* event)
+char QGeoRoutingManagerEngine_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoRoutingManagerEngine*>(ptr)->QGeoRoutingManagerEngine::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -1123,20 +1123,20 @@ int QGeoServiceProvider_AnyRoutingFeatures_Type()
 
 char* QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()
 {
-	return QGeoServiceProvider::availableServiceProviders().join("|").toUtf8().data();
+	return const_cast<char*>(QGeoServiceProvider::availableServiceProviders().join("|").toUtf8().constData());
 }
 
-int QGeoServiceProvider_Error(void* ptr)
+long long QGeoServiceProvider_Error(void* ptr)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->error();
 }
 
 char* QGeoServiceProvider_ErrorString(void* ptr)
 {
-	return static_cast<QGeoServiceProvider*>(ptr)->errorString().toUtf8().data();
+	return const_cast<char*>(static_cast<QGeoServiceProvider*>(ptr)->errorString().toUtf8().constData());
 }
 
-int QGeoServiceProvider_GeocodingFeatures(void* ptr)
+long long QGeoServiceProvider_GeocodingFeatures(void* ptr)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->geocodingFeatures();
 }
@@ -1146,7 +1146,7 @@ void* QGeoServiceProvider_GeocodingManager(void* ptr)
 	return static_cast<QGeoServiceProvider*>(ptr)->geocodingManager();
 }
 
-int QGeoServiceProvider_MappingFeatures(void* ptr)
+long long QGeoServiceProvider_MappingFeatures(void* ptr)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->mappingFeatures();
 }
@@ -1156,12 +1156,12 @@ void* QGeoServiceProvider_PlaceManager(void* ptr)
 	return static_cast<QGeoServiceProvider*>(ptr)->placeManager();
 }
 
-int QGeoServiceProvider_PlacesFeatures(void* ptr)
+long long QGeoServiceProvider_PlacesFeatures(void* ptr)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->placesFeatures();
 }
 
-int QGeoServiceProvider_RoutingFeatures(void* ptr)
+long long QGeoServiceProvider_RoutingFeatures(void* ptr)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->routingFeatures();
 }
@@ -1171,7 +1171,7 @@ void* QGeoServiceProvider_RoutingManager(void* ptr)
 	return static_cast<QGeoServiceProvider*>(ptr)->routingManager();
 }
 
-void QGeoServiceProvider_SetAllowExperimental(void* ptr, int allow)
+void QGeoServiceProvider_SetAllowExperimental(void* ptr, char allow)
 {
 	static_cast<QGeoServiceProvider*>(ptr)->setAllowExperimental(allow != 0);
 }
@@ -1246,22 +1246,22 @@ void QGeoServiceProvider_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QGeoServiceProvider_Event(void* ptr, void* e)
+char QGeoServiceProvider_Event(void* ptr, void* e)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QGeoServiceProvider_EventDefault(void* ptr, void* e)
+char QGeoServiceProvider_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::event(static_cast<QEvent*>(e));
 }
 
-int QGeoServiceProvider_EventFilter(void* ptr, void* watched, void* event)
+char QGeoServiceProvider_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QGeoServiceProvider_EventFilterDefault(void* ptr, void* watched, void* event)
+char QGeoServiceProvider_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGeoServiceProvider*>(ptr)->QGeoServiceProvider::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -1279,28 +1279,10 @@ void* QGeoServiceProvider_MetaObjectDefault(void* ptr)
 class MyQGeoServiceProviderFactory: public QGeoServiceProviderFactory
 {
 public:
-	QString _objectName;
-	QString objectNameAbs() const { return this->_objectName; };
-	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
 };
 
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr)
 {
 	static_cast<QGeoServiceProviderFactory*>(ptr)->~QGeoServiceProviderFactory();
-}
-
-char* QGeoServiceProviderFactory_ObjectNameAbs(void* ptr)
-{
-	if (dynamic_cast<MyQGeoServiceProviderFactory*>(static_cast<QGeoServiceProviderFactory*>(ptr))) {
-		return static_cast<MyQGeoServiceProviderFactory*>(ptr)->objectNameAbs().toUtf8().data();
-	}
-	return QString("QGeoServiceProviderFactory_BASE").toUtf8().data();
-}
-
-void QGeoServiceProviderFactory_SetObjectNameAbs(void* ptr, char* name)
-{
-	if (dynamic_cast<MyQGeoServiceProviderFactory*>(static_cast<QGeoServiceProviderFactory*>(ptr))) {
-		static_cast<MyQGeoServiceProviderFactory*>(ptr)->setObjectNameAbs(QString(name));
-	}
 }
 

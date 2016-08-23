@@ -2,6 +2,7 @@
 
 package sailfish
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "sailfish_sailfish.h"
 import "C"
@@ -53,11 +54,6 @@ func NewSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
 	return n
 }
 
-func newSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
-	var n = NewSailfishAppFromPointer(ptr)
-	return n
-}
-
 func (ptr *SailfishApp) DestroySailfishApp() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -68,7 +64,7 @@ func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 
 	var argvC = C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
-	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(argc), argvC))
+	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
 }
 
 func (ptr *SailfishApp) Application(argc int, argv []string) *gui.QGuiApplication {
@@ -76,7 +72,7 @@ func (ptr *SailfishApp) Application(argc int, argv []string) *gui.QGuiApplicatio
 
 	var argvC = C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
-	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(argc), argvC))
+	return gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
 }
 
 func SailfishApp_Main(argc int, argv []string) int {
@@ -84,7 +80,7 @@ func SailfishApp_Main(argc int, argv []string) int {
 
 	var argvC = C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
-	return int(C.SailfishApp_SailfishApp_Main(C.int(argc), argvC))
+	return int(int32(C.SailfishApp_SailfishApp_Main(C.int(int32(argc)), argvC)))
 }
 
 func (ptr *SailfishApp) Main(argc int, argv []string) int {
@@ -92,7 +88,7 @@ func (ptr *SailfishApp) Main(argc int, argv []string) int {
 
 	var argvC = C.CString(strings.Join(argv, "|"))
 	defer C.free(unsafe.Pointer(argvC))
-	return int(C.SailfishApp_SailfishApp_Main(C.int(argc), argvC))
+	return int(int32(C.SailfishApp_SailfishApp_Main(C.int(int32(argc)), argvC)))
 }
 
 func SailfishApp_CreateView() *quick.QQuickView {

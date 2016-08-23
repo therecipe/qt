@@ -51,74 +51,74 @@ class DropArea: public QLabel
 Q_OBJECT
 public:
 	DropArea(QWidget *parent, Qt::WindowFlags f) : QLabel(parent, f) {};
-	void Signal_Changed(QMimeData* mimeData) { callbackDropArea_Changed(this, this->objectName().toUtf8().data(), mimeData); };
-	void setPixmap(const QPixmap & vqp) { callbackDropArea_SetPixmap(this, this->objectName().toUtf8().data(), const_cast<QPixmap*>(&vqp)); };
-	void setText(const QString & vqs) { callbackDropArea_SetText(this, this->objectName().toUtf8().data(), vqs.toUtf8().data()); };
-	void changeEvent(QEvent * ev) { callbackDropArea_ChangeEvent(this, this->objectName().toUtf8().data(), ev); };
-	void clear() { callbackDropArea_Clear(this, this->objectName().toUtf8().data()); };
-	void contextMenuEvent(QContextMenuEvent * ev) { callbackDropArea_ContextMenuEvent(this, this->objectName().toUtf8().data(), ev); };
-	void focusInEvent(QFocusEvent * ev) { callbackDropArea_FocusInEvent(this, this->objectName().toUtf8().data(), ev); };
-	bool focusNextPrevChild(bool next) { return callbackDropArea_FocusNextPrevChild(this, this->objectName().toUtf8().data(), next) != 0; };
-	void focusOutEvent(QFocusEvent * ev) { callbackDropArea_FocusOutEvent(this, this->objectName().toUtf8().data(), ev); };
-	int heightForWidth(int w) const { return callbackDropArea_HeightForWidth(const_cast<DropArea*>(this), this->objectName().toUtf8().data(), w); };
-	void keyPressEvent(QKeyEvent * ev) { callbackDropArea_KeyPressEvent(this, this->objectName().toUtf8().data(), ev); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackDropArea_MinimumSizeHint(const_cast<DropArea*>(this), this->objectName().toUtf8().data())); };
-	void mouseMoveEvent(QMouseEvent * ev) { callbackDropArea_MouseMoveEvent(this, this->objectName().toUtf8().data(), ev); };
-	void mousePressEvent(QMouseEvent * ev) { callbackDropArea_MousePressEvent(this, this->objectName().toUtf8().data(), ev); };
-	void mouseReleaseEvent(QMouseEvent * ev) { callbackDropArea_MouseReleaseEvent(this, this->objectName().toUtf8().data(), ev); };
-	void paintEvent(QPaintEvent * vqp) { callbackDropArea_PaintEvent(this, this->objectName().toUtf8().data(), vqp); };
-	void setMovie(QMovie * movie) { callbackDropArea_SetMovie(this, this->objectName().toUtf8().data(), movie); };
-	
-	void setNum(int num) { callbackDropArea_SetNum(this, this->objectName().toUtf8().data(), num); };
-	void setPicture(const QPicture & picture) { callbackDropArea_SetPicture(this, this->objectName().toUtf8().data(), const_cast<QPicture*>(&picture)); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackDropArea_SizeHint(const_cast<DropArea*>(this), this->objectName().toUtf8().data())); };
-	void actionEvent(QActionEvent * event) { callbackDropArea_ActionEvent(this, this->objectName().toUtf8().data(), event); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackDropArea_DragEnterEvent(this, this->objectName().toUtf8().data(), event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackDropArea_DragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackDropArea_DragMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void dropEvent(QDropEvent * event) { callbackDropArea_DropEvent(this, this->objectName().toUtf8().data(), event); };
-	void enterEvent(QEvent * event) { callbackDropArea_EnterEvent(this, this->objectName().toUtf8().data(), event); };
-	void hideEvent(QHideEvent * event) { callbackDropArea_HideEvent(this, this->objectName().toUtf8().data(), event); };
-	void leaveEvent(QEvent * event) { callbackDropArea_LeaveEvent(this, this->objectName().toUtf8().data(), event); };
-	void moveEvent(QMoveEvent * event) { callbackDropArea_MoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void setEnabled(bool vbo) { callbackDropArea_SetEnabled(this, this->objectName().toUtf8().data(), vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackDropArea_SetStyleSheet(this, this->objectName().toUtf8().data(), styleSheet.toUtf8().data()); };
-	void setVisible(bool visible) { callbackDropArea_SetVisible(this, this->objectName().toUtf8().data(), visible); };
-	void setWindowModified(bool vbo) { callbackDropArea_SetWindowModified(this, this->objectName().toUtf8().data(), vbo); };
-	void setWindowTitle(const QString & vqs) { callbackDropArea_SetWindowTitle(this, this->objectName().toUtf8().data(), vqs.toUtf8().data()); };
-	void showEvent(QShowEvent * event) { callbackDropArea_ShowEvent(this, this->objectName().toUtf8().data(), event); };
-	bool close() { return callbackDropArea_Close(this, this->objectName().toUtf8().data()) != 0; };
-	void closeEvent(QCloseEvent * event) { callbackDropArea_CloseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool hasHeightForWidth() const { return callbackDropArea_HasHeightForWidth(const_cast<DropArea*>(this), this->objectName().toUtf8().data()) != 0; };
-	void hide() { callbackDropArea_Hide(this, this->objectName().toUtf8().data()); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackDropArea_InputMethodEvent(this, this->objectName().toUtf8().data(), event); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackDropArea_InputMethodQuery(const_cast<DropArea*>(this), this->objectName().toUtf8().data(), query)); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackDropArea_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	void lower() { callbackDropArea_Lower(this, this->objectName().toUtf8().data()); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackDropArea_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropArea_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
-	void raise() { callbackDropArea_Raise(this, this->objectName().toUtf8().data()); };
-	void repaint() { callbackDropArea_Repaint(this, this->objectName().toUtf8().data()); };
-	void resizeEvent(QResizeEvent * event) { callbackDropArea_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void setDisabled(bool disable) { callbackDropArea_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
-	void setFocus() { callbackDropArea_SetFocus2(this, this->objectName().toUtf8().data()); };
-	void setHidden(bool hidden) { callbackDropArea_SetHidden(this, this->objectName().toUtf8().data(), hidden); };
-	void show() { callbackDropArea_Show(this, this->objectName().toUtf8().data()); };
-	void showFullScreen() { callbackDropArea_ShowFullScreen(this, this->objectName().toUtf8().data()); };
-	void showMaximized() { callbackDropArea_ShowMaximized(this, this->objectName().toUtf8().data()); };
-	void showMinimized() { callbackDropArea_ShowMinimized(this, this->objectName().toUtf8().data()); };
-	void showNormal() { callbackDropArea_ShowNormal(this, this->objectName().toUtf8().data()); };
-	void tabletEvent(QTabletEvent * event) { callbackDropArea_TabletEvent(this, this->objectName().toUtf8().data(), event); };
-	void update() { callbackDropArea_Update(this, this->objectName().toUtf8().data()); };
-	void updateMicroFocus() { callbackDropArea_UpdateMicroFocus(this, this->objectName().toUtf8().data()); };
-	void wheelEvent(QWheelEvent * event) { callbackDropArea_WheelEvent(this, this->objectName().toUtf8().data(), event); };
-	void timerEvent(QTimerEvent * event) { callbackDropArea_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackDropArea_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackDropArea_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackDropArea_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackDropArea_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackDropArea_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackDropArea_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
+	void Signal_Changed(QMimeData* mimeData) { callbackDropArea_Changed(this, mimeData); };
+	void setPixmap(const QPixmap & vqp) { callbackDropArea_SetPixmap(this, const_cast<QPixmap*>(&vqp)); };
+	void setText(const QString & vqs) { callbackDropArea_SetText(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void changeEvent(QEvent * ev) { callbackDropArea_ChangeEvent(this, ev); };
+	void clear() { callbackDropArea_Clear(this); };
+	void contextMenuEvent(QContextMenuEvent * ev) { callbackDropArea_ContextMenuEvent(this, ev); };
+	void focusInEvent(QFocusEvent * ev) { callbackDropArea_FocusInEvent(this, ev); };
+	bool focusNextPrevChild(bool next) { return callbackDropArea_FocusNextPrevChild(this, next) != 0; };
+	void focusOutEvent(QFocusEvent * ev) { callbackDropArea_FocusOutEvent(this, ev); };
+	int heightForWidth(int w) const { return callbackDropArea_HeightForWidth(const_cast<DropArea*>(this), w); };
+	void keyPressEvent(QKeyEvent * ev) { callbackDropArea_KeyPressEvent(this, ev); };
+	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackDropArea_MinimumSizeHint(const_cast<DropArea*>(this))); };
+	void mouseMoveEvent(QMouseEvent * ev) { callbackDropArea_MouseMoveEvent(this, ev); };
+	void mousePressEvent(QMouseEvent * ev) { callbackDropArea_MousePressEvent(this, ev); };
+	void mouseReleaseEvent(QMouseEvent * ev) { callbackDropArea_MouseReleaseEvent(this, ev); };
+	void paintEvent(QPaintEvent * vqp) { callbackDropArea_PaintEvent(this, vqp); };
+	void setMovie(QMovie * movie) { callbackDropArea_SetMovie(this, movie); };
+	void setNum(double num) { callbackDropArea_SetNum2(this, num); };
+	void setNum(int num) { callbackDropArea_SetNum(this, num); };
+	void setPicture(const QPicture & picture) { callbackDropArea_SetPicture(this, const_cast<QPicture*>(&picture)); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackDropArea_SizeHint(const_cast<DropArea*>(this))); };
+	void actionEvent(QActionEvent * event) { callbackDropArea_ActionEvent(this, event); };
+	void dragEnterEvent(QDragEnterEvent * event) { callbackDropArea_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QDragLeaveEvent * event) { callbackDropArea_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QDragMoveEvent * event) { callbackDropArea_DragMoveEvent(this, event); };
+	void dropEvent(QDropEvent * event) { callbackDropArea_DropEvent(this, event); };
+	void enterEvent(QEvent * event) { callbackDropArea_EnterEvent(this, event); };
+	void hideEvent(QHideEvent * event) { callbackDropArea_HideEvent(this, event); };
+	void leaveEvent(QEvent * event) { callbackDropArea_LeaveEvent(this, event); };
+	void moveEvent(QMoveEvent * event) { callbackDropArea_MoveEvent(this, event); };
+	void setEnabled(bool vbo) { callbackDropArea_SetEnabled(this, vbo); };
+	void setStyleSheet(const QString & styleSheet) { callbackDropArea_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setVisible(bool visible) { callbackDropArea_SetVisible(this, visible); };
+	void setWindowModified(bool vbo) { callbackDropArea_SetWindowModified(this, vbo); };
+	void setWindowTitle(const QString & vqs) { callbackDropArea_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void showEvent(QShowEvent * event) { callbackDropArea_ShowEvent(this, event); };
+	bool close() { return callbackDropArea_Close(this) != 0; };
+	void closeEvent(QCloseEvent * event) { callbackDropArea_CloseEvent(this, event); };
+	bool hasHeightForWidth() const { return callbackDropArea_HasHeightForWidth(const_cast<DropArea*>(this)) != 0; };
+	void hide() { callbackDropArea_Hide(this); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackDropArea_InputMethodEvent(this, event); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackDropArea_InputMethodQuery(const_cast<DropArea*>(this), query)); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackDropArea_KeyReleaseEvent(this, event); };
+	void lower() { callbackDropArea_Lower(this); };
+	void mouseDoubleClickEvent(QMouseEvent * event) { callbackDropArea_MouseDoubleClickEvent(this, event); };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropArea_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	void raise() { callbackDropArea_Raise(this); };
+	void repaint() { callbackDropArea_Repaint(this); };
+	void resizeEvent(QResizeEvent * event) { callbackDropArea_ResizeEvent(this, event); };
+	void setDisabled(bool disable) { callbackDropArea_SetDisabled(this, disable); };
+	void setFocus() { callbackDropArea_SetFocus2(this); };
+	void setHidden(bool hidden) { callbackDropArea_SetHidden(this, hidden); };
+	void show() { callbackDropArea_Show(this); };
+	void showFullScreen() { callbackDropArea_ShowFullScreen(this); };
+	void showMaximized() { callbackDropArea_ShowMaximized(this); };
+	void showMinimized() { callbackDropArea_ShowMinimized(this); };
+	void showNormal() { callbackDropArea_ShowNormal(this); };
+	void tabletEvent(QTabletEvent * event) { callbackDropArea_TabletEvent(this, event); };
+	void update() { callbackDropArea_Update(this); };
+	void updateMicroFocus() { callbackDropArea_UpdateMicroFocus(this); };
+	void wheelEvent(QWheelEvent * event) { callbackDropArea_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackDropArea_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackDropArea_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackDropArea_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackDropArea_CustomEvent(this, event); };
+	void deleteLater() { callbackDropArea_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackDropArea_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackDropArea_EventFilter(this, watched, event) != 0; };
 	
 signals:
 	void changed(QMimeData* mimeData);
@@ -140,7 +140,7 @@ void DropArea_Changed(void* ptr, void* mimeData)
 	static_cast<DropArea*>(ptr)->changed(static_cast<QMimeData*>(mimeData));
 }
 
-void* DropArea_NewDropArea(void* parent, int f)
+void* DropArea_NewDropArea(void* parent, long long f)
 {
 	return new DropArea(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
 }
@@ -210,12 +210,12 @@ void DropArea_FocusInEventDefault(void* ptr, void* ev)
 	static_cast<DropArea*>(ptr)->QLabel::focusInEvent(static_cast<QFocusEvent*>(ev));
 }
 
-int DropArea_FocusNextPrevChild(void* ptr, int next)
+char DropArea_FocusNextPrevChild(void* ptr, char next)
 {
 	return static_cast<DropArea*>(ptr)->focusNextPrevChild(next != 0);
 }
 
-int DropArea_FocusNextPrevChildDefault(void* ptr, int next)
+char DropArea_FocusNextPrevChildDefault(void* ptr, char next)
 {
 	return static_cast<DropArea*>(ptr)->QLabel::focusNextPrevChild(next != 0);
 }
@@ -310,9 +310,15 @@ void DropArea_SetMovieDefault(void* ptr, void* movie)
 	static_cast<DropArea*>(ptr)->QLabel::setMovie(static_cast<QMovie*>(movie));
 }
 
+void DropArea_SetNum2(void* ptr, double num)
+{
+	QMetaObject::invokeMethod(static_cast<DropArea*>(ptr), "setNum", Q_ARG(double, num));
+}
 
-
-
+void DropArea_SetNum2Default(void* ptr, double num)
+{
+	static_cast<DropArea*>(ptr)->QLabel::setNum(num);
+}
 
 void DropArea_SetNum(void* ptr, int num)
 {
@@ -434,12 +440,12 @@ void DropArea_MoveEventDefault(void* ptr, void* event)
 	static_cast<DropArea*>(ptr)->QLabel::moveEvent(static_cast<QMoveEvent*>(event));
 }
 
-void DropArea_SetEnabled(void* ptr, int vbo)
+void DropArea_SetEnabled(void* ptr, char vbo)
 {
 	QMetaObject::invokeMethod(static_cast<DropArea*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
-void DropArea_SetEnabledDefault(void* ptr, int vbo)
+void DropArea_SetEnabledDefault(void* ptr, char vbo)
 {
 	static_cast<DropArea*>(ptr)->QLabel::setEnabled(vbo != 0);
 }
@@ -454,22 +460,22 @@ void DropArea_SetStyleSheetDefault(void* ptr, char* styleSheet)
 	static_cast<DropArea*>(ptr)->QLabel::setStyleSheet(QString(styleSheet));
 }
 
-void DropArea_SetVisible(void* ptr, int visible)
+void DropArea_SetVisible(void* ptr, char visible)
 {
 	QMetaObject::invokeMethod(static_cast<DropArea*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
-void DropArea_SetVisibleDefault(void* ptr, int visible)
+void DropArea_SetVisibleDefault(void* ptr, char visible)
 {
 	static_cast<DropArea*>(ptr)->QLabel::setVisible(visible != 0);
 }
 
-void DropArea_SetWindowModified(void* ptr, int vbo)
+void DropArea_SetWindowModified(void* ptr, char vbo)
 {
 	QMetaObject::invokeMethod(static_cast<DropArea*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
-void DropArea_SetWindowModifiedDefault(void* ptr, int vbo)
+void DropArea_SetWindowModifiedDefault(void* ptr, char vbo)
 {
 	static_cast<DropArea*>(ptr)->QLabel::setWindowModified(vbo != 0);
 }
@@ -494,14 +500,14 @@ void DropArea_ShowEventDefault(void* ptr, void* event)
 	static_cast<DropArea*>(ptr)->QLabel::showEvent(static_cast<QShowEvent*>(event));
 }
 
-int DropArea_Close(void* ptr)
+char DropArea_Close(void* ptr)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<DropArea*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
 }
 
-int DropArea_CloseDefault(void* ptr)
+char DropArea_CloseDefault(void* ptr)
 {
 	return static_cast<DropArea*>(ptr)->QLabel::close();
 }
@@ -516,12 +522,12 @@ void DropArea_CloseEventDefault(void* ptr, void* event)
 	static_cast<DropArea*>(ptr)->QLabel::closeEvent(static_cast<QCloseEvent*>(event));
 }
 
-int DropArea_HasHeightForWidth(void* ptr)
+char DropArea_HasHeightForWidth(void* ptr)
 {
 	return static_cast<DropArea*>(ptr)->hasHeightForWidth();
 }
 
-int DropArea_HasHeightForWidthDefault(void* ptr)
+char DropArea_HasHeightForWidthDefault(void* ptr)
 {
 	return static_cast<DropArea*>(ptr)->QLabel::hasHeightForWidth();
 }
@@ -546,12 +552,12 @@ void DropArea_InputMethodEventDefault(void* ptr, void* event)
 	static_cast<DropArea*>(ptr)->QLabel::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 }
 
-void* DropArea_InputMethodQuery(void* ptr, int query)
+void* DropArea_InputMethodQuery(void* ptr, long long query)
 {
 	return new QVariant(static_cast<DropArea*>(ptr)->inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 }
 
-void* DropArea_InputMethodQueryDefault(void* ptr, int query)
+void* DropArea_InputMethodQueryDefault(void* ptr, long long query)
 {
 	return new QVariant(static_cast<DropArea*>(ptr)->QLabel::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 }
@@ -586,12 +592,12 @@ void DropArea_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<DropArea*>(ptr)->QLabel::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-int DropArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char DropArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<DropArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
-int DropArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char DropArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<DropArea*>(ptr)->QLabel::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
@@ -626,12 +632,12 @@ void DropArea_ResizeEventDefault(void* ptr, void* event)
 	static_cast<DropArea*>(ptr)->QLabel::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
-void DropArea_SetDisabled(void* ptr, int disable)
+void DropArea_SetDisabled(void* ptr, char disable)
 {
 	QMetaObject::invokeMethod(static_cast<DropArea*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
-void DropArea_SetDisabledDefault(void* ptr, int disable)
+void DropArea_SetDisabledDefault(void* ptr, char disable)
 {
 	static_cast<DropArea*>(ptr)->QLabel::setDisabled(disable != 0);
 }
@@ -646,12 +652,12 @@ void DropArea_SetFocus2Default(void* ptr)
 	static_cast<DropArea*>(ptr)->QLabel::setFocus();
 }
 
-void DropArea_SetHidden(void* ptr, int hidden)
+void DropArea_SetHidden(void* ptr, char hidden)
 {
 	QMetaObject::invokeMethod(static_cast<DropArea*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
-void DropArea_SetHiddenDefault(void* ptr, int hidden)
+void DropArea_SetHiddenDefault(void* ptr, char hidden)
 {
 	static_cast<DropArea*>(ptr)->QLabel::setHidden(hidden != 0);
 }
@@ -806,12 +812,12 @@ void DropArea_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<DropArea*>(ptr)->QLabel::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int DropArea_EventFilter(void* ptr, void* watched, void* event)
+char DropArea_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<DropArea*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int DropArea_EventFilterDefault(void* ptr, void* watched, void* event)
+char DropArea_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<DropArea*>(ptr)->QLabel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -825,70 +831,70 @@ class DropSiteWindow: public QWidget
 Q_OBJECT
 public:
 	DropSiteWindow(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f) {};
-	void actionEvent(QActionEvent * event) { callbackDropSiteWindow_ActionEvent(this, this->objectName().toUtf8().data(), event); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackDropSiteWindow_DragEnterEvent(this, this->objectName().toUtf8().data(), event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackDropSiteWindow_DragLeaveEvent(this, this->objectName().toUtf8().data(), event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackDropSiteWindow_DragMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void dropEvent(QDropEvent * event) { callbackDropSiteWindow_DropEvent(this, this->objectName().toUtf8().data(), event); };
-	void enterEvent(QEvent * event) { callbackDropSiteWindow_EnterEvent(this, this->objectName().toUtf8().data(), event); };
-	void focusInEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusInEvent(this, this->objectName().toUtf8().data(), event); };
-	void focusOutEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusOutEvent(this, this->objectName().toUtf8().data(), event); };
-	void hideEvent(QHideEvent * event) { callbackDropSiteWindow_HideEvent(this, this->objectName().toUtf8().data(), event); };
-	void leaveEvent(QEvent * event) { callbackDropSiteWindow_LeaveEvent(this, this->objectName().toUtf8().data(), event); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_MinimumSizeHint(const_cast<DropSiteWindow*>(this), this->objectName().toUtf8().data())); };
-	void moveEvent(QMoveEvent * event) { callbackDropSiteWindow_MoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void paintEvent(QPaintEvent * event) { callbackDropSiteWindow_PaintEvent(this, this->objectName().toUtf8().data(), event); };
-	void setEnabled(bool vbo) { callbackDropSiteWindow_SetEnabled(this, this->objectName().toUtf8().data(), vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackDropSiteWindow_SetStyleSheet(this, this->objectName().toUtf8().data(), styleSheet.toUtf8().data()); };
-	void setVisible(bool visible) { callbackDropSiteWindow_SetVisible(this, this->objectName().toUtf8().data(), visible); };
-	void setWindowModified(bool vbo) { callbackDropSiteWindow_SetWindowModified(this, this->objectName().toUtf8().data(), vbo); };
-	void setWindowTitle(const QString & vqs) { callbackDropSiteWindow_SetWindowTitle(this, this->objectName().toUtf8().data(), vqs.toUtf8().data()); };
-	void showEvent(QShowEvent * event) { callbackDropSiteWindow_ShowEvent(this, this->objectName().toUtf8().data(), event); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_SizeHint(const_cast<DropSiteWindow*>(this), this->objectName().toUtf8().data())); };
-	void changeEvent(QEvent * event) { callbackDropSiteWindow_ChangeEvent(this, this->objectName().toUtf8().data(), event); };
-	bool close() { return callbackDropSiteWindow_Close(this, this->objectName().toUtf8().data()) != 0; };
-	void closeEvent(QCloseEvent * event) { callbackDropSiteWindow_CloseEvent(this, this->objectName().toUtf8().data(), event); };
-	void contextMenuEvent(QContextMenuEvent * event) { callbackDropSiteWindow_ContextMenuEvent(this, this->objectName().toUtf8().data(), event); };
-	bool focusNextPrevChild(bool next) { return callbackDropSiteWindow_FocusNextPrevChild(this, this->objectName().toUtf8().data(), next) != 0; };
-	bool hasHeightForWidth() const { return callbackDropSiteWindow_HasHeightForWidth(const_cast<DropSiteWindow*>(this), this->objectName().toUtf8().data()) != 0; };
-	int heightForWidth(int w) const { return callbackDropSiteWindow_HeightForWidth(const_cast<DropSiteWindow*>(this), this->objectName().toUtf8().data(), w); };
-	void hide() { callbackDropSiteWindow_Hide(this, this->objectName().toUtf8().data()); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackDropSiteWindow_InputMethodEvent(this, this->objectName().toUtf8().data(), event); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackDropSiteWindow_InputMethodQuery(const_cast<DropSiteWindow*>(this), this->objectName().toUtf8().data(), query)); };
-	void keyPressEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyPressEvent(this, this->objectName().toUtf8().data(), event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	void lower() { callbackDropSiteWindow_Lower(this, this->objectName().toUtf8().data()); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseDoubleClickEvent(this, this->objectName().toUtf8().data(), event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseMoveEvent(this, this->objectName().toUtf8().data(), event); };
-	void mousePressEvent(QMouseEvent * event) { callbackDropSiteWindow_MousePressEvent(this, this->objectName().toUtf8().data(), event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseReleaseEvent(this, this->objectName().toUtf8().data(), event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropSiteWindow_NativeEvent(this, this->objectName().toUtf8().data(), eventType.toHex().data(), message, *result) != 0; };
-	void raise() { callbackDropSiteWindow_Raise(this, this->objectName().toUtf8().data()); };
-	void repaint() { callbackDropSiteWindow_Repaint(this, this->objectName().toUtf8().data()); };
-	void resizeEvent(QResizeEvent * event) { callbackDropSiteWindow_ResizeEvent(this, this->objectName().toUtf8().data(), event); };
-	void setDisabled(bool disable) { callbackDropSiteWindow_SetDisabled(this, this->objectName().toUtf8().data(), disable); };
-	void setFocus() { callbackDropSiteWindow_SetFocus2(this, this->objectName().toUtf8().data()); };
-	void setHidden(bool hidden) { callbackDropSiteWindow_SetHidden(this, this->objectName().toUtf8().data(), hidden); };
-	void show() { callbackDropSiteWindow_Show(this, this->objectName().toUtf8().data()); };
-	void showFullScreen() { callbackDropSiteWindow_ShowFullScreen(this, this->objectName().toUtf8().data()); };
-	void showMaximized() { callbackDropSiteWindow_ShowMaximized(this, this->objectName().toUtf8().data()); };
-	void showMinimized() { callbackDropSiteWindow_ShowMinimized(this, this->objectName().toUtf8().data()); };
-	void showNormal() { callbackDropSiteWindow_ShowNormal(this, this->objectName().toUtf8().data()); };
-	void tabletEvent(QTabletEvent * event) { callbackDropSiteWindow_TabletEvent(this, this->objectName().toUtf8().data(), event); };
-	void update() { callbackDropSiteWindow_Update(this, this->objectName().toUtf8().data()); };
-	void updateMicroFocus() { callbackDropSiteWindow_UpdateMicroFocus(this, this->objectName().toUtf8().data()); };
-	void wheelEvent(QWheelEvent * event) { callbackDropSiteWindow_WheelEvent(this, this->objectName().toUtf8().data(), event); };
-	void timerEvent(QTimerEvent * event) { callbackDropSiteWindow_TimerEvent(this, this->objectName().toUtf8().data(), event); };
-	void childEvent(QChildEvent * event) { callbackDropSiteWindow_ChildEvent(this, this->objectName().toUtf8().data(), event); };
-	void connectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_ConnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackDropSiteWindow_CustomEvent(this, this->objectName().toUtf8().data(), event); };
-	void deleteLater() { callbackDropSiteWindow_DeleteLater(this, this->objectName().toUtf8().data()); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_DisconnectNotify(this, this->objectName().toUtf8().data(), const_cast<QMetaMethod*>(&sign)); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackDropSiteWindow_EventFilter(this, this->objectName().toUtf8().data(), watched, event) != 0; };
+	void actionEvent(QActionEvent * event) { callbackDropSiteWindow_ActionEvent(this, event); };
+	void dragEnterEvent(QDragEnterEvent * event) { callbackDropSiteWindow_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QDragLeaveEvent * event) { callbackDropSiteWindow_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QDragMoveEvent * event) { callbackDropSiteWindow_DragMoveEvent(this, event); };
+	void dropEvent(QDropEvent * event) { callbackDropSiteWindow_DropEvent(this, event); };
+	void enterEvent(QEvent * event) { callbackDropSiteWindow_EnterEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusOutEvent(this, event); };
+	void hideEvent(QHideEvent * event) { callbackDropSiteWindow_HideEvent(this, event); };
+	void leaveEvent(QEvent * event) { callbackDropSiteWindow_LeaveEvent(this, event); };
+	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_MinimumSizeHint(const_cast<DropSiteWindow*>(this))); };
+	void moveEvent(QMoveEvent * event) { callbackDropSiteWindow_MoveEvent(this, event); };
+	void paintEvent(QPaintEvent * event) { callbackDropSiteWindow_PaintEvent(this, event); };
+	void setEnabled(bool vbo) { callbackDropSiteWindow_SetEnabled(this, vbo); };
+	void setStyleSheet(const QString & styleSheet) { callbackDropSiteWindow_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setVisible(bool visible) { callbackDropSiteWindow_SetVisible(this, visible); };
+	void setWindowModified(bool vbo) { callbackDropSiteWindow_SetWindowModified(this, vbo); };
+	void setWindowTitle(const QString & vqs) { callbackDropSiteWindow_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void showEvent(QShowEvent * event) { callbackDropSiteWindow_ShowEvent(this, event); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_SizeHint(const_cast<DropSiteWindow*>(this))); };
+	void changeEvent(QEvent * event) { callbackDropSiteWindow_ChangeEvent(this, event); };
+	bool close() { return callbackDropSiteWindow_Close(this) != 0; };
+	void closeEvent(QCloseEvent * event) { callbackDropSiteWindow_CloseEvent(this, event); };
+	void contextMenuEvent(QContextMenuEvent * event) { callbackDropSiteWindow_ContextMenuEvent(this, event); };
+	bool focusNextPrevChild(bool next) { return callbackDropSiteWindow_FocusNextPrevChild(this, next) != 0; };
+	bool hasHeightForWidth() const { return callbackDropSiteWindow_HasHeightForWidth(const_cast<DropSiteWindow*>(this)) != 0; };
+	int heightForWidth(int w) const { return callbackDropSiteWindow_HeightForWidth(const_cast<DropSiteWindow*>(this), w); };
+	void hide() { callbackDropSiteWindow_Hide(this); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackDropSiteWindow_InputMethodEvent(this, event); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackDropSiteWindow_InputMethodQuery(const_cast<DropSiteWindow*>(this), query)); };
+	void keyPressEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyPressEvent(this, event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyReleaseEvent(this, event); };
+	void lower() { callbackDropSiteWindow_Lower(this); };
+	void mouseDoubleClickEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseDoubleClickEvent(this, event); };
+	void mouseMoveEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseMoveEvent(this, event); };
+	void mousePressEvent(QMouseEvent * event) { callbackDropSiteWindow_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseReleaseEvent(this, event); };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropSiteWindow_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	void raise() { callbackDropSiteWindow_Raise(this); };
+	void repaint() { callbackDropSiteWindow_Repaint(this); };
+	void resizeEvent(QResizeEvent * event) { callbackDropSiteWindow_ResizeEvent(this, event); };
+	void setDisabled(bool disable) { callbackDropSiteWindow_SetDisabled(this, disable); };
+	void setFocus() { callbackDropSiteWindow_SetFocus2(this); };
+	void setHidden(bool hidden) { callbackDropSiteWindow_SetHidden(this, hidden); };
+	void show() { callbackDropSiteWindow_Show(this); };
+	void showFullScreen() { callbackDropSiteWindow_ShowFullScreen(this); };
+	void showMaximized() { callbackDropSiteWindow_ShowMaximized(this); };
+	void showMinimized() { callbackDropSiteWindow_ShowMinimized(this); };
+	void showNormal() { callbackDropSiteWindow_ShowNormal(this); };
+	void tabletEvent(QTabletEvent * event) { callbackDropSiteWindow_TabletEvent(this, event); };
+	void update() { callbackDropSiteWindow_Update(this); };
+	void updateMicroFocus() { callbackDropSiteWindow_UpdateMicroFocus(this); };
+	void wheelEvent(QWheelEvent * event) { callbackDropSiteWindow_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackDropSiteWindow_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackDropSiteWindow_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackDropSiteWindow_CustomEvent(this, event); };
+	void deleteLater() { callbackDropSiteWindow_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackDropSiteWindow_EventFilter(this, watched, event) != 0; };
 	
 signals:
 public slots:
-	void updateFormatsTable(QMimeData* mimeData) { callbackDropSiteWindow_UpdateFormatsTable(this, this->objectName().toUtf8().data(), mimeData); };
+	void updateFormatsTable(QMimeData* mimeData) { callbackDropSiteWindow_UpdateFormatsTable(this, mimeData); };
 };
 
 void DropSiteWindow_UpdateFormatsTable(void* ptr, void* mimeData)
@@ -896,7 +902,7 @@ void DropSiteWindow_UpdateFormatsTable(void* ptr, void* mimeData)
 	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "updateFormatsTable", Q_ARG(QMimeData*, static_cast<QMimeData*>(mimeData)));
 }
 
-void* DropSiteWindow_NewDropSiteWindow(void* parent, int f)
+void* DropSiteWindow_NewDropSiteWindow(void* parent, long long f)
 {
 	return new DropSiteWindow(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
 }
@@ -1036,12 +1042,12 @@ void DropSiteWindow_PaintEventDefault(void* ptr, void* event)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::paintEvent(static_cast<QPaintEvent*>(event));
 }
 
-void DropSiteWindow_SetEnabled(void* ptr, int vbo)
+void DropSiteWindow_SetEnabled(void* ptr, char vbo)
 {
 	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
 }
 
-void DropSiteWindow_SetEnabledDefault(void* ptr, int vbo)
+void DropSiteWindow_SetEnabledDefault(void* ptr, char vbo)
 {
 	static_cast<DropSiteWindow*>(ptr)->QWidget::setEnabled(vbo != 0);
 }
@@ -1056,22 +1062,22 @@ void DropSiteWindow_SetStyleSheetDefault(void* ptr, char* styleSheet)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::setStyleSheet(QString(styleSheet));
 }
 
-void DropSiteWindow_SetVisible(void* ptr, int visible)
+void DropSiteWindow_SetVisible(void* ptr, char visible)
 {
 	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
-void DropSiteWindow_SetVisibleDefault(void* ptr, int visible)
+void DropSiteWindow_SetVisibleDefault(void* ptr, char visible)
 {
 	static_cast<DropSiteWindow*>(ptr)->QWidget::setVisible(visible != 0);
 }
 
-void DropSiteWindow_SetWindowModified(void* ptr, int vbo)
+void DropSiteWindow_SetWindowModified(void* ptr, char vbo)
 {
 	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
 }
 
-void DropSiteWindow_SetWindowModifiedDefault(void* ptr, int vbo)
+void DropSiteWindow_SetWindowModifiedDefault(void* ptr, char vbo)
 {
 	static_cast<DropSiteWindow*>(ptr)->QWidget::setWindowModified(vbo != 0);
 }
@@ -1116,14 +1122,14 @@ void DropSiteWindow_ChangeEventDefault(void* ptr, void* event)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::changeEvent(static_cast<QEvent*>(event));
 }
 
-int DropSiteWindow_Close(void* ptr)
+char DropSiteWindow_Close(void* ptr)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
 }
 
-int DropSiteWindow_CloseDefault(void* ptr)
+char DropSiteWindow_CloseDefault(void* ptr)
 {
 	return static_cast<DropSiteWindow*>(ptr)->QWidget::close();
 }
@@ -1148,22 +1154,22 @@ void DropSiteWindow_ContextMenuEventDefault(void* ptr, void* event)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
 }
 
-int DropSiteWindow_FocusNextPrevChild(void* ptr, int next)
+char DropSiteWindow_FocusNextPrevChild(void* ptr, char next)
 {
 	return static_cast<DropSiteWindow*>(ptr)->focusNextPrevChild(next != 0);
 }
 
-int DropSiteWindow_FocusNextPrevChildDefault(void* ptr, int next)
+char DropSiteWindow_FocusNextPrevChildDefault(void* ptr, char next)
 {
 	return static_cast<DropSiteWindow*>(ptr)->QWidget::focusNextPrevChild(next != 0);
 }
 
-int DropSiteWindow_HasHeightForWidth(void* ptr)
+char DropSiteWindow_HasHeightForWidth(void* ptr)
 {
 	return static_cast<DropSiteWindow*>(ptr)->hasHeightForWidth();
 }
 
-int DropSiteWindow_HasHeightForWidthDefault(void* ptr)
+char DropSiteWindow_HasHeightForWidthDefault(void* ptr)
 {
 	return static_cast<DropSiteWindow*>(ptr)->QWidget::hasHeightForWidth();
 }
@@ -1198,12 +1204,12 @@ void DropSiteWindow_InputMethodEventDefault(void* ptr, void* event)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
 }
 
-void* DropSiteWindow_InputMethodQuery(void* ptr, int query)
+void* DropSiteWindow_InputMethodQuery(void* ptr, long long query)
 {
 	return new QVariant(static_cast<DropSiteWindow*>(ptr)->inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 }
 
-void* DropSiteWindow_InputMethodQueryDefault(void* ptr, int query)
+void* DropSiteWindow_InputMethodQueryDefault(void* ptr, long long query)
 {
 	return new QVariant(static_cast<DropSiteWindow*>(ptr)->QWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 }
@@ -1278,12 +1284,12 @@ void DropSiteWindow_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-int DropSiteWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char DropSiteWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<DropSiteWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
 
-int DropSiteWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char DropSiteWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
 {
 	return static_cast<DropSiteWindow*>(ptr)->QWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
 }
@@ -1318,12 +1324,12 @@ void DropSiteWindow_ResizeEventDefault(void* ptr, void* event)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
-void DropSiteWindow_SetDisabled(void* ptr, int disable)
+void DropSiteWindow_SetDisabled(void* ptr, char disable)
 {
 	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
 }
 
-void DropSiteWindow_SetDisabledDefault(void* ptr, int disable)
+void DropSiteWindow_SetDisabledDefault(void* ptr, char disable)
 {
 	static_cast<DropSiteWindow*>(ptr)->QWidget::setDisabled(disable != 0);
 }
@@ -1338,12 +1344,12 @@ void DropSiteWindow_SetFocus2Default(void* ptr)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::setFocus();
 }
 
-void DropSiteWindow_SetHidden(void* ptr, int hidden)
+void DropSiteWindow_SetHidden(void* ptr, char hidden)
 {
 	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
 }
 
-void DropSiteWindow_SetHiddenDefault(void* ptr, int hidden)
+void DropSiteWindow_SetHiddenDefault(void* ptr, char hidden)
 {
 	static_cast<DropSiteWindow*>(ptr)->QWidget::setHidden(hidden != 0);
 }
@@ -1498,12 +1504,12 @@ void DropSiteWindow_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<DropSiteWindow*>(ptr)->QWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int DropSiteWindow_EventFilter(void* ptr, void* watched, void* event)
+char DropSiteWindow_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<DropSiteWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int DropSiteWindow_EventFilterDefault(void* ptr, void* watched, void* event)
+char DropSiteWindow_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<DropSiteWindow*>(ptr)->QWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }

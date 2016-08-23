@@ -2,13 +2,16 @@
 
 package testlib
 
+//#include <stdint.h>
 //#include <stdlib.h>
 //#include "testlib.h"
 import "C"
 import (
+	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
+	"runtime"
 	"unsafe"
 )
 
@@ -54,14 +57,6 @@ func NewQSignalSpyFromPointer(ptr unsafe.Pointer) *QSignalSpy {
 	return n
 }
 
-func newQSignalSpyFromPointer(ptr unsafe.Pointer) *QSignalSpy {
-	var n = NewQSignalSpyFromPointer(ptr)
-	for len(n.ObjectName()) < len("QSignalSpy_") {
-		n.SetObjectName("QSignalSpy_" + qt.Identifier())
-	}
-	return n
-}
-
 func (ptr *QSignalSpy) DestroyQSignalSpy() {
 	C.free(ptr.Pointer())
 	ptr.SetPointer(nil)
@@ -72,7 +67,7 @@ func NewQSignalSpy(object core.QObject_ITF, sign string) *QSignalSpy {
 
 	var signC = C.CString(sign)
 	defer C.free(unsafe.Pointer(signC))
-	return newQSignalSpyFromPointer(C.QSignalSpy_NewQSignalSpy(core.PointerFromQObject(object), signC))
+	return NewQSignalSpyFromPointer(C.QSignalSpy_NewQSignalSpy(core.PointerFromQObject(object), signC))
 }
 
 func (ptr *QSignalSpy) IsValid() bool {
@@ -97,16 +92,16 @@ func (ptr *QSignalSpy) Wait(timeout int) bool {
 	defer qt.Recovering("QSignalSpy::wait")
 
 	if ptr.Pointer() != nil {
-		return C.QSignalSpy_Wait(ptr.Pointer(), C.int(timeout)) != 0
+		return C.QSignalSpy_Wait(ptr.Pointer(), C.int(int32(timeout))) != 0
 	}
 	return false
 }
 
 //export callbackQSignalSpy_TimerEvent
-func callbackQSignalSpy_TimerEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQSignalSpy_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::timerEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -118,7 +113,7 @@ func (ptr *QSignalSpy) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "timerEvent", f)
 	}
 }
 
@@ -127,7 +122,7 @@ func (ptr *QSignalSpy) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "timerEvent")
 	}
 }
 
@@ -148,10 +143,10 @@ func (ptr *QSignalSpy) TimerEventDefault(event core.QTimerEvent_ITF) {
 }
 
 //export callbackQSignalSpy_ChildEvent
-func callbackQSignalSpy_ChildEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQSignalSpy_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::childEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -163,7 +158,7 @@ func (ptr *QSignalSpy) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "childEvent", f)
 	}
 }
 
@@ -172,7 +167,7 @@ func (ptr *QSignalSpy) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "childEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "childEvent")
 	}
 }
 
@@ -193,10 +188,10 @@ func (ptr *QSignalSpy) ChildEventDefault(event core.QChildEvent_ITF) {
 }
 
 //export callbackQSignalSpy_ConnectNotify
-func callbackQSignalSpy_ConnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQSignalSpy_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::connectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSignalSpyFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -208,7 +203,7 @@ func (ptr *QSignalSpy) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "connectNotify", f)
 	}
 }
 
@@ -217,7 +212,7 @@ func (ptr *QSignalSpy) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "connectNotify")
 	}
 }
 
@@ -238,10 +233,10 @@ func (ptr *QSignalSpy) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQSignalSpy_CustomEvent
-func callbackQSignalSpy_CustomEvent(ptr unsafe.Pointer, ptrName *C.char, event unsafe.Pointer) {
+func callbackQSignalSpy_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::customEvent")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -253,7 +248,7 @@ func (ptr *QSignalSpy) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "customEvent", f)
 	}
 }
 
@@ -262,7 +257,7 @@ func (ptr *QSignalSpy) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "customEvent")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "customEvent")
 	}
 }
 
@@ -283,10 +278,10 @@ func (ptr *QSignalSpy) CustomEventDefault(event core.QEvent_ITF) {
 }
 
 //export callbackQSignalSpy_DeleteLater
-func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer, ptrName *C.char) {
+func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::deleteLater")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSignalSpyFromPointer(ptr).DeleteLaterDefault()
@@ -298,7 +293,7 @@ func (ptr *QSignalSpy) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "deleteLater", f)
 	}
 }
 
@@ -307,7 +302,7 @@ func (ptr *QSignalSpy) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "deleteLater")
 	}
 }
 
@@ -330,10 +325,10 @@ func (ptr *QSignalSpy) DeleteLaterDefault() {
 }
 
 //export callbackQSignalSpy_DisconnectNotify
-func callbackQSignalSpy_DisconnectNotify(ptr unsafe.Pointer, ptrName *C.char, sign unsafe.Pointer) {
+func callbackQSignalSpy_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::disconnectNotify")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSignalSpyFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -345,7 +340,7 @@ func (ptr *QSignalSpy) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "disconnectNotify", f)
 	}
 }
 
@@ -354,7 +349,7 @@ func (ptr *QSignalSpy) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "disconnectNotify")
 	}
 }
 
@@ -375,14 +370,14 @@ func (ptr *QSignalSpy) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 }
 
 //export callbackQSignalSpy_Event
-func callbackQSignalSpy_Event(ptr unsafe.Pointer, ptrName *C.char, e unsafe.Pointer) C.int {
+func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSignalSpy::event")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "event"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e))))
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e))))
+	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
 }
 
 func (ptr *QSignalSpy) ConnectEvent(f func(e *core.QEvent) bool) {
@@ -390,7 +385,7 @@ func (ptr *QSignalSpy) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "event", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "event", f)
 	}
 }
 
@@ -399,7 +394,7 @@ func (ptr *QSignalSpy) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "event")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "event")
 	}
 }
 
@@ -422,14 +417,14 @@ func (ptr *QSignalSpy) EventDefault(e core.QEvent_ITF) bool {
 }
 
 //export callbackQSignalSpy_EventFilter
-func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, ptrName *C.char, watched unsafe.Pointer, event unsafe.Pointer) C.int {
+func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSignalSpy::eventFilter")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "eventFilter"); signal != nil {
-		return C.int(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "eventFilter"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
-	return C.int(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event))))
+	return C.char(int8(qt.GoBoolToInt(NewQSignalSpyFromPointer(ptr).EventFilterDefault(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 }
 
 func (ptr *QSignalSpy) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
@@ -437,7 +432,7 @@ func (ptr *QSignalSpy) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "eventFilter", f)
 	}
 }
 
@@ -446,7 +441,7 @@ func (ptr *QSignalSpy) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "eventFilter")
 	}
 }
 
@@ -469,10 +464,10 @@ func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.Q
 }
 
 //export callbackQSignalSpy_MetaObject
-func callbackQSignalSpy_MetaObject(ptr unsafe.Pointer, ptrName *C.char) unsafe.Pointer {
+func callbackQSignalSpy_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSignalSpy::metaObject")
 
-	if signal := qt.GetSignal(C.GoString(ptrName), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -484,7 +479,7 @@ func (ptr *QSignalSpy) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(ptr.ObjectName(), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "metaObject", f)
 	}
 }
 
@@ -493,7 +488,7 @@ func (ptr *QSignalSpy) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(ptr.ObjectName(), "metaObject")
+		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "metaObject")
 	}
 }
 
@@ -553,29 +548,27 @@ func NewQTestEventListFromPointer(ptr unsafe.Pointer) *QTestEventList {
 	n.SetPointer(ptr)
 	return n
 }
-
-func newQTestEventListFromPointer(ptr unsafe.Pointer) *QTestEventList {
-	var n = NewQTestEventListFromPointer(ptr)
-	return n
-}
-
 func NewQTestEventList() *QTestEventList {
 	defer qt.Recovering("QTestEventList::QTestEventList")
 
-	return newQTestEventListFromPointer(C.QTestEventList_NewQTestEventList())
+	var tmpValue = NewQTestEventListFromPointer(C.QTestEventList_NewQTestEventList())
+	runtime.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
+	return tmpValue
 }
 
 func NewQTestEventList2(other QTestEventList_ITF) *QTestEventList {
 	defer qt.Recovering("QTestEventList::QTestEventList")
 
-	return newQTestEventListFromPointer(C.QTestEventList_NewQTestEventList2(PointerFromQTestEventList(other)))
+	var tmpValue = NewQTestEventListFromPointer(C.QTestEventList_NewQTestEventList2(PointerFromQTestEventList(other)))
+	runtime.SetFinalizer(tmpValue, (*QTestEventList).DestroyQTestEventList)
+	return tmpValue
 }
 
 func (ptr *QTestEventList) AddDelay(msecs int) {
 	defer qt.Recovering("QTestEventList::addDelay")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddDelay(ptr.Pointer(), C.int(msecs))
+		C.QTestEventList_AddDelay(ptr.Pointer(), C.int(int32(msecs)))
 	}
 }
 
@@ -583,7 +576,7 @@ func (ptr *QTestEventList) AddKeyClick(qtKey core.Qt__Key, modifiers core.Qt__Ke
 	defer qt.Recovering("QTestEventList::addKeyClick")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddKeyClick(ptr.Pointer(), C.int(qtKey), C.int(modifiers), C.int(msecs))
+		C.QTestEventList_AddKeyClick(ptr.Pointer(), C.longlong(qtKey), C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 
@@ -593,7 +586,7 @@ func (ptr *QTestEventList) AddKeyClick2(ascii string, modifiers core.Qt__Keyboar
 	if ptr.Pointer() != nil {
 		var asciiC = C.CString(ascii)
 		defer C.free(unsafe.Pointer(asciiC))
-		C.QTestEventList_AddKeyClick2(ptr.Pointer(), asciiC, C.int(modifiers), C.int(msecs))
+		C.QTestEventList_AddKeyClick2(ptr.Pointer(), asciiC, C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 
@@ -603,7 +596,7 @@ func (ptr *QTestEventList) AddKeyClicks(keys string, modifiers core.Qt__Keyboard
 	if ptr.Pointer() != nil {
 		var keysC = C.CString(keys)
 		defer C.free(unsafe.Pointer(keysC))
-		C.QTestEventList_AddKeyClicks(ptr.Pointer(), keysC, C.int(modifiers), C.int(msecs))
+		C.QTestEventList_AddKeyClicks(ptr.Pointer(), keysC, C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 
@@ -611,7 +604,7 @@ func (ptr *QTestEventList) AddKeyPress(qtKey core.Qt__Key, modifiers core.Qt__Ke
 	defer qt.Recovering("QTestEventList::addKeyPress")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddKeyPress(ptr.Pointer(), C.int(qtKey), C.int(modifiers), C.int(msecs))
+		C.QTestEventList_AddKeyPress(ptr.Pointer(), C.longlong(qtKey), C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 
@@ -621,7 +614,7 @@ func (ptr *QTestEventList) AddKeyPress2(ascii string, modifiers core.Qt__Keyboar
 	if ptr.Pointer() != nil {
 		var asciiC = C.CString(ascii)
 		defer C.free(unsafe.Pointer(asciiC))
-		C.QTestEventList_AddKeyPress2(ptr.Pointer(), asciiC, C.int(modifiers), C.int(msecs))
+		C.QTestEventList_AddKeyPress2(ptr.Pointer(), asciiC, C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 
@@ -629,7 +622,7 @@ func (ptr *QTestEventList) AddKeyRelease(qtKey core.Qt__Key, modifiers core.Qt__
 	defer qt.Recovering("QTestEventList::addKeyRelease")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddKeyRelease(ptr.Pointer(), C.int(qtKey), C.int(modifiers), C.int(msecs))
+		C.QTestEventList_AddKeyRelease(ptr.Pointer(), C.longlong(qtKey), C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 
@@ -639,7 +632,7 @@ func (ptr *QTestEventList) AddKeyRelease2(ascii string, modifiers core.Qt__Keybo
 	if ptr.Pointer() != nil {
 		var asciiC = C.CString(ascii)
 		defer C.free(unsafe.Pointer(asciiC))
-		C.QTestEventList_AddKeyRelease2(ptr.Pointer(), asciiC, C.int(modifiers), C.int(msecs))
+		C.QTestEventList_AddKeyRelease2(ptr.Pointer(), asciiC, C.longlong(modifiers), C.int(int32(msecs)))
 	}
 }
 
@@ -647,7 +640,7 @@ func (ptr *QTestEventList) AddMouseClick(button core.Qt__MouseButton, modifiers 
 	defer qt.Recovering("QTestEventList::addMouseClick")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddMouseClick(ptr.Pointer(), C.int(button), C.int(modifiers), core.PointerFromQPoint(pos), C.int(delay))
+		C.QTestEventList_AddMouseClick(ptr.Pointer(), C.longlong(button), C.longlong(modifiers), core.PointerFromQPoint(pos), C.int(int32(delay)))
 	}
 }
 
@@ -655,7 +648,7 @@ func (ptr *QTestEventList) AddMouseDClick(button core.Qt__MouseButton, modifiers
 	defer qt.Recovering("QTestEventList::addMouseDClick")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddMouseDClick(ptr.Pointer(), C.int(button), C.int(modifiers), core.PointerFromQPoint(pos), C.int(delay))
+		C.QTestEventList_AddMouseDClick(ptr.Pointer(), C.longlong(button), C.longlong(modifiers), core.PointerFromQPoint(pos), C.int(int32(delay)))
 	}
 }
 
@@ -663,7 +656,7 @@ func (ptr *QTestEventList) AddMouseMove(pos core.QPoint_ITF, delay int) {
 	defer qt.Recovering("QTestEventList::addMouseMove")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddMouseMove(ptr.Pointer(), core.PointerFromQPoint(pos), C.int(delay))
+		C.QTestEventList_AddMouseMove(ptr.Pointer(), core.PointerFromQPoint(pos), C.int(int32(delay)))
 	}
 }
 
@@ -671,7 +664,7 @@ func (ptr *QTestEventList) AddMousePress(button core.Qt__MouseButton, modifiers 
 	defer qt.Recovering("QTestEventList::addMousePress")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddMousePress(ptr.Pointer(), C.int(button), C.int(modifiers), core.PointerFromQPoint(pos), C.int(delay))
+		C.QTestEventList_AddMousePress(ptr.Pointer(), C.longlong(button), C.longlong(modifiers), core.PointerFromQPoint(pos), C.int(int32(delay)))
 	}
 }
 
@@ -679,7 +672,7 @@ func (ptr *QTestEventList) AddMouseRelease(button core.Qt__MouseButton, modifier
 	defer qt.Recovering("QTestEventList::addMouseRelease")
 
 	if ptr.Pointer() != nil {
-		C.QTestEventList_AddMouseRelease(ptr.Pointer(), C.int(button), C.int(modifiers), core.PointerFromQPoint(pos), C.int(delay))
+		C.QTestEventList_AddMouseRelease(ptr.Pointer(), C.longlong(button), C.longlong(modifiers), core.PointerFromQPoint(pos), C.int(int32(delay)))
 	}
 }
 

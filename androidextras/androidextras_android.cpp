@@ -14,30 +14,12 @@
 class MyQAndroidActivityResultReceiver: public QAndroidActivityResultReceiver
 {
 public:
-	QString _objectName;
-	QString objectNameAbs() const { return this->_objectName; };
-	void setObjectNameAbs(const QString &name) { this->_objectName = name; };
-	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data) { callbackQAndroidActivityResultReceiver_HandleActivityResult(this, this->objectNameAbs().toUtf8().data(), receiverRequestCode, resultCode, const_cast<QAndroidJniObject*>(&data)); };
+	void handleActivityResult(int receiverRequestCode, int resultCode, const QAndroidJniObject & data) { callbackQAndroidActivityResultReceiver_HandleActivityResult(this, receiverRequestCode, resultCode, const_cast<QAndroidJniObject*>(&data)); };
 };
 
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data)
 {
 	static_cast<QAndroidActivityResultReceiver*>(ptr)->handleActivityResult(receiverRequestCode, resultCode, *static_cast<QAndroidJniObject*>(data));
-}
-
-char* QAndroidActivityResultReceiver_ObjectNameAbs(void* ptr)
-{
-	if (dynamic_cast<MyQAndroidActivityResultReceiver*>(static_cast<QAndroidActivityResultReceiver*>(ptr))) {
-		return static_cast<MyQAndroidActivityResultReceiver*>(ptr)->objectNameAbs().toUtf8().data();
-	}
-	return QString("QAndroidActivityResultReceiver_BASE").toUtf8().data();
-}
-
-void QAndroidActivityResultReceiver_SetObjectNameAbs(void* ptr, char* name)
-{
-	if (dynamic_cast<MyQAndroidActivityResultReceiver*>(static_cast<QAndroidActivityResultReceiver*>(ptr))) {
-		static_cast<MyQAndroidActivityResultReceiver*>(ptr)->setObjectNameAbs(QString(name));
-	}
 }
 
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment()
@@ -90,7 +72,7 @@ int QAndroidJniObject_CallMethodInt(void* ptr, char* methodName)
 	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jint>(const_cast<const char*>(methodName));
 }
 
-int QAndroidJniObject_CallMethodBoolean(void* ptr, char* methodName)
+char QAndroidJniObject_CallMethodBoolean(void* ptr, char* methodName)
 {
 	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jboolean>(const_cast<const char*>(methodName));
 }
@@ -105,7 +87,7 @@ int QAndroidJniObject_CallMethodInt2(void* ptr, char* methodName, char* signatur
 	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jint>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-int QAndroidJniObject_CallMethodBoolean2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+char QAndroidJniObject_CallMethodBoolean2(void* ptr, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
 	return static_cast<QAndroidJniObject*>(ptr)->callMethod<jboolean>(const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
@@ -140,7 +122,7 @@ int QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt(char* className, cha
 	return QAndroidJniObject::callStaticMethod<jint>(const_cast<const char*>(className), const_cast<const char*>(methodName));
 }
 
-int QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean(char* className, char* methodName)
+char QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean(char* className, char* methodName)
 {
 	return QAndroidJniObject::callStaticMethod<jboolean>(const_cast<const char*>(className), const_cast<const char*>(methodName));
 }
@@ -155,7 +137,7 @@ int QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt2(char* className, ch
 	return QAndroidJniObject::callStaticMethod<jint>(const_cast<const char*>(className), const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-int QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean2(char* className, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+char QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean2(char* className, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
 	return QAndroidJniObject::callStaticMethod<jboolean>(const_cast<const char*>(className), const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
@@ -170,7 +152,7 @@ int QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt3(void* clazz, char* 
 	return QAndroidJniObject::callStaticMethod<jint>(static_cast<jclass>(clazz), const_cast<const char*>(methodName));
 }
 
-int QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean3(void* clazz, char* methodName)
+char QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean3(void* clazz, char* methodName)
 {
 	return QAndroidJniObject::callStaticMethod<jboolean>(static_cast<jclass>(clazz), const_cast<const char*>(methodName));
 }
@@ -185,7 +167,7 @@ int QAndroidJniObject_QAndroidJniObject_CallStaticMethodInt4(void* clazz, char* 
 	return QAndroidJniObject::callStaticMethod<jint>(static_cast<jclass>(clazz), const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
 
-int QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
+char QAndroidJniObject_QAndroidJniObject_CallStaticMethodBoolean4(void* clazz, char* methodName, char* signature, void* v0, void* v1, void* v2, void* v3, void* v4, void* v5, void* v6, void* v7, void* v8, void* v)
 {
 	return QAndroidJniObject::callStaticMethod<jboolean>(static_cast<jclass>(clazz), const_cast<const char*>(methodName), const_cast<const char*>(signature), static_cast<jobject>(v0), static_cast<jobject>(v1), static_cast<jobject>(v2), static_cast<jobject>(v3), static_cast<jobject>(v4), static_cast<jobject>(v5), static_cast<jobject>(v6), static_cast<jobject>(v7), static_cast<jobject>(v8), static_cast<jobject>(v));
 }
@@ -250,7 +232,7 @@ int QAndroidJniObject_GetFieldInt(void* ptr, char* fieldName)
 	return static_cast<QAndroidJniObject*>(ptr)->getField<jint>(const_cast<const char*>(fieldName));
 }
 
-int QAndroidJniObject_GetFieldBoolean(void* ptr, char* fieldName)
+char QAndroidJniObject_GetFieldBoolean(void* ptr, char* fieldName)
 {
 	return static_cast<QAndroidJniObject*>(ptr)->getField<jboolean>(const_cast<const char*>(fieldName));
 }
@@ -280,7 +262,7 @@ int QAndroidJniObject_QAndroidJniObject_GetStaticFieldInt(char* className, char*
 	return QAndroidJniObject::getStaticField<jint>(const_cast<const char*>(className), const_cast<const char*>(fieldName));
 }
 
-int QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean(char* className, char* fieldName)
+char QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean(char* className, char* fieldName)
 {
 	return QAndroidJniObject::getStaticField<jboolean>(const_cast<const char*>(className), const_cast<const char*>(fieldName));
 }
@@ -290,7 +272,7 @@ int QAndroidJniObject_QAndroidJniObject_GetStaticFieldInt2(void* clazz, char* fi
 	return QAndroidJniObject::getStaticField<jint>(static_cast<jclass>(clazz), const_cast<const char*>(fieldName));
 }
 
-int QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean2(void* clazz, char* fieldName)
+char QAndroidJniObject_QAndroidJniObject_GetStaticFieldBoolean2(void* clazz, char* fieldName)
 {
 	return QAndroidJniObject::getStaticField<jboolean>(static_cast<jclass>(clazz), const_cast<const char*>(fieldName));
 }
@@ -335,19 +317,19 @@ void* QAndroidJniObject_QAndroidJniObject_GetStaticFieldString4(void* clazz, cha
 	return new QAndroidJniObject(QAndroidJniObject::getStaticObjectField<jobject>(static_cast<jclass>(clazz), const_cast<const char*>(fieldName), const_cast<const char*>(signature)).object());
 }
 
-int QAndroidJniObject_QAndroidJniObject_IsClassAvailable(char* className)
+char QAndroidJniObject_QAndroidJniObject_IsClassAvailable(char* className)
 {
 	return QAndroidJniObject::isClassAvailable(const_cast<const char*>(className));
 }
 
-int QAndroidJniObject_IsValid(void* ptr)
+char QAndroidJniObject_IsValid(void* ptr)
 {
 	return static_cast<QAndroidJniObject*>(ptr)->isValid();
 }
 
 char* QAndroidJniObject_ToString(void* ptr)
 {
-	return static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8().data();
+	return const_cast<char*>(static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8().constData());
 }
 
 void* QAndroidJniObject_Object(void* ptr)
@@ -370,7 +352,7 @@ void QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt2(char* className, cha
 	QAndroidJniObject::setStaticField<jint>(const_cast<const char*>(className), const_cast<const char*>(fieldName), value);
 }
 
-void QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean2(char* className, char* fieldName, int value)
+void QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean2(char* className, char* fieldName, char value)
 {
 	QAndroidJniObject::setStaticField<jboolean>(const_cast<const char*>(className), const_cast<const char*>(fieldName), value);
 }
@@ -385,7 +367,7 @@ void QAndroidJniObject_QAndroidJniObject_SetStaticFieldInt4(void* clazz, char* f
 	QAndroidJniObject::setStaticField<jint>(static_cast<jclass>(clazz), const_cast<const char*>(fieldName), value);
 }
 
-void QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean4(void* clazz, char* fieldName, int value)
+void QAndroidJniObject_QAndroidJniObject_SetStaticFieldBoolean4(void* clazz, char* fieldName, char value)
 {
 	QAndroidJniObject::setStaticField<jboolean>(static_cast<jclass>(clazz), const_cast<const char*>(fieldName), value);
 }

@@ -110,7 +110,7 @@ func args() {
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ]", filepath.Join("path", "to", "project"))
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ] [ minimal ]", filepath.Join("path", "to", "project"))
 					os.Exit(1)
 				}
 			}
@@ -118,7 +118,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ]", filepath.Join("path", "to", "project"))
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ] [ minimal ]", filepath.Join("path", "to", "project"))
 			os.Exit(1)
 		}
 	}

@@ -25,17 +25,17 @@ void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 	return new QSignalSpy(static_cast<QObject*>(object), const_cast<const char*>(sign));
 }
 
-int QSignalSpy_IsValid(void* ptr)
+char QSignalSpy_IsValid(void* ptr)
 {
 	return static_cast<QSignalSpy*>(ptr)->isValid();
 }
 
 char* QSignalSpy_Signal(void* ptr)
 {
-	return static_cast<QSignalSpy*>(ptr)->signal().toHex().data();
+	return const_cast<char*>(static_cast<QSignalSpy*>(ptr)->signal().toHex().constData());
 }
 
-int QSignalSpy_Wait(void* ptr, int timeout)
+char QSignalSpy_Wait(void* ptr, int timeout)
 {
 	return static_cast<QSignalSpy*>(ptr)->wait(timeout);
 }
@@ -100,22 +100,22 @@ void QSignalSpy_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QSignalSpy*>(ptr)->QSignalSpy::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-int QSignalSpy_Event(void* ptr, void* e)
+char QSignalSpy_Event(void* ptr, void* e)
 {
 	return static_cast<QSignalSpy*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-int QSignalSpy_EventDefault(void* ptr, void* e)
+char QSignalSpy_EventDefault(void* ptr, void* e)
 {
 	return static_cast<QSignalSpy*>(ptr)->QSignalSpy::event(static_cast<QEvent*>(e));
 }
 
-int QSignalSpy_EventFilter(void* ptr, void* watched, void* event)
+char QSignalSpy_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QSignalSpy*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
-int QSignalSpy_EventFilterDefault(void* ptr, void* watched, void* event)
+char QSignalSpy_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<QSignalSpy*>(ptr)->QSignalSpy::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
@@ -145,47 +145,47 @@ void QTestEventList_AddDelay(void* ptr, int msecs)
 	static_cast<QTestEventList*>(ptr)->addDelay(msecs);
 }
 
-void QTestEventList_AddKeyClick(void* ptr, int qtKey, int modifiers, int msecs)
+void QTestEventList_AddKeyClick(void* ptr, long long qtKey, long long modifiers, int msecs)
 {
 	static_cast<QTestEventList*>(ptr)->addKeyClick(static_cast<Qt::Key>(qtKey), static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddKeyClick2(void* ptr, char* ascii, int modifiers, int msecs)
+void QTestEventList_AddKeyClick2(void* ptr, char* ascii, long long modifiers, int msecs)
 {
 	static_cast<QTestEventList*>(ptr)->addKeyClick(*ascii, static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddKeyClicks(void* ptr, char* keys, int modifiers, int msecs)
+void QTestEventList_AddKeyClicks(void* ptr, char* keys, long long modifiers, int msecs)
 {
 	static_cast<QTestEventList*>(ptr)->addKeyClicks(QString(keys), static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddKeyPress(void* ptr, int qtKey, int modifiers, int msecs)
+void QTestEventList_AddKeyPress(void* ptr, long long qtKey, long long modifiers, int msecs)
 {
 	static_cast<QTestEventList*>(ptr)->addKeyPress(static_cast<Qt::Key>(qtKey), static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddKeyPress2(void* ptr, char* ascii, int modifiers, int msecs)
+void QTestEventList_AddKeyPress2(void* ptr, char* ascii, long long modifiers, int msecs)
 {
 	static_cast<QTestEventList*>(ptr)->addKeyPress(*ascii, static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddKeyRelease(void* ptr, int qtKey, int modifiers, int msecs)
+void QTestEventList_AddKeyRelease(void* ptr, long long qtKey, long long modifiers, int msecs)
 {
 	static_cast<QTestEventList*>(ptr)->addKeyRelease(static_cast<Qt::Key>(qtKey), static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddKeyRelease2(void* ptr, char* ascii, int modifiers, int msecs)
+void QTestEventList_AddKeyRelease2(void* ptr, char* ascii, long long modifiers, int msecs)
 {
 	static_cast<QTestEventList*>(ptr)->addKeyRelease(*ascii, static_cast<Qt::KeyboardModifier>(modifiers), msecs);
 }
 
-void QTestEventList_AddMouseClick(void* ptr, int button, int modifiers, void* pos, int delay)
+void QTestEventList_AddMouseClick(void* ptr, long long button, long long modifiers, void* pos, int delay)
 {
 	static_cast<QTestEventList*>(ptr)->addMouseClick(static_cast<Qt::MouseButton>(button), static_cast<Qt::KeyboardModifier>(modifiers), *static_cast<QPoint*>(pos), delay);
 }
 
-void QTestEventList_AddMouseDClick(void* ptr, int button, int modifiers, void* pos, int delay)
+void QTestEventList_AddMouseDClick(void* ptr, long long button, long long modifiers, void* pos, int delay)
 {
 	static_cast<QTestEventList*>(ptr)->addMouseDClick(static_cast<Qt::MouseButton>(button), static_cast<Qt::KeyboardModifier>(modifiers), *static_cast<QPoint*>(pos), delay);
 }
@@ -195,12 +195,12 @@ void QTestEventList_AddMouseMove(void* ptr, void* pos, int delay)
 	static_cast<QTestEventList*>(ptr)->addMouseMove(*static_cast<QPoint*>(pos), delay);
 }
 
-void QTestEventList_AddMousePress(void* ptr, int button, int modifiers, void* pos, int delay)
+void QTestEventList_AddMousePress(void* ptr, long long button, long long modifiers, void* pos, int delay)
 {
 	static_cast<QTestEventList*>(ptr)->addMousePress(static_cast<Qt::MouseButton>(button), static_cast<Qt::KeyboardModifier>(modifiers), *static_cast<QPoint*>(pos), delay);
 }
 
-void QTestEventList_AddMouseRelease(void* ptr, int button, int modifiers, void* pos, int delay)
+void QTestEventList_AddMouseRelease(void* ptr, long long button, long long modifiers, void* pos, int delay)
 {
 	static_cast<QTestEventList*>(ptr)->addMouseRelease(static_cast<Qt::MouseButton>(button), static_cast<Qt::KeyboardModifier>(modifiers), *static_cast<QPoint*>(pos), delay);
 }

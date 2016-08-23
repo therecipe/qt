@@ -20,6 +20,8 @@ func HTemplate(module string) []byte {
 #ifndef GO_%v_H
 #define GO_%v_H
 
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
