@@ -54,7 +54,7 @@ func NewDropAreaFromPointer(ptr unsafe.Pointer) *DropArea {
 func callbackDropArea_Changed(ptr unsafe.Pointer, mimeData unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::changed")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "changed"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::changed"); signal != nil {
 		signal.(func(*core.QMimeData))(core.NewQMimeDataFromPointer(mimeData))
 	}
 
@@ -65,7 +65,7 @@ func (ptr *DropArea) ConnectChanged(f func(mimeData *core.QMimeData)) {
 
 	if ptr.Pointer() != nil {
 		C.DropArea_ConnectChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "changed", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::changed", f)
 	}
 }
 
@@ -74,7 +74,7 @@ func (ptr *DropArea) DisconnectChanged() {
 
 	if ptr.Pointer() != nil {
 		C.DropArea_DisconnectChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "changed")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::changed")
 	}
 }
 
@@ -89,15 +89,19 @@ func (ptr *DropArea) Changed(mimeData core.QMimeData_ITF) {
 func NewDropArea(parent widgets.QWidget_ITF, f core.Qt__WindowType) *DropArea {
 	defer qt.Recovering("DropArea::DropArea")
 
-	return NewDropAreaFromPointer(C.DropArea_NewDropArea(widgets.PointerFromQWidget(parent), C.longlong(f)))
+	var tmpValue = NewDropAreaFromPointer(C.DropArea_NewDropArea(widgets.PointerFromQWidget(parent), C.longlong(f)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *DropArea) DestroyDropArea() {
 	defer qt.Recovering("DropArea::~DropArea")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("DropArea(%v)", ptr.Pointer()))
 		C.DropArea_DestroyDropArea(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -106,7 +110,7 @@ func (ptr *DropArea) DestroyDropArea() {
 func callbackDropArea_SetPixmap(ptr unsafe.Pointer, vqp unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::setPixmap")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setPixmap"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setPixmap"); signal != nil {
 		signal.(func(*gui.QPixmap))(gui.NewQPixmapFromPointer(vqp))
 	} else {
 		NewDropAreaFromPointer(ptr).SetPixmapDefault(gui.NewQPixmapFromPointer(vqp))
@@ -118,7 +122,7 @@ func (ptr *DropArea) ConnectSetPixmap(f func(vqp *gui.QPixmap)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setPixmap", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setPixmap", f)
 	}
 }
 
@@ -127,7 +131,7 @@ func (ptr *DropArea) DisconnectSetPixmap() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setPixmap")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setPixmap")
 	}
 }
 
@@ -151,7 +155,7 @@ func (ptr *DropArea) SetPixmapDefault(vqp gui.QPixmap_ITF) {
 func callbackDropArea_SetText(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback DropArea::setText")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setText"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setText"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewDropAreaFromPointer(ptr).SetTextDefault(C.GoString(vqs))
@@ -163,7 +167,7 @@ func (ptr *DropArea) ConnectSetText(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setText", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setText", f)
 	}
 }
 
@@ -172,7 +176,7 @@ func (ptr *DropArea) DisconnectSetText() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setText")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setText")
 	}
 }
 
@@ -200,7 +204,7 @@ func (ptr *DropArea) SetTextDefault(vqs string) {
 func callbackDropArea_ChangeEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(ev))
@@ -212,7 +216,7 @@ func (ptr *DropArea) ConnectChangeEvent(f func(ev *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::changeEvent", f)
 	}
 }
 
@@ -221,7 +225,7 @@ func (ptr *DropArea) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::changeEvent")
 	}
 }
 
@@ -245,7 +249,7 @@ func (ptr *DropArea) ChangeEventDefault(ev core.QEvent_ITF) {
 func callbackDropArea_Clear(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::clear")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "clear"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::clear"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).ClearDefault()
@@ -257,7 +261,7 @@ func (ptr *DropArea) ConnectClear(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "clear", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::clear", f)
 	}
 }
 
@@ -266,7 +270,7 @@ func (ptr *DropArea) DisconnectClear() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "clear")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::clear")
 	}
 }
 
@@ -290,7 +294,7 @@ func (ptr *DropArea) ClearDefault() {
 func callbackDropArea_ContextMenuEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(ev))
@@ -302,7 +306,7 @@ func (ptr *DropArea) ConnectContextMenuEvent(f func(ev *gui.QContextMenuEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::contextMenuEvent", f)
 	}
 }
 
@@ -311,7 +315,7 @@ func (ptr *DropArea) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::contextMenuEvent")
 	}
 }
 
@@ -335,7 +339,7 @@ func (ptr *DropArea) ContextMenuEventDefault(ev gui.QContextMenuEvent_ITF) {
 func callbackDropArea_FocusInEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(ev))
@@ -347,7 +351,7 @@ func (ptr *DropArea) ConnectFocusInEvent(f func(ev *gui.QFocusEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::focusInEvent", f)
 	}
 }
 
@@ -356,7 +360,7 @@ func (ptr *DropArea) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::focusInEvent")
 	}
 }
 
@@ -380,7 +384,7 @@ func (ptr *DropArea) FocusInEventDefault(ev gui.QFocusEvent_ITF) {
 func callbackDropArea_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback DropArea::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -392,7 +396,7 @@ func (ptr *DropArea) ConnectFocusNextPrevChild(f func(next bool) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::focusNextPrevChild", f)
 	}
 }
 
@@ -401,7 +405,7 @@ func (ptr *DropArea) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::focusNextPrevChild")
 	}
 }
 
@@ -427,7 +431,7 @@ func (ptr *DropArea) FocusNextPrevChildDefault(next bool) bool {
 func callbackDropArea_FocusOutEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(ev))
@@ -439,7 +443,7 @@ func (ptr *DropArea) ConnectFocusOutEvent(f func(ev *gui.QFocusEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::focusOutEvent", f)
 	}
 }
 
@@ -448,7 +452,7 @@ func (ptr *DropArea) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::focusOutEvent")
 	}
 }
 
@@ -472,7 +476,7 @@ func (ptr *DropArea) FocusOutEventDefault(ev gui.QFocusEvent_ITF) {
 func callbackDropArea_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback DropArea::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -484,7 +488,7 @@ func (ptr *DropArea) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::heightForWidth", f)
 	}
 }
 
@@ -493,7 +497,7 @@ func (ptr *DropArea) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::heightForWidth")
 	}
 }
 
@@ -519,7 +523,7 @@ func (ptr *DropArea) HeightForWidthDefault(w int) int {
 func callbackDropArea_KeyPressEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(ev))
@@ -531,7 +535,7 @@ func (ptr *DropArea) ConnectKeyPressEvent(f func(ev *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::keyPressEvent", f)
 	}
 }
 
@@ -540,7 +544,7 @@ func (ptr *DropArea) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::keyPressEvent")
 	}
 }
 
@@ -564,7 +568,7 @@ func (ptr *DropArea) KeyPressEventDefault(ev gui.QKeyEvent_ITF) {
 func callbackDropArea_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback DropArea::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -576,7 +580,7 @@ func (ptr *DropArea) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::minimumSizeHint", f)
 	}
 }
 
@@ -585,7 +589,7 @@ func (ptr *DropArea) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::minimumSizeHint")
 	}
 }
 
@@ -615,7 +619,7 @@ func (ptr *DropArea) MinimumSizeHintDefault() *core.QSize {
 func callbackDropArea_MouseMoveEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(ev))
@@ -627,7 +631,7 @@ func (ptr *DropArea) ConnectMouseMoveEvent(f func(ev *gui.QMouseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mouseMoveEvent", f)
 	}
 }
 
@@ -636,7 +640,7 @@ func (ptr *DropArea) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mouseMoveEvent")
 	}
 }
 
@@ -660,7 +664,7 @@ func (ptr *DropArea) MouseMoveEventDefault(ev gui.QMouseEvent_ITF) {
 func callbackDropArea_MousePressEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(ev))
@@ -672,7 +676,7 @@ func (ptr *DropArea) ConnectMousePressEvent(f func(ev *gui.QMouseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mousePressEvent", f)
 	}
 }
 
@@ -681,7 +685,7 @@ func (ptr *DropArea) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mousePressEvent")
 	}
 }
 
@@ -705,7 +709,7 @@ func (ptr *DropArea) MousePressEventDefault(ev gui.QMouseEvent_ITF) {
 func callbackDropArea_MouseReleaseEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(ev))
 	} else {
 		NewDropAreaFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(ev))
@@ -717,7 +721,7 @@ func (ptr *DropArea) ConnectMouseReleaseEvent(f func(ev *gui.QMouseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mouseReleaseEvent", f)
 	}
 }
 
@@ -726,7 +730,7 @@ func (ptr *DropArea) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mouseReleaseEvent")
 	}
 }
 
@@ -750,7 +754,7 @@ func (ptr *DropArea) MouseReleaseEventDefault(ev gui.QMouseEvent_ITF) {
 func callbackDropArea_PaintEvent(ptr unsafe.Pointer, vqp unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::paintEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(vqp))
 	} else {
 		NewDropAreaFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(vqp))
@@ -762,7 +766,7 @@ func (ptr *DropArea) ConnectPaintEvent(f func(vqp *gui.QPaintEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::paintEvent", f)
 	}
 }
 
@@ -771,7 +775,7 @@ func (ptr *DropArea) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::paintEvent")
 	}
 }
 
@@ -795,7 +799,7 @@ func (ptr *DropArea) PaintEventDefault(vqp gui.QPaintEvent_ITF) {
 func callbackDropArea_SetMovie(ptr unsafe.Pointer, movie unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::setMovie")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setMovie"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setMovie"); signal != nil {
 		signal.(func(*gui.QMovie))(gui.NewQMovieFromPointer(movie))
 	} else {
 		NewDropAreaFromPointer(ptr).SetMovieDefault(gui.NewQMovieFromPointer(movie))
@@ -807,7 +811,7 @@ func (ptr *DropArea) ConnectSetMovie(f func(movie *gui.QMovie)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setMovie", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setMovie", f)
 	}
 }
 
@@ -816,7 +820,7 @@ func (ptr *DropArea) DisconnectSetMovie() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setMovie")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setMovie")
 	}
 }
 
@@ -840,7 +844,7 @@ func (ptr *DropArea) SetMovieDefault(movie gui.QMovie_ITF) {
 func callbackDropArea_SetNum2(ptr unsafe.Pointer, num C.double) {
 	defer qt.Recovering("callback DropArea::setNum")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setNum2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setNum2"); signal != nil {
 		signal.(func(float64))(float64(num))
 	} else {
 		NewDropAreaFromPointer(ptr).SetNum2Default(float64(num))
@@ -852,7 +856,7 @@ func (ptr *DropArea) ConnectSetNum2(f func(num float64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setNum2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setNum2", f)
 	}
 }
 
@@ -861,7 +865,7 @@ func (ptr *DropArea) DisconnectSetNum2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setNum2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setNum2")
 	}
 }
 
@@ -885,7 +889,7 @@ func (ptr *DropArea) SetNum2Default(num float64) {
 func callbackDropArea_SetNum(ptr unsafe.Pointer, num C.int) {
 	defer qt.Recovering("callback DropArea::setNum")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setNum"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setNum"); signal != nil {
 		signal.(func(int))(int(int32(num)))
 	} else {
 		NewDropAreaFromPointer(ptr).SetNumDefault(int(int32(num)))
@@ -897,7 +901,7 @@ func (ptr *DropArea) ConnectSetNum(f func(num int)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setNum", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setNum", f)
 	}
 }
 
@@ -906,7 +910,7 @@ func (ptr *DropArea) DisconnectSetNum() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setNum")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setNum")
 	}
 }
 
@@ -930,7 +934,7 @@ func (ptr *DropArea) SetNumDefault(num int) {
 func callbackDropArea_SetPicture(ptr unsafe.Pointer, picture unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::setPicture")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setPicture"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setPicture"); signal != nil {
 		signal.(func(*gui.QPicture))(gui.NewQPictureFromPointer(picture))
 	} else {
 		NewDropAreaFromPointer(ptr).SetPictureDefault(gui.NewQPictureFromPointer(picture))
@@ -942,7 +946,7 @@ func (ptr *DropArea) ConnectSetPicture(f func(picture *gui.QPicture)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setPicture", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setPicture", f)
 	}
 }
 
@@ -951,7 +955,7 @@ func (ptr *DropArea) DisconnectSetPicture() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setPicture")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setPicture")
 	}
 }
 
@@ -975,7 +979,7 @@ func (ptr *DropArea) SetPictureDefault(picture gui.QPicture_ITF) {
 func callbackDropArea_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback DropArea::sizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -987,7 +991,7 @@ func (ptr *DropArea) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::sizeHint", f)
 	}
 }
 
@@ -996,7 +1000,7 @@ func (ptr *DropArea) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::sizeHint")
 	}
 }
 
@@ -1026,7 +1030,7 @@ func (ptr *DropArea) SizeHintDefault() *core.QSize {
 func callbackDropArea_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -1038,7 +1042,7 @@ func (ptr *DropArea) ConnectActionEvent(f func(event *gui.QActionEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::actionEvent", f)
 	}
 }
 
@@ -1047,7 +1051,7 @@ func (ptr *DropArea) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::actionEvent")
 	}
 }
 
@@ -1071,7 +1075,7 @@ func (ptr *DropArea) ActionEventDefault(event gui.QActionEvent_ITF) {
 func callbackDropArea_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -1083,7 +1087,7 @@ func (ptr *DropArea) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dragEnterEvent", f)
 	}
 }
 
@@ -1092,7 +1096,7 @@ func (ptr *DropArea) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dragEnterEvent")
 	}
 }
 
@@ -1116,7 +1120,7 @@ func (ptr *DropArea) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
 func callbackDropArea_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -1128,7 +1132,7 @@ func (ptr *DropArea) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dragLeaveEvent", f)
 	}
 }
 
@@ -1137,7 +1141,7 @@ func (ptr *DropArea) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dragLeaveEvent")
 	}
 }
 
@@ -1161,7 +1165,7 @@ func (ptr *DropArea) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
 func callbackDropArea_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -1173,7 +1177,7 @@ func (ptr *DropArea) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dragMoveEvent", f)
 	}
 }
 
@@ -1182,7 +1186,7 @@ func (ptr *DropArea) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dragMoveEvent")
 	}
 }
 
@@ -1206,7 +1210,7 @@ func (ptr *DropArea) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
 func callbackDropArea_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -1218,7 +1222,7 @@ func (ptr *DropArea) ConnectDropEvent(f func(event *gui.QDropEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dropEvent", f)
 	}
 }
 
@@ -1227,7 +1231,7 @@ func (ptr *DropArea) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::dropEvent")
 	}
 }
 
@@ -1251,7 +1255,7 @@ func (ptr *DropArea) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackDropArea_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -1263,7 +1267,7 @@ func (ptr *DropArea) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::enterEvent", f)
 	}
 }
 
@@ -1272,7 +1276,7 @@ func (ptr *DropArea) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::enterEvent")
 	}
 }
 
@@ -1296,7 +1300,7 @@ func (ptr *DropArea) EnterEventDefault(event core.QEvent_ITF) {
 func callbackDropArea_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -1308,7 +1312,7 @@ func (ptr *DropArea) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::hideEvent", f)
 	}
 }
 
@@ -1317,7 +1321,7 @@ func (ptr *DropArea) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::hideEvent")
 	}
 }
 
@@ -1341,7 +1345,7 @@ func (ptr *DropArea) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackDropArea_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -1353,7 +1357,7 @@ func (ptr *DropArea) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::leaveEvent", f)
 	}
 }
 
@@ -1362,7 +1366,7 @@ func (ptr *DropArea) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::leaveEvent")
 	}
 }
 
@@ -1386,7 +1390,7 @@ func (ptr *DropArea) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackDropArea_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -1398,7 +1402,7 @@ func (ptr *DropArea) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::moveEvent", f)
 	}
 }
 
@@ -1407,7 +1411,7 @@ func (ptr *DropArea) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::moveEvent")
 	}
 }
 
@@ -1431,7 +1435,7 @@ func (ptr *DropArea) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackDropArea_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback DropArea::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewDropAreaFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -1443,7 +1447,7 @@ func (ptr *DropArea) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setEnabled", f)
 	}
 }
 
@@ -1452,7 +1456,7 @@ func (ptr *DropArea) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setEnabled")
 	}
 }
 
@@ -1476,7 +1480,7 @@ func (ptr *DropArea) SetEnabledDefault(vbo bool) {
 func callbackDropArea_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback DropArea::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewDropAreaFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -1488,7 +1492,7 @@ func (ptr *DropArea) ConnectSetStyleSheet(f func(styleSheet string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setStyleSheet", f)
 	}
 }
 
@@ -1497,7 +1501,7 @@ func (ptr *DropArea) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setStyleSheet")
 	}
 }
 
@@ -1525,7 +1529,7 @@ func (ptr *DropArea) SetStyleSheetDefault(styleSheet string) {
 func callbackDropArea_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback DropArea::setVisible")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setVisible"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
 		NewDropAreaFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
@@ -1537,7 +1541,7 @@ func (ptr *DropArea) ConnectSetVisible(f func(visible bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setVisible", f)
 	}
 }
 
@@ -1546,7 +1550,7 @@ func (ptr *DropArea) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setVisible")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setVisible")
 	}
 }
 
@@ -1570,7 +1574,7 @@ func (ptr *DropArea) SetVisibleDefault(visible bool) {
 func callbackDropArea_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback DropArea::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewDropAreaFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -1582,7 +1586,7 @@ func (ptr *DropArea) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setWindowModified", f)
 	}
 }
 
@@ -1591,7 +1595,7 @@ func (ptr *DropArea) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setWindowModified")
 	}
 }
 
@@ -1615,7 +1619,7 @@ func (ptr *DropArea) SetWindowModifiedDefault(vbo bool) {
 func callbackDropArea_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback DropArea::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewDropAreaFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -1627,7 +1631,7 @@ func (ptr *DropArea) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setWindowTitle", f)
 	}
 }
 
@@ -1636,7 +1640,7 @@ func (ptr *DropArea) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setWindowTitle")
 	}
 }
 
@@ -1664,7 +1668,7 @@ func (ptr *DropArea) SetWindowTitleDefault(vqs string) {
 func callbackDropArea_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -1676,7 +1680,7 @@ func (ptr *DropArea) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showEvent", f)
 	}
 }
 
@@ -1685,7 +1689,7 @@ func (ptr *DropArea) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showEvent")
 	}
 }
 
@@ -1709,7 +1713,7 @@ func (ptr *DropArea) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackDropArea_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback DropArea::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -1721,7 +1725,7 @@ func (ptr *DropArea) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::close", f)
 	}
 }
 
@@ -1730,7 +1734,7 @@ func (ptr *DropArea) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::close")
 	}
 }
 
@@ -1756,7 +1760,7 @@ func (ptr *DropArea) CloseDefault() bool {
 func callbackDropArea_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -1768,7 +1772,7 @@ func (ptr *DropArea) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::closeEvent", f)
 	}
 }
 
@@ -1777,7 +1781,7 @@ func (ptr *DropArea) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::closeEvent")
 	}
 }
 
@@ -1801,7 +1805,7 @@ func (ptr *DropArea) CloseEventDefault(event gui.QCloseEvent_ITF) {
 func callbackDropArea_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback DropArea::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -1813,7 +1817,7 @@ func (ptr *DropArea) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::hasHeightForWidth", f)
 	}
 }
 
@@ -1822,7 +1826,7 @@ func (ptr *DropArea) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::hasHeightForWidth")
 	}
 }
 
@@ -1848,7 +1852,7 @@ func (ptr *DropArea) HasHeightForWidthDefault() bool {
 func callbackDropArea_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).HideDefault()
@@ -1860,7 +1864,7 @@ func (ptr *DropArea) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::hide", f)
 	}
 }
 
@@ -1869,7 +1873,7 @@ func (ptr *DropArea) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::hide")
 	}
 }
 
@@ -1893,7 +1897,7 @@ func (ptr *DropArea) HideDefault() {
 func callbackDropArea_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -1905,7 +1909,7 @@ func (ptr *DropArea) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::inputMethodEvent", f)
 	}
 }
 
@@ -1914,7 +1918,7 @@ func (ptr *DropArea) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::inputMethodEvent")
 	}
 }
 
@@ -1938,7 +1942,7 @@ func (ptr *DropArea) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
 func callbackDropArea_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback DropArea::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -1950,7 +1954,7 @@ func (ptr *DropArea) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::inputMethodQuery", f)
 	}
 }
 
@@ -1959,7 +1963,7 @@ func (ptr *DropArea) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::inputMethodQuery")
 	}
 }
 
@@ -1989,7 +1993,7 @@ func (ptr *DropArea) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *c
 func callbackDropArea_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -2001,7 +2005,7 @@ func (ptr *DropArea) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::keyReleaseEvent", f)
 	}
 }
 
@@ -2010,7 +2014,7 @@ func (ptr *DropArea) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::keyReleaseEvent")
 	}
 }
 
@@ -2034,7 +2038,7 @@ func (ptr *DropArea) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 func callbackDropArea_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).LowerDefault()
@@ -2046,7 +2050,7 @@ func (ptr *DropArea) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::lower", f)
 	}
 }
 
@@ -2055,7 +2059,7 @@ func (ptr *DropArea) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::lower")
 	}
 }
 
@@ -2079,7 +2083,7 @@ func (ptr *DropArea) LowerDefault() {
 func callbackDropArea_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2091,7 +2095,7 @@ func (ptr *DropArea) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -2100,7 +2104,7 @@ func (ptr *DropArea) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::mouseDoubleClickEvent")
 	}
 }
 
@@ -2124,7 +2128,7 @@ func (ptr *DropArea) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
 func callbackDropArea_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback DropArea::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -2136,7 +2140,7 @@ func (ptr *DropArea) ConnectNativeEvent(f func(eventType string, message unsafe.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::nativeEvent", f)
 	}
 }
 
@@ -2145,7 +2149,7 @@ func (ptr *DropArea) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::nativeEvent")
 	}
 }
 
@@ -2175,7 +2179,7 @@ func (ptr *DropArea) NativeEventDefault(eventType string, message unsafe.Pointer
 func callbackDropArea_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).RaiseDefault()
@@ -2187,7 +2191,7 @@ func (ptr *DropArea) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::raise", f)
 	}
 }
 
@@ -2196,7 +2200,7 @@ func (ptr *DropArea) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::raise")
 	}
 }
 
@@ -2220,7 +2224,7 @@ func (ptr *DropArea) RaiseDefault() {
 func callbackDropArea_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).RepaintDefault()
@@ -2232,7 +2236,7 @@ func (ptr *DropArea) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::repaint", f)
 	}
 }
 
@@ -2241,7 +2245,7 @@ func (ptr *DropArea) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::repaint")
 	}
 }
 
@@ -2265,7 +2269,7 @@ func (ptr *DropArea) RepaintDefault() {
 func callbackDropArea_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -2277,7 +2281,7 @@ func (ptr *DropArea) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::resizeEvent", f)
 	}
 }
 
@@ -2286,7 +2290,7 @@ func (ptr *DropArea) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::resizeEvent")
 	}
 }
 
@@ -2310,7 +2314,7 @@ func (ptr *DropArea) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 func callbackDropArea_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback DropArea::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewDropAreaFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -2322,7 +2326,7 @@ func (ptr *DropArea) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setDisabled", f)
 	}
 }
 
@@ -2331,7 +2335,7 @@ func (ptr *DropArea) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setDisabled")
 	}
 }
 
@@ -2355,7 +2359,7 @@ func (ptr *DropArea) SetDisabledDefault(disable bool) {
 func callbackDropArea_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).SetFocus2Default()
@@ -2367,7 +2371,7 @@ func (ptr *DropArea) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setFocus2", f)
 	}
 }
 
@@ -2376,7 +2380,7 @@ func (ptr *DropArea) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setFocus2")
 	}
 }
 
@@ -2400,7 +2404,7 @@ func (ptr *DropArea) SetFocus2Default() {
 func callbackDropArea_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback DropArea::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewDropAreaFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -2412,7 +2416,7 @@ func (ptr *DropArea) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setHidden", f)
 	}
 }
 
@@ -2421,7 +2425,7 @@ func (ptr *DropArea) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::setHidden")
 	}
 }
 
@@ -2445,7 +2449,7 @@ func (ptr *DropArea) SetHiddenDefault(hidden bool) {
 func callbackDropArea_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).ShowDefault()
@@ -2457,7 +2461,7 @@ func (ptr *DropArea) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::show", f)
 	}
 }
 
@@ -2466,7 +2470,7 @@ func (ptr *DropArea) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::show")
 	}
 }
 
@@ -2490,7 +2494,7 @@ func (ptr *DropArea) ShowDefault() {
 func callbackDropArea_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).ShowFullScreenDefault()
@@ -2502,7 +2506,7 @@ func (ptr *DropArea) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showFullScreen", f)
 	}
 }
 
@@ -2511,7 +2515,7 @@ func (ptr *DropArea) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showFullScreen")
 	}
 }
 
@@ -2535,7 +2539,7 @@ func (ptr *DropArea) ShowFullScreenDefault() {
 func callbackDropArea_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).ShowMaximizedDefault()
@@ -2547,7 +2551,7 @@ func (ptr *DropArea) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showMaximized", f)
 	}
 }
 
@@ -2556,7 +2560,7 @@ func (ptr *DropArea) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showMaximized")
 	}
 }
 
@@ -2580,7 +2584,7 @@ func (ptr *DropArea) ShowMaximizedDefault() {
 func callbackDropArea_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).ShowMinimizedDefault()
@@ -2592,7 +2596,7 @@ func (ptr *DropArea) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showMinimized", f)
 	}
 }
 
@@ -2601,7 +2605,7 @@ func (ptr *DropArea) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showMinimized")
 	}
 }
 
@@ -2625,7 +2629,7 @@ func (ptr *DropArea) ShowMinimizedDefault() {
 func callbackDropArea_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).ShowNormalDefault()
@@ -2637,7 +2641,7 @@ func (ptr *DropArea) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showNormal", f)
 	}
 }
 
@@ -2646,7 +2650,7 @@ func (ptr *DropArea) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::showNormal")
 	}
 }
 
@@ -2670,7 +2674,7 @@ func (ptr *DropArea) ShowNormalDefault() {
 func callbackDropArea_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -2682,7 +2686,7 @@ func (ptr *DropArea) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::tabletEvent", f)
 	}
 }
 
@@ -2691,7 +2695,7 @@ func (ptr *DropArea) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::tabletEvent")
 	}
 }
 
@@ -2715,7 +2719,7 @@ func (ptr *DropArea) TabletEventDefault(event gui.QTabletEvent_ITF) {
 func callbackDropArea_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).UpdateDefault()
@@ -2727,7 +2731,7 @@ func (ptr *DropArea) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::update", f)
 	}
 }
 
@@ -2736,7 +2740,7 @@ func (ptr *DropArea) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::update")
 	}
 }
 
@@ -2760,7 +2764,7 @@ func (ptr *DropArea) UpdateDefault() {
 func callbackDropArea_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).UpdateMicroFocusDefault()
@@ -2772,7 +2776,7 @@ func (ptr *DropArea) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::updateMicroFocus", f)
 	}
 }
 
@@ -2781,7 +2785,7 @@ func (ptr *DropArea) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::updateMicroFocus")
 	}
 }
 
@@ -2805,7 +2809,7 @@ func (ptr *DropArea) UpdateMicroFocusDefault() {
 func callbackDropArea_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -2817,7 +2821,7 @@ func (ptr *DropArea) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::wheelEvent", f)
 	}
 }
 
@@ -2826,7 +2830,7 @@ func (ptr *DropArea) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::wheelEvent")
 	}
 }
 
@@ -2850,7 +2854,7 @@ func (ptr *DropArea) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackDropArea_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2862,7 +2866,7 @@ func (ptr *DropArea) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::timerEvent", f)
 	}
 }
 
@@ -2871,7 +2875,7 @@ func (ptr *DropArea) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::timerEvent")
 	}
 }
 
@@ -2895,7 +2899,7 @@ func (ptr *DropArea) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackDropArea_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -2907,7 +2911,7 @@ func (ptr *DropArea) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::childEvent", f)
 	}
 }
 
@@ -2916,7 +2920,7 @@ func (ptr *DropArea) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::childEvent")
 	}
 }
 
@@ -2940,7 +2944,7 @@ func (ptr *DropArea) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackDropArea_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewDropAreaFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2952,7 +2956,7 @@ func (ptr *DropArea) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::connectNotify", f)
 	}
 }
 
@@ -2961,7 +2965,7 @@ func (ptr *DropArea) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::connectNotify")
 	}
 }
 
@@ -2985,7 +2989,7 @@ func (ptr *DropArea) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackDropArea_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDropAreaFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -2997,7 +3001,7 @@ func (ptr *DropArea) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::customEvent", f)
 	}
 }
 
@@ -3006,7 +3010,7 @@ func (ptr *DropArea) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::customEvent")
 	}
 }
 
@@ -3030,7 +3034,7 @@ func (ptr *DropArea) CustomEventDefault(event core.QEvent_ITF) {
 func callbackDropArea_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropAreaFromPointer(ptr).DeleteLaterDefault()
@@ -3042,7 +3046,7 @@ func (ptr *DropArea) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::deleteLater", f)
 	}
 }
 
@@ -3051,7 +3055,7 @@ func (ptr *DropArea) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::deleteLater")
 	}
 }
 
@@ -3059,8 +3063,8 @@ func (ptr *DropArea) DeleteLater() {
 	defer qt.Recovering("DropArea::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("DropArea(%v)", ptr.Pointer()))
 		C.DropArea_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3069,8 +3073,8 @@ func (ptr *DropArea) DeleteLaterDefault() {
 	defer qt.Recovering("DropArea::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("DropArea(%v)", ptr.Pointer()))
 		C.DropArea_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3079,7 +3083,7 @@ func (ptr *DropArea) DeleteLaterDefault() {
 func callbackDropArea_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback DropArea::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewDropAreaFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3091,7 +3095,7 @@ func (ptr *DropArea) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::disconnectNotify", f)
 	}
 }
 
@@ -3100,7 +3104,7 @@ func (ptr *DropArea) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::disconnectNotify")
 	}
 }
 
@@ -3124,7 +3128,7 @@ func (ptr *DropArea) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackDropArea_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback DropArea::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropArea(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropArea::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -3136,7 +3140,7 @@ func (ptr *DropArea) ConnectEventFilter(f func(watched *core.QObject, event *cor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::eventFilter", f)
 	}
 }
 
@@ -3145,7 +3149,7 @@ func (ptr *DropArea) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropArea(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropArea::eventFilter")
 	}
 }
 
@@ -3208,7 +3212,7 @@ func NewDropSiteWindowFromPointer(ptr unsafe.Pointer) *DropSiteWindow {
 func callbackDropSiteWindow_UpdateFormatsTable(ptr unsafe.Pointer, mimeData unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::updateFormatsTable")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "updateFormatsTable"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::updateFormatsTable"); signal != nil {
 		signal.(func(*core.QMimeData))(core.NewQMimeDataFromPointer(mimeData))
 	}
 
@@ -3219,7 +3223,7 @@ func (ptr *DropSiteWindow) ConnectUpdateFormatsTable(f func(mimeData *core.QMime
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "updateFormatsTable", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::updateFormatsTable", f)
 	}
 }
 
@@ -3228,7 +3232,7 @@ func (ptr *DropSiteWindow) DisconnectUpdateFormatsTable(mimeData core.QMimeData_
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "updateFormatsTable")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::updateFormatsTable")
 	}
 }
 
@@ -3243,15 +3247,19 @@ func (ptr *DropSiteWindow) UpdateFormatsTable(mimeData core.QMimeData_ITF) {
 func NewDropSiteWindow(parent widgets.QWidget_ITF, f core.Qt__WindowType) *DropSiteWindow {
 	defer qt.Recovering("DropSiteWindow::DropSiteWindow")
 
-	return NewDropSiteWindowFromPointer(C.DropSiteWindow_NewDropSiteWindow(widgets.PointerFromQWidget(parent), C.longlong(f)))
+	var tmpValue = NewDropSiteWindowFromPointer(C.DropSiteWindow_NewDropSiteWindow(widgets.PointerFromQWidget(parent), C.longlong(f)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *DropSiteWindow) DestroyDropSiteWindow() {
 	defer qt.Recovering("DropSiteWindow::~DropSiteWindow")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()))
 		C.DropSiteWindow_DestroyDropSiteWindow(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3260,7 +3268,7 @@ func (ptr *DropSiteWindow) DestroyDropSiteWindow() {
 func callbackDropSiteWindow_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -3272,7 +3280,7 @@ func (ptr *DropSiteWindow) ConnectActionEvent(f func(event *gui.QActionEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::actionEvent", f)
 	}
 }
 
@@ -3281,7 +3289,7 @@ func (ptr *DropSiteWindow) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::actionEvent")
 	}
 }
 
@@ -3305,7 +3313,7 @@ func (ptr *DropSiteWindow) ActionEventDefault(event gui.QActionEvent_ITF) {
 func callbackDropSiteWindow_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -3317,7 +3325,7 @@ func (ptr *DropSiteWindow) ConnectDragEnterEvent(f func(event *gui.QDragEnterEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dragEnterEvent", f)
 	}
 }
 
@@ -3326,7 +3334,7 @@ func (ptr *DropSiteWindow) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dragEnterEvent")
 	}
 }
 
@@ -3350,7 +3358,7 @@ func (ptr *DropSiteWindow) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) 
 func callbackDropSiteWindow_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -3362,7 +3370,7 @@ func (ptr *DropSiteWindow) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dragLeaveEvent", f)
 	}
 }
 
@@ -3371,7 +3379,7 @@ func (ptr *DropSiteWindow) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dragLeaveEvent")
 	}
 }
 
@@ -3395,7 +3403,7 @@ func (ptr *DropSiteWindow) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) 
 func callbackDropSiteWindow_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -3407,7 +3415,7 @@ func (ptr *DropSiteWindow) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dragMoveEvent", f)
 	}
 }
 
@@ -3416,7 +3424,7 @@ func (ptr *DropSiteWindow) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dragMoveEvent")
 	}
 }
 
@@ -3440,7 +3448,7 @@ func (ptr *DropSiteWindow) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
 func callbackDropSiteWindow_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -3452,7 +3460,7 @@ func (ptr *DropSiteWindow) ConnectDropEvent(f func(event *gui.QDropEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dropEvent", f)
 	}
 }
 
@@ -3461,7 +3469,7 @@ func (ptr *DropSiteWindow) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::dropEvent")
 	}
 }
 
@@ -3485,7 +3493,7 @@ func (ptr *DropSiteWindow) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackDropSiteWindow_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -3497,7 +3505,7 @@ func (ptr *DropSiteWindow) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::enterEvent", f)
 	}
 }
 
@@ -3506,7 +3514,7 @@ func (ptr *DropSiteWindow) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::enterEvent")
 	}
 }
 
@@ -3530,7 +3538,7 @@ func (ptr *DropSiteWindow) EnterEventDefault(event core.QEvent_ITF) {
 func callbackDropSiteWindow_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -3542,7 +3550,7 @@ func (ptr *DropSiteWindow) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::focusInEvent", f)
 	}
 }
 
@@ -3551,7 +3559,7 @@ func (ptr *DropSiteWindow) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::focusInEvent")
 	}
 }
 
@@ -3575,7 +3583,7 @@ func (ptr *DropSiteWindow) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 func callbackDropSiteWindow_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -3587,7 +3595,7 @@ func (ptr *DropSiteWindow) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::focusOutEvent", f)
 	}
 }
 
@@ -3596,7 +3604,7 @@ func (ptr *DropSiteWindow) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::focusOutEvent")
 	}
 }
 
@@ -3620,7 +3628,7 @@ func (ptr *DropSiteWindow) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 func callbackDropSiteWindow_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -3632,7 +3640,7 @@ func (ptr *DropSiteWindow) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::hideEvent", f)
 	}
 }
 
@@ -3641,7 +3649,7 @@ func (ptr *DropSiteWindow) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::hideEvent")
 	}
 }
 
@@ -3665,7 +3673,7 @@ func (ptr *DropSiteWindow) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackDropSiteWindow_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -3677,7 +3685,7 @@ func (ptr *DropSiteWindow) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::leaveEvent", f)
 	}
 }
 
@@ -3686,7 +3694,7 @@ func (ptr *DropSiteWindow) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::leaveEvent")
 	}
 }
 
@@ -3710,7 +3718,7 @@ func (ptr *DropSiteWindow) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackDropSiteWindow_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback DropSiteWindow::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -3722,7 +3730,7 @@ func (ptr *DropSiteWindow) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::minimumSizeHint", f)
 	}
 }
 
@@ -3731,7 +3739,7 @@ func (ptr *DropSiteWindow) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::minimumSizeHint")
 	}
 }
 
@@ -3761,7 +3769,7 @@ func (ptr *DropSiteWindow) MinimumSizeHintDefault() *core.QSize {
 func callbackDropSiteWindow_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -3773,7 +3781,7 @@ func (ptr *DropSiteWindow) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::moveEvent", f)
 	}
 }
 
@@ -3782,7 +3790,7 @@ func (ptr *DropSiteWindow) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::moveEvent")
 	}
 }
 
@@ -3806,7 +3814,7 @@ func (ptr *DropSiteWindow) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackDropSiteWindow_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::paintEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -3818,7 +3826,7 @@ func (ptr *DropSiteWindow) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::paintEvent", f)
 	}
 }
 
@@ -3827,7 +3835,7 @@ func (ptr *DropSiteWindow) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::paintEvent")
 	}
 }
 
@@ -3851,7 +3859,7 @@ func (ptr *DropSiteWindow) PaintEventDefault(event gui.QPaintEvent_ITF) {
 func callbackDropSiteWindow_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback DropSiteWindow::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -3863,7 +3871,7 @@ func (ptr *DropSiteWindow) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setEnabled", f)
 	}
 }
 
@@ -3872,7 +3880,7 @@ func (ptr *DropSiteWindow) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setEnabled")
 	}
 }
 
@@ -3896,7 +3904,7 @@ func (ptr *DropSiteWindow) SetEnabledDefault(vbo bool) {
 func callbackDropSiteWindow_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback DropSiteWindow::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -3908,7 +3916,7 @@ func (ptr *DropSiteWindow) ConnectSetStyleSheet(f func(styleSheet string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setStyleSheet", f)
 	}
 }
 
@@ -3917,7 +3925,7 @@ func (ptr *DropSiteWindow) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setStyleSheet")
 	}
 }
 
@@ -3945,7 +3953,7 @@ func (ptr *DropSiteWindow) SetStyleSheetDefault(styleSheet string) {
 func callbackDropSiteWindow_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback DropSiteWindow::setVisible")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setVisible"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
@@ -3957,7 +3965,7 @@ func (ptr *DropSiteWindow) ConnectSetVisible(f func(visible bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setVisible", f)
 	}
 }
 
@@ -3966,7 +3974,7 @@ func (ptr *DropSiteWindow) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setVisible")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setVisible")
 	}
 }
 
@@ -3990,7 +3998,7 @@ func (ptr *DropSiteWindow) SetVisibleDefault(visible bool) {
 func callbackDropSiteWindow_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback DropSiteWindow::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -4002,7 +4010,7 @@ func (ptr *DropSiteWindow) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setWindowModified", f)
 	}
 }
 
@@ -4011,7 +4019,7 @@ func (ptr *DropSiteWindow) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setWindowModified")
 	}
 }
 
@@ -4035,7 +4043,7 @@ func (ptr *DropSiteWindow) SetWindowModifiedDefault(vbo bool) {
 func callbackDropSiteWindow_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback DropSiteWindow::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -4047,7 +4055,7 @@ func (ptr *DropSiteWindow) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setWindowTitle", f)
 	}
 }
 
@@ -4056,7 +4064,7 @@ func (ptr *DropSiteWindow) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setWindowTitle")
 	}
 }
 
@@ -4084,7 +4092,7 @@ func (ptr *DropSiteWindow) SetWindowTitleDefault(vqs string) {
 func callbackDropSiteWindow_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -4096,7 +4104,7 @@ func (ptr *DropSiteWindow) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showEvent", f)
 	}
 }
 
@@ -4105,7 +4113,7 @@ func (ptr *DropSiteWindow) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showEvent")
 	}
 }
 
@@ -4129,7 +4137,7 @@ func (ptr *DropSiteWindow) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackDropSiteWindow_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback DropSiteWindow::sizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -4141,7 +4149,7 @@ func (ptr *DropSiteWindow) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::sizeHint", f)
 	}
 }
 
@@ -4150,7 +4158,7 @@ func (ptr *DropSiteWindow) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::sizeHint")
 	}
 }
 
@@ -4180,7 +4188,7 @@ func (ptr *DropSiteWindow) SizeHintDefault() *core.QSize {
 func callbackDropSiteWindow_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -4192,7 +4200,7 @@ func (ptr *DropSiteWindow) ConnectChangeEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::changeEvent", f)
 	}
 }
 
@@ -4201,7 +4209,7 @@ func (ptr *DropSiteWindow) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::changeEvent")
 	}
 }
 
@@ -4225,7 +4233,7 @@ func (ptr *DropSiteWindow) ChangeEventDefault(event core.QEvent_ITF) {
 func callbackDropSiteWindow_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback DropSiteWindow::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -4237,7 +4245,7 @@ func (ptr *DropSiteWindow) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::close", f)
 	}
 }
 
@@ -4246,7 +4254,7 @@ func (ptr *DropSiteWindow) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::close")
 	}
 }
 
@@ -4272,7 +4280,7 @@ func (ptr *DropSiteWindow) CloseDefault() bool {
 func callbackDropSiteWindow_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -4284,7 +4292,7 @@ func (ptr *DropSiteWindow) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::closeEvent", f)
 	}
 }
 
@@ -4293,7 +4301,7 @@ func (ptr *DropSiteWindow) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::closeEvent")
 	}
 }
 
@@ -4317,7 +4325,7 @@ func (ptr *DropSiteWindow) CloseEventDefault(event gui.QCloseEvent_ITF) {
 func callbackDropSiteWindow_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -4329,7 +4337,7 @@ func (ptr *DropSiteWindow) ConnectContextMenuEvent(f func(event *gui.QContextMen
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::contextMenuEvent", f)
 	}
 }
 
@@ -4338,7 +4346,7 @@ func (ptr *DropSiteWindow) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::contextMenuEvent")
 	}
 }
 
@@ -4362,7 +4370,7 @@ func (ptr *DropSiteWindow) ContextMenuEventDefault(event gui.QContextMenuEvent_I
 func callbackDropSiteWindow_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback DropSiteWindow::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -4374,7 +4382,7 @@ func (ptr *DropSiteWindow) ConnectFocusNextPrevChild(f func(next bool) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::focusNextPrevChild", f)
 	}
 }
 
@@ -4383,7 +4391,7 @@ func (ptr *DropSiteWindow) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::focusNextPrevChild")
 	}
 }
 
@@ -4409,7 +4417,7 @@ func (ptr *DropSiteWindow) FocusNextPrevChildDefault(next bool) bool {
 func callbackDropSiteWindow_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback DropSiteWindow::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -4421,7 +4429,7 @@ func (ptr *DropSiteWindow) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::hasHeightForWidth", f)
 	}
 }
 
@@ -4430,7 +4438,7 @@ func (ptr *DropSiteWindow) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::hasHeightForWidth")
 	}
 }
 
@@ -4456,7 +4464,7 @@ func (ptr *DropSiteWindow) HasHeightForWidthDefault() bool {
 func callbackDropSiteWindow_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback DropSiteWindow::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -4468,7 +4476,7 @@ func (ptr *DropSiteWindow) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::heightForWidth", f)
 	}
 }
 
@@ -4477,7 +4485,7 @@ func (ptr *DropSiteWindow) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::heightForWidth")
 	}
 }
 
@@ -4503,7 +4511,7 @@ func (ptr *DropSiteWindow) HeightForWidthDefault(w int) int {
 func callbackDropSiteWindow_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).HideDefault()
@@ -4515,7 +4523,7 @@ func (ptr *DropSiteWindow) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::hide", f)
 	}
 }
 
@@ -4524,7 +4532,7 @@ func (ptr *DropSiteWindow) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::hide")
 	}
 }
 
@@ -4548,7 +4556,7 @@ func (ptr *DropSiteWindow) HideDefault() {
 func callbackDropSiteWindow_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -4560,7 +4568,7 @@ func (ptr *DropSiteWindow) ConnectInputMethodEvent(f func(event *gui.QInputMetho
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::inputMethodEvent", f)
 	}
 }
 
@@ -4569,7 +4577,7 @@ func (ptr *DropSiteWindow) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::inputMethodEvent")
 	}
 }
 
@@ -4593,7 +4601,7 @@ func (ptr *DropSiteWindow) InputMethodEventDefault(event gui.QInputMethodEvent_I
 func callbackDropSiteWindow_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback DropSiteWindow::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -4605,7 +4613,7 @@ func (ptr *DropSiteWindow) ConnectInputMethodQuery(f func(query core.Qt__InputMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::inputMethodQuery", f)
 	}
 }
 
@@ -4614,7 +4622,7 @@ func (ptr *DropSiteWindow) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::inputMethodQuery")
 	}
 }
 
@@ -4644,7 +4652,7 @@ func (ptr *DropSiteWindow) InputMethodQueryDefault(query core.Qt__InputMethodQue
 func callbackDropSiteWindow_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -4656,7 +4664,7 @@ func (ptr *DropSiteWindow) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::keyPressEvent", f)
 	}
 }
 
@@ -4665,7 +4673,7 @@ func (ptr *DropSiteWindow) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::keyPressEvent")
 	}
 }
 
@@ -4689,7 +4697,7 @@ func (ptr *DropSiteWindow) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 func callbackDropSiteWindow_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -4701,7 +4709,7 @@ func (ptr *DropSiteWindow) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::keyReleaseEvent", f)
 	}
 }
 
@@ -4710,7 +4718,7 @@ func (ptr *DropSiteWindow) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::keyReleaseEvent")
 	}
 }
 
@@ -4734,7 +4742,7 @@ func (ptr *DropSiteWindow) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 func callbackDropSiteWindow_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).LowerDefault()
@@ -4746,7 +4754,7 @@ func (ptr *DropSiteWindow) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::lower", f)
 	}
 }
 
@@ -4755,7 +4763,7 @@ func (ptr *DropSiteWindow) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::lower")
 	}
 }
 
@@ -4779,7 +4787,7 @@ func (ptr *DropSiteWindow) LowerDefault() {
 func callbackDropSiteWindow_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4791,7 +4799,7 @@ func (ptr *DropSiteWindow) ConnectMouseDoubleClickEvent(f func(event *gui.QMouse
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -4800,7 +4808,7 @@ func (ptr *DropSiteWindow) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mouseDoubleClickEvent")
 	}
 }
 
@@ -4824,7 +4832,7 @@ func (ptr *DropSiteWindow) MouseDoubleClickEventDefault(event gui.QMouseEvent_IT
 func callbackDropSiteWindow_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4836,7 +4844,7 @@ func (ptr *DropSiteWindow) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mouseMoveEvent", f)
 	}
 }
 
@@ -4845,7 +4853,7 @@ func (ptr *DropSiteWindow) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mouseMoveEvent")
 	}
 }
 
@@ -4869,7 +4877,7 @@ func (ptr *DropSiteWindow) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 func callbackDropSiteWindow_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4881,7 +4889,7 @@ func (ptr *DropSiteWindow) ConnectMousePressEvent(f func(event *gui.QMouseEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mousePressEvent", f)
 	}
 }
 
@@ -4890,7 +4898,7 @@ func (ptr *DropSiteWindow) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mousePressEvent")
 	}
 }
 
@@ -4914,7 +4922,7 @@ func (ptr *DropSiteWindow) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 func callbackDropSiteWindow_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4926,7 +4934,7 @@ func (ptr *DropSiteWindow) ConnectMouseReleaseEvent(f func(event *gui.QMouseEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mouseReleaseEvent", f)
 	}
 }
 
@@ -4935,7 +4943,7 @@ func (ptr *DropSiteWindow) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::mouseReleaseEvent")
 	}
 }
 
@@ -4959,7 +4967,7 @@ func (ptr *DropSiteWindow) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 func callbackDropSiteWindow_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback DropSiteWindow::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -4971,7 +4979,7 @@ func (ptr *DropSiteWindow) ConnectNativeEvent(f func(eventType string, message u
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::nativeEvent", f)
 	}
 }
 
@@ -4980,7 +4988,7 @@ func (ptr *DropSiteWindow) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::nativeEvent")
 	}
 }
 
@@ -5010,7 +5018,7 @@ func (ptr *DropSiteWindow) NativeEventDefault(eventType string, message unsafe.P
 func callbackDropSiteWindow_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).RaiseDefault()
@@ -5022,7 +5030,7 @@ func (ptr *DropSiteWindow) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::raise", f)
 	}
 }
 
@@ -5031,7 +5039,7 @@ func (ptr *DropSiteWindow) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::raise")
 	}
 }
 
@@ -5055,7 +5063,7 @@ func (ptr *DropSiteWindow) RaiseDefault() {
 func callbackDropSiteWindow_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).RepaintDefault()
@@ -5067,7 +5075,7 @@ func (ptr *DropSiteWindow) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::repaint", f)
 	}
 }
 
@@ -5076,7 +5084,7 @@ func (ptr *DropSiteWindow) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::repaint")
 	}
 }
 
@@ -5100,7 +5108,7 @@ func (ptr *DropSiteWindow) RepaintDefault() {
 func callbackDropSiteWindow_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -5112,7 +5120,7 @@ func (ptr *DropSiteWindow) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::resizeEvent", f)
 	}
 }
 
@@ -5121,7 +5129,7 @@ func (ptr *DropSiteWindow) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::resizeEvent")
 	}
 }
 
@@ -5145,7 +5153,7 @@ func (ptr *DropSiteWindow) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 func callbackDropSiteWindow_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback DropSiteWindow::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -5157,7 +5165,7 @@ func (ptr *DropSiteWindow) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setDisabled", f)
 	}
 }
 
@@ -5166,7 +5174,7 @@ func (ptr *DropSiteWindow) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setDisabled")
 	}
 }
 
@@ -5190,7 +5198,7 @@ func (ptr *DropSiteWindow) SetDisabledDefault(disable bool) {
 func callbackDropSiteWindow_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetFocus2Default()
@@ -5202,7 +5210,7 @@ func (ptr *DropSiteWindow) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setFocus2", f)
 	}
 }
 
@@ -5211,7 +5219,7 @@ func (ptr *DropSiteWindow) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setFocus2")
 	}
 }
 
@@ -5235,7 +5243,7 @@ func (ptr *DropSiteWindow) SetFocus2Default() {
 func callbackDropSiteWindow_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback DropSiteWindow::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewDropSiteWindowFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -5247,7 +5255,7 @@ func (ptr *DropSiteWindow) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setHidden", f)
 	}
 }
 
@@ -5256,7 +5264,7 @@ func (ptr *DropSiteWindow) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::setHidden")
 	}
 }
 
@@ -5280,7 +5288,7 @@ func (ptr *DropSiteWindow) SetHiddenDefault(hidden bool) {
 func callbackDropSiteWindow_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ShowDefault()
@@ -5292,7 +5300,7 @@ func (ptr *DropSiteWindow) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::show", f)
 	}
 }
 
@@ -5301,7 +5309,7 @@ func (ptr *DropSiteWindow) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::show")
 	}
 }
 
@@ -5325,7 +5333,7 @@ func (ptr *DropSiteWindow) ShowDefault() {
 func callbackDropSiteWindow_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ShowFullScreenDefault()
@@ -5337,7 +5345,7 @@ func (ptr *DropSiteWindow) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showFullScreen", f)
 	}
 }
 
@@ -5346,7 +5354,7 @@ func (ptr *DropSiteWindow) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showFullScreen")
 	}
 }
 
@@ -5370,7 +5378,7 @@ func (ptr *DropSiteWindow) ShowFullScreenDefault() {
 func callbackDropSiteWindow_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ShowMaximizedDefault()
@@ -5382,7 +5390,7 @@ func (ptr *DropSiteWindow) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showMaximized", f)
 	}
 }
 
@@ -5391,7 +5399,7 @@ func (ptr *DropSiteWindow) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showMaximized")
 	}
 }
 
@@ -5415,7 +5423,7 @@ func (ptr *DropSiteWindow) ShowMaximizedDefault() {
 func callbackDropSiteWindow_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ShowMinimizedDefault()
@@ -5427,7 +5435,7 @@ func (ptr *DropSiteWindow) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showMinimized", f)
 	}
 }
 
@@ -5436,7 +5444,7 @@ func (ptr *DropSiteWindow) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showMinimized")
 	}
 }
 
@@ -5460,7 +5468,7 @@ func (ptr *DropSiteWindow) ShowMinimizedDefault() {
 func callbackDropSiteWindow_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ShowNormalDefault()
@@ -5472,7 +5480,7 @@ func (ptr *DropSiteWindow) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showNormal", f)
 	}
 }
 
@@ -5481,7 +5489,7 @@ func (ptr *DropSiteWindow) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::showNormal")
 	}
 }
 
@@ -5505,7 +5513,7 @@ func (ptr *DropSiteWindow) ShowNormalDefault() {
 func callbackDropSiteWindow_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -5517,7 +5525,7 @@ func (ptr *DropSiteWindow) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::tabletEvent", f)
 	}
 }
 
@@ -5526,7 +5534,7 @@ func (ptr *DropSiteWindow) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::tabletEvent")
 	}
 }
 
@@ -5550,7 +5558,7 @@ func (ptr *DropSiteWindow) TabletEventDefault(event gui.QTabletEvent_ITF) {
 func callbackDropSiteWindow_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).UpdateDefault()
@@ -5562,7 +5570,7 @@ func (ptr *DropSiteWindow) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::update", f)
 	}
 }
 
@@ -5571,7 +5579,7 @@ func (ptr *DropSiteWindow) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::update")
 	}
 }
 
@@ -5595,7 +5603,7 @@ func (ptr *DropSiteWindow) UpdateDefault() {
 func callbackDropSiteWindow_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).UpdateMicroFocusDefault()
@@ -5607,7 +5615,7 @@ func (ptr *DropSiteWindow) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::updateMicroFocus", f)
 	}
 }
 
@@ -5616,7 +5624,7 @@ func (ptr *DropSiteWindow) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::updateMicroFocus")
 	}
 }
 
@@ -5640,7 +5648,7 @@ func (ptr *DropSiteWindow) UpdateMicroFocusDefault() {
 func callbackDropSiteWindow_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -5652,7 +5660,7 @@ func (ptr *DropSiteWindow) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::wheelEvent", f)
 	}
 }
 
@@ -5661,7 +5669,7 @@ func (ptr *DropSiteWindow) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::wheelEvent")
 	}
 }
 
@@ -5685,7 +5693,7 @@ func (ptr *DropSiteWindow) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackDropSiteWindow_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -5697,7 +5705,7 @@ func (ptr *DropSiteWindow) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::timerEvent", f)
 	}
 }
 
@@ -5706,7 +5714,7 @@ func (ptr *DropSiteWindow) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::timerEvent")
 	}
 }
 
@@ -5730,7 +5738,7 @@ func (ptr *DropSiteWindow) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackDropSiteWindow_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -5742,7 +5750,7 @@ func (ptr *DropSiteWindow) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::childEvent", f)
 	}
 }
 
@@ -5751,7 +5759,7 @@ func (ptr *DropSiteWindow) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::childEvent")
 	}
 }
 
@@ -5775,7 +5783,7 @@ func (ptr *DropSiteWindow) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackDropSiteWindow_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5787,7 +5795,7 @@ func (ptr *DropSiteWindow) ConnectConnectNotify(f func(sign *core.QMetaMethod)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::connectNotify", f)
 	}
 }
 
@@ -5796,7 +5804,7 @@ func (ptr *DropSiteWindow) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::connectNotify")
 	}
 }
 
@@ -5820,7 +5828,7 @@ func (ptr *DropSiteWindow) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackDropSiteWindow_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -5832,7 +5840,7 @@ func (ptr *DropSiteWindow) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::customEvent", f)
 	}
 }
 
@@ -5841,7 +5849,7 @@ func (ptr *DropSiteWindow) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::customEvent")
 	}
 }
 
@@ -5865,7 +5873,7 @@ func (ptr *DropSiteWindow) CustomEventDefault(event core.QEvent_ITF) {
 func callbackDropSiteWindow_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewDropSiteWindowFromPointer(ptr).DeleteLaterDefault()
@@ -5877,7 +5885,7 @@ func (ptr *DropSiteWindow) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::deleteLater", f)
 	}
 }
 
@@ -5886,7 +5894,7 @@ func (ptr *DropSiteWindow) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::deleteLater")
 	}
 }
 
@@ -5894,8 +5902,8 @@ func (ptr *DropSiteWindow) DeleteLater() {
 	defer qt.Recovering("DropSiteWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()))
 		C.DropSiteWindow_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5904,8 +5912,8 @@ func (ptr *DropSiteWindow) DeleteLaterDefault() {
 	defer qt.Recovering("DropSiteWindow::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()))
 		C.DropSiteWindow_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5914,7 +5922,7 @@ func (ptr *DropSiteWindow) DeleteLaterDefault() {
 func callbackDropSiteWindow_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback DropSiteWindow::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewDropSiteWindowFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5926,7 +5934,7 @@ func (ptr *DropSiteWindow) ConnectDisconnectNotify(f func(sign *core.QMetaMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::disconnectNotify", f)
 	}
 }
 
@@ -5935,7 +5943,7 @@ func (ptr *DropSiteWindow) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::disconnectNotify")
 	}
 }
 
@@ -5959,7 +5967,7 @@ func (ptr *DropSiteWindow) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackDropSiteWindow_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback DropSiteWindow::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "DropSiteWindow::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -5971,7 +5979,7 @@ func (ptr *DropSiteWindow) ConnectEventFilter(f func(watched *core.QObject, even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::eventFilter", f)
 	}
 }
 
@@ -5980,7 +5988,7 @@ func (ptr *DropSiteWindow) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("DropSiteWindow(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "DropSiteWindow::eventFilter")
 	}
 }
 

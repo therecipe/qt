@@ -57,7 +57,7 @@ func NewQMacPasteboardMimeFromPointer(ptr unsafe.Pointer) *QMacPasteboardMime {
 func callbackQMacPasteboardMime_CanConvert(ptr unsafe.Pointer, mime *C.char, flav *C.char) C.char {
 	defer qt.Recovering("callback QMacPasteboardMime::canConvert")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr), "canConvert"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacPasteboardMime::canConvert"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string) bool)(C.GoString(mime), C.GoString(flav)))))
 	}
 
@@ -69,7 +69,7 @@ func (ptr *QMacPasteboardMime) ConnectCanConvert(f func(mime string, flav string
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "canConvert", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::canConvert", f)
 	}
 }
 
@@ -78,7 +78,7 @@ func (ptr *QMacPasteboardMime) DisconnectCanConvert(mime string, flav string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "canConvert")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::canConvert")
 	}
 }
 
@@ -99,7 +99,7 @@ func (ptr *QMacPasteboardMime) CanConvert(mime string, flav string) bool {
 func callbackQMacPasteboardMime_ConvertorName(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QMacPasteboardMime::convertorName")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr), "convertorName"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacPasteboardMime::convertorName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
 
@@ -111,7 +111,7 @@ func (ptr *QMacPasteboardMime) ConnectConvertorName(f func() string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "convertorName", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::convertorName", f)
 	}
 }
 
@@ -120,7 +120,7 @@ func (ptr *QMacPasteboardMime) DisconnectConvertorName() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "convertorName")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::convertorName")
 	}
 }
 
@@ -137,7 +137,7 @@ func (ptr *QMacPasteboardMime) ConvertorName() string {
 func callbackQMacPasteboardMime_Count(ptr unsafe.Pointer, mimeData unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QMacPasteboardMime::count")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr), "count"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacPasteboardMime::count"); signal != nil {
 		return C.int(int32(signal.(func(*core.QMimeData) int)(core.NewQMimeDataFromPointer(mimeData))))
 	}
 
@@ -149,7 +149,7 @@ func (ptr *QMacPasteboardMime) ConnectCount(f func(mimeData *core.QMimeData) int
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "count", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::count", f)
 	}
 }
 
@@ -158,7 +158,7 @@ func (ptr *QMacPasteboardMime) DisconnectCount() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "count")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::count")
 	}
 }
 
@@ -184,7 +184,7 @@ func (ptr *QMacPasteboardMime) CountDefault(mimeData core.QMimeData_ITF) int {
 func callbackQMacPasteboardMime_FlavorFor(ptr unsafe.Pointer, mime *C.char) *C.char {
 	defer qt.Recovering("callback QMacPasteboardMime::flavorFor")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr), "flavorFor"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacPasteboardMime::flavorFor"); signal != nil {
 		return C.CString(signal.(func(string) string)(C.GoString(mime)))
 	}
 
@@ -196,7 +196,7 @@ func (ptr *QMacPasteboardMime) ConnectFlavorFor(f func(mime string) string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "flavorFor", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::flavorFor", f)
 	}
 }
 
@@ -205,7 +205,7 @@ func (ptr *QMacPasteboardMime) DisconnectFlavorFor(mime string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "flavorFor")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::flavorFor")
 	}
 }
 
@@ -224,7 +224,7 @@ func (ptr *QMacPasteboardMime) FlavorFor(mime string) string {
 func callbackQMacPasteboardMime_MimeFor(ptr unsafe.Pointer, flav *C.char) *C.char {
 	defer qt.Recovering("callback QMacPasteboardMime::mimeFor")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr), "mimeFor"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacPasteboardMime::mimeFor"); signal != nil {
 		return C.CString(signal.(func(string) string)(C.GoString(flav)))
 	}
 
@@ -236,7 +236,7 @@ func (ptr *QMacPasteboardMime) ConnectMimeFor(f func(flav string) string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "mimeFor", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::mimeFor", f)
 	}
 }
 
@@ -245,7 +245,7 @@ func (ptr *QMacPasteboardMime) DisconnectMimeFor(flav string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()), "mimeFor")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::mimeFor")
 	}
 }
 
@@ -264,8 +264,8 @@ func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 	defer qt.Recovering("QMacPasteboardMime::~QMacPasteboardMime")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QMacPasteboardMime(%v)", ptr.Pointer()))
 		C.QMacPasteboardMime_DestroyQMacPasteboardMime(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -311,7 +311,11 @@ func NewQMacToolBarFromPointer(ptr unsafe.Pointer) *QMacToolBar {
 func NewQMacToolBar(parent core.QObject_ITF) *QMacToolBar {
 	defer qt.Recovering("QMacToolBar::QMacToolBar")
 
-	return NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
+	var tmpValue = NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
@@ -319,7 +323,11 @@ func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
 
 	var identifierC = C.CString(identifier)
 	defer C.free(unsafe.Pointer(identifierC))
-	return NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(identifierC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(identifierC, core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToolBarItem {
@@ -328,7 +336,11 @@ func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToo
 	if ptr.Pointer() != nil {
 		var textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
-		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
+		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -339,7 +351,11 @@ func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarIte
 	if ptr.Pointer() != nil {
 		var textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
-		return NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
+		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -381,7 +397,7 @@ func (ptr *QMacToolBar) DestroyQMacToolBar() {
 func callbackQMacToolBar_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQMacToolBarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -393,7 +409,7 @@ func (ptr *QMacToolBar) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::timerEvent", f)
 	}
 }
 
@@ -402,7 +418,7 @@ func (ptr *QMacToolBar) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::timerEvent")
 	}
 }
 
@@ -426,7 +442,7 @@ func (ptr *QMacToolBar) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQMacToolBar_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQMacToolBarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -438,7 +454,7 @@ func (ptr *QMacToolBar) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::childEvent", f)
 	}
 }
 
@@ -447,7 +463,7 @@ func (ptr *QMacToolBar) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::childEvent")
 	}
 }
 
@@ -471,7 +487,7 @@ func (ptr *QMacToolBar) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQMacToolBar_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQMacToolBarFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -483,7 +499,7 @@ func (ptr *QMacToolBar) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::connectNotify", f)
 	}
 }
 
@@ -492,7 +508,7 @@ func (ptr *QMacToolBar) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::connectNotify")
 	}
 }
 
@@ -516,7 +532,7 @@ func (ptr *QMacToolBar) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQMacToolBar_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQMacToolBarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -528,7 +544,7 @@ func (ptr *QMacToolBar) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::customEvent", f)
 	}
 }
 
@@ -537,7 +553,7 @@ func (ptr *QMacToolBar) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::customEvent")
 	}
 }
 
@@ -561,7 +577,7 @@ func (ptr *QMacToolBar) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQMacToolBar_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQMacToolBarFromPointer(ptr).DeleteLaterDefault()
@@ -573,7 +589,7 @@ func (ptr *QMacToolBar) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::deleteLater", f)
 	}
 }
 
@@ -582,7 +598,7 @@ func (ptr *QMacToolBar) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::deleteLater")
 	}
 }
 
@@ -608,7 +624,7 @@ func (ptr *QMacToolBar) DeleteLaterDefault() {
 func callbackQMacToolBar_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBar::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQMacToolBarFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -620,7 +636,7 @@ func (ptr *QMacToolBar) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::disconnectNotify", f)
 	}
 }
 
@@ -629,7 +645,7 @@ func (ptr *QMacToolBar) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::disconnectNotify")
 	}
 }
 
@@ -653,7 +669,7 @@ func (ptr *QMacToolBar) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQMacToolBar_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QMacToolBar::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -665,7 +681,7 @@ func (ptr *QMacToolBar) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::event", f)
 	}
 }
 
@@ -674,7 +690,7 @@ func (ptr *QMacToolBar) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::event")
 	}
 }
 
@@ -700,7 +716,7 @@ func (ptr *QMacToolBar) EventDefault(e core.QEvent_ITF) bool {
 func callbackQMacToolBar_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QMacToolBar::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -712,7 +728,7 @@ func (ptr *QMacToolBar) ConnectEventFilter(f func(watched *core.QObject, event *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::eventFilter", f)
 	}
 }
 
@@ -721,7 +737,7 @@ func (ptr *QMacToolBar) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::eventFilter")
 	}
 }
 
@@ -747,7 +763,7 @@ func (ptr *QMacToolBar) EventFilterDefault(watched core.QObject_ITF, event core.
 func callbackQMacToolBar_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QMacToolBar::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBar(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBar::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -759,7 +775,7 @@ func (ptr *QMacToolBar) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::metaObject", f)
 	}
 }
 
@@ -768,7 +784,7 @@ func (ptr *QMacToolBar) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBar(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBar::metaObject")
 	}
 }
 
@@ -840,14 +856,18 @@ func NewQMacToolBarItemFromPointer(ptr unsafe.Pointer) *QMacToolBarItem {
 func NewQMacToolBarItem(parent core.QObject_ITF) *QMacToolBarItem {
 	defer qt.Recovering("QMacToolBarItem::QMacToolBarItem")
 
-	return NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
+	var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQMacToolBarItem_Activated
 func callbackQMacToolBarItem_Activated(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::activated")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "activated"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::activated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -858,7 +878,7 @@ func (ptr *QMacToolBarItem) ConnectActivated(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_ConnectActivated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "activated", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::activated", f)
 	}
 }
 
@@ -867,7 +887,7 @@ func (ptr *QMacToolBarItem) DisconnectActivated() {
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DisconnectActivated(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "activated")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::activated")
 	}
 }
 
@@ -883,8 +903,8 @@ func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 	defer qt.Recovering("QMacToolBarItem::~QMacToolBarItem")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()))
 		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -965,7 +985,7 @@ func (ptr *QMacToolBarItem) Text() string {
 func callbackQMacToolBarItem_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQMacToolBarItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -977,7 +997,7 @@ func (ptr *QMacToolBarItem) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::timerEvent", f)
 	}
 }
 
@@ -986,7 +1006,7 @@ func (ptr *QMacToolBarItem) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::timerEvent")
 	}
 }
 
@@ -1010,7 +1030,7 @@ func (ptr *QMacToolBarItem) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQMacToolBarItem_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQMacToolBarItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -1022,7 +1042,7 @@ func (ptr *QMacToolBarItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::childEvent", f)
 	}
 }
 
@@ -1031,7 +1051,7 @@ func (ptr *QMacToolBarItem) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::childEvent")
 	}
 }
 
@@ -1055,7 +1075,7 @@ func (ptr *QMacToolBarItem) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQMacToolBarItem_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQMacToolBarItemFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -1067,7 +1087,7 @@ func (ptr *QMacToolBarItem) ConnectConnectNotify(f func(sign *core.QMetaMethod))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::connectNotify", f)
 	}
 }
 
@@ -1076,7 +1096,7 @@ func (ptr *QMacToolBarItem) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::connectNotify")
 	}
 }
 
@@ -1100,7 +1120,7 @@ func (ptr *QMacToolBarItem) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQMacToolBarItem_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQMacToolBarItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -1112,7 +1132,7 @@ func (ptr *QMacToolBarItem) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::customEvent", f)
 	}
 }
 
@@ -1121,7 +1141,7 @@ func (ptr *QMacToolBarItem) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::customEvent")
 	}
 }
 
@@ -1145,7 +1165,7 @@ func (ptr *QMacToolBarItem) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQMacToolBarItem_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQMacToolBarItemFromPointer(ptr).DeleteLaterDefault()
@@ -1157,7 +1177,7 @@ func (ptr *QMacToolBarItem) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::deleteLater", f)
 	}
 }
 
@@ -1166,7 +1186,7 @@ func (ptr *QMacToolBarItem) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::deleteLater")
 	}
 }
 
@@ -1174,8 +1194,8 @@ func (ptr *QMacToolBarItem) DeleteLater() {
 	defer qt.Recovering("QMacToolBarItem::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()))
 		C.QMacToolBarItem_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1184,8 +1204,8 @@ func (ptr *QMacToolBarItem) DeleteLaterDefault() {
 	defer qt.Recovering("QMacToolBarItem::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()))
 		C.QMacToolBarItem_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1194,7 +1214,7 @@ func (ptr *QMacToolBarItem) DeleteLaterDefault() {
 func callbackQMacToolBarItem_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QMacToolBarItem::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQMacToolBarItemFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -1206,7 +1226,7 @@ func (ptr *QMacToolBarItem) ConnectDisconnectNotify(f func(sign *core.QMetaMetho
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::disconnectNotify", f)
 	}
 }
 
@@ -1215,7 +1235,7 @@ func (ptr *QMacToolBarItem) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::disconnectNotify")
 	}
 }
 
@@ -1239,7 +1259,7 @@ func (ptr *QMacToolBarItem) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQMacToolBarItem_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QMacToolBarItem::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -1251,7 +1271,7 @@ func (ptr *QMacToolBarItem) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::event", f)
 	}
 }
 
@@ -1260,7 +1280,7 @@ func (ptr *QMacToolBarItem) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::event")
 	}
 }
 
@@ -1286,7 +1306,7 @@ func (ptr *QMacToolBarItem) EventDefault(e core.QEvent_ITF) bool {
 func callbackQMacToolBarItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QMacToolBarItem::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -1298,7 +1318,7 @@ func (ptr *QMacToolBarItem) ConnectEventFilter(f func(watched *core.QObject, eve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::eventFilter", f)
 	}
 }
 
@@ -1307,7 +1327,7 @@ func (ptr *QMacToolBarItem) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::eventFilter")
 	}
 }
 
@@ -1333,7 +1353,7 @@ func (ptr *QMacToolBarItem) EventFilterDefault(watched core.QObject_ITF, event c
 func callbackQMacToolBarItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QMacToolBarItem::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -1345,7 +1365,7 @@ func (ptr *QMacToolBarItem) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::metaObject", f)
 	}
 }
 
@@ -1354,7 +1374,7 @@ func (ptr *QMacToolBarItem) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QMacToolBarItem(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::metaObject")
 	}
 }
 

@@ -64,7 +64,11 @@ func (ptr *QGraphicsSvgItem) DestroyQGraphicsSvgItem() {
 func NewQGraphicsSvgItem(parent widgets.QGraphicsItem_ITF) *QGraphicsSvgItem {
 	defer qt.Recovering("QGraphicsSvgItem::QGraphicsSvgItem")
 
-	return NewQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem(widgets.PointerFromQGraphicsItem(parent)))
+	var tmpValue = NewQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem(widgets.PointerFromQGraphicsItem(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQGraphicsSvgItem2(fileName string, parent widgets.QGraphicsItem_ITF) *QGraphicsSvgItem {
@@ -72,14 +76,18 @@ func NewQGraphicsSvgItem2(fileName string, parent widgets.QGraphicsItem_ITF) *QG
 
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	return NewQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem2(fileNameC, widgets.PointerFromQGraphicsItem(parent)))
+	var tmpValue = NewQGraphicsSvgItemFromPointer(C.QGraphicsSvgItem_NewQGraphicsSvgItem2(fileNameC, widgets.PointerFromQGraphicsItem(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQGraphicsSvgItem_BoundingRect
 func callbackQGraphicsSvgItem_BoundingRect(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QGraphicsSvgItem::boundingRect")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "boundingRect"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::boundingRect"); signal != nil {
 		return core.PointerFromQRectF(signal.(func() *core.QRectF)())
 	}
 
@@ -91,7 +99,7 @@ func (ptr *QGraphicsSvgItem) ConnectBoundingRect(f func() *core.QRectF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "boundingRect", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::boundingRect", f)
 	}
 }
 
@@ -100,7 +108,7 @@ func (ptr *QGraphicsSvgItem) DisconnectBoundingRect() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "boundingRect")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::boundingRect")
 	}
 }
 
@@ -150,7 +158,7 @@ func (ptr *QGraphicsSvgItem) MaximumCacheSize() *core.QSize {
 func callbackQGraphicsSvgItem_Paint(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::paint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "paint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::paint"); signal != nil {
 		signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
@@ -162,7 +170,7 @@ func (ptr *QGraphicsSvgItem) ConnectPaint(f func(painter *gui.QPainter, option *
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "paint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::paint", f)
 	}
 }
 
@@ -171,7 +179,7 @@ func (ptr *QGraphicsSvgItem) DisconnectPaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "paint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::paint")
 	}
 }
 
@@ -195,7 +203,11 @@ func (ptr *QGraphicsSvgItem) Renderer() *QSvgRenderer {
 	defer qt.Recovering("QGraphicsSvgItem::renderer")
 
 	if ptr.Pointer() != nil {
-		return NewQSvgRendererFromPointer(C.QGraphicsSvgItem_Renderer(ptr.Pointer()))
+		var tmpValue = NewQSvgRendererFromPointer(C.QGraphicsSvgItem_Renderer(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -230,7 +242,7 @@ func (ptr *QGraphicsSvgItem) SetSharedRenderer(renderer QSvgRenderer_ITF) {
 func callbackQGraphicsSvgItem_Type(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QGraphicsSvgItem::type")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "type"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::type"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
 
@@ -242,7 +254,7 @@ func (ptr *QGraphicsSvgItem) ConnectType(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "type", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::type", f)
 	}
 }
 
@@ -251,7 +263,7 @@ func (ptr *QGraphicsSvgItem) DisconnectType() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "type")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::type")
 	}
 }
 
@@ -277,7 +289,7 @@ func (ptr *QGraphicsSvgItem) TypeDefault() int {
 func callbackQGraphicsSvgItem_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).UpdateMicroFocusDefault()
@@ -289,7 +301,7 @@ func (ptr *QGraphicsSvgItem) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::updateMicroFocus", f)
 	}
 }
 
@@ -298,7 +310,7 @@ func (ptr *QGraphicsSvgItem) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::updateMicroFocus")
 	}
 }
 
@@ -322,7 +334,7 @@ func (ptr *QGraphicsSvgItem) UpdateMicroFocusDefault() {
 func callbackQGraphicsSvgItem_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -334,7 +346,7 @@ func (ptr *QGraphicsSvgItem) ConnectTimerEvent(f func(event *core.QTimerEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::timerEvent", f)
 	}
 }
 
@@ -343,7 +355,7 @@ func (ptr *QGraphicsSvgItem) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::timerEvent")
 	}
 }
 
@@ -367,7 +379,7 @@ func (ptr *QGraphicsSvgItem) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQGraphicsSvgItem_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -379,7 +391,7 @@ func (ptr *QGraphicsSvgItem) ConnectChildEvent(f func(event *core.QChildEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::childEvent", f)
 	}
 }
 
@@ -388,7 +400,7 @@ func (ptr *QGraphicsSvgItem) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::childEvent")
 	}
 }
 
@@ -412,7 +424,7 @@ func (ptr *QGraphicsSvgItem) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQGraphicsSvgItem_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -424,7 +436,7 @@ func (ptr *QGraphicsSvgItem) ConnectConnectNotify(f func(sign *core.QMetaMethod)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::connectNotify", f)
 	}
 }
 
@@ -433,7 +445,7 @@ func (ptr *QGraphicsSvgItem) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::connectNotify")
 	}
 }
 
@@ -457,7 +469,7 @@ func (ptr *QGraphicsSvgItem) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQGraphicsSvgItem_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -469,7 +481,7 @@ func (ptr *QGraphicsSvgItem) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::customEvent", f)
 	}
 }
 
@@ -478,7 +490,7 @@ func (ptr *QGraphicsSvgItem) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::customEvent")
 	}
 }
 
@@ -502,7 +514,7 @@ func (ptr *QGraphicsSvgItem) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQGraphicsSvgItem_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).DeleteLaterDefault()
@@ -514,7 +526,7 @@ func (ptr *QGraphicsSvgItem) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::deleteLater", f)
 	}
 }
 
@@ -523,7 +535,7 @@ func (ptr *QGraphicsSvgItem) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::deleteLater")
 	}
 }
 
@@ -531,8 +543,8 @@ func (ptr *QGraphicsSvgItem) DeleteLater() {
 	defer qt.Recovering("QGraphicsSvgItem::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()))
 		C.QGraphicsSvgItem_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -541,8 +553,8 @@ func (ptr *QGraphicsSvgItem) DeleteLaterDefault() {
 	defer qt.Recovering("QGraphicsSvgItem::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()))
 		C.QGraphicsSvgItem_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -551,7 +563,7 @@ func (ptr *QGraphicsSvgItem) DeleteLaterDefault() {
 func callbackQGraphicsSvgItem_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -563,7 +575,7 @@ func (ptr *QGraphicsSvgItem) ConnectDisconnectNotify(f func(sign *core.QMetaMeth
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::disconnectNotify", f)
 	}
 }
 
@@ -572,7 +584,7 @@ func (ptr *QGraphicsSvgItem) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::disconnectNotify")
 	}
 }
 
@@ -596,7 +608,7 @@ func (ptr *QGraphicsSvgItem) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 func callbackQGraphicsSvgItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QGraphicsSvgItem::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -608,7 +620,7 @@ func (ptr *QGraphicsSvgItem) ConnectEventFilter(f func(watched *core.QObject, ev
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::eventFilter", f)
 	}
 }
 
@@ -617,7 +629,7 @@ func (ptr *QGraphicsSvgItem) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::eventFilter")
 	}
 }
 
@@ -643,7 +655,7 @@ func (ptr *QGraphicsSvgItem) EventFilterDefault(watched core.QObject_ITF, event 
 func callbackQGraphicsSvgItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QGraphicsSvgItem::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -655,7 +667,7 @@ func (ptr *QGraphicsSvgItem) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::metaObject", f)
 	}
 }
 
@@ -664,7 +676,7 @@ func (ptr *QGraphicsSvgItem) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::metaObject")
 	}
 }
 
@@ -690,7 +702,7 @@ func (ptr *QGraphicsSvgItem) MetaObjectDefault() *core.QMetaObject {
 func callbackQGraphicsSvgItem_Advance(ptr unsafe.Pointer, phase C.int) {
 	defer qt.Recovering("callback QGraphicsSvgItem::advance")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "advance"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::advance"); signal != nil {
 		signal.(func(int))(int(int32(phase)))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).AdvanceDefault(int(int32(phase)))
@@ -702,7 +714,7 @@ func (ptr *QGraphicsSvgItem) ConnectAdvance(f func(phase int)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "advance", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::advance", f)
 	}
 }
 
@@ -711,7 +723,7 @@ func (ptr *QGraphicsSvgItem) DisconnectAdvance() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "advance")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::advance")
 	}
 }
 
@@ -735,7 +747,7 @@ func (ptr *QGraphicsSvgItem) AdvanceDefault(phase int) {
 func callbackQGraphicsSvgItem_CollidesWithItem(ptr unsafe.Pointer, other unsafe.Pointer, mode C.longlong) C.char {
 	defer qt.Recovering("callback QGraphicsSvgItem::collidesWithItem")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "collidesWithItem"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::collidesWithItem"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*widgets.QGraphicsItem, core.Qt__ItemSelectionMode) bool)(widgets.NewQGraphicsItemFromPointer(other), core.Qt__ItemSelectionMode(mode)))))
 	}
 
@@ -747,7 +759,7 @@ func (ptr *QGraphicsSvgItem) ConnectCollidesWithItem(f func(other *widgets.QGrap
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "collidesWithItem", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::collidesWithItem", f)
 	}
 }
 
@@ -756,7 +768,7 @@ func (ptr *QGraphicsSvgItem) DisconnectCollidesWithItem() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "collidesWithItem")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::collidesWithItem")
 	}
 }
 
@@ -782,7 +794,7 @@ func (ptr *QGraphicsSvgItem) CollidesWithItemDefault(other widgets.QGraphicsItem
 func callbackQGraphicsSvgItem_CollidesWithPath(ptr unsafe.Pointer, path unsafe.Pointer, mode C.longlong) C.char {
 	defer qt.Recovering("callback QGraphicsSvgItem::collidesWithPath")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "collidesWithPath"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::collidesWithPath"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*gui.QPainterPath, core.Qt__ItemSelectionMode) bool)(gui.NewQPainterPathFromPointer(path), core.Qt__ItemSelectionMode(mode)))))
 	}
 
@@ -794,7 +806,7 @@ func (ptr *QGraphicsSvgItem) ConnectCollidesWithPath(f func(path *gui.QPainterPa
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "collidesWithPath", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::collidesWithPath", f)
 	}
 }
 
@@ -803,7 +815,7 @@ func (ptr *QGraphicsSvgItem) DisconnectCollidesWithPath() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "collidesWithPath")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::collidesWithPath")
 	}
 }
 
@@ -829,7 +841,7 @@ func (ptr *QGraphicsSvgItem) CollidesWithPathDefault(path gui.QPainterPath_ITF, 
 func callbackQGraphicsSvgItem_Contains(ptr unsafe.Pointer, point unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QGraphicsSvgItem::contains")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "contains"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::contains"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QPointF) bool)(core.NewQPointFFromPointer(point)))))
 	}
 
@@ -841,7 +853,7 @@ func (ptr *QGraphicsSvgItem) ConnectContains(f func(point *core.QPointF) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "contains", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::contains", f)
 	}
 }
 
@@ -850,7 +862,7 @@ func (ptr *QGraphicsSvgItem) DisconnectContains() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "contains")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::contains")
 	}
 }
 
@@ -876,7 +888,7 @@ func (ptr *QGraphicsSvgItem) ContainsDefault(point core.QPointF_ITF) bool {
 func callbackQGraphicsSvgItem_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::contextMenuEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneContextMenuEvent))(widgets.NewQGraphicsSceneContextMenuEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).ContextMenuEventDefault(widgets.NewQGraphicsSceneContextMenuEventFromPointer(event))
@@ -888,7 +900,7 @@ func (ptr *QGraphicsSvgItem) ConnectContextMenuEvent(f func(event *widgets.QGrap
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::contextMenuEvent", f)
 	}
 }
 
@@ -897,7 +909,7 @@ func (ptr *QGraphicsSvgItem) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::contextMenuEvent")
 	}
 }
 
@@ -921,7 +933,7 @@ func (ptr *QGraphicsSvgItem) ContextMenuEventDefault(event widgets.QGraphicsScen
 func callbackQGraphicsSvgItem_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::dragEnterEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).DragEnterEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
@@ -933,7 +945,7 @@ func (ptr *QGraphicsSvgItem) ConnectDragEnterEvent(f func(event *widgets.QGraphi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dragEnterEvent", f)
 	}
 }
 
@@ -942,7 +954,7 @@ func (ptr *QGraphicsSvgItem) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dragEnterEvent")
 	}
 }
 
@@ -966,7 +978,7 @@ func (ptr *QGraphicsSvgItem) DragEnterEventDefault(event widgets.QGraphicsSceneD
 func callbackQGraphicsSvgItem_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::dragLeaveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).DragLeaveEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
@@ -978,7 +990,7 @@ func (ptr *QGraphicsSvgItem) ConnectDragLeaveEvent(f func(event *widgets.QGraphi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dragLeaveEvent", f)
 	}
 }
 
@@ -987,7 +999,7 @@ func (ptr *QGraphicsSvgItem) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dragLeaveEvent")
 	}
 }
 
@@ -1011,7 +1023,7 @@ func (ptr *QGraphicsSvgItem) DragLeaveEventDefault(event widgets.QGraphicsSceneD
 func callbackQGraphicsSvgItem_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::dragMoveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).DragMoveEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
@@ -1023,7 +1035,7 @@ func (ptr *QGraphicsSvgItem) ConnectDragMoveEvent(f func(event *widgets.QGraphic
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dragMoveEvent", f)
 	}
 }
 
@@ -1032,7 +1044,7 @@ func (ptr *QGraphicsSvgItem) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dragMoveEvent")
 	}
 }
 
@@ -1056,7 +1068,7 @@ func (ptr *QGraphicsSvgItem) DragMoveEventDefault(event widgets.QGraphicsSceneDr
 func callbackQGraphicsSvgItem_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::dropEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).DropEventDefault(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
@@ -1068,7 +1080,7 @@ func (ptr *QGraphicsSvgItem) ConnectDropEvent(f func(event *widgets.QGraphicsSce
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dropEvent", f)
 	}
 }
 
@@ -1077,7 +1089,7 @@ func (ptr *QGraphicsSvgItem) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::dropEvent")
 	}
 }
 
@@ -1101,7 +1113,7 @@ func (ptr *QGraphicsSvgItem) DropEventDefault(event widgets.QGraphicsSceneDragDr
 func callbackQGraphicsSvgItem_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -1113,7 +1125,7 @@ func (ptr *QGraphicsSvgItem) ConnectFocusInEvent(f func(event *gui.QFocusEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::focusInEvent", f)
 	}
 }
 
@@ -1122,7 +1134,7 @@ func (ptr *QGraphicsSvgItem) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::focusInEvent")
 	}
 }
 
@@ -1146,7 +1158,7 @@ func (ptr *QGraphicsSvgItem) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQGraphicsSvgItem_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -1158,7 +1170,7 @@ func (ptr *QGraphicsSvgItem) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::focusOutEvent", f)
 	}
 }
 
@@ -1167,7 +1179,7 @@ func (ptr *QGraphicsSvgItem) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::focusOutEvent")
 	}
 }
 
@@ -1191,7 +1203,7 @@ func (ptr *QGraphicsSvgItem) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQGraphicsSvgItem_HoverEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::hoverEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "hoverEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::hoverEnterEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).HoverEnterEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
@@ -1203,7 +1215,7 @@ func (ptr *QGraphicsSvgItem) ConnectHoverEnterEvent(f func(event *widgets.QGraph
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "hoverEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::hoverEnterEvent", f)
 	}
 }
 
@@ -1212,7 +1224,7 @@ func (ptr *QGraphicsSvgItem) DisconnectHoverEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "hoverEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::hoverEnterEvent")
 	}
 }
 
@@ -1236,7 +1248,7 @@ func (ptr *QGraphicsSvgItem) HoverEnterEventDefault(event widgets.QGraphicsScene
 func callbackQGraphicsSvgItem_HoverLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::hoverLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "hoverLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::hoverLeaveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).HoverLeaveEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
@@ -1248,7 +1260,7 @@ func (ptr *QGraphicsSvgItem) ConnectHoverLeaveEvent(f func(event *widgets.QGraph
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "hoverLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::hoverLeaveEvent", f)
 	}
 }
 
@@ -1257,7 +1269,7 @@ func (ptr *QGraphicsSvgItem) DisconnectHoverLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "hoverLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::hoverLeaveEvent")
 	}
 }
 
@@ -1281,7 +1293,7 @@ func (ptr *QGraphicsSvgItem) HoverLeaveEventDefault(event widgets.QGraphicsScene
 func callbackQGraphicsSvgItem_HoverMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::hoverMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "hoverMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::hoverMoveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).HoverMoveEventDefault(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
@@ -1293,7 +1305,7 @@ func (ptr *QGraphicsSvgItem) ConnectHoverMoveEvent(f func(event *widgets.QGraphi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "hoverMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::hoverMoveEvent", f)
 	}
 }
 
@@ -1302,7 +1314,7 @@ func (ptr *QGraphicsSvgItem) DisconnectHoverMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "hoverMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::hoverMoveEvent")
 	}
 }
 
@@ -1326,7 +1338,7 @@ func (ptr *QGraphicsSvgItem) HoverMoveEventDefault(event widgets.QGraphicsSceneH
 func callbackQGraphicsSvgItem_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -1338,7 +1350,7 @@ func (ptr *QGraphicsSvgItem) ConnectInputMethodEvent(f func(event *gui.QInputMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::inputMethodEvent", f)
 	}
 }
 
@@ -1347,7 +1359,7 @@ func (ptr *QGraphicsSvgItem) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::inputMethodEvent")
 	}
 }
 
@@ -1371,7 +1383,7 @@ func (ptr *QGraphicsSvgItem) InputMethodEventDefault(event gui.QInputMethodEvent
 func callbackQGraphicsSvgItem_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QGraphicsSvgItem::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -1383,7 +1395,7 @@ func (ptr *QGraphicsSvgItem) ConnectInputMethodQuery(f func(query core.Qt__Input
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::inputMethodQuery", f)
 	}
 }
 
@@ -1392,7 +1404,7 @@ func (ptr *QGraphicsSvgItem) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::inputMethodQuery")
 	}
 }
 
@@ -1422,7 +1434,7 @@ func (ptr *QGraphicsSvgItem) InputMethodQueryDefault(query core.Qt__InputMethodQ
 func callbackQGraphicsSvgItem_IsObscuredBy(ptr unsafe.Pointer, item unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QGraphicsSvgItem::isObscuredBy")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "isObscuredBy"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::isObscuredBy"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*widgets.QGraphicsItem) bool)(widgets.NewQGraphicsItemFromPointer(item)))))
 	}
 
@@ -1434,7 +1446,7 @@ func (ptr *QGraphicsSvgItem) ConnectIsObscuredBy(f func(item *widgets.QGraphicsI
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "isObscuredBy", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::isObscuredBy", f)
 	}
 }
 
@@ -1443,7 +1455,7 @@ func (ptr *QGraphicsSvgItem) DisconnectIsObscuredBy() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "isObscuredBy")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::isObscuredBy")
 	}
 }
 
@@ -1469,7 +1481,7 @@ func (ptr *QGraphicsSvgItem) IsObscuredByDefault(item widgets.QGraphicsItem_ITF)
 func callbackQGraphicsSvgItem_ItemChange(ptr unsafe.Pointer, change C.longlong, value unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QGraphicsSvgItem::itemChange")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "itemChange"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::itemChange"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(widgets.QGraphicsItem__GraphicsItemChange, *core.QVariant) *core.QVariant)(widgets.QGraphicsItem__GraphicsItemChange(change), core.NewQVariantFromPointer(value)))
 	}
 
@@ -1481,7 +1493,7 @@ func (ptr *QGraphicsSvgItem) ConnectItemChange(f func(change widgets.QGraphicsIt
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "itemChange", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::itemChange", f)
 	}
 }
 
@@ -1490,7 +1502,7 @@ func (ptr *QGraphicsSvgItem) DisconnectItemChange() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "itemChange")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::itemChange")
 	}
 }
 
@@ -1520,7 +1532,7 @@ func (ptr *QGraphicsSvgItem) ItemChangeDefault(change widgets.QGraphicsItem__Gra
 func callbackQGraphicsSvgItem_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -1532,7 +1544,7 @@ func (ptr *QGraphicsSvgItem) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::keyPressEvent", f)
 	}
 }
 
@@ -1541,7 +1553,7 @@ func (ptr *QGraphicsSvgItem) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::keyPressEvent")
 	}
 }
 
@@ -1565,7 +1577,7 @@ func (ptr *QGraphicsSvgItem) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 func callbackQGraphicsSvgItem_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -1577,7 +1589,7 @@ func (ptr *QGraphicsSvgItem) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::keyReleaseEvent", f)
 	}
 }
 
@@ -1586,7 +1598,7 @@ func (ptr *QGraphicsSvgItem) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::keyReleaseEvent")
 	}
 }
 
@@ -1610,7 +1622,7 @@ func (ptr *QGraphicsSvgItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 func callbackQGraphicsSvgItem_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).MouseDoubleClickEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
@@ -1622,7 +1634,7 @@ func (ptr *QGraphicsSvgItem) ConnectMouseDoubleClickEvent(f func(event *widgets.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -1631,7 +1643,7 @@ func (ptr *QGraphicsSvgItem) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mouseDoubleClickEvent")
 	}
 }
 
@@ -1655,7 +1667,7 @@ func (ptr *QGraphicsSvgItem) MouseDoubleClickEventDefault(event widgets.QGraphic
 func callbackQGraphicsSvgItem_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::mouseMoveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).MouseMoveEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
@@ -1667,7 +1679,7 @@ func (ptr *QGraphicsSvgItem) ConnectMouseMoveEvent(f func(event *widgets.QGraphi
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mouseMoveEvent", f)
 	}
 }
 
@@ -1676,7 +1688,7 @@ func (ptr *QGraphicsSvgItem) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mouseMoveEvent")
 	}
 }
 
@@ -1700,7 +1712,7 @@ func (ptr *QGraphicsSvgItem) MouseMoveEventDefault(event widgets.QGraphicsSceneM
 func callbackQGraphicsSvgItem_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::mousePressEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).MousePressEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
@@ -1712,7 +1724,7 @@ func (ptr *QGraphicsSvgItem) ConnectMousePressEvent(f func(event *widgets.QGraph
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mousePressEvent", f)
 	}
 }
 
@@ -1721,7 +1733,7 @@ func (ptr *QGraphicsSvgItem) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mousePressEvent")
 	}
 }
 
@@ -1745,7 +1757,7 @@ func (ptr *QGraphicsSvgItem) MousePressEventDefault(event widgets.QGraphicsScene
 func callbackQGraphicsSvgItem_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::mouseReleaseEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).MouseReleaseEventDefault(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
@@ -1757,7 +1769,7 @@ func (ptr *QGraphicsSvgItem) ConnectMouseReleaseEvent(f func(event *widgets.QGra
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mouseReleaseEvent", f)
 	}
 }
 
@@ -1766,7 +1778,7 @@ func (ptr *QGraphicsSvgItem) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::mouseReleaseEvent")
 	}
 }
 
@@ -1790,7 +1802,7 @@ func (ptr *QGraphicsSvgItem) MouseReleaseEventDefault(event widgets.QGraphicsSce
 func callbackQGraphicsSvgItem_OpaqueArea(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QGraphicsSvgItem::opaqueArea")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "opaqueArea"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::opaqueArea"); signal != nil {
 		return gui.PointerFromQPainterPath(signal.(func() *gui.QPainterPath)())
 	}
 
@@ -1802,7 +1814,7 @@ func (ptr *QGraphicsSvgItem) ConnectOpaqueArea(f func() *gui.QPainterPath) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "opaqueArea", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::opaqueArea", f)
 	}
 }
 
@@ -1811,7 +1823,7 @@ func (ptr *QGraphicsSvgItem) DisconnectOpaqueArea() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "opaqueArea")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::opaqueArea")
 	}
 }
 
@@ -1841,7 +1853,7 @@ func (ptr *QGraphicsSvgItem) OpaqueAreaDefault() *gui.QPainterPath {
 func callbackQGraphicsSvgItem_SceneEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QGraphicsSvgItem::sceneEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "sceneEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::sceneEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
 
@@ -1853,7 +1865,7 @@ func (ptr *QGraphicsSvgItem) ConnectSceneEvent(f func(event *core.QEvent) bool) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "sceneEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::sceneEvent", f)
 	}
 }
 
@@ -1862,7 +1874,7 @@ func (ptr *QGraphicsSvgItem) DisconnectSceneEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "sceneEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::sceneEvent")
 	}
 }
 
@@ -1888,7 +1900,7 @@ func (ptr *QGraphicsSvgItem) SceneEventDefault(event core.QEvent_ITF) bool {
 func callbackQGraphicsSvgItem_SceneEventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QGraphicsSvgItem::sceneEventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "sceneEventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::sceneEventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*widgets.QGraphicsItem, *core.QEvent) bool)(widgets.NewQGraphicsItemFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -1900,7 +1912,7 @@ func (ptr *QGraphicsSvgItem) ConnectSceneEventFilter(f func(watched *widgets.QGr
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "sceneEventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::sceneEventFilter", f)
 	}
 }
 
@@ -1909,7 +1921,7 @@ func (ptr *QGraphicsSvgItem) DisconnectSceneEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "sceneEventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::sceneEventFilter")
 	}
 }
 
@@ -1935,7 +1947,7 @@ func (ptr *QGraphicsSvgItem) SceneEventFilterDefault(watched widgets.QGraphicsIt
 func callbackQGraphicsSvgItem_Shape(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QGraphicsSvgItem::shape")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "shape"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::shape"); signal != nil {
 		return gui.PointerFromQPainterPath(signal.(func() *gui.QPainterPath)())
 	}
 
@@ -1947,7 +1959,7 @@ func (ptr *QGraphicsSvgItem) ConnectShape(f func() *gui.QPainterPath) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "shape", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::shape", f)
 	}
 }
 
@@ -1956,7 +1968,7 @@ func (ptr *QGraphicsSvgItem) DisconnectShape() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "shape")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::shape")
 	}
 }
 
@@ -1986,7 +1998,7 @@ func (ptr *QGraphicsSvgItem) ShapeDefault() *gui.QPainterPath {
 func callbackQGraphicsSvgItem_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QGraphicsSvgItem::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsSvgItem::wheelEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneWheelEvent))(widgets.NewQGraphicsSceneWheelEventFromPointer(event))
 	} else {
 		NewQGraphicsSvgItemFromPointer(ptr).WheelEventDefault(widgets.NewQGraphicsSceneWheelEventFromPointer(event))
@@ -1998,7 +2010,7 @@ func (ptr *QGraphicsSvgItem) ConnectWheelEvent(f func(event *widgets.QGraphicsSc
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::wheelEvent", f)
 	}
 }
 
@@ -2007,7 +2019,7 @@ func (ptr *QGraphicsSvgItem) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QGraphicsSvgItem(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsSvgItem::wheelEvent")
 	}
 }
 
@@ -2087,7 +2099,11 @@ func (ptr *QSvgGenerator) OutputDevice() *core.QIODevice {
 	defer qt.Recovering("QSvgGenerator::outputDevice")
 
 	if ptr.Pointer() != nil {
-		return core.NewQIODeviceFromPointer(C.QSvgGenerator_OutputDevice(ptr.Pointer()))
+		var tmpValue = core.NewQIODeviceFromPointer(C.QSvgGenerator_OutputDevice(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -2333,13 +2349,21 @@ func (ptr *QSvgRenderer) ViewBoxF() *core.QRectF {
 func NewQSvgRenderer(parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer(core.PointerFromQObject(parent)))
+	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQSvgRenderer4(contents core.QXmlStreamReader_ITF, parent core.QObject_ITF) *QSvgRenderer {
 	defer qt.Recovering("QSvgRenderer::QSvgRenderer")
 
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer4(core.PointerFromQXmlStreamReader(contents), core.PointerFromQObject(parent)))
+	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer4(core.PointerFromQXmlStreamReader(contents), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQSvgRenderer3(contents string, parent core.QObject_ITF) *QSvgRenderer {
@@ -2347,7 +2371,11 @@ func NewQSvgRenderer3(contents string, parent core.QObject_ITF) *QSvgRenderer {
 
 	var contentsC = C.CString(hex.EncodeToString([]byte(contents)))
 	defer C.free(unsafe.Pointer(contentsC))
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(contentsC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(contentsC, core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQSvgRenderer2(filename string, parent core.QObject_ITF) *QSvgRenderer {
@@ -2355,7 +2383,11 @@ func NewQSvgRenderer2(filename string, parent core.QObject_ITF) *QSvgRenderer {
 
 	var filenameC = C.CString(filename)
 	defer C.free(unsafe.Pointer(filenameC))
-	return NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(filenameC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer2(filenameC, core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QSvgRenderer) Animated() bool {
@@ -2415,7 +2447,7 @@ func (ptr *QSvgRenderer) IsValid() bool {
 func callbackQSvgRenderer_Load3(ptr unsafe.Pointer, contents unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSvgRenderer::load")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "load3"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::load3"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QXmlStreamReader) bool)(core.NewQXmlStreamReaderFromPointer(contents)))))
 	}
 
@@ -2427,7 +2459,7 @@ func (ptr *QSvgRenderer) ConnectLoad3(f func(contents *core.QXmlStreamReader) bo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "load3", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load3", f)
 	}
 }
 
@@ -2436,7 +2468,7 @@ func (ptr *QSvgRenderer) DisconnectLoad3(contents core.QXmlStreamReader_ITF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "load3")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load3")
 	}
 }
 
@@ -2453,7 +2485,7 @@ func (ptr *QSvgRenderer) Load3(contents core.QXmlStreamReader_ITF) bool {
 func callbackQSvgRenderer_Load2(ptr unsafe.Pointer, contents *C.char) C.char {
 	defer qt.Recovering("callback QSvgRenderer::load")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "load2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::load2"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(qt.HexDecodeToString(C.GoString(contents))))))
 	}
 
@@ -2465,7 +2497,7 @@ func (ptr *QSvgRenderer) ConnectLoad2(f func(contents string) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "load2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load2", f)
 	}
 }
 
@@ -2474,7 +2506,7 @@ func (ptr *QSvgRenderer) DisconnectLoad2(contents string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "load2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load2")
 	}
 }
 
@@ -2493,7 +2525,7 @@ func (ptr *QSvgRenderer) Load2(contents string) bool {
 func callbackQSvgRenderer_Load(ptr unsafe.Pointer, filename *C.char) C.char {
 	defer qt.Recovering("callback QSvgRenderer::load")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "load"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::load"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(filename)))))
 	}
 
@@ -2505,7 +2537,7 @@ func (ptr *QSvgRenderer) ConnectLoad(f func(filename string) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "load", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load", f)
 	}
 }
 
@@ -2514,7 +2546,7 @@ func (ptr *QSvgRenderer) DisconnectLoad(filename string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "load")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load")
 	}
 }
 
@@ -2533,7 +2565,7 @@ func (ptr *QSvgRenderer) Load(filename string) bool {
 func callbackQSvgRenderer_Render(ptr unsafe.Pointer, painter unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::render")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "render"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::render"); signal != nil {
 		signal.(func(*gui.QPainter))(gui.NewQPainterFromPointer(painter))
 	}
 
@@ -2544,7 +2576,7 @@ func (ptr *QSvgRenderer) ConnectRender(f func(painter *gui.QPainter)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "render", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::render", f)
 	}
 }
 
@@ -2553,7 +2585,7 @@ func (ptr *QSvgRenderer) DisconnectRender(painter gui.QPainter_ITF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "render")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::render")
 	}
 }
 
@@ -2569,7 +2601,7 @@ func (ptr *QSvgRenderer) Render(painter gui.QPainter_ITF) {
 func callbackQSvgRenderer_Render2(ptr unsafe.Pointer, painter unsafe.Pointer, bounds unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::render")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "render2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::render2"); signal != nil {
 		signal.(func(*gui.QPainter, *core.QRectF))(gui.NewQPainterFromPointer(painter), core.NewQRectFFromPointer(bounds))
 	}
 
@@ -2580,7 +2612,7 @@ func (ptr *QSvgRenderer) ConnectRender2(f func(painter *gui.QPainter, bounds *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "render2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::render2", f)
 	}
 }
 
@@ -2589,7 +2621,7 @@ func (ptr *QSvgRenderer) DisconnectRender2(painter gui.QPainter_ITF, bounds core
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "render2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::render2")
 	}
 }
 
@@ -2605,7 +2637,7 @@ func (ptr *QSvgRenderer) Render2(painter gui.QPainter_ITF, bounds core.QRectF_IT
 func callbackQSvgRenderer_Render3(ptr unsafe.Pointer, painter unsafe.Pointer, elementId *C.char, bounds unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::render")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "render3"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::render3"); signal != nil {
 		signal.(func(*gui.QPainter, string, *core.QRectF))(gui.NewQPainterFromPointer(painter), C.GoString(elementId), core.NewQRectFFromPointer(bounds))
 	}
 
@@ -2616,7 +2648,7 @@ func (ptr *QSvgRenderer) ConnectRender3(f func(painter *gui.QPainter, elementId 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "render3", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::render3", f)
 	}
 }
 
@@ -2625,7 +2657,7 @@ func (ptr *QSvgRenderer) DisconnectRender3(painter gui.QPainter_ITF, elementId s
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "render3")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::render3")
 	}
 }
 
@@ -2643,7 +2675,7 @@ func (ptr *QSvgRenderer) Render3(painter gui.QPainter_ITF, elementId string, bou
 func callbackQSvgRenderer_RepaintNeeded(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::repaintNeeded")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "repaintNeeded"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::repaintNeeded"); signal != nil {
 		signal.(func())()
 	}
 
@@ -2654,7 +2686,7 @@ func (ptr *QSvgRenderer) ConnectRepaintNeeded(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_ConnectRepaintNeeded(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "repaintNeeded", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::repaintNeeded", f)
 	}
 }
 
@@ -2663,7 +2695,7 @@ func (ptr *QSvgRenderer) DisconnectRepaintNeeded() {
 
 	if ptr.Pointer() != nil {
 		C.QSvgRenderer_DisconnectRepaintNeeded(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "repaintNeeded")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::repaintNeeded")
 	}
 }
 
@@ -2690,8 +2722,8 @@ func (ptr *QSvgRenderer) DestroyQSvgRenderer() {
 	defer qt.Recovering("QSvgRenderer::~QSvgRenderer")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()))
 		C.QSvgRenderer_DestroyQSvgRenderer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2700,7 +2732,7 @@ func (ptr *QSvgRenderer) DestroyQSvgRenderer() {
 func callbackQSvgRenderer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQSvgRendererFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2712,7 +2744,7 @@ func (ptr *QSvgRenderer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::timerEvent", f)
 	}
 }
 
@@ -2721,7 +2753,7 @@ func (ptr *QSvgRenderer) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::timerEvent")
 	}
 }
 
@@ -2745,7 +2777,7 @@ func (ptr *QSvgRenderer) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQSvgRenderer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQSvgRendererFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -2757,7 +2789,7 @@ func (ptr *QSvgRenderer) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::childEvent", f)
 	}
 }
 
@@ -2766,7 +2798,7 @@ func (ptr *QSvgRenderer) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::childEvent")
 	}
 }
 
@@ -2790,7 +2822,7 @@ func (ptr *QSvgRenderer) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQSvgRenderer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSvgRendererFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2802,7 +2834,7 @@ func (ptr *QSvgRenderer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::connectNotify", f)
 	}
 }
 
@@ -2811,7 +2843,7 @@ func (ptr *QSvgRenderer) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::connectNotify")
 	}
 }
 
@@ -2835,7 +2867,7 @@ func (ptr *QSvgRenderer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSvgRenderer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSvgRendererFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -2847,7 +2879,7 @@ func (ptr *QSvgRenderer) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::customEvent", f)
 	}
 }
 
@@ -2856,7 +2888,7 @@ func (ptr *QSvgRenderer) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::customEvent")
 	}
 }
 
@@ -2880,7 +2912,7 @@ func (ptr *QSvgRenderer) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQSvgRenderer_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgRendererFromPointer(ptr).DeleteLaterDefault()
@@ -2892,7 +2924,7 @@ func (ptr *QSvgRenderer) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::deleteLater", f)
 	}
 }
 
@@ -2901,7 +2933,7 @@ func (ptr *QSvgRenderer) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::deleteLater")
 	}
 }
 
@@ -2909,8 +2941,8 @@ func (ptr *QSvgRenderer) DeleteLater() {
 	defer qt.Recovering("QSvgRenderer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()))
 		C.QSvgRenderer_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2919,8 +2951,8 @@ func (ptr *QSvgRenderer) DeleteLaterDefault() {
 	defer qt.Recovering("QSvgRenderer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()))
 		C.QSvgRenderer_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2929,7 +2961,7 @@ func (ptr *QSvgRenderer) DeleteLaterDefault() {
 func callbackQSvgRenderer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgRenderer::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSvgRendererFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2941,7 +2973,7 @@ func (ptr *QSvgRenderer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::disconnectNotify", f)
 	}
 }
 
@@ -2950,7 +2982,7 @@ func (ptr *QSvgRenderer) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::disconnectNotify")
 	}
 }
 
@@ -2974,7 +3006,7 @@ func (ptr *QSvgRenderer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSvgRenderer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSvgRenderer::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -2986,7 +3018,7 @@ func (ptr *QSvgRenderer) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::event", f)
 	}
 }
 
@@ -2995,7 +3027,7 @@ func (ptr *QSvgRenderer) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::event")
 	}
 }
 
@@ -3021,7 +3053,7 @@ func (ptr *QSvgRenderer) EventDefault(e core.QEvent_ITF) bool {
 func callbackQSvgRenderer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSvgRenderer::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -3033,7 +3065,7 @@ func (ptr *QSvgRenderer) ConnectEventFilter(f func(watched *core.QObject, event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::eventFilter", f)
 	}
 }
 
@@ -3042,7 +3074,7 @@ func (ptr *QSvgRenderer) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::eventFilter")
 	}
 }
 
@@ -3068,7 +3100,7 @@ func (ptr *QSvgRenderer) EventFilterDefault(watched core.QObject_ITF, event core
 func callbackQSvgRenderer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSvgRenderer::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -3080,7 +3112,7 @@ func (ptr *QSvgRenderer) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::metaObject", f)
 	}
 }
 
@@ -3089,7 +3121,7 @@ func (ptr *QSvgRenderer) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgRenderer(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::metaObject")
 	}
 }
 
@@ -3152,7 +3184,11 @@ func NewQSvgWidgetFromPointer(ptr unsafe.Pointer) *QSvgWidget {
 func NewQSvgWidget(parent widgets.QWidget_ITF) *QSvgWidget {
 	defer qt.Recovering("QSvgWidget::QSvgWidget")
 
-	return NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget(widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget(widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQSvgWidget2(file string, parent widgets.QWidget_ITF) *QSvgWidget {
@@ -3160,14 +3196,18 @@ func NewQSvgWidget2(file string, parent widgets.QWidget_ITF) *QSvgWidget {
 
 	var fileC = C.CString(file)
 	defer C.free(unsafe.Pointer(fileC))
-	return NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(fileC, widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQSvgWidgetFromPointer(C.QSvgWidget_NewQSvgWidget2(fileC, widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQSvgWidget_Load2
 func callbackQSvgWidget_Load2(ptr unsafe.Pointer, contents *C.char) {
 	defer qt.Recovering("callback QSvgWidget::load")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "load2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::load2"); signal != nil {
 		signal.(func(string))(qt.HexDecodeToString(C.GoString(contents)))
 	}
 
@@ -3178,7 +3218,7 @@ func (ptr *QSvgWidget) ConnectLoad2(f func(contents string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "load2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::load2", f)
 	}
 }
 
@@ -3187,7 +3227,7 @@ func (ptr *QSvgWidget) DisconnectLoad2(contents string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "load2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::load2")
 	}
 }
 
@@ -3205,7 +3245,7 @@ func (ptr *QSvgWidget) Load2(contents string) {
 func callbackQSvgWidget_Load(ptr unsafe.Pointer, file *C.char) {
 	defer qt.Recovering("callback QSvgWidget::load")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "load"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::load"); signal != nil {
 		signal.(func(string))(C.GoString(file))
 	}
 
@@ -3216,7 +3256,7 @@ func (ptr *QSvgWidget) ConnectLoad(f func(file string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "load", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::load", f)
 	}
 }
 
@@ -3225,7 +3265,7 @@ func (ptr *QSvgWidget) DisconnectLoad(file string) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "load")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::load")
 	}
 }
 
@@ -3251,7 +3291,11 @@ func (ptr *QSvgWidget) Renderer() *QSvgRenderer {
 	defer qt.Recovering("QSvgWidget::renderer")
 
 	if ptr.Pointer() != nil {
-		return NewQSvgRendererFromPointer(C.QSvgWidget_Renderer(ptr.Pointer()))
+		var tmpValue = NewQSvgRendererFromPointer(C.QSvgWidget_Renderer(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -3271,8 +3315,8 @@ func (ptr *QSvgWidget) DestroyQSvgWidget() {
 	defer qt.Recovering("QSvgWidget::~QSvgWidget")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()))
 		C.QSvgWidget_DestroyQSvgWidget(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3281,7 +3325,7 @@ func (ptr *QSvgWidget) DestroyQSvgWidget() {
 func callbackQSvgWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -3293,7 +3337,7 @@ func (ptr *QSvgWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::actionEvent", f)
 	}
 }
 
@@ -3302,7 +3346,7 @@ func (ptr *QSvgWidget) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::actionEvent")
 	}
 }
 
@@ -3326,7 +3370,7 @@ func (ptr *QSvgWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 func callbackQSvgWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -3338,7 +3382,7 @@ func (ptr *QSvgWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dragEnterEvent", f)
 	}
 }
 
@@ -3347,7 +3391,7 @@ func (ptr *QSvgWidget) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dragEnterEvent")
 	}
 }
 
@@ -3371,7 +3415,7 @@ func (ptr *QSvgWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
 func callbackQSvgWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -3383,7 +3427,7 @@ func (ptr *QSvgWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dragLeaveEvent", f)
 	}
 }
 
@@ -3392,7 +3436,7 @@ func (ptr *QSvgWidget) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dragLeaveEvent")
 	}
 }
 
@@ -3416,7 +3460,7 @@ func (ptr *QSvgWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
 func callbackQSvgWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -3428,7 +3472,7 @@ func (ptr *QSvgWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dragMoveEvent", f)
 	}
 }
 
@@ -3437,7 +3481,7 @@ func (ptr *QSvgWidget) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dragMoveEvent")
 	}
 }
 
@@ -3461,7 +3505,7 @@ func (ptr *QSvgWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
 func callbackQSvgWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -3473,7 +3517,7 @@ func (ptr *QSvgWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dropEvent", f)
 	}
 }
 
@@ -3482,7 +3526,7 @@ func (ptr *QSvgWidget) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::dropEvent")
 	}
 }
 
@@ -3506,7 +3550,7 @@ func (ptr *QSvgWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackQSvgWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -3518,7 +3562,7 @@ func (ptr *QSvgWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::enterEvent", f)
 	}
 }
 
@@ -3527,7 +3571,7 @@ func (ptr *QSvgWidget) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::enterEvent")
 	}
 }
 
@@ -3551,7 +3595,7 @@ func (ptr *QSvgWidget) EnterEventDefault(event core.QEvent_ITF) {
 func callbackQSvgWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -3563,7 +3607,7 @@ func (ptr *QSvgWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::focusInEvent", f)
 	}
 }
 
@@ -3572,7 +3616,7 @@ func (ptr *QSvgWidget) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::focusInEvent")
 	}
 }
 
@@ -3596,7 +3640,7 @@ func (ptr *QSvgWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQSvgWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -3608,7 +3652,7 @@ func (ptr *QSvgWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::focusOutEvent", f)
 	}
 }
 
@@ -3617,7 +3661,7 @@ func (ptr *QSvgWidget) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::focusOutEvent")
 	}
 }
 
@@ -3641,7 +3685,7 @@ func (ptr *QSvgWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQSvgWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -3653,7 +3697,7 @@ func (ptr *QSvgWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::hideEvent", f)
 	}
 }
 
@@ -3662,7 +3706,7 @@ func (ptr *QSvgWidget) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::hideEvent")
 	}
 }
 
@@ -3686,7 +3730,7 @@ func (ptr *QSvgWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackQSvgWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -3698,7 +3742,7 @@ func (ptr *QSvgWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::leaveEvent", f)
 	}
 }
 
@@ -3707,7 +3751,7 @@ func (ptr *QSvgWidget) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::leaveEvent")
 	}
 }
 
@@ -3731,7 +3775,7 @@ func (ptr *QSvgWidget) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackQSvgWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSvgWidget::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -3743,7 +3787,7 @@ func (ptr *QSvgWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::minimumSizeHint", f)
 	}
 }
 
@@ -3752,7 +3796,7 @@ func (ptr *QSvgWidget) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::minimumSizeHint")
 	}
 }
 
@@ -3782,7 +3826,7 @@ func (ptr *QSvgWidget) MinimumSizeHintDefault() *core.QSize {
 func callbackQSvgWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -3794,7 +3838,7 @@ func (ptr *QSvgWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::moveEvent", f)
 	}
 }
 
@@ -3803,7 +3847,7 @@ func (ptr *QSvgWidget) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::moveEvent")
 	}
 }
 
@@ -3827,7 +3871,7 @@ func (ptr *QSvgWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackQSvgWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QSvgWidget::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -3839,7 +3883,7 @@ func (ptr *QSvgWidget) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setEnabled", f)
 	}
 }
 
@@ -3848,7 +3892,7 @@ func (ptr *QSvgWidget) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setEnabled")
 	}
 }
 
@@ -3872,7 +3916,7 @@ func (ptr *QSvgWidget) SetEnabledDefault(vbo bool) {
 func callbackQSvgWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QSvgWidget::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -3884,7 +3928,7 @@ func (ptr *QSvgWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setStyleSheet", f)
 	}
 }
 
@@ -3893,7 +3937,7 @@ func (ptr *QSvgWidget) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setStyleSheet")
 	}
 }
 
@@ -3921,7 +3965,7 @@ func (ptr *QSvgWidget) SetStyleSheetDefault(styleSheet string) {
 func callbackQSvgWidget_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback QSvgWidget::setVisible")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setVisible"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
@@ -3933,7 +3977,7 @@ func (ptr *QSvgWidget) ConnectSetVisible(f func(visible bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setVisible", f)
 	}
 }
 
@@ -3942,7 +3986,7 @@ func (ptr *QSvgWidget) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setVisible")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setVisible")
 	}
 }
 
@@ -3966,7 +4010,7 @@ func (ptr *QSvgWidget) SetVisibleDefault(visible bool) {
 func callbackQSvgWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QSvgWidget::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -3978,7 +4022,7 @@ func (ptr *QSvgWidget) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setWindowModified", f)
 	}
 }
 
@@ -3987,7 +4031,7 @@ func (ptr *QSvgWidget) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setWindowModified")
 	}
 }
 
@@ -4011,7 +4055,7 @@ func (ptr *QSvgWidget) SetWindowModifiedDefault(vbo bool) {
 func callbackQSvgWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QSvgWidget::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -4023,7 +4067,7 @@ func (ptr *QSvgWidget) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setWindowTitle", f)
 	}
 }
 
@@ -4032,7 +4076,7 @@ func (ptr *QSvgWidget) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setWindowTitle")
 	}
 }
 
@@ -4060,7 +4104,7 @@ func (ptr *QSvgWidget) SetWindowTitleDefault(vqs string) {
 func callbackQSvgWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -4072,7 +4116,7 @@ func (ptr *QSvgWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showEvent", f)
 	}
 }
 
@@ -4081,7 +4125,7 @@ func (ptr *QSvgWidget) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showEvent")
 	}
 }
 
@@ -4105,7 +4149,7 @@ func (ptr *QSvgWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackQSvgWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -4117,7 +4161,7 @@ func (ptr *QSvgWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::changeEvent", f)
 	}
 }
 
@@ -4126,7 +4170,7 @@ func (ptr *QSvgWidget) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::changeEvent")
 	}
 }
 
@@ -4150,7 +4194,7 @@ func (ptr *QSvgWidget) ChangeEventDefault(event core.QEvent_ITF) {
 func callbackQSvgWidget_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSvgWidget::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -4162,7 +4206,7 @@ func (ptr *QSvgWidget) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::close", f)
 	}
 }
 
@@ -4171,7 +4215,7 @@ func (ptr *QSvgWidget) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::close")
 	}
 }
 
@@ -4197,7 +4241,7 @@ func (ptr *QSvgWidget) CloseDefault() bool {
 func callbackQSvgWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -4209,7 +4253,7 @@ func (ptr *QSvgWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::closeEvent", f)
 	}
 }
 
@@ -4218,7 +4262,7 @@ func (ptr *QSvgWidget) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::closeEvent")
 	}
 }
 
@@ -4242,7 +4286,7 @@ func (ptr *QSvgWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 func callbackQSvgWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -4254,7 +4298,7 @@ func (ptr *QSvgWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::contextMenuEvent", f)
 	}
 }
 
@@ -4263,7 +4307,7 @@ func (ptr *QSvgWidget) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::contextMenuEvent")
 	}
 }
 
@@ -4287,7 +4331,7 @@ func (ptr *QSvgWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) 
 func callbackQSvgWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QSvgWidget::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -4299,7 +4343,7 @@ func (ptr *QSvgWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::focusNextPrevChild", f)
 	}
 }
 
@@ -4308,7 +4352,7 @@ func (ptr *QSvgWidget) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::focusNextPrevChild")
 	}
 }
 
@@ -4334,7 +4378,7 @@ func (ptr *QSvgWidget) FocusNextPrevChildDefault(next bool) bool {
 func callbackQSvgWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSvgWidget::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -4346,7 +4390,7 @@ func (ptr *QSvgWidget) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::hasHeightForWidth", f)
 	}
 }
 
@@ -4355,7 +4399,7 @@ func (ptr *QSvgWidget) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::hasHeightForWidth")
 	}
 }
 
@@ -4381,7 +4425,7 @@ func (ptr *QSvgWidget) HasHeightForWidthDefault() bool {
 func callbackQSvgWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QSvgWidget::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -4393,7 +4437,7 @@ func (ptr *QSvgWidget) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::heightForWidth", f)
 	}
 }
 
@@ -4402,7 +4446,7 @@ func (ptr *QSvgWidget) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::heightForWidth")
 	}
 }
 
@@ -4428,7 +4472,7 @@ func (ptr *QSvgWidget) HeightForWidthDefault(w int) int {
 func callbackQSvgWidget_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).HideDefault()
@@ -4440,7 +4484,7 @@ func (ptr *QSvgWidget) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::hide", f)
 	}
 }
 
@@ -4449,7 +4493,7 @@ func (ptr *QSvgWidget) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::hide")
 	}
 }
 
@@ -4473,7 +4517,7 @@ func (ptr *QSvgWidget) HideDefault() {
 func callbackQSvgWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -4485,7 +4529,7 @@ func (ptr *QSvgWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::inputMethodEvent", f)
 	}
 }
 
@@ -4494,7 +4538,7 @@ func (ptr *QSvgWidget) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::inputMethodEvent")
 	}
 }
 
@@ -4518,7 +4562,7 @@ func (ptr *QSvgWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) 
 func callbackQSvgWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QSvgWidget::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -4530,7 +4574,7 @@ func (ptr *QSvgWidget) ConnectInputMethodQuery(f func(query core.Qt__InputMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::inputMethodQuery", f)
 	}
 }
 
@@ -4539,7 +4583,7 @@ func (ptr *QSvgWidget) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::inputMethodQuery")
 	}
 }
 
@@ -4569,7 +4613,7 @@ func (ptr *QSvgWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) 
 func callbackQSvgWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -4581,7 +4625,7 @@ func (ptr *QSvgWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::keyPressEvent", f)
 	}
 }
 
@@ -4590,7 +4634,7 @@ func (ptr *QSvgWidget) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::keyPressEvent")
 	}
 }
 
@@ -4614,7 +4658,7 @@ func (ptr *QSvgWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 func callbackQSvgWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -4626,7 +4670,7 @@ func (ptr *QSvgWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::keyReleaseEvent", f)
 	}
 }
 
@@ -4635,7 +4679,7 @@ func (ptr *QSvgWidget) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::keyReleaseEvent")
 	}
 }
 
@@ -4659,7 +4703,7 @@ func (ptr *QSvgWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 func callbackQSvgWidget_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).LowerDefault()
@@ -4671,7 +4715,7 @@ func (ptr *QSvgWidget) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::lower", f)
 	}
 }
 
@@ -4680,7 +4724,7 @@ func (ptr *QSvgWidget) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::lower")
 	}
 }
 
@@ -4704,7 +4748,7 @@ func (ptr *QSvgWidget) LowerDefault() {
 func callbackQSvgWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4716,7 +4760,7 @@ func (ptr *QSvgWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -4725,7 +4769,7 @@ func (ptr *QSvgWidget) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mouseDoubleClickEvent")
 	}
 }
 
@@ -4749,7 +4793,7 @@ func (ptr *QSvgWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQSvgWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4761,7 +4805,7 @@ func (ptr *QSvgWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mouseMoveEvent", f)
 	}
 }
 
@@ -4770,7 +4814,7 @@ func (ptr *QSvgWidget) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mouseMoveEvent")
 	}
 }
 
@@ -4794,7 +4838,7 @@ func (ptr *QSvgWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQSvgWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4806,7 +4850,7 @@ func (ptr *QSvgWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mousePressEvent", f)
 	}
 }
 
@@ -4815,7 +4859,7 @@ func (ptr *QSvgWidget) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mousePressEvent")
 	}
 }
 
@@ -4839,7 +4883,7 @@ func (ptr *QSvgWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQSvgWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4851,7 +4895,7 @@ func (ptr *QSvgWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mouseReleaseEvent", f)
 	}
 }
 
@@ -4860,7 +4904,7 @@ func (ptr *QSvgWidget) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::mouseReleaseEvent")
 	}
 }
 
@@ -4884,7 +4928,7 @@ func (ptr *QSvgWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQSvgWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QSvgWidget::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -4896,7 +4940,7 @@ func (ptr *QSvgWidget) ConnectNativeEvent(f func(eventType string, message unsaf
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::nativeEvent", f)
 	}
 }
 
@@ -4905,7 +4949,7 @@ func (ptr *QSvgWidget) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::nativeEvent")
 	}
 }
 
@@ -4935,7 +4979,7 @@ func (ptr *QSvgWidget) NativeEventDefault(eventType string, message unsafe.Point
 func callbackQSvgWidget_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).RaiseDefault()
@@ -4947,7 +4991,7 @@ func (ptr *QSvgWidget) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::raise", f)
 	}
 }
 
@@ -4956,7 +5000,7 @@ func (ptr *QSvgWidget) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::raise")
 	}
 }
 
@@ -4980,7 +5024,7 @@ func (ptr *QSvgWidget) RaiseDefault() {
 func callbackQSvgWidget_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).RepaintDefault()
@@ -4992,7 +5036,7 @@ func (ptr *QSvgWidget) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::repaint", f)
 	}
 }
 
@@ -5001,7 +5045,7 @@ func (ptr *QSvgWidget) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::repaint")
 	}
 }
 
@@ -5025,7 +5069,7 @@ func (ptr *QSvgWidget) RepaintDefault() {
 func callbackQSvgWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -5037,7 +5081,7 @@ func (ptr *QSvgWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::resizeEvent", f)
 	}
 }
 
@@ -5046,7 +5090,7 @@ func (ptr *QSvgWidget) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::resizeEvent")
 	}
 }
 
@@ -5070,7 +5114,7 @@ func (ptr *QSvgWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 func callbackQSvgWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QSvgWidget::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -5082,7 +5126,7 @@ func (ptr *QSvgWidget) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setDisabled", f)
 	}
 }
 
@@ -5091,7 +5135,7 @@ func (ptr *QSvgWidget) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setDisabled")
 	}
 }
 
@@ -5115,7 +5159,7 @@ func (ptr *QSvgWidget) SetDisabledDefault(disable bool) {
 func callbackQSvgWidget_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetFocus2Default()
@@ -5127,7 +5171,7 @@ func (ptr *QSvgWidget) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setFocus2", f)
 	}
 }
 
@@ -5136,7 +5180,7 @@ func (ptr *QSvgWidget) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setFocus2")
 	}
 }
 
@@ -5160,7 +5204,7 @@ func (ptr *QSvgWidget) SetFocus2Default() {
 func callbackQSvgWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QSvgWidget::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewQSvgWidgetFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -5172,7 +5216,7 @@ func (ptr *QSvgWidget) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setHidden", f)
 	}
 }
 
@@ -5181,7 +5225,7 @@ func (ptr *QSvgWidget) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::setHidden")
 	}
 }
 
@@ -5205,7 +5249,7 @@ func (ptr *QSvgWidget) SetHiddenDefault(hidden bool) {
 func callbackQSvgWidget_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ShowDefault()
@@ -5217,7 +5261,7 @@ func (ptr *QSvgWidget) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::show", f)
 	}
 }
 
@@ -5226,7 +5270,7 @@ func (ptr *QSvgWidget) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::show")
 	}
 }
 
@@ -5250,7 +5294,7 @@ func (ptr *QSvgWidget) ShowDefault() {
 func callbackQSvgWidget_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ShowFullScreenDefault()
@@ -5262,7 +5306,7 @@ func (ptr *QSvgWidget) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showFullScreen", f)
 	}
 }
 
@@ -5271,7 +5315,7 @@ func (ptr *QSvgWidget) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showFullScreen")
 	}
 }
 
@@ -5295,7 +5339,7 @@ func (ptr *QSvgWidget) ShowFullScreenDefault() {
 func callbackQSvgWidget_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ShowMaximizedDefault()
@@ -5307,7 +5351,7 @@ func (ptr *QSvgWidget) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showMaximized", f)
 	}
 }
 
@@ -5316,7 +5360,7 @@ func (ptr *QSvgWidget) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showMaximized")
 	}
 }
 
@@ -5340,7 +5384,7 @@ func (ptr *QSvgWidget) ShowMaximizedDefault() {
 func callbackQSvgWidget_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ShowMinimizedDefault()
@@ -5352,7 +5396,7 @@ func (ptr *QSvgWidget) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showMinimized", f)
 	}
 }
 
@@ -5361,7 +5405,7 @@ func (ptr *QSvgWidget) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showMinimized")
 	}
 }
 
@@ -5385,7 +5429,7 @@ func (ptr *QSvgWidget) ShowMinimizedDefault() {
 func callbackQSvgWidget_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ShowNormalDefault()
@@ -5397,7 +5441,7 @@ func (ptr *QSvgWidget) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showNormal", f)
 	}
 }
 
@@ -5406,7 +5450,7 @@ func (ptr *QSvgWidget) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::showNormal")
 	}
 }
 
@@ -5430,7 +5474,7 @@ func (ptr *QSvgWidget) ShowNormalDefault() {
 func callbackQSvgWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -5442,7 +5486,7 @@ func (ptr *QSvgWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::tabletEvent", f)
 	}
 }
 
@@ -5451,7 +5495,7 @@ func (ptr *QSvgWidget) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::tabletEvent")
 	}
 }
 
@@ -5475,7 +5519,7 @@ func (ptr *QSvgWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
 func callbackQSvgWidget_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).UpdateDefault()
@@ -5487,7 +5531,7 @@ func (ptr *QSvgWidget) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::update", f)
 	}
 }
 
@@ -5496,7 +5540,7 @@ func (ptr *QSvgWidget) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::update")
 	}
 }
 
@@ -5520,7 +5564,7 @@ func (ptr *QSvgWidget) UpdateDefault() {
 func callbackQSvgWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).UpdateMicroFocusDefault()
@@ -5532,7 +5576,7 @@ func (ptr *QSvgWidget) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::updateMicroFocus", f)
 	}
 }
 
@@ -5541,7 +5585,7 @@ func (ptr *QSvgWidget) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::updateMicroFocus")
 	}
 }
 
@@ -5565,7 +5609,7 @@ func (ptr *QSvgWidget) UpdateMicroFocusDefault() {
 func callbackQSvgWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -5577,7 +5621,7 @@ func (ptr *QSvgWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::wheelEvent", f)
 	}
 }
 
@@ -5586,7 +5630,7 @@ func (ptr *QSvgWidget) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::wheelEvent")
 	}
 }
 
@@ -5610,7 +5654,7 @@ func (ptr *QSvgWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackQSvgWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -5622,7 +5666,7 @@ func (ptr *QSvgWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::timerEvent", f)
 	}
 }
 
@@ -5631,7 +5675,7 @@ func (ptr *QSvgWidget) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::timerEvent")
 	}
 }
 
@@ -5655,7 +5699,7 @@ func (ptr *QSvgWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQSvgWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -5667,7 +5711,7 @@ func (ptr *QSvgWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::childEvent", f)
 	}
 }
 
@@ -5676,7 +5720,7 @@ func (ptr *QSvgWidget) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::childEvent")
 	}
 }
 
@@ -5700,7 +5744,7 @@ func (ptr *QSvgWidget) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQSvgWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5712,7 +5756,7 @@ func (ptr *QSvgWidget) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::connectNotify", f)
 	}
 }
 
@@ -5721,7 +5765,7 @@ func (ptr *QSvgWidget) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::connectNotify")
 	}
 }
 
@@ -5745,7 +5789,7 @@ func (ptr *QSvgWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSvgWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -5757,7 +5801,7 @@ func (ptr *QSvgWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::customEvent", f)
 	}
 }
 
@@ -5766,7 +5810,7 @@ func (ptr *QSvgWidget) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::customEvent")
 	}
 }
 
@@ -5790,7 +5834,7 @@ func (ptr *QSvgWidget) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQSvgWidget_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSvgWidgetFromPointer(ptr).DeleteLaterDefault()
@@ -5802,7 +5846,7 @@ func (ptr *QSvgWidget) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::deleteLater", f)
 	}
 }
 
@@ -5811,7 +5855,7 @@ func (ptr *QSvgWidget) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::deleteLater")
 	}
 }
 
@@ -5819,8 +5863,8 @@ func (ptr *QSvgWidget) DeleteLater() {
 	defer qt.Recovering("QSvgWidget::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()))
 		C.QSvgWidget_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5829,8 +5873,8 @@ func (ptr *QSvgWidget) DeleteLaterDefault() {
 	defer qt.Recovering("QSvgWidget::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()))
 		C.QSvgWidget_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5839,7 +5883,7 @@ func (ptr *QSvgWidget) DeleteLaterDefault() {
 func callbackQSvgWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSvgWidget::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSvgWidgetFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5851,7 +5895,7 @@ func (ptr *QSvgWidget) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::disconnectNotify", f)
 	}
 }
 
@@ -5860,7 +5904,7 @@ func (ptr *QSvgWidget) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::disconnectNotify")
 	}
 }
 
@@ -5884,7 +5928,7 @@ func (ptr *QSvgWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSvgWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSvgWidget::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -5896,7 +5940,7 @@ func (ptr *QSvgWidget) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::eventFilter", f)
 	}
 }
 
@@ -5905,7 +5949,7 @@ func (ptr *QSvgWidget) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::eventFilter")
 	}
 }
 
@@ -5931,7 +5975,7 @@ func (ptr *QSvgWidget) EventFilterDefault(watched core.QObject_ITF, event core.Q
 func callbackQSvgWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSvgWidget::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSvgWidget(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -5943,7 +5987,7 @@ func (ptr *QSvgWidget) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::metaObject", f)
 	}
 }
 
@@ -5952,7 +5996,7 @@ func (ptr *QSvgWidget) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSvgWidget(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::metaObject")
 	}
 }
 

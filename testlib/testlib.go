@@ -67,7 +67,11 @@ func NewQSignalSpy(object core.QObject_ITF, sign string) *QSignalSpy {
 
 	var signC = C.CString(sign)
 	defer C.free(unsafe.Pointer(signC))
-	return NewQSignalSpyFromPointer(C.QSignalSpy_NewQSignalSpy(core.PointerFromQObject(object), signC))
+	var tmpValue = NewQSignalSpyFromPointer(C.QSignalSpy_NewQSignalSpy(core.PointerFromQObject(object), signC))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QSignalSpy) IsValid() bool {
@@ -101,7 +105,7 @@ func (ptr *QSignalSpy) Wait(timeout int) bool {
 func callbackQSignalSpy_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -113,7 +117,7 @@ func (ptr *QSignalSpy) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::timerEvent", f)
 	}
 }
 
@@ -122,7 +126,7 @@ func (ptr *QSignalSpy) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::timerEvent")
 	}
 }
 
@@ -146,7 +150,7 @@ func (ptr *QSignalSpy) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQSignalSpy_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -158,7 +162,7 @@ func (ptr *QSignalSpy) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::childEvent", f)
 	}
 }
 
@@ -167,7 +171,7 @@ func (ptr *QSignalSpy) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::childEvent")
 	}
 }
 
@@ -191,7 +195,7 @@ func (ptr *QSignalSpy) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQSignalSpy_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSignalSpyFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -203,7 +207,7 @@ func (ptr *QSignalSpy) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::connectNotify", f)
 	}
 }
 
@@ -212,7 +216,7 @@ func (ptr *QSignalSpy) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::connectNotify")
 	}
 }
 
@@ -236,7 +240,7 @@ func (ptr *QSignalSpy) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSignalSpy_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSignalSpyFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -248,7 +252,7 @@ func (ptr *QSignalSpy) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::customEvent", f)
 	}
 }
 
@@ -257,7 +261,7 @@ func (ptr *QSignalSpy) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::customEvent")
 	}
 }
 
@@ -281,7 +285,7 @@ func (ptr *QSignalSpy) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQSignalSpy_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSignalSpyFromPointer(ptr).DeleteLaterDefault()
@@ -293,7 +297,7 @@ func (ptr *QSignalSpy) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::deleteLater", f)
 	}
 }
 
@@ -302,7 +306,7 @@ func (ptr *QSignalSpy) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::deleteLater")
 	}
 }
 
@@ -328,7 +332,7 @@ func (ptr *QSignalSpy) DeleteLaterDefault() {
 func callbackQSignalSpy_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSignalSpy::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSignalSpyFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -340,7 +344,7 @@ func (ptr *QSignalSpy) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::disconnectNotify", f)
 	}
 }
 
@@ -349,7 +353,7 @@ func (ptr *QSignalSpy) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::disconnectNotify")
 	}
 }
 
@@ -373,7 +377,7 @@ func (ptr *QSignalSpy) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSignalSpy_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSignalSpy::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -385,7 +389,7 @@ func (ptr *QSignalSpy) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::event", f)
 	}
 }
 
@@ -394,7 +398,7 @@ func (ptr *QSignalSpy) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::event")
 	}
 }
 
@@ -420,7 +424,7 @@ func (ptr *QSignalSpy) EventDefault(e core.QEvent_ITF) bool {
 func callbackQSignalSpy_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSignalSpy::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -432,7 +436,7 @@ func (ptr *QSignalSpy) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::eventFilter", f)
 	}
 }
 
@@ -441,7 +445,7 @@ func (ptr *QSignalSpy) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::eventFilter")
 	}
 }
 
@@ -467,7 +471,7 @@ func (ptr *QSignalSpy) EventFilterDefault(watched core.QObject_ITF, event core.Q
 func callbackQSignalSpy_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSignalSpy::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSignalSpy(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalSpy::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -479,7 +483,7 @@ func (ptr *QSignalSpy) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::metaObject", f)
 	}
 }
 
@@ -488,7 +492,7 @@ func (ptr *QSignalSpy) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSignalSpy(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalSpy::metaObject")
 	}
 }
 

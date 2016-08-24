@@ -60,7 +60,7 @@ func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver
 func callbackQAndroidActivityResultReceiver_HandleActivityResult(ptr unsafe.Pointer, receiverRequestCode C.int, resultCode C.int, data unsafe.Pointer) {
 	defer qt.Recovering("callback QAndroidActivityResultReceiver::handleActivityResult")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAndroidActivityResultReceiver(%v)", ptr), "handleActivityResult"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAndroidActivityResultReceiver::handleActivityResult"); signal != nil {
 		signal.(func(int, int, *QAndroidJniObject))(int(int32(receiverRequestCode)), int(int32(resultCode)), NewQAndroidJniObjectFromPointer(data))
 	}
 
@@ -71,7 +71,7 @@ func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(re
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAndroidActivityResultReceiver(%v)", ptr.Pointer()), "handleActivityResult", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAndroidActivityResultReceiver::handleActivityResult", f)
 	}
 }
 
@@ -80,7 +80,7 @@ func (ptr *QAndroidActivityResultReceiver) DisconnectHandleActivityResult(receiv
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAndroidActivityResultReceiver(%v)", ptr.Pointer()), "handleActivityResult")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAndroidActivityResultReceiver::handleActivityResult")
 	}
 }
 

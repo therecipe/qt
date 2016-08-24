@@ -89,14 +89,18 @@ func (ptr *QAbstractPrintDialog) DestroyQAbstractPrintDialog() {
 func NewQAbstractPrintDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QAbstractPrintDialog {
 	defer qt.Recovering("QAbstractPrintDialog::QAbstractPrintDialog")
 
-	return NewQAbstractPrintDialogFromPointer(C.QAbstractPrintDialog_NewQAbstractPrintDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQAbstractPrintDialogFromPointer(C.QAbstractPrintDialog_NewQAbstractPrintDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQAbstractPrintDialog_Exec
 func callbackQAbstractPrintDialog_Exec(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QAbstractPrintDialog::exec")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "exec"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::exec"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
 
@@ -108,7 +112,7 @@ func (ptr *QAbstractPrintDialog) ConnectExec(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "exec", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::exec", f)
 	}
 }
 
@@ -117,7 +121,7 @@ func (ptr *QAbstractPrintDialog) DisconnectExec() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "exec")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::exec")
 	}
 }
 
@@ -212,7 +216,7 @@ func (ptr *QAbstractPrintDialog) ToPage() int {
 func callbackQAbstractPrintDialog_Accept(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::accept")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "accept"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::accept"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).AcceptDefault()
@@ -224,7 +228,7 @@ func (ptr *QAbstractPrintDialog) ConnectAccept(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "accept", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::accept", f)
 	}
 }
 
@@ -233,7 +237,7 @@ func (ptr *QAbstractPrintDialog) DisconnectAccept() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "accept")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::accept")
 	}
 }
 
@@ -257,7 +261,7 @@ func (ptr *QAbstractPrintDialog) AcceptDefault() {
 func callbackQAbstractPrintDialog_CloseEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
@@ -269,7 +273,7 @@ func (ptr *QAbstractPrintDialog) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::closeEvent", f)
 	}
 }
 
@@ -278,7 +282,7 @@ func (ptr *QAbstractPrintDialog) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::closeEvent")
 	}
 }
 
@@ -302,7 +306,7 @@ func (ptr *QAbstractPrintDialog) CloseEventDefault(e gui.QCloseEvent_ITF) {
 func callbackQAbstractPrintDialog_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
@@ -314,7 +318,7 @@ func (ptr *QAbstractPrintDialog) ConnectContextMenuEvent(f func(e *gui.QContextM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::contextMenuEvent", f)
 	}
 }
 
@@ -323,7 +327,7 @@ func (ptr *QAbstractPrintDialog) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::contextMenuEvent")
 	}
 }
 
@@ -347,7 +351,7 @@ func (ptr *QAbstractPrintDialog) ContextMenuEventDefault(e gui.QContextMenuEvent
 func callbackQAbstractPrintDialog_Done(ptr unsafe.Pointer, r C.int) {
 	defer qt.Recovering("callback QAbstractPrintDialog::done")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "done"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::done"); signal != nil {
 		signal.(func(int))(int(int32(r)))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).DoneDefault(int(int32(r)))
@@ -359,7 +363,7 @@ func (ptr *QAbstractPrintDialog) ConnectDone(f func(r int)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "done", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::done", f)
 	}
 }
 
@@ -368,7 +372,7 @@ func (ptr *QAbstractPrintDialog) DisconnectDone() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "done")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::done")
 	}
 }
 
@@ -392,7 +396,7 @@ func (ptr *QAbstractPrintDialog) DoneDefault(r int) {
 func callbackQAbstractPrintDialog_KeyPressEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
@@ -404,7 +408,7 @@ func (ptr *QAbstractPrintDialog) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::keyPressEvent", f)
 	}
 }
 
@@ -413,7 +417,7 @@ func (ptr *QAbstractPrintDialog) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::keyPressEvent")
 	}
 }
 
@@ -437,7 +441,7 @@ func (ptr *QAbstractPrintDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 func callbackQAbstractPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractPrintDialog::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -449,7 +453,7 @@ func (ptr *QAbstractPrintDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::minimumSizeHint", f)
 	}
 }
 
@@ -458,7 +462,7 @@ func (ptr *QAbstractPrintDialog) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::minimumSizeHint")
 	}
 }
 
@@ -488,7 +492,7 @@ func (ptr *QAbstractPrintDialog) MinimumSizeHintDefault() *core.QSize {
 func callbackQAbstractPrintDialog_Open(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::open"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).OpenDefault()
@@ -500,7 +504,7 @@ func (ptr *QAbstractPrintDialog) ConnectOpen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::open", f)
 	}
 }
 
@@ -509,7 +513,7 @@ func (ptr *QAbstractPrintDialog) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::open")
 	}
 }
 
@@ -533,7 +537,7 @@ func (ptr *QAbstractPrintDialog) OpenDefault() {
 func callbackQAbstractPrintDialog_Reject(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::reject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "reject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::reject"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).RejectDefault()
@@ -545,7 +549,7 @@ func (ptr *QAbstractPrintDialog) ConnectReject(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "reject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::reject", f)
 	}
 }
 
@@ -554,7 +558,7 @@ func (ptr *QAbstractPrintDialog) DisconnectReject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "reject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::reject")
 	}
 }
 
@@ -578,7 +582,7 @@ func (ptr *QAbstractPrintDialog) RejectDefault() {
 func callbackQAbstractPrintDialog_ResizeEvent(ptr unsafe.Pointer, vqr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(vqr))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(vqr))
@@ -590,7 +594,7 @@ func (ptr *QAbstractPrintDialog) ConnectResizeEvent(f func(vqr *gui.QResizeEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::resizeEvent", f)
 	}
 }
 
@@ -599,7 +603,7 @@ func (ptr *QAbstractPrintDialog) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::resizeEvent")
 	}
 }
 
@@ -623,7 +627,7 @@ func (ptr *QAbstractPrintDialog) ResizeEventDefault(vqr gui.QResizeEvent_ITF) {
 func callbackQAbstractPrintDialog_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setVisible")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setVisible"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
@@ -635,7 +639,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetVisible(f func(visible bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setVisible", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setVisible", f)
 	}
 }
 
@@ -644,7 +648,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetVisible() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setVisible")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setVisible")
 	}
 }
 
@@ -668,7 +672,7 @@ func (ptr *QAbstractPrintDialog) SetVisibleDefault(visible bool) {
 func callbackQAbstractPrintDialog_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -680,7 +684,7 @@ func (ptr *QAbstractPrintDialog) ConnectShowEvent(f func(event *gui.QShowEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showEvent", f)
 	}
 }
 
@@ -689,7 +693,7 @@ func (ptr *QAbstractPrintDialog) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showEvent")
 	}
 }
 
@@ -713,7 +717,7 @@ func (ptr *QAbstractPrintDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackQAbstractPrintDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractPrintDialog::sizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -725,7 +729,7 @@ func (ptr *QAbstractPrintDialog) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::sizeHint", f)
 	}
 }
 
@@ -734,7 +738,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::sizeHint")
 	}
 }
 
@@ -764,7 +768,7 @@ func (ptr *QAbstractPrintDialog) SizeHintDefault() *core.QSize {
 func callbackQAbstractPrintDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -776,7 +780,7 @@ func (ptr *QAbstractPrintDialog) ConnectActionEvent(f func(event *gui.QActionEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::actionEvent", f)
 	}
 }
 
@@ -785,7 +789,7 @@ func (ptr *QAbstractPrintDialog) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::actionEvent")
 	}
 }
 
@@ -809,7 +813,7 @@ func (ptr *QAbstractPrintDialog) ActionEventDefault(event gui.QActionEvent_ITF) 
 func callbackQAbstractPrintDialog_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -821,7 +825,7 @@ func (ptr *QAbstractPrintDialog) ConnectDragEnterEvent(f func(event *gui.QDragEn
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dragEnterEvent", f)
 	}
 }
 
@@ -830,7 +834,7 @@ func (ptr *QAbstractPrintDialog) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dragEnterEvent")
 	}
 }
 
@@ -854,7 +858,7 @@ func (ptr *QAbstractPrintDialog) DragEnterEventDefault(event gui.QDragEnterEvent
 func callbackQAbstractPrintDialog_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -866,7 +870,7 @@ func (ptr *QAbstractPrintDialog) ConnectDragLeaveEvent(f func(event *gui.QDragLe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dragLeaveEvent", f)
 	}
 }
 
@@ -875,7 +879,7 @@ func (ptr *QAbstractPrintDialog) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dragLeaveEvent")
 	}
 }
 
@@ -899,7 +903,7 @@ func (ptr *QAbstractPrintDialog) DragLeaveEventDefault(event gui.QDragLeaveEvent
 func callbackQAbstractPrintDialog_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -911,7 +915,7 @@ func (ptr *QAbstractPrintDialog) ConnectDragMoveEvent(f func(event *gui.QDragMov
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dragMoveEvent", f)
 	}
 }
 
@@ -920,7 +924,7 @@ func (ptr *QAbstractPrintDialog) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dragMoveEvent")
 	}
 }
 
@@ -944,7 +948,7 @@ func (ptr *QAbstractPrintDialog) DragMoveEventDefault(event gui.QDragMoveEvent_I
 func callbackQAbstractPrintDialog_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -956,7 +960,7 @@ func (ptr *QAbstractPrintDialog) ConnectDropEvent(f func(event *gui.QDropEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dropEvent", f)
 	}
 }
 
@@ -965,7 +969,7 @@ func (ptr *QAbstractPrintDialog) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::dropEvent")
 	}
 }
 
@@ -989,7 +993,7 @@ func (ptr *QAbstractPrintDialog) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackQAbstractPrintDialog_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -1001,7 +1005,7 @@ func (ptr *QAbstractPrintDialog) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::enterEvent", f)
 	}
 }
 
@@ -1010,7 +1014,7 @@ func (ptr *QAbstractPrintDialog) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::enterEvent")
 	}
 }
 
@@ -1034,7 +1038,7 @@ func (ptr *QAbstractPrintDialog) EnterEventDefault(event core.QEvent_ITF) {
 func callbackQAbstractPrintDialog_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -1046,7 +1050,7 @@ func (ptr *QAbstractPrintDialog) ConnectFocusInEvent(f func(event *gui.QFocusEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusInEvent", f)
 	}
 }
 
@@ -1055,7 +1059,7 @@ func (ptr *QAbstractPrintDialog) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusInEvent")
 	}
 }
 
@@ -1079,7 +1083,7 @@ func (ptr *QAbstractPrintDialog) FocusInEventDefault(event gui.QFocusEvent_ITF) 
 func callbackQAbstractPrintDialog_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -1091,7 +1095,7 @@ func (ptr *QAbstractPrintDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusOutEvent", f)
 	}
 }
 
@@ -1100,7 +1104,7 @@ func (ptr *QAbstractPrintDialog) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusOutEvent")
 	}
 }
 
@@ -1124,7 +1128,7 @@ func (ptr *QAbstractPrintDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF)
 func callbackQAbstractPrintDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -1136,7 +1140,7 @@ func (ptr *QAbstractPrintDialog) ConnectHideEvent(f func(event *gui.QHideEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hideEvent", f)
 	}
 }
 
@@ -1145,7 +1149,7 @@ func (ptr *QAbstractPrintDialog) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hideEvent")
 	}
 }
 
@@ -1169,7 +1173,7 @@ func (ptr *QAbstractPrintDialog) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackQAbstractPrintDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -1181,7 +1185,7 @@ func (ptr *QAbstractPrintDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::leaveEvent", f)
 	}
 }
 
@@ -1190,7 +1194,7 @@ func (ptr *QAbstractPrintDialog) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::leaveEvent")
 	}
 }
 
@@ -1214,7 +1218,7 @@ func (ptr *QAbstractPrintDialog) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackQAbstractPrintDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -1226,7 +1230,7 @@ func (ptr *QAbstractPrintDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::moveEvent", f)
 	}
 }
 
@@ -1235,7 +1239,7 @@ func (ptr *QAbstractPrintDialog) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::moveEvent")
 	}
 }
 
@@ -1259,7 +1263,7 @@ func (ptr *QAbstractPrintDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackQAbstractPrintDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::paintEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -1271,7 +1275,7 @@ func (ptr *QAbstractPrintDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEvent", f)
 	}
 }
 
@@ -1280,7 +1284,7 @@ func (ptr *QAbstractPrintDialog) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::paintEvent")
 	}
 }
 
@@ -1304,7 +1308,7 @@ func (ptr *QAbstractPrintDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
 func callbackQAbstractPrintDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -1316,7 +1320,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setEnabled", f)
 	}
 }
 
@@ -1325,7 +1329,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setEnabled")
 	}
 }
 
@@ -1349,7 +1353,7 @@ func (ptr *QAbstractPrintDialog) SetEnabledDefault(vbo bool) {
 func callbackQAbstractPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -1361,7 +1365,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetStyleSheet(f func(styleSheet string))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setStyleSheet", f)
 	}
 }
 
@@ -1370,7 +1374,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setStyleSheet")
 	}
 }
 
@@ -1398,7 +1402,7 @@ func (ptr *QAbstractPrintDialog) SetStyleSheetDefault(styleSheet string) {
 func callbackQAbstractPrintDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -1410,7 +1414,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowModified", f)
 	}
 }
 
@@ -1419,7 +1423,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowModified")
 	}
 }
 
@@ -1443,7 +1447,7 @@ func (ptr *QAbstractPrintDialog) SetWindowModifiedDefault(vbo bool) {
 func callbackQAbstractPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -1455,7 +1459,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowTitle", f)
 	}
 }
 
@@ -1464,7 +1468,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setWindowTitle")
 	}
 }
 
@@ -1492,7 +1496,7 @@ func (ptr *QAbstractPrintDialog) SetWindowTitleDefault(vqs string) {
 func callbackQAbstractPrintDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -1504,7 +1508,7 @@ func (ptr *QAbstractPrintDialog) ConnectChangeEvent(f func(event *core.QEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::changeEvent", f)
 	}
 }
 
@@ -1513,7 +1517,7 @@ func (ptr *QAbstractPrintDialog) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::changeEvent")
 	}
 }
 
@@ -1537,7 +1541,7 @@ func (ptr *QAbstractPrintDialog) ChangeEventDefault(event core.QEvent_ITF) {
 func callbackQAbstractPrintDialog_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractPrintDialog::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -1549,7 +1553,7 @@ func (ptr *QAbstractPrintDialog) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::close", f)
 	}
 }
 
@@ -1558,7 +1562,7 @@ func (ptr *QAbstractPrintDialog) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::close")
 	}
 }
 
@@ -1584,7 +1588,7 @@ func (ptr *QAbstractPrintDialog) CloseDefault() bool {
 func callbackQAbstractPrintDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QAbstractPrintDialog::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -1596,7 +1600,7 @@ func (ptr *QAbstractPrintDialog) ConnectFocusNextPrevChild(f func(next bool) boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusNextPrevChild", f)
 	}
 }
 
@@ -1605,7 +1609,7 @@ func (ptr *QAbstractPrintDialog) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::focusNextPrevChild")
 	}
 }
 
@@ -1631,7 +1635,7 @@ func (ptr *QAbstractPrintDialog) FocusNextPrevChildDefault(next bool) bool {
 func callbackQAbstractPrintDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractPrintDialog::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -1643,7 +1647,7 @@ func (ptr *QAbstractPrintDialog) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hasHeightForWidth", f)
 	}
 }
 
@@ -1652,7 +1656,7 @@ func (ptr *QAbstractPrintDialog) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hasHeightForWidth")
 	}
 }
 
@@ -1678,7 +1682,7 @@ func (ptr *QAbstractPrintDialog) HasHeightForWidthDefault() bool {
 func callbackQAbstractPrintDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QAbstractPrintDialog::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -1690,7 +1694,7 @@ func (ptr *QAbstractPrintDialog) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::heightForWidth", f)
 	}
 }
 
@@ -1699,7 +1703,7 @@ func (ptr *QAbstractPrintDialog) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::heightForWidth")
 	}
 }
 
@@ -1725,7 +1729,7 @@ func (ptr *QAbstractPrintDialog) HeightForWidthDefault(w int) int {
 func callbackQAbstractPrintDialog_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).HideDefault()
@@ -1737,7 +1741,7 @@ func (ptr *QAbstractPrintDialog) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hide", f)
 	}
 }
 
@@ -1746,7 +1750,7 @@ func (ptr *QAbstractPrintDialog) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::hide")
 	}
 }
 
@@ -1770,7 +1774,7 @@ func (ptr *QAbstractPrintDialog) HideDefault() {
 func callbackQAbstractPrintDialog_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -1782,7 +1786,7 @@ func (ptr *QAbstractPrintDialog) ConnectInputMethodEvent(f func(event *gui.QInpu
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodEvent", f)
 	}
 }
 
@@ -1791,7 +1795,7 @@ func (ptr *QAbstractPrintDialog) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodEvent")
 	}
 }
 
@@ -1815,7 +1819,7 @@ func (ptr *QAbstractPrintDialog) InputMethodEventDefault(event gui.QInputMethodE
 func callbackQAbstractPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractPrintDialog::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -1827,7 +1831,7 @@ func (ptr *QAbstractPrintDialog) ConnectInputMethodQuery(f func(query core.Qt__I
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodQuery", f)
 	}
 }
 
@@ -1836,7 +1840,7 @@ func (ptr *QAbstractPrintDialog) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::inputMethodQuery")
 	}
 }
 
@@ -1866,7 +1870,7 @@ func (ptr *QAbstractPrintDialog) InputMethodQueryDefault(query core.Qt__InputMet
 func callbackQAbstractPrintDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -1878,7 +1882,7 @@ func (ptr *QAbstractPrintDialog) ConnectKeyReleaseEvent(f func(event *gui.QKeyEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::keyReleaseEvent", f)
 	}
 }
 
@@ -1887,7 +1891,7 @@ func (ptr *QAbstractPrintDialog) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::keyReleaseEvent")
 	}
 }
 
@@ -1911,7 +1915,7 @@ func (ptr *QAbstractPrintDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF)
 func callbackQAbstractPrintDialog_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).LowerDefault()
@@ -1923,7 +1927,7 @@ func (ptr *QAbstractPrintDialog) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::lower", f)
 	}
 }
 
@@ -1932,7 +1936,7 @@ func (ptr *QAbstractPrintDialog) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::lower")
 	}
 }
 
@@ -1956,7 +1960,7 @@ func (ptr *QAbstractPrintDialog) LowerDefault() {
 func callbackQAbstractPrintDialog_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -1968,7 +1972,7 @@ func (ptr *QAbstractPrintDialog) ConnectMouseDoubleClickEvent(f func(event *gui.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -1977,7 +1981,7 @@ func (ptr *QAbstractPrintDialog) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mouseDoubleClickEvent")
 	}
 }
 
@@ -2001,7 +2005,7 @@ func (ptr *QAbstractPrintDialog) MouseDoubleClickEventDefault(event gui.QMouseEv
 func callbackQAbstractPrintDialog_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2013,7 +2017,7 @@ func (ptr *QAbstractPrintDialog) ConnectMouseMoveEvent(f func(event *gui.QMouseE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mouseMoveEvent", f)
 	}
 }
 
@@ -2022,7 +2026,7 @@ func (ptr *QAbstractPrintDialog) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mouseMoveEvent")
 	}
 }
 
@@ -2046,7 +2050,7 @@ func (ptr *QAbstractPrintDialog) MouseMoveEventDefault(event gui.QMouseEvent_ITF
 func callbackQAbstractPrintDialog_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2058,7 +2062,7 @@ func (ptr *QAbstractPrintDialog) ConnectMousePressEvent(f func(event *gui.QMouse
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mousePressEvent", f)
 	}
 }
 
@@ -2067,7 +2071,7 @@ func (ptr *QAbstractPrintDialog) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mousePressEvent")
 	}
 }
 
@@ -2091,7 +2095,7 @@ func (ptr *QAbstractPrintDialog) MousePressEventDefault(event gui.QMouseEvent_IT
 func callbackQAbstractPrintDialog_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -2103,7 +2107,7 @@ func (ptr *QAbstractPrintDialog) ConnectMouseReleaseEvent(f func(event *gui.QMou
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mouseReleaseEvent", f)
 	}
 }
 
@@ -2112,7 +2116,7 @@ func (ptr *QAbstractPrintDialog) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::mouseReleaseEvent")
 	}
 }
 
@@ -2136,7 +2140,7 @@ func (ptr *QAbstractPrintDialog) MouseReleaseEventDefault(event gui.QMouseEvent_
 func callbackQAbstractPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QAbstractPrintDialog::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -2148,7 +2152,7 @@ func (ptr *QAbstractPrintDialog) ConnectNativeEvent(f func(eventType string, mes
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::nativeEvent", f)
 	}
 }
 
@@ -2157,7 +2161,7 @@ func (ptr *QAbstractPrintDialog) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::nativeEvent")
 	}
 }
 
@@ -2187,7 +2191,7 @@ func (ptr *QAbstractPrintDialog) NativeEventDefault(eventType string, message un
 func callbackQAbstractPrintDialog_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).RaiseDefault()
@@ -2199,7 +2203,7 @@ func (ptr *QAbstractPrintDialog) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::raise", f)
 	}
 }
 
@@ -2208,7 +2212,7 @@ func (ptr *QAbstractPrintDialog) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::raise")
 	}
 }
 
@@ -2232,7 +2236,7 @@ func (ptr *QAbstractPrintDialog) RaiseDefault() {
 func callbackQAbstractPrintDialog_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).RepaintDefault()
@@ -2244,7 +2248,7 @@ func (ptr *QAbstractPrintDialog) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::repaint", f)
 	}
 }
 
@@ -2253,7 +2257,7 @@ func (ptr *QAbstractPrintDialog) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::repaint")
 	}
 }
 
@@ -2277,7 +2281,7 @@ func (ptr *QAbstractPrintDialog) RepaintDefault() {
 func callbackQAbstractPrintDialog_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -2289,7 +2293,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setDisabled", f)
 	}
 }
 
@@ -2298,7 +2302,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setDisabled")
 	}
 }
 
@@ -2322,7 +2326,7 @@ func (ptr *QAbstractPrintDialog) SetDisabledDefault(disable bool) {
 func callbackQAbstractPrintDialog_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetFocus2Default()
@@ -2334,7 +2338,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setFocus2", f)
 	}
 }
 
@@ -2343,7 +2347,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setFocus2")
 	}
 }
 
@@ -2367,7 +2371,7 @@ func (ptr *QAbstractPrintDialog) SetFocus2Default() {
 func callbackQAbstractPrintDialog_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QAbstractPrintDialog::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -2379,7 +2383,7 @@ func (ptr *QAbstractPrintDialog) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setHidden", f)
 	}
 }
 
@@ -2388,7 +2392,7 @@ func (ptr *QAbstractPrintDialog) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::setHidden")
 	}
 }
 
@@ -2412,7 +2416,7 @@ func (ptr *QAbstractPrintDialog) SetHiddenDefault(hidden bool) {
 func callbackQAbstractPrintDialog_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ShowDefault()
@@ -2424,7 +2428,7 @@ func (ptr *QAbstractPrintDialog) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::show", f)
 	}
 }
 
@@ -2433,7 +2437,7 @@ func (ptr *QAbstractPrintDialog) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::show")
 	}
 }
 
@@ -2457,7 +2461,7 @@ func (ptr *QAbstractPrintDialog) ShowDefault() {
 func callbackQAbstractPrintDialog_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ShowFullScreenDefault()
@@ -2469,7 +2473,7 @@ func (ptr *QAbstractPrintDialog) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showFullScreen", f)
 	}
 }
 
@@ -2478,7 +2482,7 @@ func (ptr *QAbstractPrintDialog) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showFullScreen")
 	}
 }
 
@@ -2502,7 +2506,7 @@ func (ptr *QAbstractPrintDialog) ShowFullScreenDefault() {
 func callbackQAbstractPrintDialog_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ShowMaximizedDefault()
@@ -2514,7 +2518,7 @@ func (ptr *QAbstractPrintDialog) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showMaximized", f)
 	}
 }
 
@@ -2523,7 +2527,7 @@ func (ptr *QAbstractPrintDialog) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showMaximized")
 	}
 }
 
@@ -2547,7 +2551,7 @@ func (ptr *QAbstractPrintDialog) ShowMaximizedDefault() {
 func callbackQAbstractPrintDialog_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ShowMinimizedDefault()
@@ -2559,7 +2563,7 @@ func (ptr *QAbstractPrintDialog) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showMinimized", f)
 	}
 }
 
@@ -2568,7 +2572,7 @@ func (ptr *QAbstractPrintDialog) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showMinimized")
 	}
 }
 
@@ -2592,7 +2596,7 @@ func (ptr *QAbstractPrintDialog) ShowMinimizedDefault() {
 func callbackQAbstractPrintDialog_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ShowNormalDefault()
@@ -2604,7 +2608,7 @@ func (ptr *QAbstractPrintDialog) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showNormal", f)
 	}
 }
 
@@ -2613,7 +2617,7 @@ func (ptr *QAbstractPrintDialog) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::showNormal")
 	}
 }
 
@@ -2637,7 +2641,7 @@ func (ptr *QAbstractPrintDialog) ShowNormalDefault() {
 func callbackQAbstractPrintDialog_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -2649,7 +2653,7 @@ func (ptr *QAbstractPrintDialog) ConnectTabletEvent(f func(event *gui.QTabletEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::tabletEvent", f)
 	}
 }
 
@@ -2658,7 +2662,7 @@ func (ptr *QAbstractPrintDialog) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::tabletEvent")
 	}
 }
 
@@ -2682,7 +2686,7 @@ func (ptr *QAbstractPrintDialog) TabletEventDefault(event gui.QTabletEvent_ITF) 
 func callbackQAbstractPrintDialog_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).UpdateDefault()
@@ -2694,7 +2698,7 @@ func (ptr *QAbstractPrintDialog) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::update", f)
 	}
 }
 
@@ -2703,7 +2707,7 @@ func (ptr *QAbstractPrintDialog) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::update")
 	}
 }
 
@@ -2727,7 +2731,7 @@ func (ptr *QAbstractPrintDialog) UpdateDefault() {
 func callbackQAbstractPrintDialog_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).UpdateMicroFocusDefault()
@@ -2739,7 +2743,7 @@ func (ptr *QAbstractPrintDialog) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::updateMicroFocus", f)
 	}
 }
 
@@ -2748,7 +2752,7 @@ func (ptr *QAbstractPrintDialog) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::updateMicroFocus")
 	}
 }
 
@@ -2772,7 +2776,7 @@ func (ptr *QAbstractPrintDialog) UpdateMicroFocusDefault() {
 func callbackQAbstractPrintDialog_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -2784,7 +2788,7 @@ func (ptr *QAbstractPrintDialog) ConnectWheelEvent(f func(event *gui.QWheelEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::wheelEvent", f)
 	}
 }
 
@@ -2793,7 +2797,7 @@ func (ptr *QAbstractPrintDialog) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::wheelEvent")
 	}
 }
 
@@ -2817,7 +2821,7 @@ func (ptr *QAbstractPrintDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackQAbstractPrintDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2829,7 +2833,7 @@ func (ptr *QAbstractPrintDialog) ConnectTimerEvent(f func(event *core.QTimerEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::timerEvent", f)
 	}
 }
 
@@ -2838,7 +2842,7 @@ func (ptr *QAbstractPrintDialog) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::timerEvent")
 	}
 }
 
@@ -2862,7 +2866,7 @@ func (ptr *QAbstractPrintDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQAbstractPrintDialog_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -2874,7 +2878,7 @@ func (ptr *QAbstractPrintDialog) ConnectChildEvent(f func(event *core.QChildEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::childEvent", f)
 	}
 }
 
@@ -2883,7 +2887,7 @@ func (ptr *QAbstractPrintDialog) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::childEvent")
 	}
 }
 
@@ -2907,7 +2911,7 @@ func (ptr *QAbstractPrintDialog) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQAbstractPrintDialog_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2919,7 +2923,7 @@ func (ptr *QAbstractPrintDialog) ConnectConnectNotify(f func(sign *core.QMetaMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::connectNotify", f)
 	}
 }
 
@@ -2928,7 +2932,7 @@ func (ptr *QAbstractPrintDialog) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::connectNotify")
 	}
 }
 
@@ -2952,7 +2956,7 @@ func (ptr *QAbstractPrintDialog) ConnectNotifyDefault(sign core.QMetaMethod_ITF)
 func callbackQAbstractPrintDialog_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -2964,7 +2968,7 @@ func (ptr *QAbstractPrintDialog) ConnectCustomEvent(f func(event *core.QEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::customEvent", f)
 	}
 }
 
@@ -2973,7 +2977,7 @@ func (ptr *QAbstractPrintDialog) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::customEvent")
 	}
 }
 
@@ -2997,7 +3001,7 @@ func (ptr *QAbstractPrintDialog) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQAbstractPrintDialog_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).DeleteLaterDefault()
@@ -3009,7 +3013,7 @@ func (ptr *QAbstractPrintDialog) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::deleteLater", f)
 	}
 }
 
@@ -3018,7 +3022,7 @@ func (ptr *QAbstractPrintDialog) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::deleteLater")
 	}
 }
 
@@ -3026,8 +3030,8 @@ func (ptr *QAbstractPrintDialog) DeleteLater() {
 	defer qt.Recovering("QAbstractPrintDialog::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()))
 		C.QAbstractPrintDialog_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3036,8 +3040,8 @@ func (ptr *QAbstractPrintDialog) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractPrintDialog::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()))
 		C.QAbstractPrintDialog_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3046,7 +3050,7 @@ func (ptr *QAbstractPrintDialog) DeleteLaterDefault() {
 func callbackQAbstractPrintDialog_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractPrintDialog::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQAbstractPrintDialogFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3058,7 +3062,7 @@ func (ptr *QAbstractPrintDialog) ConnectDisconnectNotify(f func(sign *core.QMeta
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::disconnectNotify", f)
 	}
 }
 
@@ -3067,7 +3071,7 @@ func (ptr *QAbstractPrintDialog) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::disconnectNotify")
 	}
 }
 
@@ -3091,7 +3095,7 @@ func (ptr *QAbstractPrintDialog) DisconnectNotifyDefault(sign core.QMetaMethod_I
 func callbackQAbstractPrintDialog_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractPrintDialog::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -3103,7 +3107,7 @@ func (ptr *QAbstractPrintDialog) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::metaObject", f)
 	}
 }
 
@@ -3112,7 +3116,7 @@ func (ptr *QAbstractPrintDialog) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractPrintDialog(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::metaObject")
 	}
 }
 
@@ -3211,13 +3215,21 @@ func (ptr *QPageSetupDialog) Open(receiver core.QObject_ITF, member string) {
 func NewQPageSetupDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QPageSetupDialog {
 	defer qt.Recovering("QPageSetupDialog::QPageSetupDialog")
 
-	return NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQPageSetupDialog2(parent widgets.QWidget_ITF) *QPageSetupDialog {
 	defer qt.Recovering("QPageSetupDialog::QPageSetupDialog")
 
-	return NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog2(widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog2(widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QPageSetupDialog) Exec() int {
@@ -3241,7 +3253,7 @@ func (ptr *QPageSetupDialog) SetVisible(visible bool) {
 func callbackQPageSetupDialog_Accept(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::accept")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "accept"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::accept"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).AcceptDefault()
@@ -3253,7 +3265,7 @@ func (ptr *QPageSetupDialog) ConnectAccept(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "accept", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::accept", f)
 	}
 }
 
@@ -3262,7 +3274,7 @@ func (ptr *QPageSetupDialog) DisconnectAccept() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "accept")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::accept")
 	}
 }
 
@@ -3286,7 +3298,7 @@ func (ptr *QPageSetupDialog) AcceptDefault() {
 func callbackQPageSetupDialog_CloseEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
@@ -3298,7 +3310,7 @@ func (ptr *QPageSetupDialog) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::closeEvent", f)
 	}
 }
 
@@ -3307,7 +3319,7 @@ func (ptr *QPageSetupDialog) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::closeEvent")
 	}
 }
 
@@ -3331,7 +3343,7 @@ func (ptr *QPageSetupDialog) CloseEventDefault(e gui.QCloseEvent_ITF) {
 func callbackQPageSetupDialog_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
@@ -3343,7 +3355,7 @@ func (ptr *QPageSetupDialog) ConnectContextMenuEvent(f func(e *gui.QContextMenuE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::contextMenuEvent", f)
 	}
 }
 
@@ -3352,7 +3364,7 @@ func (ptr *QPageSetupDialog) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::contextMenuEvent")
 	}
 }
 
@@ -3376,7 +3388,7 @@ func (ptr *QPageSetupDialog) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF
 func callbackQPageSetupDialog_KeyPressEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
@@ -3388,7 +3400,7 @@ func (ptr *QPageSetupDialog) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::keyPressEvent", f)
 	}
 }
 
@@ -3397,7 +3409,7 @@ func (ptr *QPageSetupDialog) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::keyPressEvent")
 	}
 }
 
@@ -3421,7 +3433,7 @@ func (ptr *QPageSetupDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 func callbackQPageSetupDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPageSetupDialog::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -3433,7 +3445,7 @@ func (ptr *QPageSetupDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::minimumSizeHint", f)
 	}
 }
 
@@ -3442,7 +3454,7 @@ func (ptr *QPageSetupDialog) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::minimumSizeHint")
 	}
 }
 
@@ -3472,7 +3484,7 @@ func (ptr *QPageSetupDialog) MinimumSizeHintDefault() *core.QSize {
 func callbackQPageSetupDialog_Reject(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::reject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "reject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::reject"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).RejectDefault()
@@ -3484,7 +3496,7 @@ func (ptr *QPageSetupDialog) ConnectReject(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "reject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::reject", f)
 	}
 }
 
@@ -3493,7 +3505,7 @@ func (ptr *QPageSetupDialog) DisconnectReject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "reject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::reject")
 	}
 }
 
@@ -3517,7 +3529,7 @@ func (ptr *QPageSetupDialog) RejectDefault() {
 func callbackQPageSetupDialog_ResizeEvent(ptr unsafe.Pointer, vqr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(vqr))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(vqr))
@@ -3529,7 +3541,7 @@ func (ptr *QPageSetupDialog) ConnectResizeEvent(f func(vqr *gui.QResizeEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::resizeEvent", f)
 	}
 }
 
@@ -3538,7 +3550,7 @@ func (ptr *QPageSetupDialog) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::resizeEvent")
 	}
 }
 
@@ -3562,7 +3574,7 @@ func (ptr *QPageSetupDialog) ResizeEventDefault(vqr gui.QResizeEvent_ITF) {
 func callbackQPageSetupDialog_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -3574,7 +3586,7 @@ func (ptr *QPageSetupDialog) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showEvent", f)
 	}
 }
 
@@ -3583,7 +3595,7 @@ func (ptr *QPageSetupDialog) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showEvent")
 	}
 }
 
@@ -3607,7 +3619,7 @@ func (ptr *QPageSetupDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackQPageSetupDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPageSetupDialog::sizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -3619,7 +3631,7 @@ func (ptr *QPageSetupDialog) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::sizeHint", f)
 	}
 }
 
@@ -3628,7 +3640,7 @@ func (ptr *QPageSetupDialog) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::sizeHint")
 	}
 }
 
@@ -3658,7 +3670,7 @@ func (ptr *QPageSetupDialog) SizeHintDefault() *core.QSize {
 func callbackQPageSetupDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -3670,7 +3682,7 @@ func (ptr *QPageSetupDialog) ConnectActionEvent(f func(event *gui.QActionEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::actionEvent", f)
 	}
 }
 
@@ -3679,7 +3691,7 @@ func (ptr *QPageSetupDialog) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::actionEvent")
 	}
 }
 
@@ -3703,7 +3715,7 @@ func (ptr *QPageSetupDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
 func callbackQPageSetupDialog_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -3715,7 +3727,7 @@ func (ptr *QPageSetupDialog) ConnectDragEnterEvent(f func(event *gui.QDragEnterE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dragEnterEvent", f)
 	}
 }
 
@@ -3724,7 +3736,7 @@ func (ptr *QPageSetupDialog) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dragEnterEvent")
 	}
 }
 
@@ -3748,7 +3760,7 @@ func (ptr *QPageSetupDialog) DragEnterEventDefault(event gui.QDragEnterEvent_ITF
 func callbackQPageSetupDialog_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -3760,7 +3772,7 @@ func (ptr *QPageSetupDialog) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dragLeaveEvent", f)
 	}
 }
 
@@ -3769,7 +3781,7 @@ func (ptr *QPageSetupDialog) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dragLeaveEvent")
 	}
 }
 
@@ -3793,7 +3805,7 @@ func (ptr *QPageSetupDialog) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF
 func callbackQPageSetupDialog_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -3805,7 +3817,7 @@ func (ptr *QPageSetupDialog) ConnectDragMoveEvent(f func(event *gui.QDragMoveEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dragMoveEvent", f)
 	}
 }
 
@@ -3814,7 +3826,7 @@ func (ptr *QPageSetupDialog) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dragMoveEvent")
 	}
 }
 
@@ -3838,7 +3850,7 @@ func (ptr *QPageSetupDialog) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) 
 func callbackQPageSetupDialog_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -3850,7 +3862,7 @@ func (ptr *QPageSetupDialog) ConnectDropEvent(f func(event *gui.QDropEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dropEvent", f)
 	}
 }
 
@@ -3859,7 +3871,7 @@ func (ptr *QPageSetupDialog) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::dropEvent")
 	}
 }
 
@@ -3883,7 +3895,7 @@ func (ptr *QPageSetupDialog) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackQPageSetupDialog_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -3895,7 +3907,7 @@ func (ptr *QPageSetupDialog) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::enterEvent", f)
 	}
 }
 
@@ -3904,7 +3916,7 @@ func (ptr *QPageSetupDialog) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::enterEvent")
 	}
 }
 
@@ -3928,7 +3940,7 @@ func (ptr *QPageSetupDialog) EnterEventDefault(event core.QEvent_ITF) {
 func callbackQPageSetupDialog_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -3940,7 +3952,7 @@ func (ptr *QPageSetupDialog) ConnectFocusInEvent(f func(event *gui.QFocusEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusInEvent", f)
 	}
 }
 
@@ -3949,7 +3961,7 @@ func (ptr *QPageSetupDialog) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusInEvent")
 	}
 }
 
@@ -3973,7 +3985,7 @@ func (ptr *QPageSetupDialog) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQPageSetupDialog_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -3985,7 +3997,7 @@ func (ptr *QPageSetupDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusOutEvent", f)
 	}
 }
 
@@ -3994,7 +4006,7 @@ func (ptr *QPageSetupDialog) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusOutEvent")
 	}
 }
 
@@ -4018,7 +4030,7 @@ func (ptr *QPageSetupDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQPageSetupDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -4030,7 +4042,7 @@ func (ptr *QPageSetupDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hideEvent", f)
 	}
 }
 
@@ -4039,7 +4051,7 @@ func (ptr *QPageSetupDialog) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hideEvent")
 	}
 }
 
@@ -4063,7 +4075,7 @@ func (ptr *QPageSetupDialog) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackQPageSetupDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -4075,7 +4087,7 @@ func (ptr *QPageSetupDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::leaveEvent", f)
 	}
 }
 
@@ -4084,7 +4096,7 @@ func (ptr *QPageSetupDialog) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::leaveEvent")
 	}
 }
 
@@ -4108,7 +4120,7 @@ func (ptr *QPageSetupDialog) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackQPageSetupDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -4120,7 +4132,7 @@ func (ptr *QPageSetupDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::moveEvent", f)
 	}
 }
 
@@ -4129,7 +4141,7 @@ func (ptr *QPageSetupDialog) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::moveEvent")
 	}
 }
 
@@ -4153,7 +4165,7 @@ func (ptr *QPageSetupDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackQPageSetupDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::paintEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -4165,7 +4177,7 @@ func (ptr *QPageSetupDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEvent", f)
 	}
 }
 
@@ -4174,7 +4186,7 @@ func (ptr *QPageSetupDialog) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::paintEvent")
 	}
 }
 
@@ -4198,7 +4210,7 @@ func (ptr *QPageSetupDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
 func callbackQPageSetupDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPageSetupDialog::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -4210,7 +4222,7 @@ func (ptr *QPageSetupDialog) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setEnabled", f)
 	}
 }
 
@@ -4219,7 +4231,7 @@ func (ptr *QPageSetupDialog) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setEnabled")
 	}
 }
 
@@ -4243,7 +4255,7 @@ func (ptr *QPageSetupDialog) SetEnabledDefault(vbo bool) {
 func callbackQPageSetupDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QPageSetupDialog::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -4255,7 +4267,7 @@ func (ptr *QPageSetupDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setStyleSheet", f)
 	}
 }
 
@@ -4264,7 +4276,7 @@ func (ptr *QPageSetupDialog) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setStyleSheet")
 	}
 }
 
@@ -4292,7 +4304,7 @@ func (ptr *QPageSetupDialog) SetStyleSheetDefault(styleSheet string) {
 func callbackQPageSetupDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPageSetupDialog::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -4304,7 +4316,7 @@ func (ptr *QPageSetupDialog) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowModified", f)
 	}
 }
 
@@ -4313,7 +4325,7 @@ func (ptr *QPageSetupDialog) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowModified")
 	}
 }
 
@@ -4337,7 +4349,7 @@ func (ptr *QPageSetupDialog) SetWindowModifiedDefault(vbo bool) {
 func callbackQPageSetupDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QPageSetupDialog::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -4349,7 +4361,7 @@ func (ptr *QPageSetupDialog) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowTitle", f)
 	}
 }
 
@@ -4358,7 +4370,7 @@ func (ptr *QPageSetupDialog) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setWindowTitle")
 	}
 }
 
@@ -4386,7 +4398,7 @@ func (ptr *QPageSetupDialog) SetWindowTitleDefault(vqs string) {
 func callbackQPageSetupDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -4398,7 +4410,7 @@ func (ptr *QPageSetupDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::changeEvent", f)
 	}
 }
 
@@ -4407,7 +4419,7 @@ func (ptr *QPageSetupDialog) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::changeEvent")
 	}
 }
 
@@ -4431,7 +4443,7 @@ func (ptr *QPageSetupDialog) ChangeEventDefault(event core.QEvent_ITF) {
 func callbackQPageSetupDialog_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPageSetupDialog::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -4443,7 +4455,7 @@ func (ptr *QPageSetupDialog) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::close", f)
 	}
 }
 
@@ -4452,7 +4464,7 @@ func (ptr *QPageSetupDialog) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::close")
 	}
 }
 
@@ -4478,7 +4490,7 @@ func (ptr *QPageSetupDialog) CloseDefault() bool {
 func callbackQPageSetupDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QPageSetupDialog::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -4490,7 +4502,7 @@ func (ptr *QPageSetupDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusNextPrevChild", f)
 	}
 }
 
@@ -4499,7 +4511,7 @@ func (ptr *QPageSetupDialog) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::focusNextPrevChild")
 	}
 }
 
@@ -4525,7 +4537,7 @@ func (ptr *QPageSetupDialog) FocusNextPrevChildDefault(next bool) bool {
 func callbackQPageSetupDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPageSetupDialog::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -4537,7 +4549,7 @@ func (ptr *QPageSetupDialog) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hasHeightForWidth", f)
 	}
 }
 
@@ -4546,7 +4558,7 @@ func (ptr *QPageSetupDialog) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hasHeightForWidth")
 	}
 }
 
@@ -4572,7 +4584,7 @@ func (ptr *QPageSetupDialog) HasHeightForWidthDefault() bool {
 func callbackQPageSetupDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QPageSetupDialog::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -4584,7 +4596,7 @@ func (ptr *QPageSetupDialog) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::heightForWidth", f)
 	}
 }
 
@@ -4593,7 +4605,7 @@ func (ptr *QPageSetupDialog) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::heightForWidth")
 	}
 }
 
@@ -4619,7 +4631,7 @@ func (ptr *QPageSetupDialog) HeightForWidthDefault(w int) int {
 func callbackQPageSetupDialog_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).HideDefault()
@@ -4631,7 +4643,7 @@ func (ptr *QPageSetupDialog) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hide", f)
 	}
 }
 
@@ -4640,7 +4652,7 @@ func (ptr *QPageSetupDialog) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::hide")
 	}
 }
 
@@ -4664,7 +4676,7 @@ func (ptr *QPageSetupDialog) HideDefault() {
 func callbackQPageSetupDialog_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -4676,7 +4688,7 @@ func (ptr *QPageSetupDialog) ConnectInputMethodEvent(f func(event *gui.QInputMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodEvent", f)
 	}
 }
 
@@ -4685,7 +4697,7 @@ func (ptr *QPageSetupDialog) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodEvent")
 	}
 }
 
@@ -4709,7 +4721,7 @@ func (ptr *QPageSetupDialog) InputMethodEventDefault(event gui.QInputMethodEvent
 func callbackQPageSetupDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QPageSetupDialog::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -4721,7 +4733,7 @@ func (ptr *QPageSetupDialog) ConnectInputMethodQuery(f func(query core.Qt__Input
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodQuery", f)
 	}
 }
 
@@ -4730,7 +4742,7 @@ func (ptr *QPageSetupDialog) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::inputMethodQuery")
 	}
 }
 
@@ -4760,7 +4772,7 @@ func (ptr *QPageSetupDialog) InputMethodQueryDefault(query core.Qt__InputMethodQ
 func callbackQPageSetupDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -4772,7 +4784,7 @@ func (ptr *QPageSetupDialog) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::keyReleaseEvent", f)
 	}
 }
 
@@ -4781,7 +4793,7 @@ func (ptr *QPageSetupDialog) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::keyReleaseEvent")
 	}
 }
 
@@ -4805,7 +4817,7 @@ func (ptr *QPageSetupDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 func callbackQPageSetupDialog_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).LowerDefault()
@@ -4817,7 +4829,7 @@ func (ptr *QPageSetupDialog) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::lower", f)
 	}
 }
 
@@ -4826,7 +4838,7 @@ func (ptr *QPageSetupDialog) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::lower")
 	}
 }
 
@@ -4850,7 +4862,7 @@ func (ptr *QPageSetupDialog) LowerDefault() {
 func callbackQPageSetupDialog_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4862,7 +4874,7 @@ func (ptr *QPageSetupDialog) ConnectMouseDoubleClickEvent(f func(event *gui.QMou
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -4871,7 +4883,7 @@ func (ptr *QPageSetupDialog) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mouseDoubleClickEvent")
 	}
 }
 
@@ -4895,7 +4907,7 @@ func (ptr *QPageSetupDialog) MouseDoubleClickEventDefault(event gui.QMouseEvent_
 func callbackQPageSetupDialog_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4907,7 +4919,7 @@ func (ptr *QPageSetupDialog) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mouseMoveEvent", f)
 	}
 }
 
@@ -4916,7 +4928,7 @@ func (ptr *QPageSetupDialog) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mouseMoveEvent")
 	}
 }
 
@@ -4940,7 +4952,7 @@ func (ptr *QPageSetupDialog) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQPageSetupDialog_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4952,7 +4964,7 @@ func (ptr *QPageSetupDialog) ConnectMousePressEvent(f func(event *gui.QMouseEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mousePressEvent", f)
 	}
 }
 
@@ -4961,7 +4973,7 @@ func (ptr *QPageSetupDialog) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mousePressEvent")
 	}
 }
 
@@ -4985,7 +4997,7 @@ func (ptr *QPageSetupDialog) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQPageSetupDialog_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -4997,7 +5009,7 @@ func (ptr *QPageSetupDialog) ConnectMouseReleaseEvent(f func(event *gui.QMouseEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mouseReleaseEvent", f)
 	}
 }
 
@@ -5006,7 +5018,7 @@ func (ptr *QPageSetupDialog) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::mouseReleaseEvent")
 	}
 }
 
@@ -5030,7 +5042,7 @@ func (ptr *QPageSetupDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF)
 func callbackQPageSetupDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QPageSetupDialog::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -5042,7 +5054,7 @@ func (ptr *QPageSetupDialog) ConnectNativeEvent(f func(eventType string, message
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::nativeEvent", f)
 	}
 }
 
@@ -5051,7 +5063,7 @@ func (ptr *QPageSetupDialog) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::nativeEvent")
 	}
 }
 
@@ -5081,7 +5093,7 @@ func (ptr *QPageSetupDialog) NativeEventDefault(eventType string, message unsafe
 func callbackQPageSetupDialog_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).RaiseDefault()
@@ -5093,7 +5105,7 @@ func (ptr *QPageSetupDialog) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::raise", f)
 	}
 }
 
@@ -5102,7 +5114,7 @@ func (ptr *QPageSetupDialog) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::raise")
 	}
 }
 
@@ -5126,7 +5138,7 @@ func (ptr *QPageSetupDialog) RaiseDefault() {
 func callbackQPageSetupDialog_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).RepaintDefault()
@@ -5138,7 +5150,7 @@ func (ptr *QPageSetupDialog) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::repaint", f)
 	}
 }
 
@@ -5147,7 +5159,7 @@ func (ptr *QPageSetupDialog) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::repaint")
 	}
 }
 
@@ -5171,7 +5183,7 @@ func (ptr *QPageSetupDialog) RepaintDefault() {
 func callbackQPageSetupDialog_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QPageSetupDialog::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -5183,7 +5195,7 @@ func (ptr *QPageSetupDialog) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setDisabled", f)
 	}
 }
 
@@ -5192,7 +5204,7 @@ func (ptr *QPageSetupDialog) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setDisabled")
 	}
 }
 
@@ -5216,7 +5228,7 @@ func (ptr *QPageSetupDialog) SetDisabledDefault(disable bool) {
 func callbackQPageSetupDialog_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).SetFocus2Default()
@@ -5228,7 +5240,7 @@ func (ptr *QPageSetupDialog) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setFocus2", f)
 	}
 }
 
@@ -5237,7 +5249,7 @@ func (ptr *QPageSetupDialog) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setFocus2")
 	}
 }
 
@@ -5261,7 +5273,7 @@ func (ptr *QPageSetupDialog) SetFocus2Default() {
 func callbackQPageSetupDialog_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QPageSetupDialog::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -5273,7 +5285,7 @@ func (ptr *QPageSetupDialog) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setHidden", f)
 	}
 }
 
@@ -5282,7 +5294,7 @@ func (ptr *QPageSetupDialog) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::setHidden")
 	}
 }
 
@@ -5306,7 +5318,7 @@ func (ptr *QPageSetupDialog) SetHiddenDefault(hidden bool) {
 func callbackQPageSetupDialog_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ShowDefault()
@@ -5318,7 +5330,7 @@ func (ptr *QPageSetupDialog) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::show", f)
 	}
 }
 
@@ -5327,7 +5339,7 @@ func (ptr *QPageSetupDialog) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::show")
 	}
 }
 
@@ -5351,7 +5363,7 @@ func (ptr *QPageSetupDialog) ShowDefault() {
 func callbackQPageSetupDialog_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ShowFullScreenDefault()
@@ -5363,7 +5375,7 @@ func (ptr *QPageSetupDialog) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showFullScreen", f)
 	}
 }
 
@@ -5372,7 +5384,7 @@ func (ptr *QPageSetupDialog) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showFullScreen")
 	}
 }
 
@@ -5396,7 +5408,7 @@ func (ptr *QPageSetupDialog) ShowFullScreenDefault() {
 func callbackQPageSetupDialog_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ShowMaximizedDefault()
@@ -5408,7 +5420,7 @@ func (ptr *QPageSetupDialog) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showMaximized", f)
 	}
 }
 
@@ -5417,7 +5429,7 @@ func (ptr *QPageSetupDialog) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showMaximized")
 	}
 }
 
@@ -5441,7 +5453,7 @@ func (ptr *QPageSetupDialog) ShowMaximizedDefault() {
 func callbackQPageSetupDialog_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ShowMinimizedDefault()
@@ -5453,7 +5465,7 @@ func (ptr *QPageSetupDialog) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showMinimized", f)
 	}
 }
 
@@ -5462,7 +5474,7 @@ func (ptr *QPageSetupDialog) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showMinimized")
 	}
 }
 
@@ -5486,7 +5498,7 @@ func (ptr *QPageSetupDialog) ShowMinimizedDefault() {
 func callbackQPageSetupDialog_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ShowNormalDefault()
@@ -5498,7 +5510,7 @@ func (ptr *QPageSetupDialog) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showNormal", f)
 	}
 }
 
@@ -5507,7 +5519,7 @@ func (ptr *QPageSetupDialog) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::showNormal")
 	}
 }
 
@@ -5531,7 +5543,7 @@ func (ptr *QPageSetupDialog) ShowNormalDefault() {
 func callbackQPageSetupDialog_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -5543,7 +5555,7 @@ func (ptr *QPageSetupDialog) ConnectTabletEvent(f func(event *gui.QTabletEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::tabletEvent", f)
 	}
 }
 
@@ -5552,7 +5564,7 @@ func (ptr *QPageSetupDialog) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::tabletEvent")
 	}
 }
 
@@ -5576,7 +5588,7 @@ func (ptr *QPageSetupDialog) TabletEventDefault(event gui.QTabletEvent_ITF) {
 func callbackQPageSetupDialog_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).UpdateDefault()
@@ -5588,7 +5600,7 @@ func (ptr *QPageSetupDialog) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::update", f)
 	}
 }
 
@@ -5597,7 +5609,7 @@ func (ptr *QPageSetupDialog) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::update")
 	}
 }
 
@@ -5621,7 +5633,7 @@ func (ptr *QPageSetupDialog) UpdateDefault() {
 func callbackQPageSetupDialog_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).UpdateMicroFocusDefault()
@@ -5633,7 +5645,7 @@ func (ptr *QPageSetupDialog) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::updateMicroFocus", f)
 	}
 }
 
@@ -5642,7 +5654,7 @@ func (ptr *QPageSetupDialog) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::updateMicroFocus")
 	}
 }
 
@@ -5666,7 +5678,7 @@ func (ptr *QPageSetupDialog) UpdateMicroFocusDefault() {
 func callbackQPageSetupDialog_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -5678,7 +5690,7 @@ func (ptr *QPageSetupDialog) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::wheelEvent", f)
 	}
 }
 
@@ -5687,7 +5699,7 @@ func (ptr *QPageSetupDialog) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::wheelEvent")
 	}
 }
 
@@ -5711,7 +5723,7 @@ func (ptr *QPageSetupDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackQPageSetupDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -5723,7 +5735,7 @@ func (ptr *QPageSetupDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::timerEvent", f)
 	}
 }
 
@@ -5732,7 +5744,7 @@ func (ptr *QPageSetupDialog) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::timerEvent")
 	}
 }
 
@@ -5756,7 +5768,7 @@ func (ptr *QPageSetupDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQPageSetupDialog_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -5768,7 +5780,7 @@ func (ptr *QPageSetupDialog) ConnectChildEvent(f func(event *core.QChildEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::childEvent", f)
 	}
 }
 
@@ -5777,7 +5789,7 @@ func (ptr *QPageSetupDialog) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::childEvent")
 	}
 }
 
@@ -5801,7 +5813,7 @@ func (ptr *QPageSetupDialog) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQPageSetupDialog_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5813,7 +5825,7 @@ func (ptr *QPageSetupDialog) ConnectConnectNotify(f func(sign *core.QMetaMethod)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::connectNotify", f)
 	}
 }
 
@@ -5822,7 +5834,7 @@ func (ptr *QPageSetupDialog) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::connectNotify")
 	}
 }
 
@@ -5846,7 +5858,7 @@ func (ptr *QPageSetupDialog) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQPageSetupDialog_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -5858,7 +5870,7 @@ func (ptr *QPageSetupDialog) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::customEvent", f)
 	}
 }
 
@@ -5867,7 +5879,7 @@ func (ptr *QPageSetupDialog) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::customEvent")
 	}
 }
 
@@ -5891,7 +5903,7 @@ func (ptr *QPageSetupDialog) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQPageSetupDialog_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).DeleteLaterDefault()
@@ -5903,7 +5915,7 @@ func (ptr *QPageSetupDialog) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::deleteLater", f)
 	}
 }
 
@@ -5912,7 +5924,7 @@ func (ptr *QPageSetupDialog) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::deleteLater")
 	}
 }
 
@@ -5938,7 +5950,7 @@ func (ptr *QPageSetupDialog) DeleteLaterDefault() {
 func callbackQPageSetupDialog_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPageSetupDialog::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPageSetupDialogFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5950,7 +5962,7 @@ func (ptr *QPageSetupDialog) ConnectDisconnectNotify(f func(sign *core.QMetaMeth
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::disconnectNotify", f)
 	}
 }
 
@@ -5959,7 +5971,7 @@ func (ptr *QPageSetupDialog) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::disconnectNotify")
 	}
 }
 
@@ -5983,7 +5995,7 @@ func (ptr *QPageSetupDialog) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 func callbackQPageSetupDialog_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPageSetupDialog::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -5995,7 +6007,7 @@ func (ptr *QPageSetupDialog) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::metaObject", f)
 	}
 }
 
@@ -6004,7 +6016,7 @@ func (ptr *QPageSetupDialog) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPageSetupDialog(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::metaObject")
 	}
 }
 
@@ -6085,7 +6097,7 @@ func (ptr *QPrintDialog) SetOptions(options QAbstractPrintDialog__PrintDialogOpt
 func callbackQPrintDialog_Accepted(ptr unsafe.Pointer, printer unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::accepted")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "accepted"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::accepted"); signal != nil {
 		signal.(func(*QPrinter))(NewQPrinterFromPointer(printer))
 	}
 
@@ -6096,7 +6108,7 @@ func (ptr *QPrintDialog) ConnectAccepted(f func(printer *QPrinter)) {
 
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_ConnectAccepted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "accepted", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accepted", f)
 	}
 }
 
@@ -6105,7 +6117,7 @@ func (ptr *QPrintDialog) DisconnectAccepted() {
 
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_DisconnectAccepted(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "accepted")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accepted")
 	}
 }
 
@@ -6164,20 +6176,28 @@ func (ptr *QPrintDialog) TestOption(option QAbstractPrintDialog__PrintDialogOpti
 func NewQPrintDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QPrintDialog {
 	defer qt.Recovering("QPrintDialog::QPrintDialog")
 
-	return NewQPrintDialogFromPointer(C.QPrintDialog_NewQPrintDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQPrintDialogFromPointer(C.QPrintDialog_NewQPrintDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQPrintDialog2(parent widgets.QWidget_ITF) *QPrintDialog {
 	defer qt.Recovering("QPrintDialog::QPrintDialog")
 
-	return NewQPrintDialogFromPointer(C.QPrintDialog_NewQPrintDialog2(widgets.PointerFromQWidget(parent)))
+	var tmpValue = NewQPrintDialogFromPointer(C.QPrintDialog_NewQPrintDialog2(widgets.PointerFromQWidget(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQPrintDialog_Exec
 func callbackQPrintDialog_Exec(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QPrintDialog::exec")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "exec"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::exec"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
 
@@ -6189,7 +6209,7 @@ func (ptr *QPrintDialog) ConnectExec(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "exec", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::exec", f)
 	}
 }
 
@@ -6198,7 +6218,7 @@ func (ptr *QPrintDialog) DisconnectExec() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "exec")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::exec")
 	}
 }
 
@@ -6232,8 +6252,8 @@ func (ptr *QPrintDialog) DestroyQPrintDialog() {
 	defer qt.Recovering("QPrintDialog::~QPrintDialog")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()))
 		C.QPrintDialog_DestroyQPrintDialog(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6242,7 +6262,7 @@ func (ptr *QPrintDialog) DestroyQPrintDialog() {
 func callbackQPrintDialog_Accept(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::accept")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "accept"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::accept"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).AcceptDefault()
@@ -6254,7 +6274,7 @@ func (ptr *QPrintDialog) ConnectAccept(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "accept", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accept", f)
 	}
 }
 
@@ -6263,7 +6283,7 @@ func (ptr *QPrintDialog) DisconnectAccept() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "accept")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::accept")
 	}
 }
 
@@ -6287,7 +6307,7 @@ func (ptr *QPrintDialog) AcceptDefault() {
 func callbackQPrintDialog_CloseEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
 	} else {
 		NewQPrintDialogFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
@@ -6299,7 +6319,7 @@ func (ptr *QPrintDialog) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::closeEvent", f)
 	}
 }
 
@@ -6308,7 +6328,7 @@ func (ptr *QPrintDialog) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::closeEvent")
 	}
 }
 
@@ -6332,7 +6352,7 @@ func (ptr *QPrintDialog) CloseEventDefault(e gui.QCloseEvent_ITF) {
 func callbackQPrintDialog_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 	} else {
 		NewQPrintDialogFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
@@ -6344,7 +6364,7 @@ func (ptr *QPrintDialog) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::contextMenuEvent", f)
 	}
 }
 
@@ -6353,7 +6373,7 @@ func (ptr *QPrintDialog) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::contextMenuEvent")
 	}
 }
 
@@ -6377,7 +6397,7 @@ func (ptr *QPrintDialog) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
 func callbackQPrintDialog_KeyPressEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 	} else {
 		NewQPrintDialogFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
@@ -6389,7 +6409,7 @@ func (ptr *QPrintDialog) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::keyPressEvent", f)
 	}
 }
 
@@ -6398,7 +6418,7 @@ func (ptr *QPrintDialog) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::keyPressEvent")
 	}
 }
 
@@ -6422,7 +6442,7 @@ func (ptr *QPrintDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 func callbackQPrintDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintDialog::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -6434,7 +6454,7 @@ func (ptr *QPrintDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::minimumSizeHint", f)
 	}
 }
 
@@ -6443,7 +6463,7 @@ func (ptr *QPrintDialog) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::minimumSizeHint")
 	}
 }
 
@@ -6473,7 +6493,7 @@ func (ptr *QPrintDialog) MinimumSizeHintDefault() *core.QSize {
 func callbackQPrintDialog_Reject(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::reject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "reject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::reject"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).RejectDefault()
@@ -6485,7 +6505,7 @@ func (ptr *QPrintDialog) ConnectReject(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "reject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::reject", f)
 	}
 }
 
@@ -6494,7 +6514,7 @@ func (ptr *QPrintDialog) DisconnectReject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "reject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::reject")
 	}
 }
 
@@ -6518,7 +6538,7 @@ func (ptr *QPrintDialog) RejectDefault() {
 func callbackQPrintDialog_ResizeEvent(ptr unsafe.Pointer, vqr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(vqr))
 	} else {
 		NewQPrintDialogFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(vqr))
@@ -6530,7 +6550,7 @@ func (ptr *QPrintDialog) ConnectResizeEvent(f func(vqr *gui.QResizeEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::resizeEvent", f)
 	}
 }
 
@@ -6539,7 +6559,7 @@ func (ptr *QPrintDialog) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::resizeEvent")
 	}
 }
 
@@ -6563,7 +6583,7 @@ func (ptr *QPrintDialog) ResizeEventDefault(vqr gui.QResizeEvent_ITF) {
 func callbackQPrintDialog_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -6575,7 +6595,7 @@ func (ptr *QPrintDialog) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showEvent", f)
 	}
 }
 
@@ -6584,7 +6604,7 @@ func (ptr *QPrintDialog) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showEvent")
 	}
 }
 
@@ -6608,7 +6628,7 @@ func (ptr *QPrintDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackQPrintDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintDialog::sizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -6620,7 +6640,7 @@ func (ptr *QPrintDialog) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::sizeHint", f)
 	}
 }
 
@@ -6629,7 +6649,7 @@ func (ptr *QPrintDialog) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::sizeHint")
 	}
 }
 
@@ -6659,7 +6679,7 @@ func (ptr *QPrintDialog) SizeHintDefault() *core.QSize {
 func callbackQPrintDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -6671,7 +6691,7 @@ func (ptr *QPrintDialog) ConnectActionEvent(f func(event *gui.QActionEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::actionEvent", f)
 	}
 }
 
@@ -6680,7 +6700,7 @@ func (ptr *QPrintDialog) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::actionEvent")
 	}
 }
 
@@ -6704,7 +6724,7 @@ func (ptr *QPrintDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
 func callbackQPrintDialog_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -6716,7 +6736,7 @@ func (ptr *QPrintDialog) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dragEnterEvent", f)
 	}
 }
 
@@ -6725,7 +6745,7 @@ func (ptr *QPrintDialog) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dragEnterEvent")
 	}
 }
 
@@ -6749,7 +6769,7 @@ func (ptr *QPrintDialog) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
 func callbackQPrintDialog_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -6761,7 +6781,7 @@ func (ptr *QPrintDialog) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dragLeaveEvent", f)
 	}
 }
 
@@ -6770,7 +6790,7 @@ func (ptr *QPrintDialog) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dragLeaveEvent")
 	}
 }
 
@@ -6794,7 +6814,7 @@ func (ptr *QPrintDialog) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
 func callbackQPrintDialog_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -6806,7 +6826,7 @@ func (ptr *QPrintDialog) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dragMoveEvent", f)
 	}
 }
 
@@ -6815,7 +6835,7 @@ func (ptr *QPrintDialog) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dragMoveEvent")
 	}
 }
 
@@ -6839,7 +6859,7 @@ func (ptr *QPrintDialog) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
 func callbackQPrintDialog_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -6851,7 +6871,7 @@ func (ptr *QPrintDialog) ConnectDropEvent(f func(event *gui.QDropEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dropEvent", f)
 	}
 }
 
@@ -6860,7 +6880,7 @@ func (ptr *QPrintDialog) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::dropEvent")
 	}
 }
 
@@ -6884,7 +6904,7 @@ func (ptr *QPrintDialog) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackQPrintDialog_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -6896,7 +6916,7 @@ func (ptr *QPrintDialog) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::enterEvent", f)
 	}
 }
 
@@ -6905,7 +6925,7 @@ func (ptr *QPrintDialog) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::enterEvent")
 	}
 }
 
@@ -6929,7 +6949,7 @@ func (ptr *QPrintDialog) EnterEventDefault(event core.QEvent_ITF) {
 func callbackQPrintDialog_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -6941,7 +6961,7 @@ func (ptr *QPrintDialog) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusInEvent", f)
 	}
 }
 
@@ -6950,7 +6970,7 @@ func (ptr *QPrintDialog) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusInEvent")
 	}
 }
 
@@ -6974,7 +6994,7 @@ func (ptr *QPrintDialog) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQPrintDialog_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -6986,7 +7006,7 @@ func (ptr *QPrintDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusOutEvent", f)
 	}
 }
 
@@ -6995,7 +7015,7 @@ func (ptr *QPrintDialog) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusOutEvent")
 	}
 }
 
@@ -7019,7 +7039,7 @@ func (ptr *QPrintDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQPrintDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -7031,7 +7051,7 @@ func (ptr *QPrintDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hideEvent", f)
 	}
 }
 
@@ -7040,7 +7060,7 @@ func (ptr *QPrintDialog) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hideEvent")
 	}
 }
 
@@ -7064,7 +7084,7 @@ func (ptr *QPrintDialog) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackQPrintDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -7076,7 +7096,7 @@ func (ptr *QPrintDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::leaveEvent", f)
 	}
 }
 
@@ -7085,7 +7105,7 @@ func (ptr *QPrintDialog) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::leaveEvent")
 	}
 }
 
@@ -7109,7 +7129,7 @@ func (ptr *QPrintDialog) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackQPrintDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -7121,7 +7141,7 @@ func (ptr *QPrintDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::moveEvent", f)
 	}
 }
 
@@ -7130,7 +7150,7 @@ func (ptr *QPrintDialog) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::moveEvent")
 	}
 }
 
@@ -7154,7 +7174,7 @@ func (ptr *QPrintDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackQPrintDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::paintEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -7166,7 +7186,7 @@ func (ptr *QPrintDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEvent", f)
 	}
 }
 
@@ -7175,7 +7195,7 @@ func (ptr *QPrintDialog) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::paintEvent")
 	}
 }
 
@@ -7199,7 +7219,7 @@ func (ptr *QPrintDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
 func callbackQPrintDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPrintDialog::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPrintDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -7211,7 +7231,7 @@ func (ptr *QPrintDialog) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setEnabled", f)
 	}
 }
 
@@ -7220,7 +7240,7 @@ func (ptr *QPrintDialog) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setEnabled")
 	}
 }
 
@@ -7244,7 +7264,7 @@ func (ptr *QPrintDialog) SetEnabledDefault(vbo bool) {
 func callbackQPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QPrintDialog::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQPrintDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -7256,7 +7276,7 @@ func (ptr *QPrintDialog) ConnectSetStyleSheet(f func(styleSheet string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setStyleSheet", f)
 	}
 }
 
@@ -7265,7 +7285,7 @@ func (ptr *QPrintDialog) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setStyleSheet")
 	}
 }
 
@@ -7293,7 +7313,7 @@ func (ptr *QPrintDialog) SetStyleSheetDefault(styleSheet string) {
 func callbackQPrintDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPrintDialog::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPrintDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -7305,7 +7325,7 @@ func (ptr *QPrintDialog) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowModified", f)
 	}
 }
 
@@ -7314,7 +7334,7 @@ func (ptr *QPrintDialog) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowModified")
 	}
 }
 
@@ -7338,7 +7358,7 @@ func (ptr *QPrintDialog) SetWindowModifiedDefault(vbo bool) {
 func callbackQPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QPrintDialog::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQPrintDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -7350,7 +7370,7 @@ func (ptr *QPrintDialog) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowTitle", f)
 	}
 }
 
@@ -7359,7 +7379,7 @@ func (ptr *QPrintDialog) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setWindowTitle")
 	}
 }
 
@@ -7387,7 +7407,7 @@ func (ptr *QPrintDialog) SetWindowTitleDefault(vqs string) {
 func callbackQPrintDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -7399,7 +7419,7 @@ func (ptr *QPrintDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::changeEvent", f)
 	}
 }
 
@@ -7408,7 +7428,7 @@ func (ptr *QPrintDialog) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::changeEvent")
 	}
 }
 
@@ -7432,7 +7452,7 @@ func (ptr *QPrintDialog) ChangeEventDefault(event core.QEvent_ITF) {
 func callbackQPrintDialog_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintDialog::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -7444,7 +7464,7 @@ func (ptr *QPrintDialog) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::close", f)
 	}
 }
 
@@ -7453,7 +7473,7 @@ func (ptr *QPrintDialog) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::close")
 	}
 }
 
@@ -7479,7 +7499,7 @@ func (ptr *QPrintDialog) CloseDefault() bool {
 func callbackQPrintDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QPrintDialog::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -7491,7 +7511,7 @@ func (ptr *QPrintDialog) ConnectFocusNextPrevChild(f func(next bool) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusNextPrevChild", f)
 	}
 }
 
@@ -7500,7 +7520,7 @@ func (ptr *QPrintDialog) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::focusNextPrevChild")
 	}
 }
 
@@ -7526,7 +7546,7 @@ func (ptr *QPrintDialog) FocusNextPrevChildDefault(next bool) bool {
 func callbackQPrintDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintDialog::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -7538,7 +7558,7 @@ func (ptr *QPrintDialog) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hasHeightForWidth", f)
 	}
 }
 
@@ -7547,7 +7567,7 @@ func (ptr *QPrintDialog) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hasHeightForWidth")
 	}
 }
 
@@ -7573,7 +7593,7 @@ func (ptr *QPrintDialog) HasHeightForWidthDefault() bool {
 func callbackQPrintDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QPrintDialog::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -7585,7 +7605,7 @@ func (ptr *QPrintDialog) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::heightForWidth", f)
 	}
 }
 
@@ -7594,7 +7614,7 @@ func (ptr *QPrintDialog) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::heightForWidth")
 	}
 }
 
@@ -7620,7 +7640,7 @@ func (ptr *QPrintDialog) HeightForWidthDefault(w int) int {
 func callbackQPrintDialog_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).HideDefault()
@@ -7632,7 +7652,7 @@ func (ptr *QPrintDialog) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hide", f)
 	}
 }
 
@@ -7641,7 +7661,7 @@ func (ptr *QPrintDialog) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::hide")
 	}
 }
 
@@ -7665,7 +7685,7 @@ func (ptr *QPrintDialog) HideDefault() {
 func callbackQPrintDialog_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -7677,7 +7697,7 @@ func (ptr *QPrintDialog) ConnectInputMethodEvent(f func(event *gui.QInputMethodE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodEvent", f)
 	}
 }
 
@@ -7686,7 +7706,7 @@ func (ptr *QPrintDialog) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodEvent")
 	}
 }
 
@@ -7710,7 +7730,7 @@ func (ptr *QPrintDialog) InputMethodEventDefault(event gui.QInputMethodEvent_ITF
 func callbackQPrintDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintDialog::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -7722,7 +7742,7 @@ func (ptr *QPrintDialog) ConnectInputMethodQuery(f func(query core.Qt__InputMeth
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodQuery", f)
 	}
 }
 
@@ -7731,7 +7751,7 @@ func (ptr *QPrintDialog) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::inputMethodQuery")
 	}
 }
 
@@ -7761,7 +7781,7 @@ func (ptr *QPrintDialog) InputMethodQueryDefault(query core.Qt__InputMethodQuery
 func callbackQPrintDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -7773,7 +7793,7 @@ func (ptr *QPrintDialog) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::keyReleaseEvent", f)
 	}
 }
 
@@ -7782,7 +7802,7 @@ func (ptr *QPrintDialog) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::keyReleaseEvent")
 	}
 }
 
@@ -7806,7 +7826,7 @@ func (ptr *QPrintDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 func callbackQPrintDialog_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).LowerDefault()
@@ -7818,7 +7838,7 @@ func (ptr *QPrintDialog) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::lower", f)
 	}
 }
 
@@ -7827,7 +7847,7 @@ func (ptr *QPrintDialog) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::lower")
 	}
 }
 
@@ -7851,7 +7871,7 @@ func (ptr *QPrintDialog) LowerDefault() {
 func callbackQPrintDialog_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -7863,7 +7883,7 @@ func (ptr *QPrintDialog) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -7872,7 +7892,7 @@ func (ptr *QPrintDialog) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mouseDoubleClickEvent")
 	}
 }
 
@@ -7896,7 +7916,7 @@ func (ptr *QPrintDialog) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF)
 func callbackQPrintDialog_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -7908,7 +7928,7 @@ func (ptr *QPrintDialog) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mouseMoveEvent", f)
 	}
 }
 
@@ -7917,7 +7937,7 @@ func (ptr *QPrintDialog) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mouseMoveEvent")
 	}
 }
 
@@ -7941,7 +7961,7 @@ func (ptr *QPrintDialog) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQPrintDialog_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -7953,7 +7973,7 @@ func (ptr *QPrintDialog) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mousePressEvent", f)
 	}
 }
 
@@ -7962,7 +7982,7 @@ func (ptr *QPrintDialog) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mousePressEvent")
 	}
 }
 
@@ -7986,7 +8006,7 @@ func (ptr *QPrintDialog) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQPrintDialog_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -7998,7 +8018,7 @@ func (ptr *QPrintDialog) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mouseReleaseEvent", f)
 	}
 }
 
@@ -8007,7 +8027,7 @@ func (ptr *QPrintDialog) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::mouseReleaseEvent")
 	}
 }
 
@@ -8031,7 +8051,7 @@ func (ptr *QPrintDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 func callbackQPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QPrintDialog::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -8043,7 +8063,7 @@ func (ptr *QPrintDialog) ConnectNativeEvent(f func(eventType string, message uns
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::nativeEvent", f)
 	}
 }
 
@@ -8052,7 +8072,7 @@ func (ptr *QPrintDialog) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::nativeEvent")
 	}
 }
 
@@ -8082,7 +8102,7 @@ func (ptr *QPrintDialog) NativeEventDefault(eventType string, message unsafe.Poi
 func callbackQPrintDialog_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).RaiseDefault()
@@ -8094,7 +8114,7 @@ func (ptr *QPrintDialog) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::raise", f)
 	}
 }
 
@@ -8103,7 +8123,7 @@ func (ptr *QPrintDialog) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::raise")
 	}
 }
 
@@ -8127,7 +8147,7 @@ func (ptr *QPrintDialog) RaiseDefault() {
 func callbackQPrintDialog_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).RepaintDefault()
@@ -8139,7 +8159,7 @@ func (ptr *QPrintDialog) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::repaint", f)
 	}
 }
 
@@ -8148,7 +8168,7 @@ func (ptr *QPrintDialog) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::repaint")
 	}
 }
 
@@ -8172,7 +8192,7 @@ func (ptr *QPrintDialog) RepaintDefault() {
 func callbackQPrintDialog_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QPrintDialog::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewQPrintDialogFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -8184,7 +8204,7 @@ func (ptr *QPrintDialog) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setDisabled", f)
 	}
 }
 
@@ -8193,7 +8213,7 @@ func (ptr *QPrintDialog) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setDisabled")
 	}
 }
 
@@ -8217,7 +8237,7 @@ func (ptr *QPrintDialog) SetDisabledDefault(disable bool) {
 func callbackQPrintDialog_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).SetFocus2Default()
@@ -8229,7 +8249,7 @@ func (ptr *QPrintDialog) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setFocus2", f)
 	}
 }
 
@@ -8238,7 +8258,7 @@ func (ptr *QPrintDialog) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setFocus2")
 	}
 }
 
@@ -8262,7 +8282,7 @@ func (ptr *QPrintDialog) SetFocus2Default() {
 func callbackQPrintDialog_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QPrintDialog::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewQPrintDialogFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -8274,7 +8294,7 @@ func (ptr *QPrintDialog) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setHidden", f)
 	}
 }
 
@@ -8283,7 +8303,7 @@ func (ptr *QPrintDialog) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setHidden")
 	}
 }
 
@@ -8307,7 +8327,7 @@ func (ptr *QPrintDialog) SetHiddenDefault(hidden bool) {
 func callbackQPrintDialog_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).ShowDefault()
@@ -8319,7 +8339,7 @@ func (ptr *QPrintDialog) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::show", f)
 	}
 }
 
@@ -8328,7 +8348,7 @@ func (ptr *QPrintDialog) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::show")
 	}
 }
 
@@ -8352,7 +8372,7 @@ func (ptr *QPrintDialog) ShowDefault() {
 func callbackQPrintDialog_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).ShowFullScreenDefault()
@@ -8364,7 +8384,7 @@ func (ptr *QPrintDialog) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showFullScreen", f)
 	}
 }
 
@@ -8373,7 +8393,7 @@ func (ptr *QPrintDialog) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showFullScreen")
 	}
 }
 
@@ -8397,7 +8417,7 @@ func (ptr *QPrintDialog) ShowFullScreenDefault() {
 func callbackQPrintDialog_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).ShowMaximizedDefault()
@@ -8409,7 +8429,7 @@ func (ptr *QPrintDialog) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showMaximized", f)
 	}
 }
 
@@ -8418,7 +8438,7 @@ func (ptr *QPrintDialog) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showMaximized")
 	}
 }
 
@@ -8442,7 +8462,7 @@ func (ptr *QPrintDialog) ShowMaximizedDefault() {
 func callbackQPrintDialog_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).ShowMinimizedDefault()
@@ -8454,7 +8474,7 @@ func (ptr *QPrintDialog) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showMinimized", f)
 	}
 }
 
@@ -8463,7 +8483,7 @@ func (ptr *QPrintDialog) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showMinimized")
 	}
 }
 
@@ -8487,7 +8507,7 @@ func (ptr *QPrintDialog) ShowMinimizedDefault() {
 func callbackQPrintDialog_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).ShowNormalDefault()
@@ -8499,7 +8519,7 @@ func (ptr *QPrintDialog) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showNormal", f)
 	}
 }
 
@@ -8508,7 +8528,7 @@ func (ptr *QPrintDialog) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::showNormal")
 	}
 }
 
@@ -8532,7 +8552,7 @@ func (ptr *QPrintDialog) ShowNormalDefault() {
 func callbackQPrintDialog_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -8544,7 +8564,7 @@ func (ptr *QPrintDialog) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::tabletEvent", f)
 	}
 }
 
@@ -8553,7 +8573,7 @@ func (ptr *QPrintDialog) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::tabletEvent")
 	}
 }
 
@@ -8577,7 +8597,7 @@ func (ptr *QPrintDialog) TabletEventDefault(event gui.QTabletEvent_ITF) {
 func callbackQPrintDialog_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).UpdateDefault()
@@ -8589,7 +8609,7 @@ func (ptr *QPrintDialog) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::update", f)
 	}
 }
 
@@ -8598,7 +8618,7 @@ func (ptr *QPrintDialog) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::update")
 	}
 }
 
@@ -8622,7 +8642,7 @@ func (ptr *QPrintDialog) UpdateDefault() {
 func callbackQPrintDialog_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).UpdateMicroFocusDefault()
@@ -8634,7 +8654,7 @@ func (ptr *QPrintDialog) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::updateMicroFocus", f)
 	}
 }
 
@@ -8643,7 +8663,7 @@ func (ptr *QPrintDialog) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::updateMicroFocus")
 	}
 }
 
@@ -8667,7 +8687,7 @@ func (ptr *QPrintDialog) UpdateMicroFocusDefault() {
 func callbackQPrintDialog_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -8679,7 +8699,7 @@ func (ptr *QPrintDialog) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::wheelEvent", f)
 	}
 }
 
@@ -8688,7 +8708,7 @@ func (ptr *QPrintDialog) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::wheelEvent")
 	}
 }
 
@@ -8712,7 +8732,7 @@ func (ptr *QPrintDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackQPrintDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -8724,7 +8744,7 @@ func (ptr *QPrintDialog) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::timerEvent", f)
 	}
 }
 
@@ -8733,7 +8753,7 @@ func (ptr *QPrintDialog) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::timerEvent")
 	}
 }
 
@@ -8757,7 +8777,7 @@ func (ptr *QPrintDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQPrintDialog_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -8769,7 +8789,7 @@ func (ptr *QPrintDialog) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::childEvent", f)
 	}
 }
 
@@ -8778,7 +8798,7 @@ func (ptr *QPrintDialog) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::childEvent")
 	}
 }
 
@@ -8802,7 +8822,7 @@ func (ptr *QPrintDialog) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQPrintDialog_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPrintDialogFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -8814,7 +8834,7 @@ func (ptr *QPrintDialog) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::connectNotify", f)
 	}
 }
 
@@ -8823,7 +8843,7 @@ func (ptr *QPrintDialog) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::connectNotify")
 	}
 }
 
@@ -8847,7 +8867,7 @@ func (ptr *QPrintDialog) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQPrintDialog_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintDialogFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -8859,7 +8879,7 @@ func (ptr *QPrintDialog) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::customEvent", f)
 	}
 }
 
@@ -8868,7 +8888,7 @@ func (ptr *QPrintDialog) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::customEvent")
 	}
 }
 
@@ -8892,7 +8912,7 @@ func (ptr *QPrintDialog) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQPrintDialog_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintDialogFromPointer(ptr).DeleteLaterDefault()
@@ -8904,7 +8924,7 @@ func (ptr *QPrintDialog) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::deleteLater", f)
 	}
 }
 
@@ -8913,7 +8933,7 @@ func (ptr *QPrintDialog) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::deleteLater")
 	}
 }
 
@@ -8921,8 +8941,8 @@ func (ptr *QPrintDialog) DeleteLater() {
 	defer qt.Recovering("QPrintDialog::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()))
 		C.QPrintDialog_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8931,8 +8951,8 @@ func (ptr *QPrintDialog) DeleteLaterDefault() {
 	defer qt.Recovering("QPrintDialog::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()))
 		C.QPrintDialog_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8941,7 +8961,7 @@ func (ptr *QPrintDialog) DeleteLaterDefault() {
 func callbackQPrintDialog_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintDialog::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPrintDialogFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -8953,7 +8973,7 @@ func (ptr *QPrintDialog) ConnectDisconnectNotify(f func(sign *core.QMetaMethod))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::disconnectNotify", f)
 	}
 }
 
@@ -8962,7 +8982,7 @@ func (ptr *QPrintDialog) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::disconnectNotify")
 	}
 }
 
@@ -8986,7 +9006,7 @@ func (ptr *QPrintDialog) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQPrintDialog_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintDialog::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintDialog(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -8998,7 +9018,7 @@ func (ptr *QPrintDialog) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::metaObject", f)
 	}
 }
 
@@ -9007,7 +9027,7 @@ func (ptr *QPrintDialog) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintDialog(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::metaObject")
 	}
 }
 
@@ -9109,7 +9129,7 @@ func NewQPrintEngineFromPointer(ptr unsafe.Pointer) *QPrintEngine {
 func callbackQPrintEngine_Abort(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintEngine::abort")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintEngine(%v)", ptr), "abort"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::abort"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -9121,7 +9141,7 @@ func (ptr *QPrintEngine) ConnectAbort(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "abort", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::abort", f)
 	}
 }
 
@@ -9130,7 +9150,7 @@ func (ptr *QPrintEngine) DisconnectAbort() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "abort")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::abort")
 	}
 }
 
@@ -9147,7 +9167,7 @@ func (ptr *QPrintEngine) Abort() bool {
 func callbackQPrintEngine_Metric(ptr unsafe.Pointer, id C.longlong) C.int {
 	defer qt.Recovering("callback QPrintEngine::metric")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintEngine(%v)", ptr), "metric"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(id))))
 	}
 
@@ -9159,7 +9179,7 @@ func (ptr *QPrintEngine) ConnectMetric(f func(id gui.QPaintDevice__PaintDeviceMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "metric", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::metric", f)
 	}
 }
 
@@ -9168,7 +9188,7 @@ func (ptr *QPrintEngine) DisconnectMetric(id gui.QPaintDevice__PaintDeviceMetric
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "metric")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::metric")
 	}
 }
 
@@ -9185,7 +9205,7 @@ func (ptr *QPrintEngine) Metric(id gui.QPaintDevice__PaintDeviceMetric) int {
 func callbackQPrintEngine_NewPage(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintEngine::newPage")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintEngine(%v)", ptr), "newPage"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::newPage"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -9197,7 +9217,7 @@ func (ptr *QPrintEngine) ConnectNewPage(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "newPage", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::newPage", f)
 	}
 }
 
@@ -9206,7 +9226,7 @@ func (ptr *QPrintEngine) DisconnectNewPage() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "newPage")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::newPage")
 	}
 }
 
@@ -9223,7 +9243,7 @@ func (ptr *QPrintEngine) NewPage() bool {
 func callbackQPrintEngine_PrinterState(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QPrintEngine::printerState")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintEngine(%v)", ptr), "printerState"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::printerState"); signal != nil {
 		return C.longlong(signal.(func() QPrinter__PrinterState)())
 	}
 
@@ -9235,7 +9255,7 @@ func (ptr *QPrintEngine) ConnectPrinterState(f func() QPrinter__PrinterState) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "printerState", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::printerState", f)
 	}
 }
 
@@ -9244,7 +9264,7 @@ func (ptr *QPrintEngine) DisconnectPrinterState() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "printerState")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::printerState")
 	}
 }
 
@@ -9261,7 +9281,7 @@ func (ptr *QPrintEngine) PrinterState() QPrinter__PrinterState {
 func callbackQPrintEngine_Property(ptr unsafe.Pointer, key C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintEngine::property")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintEngine(%v)", ptr), "property"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::property"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QPrintEngine__PrintEnginePropertyKey) *core.QVariant)(QPrintEngine__PrintEnginePropertyKey(key)))
 	}
 
@@ -9273,7 +9293,7 @@ func (ptr *QPrintEngine) ConnectProperty(f func(key QPrintEngine__PrintEnginePro
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "property", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::property", f)
 	}
 }
 
@@ -9282,7 +9302,7 @@ func (ptr *QPrintEngine) DisconnectProperty(key QPrintEngine__PrintEnginePropert
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "property")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::property")
 	}
 }
 
@@ -9301,7 +9321,7 @@ func (ptr *QPrintEngine) Property(key QPrintEngine__PrintEnginePropertyKey) *cor
 func callbackQPrintEngine_SetProperty(ptr unsafe.Pointer, key C.longlong, value unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintEngine::setProperty")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintEngine(%v)", ptr), "setProperty"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::setProperty"); signal != nil {
 		signal.(func(QPrintEngine__PrintEnginePropertyKey, *core.QVariant))(QPrintEngine__PrintEnginePropertyKey(key), core.NewQVariantFromPointer(value))
 	}
 
@@ -9312,7 +9332,7 @@ func (ptr *QPrintEngine) ConnectSetProperty(f func(key QPrintEngine__PrintEngine
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "setProperty", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::setProperty", f)
 	}
 }
 
@@ -9321,7 +9341,7 @@ func (ptr *QPrintEngine) DisconnectSetProperty(key QPrintEngine__PrintEngineProp
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()), "setProperty")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::setProperty")
 	}
 }
 
@@ -9337,8 +9357,8 @@ func (ptr *QPrintEngine) DestroyQPrintEngine() {
 	defer qt.Recovering("QPrintEngine::~QPrintEngine")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintEngine(%v)", ptr.Pointer()))
 		C.QPrintEngine_DestroyQPrintEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9384,13 +9404,21 @@ func NewQPrintPreviewDialogFromPointer(ptr unsafe.Pointer) *QPrintPreviewDialog 
 func NewQPrintPreviewDialog2(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewDialog {
 	defer qt.Recovering("QPrintPreviewDialog::QPrintPreviewDialog")
 
-	return NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog2(widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	var tmpValue = NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog2(widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQPrintPreviewDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewDialog {
 	defer qt.Recovering("QPrintPreviewDialog::QPrintPreviewDialog")
 
-	return NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	var tmpValue = NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QPrintPreviewDialog) Done(result int) {
@@ -9415,7 +9443,7 @@ func (ptr *QPrintPreviewDialog) Open(receiver core.QObject_ITF, member string) {
 func callbackQPrintPreviewDialog_PaintRequested(ptr unsafe.Pointer, printer unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::paintRequested")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "paintRequested"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::paintRequested"); signal != nil {
 		signal.(func(*QPrinter))(NewQPrinterFromPointer(printer))
 	}
 
@@ -9426,7 +9454,7 @@ func (ptr *QPrintPreviewDialog) ConnectPaintRequested(f func(printer *QPrinter))
 
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_ConnectPaintRequested(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "paintRequested", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintRequested", f)
 	}
 }
 
@@ -9435,7 +9463,7 @@ func (ptr *QPrintPreviewDialog) DisconnectPaintRequested() {
 
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewDialog_DisconnectPaintRequested(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "paintRequested")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintRequested")
 	}
 }
 
@@ -9468,8 +9496,8 @@ func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialog() {
 	defer qt.Recovering("QPrintPreviewDialog::~QPrintPreviewDialog")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()))
 		C.QPrintPreviewDialog_DestroyQPrintPreviewDialog(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9478,7 +9506,7 @@ func (ptr *QPrintPreviewDialog) DestroyQPrintPreviewDialog() {
 func callbackQPrintPreviewDialog_Accept(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::accept")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "accept"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::accept"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).AcceptDefault()
@@ -9490,7 +9518,7 @@ func (ptr *QPrintPreviewDialog) ConnectAccept(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "accept", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::accept", f)
 	}
 }
 
@@ -9499,7 +9527,7 @@ func (ptr *QPrintPreviewDialog) DisconnectAccept() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "accept")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::accept")
 	}
 }
 
@@ -9523,7 +9551,7 @@ func (ptr *QPrintPreviewDialog) AcceptDefault() {
 func callbackQPrintPreviewDialog_CloseEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(e))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(e))
@@ -9535,7 +9563,7 @@ func (ptr *QPrintPreviewDialog) ConnectCloseEvent(f func(e *gui.QCloseEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::closeEvent", f)
 	}
 }
 
@@ -9544,7 +9572,7 @@ func (ptr *QPrintPreviewDialog) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::closeEvent")
 	}
 }
 
@@ -9568,7 +9596,7 @@ func (ptr *QPrintPreviewDialog) CloseEventDefault(e gui.QCloseEvent_ITF) {
 func callbackQPrintPreviewDialog_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(e))
@@ -9580,7 +9608,7 @@ func (ptr *QPrintPreviewDialog) ConnectContextMenuEvent(f func(e *gui.QContextMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::contextMenuEvent", f)
 	}
 }
 
@@ -9589,7 +9617,7 @@ func (ptr *QPrintPreviewDialog) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::contextMenuEvent")
 	}
 }
 
@@ -9613,7 +9641,7 @@ func (ptr *QPrintPreviewDialog) ContextMenuEventDefault(e gui.QContextMenuEvent_
 func callbackQPrintPreviewDialog_Exec(ptr unsafe.Pointer) C.int {
 	defer qt.Recovering("callback QPrintPreviewDialog::exec")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "exec"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::exec"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
 
@@ -9625,7 +9653,7 @@ func (ptr *QPrintPreviewDialog) ConnectExec(f func() int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "exec", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::exec", f)
 	}
 }
 
@@ -9634,7 +9662,7 @@ func (ptr *QPrintPreviewDialog) DisconnectExec() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "exec")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::exec")
 	}
 }
 
@@ -9660,7 +9688,7 @@ func (ptr *QPrintPreviewDialog) ExecDefault() int {
 func callbackQPrintPreviewDialog_KeyPressEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(e))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(e))
@@ -9672,7 +9700,7 @@ func (ptr *QPrintPreviewDialog) ConnectKeyPressEvent(f func(e *gui.QKeyEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::keyPressEvent", f)
 	}
 }
 
@@ -9681,7 +9709,7 @@ func (ptr *QPrintPreviewDialog) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::keyPressEvent")
 	}
 }
 
@@ -9705,7 +9733,7 @@ func (ptr *QPrintPreviewDialog) KeyPressEventDefault(e gui.QKeyEvent_ITF) {
 func callbackQPrintPreviewDialog_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewDialog::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -9717,7 +9745,7 @@ func (ptr *QPrintPreviewDialog) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::minimumSizeHint", f)
 	}
 }
 
@@ -9726,7 +9754,7 @@ func (ptr *QPrintPreviewDialog) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::minimumSizeHint")
 	}
 }
 
@@ -9756,7 +9784,7 @@ func (ptr *QPrintPreviewDialog) MinimumSizeHintDefault() *core.QSize {
 func callbackQPrintPreviewDialog_Reject(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::reject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "reject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::reject"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).RejectDefault()
@@ -9768,7 +9796,7 @@ func (ptr *QPrintPreviewDialog) ConnectReject(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "reject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::reject", f)
 	}
 }
 
@@ -9777,7 +9805,7 @@ func (ptr *QPrintPreviewDialog) DisconnectReject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "reject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::reject")
 	}
 }
 
@@ -9801,7 +9829,7 @@ func (ptr *QPrintPreviewDialog) RejectDefault() {
 func callbackQPrintPreviewDialog_ResizeEvent(ptr unsafe.Pointer, vqr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(vqr))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(vqr))
@@ -9813,7 +9841,7 @@ func (ptr *QPrintPreviewDialog) ConnectResizeEvent(f func(vqr *gui.QResizeEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::resizeEvent", f)
 	}
 }
 
@@ -9822,7 +9850,7 @@ func (ptr *QPrintPreviewDialog) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::resizeEvent")
 	}
 }
 
@@ -9846,7 +9874,7 @@ func (ptr *QPrintPreviewDialog) ResizeEventDefault(vqr gui.QResizeEvent_ITF) {
 func callbackQPrintPreviewDialog_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -9858,7 +9886,7 @@ func (ptr *QPrintPreviewDialog) ConnectShowEvent(f func(event *gui.QShowEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showEvent", f)
 	}
 }
 
@@ -9867,7 +9895,7 @@ func (ptr *QPrintPreviewDialog) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showEvent")
 	}
 }
 
@@ -9891,7 +9919,7 @@ func (ptr *QPrintPreviewDialog) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackQPrintPreviewDialog_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewDialog::sizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -9903,7 +9931,7 @@ func (ptr *QPrintPreviewDialog) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::sizeHint", f)
 	}
 }
 
@@ -9912,7 +9940,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::sizeHint")
 	}
 }
 
@@ -9942,7 +9970,7 @@ func (ptr *QPrintPreviewDialog) SizeHintDefault() *core.QSize {
 func callbackQPrintPreviewDialog_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -9954,7 +9982,7 @@ func (ptr *QPrintPreviewDialog) ConnectActionEvent(f func(event *gui.QActionEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::actionEvent", f)
 	}
 }
 
@@ -9963,7 +9991,7 @@ func (ptr *QPrintPreviewDialog) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::actionEvent")
 	}
 }
 
@@ -9987,7 +10015,7 @@ func (ptr *QPrintPreviewDialog) ActionEventDefault(event gui.QActionEvent_ITF) {
 func callbackQPrintPreviewDialog_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -9999,7 +10027,7 @@ func (ptr *QPrintPreviewDialog) ConnectDragEnterEvent(f func(event *gui.QDragEnt
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dragEnterEvent", f)
 	}
 }
 
@@ -10008,7 +10036,7 @@ func (ptr *QPrintPreviewDialog) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dragEnterEvent")
 	}
 }
 
@@ -10032,7 +10060,7 @@ func (ptr *QPrintPreviewDialog) DragEnterEventDefault(event gui.QDragEnterEvent_
 func callbackQPrintPreviewDialog_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -10044,7 +10072,7 @@ func (ptr *QPrintPreviewDialog) ConnectDragLeaveEvent(f func(event *gui.QDragLea
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dragLeaveEvent", f)
 	}
 }
 
@@ -10053,7 +10081,7 @@ func (ptr *QPrintPreviewDialog) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dragLeaveEvent")
 	}
 }
 
@@ -10077,7 +10105,7 @@ func (ptr *QPrintPreviewDialog) DragLeaveEventDefault(event gui.QDragLeaveEvent_
 func callbackQPrintPreviewDialog_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -10089,7 +10117,7 @@ func (ptr *QPrintPreviewDialog) ConnectDragMoveEvent(f func(event *gui.QDragMove
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dragMoveEvent", f)
 	}
 }
 
@@ -10098,7 +10126,7 @@ func (ptr *QPrintPreviewDialog) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dragMoveEvent")
 	}
 }
 
@@ -10122,7 +10150,7 @@ func (ptr *QPrintPreviewDialog) DragMoveEventDefault(event gui.QDragMoveEvent_IT
 func callbackQPrintPreviewDialog_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -10134,7 +10162,7 @@ func (ptr *QPrintPreviewDialog) ConnectDropEvent(f func(event *gui.QDropEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dropEvent", f)
 	}
 }
 
@@ -10143,7 +10171,7 @@ func (ptr *QPrintPreviewDialog) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::dropEvent")
 	}
 }
 
@@ -10167,7 +10195,7 @@ func (ptr *QPrintPreviewDialog) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackQPrintPreviewDialog_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -10179,7 +10207,7 @@ func (ptr *QPrintPreviewDialog) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::enterEvent", f)
 	}
 }
 
@@ -10188,7 +10216,7 @@ func (ptr *QPrintPreviewDialog) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::enterEvent")
 	}
 }
 
@@ -10212,7 +10240,7 @@ func (ptr *QPrintPreviewDialog) EnterEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewDialog_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -10224,7 +10252,7 @@ func (ptr *QPrintPreviewDialog) ConnectFocusInEvent(f func(event *gui.QFocusEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusInEvent", f)
 	}
 }
 
@@ -10233,7 +10261,7 @@ func (ptr *QPrintPreviewDialog) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusInEvent")
 	}
 }
 
@@ -10257,7 +10285,7 @@ func (ptr *QPrintPreviewDialog) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQPrintPreviewDialog_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -10269,7 +10297,7 @@ func (ptr *QPrintPreviewDialog) ConnectFocusOutEvent(f func(event *gui.QFocusEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusOutEvent", f)
 	}
 }
 
@@ -10278,7 +10306,7 @@ func (ptr *QPrintPreviewDialog) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusOutEvent")
 	}
 }
 
@@ -10302,7 +10330,7 @@ func (ptr *QPrintPreviewDialog) FocusOutEventDefault(event gui.QFocusEvent_ITF) 
 func callbackQPrintPreviewDialog_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -10314,7 +10342,7 @@ func (ptr *QPrintPreviewDialog) ConnectHideEvent(f func(event *gui.QHideEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hideEvent", f)
 	}
 }
 
@@ -10323,7 +10351,7 @@ func (ptr *QPrintPreviewDialog) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hideEvent")
 	}
 }
 
@@ -10347,7 +10375,7 @@ func (ptr *QPrintPreviewDialog) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackQPrintPreviewDialog_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -10359,7 +10387,7 @@ func (ptr *QPrintPreviewDialog) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::leaveEvent", f)
 	}
 }
 
@@ -10368,7 +10396,7 @@ func (ptr *QPrintPreviewDialog) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::leaveEvent")
 	}
 }
 
@@ -10392,7 +10420,7 @@ func (ptr *QPrintPreviewDialog) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewDialog_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -10404,7 +10432,7 @@ func (ptr *QPrintPreviewDialog) ConnectMoveEvent(f func(event *gui.QMoveEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::moveEvent", f)
 	}
 }
 
@@ -10413,7 +10441,7 @@ func (ptr *QPrintPreviewDialog) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::moveEvent")
 	}
 }
 
@@ -10437,7 +10465,7 @@ func (ptr *QPrintPreviewDialog) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackQPrintPreviewDialog_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::paintEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -10449,7 +10477,7 @@ func (ptr *QPrintPreviewDialog) ConnectPaintEvent(f func(event *gui.QPaintEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEvent", f)
 	}
 }
 
@@ -10458,7 +10486,7 @@ func (ptr *QPrintPreviewDialog) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::paintEvent")
 	}
 }
 
@@ -10482,7 +10510,7 @@ func (ptr *QPrintPreviewDialog) PaintEventDefault(event gui.QPaintEvent_ITF) {
 func callbackQPrintPreviewDialog_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPrintPreviewDialog::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -10494,7 +10522,7 @@ func (ptr *QPrintPreviewDialog) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setEnabled", f)
 	}
 }
 
@@ -10503,7 +10531,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setEnabled")
 	}
 }
 
@@ -10527,7 +10555,7 @@ func (ptr *QPrintPreviewDialog) SetEnabledDefault(vbo bool) {
 func callbackQPrintPreviewDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QPrintPreviewDialog::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -10539,7 +10567,7 @@ func (ptr *QPrintPreviewDialog) ConnectSetStyleSheet(f func(styleSheet string)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setStyleSheet", f)
 	}
 }
 
@@ -10548,7 +10576,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setStyleSheet")
 	}
 }
 
@@ -10576,7 +10604,7 @@ func (ptr *QPrintPreviewDialog) SetStyleSheetDefault(styleSheet string) {
 func callbackQPrintPreviewDialog_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPrintPreviewDialog::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -10588,7 +10616,7 @@ func (ptr *QPrintPreviewDialog) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowModified", f)
 	}
 }
 
@@ -10597,7 +10625,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowModified")
 	}
 }
 
@@ -10621,7 +10649,7 @@ func (ptr *QPrintPreviewDialog) SetWindowModifiedDefault(vbo bool) {
 func callbackQPrintPreviewDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QPrintPreviewDialog::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -10633,7 +10661,7 @@ func (ptr *QPrintPreviewDialog) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowTitle", f)
 	}
 }
 
@@ -10642,7 +10670,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setWindowTitle")
 	}
 }
 
@@ -10670,7 +10698,7 @@ func (ptr *QPrintPreviewDialog) SetWindowTitleDefault(vqs string) {
 func callbackQPrintPreviewDialog_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -10682,7 +10710,7 @@ func (ptr *QPrintPreviewDialog) ConnectChangeEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::changeEvent", f)
 	}
 }
 
@@ -10691,7 +10719,7 @@ func (ptr *QPrintPreviewDialog) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::changeEvent")
 	}
 }
 
@@ -10715,7 +10743,7 @@ func (ptr *QPrintPreviewDialog) ChangeEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewDialog_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintPreviewDialog::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -10727,7 +10755,7 @@ func (ptr *QPrintPreviewDialog) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::close", f)
 	}
 }
 
@@ -10736,7 +10764,7 @@ func (ptr *QPrintPreviewDialog) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::close")
 	}
 }
 
@@ -10762,7 +10790,7 @@ func (ptr *QPrintPreviewDialog) CloseDefault() bool {
 func callbackQPrintPreviewDialog_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QPrintPreviewDialog::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -10774,7 +10802,7 @@ func (ptr *QPrintPreviewDialog) ConnectFocusNextPrevChild(f func(next bool) bool
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusNextPrevChild", f)
 	}
 }
 
@@ -10783,7 +10811,7 @@ func (ptr *QPrintPreviewDialog) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::focusNextPrevChild")
 	}
 }
 
@@ -10809,7 +10837,7 @@ func (ptr *QPrintPreviewDialog) FocusNextPrevChildDefault(next bool) bool {
 func callbackQPrintPreviewDialog_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintPreviewDialog::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -10821,7 +10849,7 @@ func (ptr *QPrintPreviewDialog) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hasHeightForWidth", f)
 	}
 }
 
@@ -10830,7 +10858,7 @@ func (ptr *QPrintPreviewDialog) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hasHeightForWidth")
 	}
 }
 
@@ -10856,7 +10884,7 @@ func (ptr *QPrintPreviewDialog) HasHeightForWidthDefault() bool {
 func callbackQPrintPreviewDialog_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QPrintPreviewDialog::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -10868,7 +10896,7 @@ func (ptr *QPrintPreviewDialog) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::heightForWidth", f)
 	}
 }
 
@@ -10877,7 +10905,7 @@ func (ptr *QPrintPreviewDialog) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::heightForWidth")
 	}
 }
 
@@ -10903,7 +10931,7 @@ func (ptr *QPrintPreviewDialog) HeightForWidthDefault(w int) int {
 func callbackQPrintPreviewDialog_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).HideDefault()
@@ -10915,7 +10943,7 @@ func (ptr *QPrintPreviewDialog) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hide", f)
 	}
 }
 
@@ -10924,7 +10952,7 @@ func (ptr *QPrintPreviewDialog) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::hide")
 	}
 }
 
@@ -10948,7 +10976,7 @@ func (ptr *QPrintPreviewDialog) HideDefault() {
 func callbackQPrintPreviewDialog_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -10960,7 +10988,7 @@ func (ptr *QPrintPreviewDialog) ConnectInputMethodEvent(f func(event *gui.QInput
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodEvent", f)
 	}
 }
 
@@ -10969,7 +10997,7 @@ func (ptr *QPrintPreviewDialog) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodEvent")
 	}
 }
 
@@ -10993,7 +11021,7 @@ func (ptr *QPrintPreviewDialog) InputMethodEventDefault(event gui.QInputMethodEv
 func callbackQPrintPreviewDialog_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewDialog::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -11005,7 +11033,7 @@ func (ptr *QPrintPreviewDialog) ConnectInputMethodQuery(f func(query core.Qt__In
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodQuery", f)
 	}
 }
 
@@ -11014,7 +11042,7 @@ func (ptr *QPrintPreviewDialog) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::inputMethodQuery")
 	}
 }
 
@@ -11044,7 +11072,7 @@ func (ptr *QPrintPreviewDialog) InputMethodQueryDefault(query core.Qt__InputMeth
 func callbackQPrintPreviewDialog_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -11056,7 +11084,7 @@ func (ptr *QPrintPreviewDialog) ConnectKeyReleaseEvent(f func(event *gui.QKeyEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::keyReleaseEvent", f)
 	}
 }
 
@@ -11065,7 +11093,7 @@ func (ptr *QPrintPreviewDialog) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::keyReleaseEvent")
 	}
 }
 
@@ -11089,7 +11117,7 @@ func (ptr *QPrintPreviewDialog) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) 
 func callbackQPrintPreviewDialog_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).LowerDefault()
@@ -11101,7 +11129,7 @@ func (ptr *QPrintPreviewDialog) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::lower", f)
 	}
 }
 
@@ -11110,7 +11138,7 @@ func (ptr *QPrintPreviewDialog) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::lower")
 	}
 }
 
@@ -11134,7 +11162,7 @@ func (ptr *QPrintPreviewDialog) LowerDefault() {
 func callbackQPrintPreviewDialog_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -11146,7 +11174,7 @@ func (ptr *QPrintPreviewDialog) ConnectMouseDoubleClickEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -11155,7 +11183,7 @@ func (ptr *QPrintPreviewDialog) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mouseDoubleClickEvent")
 	}
 }
 
@@ -11179,7 +11207,7 @@ func (ptr *QPrintPreviewDialog) MouseDoubleClickEventDefault(event gui.QMouseEve
 func callbackQPrintPreviewDialog_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -11191,7 +11219,7 @@ func (ptr *QPrintPreviewDialog) ConnectMouseMoveEvent(f func(event *gui.QMouseEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mouseMoveEvent", f)
 	}
 }
 
@@ -11200,7 +11228,7 @@ func (ptr *QPrintPreviewDialog) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mouseMoveEvent")
 	}
 }
 
@@ -11224,7 +11252,7 @@ func (ptr *QPrintPreviewDialog) MouseMoveEventDefault(event gui.QMouseEvent_ITF)
 func callbackQPrintPreviewDialog_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -11236,7 +11264,7 @@ func (ptr *QPrintPreviewDialog) ConnectMousePressEvent(f func(event *gui.QMouseE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mousePressEvent", f)
 	}
 }
 
@@ -11245,7 +11273,7 @@ func (ptr *QPrintPreviewDialog) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mousePressEvent")
 	}
 }
 
@@ -11269,7 +11297,7 @@ func (ptr *QPrintPreviewDialog) MousePressEventDefault(event gui.QMouseEvent_ITF
 func callbackQPrintPreviewDialog_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -11281,7 +11309,7 @@ func (ptr *QPrintPreviewDialog) ConnectMouseReleaseEvent(f func(event *gui.QMous
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mouseReleaseEvent", f)
 	}
 }
 
@@ -11290,7 +11318,7 @@ func (ptr *QPrintPreviewDialog) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::mouseReleaseEvent")
 	}
 }
 
@@ -11314,7 +11342,7 @@ func (ptr *QPrintPreviewDialog) MouseReleaseEventDefault(event gui.QMouseEvent_I
 func callbackQPrintPreviewDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QPrintPreviewDialog::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -11326,7 +11354,7 @@ func (ptr *QPrintPreviewDialog) ConnectNativeEvent(f func(eventType string, mess
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::nativeEvent", f)
 	}
 }
 
@@ -11335,7 +11363,7 @@ func (ptr *QPrintPreviewDialog) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::nativeEvent")
 	}
 }
 
@@ -11365,7 +11393,7 @@ func (ptr *QPrintPreviewDialog) NativeEventDefault(eventType string, message uns
 func callbackQPrintPreviewDialog_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).RaiseDefault()
@@ -11377,7 +11405,7 @@ func (ptr *QPrintPreviewDialog) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::raise", f)
 	}
 }
 
@@ -11386,7 +11414,7 @@ func (ptr *QPrintPreviewDialog) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::raise")
 	}
 }
 
@@ -11410,7 +11438,7 @@ func (ptr *QPrintPreviewDialog) RaiseDefault() {
 func callbackQPrintPreviewDialog_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).RepaintDefault()
@@ -11422,7 +11450,7 @@ func (ptr *QPrintPreviewDialog) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::repaint", f)
 	}
 }
 
@@ -11431,7 +11459,7 @@ func (ptr *QPrintPreviewDialog) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::repaint")
 	}
 }
 
@@ -11455,7 +11483,7 @@ func (ptr *QPrintPreviewDialog) RepaintDefault() {
 func callbackQPrintPreviewDialog_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QPrintPreviewDialog::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -11467,7 +11495,7 @@ func (ptr *QPrintPreviewDialog) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setDisabled", f)
 	}
 }
 
@@ -11476,7 +11504,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setDisabled")
 	}
 }
 
@@ -11500,7 +11528,7 @@ func (ptr *QPrintPreviewDialog) SetDisabledDefault(disable bool) {
 func callbackQPrintPreviewDialog_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).SetFocus2Default()
@@ -11512,7 +11540,7 @@ func (ptr *QPrintPreviewDialog) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setFocus2", f)
 	}
 }
 
@@ -11521,7 +11549,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setFocus2")
 	}
 }
 
@@ -11545,7 +11573,7 @@ func (ptr *QPrintPreviewDialog) SetFocus2Default() {
 func callbackQPrintPreviewDialog_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QPrintPreviewDialog::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -11557,7 +11585,7 @@ func (ptr *QPrintPreviewDialog) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setHidden", f)
 	}
 }
 
@@ -11566,7 +11594,7 @@ func (ptr *QPrintPreviewDialog) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::setHidden")
 	}
 }
 
@@ -11590,7 +11618,7 @@ func (ptr *QPrintPreviewDialog) SetHiddenDefault(hidden bool) {
 func callbackQPrintPreviewDialog_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ShowDefault()
@@ -11602,7 +11630,7 @@ func (ptr *QPrintPreviewDialog) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::show", f)
 	}
 }
 
@@ -11611,7 +11639,7 @@ func (ptr *QPrintPreviewDialog) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::show")
 	}
 }
 
@@ -11635,7 +11663,7 @@ func (ptr *QPrintPreviewDialog) ShowDefault() {
 func callbackQPrintPreviewDialog_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ShowFullScreenDefault()
@@ -11647,7 +11675,7 @@ func (ptr *QPrintPreviewDialog) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showFullScreen", f)
 	}
 }
 
@@ -11656,7 +11684,7 @@ func (ptr *QPrintPreviewDialog) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showFullScreen")
 	}
 }
 
@@ -11680,7 +11708,7 @@ func (ptr *QPrintPreviewDialog) ShowFullScreenDefault() {
 func callbackQPrintPreviewDialog_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ShowMaximizedDefault()
@@ -11692,7 +11720,7 @@ func (ptr *QPrintPreviewDialog) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showMaximized", f)
 	}
 }
 
@@ -11701,7 +11729,7 @@ func (ptr *QPrintPreviewDialog) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showMaximized")
 	}
 }
 
@@ -11725,7 +11753,7 @@ func (ptr *QPrintPreviewDialog) ShowMaximizedDefault() {
 func callbackQPrintPreviewDialog_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ShowMinimizedDefault()
@@ -11737,7 +11765,7 @@ func (ptr *QPrintPreviewDialog) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showMinimized", f)
 	}
 }
 
@@ -11746,7 +11774,7 @@ func (ptr *QPrintPreviewDialog) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showMinimized")
 	}
 }
 
@@ -11770,7 +11798,7 @@ func (ptr *QPrintPreviewDialog) ShowMinimizedDefault() {
 func callbackQPrintPreviewDialog_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ShowNormalDefault()
@@ -11782,7 +11810,7 @@ func (ptr *QPrintPreviewDialog) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showNormal", f)
 	}
 }
 
@@ -11791,7 +11819,7 @@ func (ptr *QPrintPreviewDialog) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::showNormal")
 	}
 }
 
@@ -11815,7 +11843,7 @@ func (ptr *QPrintPreviewDialog) ShowNormalDefault() {
 func callbackQPrintPreviewDialog_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -11827,7 +11855,7 @@ func (ptr *QPrintPreviewDialog) ConnectTabletEvent(f func(event *gui.QTabletEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::tabletEvent", f)
 	}
 }
 
@@ -11836,7 +11864,7 @@ func (ptr *QPrintPreviewDialog) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::tabletEvent")
 	}
 }
 
@@ -11860,7 +11888,7 @@ func (ptr *QPrintPreviewDialog) TabletEventDefault(event gui.QTabletEvent_ITF) {
 func callbackQPrintPreviewDialog_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).UpdateDefault()
@@ -11872,7 +11900,7 @@ func (ptr *QPrintPreviewDialog) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::update", f)
 	}
 }
 
@@ -11881,7 +11909,7 @@ func (ptr *QPrintPreviewDialog) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::update")
 	}
 }
 
@@ -11905,7 +11933,7 @@ func (ptr *QPrintPreviewDialog) UpdateDefault() {
 func callbackQPrintPreviewDialog_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).UpdateMicroFocusDefault()
@@ -11917,7 +11945,7 @@ func (ptr *QPrintPreviewDialog) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::updateMicroFocus", f)
 	}
 }
 
@@ -11926,7 +11954,7 @@ func (ptr *QPrintPreviewDialog) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::updateMicroFocus")
 	}
 }
 
@@ -11950,7 +11978,7 @@ func (ptr *QPrintPreviewDialog) UpdateMicroFocusDefault() {
 func callbackQPrintPreviewDialog_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -11962,7 +11990,7 @@ func (ptr *QPrintPreviewDialog) ConnectWheelEvent(f func(event *gui.QWheelEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::wheelEvent", f)
 	}
 }
 
@@ -11971,7 +11999,7 @@ func (ptr *QPrintPreviewDialog) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::wheelEvent")
 	}
 }
 
@@ -11995,7 +12023,7 @@ func (ptr *QPrintPreviewDialog) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackQPrintPreviewDialog_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -12007,7 +12035,7 @@ func (ptr *QPrintPreviewDialog) ConnectTimerEvent(f func(event *core.QTimerEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::timerEvent", f)
 	}
 }
 
@@ -12016,7 +12044,7 @@ func (ptr *QPrintPreviewDialog) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::timerEvent")
 	}
 }
 
@@ -12040,7 +12068,7 @@ func (ptr *QPrintPreviewDialog) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQPrintPreviewDialog_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -12052,7 +12080,7 @@ func (ptr *QPrintPreviewDialog) ConnectChildEvent(f func(event *core.QChildEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::childEvent", f)
 	}
 }
 
@@ -12061,7 +12089,7 @@ func (ptr *QPrintPreviewDialog) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::childEvent")
 	}
 }
 
@@ -12085,7 +12113,7 @@ func (ptr *QPrintPreviewDialog) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQPrintPreviewDialog_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -12097,7 +12125,7 @@ func (ptr *QPrintPreviewDialog) ConnectConnectNotify(f func(sign *core.QMetaMeth
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::connectNotify", f)
 	}
 }
 
@@ -12106,7 +12134,7 @@ func (ptr *QPrintPreviewDialog) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::connectNotify")
 	}
 }
 
@@ -12130,7 +12158,7 @@ func (ptr *QPrintPreviewDialog) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 func callbackQPrintPreviewDialog_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -12142,7 +12170,7 @@ func (ptr *QPrintPreviewDialog) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::customEvent", f)
 	}
 }
 
@@ -12151,7 +12179,7 @@ func (ptr *QPrintPreviewDialog) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::customEvent")
 	}
 }
 
@@ -12175,7 +12203,7 @@ func (ptr *QPrintPreviewDialog) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewDialog_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).DeleteLaterDefault()
@@ -12187,7 +12215,7 @@ func (ptr *QPrintPreviewDialog) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::deleteLater", f)
 	}
 }
 
@@ -12196,7 +12224,7 @@ func (ptr *QPrintPreviewDialog) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::deleteLater")
 	}
 }
 
@@ -12204,8 +12232,8 @@ func (ptr *QPrintPreviewDialog) DeleteLater() {
 	defer qt.Recovering("QPrintPreviewDialog::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()))
 		C.QPrintPreviewDialog_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12214,8 +12242,8 @@ func (ptr *QPrintPreviewDialog) DeleteLaterDefault() {
 	defer qt.Recovering("QPrintPreviewDialog::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()))
 		C.QPrintPreviewDialog_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12224,7 +12252,7 @@ func (ptr *QPrintPreviewDialog) DeleteLaterDefault() {
 func callbackQPrintPreviewDialog_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewDialog::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPrintPreviewDialogFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -12236,7 +12264,7 @@ func (ptr *QPrintPreviewDialog) ConnectDisconnectNotify(f func(sign *core.QMetaM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::disconnectNotify", f)
 	}
 }
 
@@ -12245,7 +12273,7 @@ func (ptr *QPrintPreviewDialog) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::disconnectNotify")
 	}
 }
 
@@ -12269,7 +12297,7 @@ func (ptr *QPrintPreviewDialog) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 func callbackQPrintPreviewDialog_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewDialog::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -12281,7 +12309,7 @@ func (ptr *QPrintPreviewDialog) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::metaObject", f)
 	}
 }
 
@@ -12290,7 +12318,7 @@ func (ptr *QPrintPreviewDialog) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewDialog(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::metaObject")
 	}
 }
 
@@ -12371,13 +12399,21 @@ func NewQPrintPreviewWidgetFromPointer(ptr unsafe.Pointer) *QPrintPreviewWidget 
 func NewQPrintPreviewWidget(printer QPrinter_ITF, parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewWidget {
 	defer qt.Recovering("QPrintPreviewWidget::QPrintPreviewWidget")
 
-	return NewQPrintPreviewWidgetFromPointer(C.QPrintPreviewWidget_NewQPrintPreviewWidget(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	var tmpValue = NewQPrintPreviewWidgetFromPointer(C.QPrintPreviewWidget_NewQPrintPreviewWidget(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQPrintPreviewWidget2(parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewWidget {
 	defer qt.Recovering("QPrintPreviewWidget::QPrintPreviewWidget")
 
-	return NewQPrintPreviewWidgetFromPointer(C.QPrintPreviewWidget_NewQPrintPreviewWidget2(widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	var tmpValue = NewQPrintPreviewWidgetFromPointer(C.QPrintPreviewWidget_NewQPrintPreviewWidget2(widgets.PointerFromQWidget(parent), C.longlong(flags)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QPrintPreviewWidget) CurrentPage() int {
@@ -12393,7 +12429,7 @@ func (ptr *QPrintPreviewWidget) CurrentPage() int {
 func callbackQPrintPreviewWidget_FitInView(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::fitInView")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "fitInView"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::fitInView"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12404,7 +12440,7 @@ func (ptr *QPrintPreviewWidget) ConnectFitInView(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "fitInView", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::fitInView", f)
 	}
 }
 
@@ -12413,7 +12449,7 @@ func (ptr *QPrintPreviewWidget) DisconnectFitInView() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "fitInView")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::fitInView")
 	}
 }
 
@@ -12429,7 +12465,7 @@ func (ptr *QPrintPreviewWidget) FitInView() {
 func callbackQPrintPreviewWidget_FitToWidth(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::fitToWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "fitToWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::fitToWidth"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12440,7 +12476,7 @@ func (ptr *QPrintPreviewWidget) ConnectFitToWidth(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "fitToWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::fitToWidth", f)
 	}
 }
 
@@ -12449,7 +12485,7 @@ func (ptr *QPrintPreviewWidget) DisconnectFitToWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "fitToWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::fitToWidth")
 	}
 }
 
@@ -12483,7 +12519,7 @@ func (ptr *QPrintPreviewWidget) PageCount() int {
 func callbackQPrintPreviewWidget_PaintRequested(ptr unsafe.Pointer, printer unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::paintRequested")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "paintRequested"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::paintRequested"); signal != nil {
 		signal.(func(*QPrinter))(NewQPrinterFromPointer(printer))
 	}
 
@@ -12494,7 +12530,7 @@ func (ptr *QPrintPreviewWidget) ConnectPaintRequested(f func(printer *QPrinter))
 
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_ConnectPaintRequested(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "paintRequested", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintRequested", f)
 	}
 }
 
@@ -12503,7 +12539,7 @@ func (ptr *QPrintPreviewWidget) DisconnectPaintRequested() {
 
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DisconnectPaintRequested(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "paintRequested")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintRequested")
 	}
 }
 
@@ -12519,7 +12555,7 @@ func (ptr *QPrintPreviewWidget) PaintRequested(printer QPrinter_ITF) {
 func callbackQPrintPreviewWidget_PreviewChanged(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::previewChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "previewChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::previewChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12530,7 +12566,7 @@ func (ptr *QPrintPreviewWidget) ConnectPreviewChanged(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_ConnectPreviewChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "previewChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::previewChanged", f)
 	}
 }
 
@@ -12539,7 +12575,7 @@ func (ptr *QPrintPreviewWidget) DisconnectPreviewChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_DisconnectPreviewChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "previewChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::previewChanged")
 	}
 }
 
@@ -12555,7 +12591,7 @@ func (ptr *QPrintPreviewWidget) PreviewChanged() {
 func callbackQPrintPreviewWidget_Print(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::print")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "print"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::print"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12566,7 +12602,7 @@ func (ptr *QPrintPreviewWidget) ConnectPrint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "print", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::print", f)
 	}
 }
 
@@ -12575,7 +12611,7 @@ func (ptr *QPrintPreviewWidget) DisconnectPrint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "print")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::print")
 	}
 }
 
@@ -12591,7 +12627,7 @@ func (ptr *QPrintPreviewWidget) Print() {
 func callbackQPrintPreviewWidget_SetAllPagesViewMode(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setAllPagesViewMode")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setAllPagesViewMode"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setAllPagesViewMode"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12602,7 +12638,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetAllPagesViewMode(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setAllPagesViewMode", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setAllPagesViewMode", f)
 	}
 }
 
@@ -12611,7 +12647,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetAllPagesViewMode() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setAllPagesViewMode")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setAllPagesViewMode")
 	}
 }
 
@@ -12627,7 +12663,7 @@ func (ptr *QPrintPreviewWidget) SetAllPagesViewMode() {
 func callbackQPrintPreviewWidget_SetCurrentPage(ptr unsafe.Pointer, page C.int) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setCurrentPage")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setCurrentPage"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setCurrentPage"); signal != nil {
 		signal.(func(int))(int(int32(page)))
 	}
 
@@ -12638,7 +12674,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetCurrentPage(f func(page int)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setCurrentPage", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setCurrentPage", f)
 	}
 }
 
@@ -12647,7 +12683,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetCurrentPage(page int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setCurrentPage")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setCurrentPage")
 	}
 }
 
@@ -12663,7 +12699,7 @@ func (ptr *QPrintPreviewWidget) SetCurrentPage(page int) {
 func callbackQPrintPreviewWidget_SetFacingPagesViewMode(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setFacingPagesViewMode")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setFacingPagesViewMode"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setFacingPagesViewMode"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12674,7 +12710,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetFacingPagesViewMode(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setFacingPagesViewMode", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setFacingPagesViewMode", f)
 	}
 }
 
@@ -12683,7 +12719,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetFacingPagesViewMode() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setFacingPagesViewMode")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setFacingPagesViewMode")
 	}
 }
 
@@ -12699,7 +12735,7 @@ func (ptr *QPrintPreviewWidget) SetFacingPagesViewMode() {
 func callbackQPrintPreviewWidget_SetLandscapeOrientation(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setLandscapeOrientation")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setLandscapeOrientation"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setLandscapeOrientation"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12710,7 +12746,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetLandscapeOrientation(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setLandscapeOrientation", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setLandscapeOrientation", f)
 	}
 }
 
@@ -12719,7 +12755,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetLandscapeOrientation() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setLandscapeOrientation")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setLandscapeOrientation")
 	}
 }
 
@@ -12735,7 +12771,7 @@ func (ptr *QPrintPreviewWidget) SetLandscapeOrientation() {
 func callbackQPrintPreviewWidget_SetOrientation(ptr unsafe.Pointer, orientation C.longlong) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setOrientation")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setOrientation"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setOrientation"); signal != nil {
 		signal.(func(QPrinter__Orientation))(QPrinter__Orientation(orientation))
 	}
 
@@ -12746,7 +12782,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetOrientation(f func(orientation QPrinte
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setOrientation", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setOrientation", f)
 	}
 }
 
@@ -12755,7 +12791,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetOrientation(orientation QPrinter__O
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setOrientation")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setOrientation")
 	}
 }
 
@@ -12771,7 +12807,7 @@ func (ptr *QPrintPreviewWidget) SetOrientation(orientation QPrinter__Orientation
 func callbackQPrintPreviewWidget_SetPortraitOrientation(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setPortraitOrientation")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setPortraitOrientation"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setPortraitOrientation"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12782,7 +12818,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetPortraitOrientation(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setPortraitOrientation", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setPortraitOrientation", f)
 	}
 }
 
@@ -12791,7 +12827,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetPortraitOrientation() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setPortraitOrientation")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setPortraitOrientation")
 	}
 }
 
@@ -12807,7 +12843,7 @@ func (ptr *QPrintPreviewWidget) SetPortraitOrientation() {
 func callbackQPrintPreviewWidget_SetSinglePageViewMode(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setSinglePageViewMode")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setSinglePageViewMode"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setSinglePageViewMode"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12818,7 +12854,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetSinglePageViewMode(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setSinglePageViewMode", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setSinglePageViewMode", f)
 	}
 }
 
@@ -12827,7 +12863,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetSinglePageViewMode() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setSinglePageViewMode")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setSinglePageViewMode")
 	}
 }
 
@@ -12843,7 +12879,7 @@ func (ptr *QPrintPreviewWidget) SetSinglePageViewMode() {
 func callbackQPrintPreviewWidget_SetViewMode(ptr unsafe.Pointer, mode C.longlong) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setViewMode")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setViewMode"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setViewMode"); signal != nil {
 		signal.(func(QPrintPreviewWidget__ViewMode))(QPrintPreviewWidget__ViewMode(mode))
 	}
 
@@ -12854,7 +12890,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetViewMode(f func(mode QPrintPreviewWidg
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setViewMode", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setViewMode", f)
 	}
 }
 
@@ -12863,7 +12899,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetViewMode(mode QPrintPreviewWidget__
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setViewMode")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setViewMode")
 	}
 }
 
@@ -12887,7 +12923,7 @@ func (ptr *QPrintPreviewWidget) SetVisible(visible bool) {
 func callbackQPrintPreviewWidget_SetZoomFactor(ptr unsafe.Pointer, factor C.double) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setZoomFactor")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setZoomFactor"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setZoomFactor"); signal != nil {
 		signal.(func(float64))(float64(factor))
 	}
 
@@ -12898,7 +12934,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetZoomFactor(f func(factor float64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setZoomFactor", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setZoomFactor", f)
 	}
 }
 
@@ -12907,7 +12943,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetZoomFactor(factor float64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setZoomFactor")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setZoomFactor")
 	}
 }
 
@@ -12923,7 +12959,7 @@ func (ptr *QPrintPreviewWidget) SetZoomFactor(factor float64) {
 func callbackQPrintPreviewWidget_SetZoomMode(ptr unsafe.Pointer, zoomMode C.longlong) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setZoomMode")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setZoomMode"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setZoomMode"); signal != nil {
 		signal.(func(QPrintPreviewWidget__ZoomMode))(QPrintPreviewWidget__ZoomMode(zoomMode))
 	}
 
@@ -12934,7 +12970,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetZoomMode(f func(zoomMode QPrintPreview
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setZoomMode", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setZoomMode", f)
 	}
 }
 
@@ -12943,7 +12979,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetZoomMode(zoomMode QPrintPreviewWidg
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setZoomMode")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setZoomMode")
 	}
 }
 
@@ -12959,7 +12995,7 @@ func (ptr *QPrintPreviewWidget) SetZoomMode(zoomMode QPrintPreviewWidget__ZoomMo
 func callbackQPrintPreviewWidget_UpdatePreview(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::updatePreview")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "updatePreview"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::updatePreview"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12970,7 +13006,7 @@ func (ptr *QPrintPreviewWidget) ConnectUpdatePreview(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "updatePreview", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::updatePreview", f)
 	}
 }
 
@@ -12979,7 +13015,7 @@ func (ptr *QPrintPreviewWidget) DisconnectUpdatePreview() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "updatePreview")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::updatePreview")
 	}
 }
 
@@ -13013,7 +13049,7 @@ func (ptr *QPrintPreviewWidget) ZoomFactor() float64 {
 func callbackQPrintPreviewWidget_ZoomIn(ptr unsafe.Pointer, factor C.double) {
 	defer qt.Recovering("callback QPrintPreviewWidget::zoomIn")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "zoomIn"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::zoomIn"); signal != nil {
 		signal.(func(float64))(float64(factor))
 	}
 
@@ -13024,7 +13060,7 @@ func (ptr *QPrintPreviewWidget) ConnectZoomIn(f func(factor float64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "zoomIn", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::zoomIn", f)
 	}
 }
 
@@ -13033,7 +13069,7 @@ func (ptr *QPrintPreviewWidget) DisconnectZoomIn(factor float64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "zoomIn")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::zoomIn")
 	}
 }
 
@@ -13058,7 +13094,7 @@ func (ptr *QPrintPreviewWidget) ZoomMode() QPrintPreviewWidget__ZoomMode {
 func callbackQPrintPreviewWidget_ZoomOut(ptr unsafe.Pointer, factor C.double) {
 	defer qt.Recovering("callback QPrintPreviewWidget::zoomOut")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "zoomOut"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::zoomOut"); signal != nil {
 		signal.(func(float64))(float64(factor))
 	}
 
@@ -13069,7 +13105,7 @@ func (ptr *QPrintPreviewWidget) ConnectZoomOut(f func(factor float64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "zoomOut", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::zoomOut", f)
 	}
 }
 
@@ -13078,7 +13114,7 @@ func (ptr *QPrintPreviewWidget) DisconnectZoomOut(factor float64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "zoomOut")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::zoomOut")
 	}
 }
 
@@ -13094,8 +13130,8 @@ func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidget() {
 	defer qt.Recovering("QPrintPreviewWidget::~QPrintPreviewWidget")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()))
 		C.QPrintPreviewWidget_DestroyQPrintPreviewWidget(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13104,7 +13140,7 @@ func (ptr *QPrintPreviewWidget) DestroyQPrintPreviewWidget() {
 func callbackQPrintPreviewWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::actionEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "actionEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ActionEventDefault(gui.NewQActionEventFromPointer(event))
@@ -13116,7 +13152,7 @@ func (ptr *QPrintPreviewWidget) ConnectActionEvent(f func(event *gui.QActionEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "actionEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::actionEvent", f)
 	}
 }
 
@@ -13125,7 +13161,7 @@ func (ptr *QPrintPreviewWidget) DisconnectActionEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "actionEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::actionEvent")
 	}
 }
 
@@ -13149,7 +13185,7 @@ func (ptr *QPrintPreviewWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 func callbackQPrintPreviewWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::dragEnterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "dragEnterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(event))
@@ -13161,7 +13197,7 @@ func (ptr *QPrintPreviewWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnt
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dragEnterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dragEnterEvent", f)
 	}
 }
 
@@ -13170,7 +13206,7 @@ func (ptr *QPrintPreviewWidget) DisconnectDragEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dragEnterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dragEnterEvent")
 	}
 }
 
@@ -13194,7 +13230,7 @@ func (ptr *QPrintPreviewWidget) DragEnterEventDefault(event gui.QDragEnterEvent_
 func callbackQPrintPreviewWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::dragLeaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "dragLeaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(event))
@@ -13206,7 +13242,7 @@ func (ptr *QPrintPreviewWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLea
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dragLeaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dragLeaveEvent", f)
 	}
 }
 
@@ -13215,7 +13251,7 @@ func (ptr *QPrintPreviewWidget) DisconnectDragLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dragLeaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dragLeaveEvent")
 	}
 }
 
@@ -13239,7 +13275,7 @@ func (ptr *QPrintPreviewWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_
 func callbackQPrintPreviewWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::dragMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "dragMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(event))
@@ -13251,7 +13287,7 @@ func (ptr *QPrintPreviewWidget) ConnectDragMoveEvent(f func(event *gui.QDragMove
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dragMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dragMoveEvent", f)
 	}
 }
 
@@ -13260,7 +13296,7 @@ func (ptr *QPrintPreviewWidget) DisconnectDragMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dragMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dragMoveEvent")
 	}
 }
 
@@ -13284,7 +13320,7 @@ func (ptr *QPrintPreviewWidget) DragMoveEventDefault(event gui.QDragMoveEvent_IT
 func callbackQPrintPreviewWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::dropEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "dropEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(event))
@@ -13296,7 +13332,7 @@ func (ptr *QPrintPreviewWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dropEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dropEvent", f)
 	}
 }
 
@@ -13305,7 +13341,7 @@ func (ptr *QPrintPreviewWidget) DisconnectDropEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "dropEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::dropEvent")
 	}
 }
 
@@ -13329,7 +13365,7 @@ func (ptr *QPrintPreviewWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 func callbackQPrintPreviewWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::enterEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "enterEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).EnterEventDefault(core.NewQEventFromPointer(event))
@@ -13341,7 +13377,7 @@ func (ptr *QPrintPreviewWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "enterEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::enterEvent", f)
 	}
 }
 
@@ -13350,7 +13386,7 @@ func (ptr *QPrintPreviewWidget) DisconnectEnterEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "enterEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::enterEvent")
 	}
 }
 
@@ -13374,7 +13410,7 @@ func (ptr *QPrintPreviewWidget) EnterEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::focusInEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "focusInEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).FocusInEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -13386,7 +13422,7 @@ func (ptr *QPrintPreviewWidget) ConnectFocusInEvent(f func(event *gui.QFocusEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "focusInEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusInEvent", f)
 	}
 }
 
@@ -13395,7 +13431,7 @@ func (ptr *QPrintPreviewWidget) DisconnectFocusInEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "focusInEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusInEvent")
 	}
 }
 
@@ -13419,7 +13455,7 @@ func (ptr *QPrintPreviewWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 func callbackQPrintPreviewWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::focusOutEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "focusOutEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).FocusOutEventDefault(gui.NewQFocusEventFromPointer(event))
@@ -13431,7 +13467,7 @@ func (ptr *QPrintPreviewWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "focusOutEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusOutEvent", f)
 	}
 }
 
@@ -13440,7 +13476,7 @@ func (ptr *QPrintPreviewWidget) DisconnectFocusOutEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "focusOutEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusOutEvent")
 	}
 }
 
@@ -13464,7 +13500,7 @@ func (ptr *QPrintPreviewWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) 
 func callbackQPrintPreviewWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::hideEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "hideEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
@@ -13476,7 +13512,7 @@ func (ptr *QPrintPreviewWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "hideEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hideEvent", f)
 	}
 }
 
@@ -13485,7 +13521,7 @@ func (ptr *QPrintPreviewWidget) DisconnectHideEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "hideEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hideEvent")
 	}
 }
 
@@ -13509,7 +13545,7 @@ func (ptr *QPrintPreviewWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 func callbackQPrintPreviewWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::leaveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "leaveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).LeaveEventDefault(core.NewQEventFromPointer(event))
@@ -13521,7 +13557,7 @@ func (ptr *QPrintPreviewWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "leaveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::leaveEvent", f)
 	}
 }
 
@@ -13530,7 +13566,7 @@ func (ptr *QPrintPreviewWidget) DisconnectLeaveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "leaveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::leaveEvent")
 	}
 }
 
@@ -13554,7 +13590,7 @@ func (ptr *QPrintPreviewWidget) LeaveEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewWidget::minimumSizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "minimumSizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -13566,7 +13602,7 @@ func (ptr *QPrintPreviewWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "minimumSizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::minimumSizeHint", f)
 	}
 }
 
@@ -13575,7 +13611,7 @@ func (ptr *QPrintPreviewWidget) DisconnectMinimumSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "minimumSizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::minimumSizeHint")
 	}
 }
 
@@ -13605,7 +13641,7 @@ func (ptr *QPrintPreviewWidget) MinimumSizeHintDefault() *core.QSize {
 func callbackQPrintPreviewWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::moveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "moveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
@@ -13617,7 +13653,7 @@ func (ptr *QPrintPreviewWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "moveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::moveEvent", f)
 	}
 }
 
@@ -13626,7 +13662,7 @@ func (ptr *QPrintPreviewWidget) DisconnectMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "moveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::moveEvent")
 	}
 }
 
@@ -13650,7 +13686,7 @@ func (ptr *QPrintPreviewWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 func callbackQPrintPreviewWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::paintEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "paintEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
@@ -13662,7 +13698,7 @@ func (ptr *QPrintPreviewWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "paintEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEvent", f)
 	}
 }
 
@@ -13671,7 +13707,7 @@ func (ptr *QPrintPreviewWidget) DisconnectPaintEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "paintEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::paintEvent")
 	}
 }
 
@@ -13695,7 +13731,7 @@ func (ptr *QPrintPreviewWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
 func callbackQPrintPreviewWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setEnabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setEnabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).SetEnabledDefault(int8(vbo) != 0)
@@ -13707,7 +13743,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetEnabled(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setEnabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setEnabled", f)
 	}
 }
 
@@ -13716,7 +13752,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetEnabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setEnabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setEnabled")
 	}
 }
 
@@ -13740,7 +13776,7 @@ func (ptr *QPrintPreviewWidget) SetEnabledDefault(vbo bool) {
 func callbackQPrintPreviewWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setStyleSheet")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setStyleSheet"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
@@ -13752,7 +13788,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetStyleSheet(f func(styleSheet string)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setStyleSheet", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setStyleSheet", f)
 	}
 }
 
@@ -13761,7 +13797,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetStyleSheet() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setStyleSheet")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setStyleSheet")
 	}
 }
 
@@ -13789,7 +13825,7 @@ func (ptr *QPrintPreviewWidget) SetStyleSheetDefault(styleSheet string) {
 func callbackQPrintPreviewWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setWindowModified")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setWindowModified"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowModifiedDefault(int8(vbo) != 0)
@@ -13801,7 +13837,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetWindowModified(f func(vbo bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setWindowModified", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowModified", f)
 	}
 }
 
@@ -13810,7 +13846,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetWindowModified() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setWindowModified")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowModified")
 	}
 }
 
@@ -13834,7 +13870,7 @@ func (ptr *QPrintPreviewWidget) SetWindowModifiedDefault(vbo bool) {
 func callbackQPrintPreviewWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setWindowTitle")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setWindowTitle"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
@@ -13846,7 +13882,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetWindowTitle(f func(vqs string)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setWindowTitle", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowTitle", f)
 	}
 }
 
@@ -13855,7 +13891,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetWindowTitle() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setWindowTitle")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setWindowTitle")
 	}
 }
 
@@ -13883,7 +13919,7 @@ func (ptr *QPrintPreviewWidget) SetWindowTitleDefault(vqs string) {
 func callbackQPrintPreviewWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::showEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "showEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
@@ -13895,7 +13931,7 @@ func (ptr *QPrintPreviewWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showEvent", f)
 	}
 }
 
@@ -13904,7 +13940,7 @@ func (ptr *QPrintPreviewWidget) DisconnectShowEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showEvent")
 	}
 }
 
@@ -13928,7 +13964,7 @@ func (ptr *QPrintPreviewWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 func callbackQPrintPreviewWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewWidget::sizeHint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "sizeHint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
@@ -13940,7 +13976,7 @@ func (ptr *QPrintPreviewWidget) ConnectSizeHint(f func() *core.QSize) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "sizeHint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::sizeHint", f)
 	}
 }
 
@@ -13949,7 +13985,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSizeHint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "sizeHint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::sizeHint")
 	}
 }
 
@@ -13979,7 +14015,7 @@ func (ptr *QPrintPreviewWidget) SizeHintDefault() *core.QSize {
 func callbackQPrintPreviewWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::changeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "changeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ChangeEventDefault(core.NewQEventFromPointer(event))
@@ -13991,7 +14027,7 @@ func (ptr *QPrintPreviewWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "changeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::changeEvent", f)
 	}
 }
 
@@ -14000,7 +14036,7 @@ func (ptr *QPrintPreviewWidget) DisconnectChangeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "changeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::changeEvent")
 	}
 }
 
@@ -14024,7 +14060,7 @@ func (ptr *QPrintPreviewWidget) ChangeEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewWidget_Close(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintPreviewWidget::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -14036,7 +14072,7 @@ func (ptr *QPrintPreviewWidget) ConnectClose(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::close", f)
 	}
 }
 
@@ -14045,7 +14081,7 @@ func (ptr *QPrintPreviewWidget) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::close")
 	}
 }
 
@@ -14071,7 +14107,7 @@ func (ptr *QPrintPreviewWidget) CloseDefault() bool {
 func callbackQPrintPreviewWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::closeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "closeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).CloseEventDefault(gui.NewQCloseEventFromPointer(event))
@@ -14083,7 +14119,7 @@ func (ptr *QPrintPreviewWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "closeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::closeEvent", f)
 	}
 }
 
@@ -14092,7 +14128,7 @@ func (ptr *QPrintPreviewWidget) DisconnectCloseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "closeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::closeEvent")
 	}
 }
 
@@ -14116,7 +14152,7 @@ func (ptr *QPrintPreviewWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 func callbackQPrintPreviewWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::contextMenuEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "contextMenuEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ContextMenuEventDefault(gui.NewQContextMenuEventFromPointer(event))
@@ -14128,7 +14164,7 @@ func (ptr *QPrintPreviewWidget) ConnectContextMenuEvent(f func(event *gui.QConte
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "contextMenuEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::contextMenuEvent", f)
 	}
 }
 
@@ -14137,7 +14173,7 @@ func (ptr *QPrintPreviewWidget) DisconnectContextMenuEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "contextMenuEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::contextMenuEvent")
 	}
 }
 
@@ -14161,7 +14197,7 @@ func (ptr *QPrintPreviewWidget) ContextMenuEventDefault(event gui.QContextMenuEv
 func callbackQPrintPreviewWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
 	defer qt.Recovering("callback QPrintPreviewWidget::focusNextPrevChild")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "focusNextPrevChild"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
 
@@ -14173,7 +14209,7 @@ func (ptr *QPrintPreviewWidget) ConnectFocusNextPrevChild(f func(next bool) bool
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "focusNextPrevChild", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusNextPrevChild", f)
 	}
 }
 
@@ -14182,7 +14218,7 @@ func (ptr *QPrintPreviewWidget) DisconnectFocusNextPrevChild() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "focusNextPrevChild")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::focusNextPrevChild")
 	}
 }
 
@@ -14208,7 +14244,7 @@ func (ptr *QPrintPreviewWidget) FocusNextPrevChildDefault(next bool) bool {
 func callbackQPrintPreviewWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintPreviewWidget::hasHeightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "hasHeightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -14220,7 +14256,7 @@ func (ptr *QPrintPreviewWidget) ConnectHasHeightForWidth(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "hasHeightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hasHeightForWidth", f)
 	}
 }
 
@@ -14229,7 +14265,7 @@ func (ptr *QPrintPreviewWidget) DisconnectHasHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "hasHeightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hasHeightForWidth")
 	}
 }
 
@@ -14255,7 +14291,7 @@ func (ptr *QPrintPreviewWidget) HasHeightForWidthDefault() bool {
 func callbackQPrintPreviewWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 	defer qt.Recovering("callback QPrintPreviewWidget::heightForWidth")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "heightForWidth"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
 
@@ -14267,7 +14303,7 @@ func (ptr *QPrintPreviewWidget) ConnectHeightForWidth(f func(w int) int) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "heightForWidth", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::heightForWidth", f)
 	}
 }
 
@@ -14276,7 +14312,7 @@ func (ptr *QPrintPreviewWidget) DisconnectHeightForWidth() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "heightForWidth")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::heightForWidth")
 	}
 }
 
@@ -14302,7 +14338,7 @@ func (ptr *QPrintPreviewWidget) HeightForWidthDefault(w int) int {
 func callbackQPrintPreviewWidget_Hide(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::hide")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "hide"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::hide"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).HideDefault()
@@ -14314,7 +14350,7 @@ func (ptr *QPrintPreviewWidget) ConnectHide(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "hide", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hide", f)
 	}
 }
 
@@ -14323,7 +14359,7 @@ func (ptr *QPrintPreviewWidget) DisconnectHide() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "hide")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::hide")
 	}
 }
 
@@ -14347,7 +14383,7 @@ func (ptr *QPrintPreviewWidget) HideDefault() {
 func callbackQPrintPreviewWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::inputMethodEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "inputMethodEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).InputMethodEventDefault(gui.NewQInputMethodEventFromPointer(event))
@@ -14359,7 +14395,7 @@ func (ptr *QPrintPreviewWidget) ConnectInputMethodEvent(f func(event *gui.QInput
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "inputMethodEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodEvent", f)
 	}
 }
 
@@ -14368,7 +14404,7 @@ func (ptr *QPrintPreviewWidget) DisconnectInputMethodEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "inputMethodEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodEvent")
 	}
 }
 
@@ -14392,7 +14428,7 @@ func (ptr *QPrintPreviewWidget) InputMethodEventDefault(event gui.QInputMethodEv
 func callbackQPrintPreviewWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewWidget::inputMethodQuery")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "inputMethodQuery"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
 
@@ -14404,7 +14440,7 @@ func (ptr *QPrintPreviewWidget) ConnectInputMethodQuery(f func(query core.Qt__In
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "inputMethodQuery", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodQuery", f)
 	}
 }
 
@@ -14413,7 +14449,7 @@ func (ptr *QPrintPreviewWidget) DisconnectInputMethodQuery() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "inputMethodQuery")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::inputMethodQuery")
 	}
 }
 
@@ -14443,7 +14479,7 @@ func (ptr *QPrintPreviewWidget) InputMethodQueryDefault(query core.Qt__InputMeth
 func callbackQPrintPreviewWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::keyPressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "keyPressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).KeyPressEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -14455,7 +14491,7 @@ func (ptr *QPrintPreviewWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "keyPressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::keyPressEvent", f)
 	}
 }
 
@@ -14464,7 +14500,7 @@ func (ptr *QPrintPreviewWidget) DisconnectKeyPressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "keyPressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::keyPressEvent")
 	}
 }
 
@@ -14488,7 +14524,7 @@ func (ptr *QPrintPreviewWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 func callbackQPrintPreviewWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::keyReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "keyReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).KeyReleaseEventDefault(gui.NewQKeyEventFromPointer(event))
@@ -14500,7 +14536,7 @@ func (ptr *QPrintPreviewWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "keyReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::keyReleaseEvent", f)
 	}
 }
 
@@ -14509,7 +14545,7 @@ func (ptr *QPrintPreviewWidget) DisconnectKeyReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "keyReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::keyReleaseEvent")
 	}
 }
 
@@ -14533,7 +14569,7 @@ func (ptr *QPrintPreviewWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) 
 func callbackQPrintPreviewWidget_Lower(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::lower")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "lower"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::lower"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).LowerDefault()
@@ -14545,7 +14581,7 @@ func (ptr *QPrintPreviewWidget) ConnectLower(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "lower", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::lower", f)
 	}
 }
 
@@ -14554,7 +14590,7 @@ func (ptr *QPrintPreviewWidget) DisconnectLower() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "lower")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::lower")
 	}
 }
 
@@ -14578,7 +14614,7 @@ func (ptr *QPrintPreviewWidget) LowerDefault() {
 func callbackQPrintPreviewWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::mouseDoubleClickEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "mouseDoubleClickEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).MouseDoubleClickEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14590,7 +14626,7 @@ func (ptr *QPrintPreviewWidget) ConnectMouseDoubleClickEvent(f func(event *gui.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mouseDoubleClickEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mouseDoubleClickEvent", f)
 	}
 }
 
@@ -14599,7 +14635,7 @@ func (ptr *QPrintPreviewWidget) DisconnectMouseDoubleClickEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mouseDoubleClickEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mouseDoubleClickEvent")
 	}
 }
 
@@ -14623,7 +14659,7 @@ func (ptr *QPrintPreviewWidget) MouseDoubleClickEventDefault(event gui.QMouseEve
 func callbackQPrintPreviewWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::mouseMoveEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "mouseMoveEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).MouseMoveEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14635,7 +14671,7 @@ func (ptr *QPrintPreviewWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEv
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mouseMoveEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mouseMoveEvent", f)
 	}
 }
 
@@ -14644,7 +14680,7 @@ func (ptr *QPrintPreviewWidget) DisconnectMouseMoveEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mouseMoveEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mouseMoveEvent")
 	}
 }
 
@@ -14668,7 +14704,7 @@ func (ptr *QPrintPreviewWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF)
 func callbackQPrintPreviewWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::mousePressEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "mousePressEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).MousePressEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14680,7 +14716,7 @@ func (ptr *QPrintPreviewWidget) ConnectMousePressEvent(f func(event *gui.QMouseE
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mousePressEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mousePressEvent", f)
 	}
 }
 
@@ -14689,7 +14725,7 @@ func (ptr *QPrintPreviewWidget) DisconnectMousePressEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mousePressEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mousePressEvent")
 	}
 }
 
@@ -14713,7 +14749,7 @@ func (ptr *QPrintPreviewWidget) MousePressEventDefault(event gui.QMouseEvent_ITF
 func callbackQPrintPreviewWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::mouseReleaseEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "mouseReleaseEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).MouseReleaseEventDefault(gui.NewQMouseEventFromPointer(event))
@@ -14725,7 +14761,7 @@ func (ptr *QPrintPreviewWidget) ConnectMouseReleaseEvent(f func(event *gui.QMous
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mouseReleaseEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mouseReleaseEvent", f)
 	}
 }
 
@@ -14734,7 +14770,7 @@ func (ptr *QPrintPreviewWidget) DisconnectMouseReleaseEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "mouseReleaseEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::mouseReleaseEvent")
 	}
 }
 
@@ -14758,7 +14794,7 @@ func (ptr *QPrintPreviewWidget) MouseReleaseEventDefault(event gui.QMouseEvent_I
 func callbackQPrintPreviewWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
 	defer qt.Recovering("callback QPrintPreviewWidget::nativeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "nativeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
 	}
 
@@ -14770,7 +14806,7 @@ func (ptr *QPrintPreviewWidget) ConnectNativeEvent(f func(eventType string, mess
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "nativeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::nativeEvent", f)
 	}
 }
 
@@ -14779,7 +14815,7 @@ func (ptr *QPrintPreviewWidget) DisconnectNativeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "nativeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::nativeEvent")
 	}
 }
 
@@ -14809,7 +14845,7 @@ func (ptr *QPrintPreviewWidget) NativeEventDefault(eventType string, message uns
 func callbackQPrintPreviewWidget_Raise(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::raise")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "raise"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::raise"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).RaiseDefault()
@@ -14821,7 +14857,7 @@ func (ptr *QPrintPreviewWidget) ConnectRaise(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "raise", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::raise", f)
 	}
 }
 
@@ -14830,7 +14866,7 @@ func (ptr *QPrintPreviewWidget) DisconnectRaise() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "raise")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::raise")
 	}
 }
 
@@ -14854,7 +14890,7 @@ func (ptr *QPrintPreviewWidget) RaiseDefault() {
 func callbackQPrintPreviewWidget_Repaint(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::repaint")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "repaint"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::repaint"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).RepaintDefault()
@@ -14866,7 +14902,7 @@ func (ptr *QPrintPreviewWidget) ConnectRepaint(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "repaint", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::repaint", f)
 	}
 }
 
@@ -14875,7 +14911,7 @@ func (ptr *QPrintPreviewWidget) DisconnectRepaint() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "repaint")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::repaint")
 	}
 }
 
@@ -14899,7 +14935,7 @@ func (ptr *QPrintPreviewWidget) RepaintDefault() {
 func callbackQPrintPreviewWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::resizeEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "resizeEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
@@ -14911,7 +14947,7 @@ func (ptr *QPrintPreviewWidget) ConnectResizeEvent(f func(event *gui.QResizeEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "resizeEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::resizeEvent", f)
 	}
 }
 
@@ -14920,7 +14956,7 @@ func (ptr *QPrintPreviewWidget) DisconnectResizeEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "resizeEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::resizeEvent")
 	}
 }
 
@@ -14944,7 +14980,7 @@ func (ptr *QPrintPreviewWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 func callbackQPrintPreviewWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setDisabled")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setDisabled"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).SetDisabledDefault(int8(disable) != 0)
@@ -14956,7 +14992,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetDisabled(f func(disable bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setDisabled", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setDisabled", f)
 	}
 }
 
@@ -14965,7 +15001,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetDisabled() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setDisabled")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setDisabled")
 	}
 }
 
@@ -14989,7 +15025,7 @@ func (ptr *QPrintPreviewWidget) SetDisabledDefault(disable bool) {
 func callbackQPrintPreviewWidget_SetFocus2(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setFocus2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).SetFocus2Default()
@@ -15001,7 +15037,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetFocus2(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setFocus2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setFocus2", f)
 	}
 }
 
@@ -15010,7 +15046,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetFocus2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setFocus2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setFocus2")
 	}
 }
 
@@ -15034,7 +15070,7 @@ func (ptr *QPrintPreviewWidget) SetFocus2Default() {
 func callbackQPrintPreviewWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 	defer qt.Recovering("callback QPrintPreviewWidget::setHidden")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "setHidden"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).SetHiddenDefault(int8(hidden) != 0)
@@ -15046,7 +15082,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetHidden(f func(hidden bool)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setHidden", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setHidden", f)
 	}
 }
 
@@ -15055,7 +15091,7 @@ func (ptr *QPrintPreviewWidget) DisconnectSetHidden() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "setHidden")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setHidden")
 	}
 }
 
@@ -15079,7 +15115,7 @@ func (ptr *QPrintPreviewWidget) SetHiddenDefault(hidden bool) {
 func callbackQPrintPreviewWidget_Show(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::show")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "show"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::show"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ShowDefault()
@@ -15091,7 +15127,7 @@ func (ptr *QPrintPreviewWidget) ConnectShow(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "show", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::show", f)
 	}
 }
 
@@ -15100,7 +15136,7 @@ func (ptr *QPrintPreviewWidget) DisconnectShow() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "show")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::show")
 	}
 }
 
@@ -15124,7 +15160,7 @@ func (ptr *QPrintPreviewWidget) ShowDefault() {
 func callbackQPrintPreviewWidget_ShowFullScreen(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::showFullScreen")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "showFullScreen"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ShowFullScreenDefault()
@@ -15136,7 +15172,7 @@ func (ptr *QPrintPreviewWidget) ConnectShowFullScreen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showFullScreen", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showFullScreen", f)
 	}
 }
 
@@ -15145,7 +15181,7 @@ func (ptr *QPrintPreviewWidget) DisconnectShowFullScreen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showFullScreen")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showFullScreen")
 	}
 }
 
@@ -15169,7 +15205,7 @@ func (ptr *QPrintPreviewWidget) ShowFullScreenDefault() {
 func callbackQPrintPreviewWidget_ShowMaximized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::showMaximized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "showMaximized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ShowMaximizedDefault()
@@ -15181,7 +15217,7 @@ func (ptr *QPrintPreviewWidget) ConnectShowMaximized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showMaximized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showMaximized", f)
 	}
 }
 
@@ -15190,7 +15226,7 @@ func (ptr *QPrintPreviewWidget) DisconnectShowMaximized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showMaximized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showMaximized")
 	}
 }
 
@@ -15214,7 +15250,7 @@ func (ptr *QPrintPreviewWidget) ShowMaximizedDefault() {
 func callbackQPrintPreviewWidget_ShowMinimized(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::showMinimized")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "showMinimized"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ShowMinimizedDefault()
@@ -15226,7 +15262,7 @@ func (ptr *QPrintPreviewWidget) ConnectShowMinimized(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showMinimized", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showMinimized", f)
 	}
 }
 
@@ -15235,7 +15271,7 @@ func (ptr *QPrintPreviewWidget) DisconnectShowMinimized() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showMinimized")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showMinimized")
 	}
 }
 
@@ -15259,7 +15295,7 @@ func (ptr *QPrintPreviewWidget) ShowMinimizedDefault() {
 func callbackQPrintPreviewWidget_ShowNormal(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::showNormal")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "showNormal"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ShowNormalDefault()
@@ -15271,7 +15307,7 @@ func (ptr *QPrintPreviewWidget) ConnectShowNormal(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showNormal", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showNormal", f)
 	}
 }
 
@@ -15280,7 +15316,7 @@ func (ptr *QPrintPreviewWidget) DisconnectShowNormal() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "showNormal")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::showNormal")
 	}
 }
 
@@ -15304,7 +15340,7 @@ func (ptr *QPrintPreviewWidget) ShowNormalDefault() {
 func callbackQPrintPreviewWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::tabletEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "tabletEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).TabletEventDefault(gui.NewQTabletEventFromPointer(event))
@@ -15316,7 +15352,7 @@ func (ptr *QPrintPreviewWidget) ConnectTabletEvent(f func(event *gui.QTabletEven
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "tabletEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::tabletEvent", f)
 	}
 }
 
@@ -15325,7 +15361,7 @@ func (ptr *QPrintPreviewWidget) DisconnectTabletEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "tabletEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::tabletEvent")
 	}
 }
 
@@ -15349,7 +15385,7 @@ func (ptr *QPrintPreviewWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
 func callbackQPrintPreviewWidget_Update(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::update")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "update"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::update"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).UpdateDefault()
@@ -15361,7 +15397,7 @@ func (ptr *QPrintPreviewWidget) ConnectUpdate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "update", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::update", f)
 	}
 }
 
@@ -15370,7 +15406,7 @@ func (ptr *QPrintPreviewWidget) DisconnectUpdate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "update")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::update")
 	}
 }
 
@@ -15394,7 +15430,7 @@ func (ptr *QPrintPreviewWidget) UpdateDefault() {
 func callbackQPrintPreviewWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::updateMicroFocus")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "updateMicroFocus"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).UpdateMicroFocusDefault()
@@ -15406,7 +15442,7 @@ func (ptr *QPrintPreviewWidget) ConnectUpdateMicroFocus(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "updateMicroFocus", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::updateMicroFocus", f)
 	}
 }
 
@@ -15415,7 +15451,7 @@ func (ptr *QPrintPreviewWidget) DisconnectUpdateMicroFocus() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "updateMicroFocus")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::updateMicroFocus")
 	}
 }
 
@@ -15439,7 +15475,7 @@ func (ptr *QPrintPreviewWidget) UpdateMicroFocusDefault() {
 func callbackQPrintPreviewWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::wheelEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "wheelEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).WheelEventDefault(gui.NewQWheelEventFromPointer(event))
@@ -15451,7 +15487,7 @@ func (ptr *QPrintPreviewWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "wheelEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::wheelEvent", f)
 	}
 }
 
@@ -15460,7 +15496,7 @@ func (ptr *QPrintPreviewWidget) DisconnectWheelEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "wheelEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::wheelEvent")
 	}
 }
 
@@ -15484,7 +15520,7 @@ func (ptr *QPrintPreviewWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
 func callbackQPrintPreviewWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -15496,7 +15532,7 @@ func (ptr *QPrintPreviewWidget) ConnectTimerEvent(f func(event *core.QTimerEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::timerEvent", f)
 	}
 }
 
@@ -15505,7 +15541,7 @@ func (ptr *QPrintPreviewWidget) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::timerEvent")
 	}
 }
 
@@ -15529,7 +15565,7 @@ func (ptr *QPrintPreviewWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQPrintPreviewWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -15541,7 +15577,7 @@ func (ptr *QPrintPreviewWidget) ConnectChildEvent(f func(event *core.QChildEvent
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::childEvent", f)
 	}
 }
 
@@ -15550,7 +15586,7 @@ func (ptr *QPrintPreviewWidget) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::childEvent")
 	}
 }
 
@@ -15574,7 +15610,7 @@ func (ptr *QPrintPreviewWidget) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQPrintPreviewWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -15586,7 +15622,7 @@ func (ptr *QPrintPreviewWidget) ConnectConnectNotify(f func(sign *core.QMetaMeth
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::connectNotify", f)
 	}
 }
 
@@ -15595,7 +15631,7 @@ func (ptr *QPrintPreviewWidget) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::connectNotify")
 	}
 }
 
@@ -15619,7 +15655,7 @@ func (ptr *QPrintPreviewWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 func callbackQPrintPreviewWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -15631,7 +15667,7 @@ func (ptr *QPrintPreviewWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::customEvent", f)
 	}
 }
 
@@ -15640,7 +15676,7 @@ func (ptr *QPrintPreviewWidget) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::customEvent")
 	}
 }
 
@@ -15664,7 +15700,7 @@ func (ptr *QPrintPreviewWidget) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQPrintPreviewWidget_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).DeleteLaterDefault()
@@ -15676,7 +15712,7 @@ func (ptr *QPrintPreviewWidget) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::deleteLater", f)
 	}
 }
 
@@ -15685,7 +15721,7 @@ func (ptr *QPrintPreviewWidget) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::deleteLater")
 	}
 }
 
@@ -15693,8 +15729,8 @@ func (ptr *QPrintPreviewWidget) DeleteLater() {
 	defer qt.Recovering("QPrintPreviewWidget::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()))
 		C.QPrintPreviewWidget_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15703,8 +15739,8 @@ func (ptr *QPrintPreviewWidget) DeleteLaterDefault() {
 	defer qt.Recovering("QPrintPreviewWidget::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()))
 		C.QPrintPreviewWidget_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15713,7 +15749,7 @@ func (ptr *QPrintPreviewWidget) DeleteLaterDefault() {
 func callbackQPrintPreviewWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QPrintPreviewWidget::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQPrintPreviewWidgetFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -15725,7 +15761,7 @@ func (ptr *QPrintPreviewWidget) ConnectDisconnectNotify(f func(sign *core.QMetaM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::disconnectNotify", f)
 	}
 }
 
@@ -15734,7 +15770,7 @@ func (ptr *QPrintPreviewWidget) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::disconnectNotify")
 	}
 }
 
@@ -15758,7 +15794,7 @@ func (ptr *QPrintPreviewWidget) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 func callbackQPrintPreviewWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QPrintPreviewWidget::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -15770,7 +15806,7 @@ func (ptr *QPrintPreviewWidget) ConnectEventFilter(f func(watched *core.QObject,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::eventFilter", f)
 	}
 }
 
@@ -15779,7 +15815,7 @@ func (ptr *QPrintPreviewWidget) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::eventFilter")
 	}
 }
 
@@ -15805,7 +15841,7 @@ func (ptr *QPrintPreviewWidget) EventFilterDefault(watched core.QObject_ITF, eve
 func callbackQPrintPreviewWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QPrintPreviewWidget::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -15817,7 +15853,7 @@ func (ptr *QPrintPreviewWidget) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::metaObject", f)
 	}
 }
 
@@ -15826,7 +15862,7 @@ func (ptr *QPrintPreviewWidget) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrintPreviewWidget(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::metaObject")
 	}
 }
 
@@ -16631,7 +16667,7 @@ func (ptr *QPrinter) DestroyQPrinter() {
 func callbackQPrinter_SetPageSize2(ptr unsafe.Pointer, size C.longlong) {
 	defer qt.Recovering("callback QPrinter::setPageSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrinter(%v)", ptr), "setPageSize2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrinter::setPageSize2"); signal != nil {
 		signal.(func(gui.QPagedPaintDevice__PageSize))(gui.QPagedPaintDevice__PageSize(size))
 	} else {
 		NewQPrinterFromPointer(ptr).SetPageSize2Default(gui.QPagedPaintDevice__PageSize(size))
@@ -16643,7 +16679,7 @@ func (ptr *QPrinter) ConnectSetPageSize2(f func(size gui.QPagedPaintDevice__Page
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrinter(%v)", ptr.Pointer()), "setPageSize2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSize2", f)
 	}
 }
 
@@ -16652,7 +16688,7 @@ func (ptr *QPrinter) DisconnectSetPageSize2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrinter(%v)", ptr.Pointer()), "setPageSize2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSize2")
 	}
 }
 
@@ -16676,7 +16712,7 @@ func (ptr *QPrinter) SetPageSize2Default(size gui.QPagedPaintDevice__PageSize) {
 func callbackQPrinter_SetPageSizeMM(ptr unsafe.Pointer, size unsafe.Pointer) {
 	defer qt.Recovering("callback QPrinter::setPageSizeMM")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrinter(%v)", ptr), "setPageSizeMM"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrinter::setPageSizeMM"); signal != nil {
 		signal.(func(*core.QSizeF))(core.NewQSizeFFromPointer(size))
 	} else {
 		NewQPrinterFromPointer(ptr).SetPageSizeMMDefault(core.NewQSizeFFromPointer(size))
@@ -16688,7 +16724,7 @@ func (ptr *QPrinter) ConnectSetPageSizeMM(f func(size *core.QSizeF)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrinter(%v)", ptr.Pointer()), "setPageSizeMM", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSizeMM", f)
 	}
 }
 
@@ -16697,7 +16733,7 @@ func (ptr *QPrinter) DisconnectSetPageSizeMM() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrinter(%v)", ptr.Pointer()), "setPageSizeMM")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setPageSizeMM")
 	}
 }
 
@@ -16721,7 +16757,7 @@ func (ptr *QPrinter) SetPageSizeMMDefault(size core.QSizeF_ITF) {
 func callbackQPrinter_Metric(ptr unsafe.Pointer, metric C.longlong) C.int {
 	defer qt.Recovering("callback QPrinter::metric")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QPrinter(%v)", ptr), "metric"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrinter::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(metric))))
 	}
 
@@ -16733,7 +16769,7 @@ func (ptr *QPrinter) ConnectMetric(f func(metric gui.QPaintDevice__PaintDeviceMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QPrinter(%v)", ptr.Pointer()), "metric", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::metric", f)
 	}
 }
 
@@ -16742,7 +16778,7 @@ func (ptr *QPrinter) DisconnectMetric() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QPrinter(%v)", ptr.Pointer()), "metric")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::metric")
 	}
 }
 

@@ -57,14 +57,18 @@ func NewQAbstractNetworkCacheFromPointer(ptr unsafe.Pointer) *QAbstractNetworkCa
 func NewQAbstractNetworkCache(parent core.QObject_ITF) *QAbstractNetworkCache {
 	defer qt.Recovering("QAbstractNetworkCache::QAbstractNetworkCache")
 
-	return NewQAbstractNetworkCacheFromPointer(C.QAbstractNetworkCache_NewQAbstractNetworkCache(core.PointerFromQObject(parent)))
+	var tmpValue = NewQAbstractNetworkCacheFromPointer(C.QAbstractNetworkCache_NewQAbstractNetworkCache(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQAbstractNetworkCache_CacheSize
 func callbackQAbstractNetworkCache_CacheSize(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QAbstractNetworkCache::cacheSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "cacheSize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::cacheSize"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -76,7 +80,7 @@ func (ptr *QAbstractNetworkCache) ConnectCacheSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "cacheSize", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::cacheSize", f)
 	}
 }
 
@@ -85,7 +89,7 @@ func (ptr *QAbstractNetworkCache) DisconnectCacheSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "cacheSize")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::cacheSize")
 	}
 }
 
@@ -102,7 +106,7 @@ func (ptr *QAbstractNetworkCache) CacheSize() int64 {
 func callbackQAbstractNetworkCache_Clear(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::clear")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "clear"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::clear"); signal != nil {
 		signal.(func())()
 	}
 
@@ -113,7 +117,7 @@ func (ptr *QAbstractNetworkCache) ConnectClear(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "clear", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::clear", f)
 	}
 }
 
@@ -122,7 +126,7 @@ func (ptr *QAbstractNetworkCache) DisconnectClear() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "clear")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::clear")
 	}
 }
 
@@ -138,7 +142,7 @@ func (ptr *QAbstractNetworkCache) Clear() {
 func callbackQAbstractNetworkCache_Data(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractNetworkCache::data")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "data"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::data"); signal != nil {
 		return core.PointerFromQIODevice(signal.(func(*core.QUrl) *core.QIODevice)(core.NewQUrlFromPointer(url)))
 	}
 
@@ -150,7 +154,7 @@ func (ptr *QAbstractNetworkCache) ConnectData(f func(url *core.QUrl) *core.QIODe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "data", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::data", f)
 	}
 }
 
@@ -159,7 +163,7 @@ func (ptr *QAbstractNetworkCache) DisconnectData(url core.QUrl_ITF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "data")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::data")
 	}
 }
 
@@ -167,7 +171,11 @@ func (ptr *QAbstractNetworkCache) Data(url core.QUrl_ITF) *core.QIODevice {
 	defer qt.Recovering("QAbstractNetworkCache::data")
 
 	if ptr.Pointer() != nil {
-		return core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
+		var tmpValue = core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -176,7 +184,7 @@ func (ptr *QAbstractNetworkCache) Data(url core.QUrl_ITF) *core.QIODevice {
 func callbackQAbstractNetworkCache_Insert(ptr unsafe.Pointer, device unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::insert")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "insert"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::insert"); signal != nil {
 		signal.(func(*core.QIODevice))(core.NewQIODeviceFromPointer(device))
 	}
 
@@ -187,7 +195,7 @@ func (ptr *QAbstractNetworkCache) ConnectInsert(f func(device *core.QIODevice)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "insert", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::insert", f)
 	}
 }
 
@@ -196,7 +204,7 @@ func (ptr *QAbstractNetworkCache) DisconnectInsert(device core.QIODevice_ITF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "insert")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::insert")
 	}
 }
 
@@ -212,7 +220,7 @@ func (ptr *QAbstractNetworkCache) Insert(device core.QIODevice_ITF) {
 func callbackQAbstractNetworkCache_MetaData(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractNetworkCache::metaData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "metaData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::metaData"); signal != nil {
 		return PointerFromQNetworkCacheMetaData(signal.(func(*core.QUrl) *QNetworkCacheMetaData)(core.NewQUrlFromPointer(url)))
 	}
 
@@ -224,7 +232,7 @@ func (ptr *QAbstractNetworkCache) ConnectMetaData(f func(url *core.QUrl) *QNetwo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "metaData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::metaData", f)
 	}
 }
 
@@ -233,7 +241,7 @@ func (ptr *QAbstractNetworkCache) DisconnectMetaData(url core.QUrl_ITF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "metaData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::metaData")
 	}
 }
 
@@ -252,7 +260,7 @@ func (ptr *QAbstractNetworkCache) MetaData(url core.QUrl_ITF) *QNetworkCacheMeta
 func callbackQAbstractNetworkCache_Prepare(ptr unsafe.Pointer, metaData unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractNetworkCache::prepare")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "prepare"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::prepare"); signal != nil {
 		return core.PointerFromQIODevice(signal.(func(*QNetworkCacheMetaData) *core.QIODevice)(NewQNetworkCacheMetaDataFromPointer(metaData)))
 	}
 
@@ -264,7 +272,7 @@ func (ptr *QAbstractNetworkCache) ConnectPrepare(f func(metaData *QNetworkCacheM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "prepare", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::prepare", f)
 	}
 }
 
@@ -273,7 +281,7 @@ func (ptr *QAbstractNetworkCache) DisconnectPrepare(metaData QNetworkCacheMetaDa
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "prepare")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::prepare")
 	}
 }
 
@@ -281,7 +289,11 @@ func (ptr *QAbstractNetworkCache) Prepare(metaData QNetworkCacheMetaData_ITF) *c
 	defer qt.Recovering("QAbstractNetworkCache::prepare")
 
 	if ptr.Pointer() != nil {
-		return core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
+		var tmpValue = core.NewQIODeviceFromPointer(C.QAbstractNetworkCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -290,7 +302,7 @@ func (ptr *QAbstractNetworkCache) Prepare(metaData QNetworkCacheMetaData_ITF) *c
 func callbackQAbstractNetworkCache_Remove(ptr unsafe.Pointer, url unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractNetworkCache::remove")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "remove"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::remove"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl) bool)(core.NewQUrlFromPointer(url)))))
 	}
 
@@ -302,7 +314,7 @@ func (ptr *QAbstractNetworkCache) ConnectRemove(f func(url *core.QUrl) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "remove", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::remove", f)
 	}
 }
 
@@ -311,7 +323,7 @@ func (ptr *QAbstractNetworkCache) DisconnectRemove(url core.QUrl_ITF) {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "remove")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::remove")
 	}
 }
 
@@ -328,7 +340,7 @@ func (ptr *QAbstractNetworkCache) Remove(url core.QUrl_ITF) bool {
 func callbackQAbstractNetworkCache_UpdateMetaData(ptr unsafe.Pointer, metaData unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::updateMetaData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "updateMetaData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::updateMetaData"); signal != nil {
 		signal.(func(*QNetworkCacheMetaData))(NewQNetworkCacheMetaDataFromPointer(metaData))
 	}
 
@@ -339,7 +351,7 @@ func (ptr *QAbstractNetworkCache) ConnectUpdateMetaData(f func(metaData *QNetwor
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "updateMetaData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::updateMetaData", f)
 	}
 }
 
@@ -348,7 +360,7 @@ func (ptr *QAbstractNetworkCache) DisconnectUpdateMetaData(metaData QNetworkCach
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "updateMetaData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::updateMetaData")
 	}
 }
 
@@ -364,8 +376,8 @@ func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCache() {
 	defer qt.Recovering("QAbstractNetworkCache::~QAbstractNetworkCache")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()))
 		C.QAbstractNetworkCache_DestroyQAbstractNetworkCache(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -374,7 +386,7 @@ func (ptr *QAbstractNetworkCache) DestroyQAbstractNetworkCache() {
 func callbackQAbstractNetworkCache_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQAbstractNetworkCacheFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -386,7 +398,7 @@ func (ptr *QAbstractNetworkCache) ConnectTimerEvent(f func(event *core.QTimerEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::timerEvent", f)
 	}
 }
 
@@ -395,7 +407,7 @@ func (ptr *QAbstractNetworkCache) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::timerEvent")
 	}
 }
 
@@ -419,7 +431,7 @@ func (ptr *QAbstractNetworkCache) TimerEventDefault(event core.QTimerEvent_ITF) 
 func callbackQAbstractNetworkCache_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQAbstractNetworkCacheFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -431,7 +443,7 @@ func (ptr *QAbstractNetworkCache) ConnectChildEvent(f func(event *core.QChildEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::childEvent", f)
 	}
 }
 
@@ -440,7 +452,7 @@ func (ptr *QAbstractNetworkCache) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::childEvent")
 	}
 }
 
@@ -464,7 +476,7 @@ func (ptr *QAbstractNetworkCache) ChildEventDefault(event core.QChildEvent_ITF) 
 func callbackQAbstractNetworkCache_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQAbstractNetworkCacheFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -476,7 +488,7 @@ func (ptr *QAbstractNetworkCache) ConnectConnectNotify(f func(sign *core.QMetaMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::connectNotify", f)
 	}
 }
 
@@ -485,7 +497,7 @@ func (ptr *QAbstractNetworkCache) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::connectNotify")
 	}
 }
 
@@ -509,7 +521,7 @@ func (ptr *QAbstractNetworkCache) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 func callbackQAbstractNetworkCache_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQAbstractNetworkCacheFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -521,7 +533,7 @@ func (ptr *QAbstractNetworkCache) ConnectCustomEvent(f func(event *core.QEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::customEvent", f)
 	}
 }
 
@@ -530,7 +542,7 @@ func (ptr *QAbstractNetworkCache) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::customEvent")
 	}
 }
 
@@ -554,7 +566,7 @@ func (ptr *QAbstractNetworkCache) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQAbstractNetworkCache_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractNetworkCacheFromPointer(ptr).DeleteLaterDefault()
@@ -566,7 +578,7 @@ func (ptr *QAbstractNetworkCache) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::deleteLater", f)
 	}
 }
 
@@ -575,7 +587,7 @@ func (ptr *QAbstractNetworkCache) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::deleteLater")
 	}
 }
 
@@ -583,8 +595,8 @@ func (ptr *QAbstractNetworkCache) DeleteLater() {
 	defer qt.Recovering("QAbstractNetworkCache::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()))
 		C.QAbstractNetworkCache_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -593,8 +605,8 @@ func (ptr *QAbstractNetworkCache) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractNetworkCache::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()))
 		C.QAbstractNetworkCache_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -603,7 +615,7 @@ func (ptr *QAbstractNetworkCache) DeleteLaterDefault() {
 func callbackQAbstractNetworkCache_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractNetworkCache::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQAbstractNetworkCacheFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -615,7 +627,7 @@ func (ptr *QAbstractNetworkCache) ConnectDisconnectNotify(f func(sign *core.QMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::disconnectNotify", f)
 	}
 }
 
@@ -624,7 +636,7 @@ func (ptr *QAbstractNetworkCache) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::disconnectNotify")
 	}
 }
 
@@ -648,7 +660,7 @@ func (ptr *QAbstractNetworkCache) DisconnectNotifyDefault(sign core.QMetaMethod_
 func callbackQAbstractNetworkCache_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractNetworkCache::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -660,7 +672,7 @@ func (ptr *QAbstractNetworkCache) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::event", f)
 	}
 }
 
@@ -669,7 +681,7 @@ func (ptr *QAbstractNetworkCache) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::event")
 	}
 }
 
@@ -695,7 +707,7 @@ func (ptr *QAbstractNetworkCache) EventDefault(e core.QEvent_ITF) bool {
 func callbackQAbstractNetworkCache_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractNetworkCache::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -707,7 +719,7 @@ func (ptr *QAbstractNetworkCache) ConnectEventFilter(f func(watched *core.QObjec
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::eventFilter", f)
 	}
 }
 
@@ -716,7 +728,7 @@ func (ptr *QAbstractNetworkCache) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::eventFilter")
 	}
 }
 
@@ -742,7 +754,7 @@ func (ptr *QAbstractNetworkCache) EventFilterDefault(watched core.QObject_ITF, e
 func callbackQAbstractNetworkCache_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractNetworkCache::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNetworkCache::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -754,7 +766,7 @@ func (ptr *QAbstractNetworkCache) ConnectMetaObject(f func() *core.QMetaObject) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::metaObject", f)
 	}
 }
 
@@ -763,7 +775,7 @@ func (ptr *QAbstractNetworkCache) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractNetworkCache(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNetworkCache::metaObject")
 	}
 }
 
@@ -919,7 +931,11 @@ func NewQAbstractSocketFromPointer(ptr unsafe.Pointer) *QAbstractSocket {
 func NewQAbstractSocket(socketType QAbstractSocket__SocketType, parent core.QObject_ITF) *QAbstractSocket {
 	defer qt.Recovering("QAbstractSocket::QAbstractSocket")
 
-	return NewQAbstractSocketFromPointer(C.QAbstractSocket_NewQAbstractSocket(C.longlong(socketType), core.PointerFromQObject(parent)))
+	var tmpValue = NewQAbstractSocketFromPointer(C.QAbstractSocket_NewQAbstractSocket(C.longlong(socketType), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QAbstractSocket) Abort() {
@@ -996,7 +1012,7 @@ func (ptr *QAbstractSocket) Close() {
 func callbackQAbstractSocket_ConnectToHost2(ptr unsafe.Pointer, address unsafe.Pointer, port C.ushort, openMode C.longlong) {
 	defer qt.Recovering("callback QAbstractSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "connectToHost2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::connectToHost2"); signal != nil {
 		signal.(func(*QHostAddress, uint16, core.QIODevice__OpenModeFlag))(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).ConnectToHost2Default(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
@@ -1008,7 +1024,7 @@ func (ptr *QAbstractSocket) ConnectConnectToHost2(f func(address *QHostAddress, 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connectToHost2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connectToHost2", f)
 	}
 }
 
@@ -1017,7 +1033,7 @@ func (ptr *QAbstractSocket) DisconnectConnectToHost2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connectToHost2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connectToHost2")
 	}
 }
 
@@ -1041,7 +1057,7 @@ func (ptr *QAbstractSocket) ConnectToHost2Default(address QHostAddress_ITF, port
 func callbackQAbstractSocket_ConnectToHost(ptr unsafe.Pointer, hostName *C.char, port C.ushort, openMode C.longlong, protocol C.longlong) {
 	defer qt.Recovering("callback QAbstractSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "connectToHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::connectToHost"); signal != nil {
 		signal.(func(string, uint16, core.QIODevice__OpenModeFlag, QAbstractSocket__NetworkLayerProtocol))(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).ConnectToHostDefault(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
@@ -1053,7 +1069,7 @@ func (ptr *QAbstractSocket) ConnectConnectToHost(f func(hostName string, port ui
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connectToHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connectToHost", f)
 	}
 }
 
@@ -1062,7 +1078,7 @@ func (ptr *QAbstractSocket) DisconnectConnectToHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connectToHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connectToHost")
 	}
 }
 
@@ -1090,7 +1106,7 @@ func (ptr *QAbstractSocket) ConnectToHostDefault(hostName string, port uint16, o
 func callbackQAbstractSocket_Connected(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::connected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "connected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::connected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -1101,7 +1117,7 @@ func (ptr *QAbstractSocket) ConnectConnected(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_ConnectConnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connected", f)
 	}
 }
 
@@ -1110,7 +1126,7 @@ func (ptr *QAbstractSocket) DisconnectConnected() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DisconnectConnected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connected")
 	}
 }
 
@@ -1126,7 +1142,7 @@ func (ptr *QAbstractSocket) Connected() {
 func callbackQAbstractSocket_DisconnectFromHost(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::disconnectFromHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "disconnectFromHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::disconnectFromHost"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractSocketFromPointer(ptr).DisconnectFromHostDefault()
@@ -1138,7 +1154,7 @@ func (ptr *QAbstractSocket) ConnectDisconnectFromHost(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "disconnectFromHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::disconnectFromHost", f)
 	}
 }
 
@@ -1147,7 +1163,7 @@ func (ptr *QAbstractSocket) DisconnectDisconnectFromHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "disconnectFromHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::disconnectFromHost")
 	}
 }
 
@@ -1171,7 +1187,7 @@ func (ptr *QAbstractSocket) DisconnectFromHostDefault() {
 func callbackQAbstractSocket_Disconnected(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::disconnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "disconnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -1182,7 +1198,7 @@ func (ptr *QAbstractSocket) ConnectDisconnected(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_ConnectDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "disconnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::disconnected", f)
 	}
 }
 
@@ -1191,7 +1207,7 @@ func (ptr *QAbstractSocket) DisconnectDisconnected() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DisconnectDisconnected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "disconnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::disconnected")
 	}
 }
 
@@ -1207,7 +1223,7 @@ func (ptr *QAbstractSocket) Disconnected() {
 func callbackQAbstractSocket_Error2(ptr unsafe.Pointer, socketError C.longlong) {
 	defer qt.Recovering("callback QAbstractSocket::error")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "error2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::error2"); signal != nil {
 		signal.(func(QAbstractSocket__SocketError))(QAbstractSocket__SocketError(socketError))
 	}
 
@@ -1218,7 +1234,7 @@ func (ptr *QAbstractSocket) ConnectError2(f func(socketError QAbstractSocket__So
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "error2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::error2", f)
 	}
 }
 
@@ -1227,7 +1243,7 @@ func (ptr *QAbstractSocket) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "error2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::error2")
 	}
 }
 
@@ -1261,7 +1277,7 @@ func (ptr *QAbstractSocket) Flush() bool {
 func callbackQAbstractSocket_HostFound(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::hostFound")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "hostFound"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::hostFound"); signal != nil {
 		signal.(func())()
 	}
 
@@ -1272,7 +1288,7 @@ func (ptr *QAbstractSocket) ConnectHostFound(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_ConnectHostFound(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "hostFound", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::hostFound", f)
 	}
 }
 
@@ -1281,7 +1297,7 @@ func (ptr *QAbstractSocket) DisconnectHostFound() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DisconnectHostFound(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "hostFound")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::hostFound")
 	}
 }
 
@@ -1384,7 +1400,7 @@ func (ptr *QAbstractSocket) Proxy() *QNetworkProxy {
 func callbackQAbstractSocket_ProxyAuthenticationRequired(ptr unsafe.Pointer, proxy unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::proxyAuthenticationRequired")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "proxyAuthenticationRequired"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::proxyAuthenticationRequired"); signal != nil {
 		signal.(func(*QNetworkProxy, *QAuthenticator))(NewQNetworkProxyFromPointer(proxy), NewQAuthenticatorFromPointer(authenticator))
 	}
 
@@ -1395,7 +1411,7 @@ func (ptr *QAbstractSocket) ConnectProxyAuthenticationRequired(f func(proxy *QNe
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_ConnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "proxyAuthenticationRequired", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::proxyAuthenticationRequired", f)
 	}
 }
 
@@ -1404,7 +1420,7 @@ func (ptr *QAbstractSocket) DisconnectProxyAuthenticationRequired() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DisconnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "proxyAuthenticationRequired")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::proxyAuthenticationRequired")
 	}
 }
 
@@ -1440,7 +1456,7 @@ func (ptr *QAbstractSocket) ReadLineData(data string, maxlen int64) int64 {
 func callbackQAbstractSocket_Resume(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::resume")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "resume"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::resume"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractSocketFromPointer(ptr).ResumeDefault()
@@ -1452,7 +1468,7 @@ func (ptr *QAbstractSocket) ConnectResume(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "resume", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::resume", f)
 	}
 }
 
@@ -1461,7 +1477,7 @@ func (ptr *QAbstractSocket) DisconnectResume() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "resume")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::resume")
 	}
 }
 
@@ -1543,7 +1559,7 @@ func (ptr *QAbstractSocket) SetProxy(networkProxy QNetworkProxy_ITF) {
 func callbackQAbstractSocket_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong) {
 	defer qt.Recovering("callback QAbstractSocket::setReadBufferSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "setReadBufferSize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::setReadBufferSize"); signal != nil {
 		signal.(func(int64))(int64(size))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
@@ -1555,7 +1571,7 @@ func (ptr *QAbstractSocket) ConnectSetReadBufferSize(f func(size int64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "setReadBufferSize", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::setReadBufferSize", f)
 	}
 }
 
@@ -1564,7 +1580,7 @@ func (ptr *QAbstractSocket) DisconnectSetReadBufferSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "setReadBufferSize")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::setReadBufferSize")
 	}
 }
 
@@ -1596,7 +1612,7 @@ func (ptr *QAbstractSocket) SetSocketError(socketError QAbstractSocket__SocketEr
 func callbackQAbstractSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::setSocketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "setSocketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::setSocketOption"); signal != nil {
 		signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).SetSocketOptionDefault(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
@@ -1608,7 +1624,7 @@ func (ptr *QAbstractSocket) ConnectSetSocketOption(f func(option QAbstractSocket
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "setSocketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::setSocketOption", f)
 	}
 }
 
@@ -1617,7 +1633,7 @@ func (ptr *QAbstractSocket) DisconnectSetSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "setSocketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::setSocketOption")
 	}
 }
 
@@ -1649,7 +1665,7 @@ func (ptr *QAbstractSocket) SetSocketState(state QAbstractSocket__SocketState) {
 func callbackQAbstractSocket_SocketOption(ptr unsafe.Pointer, option C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractSocket::socketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "socketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::socketOption"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QAbstractSocket__SocketOption) *core.QVariant)(QAbstractSocket__SocketOption(option)))
 	}
 
@@ -1661,7 +1677,7 @@ func (ptr *QAbstractSocket) ConnectSocketOption(f func(option QAbstractSocket__S
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "socketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::socketOption", f)
 	}
 }
 
@@ -1670,7 +1686,7 @@ func (ptr *QAbstractSocket) DisconnectSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "socketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::socketOption")
 	}
 }
 
@@ -1718,7 +1734,7 @@ func (ptr *QAbstractSocket) State() QAbstractSocket__SocketState {
 func callbackQAbstractSocket_StateChanged(ptr unsafe.Pointer, socketState C.longlong) {
 	defer qt.Recovering("callback QAbstractSocket::stateChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "stateChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::stateChanged"); signal != nil {
 		signal.(func(QAbstractSocket__SocketState))(QAbstractSocket__SocketState(socketState))
 	}
 
@@ -1729,7 +1745,7 @@ func (ptr *QAbstractSocket) ConnectStateChanged(f func(socketState QAbstractSock
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "stateChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::stateChanged", f)
 	}
 }
 
@@ -1738,7 +1754,7 @@ func (ptr *QAbstractSocket) DisconnectStateChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_DisconnectStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "stateChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::stateChanged")
 	}
 }
 
@@ -1763,7 +1779,7 @@ func (ptr *QAbstractSocket) WaitForBytesWritten(msecs int) bool {
 func callbackQAbstractSocket_WaitForConnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QAbstractSocket::waitForConnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "waitForConnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::waitForConnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -1775,7 +1791,7 @@ func (ptr *QAbstractSocket) ConnectWaitForConnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "waitForConnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::waitForConnected", f)
 	}
 }
 
@@ -1784,7 +1800,7 @@ func (ptr *QAbstractSocket) DisconnectWaitForConnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "waitForConnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::waitForConnected")
 	}
 }
 
@@ -1810,7 +1826,7 @@ func (ptr *QAbstractSocket) WaitForConnectedDefault(msecs int) bool {
 func callbackQAbstractSocket_WaitForDisconnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QAbstractSocket::waitForDisconnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "waitForDisconnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::waitForDisconnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -1822,7 +1838,7 @@ func (ptr *QAbstractSocket) ConnectWaitForDisconnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "waitForDisconnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::waitForDisconnected", f)
 	}
 }
 
@@ -1831,7 +1847,7 @@ func (ptr *QAbstractSocket) DisconnectWaitForDisconnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "waitForDisconnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::waitForDisconnected")
 	}
 }
 
@@ -1877,8 +1893,8 @@ func (ptr *QAbstractSocket) DestroyQAbstractSocket() {
 	defer qt.Recovering("QAbstractSocket::~QAbstractSocket")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()))
 		C.QAbstractSocket_DestroyQAbstractSocket(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1887,7 +1903,7 @@ func (ptr *QAbstractSocket) DestroyQAbstractSocket() {
 func callbackQAbstractSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 	defer qt.Recovering("callback QAbstractSocket::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(core.QIODevice__OpenModeFlag) bool)(core.QIODevice__OpenModeFlag(mode)))))
 	}
 
@@ -1899,7 +1915,7 @@ func (ptr *QAbstractSocket) ConnectOpen(f func(mode core.QIODevice__OpenModeFlag
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::open", f)
 	}
 }
 
@@ -1908,7 +1924,7 @@ func (ptr *QAbstractSocket) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::open")
 	}
 }
 
@@ -1934,7 +1950,7 @@ func (ptr *QAbstractSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool 
 func callbackQAbstractSocket_Pos(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QAbstractSocket::pos")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "pos"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -1946,7 +1962,7 @@ func (ptr *QAbstractSocket) ConnectPos(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "pos", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::pos", f)
 	}
 }
 
@@ -1955,7 +1971,7 @@ func (ptr *QAbstractSocket) DisconnectPos() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "pos")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::pos")
 	}
 }
 
@@ -1981,7 +1997,7 @@ func (ptr *QAbstractSocket) PosDefault() int64 {
 func callbackQAbstractSocket_Reset(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractSocket::reset")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "reset"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -1993,7 +2009,7 @@ func (ptr *QAbstractSocket) ConnectReset(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "reset", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::reset", f)
 	}
 }
 
@@ -2002,7 +2018,7 @@ func (ptr *QAbstractSocket) DisconnectReset() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "reset")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::reset")
 	}
 }
 
@@ -2028,7 +2044,7 @@ func (ptr *QAbstractSocket) ResetDefault() bool {
 func callbackQAbstractSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 	defer qt.Recovering("callback QAbstractSocket::seek")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "seek"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
 
@@ -2040,7 +2056,7 @@ func (ptr *QAbstractSocket) ConnectSeek(f func(pos int64) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "seek", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::seek", f)
 	}
 }
 
@@ -2049,7 +2065,7 @@ func (ptr *QAbstractSocket) DisconnectSeek() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "seek")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::seek")
 	}
 }
 
@@ -2075,7 +2091,7 @@ func (ptr *QAbstractSocket) SeekDefault(pos int64) bool {
 func callbackQAbstractSocket_Size(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QAbstractSocket::size")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "size"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -2087,7 +2103,7 @@ func (ptr *QAbstractSocket) ConnectSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "size", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::size", f)
 	}
 }
 
@@ -2096,7 +2112,7 @@ func (ptr *QAbstractSocket) DisconnectSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "size")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::size")
 	}
 }
 
@@ -2122,7 +2138,7 @@ func (ptr *QAbstractSocket) SizeDefault() int64 {
 func callbackQAbstractSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -2134,7 +2150,7 @@ func (ptr *QAbstractSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::timerEvent", f)
 	}
 }
 
@@ -2143,7 +2159,7 @@ func (ptr *QAbstractSocket) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::timerEvent")
 	}
 }
 
@@ -2167,7 +2183,7 @@ func (ptr *QAbstractSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQAbstractSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -2179,7 +2195,7 @@ func (ptr *QAbstractSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::childEvent", f)
 	}
 }
 
@@ -2188,7 +2204,7 @@ func (ptr *QAbstractSocket) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::childEvent")
 	}
 }
 
@@ -2212,7 +2228,7 @@ func (ptr *QAbstractSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQAbstractSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2224,7 +2240,7 @@ func (ptr *QAbstractSocket) ConnectConnectNotify(f func(sign *core.QMetaMethod))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connectNotify", f)
 	}
 }
 
@@ -2233,7 +2249,7 @@ func (ptr *QAbstractSocket) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::connectNotify")
 	}
 }
 
@@ -2257,7 +2273,7 @@ func (ptr *QAbstractSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQAbstractSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -2269,7 +2285,7 @@ func (ptr *QAbstractSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::customEvent", f)
 	}
 }
 
@@ -2278,7 +2294,7 @@ func (ptr *QAbstractSocket) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::customEvent")
 	}
 }
 
@@ -2302,7 +2318,7 @@ func (ptr *QAbstractSocket) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQAbstractSocket_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQAbstractSocketFromPointer(ptr).DeleteLaterDefault()
@@ -2314,7 +2330,7 @@ func (ptr *QAbstractSocket) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::deleteLater", f)
 	}
 }
 
@@ -2323,7 +2339,7 @@ func (ptr *QAbstractSocket) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::deleteLater")
 	}
 }
 
@@ -2331,8 +2347,8 @@ func (ptr *QAbstractSocket) DeleteLater() {
 	defer qt.Recovering("QAbstractSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()))
 		C.QAbstractSocket_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2341,8 +2357,8 @@ func (ptr *QAbstractSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QAbstractSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()))
 		C.QAbstractSocket_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2351,7 +2367,7 @@ func (ptr *QAbstractSocket) DeleteLaterDefault() {
 func callbackQAbstractSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QAbstractSocket::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQAbstractSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -2363,7 +2379,7 @@ func (ptr *QAbstractSocket) ConnectDisconnectNotify(f func(sign *core.QMetaMetho
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::disconnectNotify", f)
 	}
 }
 
@@ -2372,7 +2388,7 @@ func (ptr *QAbstractSocket) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::disconnectNotify")
 	}
 }
 
@@ -2396,7 +2412,7 @@ func (ptr *QAbstractSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQAbstractSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractSocket::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -2408,7 +2424,7 @@ func (ptr *QAbstractSocket) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::event", f)
 	}
 }
 
@@ -2417,7 +2433,7 @@ func (ptr *QAbstractSocket) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::event")
 	}
 }
 
@@ -2443,7 +2459,7 @@ func (ptr *QAbstractSocket) EventDefault(e core.QEvent_ITF) bool {
 func callbackQAbstractSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QAbstractSocket::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -2455,7 +2471,7 @@ func (ptr *QAbstractSocket) ConnectEventFilter(f func(watched *core.QObject, eve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::eventFilter", f)
 	}
 }
 
@@ -2464,7 +2480,7 @@ func (ptr *QAbstractSocket) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::eventFilter")
 	}
 }
 
@@ -2490,7 +2506,7 @@ func (ptr *QAbstractSocket) EventFilterDefault(watched core.QObject_ITF, event c
 func callbackQAbstractSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QAbstractSocket::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractSocket::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -2502,7 +2518,7 @@ func (ptr *QAbstractSocket) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::metaObject", f)
 	}
 }
 
@@ -2511,7 +2527,7 @@ func (ptr *QAbstractSocket) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QAbstractSocket(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::metaObject")
 	}
 }
 
@@ -2942,7 +2958,11 @@ func NewQDnsLookup3(ty QDnsLookup__Type, name string, nameserver QHostAddress_IT
 
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
-	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.longlong(ty), nameC, PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
+	var tmpValue = NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup3(C.longlong(ty), nameC, PointerFromQHostAddress(nameserver), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QDnsLookup) Error() QDnsLookup__Error {
@@ -3021,7 +3041,11 @@ func (ptr *QDnsLookup) Type() QDnsLookup__Type {
 func NewQDnsLookup(parent core.QObject_ITF) *QDnsLookup {
 	defer qt.Recovering("QDnsLookup::QDnsLookup")
 
-	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup(core.PointerFromQObject(parent)))
+	var tmpValue = NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQDnsLookup2(ty QDnsLookup__Type, name string, parent core.QObject_ITF) *QDnsLookup {
@@ -3029,14 +3053,18 @@ func NewQDnsLookup2(ty QDnsLookup__Type, name string, parent core.QObject_ITF) *
 
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
-	return NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.longlong(ty), nameC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQDnsLookupFromPointer(C.QDnsLookup_NewQDnsLookup2(C.longlong(ty), nameC, core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQDnsLookup_Abort
 func callbackQDnsLookup_Abort(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::abort")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "abort"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::abort"); signal != nil {
 		signal.(func())()
 	}
 
@@ -3047,7 +3075,7 @@ func (ptr *QDnsLookup) ConnectAbort(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "abort", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::abort", f)
 	}
 }
 
@@ -3056,7 +3084,7 @@ func (ptr *QDnsLookup) DisconnectAbort() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "abort")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::abort")
 	}
 }
 
@@ -3072,7 +3100,7 @@ func (ptr *QDnsLookup) Abort() {
 func callbackQDnsLookup_Finished(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::finished")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "finished"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -3083,7 +3111,7 @@ func (ptr *QDnsLookup) ConnectFinished(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "finished", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::finished", f)
 	}
 }
 
@@ -3092,7 +3120,7 @@ func (ptr *QDnsLookup) DisconnectFinished() {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "finished")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::finished")
 	}
 }
 
@@ -3117,7 +3145,7 @@ func (ptr *QDnsLookup) IsFinished() bool {
 func callbackQDnsLookup_Lookup(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::lookup")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "lookup"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::lookup"); signal != nil {
 		signal.(func())()
 	}
 
@@ -3128,7 +3156,7 @@ func (ptr *QDnsLookup) ConnectLookup(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "lookup", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::lookup", f)
 	}
 }
 
@@ -3137,7 +3165,7 @@ func (ptr *QDnsLookup) DisconnectLookup() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "lookup")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::lookup")
 	}
 }
 
@@ -3153,7 +3181,7 @@ func (ptr *QDnsLookup) Lookup() {
 func callbackQDnsLookup_NameChanged(ptr unsafe.Pointer, name *C.char) {
 	defer qt.Recovering("callback QDnsLookup::nameChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "nameChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::nameChanged"); signal != nil {
 		signal.(func(string))(C.GoString(name))
 	}
 
@@ -3164,7 +3192,7 @@ func (ptr *QDnsLookup) ConnectNameChanged(f func(name string)) {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_ConnectNameChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "nameChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::nameChanged", f)
 	}
 }
 
@@ -3173,7 +3201,7 @@ func (ptr *QDnsLookup) DisconnectNameChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DisconnectNameChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "nameChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::nameChanged")
 	}
 }
 
@@ -3191,7 +3219,7 @@ func (ptr *QDnsLookup) NameChanged(name string) {
 func callbackQDnsLookup_NameserverChanged(ptr unsafe.Pointer, nameserver unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::nameserverChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "nameserverChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::nameserverChanged"); signal != nil {
 		signal.(func(*QHostAddress))(NewQHostAddressFromPointer(nameserver))
 	}
 
@@ -3202,7 +3230,7 @@ func (ptr *QDnsLookup) ConnectNameserverChanged(f func(nameserver *QHostAddress)
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_ConnectNameserverChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "nameserverChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::nameserverChanged", f)
 	}
 }
 
@@ -3211,7 +3239,7 @@ func (ptr *QDnsLookup) DisconnectNameserverChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DisconnectNameserverChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "nameserverChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::nameserverChanged")
 	}
 }
 
@@ -3227,7 +3255,7 @@ func (ptr *QDnsLookup) NameserverChanged(nameserver QHostAddress_ITF) {
 func callbackQDnsLookup_TypeChanged(ptr unsafe.Pointer, ty C.longlong) {
 	defer qt.Recovering("callback QDnsLookup::typeChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "typeChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::typeChanged"); signal != nil {
 		signal.(func(QDnsLookup__Type))(QDnsLookup__Type(ty))
 	}
 
@@ -3238,7 +3266,7 @@ func (ptr *QDnsLookup) ConnectTypeChanged(f func(ty QDnsLookup__Type)) {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_ConnectTypeChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "typeChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::typeChanged", f)
 	}
 }
 
@@ -3247,7 +3275,7 @@ func (ptr *QDnsLookup) DisconnectTypeChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QDnsLookup_DisconnectTypeChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "typeChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::typeChanged")
 	}
 }
 
@@ -3263,8 +3291,8 @@ func (ptr *QDnsLookup) DestroyQDnsLookup() {
 	defer qt.Recovering("QDnsLookup::~QDnsLookup")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()))
 		C.QDnsLookup_DestroyQDnsLookup(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3273,7 +3301,7 @@ func (ptr *QDnsLookup) DestroyQDnsLookup() {
 func callbackQDnsLookup_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQDnsLookupFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -3285,7 +3313,7 @@ func (ptr *QDnsLookup) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::timerEvent", f)
 	}
 }
 
@@ -3294,7 +3322,7 @@ func (ptr *QDnsLookup) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::timerEvent")
 	}
 }
 
@@ -3318,7 +3346,7 @@ func (ptr *QDnsLookup) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQDnsLookup_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQDnsLookupFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -3330,7 +3358,7 @@ func (ptr *QDnsLookup) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::childEvent", f)
 	}
 }
 
@@ -3339,7 +3367,7 @@ func (ptr *QDnsLookup) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::childEvent")
 	}
 }
 
@@ -3363,7 +3391,7 @@ func (ptr *QDnsLookup) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQDnsLookup_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDnsLookupFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3375,7 +3403,7 @@ func (ptr *QDnsLookup) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::connectNotify", f)
 	}
 }
 
@@ -3384,7 +3412,7 @@ func (ptr *QDnsLookup) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::connectNotify")
 	}
 }
 
@@ -3408,7 +3436,7 @@ func (ptr *QDnsLookup) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQDnsLookup_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQDnsLookupFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -3420,7 +3448,7 @@ func (ptr *QDnsLookup) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::customEvent", f)
 	}
 }
 
@@ -3429,7 +3457,7 @@ func (ptr *QDnsLookup) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::customEvent")
 	}
 }
 
@@ -3453,7 +3481,7 @@ func (ptr *QDnsLookup) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQDnsLookup_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQDnsLookupFromPointer(ptr).DeleteLaterDefault()
@@ -3465,7 +3493,7 @@ func (ptr *QDnsLookup) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::deleteLater", f)
 	}
 }
 
@@ -3474,7 +3502,7 @@ func (ptr *QDnsLookup) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::deleteLater")
 	}
 }
 
@@ -3482,8 +3510,8 @@ func (ptr *QDnsLookup) DeleteLater() {
 	defer qt.Recovering("QDnsLookup::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()))
 		C.QDnsLookup_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3492,8 +3520,8 @@ func (ptr *QDnsLookup) DeleteLaterDefault() {
 	defer qt.Recovering("QDnsLookup::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()))
 		C.QDnsLookup_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3502,7 +3530,7 @@ func (ptr *QDnsLookup) DeleteLaterDefault() {
 func callbackQDnsLookup_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QDnsLookup::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQDnsLookupFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -3514,7 +3542,7 @@ func (ptr *QDnsLookup) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::disconnectNotify", f)
 	}
 }
 
@@ -3523,7 +3551,7 @@ func (ptr *QDnsLookup) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::disconnectNotify")
 	}
 }
 
@@ -3547,7 +3575,7 @@ func (ptr *QDnsLookup) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQDnsLookup_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDnsLookup::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -3559,7 +3587,7 @@ func (ptr *QDnsLookup) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::event", f)
 	}
 }
 
@@ -3568,7 +3596,7 @@ func (ptr *QDnsLookup) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::event")
 	}
 }
 
@@ -3594,7 +3622,7 @@ func (ptr *QDnsLookup) EventDefault(e core.QEvent_ITF) bool {
 func callbackQDnsLookup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QDnsLookup::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -3606,7 +3634,7 @@ func (ptr *QDnsLookup) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::eventFilter", f)
 	}
 }
 
@@ -3615,7 +3643,7 @@ func (ptr *QDnsLookup) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::eventFilter")
 	}
 }
 
@@ -3641,7 +3669,7 @@ func (ptr *QDnsLookup) EventFilterDefault(watched core.QObject_ITF, event core.Q
 func callbackQDnsLookup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QDnsLookup::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QDnsLookup(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDnsLookup::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -3653,7 +3681,7 @@ func (ptr *QDnsLookup) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::metaObject", f)
 	}
 }
 
@@ -3662,7 +3690,7 @@ func (ptr *QDnsLookup) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QDnsLookup(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDnsLookup::metaObject")
 	}
 }
 
@@ -4499,13 +4527,21 @@ func NewQHttpMultiPartFromPointer(ptr unsafe.Pointer) *QHttpMultiPart {
 func NewQHttpMultiPart2(contentType QHttpMultiPart__ContentType, parent core.QObject_ITF) *QHttpMultiPart {
 	defer qt.Recovering("QHttpMultiPart::QHttpMultiPart")
 
-	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.longlong(contentType), core.PointerFromQObject(parent)))
+	var tmpValue = NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart2(C.longlong(contentType), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func NewQHttpMultiPart(parent core.QObject_ITF) *QHttpMultiPart {
 	defer qt.Recovering("QHttpMultiPart::QHttpMultiPart")
 
-	return NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart(core.PointerFromQObject(parent)))
+	var tmpValue = NewQHttpMultiPartFromPointer(C.QHttpMultiPart_NewQHttpMultiPart(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QHttpMultiPart) Append(httpPart QHttpPart_ITF) {
@@ -4556,7 +4592,7 @@ func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
 func callbackQHttpMultiPart_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQHttpMultiPartFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -4568,7 +4604,7 @@ func (ptr *QHttpMultiPart) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::timerEvent", f)
 	}
 }
 
@@ -4577,7 +4613,7 @@ func (ptr *QHttpMultiPart) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::timerEvent")
 	}
 }
 
@@ -4601,7 +4637,7 @@ func (ptr *QHttpMultiPart) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQHttpMultiPart_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQHttpMultiPartFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -4613,7 +4649,7 @@ func (ptr *QHttpMultiPart) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::childEvent", f)
 	}
 }
 
@@ -4622,7 +4658,7 @@ func (ptr *QHttpMultiPart) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::childEvent")
 	}
 }
 
@@ -4646,7 +4682,7 @@ func (ptr *QHttpMultiPart) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQHttpMultiPart_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQHttpMultiPartFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -4658,7 +4694,7 @@ func (ptr *QHttpMultiPart) ConnectConnectNotify(f func(sign *core.QMetaMethod)) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::connectNotify", f)
 	}
 }
 
@@ -4667,7 +4703,7 @@ func (ptr *QHttpMultiPart) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::connectNotify")
 	}
 }
 
@@ -4691,7 +4727,7 @@ func (ptr *QHttpMultiPart) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQHttpMultiPart_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQHttpMultiPartFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -4703,7 +4739,7 @@ func (ptr *QHttpMultiPart) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::customEvent", f)
 	}
 }
 
@@ -4712,7 +4748,7 @@ func (ptr *QHttpMultiPart) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::customEvent")
 	}
 }
 
@@ -4736,7 +4772,7 @@ func (ptr *QHttpMultiPart) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQHttpMultiPart_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQHttpMultiPartFromPointer(ptr).DeleteLaterDefault()
@@ -4748,7 +4784,7 @@ func (ptr *QHttpMultiPart) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::deleteLater", f)
 	}
 }
 
@@ -4757,7 +4793,7 @@ func (ptr *QHttpMultiPart) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::deleteLater")
 	}
 }
 
@@ -4783,7 +4819,7 @@ func (ptr *QHttpMultiPart) DeleteLaterDefault() {
 func callbackQHttpMultiPart_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QHttpMultiPart::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQHttpMultiPartFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -4795,7 +4831,7 @@ func (ptr *QHttpMultiPart) ConnectDisconnectNotify(f func(sign *core.QMetaMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::disconnectNotify", f)
 	}
 }
 
@@ -4804,7 +4840,7 @@ func (ptr *QHttpMultiPart) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::disconnectNotify")
 	}
 }
 
@@ -4828,7 +4864,7 @@ func (ptr *QHttpMultiPart) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQHttpMultiPart_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QHttpMultiPart::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -4840,7 +4876,7 @@ func (ptr *QHttpMultiPart) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::event", f)
 	}
 }
 
@@ -4849,7 +4885,7 @@ func (ptr *QHttpMultiPart) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::event")
 	}
 }
 
@@ -4875,7 +4911,7 @@ func (ptr *QHttpMultiPart) EventDefault(e core.QEvent_ITF) bool {
 func callbackQHttpMultiPart_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QHttpMultiPart::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -4887,7 +4923,7 @@ func (ptr *QHttpMultiPart) ConnectEventFilter(f func(watched *core.QObject, even
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::eventFilter", f)
 	}
 }
 
@@ -4896,7 +4932,7 @@ func (ptr *QHttpMultiPart) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::eventFilter")
 	}
 }
 
@@ -4922,7 +4958,7 @@ func (ptr *QHttpMultiPart) EventFilterDefault(watched core.QObject_ITF, event co
 func callbackQHttpMultiPart_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QHttpMultiPart::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHttpMultiPart::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -4934,7 +4970,7 @@ func (ptr *QHttpMultiPart) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::metaObject", f)
 	}
 }
 
@@ -4943,7 +4979,7 @@ func (ptr *QHttpMultiPart) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QHttpMultiPart(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHttpMultiPart::metaObject")
 	}
 }
 
@@ -5133,7 +5169,11 @@ func (ptr *QLocalServer) SetSocketOptions(options QLocalServer__SocketOption) {
 func NewQLocalServer(parent core.QObject_ITF) *QLocalServer {
 	defer qt.Recovering("QLocalServer::QLocalServer")
 
-	return NewQLocalServerFromPointer(C.QLocalServer_NewQLocalServer(core.PointerFromQObject(parent)))
+	var tmpValue = NewQLocalServerFromPointer(C.QLocalServer_NewQLocalServer(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QLocalServer) Close() {
@@ -5166,7 +5206,7 @@ func (ptr *QLocalServer) FullServerName() string {
 func callbackQLocalServer_HasPendingConnections(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalServer::hasPendingConnections")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "hasPendingConnections"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::hasPendingConnections"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -5178,7 +5218,7 @@ func (ptr *QLocalServer) ConnectHasPendingConnections(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "hasPendingConnections", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::hasPendingConnections", f)
 	}
 }
 
@@ -5187,7 +5227,7 @@ func (ptr *QLocalServer) DisconnectHasPendingConnections() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "hasPendingConnections")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::hasPendingConnections")
 	}
 }
 
@@ -5213,7 +5253,7 @@ func (ptr *QLocalServer) HasPendingConnectionsDefault() bool {
 func callbackQLocalServer_IncomingConnection(ptr unsafe.Pointer, socketDescriptor C.uintptr_t) {
 	defer qt.Recovering("callback QLocalServer::incomingConnection")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "incomingConnection"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::incomingConnection"); signal != nil {
 		signal.(func(uintptr))(uintptr(socketDescriptor))
 	} else {
 		NewQLocalServerFromPointer(ptr).IncomingConnectionDefault(uintptr(socketDescriptor))
@@ -5225,7 +5265,7 @@ func (ptr *QLocalServer) ConnectIncomingConnection(f func(socketDescriptor uintp
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "incomingConnection", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::incomingConnection", f)
 	}
 }
 
@@ -5234,7 +5274,7 @@ func (ptr *QLocalServer) DisconnectIncomingConnection() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "incomingConnection")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::incomingConnection")
 	}
 }
 
@@ -5287,7 +5327,7 @@ func (ptr *QLocalServer) MaxPendingConnections() int {
 func callbackQLocalServer_NewConnection(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalServer::newConnection")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "newConnection"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::newConnection"); signal != nil {
 		signal.(func())()
 	}
 
@@ -5298,7 +5338,7 @@ func (ptr *QLocalServer) ConnectNewConnection(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_ConnectNewConnection(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "newConnection", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::newConnection", f)
 	}
 }
 
@@ -5307,7 +5347,7 @@ func (ptr *QLocalServer) DisconnectNewConnection() {
 
 	if ptr.Pointer() != nil {
 		C.QLocalServer_DisconnectNewConnection(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "newConnection")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::newConnection")
 	}
 }
 
@@ -5323,7 +5363,7 @@ func (ptr *QLocalServer) NewConnection() {
 func callbackQLocalServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QLocalServer::nextPendingConnection")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "nextPendingConnection"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::nextPendingConnection"); signal != nil {
 		return PointerFromQLocalSocket(signal.(func() *QLocalSocket)())
 	}
 
@@ -5335,7 +5375,7 @@ func (ptr *QLocalServer) ConnectNextPendingConnection(f func() *QLocalSocket) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "nextPendingConnection", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::nextPendingConnection", f)
 	}
 }
 
@@ -5344,7 +5384,7 @@ func (ptr *QLocalServer) DisconnectNextPendingConnection() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "nextPendingConnection")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::nextPendingConnection")
 	}
 }
 
@@ -5352,7 +5392,11 @@ func (ptr *QLocalServer) NextPendingConnection() *QLocalSocket {
 	defer qt.Recovering("QLocalServer::nextPendingConnection")
 
 	if ptr.Pointer() != nil {
-		return NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnection(ptr.Pointer()))
+		var tmpValue = NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnection(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -5361,7 +5405,11 @@ func (ptr *QLocalServer) NextPendingConnectionDefault() *QLocalSocket {
 	defer qt.Recovering("QLocalServer::nextPendingConnection")
 
 	if ptr.Pointer() != nil {
-		return NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnectionDefault(ptr.Pointer()))
+		var tmpValue = NewQLocalSocketFromPointer(C.QLocalServer_NextPendingConnectionDefault(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -5430,8 +5478,8 @@ func (ptr *QLocalServer) DestroyQLocalServer() {
 	defer qt.Recovering("QLocalServer::~QLocalServer")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()))
 		C.QLocalServer_DestroyQLocalServer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5440,7 +5488,7 @@ func (ptr *QLocalServer) DestroyQLocalServer() {
 func callbackQLocalServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalServer::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQLocalServerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -5452,7 +5500,7 @@ func (ptr *QLocalServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::timerEvent", f)
 	}
 }
 
@@ -5461,7 +5509,7 @@ func (ptr *QLocalServer) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::timerEvent")
 	}
 }
 
@@ -5485,7 +5533,7 @@ func (ptr *QLocalServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQLocalServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalServer::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQLocalServerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -5497,7 +5545,7 @@ func (ptr *QLocalServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::childEvent", f)
 	}
 }
 
@@ -5506,7 +5554,7 @@ func (ptr *QLocalServer) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::childEvent")
 	}
 }
 
@@ -5530,7 +5578,7 @@ func (ptr *QLocalServer) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQLocalServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalServer::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLocalServerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5542,7 +5590,7 @@ func (ptr *QLocalServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::connectNotify", f)
 	}
 }
 
@@ -5551,7 +5599,7 @@ func (ptr *QLocalServer) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::connectNotify")
 	}
 }
 
@@ -5575,7 +5623,7 @@ func (ptr *QLocalServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQLocalServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalServer::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQLocalServerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -5587,7 +5635,7 @@ func (ptr *QLocalServer) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::customEvent", f)
 	}
 }
 
@@ -5596,7 +5644,7 @@ func (ptr *QLocalServer) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::customEvent")
 	}
 }
 
@@ -5620,7 +5668,7 @@ func (ptr *QLocalServer) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQLocalServer_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalServer::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQLocalServerFromPointer(ptr).DeleteLaterDefault()
@@ -5632,7 +5680,7 @@ func (ptr *QLocalServer) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::deleteLater", f)
 	}
 }
 
@@ -5641,7 +5689,7 @@ func (ptr *QLocalServer) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::deleteLater")
 	}
 }
 
@@ -5649,8 +5697,8 @@ func (ptr *QLocalServer) DeleteLater() {
 	defer qt.Recovering("QLocalServer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()))
 		C.QLocalServer_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5659,8 +5707,8 @@ func (ptr *QLocalServer) DeleteLaterDefault() {
 	defer qt.Recovering("QLocalServer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()))
 		C.QLocalServer_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5669,7 +5717,7 @@ func (ptr *QLocalServer) DeleteLaterDefault() {
 func callbackQLocalServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalServer::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLocalServerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -5681,7 +5729,7 @@ func (ptr *QLocalServer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::disconnectNotify", f)
 	}
 }
 
@@ -5690,7 +5738,7 @@ func (ptr *QLocalServer) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::disconnectNotify")
 	}
 }
 
@@ -5714,7 +5762,7 @@ func (ptr *QLocalServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQLocalServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalServer::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -5726,7 +5774,7 @@ func (ptr *QLocalServer) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::event", f)
 	}
 }
 
@@ -5735,7 +5783,7 @@ func (ptr *QLocalServer) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::event")
 	}
 }
 
@@ -5761,7 +5809,7 @@ func (ptr *QLocalServer) EventDefault(e core.QEvent_ITF) bool {
 func callbackQLocalServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalServer::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -5773,7 +5821,7 @@ func (ptr *QLocalServer) ConnectEventFilter(f func(watched *core.QObject, event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::eventFilter", f)
 	}
 }
 
@@ -5782,7 +5830,7 @@ func (ptr *QLocalServer) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::eventFilter")
 	}
 }
 
@@ -5808,7 +5856,7 @@ func (ptr *QLocalServer) EventFilterDefault(watched core.QObject_ITF, event core
 func callbackQLocalServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QLocalServer::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalServer(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalServer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -5820,7 +5868,7 @@ func (ptr *QLocalServer) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::metaObject", f)
 	}
 }
 
@@ -5829,7 +5877,7 @@ func (ptr *QLocalServer) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalServer(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalServer::metaObject")
 	}
 }
 
@@ -5921,7 +5969,7 @@ func NewQLocalSocketFromPointer(ptr unsafe.Pointer) *QLocalSocket {
 func callbackQLocalSocket_Open(ptr unsafe.Pointer, openMode C.longlong) C.char {
 	defer qt.Recovering("callback QLocalSocket::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(core.QIODevice__OpenModeFlag) bool)(core.QIODevice__OpenModeFlag(openMode)))))
 	}
 
@@ -5933,7 +5981,7 @@ func (ptr *QLocalSocket) ConnectOpen(f func(openMode core.QIODevice__OpenModeFla
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::open", f)
 	}
 }
 
@@ -5942,7 +5990,7 @@ func (ptr *QLocalSocket) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::open")
 	}
 }
 
@@ -5967,7 +6015,11 @@ func (ptr *QLocalSocket) OpenDefault(openMode core.QIODevice__OpenModeFlag) bool
 func NewQLocalSocket(parent core.QObject_ITF) *QLocalSocket {
 	defer qt.Recovering("QLocalSocket::QLocalSocket")
 
-	return NewQLocalSocketFromPointer(C.QLocalSocket_NewQLocalSocket(core.PointerFromQObject(parent)))
+	var tmpValue = NewQLocalSocketFromPointer(C.QLocalSocket_NewQLocalSocket(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QLocalSocket) ConnectToServer2(name string, openMode core.QIODevice__OpenModeFlag) {
@@ -5984,7 +6036,7 @@ func (ptr *QLocalSocket) ConnectToServer2(name string, openMode core.QIODevice__
 func callbackQLocalSocket_Connected(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::connected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "connected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::connected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -5995,7 +6047,7 @@ func (ptr *QLocalSocket) ConnectConnected(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectConnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "connected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::connected", f)
 	}
 }
 
@@ -6004,7 +6056,7 @@ func (ptr *QLocalSocket) DisconnectConnected() {
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectConnected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "connected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::connected")
 	}
 }
 
@@ -6020,7 +6072,7 @@ func (ptr *QLocalSocket) Connected() {
 func callbackQLocalSocket_Disconnected(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::disconnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "disconnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::disconnected"); signal != nil {
 		signal.(func())()
 	}
 
@@ -6031,7 +6083,7 @@ func (ptr *QLocalSocket) ConnectDisconnected(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectDisconnected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "disconnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::disconnected", f)
 	}
 }
 
@@ -6040,7 +6092,7 @@ func (ptr *QLocalSocket) DisconnectDisconnected() {
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectDisconnected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "disconnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::disconnected")
 	}
 }
 
@@ -6056,7 +6108,7 @@ func (ptr *QLocalSocket) Disconnected() {
 func callbackQLocalSocket_Error2(ptr unsafe.Pointer, socketError C.longlong) {
 	defer qt.Recovering("callback QLocalSocket::error")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "error2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::error2"); signal != nil {
 		signal.(func(QLocalSocket__LocalSocketError))(QLocalSocket__LocalSocketError(socketError))
 	}
 
@@ -6067,7 +6119,7 @@ func (ptr *QLocalSocket) ConnectError2(f func(socketError QLocalSocket__LocalSoc
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "error2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::error2", f)
 	}
 }
 
@@ -6076,7 +6128,7 @@ func (ptr *QLocalSocket) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "error2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::error2")
 	}
 }
 
@@ -6101,7 +6153,7 @@ func (ptr *QLocalSocket) FullServerName() string {
 func callbackQLocalSocket_IsSequential(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalSocket::isSequential")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "isSequential"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -6113,7 +6165,7 @@ func (ptr *QLocalSocket) ConnectIsSequential(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "isSequential", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::isSequential", f)
 	}
 }
 
@@ -6122,7 +6174,7 @@ func (ptr *QLocalSocket) DisconnectIsSequential() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "isSequential")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::isSequential")
 	}
 }
 
@@ -6176,7 +6228,7 @@ func (ptr *QLocalSocket) State() QLocalSocket__LocalSocketState {
 func callbackQLocalSocket_StateChanged(ptr unsafe.Pointer, socketState C.longlong) {
 	defer qt.Recovering("callback QLocalSocket::stateChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "stateChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::stateChanged"); signal != nil {
 		signal.(func(QLocalSocket__LocalSocketState))(QLocalSocket__LocalSocketState(socketState))
 	}
 
@@ -6187,7 +6239,7 @@ func (ptr *QLocalSocket) ConnectStateChanged(f func(socketState QLocalSocket__Lo
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "stateChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::stateChanged", f)
 	}
 }
 
@@ -6196,7 +6248,7 @@ func (ptr *QLocalSocket) DisconnectStateChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QLocalSocket_DisconnectStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "stateChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::stateChanged")
 	}
 }
 
@@ -6212,8 +6264,8 @@ func (ptr *QLocalSocket) DestroyQLocalSocket() {
 	defer qt.Recovering("QLocalSocket::~QLocalSocket")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()))
 		C.QLocalSocket_DestroyQLocalSocket(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6230,7 +6282,7 @@ func (ptr *QLocalSocket) Abort() {
 func callbackQLocalSocket_BytesAvailable(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QLocalSocket::bytesAvailable")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "bytesAvailable"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -6242,7 +6294,7 @@ func (ptr *QLocalSocket) ConnectBytesAvailable(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "bytesAvailable", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::bytesAvailable", f)
 	}
 }
 
@@ -6251,7 +6303,7 @@ func (ptr *QLocalSocket) DisconnectBytesAvailable() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "bytesAvailable")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::bytesAvailable")
 	}
 }
 
@@ -6277,7 +6329,7 @@ func (ptr *QLocalSocket) BytesAvailableDefault() int64 {
 func callbackQLocalSocket_BytesToWrite(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QLocalSocket::bytesToWrite")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "bytesToWrite"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -6289,7 +6341,7 @@ func (ptr *QLocalSocket) ConnectBytesToWrite(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "bytesToWrite", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::bytesToWrite", f)
 	}
 }
 
@@ -6298,7 +6350,7 @@ func (ptr *QLocalSocket) DisconnectBytesToWrite() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "bytesToWrite")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::bytesToWrite")
 	}
 }
 
@@ -6324,7 +6376,7 @@ func (ptr *QLocalSocket) BytesToWriteDefault() int64 {
 func callbackQLocalSocket_CanReadLine(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalSocket::canReadLine")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "canReadLine"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -6336,7 +6388,7 @@ func (ptr *QLocalSocket) ConnectCanReadLine(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "canReadLine", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::canReadLine", f)
 	}
 }
 
@@ -6345,7 +6397,7 @@ func (ptr *QLocalSocket) DisconnectCanReadLine() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "canReadLine")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::canReadLine")
 	}
 }
 
@@ -6371,7 +6423,7 @@ func (ptr *QLocalSocket) CanReadLineDefault() bool {
 func callbackQLocalSocket_Close(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::close"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQLocalSocketFromPointer(ptr).CloseDefault()
@@ -6383,7 +6435,7 @@ func (ptr *QLocalSocket) ConnectClose(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::close", f)
 	}
 }
 
@@ -6392,7 +6444,7 @@ func (ptr *QLocalSocket) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::close")
 	}
 }
 
@@ -6512,7 +6564,7 @@ func (ptr *QLocalSocket) WaitForReadyRead(msecs int) bool {
 func callbackQLocalSocket_WriteData(ptr unsafe.Pointer, data *C.char, c C.longlong) C.longlong {
 	defer qt.Recovering("callback QLocalSocket::writeData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "writeData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(c)))
 	}
 
@@ -6524,7 +6576,7 @@ func (ptr *QLocalSocket) ConnectWriteData(f func(data string, c int64) int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "writeData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::writeData", f)
 	}
 }
 
@@ -6533,7 +6585,7 @@ func (ptr *QLocalSocket) DisconnectWriteData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "writeData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::writeData")
 	}
 }
 
@@ -6563,7 +6615,7 @@ func (ptr *QLocalSocket) WriteDataDefault(data string, c int64) int64 {
 func callbackQLocalSocket_AtEnd(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalSocket::atEnd")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "atEnd"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -6575,7 +6627,7 @@ func (ptr *QLocalSocket) ConnectAtEnd(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "atEnd", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::atEnd", f)
 	}
 }
 
@@ -6584,7 +6636,7 @@ func (ptr *QLocalSocket) DisconnectAtEnd() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "atEnd")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::atEnd")
 	}
 }
 
@@ -6610,7 +6662,7 @@ func (ptr *QLocalSocket) AtEndDefault() bool {
 func callbackQLocalSocket_Pos(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QLocalSocket::pos")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "pos"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -6622,7 +6674,7 @@ func (ptr *QLocalSocket) ConnectPos(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "pos", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::pos", f)
 	}
 }
 
@@ -6631,7 +6683,7 @@ func (ptr *QLocalSocket) DisconnectPos() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "pos")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::pos")
 	}
 }
 
@@ -6657,7 +6709,7 @@ func (ptr *QLocalSocket) PosDefault() int64 {
 func callbackQLocalSocket_ReadLineData(ptr unsafe.Pointer, data *C.char, maxSize C.longlong) C.longlong {
 	defer qt.Recovering("callback QLocalSocket::readLineData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "readLineData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxSize)))
 	}
 
@@ -6669,7 +6721,7 @@ func (ptr *QLocalSocket) ConnectReadLineData(f func(data string, maxSize int64) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "readLineData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::readLineData", f)
 	}
 }
 
@@ -6678,7 +6730,7 @@ func (ptr *QLocalSocket) DisconnectReadLineData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "readLineData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::readLineData")
 	}
 }
 
@@ -6708,7 +6760,7 @@ func (ptr *QLocalSocket) ReadLineDataDefault(data string, maxSize int64) int64 {
 func callbackQLocalSocket_Reset(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalSocket::reset")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "reset"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -6720,7 +6772,7 @@ func (ptr *QLocalSocket) ConnectReset(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "reset", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::reset", f)
 	}
 }
 
@@ -6729,7 +6781,7 @@ func (ptr *QLocalSocket) DisconnectReset() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "reset")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::reset")
 	}
 }
 
@@ -6755,7 +6807,7 @@ func (ptr *QLocalSocket) ResetDefault() bool {
 func callbackQLocalSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 	defer qt.Recovering("callback QLocalSocket::seek")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "seek"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
 
@@ -6767,7 +6819,7 @@ func (ptr *QLocalSocket) ConnectSeek(f func(pos int64) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "seek", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::seek", f)
 	}
 }
 
@@ -6776,7 +6828,7 @@ func (ptr *QLocalSocket) DisconnectSeek() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "seek")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::seek")
 	}
 }
 
@@ -6802,7 +6854,7 @@ func (ptr *QLocalSocket) SeekDefault(pos int64) bool {
 func callbackQLocalSocket_Size(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QLocalSocket::size")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "size"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -6814,7 +6866,7 @@ func (ptr *QLocalSocket) ConnectSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "size", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::size", f)
 	}
 }
 
@@ -6823,7 +6875,7 @@ func (ptr *QLocalSocket) DisconnectSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "size")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::size")
 	}
 }
 
@@ -6849,7 +6901,7 @@ func (ptr *QLocalSocket) SizeDefault() int64 {
 func callbackQLocalSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQLocalSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -6861,7 +6913,7 @@ func (ptr *QLocalSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::timerEvent", f)
 	}
 }
 
@@ -6870,7 +6922,7 @@ func (ptr *QLocalSocket) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::timerEvent")
 	}
 }
 
@@ -6894,7 +6946,7 @@ func (ptr *QLocalSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQLocalSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQLocalSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -6906,7 +6958,7 @@ func (ptr *QLocalSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::childEvent", f)
 	}
 }
 
@@ -6915,7 +6967,7 @@ func (ptr *QLocalSocket) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::childEvent")
 	}
 }
 
@@ -6939,7 +6991,7 @@ func (ptr *QLocalSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQLocalSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLocalSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -6951,7 +7003,7 @@ func (ptr *QLocalSocket) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::connectNotify", f)
 	}
 }
 
@@ -6960,7 +7012,7 @@ func (ptr *QLocalSocket) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::connectNotify")
 	}
 }
 
@@ -6984,7 +7036,7 @@ func (ptr *QLocalSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQLocalSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQLocalSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -6996,7 +7048,7 @@ func (ptr *QLocalSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::customEvent", f)
 	}
 }
 
@@ -7005,7 +7057,7 @@ func (ptr *QLocalSocket) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::customEvent")
 	}
 }
 
@@ -7029,7 +7081,7 @@ func (ptr *QLocalSocket) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQLocalSocket_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQLocalSocketFromPointer(ptr).DeleteLaterDefault()
@@ -7041,7 +7093,7 @@ func (ptr *QLocalSocket) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::deleteLater", f)
 	}
 }
 
@@ -7050,7 +7102,7 @@ func (ptr *QLocalSocket) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::deleteLater")
 	}
 }
 
@@ -7058,8 +7110,8 @@ func (ptr *QLocalSocket) DeleteLater() {
 	defer qt.Recovering("QLocalSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()))
 		C.QLocalSocket_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7068,8 +7120,8 @@ func (ptr *QLocalSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QLocalSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()))
 		C.QLocalSocket_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7078,7 +7130,7 @@ func (ptr *QLocalSocket) DeleteLaterDefault() {
 func callbackQLocalSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QLocalSocket::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQLocalSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -7090,7 +7142,7 @@ func (ptr *QLocalSocket) ConnectDisconnectNotify(f func(sign *core.QMetaMethod))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::disconnectNotify", f)
 	}
 }
 
@@ -7099,7 +7151,7 @@ func (ptr *QLocalSocket) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::disconnectNotify")
 	}
 }
 
@@ -7123,7 +7175,7 @@ func (ptr *QLocalSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQLocalSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalSocket::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -7135,7 +7187,7 @@ func (ptr *QLocalSocket) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::event", f)
 	}
 }
 
@@ -7144,7 +7196,7 @@ func (ptr *QLocalSocket) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::event")
 	}
 }
 
@@ -7170,7 +7222,7 @@ func (ptr *QLocalSocket) EventDefault(e core.QEvent_ITF) bool {
 func callbackQLocalSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QLocalSocket::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -7182,7 +7234,7 @@ func (ptr *QLocalSocket) ConnectEventFilter(f func(watched *core.QObject, event 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::eventFilter", f)
 	}
 }
 
@@ -7191,7 +7243,7 @@ func (ptr *QLocalSocket) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::eventFilter")
 	}
 }
 
@@ -7217,7 +7269,7 @@ func (ptr *QLocalSocket) EventFilterDefault(watched core.QObject_ITF, event core
 func callbackQLocalSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QLocalSocket::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QLocalSocket(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLocalSocket::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -7229,7 +7281,7 @@ func (ptr *QLocalSocket) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::metaObject", f)
 	}
 }
 
@@ -7238,7 +7290,7 @@ func (ptr *QLocalSocket) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QLocalSocket(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLocalSocket::metaObject")
 	}
 }
 
@@ -7332,7 +7384,11 @@ func (ptr *QNetworkAccessManager) ProxyFactory() *QNetworkProxyFactory {
 func NewQNetworkAccessManager(parent core.QObject_ITF) *QNetworkAccessManager {
 	defer qt.Recovering("QNetworkAccessManager::QNetworkAccessManager")
 
-	return NewQNetworkAccessManagerFromPointer(C.QNetworkAccessManager_NewQNetworkAccessManager(core.PointerFromQObject(parent)))
+	var tmpValue = NewQNetworkAccessManagerFromPointer(C.QNetworkAccessManager_NewQNetworkAccessManager(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QNetworkAccessManager) ActiveConfiguration() *QNetworkConfiguration {
@@ -7350,7 +7406,7 @@ func (ptr *QNetworkAccessManager) ActiveConfiguration() *QNetworkConfiguration {
 func callbackQNetworkAccessManager_AuthenticationRequired(ptr unsafe.Pointer, reply unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::authenticationRequired")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "authenticationRequired"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::authenticationRequired"); signal != nil {
 		signal.(func(*QNetworkReply, *QAuthenticator))(NewQNetworkReplyFromPointer(reply), NewQAuthenticatorFromPointer(authenticator))
 	}
 
@@ -7361,7 +7417,7 @@ func (ptr *QNetworkAccessManager) ConnectAuthenticationRequired(f func(reply *QN
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_ConnectAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "authenticationRequired", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::authenticationRequired", f)
 	}
 }
 
@@ -7370,7 +7426,7 @@ func (ptr *QNetworkAccessManager) DisconnectAuthenticationRequired() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DisconnectAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "authenticationRequired")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::authenticationRequired")
 	}
 }
 
@@ -7386,7 +7442,11 @@ func (ptr *QNetworkAccessManager) Cache() *QAbstractNetworkCache {
 	defer qt.Recovering("QNetworkAccessManager::cache")
 
 	if ptr.Pointer() != nil {
-		return NewQAbstractNetworkCacheFromPointer(C.QNetworkAccessManager_Cache(ptr.Pointer()))
+		var tmpValue = NewQAbstractNetworkCacheFromPointer(C.QNetworkAccessManager_Cache(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7434,7 +7494,11 @@ func (ptr *QNetworkAccessManager) CookieJar() *QNetworkCookieJar {
 	defer qt.Recovering("QNetworkAccessManager::cookieJar")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkCookieJarFromPointer(C.QNetworkAccessManager_CookieJar(ptr.Pointer()))
+		var tmpValue = NewQNetworkCookieJarFromPointer(C.QNetworkAccessManager_CookieJar(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7443,7 +7507,7 @@ func (ptr *QNetworkAccessManager) CookieJar() *QNetworkCookieJar {
 func callbackQNetworkAccessManager_CreateRequest(ptr unsafe.Pointer, op C.longlong, req unsafe.Pointer, outgoingData unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkAccessManager::createRequest")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "createRequest"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::createRequest"); signal != nil {
 		return PointerFromQNetworkReply(signal.(func(QNetworkAccessManager__Operation, *QNetworkRequest, *core.QIODevice) *QNetworkReply)(QNetworkAccessManager__Operation(op), NewQNetworkRequestFromPointer(req), core.NewQIODeviceFromPointer(outgoingData)))
 	}
 
@@ -7455,7 +7519,7 @@ func (ptr *QNetworkAccessManager) ConnectCreateRequest(f func(op QNetworkAccessM
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "createRequest", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::createRequest", f)
 	}
 }
 
@@ -7464,7 +7528,7 @@ func (ptr *QNetworkAccessManager) DisconnectCreateRequest() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "createRequest")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::createRequest")
 	}
 }
 
@@ -7472,7 +7536,11 @@ func (ptr *QNetworkAccessManager) CreateRequest(op QNetworkAccessManager__Operat
 	defer qt.Recovering("QNetworkAccessManager::createRequest")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequest(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(req), core.PointerFromQIODevice(outgoingData)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequest(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(req), core.PointerFromQIODevice(outgoingData)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7481,7 +7549,11 @@ func (ptr *QNetworkAccessManager) CreateRequestDefault(op QNetworkAccessManager_
 	defer qt.Recovering("QNetworkAccessManager::createRequest")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequestDefault(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(req), core.PointerFromQIODevice(outgoingData)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_CreateRequestDefault(ptr.Pointer(), C.longlong(op), PointerFromQNetworkRequest(req), core.PointerFromQIODevice(outgoingData)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7490,7 +7562,11 @@ func (ptr *QNetworkAccessManager) DeleteResource(request QNetworkRequest_ITF) *Q
 	defer qt.Recovering("QNetworkAccessManager::deleteResource")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_DeleteResource(ptr.Pointer(), PointerFromQNetworkRequest(request)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_DeleteResource(ptr.Pointer(), PointerFromQNetworkRequest(request)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7499,7 +7575,7 @@ func (ptr *QNetworkAccessManager) DeleteResource(request QNetworkRequest_ITF) *Q
 func callbackQNetworkAccessManager_Encrypted(ptr unsafe.Pointer, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::encrypted")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "encrypted"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::encrypted"); signal != nil {
 		signal.(func(*QNetworkReply))(NewQNetworkReplyFromPointer(reply))
 	}
 
@@ -7510,7 +7586,7 @@ func (ptr *QNetworkAccessManager) ConnectEncrypted(f func(reply *QNetworkReply))
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_ConnectEncrypted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "encrypted", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::encrypted", f)
 	}
 }
 
@@ -7519,7 +7595,7 @@ func (ptr *QNetworkAccessManager) DisconnectEncrypted() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DisconnectEncrypted(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "encrypted")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::encrypted")
 	}
 }
 
@@ -7535,7 +7611,7 @@ func (ptr *QNetworkAccessManager) Encrypted(reply QNetworkReply_ITF) {
 func callbackQNetworkAccessManager_Finished(ptr unsafe.Pointer, reply unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::finished")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "finished"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::finished"); signal != nil {
 		signal.(func(*QNetworkReply))(NewQNetworkReplyFromPointer(reply))
 	}
 
@@ -7546,7 +7622,7 @@ func (ptr *QNetworkAccessManager) ConnectFinished(f func(reply *QNetworkReply)) 
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "finished", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::finished", f)
 	}
 }
 
@@ -7555,7 +7631,7 @@ func (ptr *QNetworkAccessManager) DisconnectFinished() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "finished")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::finished")
 	}
 }
 
@@ -7571,7 +7647,11 @@ func (ptr *QNetworkAccessManager) Get(request QNetworkRequest_ITF) *QNetworkRepl
 	defer qt.Recovering("QNetworkAccessManager::get")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Get(ptr.Pointer(), PointerFromQNetworkRequest(request)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Get(ptr.Pointer(), PointerFromQNetworkRequest(request)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7580,7 +7660,11 @@ func (ptr *QNetworkAccessManager) Head(request QNetworkRequest_ITF) *QNetworkRep
 	defer qt.Recovering("QNetworkAccessManager::head")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Head(ptr.Pointer(), PointerFromQNetworkRequest(request)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Head(ptr.Pointer(), PointerFromQNetworkRequest(request)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7598,7 +7682,7 @@ func (ptr *QNetworkAccessManager) NetworkAccessible() QNetworkAccessManager__Net
 func callbackQNetworkAccessManager_NetworkAccessibleChanged(ptr unsafe.Pointer, accessible C.longlong) {
 	defer qt.Recovering("callback QNetworkAccessManager::networkAccessibleChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "networkAccessibleChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::networkAccessibleChanged"); signal != nil {
 		signal.(func(QNetworkAccessManager__NetworkAccessibility))(QNetworkAccessManager__NetworkAccessibility(accessible))
 	}
 
@@ -7609,7 +7693,7 @@ func (ptr *QNetworkAccessManager) ConnectNetworkAccessibleChanged(f func(accessi
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_ConnectNetworkAccessibleChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "networkAccessibleChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::networkAccessibleChanged", f)
 	}
 }
 
@@ -7618,7 +7702,7 @@ func (ptr *QNetworkAccessManager) DisconnectNetworkAccessibleChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DisconnectNetworkAccessibleChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "networkAccessibleChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::networkAccessibleChanged")
 	}
 }
 
@@ -7634,7 +7718,11 @@ func (ptr *QNetworkAccessManager) Post3(request QNetworkRequest_ITF, multiPart Q
 	defer qt.Recovering("QNetworkAccessManager::post")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post3(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post3(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7643,7 +7731,11 @@ func (ptr *QNetworkAccessManager) Post(request QNetworkRequest_ITF, data core.QI
 	defer qt.Recovering("QNetworkAccessManager::post")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQIODevice(data)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQIODevice(data)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7654,7 +7746,11 @@ func (ptr *QNetworkAccessManager) Post2(request QNetworkRequest_ITF, data string
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post2(ptr.Pointer(), PointerFromQNetworkRequest(request), dataC))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Post2(ptr.Pointer(), PointerFromQNetworkRequest(request), dataC))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7663,7 +7759,7 @@ func (ptr *QNetworkAccessManager) Post2(request QNetworkRequest_ITF, data string
 func callbackQNetworkAccessManager_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, reply unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::preSharedKeyAuthenticationRequired")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "preSharedKeyAuthenticationRequired"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::preSharedKeyAuthenticationRequired"); signal != nil {
 		signal.(func(*QNetworkReply, *QSslPreSharedKeyAuthenticator))(NewQNetworkReplyFromPointer(reply), NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 	}
 
@@ -7674,7 +7770,7 @@ func (ptr *QNetworkAccessManager) ConnectPreSharedKeyAuthenticationRequired(f fu
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::preSharedKeyAuthenticationRequired", f)
 	}
 }
 
@@ -7683,7 +7779,7 @@ func (ptr *QNetworkAccessManager) DisconnectPreSharedKeyAuthenticationRequired()
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "preSharedKeyAuthenticationRequired")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::preSharedKeyAuthenticationRequired")
 	}
 }
 
@@ -7710,7 +7806,7 @@ func (ptr *QNetworkAccessManager) Proxy() *QNetworkProxy {
 func callbackQNetworkAccessManager_ProxyAuthenticationRequired(ptr unsafe.Pointer, proxy unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::proxyAuthenticationRequired")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "proxyAuthenticationRequired"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::proxyAuthenticationRequired"); signal != nil {
 		signal.(func(*QNetworkProxy, *QAuthenticator))(NewQNetworkProxyFromPointer(proxy), NewQAuthenticatorFromPointer(authenticator))
 	}
 
@@ -7721,7 +7817,7 @@ func (ptr *QNetworkAccessManager) ConnectProxyAuthenticationRequired(f func(prox
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_ConnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "proxyAuthenticationRequired", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::proxyAuthenticationRequired", f)
 	}
 }
 
@@ -7730,7 +7826,7 @@ func (ptr *QNetworkAccessManager) DisconnectProxyAuthenticationRequired() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkAccessManager_DisconnectProxyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "proxyAuthenticationRequired")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::proxyAuthenticationRequired")
 	}
 }
 
@@ -7746,7 +7842,11 @@ func (ptr *QNetworkAccessManager) Put3(request QNetworkRequest_ITF, multiPart QH
 	defer qt.Recovering("QNetworkAccessManager::put")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put3(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put3(ptr.Pointer(), PointerFromQNetworkRequest(request), PointerFromQHttpMultiPart(multiPart)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7755,7 +7855,11 @@ func (ptr *QNetworkAccessManager) Put(request QNetworkRequest_ITF, data core.QIO
 	defer qt.Recovering("QNetworkAccessManager::put")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQIODevice(data)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put(ptr.Pointer(), PointerFromQNetworkRequest(request), core.PointerFromQIODevice(data)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7766,7 +7870,11 @@ func (ptr *QNetworkAccessManager) Put2(request QNetworkRequest_ITF, data string)
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put2(ptr.Pointer(), PointerFromQNetworkRequest(request), dataC))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_Put2(ptr.Pointer(), PointerFromQNetworkRequest(request), dataC))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7777,7 +7885,11 @@ func (ptr *QNetworkAccessManager) SendCustomRequest(request QNetworkRequest_ITF,
 	if ptr.Pointer() != nil {
 		var verbC = C.CString(hex.EncodeToString([]byte(verb)))
 		defer C.free(unsafe.Pointer(verbC))
-		return NewQNetworkReplyFromPointer(C.QNetworkAccessManager_SendCustomRequest(ptr.Pointer(), PointerFromQNetworkRequest(request), verbC, core.PointerFromQIODevice(data)))
+		var tmpValue = NewQNetworkReplyFromPointer(C.QNetworkAccessManager_SendCustomRequest(ptr.Pointer(), PointerFromQNetworkRequest(request), verbC, core.PointerFromQIODevice(data)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -7843,7 +7955,7 @@ func (ptr *QNetworkAccessManager) SupportedSchemes() []string {
 func callbackQNetworkAccessManager_SupportedSchemesImplementation(ptr unsafe.Pointer) *C.char {
 	defer qt.Recovering("callback QNetworkAccessManager::supportedSchemesImplementation")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "supportedSchemesImplementation"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::supportedSchemesImplementation"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
 
@@ -7855,7 +7967,7 @@ func (ptr *QNetworkAccessManager) ConnectSupportedSchemesImplementation(f func()
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "supportedSchemesImplementation", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::supportedSchemesImplementation", f)
 	}
 }
 
@@ -7864,7 +7976,7 @@ func (ptr *QNetworkAccessManager) DisconnectSupportedSchemesImplementation() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "supportedSchemesImplementation")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::supportedSchemesImplementation")
 	}
 }
 
@@ -7881,8 +7993,8 @@ func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManager() {
 	defer qt.Recovering("QNetworkAccessManager::~QNetworkAccessManager")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()))
 		C.QNetworkAccessManager_DestroyQNetworkAccessManager(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7891,7 +8003,7 @@ func (ptr *QNetworkAccessManager) DestroyQNetworkAccessManager() {
 func callbackQNetworkAccessManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNetworkAccessManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -7903,7 +8015,7 @@ func (ptr *QNetworkAccessManager) ConnectTimerEvent(f func(event *core.QTimerEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::timerEvent", f)
 	}
 }
 
@@ -7912,7 +8024,7 @@ func (ptr *QNetworkAccessManager) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::timerEvent")
 	}
 }
 
@@ -7936,7 +8048,7 @@ func (ptr *QNetworkAccessManager) TimerEventDefault(event core.QTimerEvent_ITF) 
 func callbackQNetworkAccessManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNetworkAccessManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -7948,7 +8060,7 @@ func (ptr *QNetworkAccessManager) ConnectChildEvent(f func(event *core.QChildEve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::childEvent", f)
 	}
 }
 
@@ -7957,7 +8069,7 @@ func (ptr *QNetworkAccessManager) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::childEvent")
 	}
 }
 
@@ -7981,7 +8093,7 @@ func (ptr *QNetworkAccessManager) ChildEventDefault(event core.QChildEvent_ITF) 
 func callbackQNetworkAccessManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkAccessManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -7993,7 +8105,7 @@ func (ptr *QNetworkAccessManager) ConnectConnectNotify(f func(sign *core.QMetaMe
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::connectNotify", f)
 	}
 }
 
@@ -8002,7 +8114,7 @@ func (ptr *QNetworkAccessManager) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::connectNotify")
 	}
 }
 
@@ -8026,7 +8138,7 @@ func (ptr *QNetworkAccessManager) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 func callbackQNetworkAccessManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNetworkAccessManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -8038,7 +8150,7 @@ func (ptr *QNetworkAccessManager) ConnectCustomEvent(f func(event *core.QEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::customEvent", f)
 	}
 }
 
@@ -8047,7 +8159,7 @@ func (ptr *QNetworkAccessManager) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::customEvent")
 	}
 }
 
@@ -8071,7 +8183,7 @@ func (ptr *QNetworkAccessManager) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQNetworkAccessManager_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkAccessManagerFromPointer(ptr).DeleteLaterDefault()
@@ -8083,7 +8195,7 @@ func (ptr *QNetworkAccessManager) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::deleteLater", f)
 	}
 }
 
@@ -8092,7 +8204,7 @@ func (ptr *QNetworkAccessManager) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::deleteLater")
 	}
 }
 
@@ -8100,8 +8212,8 @@ func (ptr *QNetworkAccessManager) DeleteLater() {
 	defer qt.Recovering("QNetworkAccessManager::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()))
 		C.QNetworkAccessManager_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8110,8 +8222,8 @@ func (ptr *QNetworkAccessManager) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkAccessManager::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()))
 		C.QNetworkAccessManager_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8120,7 +8232,7 @@ func (ptr *QNetworkAccessManager) DeleteLaterDefault() {
 func callbackQNetworkAccessManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkAccessManager::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkAccessManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -8132,7 +8244,7 @@ func (ptr *QNetworkAccessManager) ConnectDisconnectNotify(f func(sign *core.QMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::disconnectNotify", f)
 	}
 }
 
@@ -8141,7 +8253,7 @@ func (ptr *QNetworkAccessManager) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::disconnectNotify")
 	}
 }
 
@@ -8165,7 +8277,7 @@ func (ptr *QNetworkAccessManager) DisconnectNotifyDefault(sign core.QMetaMethod_
 func callbackQNetworkAccessManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkAccessManager::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -8177,7 +8289,7 @@ func (ptr *QNetworkAccessManager) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::event", f)
 	}
 }
 
@@ -8186,7 +8298,7 @@ func (ptr *QNetworkAccessManager) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::event")
 	}
 }
 
@@ -8212,7 +8324,7 @@ func (ptr *QNetworkAccessManager) EventDefault(e core.QEvent_ITF) bool {
 func callbackQNetworkAccessManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkAccessManager::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -8224,7 +8336,7 @@ func (ptr *QNetworkAccessManager) ConnectEventFilter(f func(watched *core.QObjec
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::eventFilter", f)
 	}
 }
 
@@ -8233,7 +8345,7 @@ func (ptr *QNetworkAccessManager) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::eventFilter")
 	}
 }
 
@@ -8259,7 +8371,7 @@ func (ptr *QNetworkAccessManager) EventFilterDefault(watched core.QObject_ITF, e
 func callbackQNetworkAccessManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkAccessManager::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkAccessManager::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -8271,7 +8383,7 @@ func (ptr *QNetworkAccessManager) ConnectMetaObject(f func() *core.QMetaObject) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::metaObject", f)
 	}
 }
 
@@ -8280,7 +8392,7 @@ func (ptr *QNetworkAccessManager) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkAccessManager(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkAccessManager::metaObject")
 	}
 }
 
@@ -8862,7 +8974,11 @@ func NewQNetworkConfigurationManagerFromPointer(ptr unsafe.Pointer) *QNetworkCon
 func NewQNetworkConfigurationManager(parent core.QObject_ITF) *QNetworkConfigurationManager {
 	defer qt.Recovering("QNetworkConfigurationManager::QNetworkConfigurationManager")
 
-	return NewQNetworkConfigurationManagerFromPointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(core.PointerFromQObject(parent)))
+	var tmpValue = NewQNetworkConfigurationManagerFromPointer(C.QNetworkConfigurationManager_NewQNetworkConfigurationManager(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationManager__Capability {
@@ -8878,7 +8994,7 @@ func (ptr *QNetworkConfigurationManager) Capabilities() QNetworkConfigurationMan
 func callbackQNetworkConfigurationManager_ConfigurationAdded(ptr unsafe.Pointer, config unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::configurationAdded")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "configurationAdded"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::configurationAdded"); signal != nil {
 		signal.(func(*QNetworkConfiguration))(NewQNetworkConfigurationFromPointer(config))
 	}
 
@@ -8889,7 +9005,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationAdded(f func(config
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_ConnectConfigurationAdded(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "configurationAdded", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::configurationAdded", f)
 	}
 }
 
@@ -8898,7 +9014,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectConfigurationAdded() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DisconnectConfigurationAdded(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "configurationAdded")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::configurationAdded")
 	}
 }
 
@@ -8914,7 +9030,7 @@ func (ptr *QNetworkConfigurationManager) ConfigurationAdded(config QNetworkConfi
 func callbackQNetworkConfigurationManager_ConfigurationChanged(ptr unsafe.Pointer, config unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::configurationChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "configurationChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::configurationChanged"); signal != nil {
 		signal.(func(*QNetworkConfiguration))(NewQNetworkConfigurationFromPointer(config))
 	}
 
@@ -8925,7 +9041,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationChanged(f func(conf
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_ConnectConfigurationChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "configurationChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::configurationChanged", f)
 	}
 }
 
@@ -8934,7 +9050,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectConfigurationChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DisconnectConfigurationChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "configurationChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::configurationChanged")
 	}
 }
 
@@ -8963,7 +9079,7 @@ func (ptr *QNetworkConfigurationManager) ConfigurationFromIdentifier(identifier 
 func callbackQNetworkConfigurationManager_ConfigurationRemoved(ptr unsafe.Pointer, config unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::configurationRemoved")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "configurationRemoved"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::configurationRemoved"); signal != nil {
 		signal.(func(*QNetworkConfiguration))(NewQNetworkConfigurationFromPointer(config))
 	}
 
@@ -8974,7 +9090,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConfigurationRemoved(f func(conf
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_ConnectConfigurationRemoved(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "configurationRemoved", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::configurationRemoved", f)
 	}
 }
 
@@ -8983,7 +9099,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectConfigurationRemoved() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DisconnectConfigurationRemoved(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "configurationRemoved")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::configurationRemoved")
 	}
 }
 
@@ -9019,7 +9135,7 @@ func (ptr *QNetworkConfigurationManager) IsOnline() bool {
 func callbackQNetworkConfigurationManager_OnlineStateChanged(ptr unsafe.Pointer, isOnline C.char) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::onlineStateChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "onlineStateChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::onlineStateChanged"); signal != nil {
 		signal.(func(bool))(int8(isOnline) != 0)
 	}
 
@@ -9030,7 +9146,7 @@ func (ptr *QNetworkConfigurationManager) ConnectOnlineStateChanged(f func(isOnli
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_ConnectOnlineStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "onlineStateChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::onlineStateChanged", f)
 	}
 }
 
@@ -9039,7 +9155,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectOnlineStateChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DisconnectOnlineStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "onlineStateChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::onlineStateChanged")
 	}
 }
 
@@ -9055,7 +9171,7 @@ func (ptr *QNetworkConfigurationManager) OnlineStateChanged(isOnline bool) {
 func callbackQNetworkConfigurationManager_UpdateCompleted(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::updateCompleted")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "updateCompleted"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::updateCompleted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -9066,7 +9182,7 @@ func (ptr *QNetworkConfigurationManager) ConnectUpdateCompleted(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_ConnectUpdateCompleted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "updateCompleted", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::updateCompleted", f)
 	}
 }
 
@@ -9075,7 +9191,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectUpdateCompleted() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkConfigurationManager_DisconnectUpdateCompleted(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "updateCompleted")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::updateCompleted")
 	}
 }
 
@@ -9091,7 +9207,7 @@ func (ptr *QNetworkConfigurationManager) UpdateCompleted() {
 func callbackQNetworkConfigurationManager_UpdateConfigurations(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::updateConfigurations")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "updateConfigurations"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::updateConfigurations"); signal != nil {
 		signal.(func())()
 	}
 
@@ -9102,7 +9218,7 @@ func (ptr *QNetworkConfigurationManager) ConnectUpdateConfigurations(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "updateConfigurations", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::updateConfigurations", f)
 	}
 }
 
@@ -9111,7 +9227,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectUpdateConfigurations() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "updateConfigurations")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::updateConfigurations")
 	}
 }
 
@@ -9127,8 +9243,8 @@ func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
 	defer qt.Recovering("QNetworkConfigurationManager::~QNetworkConfigurationManager")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()))
 		C.QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9137,7 +9253,7 @@ func (ptr *QNetworkConfigurationManager) DestroyQNetworkConfigurationManager() {
 func callbackQNetworkConfigurationManager_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNetworkConfigurationManagerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -9149,7 +9265,7 @@ func (ptr *QNetworkConfigurationManager) ConnectTimerEvent(f func(event *core.QT
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::timerEvent", f)
 	}
 }
 
@@ -9158,7 +9274,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::timerEvent")
 	}
 }
 
@@ -9182,7 +9298,7 @@ func (ptr *QNetworkConfigurationManager) TimerEventDefault(event core.QTimerEven
 func callbackQNetworkConfigurationManager_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNetworkConfigurationManagerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -9194,7 +9310,7 @@ func (ptr *QNetworkConfigurationManager) ConnectChildEvent(f func(event *core.QC
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::childEvent", f)
 	}
 }
 
@@ -9203,7 +9319,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::childEvent")
 	}
 }
 
@@ -9227,7 +9343,7 @@ func (ptr *QNetworkConfigurationManager) ChildEventDefault(event core.QChildEven
 func callbackQNetworkConfigurationManager_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkConfigurationManagerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -9239,7 +9355,7 @@ func (ptr *QNetworkConfigurationManager) ConnectConnectNotify(f func(sign *core.
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::connectNotify", f)
 	}
 }
 
@@ -9248,7 +9364,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::connectNotify")
 	}
 }
 
@@ -9272,7 +9388,7 @@ func (ptr *QNetworkConfigurationManager) ConnectNotifyDefault(sign core.QMetaMet
 func callbackQNetworkConfigurationManager_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNetworkConfigurationManagerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -9284,7 +9400,7 @@ func (ptr *QNetworkConfigurationManager) ConnectCustomEvent(f func(event *core.Q
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::customEvent", f)
 	}
 }
 
@@ -9293,7 +9409,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::customEvent")
 	}
 }
 
@@ -9317,7 +9433,7 @@ func (ptr *QNetworkConfigurationManager) CustomEventDefault(event core.QEvent_IT
 func callbackQNetworkConfigurationManager_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkConfigurationManagerFromPointer(ptr).DeleteLaterDefault()
@@ -9329,7 +9445,7 @@ func (ptr *QNetworkConfigurationManager) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::deleteLater", f)
 	}
 }
 
@@ -9338,7 +9454,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::deleteLater")
 	}
 }
 
@@ -9346,8 +9462,8 @@ func (ptr *QNetworkConfigurationManager) DeleteLater() {
 	defer qt.Recovering("QNetworkConfigurationManager::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()))
 		C.QNetworkConfigurationManager_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9356,8 +9472,8 @@ func (ptr *QNetworkConfigurationManager) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkConfigurationManager::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()))
 		C.QNetworkConfigurationManager_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9366,7 +9482,7 @@ func (ptr *QNetworkConfigurationManager) DeleteLaterDefault() {
 func callbackQNetworkConfigurationManager_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkConfigurationManager::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkConfigurationManagerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -9378,7 +9494,7 @@ func (ptr *QNetworkConfigurationManager) ConnectDisconnectNotify(f func(sign *co
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::disconnectNotify", f)
 	}
 }
 
@@ -9387,7 +9503,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::disconnectNotify")
 	}
 }
 
@@ -9411,7 +9527,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectNotifyDefault(sign core.QMeta
 func callbackQNetworkConfigurationManager_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkConfigurationManager::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -9423,7 +9539,7 @@ func (ptr *QNetworkConfigurationManager) ConnectEvent(f func(e *core.QEvent) boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::event", f)
 	}
 }
 
@@ -9432,7 +9548,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::event")
 	}
 }
 
@@ -9458,7 +9574,7 @@ func (ptr *QNetworkConfigurationManager) EventDefault(e core.QEvent_ITF) bool {
 func callbackQNetworkConfigurationManager_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkConfigurationManager::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -9470,7 +9586,7 @@ func (ptr *QNetworkConfigurationManager) ConnectEventFilter(f func(watched *core
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::eventFilter", f)
 	}
 }
 
@@ -9479,7 +9595,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::eventFilter")
 	}
 }
 
@@ -9505,7 +9621,7 @@ func (ptr *QNetworkConfigurationManager) EventFilterDefault(watched core.QObject
 func callbackQNetworkConfigurationManager_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkConfigurationManager::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkConfigurationManager::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -9517,7 +9633,7 @@ func (ptr *QNetworkConfigurationManager) ConnectMetaObject(f func() *core.QMetaO
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::metaObject", f)
 	}
 }
 
@@ -9526,7 +9642,7 @@ func (ptr *QNetworkConfigurationManager) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkConfigurationManager(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkConfigurationManager::metaObject")
 	}
 }
 
@@ -9835,14 +9951,18 @@ func NewQNetworkCookieJarFromPointer(ptr unsafe.Pointer) *QNetworkCookieJar {
 func NewQNetworkCookieJar(parent core.QObject_ITF) *QNetworkCookieJar {
 	defer qt.Recovering("QNetworkCookieJar::QNetworkCookieJar")
 
-	return NewQNetworkCookieJarFromPointer(C.QNetworkCookieJar_NewQNetworkCookieJar(core.PointerFromQObject(parent)))
+	var tmpValue = NewQNetworkCookieJarFromPointer(C.QNetworkCookieJar_NewQNetworkCookieJar(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQNetworkCookieJar_DeleteCookie
 func callbackQNetworkCookieJar_DeleteCookie(ptr unsafe.Pointer, cookie unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkCookieJar::deleteCookie")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "deleteCookie"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::deleteCookie"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QNetworkCookie) bool)(NewQNetworkCookieFromPointer(cookie)))))
 	}
 
@@ -9854,7 +9974,7 @@ func (ptr *QNetworkCookieJar) ConnectDeleteCookie(f func(cookie *QNetworkCookie)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "deleteCookie", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::deleteCookie", f)
 	}
 }
 
@@ -9863,7 +9983,7 @@ func (ptr *QNetworkCookieJar) DisconnectDeleteCookie() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "deleteCookie")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::deleteCookie")
 	}
 }
 
@@ -9889,7 +10009,7 @@ func (ptr *QNetworkCookieJar) DeleteCookieDefault(cookie QNetworkCookie_ITF) boo
 func callbackQNetworkCookieJar_InsertCookie(ptr unsafe.Pointer, cookie unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkCookieJar::insertCookie")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "insertCookie"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::insertCookie"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QNetworkCookie) bool)(NewQNetworkCookieFromPointer(cookie)))))
 	}
 
@@ -9901,7 +10021,7 @@ func (ptr *QNetworkCookieJar) ConnectInsertCookie(f func(cookie *QNetworkCookie)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "insertCookie", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::insertCookie", f)
 	}
 }
 
@@ -9910,7 +10030,7 @@ func (ptr *QNetworkCookieJar) DisconnectInsertCookie() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "insertCookie")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::insertCookie")
 	}
 }
 
@@ -9936,7 +10056,7 @@ func (ptr *QNetworkCookieJar) InsertCookieDefault(cookie QNetworkCookie_ITF) boo
 func callbackQNetworkCookieJar_UpdateCookie(ptr unsafe.Pointer, cookie unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkCookieJar::updateCookie")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "updateCookie"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::updateCookie"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QNetworkCookie) bool)(NewQNetworkCookieFromPointer(cookie)))))
 	}
 
@@ -9948,7 +10068,7 @@ func (ptr *QNetworkCookieJar) ConnectUpdateCookie(f func(cookie *QNetworkCookie)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "updateCookie", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::updateCookie", f)
 	}
 }
 
@@ -9957,7 +10077,7 @@ func (ptr *QNetworkCookieJar) DisconnectUpdateCookie() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "updateCookie")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::updateCookie")
 	}
 }
 
@@ -9983,7 +10103,7 @@ func (ptr *QNetworkCookieJar) UpdateCookieDefault(cookie QNetworkCookie_ITF) boo
 func callbackQNetworkCookieJar_ValidateCookie(ptr unsafe.Pointer, cookie unsafe.Pointer, url unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkCookieJar::validateCookie")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "validateCookie"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::validateCookie"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QNetworkCookie, *core.QUrl) bool)(NewQNetworkCookieFromPointer(cookie), core.NewQUrlFromPointer(url)))))
 	}
 
@@ -9995,7 +10115,7 @@ func (ptr *QNetworkCookieJar) ConnectValidateCookie(f func(cookie *QNetworkCooki
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "validateCookie", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::validateCookie", f)
 	}
 }
 
@@ -10004,7 +10124,7 @@ func (ptr *QNetworkCookieJar) DisconnectValidateCookie() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "validateCookie")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::validateCookie")
 	}
 }
 
@@ -10030,8 +10150,8 @@ func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
 	defer qt.Recovering("QNetworkCookieJar::~QNetworkCookieJar")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()))
 		C.QNetworkCookieJar_DestroyQNetworkCookieJar(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10040,7 +10160,7 @@ func (ptr *QNetworkCookieJar) DestroyQNetworkCookieJar() {
 func callbackQNetworkCookieJar_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNetworkCookieJarFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -10052,7 +10172,7 @@ func (ptr *QNetworkCookieJar) ConnectTimerEvent(f func(event *core.QTimerEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::timerEvent", f)
 	}
 }
 
@@ -10061,7 +10181,7 @@ func (ptr *QNetworkCookieJar) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::timerEvent")
 	}
 }
 
@@ -10085,7 +10205,7 @@ func (ptr *QNetworkCookieJar) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQNetworkCookieJar_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNetworkCookieJarFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -10097,7 +10217,7 @@ func (ptr *QNetworkCookieJar) ConnectChildEvent(f func(event *core.QChildEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::childEvent", f)
 	}
 }
 
@@ -10106,7 +10226,7 @@ func (ptr *QNetworkCookieJar) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::childEvent")
 	}
 }
 
@@ -10130,7 +10250,7 @@ func (ptr *QNetworkCookieJar) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQNetworkCookieJar_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkCookieJarFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -10142,7 +10262,7 @@ func (ptr *QNetworkCookieJar) ConnectConnectNotify(f func(sign *core.QMetaMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::connectNotify", f)
 	}
 }
 
@@ -10151,7 +10271,7 @@ func (ptr *QNetworkCookieJar) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::connectNotify")
 	}
 }
 
@@ -10175,7 +10295,7 @@ func (ptr *QNetworkCookieJar) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQNetworkCookieJar_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNetworkCookieJarFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -10187,7 +10307,7 @@ func (ptr *QNetworkCookieJar) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::customEvent", f)
 	}
 }
 
@@ -10196,7 +10316,7 @@ func (ptr *QNetworkCookieJar) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::customEvent")
 	}
 }
 
@@ -10220,7 +10340,7 @@ func (ptr *QNetworkCookieJar) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQNetworkCookieJar_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkCookieJarFromPointer(ptr).DeleteLaterDefault()
@@ -10232,7 +10352,7 @@ func (ptr *QNetworkCookieJar) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::deleteLater", f)
 	}
 }
 
@@ -10241,7 +10361,7 @@ func (ptr *QNetworkCookieJar) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::deleteLater")
 	}
 }
 
@@ -10249,8 +10369,8 @@ func (ptr *QNetworkCookieJar) DeleteLater() {
 	defer qt.Recovering("QNetworkCookieJar::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()))
 		C.QNetworkCookieJar_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10259,8 +10379,8 @@ func (ptr *QNetworkCookieJar) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkCookieJar::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()))
 		C.QNetworkCookieJar_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10269,7 +10389,7 @@ func (ptr *QNetworkCookieJar) DeleteLaterDefault() {
 func callbackQNetworkCookieJar_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkCookieJar::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkCookieJarFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -10281,7 +10401,7 @@ func (ptr *QNetworkCookieJar) ConnectDisconnectNotify(f func(sign *core.QMetaMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::disconnectNotify", f)
 	}
 }
 
@@ -10290,7 +10410,7 @@ func (ptr *QNetworkCookieJar) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::disconnectNotify")
 	}
 }
 
@@ -10314,7 +10434,7 @@ func (ptr *QNetworkCookieJar) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 func callbackQNetworkCookieJar_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkCookieJar::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -10326,7 +10446,7 @@ func (ptr *QNetworkCookieJar) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::event", f)
 	}
 }
 
@@ -10335,7 +10455,7 @@ func (ptr *QNetworkCookieJar) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::event")
 	}
 }
 
@@ -10361,7 +10481,7 @@ func (ptr *QNetworkCookieJar) EventDefault(e core.QEvent_ITF) bool {
 func callbackQNetworkCookieJar_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkCookieJar::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -10373,7 +10493,7 @@ func (ptr *QNetworkCookieJar) ConnectEventFilter(f func(watched *core.QObject, e
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::eventFilter", f)
 	}
 }
 
@@ -10382,7 +10502,7 @@ func (ptr *QNetworkCookieJar) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::eventFilter")
 	}
 }
 
@@ -10408,7 +10528,7 @@ func (ptr *QNetworkCookieJar) EventFilterDefault(watched core.QObject_ITF, event
 func callbackQNetworkCookieJar_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkCookieJar::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkCookieJar::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -10420,7 +10540,7 @@ func (ptr *QNetworkCookieJar) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::metaObject", f)
 	}
 }
 
@@ -10429,7 +10549,7 @@ func (ptr *QNetworkCookieJar) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkCookieJar(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkCookieJar::metaObject")
 	}
 }
 
@@ -10492,7 +10612,11 @@ func NewQNetworkDiskCacheFromPointer(ptr unsafe.Pointer) *QNetworkDiskCache {
 func NewQNetworkDiskCache(parent core.QObject_ITF) *QNetworkDiskCache {
 	defer qt.Recovering("QNetworkDiskCache::QNetworkDiskCache")
 
-	return NewQNetworkDiskCacheFromPointer(C.QNetworkDiskCache_NewQNetworkDiskCache(core.PointerFromQObject(parent)))
+	var tmpValue = NewQNetworkDiskCacheFromPointer(C.QNetworkDiskCache_NewQNetworkDiskCache(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QNetworkDiskCache) CacheDirectory() string {
@@ -10508,7 +10632,7 @@ func (ptr *QNetworkDiskCache) CacheDirectory() string {
 func callbackQNetworkDiskCache_CacheSize(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QNetworkDiskCache::cacheSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "cacheSize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::cacheSize"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -10520,7 +10644,7 @@ func (ptr *QNetworkDiskCache) ConnectCacheSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "cacheSize", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::cacheSize", f)
 	}
 }
 
@@ -10529,7 +10653,7 @@ func (ptr *QNetworkDiskCache) DisconnectCacheSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "cacheSize")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::cacheSize")
 	}
 }
 
@@ -10555,7 +10679,7 @@ func (ptr *QNetworkDiskCache) CacheSizeDefault() int64 {
 func callbackQNetworkDiskCache_Clear(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::clear")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "clear"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::clear"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).ClearDefault()
@@ -10567,7 +10691,7 @@ func (ptr *QNetworkDiskCache) ConnectClear(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "clear", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::clear", f)
 	}
 }
 
@@ -10576,7 +10700,7 @@ func (ptr *QNetworkDiskCache) DisconnectClear() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "clear")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::clear")
 	}
 }
 
@@ -10600,7 +10724,7 @@ func (ptr *QNetworkDiskCache) ClearDefault() {
 func callbackQNetworkDiskCache_Data(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkDiskCache::data")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "data"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::data"); signal != nil {
 		return core.PointerFromQIODevice(signal.(func(*core.QUrl) *core.QIODevice)(core.NewQUrlFromPointer(url)))
 	}
 
@@ -10612,7 +10736,7 @@ func (ptr *QNetworkDiskCache) ConnectData(f func(url *core.QUrl) *core.QIODevice
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "data", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::data", f)
 	}
 }
 
@@ -10621,7 +10745,7 @@ func (ptr *QNetworkDiskCache) DisconnectData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "data")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::data")
 	}
 }
 
@@ -10629,7 +10753,11 @@ func (ptr *QNetworkDiskCache) Data(url core.QUrl_ITF) *core.QIODevice {
 	defer qt.Recovering("QNetworkDiskCache::data")
 
 	if ptr.Pointer() != nil {
-		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
+		var tmpValue = core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Data(ptr.Pointer(), core.PointerFromQUrl(url)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -10638,7 +10766,11 @@ func (ptr *QNetworkDiskCache) DataDefault(url core.QUrl_ITF) *core.QIODevice {
 	defer qt.Recovering("QNetworkDiskCache::data")
 
 	if ptr.Pointer() != nil {
-		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_DataDefault(ptr.Pointer(), core.PointerFromQUrl(url)))
+		var tmpValue = core.NewQIODeviceFromPointer(C.QNetworkDiskCache_DataDefault(ptr.Pointer(), core.PointerFromQUrl(url)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -10647,7 +10779,7 @@ func (ptr *QNetworkDiskCache) DataDefault(url core.QUrl_ITF) *core.QIODevice {
 func callbackQNetworkDiskCache_Expire(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QNetworkDiskCache::expire")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "expire"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::expire"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -10659,7 +10791,7 @@ func (ptr *QNetworkDiskCache) ConnectExpire(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "expire", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::expire", f)
 	}
 }
 
@@ -10668,7 +10800,7 @@ func (ptr *QNetworkDiskCache) DisconnectExpire() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "expire")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::expire")
 	}
 }
 
@@ -10707,7 +10839,7 @@ func (ptr *QNetworkDiskCache) FileMetaData(fileName string) *QNetworkCacheMetaDa
 func callbackQNetworkDiskCache_Insert(ptr unsafe.Pointer, device unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::insert")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "insert"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::insert"); signal != nil {
 		signal.(func(*core.QIODevice))(core.NewQIODeviceFromPointer(device))
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).InsertDefault(core.NewQIODeviceFromPointer(device))
@@ -10719,7 +10851,7 @@ func (ptr *QNetworkDiskCache) ConnectInsert(f func(device *core.QIODevice)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "insert", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::insert", f)
 	}
 }
 
@@ -10728,7 +10860,7 @@ func (ptr *QNetworkDiskCache) DisconnectInsert() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "insert")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::insert")
 	}
 }
 
@@ -10761,7 +10893,7 @@ func (ptr *QNetworkDiskCache) MaximumCacheSize() int64 {
 func callbackQNetworkDiskCache_MetaData(ptr unsafe.Pointer, url unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkDiskCache::metaData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "metaData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::metaData"); signal != nil {
 		return PointerFromQNetworkCacheMetaData(signal.(func(*core.QUrl) *QNetworkCacheMetaData)(core.NewQUrlFromPointer(url)))
 	}
 
@@ -10773,7 +10905,7 @@ func (ptr *QNetworkDiskCache) ConnectMetaData(f func(url *core.QUrl) *QNetworkCa
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "metaData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::metaData", f)
 	}
 }
 
@@ -10782,7 +10914,7 @@ func (ptr *QNetworkDiskCache) DisconnectMetaData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "metaData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::metaData")
 	}
 }
 
@@ -10812,7 +10944,7 @@ func (ptr *QNetworkDiskCache) MetaDataDefault(url core.QUrl_ITF) *QNetworkCacheM
 func callbackQNetworkDiskCache_Prepare(ptr unsafe.Pointer, metaData unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkDiskCache::prepare")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "prepare"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::prepare"); signal != nil {
 		return core.PointerFromQIODevice(signal.(func(*QNetworkCacheMetaData) *core.QIODevice)(NewQNetworkCacheMetaDataFromPointer(metaData)))
 	}
 
@@ -10824,7 +10956,7 @@ func (ptr *QNetworkDiskCache) ConnectPrepare(f func(metaData *QNetworkCacheMetaD
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "prepare", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::prepare", f)
 	}
 }
 
@@ -10833,7 +10965,7 @@ func (ptr *QNetworkDiskCache) DisconnectPrepare() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "prepare")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::prepare")
 	}
 }
 
@@ -10841,7 +10973,11 @@ func (ptr *QNetworkDiskCache) Prepare(metaData QNetworkCacheMetaData_ITF) *core.
 	defer qt.Recovering("QNetworkDiskCache::prepare")
 
 	if ptr.Pointer() != nil {
-		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
+		var tmpValue = core.NewQIODeviceFromPointer(C.QNetworkDiskCache_Prepare(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -10850,7 +10986,11 @@ func (ptr *QNetworkDiskCache) PrepareDefault(metaData QNetworkCacheMetaData_ITF)
 	defer qt.Recovering("QNetworkDiskCache::prepare")
 
 	if ptr.Pointer() != nil {
-		return core.NewQIODeviceFromPointer(C.QNetworkDiskCache_PrepareDefault(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
+		var tmpValue = core.NewQIODeviceFromPointer(C.QNetworkDiskCache_PrepareDefault(ptr.Pointer(), PointerFromQNetworkCacheMetaData(metaData)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -10859,7 +10999,7 @@ func (ptr *QNetworkDiskCache) PrepareDefault(metaData QNetworkCacheMetaData_ITF)
 func callbackQNetworkDiskCache_Remove(ptr unsafe.Pointer, url unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkDiskCache::remove")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "remove"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::remove"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl) bool)(core.NewQUrlFromPointer(url)))))
 	}
 
@@ -10871,7 +11011,7 @@ func (ptr *QNetworkDiskCache) ConnectRemove(f func(url *core.QUrl) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "remove", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::remove", f)
 	}
 }
 
@@ -10880,7 +11020,7 @@ func (ptr *QNetworkDiskCache) DisconnectRemove() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "remove")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::remove")
 	}
 }
 
@@ -10924,7 +11064,7 @@ func (ptr *QNetworkDiskCache) SetMaximumCacheSize(size int64) {
 func callbackQNetworkDiskCache_UpdateMetaData(ptr unsafe.Pointer, metaData unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::updateMetaData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "updateMetaData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::updateMetaData"); signal != nil {
 		signal.(func(*QNetworkCacheMetaData))(NewQNetworkCacheMetaDataFromPointer(metaData))
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).UpdateMetaDataDefault(NewQNetworkCacheMetaDataFromPointer(metaData))
@@ -10936,7 +11076,7 @@ func (ptr *QNetworkDiskCache) ConnectUpdateMetaData(f func(metaData *QNetworkCac
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "updateMetaData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::updateMetaData", f)
 	}
 }
 
@@ -10945,7 +11085,7 @@ func (ptr *QNetworkDiskCache) DisconnectUpdateMetaData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "updateMetaData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::updateMetaData")
 	}
 }
 
@@ -10969,8 +11109,8 @@ func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
 	defer qt.Recovering("QNetworkDiskCache::~QNetworkDiskCache")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()))
 		C.QNetworkDiskCache_DestroyQNetworkDiskCache(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10979,7 +11119,7 @@ func (ptr *QNetworkDiskCache) DestroyQNetworkDiskCache() {
 func callbackQNetworkDiskCache_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -10991,7 +11131,7 @@ func (ptr *QNetworkDiskCache) ConnectTimerEvent(f func(event *core.QTimerEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::timerEvent", f)
 	}
 }
 
@@ -11000,7 +11140,7 @@ func (ptr *QNetworkDiskCache) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::timerEvent")
 	}
 }
 
@@ -11024,7 +11164,7 @@ func (ptr *QNetworkDiskCache) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQNetworkDiskCache_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -11036,7 +11176,7 @@ func (ptr *QNetworkDiskCache) ConnectChildEvent(f func(event *core.QChildEvent))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::childEvent", f)
 	}
 }
 
@@ -11045,7 +11185,7 @@ func (ptr *QNetworkDiskCache) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::childEvent")
 	}
 }
 
@@ -11069,7 +11209,7 @@ func (ptr *QNetworkDiskCache) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQNetworkDiskCache_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -11081,7 +11221,7 @@ func (ptr *QNetworkDiskCache) ConnectConnectNotify(f func(sign *core.QMetaMethod
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::connectNotify", f)
 	}
 }
 
@@ -11090,7 +11230,7 @@ func (ptr *QNetworkDiskCache) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::connectNotify")
 	}
 }
 
@@ -11114,7 +11254,7 @@ func (ptr *QNetworkDiskCache) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQNetworkDiskCache_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -11126,7 +11266,7 @@ func (ptr *QNetworkDiskCache) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::customEvent", f)
 	}
 }
 
@@ -11135,7 +11275,7 @@ func (ptr *QNetworkDiskCache) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::customEvent")
 	}
 }
 
@@ -11159,7 +11299,7 @@ func (ptr *QNetworkDiskCache) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQNetworkDiskCache_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).DeleteLaterDefault()
@@ -11171,7 +11311,7 @@ func (ptr *QNetworkDiskCache) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::deleteLater", f)
 	}
 }
 
@@ -11180,7 +11320,7 @@ func (ptr *QNetworkDiskCache) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::deleteLater")
 	}
 }
 
@@ -11188,8 +11328,8 @@ func (ptr *QNetworkDiskCache) DeleteLater() {
 	defer qt.Recovering("QNetworkDiskCache::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()))
 		C.QNetworkDiskCache_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11198,8 +11338,8 @@ func (ptr *QNetworkDiskCache) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkDiskCache::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()))
 		C.QNetworkDiskCache_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -11208,7 +11348,7 @@ func (ptr *QNetworkDiskCache) DeleteLaterDefault() {
 func callbackQNetworkDiskCache_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkDiskCache::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkDiskCacheFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -11220,7 +11360,7 @@ func (ptr *QNetworkDiskCache) ConnectDisconnectNotify(f func(sign *core.QMetaMet
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::disconnectNotify", f)
 	}
 }
 
@@ -11229,7 +11369,7 @@ func (ptr *QNetworkDiskCache) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::disconnectNotify")
 	}
 }
 
@@ -11253,7 +11393,7 @@ func (ptr *QNetworkDiskCache) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 func callbackQNetworkDiskCache_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkDiskCache::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -11265,7 +11405,7 @@ func (ptr *QNetworkDiskCache) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::event", f)
 	}
 }
 
@@ -11274,7 +11414,7 @@ func (ptr *QNetworkDiskCache) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::event")
 	}
 }
 
@@ -11300,7 +11440,7 @@ func (ptr *QNetworkDiskCache) EventDefault(e core.QEvent_ITF) bool {
 func callbackQNetworkDiskCache_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkDiskCache::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -11312,7 +11452,7 @@ func (ptr *QNetworkDiskCache) ConnectEventFilter(f func(watched *core.QObject, e
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::eventFilter", f)
 	}
 }
 
@@ -11321,7 +11461,7 @@ func (ptr *QNetworkDiskCache) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::eventFilter")
 	}
 }
 
@@ -11347,7 +11487,7 @@ func (ptr *QNetworkDiskCache) EventFilterDefault(watched core.QObject_ITF, event
 func callbackQNetworkDiskCache_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkDiskCache::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkDiskCache::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -11359,7 +11499,7 @@ func (ptr *QNetworkDiskCache) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::metaObject", f)
 	}
 }
 
@@ -11368,7 +11508,7 @@ func (ptr *QNetworkDiskCache) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkDiskCache(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkDiskCache::metaObject")
 	}
 }
 
@@ -11969,8 +12109,8 @@ func (ptr *QNetworkProxyFactory) DestroyQNetworkProxyFactory() {
 	defer qt.Recovering("QNetworkProxyFactory::~QNetworkProxyFactory")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkProxyFactory(%v)", ptr.Pointer()))
 		C.QNetworkProxyFactory_DestroyQNetworkProxyFactory(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12325,7 +12465,7 @@ func NewQNetworkReplyFromPointer(ptr unsafe.Pointer) *QNetworkReply {
 func callbackQNetworkReply_SetSslConfigurationImplementation(ptr unsafe.Pointer, configuration unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::setSslConfigurationImplementation")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "setSslConfigurationImplementation"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::setSslConfigurationImplementation"); signal != nil {
 		signal.(func(*QSslConfiguration))(NewQSslConfigurationFromPointer(configuration))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).SetSslConfigurationImplementationDefault(NewQSslConfigurationFromPointer(configuration))
@@ -12337,7 +12477,7 @@ func (ptr *QNetworkReply) ConnectSetSslConfigurationImplementation(f func(config
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "setSslConfigurationImplementation", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::setSslConfigurationImplementation", f)
 	}
 }
 
@@ -12346,7 +12486,7 @@ func (ptr *QNetworkReply) DisconnectSetSslConfigurationImplementation() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "setSslConfigurationImplementation")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::setSslConfigurationImplementation")
 	}
 }
 
@@ -12370,7 +12510,7 @@ func (ptr *QNetworkReply) SetSslConfigurationImplementationDefault(configuration
 func callbackQNetworkReply_SslConfigurationImplementation(ptr unsafe.Pointer, configuration unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::sslConfigurationImplementation")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "sslConfigurationImplementation"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::sslConfigurationImplementation"); signal != nil {
 		signal.(func(*QSslConfiguration))(NewQSslConfigurationFromPointer(configuration))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).SslConfigurationImplementationDefault(NewQSslConfigurationFromPointer(configuration))
@@ -12382,7 +12522,7 @@ func (ptr *QNetworkReply) ConnectSslConfigurationImplementation(f func(configura
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "sslConfigurationImplementation", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::sslConfigurationImplementation", f)
 	}
 }
 
@@ -12391,7 +12531,7 @@ func (ptr *QNetworkReply) DisconnectSslConfigurationImplementation() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "sslConfigurationImplementation")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::sslConfigurationImplementation")
 	}
 }
 
@@ -12415,7 +12555,7 @@ func (ptr *QNetworkReply) SslConfigurationImplementationDefault(configuration QS
 func callbackQNetworkReply_Abort(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::abort")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "abort"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::abort"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12426,7 +12566,7 @@ func (ptr *QNetworkReply) ConnectAbort(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "abort", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::abort", f)
 	}
 }
 
@@ -12435,7 +12575,7 @@ func (ptr *QNetworkReply) DisconnectAbort() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "abort")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::abort")
 	}
 }
 
@@ -12462,7 +12602,7 @@ func (ptr *QNetworkReply) Attribute(code QNetworkRequest__Attribute) *core.QVari
 func callbackQNetworkReply_Close(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::close"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkReplyFromPointer(ptr).CloseDefault()
@@ -12474,7 +12614,7 @@ func (ptr *QNetworkReply) ConnectClose(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::close", f)
 	}
 }
 
@@ -12483,7 +12623,7 @@ func (ptr *QNetworkReply) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::close")
 	}
 }
 
@@ -12507,7 +12647,7 @@ func (ptr *QNetworkReply) CloseDefault() {
 func callbackQNetworkReply_DownloadProgress(ptr unsafe.Pointer, bytesReceived C.longlong, bytesTotal C.longlong) {
 	defer qt.Recovering("callback QNetworkReply::downloadProgress")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "downloadProgress"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::downloadProgress"); signal != nil {
 		signal.(func(int64, int64))(int64(bytesReceived), int64(bytesTotal))
 	}
 
@@ -12518,7 +12658,7 @@ func (ptr *QNetworkReply) ConnectDownloadProgress(f func(bytesReceived int64, by
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectDownloadProgress(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "downloadProgress", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::downloadProgress", f)
 	}
 }
 
@@ -12527,7 +12667,7 @@ func (ptr *QNetworkReply) DisconnectDownloadProgress() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectDownloadProgress(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "downloadProgress")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::downloadProgress")
 	}
 }
 
@@ -12543,7 +12683,7 @@ func (ptr *QNetworkReply) DownloadProgress(bytesReceived int64, bytesTotal int64
 func callbackQNetworkReply_Encrypted(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::encrypted")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "encrypted"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::encrypted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12554,7 +12694,7 @@ func (ptr *QNetworkReply) ConnectEncrypted(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectEncrypted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "encrypted", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::encrypted", f)
 	}
 }
 
@@ -12563,7 +12703,7 @@ func (ptr *QNetworkReply) DisconnectEncrypted() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectEncrypted(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "encrypted")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::encrypted")
 	}
 }
 
@@ -12579,7 +12719,7 @@ func (ptr *QNetworkReply) Encrypted() {
 func callbackQNetworkReply_Error2(ptr unsafe.Pointer, code C.longlong) {
 	defer qt.Recovering("callback QNetworkReply::error")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "error2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::error2"); signal != nil {
 		signal.(func(QNetworkReply__NetworkError))(QNetworkReply__NetworkError(code))
 	}
 
@@ -12590,7 +12730,7 @@ func (ptr *QNetworkReply) ConnectError2(f func(code QNetworkReply__NetworkError)
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "error2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::error2", f)
 	}
 }
 
@@ -12599,7 +12739,7 @@ func (ptr *QNetworkReply) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "error2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::error2")
 	}
 }
 
@@ -12624,7 +12764,7 @@ func (ptr *QNetworkReply) Error() QNetworkReply__NetworkError {
 func callbackQNetworkReply_Finished(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::finished")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "finished"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::finished"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12635,7 +12775,7 @@ func (ptr *QNetworkReply) ConnectFinished(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectFinished(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "finished", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::finished", f)
 	}
 }
 
@@ -12644,7 +12784,7 @@ func (ptr *QNetworkReply) DisconnectFinished() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectFinished(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "finished")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::finished")
 	}
 }
 
@@ -12682,7 +12822,7 @@ func (ptr *QNetworkReply) Header(header QNetworkRequest__KnownHeaders) *core.QVa
 func callbackQNetworkReply_IgnoreSslErrors(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::ignoreSslErrors")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "ignoreSslErrors"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::ignoreSslErrors"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkReplyFromPointer(ptr).IgnoreSslErrorsDefault()
@@ -12694,7 +12834,7 @@ func (ptr *QNetworkReply) ConnectIgnoreSslErrors(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "ignoreSslErrors", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::ignoreSslErrors", f)
 	}
 }
 
@@ -12703,7 +12843,7 @@ func (ptr *QNetworkReply) DisconnectIgnoreSslErrors() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "ignoreSslErrors")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::ignoreSslErrors")
 	}
 }
 
@@ -12745,7 +12885,11 @@ func (ptr *QNetworkReply) Manager() *QNetworkAccessManager {
 	defer qt.Recovering("QNetworkReply::manager")
 
 	if ptr.Pointer() != nil {
-		return NewQNetworkAccessManagerFromPointer(C.QNetworkReply_Manager(ptr.Pointer()))
+		var tmpValue = NewQNetworkAccessManagerFromPointer(C.QNetworkReply_Manager(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -12754,7 +12898,7 @@ func (ptr *QNetworkReply) Manager() *QNetworkAccessManager {
 func callbackQNetworkReply_MetaDataChanged(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::metaDataChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "metaDataChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
 
@@ -12765,7 +12909,7 @@ func (ptr *QNetworkReply) ConnectMetaDataChanged(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectMetaDataChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "metaDataChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::metaDataChanged", f)
 	}
 }
 
@@ -12774,7 +12918,7 @@ func (ptr *QNetworkReply) DisconnectMetaDataChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectMetaDataChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "metaDataChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::metaDataChanged")
 	}
 }
 
@@ -12799,7 +12943,7 @@ func (ptr *QNetworkReply) Operation() QNetworkAccessManager__Operation {
 func callbackQNetworkReply_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::preSharedKeyAuthenticationRequired")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "preSharedKeyAuthenticationRequired"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::preSharedKeyAuthenticationRequired"); signal != nil {
 		signal.(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 	}
 
@@ -12810,7 +12954,7 @@ func (ptr *QNetworkReply) ConnectPreSharedKeyAuthenticationRequired(f func(authe
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::preSharedKeyAuthenticationRequired", f)
 	}
 }
 
@@ -12819,7 +12963,7 @@ func (ptr *QNetworkReply) DisconnectPreSharedKeyAuthenticationRequired() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "preSharedKeyAuthenticationRequired")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::preSharedKeyAuthenticationRequired")
 	}
 }
 
@@ -12855,7 +12999,7 @@ func (ptr *QNetworkReply) ReadBufferSize() int64 {
 func callbackQNetworkReply_Redirected(ptr unsafe.Pointer, url unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::redirected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "redirected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::redirected"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
 
@@ -12866,7 +13010,7 @@ func (ptr *QNetworkReply) ConnectRedirected(f func(url *core.QUrl)) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectRedirected(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "redirected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::redirected", f)
 	}
 }
 
@@ -12875,7 +13019,7 @@ func (ptr *QNetworkReply) DisconnectRedirected() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectRedirected(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "redirected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::redirected")
 	}
 }
 
@@ -12956,7 +13100,7 @@ func (ptr *QNetworkReply) SetRawHeader(headerName string, value string) {
 func callbackQNetworkReply_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong) {
 	defer qt.Recovering("callback QNetworkReply::setReadBufferSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "setReadBufferSize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::setReadBufferSize"); signal != nil {
 		signal.(func(int64))(int64(size))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
@@ -12968,7 +13112,7 @@ func (ptr *QNetworkReply) ConnectSetReadBufferSize(f func(size int64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "setReadBufferSize", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::setReadBufferSize", f)
 	}
 }
 
@@ -12977,7 +13121,7 @@ func (ptr *QNetworkReply) DisconnectSetReadBufferSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "setReadBufferSize")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::setReadBufferSize")
 	}
 }
 
@@ -13036,7 +13180,7 @@ func (ptr *QNetworkReply) SslConfiguration() *QSslConfiguration {
 func callbackQNetworkReply_UploadProgress(ptr unsafe.Pointer, bytesSent C.longlong, bytesTotal C.longlong) {
 	defer qt.Recovering("callback QNetworkReply::uploadProgress")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "uploadProgress"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::uploadProgress"); signal != nil {
 		signal.(func(int64, int64))(int64(bytesSent), int64(bytesTotal))
 	}
 
@@ -13047,7 +13191,7 @@ func (ptr *QNetworkReply) ConnectUploadProgress(f func(bytesSent int64, bytesTot
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_ConnectUploadProgress(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "uploadProgress", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::uploadProgress", f)
 	}
 }
 
@@ -13056,7 +13200,7 @@ func (ptr *QNetworkReply) DisconnectUploadProgress() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkReply_DisconnectUploadProgress(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "uploadProgress")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::uploadProgress")
 	}
 }
 
@@ -13083,8 +13227,8 @@ func (ptr *QNetworkReply) DestroyQNetworkReply() {
 	defer qt.Recovering("QNetworkReply::~QNetworkReply")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()))
 		C.QNetworkReply_DestroyQNetworkReply(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13093,7 +13237,7 @@ func (ptr *QNetworkReply) DestroyQNetworkReply() {
 func callbackQNetworkReply_AtEnd(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkReply::atEnd")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "atEnd"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -13105,7 +13249,7 @@ func (ptr *QNetworkReply) ConnectAtEnd(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "atEnd", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::atEnd", f)
 	}
 }
 
@@ -13114,7 +13258,7 @@ func (ptr *QNetworkReply) DisconnectAtEnd() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "atEnd")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::atEnd")
 	}
 }
 
@@ -13140,7 +13284,7 @@ func (ptr *QNetworkReply) AtEndDefault() bool {
 func callbackQNetworkReply_BytesAvailable(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QNetworkReply::bytesAvailable")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "bytesAvailable"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -13152,7 +13296,7 @@ func (ptr *QNetworkReply) ConnectBytesAvailable(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "bytesAvailable", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::bytesAvailable", f)
 	}
 }
 
@@ -13161,7 +13305,7 @@ func (ptr *QNetworkReply) DisconnectBytesAvailable() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "bytesAvailable")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::bytesAvailable")
 	}
 }
 
@@ -13187,7 +13331,7 @@ func (ptr *QNetworkReply) BytesAvailableDefault() int64 {
 func callbackQNetworkReply_BytesToWrite(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QNetworkReply::bytesToWrite")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "bytesToWrite"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -13199,7 +13343,7 @@ func (ptr *QNetworkReply) ConnectBytesToWrite(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "bytesToWrite", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::bytesToWrite", f)
 	}
 }
 
@@ -13208,7 +13352,7 @@ func (ptr *QNetworkReply) DisconnectBytesToWrite() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "bytesToWrite")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::bytesToWrite")
 	}
 }
 
@@ -13234,7 +13378,7 @@ func (ptr *QNetworkReply) BytesToWriteDefault() int64 {
 func callbackQNetworkReply_CanReadLine(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkReply::canReadLine")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "canReadLine"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -13246,7 +13390,7 @@ func (ptr *QNetworkReply) ConnectCanReadLine(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "canReadLine", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::canReadLine", f)
 	}
 }
 
@@ -13255,7 +13399,7 @@ func (ptr *QNetworkReply) DisconnectCanReadLine() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "canReadLine")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::canReadLine")
 	}
 }
 
@@ -13281,7 +13425,7 @@ func (ptr *QNetworkReply) CanReadLineDefault() bool {
 func callbackQNetworkReply_IsSequential(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkReply::isSequential")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "isSequential"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -13293,7 +13437,7 @@ func (ptr *QNetworkReply) ConnectIsSequential(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "isSequential", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::isSequential", f)
 	}
 }
 
@@ -13302,7 +13446,7 @@ func (ptr *QNetworkReply) DisconnectIsSequential() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "isSequential")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::isSequential")
 	}
 }
 
@@ -13328,7 +13472,7 @@ func (ptr *QNetworkReply) IsSequentialDefault() bool {
 func callbackQNetworkReply_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 	defer qt.Recovering("callback QNetworkReply::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(core.QIODevice__OpenModeFlag) bool)(core.QIODevice__OpenModeFlag(mode)))))
 	}
 
@@ -13340,7 +13484,7 @@ func (ptr *QNetworkReply) ConnectOpen(f func(mode core.QIODevice__OpenModeFlag) 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::open", f)
 	}
 }
 
@@ -13349,7 +13493,7 @@ func (ptr *QNetworkReply) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::open")
 	}
 }
 
@@ -13375,7 +13519,7 @@ func (ptr *QNetworkReply) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 func callbackQNetworkReply_Pos(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QNetworkReply::pos")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "pos"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -13387,7 +13531,7 @@ func (ptr *QNetworkReply) ConnectPos(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "pos", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::pos", f)
 	}
 }
 
@@ -13396,7 +13540,7 @@ func (ptr *QNetworkReply) DisconnectPos() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "pos")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::pos")
 	}
 }
 
@@ -13422,7 +13566,7 @@ func (ptr *QNetworkReply) PosDefault() int64 {
 func callbackQNetworkReply_ReadLineData(ptr unsafe.Pointer, data *C.char, maxSize C.longlong) C.longlong {
 	defer qt.Recovering("callback QNetworkReply::readLineData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "readLineData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxSize)))
 	}
 
@@ -13434,7 +13578,7 @@ func (ptr *QNetworkReply) ConnectReadLineData(f func(data string, maxSize int64)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "readLineData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::readLineData", f)
 	}
 }
 
@@ -13443,7 +13587,7 @@ func (ptr *QNetworkReply) DisconnectReadLineData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "readLineData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::readLineData")
 	}
 }
 
@@ -13473,7 +13617,7 @@ func (ptr *QNetworkReply) ReadLineDataDefault(data string, maxSize int64) int64 
 func callbackQNetworkReply_Reset(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkReply::reset")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "reset"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -13485,7 +13629,7 @@ func (ptr *QNetworkReply) ConnectReset(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "reset", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::reset", f)
 	}
 }
 
@@ -13494,7 +13638,7 @@ func (ptr *QNetworkReply) DisconnectReset() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "reset")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::reset")
 	}
 }
 
@@ -13520,7 +13664,7 @@ func (ptr *QNetworkReply) ResetDefault() bool {
 func callbackQNetworkReply_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 	defer qt.Recovering("callback QNetworkReply::seek")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "seek"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
 
@@ -13532,7 +13676,7 @@ func (ptr *QNetworkReply) ConnectSeek(f func(pos int64) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "seek", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::seek", f)
 	}
 }
 
@@ -13541,7 +13685,7 @@ func (ptr *QNetworkReply) DisconnectSeek() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "seek")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::seek")
 	}
 }
 
@@ -13567,7 +13711,7 @@ func (ptr *QNetworkReply) SeekDefault(pos int64) bool {
 func callbackQNetworkReply_Size(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QNetworkReply::size")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "size"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -13579,7 +13723,7 @@ func (ptr *QNetworkReply) ConnectSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "size", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::size", f)
 	}
 }
 
@@ -13588,7 +13732,7 @@ func (ptr *QNetworkReply) DisconnectSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "size")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::size")
 	}
 }
 
@@ -13614,7 +13758,7 @@ func (ptr *QNetworkReply) SizeDefault() int64 {
 func callbackQNetworkReply_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QNetworkReply::waitForBytesWritten")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "waitForBytesWritten"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::waitForBytesWritten"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -13626,7 +13770,7 @@ func (ptr *QNetworkReply) ConnectWaitForBytesWritten(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "waitForBytesWritten", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::waitForBytesWritten", f)
 	}
 }
 
@@ -13635,7 +13779,7 @@ func (ptr *QNetworkReply) DisconnectWaitForBytesWritten() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "waitForBytesWritten")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::waitForBytesWritten")
 	}
 }
 
@@ -13661,7 +13805,7 @@ func (ptr *QNetworkReply) WaitForBytesWrittenDefault(msecs int) bool {
 func callbackQNetworkReply_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QNetworkReply::waitForReadyRead")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "waitForReadyRead"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::waitForReadyRead"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -13673,7 +13817,7 @@ func (ptr *QNetworkReply) ConnectWaitForReadyRead(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "waitForReadyRead", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::waitForReadyRead", f)
 	}
 }
 
@@ -13682,7 +13826,7 @@ func (ptr *QNetworkReply) DisconnectWaitForReadyRead() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "waitForReadyRead")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::waitForReadyRead")
 	}
 }
 
@@ -13708,7 +13852,7 @@ func (ptr *QNetworkReply) WaitForReadyReadDefault(msecs int) bool {
 func callbackQNetworkReply_WriteData(ptr unsafe.Pointer, data *C.char, maxSize C.longlong) C.longlong {
 	defer qt.Recovering("callback QNetworkReply::writeData")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "writeData"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(C.GoString(data), int64(maxSize)))
 	}
 
@@ -13720,7 +13864,7 @@ func (ptr *QNetworkReply) ConnectWriteData(f func(data string, maxSize int64) in
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "writeData", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::writeData", f)
 	}
 }
 
@@ -13729,7 +13873,7 @@ func (ptr *QNetworkReply) DisconnectWriteData() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "writeData")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::writeData")
 	}
 }
 
@@ -13759,7 +13903,7 @@ func (ptr *QNetworkReply) WriteDataDefault(data string, maxSize int64) int64 {
 func callbackQNetworkReply_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -13771,7 +13915,7 @@ func (ptr *QNetworkReply) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::timerEvent", f)
 	}
 }
 
@@ -13780,7 +13924,7 @@ func (ptr *QNetworkReply) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::timerEvent")
 	}
 }
 
@@ -13804,7 +13948,7 @@ func (ptr *QNetworkReply) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQNetworkReply_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -13816,7 +13960,7 @@ func (ptr *QNetworkReply) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::childEvent", f)
 	}
 }
 
@@ -13825,7 +13969,7 @@ func (ptr *QNetworkReply) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::childEvent")
 	}
 }
 
@@ -13849,7 +13993,7 @@ func (ptr *QNetworkReply) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQNetworkReply_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -13861,7 +14005,7 @@ func (ptr *QNetworkReply) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::connectNotify", f)
 	}
 }
 
@@ -13870,7 +14014,7 @@ func (ptr *QNetworkReply) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::connectNotify")
 	}
 }
 
@@ -13894,7 +14038,7 @@ func (ptr *QNetworkReply) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQNetworkReply_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -13906,7 +14050,7 @@ func (ptr *QNetworkReply) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::customEvent", f)
 	}
 }
 
@@ -13915,7 +14059,7 @@ func (ptr *QNetworkReply) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::customEvent")
 	}
 }
 
@@ -13939,7 +14083,7 @@ func (ptr *QNetworkReply) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQNetworkReply_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkReplyFromPointer(ptr).DeleteLaterDefault()
@@ -13951,7 +14095,7 @@ func (ptr *QNetworkReply) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::deleteLater", f)
 	}
 }
 
@@ -13960,7 +14104,7 @@ func (ptr *QNetworkReply) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::deleteLater")
 	}
 }
 
@@ -13968,8 +14112,8 @@ func (ptr *QNetworkReply) DeleteLater() {
 	defer qt.Recovering("QNetworkReply::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()))
 		C.QNetworkReply_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13978,8 +14122,8 @@ func (ptr *QNetworkReply) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkReply::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()))
 		C.QNetworkReply_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13988,7 +14132,7 @@ func (ptr *QNetworkReply) DeleteLaterDefault() {
 func callbackQNetworkReply_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkReply::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkReplyFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -14000,7 +14144,7 @@ func (ptr *QNetworkReply) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::disconnectNotify", f)
 	}
 }
 
@@ -14009,7 +14153,7 @@ func (ptr *QNetworkReply) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::disconnectNotify")
 	}
 }
 
@@ -14033,7 +14177,7 @@ func (ptr *QNetworkReply) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQNetworkReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkReply::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -14045,7 +14189,7 @@ func (ptr *QNetworkReply) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::event", f)
 	}
 }
 
@@ -14054,7 +14198,7 @@ func (ptr *QNetworkReply) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::event")
 	}
 }
 
@@ -14080,7 +14224,7 @@ func (ptr *QNetworkReply) EventDefault(e core.QEvent_ITF) bool {
 func callbackQNetworkReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkReply::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -14092,7 +14236,7 @@ func (ptr *QNetworkReply) ConnectEventFilter(f func(watched *core.QObject, event
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::eventFilter", f)
 	}
 }
 
@@ -14101,7 +14245,7 @@ func (ptr *QNetworkReply) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::eventFilter")
 	}
 }
 
@@ -14127,7 +14271,7 @@ func (ptr *QNetworkReply) EventFilterDefault(watched core.QObject_ITF, event cor
 func callbackQNetworkReply_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkReply::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkReply(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkReply::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -14139,7 +14283,7 @@ func (ptr *QNetworkReply) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::metaObject", f)
 	}
 }
 
@@ -14148,7 +14292,7 @@ func (ptr *QNetworkReply) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkReply(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkReply::metaObject")
 	}
 }
 
@@ -14341,7 +14485,11 @@ func (ptr *QNetworkRequest) OriginatingObject() *core.QObject {
 	defer qt.Recovering("QNetworkRequest::originatingObject")
 
 	if ptr.Pointer() != nil {
-		return core.NewQObjectFromPointer(C.QNetworkRequest_OriginatingObject(ptr.Pointer()))
+		var tmpValue = core.NewQObjectFromPointer(C.QNetworkRequest_OriginatingObject(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -14546,14 +14694,18 @@ func NewQNetworkSessionFromPointer(ptr unsafe.Pointer) *QNetworkSession {
 func NewQNetworkSession(connectionConfig QNetworkConfiguration_ITF, parent core.QObject_ITF) *QNetworkSession {
 	defer qt.Recovering("QNetworkSession::QNetworkSession")
 
-	return NewQNetworkSessionFromPointer(C.QNetworkSession_NewQNetworkSession(PointerFromQNetworkConfiguration(connectionConfig), core.PointerFromQObject(parent)))
+	var tmpValue = NewQNetworkSessionFromPointer(C.QNetworkSession_NewQNetworkSession(PointerFromQNetworkConfiguration(connectionConfig), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQNetworkSession_Accept
 func callbackQNetworkSession_Accept(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::accept")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "accept"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::accept"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14564,7 +14716,7 @@ func (ptr *QNetworkSession) ConnectAccept(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "accept", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::accept", f)
 	}
 }
 
@@ -14573,7 +14725,7 @@ func (ptr *QNetworkSession) DisconnectAccept() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "accept")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::accept")
 	}
 }
 
@@ -14616,7 +14768,7 @@ func (ptr *QNetworkSession) BytesWritten() uint64 {
 func callbackQNetworkSession_Close(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::close")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "close"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::close"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14627,7 +14779,7 @@ func (ptr *QNetworkSession) ConnectClose(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "close", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::close", f)
 	}
 }
 
@@ -14636,7 +14788,7 @@ func (ptr *QNetworkSession) DisconnectClose() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "close")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::close")
 	}
 }
 
@@ -14652,7 +14804,7 @@ func (ptr *QNetworkSession) Close() {
 func callbackQNetworkSession_Closed(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::closed")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "closed"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::closed"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14663,7 +14815,7 @@ func (ptr *QNetworkSession) ConnectClosed(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectClosed(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "closed", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::closed", f)
 	}
 }
 
@@ -14672,7 +14824,7 @@ func (ptr *QNetworkSession) DisconnectClosed() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectClosed(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "closed")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::closed")
 	}
 }
 
@@ -14699,7 +14851,7 @@ func (ptr *QNetworkSession) Configuration() *QNetworkConfiguration {
 func callbackQNetworkSession_Error2(ptr unsafe.Pointer, error C.longlong) {
 	defer qt.Recovering("callback QNetworkSession::error")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "error2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::error2"); signal != nil {
 		signal.(func(QNetworkSession__SessionError))(QNetworkSession__SessionError(error))
 	}
 
@@ -14710,7 +14862,7 @@ func (ptr *QNetworkSession) ConnectError2(f func(error QNetworkSession__SessionE
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectError2(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "error2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::error2", f)
 	}
 }
 
@@ -14719,7 +14871,7 @@ func (ptr *QNetworkSession) DisconnectError2() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectError2(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "error2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::error2")
 	}
 }
 
@@ -14753,7 +14905,7 @@ func (ptr *QNetworkSession) ErrorString() string {
 func callbackQNetworkSession_Ignore(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::ignore")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "ignore"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::ignore"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14764,7 +14916,7 @@ func (ptr *QNetworkSession) ConnectIgnore(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "ignore", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::ignore", f)
 	}
 }
 
@@ -14773,7 +14925,7 @@ func (ptr *QNetworkSession) DisconnectIgnore() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "ignore")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::ignore")
 	}
 }
 
@@ -14809,7 +14961,7 @@ func (ptr *QNetworkSession) IsOpen() bool {
 func callbackQNetworkSession_Migrate(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::migrate")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "migrate"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::migrate"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14820,7 +14972,7 @@ func (ptr *QNetworkSession) ConnectMigrate(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "migrate", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::migrate", f)
 	}
 }
 
@@ -14829,7 +14981,7 @@ func (ptr *QNetworkSession) DisconnectMigrate() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "migrate")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::migrate")
 	}
 }
 
@@ -14845,7 +14997,7 @@ func (ptr *QNetworkSession) Migrate() {
 func callbackQNetworkSession_NewConfigurationActivated(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::newConfigurationActivated")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "newConfigurationActivated"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::newConfigurationActivated"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14856,7 +15008,7 @@ func (ptr *QNetworkSession) ConnectNewConfigurationActivated(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectNewConfigurationActivated(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "newConfigurationActivated", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::newConfigurationActivated", f)
 	}
 }
 
@@ -14865,7 +15017,7 @@ func (ptr *QNetworkSession) DisconnectNewConfigurationActivated() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectNewConfigurationActivated(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "newConfigurationActivated")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::newConfigurationActivated")
 	}
 }
 
@@ -14881,7 +15033,7 @@ func (ptr *QNetworkSession) NewConfigurationActivated() {
 func callbackQNetworkSession_Open(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::open"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14892,7 +15044,7 @@ func (ptr *QNetworkSession) ConnectOpen(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::open", f)
 	}
 }
 
@@ -14901,7 +15053,7 @@ func (ptr *QNetworkSession) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::open")
 	}
 }
 
@@ -14917,7 +15069,7 @@ func (ptr *QNetworkSession) Open() {
 func callbackQNetworkSession_Opened(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::opened")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "opened"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::opened"); signal != nil {
 		signal.(func())()
 	}
 
@@ -14928,7 +15080,7 @@ func (ptr *QNetworkSession) ConnectOpened(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectOpened(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "opened", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::opened", f)
 	}
 }
 
@@ -14937,7 +15089,7 @@ func (ptr *QNetworkSession) DisconnectOpened() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectOpened(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "opened")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::opened")
 	}
 }
 
@@ -14953,7 +15105,7 @@ func (ptr *QNetworkSession) Opened() {
 func callbackQNetworkSession_PreferredConfigurationChanged(ptr unsafe.Pointer, config unsafe.Pointer, isSeamless C.char) {
 	defer qt.Recovering("callback QNetworkSession::preferredConfigurationChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "preferredConfigurationChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::preferredConfigurationChanged"); signal != nil {
 		signal.(func(*QNetworkConfiguration, bool))(NewQNetworkConfigurationFromPointer(config), int8(isSeamless) != 0)
 	}
 
@@ -14964,7 +15116,7 @@ func (ptr *QNetworkSession) ConnectPreferredConfigurationChanged(f func(config *
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectPreferredConfigurationChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "preferredConfigurationChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::preferredConfigurationChanged", f)
 	}
 }
 
@@ -14973,7 +15125,7 @@ func (ptr *QNetworkSession) DisconnectPreferredConfigurationChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectPreferredConfigurationChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "preferredConfigurationChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::preferredConfigurationChanged")
 	}
 }
 
@@ -14989,7 +15141,7 @@ func (ptr *QNetworkSession) PreferredConfigurationChanged(config QNetworkConfigu
 func callbackQNetworkSession_Reject(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::reject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "reject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::reject"); signal != nil {
 		signal.(func())()
 	}
 
@@ -15000,7 +15152,7 @@ func (ptr *QNetworkSession) ConnectReject(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "reject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::reject", f)
 	}
 }
 
@@ -15009,7 +15161,7 @@ func (ptr *QNetworkSession) DisconnectReject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "reject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::reject")
 	}
 }
 
@@ -15057,7 +15209,7 @@ func (ptr *QNetworkSession) State() QNetworkSession__State {
 func callbackQNetworkSession_StateChanged(ptr unsafe.Pointer, state C.longlong) {
 	defer qt.Recovering("callback QNetworkSession::stateChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "stateChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::stateChanged"); signal != nil {
 		signal.(func(QNetworkSession__State))(QNetworkSession__State(state))
 	}
 
@@ -15068,7 +15220,7 @@ func (ptr *QNetworkSession) ConnectStateChanged(f func(state QNetworkSession__St
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectStateChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "stateChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::stateChanged", f)
 	}
 }
 
@@ -15077,7 +15229,7 @@ func (ptr *QNetworkSession) DisconnectStateChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectStateChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "stateChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::stateChanged")
 	}
 }
 
@@ -15093,7 +15245,7 @@ func (ptr *QNetworkSession) StateChanged(state QNetworkSession__State) {
 func callbackQNetworkSession_Stop(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::stop")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "stop"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::stop"); signal != nil {
 		signal.(func())()
 	}
 
@@ -15104,7 +15256,7 @@ func (ptr *QNetworkSession) ConnectStop(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "stop", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::stop", f)
 	}
 }
 
@@ -15113,7 +15265,7 @@ func (ptr *QNetworkSession) DisconnectStop() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "stop")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::stop")
 	}
 }
 
@@ -15138,7 +15290,7 @@ func (ptr *QNetworkSession) UsagePolicies() QNetworkSession__UsagePolicy {
 func callbackQNetworkSession_UsagePoliciesChanged(ptr unsafe.Pointer, usagePolicies C.longlong) {
 	defer qt.Recovering("callback QNetworkSession::usagePoliciesChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "usagePoliciesChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::usagePoliciesChanged"); signal != nil {
 		signal.(func(QNetworkSession__UsagePolicy))(QNetworkSession__UsagePolicy(usagePolicies))
 	}
 
@@ -15149,7 +15301,7 @@ func (ptr *QNetworkSession) ConnectUsagePoliciesChanged(f func(usagePolicies QNe
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_ConnectUsagePoliciesChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "usagePoliciesChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::usagePoliciesChanged", f)
 	}
 }
 
@@ -15158,7 +15310,7 @@ func (ptr *QNetworkSession) DisconnectUsagePoliciesChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QNetworkSession_DisconnectUsagePoliciesChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "usagePoliciesChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::usagePoliciesChanged")
 	}
 }
 
@@ -15183,8 +15335,8 @@ func (ptr *QNetworkSession) DestroyQNetworkSession() {
 	defer qt.Recovering("QNetworkSession::~QNetworkSession")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()))
 		C.QNetworkSession_DestroyQNetworkSession(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15193,7 +15345,7 @@ func (ptr *QNetworkSession) DestroyQNetworkSession() {
 func callbackQNetworkSession_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQNetworkSessionFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -15205,7 +15357,7 @@ func (ptr *QNetworkSession) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::timerEvent", f)
 	}
 }
 
@@ -15214,7 +15366,7 @@ func (ptr *QNetworkSession) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::timerEvent")
 	}
 }
 
@@ -15238,7 +15390,7 @@ func (ptr *QNetworkSession) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQNetworkSession_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQNetworkSessionFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -15250,7 +15402,7 @@ func (ptr *QNetworkSession) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::childEvent", f)
 	}
 }
 
@@ -15259,7 +15411,7 @@ func (ptr *QNetworkSession) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::childEvent")
 	}
 }
 
@@ -15283,7 +15435,7 @@ func (ptr *QNetworkSession) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQNetworkSession_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkSessionFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -15295,7 +15447,7 @@ func (ptr *QNetworkSession) ConnectConnectNotify(f func(sign *core.QMetaMethod))
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::connectNotify", f)
 	}
 }
 
@@ -15304,7 +15456,7 @@ func (ptr *QNetworkSession) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::connectNotify")
 	}
 }
 
@@ -15328,7 +15480,7 @@ func (ptr *QNetworkSession) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQNetworkSession_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQNetworkSessionFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -15340,7 +15492,7 @@ func (ptr *QNetworkSession) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::customEvent", f)
 	}
 }
 
@@ -15349,7 +15501,7 @@ func (ptr *QNetworkSession) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::customEvent")
 	}
 }
 
@@ -15373,7 +15525,7 @@ func (ptr *QNetworkSession) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQNetworkSession_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQNetworkSessionFromPointer(ptr).DeleteLaterDefault()
@@ -15385,7 +15537,7 @@ func (ptr *QNetworkSession) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::deleteLater", f)
 	}
 }
 
@@ -15394,7 +15546,7 @@ func (ptr *QNetworkSession) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::deleteLater")
 	}
 }
 
@@ -15402,8 +15554,8 @@ func (ptr *QNetworkSession) DeleteLater() {
 	defer qt.Recovering("QNetworkSession::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()))
 		C.QNetworkSession_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15412,8 +15564,8 @@ func (ptr *QNetworkSession) DeleteLaterDefault() {
 	defer qt.Recovering("QNetworkSession::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()))
 		C.QNetworkSession_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15422,7 +15574,7 @@ func (ptr *QNetworkSession) DeleteLaterDefault() {
 func callbackQNetworkSession_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QNetworkSession::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQNetworkSessionFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -15434,7 +15586,7 @@ func (ptr *QNetworkSession) ConnectDisconnectNotify(f func(sign *core.QMetaMetho
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::disconnectNotify", f)
 	}
 }
 
@@ -15443,7 +15595,7 @@ func (ptr *QNetworkSession) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::disconnectNotify")
 	}
 }
 
@@ -15467,7 +15619,7 @@ func (ptr *QNetworkSession) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQNetworkSession_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkSession::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -15479,7 +15631,7 @@ func (ptr *QNetworkSession) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::event", f)
 	}
 }
 
@@ -15488,7 +15640,7 @@ func (ptr *QNetworkSession) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::event")
 	}
 }
 
@@ -15514,7 +15666,7 @@ func (ptr *QNetworkSession) EventDefault(e core.QEvent_ITF) bool {
 func callbackQNetworkSession_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QNetworkSession::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -15526,7 +15678,7 @@ func (ptr *QNetworkSession) ConnectEventFilter(f func(watched *core.QObject, eve
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::eventFilter", f)
 	}
 }
 
@@ -15535,7 +15687,7 @@ func (ptr *QNetworkSession) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::eventFilter")
 	}
 }
 
@@ -15561,7 +15713,7 @@ func (ptr *QNetworkSession) EventFilterDefault(watched core.QObject_ITF, event c
 func callbackQNetworkSession_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QNetworkSession::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QNetworkSession(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNetworkSession::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -15573,7 +15725,7 @@ func (ptr *QNetworkSession) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::metaObject", f)
 	}
 }
 
@@ -15582,7 +15734,7 @@ func (ptr *QNetworkSession) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QNetworkSession(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkSession::metaObject")
 	}
 }
 
@@ -16926,7 +17078,11 @@ func NewQSslSocketFromPointer(ptr unsafe.Pointer) *QSslSocket {
 func NewQSslSocket(parent core.QObject_ITF) *QSslSocket {
 	defer qt.Recovering("QSslSocket::QSslSocket")
 
-	return NewQSslSocketFromPointer(C.QSslSocket_NewQSslSocket(core.PointerFromQObject(parent)))
+	var tmpValue = NewQSslSocketFromPointer(C.QSslSocket_NewQSslSocket(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QSslSocket) Abort() {
@@ -17027,7 +17183,7 @@ func (ptr *QSslSocket) ConnectToHostEncrypted2(hostName string, port uint16, ssl
 func callbackQSslSocket_Encrypted(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::encrypted")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "encrypted"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::encrypted"); signal != nil {
 		signal.(func())()
 	}
 
@@ -17038,7 +17194,7 @@ func (ptr *QSslSocket) ConnectEncrypted(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectEncrypted(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "encrypted", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::encrypted", f)
 	}
 }
 
@@ -17047,7 +17203,7 @@ func (ptr *QSslSocket) DisconnectEncrypted() {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectEncrypted(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "encrypted")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::encrypted")
 	}
 }
 
@@ -17081,7 +17237,7 @@ func (ptr *QSslSocket) EncryptedBytesToWrite() int64 {
 func callbackQSslSocket_EncryptedBytesWritten(ptr unsafe.Pointer, written C.longlong) {
 	defer qt.Recovering("callback QSslSocket::encryptedBytesWritten")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "encryptedBytesWritten"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::encryptedBytesWritten"); signal != nil {
 		signal.(func(int64))(int64(written))
 	}
 
@@ -17092,7 +17248,7 @@ func (ptr *QSslSocket) ConnectEncryptedBytesWritten(f func(written int64)) {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectEncryptedBytesWritten(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "encryptedBytesWritten", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::encryptedBytesWritten", f)
 	}
 }
 
@@ -17101,7 +17257,7 @@ func (ptr *QSslSocket) DisconnectEncryptedBytesWritten() {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectEncryptedBytesWritten(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "encryptedBytesWritten")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::encryptedBytesWritten")
 	}
 }
 
@@ -17126,7 +17282,7 @@ func (ptr *QSslSocket) Flush() bool {
 func callbackQSslSocket_IgnoreSslErrors(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::ignoreSslErrors")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "ignoreSslErrors"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::ignoreSslErrors"); signal != nil {
 		signal.(func())()
 	}
 
@@ -17137,7 +17293,7 @@ func (ptr *QSslSocket) ConnectIgnoreSslErrors(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "ignoreSslErrors", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::ignoreSslErrors", f)
 	}
 }
 
@@ -17146,7 +17302,7 @@ func (ptr *QSslSocket) DisconnectIgnoreSslErrors() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "ignoreSslErrors")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::ignoreSslErrors")
 	}
 }
 
@@ -17191,7 +17347,7 @@ func (ptr *QSslSocket) Mode() QSslSocket__SslMode {
 func callbackQSslSocket_ModeChanged(ptr unsafe.Pointer, mode C.longlong) {
 	defer qt.Recovering("callback QSslSocket::modeChanged")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "modeChanged"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::modeChanged"); signal != nil {
 		signal.(func(QSslSocket__SslMode))(QSslSocket__SslMode(mode))
 	}
 
@@ -17202,7 +17358,7 @@ func (ptr *QSslSocket) ConnectModeChanged(f func(mode QSslSocket__SslMode)) {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectModeChanged(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "modeChanged", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::modeChanged", f)
 	}
 }
 
@@ -17211,7 +17367,7 @@ func (ptr *QSslSocket) DisconnectModeChanged() {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectModeChanged(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "modeChanged")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::modeChanged")
 	}
 }
 
@@ -17247,7 +17403,7 @@ func (ptr *QSslSocket) PeerVerifyDepth() int {
 func callbackQSslSocket_PeerVerifyError(ptr unsafe.Pointer, error unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::peerVerifyError")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "peerVerifyError"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::peerVerifyError"); signal != nil {
 		signal.(func(*QSslError))(NewQSslErrorFromPointer(error))
 	}
 
@@ -17258,7 +17414,7 @@ func (ptr *QSslSocket) ConnectPeerVerifyError(f func(error *QSslError)) {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectPeerVerifyError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "peerVerifyError", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::peerVerifyError", f)
 	}
 }
 
@@ -17267,7 +17423,7 @@ func (ptr *QSslSocket) DisconnectPeerVerifyError() {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectPeerVerifyError(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "peerVerifyError")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::peerVerifyError")
 	}
 }
 
@@ -17301,7 +17457,7 @@ func (ptr *QSslSocket) PeerVerifyName() string {
 func callbackQSslSocket_PreSharedKeyAuthenticationRequired(ptr unsafe.Pointer, authenticator unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::preSharedKeyAuthenticationRequired")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "preSharedKeyAuthenticationRequired"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::preSharedKeyAuthenticationRequired"); signal != nil {
 		signal.(func(*QSslPreSharedKeyAuthenticator))(NewQSslPreSharedKeyAuthenticatorFromPointer(authenticator))
 	}
 
@@ -17312,7 +17468,7 @@ func (ptr *QSslSocket) ConnectPreSharedKeyAuthenticationRequired(f func(authenti
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_ConnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "preSharedKeyAuthenticationRequired", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::preSharedKeyAuthenticationRequired", f)
 	}
 }
 
@@ -17321,7 +17477,7 @@ func (ptr *QSslSocket) DisconnectPreSharedKeyAuthenticationRequired() {
 
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectPreSharedKeyAuthenticationRequired(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "preSharedKeyAuthenticationRequired")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::preSharedKeyAuthenticationRequired")
 	}
 }
 
@@ -17348,7 +17504,7 @@ func (ptr *QSslSocket) PrivateKey() *QSslKey {
 func callbackQSslSocket_Resume(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::resume")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "resume"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::resume"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSslSocketFromPointer(ptr).ResumeDefault()
@@ -17360,7 +17516,7 @@ func (ptr *QSslSocket) ConnectResume(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "resume", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::resume", f)
 	}
 }
 
@@ -17369,7 +17525,7 @@ func (ptr *QSslSocket) DisconnectResume() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "resume")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::resume")
 	}
 }
 
@@ -17446,7 +17602,7 @@ func (ptr *QSslSocket) SetPrivateKey(key QSslKey_ITF) {
 func callbackQSslSocket_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong) {
 	defer qt.Recovering("callback QSslSocket::setReadBufferSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "setReadBufferSize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::setReadBufferSize"); signal != nil {
 		signal.(func(int64))(int64(size))
 	} else {
 		NewQSslSocketFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
@@ -17458,7 +17614,7 @@ func (ptr *QSslSocket) ConnectSetReadBufferSize(f func(size int64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "setReadBufferSize", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::setReadBufferSize", f)
 	}
 }
 
@@ -17467,7 +17623,7 @@ func (ptr *QSslSocket) DisconnectSetReadBufferSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "setReadBufferSize")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::setReadBufferSize")
 	}
 }
 
@@ -17491,7 +17647,7 @@ func (ptr *QSslSocket) SetReadBufferSizeDefault(size int64) {
 func callbackQSslSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::setSocketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "setSocketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::setSocketOption"); signal != nil {
 		signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
 	} else {
 		NewQSslSocketFromPointer(ptr).SetSocketOptionDefault(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
@@ -17503,7 +17659,7 @@ func (ptr *QSslSocket) ConnectSetSocketOption(f func(option QAbstractSocket__Soc
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "setSocketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::setSocketOption", f)
 	}
 }
 
@@ -17512,7 +17668,7 @@ func (ptr *QSslSocket) DisconnectSetSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "setSocketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::setSocketOption")
 	}
 }
 
@@ -17544,7 +17700,7 @@ func (ptr *QSslSocket) SetSslConfiguration(configuration QSslConfiguration_ITF) 
 func callbackQSslSocket_SocketOption(ptr unsafe.Pointer, option C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QSslSocket::socketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "socketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::socketOption"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QAbstractSocket__SocketOption) *core.QVariant)(QAbstractSocket__SocketOption(option)))
 	}
 
@@ -17556,7 +17712,7 @@ func (ptr *QSslSocket) ConnectSocketOption(f func(option QAbstractSocket__Socket
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "socketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::socketOption", f)
 	}
 }
 
@@ -17565,7 +17721,7 @@ func (ptr *QSslSocket) DisconnectSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "socketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::socketOption")
 	}
 }
 
@@ -17654,7 +17810,7 @@ func (ptr *QSslSocket) SslLibraryVersionString() string {
 func callbackQSslSocket_StartClientEncryption(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::startClientEncryption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "startClientEncryption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::startClientEncryption"); signal != nil {
 		signal.(func())()
 	}
 
@@ -17665,7 +17821,7 @@ func (ptr *QSslSocket) ConnectStartClientEncryption(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "startClientEncryption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::startClientEncryption", f)
 	}
 }
 
@@ -17674,7 +17830,7 @@ func (ptr *QSslSocket) DisconnectStartClientEncryption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "startClientEncryption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::startClientEncryption")
 	}
 }
 
@@ -17690,7 +17846,7 @@ func (ptr *QSslSocket) StartClientEncryption() {
 func callbackQSslSocket_StartServerEncryption(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::startServerEncryption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "startServerEncryption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::startServerEncryption"); signal != nil {
 		signal.(func())()
 	}
 
@@ -17701,7 +17857,7 @@ func (ptr *QSslSocket) ConnectStartServerEncryption(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "startServerEncryption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::startServerEncryption", f)
 	}
 }
 
@@ -17710,7 +17866,7 @@ func (ptr *QSslSocket) DisconnectStartServerEncryption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "startServerEncryption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::startServerEncryption")
 	}
 }
 
@@ -17747,7 +17903,7 @@ func (ptr *QSslSocket) WaitForBytesWritten(msecs int) bool {
 func callbackQSslSocket_WaitForConnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QSslSocket::waitForConnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "waitForConnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::waitForConnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -17759,7 +17915,7 @@ func (ptr *QSslSocket) ConnectWaitForConnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "waitForConnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForConnected", f)
 	}
 }
 
@@ -17768,7 +17924,7 @@ func (ptr *QSslSocket) DisconnectWaitForConnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "waitForConnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForConnected")
 	}
 }
 
@@ -17794,7 +17950,7 @@ func (ptr *QSslSocket) WaitForConnectedDefault(msecs int) bool {
 func callbackQSslSocket_WaitForDisconnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QSslSocket::waitForDisconnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "waitForDisconnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::waitForDisconnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -17806,7 +17962,7 @@ func (ptr *QSslSocket) ConnectWaitForDisconnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "waitForDisconnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForDisconnected", f)
 	}
 }
 
@@ -17815,7 +17971,7 @@ func (ptr *QSslSocket) DisconnectWaitForDisconnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "waitForDisconnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForDisconnected")
 	}
 }
 
@@ -17870,8 +18026,8 @@ func (ptr *QSslSocket) DestroyQSslSocket() {
 	defer qt.Recovering("QSslSocket::~QSslSocket")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()))
 		C.QSslSocket_DestroyQSslSocket(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -17880,7 +18036,7 @@ func (ptr *QSslSocket) DestroyQSslSocket() {
 func callbackQSslSocket_ConnectToHost2(ptr unsafe.Pointer, address unsafe.Pointer, port C.ushort, openMode C.longlong) {
 	defer qt.Recovering("callback QSslSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "connectToHost2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::connectToHost2"); signal != nil {
 		signal.(func(*QHostAddress, uint16, core.QIODevice__OpenModeFlag))(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
 	} else {
 		NewQSslSocketFromPointer(ptr).ConnectToHost2Default(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
@@ -17892,7 +18048,7 @@ func (ptr *QSslSocket) ConnectConnectToHost2(f func(address *QHostAddress, port 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "connectToHost2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::connectToHost2", f)
 	}
 }
 
@@ -17901,7 +18057,7 @@ func (ptr *QSslSocket) DisconnectConnectToHost2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "connectToHost2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::connectToHost2")
 	}
 }
 
@@ -17925,7 +18081,7 @@ func (ptr *QSslSocket) ConnectToHost2Default(address QHostAddress_ITF, port uint
 func callbackQSslSocket_ConnectToHost(ptr unsafe.Pointer, hostName *C.char, port C.ushort, openMode C.longlong, protocol C.longlong) {
 	defer qt.Recovering("callback QSslSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "connectToHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::connectToHost"); signal != nil {
 		signal.(func(string, uint16, core.QIODevice__OpenModeFlag, QAbstractSocket__NetworkLayerProtocol))(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
 	} else {
 		NewQSslSocketFromPointer(ptr).ConnectToHostDefault(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
@@ -17937,7 +18093,7 @@ func (ptr *QSslSocket) ConnectConnectToHost(f func(hostName string, port uint16,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "connectToHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::connectToHost", f)
 	}
 }
 
@@ -17946,7 +18102,7 @@ func (ptr *QSslSocket) DisconnectConnectToHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "connectToHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::connectToHost")
 	}
 }
 
@@ -17974,7 +18130,7 @@ func (ptr *QSslSocket) ConnectToHostDefault(hostName string, port uint16, openMo
 func callbackQSslSocket_DisconnectFromHost(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::disconnectFromHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "disconnectFromHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::disconnectFromHost"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSslSocketFromPointer(ptr).DisconnectFromHostDefault()
@@ -17986,7 +18142,7 @@ func (ptr *QSslSocket) ConnectDisconnectFromHost(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "disconnectFromHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::disconnectFromHost", f)
 	}
 }
 
@@ -17995,7 +18151,7 @@ func (ptr *QSslSocket) DisconnectDisconnectFromHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "disconnectFromHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::disconnectFromHost")
 	}
 }
 
@@ -18019,7 +18175,7 @@ func (ptr *QSslSocket) DisconnectFromHostDefault() {
 func callbackQSslSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 	defer qt.Recovering("callback QSslSocket::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(core.QIODevice__OpenModeFlag) bool)(core.QIODevice__OpenModeFlag(mode)))))
 	}
 
@@ -18031,7 +18187,7 @@ func (ptr *QSslSocket) ConnectOpen(f func(mode core.QIODevice__OpenModeFlag) boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::open", f)
 	}
 }
 
@@ -18040,7 +18196,7 @@ func (ptr *QSslSocket) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::open")
 	}
 }
 
@@ -18066,7 +18222,7 @@ func (ptr *QSslSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 func callbackQSslSocket_Pos(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QSslSocket::pos")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "pos"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -18078,7 +18234,7 @@ func (ptr *QSslSocket) ConnectPos(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "pos", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::pos", f)
 	}
 }
 
@@ -18087,7 +18243,7 @@ func (ptr *QSslSocket) DisconnectPos() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "pos")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::pos")
 	}
 }
 
@@ -18113,7 +18269,7 @@ func (ptr *QSslSocket) PosDefault() int64 {
 func callbackQSslSocket_Reset(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSslSocket::reset")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "reset"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -18125,7 +18281,7 @@ func (ptr *QSslSocket) ConnectReset(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "reset", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::reset", f)
 	}
 }
 
@@ -18134,7 +18290,7 @@ func (ptr *QSslSocket) DisconnectReset() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "reset")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::reset")
 	}
 }
 
@@ -18160,7 +18316,7 @@ func (ptr *QSslSocket) ResetDefault() bool {
 func callbackQSslSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 	defer qt.Recovering("callback QSslSocket::seek")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "seek"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
 
@@ -18172,7 +18328,7 @@ func (ptr *QSslSocket) ConnectSeek(f func(pos int64) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "seek", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::seek", f)
 	}
 }
 
@@ -18181,7 +18337,7 @@ func (ptr *QSslSocket) DisconnectSeek() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "seek")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::seek")
 	}
 }
 
@@ -18207,7 +18363,7 @@ func (ptr *QSslSocket) SeekDefault(pos int64) bool {
 func callbackQSslSocket_Size(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QSslSocket::size")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "size"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -18219,7 +18375,7 @@ func (ptr *QSslSocket) ConnectSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "size", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::size", f)
 	}
 }
 
@@ -18228,7 +18384,7 @@ func (ptr *QSslSocket) DisconnectSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "size")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::size")
 	}
 }
 
@@ -18254,7 +18410,7 @@ func (ptr *QSslSocket) SizeDefault() int64 {
 func callbackQSslSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQSslSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -18266,7 +18422,7 @@ func (ptr *QSslSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::timerEvent", f)
 	}
 }
 
@@ -18275,7 +18431,7 @@ func (ptr *QSslSocket) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::timerEvent")
 	}
 }
 
@@ -18299,7 +18455,7 @@ func (ptr *QSslSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQSslSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQSslSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -18311,7 +18467,7 @@ func (ptr *QSslSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::childEvent", f)
 	}
 }
 
@@ -18320,7 +18476,7 @@ func (ptr *QSslSocket) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::childEvent")
 	}
 }
 
@@ -18344,7 +18500,7 @@ func (ptr *QSslSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQSslSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSslSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -18356,7 +18512,7 @@ func (ptr *QSslSocket) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::connectNotify", f)
 	}
 }
 
@@ -18365,7 +18521,7 @@ func (ptr *QSslSocket) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::connectNotify")
 	}
 }
 
@@ -18389,7 +18545,7 @@ func (ptr *QSslSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSslSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQSslSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -18401,7 +18557,7 @@ func (ptr *QSslSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::customEvent", f)
 	}
 }
 
@@ -18410,7 +18566,7 @@ func (ptr *QSslSocket) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::customEvent")
 	}
 }
 
@@ -18434,7 +18590,7 @@ func (ptr *QSslSocket) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQSslSocket_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQSslSocketFromPointer(ptr).DeleteLaterDefault()
@@ -18446,7 +18602,7 @@ func (ptr *QSslSocket) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::deleteLater", f)
 	}
 }
 
@@ -18455,7 +18611,7 @@ func (ptr *QSslSocket) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::deleteLater")
 	}
 }
 
@@ -18463,8 +18619,8 @@ func (ptr *QSslSocket) DeleteLater() {
 	defer qt.Recovering("QSslSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()))
 		C.QSslSocket_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -18473,8 +18629,8 @@ func (ptr *QSslSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QSslSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()))
 		C.QSslSocket_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -18483,7 +18639,7 @@ func (ptr *QSslSocket) DeleteLaterDefault() {
 func callbackQSslSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QSslSocket::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQSslSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -18495,7 +18651,7 @@ func (ptr *QSslSocket) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::disconnectNotify", f)
 	}
 }
 
@@ -18504,7 +18660,7 @@ func (ptr *QSslSocket) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::disconnectNotify")
 	}
 }
 
@@ -18528,7 +18684,7 @@ func (ptr *QSslSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQSslSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSslSocket::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -18540,7 +18696,7 @@ func (ptr *QSslSocket) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::event", f)
 	}
 }
 
@@ -18549,7 +18705,7 @@ func (ptr *QSslSocket) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::event")
 	}
 }
 
@@ -18575,7 +18731,7 @@ func (ptr *QSslSocket) EventDefault(e core.QEvent_ITF) bool {
 func callbackQSslSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QSslSocket::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -18587,7 +18743,7 @@ func (ptr *QSslSocket) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::eventFilter", f)
 	}
 }
 
@@ -18596,7 +18752,7 @@ func (ptr *QSslSocket) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::eventFilter")
 	}
 }
 
@@ -18622,7 +18778,7 @@ func (ptr *QSslSocket) EventFilterDefault(watched core.QObject_ITF, event core.Q
 func callbackQSslSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QSslSocket::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QSslSocket(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -18634,7 +18790,7 @@ func (ptr *QSslSocket) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::metaObject", f)
 	}
 }
 
@@ -18643,7 +18799,7 @@ func (ptr *QSslSocket) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QSslSocket(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::metaObject")
 	}
 }
 
@@ -18706,14 +18862,18 @@ func NewQTcpServerFromPointer(ptr unsafe.Pointer) *QTcpServer {
 func NewQTcpServer(parent core.QObject_ITF) *QTcpServer {
 	defer qt.Recovering("QTcpServer::QTcpServer")
 
-	return NewQTcpServerFromPointer(C.QTcpServer_NewQTcpServer(core.PointerFromQObject(parent)))
+	var tmpValue = NewQTcpServerFromPointer(C.QTcpServer_NewQTcpServer(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 //export callbackQTcpServer_AcceptError
 func callbackQTcpServer_AcceptError(ptr unsafe.Pointer, socketError C.longlong) {
 	defer qt.Recovering("callback QTcpServer::acceptError")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "acceptError"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::acceptError"); signal != nil {
 		signal.(func(QAbstractSocket__SocketError))(QAbstractSocket__SocketError(socketError))
 	}
 
@@ -18724,7 +18884,7 @@ func (ptr *QTcpServer) ConnectAcceptError(f func(socketError QAbstractSocket__So
 
 	if ptr.Pointer() != nil {
 		C.QTcpServer_ConnectAcceptError(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "acceptError", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::acceptError", f)
 	}
 }
 
@@ -18733,7 +18893,7 @@ func (ptr *QTcpServer) DisconnectAcceptError() {
 
 	if ptr.Pointer() != nil {
 		C.QTcpServer_DisconnectAcceptError(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "acceptError")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::acceptError")
 	}
 }
 
@@ -18774,7 +18934,7 @@ func (ptr *QTcpServer) ErrorString() string {
 func callbackQTcpServer_HasPendingConnections(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QTcpServer::hasPendingConnections")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "hasPendingConnections"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::hasPendingConnections"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -18786,7 +18946,7 @@ func (ptr *QTcpServer) ConnectHasPendingConnections(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "hasPendingConnections", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::hasPendingConnections", f)
 	}
 }
 
@@ -18795,7 +18955,7 @@ func (ptr *QTcpServer) DisconnectHasPendingConnections() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "hasPendingConnections")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::hasPendingConnections")
 	}
 }
 
@@ -18848,7 +19008,7 @@ func (ptr *QTcpServer) MaxPendingConnections() int {
 func callbackQTcpServer_NewConnection(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::newConnection")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "newConnection"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::newConnection"); signal != nil {
 		signal.(func())()
 	}
 
@@ -18859,7 +19019,7 @@ func (ptr *QTcpServer) ConnectNewConnection(f func()) {
 
 	if ptr.Pointer() != nil {
 		C.QTcpServer_ConnectNewConnection(ptr.Pointer())
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "newConnection", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::newConnection", f)
 	}
 }
 
@@ -18868,7 +19028,7 @@ func (ptr *QTcpServer) DisconnectNewConnection() {
 
 	if ptr.Pointer() != nil {
 		C.QTcpServer_DisconnectNewConnection(ptr.Pointer())
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "newConnection")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::newConnection")
 	}
 }
 
@@ -18884,7 +19044,7 @@ func (ptr *QTcpServer) NewConnection() {
 func callbackQTcpServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QTcpServer::nextPendingConnection")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "nextPendingConnection"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::nextPendingConnection"); signal != nil {
 		return PointerFromQTcpSocket(signal.(func() *QTcpSocket)())
 	}
 
@@ -18896,7 +19056,7 @@ func (ptr *QTcpServer) ConnectNextPendingConnection(f func() *QTcpSocket) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "nextPendingConnection", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::nextPendingConnection", f)
 	}
 }
 
@@ -18905,7 +19065,7 @@ func (ptr *QTcpServer) DisconnectNextPendingConnection() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "nextPendingConnection")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::nextPendingConnection")
 	}
 }
 
@@ -18913,7 +19073,11 @@ func (ptr *QTcpServer) NextPendingConnection() *QTcpSocket {
 	defer qt.Recovering("QTcpServer::nextPendingConnection")
 
 	if ptr.Pointer() != nil {
-		return NewQTcpSocketFromPointer(C.QTcpServer_NextPendingConnection(ptr.Pointer()))
+		var tmpValue = NewQTcpSocketFromPointer(C.QTcpServer_NextPendingConnection(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -18922,7 +19086,11 @@ func (ptr *QTcpServer) NextPendingConnectionDefault() *QTcpSocket {
 	defer qt.Recovering("QTcpServer::nextPendingConnection")
 
 	if ptr.Pointer() != nil {
-		return NewQTcpSocketFromPointer(C.QTcpServer_NextPendingConnectionDefault(ptr.Pointer()))
+		var tmpValue = NewQTcpSocketFromPointer(C.QTcpServer_NextPendingConnectionDefault(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -19012,8 +19180,8 @@ func (ptr *QTcpServer) DestroyQTcpServer() {
 	defer qt.Recovering("QTcpServer::~QTcpServer")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()))
 		C.QTcpServer_DestroyQTcpServer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19022,7 +19190,7 @@ func (ptr *QTcpServer) DestroyQTcpServer() {
 func callbackQTcpServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQTcpServerFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -19034,7 +19202,7 @@ func (ptr *QTcpServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::timerEvent", f)
 	}
 }
 
@@ -19043,7 +19211,7 @@ func (ptr *QTcpServer) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::timerEvent")
 	}
 }
 
@@ -19067,7 +19235,7 @@ func (ptr *QTcpServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQTcpServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQTcpServerFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -19079,7 +19247,7 @@ func (ptr *QTcpServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::childEvent", f)
 	}
 }
 
@@ -19088,7 +19256,7 @@ func (ptr *QTcpServer) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::childEvent")
 	}
 }
 
@@ -19112,7 +19280,7 @@ func (ptr *QTcpServer) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQTcpServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQTcpServerFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -19124,7 +19292,7 @@ func (ptr *QTcpServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::connectNotify", f)
 	}
 }
 
@@ -19133,7 +19301,7 @@ func (ptr *QTcpServer) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::connectNotify")
 	}
 }
 
@@ -19157,7 +19325,7 @@ func (ptr *QTcpServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQTcpServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQTcpServerFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -19169,7 +19337,7 @@ func (ptr *QTcpServer) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::customEvent", f)
 	}
 }
 
@@ -19178,7 +19346,7 @@ func (ptr *QTcpServer) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::customEvent")
 	}
 }
 
@@ -19202,7 +19370,7 @@ func (ptr *QTcpServer) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQTcpServer_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQTcpServerFromPointer(ptr).DeleteLaterDefault()
@@ -19214,7 +19382,7 @@ func (ptr *QTcpServer) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::deleteLater", f)
 	}
 }
 
@@ -19223,7 +19391,7 @@ func (ptr *QTcpServer) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::deleteLater")
 	}
 }
 
@@ -19231,8 +19399,8 @@ func (ptr *QTcpServer) DeleteLater() {
 	defer qt.Recovering("QTcpServer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()))
 		C.QTcpServer_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19241,8 +19409,8 @@ func (ptr *QTcpServer) DeleteLaterDefault() {
 	defer qt.Recovering("QTcpServer::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()))
 		C.QTcpServer_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19251,7 +19419,7 @@ func (ptr *QTcpServer) DeleteLaterDefault() {
 func callbackQTcpServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpServer::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQTcpServerFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -19263,7 +19431,7 @@ func (ptr *QTcpServer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::disconnectNotify", f)
 	}
 }
 
@@ -19272,7 +19440,7 @@ func (ptr *QTcpServer) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::disconnectNotify")
 	}
 }
 
@@ -19296,7 +19464,7 @@ func (ptr *QTcpServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQTcpServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QTcpServer::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -19308,7 +19476,7 @@ func (ptr *QTcpServer) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::event", f)
 	}
 }
 
@@ -19317,7 +19485,7 @@ func (ptr *QTcpServer) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::event")
 	}
 }
 
@@ -19343,7 +19511,7 @@ func (ptr *QTcpServer) EventDefault(e core.QEvent_ITF) bool {
 func callbackQTcpServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QTcpServer::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -19355,7 +19523,7 @@ func (ptr *QTcpServer) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::eventFilter", f)
 	}
 }
 
@@ -19364,7 +19532,7 @@ func (ptr *QTcpServer) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::eventFilter")
 	}
 }
 
@@ -19390,7 +19558,7 @@ func (ptr *QTcpServer) EventFilterDefault(watched core.QObject_ITF, event core.Q
 func callbackQTcpServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QTcpServer::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpServer(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpServer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -19402,7 +19570,7 @@ func (ptr *QTcpServer) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::metaObject", f)
 	}
 }
 
@@ -19411,7 +19579,7 @@ func (ptr *QTcpServer) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpServer(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::metaObject")
 	}
 }
 
@@ -19474,15 +19642,19 @@ func NewQTcpSocketFromPointer(ptr unsafe.Pointer) *QTcpSocket {
 func NewQTcpSocket(parent core.QObject_ITF) *QTcpSocket {
 	defer qt.Recovering("QTcpSocket::QTcpSocket")
 
-	return NewQTcpSocketFromPointer(C.QTcpSocket_NewQTcpSocket(core.PointerFromQObject(parent)))
+	var tmpValue = NewQTcpSocketFromPointer(C.QTcpSocket_NewQTcpSocket(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QTcpSocket) DestroyQTcpSocket() {
 	defer qt.Recovering("QTcpSocket::~QTcpSocket")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()))
 		C.QTcpSocket_DestroyQTcpSocket(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -19491,7 +19663,7 @@ func (ptr *QTcpSocket) DestroyQTcpSocket() {
 func callbackQTcpSocket_ConnectToHost2(ptr unsafe.Pointer, address unsafe.Pointer, port C.ushort, openMode C.longlong) {
 	defer qt.Recovering("callback QTcpSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "connectToHost2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::connectToHost2"); signal != nil {
 		signal.(func(*QHostAddress, uint16, core.QIODevice__OpenModeFlag))(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
 	} else {
 		NewQTcpSocketFromPointer(ptr).ConnectToHost2Default(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
@@ -19503,7 +19675,7 @@ func (ptr *QTcpSocket) ConnectConnectToHost2(f func(address *QHostAddress, port 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "connectToHost2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::connectToHost2", f)
 	}
 }
 
@@ -19512,7 +19684,7 @@ func (ptr *QTcpSocket) DisconnectConnectToHost2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "connectToHost2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::connectToHost2")
 	}
 }
 
@@ -19536,7 +19708,7 @@ func (ptr *QTcpSocket) ConnectToHost2Default(address QHostAddress_ITF, port uint
 func callbackQTcpSocket_ConnectToHost(ptr unsafe.Pointer, hostName *C.char, port C.ushort, openMode C.longlong, protocol C.longlong) {
 	defer qt.Recovering("callback QTcpSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "connectToHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::connectToHost"); signal != nil {
 		signal.(func(string, uint16, core.QIODevice__OpenModeFlag, QAbstractSocket__NetworkLayerProtocol))(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
 	} else {
 		NewQTcpSocketFromPointer(ptr).ConnectToHostDefault(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
@@ -19548,7 +19720,7 @@ func (ptr *QTcpSocket) ConnectConnectToHost(f func(hostName string, port uint16,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "connectToHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::connectToHost", f)
 	}
 }
 
@@ -19557,7 +19729,7 @@ func (ptr *QTcpSocket) DisconnectConnectToHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "connectToHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::connectToHost")
 	}
 }
 
@@ -19585,7 +19757,7 @@ func (ptr *QTcpSocket) ConnectToHostDefault(hostName string, port uint16, openMo
 func callbackQTcpSocket_DisconnectFromHost(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::disconnectFromHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "disconnectFromHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::disconnectFromHost"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQTcpSocketFromPointer(ptr).DisconnectFromHostDefault()
@@ -19597,7 +19769,7 @@ func (ptr *QTcpSocket) ConnectDisconnectFromHost(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "disconnectFromHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::disconnectFromHost", f)
 	}
 }
 
@@ -19606,7 +19778,7 @@ func (ptr *QTcpSocket) DisconnectDisconnectFromHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "disconnectFromHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::disconnectFromHost")
 	}
 }
 
@@ -19630,7 +19802,7 @@ func (ptr *QTcpSocket) DisconnectFromHostDefault() {
 func callbackQTcpSocket_Resume(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::resume")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "resume"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::resume"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQTcpSocketFromPointer(ptr).ResumeDefault()
@@ -19642,7 +19814,7 @@ func (ptr *QTcpSocket) ConnectResume(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "resume", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::resume", f)
 	}
 }
 
@@ -19651,7 +19823,7 @@ func (ptr *QTcpSocket) DisconnectResume() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "resume")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::resume")
 	}
 }
 
@@ -19675,7 +19847,7 @@ func (ptr *QTcpSocket) ResumeDefault() {
 func callbackQTcpSocket_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong) {
 	defer qt.Recovering("callback QTcpSocket::setReadBufferSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "setReadBufferSize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::setReadBufferSize"); signal != nil {
 		signal.(func(int64))(int64(size))
 	} else {
 		NewQTcpSocketFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
@@ -19687,7 +19859,7 @@ func (ptr *QTcpSocket) ConnectSetReadBufferSize(f func(size int64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "setReadBufferSize", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::setReadBufferSize", f)
 	}
 }
 
@@ -19696,7 +19868,7 @@ func (ptr *QTcpSocket) DisconnectSetReadBufferSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "setReadBufferSize")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::setReadBufferSize")
 	}
 }
 
@@ -19720,7 +19892,7 @@ func (ptr *QTcpSocket) SetReadBufferSizeDefault(size int64) {
 func callbackQTcpSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::setSocketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "setSocketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::setSocketOption"); signal != nil {
 		signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
 	} else {
 		NewQTcpSocketFromPointer(ptr).SetSocketOptionDefault(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
@@ -19732,7 +19904,7 @@ func (ptr *QTcpSocket) ConnectSetSocketOption(f func(option QAbstractSocket__Soc
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "setSocketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::setSocketOption", f)
 	}
 }
 
@@ -19741,7 +19913,7 @@ func (ptr *QTcpSocket) DisconnectSetSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "setSocketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::setSocketOption")
 	}
 }
 
@@ -19765,7 +19937,7 @@ func (ptr *QTcpSocket) SetSocketOptionDefault(option QAbstractSocket__SocketOpti
 func callbackQTcpSocket_SocketOption(ptr unsafe.Pointer, option C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QTcpSocket::socketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "socketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::socketOption"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QAbstractSocket__SocketOption) *core.QVariant)(QAbstractSocket__SocketOption(option)))
 	}
 
@@ -19777,7 +19949,7 @@ func (ptr *QTcpSocket) ConnectSocketOption(f func(option QAbstractSocket__Socket
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "socketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::socketOption", f)
 	}
 }
 
@@ -19786,7 +19958,7 @@ func (ptr *QTcpSocket) DisconnectSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "socketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::socketOption")
 	}
 }
 
@@ -19816,7 +19988,7 @@ func (ptr *QTcpSocket) SocketOptionDefault(option QAbstractSocket__SocketOption)
 func callbackQTcpSocket_WaitForConnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QTcpSocket::waitForConnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "waitForConnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::waitForConnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -19828,7 +20000,7 @@ func (ptr *QTcpSocket) ConnectWaitForConnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "waitForConnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForConnected", f)
 	}
 }
 
@@ -19837,7 +20009,7 @@ func (ptr *QTcpSocket) DisconnectWaitForConnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "waitForConnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForConnected")
 	}
 }
 
@@ -19863,7 +20035,7 @@ func (ptr *QTcpSocket) WaitForConnectedDefault(msecs int) bool {
 func callbackQTcpSocket_WaitForDisconnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QTcpSocket::waitForDisconnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "waitForDisconnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::waitForDisconnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -19875,7 +20047,7 @@ func (ptr *QTcpSocket) ConnectWaitForDisconnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "waitForDisconnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForDisconnected", f)
 	}
 }
 
@@ -19884,7 +20056,7 @@ func (ptr *QTcpSocket) DisconnectWaitForDisconnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "waitForDisconnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForDisconnected")
 	}
 }
 
@@ -19910,7 +20082,7 @@ func (ptr *QTcpSocket) WaitForDisconnectedDefault(msecs int) bool {
 func callbackQTcpSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 	defer qt.Recovering("callback QTcpSocket::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(core.QIODevice__OpenModeFlag) bool)(core.QIODevice__OpenModeFlag(mode)))))
 	}
 
@@ -19922,7 +20094,7 @@ func (ptr *QTcpSocket) ConnectOpen(f func(mode core.QIODevice__OpenModeFlag) boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::open", f)
 	}
 }
 
@@ -19931,7 +20103,7 @@ func (ptr *QTcpSocket) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::open")
 	}
 }
 
@@ -19957,7 +20129,7 @@ func (ptr *QTcpSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 func callbackQTcpSocket_Pos(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QTcpSocket::pos")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "pos"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -19969,7 +20141,7 @@ func (ptr *QTcpSocket) ConnectPos(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "pos", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::pos", f)
 	}
 }
 
@@ -19978,7 +20150,7 @@ func (ptr *QTcpSocket) DisconnectPos() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "pos")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::pos")
 	}
 }
 
@@ -20004,7 +20176,7 @@ func (ptr *QTcpSocket) PosDefault() int64 {
 func callbackQTcpSocket_Reset(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QTcpSocket::reset")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "reset"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -20016,7 +20188,7 @@ func (ptr *QTcpSocket) ConnectReset(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "reset", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::reset", f)
 	}
 }
 
@@ -20025,7 +20197,7 @@ func (ptr *QTcpSocket) DisconnectReset() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "reset")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::reset")
 	}
 }
 
@@ -20051,7 +20223,7 @@ func (ptr *QTcpSocket) ResetDefault() bool {
 func callbackQTcpSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 	defer qt.Recovering("callback QTcpSocket::seek")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "seek"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
 
@@ -20063,7 +20235,7 @@ func (ptr *QTcpSocket) ConnectSeek(f func(pos int64) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "seek", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::seek", f)
 	}
 }
 
@@ -20072,7 +20244,7 @@ func (ptr *QTcpSocket) DisconnectSeek() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "seek")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::seek")
 	}
 }
 
@@ -20098,7 +20270,7 @@ func (ptr *QTcpSocket) SeekDefault(pos int64) bool {
 func callbackQTcpSocket_Size(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QTcpSocket::size")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "size"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -20110,7 +20282,7 @@ func (ptr *QTcpSocket) ConnectSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "size", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::size", f)
 	}
 }
 
@@ -20119,7 +20291,7 @@ func (ptr *QTcpSocket) DisconnectSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "size")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::size")
 	}
 }
 
@@ -20145,7 +20317,7 @@ func (ptr *QTcpSocket) SizeDefault() int64 {
 func callbackQTcpSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQTcpSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -20157,7 +20329,7 @@ func (ptr *QTcpSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::timerEvent", f)
 	}
 }
 
@@ -20166,7 +20338,7 @@ func (ptr *QTcpSocket) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::timerEvent")
 	}
 }
 
@@ -20190,7 +20362,7 @@ func (ptr *QTcpSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQTcpSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQTcpSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -20202,7 +20374,7 @@ func (ptr *QTcpSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::childEvent", f)
 	}
 }
 
@@ -20211,7 +20383,7 @@ func (ptr *QTcpSocket) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::childEvent")
 	}
 }
 
@@ -20235,7 +20407,7 @@ func (ptr *QTcpSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQTcpSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQTcpSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -20247,7 +20419,7 @@ func (ptr *QTcpSocket) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::connectNotify", f)
 	}
 }
 
@@ -20256,7 +20428,7 @@ func (ptr *QTcpSocket) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::connectNotify")
 	}
 }
 
@@ -20280,7 +20452,7 @@ func (ptr *QTcpSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQTcpSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQTcpSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -20292,7 +20464,7 @@ func (ptr *QTcpSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::customEvent", f)
 	}
 }
 
@@ -20301,7 +20473,7 @@ func (ptr *QTcpSocket) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::customEvent")
 	}
 }
 
@@ -20325,7 +20497,7 @@ func (ptr *QTcpSocket) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQTcpSocket_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQTcpSocketFromPointer(ptr).DeleteLaterDefault()
@@ -20337,7 +20509,7 @@ func (ptr *QTcpSocket) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::deleteLater", f)
 	}
 }
 
@@ -20346,7 +20518,7 @@ func (ptr *QTcpSocket) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::deleteLater")
 	}
 }
 
@@ -20354,8 +20526,8 @@ func (ptr *QTcpSocket) DeleteLater() {
 	defer qt.Recovering("QTcpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()))
 		C.QTcpSocket_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20364,8 +20536,8 @@ func (ptr *QTcpSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QTcpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()))
 		C.QTcpSocket_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20374,7 +20546,7 @@ func (ptr *QTcpSocket) DeleteLaterDefault() {
 func callbackQTcpSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QTcpSocket::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQTcpSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -20386,7 +20558,7 @@ func (ptr *QTcpSocket) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::disconnectNotify", f)
 	}
 }
 
@@ -20395,7 +20567,7 @@ func (ptr *QTcpSocket) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::disconnectNotify")
 	}
 }
 
@@ -20419,7 +20591,7 @@ func (ptr *QTcpSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQTcpSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QTcpSocket::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -20431,7 +20603,7 @@ func (ptr *QTcpSocket) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::event", f)
 	}
 }
 
@@ -20440,7 +20612,7 @@ func (ptr *QTcpSocket) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::event")
 	}
 }
 
@@ -20466,7 +20638,7 @@ func (ptr *QTcpSocket) EventDefault(e core.QEvent_ITF) bool {
 func callbackQTcpSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QTcpSocket::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -20478,7 +20650,7 @@ func (ptr *QTcpSocket) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::eventFilter", f)
 	}
 }
 
@@ -20487,7 +20659,7 @@ func (ptr *QTcpSocket) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::eventFilter")
 	}
 }
 
@@ -20513,7 +20685,7 @@ func (ptr *QTcpSocket) EventFilterDefault(watched core.QObject_ITF, event core.Q
 func callbackQTcpSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QTcpSocket::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QTcpSocket(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -20525,7 +20697,7 @@ func (ptr *QTcpSocket) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::metaObject", f)
 	}
 }
 
@@ -20534,7 +20706,7 @@ func (ptr *QTcpSocket) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QTcpSocket(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::metaObject")
 	}
 }
 
@@ -20597,7 +20769,11 @@ func NewQUdpSocketFromPointer(ptr unsafe.Pointer) *QUdpSocket {
 func NewQUdpSocket(parent core.QObject_ITF) *QUdpSocket {
 	defer qt.Recovering("QUdpSocket::QUdpSocket")
 
-	return NewQUdpSocketFromPointer(C.QUdpSocket_NewQUdpSocket(core.PointerFromQObject(parent)))
+	var tmpValue = NewQUdpSocketFromPointer(C.QUdpSocket_NewQUdpSocket(core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+	}
+	return tmpValue
 }
 
 func (ptr *QUdpSocket) HasPendingDatagrams() bool {
@@ -20710,8 +20886,8 @@ func (ptr *QUdpSocket) DestroyQUdpSocket() {
 	defer qt.Recovering("QUdpSocket::~QUdpSocket")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()))
 		C.QUdpSocket_DestroyQUdpSocket(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20720,7 +20896,7 @@ func (ptr *QUdpSocket) DestroyQUdpSocket() {
 func callbackQUdpSocket_ConnectToHost2(ptr unsafe.Pointer, address unsafe.Pointer, port C.ushort, openMode C.longlong) {
 	defer qt.Recovering("callback QUdpSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "connectToHost2"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::connectToHost2"); signal != nil {
 		signal.(func(*QHostAddress, uint16, core.QIODevice__OpenModeFlag))(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
 	} else {
 		NewQUdpSocketFromPointer(ptr).ConnectToHost2Default(NewQHostAddressFromPointer(address), uint16(port), core.QIODevice__OpenModeFlag(openMode))
@@ -20732,7 +20908,7 @@ func (ptr *QUdpSocket) ConnectConnectToHost2(f func(address *QHostAddress, port 
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "connectToHost2", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::connectToHost2", f)
 	}
 }
 
@@ -20741,7 +20917,7 @@ func (ptr *QUdpSocket) DisconnectConnectToHost2() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "connectToHost2")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::connectToHost2")
 	}
 }
 
@@ -20765,7 +20941,7 @@ func (ptr *QUdpSocket) ConnectToHost2Default(address QHostAddress_ITF, port uint
 func callbackQUdpSocket_ConnectToHost(ptr unsafe.Pointer, hostName *C.char, port C.ushort, openMode C.longlong, protocol C.longlong) {
 	defer qt.Recovering("callback QUdpSocket::connectToHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "connectToHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::connectToHost"); signal != nil {
 		signal.(func(string, uint16, core.QIODevice__OpenModeFlag, QAbstractSocket__NetworkLayerProtocol))(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
 	} else {
 		NewQUdpSocketFromPointer(ptr).ConnectToHostDefault(C.GoString(hostName), uint16(port), core.QIODevice__OpenModeFlag(openMode), QAbstractSocket__NetworkLayerProtocol(protocol))
@@ -20777,7 +20953,7 @@ func (ptr *QUdpSocket) ConnectConnectToHost(f func(hostName string, port uint16,
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "connectToHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::connectToHost", f)
 	}
 }
 
@@ -20786,7 +20962,7 @@ func (ptr *QUdpSocket) DisconnectConnectToHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "connectToHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::connectToHost")
 	}
 }
 
@@ -20814,7 +20990,7 @@ func (ptr *QUdpSocket) ConnectToHostDefault(hostName string, port uint16, openMo
 func callbackQUdpSocket_DisconnectFromHost(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::disconnectFromHost")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "disconnectFromHost"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::disconnectFromHost"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQUdpSocketFromPointer(ptr).DisconnectFromHostDefault()
@@ -20826,7 +21002,7 @@ func (ptr *QUdpSocket) ConnectDisconnectFromHost(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "disconnectFromHost", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::disconnectFromHost", f)
 	}
 }
 
@@ -20835,7 +21011,7 @@ func (ptr *QUdpSocket) DisconnectDisconnectFromHost() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "disconnectFromHost")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::disconnectFromHost")
 	}
 }
 
@@ -20859,7 +21035,7 @@ func (ptr *QUdpSocket) DisconnectFromHostDefault() {
 func callbackQUdpSocket_Resume(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::resume")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "resume"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::resume"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQUdpSocketFromPointer(ptr).ResumeDefault()
@@ -20871,7 +21047,7 @@ func (ptr *QUdpSocket) ConnectResume(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "resume", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::resume", f)
 	}
 }
 
@@ -20880,7 +21056,7 @@ func (ptr *QUdpSocket) DisconnectResume() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "resume")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::resume")
 	}
 }
 
@@ -20904,7 +21080,7 @@ func (ptr *QUdpSocket) ResumeDefault() {
 func callbackQUdpSocket_SetReadBufferSize(ptr unsafe.Pointer, size C.longlong) {
 	defer qt.Recovering("callback QUdpSocket::setReadBufferSize")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "setReadBufferSize"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::setReadBufferSize"); signal != nil {
 		signal.(func(int64))(int64(size))
 	} else {
 		NewQUdpSocketFromPointer(ptr).SetReadBufferSizeDefault(int64(size))
@@ -20916,7 +21092,7 @@ func (ptr *QUdpSocket) ConnectSetReadBufferSize(f func(size int64)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "setReadBufferSize", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::setReadBufferSize", f)
 	}
 }
 
@@ -20925,7 +21101,7 @@ func (ptr *QUdpSocket) DisconnectSetReadBufferSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "setReadBufferSize")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::setReadBufferSize")
 	}
 }
 
@@ -20949,7 +21125,7 @@ func (ptr *QUdpSocket) SetReadBufferSizeDefault(size int64) {
 func callbackQUdpSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::setSocketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "setSocketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::setSocketOption"); signal != nil {
 		signal.(func(QAbstractSocket__SocketOption, *core.QVariant))(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
 	} else {
 		NewQUdpSocketFromPointer(ptr).SetSocketOptionDefault(QAbstractSocket__SocketOption(option), core.NewQVariantFromPointer(value))
@@ -20961,7 +21137,7 @@ func (ptr *QUdpSocket) ConnectSetSocketOption(f func(option QAbstractSocket__Soc
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "setSocketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::setSocketOption", f)
 	}
 }
 
@@ -20970,7 +21146,7 @@ func (ptr *QUdpSocket) DisconnectSetSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "setSocketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::setSocketOption")
 	}
 }
 
@@ -20994,7 +21170,7 @@ func (ptr *QUdpSocket) SetSocketOptionDefault(option QAbstractSocket__SocketOpti
 func callbackQUdpSocket_SocketOption(ptr unsafe.Pointer, option C.longlong) unsafe.Pointer {
 	defer qt.Recovering("callback QUdpSocket::socketOption")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "socketOption"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::socketOption"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QAbstractSocket__SocketOption) *core.QVariant)(QAbstractSocket__SocketOption(option)))
 	}
 
@@ -21006,7 +21182,7 @@ func (ptr *QUdpSocket) ConnectSocketOption(f func(option QAbstractSocket__Socket
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "socketOption", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::socketOption", f)
 	}
 }
 
@@ -21015,7 +21191,7 @@ func (ptr *QUdpSocket) DisconnectSocketOption() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "socketOption")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::socketOption")
 	}
 }
 
@@ -21045,7 +21221,7 @@ func (ptr *QUdpSocket) SocketOptionDefault(option QAbstractSocket__SocketOption)
 func callbackQUdpSocket_WaitForConnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QUdpSocket::waitForConnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "waitForConnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::waitForConnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -21057,7 +21233,7 @@ func (ptr *QUdpSocket) ConnectWaitForConnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "waitForConnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForConnected", f)
 	}
 }
 
@@ -21066,7 +21242,7 @@ func (ptr *QUdpSocket) DisconnectWaitForConnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "waitForConnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForConnected")
 	}
 }
 
@@ -21092,7 +21268,7 @@ func (ptr *QUdpSocket) WaitForConnectedDefault(msecs int) bool {
 func callbackQUdpSocket_WaitForDisconnected(ptr unsafe.Pointer, msecs C.int) C.char {
 	defer qt.Recovering("callback QUdpSocket::waitForDisconnected")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "waitForDisconnected"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::waitForDisconnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
 
@@ -21104,7 +21280,7 @@ func (ptr *QUdpSocket) ConnectWaitForDisconnected(f func(msecs int) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "waitForDisconnected", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForDisconnected", f)
 	}
 }
 
@@ -21113,7 +21289,7 @@ func (ptr *QUdpSocket) DisconnectWaitForDisconnected() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "waitForDisconnected")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForDisconnected")
 	}
 }
 
@@ -21139,7 +21315,7 @@ func (ptr *QUdpSocket) WaitForDisconnectedDefault(msecs int) bool {
 func callbackQUdpSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 	defer qt.Recovering("callback QUdpSocket::open")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "open"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(core.QIODevice__OpenModeFlag) bool)(core.QIODevice__OpenModeFlag(mode)))))
 	}
 
@@ -21151,7 +21327,7 @@ func (ptr *QUdpSocket) ConnectOpen(f func(mode core.QIODevice__OpenModeFlag) boo
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "open", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::open", f)
 	}
 }
 
@@ -21160,7 +21336,7 @@ func (ptr *QUdpSocket) DisconnectOpen() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "open")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::open")
 	}
 }
 
@@ -21186,7 +21362,7 @@ func (ptr *QUdpSocket) OpenDefault(mode core.QIODevice__OpenModeFlag) bool {
 func callbackQUdpSocket_Pos(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QUdpSocket::pos")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "pos"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -21198,7 +21374,7 @@ func (ptr *QUdpSocket) ConnectPos(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "pos", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::pos", f)
 	}
 }
 
@@ -21207,7 +21383,7 @@ func (ptr *QUdpSocket) DisconnectPos() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "pos")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::pos")
 	}
 }
 
@@ -21233,7 +21409,7 @@ func (ptr *QUdpSocket) PosDefault() int64 {
 func callbackQUdpSocket_Reset(ptr unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QUdpSocket::reset")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "reset"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
@@ -21245,7 +21421,7 @@ func (ptr *QUdpSocket) ConnectReset(f func() bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "reset", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::reset", f)
 	}
 }
 
@@ -21254,7 +21430,7 @@ func (ptr *QUdpSocket) DisconnectReset() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "reset")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::reset")
 	}
 }
 
@@ -21280,7 +21456,7 @@ func (ptr *QUdpSocket) ResetDefault() bool {
 func callbackQUdpSocket_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 	defer qt.Recovering("callback QUdpSocket::seek")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "seek"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
 
@@ -21292,7 +21468,7 @@ func (ptr *QUdpSocket) ConnectSeek(f func(pos int64) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "seek", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::seek", f)
 	}
 }
 
@@ -21301,7 +21477,7 @@ func (ptr *QUdpSocket) DisconnectSeek() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "seek")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::seek")
 	}
 }
 
@@ -21327,7 +21503,7 @@ func (ptr *QUdpSocket) SeekDefault(pos int64) bool {
 func callbackQUdpSocket_Size(ptr unsafe.Pointer) C.longlong {
 	defer qt.Recovering("callback QUdpSocket::size")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "size"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
 
@@ -21339,7 +21515,7 @@ func (ptr *QUdpSocket) ConnectSize(f func() int64) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "size", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::size", f)
 	}
 }
 
@@ -21348,7 +21524,7 @@ func (ptr *QUdpSocket) DisconnectSize() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "size")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::size")
 	}
 }
 
@@ -21374,7 +21550,7 @@ func (ptr *QUdpSocket) SizeDefault() int64 {
 func callbackQUdpSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::timerEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "timerEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
 		NewQUdpSocketFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
@@ -21386,7 +21562,7 @@ func (ptr *QUdpSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "timerEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::timerEvent", f)
 	}
 }
 
@@ -21395,7 +21571,7 @@ func (ptr *QUdpSocket) DisconnectTimerEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "timerEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::timerEvent")
 	}
 }
 
@@ -21419,7 +21595,7 @@ func (ptr *QUdpSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 func callbackQUdpSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::childEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "childEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
 		NewQUdpSocketFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
@@ -21431,7 +21607,7 @@ func (ptr *QUdpSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "childEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::childEvent", f)
 	}
 }
 
@@ -21440,7 +21616,7 @@ func (ptr *QUdpSocket) DisconnectChildEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "childEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::childEvent")
 	}
 }
 
@@ -21464,7 +21640,7 @@ func (ptr *QUdpSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 func callbackQUdpSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::connectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "connectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQUdpSocketFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -21476,7 +21652,7 @@ func (ptr *QUdpSocket) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "connectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::connectNotify", f)
 	}
 }
 
@@ -21485,7 +21661,7 @@ func (ptr *QUdpSocket) DisconnectConnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "connectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::connectNotify")
 	}
 }
 
@@ -21509,7 +21685,7 @@ func (ptr *QUdpSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQUdpSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::customEvent")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "customEvent"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
 		NewQUdpSocketFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
@@ -21521,7 +21697,7 @@ func (ptr *QUdpSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "customEvent", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::customEvent", f)
 	}
 }
 
@@ -21530,7 +21706,7 @@ func (ptr *QUdpSocket) DisconnectCustomEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "customEvent")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::customEvent")
 	}
 }
 
@@ -21554,7 +21730,7 @@ func (ptr *QUdpSocket) CustomEventDefault(event core.QEvent_ITF) {
 func callbackQUdpSocket_DeleteLater(ptr unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::deleteLater")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "deleteLater"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
 		NewQUdpSocketFromPointer(ptr).DeleteLaterDefault()
@@ -21566,7 +21742,7 @@ func (ptr *QUdpSocket) ConnectDeleteLater(f func()) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "deleteLater", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::deleteLater", f)
 	}
 }
 
@@ -21575,7 +21751,7 @@ func (ptr *QUdpSocket) DisconnectDeleteLater() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "deleteLater")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::deleteLater")
 	}
 }
 
@@ -21583,8 +21759,8 @@ func (ptr *QUdpSocket) DeleteLater() {
 	defer qt.Recovering("QUdpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()))
 		C.QUdpSocket_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -21593,8 +21769,8 @@ func (ptr *QUdpSocket) DeleteLaterDefault() {
 	defer qt.Recovering("QUdpSocket::deleteLater")
 
 	if ptr.Pointer() != nil {
-		qt.DisconnectAllSignals(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()))
 		C.QUdpSocket_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -21603,7 +21779,7 @@ func (ptr *QUdpSocket) DeleteLaterDefault() {
 func callbackQUdpSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 	defer qt.Recovering("callback QUdpSocket::disconnectNotify")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "disconnectNotify"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
 		NewQUdpSocketFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
@@ -21615,7 +21791,7 @@ func (ptr *QUdpSocket) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "disconnectNotify", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::disconnectNotify", f)
 	}
 }
 
@@ -21624,7 +21800,7 @@ func (ptr *QUdpSocket) DisconnectDisconnectNotify() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "disconnectNotify")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::disconnectNotify")
 	}
 }
 
@@ -21648,7 +21824,7 @@ func (ptr *QUdpSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 func callbackQUdpSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QUdpSocket::event")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "event"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
 
@@ -21660,7 +21836,7 @@ func (ptr *QUdpSocket) ConnectEvent(f func(e *core.QEvent) bool) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "event", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::event", f)
 	}
 }
 
@@ -21669,7 +21845,7 @@ func (ptr *QUdpSocket) DisconnectEvent() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "event")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::event")
 	}
 }
 
@@ -21695,7 +21871,7 @@ func (ptr *QUdpSocket) EventDefault(e core.QEvent_ITF) bool {
 func callbackQUdpSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 	defer qt.Recovering("callback QUdpSocket::eventFilter")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "eventFilter"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
 
@@ -21707,7 +21883,7 @@ func (ptr *QUdpSocket) ConnectEventFilter(f func(watched *core.QObject, event *c
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "eventFilter", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::eventFilter", f)
 	}
 }
 
@@ -21716,7 +21892,7 @@ func (ptr *QUdpSocket) DisconnectEventFilter() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "eventFilter")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::eventFilter")
 	}
 }
 
@@ -21742,7 +21918,7 @@ func (ptr *QUdpSocket) EventFilterDefault(watched core.QObject_ITF, event core.Q
 func callbackQUdpSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 	defer qt.Recovering("callback QUdpSocket::metaObject")
 
-	if signal := qt.GetSignal(fmt.Sprintf("QUdpSocket(%v)", ptr), "metaObject"); signal != nil {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
 
@@ -21754,7 +21930,7 @@ func (ptr *QUdpSocket) ConnectMetaObject(f func() *core.QMetaObject) {
 
 	if ptr.Pointer() != nil {
 
-		qt.ConnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "metaObject", f)
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::metaObject", f)
 	}
 }
 
@@ -21763,7 +21939,7 @@ func (ptr *QUdpSocket) DisconnectMetaObject() {
 
 	if ptr.Pointer() != nil {
 
-		qt.DisconnectSignal(fmt.Sprintf("QUdpSocket(%v)", ptr.Pointer()), "metaObject")
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::metaObject")
 	}
 }
 

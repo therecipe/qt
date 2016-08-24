@@ -65,7 +65,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 	}
 
 	if Minimal {
-		return f.Export || f.Meta == parser.DESTRUCTOR
+		return f.Export || f.Meta == parser.DESTRUCTOR || f.Fullname == "QObject::destroyed"
 	}
 
 	return true

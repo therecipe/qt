@@ -84,12 +84,6 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater")) && function.SignalMode == "" {
-		if needsCallbackFunctions(parser.ClassMap[function.Class()]) {
-			fmt.Fprintf(bb, "qt.DisconnectAllSignals(fmt.Sprintf(\"%v(%%v)\", ptr.Pointer()))\n", function.Class())
-		}
-	}
-
 	if ((function.Meta == parser.PLAIN && function.SignalMode == "") ||
 		(function.Meta == parser.SLOT && function.SignalMode == "") ||
 		function.Meta == parser.CONSTRUCTOR || function.Meta == parser.DESTRUCTOR) ||
@@ -152,6 +146,23 @@ return tmpValue%v`, body,
 									return ""
 								}(),
 							)
+						} else {
+							var out = strings.TrimPrefix(converter.GoHeaderOutput(function), "*")
+							if strings.Contains(out, ".") {
+								out = strings.Split(out, ".")[1]
+							}
+							if class, exists := parser.ClassMap[out]; exists && classIsSupported(class) && class.IsQObjectSubClass() {
+								return fmt.Sprintf(`var tmpValue = %v
+if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+tmpValue.ConnectDestroyed(func(%v){})
+}
+return tmpValue`, body, func() string {
+									if parser.ClassMap[function.Class()].Module == "QtCore" {
+										return "*QObject"
+									}
+									return "*core.QObject"
+								}())
+							}
 						}
 						return fmt.Sprintf("return %v", body)
 					}
@@ -168,14 +179,13 @@ return tmpValue%v`, body,
 	switch function.SignalMode {
 	case parser.CALLBACK:
 		{
-			fmt.Fprintf(bb, "%vif signal := qt.GetSignal(fmt.Sprintf(\"%v(%%v)\", ptr), \"%v%v\"); signal != nil {\n",
+			fmt.Fprintf(bb, "%vif signal := qt.GetSignal(fmt.Sprint(ptr), \"%v::%v%v\"); signal != nil {\n",
 				func() string {
 					if function.Meta != parser.SLOT {
 						return "\n"
 					}
 					return ""
-				}(),
-				function.Class(), function.Name, function.OverloadNumber)
+				}(), function.Class(), function.Name, function.OverloadNumber)
 
 			if converter.GoHeaderOutput(function) == "" {
 				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
@@ -221,7 +231,7 @@ return tmpValue%v`, body,
 
 	case parser.CONNECT, parser.DISCONNECT:
 		{
-			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprintf(\"%v(%%v)\", ptr.Pointer()), \"%v%v\"%v)",
+			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v::%v%v\"%v)",
 				function.SignalMode,
 
 				function.Class(),
@@ -241,6 +251,9 @@ return tmpValue%v`, body,
 	}
 
 	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater")) && function.SignalMode == "" {
+		if needsCallbackFunctions(parser.ClassMap[function.Class()]) {
+			fmt.Fprint(bb, "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))")
+		}
 		fmt.Fprint(bb, "\nptr.SetPointer(nil)")
 	}
 
