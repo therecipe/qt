@@ -17528,11 +17528,6 @@ void* QTextBlockGroup_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::metaObject());
 }
 
-class MyQTextBlockUserData: public QTextBlockUserData
-{
-public:
-};
-
 void QTextBlockUserData_DestroyQTextBlockUserData(void* ptr)
 {
 	static_cast<QTextBlockUserData*>(ptr)->~QTextBlockUserData();

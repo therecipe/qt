@@ -742,23 +742,6 @@ void* QAmbientLightReading_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAmbientLightReading*>(ptr)->QAmbientLightReading::metaObject());
 }
 
-class MyQAmbientLightSensor: public QAmbientLightSensor
-{
-public:
-	MyQAmbientLightSensor(QObject *parent) : QAmbientLightSensor(parent) {};
-	bool start() { return callbackQAmbientLightSensor_Start(this) != 0; };
-	void stop() { callbackQAmbientLightSensor_Stop(this); };
-	void timerEvent(QTimerEvent * event) { callbackQAmbientLightSensor_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQAmbientLightSensor_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQAmbientLightSensor_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQAmbientLightSensor_CustomEvent(this, event); };
-	void deleteLater() { callbackQAmbientLightSensor_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQAmbientLightSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQAmbientLightSensor_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAmbientLightSensor_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAmbientLightSensor_MetaObject(const_cast<MyQAmbientLightSensor*>(this))); };
-};
-
 void* QAmbientLightSensor_Reading(void* ptr)
 {
 	return static_cast<QAmbientLightSensor*>(ptr)->reading();
@@ -766,7 +749,7 @@ void* QAmbientLightSensor_Reading(void* ptr)
 
 void* QAmbientLightSensor_NewQAmbientLightSensor(void* parent)
 {
-	return new MyQAmbientLightSensor(static_cast<QObject*>(parent));
+	return new QAmbientLightSensor(static_cast<QObject*>(parent));
 }
 
 void QAmbientLightSensor_DestroyQAmbientLightSensor(void* ptr)
@@ -1134,23 +1117,6 @@ void* QAmbientTemperatureSensor_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAmbientTemperatureSensor*>(ptr)->QAmbientTemperatureSensor::metaObject());
 }
 
-class MyQCompass: public QCompass
-{
-public:
-	MyQCompass(QObject *parent) : QCompass(parent) {};
-	bool start() { return callbackQCompass_Start(this) != 0; };
-	void stop() { callbackQCompass_Stop(this); };
-	void timerEvent(QTimerEvent * event) { callbackQCompass_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQCompass_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQCompass_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQCompass_CustomEvent(this, event); };
-	void deleteLater() { callbackQCompass_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQCompass_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQCompass_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCompass_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCompass_MetaObject(const_cast<MyQCompass*>(this))); };
-};
-
 void* QCompass_Reading(void* ptr)
 {
 	return static_cast<QCompass*>(ptr)->reading();
@@ -1158,7 +1124,7 @@ void* QCompass_Reading(void* ptr)
 
 void* QCompass_NewQCompass(void* parent)
 {
-	return new MyQCompass(static_cast<QObject*>(parent));
+	return new QCompass(static_cast<QObject*>(parent));
 }
 
 void QCompass_DestroyQCompass(void* ptr)
@@ -1647,23 +1613,6 @@ void* QDistanceSensor_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDistanceSensor*>(ptr)->QDistanceSensor::metaObject());
 }
 
-class MyQGyroscope: public QGyroscope
-{
-public:
-	MyQGyroscope(QObject *parent) : QGyroscope(parent) {};
-	bool start() { return callbackQGyroscope_Start(this) != 0; };
-	void stop() { callbackQGyroscope_Stop(this); };
-	void timerEvent(QTimerEvent * event) { callbackQGyroscope_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQGyroscope_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQGyroscope_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQGyroscope_CustomEvent(this, event); };
-	void deleteLater() { callbackQGyroscope_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQGyroscope_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQGyroscope_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGyroscope_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGyroscope_MetaObject(const_cast<MyQGyroscope*>(this))); };
-};
-
 void* QGyroscope_Reading(void* ptr)
 {
 	return static_cast<QGyroscope*>(ptr)->reading();
@@ -1671,7 +1620,7 @@ void* QGyroscope_Reading(void* ptr)
 
 void* QGyroscope_NewQGyroscope(void* parent)
 {
-	return new MyQGyroscope(static_cast<QObject*>(parent));
+	return new QGyroscope(static_cast<QObject*>(parent));
 }
 
 void QGyroscope_DestroyQGyroscope(void* ptr)
@@ -2281,23 +2230,6 @@ void* QIRProximityReading_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QIRProximityReading*>(ptr)->QIRProximityReading::metaObject());
 }
 
-class MyQIRProximitySensor: public QIRProximitySensor
-{
-public:
-	MyQIRProximitySensor(QObject *parent) : QIRProximitySensor(parent) {};
-	bool start() { return callbackQIRProximitySensor_Start(this) != 0; };
-	void stop() { callbackQIRProximitySensor_Stop(this); };
-	void timerEvent(QTimerEvent * event) { callbackQIRProximitySensor_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQIRProximitySensor_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQIRProximitySensor_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQIRProximitySensor_CustomEvent(this, event); };
-	void deleteLater() { callbackQIRProximitySensor_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQIRProximitySensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQIRProximitySensor_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQIRProximitySensor_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQIRProximitySensor_MetaObject(const_cast<MyQIRProximitySensor*>(this))); };
-};
-
 void* QIRProximitySensor_Reading(void* ptr)
 {
 	return static_cast<QIRProximitySensor*>(ptr)->reading();
@@ -2305,7 +2237,7 @@ void* QIRProximitySensor_Reading(void* ptr)
 
 void* QIRProximitySensor_NewQIRProximitySensor(void* parent)
 {
-	return new MyQIRProximitySensor(static_cast<QObject*>(parent));
+	return new QIRProximitySensor(static_cast<QObject*>(parent));
 }
 
 void QIRProximitySensor_DestroyQIRProximitySensor(void* ptr)
@@ -3143,23 +3075,6 @@ void* QOrientationReading_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QOrientationReading*>(ptr)->QOrientationReading::metaObject());
 }
 
-class MyQOrientationSensor: public QOrientationSensor
-{
-public:
-	MyQOrientationSensor(QObject *parent) : QOrientationSensor(parent) {};
-	bool start() { return callbackQOrientationSensor_Start(this) != 0; };
-	void stop() { callbackQOrientationSensor_Stop(this); };
-	void timerEvent(QTimerEvent * event) { callbackQOrientationSensor_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQOrientationSensor_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQOrientationSensor_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQOrientationSensor_CustomEvent(this, event); };
-	void deleteLater() { callbackQOrientationSensor_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQOrientationSensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQOrientationSensor_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQOrientationSensor_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQOrientationSensor_MetaObject(const_cast<MyQOrientationSensor*>(this))); };
-};
-
 void* QOrientationSensor_Reading(void* ptr)
 {
 	return static_cast<QOrientationSensor*>(ptr)->reading();
@@ -3167,7 +3082,7 @@ void* QOrientationSensor_Reading(void* ptr)
 
 void* QOrientationSensor_NewQOrientationSensor(void* parent)
 {
-	return new MyQOrientationSensor(static_cast<QObject*>(parent));
+	return new QOrientationSensor(static_cast<QObject*>(parent));
 }
 
 void QOrientationSensor_DestroyQOrientationSensor(void* ptr)
@@ -3656,23 +3571,6 @@ void* QProximityReading_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QProximityReading*>(ptr)->QProximityReading::metaObject());
 }
 
-class MyQProximitySensor: public QProximitySensor
-{
-public:
-	MyQProximitySensor(QObject *parent) : QProximitySensor(parent) {};
-	bool start() { return callbackQProximitySensor_Start(this) != 0; };
-	void stop() { callbackQProximitySensor_Stop(this); };
-	void timerEvent(QTimerEvent * event) { callbackQProximitySensor_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQProximitySensor_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQProximitySensor_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQProximitySensor_CustomEvent(this, event); };
-	void deleteLater() { callbackQProximitySensor_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQProximitySensor_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQProximitySensor_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQProximitySensor_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQProximitySensor_MetaObject(const_cast<MyQProximitySensor*>(this))); };
-};
-
 void* QProximitySensor_Reading(void* ptr)
 {
 	return static_cast<QProximitySensor*>(ptr)->reading();
@@ -3680,7 +3578,7 @@ void* QProximitySensor_Reading(void* ptr)
 
 void* QProximitySensor_NewQProximitySensor(void* parent)
 {
-	return new MyQProximitySensor(static_cast<QObject*>(parent));
+	return new QProximitySensor(static_cast<QObject*>(parent));
 }
 
 void QProximitySensor_DestroyQProximitySensor(void* ptr)

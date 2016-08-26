@@ -47,30 +47,14 @@
 #include <QUrl>
 #include <QVariant>
 
-class MyQJSEngine: public QJSEngine
-{
-public:
-	MyQJSEngine() : QJSEngine() {};
-	MyQJSEngine(QObject *parent) : QJSEngine(parent) {};
-	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQJSEngine_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQJSEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQJSEngine_CustomEvent(this, event); };
-	void deleteLater() { callbackQJSEngine_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQJSEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQJSEngine_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<MyQJSEngine*>(this))); };
-};
-
 void* QJSEngine_NewQJSEngine()
 {
-	return new MyQJSEngine();
+	return new QJSEngine();
 }
 
 void* QJSEngine_NewQJSEngine2(void* parent)
 {
-	return new MyQJSEngine(static_cast<QObject*>(parent));
+	return new QJSEngine(static_cast<QObject*>(parent));
 }
 
 void QJSEngine_CollectGarbage(void* ptr)
@@ -868,30 +852,14 @@ void* QQmlComponent_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QQmlComponent*>(ptr)->QQmlComponent::metaObject());
 }
 
-class MyQQmlContext: public QQmlContext
-{
-public:
-	MyQQmlContext(QQmlContext *parentContext, QObject *parent) : QQmlContext(parentContext, parent) {};
-	MyQQmlContext(QQmlEngine *engine, QObject *parent) : QQmlContext(engine, parent) {};
-	void timerEvent(QTimerEvent * event) { callbackQQmlContext_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQQmlContext_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQQmlContext_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQQmlContext_CustomEvent(this, event); };
-	void deleteLater() { callbackQQmlContext_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlContext_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQQmlContext_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlContext_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlContext_MetaObject(const_cast<MyQQmlContext*>(this))); };
-};
-
 void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent)
 {
-	return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QObject*>(parent));
+	return new QQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QObject*>(parent));
 }
 
 void* QQmlContext_NewQQmlContext(void* engine, void* parent)
 {
-	return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	return new QQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
 }
 
 void* QQmlContext_BaseUrl(void* ptr)

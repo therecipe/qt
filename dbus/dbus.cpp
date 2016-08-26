@@ -146,20 +146,6 @@ void* QDBusAbstractAdaptor_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDBusAbstractAdaptor*>(ptr)->QDBusAbstractAdaptor::metaObject());
 }
 
-class MyQDBusAbstractInterface: public QDBusAbstractInterface
-{
-public:
-	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterface_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQDBusAbstractInterface_CustomEvent(this, event); };
-	void deleteLater() { callbackQDBusAbstractInterface_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQDBusAbstractInterface_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusAbstractInterface_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusAbstractInterface_MetaObject(const_cast<MyQDBusAbstractInterface*>(this))); };
-};
-
 void* QDBusAbstractInterface_AsyncCall(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
 	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCall(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));

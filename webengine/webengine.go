@@ -7190,6 +7190,7 @@ func NewQWebEngineUrlRequestJobFromPointer(ptr unsafe.Pointer) *QWebEngineUrlReq
 
 func (ptr *QWebEngineUrlRequestJob) DestroyQWebEngineUrlRequestJob() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -7453,6 +7454,7 @@ func (ptr *QWebEngineUrlRequestJob) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7462,6 +7464,7 @@ func (ptr *QWebEngineUrlRequestJob) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

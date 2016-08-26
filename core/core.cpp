@@ -6129,15 +6129,9 @@ void QElapsedTimer_Start(void* ptr)
 	static_cast<QElapsedTimer*>(ptr)->start();
 }
 
-class MyQEvent: public QEvent
-{
-public:
-	MyQEvent(Type type) : QEvent(type) {};
-};
-
 void* QEvent_NewQEvent(long long ty)
 {
-	return new MyQEvent(static_cast<QEvent::Type>(ty));
+	return new QEvent(static_cast<QEvent::Type>(ty));
 }
 
 void QEvent_Accept(void* ptr)
@@ -20360,39 +20354,29 @@ void QTextEncoder_DestroyQTextEncoder(void* ptr)
 	static_cast<QTextEncoder*>(ptr)->~QTextEncoder();
 }
 
-class MyQTextStream: public QTextStream
-{
-public:
-	MyQTextStream() : QTextStream() {};
-	MyQTextStream(QByteArray *array, QIODevice::OpenMode openMode) : QTextStream(array, openMode) {};
-	MyQTextStream(QIODevice *device) : QTextStream(device) {};
-	MyQTextStream(QString *string, QIODevice::OpenMode openMode) : QTextStream(string, openMode) {};
-	MyQTextStream(const QByteArray &array, QIODevice::OpenMode openMode) : QTextStream(array, openMode) {};
-};
-
 void* QTextStream_NewQTextStream()
 {
-	return new MyQTextStream();
+	return new QTextStream();
 }
 
 void* QTextStream_NewQTextStream5(char* array, long long openMode)
 {
-	return new MyQTextStream(new QByteArray(QByteArray::fromHex(QString(array).toUtf8())), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new QTextStream(new QByteArray(QByteArray::fromHex(QString(array).toUtf8())), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 void* QTextStream_NewQTextStream2(void* device)
 {
-	return new MyQTextStream(static_cast<QIODevice*>(device));
+	return new QTextStream(static_cast<QIODevice*>(device));
 }
 
 void* QTextStream_NewQTextStream4(char* stri, long long openMode)
 {
-	return new MyQTextStream(new QString(stri), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new QTextStream(new QString(stri), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 void* QTextStream_NewQTextStream6(char* array, long long openMode)
 {
-	return new MyQTextStream(QByteArray::fromHex(QString(array).toUtf8()), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new QTextStream(QByteArray::fromHex(QString(array).toUtf8()), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 char QTextStream_AtEnd(void* ptr)

@@ -1064,15 +1064,9 @@ void QXmlQuery_DestroyQXmlQuery(void* ptr)
 	static_cast<QXmlQuery*>(ptr)->~QXmlQuery();
 }
 
-class MyQXmlResultItems: public QXmlResultItems
-{
-public:
-	MyQXmlResultItems() : QXmlResultItems() {};
-};
-
 void* QXmlResultItems_NewQXmlResultItems()
 {
-	return new MyQXmlResultItems();
+	return new QXmlResultItems();
 }
 
 void* QXmlResultItems_Current(void* ptr)

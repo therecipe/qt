@@ -59,6 +59,7 @@ func NewQSignalSpyFromPointer(ptr unsafe.Pointer) *QSignalSpy {
 
 func (ptr *QSignalSpy) DestroyQSignalSpy() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -315,6 +316,7 @@ func (ptr *QSignalSpy) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -324,6 +326,7 @@ func (ptr *QSignalSpy) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QSignalSpy_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

@@ -374,7 +374,7 @@ func isGeneric(f *parser.Function) bool {
 
 func needsCallbackFunctions(class *parser.Class) bool {
 	for _, function := range class.Functions {
-		if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
+		if (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT) && !(function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "~")) {
 			return true
 		}
 	}

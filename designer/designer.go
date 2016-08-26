@@ -419,9 +419,7 @@ func (ptr *QAbstractFormBuilder) SaveDefault(device core.QIODevice_ITF, widget w
 func NewQAbstractFormBuilder() *QAbstractFormBuilder {
 	defer qt.Recovering("QAbstractFormBuilder::QAbstractFormBuilder")
 
-	var tmpValue = NewQAbstractFormBuilderFromPointer(C.QAbstractFormBuilder_NewQAbstractFormBuilder())
-	runtime.SetFinalizer(tmpValue, (*QAbstractFormBuilder).DestroyQAbstractFormBuilder)
-	return tmpValue
+	return NewQAbstractFormBuilderFromPointer(C.QAbstractFormBuilder_NewQAbstractFormBuilder())
 }
 
 func (ptr *QAbstractFormBuilder) ErrorString() string {
@@ -23847,7 +23845,6 @@ func (ptr *QFormBuilder) DestroyQFormBuilder() {
 
 	if ptr.Pointer() != nil {
 		C.QFormBuilder_DestroyQFormBuilder(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

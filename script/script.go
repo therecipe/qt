@@ -71,9 +71,7 @@ func NewQScriptClassFromPointer(ptr unsafe.Pointer) *QScriptClass {
 func NewQScriptClass(engine QScriptEngine_ITF) *QScriptClass {
 	defer qt.Recovering("QScriptClass::QScriptClass")
 
-	var tmpValue = NewQScriptClassFromPointer(C.QScriptClass_NewQScriptClass(PointerFromQScriptEngine(engine)))
-	runtime.SetFinalizer(tmpValue, (*QScriptClass).DestroyQScriptClass)
-	return tmpValue
+	return NewQScriptClassFromPointer(C.QScriptClass_NewQScriptClass(PointerFromQScriptEngine(engine)))
 }
 
 func (ptr *QScriptClass) Engine() *QScriptEngine {
@@ -2004,9 +2002,7 @@ func NewQScriptEngineAgentFromPointer(ptr unsafe.Pointer) *QScriptEngineAgent {
 func NewQScriptEngineAgent(engine QScriptEngine_ITF) *QScriptEngineAgent {
 	defer qt.Recovering("QScriptEngineAgent::QScriptEngineAgent")
 
-	var tmpValue = NewQScriptEngineAgentFromPointer(C.QScriptEngineAgent_NewQScriptEngineAgent(PointerFromQScriptEngine(engine)))
-	runtime.SetFinalizer(tmpValue, (*QScriptEngineAgent).DestroyQScriptEngineAgent)
-	return tmpValue
+	return NewQScriptEngineAgentFromPointer(C.QScriptEngineAgent_NewQScriptEngineAgent(PointerFromQScriptEngine(engine)))
 }
 
 //export callbackQScriptEngineAgent_ContextPop

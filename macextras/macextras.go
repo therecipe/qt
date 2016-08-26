@@ -389,6 +389,7 @@ func (ptr *QMacToolBar) DestroyQMacToolBar() {
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DestroyQMacToolBar(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -607,6 +608,7 @@ func (ptr *QMacToolBar) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -616,6 +618,7 @@ func (ptr *QMacToolBar) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

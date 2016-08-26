@@ -1528,9 +1528,7 @@ func NewQAbstractXmlReceiverFromPointer(ptr unsafe.Pointer) *QAbstractXmlReceive
 func NewQAbstractXmlReceiver() *QAbstractXmlReceiver {
 	defer qt.Recovering("QAbstractXmlReceiver::QAbstractXmlReceiver")
 
-	var tmpValue = NewQAbstractXmlReceiverFromPointer(C.QAbstractXmlReceiver_NewQAbstractXmlReceiver())
-	runtime.SetFinalizer(tmpValue, (*QAbstractXmlReceiver).DestroyQAbstractXmlReceiver)
-	return tmpValue
+	return NewQAbstractXmlReceiverFromPointer(C.QAbstractXmlReceiver_NewQAbstractXmlReceiver())
 }
 
 //export callbackQAbstractXmlReceiver_AtomicValue
@@ -2651,9 +2649,7 @@ func (ptr *QXmlFormatter) DestroyQXmlFormatter() {
 func NewQXmlFormatter(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlFormatter {
 	defer qt.Recovering("QXmlFormatter::QXmlFormatter")
 
-	var tmpValue = NewQXmlFormatterFromPointer(C.QXmlFormatter_NewQXmlFormatter(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
-	runtime.SetFinalizer(tmpValue, (*QXmlFormatter).DestroyQXmlFormatter)
-	return tmpValue
+	return NewQXmlFormatterFromPointer(C.QXmlFormatter_NewQXmlFormatter(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
 }
 
 //export callbackQXmlFormatter_AtomicValue
@@ -4107,7 +4103,6 @@ func (ptr *QXmlResultItems) DestroyQXmlResultItems() {
 
 	if ptr.Pointer() != nil {
 		C.QXmlResultItems_DestroyQXmlResultItems(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4529,9 +4524,7 @@ func (ptr *QXmlSerializer) DestroyQXmlSerializer() {
 func NewQXmlSerializer(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlSerializer {
 	defer qt.Recovering("QXmlSerializer::QXmlSerializer")
 
-	var tmpValue = NewQXmlSerializerFromPointer(C.QXmlSerializer_NewQXmlSerializer(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
-	runtime.SetFinalizer(tmpValue, (*QXmlSerializer).DestroyQXmlSerializer)
-	return tmpValue
+	return NewQXmlSerializerFromPointer(C.QXmlSerializer_NewQXmlSerializer(PointerFromQXmlQuery(query), core.PointerFromQIODevice(outputDevice)))
 }
 
 //export callbackQXmlSerializer_AtomicValue

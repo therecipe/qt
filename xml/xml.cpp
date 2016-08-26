@@ -1170,15 +1170,9 @@ void* QDomText_SplitText(void* ptr, int offset)
 	return new QDomText(static_cast<QDomText*>(ptr)->splitText(offset));
 }
 
-class MyQXmlAttributes: public QXmlAttributes
-{
-public:
-	MyQXmlAttributes() : QXmlAttributes() {};
-};
-
 void* QXmlAttributes_NewQXmlAttributes()
 {
-	return new MyQXmlAttributes();
+	return new QXmlAttributes();
 }
 
 void QXmlAttributes_DestroyQXmlAttributes(void* ptr)

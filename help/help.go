@@ -7282,6 +7282,7 @@ func (ptr *QHelpEngine) DestroyQHelpEngine() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7500,6 +7501,7 @@ func (ptr *QHelpEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7509,6 +7511,7 @@ func (ptr *QHelpEngine) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

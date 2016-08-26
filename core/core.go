@@ -6575,9 +6575,7 @@ func NewQAbstractNativeEventFilterFromPointer(ptr unsafe.Pointer) *QAbstractNati
 func NewQAbstractNativeEventFilter() *QAbstractNativeEventFilter {
 	defer qt.Recovering("QAbstractNativeEventFilter::QAbstractNativeEventFilter")
 
-	var tmpValue = NewQAbstractNativeEventFilterFromPointer(C.QAbstractNativeEventFilter_NewQAbstractNativeEventFilter())
-	runtime.SetFinalizer(tmpValue, (*QAbstractNativeEventFilter).DestroyQAbstractNativeEventFilter)
-	return tmpValue
+	return NewQAbstractNativeEventFilterFromPointer(C.QAbstractNativeEventFilter_NewQAbstractNativeEventFilter())
 }
 
 //export callbackQAbstractNativeEventFilter_NativeEventFilter
@@ -21335,7 +21333,6 @@ func (ptr *QEvent) DestroyQEvent() {
 
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEvent(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26459,6 +26456,7 @@ func (ptr *QFileSelector) DestroyQFileSelector() {
 
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DestroyQFileSelector(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26677,6 +26675,7 @@ func (ptr *QFileSelector) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -26686,6 +26685,7 @@ func (ptr *QFileSelector) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QFileSelector_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36199,6 +36199,7 @@ func (ptr *QLibrary) DestroyQLibrary() {
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_DestroyQLibrary(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36417,6 +36418,7 @@ func (ptr *QLibrary) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -36426,6 +36428,7 @@ func (ptr *QLibrary) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QLibrary_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -44567,6 +44570,7 @@ func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandler() {
 
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DestroyQObjectCleanupHandler(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -44785,6 +44789,7 @@ func (ptr *QObjectCleanupHandler) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -44794,6 +44799,7 @@ func (ptr *QObjectCleanupHandler) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QObjectCleanupHandler_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47225,6 +47231,7 @@ func (ptr *QPluginLoader) DestroyQPluginLoader() {
 
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DestroyQPluginLoader(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47443,6 +47450,7 @@ func (ptr *QPluginLoader) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -47452,6 +47460,7 @@ func (ptr *QPluginLoader) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QPluginLoader_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -51815,9 +51824,7 @@ func (ptr *QRunnable) DestroyQRunnable() {
 func NewQRunnable() *QRunnable {
 	defer qt.Recovering("QRunnable::QRunnable")
 
-	var tmpValue = NewQRunnableFromPointer(C.QRunnable_NewQRunnable())
-	runtime.SetFinalizer(tmpValue, (*QRunnable).DestroyQRunnable)
-	return tmpValue
+	return NewQRunnableFromPointer(C.QRunnable_NewQRunnable())
 }
 
 func (ptr *QRunnable) AutoDelete() bool {
@@ -55888,6 +55895,7 @@ func (ptr *QSharedMemory) DestroyQSharedMemory() {
 
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DestroyQSharedMemory(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -56106,6 +56114,7 @@ func (ptr *QSharedMemory) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -56115,6 +56124,7 @@ func (ptr *QSharedMemory) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QSharedMemory_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -69890,7 +69900,6 @@ func (ptr *QTextStream) DestroyQTextStream() {
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStream(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -70982,6 +70991,7 @@ func (ptr *QThreadPool) DestroyQThreadPool() {
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DestroyQThreadPool(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -71200,6 +71210,7 @@ func (ptr *QThreadPool) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -71209,6 +71220,7 @@ func (ptr *QThreadPool) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QThreadPool_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

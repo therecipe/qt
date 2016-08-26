@@ -4584,6 +4584,7 @@ func (ptr *QHttpMultiPart) DestroyQHttpMultiPart() {
 
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_DestroyQHttpMultiPart(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4802,6 +4803,7 @@ func (ptr *QHttpMultiPart) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4811,6 +4813,7 @@ func (ptr *QHttpMultiPart) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QHttpMultiPart_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

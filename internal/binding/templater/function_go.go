@@ -114,7 +114,7 @@ func goFunctionBody(function *parser.Function) string {
 
 				fmt.Fprint(bb, func() string {
 					if converter.GoHeaderOutput(function) != "" {
-						if function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) || classIsSupported(parser.ClassMap[function.Class()]) && function.Meta == parser.CONSTRUCTOR && !parser.ClassMap[function.Class()].IsQObjectSubClass() {
+						if function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) || classIsSupported(parser.ClassMap[function.Class()]) && function.Meta == parser.CONSTRUCTOR && !(parser.ClassMap[function.Class()].IsQObjectSubClass() || needsCallbackFunctions(parser.ClassMap[function.Class()])) {
 							return fmt.Sprintf(`var tmpValue = %v
 runtime.SetFinalizer(tmpValue, (%v).Destroy%v)
 return tmpValue%v`, body,
@@ -251,7 +251,7 @@ return tmpValue`, body, func() string {
 	}
 
 	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater")) && function.SignalMode == "" {
-		if needsCallbackFunctions(parser.ClassMap[function.Class()]) {
+		if needsCallbackFunctions(parser.ClassMap[function.Class()]) || parser.ClassMap[function.Class()].IsQObjectSubClass() {
 			fmt.Fprint(bb, "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))")
 		}
 		fmt.Fprint(bb, "\nptr.SetPointer(nil)")

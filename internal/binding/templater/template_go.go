@@ -124,7 +124,7 @@ ptr.SetPointer(nil)
 }
 
 `, class.Name, class.Name, func() string {
-					if needsCallbackFunctions(class) {
+					if needsCallbackFunctions(class) || class.IsQObjectSubClass() {
 						return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
 					}
 					return ""

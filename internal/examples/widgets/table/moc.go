@@ -63,6 +63,7 @@ func (ptr *Delegate) DestroyDelegate() {
 
 	if ptr.Pointer() != nil {
 		C.Delegate_DestroyDelegate(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -798,6 +799,7 @@ func (ptr *Delegate) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.Delegate_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -807,6 +809,7 @@ func (ptr *Delegate) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.Delegate_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

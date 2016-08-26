@@ -60,9 +60,7 @@ func NewQQuickAsyncImageProviderFromPointer(ptr unsafe.Pointer) *QQuickAsyncImag
 func NewQQuickAsyncImageProvider() *QQuickAsyncImageProvider {
 	defer qt.Recovering("QQuickAsyncImageProvider::QQuickAsyncImageProvider")
 
-	var tmpValue = NewQQuickAsyncImageProviderFromPointer(C.QQuickAsyncImageProvider_NewQQuickAsyncImageProvider())
-	runtime.SetFinalizer(tmpValue, (*QQuickAsyncImageProvider).DestroyQQuickAsyncImageProvider)
-	return tmpValue
+	return NewQQuickAsyncImageProviderFromPointer(C.QQuickAsyncImageProvider_NewQQuickAsyncImageProvider())
 }
 
 func (ptr *QQuickAsyncImageProvider) DestroyQQuickAsyncImageProvider() {
@@ -2175,9 +2173,7 @@ func NewQQuickImageProviderFromPointer(ptr unsafe.Pointer) *QQuickImageProvider 
 func NewQQuickImageProvider(ty qml.QQmlImageProviderBase__ImageType, flags qml.QQmlImageProviderBase__Flag) *QQuickImageProvider {
 	defer qt.Recovering("QQuickImageProvider::QQuickImageProvider")
 
-	var tmpValue = NewQQuickImageProviderFromPointer(C.QQuickImageProvider_NewQQuickImageProvider(C.longlong(ty), C.longlong(flags)))
-	runtime.SetFinalizer(tmpValue, (*QQuickImageProvider).DestroyQQuickImageProvider)
-	return tmpValue
+	return NewQQuickImageProviderFromPointer(C.QQuickImageProvider_NewQQuickImageProvider(C.longlong(ty), C.longlong(flags)))
 }
 
 func (ptr *QQuickImageProvider) Flags() qml.QQmlImageProviderBase__Flag {
@@ -9066,6 +9062,7 @@ func NewQQuickTextDocumentFromPointer(ptr unsafe.Pointer) *QQuickTextDocument {
 
 func (ptr *QQuickTextDocument) DestroyQQuickTextDocument() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -9306,6 +9303,7 @@ func (ptr *QQuickTextDocument) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickTextDocument_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9315,6 +9313,7 @@ func (ptr *QQuickTextDocument) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QQuickTextDocument_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20169,6 +20168,7 @@ func (ptr *QSGEngine) DestroyQSGEngine() {
 
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DestroyQSGEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20387,6 +20387,7 @@ func (ptr *QSGEngine) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -20396,6 +20397,7 @@ func (ptr *QSGEngine) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QSGEngine_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -21073,7 +21075,6 @@ func (ptr *QSGGeometry) DestroyQSGGeometry() {
 
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_DestroyQSGGeometry(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -21938,9 +21939,7 @@ func (ptr *QSGNode) ChildCount() int {
 func NewQSGNode() *QSGNode {
 	defer qt.Recovering("QSGNode::QSGNode")
 
-	var tmpValue = NewQSGNodeFromPointer(C.QSGNode_NewQSGNode())
-	runtime.SetFinalizer(tmpValue, (*QSGNode).DestroyQSGNode)
-	return tmpValue
+	return NewQSGNodeFromPointer(C.QSGNode_NewQSGNode())
 }
 
 func (ptr *QSGNode) AppendChildNode(node QSGNode_ITF) {

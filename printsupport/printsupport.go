@@ -3191,6 +3191,7 @@ func (ptr *QPageSetupDialog) DestroyQPageSetupDialog() {
 
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DestroyQPageSetupDialog(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5934,6 +5935,7 @@ func (ptr *QPageSetupDialog) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5943,6 +5945,7 @@ func (ptr *QPageSetupDialog) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QPageSetupDialog_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

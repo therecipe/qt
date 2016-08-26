@@ -1860,17 +1860,13 @@ func NewQAccessibleEventFromPointer(ptr unsafe.Pointer) *QAccessibleEvent {
 func NewQAccessibleEvent2(interfa QAccessibleInterface_ITF, ty QAccessible__Event) *QAccessibleEvent {
 	defer qt.Recovering("QAccessibleEvent::QAccessibleEvent")
 
-	var tmpValue = NewQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent2(PointerFromQAccessibleInterface(interfa), C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QAccessibleEvent).DestroyQAccessibleEvent)
-	return tmpValue
+	return NewQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent2(PointerFromQAccessibleInterface(interfa), C.longlong(ty)))
 }
 
 func NewQAccessibleEvent(object core.QObject_ITF, ty QAccessible__Event) *QAccessibleEvent {
 	defer qt.Recovering("QAccessibleEvent::QAccessibleEvent")
 
-	var tmpValue = NewQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent(core.PointerFromQObject(object), C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QAccessibleEvent).DestroyQAccessibleEvent)
-	return tmpValue
+	return NewQAccessibleEventFromPointer(C.QAccessibleEvent_NewQAccessibleEvent(core.PointerFromQObject(object), C.longlong(ty)))
 }
 
 //export callbackQAccessibleEvent_AccessibleInterface
@@ -17800,9 +17796,7 @@ func NewQIconEngineFromPointer(ptr unsafe.Pointer) *QIconEngine {
 func NewQIconEngine() *QIconEngine {
 	defer qt.Recovering("QIconEngine::QIconEngine")
 
-	var tmpValue = NewQIconEngineFromPointer(C.QIconEngine_NewQIconEngine())
-	runtime.SetFinalizer(tmpValue, (*QIconEngine).DestroyQIconEngine)
-	return tmpValue
+	return NewQIconEngineFromPointer(C.QIconEngine_NewQIconEngine())
 }
 
 //export callbackQIconEngine_ActualSize
@@ -19747,9 +19741,7 @@ func NewQImageIOHandlerFromPointer(ptr unsafe.Pointer) *QImageIOHandler {
 func NewQImageIOHandler() *QImageIOHandler {
 	defer qt.Recovering("QImageIOHandler::QImageIOHandler")
 
-	var tmpValue = NewQImageIOHandlerFromPointer(C.QImageIOHandler_NewQImageIOHandler())
-	runtime.SetFinalizer(tmpValue, (*QImageIOHandler).DestroyQImageIOHandler)
-	return tmpValue
+	return NewQImageIOHandlerFromPointer(C.QImageIOHandler_NewQImageIOHandler())
 }
 
 //export callbackQImageIOHandler_CanRead
@@ -27553,6 +27545,7 @@ func NewQOpenGLContextGroupFromPointer(ptr unsafe.Pointer) *QOpenGLContextGroup 
 
 func (ptr *QOpenGLContextGroup) DestroyQOpenGLContextGroup() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -30785,9 +30778,7 @@ func NewQPagedPaintDeviceFromPointer(ptr unsafe.Pointer) *QPagedPaintDevice {
 func NewQPagedPaintDevice() *QPagedPaintDevice {
 	defer qt.Recovering("QPagedPaintDevice::QPagedPaintDevice")
 
-	var tmpValue = NewQPagedPaintDeviceFromPointer(C.QPagedPaintDevice_NewQPagedPaintDevice())
-	runtime.SetFinalizer(tmpValue, (*QPagedPaintDevice).DestroyQPagedPaintDevice)
-	return tmpValue
+	return NewQPagedPaintDeviceFromPointer(C.QPagedPaintDevice_NewQPagedPaintDevice())
 }
 
 //export callbackQPagedPaintDevice_NewPage
@@ -31147,9 +31138,7 @@ func NewQPaintDeviceFromPointer(ptr unsafe.Pointer) *QPaintDevice {
 func NewQPaintDevice() *QPaintDevice {
 	defer qt.Recovering("QPaintDevice::QPaintDevice")
 
-	var tmpValue = NewQPaintDeviceFromPointer(C.QPaintDevice_NewQPaintDevice())
-	runtime.SetFinalizer(tmpValue, (*QPaintDevice).DestroyQPaintDevice)
-	return tmpValue
+	return NewQPaintDeviceFromPointer(C.QPaintDevice_NewQPaintDevice())
 }
 
 //export callbackQPaintDevice_Metric
@@ -34264,9 +34253,7 @@ func (ptr *QPaintEngine) DrawPolygonDefault(points core.QPointF_ITF, pointCount 
 func NewQPaintEngine(caps QPaintEngine__PaintEngineFeature) *QPaintEngine {
 	defer qt.Recovering("QPaintEngine::QPaintEngine")
 
-	var tmpValue = NewQPaintEngineFromPointer(C.QPaintEngine_NewQPaintEngine(C.longlong(caps)))
-	runtime.SetFinalizer(tmpValue, (*QPaintEngine).DestroyQPaintEngine)
-	return tmpValue
+	return NewQPaintEngineFromPointer(C.QPaintEngine_NewQPaintEngine(C.longlong(caps)))
 }
 
 //export callbackQPaintEngine_Begin
@@ -39457,17 +39444,13 @@ func (ptr *QPicture) Size() uint {
 func NewQPicture2(pic QPicture_ITF) *QPicture {
 	defer qt.Recovering("QPicture::QPicture")
 
-	var tmpValue = NewQPictureFromPointer(C.QPicture_NewQPicture2(PointerFromQPicture(pic)))
-	runtime.SetFinalizer(tmpValue, (*QPicture).DestroyQPicture)
-	return tmpValue
+	return NewQPictureFromPointer(C.QPicture_NewQPicture2(PointerFromQPicture(pic)))
 }
 
 func NewQPicture(formatVersion int) *QPicture {
 	defer qt.Recovering("QPicture::QPicture")
 
-	var tmpValue = NewQPictureFromPointer(C.QPicture_NewQPicture(C.int(int32(formatVersion))))
-	runtime.SetFinalizer(tmpValue, (*QPicture).DestroyQPicture)
-	return tmpValue
+	return NewQPictureFromPointer(C.QPicture_NewQPicture(C.int(int32(formatVersion))))
 }
 
 func (ptr *QPicture) BoundingRect() *core.QRect {
@@ -41947,6 +41930,7 @@ func NewQRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
 
 func (ptr *QRasterWindow) DestroyQRasterWindow() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -44282,6 +44266,7 @@ func (ptr *QRasterWindow) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QRasterWindow_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -44291,6 +44276,7 @@ func (ptr *QRasterWindow) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QRasterWindow_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48081,6 +48067,7 @@ func NewQSessionManagerFromPointer(ptr unsafe.Pointer) *QSessionManager {
 
 func (ptr *QSessionManager) DestroyQSessionManager() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -48446,6 +48433,7 @@ func (ptr *QSessionManager) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48455,6 +48443,7 @@ func (ptr *QSessionManager) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QSessionManager_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -48880,9 +48869,7 @@ func NewQStandardItemFromPointer(ptr unsafe.Pointer) *QStandardItem {
 func NewQStandardItem() *QStandardItem {
 	defer qt.Recovering("QStandardItem::QStandardItem")
 
-	var tmpValue = NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem())
-	runtime.SetFinalizer(tmpValue, (*QStandardItem).DestroyQStandardItem)
-	return tmpValue
+	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem())
 }
 
 func NewQStandardItem3(icon QIcon_ITF, text string) *QStandardItem {
@@ -48890,9 +48877,7 @@ func NewQStandardItem3(icon QIcon_ITF, text string) *QStandardItem {
 
 	var textC = C.CString(text)
 	defer C.free(unsafe.Pointer(textC))
-	var tmpValue = NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem3(PointerFromQIcon(icon), textC))
-	runtime.SetFinalizer(tmpValue, (*QStandardItem).DestroyQStandardItem)
-	return tmpValue
+	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem3(PointerFromQIcon(icon), textC))
 }
 
 func NewQStandardItem2(text string) *QStandardItem {
@@ -48900,25 +48885,19 @@ func NewQStandardItem2(text string) *QStandardItem {
 
 	var textC = C.CString(text)
 	defer C.free(unsafe.Pointer(textC))
-	var tmpValue = NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem2(textC))
-	runtime.SetFinalizer(tmpValue, (*QStandardItem).DestroyQStandardItem)
-	return tmpValue
+	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem2(textC))
 }
 
 func NewQStandardItem4(rows int, columns int) *QStandardItem {
 	defer qt.Recovering("QStandardItem::QStandardItem")
 
-	var tmpValue = NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem4(C.int(int32(rows)), C.int(int32(columns))))
-	runtime.SetFinalizer(tmpValue, (*QStandardItem).DestroyQStandardItem)
-	return tmpValue
+	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem4(C.int(int32(rows)), C.int(int32(columns))))
 }
 
 func NewQStandardItem5(other QStandardItem_ITF) *QStandardItem {
 	defer qt.Recovering("QStandardItem::QStandardItem")
 
-	var tmpValue = NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem5(PointerFromQStandardItem(other)))
-	runtime.SetFinalizer(tmpValue, (*QStandardItem).DestroyQStandardItem)
-	return tmpValue
+	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem5(PointerFromQStandardItem(other)))
 }
 
 func (ptr *QStandardItem) AccessibleDescription() string {
@@ -55162,7 +55141,6 @@ func (ptr *QTextBlockUserData) DestroyQTextBlockUserData() {
 
 	if ptr.Pointer() != nil {
 		C.QTextBlockUserData_DestroyQTextBlockUserData(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -59372,6 +59350,7 @@ func (ptr *QTextFrame) DestroyQTextFrame() {
 
 	if ptr.Pointer() != nil {
 		C.QTextFrame_DestroyQTextFrame(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -59590,6 +59569,7 @@ func (ptr *QTextFrame) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTextFrame_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -59599,6 +59579,7 @@ func (ptr *QTextFrame) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QTextFrame_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -61260,6 +61241,7 @@ func NewQTextListFromPointer(ptr unsafe.Pointer) *QTextList {
 
 func (ptr *QTextList) DestroyQTextList() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -61682,6 +61664,7 @@ func (ptr *QTextList) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTextList_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -61691,6 +61674,7 @@ func (ptr *QTextList) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QTextList_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -62132,6 +62116,7 @@ func (ptr *QTextObject) DestroyQTextObject() {
 
 	if ptr.Pointer() != nil {
 		C.QTextObject_DestroyQTextObject(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -62350,6 +62335,7 @@ func (ptr *QTextObject) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTextObject_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -62359,6 +62345,7 @@ func (ptr *QTextObject) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QTextObject_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -62918,6 +62905,7 @@ func NewQTextTableFromPointer(ptr unsafe.Pointer) *QTextTable {
 
 func (ptr *QTextTable) DestroyQTextTable() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -63296,6 +63284,7 @@ func (ptr *QTextTable) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTextTable_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -63305,6 +63294,7 @@ func (ptr *QTextTable) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QTextTable_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

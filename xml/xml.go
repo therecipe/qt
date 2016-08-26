@@ -3122,7 +3122,6 @@ func (ptr *QXmlAttributes) DestroyQXmlAttributes() {
 
 	if ptr.Pointer() != nil {
 		C.QXmlAttributes_DestroyQXmlAttributes(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4286,9 +4285,7 @@ func NewQXmlDefaultHandlerFromPointer(ptr unsafe.Pointer) *QXmlDefaultHandler {
 func NewQXmlDefaultHandler() *QXmlDefaultHandler {
 	defer qt.Recovering("QXmlDefaultHandler::QXmlDefaultHandler")
 
-	var tmpValue = NewQXmlDefaultHandlerFromPointer(C.QXmlDefaultHandler_NewQXmlDefaultHandler())
-	runtime.SetFinalizer(tmpValue, (*QXmlDefaultHandler).DestroyQXmlDefaultHandler)
-	return tmpValue
+	return NewQXmlDefaultHandlerFromPointer(C.QXmlDefaultHandler_NewQXmlDefaultHandler())
 }
 
 func (ptr *QXmlDefaultHandler) DestroyQXmlDefaultHandler() {
@@ -6127,17 +6124,13 @@ func NewQXmlInputSourceFromPointer(ptr unsafe.Pointer) *QXmlInputSource {
 func NewQXmlInputSource() *QXmlInputSource {
 	defer qt.Recovering("QXmlInputSource::QXmlInputSource")
 
-	var tmpValue = NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource())
-	runtime.SetFinalizer(tmpValue, (*QXmlInputSource).DestroyQXmlInputSource)
-	return tmpValue
+	return NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource())
 }
 
 func NewQXmlInputSource2(dev core.QIODevice_ITF) *QXmlInputSource {
 	defer qt.Recovering("QXmlInputSource::QXmlInputSource")
 
-	var tmpValue = NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource2(core.PointerFromQIODevice(dev)))
-	runtime.SetFinalizer(tmpValue, (*QXmlInputSource).DestroyQXmlInputSource)
-	return tmpValue
+	return NewQXmlInputSourceFromPointer(C.QXmlInputSource_NewQXmlInputSource2(core.PointerFromQIODevice(dev)))
 }
 
 //export callbackQXmlInputSource_Data
@@ -6911,9 +6904,7 @@ func NewQXmlLocatorFromPointer(ptr unsafe.Pointer) *QXmlLocator {
 func NewQXmlLocator() *QXmlLocator {
 	defer qt.Recovering("QXmlLocator::QXmlLocator")
 
-	var tmpValue = NewQXmlLocatorFromPointer(C.QXmlLocator_NewQXmlLocator())
-	runtime.SetFinalizer(tmpValue, (*QXmlLocator).DestroyQXmlLocator)
-	return tmpValue
+	return NewQXmlLocatorFromPointer(C.QXmlLocator_NewQXmlLocator())
 }
 
 //export callbackQXmlLocator_ColumnNumber
@@ -8130,9 +8121,7 @@ func (ptr *QXmlSimpleReader) DTDHandlerDefault() *QXmlDTDHandler {
 func NewQXmlSimpleReader() *QXmlSimpleReader {
 	defer qt.Recovering("QXmlSimpleReader::QXmlSimpleReader")
 
-	var tmpValue = NewQXmlSimpleReaderFromPointer(C.QXmlSimpleReader_NewQXmlSimpleReader())
-	runtime.SetFinalizer(tmpValue, (*QXmlSimpleReader).DestroyQXmlSimpleReader)
-	return tmpValue
+	return NewQXmlSimpleReaderFromPointer(C.QXmlSimpleReader_NewQXmlSimpleReader())
 }
 
 //export callbackQXmlSimpleReader_ContentHandler

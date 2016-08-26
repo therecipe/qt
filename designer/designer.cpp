@@ -1110,24 +1110,9 @@ void QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheet
 	static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->~QDesignerDynamicPropertySheetExtension();
 }
 
-class MyQDesignerFormEditorInterface: public QDesignerFormEditorInterface
-{
-public:
-	MyQDesignerFormEditorInterface(QObject *parent) : QDesignerFormEditorInterface(parent) {};
-	void timerEvent(QTimerEvent * event) { callbackQDesignerFormEditorInterface_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQDesignerFormEditorInterface_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQDesignerFormEditorInterface_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQDesignerFormEditorInterface_CustomEvent(this, event); };
-	void deleteLater() { callbackQDesignerFormEditorInterface_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerFormEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQDesignerFormEditorInterface_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormEditorInterface_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormEditorInterface_MetaObject(const_cast<MyQDesignerFormEditorInterface*>(this))); };
-};
-
 void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 {
-	return new MyQDesignerFormEditorInterface(static_cast<QObject*>(parent));
+	return new QDesignerFormEditorInterface(static_cast<QObject*>(parent));
 }
 
 void* QDesignerFormEditorInterface_ActionEditor(void* ptr)
@@ -5471,17 +5456,9 @@ void* QExtensionManager_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->QExtensionManager::metaObject());
 }
 
-class MyQFormBuilder: public QFormBuilder
-{
-public:
-	MyQFormBuilder() : QFormBuilder() {};
-	QWidget * load(QIODevice * device, QWidget * parent) { return static_cast<QWidget*>(callbackQFormBuilder_Load(this, device, parent)); };
-	void save(QIODevice * device, QWidget * widget) { callbackQFormBuilder_Save(this, device, widget); };
-};
-
 void* QFormBuilder_NewQFormBuilder()
 {
-	return new MyQFormBuilder();
+	return new QFormBuilder();
 }
 
 void QFormBuilder_AddPluginPath(void* ptr, char* pluginPath)

@@ -56,6 +56,7 @@ func NewQCanBusFromPointer(ptr unsafe.Pointer) *QCanBus {
 
 func (ptr *QCanBus) DestroyQCanBus() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -310,6 +311,7 @@ func (ptr *QCanBus) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QCanBus_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -319,6 +321,7 @@ func (ptr *QCanBus) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QCanBus_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3590,25 +3593,19 @@ func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
 func NewQModbusExceptionResponse() *QModbusExceptionResponse {
 	defer qt.Recovering("QModbusExceptionResponse::QModbusExceptionResponse")
 
-	var tmpValue = NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse())
-	runtime.SetFinalizer(tmpValue, (*QModbusExceptionResponse).DestroyQModbusExceptionResponse)
-	return tmpValue
+	return NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse())
 }
 
 func NewQModbusExceptionResponse3(code QModbusPdu__FunctionCode, ec QModbusPdu__ExceptionCode) *QModbusExceptionResponse {
 	defer qt.Recovering("QModbusExceptionResponse::QModbusExceptionResponse")
 
-	var tmpValue = NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse3(C.longlong(code), C.longlong(ec)))
-	runtime.SetFinalizer(tmpValue, (*QModbusExceptionResponse).DestroyQModbusExceptionResponse)
-	return tmpValue
+	return NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse3(C.longlong(code), C.longlong(ec)))
 }
 
 func NewQModbusExceptionResponse2(pdu QModbusPdu_ITF) *QModbusExceptionResponse {
 	defer qt.Recovering("QModbusExceptionResponse::QModbusExceptionResponse")
 
-	var tmpValue = NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse2(PointerFromQModbusPdu(pdu)))
-	runtime.SetFinalizer(tmpValue, (*QModbusExceptionResponse).DestroyQModbusExceptionResponse)
-	return tmpValue
+	return NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse2(PointerFromQModbusPdu(pdu)))
 }
 
 func (ptr *QModbusExceptionResponse) SetExceptionCode(ec QModbusPdu__ExceptionCode) {
@@ -3748,9 +3745,7 @@ func NewQModbusPduFromPointer(ptr unsafe.Pointer) *QModbusPdu {
 func NewQModbusPdu() *QModbusPdu {
 	defer qt.Recovering("QModbusPdu::QModbusPdu")
 
-	var tmpValue = NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu())
-	runtime.SetFinalizer(tmpValue, (*QModbusPdu).DestroyQModbusPdu)
-	return tmpValue
+	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu())
 }
 
 func NewQModbusPdu2(code QModbusPdu__FunctionCode, data string) *QModbusPdu {
@@ -3758,17 +3753,13 @@ func NewQModbusPdu2(code QModbusPdu__FunctionCode, data string) *QModbusPdu {
 
 	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
-	var tmpValue = NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu2(C.longlong(code), dataC))
-	runtime.SetFinalizer(tmpValue, (*QModbusPdu).DestroyQModbusPdu)
-	return tmpValue
+	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu2(C.longlong(code), dataC))
 }
 
 func NewQModbusPdu3(other QModbusPdu_ITF) *QModbusPdu {
 	defer qt.Recovering("QModbusPdu::QModbusPdu")
 
-	var tmpValue = NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu3(PointerFromQModbusPdu(other)))
-	runtime.SetFinalizer(tmpValue, (*QModbusPdu).DestroyQModbusPdu)
-	return tmpValue
+	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu3(PointerFromQModbusPdu(other)))
 }
 
 func (ptr *QModbusPdu) DataSize() int16 {
@@ -4813,6 +4804,7 @@ func NewQModbusRtuSerialMasterFromPointer(ptr unsafe.Pointer) *QModbusRtuSerialM
 
 func (ptr *QModbusRtuSerialMaster) DestroyQModbusRtuSerialMaster() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -5243,6 +5235,7 @@ func (ptr *QModbusRtuSerialMaster) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5252,6 +5245,7 @@ func (ptr *QModbusRtuSerialMaster) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5495,6 +5489,7 @@ func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6091,6 +6086,7 @@ func (ptr *QModbusRtuSerialSlave) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6100,6 +6096,7 @@ func (ptr *QModbusRtuSerialSlave) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7279,6 +7276,7 @@ func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DestroyQModbusTcpClient(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7683,6 +7681,7 @@ func (ptr *QModbusTcpClient) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7692,6 +7691,7 @@ func (ptr *QModbusTcpClient) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7935,6 +7935,7 @@ func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DestroyQModbusTcpServer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8531,6 +8532,7 @@ func (ptr *QModbusTcpServer) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8540,6 +8542,7 @@ func (ptr *QModbusTcpServer) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

@@ -792,6 +792,7 @@ func NewQAccelerometerReadingFromPointer(ptr unsafe.Pointer) *QAccelerometerRead
 
 func (ptr *QAccelerometerReading) DestroyQAccelerometerReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -1060,6 +1061,7 @@ func (ptr *QAccelerometerReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometerReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1069,6 +1071,7 @@ func (ptr *QAccelerometerReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometerReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1325,6 +1328,7 @@ func (ptr *QAltimeter) DestroyQAltimeter() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeter_DestroyQAltimeter(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1647,6 +1651,7 @@ func (ptr *QAltimeter) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeter_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1656,6 +1661,7 @@ func (ptr *QAltimeter) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeter_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -1970,6 +1976,7 @@ func NewQAltimeterReadingFromPointer(ptr unsafe.Pointer) *QAltimeterReading {
 
 func (ptr *QAltimeterReading) DestroyQAltimeterReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -2204,6 +2211,7 @@ func (ptr *QAltimeterReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeterReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2213,6 +2221,7 @@ func (ptr *QAltimeterReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QAltimeterReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2539,6 +2548,7 @@ func NewQAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReadin
 
 func (ptr *QAmbientLightReading) DestroyQAmbientLightReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -2773,6 +2783,7 @@ func (ptr *QAmbientLightReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientLightReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2782,6 +2793,7 @@ func (ptr *QAmbientLightReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientLightReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3686,6 +3698,7 @@ func NewQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) *QAmbientTempe
 
 func (ptr *QAmbientTemperatureReading) DestroyQAmbientTemperatureReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -3920,6 +3933,7 @@ func (ptr *QAmbientTemperatureReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3929,6 +3943,7 @@ func (ptr *QAmbientTemperatureReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4185,6 +4200,7 @@ func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4507,6 +4523,7 @@ func (ptr *QAmbientTemperatureSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureSensor_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -4516,6 +4533,7 @@ func (ptr *QAmbientTemperatureSensor) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QAmbientTemperatureSensor_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5420,6 +5438,7 @@ func NewQCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
 
 func (ptr *QCompassReading) DestroyQCompassReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -5671,6 +5690,7 @@ func (ptr *QCompassReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QCompassReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5680,6 +5700,7 @@ func (ptr *QCompassReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QCompassReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5994,6 +6015,7 @@ func NewQDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
 
 func (ptr *QDistanceReading) DestroyQDistanceReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -6228,6 +6250,7 @@ func (ptr *QDistanceReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6237,6 +6260,7 @@ func (ptr *QDistanceReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6493,6 +6517,7 @@ func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceSensor_DestroyQDistanceSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6815,6 +6840,7 @@ func (ptr *QDistanceSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceSensor_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6824,6 +6850,7 @@ func (ptr *QDistanceSensor) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QDistanceSensor_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -7728,6 +7755,7 @@ func NewQGyroscopeReadingFromPointer(ptr unsafe.Pointer) *QGyroscopeReading {
 
 func (ptr *QGyroscopeReading) DestroyQGyroscopeReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -7996,6 +8024,7 @@ func (ptr *QGyroscopeReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGyroscopeReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8005,6 +8034,7 @@ func (ptr *QGyroscopeReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QGyroscopeReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8319,6 +8349,7 @@ func NewQHolsterReadingFromPointer(ptr unsafe.Pointer) *QHolsterReading {
 
 func (ptr *QHolsterReading) DestroyQHolsterReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -8553,6 +8584,7 @@ func (ptr *QHolsterReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8562,6 +8594,7 @@ func (ptr *QHolsterReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -8818,6 +8851,7 @@ func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterSensor_DestroyQHolsterSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9140,6 +9174,7 @@ func (ptr *QHolsterSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterSensor_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9149,6 +9184,7 @@ func (ptr *QHolsterSensor) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QHolsterSensor_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9463,6 +9499,7 @@ func NewQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading 
 
 func (ptr *QIRProximityReading) DestroyQIRProximityReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -9697,6 +9734,7 @@ func (ptr *QIRProximityReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QIRProximityReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -9706,6 +9744,7 @@ func (ptr *QIRProximityReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QIRProximityReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10610,6 +10649,7 @@ func NewQLightReadingFromPointer(ptr unsafe.Pointer) *QLightReading {
 
 func (ptr *QLightReading) DestroyQLightReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -10844,6 +10884,7 @@ func (ptr *QLightReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QLightReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -10853,6 +10894,7 @@ func (ptr *QLightReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QLightReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12453,6 +12495,7 @@ func NewQMagnetometerReadingFromPointer(ptr unsafe.Pointer) *QMagnetometerReadin
 
 func (ptr *QMagnetometerReading) DestroyQMagnetometerReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -12738,6 +12781,7 @@ func (ptr *QMagnetometerReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometerReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -12747,6 +12791,7 @@ func (ptr *QMagnetometerReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometerReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13074,6 +13119,7 @@ func NewQOrientationReadingFromPointer(ptr unsafe.Pointer) *QOrientationReading 
 
 func (ptr *QOrientationReading) DestroyQOrientationReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -13308,6 +13354,7 @@ func (ptr *QOrientationReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QOrientationReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -13317,6 +13364,7 @@ func (ptr *QOrientationReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QOrientationReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14221,6 +14269,7 @@ func NewQPressureReadingFromPointer(ptr unsafe.Pointer) *QPressureReading {
 
 func (ptr *QPressureReading) DestroyQPressureReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -14472,6 +14521,7 @@ func (ptr *QPressureReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14481,6 +14531,7 @@ func (ptr *QPressureReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -14737,6 +14788,7 @@ func (ptr *QPressureSensor) DestroyQPressureSensor() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureSensor_DestroyQPressureSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15059,6 +15111,7 @@ func (ptr *QPressureSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureSensor_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15068,6 +15121,7 @@ func (ptr *QPressureSensor) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QPressureSensor_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15382,6 +15436,7 @@ func NewQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
 
 func (ptr *QProximityReading) DestroyQProximityReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -15616,6 +15671,7 @@ func (ptr *QProximityReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QProximityReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -15625,6 +15681,7 @@ func (ptr *QProximityReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QProximityReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16529,6 +16586,7 @@ func NewQRotationReadingFromPointer(ptr unsafe.Pointer) *QRotationReading {
 
 func (ptr *QRotationReading) DestroyQRotationReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -16781,6 +16839,7 @@ func (ptr *QRotationReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QRotationReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -16790,6 +16849,7 @@ func (ptr *QRotationReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QRotationReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22205,6 +22265,7 @@ func NewQSensorReadingFromPointer(ptr unsafe.Pointer) *QSensorReading {
 
 func (ptr *QSensorReading) DestroyQSensorReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -22459,6 +22520,7 @@ func (ptr *QSensorReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QSensorReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22468,6 +22530,7 @@ func (ptr *QSensorReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QSensorReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22801,6 +22864,7 @@ func NewQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
 
 func (ptr *QTapReading) DestroyQTapReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -23052,6 +23116,7 @@ func (ptr *QTapReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTapReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -23061,6 +23126,7 @@ func (ptr *QTapReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QTapReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24018,6 +24084,7 @@ func NewQTiltReadingFromPointer(ptr unsafe.Pointer) *QTiltReading {
 
 func (ptr *QTiltReading) DestroyQTiltReading() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -24269,6 +24336,7 @@ func (ptr *QTiltReading) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltReading_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24278,6 +24346,7 @@ func (ptr *QTiltReading) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltReading_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24534,6 +24603,7 @@ func (ptr *QTiltSensor) DestroyQTiltSensor() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_DestroyQTiltSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24864,6 +24934,7 @@ func (ptr *QTiltSensor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -24873,6 +24944,7 @@ func (ptr *QTiltSensor) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QTiltSensor_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

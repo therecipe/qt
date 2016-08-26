@@ -21900,6 +21900,7 @@ func NewQCameraImageProcessingFromPointer(ptr unsafe.Pointer) *QCameraImageProce
 
 func (ptr *QCameraImageProcessing) DestroyQCameraImageProcessing() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -22280,6 +22281,7 @@ func (ptr *QCameraImageProcessing) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessing_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -22289,6 +22291,7 @@ func (ptr *QCameraImageProcessing) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QCameraImageProcessing_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -34600,6 +34603,7 @@ func (ptr *QMediaControl) DestroyQMediaControl() {
 
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DestroyQMediaControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -34818,6 +34822,7 @@ func (ptr *QMediaControl) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -34827,6 +34832,7 @@ func (ptr *QMediaControl) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QMediaControl_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

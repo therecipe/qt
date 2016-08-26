@@ -51869,72 +51869,6 @@ void QListWidgetItem_DestroyQListWidgetItem(void* ptr)
 	static_cast<QListWidgetItem*>(ptr)->~QListWidgetItem();
 }
 
-class MyQMacCocoaViewContainer: public QMacCocoaViewContainer
-{
-public:
-	void actionEvent(QActionEvent * event) { callbackQMacCocoaViewContainer_ActionEvent(this, event); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackQMacCocoaViewContainer_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQMacCocoaViewContainer_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackQMacCocoaViewContainer_DragMoveEvent(this, event); };
-	void dropEvent(QDropEvent * event) { callbackQMacCocoaViewContainer_DropEvent(this, event); };
-	void enterEvent(QEvent * event) { callbackQMacCocoaViewContainer_EnterEvent(this, event); };
-	void focusInEvent(QFocusEvent * event) { callbackQMacCocoaViewContainer_FocusInEvent(this, event); };
-	void focusOutEvent(QFocusEvent * event) { callbackQMacCocoaViewContainer_FocusOutEvent(this, event); };
-	void hideEvent(QHideEvent * event) { callbackQMacCocoaViewContainer_HideEvent(this, event); };
-	void leaveEvent(QEvent * event) { callbackQMacCocoaViewContainer_LeaveEvent(this, event); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQMacCocoaViewContainer_MinimumSizeHint(const_cast<MyQMacCocoaViewContainer*>(this))); };
-	void moveEvent(QMoveEvent * event) { callbackQMacCocoaViewContainer_MoveEvent(this, event); };
-	void paintEvent(QPaintEvent * event) { callbackQMacCocoaViewContainer_PaintEvent(this, event); };
-	void setEnabled(bool vbo) { callbackQMacCocoaViewContainer_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMacCocoaViewContainer_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
-	void setVisible(bool visible) { callbackQMacCocoaViewContainer_SetVisible(this, visible); };
-	void setWindowModified(bool vbo) { callbackQMacCocoaViewContainer_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMacCocoaViewContainer_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
-	void showEvent(QShowEvent * event) { callbackQMacCocoaViewContainer_ShowEvent(this, event); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackQMacCocoaViewContainer_SizeHint(const_cast<MyQMacCocoaViewContainer*>(this))); };
-	void changeEvent(QEvent * event) { callbackQMacCocoaViewContainer_ChangeEvent(this, event); };
-	bool close() { return callbackQMacCocoaViewContainer_Close(this) != 0; };
-	void closeEvent(QCloseEvent * event) { callbackQMacCocoaViewContainer_CloseEvent(this, event); };
-	void contextMenuEvent(QContextMenuEvent * event) { callbackQMacCocoaViewContainer_ContextMenuEvent(this, event); };
-	bool focusNextPrevChild(bool next) { return callbackQMacCocoaViewContainer_FocusNextPrevChild(this, next) != 0; };
-	bool hasHeightForWidth() const { return callbackQMacCocoaViewContainer_HasHeightForWidth(const_cast<MyQMacCocoaViewContainer*>(this)) != 0; };
-	int heightForWidth(int w) const { return callbackQMacCocoaViewContainer_HeightForWidth(const_cast<MyQMacCocoaViewContainer*>(this), w); };
-	void hide() { callbackQMacCocoaViewContainer_Hide(this); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackQMacCocoaViewContainer_InputMethodEvent(this, event); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQMacCocoaViewContainer_InputMethodQuery(const_cast<MyQMacCocoaViewContainer*>(this), query)); };
-	void keyPressEvent(QKeyEvent * event) { callbackQMacCocoaViewContainer_KeyPressEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackQMacCocoaViewContainer_KeyReleaseEvent(this, event); };
-	void lower() { callbackQMacCocoaViewContainer_Lower(this); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MouseMoveEvent(this, event); };
-	void mousePressEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacCocoaViewContainer_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
-	void raise() { callbackQMacCocoaViewContainer_Raise(this); };
-	void repaint() { callbackQMacCocoaViewContainer_Repaint(this); };
-	void resizeEvent(QResizeEvent * event) { callbackQMacCocoaViewContainer_ResizeEvent(this, event); };
-	void setDisabled(bool disable) { callbackQMacCocoaViewContainer_SetDisabled(this, disable); };
-	void setFocus() { callbackQMacCocoaViewContainer_SetFocus2(this); };
-	void setHidden(bool hidden) { callbackQMacCocoaViewContainer_SetHidden(this, hidden); };
-	void show() { callbackQMacCocoaViewContainer_Show(this); };
-	void showFullScreen() { callbackQMacCocoaViewContainer_ShowFullScreen(this); };
-	void showMaximized() { callbackQMacCocoaViewContainer_ShowMaximized(this); };
-	void showMinimized() { callbackQMacCocoaViewContainer_ShowMinimized(this); };
-	void showNormal() { callbackQMacCocoaViewContainer_ShowNormal(this); };
-	void tabletEvent(QTabletEvent * event) { callbackQMacCocoaViewContainer_TabletEvent(this, event); };
-	void update() { callbackQMacCocoaViewContainer_Update(this); };
-	void updateMicroFocus() { callbackQMacCocoaViewContainer_UpdateMicroFocus(this); };
-	void wheelEvent(QWheelEvent * event) { callbackQMacCocoaViewContainer_WheelEvent(this, event); };
-	void timerEvent(QTimerEvent * event) { callbackQMacCocoaViewContainer_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQMacCocoaViewContainer_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQMacCocoaViewContainer_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQMacCocoaViewContainer_CustomEvent(this, event); };
-	void deleteLater() { callbackQMacCocoaViewContainer_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQMacCocoaViewContainer_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacCocoaViewContainer_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacCocoaViewContainer_MetaObject(const_cast<MyQMacCocoaViewContainer*>(this))); };
-};
-
 void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr)
 {
 	static_cast<QMacCocoaViewContainer*>(ptr)->~QMacCocoaViewContainer();
@@ -67038,21 +66972,14 @@ void* QScroller_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QScroller*>(ptr)->QScroller::metaObject());
 }
 
-class MyQScrollerProperties: public QScrollerProperties
-{
-public:
-	MyQScrollerProperties() : QScrollerProperties() {};
-	MyQScrollerProperties(const QScrollerProperties &sp) : QScrollerProperties(sp) {};
-};
-
 void* QScrollerProperties_NewQScrollerProperties()
 {
-	return new MyQScrollerProperties();
+	return new QScrollerProperties();
 }
 
 void* QScrollerProperties_NewQScrollerProperties2(void* sp)
 {
-	return new MyQScrollerProperties(*static_cast<QScrollerProperties*>(sp));
+	return new QScrollerProperties(*static_cast<QScrollerProperties*>(sp));
 }
 
 void* QScrollerProperties_ScrollMetric(void* ptr, long long metric)

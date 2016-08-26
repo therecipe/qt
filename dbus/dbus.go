@@ -85,6 +85,7 @@ func (ptr *QDBusAbstractAdaptor) DestroyQDBusAbstractAdaptor() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DestroyQDBusAbstractAdaptor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -303,6 +304,7 @@ func (ptr *QDBusAbstractAdaptor) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -312,6 +314,7 @@ func (ptr *QDBusAbstractAdaptor) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractAdaptor_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -2795,6 +2798,7 @@ func (ptr *QDBusInterface) DestroyQDBusInterface() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DestroyQDBusInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3013,6 +3017,7 @@ func (ptr *QDBusInterface) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3022,6 +3027,7 @@ func (ptr *QDBusInterface) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QDBusInterface_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

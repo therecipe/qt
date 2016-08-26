@@ -3259,6 +3259,7 @@ func (ptr *QGeoServiceProvider) DestroyQGeoServiceProvider() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_DestroyQGeoServiceProvider(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3477,6 +3478,7 @@ func (ptr *QGeoServiceProvider) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -3486,6 +3488,7 @@ func (ptr *QGeoServiceProvider) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProvider_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }

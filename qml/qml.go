@@ -1120,9 +1120,7 @@ func NewQQmlAbstractUrlInterceptorFromPointer(ptr unsafe.Pointer) *QQmlAbstractU
 func NewQQmlAbstractUrlInterceptor() *QQmlAbstractUrlInterceptor {
 	defer qt.Recovering("QQmlAbstractUrlInterceptor::QQmlAbstractUrlInterceptor")
 
-	var tmpValue = NewQQmlAbstractUrlInterceptorFromPointer(C.QQmlAbstractUrlInterceptor_NewQQmlAbstractUrlInterceptor())
-	runtime.SetFinalizer(tmpValue, (*QQmlAbstractUrlInterceptor).DestroyQQmlAbstractUrlInterceptor)
-	return tmpValue
+	return NewQQmlAbstractUrlInterceptorFromPointer(C.QQmlAbstractUrlInterceptor_NewQQmlAbstractUrlInterceptor())
 }
 
 //export callbackQQmlAbstractUrlInterceptor_Intercept
@@ -5714,6 +5712,7 @@ func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5932,6 +5931,7 @@ func (ptr *QQmlFileSelector) DeleteLater() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -5941,6 +5941,7 @@ func (ptr *QQmlFileSelector) DeleteLaterDefault() {
 
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -6316,9 +6317,7 @@ func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
 func NewQQmlIncubationController() *QQmlIncubationController {
 	defer qt.Recovering("QQmlIncubationController::QQmlIncubationController")
 
-	var tmpValue = NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController())
-	runtime.SetFinalizer(tmpValue, (*QQmlIncubationController).DestroyQQmlIncubationController)
-	return tmpValue
+	return NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController())
 }
 
 func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
@@ -6462,9 +6461,7 @@ func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 func NewQQmlIncubator(mode QQmlIncubator__IncubationMode) *QQmlIncubator {
 	defer qt.Recovering("QQmlIncubator::QQmlIncubator")
 
-	var tmpValue = NewQQmlIncubatorFromPointer(C.QQmlIncubator_NewQQmlIncubator(C.longlong(mode)))
-	runtime.SetFinalizer(tmpValue, (*QQmlIncubator).DestroyQQmlIncubator)
-	return tmpValue
+	return NewQQmlIncubatorFromPointer(C.QQmlIncubator_NewQQmlIncubator(C.longlong(mode)))
 }
 
 func (ptr *QQmlIncubator) Clear() {
@@ -8200,9 +8197,7 @@ func NewQQmlPropertyValueSourceFromPointer(ptr unsafe.Pointer) *QQmlPropertyValu
 func NewQQmlPropertyValueSource() *QQmlPropertyValueSource {
 	defer qt.Recovering("QQmlPropertyValueSource::QQmlPropertyValueSource")
 
-	var tmpValue = NewQQmlPropertyValueSourceFromPointer(C.QQmlPropertyValueSource_NewQQmlPropertyValueSource())
-	runtime.SetFinalizer(tmpValue, (*QQmlPropertyValueSource).DestroyQQmlPropertyValueSource)
-	return tmpValue
+	return NewQQmlPropertyValueSourceFromPointer(C.QQmlPropertyValueSource_NewQQmlPropertyValueSource())
 }
 
 //export callbackQQmlPropertyValueSource_SetTarget

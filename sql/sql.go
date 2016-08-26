@@ -8318,9 +8318,7 @@ func NewQSqlResultFromPointer(ptr unsafe.Pointer) *QSqlResult {
 func NewQSqlResult(db QSqlDriver_ITF) *QSqlResult {
 	defer qt.Recovering("QSqlResult::QSqlResult")
 
-	var tmpValue = NewQSqlResultFromPointer(C.QSqlResult_NewQSqlResult(PointerFromQSqlDriver(db)))
-	runtime.SetFinalizer(tmpValue, (*QSqlResult).DestroyQSqlResult)
-	return tmpValue
+	return NewQSqlResultFromPointer(C.QSqlResult_NewQSqlResult(PointerFromQSqlDriver(db)))
 }
 
 func (ptr *QSqlResult) At() int {

@@ -5790,11 +5790,6 @@ void* QSGFlatColorMaterial_TypeDefault(void* ptr)
 	return static_cast<QSGFlatColorMaterial*>(ptr)->QSGFlatColorMaterial::type();
 }
 
-class MyQSGGeometry: public QSGGeometry
-{
-public:
-};
-
 void QSGGeometry_Allocate(void* ptr, int vertexCount, int indexCount)
 {
 	static_cast<QSGGeometry*>(ptr)->allocate(vertexCount, indexCount);
