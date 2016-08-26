@@ -103,6 +103,7 @@ class MyQQuickAsyncImageProvider: public QQuickAsyncImageProvider
 {
 public:
 	MyQQuickAsyncImageProvider() : QQuickAsyncImageProvider() {};
+	 ~MyQQuickAsyncImageProvider() { callbackQQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(this); };
 	QQuickImageResponse * requestImageResponse(const QString & id, const QSize & requestedSize) { return static_cast<QQuickImageResponse*>(callbackQQuickAsyncImageProvider_RequestImageResponse(this, const_cast<char*>(id.toUtf8().constData()), const_cast<QSize*>(&requestedSize))); };
 	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QImage*>(callbackQQuickAsyncImageProvider_RequestImage(this, const_cast<char*>(id.toUtf8().constData()), size, const_cast<QSize*>(&requestedSize))); };
 	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QPixmap*>(callbackQQuickAsyncImageProvider_RequestPixmap(this, const_cast<char*>(id.toUtf8().constData()), size, const_cast<QSize*>(&requestedSize))); };
@@ -117,6 +118,11 @@ void* QQuickAsyncImageProvider_NewQQuickAsyncImageProvider()
 void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProvider(void* ptr)
 {
 	static_cast<QQuickAsyncImageProvider*>(ptr)->~QQuickAsyncImageProvider();
+}
+
+void QQuickAsyncImageProvider_DestroyQQuickAsyncImageProviderDefault(void* ptr)
+{
+
 }
 
 void* QQuickAsyncImageProvider_RequestImageResponse(void* ptr, char* id, void* requestedSize)
@@ -625,6 +631,7 @@ public:
 	QImage requestImage(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QImage*>(callbackQQuickImageProvider_RequestImage(this, const_cast<char*>(id.toUtf8().constData()), size, const_cast<QSize*>(&requestedSize))); };
 	QPixmap requestPixmap(const QString & id, QSize * size, const QSize & requestedSize) { return *static_cast<QPixmap*>(callbackQQuickImageProvider_RequestPixmap(this, const_cast<char*>(id.toUtf8().constData()), size, const_cast<QSize*>(&requestedSize))); };
 	QQuickTextureFactory * requestTexture(const QString & id, QSize * size, const QSize & requestedSize) { return static_cast<QQuickTextureFactory*>(callbackQQuickImageProvider_RequestTexture(this, const_cast<char*>(id.toUtf8().constData()), size, const_cast<QSize*>(&requestedSize))); };
+	 ~MyQQuickImageProvider() { callbackQQuickImageProvider_DestroyQQuickImageProvider(this); };
 };
 
 void* QQuickImageProvider_NewQQuickImageProvider(long long ty, long long flags)
@@ -677,6 +684,11 @@ void QQuickImageProvider_DestroyQQuickImageProvider(void* ptr)
 	static_cast<QQuickImageProvider*>(ptr)->~QQuickImageProvider();
 }
 
+void QQuickImageProvider_DestroyQQuickImageProviderDefault(void* ptr)
+{
+
+}
+
 class MyQQuickImageResponse: public QQuickImageResponse
 {
 public:
@@ -685,6 +697,7 @@ public:
 	QString errorString() const { return QString(callbackQQuickImageResponse_ErrorString(const_cast<MyQQuickImageResponse*>(this))); };
 	void Signal_Finished() { callbackQQuickImageResponse_Finished(this); };
 	QQuickTextureFactory * textureFactory() const { return static_cast<QQuickTextureFactory*>(callbackQQuickImageResponse_TextureFactory(const_cast<MyQQuickImageResponse*>(this))); };
+	 ~MyQQuickImageResponse() { callbackQQuickImageResponse_DestroyQQuickImageResponse(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickImageResponse_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQuickImageResponse_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQuickImageResponse_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -744,6 +757,11 @@ void* QQuickImageResponse_TextureFactory(void* ptr)
 void QQuickImageResponse_DestroyQQuickImageResponse(void* ptr)
 {
 	static_cast<QQuickImageResponse*>(ptr)->~QQuickImageResponse();
+}
+
+void QQuickImageResponse_DestroyQQuickImageResponseDefault(void* ptr)
+{
+
 }
 
 void QQuickImageResponse_TimerEvent(void* ptr, void* event)
@@ -870,6 +888,7 @@ public:
 	void updatePolish() { callbackQQuickItem_UpdatePolish(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQQuickItem_WheelEvent(this, event); };
 	void Signal_WindowChanged(QQuickWindow * window) { callbackQQuickItem_WindowChanged(this, window); };
+	 ~MyQQuickItem() { callbackQQuickItem_DestroyQQuickItem(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickItem_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQuickItem_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQuickItem_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1665,6 +1684,11 @@ void QQuickItem_DestroyQQuickItem(void* ptr)
 	static_cast<QQuickItem*>(ptr)->~QQuickItem();
 }
 
+void QQuickItem_DestroyQQuickItemDefault(void* ptr)
+{
+
+}
+
 void QQuickItem_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQuickItem*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1893,6 +1917,7 @@ public:
 	void Signal_RenderTargetChanged() { callbackQQuickPaintedItem_RenderTargetChanged(this); };
 	QSGTextureProvider * textureProvider() const { return static_cast<QSGTextureProvider*>(callbackQQuickPaintedItem_TextureProvider(const_cast<MyQQuickPaintedItem*>(this))); };
 	void Signal_TextureSizeChanged() { callbackQQuickPaintedItem_TextureSizeChanged(this); };
+	 ~MyQQuickPaintedItem() { callbackQQuickPaintedItem_DestroyQQuickPaintedItem(this); };
 	bool childMouseEventFilter(QQuickItem * item, QEvent * event) { return callbackQQuickPaintedItem_ChildMouseEventFilter(this, item, event) != 0; };
 	bool contains(const QPointF & point) const { return callbackQQuickPaintedItem_Contains(const_cast<MyQQuickPaintedItem*>(this), const_cast<QPointF*>(&point)) != 0; };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQQuickPaintedItem_DragEnterEvent(this, event); };
@@ -2146,6 +2171,11 @@ void QQuickPaintedItem_Update(void* ptr, void* rect)
 void QQuickPaintedItem_DestroyQQuickPaintedItem(void* ptr)
 {
 	static_cast<QQuickPaintedItem*>(ptr)->~QQuickPaintedItem();
+}
+
+void QQuickPaintedItem_DestroyQQuickPaintedItemDefault(void* ptr)
+{
+
 }
 
 char QQuickPaintedItem_ChildMouseEventFilter(void* ptr, void* item, void* event)
@@ -2784,6 +2814,7 @@ public:
 	QSGTexture * createTexture(QQuickWindow * window) const { return static_cast<QSGTexture*>(callbackQQuickTextureFactory_CreateTexture(const_cast<MyQQuickTextureFactory*>(this), window)); };
 	int textureByteCount() const { return callbackQQuickTextureFactory_TextureByteCount(const_cast<MyQQuickTextureFactory*>(this)); };
 	QSize textureSize() const { return *static_cast<QSize*>(callbackQQuickTextureFactory_TextureSize(const_cast<MyQQuickTextureFactory*>(this))); };
+	 ~MyQQuickTextureFactory() { callbackQQuickTextureFactory_DestroyQQuickTextureFactory(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQuickTextureFactory_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQuickTextureFactory_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQuickTextureFactory_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -2833,6 +2864,11 @@ void* QQuickTextureFactory_TextureSize(void* ptr)
 void QQuickTextureFactory_DestroyQQuickTextureFactory(void* ptr)
 {
 	static_cast<QQuickTextureFactory*>(ptr)->~QQuickTextureFactory();
+}
+
+void QQuickTextureFactory_DestroyQQuickTextureFactoryDefault(void* ptr)
+{
+
 }
 
 void QQuickTextureFactory_TimerEvent(void* ptr, void* event)
@@ -2933,6 +2969,7 @@ public:
 	MyQQuickView(const QUrl &source, QWindow *parent) : QQuickView(source, parent) {};
 	void setSource(const QUrl & url) { callbackQQuickView_SetSource(this, const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQuickView::Status status) { callbackQQuickView_StatusChanged(this, status); };
+	 ~MyQQuickView() { callbackQQuickView_DestroyQQuickView(this); };
 	void releaseResources() { callbackQQuickView_ReleaseResources(this); };
 	void update() { callbackQQuickView_Update(this); };
 	void setHeight(int arg) { callbackQQuickView_SetHeight(this, arg); };
@@ -3078,6 +3115,11 @@ void QQuickView_StatusChanged(void* ptr, long long status)
 void QQuickView_DestroyQQuickView(void* ptr)
 {
 	static_cast<QQuickView*>(ptr)->~QQuickView();
+}
+
+void QQuickView_DestroyQQuickViewDefault(void* ptr)
+{
+
 }
 
 void QQuickView_ReleaseResources(void* ptr)
@@ -3506,6 +3548,7 @@ public:
 	void showEvent(QShowEvent * vqs) { callbackQQuickWidget_ShowEvent(this, vqs); };
 	void Signal_StatusChanged(QQuickWidget::Status status) { callbackQQuickWidget_StatusChanged(this, status); };
 	void wheelEvent(QWheelEvent * e) { callbackQQuickWidget_WheelEvent(this, e); };
+	 ~MyQQuickWidget() { callbackQQuickWidget_DestroyQQuickWidget(this); };
 	void actionEvent(QActionEvent * event) { callbackQQuickWidget_ActionEvent(this, event); };
 	void enterEvent(QEvent * event) { callbackQQuickWidget_EnterEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQQuickWidget_LeaveEvent(this, event); };
@@ -3827,6 +3870,11 @@ void QQuickWidget_WheelEventDefault(void* ptr, void* e)
 void QQuickWidget_DestroyQQuickWidget(void* ptr)
 {
 	static_cast<QQuickWidget*>(ptr)->~QQuickWidget();
+}
+
+void QQuickWidget_DestroyQQuickWidgetDefault(void* ptr)
+{
+
 }
 
 void QQuickWidget_ActionEvent(void* ptr, void* event)
@@ -4310,6 +4358,7 @@ public:
 	void Signal_SceneGraphInitialized() { callbackQQuickWindow_SceneGraphInitialized(this); };
 	void Signal_SceneGraphInvalidated() { callbackQQuickWindow_SceneGraphInvalidated(this); };
 	void update() { callbackQQuickWindow_Update(this); };
+	 ~MyQQuickWindow() { callbackQQuickWindow_DestroyQQuickWindow(this); };
 	void setHeight(int arg) { callbackQQuickWindow_SetHeight(this, arg); };
 	void setMaximumHeight(int h) { callbackQQuickWindow_SetMaximumHeight(this, h); };
 	void setMaximumWidth(int w) { callbackQQuickWindow_SetMaximumWidth(this, w); };
@@ -4783,6 +4832,11 @@ void QQuickWindow_WheelEvent(void* ptr, void* event)
 void QQuickWindow_DestroyQQuickWindow(void* ptr)
 {
 	static_cast<QQuickWindow*>(ptr)->~QQuickWindow();
+}
+
+void QQuickWindow_DestroyQQuickWindowDefault(void* ptr)
+{
+
 }
 
 void QQuickWindow_SetHeight(void* ptr, int arg)
@@ -5790,6 +5844,12 @@ void* QSGFlatColorMaterial_TypeDefault(void* ptr)
 	return static_cast<QSGFlatColorMaterial*>(ptr)->QSGFlatColorMaterial::type();
 }
 
+class MyQSGGeometry: public QSGGeometry
+{
+public:
+	 ~MyQSGGeometry() { callbackQSGGeometry_DestroyQSGGeometry(this); };
+};
+
 void QSGGeometry_Allocate(void* ptr, int vertexCount, int indexCount)
 {
 	static_cast<QSGGeometry*>(ptr)->allocate(vertexCount, indexCount);
@@ -5918,6 +5978,11 @@ long long QSGGeometry_VertexDataPattern(void* ptr)
 void QSGGeometry_DestroyQSGGeometry(void* ptr)
 {
 	static_cast<QSGGeometry*>(ptr)->~QSGGeometry();
+}
+
+void QSGGeometry_DestroyQSGGeometryDefault(void* ptr)
+{
+
 }
 
 void* QSGGeometryNode_NewQSGGeometryNode()
@@ -6100,6 +6165,7 @@ public:
 	MyQSGNode() : QSGNode() {};
 	bool isSubtreeBlocked() const { return callbackQSGNode_IsSubtreeBlocked(const_cast<MyQSGNode*>(this)) != 0; };
 	void preprocess() { callbackQSGNode_Preprocess(this); };
+	 ~MyQSGNode() { callbackQSGNode_DestroyQSGNode(this); };
 };
 
 void* QSGNode_ChildAtIndex(void* ptr, int i)
@@ -6220,6 +6286,11 @@ long long QSGNode_Type(void* ptr)
 void QSGNode_DestroyQSGNode(void* ptr)
 {
 	static_cast<QSGNode*>(ptr)->~QSGNode();
+}
+
+void QSGNode_DestroyQSGNodeDefault(void* ptr)
+{
+
 }
 
 void* QSGOpacityNode_NewQSGOpacityNode()

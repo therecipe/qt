@@ -220,6 +220,7 @@ void QModbusPdu_SetFunctionCode(void* ptr, long long code);
 void QModbusPdu_SetFunctionCodeDefault(void* ptr, long long code);
 short QModbusPdu_Size(void* ptr);
 void QModbusPdu_DestroyQModbusPdu(void* ptr);
+void QModbusPdu_DestroyQModbusPduDefault(void* ptr);
 void* QModbusReply_NewQModbusReply(long long ty, int serverAddress, void* parent);
 long long QModbusReply_Error(void* ptr);
 void QModbusReply_ConnectErrorOccurred(void* ptr);

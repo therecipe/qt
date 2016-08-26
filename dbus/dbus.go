@@ -644,11 +644,50 @@ func (ptr *QDBusAbstractInterface) Timeout() int {
 	return 0
 }
 
+//export callbackQDBusAbstractInterface_DestroyQDBusAbstractInterface
+func callbackQDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QDBusAbstractInterface::~QDBusAbstractInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusAbstractInterface::~QDBusAbstractInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQDBusAbstractInterfaceFromPointer(ptr).DestroyQDBusAbstractInterfaceDefault()
+	}
+}
+
+func (ptr *QDBusAbstractInterface) ConnectDestroyQDBusAbstractInterface(f func()) {
+	defer qt.Recovering("connect QDBusAbstractInterface::~QDBusAbstractInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusAbstractInterface::~QDBusAbstractInterface", f)
+	}
+}
+
+func (ptr *QDBusAbstractInterface) DisconnectDestroyQDBusAbstractInterface() {
+	defer qt.Recovering("disconnect QDBusAbstractInterface::~QDBusAbstractInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusAbstractInterface::~QDBusAbstractInterface")
+	}
+}
+
 func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterface() {
 	defer qt.Recovering("QDBusAbstractInterface::~QDBusAbstractInterface")
 
 	if ptr.Pointer() != nil {
 		C.QDBusAbstractInterface_DestroyQDBusAbstractInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusAbstractInterface) DestroyQDBusAbstractInterfaceDefault() {
+	defer qt.Recovering("QDBusAbstractInterface::~QDBusAbstractInterface")
+
+	if ptr.Pointer() != nil {
+		C.QDBusAbstractInterface_DestroyQDBusAbstractInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -4584,11 +4623,50 @@ func (ptr *QDBusServer) SetAnonymousAuthenticationAllowed(value bool) {
 	}
 }
 
+//export callbackQDBusServer_DestroyQDBusServer
+func callbackQDBusServer_DestroyQDBusServer(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QDBusServer::~QDBusServer")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusServer::~QDBusServer"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQDBusServerFromPointer(ptr).DestroyQDBusServerDefault()
+	}
+}
+
+func (ptr *QDBusServer) ConnectDestroyQDBusServer(f func()) {
+	defer qt.Recovering("connect QDBusServer::~QDBusServer")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusServer::~QDBusServer", f)
+	}
+}
+
+func (ptr *QDBusServer) DisconnectDestroyQDBusServer() {
+	defer qt.Recovering("disconnect QDBusServer::~QDBusServer")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusServer::~QDBusServer")
+	}
+}
+
 func (ptr *QDBusServer) DestroyQDBusServer() {
 	defer qt.Recovering("QDBusServer::~QDBusServer")
 
 	if ptr.Pointer() != nil {
 		C.QDBusServer_DestroyQDBusServer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusServer) DestroyQDBusServerDefault() {
+	defer qt.Recovering("QDBusServer::~QDBusServer")
+
+	if ptr.Pointer() != nil {
+		C.QDBusServer_DestroyQDBusServerDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -6149,11 +6227,50 @@ func (ptr *QDBusVirtualObject) Introspect(path string) string {
 	return ""
 }
 
+//export callbackQDBusVirtualObject_DestroyQDBusVirtualObject
+func callbackQDBusVirtualObject_DestroyQDBusVirtualObject(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QDBusVirtualObject::~QDBusVirtualObject")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusVirtualObject::~QDBusVirtualObject"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQDBusVirtualObjectFromPointer(ptr).DestroyQDBusVirtualObjectDefault()
+	}
+}
+
+func (ptr *QDBusVirtualObject) ConnectDestroyQDBusVirtualObject(f func()) {
+	defer qt.Recovering("connect QDBusVirtualObject::~QDBusVirtualObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusVirtualObject::~QDBusVirtualObject", f)
+	}
+}
+
+func (ptr *QDBusVirtualObject) DisconnectDestroyQDBusVirtualObject() {
+	defer qt.Recovering("disconnect QDBusVirtualObject::~QDBusVirtualObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusVirtualObject::~QDBusVirtualObject")
+	}
+}
+
 func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObject() {
 	defer qt.Recovering("QDBusVirtualObject::~QDBusVirtualObject")
 
 	if ptr.Pointer() != nil {
 		C.QDBusVirtualObject_DestroyQDBusVirtualObject(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QDBusVirtualObject) DestroyQDBusVirtualObjectDefault() {
+	defer qt.Recovering("QDBusVirtualObject::~QDBusVirtualObject")
+
+	if ptr.Pointer() != nil {
+		C.QDBusVirtualObject_DestroyQDBusVirtualObjectDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

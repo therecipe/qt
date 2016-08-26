@@ -188,6 +188,7 @@ public:
 	MyQWebChannelAbstractTransport(QObject *parent) : QWebChannelAbstractTransport(parent) {};
 	void Signal_MessageReceived(const QJsonObject & message, QWebChannelAbstractTransport * transport) { callbackQWebChannelAbstractTransport_MessageReceived(this, const_cast<QJsonObject*>(&message), transport); };
 	void sendMessage(const QJsonObject & message) { callbackQWebChannelAbstractTransport_SendMessage(this, const_cast<QJsonObject*>(&message)); };
+	 ~MyQWebChannelAbstractTransport() { callbackQWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebChannelAbstractTransport_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebChannelAbstractTransport_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebChannelAbstractTransport_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -227,6 +228,11 @@ void QWebChannelAbstractTransport_SendMessage(void* ptr, void* message)
 void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(void* ptr)
 {
 	static_cast<QWebChannelAbstractTransport*>(ptr)->~QWebChannelAbstractTransport();
+}
+
+void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(void* ptr)
+{
+
 }
 
 void QWebChannelAbstractTransport_TimerEvent(void* ptr, void* event)

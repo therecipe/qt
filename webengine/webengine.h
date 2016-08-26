@@ -111,6 +111,7 @@ void QWebEngineCookieStore_DeleteSessionCookies(void* ptr);
 void QWebEngineCookieStore_LoadAllCookies(void* ptr);
 void QWebEngineCookieStore_SetCookie(void* ptr, void* cookie, void* origin);
 void QWebEngineCookieStore_DestroyQWebEngineCookieStore(void* ptr);
+void QWebEngineCookieStore_DestroyQWebEngineCookieStoreDefault(void* ptr);
 void QWebEngineCookieStore_TimerEvent(void* ptr, void* event);
 void QWebEngineCookieStore_TimerEventDefault(void* ptr, void* event);
 void QWebEngineCookieStore_ChildEvent(void* ptr, void* event);
@@ -514,6 +515,7 @@ void QWebEngineView_TriggerPageAction(void* ptr, long long action, char checked)
 void* QWebEngineView_Url(void* ptr);
 double QWebEngineView_ZoomFactor(void* ptr);
 void QWebEngineView_DestroyQWebEngineView(void* ptr);
+void QWebEngineView_DestroyQWebEngineViewDefault(void* ptr);
 void QWebEngineView_ContextMenuEvent(void* ptr, void* event);
 void QWebEngineView_ContextMenuEventDefault(void* ptr, void* event);
 void QWebEngineView_DragEnterEvent(void* ptr, void* e);

@@ -130,6 +130,7 @@ void QScxmlEvent_SetSendId(void* ptr, char* sendid);
 void QScxmlEvent_DestroyQScxmlEvent(void* ptr);
 char QScxmlEventFilter_Handle(void* ptr, void* event, void* stateMachine);
 void QScxmlEventFilter_DestroyQScxmlEventFilter(void* ptr);
+void QScxmlEventFilter_DestroyQScxmlEventFilterDefault(void* ptr);
 void* QScxmlNullDataModel_NewQScxmlNullDataModel(void* parent);
 char QScxmlNullDataModel_HasScxmlProperty(void* ptr, char* name);
 char QScxmlNullDataModel_HasScxmlPropertyDefault(void* ptr, char* name);

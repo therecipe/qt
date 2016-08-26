@@ -95,7 +95,7 @@ extern "C" {
 							}
 						}
 
-					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE) && !strings.Contains(function.Meta, "structor"):
+					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE) && !strings.Contains(function.Meta, "constructor"):
 						{
 							var function = *function
 							if function.Meta != parser.SLOT {

@@ -1650,11 +1650,50 @@ func (ptr *QAccessibleActionInterface) ToggleAction() string {
 	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ToggleAction())
 }
 
+//export callbackQAccessibleActionInterface_DestroyQAccessibleActionInterface
+func callbackQAccessibleActionInterface_DestroyQAccessibleActionInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleActionInterface::~QAccessibleActionInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleActionInterface::~QAccessibleActionInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleActionInterfaceFromPointer(ptr).DestroyQAccessibleActionInterfaceDefault()
+	}
+}
+
+func (ptr *QAccessibleActionInterface) ConnectDestroyQAccessibleActionInterface(f func()) {
+	defer qt.Recovering("connect QAccessibleActionInterface::~QAccessibleActionInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleActionInterface::~QAccessibleActionInterface", f)
+	}
+}
+
+func (ptr *QAccessibleActionInterface) DisconnectDestroyQAccessibleActionInterface() {
+	defer qt.Recovering("disconnect QAccessibleActionInterface::~QAccessibleActionInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleActionInterface::~QAccessibleActionInterface")
+	}
+}
+
 func (ptr *QAccessibleActionInterface) DestroyQAccessibleActionInterface() {
 	defer qt.Recovering("QAccessibleActionInterface::~QAccessibleActionInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleActionInterface_DestroyQAccessibleActionInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleActionInterface) DestroyQAccessibleActionInterfaceDefault() {
+	defer qt.Recovering("QAccessibleActionInterface::~QAccessibleActionInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleActionInterface_DestroyQAccessibleActionInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -1810,11 +1849,50 @@ func (ptr *QAccessibleEditableTextInterface) ReplaceText(startOffset int, endOff
 	}
 }
 
+//export callbackQAccessibleEditableTextInterface_DestroyQAccessibleEditableTextInterface
+func callbackQAccessibleEditableTextInterface_DestroyQAccessibleEditableTextInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleEditableTextInterfaceFromPointer(ptr).DestroyQAccessibleEditableTextInterfaceDefault()
+	}
+}
+
+func (ptr *QAccessibleEditableTextInterface) ConnectDestroyQAccessibleEditableTextInterface(f func()) {
+	defer qt.Recovering("connect QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface", f)
+	}
+}
+
+func (ptr *QAccessibleEditableTextInterface) DisconnectDestroyQAccessibleEditableTextInterface() {
+	defer qt.Recovering("disconnect QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
+	}
+}
+
 func (ptr *QAccessibleEditableTextInterface) DestroyQAccessibleEditableTextInterface() {
 	defer qt.Recovering("QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleEditableTextInterface_DestroyQAccessibleEditableTextInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleEditableTextInterface) DestroyQAccessibleEditableTextInterfaceDefault() {
+	defer qt.Recovering("QAccessibleEditableTextInterface::~QAccessibleEditableTextInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleEditableTextInterface_DestroyQAccessibleEditableTextInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -1955,11 +2033,50 @@ func (ptr *QAccessibleEvent) Type() QAccessible__Event {
 	return 0
 }
 
+//export callbackQAccessibleEvent_DestroyQAccessibleEvent
+func callbackQAccessibleEvent_DestroyQAccessibleEvent(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleEvent::~QAccessibleEvent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleEvent::~QAccessibleEvent"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleEventFromPointer(ptr).DestroyQAccessibleEventDefault()
+	}
+}
+
+func (ptr *QAccessibleEvent) ConnectDestroyQAccessibleEvent(f func()) {
+	defer qt.Recovering("connect QAccessibleEvent::~QAccessibleEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleEvent::~QAccessibleEvent", f)
+	}
+}
+
+func (ptr *QAccessibleEvent) DisconnectDestroyQAccessibleEvent() {
+	defer qt.Recovering("disconnect QAccessibleEvent::~QAccessibleEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleEvent::~QAccessibleEvent")
+	}
+}
+
 func (ptr *QAccessibleEvent) DestroyQAccessibleEvent() {
 	defer qt.Recovering("QAccessibleEvent::~QAccessibleEvent")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleEvent_DestroyQAccessibleEvent(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleEvent) DestroyQAccessibleEventDefault() {
+	defer qt.Recovering("QAccessibleEvent::~QAccessibleEvent")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleEvent_DestroyQAccessibleEventDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -2760,11 +2877,50 @@ func (ptr *QAccessibleInterface) WindowDefault() *QWindow {
 	return nil
 }
 
+//export callbackQAccessibleInterface_DestroyQAccessibleInterface
+func callbackQAccessibleInterface_DestroyQAccessibleInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleInterface::~QAccessibleInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleInterface::~QAccessibleInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleInterfaceFromPointer(ptr).DestroyQAccessibleInterfaceDefault()
+	}
+}
+
+func (ptr *QAccessibleInterface) ConnectDestroyQAccessibleInterface(f func()) {
+	defer qt.Recovering("connect QAccessibleInterface::~QAccessibleInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleInterface::~QAccessibleInterface", f)
+	}
+}
+
+func (ptr *QAccessibleInterface) DisconnectDestroyQAccessibleInterface() {
+	defer qt.Recovering("disconnect QAccessibleInterface::~QAccessibleInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleInterface::~QAccessibleInterface")
+	}
+}
+
 func (ptr *QAccessibleInterface) DestroyQAccessibleInterface() {
 	defer qt.Recovering("QAccessibleInterface::~QAccessibleInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleInterface_DestroyQAccessibleInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleInterface) DestroyQAccessibleInterfaceDefault() {
+	defer qt.Recovering("QAccessibleInterface::~QAccessibleInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleInterface_DestroyQAccessibleInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -3058,11 +3214,50 @@ func (ptr *QAccessibleObject) SetTextDefault(t QAccessible__Text, text string) {
 	}
 }
 
+//export callbackQAccessibleObject_DestroyQAccessibleObject
+func callbackQAccessibleObject_DestroyQAccessibleObject(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleObject::~QAccessibleObject")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleObject::~QAccessibleObject"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleObjectFromPointer(ptr).DestroyQAccessibleObjectDefault()
+	}
+}
+
+func (ptr *QAccessibleObject) ConnectDestroyQAccessibleObject(f func()) {
+	defer qt.Recovering("connect QAccessibleObject::~QAccessibleObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleObject::~QAccessibleObject", f)
+	}
+}
+
+func (ptr *QAccessibleObject) DisconnectDestroyQAccessibleObject() {
+	defer qt.Recovering("disconnect QAccessibleObject::~QAccessibleObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleObject::~QAccessibleObject")
+	}
+}
+
 func (ptr *QAccessibleObject) DestroyQAccessibleObject() {
 	defer qt.Recovering("QAccessibleObject::~QAccessibleObject")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleObject_DestroyQAccessibleObject(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleObject) DestroyQAccessibleObjectDefault() {
+	defer qt.Recovering("QAccessibleObject::~QAccessibleObject")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleObject_DestroyQAccessibleObjectDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -4417,11 +4612,50 @@ func (ptr *QAccessibleTableCellInterface) Table() *QAccessibleInterface {
 	return nil
 }
 
+//export callbackQAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface
+func callbackQAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleTableCellInterface::~QAccessibleTableCellInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleTableCellInterfaceFromPointer(ptr).DestroyQAccessibleTableCellInterfaceDefault()
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) ConnectDestroyQAccessibleTableCellInterface(f func()) {
+	defer qt.Recovering("connect QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableCellInterface::~QAccessibleTableCellInterface", f)
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) DisconnectDestroyQAccessibleTableCellInterface() {
+	defer qt.Recovering("disconnect QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
+	}
+}
+
 func (ptr *QAccessibleTableCellInterface) DestroyQAccessibleTableCellInterface() {
 	defer qt.Recovering("QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) DestroyQAccessibleTableCellInterfaceDefault() {
+	defer qt.Recovering("QAccessibleTableCellInterface::~QAccessibleTableCellInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableCellInterface_DestroyQAccessibleTableCellInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -5109,11 +5343,50 @@ func (ptr *QAccessibleTableInterface) UnselectRow(row int) bool {
 	return false
 }
 
+//export callbackQAccessibleTableInterface_DestroyQAccessibleTableInterface
+func callbackQAccessibleTableInterface_DestroyQAccessibleTableInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleTableInterface::~QAccessibleTableInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleTableInterface::~QAccessibleTableInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleTableInterfaceFromPointer(ptr).DestroyQAccessibleTableInterfaceDefault()
+	}
+}
+
+func (ptr *QAccessibleTableInterface) ConnectDestroyQAccessibleTableInterface(f func()) {
+	defer qt.Recovering("connect QAccessibleTableInterface::~QAccessibleTableInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::~QAccessibleTableInterface", f)
+	}
+}
+
+func (ptr *QAccessibleTableInterface) DisconnectDestroyQAccessibleTableInterface() {
+	defer qt.Recovering("disconnect QAccessibleTableInterface::~QAccessibleTableInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::~QAccessibleTableInterface")
+	}
+}
+
 func (ptr *QAccessibleTableInterface) DestroyQAccessibleTableInterface() {
 	defer qt.Recovering("QAccessibleTableInterface::~QAccessibleTableInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTableInterface_DestroyQAccessibleTableInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleTableInterface) DestroyQAccessibleTableInterfaceDefault() {
+	defer qt.Recovering("QAccessibleTableInterface::~QAccessibleTableInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTableInterface_DestroyQAccessibleTableInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -6377,11 +6650,50 @@ func (ptr *QAccessibleTextInterface) TextBeforeOffsetDefault(offset int, boundar
 	return ""
 }
 
+//export callbackQAccessibleTextInterface_DestroyQAccessibleTextInterface
+func callbackQAccessibleTextInterface_DestroyQAccessibleTextInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleTextInterface::~QAccessibleTextInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleTextInterface::~QAccessibleTextInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleTextInterfaceFromPointer(ptr).DestroyQAccessibleTextInterfaceDefault()
+	}
+}
+
+func (ptr *QAccessibleTextInterface) ConnectDestroyQAccessibleTextInterface(f func()) {
+	defer qt.Recovering("connect QAccessibleTextInterface::~QAccessibleTextInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::~QAccessibleTextInterface", f)
+	}
+}
+
+func (ptr *QAccessibleTextInterface) DisconnectDestroyQAccessibleTextInterface() {
+	defer qt.Recovering("disconnect QAccessibleTextInterface::~QAccessibleTextInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::~QAccessibleTextInterface")
+	}
+}
+
 func (ptr *QAccessibleTextInterface) DestroyQAccessibleTextInterface() {
 	defer qt.Recovering("QAccessibleTextInterface::~QAccessibleTextInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleTextInterface_DestroyQAccessibleTextInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleTextInterface) DestroyQAccessibleTextInterfaceDefault() {
+	defer qt.Recovering("QAccessibleTextInterface::~QAccessibleTextInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleTextInterface_DestroyQAccessibleTextInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -7295,11 +7607,50 @@ func (ptr *QAccessibleValueInterface) SetCurrentValue(value core.QVariant_ITF) {
 	}
 }
 
+//export callbackQAccessibleValueInterface_DestroyQAccessibleValueInterface
+func callbackQAccessibleValueInterface_DestroyQAccessibleValueInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccessibleValueInterface::~QAccessibleValueInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleValueInterface::~QAccessibleValueInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccessibleValueInterfaceFromPointer(ptr).DestroyQAccessibleValueInterfaceDefault()
+	}
+}
+
+func (ptr *QAccessibleValueInterface) ConnectDestroyQAccessibleValueInterface(f func()) {
+	defer qt.Recovering("connect QAccessibleValueInterface::~QAccessibleValueInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleValueInterface::~QAccessibleValueInterface", f)
+	}
+}
+
+func (ptr *QAccessibleValueInterface) DisconnectDestroyQAccessibleValueInterface() {
+	defer qt.Recovering("disconnect QAccessibleValueInterface::~QAccessibleValueInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleValueInterface::~QAccessibleValueInterface")
+	}
+}
+
 func (ptr *QAccessibleValueInterface) DestroyQAccessibleValueInterface() {
 	defer qt.Recovering("QAccessibleValueInterface::~QAccessibleValueInterface")
 
 	if ptr.Pointer() != nil {
 		C.QAccessibleValueInterface_DestroyQAccessibleValueInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccessibleValueInterface) DestroyQAccessibleValueInterfaceDefault() {
+	defer qt.Recovering("QAccessibleValueInterface::~QAccessibleValueInterface")
+
+	if ptr.Pointer() != nil {
+		C.QAccessibleValueInterface_DestroyQAccessibleValueInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -16644,11 +16995,50 @@ func (ptr *QGuiApplication) TopLevelAt(pos core.QPoint_ITF) *QWindow {
 	return tmpValue
 }
 
+//export callbackQGuiApplication_DestroyQGuiApplication
+func callbackQGuiApplication_DestroyQGuiApplication(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QGuiApplication::~QGuiApplication")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGuiApplication::~QGuiApplication"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQGuiApplicationFromPointer(ptr).DestroyQGuiApplicationDefault()
+	}
+}
+
+func (ptr *QGuiApplication) ConnectDestroyQGuiApplication(f func()) {
+	defer qt.Recovering("connect QGuiApplication::~QGuiApplication")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::~QGuiApplication", f)
+	}
+}
+
+func (ptr *QGuiApplication) DisconnectDestroyQGuiApplication() {
+	defer qt.Recovering("disconnect QGuiApplication::~QGuiApplication")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::~QGuiApplication")
+	}
+}
+
 func (ptr *QGuiApplication) DestroyQGuiApplication() {
 	defer qt.Recovering("QGuiApplication::~QGuiApplication")
 
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_DestroyQGuiApplication(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGuiApplication) DestroyQGuiApplicationDefault() {
+	defer qt.Recovering("QGuiApplication::~QGuiApplication")
+
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_DestroyQGuiApplicationDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -18217,11 +18607,50 @@ func (ptr *QIconEngine) Virtual_hookDefault(id int, data unsafe.Pointer) {
 	}
 }
 
+//export callbackQIconEngine_DestroyQIconEngine
+func callbackQIconEngine_DestroyQIconEngine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QIconEngine::~QIconEngine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIconEngine::~QIconEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQIconEngineFromPointer(ptr).DestroyQIconEngineDefault()
+	}
+}
+
+func (ptr *QIconEngine) ConnectDestroyQIconEngine(f func()) {
+	defer qt.Recovering("connect QIconEngine::~QIconEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEngine::~QIconEngine", f)
+	}
+}
+
+func (ptr *QIconEngine) DisconnectDestroyQIconEngine() {
+	defer qt.Recovering("disconnect QIconEngine::~QIconEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEngine::~QIconEngine")
+	}
+}
+
 func (ptr *QIconEngine) DestroyQIconEngine() {
 	defer qt.Recovering("QIconEngine::~QIconEngine")
 
 	if ptr.Pointer() != nil {
 		C.QIconEngine_DestroyQIconEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QIconEngine) DestroyQIconEngineDefault() {
+	defer qt.Recovering("QIconEngine::~QIconEngine")
+
+	if ptr.Pointer() != nil {
+		C.QIconEngine_DestroyQIconEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -20393,11 +20822,50 @@ func (ptr *QImageIOHandler) WriteDefault(image QImage_ITF) bool {
 	return false
 }
 
+//export callbackQImageIOHandler_DestroyQImageIOHandler
+func callbackQImageIOHandler_DestroyQImageIOHandler(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QImageIOHandler::~QImageIOHandler")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageIOHandler::~QImageIOHandler"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQImageIOHandlerFromPointer(ptr).DestroyQImageIOHandlerDefault()
+	}
+}
+
+func (ptr *QImageIOHandler) ConnectDestroyQImageIOHandler(f func()) {
+	defer qt.Recovering("connect QImageIOHandler::~QImageIOHandler")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOHandler::~QImageIOHandler", f)
+	}
+}
+
+func (ptr *QImageIOHandler) DisconnectDestroyQImageIOHandler() {
+	defer qt.Recovering("disconnect QImageIOHandler::~QImageIOHandler")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOHandler::~QImageIOHandler")
+	}
+}
+
 func (ptr *QImageIOHandler) DestroyQImageIOHandler() {
 	defer qt.Recovering("QImageIOHandler::~QImageIOHandler")
 
 	if ptr.Pointer() != nil {
 		C.QImageIOHandler_DestroyQImageIOHandler(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QImageIOHandler) DestroyQImageIOHandlerDefault() {
+	defer qt.Recovering("QImageIOHandler::~QImageIOHandler")
+
+	if ptr.Pointer() != nil {
+		C.QImageIOHandler_DestroyQImageIOHandlerDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -20540,11 +21008,50 @@ func (ptr *QImageIOPlugin) Create(device core.QIODevice_ITF, format string) *QIm
 	return nil
 }
 
+//export callbackQImageIOPlugin_DestroyQImageIOPlugin
+func callbackQImageIOPlugin_DestroyQImageIOPlugin(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QImageIOPlugin::~QImageIOPlugin")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageIOPlugin::~QImageIOPlugin"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQImageIOPluginFromPointer(ptr).DestroyQImageIOPluginDefault()
+	}
+}
+
+func (ptr *QImageIOPlugin) ConnectDestroyQImageIOPlugin(f func()) {
+	defer qt.Recovering("connect QImageIOPlugin::~QImageIOPlugin")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::~QImageIOPlugin", f)
+	}
+}
+
+func (ptr *QImageIOPlugin) DisconnectDestroyQImageIOPlugin() {
+	defer qt.Recovering("disconnect QImageIOPlugin::~QImageIOPlugin")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::~QImageIOPlugin")
+	}
+}
+
 func (ptr *QImageIOPlugin) DestroyQImageIOPlugin() {
 	defer qt.Recovering("QImageIOPlugin::~QImageIOPlugin")
 
 	if ptr.Pointer() != nil {
 		C.QImageIOPlugin_DestroyQImageIOPlugin(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QImageIOPlugin) DestroyQImageIOPluginDefault() {
+	defer qt.Recovering("QImageIOPlugin::~QImageIOPlugin")
+
+	if ptr.Pointer() != nil {
+		C.QImageIOPlugin_DestroyQImageIOPluginDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -26948,11 +27455,50 @@ func (ptr *QOffscreenSurface) SurfaceTypeDefault() QSurface__SurfaceType {
 	return 0
 }
 
+//export callbackQOffscreenSurface_DestroyQOffscreenSurface
+func callbackQOffscreenSurface_DestroyQOffscreenSurface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QOffscreenSurface::~QOffscreenSurface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOffscreenSurface::~QOffscreenSurface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQOffscreenSurfaceFromPointer(ptr).DestroyQOffscreenSurfaceDefault()
+	}
+}
+
+func (ptr *QOffscreenSurface) ConnectDestroyQOffscreenSurface(f func()) {
+	defer qt.Recovering("connect QOffscreenSurface::~QOffscreenSurface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOffscreenSurface::~QOffscreenSurface", f)
+	}
+}
+
+func (ptr *QOffscreenSurface) DisconnectDestroyQOffscreenSurface() {
+	defer qt.Recovering("disconnect QOffscreenSurface::~QOffscreenSurface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOffscreenSurface::~QOffscreenSurface")
+	}
+}
+
 func (ptr *QOffscreenSurface) DestroyQOffscreenSurface() {
 	defer qt.Recovering("QOffscreenSurface::~QOffscreenSurface")
 
 	if ptr.Pointer() != nil {
 		C.QOffscreenSurface_DestroyQOffscreenSurface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QOffscreenSurface) DestroyQOffscreenSurfaceDefault() {
+	defer qt.Recovering("QOffscreenSurface::~QOffscreenSurface")
+
+	if ptr.Pointer() != nil {
+		C.QOffscreenSurface_DestroyQOffscreenSurfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -31188,11 +31734,50 @@ func (ptr *QPaintDevice) MetricDefault(metric QPaintDevice__PaintDeviceMetric) i
 	return 0
 }
 
+//export callbackQPaintDevice_DestroyQPaintDevice
+func callbackQPaintDevice_DestroyQPaintDevice(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QPaintDevice::~QPaintDevice")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPaintDevice::~QPaintDevice"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQPaintDeviceFromPointer(ptr).DestroyQPaintDeviceDefault()
+	}
+}
+
+func (ptr *QPaintDevice) ConnectDestroyQPaintDevice(f func()) {
+	defer qt.Recovering("connect QPaintDevice::~QPaintDevice")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintDevice::~QPaintDevice", f)
+	}
+}
+
+func (ptr *QPaintDevice) DisconnectDestroyQPaintDevice() {
+	defer qt.Recovering("disconnect QPaintDevice::~QPaintDevice")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintDevice::~QPaintDevice")
+	}
+}
+
 func (ptr *QPaintDevice) DestroyQPaintDevice() {
 	defer qt.Recovering("QPaintDevice::~QPaintDevice")
 
 	if ptr.Pointer() != nil {
 		C.QPaintDevice_DestroyQPaintDevice(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QPaintDevice) DestroyQPaintDeviceDefault() {
+	defer qt.Recovering("QPaintDevice::~QPaintDevice")
+
+	if ptr.Pointer() != nil {
+		C.QPaintDevice_DestroyQPaintDeviceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -34981,11 +35566,50 @@ func (ptr *QPaintEngine) UpdateState(state QPaintEngineState_ITF) {
 	}
 }
 
+//export callbackQPaintEngine_DestroyQPaintEngine
+func callbackQPaintEngine_DestroyQPaintEngine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QPaintEngine::~QPaintEngine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPaintEngine::~QPaintEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQPaintEngineFromPointer(ptr).DestroyQPaintEngineDefault()
+	}
+}
+
+func (ptr *QPaintEngine) ConnectDestroyQPaintEngine(f func()) {
+	defer qt.Recovering("connect QPaintEngine::~QPaintEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintEngine::~QPaintEngine", f)
+	}
+}
+
+func (ptr *QPaintEngine) DisconnectDestroyQPaintEngine() {
+	defer qt.Recovering("disconnect QPaintEngine::~QPaintEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintEngine::~QPaintEngine")
+	}
+}
+
 func (ptr *QPaintEngine) DestroyQPaintEngine() {
 	defer qt.Recovering("QPaintEngine::~QPaintEngine")
 
 	if ptr.Pointer() != nil {
 		C.QPaintEngine_DestroyQPaintEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QPaintEngine) DestroyQPaintEngineDefault() {
+	defer qt.Recovering("QPaintEngine::~QPaintEngine")
+
+	if ptr.Pointer() != nil {
+		C.QPaintEngine_DestroyQPaintEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -49694,11 +50318,50 @@ func (ptr *QStandardItem) WhatsThis() string {
 	return ""
 }
 
+//export callbackQStandardItem_DestroyQStandardItem
+func callbackQStandardItem_DestroyQStandardItem(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QStandardItem::~QStandardItem")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItem::~QStandardItem"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQStandardItemFromPointer(ptr).DestroyQStandardItemDefault()
+	}
+}
+
+func (ptr *QStandardItem) ConnectDestroyQStandardItem(f func()) {
+	defer qt.Recovering("connect QStandardItem::~QStandardItem")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItem::~QStandardItem", f)
+	}
+}
+
+func (ptr *QStandardItem) DisconnectDestroyQStandardItem() {
+	defer qt.Recovering("disconnect QStandardItem::~QStandardItem")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItem::~QStandardItem")
+	}
+}
+
 func (ptr *QStandardItem) DestroyQStandardItem() {
 	defer qt.Recovering("QStandardItem::~QStandardItem")
 
 	if ptr.Pointer() != nil {
 		C.QStandardItem_DestroyQStandardItem(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QStandardItem) DestroyQStandardItemDefault() {
+	defer qt.Recovering("QStandardItem::~QStandardItem")
+
+	if ptr.Pointer() != nil {
+		C.QStandardItem_DestroyQStandardItemDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -52493,11 +53156,50 @@ func (ptr *QSurface) SurfaceType() QSurface__SurfaceType {
 	return 0
 }
 
+//export callbackQSurface_DestroyQSurface
+func callbackQSurface_DestroyQSurface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSurface::~QSurface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSurface::~QSurface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSurfaceFromPointer(ptr).DestroyQSurfaceDefault()
+	}
+}
+
+func (ptr *QSurface) ConnectDestroyQSurface(f func()) {
+	defer qt.Recovering("connect QSurface::~QSurface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSurface::~QSurface", f)
+	}
+}
+
+func (ptr *QSurface) DisconnectDestroyQSurface() {
+	defer qt.Recovering("disconnect QSurface::~QSurface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSurface::~QSurface")
+	}
+}
+
 func (ptr *QSurface) DestroyQSurface() {
 	defer qt.Recovering("QSurface::~QSurface")
 
 	if ptr.Pointer() != nil {
 		C.QSurface_DestroyQSurface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSurface) DestroyQSurfaceDefault() {
+	defer qt.Recovering("QSurface::~QSurface")
+
+	if ptr.Pointer() != nil {
+		C.QSurface_DestroyQSurfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -53213,11 +53915,50 @@ func (ptr *QSyntaxHighlighter) SetFormat(start int, count int, format QTextCharF
 	}
 }
 
+//export callbackQSyntaxHighlighter_DestroyQSyntaxHighlighter
+func callbackQSyntaxHighlighter_DestroyQSyntaxHighlighter(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSyntaxHighlighter::~QSyntaxHighlighter")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSyntaxHighlighter::~QSyntaxHighlighter"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSyntaxHighlighterFromPointer(ptr).DestroyQSyntaxHighlighterDefault()
+	}
+}
+
+func (ptr *QSyntaxHighlighter) ConnectDestroyQSyntaxHighlighter(f func()) {
+	defer qt.Recovering("connect QSyntaxHighlighter::~QSyntaxHighlighter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSyntaxHighlighter::~QSyntaxHighlighter", f)
+	}
+}
+
+func (ptr *QSyntaxHighlighter) DisconnectDestroyQSyntaxHighlighter() {
+	defer qt.Recovering("disconnect QSyntaxHighlighter::~QSyntaxHighlighter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSyntaxHighlighter::~QSyntaxHighlighter")
+	}
+}
+
 func (ptr *QSyntaxHighlighter) DestroyQSyntaxHighlighter() {
 	defer qt.Recovering("QSyntaxHighlighter::~QSyntaxHighlighter")
 
 	if ptr.Pointer() != nil {
 		C.QSyntaxHighlighter_DestroyQSyntaxHighlighter(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSyntaxHighlighter) DestroyQSyntaxHighlighterDefault() {
+	defer qt.Recovering("QSyntaxHighlighter::~QSyntaxHighlighter")
+
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_DestroyQSyntaxHighlighterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -55136,11 +55877,52 @@ func NewQTextBlockUserDataFromPointer(ptr unsafe.Pointer) *QTextBlockUserData {
 	n.SetPointer(ptr)
 	return n
 }
+
+//export callbackQTextBlockUserData_DestroyQTextBlockUserData
+func callbackQTextBlockUserData_DestroyQTextBlockUserData(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QTextBlockUserData::~QTextBlockUserData")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextBlockUserData::~QTextBlockUserData"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQTextBlockUserDataFromPointer(ptr).DestroyQTextBlockUserDataDefault()
+	}
+}
+
+func (ptr *QTextBlockUserData) ConnectDestroyQTextBlockUserData(f func()) {
+	defer qt.Recovering("connect QTextBlockUserData::~QTextBlockUserData")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTextBlockUserData::~QTextBlockUserData", f)
+	}
+}
+
+func (ptr *QTextBlockUserData) DisconnectDestroyQTextBlockUserData() {
+	defer qt.Recovering("disconnect QTextBlockUserData::~QTextBlockUserData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTextBlockUserData::~QTextBlockUserData")
+	}
+}
+
 func (ptr *QTextBlockUserData) DestroyQTextBlockUserData() {
 	defer qt.Recovering("QTextBlockUserData::~QTextBlockUserData")
 
 	if ptr.Pointer() != nil {
 		C.QTextBlockUserData_DestroyQTextBlockUserData(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTextBlockUserData) DestroyQTextBlockUserDataDefault() {
+	defer qt.Recovering("QTextBlockUserData::~QTextBlockUserData")
+
+	if ptr.Pointer() != nil {
+		C.QTextBlockUserData_DestroyQTextBlockUserDataDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -62573,11 +63355,51 @@ func NewQTextObjectInterfaceFromPointer(ptr unsafe.Pointer) *QTextObjectInterfac
 	n.SetPointer(ptr)
 	return n
 }
+
+//export callbackQTextObjectInterface_DestroyQTextObjectInterface
+func callbackQTextObjectInterface_DestroyQTextObjectInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QTextObjectInterface::~QTextObjectInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextObjectInterface::~QTextObjectInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQTextObjectInterfaceFromPointer(ptr).DestroyQTextObjectInterfaceDefault()
+	}
+}
+
+func (ptr *QTextObjectInterface) ConnectDestroyQTextObjectInterface(f func()) {
+	defer qt.Recovering("connect QTextObjectInterface::~QTextObjectInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTextObjectInterface::~QTextObjectInterface", f)
+	}
+}
+
+func (ptr *QTextObjectInterface) DisconnectDestroyQTextObjectInterface() {
+	defer qt.Recovering("disconnect QTextObjectInterface::~QTextObjectInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTextObjectInterface::~QTextObjectInterface")
+	}
+}
+
 func (ptr *QTextObjectInterface) DestroyQTextObjectInterface() {
 	defer qt.Recovering("QTextObjectInterface::~QTextObjectInterface")
 
 	if ptr.Pointer() != nil {
 		C.QTextObjectInterface_DestroyQTextObjectInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTextObjectInterface) DestroyQTextObjectInterfaceDefault() {
+	defer qt.Recovering("QTextObjectInterface::~QTextObjectInterface")
+
+	if ptr.Pointer() != nil {
+		C.QTextObjectInterface_DestroyQTextObjectInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -69801,11 +70623,50 @@ func (ptr *QWindow) YChanged(arg int) {
 	}
 }
 
+//export callbackQWindow_DestroyQWindow
+func callbackQWindow_DestroyQWindow(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QWindow::~QWindow")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::~QWindow"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).DestroyQWindowDefault()
+	}
+}
+
+func (ptr *QWindow) ConnectDestroyQWindow(f func()) {
+	defer qt.Recovering("connect QWindow::~QWindow")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::~QWindow", f)
+	}
+}
+
+func (ptr *QWindow) DisconnectDestroyQWindow() {
+	defer qt.Recovering("disconnect QWindow::~QWindow")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::~QWindow")
+	}
+}
+
 func (ptr *QWindow) DestroyQWindow() {
 	defer qt.Recovering("QWindow::~QWindow")
 
 	if ptr.Pointer() != nil {
 		C.QWindow_DestroyQWindow(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWindow) DestroyQWindowDefault() {
+	defer qt.Recovering("QWindow::~QWindow")
+
+	if ptr.Pointer() != nil {
+		C.QWindow_DestroyQWindowDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

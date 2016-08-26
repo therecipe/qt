@@ -193,6 +193,7 @@ char* QNearFieldTarget_Uid(void* ptr);
 void* QNearFieldTarget_Url(void* ptr);
 void* QNearFieldTarget_UrlDefault(void* ptr);
 void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr);
+void QNearFieldTarget_DestroyQNearFieldTargetDefault(void* ptr);
 void QNearFieldTarget_TimerEvent(void* ptr, void* event);
 void QNearFieldTarget_TimerEventDefault(void* ptr, void* event);
 void QNearFieldTarget_ChildEvent(void* ptr, void* event);

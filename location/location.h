@@ -61,6 +61,7 @@ void* QGeoRouteReply_Request(void* ptr);
 void QGeoRouteReply_SetError(void* ptr, long long error, char* errorString);
 void QGeoRouteReply_SetFinished(void* ptr, char finished);
 void QGeoRouteReply_DestroyQGeoRouteReply(void* ptr);
+void QGeoRouteReply_DestroyQGeoRouteReplyDefault(void* ptr);
 void QGeoRouteReply_TimerEvent(void* ptr, void* event);
 void QGeoRouteReply_TimerEventDefault(void* ptr, void* event);
 void QGeoRouteReply_ChildEvent(void* ptr, void* event);
@@ -173,6 +174,7 @@ long long QGeoRoutingManagerEngine_SupportedTravelModes(void* ptr);
 void* QGeoRoutingManagerEngine_UpdateRoute(void* ptr, void* route, void* position);
 void* QGeoRoutingManagerEngine_UpdateRouteDefault(void* ptr, void* route, void* position);
 void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(void* ptr);
+void QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngineDefault(void* ptr);
 void QGeoRoutingManagerEngine_TimerEvent(void* ptr, void* event);
 void QGeoRoutingManagerEngine_TimerEventDefault(void* ptr, void* event);
 void QGeoRoutingManagerEngine_ChildEvent(void* ptr, void* event);
@@ -251,6 +253,7 @@ char QGeoServiceProvider_EventFilterDefault(void* ptr, void* watched, void* even
 void* QGeoServiceProvider_MetaObject(void* ptr);
 void* QGeoServiceProvider_MetaObjectDefault(void* ptr);
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr);
+void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(void* ptr);
 
 #ifdef __cplusplus
 }

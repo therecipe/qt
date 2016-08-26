@@ -79,6 +79,7 @@ char QSerialPort_WaitForBytesWritten(void* ptr, int msecs);
 char QSerialPort_WaitForReadyRead(void* ptr, int msecs);
 long long QSerialPort_WriteData(void* ptr, char* data, long long maxSize);
 void QSerialPort_DestroyQSerialPort(void* ptr);
+void QSerialPort_DestroyQSerialPortDefault(void* ptr);
 long long QSerialPort_Pos(void* ptr);
 long long QSerialPort_PosDefault(void* ptr);
 char QSerialPort_Reset(void* ptr);

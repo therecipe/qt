@@ -30,6 +30,8 @@ const (
 	SETTER = "setter"
 
 	VOID = "void"
+
+	TILDE = "~"
 )
 
 var (

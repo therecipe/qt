@@ -751,11 +751,50 @@ func (ptr *QAbstractAnimation) UpdateStateDefault(newState QAbstractAnimation__S
 	}
 }
 
+//export callbackQAbstractAnimation_DestroyQAbstractAnimation
+func callbackQAbstractAnimation_DestroyQAbstractAnimation(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractAnimation::~QAbstractAnimation")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::~QAbstractAnimation"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractAnimationFromPointer(ptr).DestroyQAbstractAnimationDefault()
+	}
+}
+
+func (ptr *QAbstractAnimation) ConnectDestroyQAbstractAnimation(f func()) {
+	defer qt.Recovering("connect QAbstractAnimation::~QAbstractAnimation")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractAnimation::~QAbstractAnimation", f)
+	}
+}
+
+func (ptr *QAbstractAnimation) DisconnectDestroyQAbstractAnimation() {
+	defer qt.Recovering("disconnect QAbstractAnimation::~QAbstractAnimation")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractAnimation::~QAbstractAnimation")
+	}
+}
+
 func (ptr *QAbstractAnimation) DestroyQAbstractAnimation() {
 	defer qt.Recovering("QAbstractAnimation::~QAbstractAnimation")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_DestroyQAbstractAnimation(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractAnimation) DestroyQAbstractAnimationDefault() {
+	defer qt.Recovering("QAbstractAnimation::~QAbstractAnimation")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractAnimation_DestroyQAbstractAnimationDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -4226,11 +4265,50 @@ func (ptr *QAbstractItemModel) SupportedDropActionsDefault() Qt__DropAction {
 	return 0
 }
 
+//export callbackQAbstractItemModel_DestroyQAbstractItemModel
+func callbackQAbstractItemModel_DestroyQAbstractItemModel(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractItemModel::~QAbstractItemModel")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::~QAbstractItemModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractItemModelFromPointer(ptr).DestroyQAbstractItemModelDefault()
+	}
+}
+
+func (ptr *QAbstractItemModel) ConnectDestroyQAbstractItemModel(f func()) {
+	defer qt.Recovering("connect QAbstractItemModel::~QAbstractItemModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::~QAbstractItemModel", f)
+	}
+}
+
+func (ptr *QAbstractItemModel) DisconnectDestroyQAbstractItemModel() {
+	defer qt.Recovering("disconnect QAbstractItemModel::~QAbstractItemModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::~QAbstractItemModel")
+	}
+}
+
 func (ptr *QAbstractItemModel) DestroyQAbstractItemModel() {
 	defer qt.Recovering("QAbstractItemModel::~QAbstractItemModel")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_DestroyQAbstractItemModel(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractItemModel) DestroyQAbstractItemModelDefault() {
+	defer qt.Recovering("QAbstractItemModel::~QAbstractItemModel")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_DestroyQAbstractItemModelDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -6618,11 +6696,50 @@ func (ptr *QAbstractNativeEventFilter) NativeEventFilter(eventType string, messa
 	return false
 }
 
+//export callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter
+func callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNativeEventFilter::~QAbstractNativeEventFilter"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractNativeEventFilterFromPointer(ptr).DestroyQAbstractNativeEventFilterDefault()
+	}
+}
+
+func (ptr *QAbstractNativeEventFilter) ConnectDestroyQAbstractNativeEventFilter(f func()) {
+	defer qt.Recovering("connect QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNativeEventFilter::~QAbstractNativeEventFilter", f)
+	}
+}
+
+func (ptr *QAbstractNativeEventFilter) DisconnectDestroyQAbstractNativeEventFilter() {
+	defer qt.Recovering("disconnect QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
+	}
+}
+
 func (ptr *QAbstractNativeEventFilter) DestroyQAbstractNativeEventFilter() {
 	defer qt.Recovering("QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractNativeEventFilter) DestroyQAbstractNativeEventFilterDefault() {
+	defer qt.Recovering("QAbstractNativeEventFilter::~QAbstractNativeEventFilter")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -11638,11 +11755,50 @@ func (ptr *QAbstractTransition) DisconnectTriggered() {
 	}
 }
 
+//export callbackQAbstractTransition_DestroyQAbstractTransition
+func callbackQAbstractTransition_DestroyQAbstractTransition(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractTransition::~QAbstractTransition")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::~QAbstractTransition"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractTransitionFromPointer(ptr).DestroyQAbstractTransitionDefault()
+	}
+}
+
+func (ptr *QAbstractTransition) ConnectDestroyQAbstractTransition(f func()) {
+	defer qt.Recovering("connect QAbstractTransition::~QAbstractTransition")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTransition::~QAbstractTransition", f)
+	}
+}
+
+func (ptr *QAbstractTransition) DisconnectDestroyQAbstractTransition() {
+	defer qt.Recovering("disconnect QAbstractTransition::~QAbstractTransition")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTransition::~QAbstractTransition")
+	}
+}
+
 func (ptr *QAbstractTransition) DestroyQAbstractTransition() {
 	defer qt.Recovering("QAbstractTransition::~QAbstractTransition")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractTransition_DestroyQAbstractTransition(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractTransition) DestroyQAbstractTransitionDefault() {
+	defer qt.Recovering("QAbstractTransition::~QAbstractTransition")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractTransition_DestroyQAbstractTransitionDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -21260,9 +21416,7 @@ func NewQEventFromPointer(ptr unsafe.Pointer) *QEvent {
 func NewQEvent(ty QEvent__Type) *QEvent {
 	defer qt.Recovering("QEvent::QEvent")
 
-	var tmpValue = NewQEventFromPointer(C.QEvent_NewQEvent(C.longlong(ty)))
-	runtime.SetFinalizer(tmpValue, (*QEvent).DestroyQEvent)
-	return tmpValue
+	return NewQEventFromPointer(C.QEvent_NewQEvent(C.longlong(ty)))
 }
 
 func (ptr *QEvent) Accept() {
@@ -21328,11 +21482,51 @@ func (ptr *QEvent) Type() QEvent__Type {
 	return 0
 }
 
+//export callbackQEvent_DestroyQEvent
+func callbackQEvent_DestroyQEvent(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QEvent::~QEvent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEvent::~QEvent"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQEventFromPointer(ptr).DestroyQEventDefault()
+	}
+}
+
+func (ptr *QEvent) ConnectDestroyQEvent(f func()) {
+	defer qt.Recovering("connect QEvent::~QEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QEvent::~QEvent", f)
+	}
+}
+
+func (ptr *QEvent) DisconnectDestroyQEvent() {
+	defer qt.Recovering("disconnect QEvent::~QEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QEvent::~QEvent")
+	}
+}
+
 func (ptr *QEvent) DestroyQEvent() {
 	defer qt.Recovering("QEvent::~QEvent")
 
 	if ptr.Pointer() != nil {
 		C.QEvent_DestroyQEvent(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QEvent) DestroyQEventDefault() {
+	defer qt.Recovering("QEvent::~QEvent")
+
+	if ptr.Pointer() != nil {
+		C.QEvent_DestroyQEventDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -30615,11 +30809,50 @@ func (ptr *QIODevice) WriteData(data string, maxSize int64) int64 {
 	return 0
 }
 
+//export callbackQIODevice_DestroyQIODevice
+func callbackQIODevice_DestroyQIODevice(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QIODevice::~QIODevice")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::~QIODevice"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQIODeviceFromPointer(ptr).DestroyQIODeviceDefault()
+	}
+}
+
+func (ptr *QIODevice) ConnectDestroyQIODevice(f func()) {
+	defer qt.Recovering("connect QIODevice::~QIODevice")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIODevice::~QIODevice", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectDestroyQIODevice() {
+	defer qt.Recovering("disconnect QIODevice::~QIODevice")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIODevice::~QIODevice")
+	}
+}
+
 func (ptr *QIODevice) DestroyQIODevice() {
 	defer qt.Recovering("QIODevice::~QIODevice")
 
 	if ptr.Pointer() != nil {
 		C.QIODevice_DestroyQIODevice(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QIODevice) DestroyQIODeviceDefault() {
+	defer qt.Recovering("QIODevice::~QIODevice")
+
+	if ptr.Pointer() != nil {
+		C.QIODevice_DestroyQIODeviceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -33968,11 +34201,50 @@ func (ptr *QItemSelectionModel) SetModel(model QAbstractItemModel_ITF) {
 	}
 }
 
+//export callbackQItemSelectionModel_DestroyQItemSelectionModel
+func callbackQItemSelectionModel_DestroyQItemSelectionModel(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QItemSelectionModel::~QItemSelectionModel")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::~QItemSelectionModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQItemSelectionModelFromPointer(ptr).DestroyQItemSelectionModelDefault()
+	}
+}
+
+func (ptr *QItemSelectionModel) ConnectDestroyQItemSelectionModel(f func()) {
+	defer qt.Recovering("connect QItemSelectionModel::~QItemSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QItemSelectionModel::~QItemSelectionModel", f)
+	}
+}
+
+func (ptr *QItemSelectionModel) DisconnectDestroyQItemSelectionModel() {
+	defer qt.Recovering("disconnect QItemSelectionModel::~QItemSelectionModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QItemSelectionModel::~QItemSelectionModel")
+	}
+}
+
 func (ptr *QItemSelectionModel) DestroyQItemSelectionModel() {
 	defer qt.Recovering("QItemSelectionModel::~QItemSelectionModel")
 
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_DestroyQItemSelectionModel(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QItemSelectionModel) DestroyQItemSelectionModelDefault() {
+	defer qt.Recovering("QItemSelectionModel::~QItemSelectionModel")
+
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_DestroyQItemSelectionModelDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -44469,11 +44741,50 @@ func (ptr *QObject) Tr(sourceText string, disambiguation string, n int) string {
 	return C.GoString(C.QObject_QObject_Tr(sourceTextC, disambiguationC, C.int(int32(n))))
 }
 
+//export callbackQObject_DestroyQObject
+func callbackQObject_DestroyQObject(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QObject::~QObject")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::~QObject"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQObjectFromPointer(ptr).DestroyQObjectDefault()
+	}
+}
+
+func (ptr *QObject) ConnectDestroyQObject(f func()) {
+	defer qt.Recovering("connect QObject::~QObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QObject::~QObject", f)
+	}
+}
+
+func (ptr *QObject) DisconnectDestroyQObject() {
+	defer qt.Recovering("disconnect QObject::~QObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QObject::~QObject")
+	}
+}
+
 func (ptr *QObject) DestroyQObject() {
 	defer qt.Recovering("QObject::~QObject")
 
 	if ptr.Pointer() != nil {
 		C.QObject_DestroyQObject(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QObject) DestroyQObjectDefault() {
+	defer qt.Recovering("QObject::~QObject")
+
+	if ptr.Pointer() != nil {
+		C.QObject_DestroyQObjectDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -51811,11 +52122,51 @@ func NewQRunnableFromPointer(ptr unsafe.Pointer) *QRunnable {
 	n.SetPointer(ptr)
 	return n
 }
+
+//export callbackQRunnable_DestroyQRunnable
+func callbackQRunnable_DestroyQRunnable(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QRunnable::~QRunnable")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRunnable::~QRunnable"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQRunnableFromPointer(ptr).DestroyQRunnableDefault()
+	}
+}
+
+func (ptr *QRunnable) ConnectDestroyQRunnable(f func()) {
+	defer qt.Recovering("connect QRunnable::~QRunnable")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRunnable::~QRunnable", f)
+	}
+}
+
+func (ptr *QRunnable) DisconnectDestroyQRunnable() {
+	defer qt.Recovering("disconnect QRunnable::~QRunnable")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRunnable::~QRunnable")
+	}
+}
+
 func (ptr *QRunnable) DestroyQRunnable() {
 	defer qt.Recovering("QRunnable::~QRunnable")
 
 	if ptr.Pointer() != nil {
 		C.QRunnable_DestroyQRunnable(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QRunnable) DestroyQRunnableDefault() {
+	defer qt.Recovering("QRunnable::~QRunnable")
+
+	if ptr.Pointer() != nil {
+		C.QRunnable_DestroyQRunnableDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -69240,11 +69591,50 @@ func (ptr *QTextCodec) ToUnicode2(chars string) string {
 	return ""
 }
 
+//export callbackQTextCodec_DestroyQTextCodec
+func callbackQTextCodec_DestroyQTextCodec(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QTextCodec::~QTextCodec")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextCodec::~QTextCodec"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQTextCodecFromPointer(ptr).DestroyQTextCodecDefault()
+	}
+}
+
+func (ptr *QTextCodec) ConnectDestroyQTextCodec(f func()) {
+	defer qt.Recovering("connect QTextCodec::~QTextCodec")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTextCodec::~QTextCodec", f)
+	}
+}
+
+func (ptr *QTextCodec) DisconnectDestroyQTextCodec() {
+	defer qt.Recovering("disconnect QTextCodec::~QTextCodec")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTextCodec::~QTextCodec")
+	}
+}
+
 func (ptr *QTextCodec) DestroyQTextCodec() {
 	defer qt.Recovering("QTextCodec::~QTextCodec")
 
 	if ptr.Pointer() != nil {
 		C.QTextCodec_DestroyQTextCodec(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTextCodec) DestroyQTextCodecDefault() {
+	defer qt.Recovering("QTextCodec::~QTextCodec")
+
+	if ptr.Pointer() != nil {
+		C.QTextCodec_DestroyQTextCodecDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -69508,9 +69898,7 @@ func NewQTextStreamFromPointer(ptr unsafe.Pointer) *QTextStream {
 func NewQTextStream() *QTextStream {
 	defer qt.Recovering("QTextStream::QTextStream")
 
-	var tmpValue = NewQTextStreamFromPointer(C.QTextStream_NewQTextStream())
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
-	return tmpValue
+	return NewQTextStreamFromPointer(C.QTextStream_NewQTextStream())
 }
 
 func NewQTextStream5(array string, openMode QIODevice__OpenModeFlag) *QTextStream {
@@ -69518,17 +69906,13 @@ func NewQTextStream5(array string, openMode QIODevice__OpenModeFlag) *QTextStrea
 
 	var arrayC = C.CString(hex.EncodeToString([]byte(array)))
 	defer C.free(unsafe.Pointer(arrayC))
-	var tmpValue = NewQTextStreamFromPointer(C.QTextStream_NewQTextStream5(arrayC, C.longlong(openMode)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
-	return tmpValue
+	return NewQTextStreamFromPointer(C.QTextStream_NewQTextStream5(arrayC, C.longlong(openMode)))
 }
 
 func NewQTextStream2(device QIODevice_ITF) *QTextStream {
 	defer qt.Recovering("QTextStream::QTextStream")
 
-	var tmpValue = NewQTextStreamFromPointer(C.QTextStream_NewQTextStream2(PointerFromQIODevice(device)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
-	return tmpValue
+	return NewQTextStreamFromPointer(C.QTextStream_NewQTextStream2(PointerFromQIODevice(device)))
 }
 
 func NewQTextStream4(stri string, openMode QIODevice__OpenModeFlag) *QTextStream {
@@ -69536,9 +69920,7 @@ func NewQTextStream4(stri string, openMode QIODevice__OpenModeFlag) *QTextStream
 
 	var striC = C.CString(stri)
 	defer C.free(unsafe.Pointer(striC))
-	var tmpValue = NewQTextStreamFromPointer(C.QTextStream_NewQTextStream4(striC, C.longlong(openMode)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
-	return tmpValue
+	return NewQTextStreamFromPointer(C.QTextStream_NewQTextStream4(striC, C.longlong(openMode)))
 }
 
 func NewQTextStream6(array string, openMode QIODevice__OpenModeFlag) *QTextStream {
@@ -69546,9 +69928,7 @@ func NewQTextStream6(array string, openMode QIODevice__OpenModeFlag) *QTextStrea
 
 	var arrayC = C.CString(hex.EncodeToString([]byte(array)))
 	defer C.free(unsafe.Pointer(arrayC))
-	var tmpValue = NewQTextStreamFromPointer(C.QTextStream_NewQTextStream6(arrayC, C.longlong(openMode)))
-	runtime.SetFinalizer(tmpValue, (*QTextStream).DestroyQTextStream)
-	return tmpValue
+	return NewQTextStreamFromPointer(C.QTextStream_NewQTextStream6(arrayC, C.longlong(openMode)))
 }
 
 func (ptr *QTextStream) AtEnd() bool {
@@ -69895,11 +70275,51 @@ func (ptr *QTextStream) String() string {
 	return ""
 }
 
+//export callbackQTextStream_DestroyQTextStream
+func callbackQTextStream_DestroyQTextStream(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QTextStream::~QTextStream")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextStream::~QTextStream"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQTextStreamFromPointer(ptr).DestroyQTextStreamDefault()
+	}
+}
+
+func (ptr *QTextStream) ConnectDestroyQTextStream(f func()) {
+	defer qt.Recovering("connect QTextStream::~QTextStream")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTextStream::~QTextStream", f)
+	}
+}
+
+func (ptr *QTextStream) DisconnectDestroyQTextStream() {
+	defer qt.Recovering("disconnect QTextStream::~QTextStream")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTextStream::~QTextStream")
+	}
+}
+
 func (ptr *QTextStream) DestroyQTextStream() {
 	defer qt.Recovering("QTextStream::~QTextStream")
 
 	if ptr.Pointer() != nil {
 		C.QTextStream_DestroyQTextStream(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTextStream) DestroyQTextStreamDefault() {
+	defer qt.Recovering("QTextStream::~QTextStream")
+
+	if ptr.Pointer() != nil {
+		C.QTextStream_DestroyQTextStreamDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
 }
@@ -72344,11 +72764,50 @@ func (ptr *QTimeLine) ValueForTimeDefault(msec int) float64 {
 	return 0
 }
 
+//export callbackQTimeLine_DestroyQTimeLine
+func callbackQTimeLine_DestroyQTimeLine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QTimeLine::~QTimeLine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::~QTimeLine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQTimeLineFromPointer(ptr).DestroyQTimeLineDefault()
+	}
+}
+
+func (ptr *QTimeLine) ConnectDestroyQTimeLine(f func()) {
+	defer qt.Recovering("connect QTimeLine::~QTimeLine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTimeLine::~QTimeLine", f)
+	}
+}
+
+func (ptr *QTimeLine) DisconnectDestroyQTimeLine() {
+	defer qt.Recovering("disconnect QTimeLine::~QTimeLine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTimeLine::~QTimeLine")
+	}
+}
+
 func (ptr *QTimeLine) DestroyQTimeLine() {
 	defer qt.Recovering("QTimeLine::~QTimeLine")
 
 	if ptr.Pointer() != nil {
 		C.QTimeLine_DestroyQTimeLine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTimeLine) DestroyQTimeLineDefault() {
+	defer qt.Recovering("QTimeLine::~QTimeLine")
+
+	if ptr.Pointer() != nil {
+		C.QTimeLine_DestroyQTimeLineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -78860,11 +79319,50 @@ func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntityDefault(name string)
 	return ""
 }
 
+//export callbackQXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver
+func callbackQXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlStreamEntityResolver::~QXmlStreamEntityResolver"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQXmlStreamEntityResolverFromPointer(ptr).DestroyQXmlStreamEntityResolverDefault()
+	}
+}
+
+func (ptr *QXmlStreamEntityResolver) ConnectDestroyQXmlStreamEntityResolver(f func()) {
+	defer qt.Recovering("connect QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlStreamEntityResolver::~QXmlStreamEntityResolver", f)
+	}
+}
+
+func (ptr *QXmlStreamEntityResolver) DisconnectDestroyQXmlStreamEntityResolver() {
+	defer qt.Recovering("disconnect QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
+	}
+}
+
 func (ptr *QXmlStreamEntityResolver) DestroyQXmlStreamEntityResolver() {
 	defer qt.Recovering("QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
 
 	if ptr.Pointer() != nil {
 		C.QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QXmlStreamEntityResolver) DestroyQXmlStreamEntityResolverDefault() {
+	defer qt.Recovering("QXmlStreamEntityResolver::~QXmlStreamEntityResolver")
+
+	if ptr.Pointer() != nil {
+		C.QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolverDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

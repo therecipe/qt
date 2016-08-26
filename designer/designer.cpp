@@ -73,6 +73,7 @@ class MyQAbstractExtensionFactory: public QAbstractExtensionFactory
 {
 public:
 	QObject * extension(QObject * object, const QString & iid) const { return static_cast<QObject*>(callbackQAbstractExtensionFactory_Extension(const_cast<MyQAbstractExtensionFactory*>(this), object, const_cast<char*>(iid.toUtf8().constData()))); };
+	 ~MyQAbstractExtensionFactory() { callbackQAbstractExtensionFactory_DestroyQAbstractExtensionFactory(this); };
 };
 
 void* QAbstractExtensionFactory_Extension(void* ptr, void* object, char* iid)
@@ -85,12 +86,18 @@ void QAbstractExtensionFactory_DestroyQAbstractExtensionFactory(void* ptr)
 	static_cast<QAbstractExtensionFactory*>(ptr)->~QAbstractExtensionFactory();
 }
 
+void QAbstractExtensionFactory_DestroyQAbstractExtensionFactoryDefault(void* ptr)
+{
+
+}
+
 class MyQAbstractExtensionManager: public QAbstractExtensionManager
 {
 public:
 	QObject * extension(QObject * object, const QString & iid) const { return static_cast<QObject*>(callbackQAbstractExtensionManager_Extension(const_cast<MyQAbstractExtensionManager*>(this), object, const_cast<char*>(iid.toUtf8().constData()))); };
 	void registerExtensions(QAbstractExtensionFactory * factory, const QString & iid) { callbackQAbstractExtensionManager_RegisterExtensions(this, factory, const_cast<char*>(iid.toUtf8().constData())); };
 	void unregisterExtensions(QAbstractExtensionFactory * factory, const QString & iid) { callbackQAbstractExtensionManager_UnregisterExtensions(this, factory, const_cast<char*>(iid.toUtf8().constData())); };
+	 ~MyQAbstractExtensionManager() { callbackQAbstractExtensionManager_DestroyQAbstractExtensionManager(this); };
 };
 
 void* QAbstractExtensionManager_Extension(void* ptr, void* object, char* iid)
@@ -113,12 +120,18 @@ void QAbstractExtensionManager_DestroyQAbstractExtensionManager(void* ptr)
 	static_cast<QAbstractExtensionManager*>(ptr)->~QAbstractExtensionManager();
 }
 
+void QAbstractExtensionManager_DestroyQAbstractExtensionManagerDefault(void* ptr)
+{
+
+}
+
 class MyQAbstractFormBuilder: public QAbstractFormBuilder
 {
 public:
 	MyQAbstractFormBuilder() : QAbstractFormBuilder() {};
 	QWidget * load(QIODevice * device, QWidget * parent) { return static_cast<QWidget*>(callbackQAbstractFormBuilder_Load(this, device, parent)); };
 	void save(QIODevice * device, QWidget * widget) { callbackQAbstractFormBuilder_Save(this, device, widget); };
+	 ~MyQAbstractFormBuilder() { callbackQAbstractFormBuilder_DestroyQAbstractFormBuilder(this); };
 };
 
 void* QAbstractFormBuilder_Load(void* ptr, void* device, void* parent)
@@ -166,6 +179,11 @@ void QAbstractFormBuilder_DestroyQAbstractFormBuilder(void* ptr)
 	static_cast<QAbstractFormBuilder*>(ptr)->~QAbstractFormBuilder();
 }
 
+void QAbstractFormBuilder_DestroyQAbstractFormBuilderDefault(void* ptr)
+{
+
+}
+
 class MyQDesignerActionEditorInterface: public QDesignerActionEditorInterface
 {
 public:
@@ -174,6 +192,7 @@ public:
 	void manageAction(QAction * action) { callbackQDesignerActionEditorInterface_ManageAction(this, action); };
 	void setFormWindow(QDesignerFormWindowInterface * formWindow) { callbackQDesignerActionEditorInterface_SetFormWindow(this, formWindow); };
 	void unmanageAction(QAction * action) { callbackQDesignerActionEditorInterface_UnmanageAction(this, action); };
+	 ~MyQDesignerActionEditorInterface() { callbackQDesignerActionEditorInterface_DestroyQDesignerActionEditorInterface(this); };
 	void actionEvent(QActionEvent * event) { callbackQDesignerActionEditorInterface_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQDesignerActionEditorInterface_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQDesignerActionEditorInterface_DragLeaveEvent(this, event); };
@@ -270,6 +289,11 @@ void QDesignerActionEditorInterface_UnmanageAction(void* ptr, void* action)
 void QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterface(void* ptr)
 {
 	static_cast<QDesignerActionEditorInterface*>(ptr)->~QDesignerActionEditorInterface();
+}
+
+void QDesignerActionEditorInterface_DestroyQDesignerActionEditorInterfaceDefault(void* ptr)
+{
+
 }
 
 void QDesignerActionEditorInterface_ActionEvent(void* ptr, void* event)
@@ -896,6 +920,7 @@ public:
 	void remove(int index) { callbackQDesignerContainerExtension_Remove(this, index); };
 	void setCurrentIndex(int index) { callbackQDesignerContainerExtension_SetCurrentIndex(this, index); };
 	QWidget * widget(int index) const { return static_cast<QWidget*>(callbackQDesignerContainerExtension_Widget(const_cast<MyQDesignerContainerExtension*>(this), index)); };
+	 ~MyQDesignerContainerExtension() { callbackQDesignerContainerExtension_DestroyQDesignerContainerExtension(this); };
 };
 
 void QDesignerContainerExtension_AddWidget(void* ptr, void* page)
@@ -958,14 +983,25 @@ void QDesignerContainerExtension_DestroyQDesignerContainerExtension(void* ptr)
 	static_cast<QDesignerContainerExtension*>(ptr)->~QDesignerContainerExtension();
 }
 
+void QDesignerContainerExtension_DestroyQDesignerContainerExtensionDefault(void* ptr)
+{
+
+}
+
 class MyQDesignerCustomWidgetCollectionInterface: public QDesignerCustomWidgetCollectionInterface
 {
 public:
+	 ~MyQDesignerCustomWidgetCollectionInterface() { callbackQDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(this); };
 };
 
 void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(void* ptr)
 {
 	static_cast<QDesignerCustomWidgetCollectionInterface*>(ptr)->~QDesignerCustomWidgetCollectionInterface();
+}
+
+void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterfaceDefault(void* ptr)
+{
+
 }
 
 class MyQDesignerCustomWidgetInterface: public QDesignerCustomWidgetInterface
@@ -983,6 +1019,7 @@ public:
 	QString name() const { return QString(callbackQDesignerCustomWidgetInterface_Name(const_cast<MyQDesignerCustomWidgetInterface*>(this))); };
 	QString toolTip() const { return QString(callbackQDesignerCustomWidgetInterface_ToolTip(const_cast<MyQDesignerCustomWidgetInterface*>(this))); };
 	QString whatsThis() const { return QString(callbackQDesignerCustomWidgetInterface_WhatsThis(const_cast<MyQDesignerCustomWidgetInterface*>(this))); };
+	 ~MyQDesignerCustomWidgetInterface() { callbackQDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(this); };
 };
 
 char* QDesignerCustomWidgetInterface_CodeTemplate(void* ptr)
@@ -1070,6 +1107,11 @@ void QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterface(void* 
 	static_cast<QDesignerCustomWidgetInterface*>(ptr)->~QDesignerCustomWidgetInterface();
 }
 
+void QDesignerCustomWidgetInterface_DestroyQDesignerCustomWidgetInterfaceDefault(void* ptr)
+{
+
+}
+
 class MyQDesignerDynamicPropertySheetExtension: public QDesignerDynamicPropertySheetExtension
 {
 public:
@@ -1078,6 +1120,7 @@ public:
 	bool dynamicPropertiesAllowed() const { return callbackQDesignerDynamicPropertySheetExtension_DynamicPropertiesAllowed(const_cast<MyQDesignerDynamicPropertySheetExtension*>(this)) != 0; };
 	bool isDynamicProperty(int index) const { return callbackQDesignerDynamicPropertySheetExtension_IsDynamicProperty(const_cast<MyQDesignerDynamicPropertySheetExtension*>(this), index) != 0; };
 	bool removeDynamicProperty(int index) { return callbackQDesignerDynamicPropertySheetExtension_RemoveDynamicProperty(this, index) != 0; };
+	 ~MyQDesignerDynamicPropertySheetExtension() { callbackQDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtension(this); };
 };
 
 int QDesignerDynamicPropertySheetExtension_AddDynamicProperty(void* ptr, char* propertyName, void* value)
@@ -1110,9 +1153,30 @@ void QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheet
 	static_cast<QDesignerDynamicPropertySheetExtension*>(ptr)->~QDesignerDynamicPropertySheetExtension();
 }
 
+void QDesignerDynamicPropertySheetExtension_DestroyQDesignerDynamicPropertySheetExtensionDefault(void* ptr)
+{
+
+}
+
+class MyQDesignerFormEditorInterface: public QDesignerFormEditorInterface
+{
+public:
+	MyQDesignerFormEditorInterface(QObject *parent) : QDesignerFormEditorInterface(parent) {};
+	 ~MyQDesignerFormEditorInterface() { callbackQDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(this); };
+	void timerEvent(QTimerEvent * event) { callbackQDesignerFormEditorInterface_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQDesignerFormEditorInterface_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDesignerFormEditorInterface_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQDesignerFormEditorInterface_CustomEvent(this, event); };
+	void deleteLater() { callbackQDesignerFormEditorInterface_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerFormEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDesignerFormEditorInterface_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormEditorInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormEditorInterface_MetaObject(const_cast<MyQDesignerFormEditorInterface*>(this))); };
+};
+
 void* QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(void* parent)
 {
-	return new QDesignerFormEditorInterface(static_cast<QObject*>(parent));
+	return new MyQDesignerFormEditorInterface(static_cast<QObject*>(parent));
 }
 
 void* QDesignerFormEditorInterface_ActionEditor(void* ptr)
@@ -1173,6 +1237,11 @@ void* QDesignerFormEditorInterface_WidgetBox(void* ptr)
 void QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(void* ptr)
 {
 	static_cast<QDesignerFormEditorInterface*>(ptr)->~QDesignerFormEditorInterface();
+}
+
+void QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterfaceDefault(void* ptr)
+{
+
 }
 
 void QDesignerFormEditorInterface_TimerEvent(void* ptr, void* event)
@@ -1281,6 +1350,7 @@ public:
 	void setWidgetProperty(QWidget * widget, const QString & name, const QVariant & value) { callbackQDesignerFormWindowCursorInterface_SetWidgetProperty(this, widget, const_cast<char*>(name.toUtf8().constData()), const_cast<QVariant*>(&value)); };
 	QWidget * widget(int index) const { return static_cast<QWidget*>(callbackQDesignerFormWindowCursorInterface_Widget(const_cast<MyQDesignerFormWindowCursorInterface*>(this), index)); };
 	int widgetCount() const { return callbackQDesignerFormWindowCursorInterface_WidgetCount(const_cast<MyQDesignerFormWindowCursorInterface*>(this)); };
+	 ~MyQDesignerFormWindowCursorInterface() { callbackQDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterface(this); };
 };
 
 void* QDesignerFormWindowCursorInterface_Current(void* ptr)
@@ -1358,6 +1428,11 @@ void QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterfac
 	static_cast<QDesignerFormWindowCursorInterface*>(ptr)->~QDesignerFormWindowCursorInterface();
 }
 
+void QDesignerFormWindowCursorInterface_DestroyQDesignerFormWindowCursorInterfaceDefault(void* ptr)
+{
+
+}
+
 class MyQDesignerFormWindowInterface: public QDesignerFormWindowInterface
 {
 public:
@@ -1418,6 +1493,7 @@ public:
 	void Signal_WidgetManaged(QWidget * widget) { callbackQDesignerFormWindowInterface_WidgetManaged(this, widget); };
 	void Signal_WidgetRemoved(QWidget * widget) { callbackQDesignerFormWindowInterface_WidgetRemoved(this, widget); };
 	void Signal_WidgetUnmanaged(QWidget * widget) { callbackQDesignerFormWindowInterface_WidgetUnmanaged(this, widget); };
+	 ~MyQDesignerFormWindowInterface() { callbackQDesignerFormWindowInterface_DestroyQDesignerFormWindowInterface(this); };
 	void actionEvent(QActionEvent * event) { callbackQDesignerFormWindowInterface_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQDesignerFormWindowInterface_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQDesignerFormWindowInterface_DragLeaveEvent(this, event); };
@@ -1921,6 +1997,11 @@ void QDesignerFormWindowInterface_WidgetUnmanaged(void* ptr, void* widget)
 void QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterface(void* ptr)
 {
 	static_cast<QDesignerFormWindowInterface*>(ptr)->~QDesignerFormWindowInterface();
+}
+
+void QDesignerFormWindowInterface_DestroyQDesignerFormWindowInterfaceDefault(void* ptr)
+{
+
 }
 
 void QDesignerFormWindowInterface_ActionEvent(void* ptr, void* event)
@@ -2556,6 +2637,7 @@ public:
 	void setActiveFormWindow(QDesignerFormWindowInterface * formWindow) { callbackQDesignerFormWindowManagerInterface_SetActiveFormWindow(this, formWindow); };
 	void showPluginDialog() { callbackQDesignerFormWindowManagerInterface_ShowPluginDialog(this); };
 	void showPreview() { callbackQDesignerFormWindowManagerInterface_ShowPreview(this); };
+	 ~MyQDesignerFormWindowManagerInterface() { callbackQDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterface(this); };
 	void timerEvent(QTimerEvent * event) { callbackQDesignerFormWindowManagerInterface_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDesignerFormWindowManagerInterface_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDesignerFormWindowManagerInterface_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -2702,6 +2784,11 @@ void QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterf
 	static_cast<QDesignerFormWindowManagerInterface*>(ptr)->~QDesignerFormWindowManagerInterface();
 }
 
+void QDesignerFormWindowManagerInterface_DestroyQDesignerFormWindowManagerInterfaceDefault(void* ptr)
+{
+
+}
+
 void QDesignerFormWindowManagerInterface_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QDesignerFormWindowManagerInterface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -2807,6 +2894,7 @@ public:
 	void setMemberGroup(int index, const QString & group) { callbackQDesignerMemberSheetExtension_SetMemberGroup(this, index, const_cast<char*>(group.toUtf8().constData())); };
 	void setVisible(int index, bool visible) { callbackQDesignerMemberSheetExtension_SetVisible(this, index, visible); };
 	QString signature(int index) const { return QString(callbackQDesignerMemberSheetExtension_Signature(const_cast<MyQDesignerMemberSheetExtension*>(this), index)); };
+	 ~MyQDesignerMemberSheetExtension() { callbackQDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(this); };
 };
 
 int QDesignerMemberSheetExtension_Count(void* ptr)
@@ -2874,12 +2962,18 @@ void QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(void* pt
 	static_cast<QDesignerMemberSheetExtension*>(ptr)->~QDesignerMemberSheetExtension();
 }
 
+void QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtensionDefault(void* ptr)
+{
+
+}
+
 class MyQDesignerObjectInspectorInterface: public QDesignerObjectInspectorInterface
 {
 public:
 	MyQDesignerObjectInspectorInterface(QWidget *parent, Qt::WindowFlags flags) : QDesignerObjectInspectorInterface(parent, flags) {};
 	QDesignerFormEditorInterface * core() const { return static_cast<QDesignerFormEditorInterface*>(callbackQDesignerObjectInspectorInterface_Core(const_cast<MyQDesignerObjectInspectorInterface*>(this))); };
 	void setFormWindow(QDesignerFormWindowInterface * formWindow) { callbackQDesignerObjectInspectorInterface_SetFormWindow(this, formWindow); };
+	 ~MyQDesignerObjectInspectorInterface() { callbackQDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(this); };
 	void actionEvent(QActionEvent * event) { callbackQDesignerObjectInspectorInterface_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQDesignerObjectInspectorInterface_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQDesignerObjectInspectorInterface_DragLeaveEvent(this, event); };
@@ -2966,6 +3060,11 @@ void QDesignerObjectInspectorInterface_SetFormWindow(void* ptr, void* formWindow
 void QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterface(void* ptr)
 {
 	static_cast<QDesignerObjectInspectorInterface*>(ptr)->~QDesignerObjectInspectorInterface();
+}
+
+void QDesignerObjectInspectorInterface_DestroyQDesignerObjectInspectorInterfaceDefault(void* ptr)
+{
+
 }
 
 void QDesignerObjectInspectorInterface_ActionEvent(void* ptr, void* event)
@@ -3592,6 +3691,7 @@ public:
 	void setObject(QObject * object) { callbackQDesignerPropertyEditorInterface_SetObject(this, object); };
 	void setPropertyValue(const QString & name, const QVariant & value, bool changed) { callbackQDesignerPropertyEditorInterface_SetPropertyValue(this, const_cast<char*>(name.toUtf8().constData()), const_cast<QVariant*>(&value), changed); };
 	void setReadOnly(bool readOnly) { callbackQDesignerPropertyEditorInterface_SetReadOnly(this, readOnly); };
+	 ~MyQDesignerPropertyEditorInterface() { callbackQDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterface(this); };
 	void actionEvent(QActionEvent * event) { callbackQDesignerPropertyEditorInterface_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQDesignerPropertyEditorInterface_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQDesignerPropertyEditorInterface_DragLeaveEvent(this, event); };
@@ -3718,6 +3818,11 @@ void QDesignerPropertyEditorInterface_SetReadOnly(void* ptr, char readOnly)
 void QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterface(void* ptr)
 {
 	static_cast<QDesignerPropertyEditorInterface*>(ptr)->~QDesignerPropertyEditorInterface();
+}
+
+void QDesignerPropertyEditorInterface_DestroyQDesignerPropertyEditorInterfaceDefault(void* ptr)
+{
+
 }
 
 void QDesignerPropertyEditorInterface_ActionEvent(void* ptr, void* event)
@@ -4351,6 +4456,7 @@ public:
 	void setProperty(int index, const QVariant & value) { callbackQDesignerPropertySheetExtension_SetProperty(this, index, const_cast<QVariant*>(&value)); };
 	void setPropertyGroup(int index, const QString & group) { callbackQDesignerPropertySheetExtension_SetPropertyGroup(this, index, const_cast<char*>(group.toUtf8().constData())); };
 	void setVisible(int index, bool visible) { callbackQDesignerPropertySheetExtension_SetVisible(this, index, visible); };
+	 ~MyQDesignerPropertySheetExtension() { callbackQDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(this); };
 };
 
 int QDesignerPropertySheetExtension_Count(void* ptr)
@@ -4443,10 +4549,16 @@ void QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtension(void
 	static_cast<QDesignerPropertySheetExtension*>(ptr)->~QDesignerPropertySheetExtension();
 }
 
+void QDesignerPropertySheetExtension_DestroyQDesignerPropertySheetExtensionDefault(void* ptr)
+{
+
+}
+
 class MyQDesignerTaskMenuExtension: public QDesignerTaskMenuExtension
 {
 public:
 	QAction * preferredEditAction() const { return static_cast<QAction*>(callbackQDesignerTaskMenuExtension_PreferredEditAction(const_cast<MyQDesignerTaskMenuExtension*>(this))); };
+	 ~MyQDesignerTaskMenuExtension() { callbackQDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(this); };
 };
 
 void* QDesignerTaskMenuExtension_PreferredEditAction(void* ptr)
@@ -4464,6 +4576,11 @@ void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(void* ptr)
 	static_cast<QDesignerTaskMenuExtension*>(ptr)->~QDesignerTaskMenuExtension();
 }
 
+void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtensionDefault(void* ptr)
+{
+
+}
+
 class MyQDesignerWidgetBoxInterface: public QDesignerWidgetBoxInterface
 {
 public:
@@ -4471,6 +4588,7 @@ public:
 	bool load() { return callbackQDesignerWidgetBoxInterface_Load(this) != 0; };
 	bool save() { return callbackQDesignerWidgetBoxInterface_Save(this) != 0; };
 	void setFileName(const QString & fileName) { callbackQDesignerWidgetBoxInterface_SetFileName(this, const_cast<char*>(fileName.toUtf8().constData())); };
+	 ~MyQDesignerWidgetBoxInterface() { callbackQDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(this); };
 	void actionEvent(QActionEvent * event) { callbackQDesignerWidgetBoxInterface_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQDesignerWidgetBoxInterface_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQDesignerWidgetBoxInterface_DragLeaveEvent(this, event); };
@@ -4557,6 +4675,11 @@ void QDesignerWidgetBoxInterface_SetFileName(void* ptr, char* fileName)
 void QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterface(void* ptr)
 {
 	static_cast<QDesignerWidgetBoxInterface*>(ptr)->~QDesignerWidgetBoxInterface();
+}
+
+void QDesignerWidgetBoxInterface_DestroyQDesignerWidgetBoxInterfaceDefault(void* ptr)
+{
+
 }
 
 void QDesignerWidgetBoxInterface_ActionEvent(void* ptr, void* event)
@@ -5456,9 +5579,18 @@ void* QExtensionManager_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->QExtensionManager::metaObject());
 }
 
+class MyQFormBuilder: public QFormBuilder
+{
+public:
+	MyQFormBuilder() : QFormBuilder() {};
+	 ~MyQFormBuilder() { callbackQFormBuilder_DestroyQFormBuilder(this); };
+	QWidget * load(QIODevice * device, QWidget * parent) { return static_cast<QWidget*>(callbackQFormBuilder_Load(this, device, parent)); };
+	void save(QIODevice * device, QWidget * widget) { callbackQFormBuilder_Save(this, device, widget); };
+};
+
 void* QFormBuilder_NewQFormBuilder()
 {
-	return new QFormBuilder();
+	return new MyQFormBuilder();
 }
 
 void QFormBuilder_AddPluginPath(void* ptr, char* pluginPath)
@@ -5484,6 +5616,11 @@ void QFormBuilder_SetPluginPath(void* ptr, char* pluginPaths)
 void QFormBuilder_DestroyQFormBuilder(void* ptr)
 {
 	static_cast<QFormBuilder*>(ptr)->~QFormBuilder();
+}
+
+void QFormBuilder_DestroyQFormBuilderDefault(void* ptr)
+{
+
 }
 
 void* QFormBuilder_Load(void* ptr, void* device, void* parent)

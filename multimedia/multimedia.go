@@ -57,11 +57,51 @@ func NewQAbstractPlanarVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractPlan
 	n.SetPointer(ptr)
 	return n
 }
+
+//export callbackQAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer
+func callbackQAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractPlanarVideoBufferFromPointer(ptr).DestroyQAbstractPlanarVideoBufferDefault()
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) ConnectDestroyQAbstractPlanarVideoBuffer(f func()) {
+	defer qt.Recovering("connect QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer", f)
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) DisconnectDestroyQAbstractPlanarVideoBuffer() {
+	defer qt.Recovering("disconnect QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
+	}
+}
+
 func (ptr *QAbstractPlanarVideoBuffer) DestroyQAbstractPlanarVideoBuffer() {
 	defer qt.Recovering("QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) DestroyQAbstractPlanarVideoBufferDefault() {
+	defer qt.Recovering("QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBufferDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -478,11 +518,50 @@ func (ptr *QAbstractVideoBuffer) Unmap() {
 	}
 }
 
+//export callbackQAbstractVideoBuffer_DestroyQAbstractVideoBuffer
+func callbackQAbstractVideoBuffer_DestroyQAbstractVideoBuffer(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAbstractVideoBuffer::~QAbstractVideoBuffer")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoBuffer::~QAbstractVideoBuffer"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAbstractVideoBufferFromPointer(ptr).DestroyQAbstractVideoBufferDefault()
+	}
+}
+
+func (ptr *QAbstractVideoBuffer) ConnectDestroyQAbstractVideoBuffer(f func()) {
+	defer qt.Recovering("connect QAbstractVideoBuffer::~QAbstractVideoBuffer")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractVideoBuffer::~QAbstractVideoBuffer", f)
+	}
+}
+
+func (ptr *QAbstractVideoBuffer) DisconnectDestroyQAbstractVideoBuffer() {
+	defer qt.Recovering("disconnect QAbstractVideoBuffer::~QAbstractVideoBuffer")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractVideoBuffer::~QAbstractVideoBuffer")
+	}
+}
+
 func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBuffer() {
 	defer qt.Recovering("QAbstractVideoBuffer::~QAbstractVideoBuffer")
 
 	if ptr.Pointer() != nil {
 		C.QAbstractVideoBuffer_DestroyQAbstractVideoBuffer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAbstractVideoBuffer) DestroyQAbstractVideoBufferDefault() {
+	defer qt.Recovering("QAbstractVideoBuffer::~QAbstractVideoBuffer")
+
+	if ptr.Pointer() != nil {
+		C.QAbstractVideoBuffer_DestroyQAbstractVideoBufferDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -5364,11 +5443,50 @@ func (ptr *QAudioEncoderSettingsControl) SupportedAudioCodecs() []string {
 	return make([]string, 0)
 }
 
+//export callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl
+func callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAudioEncoderSettingsControlFromPointer(ptr).DestroyQAudioEncoderSettingsControlDefault()
+	}
+}
+
+func (ptr *QAudioEncoderSettingsControl) ConnectDestroyQAudioEncoderSettingsControl(f func()) {
+	defer qt.Recovering("connect QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl", f)
+	}
+}
+
+func (ptr *QAudioEncoderSettingsControl) DisconnectDestroyQAudioEncoderSettingsControl() {
+	defer qt.Recovering("disconnect QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl")
+	}
+}
+
 func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControl() {
 	defer qt.Recovering("QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl")
 
 	if ptr.Pointer() != nil {
 		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControlDefault() {
+	defer qt.Recovering("QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl")
+
+	if ptr.Pointer() != nil {
+		C.QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -7000,11 +7118,50 @@ func (ptr *QAudioInputSelectorControl) SetActiveInput(name string) {
 	}
 }
 
+//export callbackQAudioInputSelectorControl_DestroyQAudioInputSelectorControl
+func callbackQAudioInputSelectorControl_DestroyQAudioInputSelectorControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAudioInputSelectorControl::~QAudioInputSelectorControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::~QAudioInputSelectorControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAudioInputSelectorControlFromPointer(ptr).DestroyQAudioInputSelectorControlDefault()
+	}
+}
+
+func (ptr *QAudioInputSelectorControl) ConnectDestroyQAudioInputSelectorControl(f func()) {
+	defer qt.Recovering("connect QAudioInputSelectorControl::~QAudioInputSelectorControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioInputSelectorControl::~QAudioInputSelectorControl", f)
+	}
+}
+
+func (ptr *QAudioInputSelectorControl) DisconnectDestroyQAudioInputSelectorControl() {
+	defer qt.Recovering("disconnect QAudioInputSelectorControl::~QAudioInputSelectorControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioInputSelectorControl::~QAudioInputSelectorControl")
+	}
+}
+
 func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControl() {
 	defer qt.Recovering("QAudioInputSelectorControl::~QAudioInputSelectorControl")
 
 	if ptr.Pointer() != nil {
 		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControlDefault() {
+	defer qt.Recovering("QAudioInputSelectorControl::~QAudioInputSelectorControl")
+
+	if ptr.Pointer() != nil {
+		C.QAudioInputSelectorControl_DestroyQAudioInputSelectorControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -8399,11 +8556,50 @@ func (ptr *QAudioOutputSelectorControl) SetActiveOutput(name string) {
 	}
 }
 
+//export callbackQAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl
+func callbackQAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAudioOutputSelectorControl::~QAudioOutputSelectorControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::~QAudioOutputSelectorControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAudioOutputSelectorControlFromPointer(ptr).DestroyQAudioOutputSelectorControlDefault()
+	}
+}
+
+func (ptr *QAudioOutputSelectorControl) ConnectDestroyQAudioOutputSelectorControl(f func()) {
+	defer qt.Recovering("connect QAudioOutputSelectorControl::~QAudioOutputSelectorControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioOutputSelectorControl::~QAudioOutputSelectorControl", f)
+	}
+}
+
+func (ptr *QAudioOutputSelectorControl) DisconnectDestroyQAudioOutputSelectorControl() {
+	defer qt.Recovering("disconnect QAudioOutputSelectorControl::~QAudioOutputSelectorControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioOutputSelectorControl::~QAudioOutputSelectorControl")
+	}
+}
+
 func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControl() {
 	defer qt.Recovering("QAudioOutputSelectorControl::~QAudioOutputSelectorControl")
 
 	if ptr.Pointer() != nil {
 		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControlDefault() {
+	defer qt.Recovering("QAudioOutputSelectorControl::~QAudioOutputSelectorControl")
+
+	if ptr.Pointer() != nil {
+		C.QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -10495,11 +10691,50 @@ func (ptr *QAudioRoleControl) SetAudioRole(role QAudio__Role) {
 	}
 }
 
+//export callbackQAudioRoleControl_DestroyQAudioRoleControl
+func callbackQAudioRoleControl_DestroyQAudioRoleControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAudioRoleControl::~QAudioRoleControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::~QAudioRoleControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAudioRoleControlFromPointer(ptr).DestroyQAudioRoleControlDefault()
+	}
+}
+
+func (ptr *QAudioRoleControl) ConnectDestroyQAudioRoleControl(f func()) {
+	defer qt.Recovering("connect QAudioRoleControl::~QAudioRoleControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioRoleControl::~QAudioRoleControl", f)
+	}
+}
+
+func (ptr *QAudioRoleControl) DisconnectDestroyQAudioRoleControl() {
+	defer qt.Recovering("disconnect QAudioRoleControl::~QAudioRoleControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioRoleControl::~QAudioRoleControl")
+	}
+}
+
 func (ptr *QAudioRoleControl) DestroyQAudioRoleControl() {
 	defer qt.Recovering("QAudioRoleControl::~QAudioRoleControl")
 
 	if ptr.Pointer() != nil {
 		C.QAudioRoleControl_DestroyQAudioRoleControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAudioRoleControl) DestroyQAudioRoleControlDefault() {
+	defer qt.Recovering("QAudioRoleControl::~QAudioRoleControl")
+
+	if ptr.Pointer() != nil {
+		C.QAudioRoleControl_DestroyQAudioRoleControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -23388,11 +23623,50 @@ func (ptr *QCameraInfoControl) CameraPosition(deviceName string) QCamera__Positi
 	return 0
 }
 
+//export callbackQCameraInfoControl_DestroyQCameraInfoControl
+func callbackQCameraInfoControl_DestroyQCameraInfoControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QCameraInfoControl::~QCameraInfoControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::~QCameraInfoControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQCameraInfoControlFromPointer(ptr).DestroyQCameraInfoControlDefault()
+	}
+}
+
+func (ptr *QCameraInfoControl) ConnectDestroyQCameraInfoControl(f func()) {
+	defer qt.Recovering("connect QCameraInfoControl::~QCameraInfoControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraInfoControl::~QCameraInfoControl", f)
+	}
+}
+
+func (ptr *QCameraInfoControl) DisconnectDestroyQCameraInfoControl() {
+	defer qt.Recovering("disconnect QCameraInfoControl::~QCameraInfoControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraInfoControl::~QCameraInfoControl")
+	}
+}
+
 func (ptr *QCameraInfoControl) DestroyQCameraInfoControl() {
 	defer qt.Recovering("QCameraInfoControl::~QCameraInfoControl")
 
 	if ptr.Pointer() != nil {
 		C.QCameraInfoControl_DestroyQCameraInfoControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QCameraInfoControl) DestroyQCameraInfoControlDefault() {
+	defer qt.Recovering("QCameraInfoControl::~QCameraInfoControl")
+
+	if ptr.Pointer() != nil {
+		C.QCameraInfoControl_DestroyQCameraInfoControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -28315,11 +28589,50 @@ func (ptr *QCameraViewfinderSettingsControl2) ViewfinderSettings() *QCameraViewf
 	return nil
 }
 
+//export callbackQCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2
+func callbackQCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQCameraViewfinderSettingsControl2FromPointer(ptr).DestroyQCameraViewfinderSettingsControl2Default()
+	}
+}
+
+func (ptr *QCameraViewfinderSettingsControl2) ConnectDestroyQCameraViewfinderSettingsControl2(f func()) {
+	defer qt.Recovering("connect QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2", f)
+	}
+}
+
+func (ptr *QCameraViewfinderSettingsControl2) DisconnectDestroyQCameraViewfinderSettingsControl2() {
+	defer qt.Recovering("disconnect QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
+	}
+}
+
 func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsControl2() {
 	defer qt.Recovering("QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
 
 	if ptr.Pointer() != nil {
 		C.QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsControl2Default() {
+	defer qt.Recovering("QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2")
+
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2Default(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -31972,11 +32285,50 @@ func (ptr *QImageEncoderControl) SupportedImageCodecs() []string {
 	return make([]string, 0)
 }
 
+//export callbackQImageEncoderControl_DestroyQImageEncoderControl
+func callbackQImageEncoderControl_DestroyQImageEncoderControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QImageEncoderControl::~QImageEncoderControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::~QImageEncoderControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQImageEncoderControlFromPointer(ptr).DestroyQImageEncoderControlDefault()
+	}
+}
+
+func (ptr *QImageEncoderControl) ConnectDestroyQImageEncoderControl(f func()) {
+	defer qt.Recovering("connect QImageEncoderControl::~QImageEncoderControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QImageEncoderControl::~QImageEncoderControl", f)
+	}
+}
+
+func (ptr *QImageEncoderControl) DisconnectDestroyQImageEncoderControl() {
+	defer qt.Recovering("disconnect QImageEncoderControl::~QImageEncoderControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageEncoderControl::~QImageEncoderControl")
+	}
+}
+
 func (ptr *QImageEncoderControl) DestroyQImageEncoderControl() {
 	defer qt.Recovering("QImageEncoderControl::~QImageEncoderControl")
 
 	if ptr.Pointer() != nil {
 		C.QImageEncoderControl_DestroyQImageEncoderControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QImageEncoderControl) DestroyQImageEncoderControlDefault() {
+	defer qt.Recovering("QImageEncoderControl::~QImageEncoderControl")
+
+	if ptr.Pointer() != nil {
+		C.QImageEncoderControl_DestroyQImageEncoderControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -32674,11 +33026,50 @@ func (ptr *QMediaAudioProbeControl) Flush() {
 	}
 }
 
+//export callbackQMediaAudioProbeControl_DestroyQMediaAudioProbeControl
+func callbackQMediaAudioProbeControl_DestroyQMediaAudioProbeControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaAudioProbeControl::~QMediaAudioProbeControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::~QMediaAudioProbeControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaAudioProbeControlFromPointer(ptr).DestroyQMediaAudioProbeControlDefault()
+	}
+}
+
+func (ptr *QMediaAudioProbeControl) ConnectDestroyQMediaAudioProbeControl(f func()) {
+	defer qt.Recovering("connect QMediaAudioProbeControl::~QMediaAudioProbeControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaAudioProbeControl::~QMediaAudioProbeControl", f)
+	}
+}
+
+func (ptr *QMediaAudioProbeControl) DisconnectDestroyQMediaAudioProbeControl() {
+	defer qt.Recovering("disconnect QMediaAudioProbeControl::~QMediaAudioProbeControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaAudioProbeControl::~QMediaAudioProbeControl")
+	}
+}
+
 func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControl() {
 	defer qt.Recovering("QMediaAudioProbeControl::~QMediaAudioProbeControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControlDefault() {
+	defer qt.Recovering("QMediaAudioProbeControl::~QMediaAudioProbeControl")
+
+	if ptr.Pointer() != nil {
+		C.QMediaAudioProbeControl_DestroyQMediaAudioProbeControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -33764,11 +34155,50 @@ func (ptr *QMediaBindableInterface) SetMediaObject(object QMediaObject_ITF) bool
 	return false
 }
 
+//export callbackQMediaBindableInterface_DestroyQMediaBindableInterface
+func callbackQMediaBindableInterface_DestroyQMediaBindableInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaBindableInterface::~QMediaBindableInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaBindableInterface::~QMediaBindableInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaBindableInterfaceFromPointer(ptr).DestroyQMediaBindableInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaBindableInterface) ConnectDestroyQMediaBindableInterface(f func()) {
+	defer qt.Recovering("connect QMediaBindableInterface::~QMediaBindableInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaBindableInterface::~QMediaBindableInterface", f)
+	}
+}
+
+func (ptr *QMediaBindableInterface) DisconnectDestroyQMediaBindableInterface() {
+	defer qt.Recovering("disconnect QMediaBindableInterface::~QMediaBindableInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaBindableInterface::~QMediaBindableInterface")
+	}
+}
+
 func (ptr *QMediaBindableInterface) DestroyQMediaBindableInterface() {
 	defer qt.Recovering("QMediaBindableInterface::~QMediaBindableInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaBindableInterface_DestroyQMediaBindableInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaBindableInterface) DestroyQMediaBindableInterfaceDefault() {
+	defer qt.Recovering("QMediaBindableInterface::~QMediaBindableInterface")
+
+	if ptr.Pointer() != nil {
+		C.QMediaBindableInterface_DestroyQMediaBindableInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -33976,11 +34406,50 @@ func (ptr *QMediaContainerControl) SupportedContainers() []string {
 	return make([]string, 0)
 }
 
+//export callbackQMediaContainerControl_DestroyQMediaContainerControl
+func callbackQMediaContainerControl_DestroyQMediaContainerControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaContainerControl::~QMediaContainerControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::~QMediaContainerControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaContainerControlFromPointer(ptr).DestroyQMediaContainerControlDefault()
+	}
+}
+
+func (ptr *QMediaContainerControl) ConnectDestroyQMediaContainerControl(f func()) {
+	defer qt.Recovering("connect QMediaContainerControl::~QMediaContainerControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaContainerControl::~QMediaContainerControl", f)
+	}
+}
+
+func (ptr *QMediaContainerControl) DisconnectDestroyQMediaContainerControl() {
+	defer qt.Recovering("disconnect QMediaContainerControl::~QMediaContainerControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaContainerControl::~QMediaContainerControl")
+	}
+}
+
 func (ptr *QMediaContainerControl) DestroyQMediaContainerControl() {
 	defer qt.Recovering("QMediaContainerControl::~QMediaContainerControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaContainerControl_DestroyQMediaContainerControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaContainerControl) DestroyQMediaContainerControlDefault() {
+	defer qt.Recovering("QMediaContainerControl::~QMediaContainerControl")
+
+	if ptr.Pointer() != nil {
+		C.QMediaContainerControl_DestroyQMediaContainerControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -35367,11 +35836,50 @@ func (ptr *QMediaGaplessPlaybackControl) SetNextMedia(media QMediaContent_ITF) {
 	}
 }
 
+//export callbackQMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl
+func callbackQMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaGaplessPlaybackControlFromPointer(ptr).DestroyQMediaGaplessPlaybackControlDefault()
+	}
+}
+
+func (ptr *QMediaGaplessPlaybackControl) ConnectDestroyQMediaGaplessPlaybackControl(f func()) {
+	defer qt.Recovering("connect QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl", f)
+	}
+}
+
+func (ptr *QMediaGaplessPlaybackControl) DisconnectDestroyQMediaGaplessPlaybackControl() {
+	defer qt.Recovering("disconnect QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
+	}
+}
+
 func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControl() {
 	defer qt.Recovering("QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControlDefault() {
+	defer qt.Recovering("QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl")
+
+	if ptr.Pointer() != nil {
+		C.QMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -35907,11 +36415,50 @@ func (ptr *QMediaNetworkAccessControl) CurrentConfiguration() *network.QNetworkC
 	return nil
 }
 
+//export callbackQMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl
+func callbackQMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaNetworkAccessControl::~QMediaNetworkAccessControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::~QMediaNetworkAccessControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaNetworkAccessControlFromPointer(ptr).DestroyQMediaNetworkAccessControlDefault()
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) ConnectDestroyQMediaNetworkAccessControl(f func()) {
+	defer qt.Recovering("connect QMediaNetworkAccessControl::~QMediaNetworkAccessControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaNetworkAccessControl::~QMediaNetworkAccessControl", f)
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) DisconnectDestroyQMediaNetworkAccessControl() {
+	defer qt.Recovering("disconnect QMediaNetworkAccessControl::~QMediaNetworkAccessControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaNetworkAccessControl::~QMediaNetworkAccessControl")
+	}
+}
+
 func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControl() {
 	defer qt.Recovering("QMediaNetworkAccessControl::~QMediaNetworkAccessControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControlDefault() {
+	defer qt.Recovering("QMediaNetworkAccessControl::~QMediaNetworkAccessControl")
+
+	if ptr.Pointer() != nil {
+		C.QMediaNetworkAccessControl_DestroyQMediaNetworkAccessControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -41885,11 +42432,50 @@ func (ptr *QMediaPlaylist) Shuffle() {
 	}
 }
 
+//export callbackQMediaPlaylist_DestroyQMediaPlaylist
+func callbackQMediaPlaylist_DestroyQMediaPlaylist(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaPlaylist::~QMediaPlaylist")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::~QMediaPlaylist"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaPlaylistFromPointer(ptr).DestroyQMediaPlaylistDefault()
+	}
+}
+
+func (ptr *QMediaPlaylist) ConnectDestroyQMediaPlaylist(f func()) {
+	defer qt.Recovering("connect QMediaPlaylist::~QMediaPlaylist")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlaylist::~QMediaPlaylist", f)
+	}
+}
+
+func (ptr *QMediaPlaylist) DisconnectDestroyQMediaPlaylist() {
+	defer qt.Recovering("disconnect QMediaPlaylist::~QMediaPlaylist")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlaylist::~QMediaPlaylist")
+	}
+}
+
 func (ptr *QMediaPlaylist) DestroyQMediaPlaylist() {
 	defer qt.Recovering("QMediaPlaylist::~QMediaPlaylist")
 
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_DestroyQMediaPlaylist(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaPlaylist) DestroyQMediaPlaylistDefault() {
+	defer qt.Recovering("QMediaPlaylist::~QMediaPlaylist")
+
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist_DestroyQMediaPlaylistDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -44621,11 +45207,50 @@ func (ptr *QMediaRecorderControl) VolumeChanged(gain float64) {
 	}
 }
 
+//export callbackQMediaRecorderControl_DestroyQMediaRecorderControl
+func callbackQMediaRecorderControl_DestroyQMediaRecorderControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaRecorderControl::~QMediaRecorderControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::~QMediaRecorderControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaRecorderControlFromPointer(ptr).DestroyQMediaRecorderControlDefault()
+	}
+}
+
+func (ptr *QMediaRecorderControl) ConnectDestroyQMediaRecorderControl(f func()) {
+	defer qt.Recovering("connect QMediaRecorderControl::~QMediaRecorderControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorderControl::~QMediaRecorderControl", f)
+	}
+}
+
+func (ptr *QMediaRecorderControl) DisconnectDestroyQMediaRecorderControl() {
+	defer qt.Recovering("disconnect QMediaRecorderControl::~QMediaRecorderControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorderControl::~QMediaRecorderControl")
+	}
+}
+
 func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControl() {
 	defer qt.Recovering("QMediaRecorderControl::~QMediaRecorderControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaRecorderControl_DestroyQMediaRecorderControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControlDefault() {
+	defer qt.Recovering("QMediaRecorderControl::~QMediaRecorderControl")
+
+	if ptr.Pointer() != nil {
+		C.QMediaRecorderControl_DestroyQMediaRecorderControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -46017,11 +46642,50 @@ func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device string) QCame
 	return 0
 }
 
+//export callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface
+func callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaServiceCameraInfoInterfaceFromPointer(ptr).DestroyQMediaServiceCameraInfoInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) ConnectDestroyQMediaServiceCameraInfoInterface(f func()) {
+	defer qt.Recovering("connect QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface", f)
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) DisconnectDestroyQMediaServiceCameraInfoInterface() {
+	defer qt.Recovering("disconnect QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface")
+	}
+}
+
 func (ptr *QMediaServiceCameraInfoInterface) DestroyQMediaServiceCameraInfoInterface() {
 	defer qt.Recovering("QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceCameraInfoInterface) DestroyQMediaServiceCameraInfoInterfaceDefault() {
+	defer qt.Recovering("QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -46105,11 +46769,50 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service string) st
 	return ""
 }
 
+//export callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface
+func callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaServiceDefaultDeviceInterfaceFromPointer(ptr).DestroyQMediaServiceDefaultDeviceInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) ConnectDestroyQMediaServiceDefaultDeviceInterface(f func()) {
+	defer qt.Recovering("connect QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface", f)
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) DisconnectDestroyQMediaServiceDefaultDeviceInterface() {
+	defer qt.Recovering("disconnect QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
+	}
+}
+
 func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterface() {
 	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceDefaultDeviceInterface) DestroyQMediaServiceDefaultDeviceInterfaceDefault() {
+	defer qt.Recovering("QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -46152,11 +46855,51 @@ func NewQMediaServiceFeaturesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaSer
 	n.SetPointer(ptr)
 	return n
 }
+
+//export callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface
+func callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaServiceFeaturesInterfaceFromPointer(ptr).DestroyQMediaServiceFeaturesInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) ConnectDestroyQMediaServiceFeaturesInterface(f func()) {
+	defer qt.Recovering("connect QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface", f)
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) DisconnectDestroyQMediaServiceFeaturesInterface() {
+	defer qt.Recovering("disconnect QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
+	}
+}
+
 func (ptr *QMediaServiceFeaturesInterface) DestroyQMediaServiceFeaturesInterface() {
 	defer qt.Recovering("QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceFeaturesInterface) DestroyQMediaServiceFeaturesInterfaceDefault() {
+	defer qt.Recovering("QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -46782,11 +47525,50 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DeviceDescription(service str
 	return ""
 }
 
+//export callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface
+func callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr).DestroyQMediaServiceSupportedDevicesInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDestroyQMediaServiceSupportedDevicesInterface(f func()) {
+	defer qt.Recovering("connect QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface", f)
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDestroyQMediaServiceSupportedDevicesInterface() {
+	defer qt.Recovering("disconnect QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
+	}
+}
+
 func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterface() {
 	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupportedDevicesInterfaceDefault() {
+	defer qt.Recovering("QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -46910,11 +47692,50 @@ func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string
 	return make([]string, 0)
 }
 
+//export callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface
+func callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr).DestroyQMediaServiceSupportedFormatsInterfaceDefault()
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) ConnectDestroyQMediaServiceSupportedFormatsInterface(f func()) {
+	defer qt.Recovering("connect QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface", f)
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) DisconnectDestroyQMediaServiceSupportedFormatsInterface() {
+	defer qt.Recovering("disconnect QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
+	}
+}
+
 func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupportedFormatsInterface() {
 	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
 
 	if ptr.Pointer() != nil {
 		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupportedFormatsInterfaceDefault() {
+	defer qt.Recovering("QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface")
+
+	if ptr.Pointer() != nil {
+		C.QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -47243,11 +48064,50 @@ func (ptr *QMediaStreamsControl) StreamsChanged() {
 	}
 }
 
+//export callbackQMediaStreamsControl_DestroyQMediaStreamsControl
+func callbackQMediaStreamsControl_DestroyQMediaStreamsControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaStreamsControl::~QMediaStreamsControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::~QMediaStreamsControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaStreamsControlFromPointer(ptr).DestroyQMediaStreamsControlDefault()
+	}
+}
+
+func (ptr *QMediaStreamsControl) ConnectDestroyQMediaStreamsControl(f func()) {
+	defer qt.Recovering("connect QMediaStreamsControl::~QMediaStreamsControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaStreamsControl::~QMediaStreamsControl", f)
+	}
+}
+
+func (ptr *QMediaStreamsControl) DisconnectDestroyQMediaStreamsControl() {
+	defer qt.Recovering("disconnect QMediaStreamsControl::~QMediaStreamsControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaStreamsControl::~QMediaStreamsControl")
+	}
+}
+
 func (ptr *QMediaStreamsControl) DestroyQMediaStreamsControl() {
 	defer qt.Recovering("QMediaStreamsControl::~QMediaStreamsControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaStreamsControl_DestroyQMediaStreamsControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaStreamsControl) DestroyQMediaStreamsControlDefault() {
+	defer qt.Recovering("QMediaStreamsControl::~QMediaStreamsControl")
+
+	if ptr.Pointer() != nil {
+		C.QMediaStreamsControl_DestroyQMediaStreamsControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -48092,11 +48952,50 @@ func (ptr *QMediaVideoProbeControl) VideoFrameProbed(frame QVideoFrame_ITF) {
 	}
 }
 
+//export callbackQMediaVideoProbeControl_DestroyQMediaVideoProbeControl
+func callbackQMediaVideoProbeControl_DestroyQMediaVideoProbeControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMediaVideoProbeControl::~QMediaVideoProbeControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::~QMediaVideoProbeControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMediaVideoProbeControlFromPointer(ptr).DestroyQMediaVideoProbeControlDefault()
+	}
+}
+
+func (ptr *QMediaVideoProbeControl) ConnectDestroyQMediaVideoProbeControl(f func()) {
+	defer qt.Recovering("connect QMediaVideoProbeControl::~QMediaVideoProbeControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaVideoProbeControl::~QMediaVideoProbeControl", f)
+	}
+}
+
+func (ptr *QMediaVideoProbeControl) DisconnectDestroyQMediaVideoProbeControl() {
+	defer qt.Recovering("disconnect QMediaVideoProbeControl::~QMediaVideoProbeControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaVideoProbeControl::~QMediaVideoProbeControl")
+	}
+}
+
 func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControl() {
 	defer qt.Recovering("QMediaVideoProbeControl::~QMediaVideoProbeControl")
 
 	if ptr.Pointer() != nil {
 		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControlDefault() {
+	defer qt.Recovering("QMediaVideoProbeControl::~QMediaVideoProbeControl")
+
+	if ptr.Pointer() != nil {
+		C.QMediaVideoProbeControl_DestroyQMediaVideoProbeControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -57692,11 +58591,50 @@ func (ptr *QVideoDeviceSelectorControl) SetSelectedDevice(index int) {
 	}
 }
 
+//export callbackQVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl
+func callbackQVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQVideoDeviceSelectorControlFromPointer(ptr).DestroyQVideoDeviceSelectorControlDefault()
+	}
+}
+
+func (ptr *QVideoDeviceSelectorControl) ConnectDestroyQVideoDeviceSelectorControl(f func()) {
+	defer qt.Recovering("connect QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl", f)
+	}
+}
+
+func (ptr *QVideoDeviceSelectorControl) DisconnectDestroyQVideoDeviceSelectorControl() {
+	defer qt.Recovering("disconnect QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
+	}
+}
+
 func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControl() {
 	defer qt.Recovering("QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
 
 	if ptr.Pointer() != nil {
 		C.QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControlDefault() {
+	defer qt.Recovering("QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl")
+
+	if ptr.Pointer() != nil {
+		C.QVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -58518,11 +59456,50 @@ func (ptr *QVideoEncoderSettingsControl) VideoSettings() *QVideoEncoderSettings 
 	return nil
 }
 
+//export callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl
+func callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQVideoEncoderSettingsControlFromPointer(ptr).DestroyQVideoEncoderSettingsControlDefault()
+	}
+}
+
+func (ptr *QVideoEncoderSettingsControl) ConnectDestroyQVideoEncoderSettingsControl(f func()) {
+	defer qt.Recovering("connect QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl", f)
+	}
+}
+
+func (ptr *QVideoEncoderSettingsControl) DisconnectDestroyQVideoEncoderSettingsControl() {
+	defer qt.Recovering("disconnect QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
+	}
+}
+
 func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControl() {
 	defer qt.Recovering("QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
 
 	if ptr.Pointer() != nil {
 		C.QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControlDefault() {
+	defer qt.Recovering("QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl")
+
+	if ptr.Pointer() != nil {
+		C.QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -64780,11 +65757,50 @@ func (ptr *QVideoWidgetControl) VideoWidget() *widgets.QWidget {
 	return nil
 }
 
+//export callbackQVideoWidgetControl_DestroyQVideoWidgetControl
+func callbackQVideoWidgetControl_DestroyQVideoWidgetControl(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QVideoWidgetControl::~QVideoWidgetControl")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::~QVideoWidgetControl"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQVideoWidgetControlFromPointer(ptr).DestroyQVideoWidgetControlDefault()
+	}
+}
+
+func (ptr *QVideoWidgetControl) ConnectDestroyQVideoWidgetControl(f func()) {
+	defer qt.Recovering("connect QVideoWidgetControl::~QVideoWidgetControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::~QVideoWidgetControl", f)
+	}
+}
+
+func (ptr *QVideoWidgetControl) DisconnectDestroyQVideoWidgetControl() {
+	defer qt.Recovering("disconnect QVideoWidgetControl::~QVideoWidgetControl")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::~QVideoWidgetControl")
+	}
+}
+
 func (ptr *QVideoWidgetControl) DestroyQVideoWidgetControl() {
 	defer qt.Recovering("QVideoWidgetControl::~QVideoWidgetControl")
 
 	if ptr.Pointer() != nil {
 		C.QVideoWidgetControl_DestroyQVideoWidgetControl(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QVideoWidgetControl) DestroyQVideoWidgetControlDefault() {
+	defer qt.Recovering("QVideoWidgetControl::~QVideoWidgetControl")
+
+	if ptr.Pointer() != nil {
+		C.QVideoWidgetControl_DestroyQVideoWidgetControlDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

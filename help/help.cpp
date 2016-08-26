@@ -1960,6 +1960,7 @@ public:
 	void Signal_SetupFinished() { callbackQHelpEngineCore_SetupFinished(this); };
 	void Signal_SetupStarted() { callbackQHelpEngineCore_SetupStarted(this); };
 	void Signal_Warning(const QString & msg) { callbackQHelpEngineCore_Warning(this, const_cast<char*>(msg.toUtf8().constData())); };
+	 ~MyQHelpEngineCore() { callbackQHelpEngineCore_DestroyQHelpEngineCore(this); };
 	void timerEvent(QTimerEvent * event) { callbackQHelpEngineCore_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQHelpEngineCore_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpEngineCore_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -2179,6 +2180,11 @@ void QHelpEngineCore_Warning(void* ptr, char* msg)
 void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr)
 {
 	static_cast<QHelpEngineCore*>(ptr)->~QHelpEngineCore();
+}
+
+void QHelpEngineCore_DestroyQHelpEngineCoreDefault(void* ptr)
+{
+
 }
 
 void QHelpEngineCore_TimerEvent(void* ptr, void* event)

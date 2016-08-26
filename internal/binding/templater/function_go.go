@@ -86,7 +86,7 @@ func goFunctionBody(function *parser.Function) string {
 
 	if ((function.Meta == parser.PLAIN && function.SignalMode == "") ||
 		(function.Meta == parser.SLOT && function.SignalMode == "") ||
-		function.Meta == parser.CONSTRUCTOR || function.Meta == parser.DESTRUCTOR) ||
+		(function.Meta == parser.CONSTRUCTOR || function.Meta == parser.DESTRUCTOR) && function.SignalMode == "") ||
 		(function.Meta == parser.SIGNAL && (function.SignalMode == "" || function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT)) ||
 		(function.Meta == parser.GETTER || function.Meta == parser.SETTER) {
 
@@ -114,7 +114,7 @@ func goFunctionBody(function *parser.Function) string {
 
 				fmt.Fprint(bb, func() string {
 					if converter.GoHeaderOutput(function) != "" {
-						if function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) || classIsSupported(parser.ClassMap[function.Class()]) && function.Meta == parser.CONSTRUCTOR && !(parser.ClassMap[function.Class()].IsQObjectSubClass() || needsCallbackFunctions(parser.ClassMap[function.Class()])) {
+						if function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) || classIsSupported(parser.ClassMap[function.Class()]) && function.Meta == parser.CONSTRUCTOR && !(parser.ClassMap[function.Class()].IsQObjectSubClass() || classNeedsCallbackFunctions(parser.ClassMap[function.Class()])) {
 							return fmt.Sprintf(`var tmpValue = %v
 runtime.SetFinalizer(tmpValue, (%v).Destroy%v)
 return tmpValue%v`, body,
@@ -206,11 +206,11 @@ return tmpValue`, body, func() string {
 
 			if converter.GoHeaderOutput(function) == "" {
 				if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
-					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 				}
 			} else {
 				if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
-					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Title(function.Name), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
 				} else {
 					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
 				}
@@ -250,8 +250,8 @@ return tmpValue`, body, func() string {
 		}
 	}
 
-	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater")) && function.SignalMode == "" {
-		if needsCallbackFunctions(parser.ClassMap[function.Class()]) || parser.ClassMap[function.Class()].IsQObjectSubClass() {
+	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater") || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
+		if classNeedsCallbackFunctions(parser.ClassMap[function.Class()]) || parser.ClassMap[function.Class()].IsQObjectSubClass() {
 			fmt.Fprint(bb, "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))")
 		}
 		fmt.Fprint(bb, "\nptr.SetPointer(nil)")

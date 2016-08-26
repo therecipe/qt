@@ -3170,11 +3170,50 @@ func (ptr *QNearFieldTarget) UrlDefault() *core.QUrl {
 	return nil
 }
 
+//export callbackQNearFieldTarget_DestroyQNearFieldTarget
+func callbackQNearFieldTarget_DestroyQNearFieldTarget(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QNearFieldTarget::~QNearFieldTarget")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNearFieldTarget::~QNearFieldTarget"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQNearFieldTargetFromPointer(ptr).DestroyQNearFieldTargetDefault()
+	}
+}
+
+func (ptr *QNearFieldTarget) ConnectDestroyQNearFieldTarget(f func()) {
+	defer qt.Recovering("connect QNearFieldTarget::~QNearFieldTarget")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::~QNearFieldTarget", f)
+	}
+}
+
+func (ptr *QNearFieldTarget) DisconnectDestroyQNearFieldTarget() {
+	defer qt.Recovering("disconnect QNearFieldTarget::~QNearFieldTarget")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::~QNearFieldTarget")
+	}
+}
+
 func (ptr *QNearFieldTarget) DestroyQNearFieldTarget() {
 	defer qt.Recovering("QNearFieldTarget::~QNearFieldTarget")
 
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_DestroyQNearFieldTarget(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QNearFieldTarget) DestroyQNearFieldTargetDefault() {
+	defer qt.Recovering("QNearFieldTarget::~QNearFieldTarget")
+
+	if ptr.Pointer() != nil {
+		C.QNearFieldTarget_DestroyQNearFieldTargetDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

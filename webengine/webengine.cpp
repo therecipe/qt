@@ -543,6 +543,7 @@ class MyQWebEngineCookieStore: public QWebEngineCookieStore
 public:
 	void Signal_CookieAdded(const QNetworkCookie & cookie) { callbackQWebEngineCookieStore_CookieAdded(this, const_cast<QNetworkCookie*>(&cookie)); };
 	void Signal_CookieRemoved(const QNetworkCookie & cookie) { callbackQWebEngineCookieStore_CookieRemoved(this, const_cast<QNetworkCookie*>(&cookie)); };
+	 ~MyQWebEngineCookieStore() { callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineCookieStore_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineCookieStore_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineCookieStore_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -612,6 +613,11 @@ void QWebEngineCookieStore_SetCookie(void* ptr, void* cookie, void* origin)
 void QWebEngineCookieStore_DestroyQWebEngineCookieStore(void* ptr)
 {
 	static_cast<QWebEngineCookieStore*>(ptr)->~QWebEngineCookieStore();
+}
+
+void QWebEngineCookieStore_DestroyQWebEngineCookieStoreDefault(void* ptr)
+{
+
 }
 
 void QWebEngineCookieStore_TimerEvent(void* ptr, void* event)
@@ -2619,6 +2625,7 @@ public:
 	void forward() { callbackQWebEngineView_Forward(this); };
 	void reload() { callbackQWebEngineView_Reload(this); };
 	void stop() { callbackQWebEngineView_Stop(this); };
+	 ~MyQWebEngineView() { callbackQWebEngineView_DestroyQWebEngineView(this); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWebEngineView_ContextMenuEvent(this, event); };
 	bool event(QEvent * ev) { return callbackQWebEngineView_Event(this, ev) != 0; };
 	void hideEvent(QHideEvent * event) { callbackQWebEngineView_HideEvent(this, event); };
@@ -2816,6 +2823,11 @@ double QWebEngineView_ZoomFactor(void* ptr)
 void QWebEngineView_DestroyQWebEngineView(void* ptr)
 {
 	static_cast<QWebEngineView*>(ptr)->~QWebEngineView();
+}
+
+void QWebEngineView_DestroyQWebEngineViewDefault(void* ptr)
+{
+
 }
 
 void QWebEngineView_ContextMenuEvent(void* ptr, void* event)

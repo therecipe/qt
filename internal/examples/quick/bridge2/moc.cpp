@@ -22,6 +22,7 @@ Q_OBJECT
 public:
 	QmlBridge(QObject *parent) : QObject(parent) {};
 	void Signal_SendToQml(QString data) { callbackQmlBridge_SendToQml(this, const_cast<char*>(data.toUtf8().constData())); };
+	 ~QmlBridge() { callbackQmlBridge_DestroyQmlBridge(this); };
 	void timerEvent(QTimerEvent * event) { callbackQmlBridge_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQmlBridge_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQmlBridge_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -67,6 +68,11 @@ void* QmlBridge_NewQmlBridge(void* parent)
 void QmlBridge_DestroyQmlBridge(void* ptr)
 {
 	static_cast<QmlBridge*>(ptr)->~QmlBridge();
+}
+
+void QmlBridge_DestroyQmlBridgeDefault(void* ptr)
+{
+
 }
 
 void QmlBridge_TimerEvent(void* ptr, void* event)

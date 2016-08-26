@@ -231,6 +231,7 @@ public:
 	bool startMonitoring(const QGeoAreaMonitorInfo & monitor) { return callbackQGeoAreaMonitorSource_StartMonitoring(this, const_cast<QGeoAreaMonitorInfo*>(&monitor)) != 0; };
 	bool stopMonitoring(const QGeoAreaMonitorInfo & monitor) { return callbackQGeoAreaMonitorSource_StopMonitoring(this, const_cast<QGeoAreaMonitorInfo*>(&monitor)) != 0; };
 	AreaMonitorFeatures supportedAreaMonitorFeatures() const { return static_cast<QGeoAreaMonitorSource::AreaMonitorFeature>(callbackQGeoAreaMonitorSource_SupportedAreaMonitorFeatures(const_cast<MyQGeoAreaMonitorSource*>(this))); };
+	 ~MyQGeoAreaMonitorSource() { callbackQGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(this); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoAreaMonitorSource_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGeoAreaMonitorSource_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGeoAreaMonitorSource_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -370,6 +371,11 @@ long long QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(void* ptr)
 void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr)
 {
 	static_cast<QGeoAreaMonitorSource*>(ptr)->~QGeoAreaMonitorSource();
+}
+
+void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSourceDefault(void* ptr)
+{
+
 }
 
 void QGeoAreaMonitorSource_TimerEvent(void* ptr, void* event)
@@ -688,6 +694,7 @@ public:
 	void stopUpdates() { callbackQGeoPositionInfoSource_StopUpdates(this); };
 	PositioningMethods supportedPositioningMethods() const { return static_cast<QGeoPositionInfoSource::PositioningMethod>(callbackQGeoPositionInfoSource_SupportedPositioningMethods(const_cast<MyQGeoPositionInfoSource*>(this))); };
 	void Signal_UpdateTimeout() { callbackQGeoPositionInfoSource_UpdateTimeout(this); };
+	 ~MyQGeoPositionInfoSource() { callbackQGeoPositionInfoSource_DestroyQGeoPositionInfoSource(this); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoPositionInfoSource_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGeoPositionInfoSource_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGeoPositionInfoSource_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -839,6 +846,11 @@ void QGeoPositionInfoSource_DestroyQGeoPositionInfoSource(void* ptr)
 	static_cast<QGeoPositionInfoSource*>(ptr)->~QGeoPositionInfoSource();
 }
 
+void QGeoPositionInfoSource_DestroyQGeoPositionInfoSourceDefault(void* ptr)
+{
+
+}
+
 void QGeoPositionInfoSource_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QGeoPositionInfoSource*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -935,6 +947,7 @@ public:
 	QGeoAreaMonitorSource * areaMonitor(QObject * parent) { return static_cast<QGeoAreaMonitorSource*>(callbackQGeoPositionInfoSourceFactory_AreaMonitor(this, parent)); };
 	QGeoPositionInfoSource * positionInfoSource(QObject * parent) { return static_cast<QGeoPositionInfoSource*>(callbackQGeoPositionInfoSourceFactory_PositionInfoSource(this, parent)); };
 	QGeoSatelliteInfoSource * satelliteInfoSource(QObject * parent) { return static_cast<QGeoSatelliteInfoSource*>(callbackQGeoPositionInfoSourceFactory_SatelliteInfoSource(this, parent)); };
+	 ~MyQGeoPositionInfoSourceFactory() { callbackQGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(this); };
 };
 
 void* QGeoPositionInfoSourceFactory_AreaMonitor(void* ptr, void* parent)
@@ -955,6 +968,11 @@ void* QGeoPositionInfoSourceFactory_SatelliteInfoSource(void* ptr, void* parent)
 void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactory(void* ptr)
 {
 	static_cast<QGeoPositionInfoSourceFactory*>(ptr)->~QGeoPositionInfoSourceFactory();
+}
+
+void QGeoPositionInfoSourceFactory_DestroyQGeoPositionInfoSourceFactoryDefault(void* ptr)
+{
+
 }
 
 void* QGeoRectangle_NewQGeoRectangle()
@@ -1164,6 +1182,7 @@ public:
 	void requestUpdate(int timeout) { callbackQGeoSatelliteInfoSource_RequestUpdate(this, timeout); };
 	void startUpdates() { callbackQGeoSatelliteInfoSource_StartUpdates(this); };
 	void stopUpdates() { callbackQGeoSatelliteInfoSource_StopUpdates(this); };
+	 ~MyQGeoSatelliteInfoSource() { callbackQGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(this); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoSatelliteInfoSource_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGeoSatelliteInfoSource_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGeoSatelliteInfoSource_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1273,6 +1292,11 @@ void QGeoSatelliteInfoSource_StopUpdates(void* ptr)
 void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSource(void* ptr)
 {
 	static_cast<QGeoSatelliteInfoSource*>(ptr)->~QGeoSatelliteInfoSource();
+}
+
+void QGeoSatelliteInfoSource_DestroyQGeoSatelliteInfoSourceDefault(void* ptr)
+{
+
 }
 
 void QGeoSatelliteInfoSource_TimerEvent(void* ptr, void* event)

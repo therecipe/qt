@@ -124,7 +124,7 @@ ptr.SetPointer(nil)
 }
 
 `, class.Name, class.Name, func() string {
-					if needsCallbackFunctions(class) || class.IsQObjectSubClass() {
+					if classNeedsCallbackFunctions(class) || class.IsQObjectSubClass() {
 						return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
 					}
 					return ""
@@ -143,7 +143,7 @@ ptr.SetPointer(nil)
 				if functionIsSupported(class, function) {
 
 					switch {
-					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor"):
+					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "constructor"):
 						{
 							for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
 								var function = *function

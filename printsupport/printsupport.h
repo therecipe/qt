@@ -425,6 +425,7 @@ long long QPrintEngine_PrinterState(void* ptr);
 void* QPrintEngine_Property(void* ptr, long long key);
 void QPrintEngine_SetProperty(void* ptr, long long key, void* value);
 void QPrintEngine_DestroyQPrintEngine(void* ptr);
+void QPrintEngine_DestroyQPrintEngineDefault(void* ptr);
 void* QPrintPreviewDialog_NewQPrintPreviewDialog2(void* parent, long long flags);
 void* QPrintPreviewDialog_NewQPrintPreviewDialog(void* printer, void* parent, long long flags);
 void QPrintPreviewDialog_Done(void* ptr, int result);

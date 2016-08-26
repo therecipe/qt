@@ -1170,14 +1170,26 @@ void* QDomText_SplitText(void* ptr, int offset)
 	return new QDomText(static_cast<QDomText*>(ptr)->splitText(offset));
 }
 
+class MyQXmlAttributes: public QXmlAttributes
+{
+public:
+	MyQXmlAttributes() : QXmlAttributes() {};
+	 ~MyQXmlAttributes() { callbackQXmlAttributes_DestroyQXmlAttributes(this); };
+};
+
 void* QXmlAttributes_NewQXmlAttributes()
 {
-	return new QXmlAttributes();
+	return new MyQXmlAttributes();
 }
 
 void QXmlAttributes_DestroyQXmlAttributes(void* ptr)
 {
 	static_cast<QXmlAttributes*>(ptr)->~QXmlAttributes();
+}
+
+void QXmlAttributes_DestroyQXmlAttributesDefault(void* ptr)
+{
+
 }
 
 void QXmlAttributes_Append(void* ptr, char* qName, char* uri, char* localPart, char* value)
@@ -1280,6 +1292,7 @@ public:
 	bool startDocument() { return callbackQXmlContentHandler_StartDocument(this) != 0; };
 	bool startElement(const QString & namespaceURI, const QString & localName, const QString & qName, const QXmlAttributes & atts) { return callbackQXmlContentHandler_StartElement(this, const_cast<char*>(namespaceURI.toUtf8().constData()), const_cast<char*>(localName.toUtf8().constData()), const_cast<char*>(qName.toUtf8().constData()), const_cast<QXmlAttributes*>(&atts)) != 0; };
 	bool startPrefixMapping(const QString & prefix, const QString & uri) { return callbackQXmlContentHandler_StartPrefixMapping(this, const_cast<char*>(prefix.toUtf8().constData()), const_cast<char*>(uri.toUtf8().constData())) != 0; };
+	 ~MyQXmlContentHandler() { callbackQXmlContentHandler_DestroyQXmlContentHandler(this); };
 };
 
 char QXmlContentHandler_Characters(void* ptr, char* ch)
@@ -1347,12 +1360,18 @@ void QXmlContentHandler_DestroyQXmlContentHandler(void* ptr)
 	static_cast<QXmlContentHandler*>(ptr)->~QXmlContentHandler();
 }
 
+void QXmlContentHandler_DestroyQXmlContentHandlerDefault(void* ptr)
+{
+
+}
+
 class MyQXmlDTDHandler: public QXmlDTDHandler
 {
 public:
 	QString errorString() const { return QString(callbackQXmlDTDHandler_ErrorString(const_cast<MyQXmlDTDHandler*>(this))); };
 	bool notationDecl(const QString & name, const QString & publicId, const QString & systemId) { return callbackQXmlDTDHandler_NotationDecl(this, const_cast<char*>(name.toUtf8().constData()), const_cast<char*>(publicId.toUtf8().constData()), const_cast<char*>(systemId.toUtf8().constData())) != 0; };
 	bool unparsedEntityDecl(const QString & name, const QString & publicId, const QString & systemId, const QString & notationName) { return callbackQXmlDTDHandler_UnparsedEntityDecl(this, const_cast<char*>(name.toUtf8().constData()), const_cast<char*>(publicId.toUtf8().constData()), const_cast<char*>(systemId.toUtf8().constData()), const_cast<char*>(notationName.toUtf8().constData())) != 0; };
+	 ~MyQXmlDTDHandler() { callbackQXmlDTDHandler_DestroyQXmlDTDHandler(this); };
 };
 
 char* QXmlDTDHandler_ErrorString(void* ptr)
@@ -1375,6 +1394,11 @@ void QXmlDTDHandler_DestroyQXmlDTDHandler(void* ptr)
 	static_cast<QXmlDTDHandler*>(ptr)->~QXmlDTDHandler();
 }
 
+void QXmlDTDHandler_DestroyQXmlDTDHandlerDefault(void* ptr)
+{
+
+}
+
 class MyQXmlDeclHandler: public QXmlDeclHandler
 {
 public:
@@ -1382,6 +1406,7 @@ public:
 	QString errorString() const { return QString(callbackQXmlDeclHandler_ErrorString(const_cast<MyQXmlDeclHandler*>(this))); };
 	bool externalEntityDecl(const QString & name, const QString & publicId, const QString & systemId) { return callbackQXmlDeclHandler_ExternalEntityDecl(this, const_cast<char*>(name.toUtf8().constData()), const_cast<char*>(publicId.toUtf8().constData()), const_cast<char*>(systemId.toUtf8().constData())) != 0; };
 	bool internalEntityDecl(const QString & name, const QString & value) { return callbackQXmlDeclHandler_InternalEntityDecl(this, const_cast<char*>(name.toUtf8().constData()), const_cast<char*>(value.toUtf8().constData())) != 0; };
+	 ~MyQXmlDeclHandler() { callbackQXmlDeclHandler_DestroyQXmlDeclHandler(this); };
 };
 
 char QXmlDeclHandler_AttributeDecl(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value)
@@ -1409,10 +1434,16 @@ void QXmlDeclHandler_DestroyQXmlDeclHandler(void* ptr)
 	static_cast<QXmlDeclHandler*>(ptr)->~QXmlDeclHandler();
 }
 
+void QXmlDeclHandler_DestroyQXmlDeclHandlerDefault(void* ptr)
+{
+
+}
+
 class MyQXmlDefaultHandler: public QXmlDefaultHandler
 {
 public:
 	MyQXmlDefaultHandler() : QXmlDefaultHandler() {};
+	 ~MyQXmlDefaultHandler() { callbackQXmlDefaultHandler_DestroyQXmlDefaultHandler(this); };
 	bool attributeDecl(const QString & eName, const QString & aName, const QString & ty, const QString & valueDefault, const QString & value) { return callbackQXmlDefaultHandler_AttributeDecl(this, const_cast<char*>(eName.toUtf8().constData()), const_cast<char*>(aName.toUtf8().constData()), const_cast<char*>(ty.toUtf8().constData()), const_cast<char*>(valueDefault.toUtf8().constData()), const_cast<char*>(value.toUtf8().constData())) != 0; };
 	bool characters(const QString & ch) { return callbackQXmlDefaultHandler_Characters(this, const_cast<char*>(ch.toUtf8().constData())) != 0; };
 	bool comment(const QString & ch) { return callbackQXmlDefaultHandler_Comment(this, const_cast<char*>(ch.toUtf8().constData())) != 0; };
@@ -1451,6 +1482,11 @@ void* QXmlDefaultHandler_NewQXmlDefaultHandler()
 void QXmlDefaultHandler_DestroyQXmlDefaultHandler(void* ptr)
 {
 	static_cast<QXmlDefaultHandler*>(ptr)->~QXmlDefaultHandler();
+}
+
+void QXmlDefaultHandler_DestroyQXmlDefaultHandlerDefault(void* ptr)
+{
+
 }
 
 char QXmlDefaultHandler_AttributeDecl(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value)
@@ -1732,6 +1768,7 @@ class MyQXmlEntityResolver: public QXmlEntityResolver
 public:
 	QString errorString() const { return QString(callbackQXmlEntityResolver_ErrorString(const_cast<MyQXmlEntityResolver*>(this))); };
 	bool resolveEntity(const QString & publicId, const QString & systemId, QXmlInputSource *& ret) { return callbackQXmlEntityResolver_ResolveEntity(this, const_cast<char*>(publicId.toUtf8().constData()), const_cast<char*>(systemId.toUtf8().constData()), ret) != 0; };
+	 ~MyQXmlEntityResolver() { callbackQXmlEntityResolver_DestroyQXmlEntityResolver(this); };
 };
 
 char* QXmlEntityResolver_ErrorString(void* ptr)
@@ -1746,6 +1783,11 @@ void QXmlEntityResolver_DestroyQXmlEntityResolver(void* ptr)
 	static_cast<QXmlEntityResolver*>(ptr)->~QXmlEntityResolver();
 }
 
+void QXmlEntityResolver_DestroyQXmlEntityResolverDefault(void* ptr)
+{
+
+}
+
 class MyQXmlErrorHandler: public QXmlErrorHandler
 {
 public:
@@ -1753,6 +1795,7 @@ public:
 	QString errorString() const { return QString(callbackQXmlErrorHandler_ErrorString(const_cast<MyQXmlErrorHandler*>(this))); };
 	bool fatalError(const QXmlParseException & exception) { return callbackQXmlErrorHandler_FatalError(this, const_cast<QXmlParseException*>(&exception)) != 0; };
 	bool warning(const QXmlParseException & exception) { return callbackQXmlErrorHandler_Warning(this, const_cast<QXmlParseException*>(&exception)) != 0; };
+	 ~MyQXmlErrorHandler() { callbackQXmlErrorHandler_DestroyQXmlErrorHandler(this); };
 };
 
 char QXmlErrorHandler_Error(void* ptr, void* exception)
@@ -1780,6 +1823,11 @@ void QXmlErrorHandler_DestroyQXmlErrorHandler(void* ptr)
 	static_cast<QXmlErrorHandler*>(ptr)->~QXmlErrorHandler();
 }
 
+void QXmlErrorHandler_DestroyQXmlErrorHandlerDefault(void* ptr)
+{
+
+}
+
 class MyQXmlInputSource: public QXmlInputSource
 {
 public:
@@ -1792,6 +1840,7 @@ public:
 	void reset() { callbackQXmlInputSource_Reset(this); };
 	void setData(const QByteArray & dat) { callbackQXmlInputSource_SetData2(this, const_cast<char*>(dat.toHex().constData())); };
 	void setData(const QString & dat) { callbackQXmlInputSource_SetData(this, const_cast<char*>(dat.toUtf8().constData())); };
+	 ~MyQXmlInputSource() { callbackQXmlInputSource_DestroyQXmlInputSource(this); };
 };
 
 void* QXmlInputSource_NewQXmlInputSource()
@@ -1873,6 +1922,11 @@ void QXmlInputSource_DestroyQXmlInputSource(void* ptr)
 	static_cast<QXmlInputSource*>(ptr)->~QXmlInputSource();
 }
 
+void QXmlInputSource_DestroyQXmlInputSourceDefault(void* ptr)
+{
+
+}
+
 unsigned short QXmlInputSource_QXmlInputSource_EndOfData()
 {
 	return QXmlInputSource::EndOfData;
@@ -1894,6 +1948,7 @@ public:
 	bool startCDATA() { return callbackQXmlLexicalHandler_StartCDATA(this) != 0; };
 	bool startDTD(const QString & name, const QString & publicId, const QString & systemId) { return callbackQXmlLexicalHandler_StartDTD(this, const_cast<char*>(name.toUtf8().constData()), const_cast<char*>(publicId.toUtf8().constData()), const_cast<char*>(systemId.toUtf8().constData())) != 0; };
 	bool startEntity(const QString & name) { return callbackQXmlLexicalHandler_StartEntity(this, const_cast<char*>(name.toUtf8().constData())) != 0; };
+	 ~MyQXmlLexicalHandler() { callbackQXmlLexicalHandler_DestroyQXmlLexicalHandler(this); };
 };
 
 char QXmlLexicalHandler_Comment(void* ptr, char* ch)
@@ -1941,12 +1996,18 @@ void QXmlLexicalHandler_DestroyQXmlLexicalHandler(void* ptr)
 	static_cast<QXmlLexicalHandler*>(ptr)->~QXmlLexicalHandler();
 }
 
+void QXmlLexicalHandler_DestroyQXmlLexicalHandlerDefault(void* ptr)
+{
+
+}
+
 class MyQXmlLocator: public QXmlLocator
 {
 public:
 	MyQXmlLocator() : QXmlLocator() {};
 	int columnNumber() const { return callbackQXmlLocator_ColumnNumber(const_cast<MyQXmlLocator*>(this)); };
 	int lineNumber() const { return callbackQXmlLocator_LineNumber(const_cast<MyQXmlLocator*>(this)); };
+	 ~MyQXmlLocator() { callbackQXmlLocator_DestroyQXmlLocator(this); };
 };
 
 void* QXmlLocator_NewQXmlLocator()
@@ -1967,6 +2028,11 @@ int QXmlLocator_LineNumber(void* ptr)
 void QXmlLocator_DestroyQXmlLocator(void* ptr)
 {
 	static_cast<QXmlLocator*>(ptr)->~QXmlLocator();
+}
+
+void QXmlLocator_DestroyQXmlLocatorDefault(void* ptr)
+{
+
 }
 
 void* QXmlNamespaceSupport_NewQXmlNamespaceSupport()
@@ -2091,6 +2157,7 @@ public:
 	void setFeature(const QString & name, bool value) { callbackQXmlReader_SetFeature(this, const_cast<char*>(name.toUtf8().constData()), value); };
 	void setLexicalHandler(QXmlLexicalHandler * handler) { callbackQXmlReader_SetLexicalHandler(this, handler); };
 	void setProperty(const QString & name, void * value) { callbackQXmlReader_SetProperty(this, const_cast<char*>(name.toUtf8().constData()), value); };
+	 ~MyQXmlReader() { callbackQXmlReader_DestroyQXmlReader(this); };
 };
 
 void* QXmlReader_DTDHandler(void* ptr)
@@ -2193,6 +2260,11 @@ void QXmlReader_DestroyQXmlReader(void* ptr)
 	static_cast<QXmlReader*>(ptr)->~QXmlReader();
 }
 
+void QXmlReader_DestroyQXmlReaderDefault(void* ptr)
+{
+
+}
+
 class MyQXmlSimpleReader: public QXmlSimpleReader
 {
 public:
@@ -2219,6 +2291,7 @@ public:
 	void setFeature(const QString & name, bool enable) { callbackQXmlSimpleReader_SetFeature(this, const_cast<char*>(name.toUtf8().constData()), enable); };
 	void setLexicalHandler(QXmlLexicalHandler * handler) { callbackQXmlSimpleReader_SetLexicalHandler(this, handler); };
 	void setProperty(const QString & name, void * value) { callbackQXmlSimpleReader_SetProperty(this, const_cast<char*>(name.toUtf8().constData()), value); };
+	 ~MyQXmlSimpleReader() { callbackQXmlSimpleReader_DestroyQXmlSimpleReader(this); };
 };
 
 void* QXmlSimpleReader_DTDHandler(void* ptr)
@@ -2449,5 +2522,10 @@ void QXmlSimpleReader_SetPropertyDefault(void* ptr, char* name, void* value)
 void QXmlSimpleReader_DestroyQXmlSimpleReader(void* ptr)
 {
 	static_cast<QXmlSimpleReader*>(ptr)->~QXmlSimpleReader();
+}
+
+void QXmlSimpleReader_DestroyQXmlSimpleReaderDefault(void* ptr)
+{
+
 }
 

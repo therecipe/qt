@@ -2250,6 +2250,7 @@ public:
 	QPrinter::PrinterState printerState() const { return static_cast<QPrinter::PrinterState>(callbackQPrintEngine_PrinterState(const_cast<MyQPrintEngine*>(this))); };
 	QVariant property(QPrintEngine::PrintEnginePropertyKey key) const { return *static_cast<QVariant*>(callbackQPrintEngine_Property(const_cast<MyQPrintEngine*>(this), key)); };
 	void setProperty(QPrintEngine::PrintEnginePropertyKey key, const QVariant & value) { callbackQPrintEngine_SetProperty(this, key, const_cast<QVariant*>(&value)); };
+	 ~MyQPrintEngine() { callbackQPrintEngine_DestroyQPrintEngine(this); };
 };
 
 char QPrintEngine_Abort(void* ptr)
@@ -2285,6 +2286,11 @@ void QPrintEngine_SetProperty(void* ptr, long long key, void* value)
 void QPrintEngine_DestroyQPrintEngine(void* ptr)
 {
 	static_cast<QPrintEngine*>(ptr)->~QPrintEngine();
+}
+
+void QPrintEngine_DestroyQPrintEngineDefault(void* ptr)
+{
+
 }
 
 class MyQPrintPreviewDialog: public QPrintPreviewDialog

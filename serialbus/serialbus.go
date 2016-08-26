@@ -3880,11 +3880,50 @@ func (ptr *QModbusPdu) Size() int16 {
 	return 0
 }
 
+//export callbackQModbusPdu_DestroyQModbusPdu
+func callbackQModbusPdu_DestroyQModbusPdu(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QModbusPdu::~QModbusPdu")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusPdu::~QModbusPdu"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQModbusPduFromPointer(ptr).DestroyQModbusPduDefault()
+	}
+}
+
+func (ptr *QModbusPdu) ConnectDestroyQModbusPdu(f func()) {
+	defer qt.Recovering("connect QModbusPdu::~QModbusPdu")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusPdu::~QModbusPdu", f)
+	}
+}
+
+func (ptr *QModbusPdu) DisconnectDestroyQModbusPdu() {
+	defer qt.Recovering("disconnect QModbusPdu::~QModbusPdu")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusPdu::~QModbusPdu")
+	}
+}
+
 func (ptr *QModbusPdu) DestroyQModbusPdu() {
 	defer qt.Recovering("QModbusPdu::~QModbusPdu")
 
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPdu(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
+	defer qt.Recovering("QModbusPdu::~QModbusPdu")
+
+	if ptr.Pointer() != nil {
+		C.QModbusPdu_DestroyQModbusPduDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

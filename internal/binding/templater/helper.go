@@ -65,7 +65,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 	}
 
 	if Minimal {
-		return f.Export || f.Meta == parser.DESTRUCTOR || f.Fullname == "QObject::destroyed"
+		return f.Export || f.Meta == parser.DESTRUCTOR || f.Fullname == "QObject::destroyed" || strings.HasPrefix(f.Name, parser.TILDE)
 	}
 
 	return true
@@ -372,9 +372,9 @@ func isGeneric(f *parser.Function) bool {
 	return false
 }
 
-func needsCallbackFunctions(class *parser.Class) bool {
+func classNeedsCallbackFunctions(class *parser.Class) bool {
 	for _, function := range class.Functions {
-		if (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT) && !(function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "~")) {
+		if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
 			return true
 		}
 	}

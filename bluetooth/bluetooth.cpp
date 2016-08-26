@@ -458,6 +458,7 @@ public:
 	void Signal_PairingDisplayConfirmation(const QBluetoothAddress & address, QString pin) { callbackQBluetoothLocalDevice_PairingDisplayConfirmation(this, const_cast<QBluetoothAddress*>(&address), const_cast<char*>(pin.toUtf8().constData())); };
 	void Signal_PairingDisplayPinCode(const QBluetoothAddress & address, QString pin) { callbackQBluetoothLocalDevice_PairingDisplayPinCode(this, const_cast<QBluetoothAddress*>(&address), const_cast<char*>(pin.toUtf8().constData())); };
 	void Signal_PairingFinished(const QBluetoothAddress & address, QBluetoothLocalDevice::Pairing pairing) { callbackQBluetoothLocalDevice_PairingFinished(this, const_cast<QBluetoothAddress*>(&address), pairing); };
+	 ~MyQBluetoothLocalDevice() { callbackQBluetoothLocalDevice_DestroyQBluetoothLocalDevice(this); };
 	void pairingConfirmation(bool accept) { callbackQBluetoothLocalDevice_PairingConfirmation(this, accept); };
 	void timerEvent(QTimerEvent * event) { callbackQBluetoothLocalDevice_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQBluetoothLocalDevice_ChildEvent(this, event); };
@@ -583,6 +584,11 @@ char QBluetoothLocalDevice_IsValid(void* ptr)
 void QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(void* ptr)
 {
 	static_cast<QBluetoothLocalDevice*>(ptr)->~QBluetoothLocalDevice();
+}
+
+void QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(void* ptr)
+{
+
 }
 
 void* QBluetoothLocalDevice_NewQBluetoothLocalDevice(void* parent)
@@ -1329,6 +1335,7 @@ public:
 	bool canReadLine() const { return callbackQBluetoothSocket_CanReadLine(const_cast<MyQBluetoothSocket*>(this)) != 0; };
 	void close() { callbackQBluetoothSocket_Close(this); };
 	qint64 writeData(const char * data, qint64 maxSize) { return callbackQBluetoothSocket_WriteData(this, const_cast<char*>(QString(data).toUtf8().constData()), maxSize); };
+	 ~MyQBluetoothSocket() { callbackQBluetoothSocket_DestroyQBluetoothSocket(this); };
 	bool atEnd() const { return callbackQBluetoothSocket_AtEnd(const_cast<MyQBluetoothSocket*>(this)) != 0; };
 	bool open(QIODevice::OpenMode mode) { return callbackQBluetoothSocket_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQBluetoothSocket_Pos(const_cast<MyQBluetoothSocket*>(this)); };
@@ -1577,6 +1584,11 @@ long long QBluetoothSocket_WriteDataDefault(void* ptr, char* data, long long max
 void QBluetoothSocket_DestroyQBluetoothSocket(void* ptr)
 {
 	static_cast<QBluetoothSocket*>(ptr)->~QBluetoothSocket();
+}
+
+void QBluetoothSocket_DestroyQBluetoothSocketDefault(void* ptr)
+{
+
 }
 
 char QBluetoothSocket_AtEnd(void* ptr)

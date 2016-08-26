@@ -47,14 +47,31 @@
 #include <QUrl>
 #include <QVariant>
 
+class MyQJSEngine: public QJSEngine
+{
+public:
+	MyQJSEngine() : QJSEngine() {};
+	MyQJSEngine(QObject *parent) : QJSEngine(parent) {};
+	 ~MyQJSEngine() { callbackQJSEngine_DestroyQJSEngine(this); };
+	void timerEvent(QTimerEvent * event) { callbackQJSEngine_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQJSEngine_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQJSEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQJSEngine_CustomEvent(this, event); };
+	void deleteLater() { callbackQJSEngine_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQJSEngine_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQJSEngine_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQJSEngine_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQJSEngine_MetaObject(const_cast<MyQJSEngine*>(this))); };
+};
+
 void* QJSEngine_NewQJSEngine()
 {
-	return new QJSEngine();
+	return new MyQJSEngine();
 }
 
 void* QJSEngine_NewQJSEngine2(void* parent)
 {
-	return new QJSEngine(static_cast<QObject*>(parent));
+	return new MyQJSEngine(static_cast<QObject*>(parent));
 }
 
 void QJSEngine_CollectGarbage(void* ptr)
@@ -95,6 +112,11 @@ void* QJSEngine_NewQObject(void* ptr, void* object)
 void QJSEngine_DestroyQJSEngine(void* ptr)
 {
 	static_cast<QJSEngine*>(ptr)->~QJSEngine();
+}
+
+void QJSEngine_DestroyQJSEngineDefault(void* ptr)
+{
+
 }
 
 void QJSEngine_TimerEvent(void* ptr, void* event)
@@ -407,6 +429,7 @@ class MyQQmlAbstractUrlInterceptor: public QQmlAbstractUrlInterceptor
 public:
 	MyQQmlAbstractUrlInterceptor() : QQmlAbstractUrlInterceptor() {};
 	QUrl intercept(const QUrl & url, QQmlAbstractUrlInterceptor::DataType ty) { return *static_cast<QUrl*>(callbackQQmlAbstractUrlInterceptor_Intercept(this, const_cast<QUrl*>(&url), ty)); };
+	 ~MyQQmlAbstractUrlInterceptor() { callbackQQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(this); };
 };
 
 void* QQmlAbstractUrlInterceptor_NewQQmlAbstractUrlInterceptor()
@@ -422,6 +445,11 @@ void* QQmlAbstractUrlInterceptor_Intercept(void* ptr, void* url, long long ty)
 void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(void* ptr)
 {
 	static_cast<QQmlAbstractUrlInterceptor*>(ptr)->~QQmlAbstractUrlInterceptor();
+}
+
+void QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(void* ptr)
+{
+
 }
 
 class MyQQmlApplicationEngine: public QQmlApplicationEngine
@@ -601,6 +629,7 @@ public:
 	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponent_ProgressChanged(this, progress); };
 	void setData(const QByteArray & data, const QUrl & url) { callbackQQmlComponent_SetData(this, const_cast<char*>(data.toHex().constData()), const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponent_StatusChanged(this, status); };
+	 ~MyQQmlComponent() { callbackQQmlComponent_DestroyQQmlComponent(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlComponent_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQmlComponent_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQmlComponent_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -762,6 +791,11 @@ void QQmlComponent_DestroyQQmlComponent(void* ptr)
 	static_cast<QQmlComponent*>(ptr)->~QQmlComponent();
 }
 
+void QQmlComponent_DestroyQQmlComponentDefault(void* ptr)
+{
+
+}
+
 void QQmlComponent_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQmlComponent*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -852,14 +886,31 @@ void* QQmlComponent_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QQmlComponent*>(ptr)->QQmlComponent::metaObject());
 }
 
+class MyQQmlContext: public QQmlContext
+{
+public:
+	MyQQmlContext(QQmlContext *parentContext, QObject *parent) : QQmlContext(parentContext, parent) {};
+	MyQQmlContext(QQmlEngine *engine, QObject *parent) : QQmlContext(engine, parent) {};
+	 ~MyQQmlContext() { callbackQQmlContext_DestroyQQmlContext(this); };
+	void timerEvent(QTimerEvent * event) { callbackQQmlContext_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQQmlContext_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQQmlContext_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQQmlContext_CustomEvent(this, event); };
+	void deleteLater() { callbackQQmlContext_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQQmlContext_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQQmlContext_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQQmlContext_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlContext_MetaObject(const_cast<MyQQmlContext*>(this))); };
+};
+
 void* QQmlContext_NewQQmlContext2(void* parentContext, void* parent)
 {
-	return new QQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QObject*>(parent));
+	return new MyQQmlContext(static_cast<QQmlContext*>(parentContext), static_cast<QObject*>(parent));
 }
 
 void* QQmlContext_NewQQmlContext(void* engine, void* parent)
 {
-	return new QQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
+	return new MyQQmlContext(static_cast<QQmlEngine*>(engine), static_cast<QObject*>(parent));
 }
 
 void* QQmlContext_BaseUrl(void* ptr)
@@ -925,6 +976,11 @@ void QQmlContext_SetContextProperty2(void* ptr, char* name, void* value)
 void QQmlContext_DestroyQQmlContext(void* ptr)
 {
 	static_cast<QQmlContext*>(ptr)->~QQmlContext();
+}
+
+void QQmlContext_DestroyQQmlContextDefault(void* ptr)
+{
+
 }
 
 void QQmlContext_TimerEvent(void* ptr, void* event)
@@ -1023,6 +1079,7 @@ public:
 	MyQQmlEngine(QObject *parent) : QQmlEngine(parent) {};
 	bool event(QEvent * e) { return callbackQQmlEngine_Event(this, e) != 0; };
 	void Signal_Quit() { callbackQQmlEngine_Quit(this); };
+	 ~MyQQmlEngine() { callbackQQmlEngine_DestroyQQmlEngine(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlEngine_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQmlEngine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQmlEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1203,6 +1260,11 @@ void QQmlEngine_DestroyQQmlEngine(void* ptr)
 	static_cast<QQmlEngine*>(ptr)->~QQmlEngine();
 }
 
+void QQmlEngine_DestroyQQmlEngineDefault(void* ptr)
+{
+
+}
+
 void QQmlEngine_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQmlEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1360,6 +1422,7 @@ public:
 	MyQQmlExpression(QQmlContext *ctxt, QObject *scope, const QString &expression, QObject *parent) : QQmlExpression(ctxt, scope, expression, parent) {};
 	MyQQmlExpression(const QQmlScriptString &script, QQmlContext *ctxt, QObject *scope, QObject *parent) : QQmlExpression(script, ctxt, scope, parent) {};
 	void Signal_ValueChanged() { callbackQQmlExpression_ValueChanged(this); };
+	 ~MyQQmlExpression() { callbackQQmlExpression_DestroyQQmlExpression(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlExpression_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQmlExpression_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQmlExpression_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1479,6 +1542,11 @@ void QQmlExpression_ValueChanged(void* ptr)
 void QQmlExpression_DestroyQQmlExpression(void* ptr)
 {
 	static_cast<QQmlExpression*>(ptr)->~QQmlExpression();
+}
+
+void QQmlExpression_DestroyQQmlExpressionDefault(void* ptr)
+{
+
 }
 
 void QQmlExpression_TimerEvent(void* ptr, void* event)
@@ -2039,6 +2107,7 @@ class MyQQmlNetworkAccessManagerFactory: public QQmlNetworkAccessManagerFactory
 {
 public:
 	QNetworkAccessManager * create(QObject * parent) { return static_cast<QNetworkAccessManager*>(callbackQQmlNetworkAccessManagerFactory_Create(this, parent)); };
+	 ~MyQQmlNetworkAccessManagerFactory() { callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(this); };
 };
 
 void* QQmlNetworkAccessManagerFactory_Create(void* ptr, void* parent)
@@ -2049,6 +2118,11 @@ void* QQmlNetworkAccessManagerFactory_Create(void* ptr, void* parent)
 void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(void* ptr)
 {
 	static_cast<QQmlNetworkAccessManagerFactory*>(ptr)->~QQmlNetworkAccessManagerFactory();
+}
+
+void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactoryDefault(void* ptr)
+{
+
 }
 
 class MyQQmlParserStatus: public QQmlParserStatus
@@ -2249,6 +2323,7 @@ public:
 	MyQQmlPropertyMap(QObject *parent) : QQmlPropertyMap(parent) {};
 	QVariant updateValue(const QString & key, const QVariant & input) { return *static_cast<QVariant*>(callbackQQmlPropertyMap_UpdateValue(this, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&input))); };
 	void Signal_ValueChanged(const QString & key, const QVariant & value) { callbackQQmlPropertyMap_ValueChanged(this, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
+	 ~MyQQmlPropertyMap() { callbackQQmlPropertyMap_DestroyQQmlPropertyMap(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlPropertyMap_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQmlPropertyMap_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQmlPropertyMap_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -2333,6 +2408,11 @@ void QQmlPropertyMap_ValueChanged(void* ptr, char* key, void* value)
 void QQmlPropertyMap_DestroyQQmlPropertyMap(void* ptr)
 {
 	static_cast<QQmlPropertyMap*>(ptr)->~QQmlPropertyMap();
+}
+
+void QQmlPropertyMap_DestroyQQmlPropertyMapDefault(void* ptr)
+{
+
 }
 
 void QQmlPropertyMap_TimerEvent(void* ptr, void* event)
@@ -2430,6 +2510,7 @@ class MyQQmlPropertyValueSource: public QQmlPropertyValueSource
 public:
 	MyQQmlPropertyValueSource() : QQmlPropertyValueSource() {};
 	void setTarget(const QQmlProperty & property) { callbackQQmlPropertyValueSource_SetTarget(this, const_cast<QQmlProperty*>(&property)); };
+	 ~MyQQmlPropertyValueSource() { callbackQQmlPropertyValueSource_DestroyQQmlPropertyValueSource(this); };
 };
 
 void* QQmlPropertyValueSource_NewQQmlPropertyValueSource()
@@ -2445,6 +2526,11 @@ void QQmlPropertyValueSource_SetTarget(void* ptr, void* property)
 void QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(void* ptr)
 {
 	static_cast<QQmlPropertyValueSource*>(ptr)->~QQmlPropertyValueSource();
+}
+
+void QQmlPropertyValueSource_DestroyQQmlPropertyValueSourceDefault(void* ptr)
+{
+
 }
 
 void* QQmlScriptString_NewQQmlScriptString()

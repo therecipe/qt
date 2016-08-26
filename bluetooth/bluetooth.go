@@ -1730,11 +1730,50 @@ func (ptr *QBluetoothLocalDevice) IsValid() bool {
 	return false
 }
 
+//export callbackQBluetoothLocalDevice_DestroyQBluetoothLocalDevice
+func callbackQBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QBluetoothLocalDevice::~QBluetoothLocalDevice")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothLocalDevice::~QBluetoothLocalDevice"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQBluetoothLocalDeviceFromPointer(ptr).DestroyQBluetoothLocalDeviceDefault()
+	}
+}
+
+func (ptr *QBluetoothLocalDevice) ConnectDestroyQBluetoothLocalDevice(f func()) {
+	defer qt.Recovering("connect QBluetoothLocalDevice::~QBluetoothLocalDevice")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothLocalDevice::~QBluetoothLocalDevice", f)
+	}
+}
+
+func (ptr *QBluetoothLocalDevice) DisconnectDestroyQBluetoothLocalDevice() {
+	defer qt.Recovering("disconnect QBluetoothLocalDevice::~QBluetoothLocalDevice")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothLocalDevice::~QBluetoothLocalDevice")
+	}
+}
+
 func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDevice() {
 	defer qt.Recovering("QBluetoothLocalDevice::~QBluetoothLocalDevice")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDevice(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QBluetoothLocalDevice) DestroyQBluetoothLocalDeviceDefault() {
+	defer qt.Recovering("QBluetoothLocalDevice::~QBluetoothLocalDevice")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothLocalDevice_DestroyQBluetoothLocalDeviceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -4722,11 +4761,50 @@ func (ptr *QBluetoothSocket) WriteDataDefault(data string, maxSize int64) int64 
 	return 0
 }
 
+//export callbackQBluetoothSocket_DestroyQBluetoothSocket
+func callbackQBluetoothSocket_DestroyQBluetoothSocket(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QBluetoothSocket::~QBluetoothSocket")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothSocket::~QBluetoothSocket"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQBluetoothSocketFromPointer(ptr).DestroyQBluetoothSocketDefault()
+	}
+}
+
+func (ptr *QBluetoothSocket) ConnectDestroyQBluetoothSocket(f func()) {
+	defer qt.Recovering("connect QBluetoothSocket::~QBluetoothSocket")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothSocket::~QBluetoothSocket", f)
+	}
+}
+
+func (ptr *QBluetoothSocket) DisconnectDestroyQBluetoothSocket() {
+	defer qt.Recovering("disconnect QBluetoothSocket::~QBluetoothSocket")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothSocket::~QBluetoothSocket")
+	}
+}
+
 func (ptr *QBluetoothSocket) DestroyQBluetoothSocket() {
 	defer qt.Recovering("QBluetoothSocket::~QBluetoothSocket")
 
 	if ptr.Pointer() != nil {
 		C.QBluetoothSocket_DestroyQBluetoothSocket(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QBluetoothSocket) DestroyQBluetoothSocketDefault() {
+	defer qt.Recovering("QBluetoothSocket::~QBluetoothSocket")
+
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_DestroyQBluetoothSocketDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

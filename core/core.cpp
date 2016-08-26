@@ -191,6 +191,7 @@ public:
 	void updateCurrentTime(int currentTime) { callbackQAbstractAnimation_UpdateCurrentTime(this, currentTime); };
 	void updateDirection(QAbstractAnimation::Direction direction) { callbackQAbstractAnimation_UpdateDirection(this, direction); };
 	void updateState(QAbstractAnimation::State newState, QAbstractAnimation::State oldState) { callbackQAbstractAnimation_UpdateState(this, newState, oldState); };
+	 ~MyQAbstractAnimation() { callbackQAbstractAnimation_DestroyQAbstractAnimation(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractAnimation_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractAnimation_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractAnimation_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -389,6 +390,11 @@ void QAbstractAnimation_UpdateStateDefault(void* ptr, long long newState, long l
 void QAbstractAnimation_DestroyQAbstractAnimation(void* ptr)
 {
 	static_cast<QAbstractAnimation*>(ptr)->~QAbstractAnimation();
+}
+
+void QAbstractAnimation_DestroyQAbstractAnimationDefault(void* ptr)
+{
+
 }
 
 void QAbstractAnimation_TimerEvent(void* ptr, void* event)
@@ -768,6 +774,7 @@ public:
 	bool submit() { return callbackQAbstractItemModel_Submit(this) != 0; };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDragActions(const_cast<MyQAbstractItemModel*>(this))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQAbstractItemModel_SupportedDropActions(const_cast<MyQAbstractItemModel*>(this))); };
+	 ~MyQAbstractItemModel() { callbackQAbstractItemModel_DestroyQAbstractItemModel(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractItemModel_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractItemModel_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractItemModel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1336,6 +1343,11 @@ void QAbstractItemModel_DestroyQAbstractItemModel(void* ptr)
 	static_cast<QAbstractItemModel*>(ptr)->~QAbstractItemModel();
 }
 
+void QAbstractItemModel_DestroyQAbstractItemModelDefault(void* ptr)
+{
+
+}
+
 void QAbstractItemModel_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QAbstractItemModel*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -1872,6 +1884,7 @@ class MyQAbstractNativeEventFilter: public QAbstractNativeEventFilter
 public:
 	MyQAbstractNativeEventFilter() : QAbstractNativeEventFilter() {};
 	bool nativeEventFilter(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractNativeEventFilter_NativeEventFilter(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	 ~MyQAbstractNativeEventFilter() { callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(this); };
 };
 
 void* QAbstractNativeEventFilter_NewQAbstractNativeEventFilter()
@@ -1887,6 +1900,11 @@ char QAbstractNativeEventFilter_NativeEventFilter(void* ptr, char* eventType, vo
 void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(void* ptr)
 {
 	static_cast<QAbstractNativeEventFilter*>(ptr)->~QAbstractNativeEventFilter();
+}
+
+void QAbstractNativeEventFilter_DestroyQAbstractNativeEventFilterDefault(void* ptr)
+{
+
 }
 
 class MyQAbstractProxyModel: public QAbstractProxyModel
@@ -3006,6 +3024,7 @@ public:
 	void Signal_TargetStateChanged() { callbackQAbstractTransition_TargetStateChanged(this); };
 	void Signal_TargetStatesChanged() { callbackQAbstractTransition_TargetStatesChanged(this); };
 	void Signal_Triggered() { callbackQAbstractTransition_Triggered(this); };
+	 ~MyQAbstractTransition() { callbackQAbstractTransition_DestroyQAbstractTransition(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTransition_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractTransition_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractTransition_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -3114,6 +3133,11 @@ void QAbstractTransition_DisconnectTriggered(void* ptr)
 void QAbstractTransition_DestroyQAbstractTransition(void* ptr)
 {
 	static_cast<QAbstractTransition*>(ptr)->~QAbstractTransition();
+}
+
+void QAbstractTransition_DestroyQAbstractTransitionDefault(void* ptr)
+{
+
 }
 
 void QAbstractTransition_TimerEvent(void* ptr, void* event)
@@ -6129,9 +6153,16 @@ void QElapsedTimer_Start(void* ptr)
 	static_cast<QElapsedTimer*>(ptr)->start();
 }
 
+class MyQEvent: public QEvent
+{
+public:
+	MyQEvent(Type type) : QEvent(type) {};
+	 ~MyQEvent() { callbackQEvent_DestroyQEvent(this); };
+};
+
 void* QEvent_NewQEvent(long long ty)
 {
-	return new QEvent(static_cast<QEvent::Type>(ty));
+	return new MyQEvent(static_cast<QEvent::Type>(ty));
 }
 
 void QEvent_Accept(void* ptr)
@@ -6172,6 +6203,11 @@ long long QEvent_Type(void* ptr)
 void QEvent_DestroyQEvent(void* ptr)
 {
 	static_cast<QEvent*>(ptr)->~QEvent();
+}
+
+void QEvent_DestroyQEventDefault(void* ptr)
+{
+
 }
 
 unsigned short QEvent_T(void* ptr)
@@ -8263,6 +8299,7 @@ public:
 	bool waitForBytesWritten(int msecs) { return callbackQIODevice_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForReadyRead(int msecs) { return callbackQIODevice_WaitForReadyRead(this, msecs) != 0; };
 	qint64 writeData(const char * data, qint64 maxSize) { return callbackQIODevice_WriteData(this, const_cast<char*>(QString(data).toUtf8().constData()), maxSize); };
+	 ~MyQIODevice() { callbackQIODevice_DestroyQIODevice(this); };
 	void timerEvent(QTimerEvent * event) { callbackQIODevice_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQIODevice_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQIODevice_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -8672,6 +8709,11 @@ long long QIODevice_WriteData(void* ptr, char* data, long long maxSize)
 void QIODevice_DestroyQIODevice(void* ptr)
 {
 	static_cast<QIODevice*>(ptr)->~QIODevice();
+}
+
+void QIODevice_DestroyQIODeviceDefault(void* ptr)
+{
+
 }
 
 void QIODevice_TimerEvent(void* ptr, void* event)
@@ -9311,6 +9353,7 @@ public:
 	void select(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_Select(this, const_cast<QModelIndex*>(&index), command); };
 	void Signal_SelectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQItemSelectionModel_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setCurrentIndex(const QModelIndex & index, QItemSelectionModel::SelectionFlags command) { callbackQItemSelectionModel_SetCurrentIndex(this, const_cast<QModelIndex*>(&index), command); };
+	 ~MyQItemSelectionModel() { callbackQItemSelectionModel_DestroyQItemSelectionModel(this); };
 	void timerEvent(QTimerEvent * event) { callbackQItemSelectionModel_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQItemSelectionModel_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQItemSelectionModel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -9535,6 +9578,11 @@ void QItemSelectionModel_SetModel(void* ptr, void* model)
 void QItemSelectionModel_DestroyQItemSelectionModel(void* ptr)
 {
 	static_cast<QItemSelectionModel*>(ptr)->~QItemSelectionModel();
+}
+
+void QItemSelectionModel_DestroyQItemSelectionModelDefault(void* ptr)
+{
+
 }
 
 void QItemSelectionModel_TimerEvent(void* ptr, void* event)
@@ -12559,6 +12607,7 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQObject_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQObject_MetaObject(const_cast<MyQObject*>(this))); };
 	void Signal_ObjectNameChanged(const QString & objectName) { callbackQObject_ObjectNameChanged(this, const_cast<char*>(objectName.toUtf8().constData())); };
+	 ~MyQObject() { callbackQObject_DestroyQObject(this); };
 };
 
 void QObject_InstallEventFilter(void* ptr, void* filterObj)
@@ -12824,6 +12873,11 @@ char* QObject_QObject_Tr(char* sourceText, char* disambiguation, int n)
 void QObject_DestroyQObject(void* ptr)
 {
 	static_cast<QObject*>(ptr)->~QObject();
+}
+
+void QObject_DestroyQObjectDefault(void* ptr)
+{
+
 }
 
 void* QObjectCleanupHandler_NewQObjectCleanupHandler()
@@ -15179,12 +15233,18 @@ class MyQRunnable: public QRunnable
 {
 public:
 	MyQRunnable() : QRunnable() {};
+	 ~MyQRunnable() { callbackQRunnable_DestroyQRunnable(this); };
 	void run() { callbackQRunnable_Run(this); };
 };
 
 void QRunnable_DestroyQRunnable(void* ptr)
 {
 	static_cast<QRunnable*>(ptr)->~QRunnable();
+}
+
+void QRunnable_DestroyQRunnableDefault(void* ptr)
+{
+
 }
 
 void* QRunnable_NewQRunnable()
@@ -20202,6 +20262,7 @@ class MyQTextCodec: public QTextCodec
 public:
 	int mibEnum() const { return callbackQTextCodec_MibEnum(const_cast<MyQTextCodec*>(this)); };
 	QByteArray name() const { return QByteArray::fromHex(QString(callbackQTextCodec_Name(const_cast<MyQTextCodec*>(this))).toUtf8()); };
+	 ~MyQTextCodec() { callbackQTextCodec_DestroyQTextCodec(this); };
 };
 
 char QTextCodec_CanEncode(void* ptr, void* ch)
@@ -20299,6 +20360,11 @@ void QTextCodec_DestroyQTextCodec(void* ptr)
 	static_cast<QTextCodec*>(ptr)->~QTextCodec();
 }
 
+void QTextCodec_DestroyQTextCodecDefault(void* ptr)
+{
+
+}
+
 char* QTextDecoder_ToUnicode(void* ptr, char* chars, int len)
 {
 	return const_cast<char*>(static_cast<QTextDecoder*>(ptr)->toUnicode(const_cast<const char*>(chars), len).toUtf8().constData());
@@ -20354,29 +20420,40 @@ void QTextEncoder_DestroyQTextEncoder(void* ptr)
 	static_cast<QTextEncoder*>(ptr)->~QTextEncoder();
 }
 
+class MyQTextStream: public QTextStream
+{
+public:
+	MyQTextStream() : QTextStream() {};
+	MyQTextStream(QByteArray *array, QIODevice::OpenMode openMode) : QTextStream(array, openMode) {};
+	MyQTextStream(QIODevice *device) : QTextStream(device) {};
+	MyQTextStream(QString *string, QIODevice::OpenMode openMode) : QTextStream(string, openMode) {};
+	MyQTextStream(const QByteArray &array, QIODevice::OpenMode openMode) : QTextStream(array, openMode) {};
+	 ~MyQTextStream() { callbackQTextStream_DestroyQTextStream(this); };
+};
+
 void* QTextStream_NewQTextStream()
 {
-	return new QTextStream();
+	return new MyQTextStream();
 }
 
 void* QTextStream_NewQTextStream5(char* array, long long openMode)
 {
-	return new QTextStream(new QByteArray(QByteArray::fromHex(QString(array).toUtf8())), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new MyQTextStream(new QByteArray(QByteArray::fromHex(QString(array).toUtf8())), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 void* QTextStream_NewQTextStream2(void* device)
 {
-	return new QTextStream(static_cast<QIODevice*>(device));
+	return new MyQTextStream(static_cast<QIODevice*>(device));
 }
 
 void* QTextStream_NewQTextStream4(char* stri, long long openMode)
 {
-	return new QTextStream(new QString(stri), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new MyQTextStream(new QString(stri), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 void* QTextStream_NewQTextStream6(char* array, long long openMode)
 {
-	return new QTextStream(QByteArray::fromHex(QString(array).toUtf8()), static_cast<QIODevice::OpenModeFlag>(openMode));
+	return new MyQTextStream(QByteArray::fromHex(QString(array).toUtf8()), static_cast<QIODevice::OpenModeFlag>(openMode));
 }
 
 char QTextStream_AtEnd(void* ptr)
@@ -20577,6 +20654,11 @@ char* QTextStream_String(void* ptr)
 void QTextStream_DestroyQTextStream(void* ptr)
 {
 	static_cast<QTextStream*>(ptr)->~QTextStream();
+}
+
+void QTextStream_DestroyQTextStreamDefault(void* ptr)
+{
+
 }
 
 class MyQThread: public QThread
@@ -21121,6 +21203,7 @@ public:
 	void toggleDirection() { callbackQTimeLine_ToggleDirection(this); };
 	void Signal_ValueChanged(qreal value) { callbackQTimeLine_ValueChanged(this, value); };
 	qreal valueForTime(int msec) const { return callbackQTimeLine_ValueForTime(const_cast<MyQTimeLine*>(this), msec); };
+	 ~MyQTimeLine() { callbackQTimeLine_DestroyQTimeLine(this); };
 	void childEvent(QChildEvent * event) { callbackQTimeLine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTimeLine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTimeLine_CustomEvent(this, event); };
@@ -21339,6 +21422,11 @@ double QTimeLine_ValueForTimeDefault(void* ptr, int msec)
 void QTimeLine_DestroyQTimeLine(void* ptr)
 {
 	static_cast<QTimeLine*>(ptr)->~QTimeLine();
+}
+
+void QTimeLine_DestroyQTimeLineDefault(void* ptr)
+{
+
 }
 
 void QTimeLine_ChildEvent(void* ptr, void* event)
@@ -23389,6 +23477,7 @@ class MyQXmlStreamEntityResolver: public QXmlStreamEntityResolver
 {
 public:
 	QString resolveUndeclaredEntity(const QString & name) { return QString(callbackQXmlStreamEntityResolver_ResolveUndeclaredEntity(this, const_cast<char*>(name.toUtf8().constData()))); };
+	 ~MyQXmlStreamEntityResolver() { callbackQXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(this); };
 };
 
 char* QXmlStreamEntityResolver_ResolveUndeclaredEntity(void* ptr, char* name)
@@ -23404,6 +23493,11 @@ char* QXmlStreamEntityResolver_ResolveUndeclaredEntityDefault(void* ptr, char* n
 void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(void* ptr)
 {
 	static_cast<QXmlStreamEntityResolver*>(ptr)->~QXmlStreamEntityResolver();
+}
+
+void QXmlStreamEntityResolver_DestroyQXmlStreamEntityResolverDefault(void* ptr)
+{
+
 }
 
 void* QXmlStreamNamespaceDeclaration_NewQXmlStreamNamespaceDeclaration()

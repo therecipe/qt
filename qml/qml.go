@@ -160,11 +160,50 @@ func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
 	return nil
 }
 
+//export callbackQJSEngine_DestroyQJSEngine
+func callbackQJSEngine_DestroyQJSEngine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QJSEngine::~QJSEngine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::~QJSEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQJSEngineFromPointer(ptr).DestroyQJSEngineDefault()
+	}
+}
+
+func (ptr *QJSEngine) ConnectDestroyQJSEngine(f func()) {
+	defer qt.Recovering("connect QJSEngine::~QJSEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::~QJSEngine", f)
+	}
+}
+
+func (ptr *QJSEngine) DisconnectDestroyQJSEngine() {
+	defer qt.Recovering("disconnect QJSEngine::~QJSEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::~QJSEngine")
+	}
+}
+
 func (ptr *QJSEngine) DestroyQJSEngine() {
 	defer qt.Recovering("QJSEngine::~QJSEngine")
 
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QJSEngine) DestroyQJSEngineDefault() {
+	defer qt.Recovering("QJSEngine::~QJSEngine")
+
+	if ptr.Pointer() != nil {
+		C.QJSEngine_DestroyQJSEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -1163,11 +1202,50 @@ func (ptr *QQmlAbstractUrlInterceptor) Intercept(url core.QUrl_ITF, ty QQmlAbstr
 	return nil
 }
 
+//export callbackQQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor
+func callbackQQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlAbstractUrlInterceptorFromPointer(ptr).DestroyQQmlAbstractUrlInterceptorDefault()
+	}
+}
+
+func (ptr *QQmlAbstractUrlInterceptor) ConnectDestroyQQmlAbstractUrlInterceptor(f func()) {
+	defer qt.Recovering("connect QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor", f)
+	}
+}
+
+func (ptr *QQmlAbstractUrlInterceptor) DisconnectDestroyQQmlAbstractUrlInterceptor() {
+	defer qt.Recovering("disconnect QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
+	}
+}
+
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
 	defer qt.Recovering("QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
 
 	if ptr.Pointer() != nil {
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptorDefault() {
+	defer qt.Recovering("QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
+
+	if ptr.Pointer() != nil {
+		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -2349,11 +2427,50 @@ func (ptr *QQmlComponent) StatusChanged(status QQmlComponent__Status) {
 	}
 }
 
+//export callbackQQmlComponent_DestroyQQmlComponent
+func callbackQQmlComponent_DestroyQQmlComponent(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlComponent::~QQmlComponent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::~QQmlComponent"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlComponentFromPointer(ptr).DestroyQQmlComponentDefault()
+	}
+}
+
+func (ptr *QQmlComponent) ConnectDestroyQQmlComponent(f func()) {
+	defer qt.Recovering("connect QQmlComponent::~QQmlComponent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::~QQmlComponent", f)
+	}
+}
+
+func (ptr *QQmlComponent) DisconnectDestroyQQmlComponent() {
+	defer qt.Recovering("disconnect QQmlComponent::~QQmlComponent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::~QQmlComponent")
+	}
+}
+
 func (ptr *QQmlComponent) DestroyQQmlComponent() {
 	defer qt.Recovering("QQmlComponent::~QQmlComponent")
 
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlComponent) DestroyQQmlComponentDefault() {
+	defer qt.Recovering("QQmlComponent::~QQmlComponent")
+
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_DestroyQQmlComponentDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -2960,11 +3077,50 @@ func (ptr *QQmlContext) SetContextProperty2(name string, value core.QVariant_ITF
 	}
 }
 
+//export callbackQQmlContext_DestroyQQmlContext
+func callbackQQmlContext_DestroyQQmlContext(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlContext::~QQmlContext")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::~QQmlContext"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlContextFromPointer(ptr).DestroyQQmlContextDefault()
+	}
+}
+
+func (ptr *QQmlContext) ConnectDestroyQQmlContext(f func()) {
+	defer qt.Recovering("connect QQmlContext::~QQmlContext")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::~QQmlContext", f)
+	}
+}
+
+func (ptr *QQmlContext) DisconnectDestroyQQmlContext() {
+	defer qt.Recovering("disconnect QQmlContext::~QQmlContext")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::~QQmlContext")
+	}
+}
+
 func (ptr *QQmlContext) DestroyQQmlContext() {
 	defer qt.Recovering("QQmlContext::~QQmlContext")
 
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DestroyQQmlContext(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlContext) DestroyQQmlContextDefault() {
+	defer qt.Recovering("QQmlContext::~QQmlContext")
+
+	if ptr.Pointer() != nil {
+		C.QQmlContext_DestroyQQmlContextDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -3800,11 +3956,50 @@ func (ptr *QQmlEngine) TrimComponentCache() {
 	}
 }
 
+//export callbackQQmlEngine_DestroyQQmlEngine
+func callbackQQmlEngine_DestroyQQmlEngine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlEngine::~QQmlEngine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::~QQmlEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlEngineFromPointer(ptr).DestroyQQmlEngineDefault()
+	}
+}
+
+func (ptr *QQmlEngine) ConnectDestroyQQmlEngine(f func()) {
+	defer qt.Recovering("connect QQmlEngine::~QQmlEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::~QQmlEngine", f)
+	}
+}
+
+func (ptr *QQmlEngine) DisconnectDestroyQQmlEngine() {
+	defer qt.Recovering("disconnect QQmlEngine::~QQmlEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::~QQmlEngine")
+	}
+}
+
 func (ptr *QQmlEngine) DestroyQQmlEngine() {
 	defer qt.Recovering("QQmlEngine::~QQmlEngine")
 
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlEngine) DestroyQQmlEngineDefault() {
+	defer qt.Recovering("QQmlEngine::~QQmlEngine")
+
+	if ptr.Pointer() != nil {
+		C.QQmlEngine_DestroyQQmlEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -4605,11 +4800,50 @@ func (ptr *QQmlExpression) ValueChanged() {
 	}
 }
 
+//export callbackQQmlExpression_DestroyQQmlExpression
+func callbackQQmlExpression_DestroyQQmlExpression(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlExpression::~QQmlExpression")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::~QQmlExpression"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlExpressionFromPointer(ptr).DestroyQQmlExpressionDefault()
+	}
+}
+
+func (ptr *QQmlExpression) ConnectDestroyQQmlExpression(f func()) {
+	defer qt.Recovering("connect QQmlExpression::~QQmlExpression")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::~QQmlExpression", f)
+	}
+}
+
+func (ptr *QQmlExpression) DisconnectDestroyQQmlExpression() {
+	defer qt.Recovering("disconnect QQmlExpression::~QQmlExpression")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::~QQmlExpression")
+	}
+}
+
 func (ptr *QQmlExpression) DestroyQQmlExpression() {
 	defer qt.Recovering("QQmlExpression::~QQmlExpression")
 
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DestroyQQmlExpression(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlExpression) DestroyQQmlExpressionDefault() {
+	defer qt.Recovering("QQmlExpression::~QQmlExpression")
+
+	if ptr.Pointer() != nil {
+		C.QQmlExpression_DestroyQQmlExpressionDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -6946,11 +7180,50 @@ func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *net
 	return nil
 }
 
+//export callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory
+func callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlNetworkAccessManagerFactoryFromPointer(ptr).DestroyQQmlNetworkAccessManagerFactoryDefault()
+	}
+}
+
+func (ptr *QQmlNetworkAccessManagerFactory) ConnectDestroyQQmlNetworkAccessManagerFactory(f func()) {
+	defer qt.Recovering("connect QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory", f)
+	}
+}
+
+func (ptr *QQmlNetworkAccessManagerFactory) DisconnectDestroyQQmlNetworkAccessManagerFactory() {
+	defer qt.Recovering("disconnect QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
+	}
+}
+
 func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFactory() {
 	defer qt.Recovering("QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
 
 	if ptr.Pointer() != nil {
 		C.QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFactoryDefault() {
+	defer qt.Recovering("QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
+
+	if ptr.Pointer() != nil {
+		C.QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactoryDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -7732,11 +8005,50 @@ func (ptr *QQmlPropertyMap) ValueChanged(key string, value core.QVariant_ITF) {
 	}
 }
 
+//export callbackQQmlPropertyMap_DestroyQQmlPropertyMap
+func callbackQQmlPropertyMap_DestroyQQmlPropertyMap(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlPropertyMap::~QQmlPropertyMap")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::~QQmlPropertyMap"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlPropertyMapFromPointer(ptr).DestroyQQmlPropertyMapDefault()
+	}
+}
+
+func (ptr *QQmlPropertyMap) ConnectDestroyQQmlPropertyMap(f func()) {
+	defer qt.Recovering("connect QQmlPropertyMap::~QQmlPropertyMap")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::~QQmlPropertyMap", f)
+	}
+}
+
+func (ptr *QQmlPropertyMap) DisconnectDestroyQQmlPropertyMap() {
+	defer qt.Recovering("disconnect QQmlPropertyMap::~QQmlPropertyMap")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::~QQmlPropertyMap")
+	}
+}
+
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
 	defer qt.Recovering("QQmlPropertyMap::~QQmlPropertyMap")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMapDefault() {
+	defer qt.Recovering("QQmlPropertyMap::~QQmlPropertyMap")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyMap_DestroyQQmlPropertyMapDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -8236,11 +8548,50 @@ func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlProperty_ITF) {
 	}
 }
 
+//export callbackQQmlPropertyValueSource_DestroyQQmlPropertyValueSource
+func callbackQQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QQmlPropertyValueSource::~QQmlPropertyValueSource")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyValueSource::~QQmlPropertyValueSource"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQQmlPropertyValueSourceFromPointer(ptr).DestroyQQmlPropertyValueSourceDefault()
+	}
+}
+
+func (ptr *QQmlPropertyValueSource) ConnectDestroyQQmlPropertyValueSource(f func()) {
+	defer qt.Recovering("connect QQmlPropertyValueSource::~QQmlPropertyValueSource")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyValueSource::~QQmlPropertyValueSource", f)
+	}
+}
+
+func (ptr *QQmlPropertyValueSource) DisconnectDestroyQQmlPropertyValueSource() {
+	defer qt.Recovering("disconnect QQmlPropertyValueSource::~QQmlPropertyValueSource")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyValueSource::~QQmlPropertyValueSource")
+	}
+}
+
 func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSource() {
 	defer qt.Recovering("QQmlPropertyValueSource::~QQmlPropertyValueSource")
 
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSourceDefault() {
+	defer qt.Recovering("QQmlPropertyValueSource::~QQmlPropertyValueSource")
+
+	if ptr.Pointer() != nil {
+		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSourceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

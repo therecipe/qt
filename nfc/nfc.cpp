@@ -907,6 +907,7 @@ public:
 	Type type() const { return static_cast<QNearFieldTarget::Type>(callbackQNearFieldTarget_Type(const_cast<MyQNearFieldTarget*>(this))); };
 	QByteArray uid() const { return QByteArray::fromHex(QString(callbackQNearFieldTarget_Uid(const_cast<MyQNearFieldTarget*>(this))).toUtf8()); };
 	QUrl url() const { return *static_cast<QUrl*>(callbackQNearFieldTarget_Url(const_cast<MyQNearFieldTarget*>(this))); };
+	 ~MyQNearFieldTarget() { callbackQNearFieldTarget_DestroyQNearFieldTarget(this); };
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldTarget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQNearFieldTarget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNearFieldTarget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1011,6 +1012,11 @@ void* QNearFieldTarget_UrlDefault(void* ptr)
 void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr)
 {
 	static_cast<QNearFieldTarget*>(ptr)->~QNearFieldTarget();
+}
+
+void QNearFieldTarget_DestroyQNearFieldTargetDefault(void* ptr)
+{
+
 }
 
 void QNearFieldTarget_TimerEvent(void* ptr, void* event)

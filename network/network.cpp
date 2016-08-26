@@ -78,6 +78,7 @@ public:
 	QIODevice * prepare(const QNetworkCacheMetaData & metaData) { return static_cast<QIODevice*>(callbackQAbstractNetworkCache_Prepare(this, const_cast<QNetworkCacheMetaData*>(&metaData))); };
 	bool remove(const QUrl & url) { return callbackQAbstractNetworkCache_Remove(this, const_cast<QUrl*>(&url)) != 0; };
 	void updateMetaData(const QNetworkCacheMetaData & metaData) { callbackQAbstractNetworkCache_UpdateMetaData(this, const_cast<QNetworkCacheMetaData*>(&metaData)); };
+	 ~MyQAbstractNetworkCache() { callbackQAbstractNetworkCache_DestroyQAbstractNetworkCache(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractNetworkCache_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractNetworkCache_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractNetworkCache_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -137,6 +138,11 @@ void QAbstractNetworkCache_UpdateMetaData(void* ptr, void* metaData)
 void QAbstractNetworkCache_DestroyQAbstractNetworkCache(void* ptr)
 {
 	static_cast<QAbstractNetworkCache*>(ptr)->~QAbstractNetworkCache();
+}
+
+void QAbstractNetworkCache_DestroyQAbstractNetworkCacheDefault(void* ptr)
+{
+
 }
 
 void QAbstractNetworkCache_TimerEvent(void* ptr, void* event)
@@ -248,6 +254,7 @@ public:
 	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocket_StateChanged(this, socketState); };
 	bool waitForConnected(int msecs) { return callbackQAbstractSocket_WaitForConnected(this, msecs) != 0; };
 	bool waitForDisconnected(int msecs) { return callbackQAbstractSocket_WaitForDisconnected(this, msecs) != 0; };
+	 ~MyQAbstractSocket() { callbackQAbstractSocket_DestroyQAbstractSocket(this); };
 	bool open(QIODevice::OpenMode mode) { return callbackQAbstractSocket_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQAbstractSocket_Pos(const_cast<MyQAbstractSocket*>(this)); };
 	bool reset() { return callbackQAbstractSocket_Reset(this) != 0; };
@@ -627,6 +634,11 @@ long long QAbstractSocket_WriteData(void* ptr, char* data, long long size)
 void QAbstractSocket_DestroyQAbstractSocket(void* ptr)
 {
 	static_cast<QAbstractSocket*>(ptr)->~QAbstractSocket();
+}
+
+void QAbstractSocket_DestroyQAbstractSocketDefault(void* ptr)
+{
+
 }
 
 char QAbstractSocket_Open(void* ptr, long long mode)
@@ -2813,6 +2825,7 @@ public:
 	void Signal_OnlineStateChanged(bool isOnline) { callbackQNetworkConfigurationManager_OnlineStateChanged(this, isOnline); };
 	void Signal_UpdateCompleted() { callbackQNetworkConfigurationManager_UpdateCompleted(this); };
 	void updateConfigurations() { callbackQNetworkConfigurationManager_UpdateConfigurations(this); };
+	 ~MyQNetworkConfigurationManager() { callbackQNetworkConfigurationManager_DestroyQNetworkConfigurationManager(this); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkConfigurationManager_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQNetworkConfigurationManager_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkConfigurationManager_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -2932,6 +2945,11 @@ void QNetworkConfigurationManager_UpdateConfigurations(void* ptr)
 void QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(void* ptr)
 {
 	static_cast<QNetworkConfigurationManager*>(ptr)->~QNetworkConfigurationManager();
+}
+
+void QNetworkConfigurationManager_DestroyQNetworkConfigurationManagerDefault(void* ptr)
+{
+
 }
 
 void QNetworkConfigurationManager_TimerEvent(void* ptr, void* event)
@@ -3142,6 +3160,7 @@ public:
 	bool insertCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_InsertCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	bool updateCookie(const QNetworkCookie & cookie) { return callbackQNetworkCookieJar_UpdateCookie(this, const_cast<QNetworkCookie*>(&cookie)) != 0; };
 	bool validateCookie(const QNetworkCookie & cookie, const QUrl & url) const { return callbackQNetworkCookieJar_ValidateCookie(const_cast<MyQNetworkCookieJar*>(this), const_cast<QNetworkCookie*>(&cookie), const_cast<QUrl*>(&url)) != 0; };
+	 ~MyQNetworkCookieJar() { callbackQNetworkCookieJar_DestroyQNetworkCookieJar(this); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkCookieJar_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQNetworkCookieJar_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkCookieJar_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -3201,6 +3220,11 @@ char QNetworkCookieJar_ValidateCookieDefault(void* ptr, void* cookie, void* url)
 void QNetworkCookieJar_DestroyQNetworkCookieJar(void* ptr)
 {
 	static_cast<QNetworkCookieJar*>(ptr)->~QNetworkCookieJar();
+}
+
+void QNetworkCookieJar_DestroyQNetworkCookieJarDefault(void* ptr)
+{
+
 }
 
 void QNetworkCookieJar_TimerEvent(void* ptr, void* event)
@@ -3735,6 +3759,7 @@ void QNetworkProxy_DestroyQNetworkProxy(void* ptr)
 class MyQNetworkProxyFactory: public QNetworkProxyFactory
 {
 public:
+	 ~MyQNetworkProxyFactory() { callbackQNetworkProxyFactory_DestroyQNetworkProxyFactory(this); };
 };
 
 void QNetworkProxyFactory_QNetworkProxyFactory_SetApplicationProxyFactory(void* factory)
@@ -3750,6 +3775,11 @@ void QNetworkProxyFactory_QNetworkProxyFactory_SetUseSystemConfiguration(char en
 void QNetworkProxyFactory_DestroyQNetworkProxyFactory(void* ptr)
 {
 	static_cast<QNetworkProxyFactory*>(ptr)->~QNetworkProxyFactory();
+}
+
+void QNetworkProxyFactory_DestroyQNetworkProxyFactoryDefault(void* ptr)
+{
+
 }
 
 void* QNetworkProxyQuery_NewQNetworkProxyQuery()
@@ -4557,6 +4587,7 @@ public:
 	void Signal_StateChanged(QNetworkSession::State state) { callbackQNetworkSession_StateChanged(this, state); };
 	void stop() { callbackQNetworkSession_Stop(this); };
 	void Signal_UsagePoliciesChanged(QNetworkSession::UsagePolicies usagePolicies) { callbackQNetworkSession_UsagePoliciesChanged(this, usagePolicies); };
+	 ~MyQNetworkSession() { callbackQNetworkSession_DestroyQNetworkSession(this); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkSession_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQNetworkSession_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkSession_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -4781,6 +4812,11 @@ char QNetworkSession_WaitForOpened(void* ptr, int msecs)
 void QNetworkSession_DestroyQNetworkSession(void* ptr)
 {
 	static_cast<QNetworkSession*>(ptr)->~QNetworkSession();
+}
+
+void QNetworkSession_DestroyQNetworkSessionDefault(void* ptr)
+{
+
 }
 
 void QNetworkSession_TimerEvent(void* ptr, void* event)
@@ -5933,6 +5969,7 @@ public:
 	bool hasPendingConnections() const { return callbackQTcpServer_HasPendingConnections(const_cast<MyQTcpServer*>(this)) != 0; };
 	void Signal_NewConnection() { callbackQTcpServer_NewConnection(this); };
 	QTcpSocket * nextPendingConnection() { return static_cast<QTcpSocket*>(callbackQTcpServer_NextPendingConnection(this)); };
+	 ~MyQTcpServer() { callbackQTcpServer_DestroyQTcpServer(this); };
 	void timerEvent(QTimerEvent * event) { callbackQTcpServer_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQTcpServer_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTcpServer_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -6079,6 +6116,11 @@ void QTcpServer_DestroyQTcpServer(void* ptr)
 	static_cast<QTcpServer*>(ptr)->~QTcpServer();
 }
 
+void QTcpServer_DestroyQTcpServerDefault(void* ptr)
+{
+
+}
+
 void QTcpServer_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QTcpServer*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -6169,14 +6211,49 @@ void* QTcpServer_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QTcpServer*>(ptr)->QTcpServer::metaObject());
 }
 
+class MyQTcpSocket: public QTcpSocket
+{
+public:
+	MyQTcpSocket(QObject *parent) : QTcpSocket(parent) {};
+	 ~MyQTcpSocket() { callbackQTcpSocket_DestroyQTcpSocket(this); };
+	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQTcpSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQTcpSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().constData()), port, openMode, protocol); };
+	void disconnectFromHost() { callbackQTcpSocket_DisconnectFromHost(this); };
+	void resume() { callbackQTcpSocket_Resume(this); };
+	void setReadBufferSize(qint64 size) { callbackQTcpSocket_SetReadBufferSize(this, size); };
+	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQTcpSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
+	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQTcpSocket_SocketOption(this, option)); };
+	bool waitForConnected(int msecs) { return callbackQTcpSocket_WaitForConnected(this, msecs) != 0; };
+	bool waitForDisconnected(int msecs) { return callbackQTcpSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool open(QIODevice::OpenMode mode) { return callbackQTcpSocket_Open(this, mode) != 0; };
+	qint64 pos() const { return callbackQTcpSocket_Pos(const_cast<MyQTcpSocket*>(this)); };
+	bool reset() { return callbackQTcpSocket_Reset(this) != 0; };
+	bool seek(qint64 pos) { return callbackQTcpSocket_Seek(this, pos) != 0; };
+	qint64 size() const { return callbackQTcpSocket_Size(const_cast<MyQTcpSocket*>(this)); };
+	void timerEvent(QTimerEvent * event) { callbackQTcpSocket_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQTcpSocket_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQTcpSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQTcpSocket_CustomEvent(this, event); };
+	void deleteLater() { callbackQTcpSocket_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQTcpSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQTcpSocket_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTcpSocket_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTcpSocket_MetaObject(const_cast<MyQTcpSocket*>(this))); };
+};
+
 void* QTcpSocket_NewQTcpSocket(void* parent)
 {
-	return new QTcpSocket(static_cast<QObject*>(parent));
+	return new MyQTcpSocket(static_cast<QObject*>(parent));
 }
 
 void QTcpSocket_DestroyQTcpSocket(void* ptr)
 {
 	static_cast<QTcpSocket*>(ptr)->~QTcpSocket();
+}
+
+void QTcpSocket_DestroyQTcpSocketDefault(void* ptr)
+{
+
 }
 
 void QTcpSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)
@@ -6409,9 +6486,39 @@ void* QTcpSocket_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QTcpSocket*>(ptr)->QTcpSocket::metaObject());
 }
 
+class MyQUdpSocket: public QUdpSocket
+{
+public:
+	MyQUdpSocket(QObject *parent) : QUdpSocket(parent) {};
+	 ~MyQUdpSocket() { callbackQUdpSocket_DestroyQUdpSocket(this); };
+	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQUdpSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQUdpSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().constData()), port, openMode, protocol); };
+	void disconnectFromHost() { callbackQUdpSocket_DisconnectFromHost(this); };
+	void resume() { callbackQUdpSocket_Resume(this); };
+	void setReadBufferSize(qint64 size) { callbackQUdpSocket_SetReadBufferSize(this, size); };
+	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQUdpSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
+	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQUdpSocket_SocketOption(this, option)); };
+	bool waitForConnected(int msecs) { return callbackQUdpSocket_WaitForConnected(this, msecs) != 0; };
+	bool waitForDisconnected(int msecs) { return callbackQUdpSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool open(QIODevice::OpenMode mode) { return callbackQUdpSocket_Open(this, mode) != 0; };
+	qint64 pos() const { return callbackQUdpSocket_Pos(const_cast<MyQUdpSocket*>(this)); };
+	bool reset() { return callbackQUdpSocket_Reset(this) != 0; };
+	bool seek(qint64 pos) { return callbackQUdpSocket_Seek(this, pos) != 0; };
+	qint64 size() const { return callbackQUdpSocket_Size(const_cast<MyQUdpSocket*>(this)); };
+	void timerEvent(QTimerEvent * event) { callbackQUdpSocket_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQUdpSocket_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQUdpSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQUdpSocket_CustomEvent(this, event); };
+	void deleteLater() { callbackQUdpSocket_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQUdpSocket_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQUdpSocket_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUdpSocket_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUdpSocket_MetaObject(const_cast<MyQUdpSocket*>(this))); };
+};
+
 void* QUdpSocket_NewQUdpSocket(void* parent)
 {
-	return new QUdpSocket(static_cast<QObject*>(parent));
+	return new MyQUdpSocket(static_cast<QObject*>(parent));
 }
 
 char QUdpSocket_HasPendingDatagrams(void* ptr)
@@ -6472,6 +6579,11 @@ long long QUdpSocket_WriteDatagram(void* ptr, char* data, long long size, void* 
 void QUdpSocket_DestroyQUdpSocket(void* ptr)
 {
 	static_cast<QUdpSocket*>(ptr)->~QUdpSocket();
+}
+
+void QUdpSocket_DestroyQUdpSocketDefault(void* ptr)
+{
+
 }
 
 void QUdpSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)

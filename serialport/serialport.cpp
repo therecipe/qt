@@ -34,6 +34,7 @@ public:
 	void Signal_ParityChanged(QSerialPort::Parity parity) { callbackQSerialPort_ParityChanged(this, parity); };
 	void Signal_RequestToSendChanged(bool set) { callbackQSerialPort_RequestToSendChanged(this, set); };
 	void Signal_StopBitsChanged(QSerialPort::StopBits stopBits) { callbackQSerialPort_StopBitsChanged(this, stopBits); };
+	 ~MyQSerialPort() { callbackQSerialPort_DestroyQSerialPort(this); };
 	qint64 pos() const { return callbackQSerialPort_Pos(const_cast<MyQSerialPort*>(this)); };
 	bool reset() { return callbackQSerialPort_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQSerialPort_Seek(this, pos) != 0; };
@@ -387,6 +388,11 @@ long long QSerialPort_WriteData(void* ptr, char* data, long long maxSize)
 void QSerialPort_DestroyQSerialPort(void* ptr)
 {
 	static_cast<QSerialPort*>(ptr)->~QSerialPort();
+}
+
+void QSerialPort_DestroyQSerialPortDefault(void* ptr)
+{
+
 }
 
 long long QSerialPort_Pos(void* ptr)

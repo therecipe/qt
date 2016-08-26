@@ -63,7 +63,7 @@ func CppTemplate(module string) []byte {
 		if classIsSupported(class) {
 			var implementedVirtuals = make(map[string]bool)
 
-			if needsCallbackFunctions(class) || class.Module == parser.MOC {
+			if classNeedsCallbackFunctions(class) || class.Module == parser.MOC {
 
 				fmt.Fprintf(bb,
 					`class %v%v: public %v
@@ -138,7 +138,7 @@ func CppTemplate(module string) []byte {
 				//all class functions
 				for _, function := range class.Functions {
 					implementedVirtuals[fmt.Sprint(function.Fullname, function.OverloadNumber)] = true
-					if functionIsSupported(class, function) && !strings.Contains(function.Meta, "structor") {
+					if functionIsSupported(class, function) && !strings.Contains(function.Meta, "constructor") {
 						if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
 							if !(module == parser.MOC && function.Meta == parser.SLOT) {
 								fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(function))
@@ -215,7 +215,7 @@ func CppTemplate(module string) []byte {
 							}
 						}
 
-					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE) && !strings.Contains(function.Meta, "structor"):
+					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE) && !strings.Contains(function.Meta, "constructor"):
 						{
 							var function = *function
 							if function.Meta != parser.SLOT {

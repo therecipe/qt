@@ -46,6 +46,7 @@ void QWebChannelAbstractTransport_DisconnectMessageReceived(void* ptr);
 void QWebChannelAbstractTransport_MessageReceived(void* ptr, void* message, void* transport);
 void QWebChannelAbstractTransport_SendMessage(void* ptr, void* message);
 void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(void* ptr);
+void QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(void* ptr);
 void QWebChannelAbstractTransport_TimerEvent(void* ptr, void* event);
 void QWebChannelAbstractTransport_TimerEventDefault(void* ptr, void* event);
 void QWebChannelAbstractTransport_ChildEvent(void* ptr, void* event);

@@ -1090,6 +1090,7 @@ public:
 	MyQModbusPdu(FunctionCode code, const QByteArray &data) : QModbusPdu(code, data) {};
 	MyQModbusPdu(const QModbusPdu &other) : QModbusPdu(other) {};
 	void setFunctionCode(QModbusPdu::FunctionCode code) { callbackQModbusPdu_SetFunctionCode(this, code); };
+	 ~MyQModbusPdu() { callbackQModbusPdu_DestroyQModbusPdu(this); };
 };
 
 void* QModbusPdu_NewQModbusPdu()
@@ -1160,6 +1161,11 @@ short QModbusPdu_Size(void* ptr)
 void QModbusPdu_DestroyQModbusPdu(void* ptr)
 {
 	static_cast<QModbusPdu*>(ptr)->~QModbusPdu();
+}
+
+void QModbusPdu_DestroyQModbusPduDefault(void* ptr)
+{
+
 }
 
 class MyQModbusReply: public QModbusReply

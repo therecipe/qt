@@ -35,6 +35,7 @@ public:
 	MyQMaskGenerator(QObject *parent) : QMaskGenerator(parent) {};
 	quint32 nextMask() { return callbackQMaskGenerator_NextMask(this); };
 	bool seed() { return callbackQMaskGenerator_Seed(this) != 0; };
+	 ~MyQMaskGenerator() { callbackQMaskGenerator_DestroyQMaskGenerator(this); };
 	void timerEvent(QTimerEvent * event) { callbackQMaskGenerator_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQMaskGenerator_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMaskGenerator_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -64,6 +65,11 @@ char QMaskGenerator_Seed(void* ptr)
 void QMaskGenerator_DestroyQMaskGenerator(void* ptr)
 {
 	static_cast<QMaskGenerator*>(ptr)->~QMaskGenerator();
+}
+
+void QMaskGenerator_DestroyQMaskGeneratorDefault(void* ptr)
+{
+
 }
 
 void QMaskGenerator_TimerEvent(void* ptr, void* event)
@@ -176,6 +182,7 @@ public:
 	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocket_StateChanged(this, state); };
 	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { callbackQWebSocket_TextFrameReceived(this, const_cast<char*>(frame.toUtf8().constData()), isLastFrame); };
 	void Signal_TextMessageReceived(const QString & message) { callbackQWebSocket_TextMessageReceived(this, const_cast<char*>(message.toUtf8().constData())); };
+	 ~MyQWebSocket() { callbackQWebSocket_DestroyQWebSocket(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebSocket_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebSocket_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -552,6 +559,11 @@ void QWebSocket_DestroyQWebSocket(void* ptr)
 	static_cast<QWebSocket*>(ptr)->~QWebSocket();
 }
 
+void QWebSocket_DestroyQWebSocketDefault(void* ptr)
+{
+
+}
+
 void QWebSocket_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QWebSocket*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -692,6 +704,7 @@ public:
 	QWebSocket * nextPendingConnection() { return static_cast<QWebSocket*>(callbackQWebSocketServer_NextPendingConnection(this)); };
 	void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator) { callbackQWebSocketServer_OriginAuthenticationRequired(this, authenticator); };
 	void Signal_PeerVerifyError(const QSslError & error) { callbackQWebSocketServer_PeerVerifyError(this, const_cast<QSslError*>(&error)); };
+	 ~MyQWebSocketServer() { callbackQWebSocketServer_DestroyQWebSocketServer(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebSocketServer_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebSocketServer_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebSocketServer_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -901,6 +914,11 @@ void* QWebSocketServer_SslConfiguration(void* ptr)
 void QWebSocketServer_DestroyQWebSocketServer(void* ptr)
 {
 	static_cast<QWebSocketServer*>(ptr)->~QWebSocketServer();
+}
+
+void QWebSocketServer_DestroyQWebSocketServerDefault(void* ptr)
+{
+
 }
 
 void QWebSocketServer_TimerEvent(void* ptr, void* event)

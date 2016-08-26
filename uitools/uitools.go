@@ -411,11 +411,50 @@ func (ptr *QUiLoader) WorkingDirectory() *core.QDir {
 	return nil
 }
 
+//export callbackQUiLoader_DestroyQUiLoader
+func callbackQUiLoader_DestroyQUiLoader(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QUiLoader::~QUiLoader")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::~QUiLoader"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQUiLoaderFromPointer(ptr).DestroyQUiLoaderDefault()
+	}
+}
+
+func (ptr *QUiLoader) ConnectDestroyQUiLoader(f func()) {
+	defer qt.Recovering("connect QUiLoader::~QUiLoader")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::~QUiLoader", f)
+	}
+}
+
+func (ptr *QUiLoader) DisconnectDestroyQUiLoader() {
+	defer qt.Recovering("disconnect QUiLoader::~QUiLoader")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUiLoader::~QUiLoader")
+	}
+}
+
 func (ptr *QUiLoader) DestroyQUiLoader() {
 	defer qt.Recovering("QUiLoader::~QUiLoader")
 
 	if ptr.Pointer() != nil {
 		C.QUiLoader_DestroyQUiLoader(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QUiLoader) DestroyQUiLoaderDefault() {
+	defer qt.Recovering("QUiLoader::~QUiLoader")
+
+	if ptr.Pointer() != nil {
+		C.QUiLoader_DestroyQUiLoaderDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

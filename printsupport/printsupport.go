@@ -9357,11 +9357,50 @@ func (ptr *QPrintEngine) SetProperty(key QPrintEngine__PrintEnginePropertyKey, v
 	}
 }
 
+//export callbackQPrintEngine_DestroyQPrintEngine
+func callbackQPrintEngine_DestroyQPrintEngine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QPrintEngine::~QPrintEngine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintEngine::~QPrintEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQPrintEngineFromPointer(ptr).DestroyQPrintEngineDefault()
+	}
+}
+
+func (ptr *QPrintEngine) ConnectDestroyQPrintEngine(f func()) {
+	defer qt.Recovering("connect QPrintEngine::~QPrintEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::~QPrintEngine", f)
+	}
+}
+
+func (ptr *QPrintEngine) DisconnectDestroyQPrintEngine() {
+	defer qt.Recovering("disconnect QPrintEngine::~QPrintEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::~QPrintEngine")
+	}
+}
+
 func (ptr *QPrintEngine) DestroyQPrintEngine() {
 	defer qt.Recovering("QPrintEngine::~QPrintEngine")
 
 	if ptr.Pointer() != nil {
 		C.QPrintEngine_DestroyQPrintEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QPrintEngine) DestroyQPrintEngineDefault() {
+	defer qt.Recovering("QPrintEngine::~QPrintEngine")
+
+	if ptr.Pointer() != nil {
+		C.QPrintEngine_DestroyQPrintEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

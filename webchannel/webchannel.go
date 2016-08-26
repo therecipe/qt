@@ -749,11 +749,50 @@ func (ptr *QWebChannelAbstractTransport) SendMessage(message core.QJsonObject_IT
 	}
 }
 
+//export callbackQWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport
+func callbackQWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebChannelAbstractTransport::~QWebChannelAbstractTransport"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebChannelAbstractTransportFromPointer(ptr).DestroyQWebChannelAbstractTransportDefault()
+	}
+}
+
+func (ptr *QWebChannelAbstractTransport) ConnectDestroyQWebChannelAbstractTransport(f func()) {
+	defer qt.Recovering("connect QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebChannelAbstractTransport::~QWebChannelAbstractTransport", f)
+	}
+}
+
+func (ptr *QWebChannelAbstractTransport) DisconnectDestroyQWebChannelAbstractTransport() {
+	defer qt.Recovering("disconnect QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
+	}
+}
+
 func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransport() {
 	defer qt.Recovering("QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
 
 	if ptr.Pointer() != nil {
 		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransport(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWebChannelAbstractTransport) DestroyQWebChannelAbstractTransportDefault() {
+	defer qt.Recovering("QWebChannelAbstractTransport::~QWebChannelAbstractTransport")
+
+	if ptr.Pointer() != nil {
+		C.QWebChannelAbstractTransport_DestroyQWebChannelAbstractTransportDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

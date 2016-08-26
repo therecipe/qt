@@ -45,6 +45,9 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 			if function.Meta == parser.SIGNAL {
 				return fmt.Sprintf("Signal_%v", strings.Title(function.Name))
 			}
+			if strings.HasPrefix(function.Name, parser.TILDE) && parser.ClassMap[function.Class()].Module != parser.MOC {
+				return strings.Replace(function.Name, parser.TILDE, parser.TILDE+"My", -1)
+			}
 			return function.Name
 		}(),
 
@@ -77,7 +80,7 @@ func cppFunctionCallbackBody(function *parser.Function) string {
 		}(),
 
 		func() string {
-			var output = fmt.Sprintf("callback%v_%v%v(%v)", function.Class(), strings.Title(function.Name), function.OverloadNumber, converter.CppInputParametersForCallbackBody(function))
+			var output = fmt.Sprintf("callback%v_%v%v(%v)", function.Class(), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.CppInputParametersForCallbackBody(function))
 
 			if converter.CppHeaderOutput(function) != parser.VOID {
 				output = converter.CppInput(output, function.Output, function)
@@ -201,7 +204,7 @@ func cppFunctionBody(function *parser.Function) string {
 				func() string {
 					var class = parser.ClassMap[function.Class()]
 					if class.Module != parser.MOC {
-						if needsCallbackFunctions(class) {
+						if classNeedsCallbackFunctions(class) {
 							return "My"
 						}
 					}
@@ -257,6 +260,10 @@ func cppFunctionBody(function *parser.Function) string {
 
 	case parser.PLAIN, parser.DESTRUCTOR:
 		{
+			if (function.Meta == parser.DESTRUCTOR || strings.HasPrefix(function.Name, parser.TILDE)) && function.Default {
+				return ""
+			}
+
 			if function.Fullname == "SailfishApp::application" || function.Fullname == "SailfishApp::main" {
 				return fmt.Sprintf(`	QList<QByteArray> aList = QByteArray(argv).split('|');
 	char *argvs[argc];

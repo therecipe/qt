@@ -139,11 +139,50 @@ func (ptr *QAccelerometer) SetAccelerationMode(accelerationMode QAccelerometer__
 	}
 }
 
+//export callbackQAccelerometer_DestroyQAccelerometer
+func callbackQAccelerometer_DestroyQAccelerometer(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAccelerometer::~QAccelerometer")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccelerometer::~QAccelerometer"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAccelerometerFromPointer(ptr).DestroyQAccelerometerDefault()
+	}
+}
+
+func (ptr *QAccelerometer) ConnectDestroyQAccelerometer(f func()) {
+	defer qt.Recovering("connect QAccelerometer::~QAccelerometer")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::~QAccelerometer", f)
+	}
+}
+
+func (ptr *QAccelerometer) DisconnectDestroyQAccelerometer() {
+	defer qt.Recovering("disconnect QAccelerometer::~QAccelerometer")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccelerometer::~QAccelerometer")
+	}
+}
+
 func (ptr *QAccelerometer) DestroyQAccelerometer() {
 	defer qt.Recovering("QAccelerometer::~QAccelerometer")
 
 	if ptr.Pointer() != nil {
 		C.QAccelerometer_DestroyQAccelerometer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAccelerometer) DestroyQAccelerometerDefault() {
+	defer qt.Recovering("QAccelerometer::~QAccelerometer")
+
+	if ptr.Pointer() != nil {
+		C.QAccelerometer_DestroyQAccelerometerDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -3045,11 +3084,50 @@ func NewQAmbientLightSensor(parent core.QObject_ITF) *QAmbientLightSensor {
 	return tmpValue
 }
 
+//export callbackQAmbientLightSensor_DestroyQAmbientLightSensor
+func callbackQAmbientLightSensor_DestroyQAmbientLightSensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QAmbientLightSensor::~QAmbientLightSensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAmbientLightSensor::~QAmbientLightSensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQAmbientLightSensorFromPointer(ptr).DestroyQAmbientLightSensorDefault()
+	}
+}
+
+func (ptr *QAmbientLightSensor) ConnectDestroyQAmbientLightSensor(f func()) {
+	defer qt.Recovering("connect QAmbientLightSensor::~QAmbientLightSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::~QAmbientLightSensor", f)
+	}
+}
+
+func (ptr *QAmbientLightSensor) DisconnectDestroyQAmbientLightSensor() {
+	defer qt.Recovering("disconnect QAmbientLightSensor::~QAmbientLightSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAmbientLightSensor::~QAmbientLightSensor")
+	}
+}
+
 func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensor() {
 	defer qt.Recovering("QAmbientLightSensor::~QAmbientLightSensor")
 
 	if ptr.Pointer() != nil {
 		C.QAmbientLightSensor_DestroyQAmbientLightSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensorDefault() {
+	defer qt.Recovering("QAmbientLightSensor::~QAmbientLightSensor")
+
+	if ptr.Pointer() != nil {
+		C.QAmbientLightSensor_DestroyQAmbientLightSensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -4785,11 +4863,50 @@ func NewQCompass(parent core.QObject_ITF) *QCompass {
 	return tmpValue
 }
 
+//export callbackQCompass_DestroyQCompass
+func callbackQCompass_DestroyQCompass(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QCompass::~QCompass")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCompass::~QCompass"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQCompassFromPointer(ptr).DestroyQCompassDefault()
+	}
+}
+
+func (ptr *QCompass) ConnectDestroyQCompass(f func()) {
+	defer qt.Recovering("connect QCompass::~QCompass")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::~QCompass", f)
+	}
+}
+
+func (ptr *QCompass) DisconnectDestroyQCompass() {
+	defer qt.Recovering("disconnect QCompass::~QCompass")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCompass::~QCompass")
+	}
+}
+
 func (ptr *QCompass) DestroyQCompass() {
 	defer qt.Recovering("QCompass::~QCompass")
 
 	if ptr.Pointer() != nil {
 		C.QCompass_DestroyQCompass(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QCompass) DestroyQCompassDefault() {
+	defer qt.Recovering("QCompass::~QCompass")
+
+	if ptr.Pointer() != nil {
+		C.QCompass_DestroyQCompassDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -7102,11 +7219,50 @@ func NewQGyroscope(parent core.QObject_ITF) *QGyroscope {
 	return tmpValue
 }
 
+//export callbackQGyroscope_DestroyQGyroscope
+func callbackQGyroscope_DestroyQGyroscope(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QGyroscope::~QGyroscope")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGyroscope::~QGyroscope"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQGyroscopeFromPointer(ptr).DestroyQGyroscopeDefault()
+	}
+}
+
+func (ptr *QGyroscope) ConnectDestroyQGyroscope(f func()) {
+	defer qt.Recovering("connect QGyroscope::~QGyroscope")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::~QGyroscope", f)
+	}
+}
+
+func (ptr *QGyroscope) DisconnectDestroyQGyroscope() {
+	defer qt.Recovering("disconnect QGyroscope::~QGyroscope")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGyroscope::~QGyroscope")
+	}
+}
+
 func (ptr *QGyroscope) DestroyQGyroscope() {
 	defer qt.Recovering("QGyroscope::~QGyroscope")
 
 	if ptr.Pointer() != nil {
 		C.QGyroscope_DestroyQGyroscope(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGyroscope) DestroyQGyroscopeDefault() {
+	defer qt.Recovering("QGyroscope::~QGyroscope")
+
+	if ptr.Pointer() != nil {
+		C.QGyroscope_DestroyQGyroscopeDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -9996,11 +10152,50 @@ func NewQIRProximitySensor(parent core.QObject_ITF) *QIRProximitySensor {
 	return tmpValue
 }
 
+//export callbackQIRProximitySensor_DestroyQIRProximitySensor
+func callbackQIRProximitySensor_DestroyQIRProximitySensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QIRProximitySensor::~QIRProximitySensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIRProximitySensor::~QIRProximitySensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQIRProximitySensorFromPointer(ptr).DestroyQIRProximitySensorDefault()
+	}
+}
+
+func (ptr *QIRProximitySensor) ConnectDestroyQIRProximitySensor(f func()) {
+	defer qt.Recovering("connect QIRProximitySensor::~QIRProximitySensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::~QIRProximitySensor", f)
+	}
+}
+
+func (ptr *QIRProximitySensor) DisconnectDestroyQIRProximitySensor() {
+	defer qt.Recovering("disconnect QIRProximitySensor::~QIRProximitySensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIRProximitySensor::~QIRProximitySensor")
+	}
+}
+
 func (ptr *QIRProximitySensor) DestroyQIRProximitySensor() {
 	defer qt.Recovering("QIRProximitySensor::~QIRProximitySensor")
 
 	if ptr.Pointer() != nil {
 		C.QIRProximitySensor_DestroyQIRProximitySensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QIRProximitySensor) DestroyQIRProximitySensorDefault() {
+	defer qt.Recovering("QIRProximitySensor::~QIRProximitySensor")
+
+	if ptr.Pointer() != nil {
+		C.QIRProximitySensor_DestroyQIRProximitySensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -11199,11 +11394,50 @@ func (ptr *QLightSensor) SetFieldOfView(fieldOfView float64) {
 	}
 }
 
+//export callbackQLightSensor_DestroyQLightSensor
+func callbackQLightSensor_DestroyQLightSensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QLightSensor::~QLightSensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLightSensor::~QLightSensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQLightSensorFromPointer(ptr).DestroyQLightSensorDefault()
+	}
+}
+
+func (ptr *QLightSensor) ConnectDestroyQLightSensor(f func()) {
+	defer qt.Recovering("connect QLightSensor::~QLightSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::~QLightSensor", f)
+	}
+}
+
+func (ptr *QLightSensor) DisconnectDestroyQLightSensor() {
+	defer qt.Recovering("disconnect QLightSensor::~QLightSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLightSensor::~QLightSensor")
+	}
+}
+
 func (ptr *QLightSensor) DestroyQLightSensor() {
 	defer qt.Recovering("QLightSensor::~QLightSensor")
 
 	if ptr.Pointer() != nil {
 		C.QLightSensor_DestroyQLightSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QLightSensor) DestroyQLightSensorDefault() {
+	defer qt.Recovering("QLightSensor::~QLightSensor")
+
+	if ptr.Pointer() != nil {
+		C.QLightSensor_DestroyQLightSensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -11842,11 +12076,50 @@ func (ptr *QMagnetometer) ReturnGeoValuesChanged(returnGeoValues bool) {
 	}
 }
 
+//export callbackQMagnetometer_DestroyQMagnetometer
+func callbackQMagnetometer_DestroyQMagnetometer(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMagnetometer::~QMagnetometer")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMagnetometer::~QMagnetometer"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMagnetometerFromPointer(ptr).DestroyQMagnetometerDefault()
+	}
+}
+
+func (ptr *QMagnetometer) ConnectDestroyQMagnetometer(f func()) {
+	defer qt.Recovering("connect QMagnetometer::~QMagnetometer")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::~QMagnetometer", f)
+	}
+}
+
+func (ptr *QMagnetometer) DisconnectDestroyQMagnetometer() {
+	defer qt.Recovering("disconnect QMagnetometer::~QMagnetometer")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMagnetometer::~QMagnetometer")
+	}
+}
+
 func (ptr *QMagnetometer) DestroyQMagnetometer() {
 	defer qt.Recovering("QMagnetometer::~QMagnetometer")
 
 	if ptr.Pointer() != nil {
 		C.QMagnetometer_DestroyQMagnetometer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMagnetometer) DestroyQMagnetometerDefault() {
+	defer qt.Recovering("QMagnetometer::~QMagnetometer")
+
+	if ptr.Pointer() != nil {
+		C.QMagnetometer_DestroyQMagnetometerDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -13616,11 +13889,50 @@ func NewQOrientationSensor(parent core.QObject_ITF) *QOrientationSensor {
 	return tmpValue
 }
 
+//export callbackQOrientationSensor_DestroyQOrientationSensor
+func callbackQOrientationSensor_DestroyQOrientationSensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QOrientationSensor::~QOrientationSensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QOrientationSensor::~QOrientationSensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQOrientationSensorFromPointer(ptr).DestroyQOrientationSensorDefault()
+	}
+}
+
+func (ptr *QOrientationSensor) ConnectDestroyQOrientationSensor(f func()) {
+	defer qt.Recovering("connect QOrientationSensor::~QOrientationSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::~QOrientationSensor", f)
+	}
+}
+
+func (ptr *QOrientationSensor) DisconnectDestroyQOrientationSensor() {
+	defer qt.Recovering("disconnect QOrientationSensor::~QOrientationSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QOrientationSensor::~QOrientationSensor")
+	}
+}
+
 func (ptr *QOrientationSensor) DestroyQOrientationSensor() {
 	defer qt.Recovering("QOrientationSensor::~QOrientationSensor")
 
 	if ptr.Pointer() != nil {
 		C.QOrientationSensor_DestroyQOrientationSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QOrientationSensor) DestroyQOrientationSensorDefault() {
+	defer qt.Recovering("QOrientationSensor::~QOrientationSensor")
+
+	if ptr.Pointer() != nil {
+		C.QOrientationSensor_DestroyQOrientationSensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -15933,11 +16245,50 @@ func NewQProximitySensor(parent core.QObject_ITF) *QProximitySensor {
 	return tmpValue
 }
 
+//export callbackQProximitySensor_DestroyQProximitySensor
+func callbackQProximitySensor_DestroyQProximitySensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QProximitySensor::~QProximitySensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QProximitySensor::~QProximitySensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQProximitySensorFromPointer(ptr).DestroyQProximitySensorDefault()
+	}
+}
+
+func (ptr *QProximitySensor) ConnectDestroyQProximitySensor(f func()) {
+	defer qt.Recovering("connect QProximitySensor::~QProximitySensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::~QProximitySensor", f)
+	}
+}
+
+func (ptr *QProximitySensor) DisconnectDestroyQProximitySensor() {
+	defer qt.Recovering("disconnect QProximitySensor::~QProximitySensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QProximitySensor::~QProximitySensor")
+	}
+}
+
 func (ptr *QProximitySensor) DestroyQProximitySensor() {
 	defer qt.Recovering("QProximitySensor::~QProximitySensor")
 
 	if ptr.Pointer() != nil {
 		C.QProximitySensor_DestroyQProximitySensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QProximitySensor) DestroyQProximitySensorDefault() {
+	defer qt.Recovering("QProximitySensor::~QProximitySensor")
+
+	if ptr.Pointer() != nil {
+		C.QProximitySensor_DestroyQProximitySensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -17154,11 +17505,50 @@ func (ptr *QRotationSensor) SetHasZ(hasZ bool) {
 	}
 }
 
+//export callbackQRotationSensor_DestroyQRotationSensor
+func callbackQRotationSensor_DestroyQRotationSensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QRotationSensor::~QRotationSensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRotationSensor::~QRotationSensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQRotationSensorFromPointer(ptr).DestroyQRotationSensorDefault()
+	}
+}
+
+func (ptr *QRotationSensor) ConnectDestroyQRotationSensor(f func()) {
+	defer qt.Recovering("connect QRotationSensor::~QRotationSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::~QRotationSensor", f)
+	}
+}
+
+func (ptr *QRotationSensor) DisconnectDestroyQRotationSensor() {
+	defer qt.Recovering("disconnect QRotationSensor::~QRotationSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRotationSensor::~QRotationSensor")
+	}
+}
+
 func (ptr *QRotationSensor) DestroyQRotationSensor() {
 	defer qt.Recovering("QRotationSensor::~QRotationSensor")
 
 	if ptr.Pointer() != nil {
 		C.QRotationSensor_DestroyQRotationSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QRotationSensor) DestroyQRotationSensorDefault() {
+	defer qt.Recovering("QRotationSensor::~QRotationSensor")
+
+	if ptr.Pointer() != nil {
+		C.QRotationSensor_DestroyQRotationSensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -18649,11 +19039,50 @@ func (ptr *QSensor) UserOrientationChanged(userOrientation int) {
 	}
 }
 
+//export callbackQSensor_DestroyQSensor
+func callbackQSensor_DestroyQSensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSensor::~QSensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensor::~QSensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSensorFromPointer(ptr).DestroyQSensorDefault()
+	}
+}
+
+func (ptr *QSensor) ConnectDestroyQSensor(f func()) {
+	defer qt.Recovering("connect QSensor::~QSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::~QSensor", f)
+	}
+}
+
+func (ptr *QSensor) DisconnectDestroyQSensor() {
+	defer qt.Recovering("disconnect QSensor::~QSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensor::~QSensor")
+	}
+}
+
 func (ptr *QSensor) DestroyQSensor() {
 	defer qt.Recovering("QSensor::~QSensor")
 
 	if ptr.Pointer() != nil {
 		C.QSensor_DestroyQSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensor) DestroyQSensorDefault() {
+	defer qt.Recovering("QSensor::~QSensor")
+
+	if ptr.Pointer() != nil {
+		C.QSensor_DestroyQSensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -19987,11 +20416,50 @@ func (ptr *QSensorFilter) Filter(reading QSensorReading_ITF) bool {
 	return false
 }
 
+//export callbackQSensorFilter_DestroyQSensorFilter
+func callbackQSensorFilter_DestroyQSensorFilter(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSensorFilter::~QSensorFilter")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorFilter::~QSensorFilter"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSensorFilterFromPointer(ptr).DestroyQSensorFilterDefault()
+	}
+}
+
+func (ptr *QSensorFilter) ConnectDestroyQSensorFilter(f func()) {
+	defer qt.Recovering("connect QSensorFilter::~QSensorFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorFilter::~QSensorFilter", f)
+	}
+}
+
+func (ptr *QSensorFilter) DisconnectDestroyQSensorFilter() {
+	defer qt.Recovering("disconnect QSensorFilter::~QSensorFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorFilter::~QSensorFilter")
+	}
+}
+
 func (ptr *QSensorFilter) DestroyQSensorFilter() {
 	defer qt.Recovering("QSensorFilter::~QSensorFilter")
 
 	if ptr.Pointer() != nil {
 		C.QSensorFilter_DestroyQSensorFilter(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorFilter) DestroyQSensorFilterDefault() {
+	defer qt.Recovering("QSensorFilter::~QSensorFilter")
+
+	if ptr.Pointer() != nil {
+		C.QSensorFilter_DestroyQSensorFilterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -21259,11 +21727,50 @@ func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
 	return make([]string, 0)
 }
 
+//export callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface
+func callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSensorGesturePluginInterfaceFromPointer(ptr).DestroyQSensorGesturePluginInterfaceDefault()
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) ConnectDestroyQSensorGesturePluginInterface(f func()) {
+	defer qt.Recovering("connect QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface", f)
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) DisconnectDestroyQSensorGesturePluginInterface() {
+	defer qt.Recovering("disconnect QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
+	}
+}
+
 func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterface() {
 	defer qt.Recovering("QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterfaceDefault() {
+	defer qt.Recovering("QSensorGesturePluginInterface::~QSensorGesturePluginInterface")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterfaceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -21576,11 +22083,50 @@ func (ptr *QSensorGestureRecognizer) StopBackend() {
 	}
 }
 
+//export callbackQSensorGestureRecognizer_DestroyQSensorGestureRecognizer
+func callbackQSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSensorGestureRecognizer::~QSensorGestureRecognizer")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::~QSensorGestureRecognizer"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSensorGestureRecognizerFromPointer(ptr).DestroyQSensorGestureRecognizerDefault()
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) ConnectDestroyQSensorGestureRecognizer(f func()) {
+	defer qt.Recovering("connect QSensorGestureRecognizer::~QSensorGestureRecognizer")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::~QSensorGestureRecognizer", f)
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) DisconnectDestroyQSensorGestureRecognizer() {
+	defer qt.Recovering("disconnect QSensorGestureRecognizer::~QSensorGestureRecognizer")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGestureRecognizer::~QSensorGestureRecognizer")
+	}
+}
+
 func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizer() {
 	defer qt.Recovering("QSensorGestureRecognizer::~QSensorGestureRecognizer")
 
 	if ptr.Pointer() != nil {
 		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizer(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSensorGestureRecognizer) DestroyQSensorGestureRecognizerDefault() {
+	defer qt.Recovering("QSensorGestureRecognizer::~QSensorGestureRecognizer")
+
+	if ptr.Pointer() != nil {
+		C.QSensorGestureRecognizer_DestroyQSensorGestureRecognizerDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -23431,11 +23977,50 @@ func (ptr *QTapSensor) ReturnDoubleTapEventsChanged(returnDoubleTapEvents bool) 
 	}
 }
 
+//export callbackQTapSensor_DestroyQTapSensor
+func callbackQTapSensor_DestroyQTapSensor(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QTapSensor::~QTapSensor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTapSensor::~QTapSensor"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQTapSensorFromPointer(ptr).DestroyQTapSensorDefault()
+	}
+}
+
+func (ptr *QTapSensor) ConnectDestroyQTapSensor(f func()) {
+	defer qt.Recovering("connect QTapSensor::~QTapSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::~QTapSensor", f)
+	}
+}
+
+func (ptr *QTapSensor) DisconnectDestroyQTapSensor() {
+	defer qt.Recovering("disconnect QTapSensor::~QTapSensor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTapSensor::~QTapSensor")
+	}
+}
+
 func (ptr *QTapSensor) DestroyQTapSensor() {
 	defer qt.Recovering("QTapSensor::~QTapSensor")
 
 	if ptr.Pointer() != nil {
 		C.QTapSensor_DestroyQTapSensor(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QTapSensor) DestroyQTapSensorDefault() {
+	defer qt.Recovering("QTapSensor::~QTapSensor")
+
+	if ptr.Pointer() != nil {
+		C.QTapSensor_DestroyQTapSensorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

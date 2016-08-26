@@ -146,6 +146,21 @@ void* QDBusAbstractAdaptor_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDBusAbstractAdaptor*>(ptr)->QDBusAbstractAdaptor::metaObject());
 }
 
+class MyQDBusAbstractInterface: public QDBusAbstractInterface
+{
+public:
+	 ~MyQDBusAbstractInterface() { callbackQDBusAbstractInterface_DestroyQDBusAbstractInterface(this); };
+	void timerEvent(QTimerEvent * event) { callbackQDBusAbstractInterface_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQDBusAbstractInterface_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQDBusAbstractInterface_CustomEvent(this, event); };
+	void deleteLater() { callbackQDBusAbstractInterface_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQDBusAbstractInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDBusAbstractInterface_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDBusAbstractInterface_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDBusAbstractInterface_MetaObject(const_cast<MyQDBusAbstractInterface*>(this))); };
+};
+
 void* QDBusAbstractInterface_AsyncCall(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
 	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCall(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
@@ -199,6 +214,11 @@ int QDBusAbstractInterface_Timeout(void* ptr)
 void QDBusAbstractInterface_DestroyQDBusAbstractInterface(void* ptr)
 {
 	static_cast<QDBusAbstractInterface*>(ptr)->~QDBusAbstractInterface();
+}
+
+void QDBusAbstractInterface_DestroyQDBusAbstractInterfaceDefault(void* ptr)
+{
+
 }
 
 void QDBusAbstractInterface_TimerEvent(void* ptr, void* event)
@@ -1260,6 +1280,7 @@ public:
 	MyQDBusServer(QObject *parent) : QDBusServer(parent) {};
 	MyQDBusServer(const QString &address, QObject *parent) : QDBusServer(address, parent) {};
 	void Signal_NewConnection(const QDBusConnection & connection) { callbackQDBusServer_NewConnection(this, const_cast<QDBusConnection*>(&connection)); };
+	 ~MyQDBusServer() { callbackQDBusServer_DestroyQDBusServer(this); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusServer_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusServer_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDBusServer_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1324,6 +1345,11 @@ void QDBusServer_SetAnonymousAuthenticationAllowed(void* ptr, char value)
 void QDBusServer_DestroyQDBusServer(void* ptr)
 {
 	static_cast<QDBusServer*>(ptr)->~QDBusServer();
+}
+
+void QDBusServer_DestroyQDBusServerDefault(void* ptr)
+{
+
 }
 
 void QDBusServer_TimerEvent(void* ptr, void* event)
@@ -1746,6 +1772,7 @@ public:
 	MyQDBusVirtualObject(QObject *parent) : QDBusVirtualObject(parent) {};
 	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, const_cast<QDBusMessage*>(&message), const_cast<QDBusConnection*>(&connection)) != 0; };
 	QString introspect(const QString & path) const { return QString(callbackQDBusVirtualObject_Introspect(const_cast<MyQDBusVirtualObject*>(this), const_cast<char*>(path.toUtf8().constData()))); };
+	 ~MyQDBusVirtualObject() { callbackQDBusVirtualObject_DestroyQDBusVirtualObject(this); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusVirtualObject_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusVirtualObject_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDBusVirtualObject_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1775,6 +1802,11 @@ char* QDBusVirtualObject_Introspect(void* ptr, char* path)
 void QDBusVirtualObject_DestroyQDBusVirtualObject(void* ptr)
 {
 	static_cast<QDBusVirtualObject*>(ptr)->~QDBusVirtualObject();
+}
+
+void QDBusVirtualObject_DestroyQDBusVirtualObjectDefault(void* ptr)
+{
+
 }
 
 void QDBusVirtualObject_TimerEvent(void* ptr, void* event)

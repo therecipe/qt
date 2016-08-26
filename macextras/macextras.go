@@ -260,11 +260,50 @@ func (ptr *QMacPasteboardMime) MimeFor(flav string) string {
 	return ""
 }
 
+//export callbackQMacPasteboardMime_DestroyQMacPasteboardMime
+func callbackQMacPasteboardMime_DestroyQMacPasteboardMime(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMacPasteboardMime::~QMacPasteboardMime")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacPasteboardMime::~QMacPasteboardMime"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMacPasteboardMimeFromPointer(ptr).DestroyQMacPasteboardMimeDefault()
+	}
+}
+
+func (ptr *QMacPasteboardMime) ConnectDestroyQMacPasteboardMime(f func()) {
+	defer qt.Recovering("connect QMacPasteboardMime::~QMacPasteboardMime")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::~QMacPasteboardMime", f)
+	}
+}
+
+func (ptr *QMacPasteboardMime) DisconnectDestroyQMacPasteboardMime() {
+	defer qt.Recovering("disconnect QMacPasteboardMime::~QMacPasteboardMime")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::~QMacPasteboardMime")
+	}
+}
+
 func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMime() {
 	defer qt.Recovering("QMacPasteboardMime::~QMacPasteboardMime")
 
 	if ptr.Pointer() != nil {
 		C.QMacPasteboardMime_DestroyQMacPasteboardMime(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMimeDefault() {
+	defer qt.Recovering("QMacPasteboardMime::~QMacPasteboardMime")
+
+	if ptr.Pointer() != nil {
+		C.QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -902,11 +941,50 @@ func (ptr *QMacToolBarItem) Activated() {
 	}
 }
 
+//export callbackQMacToolBarItem_DestroyQMacToolBarItem
+func callbackQMacToolBarItem_DestroyQMacToolBarItem(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QMacToolBarItem::~QMacToolBarItem")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMacToolBarItem::~QMacToolBarItem"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQMacToolBarItemFromPointer(ptr).DestroyQMacToolBarItemDefault()
+	}
+}
+
+func (ptr *QMacToolBarItem) ConnectDestroyQMacToolBarItem(f func()) {
+	defer qt.Recovering("connect QMacToolBarItem::~QMacToolBarItem")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::~QMacToolBarItem", f)
+	}
+}
+
+func (ptr *QMacToolBarItem) DisconnectDestroyQMacToolBarItem() {
+	defer qt.Recovering("disconnect QMacToolBarItem::~QMacToolBarItem")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacToolBarItem::~QMacToolBarItem")
+	}
+}
+
 func (ptr *QMacToolBarItem) DestroyQMacToolBarItem() {
 	defer qt.Recovering("QMacToolBarItem::~QMacToolBarItem")
 
 	if ptr.Pointer() != nil {
 		C.QMacToolBarItem_DestroyQMacToolBarItem(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QMacToolBarItem) DestroyQMacToolBarItemDefault() {
+	defer qt.Recovering("QMacToolBarItem::~QMacToolBarItem")
+
+	if ptr.Pointer() != nil {
+		C.QMacToolBarItem_DestroyQMacToolBarItemDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

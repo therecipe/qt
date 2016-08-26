@@ -8210,11 +8210,50 @@ func (ptr *QHelpEngineCore) Warning(msg string) {
 	}
 }
 
+//export callbackQHelpEngineCore_DestroyQHelpEngineCore
+func callbackQHelpEngineCore_DestroyQHelpEngineCore(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QHelpEngineCore::~QHelpEngineCore")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::~QHelpEngineCore"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQHelpEngineCoreFromPointer(ptr).DestroyQHelpEngineCoreDefault()
+	}
+}
+
+func (ptr *QHelpEngineCore) ConnectDestroyQHelpEngineCore(f func()) {
+	defer qt.Recovering("connect QHelpEngineCore::~QHelpEngineCore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::~QHelpEngineCore", f)
+	}
+}
+
+func (ptr *QHelpEngineCore) DisconnectDestroyQHelpEngineCore() {
+	defer qt.Recovering("disconnect QHelpEngineCore::~QHelpEngineCore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::~QHelpEngineCore")
+	}
+}
+
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
 	defer qt.Recovering("QHelpEngineCore::~QHelpEngineCore")
 
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCore(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
+	defer qt.Recovering("QHelpEngineCore::~QHelpEngineCore")
+
+	if ptr.Pointer() != nil {
+		C.QHelpEngineCore_DestroyQHelpEngineCoreDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

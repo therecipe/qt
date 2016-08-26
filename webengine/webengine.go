@@ -1499,11 +1499,50 @@ func (ptr *QWebEngineCookieStore) SetCookie(cookie network.QNetworkCookie_ITF, o
 	}
 }
 
+//export callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore
+func callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QWebEngineCookieStore::~QWebEngineCookieStore")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::~QWebEngineCookieStore"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebEngineCookieStoreFromPointer(ptr).DestroyQWebEngineCookieStoreDefault()
+	}
+}
+
+func (ptr *QWebEngineCookieStore) ConnectDestroyQWebEngineCookieStore(f func()) {
+	defer qt.Recovering("connect QWebEngineCookieStore::~QWebEngineCookieStore")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::~QWebEngineCookieStore", f)
+	}
+}
+
+func (ptr *QWebEngineCookieStore) DisconnectDestroyQWebEngineCookieStore() {
+	defer qt.Recovering("disconnect QWebEngineCookieStore::~QWebEngineCookieStore")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::~QWebEngineCookieStore")
+	}
+}
+
 func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStore() {
 	defer qt.Recovering("QWebEngineCookieStore::~QWebEngineCookieStore")
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
+	defer qt.Recovering("QWebEngineCookieStore::~QWebEngineCookieStore")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineCookieStore_DestroyQWebEngineCookieStoreDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -8586,11 +8625,50 @@ func (ptr *QWebEngineView) ZoomFactor() float64 {
 	return 0
 }
 
+//export callbackQWebEngineView_DestroyQWebEngineView
+func callbackQWebEngineView_DestroyQWebEngineView(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QWebEngineView::~QWebEngineView")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::~QWebEngineView"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQWebEngineViewFromPointer(ptr).DestroyQWebEngineViewDefault()
+	}
+}
+
+func (ptr *QWebEngineView) ConnectDestroyQWebEngineView(f func()) {
+	defer qt.Recovering("connect QWebEngineView::~QWebEngineView")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::~QWebEngineView", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectDestroyQWebEngineView() {
+	defer qt.Recovering("disconnect QWebEngineView::~QWebEngineView")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::~QWebEngineView")
+	}
+}
+
 func (ptr *QWebEngineView) DestroyQWebEngineView() {
 	defer qt.Recovering("QWebEngineView::~QWebEngineView")
 
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DestroyQWebEngineView(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QWebEngineView) DestroyQWebEngineViewDefault() {
+	defer qt.Recovering("QWebEngineView::~QWebEngineView")
+
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DestroyQWebEngineViewDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

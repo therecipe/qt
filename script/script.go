@@ -520,11 +520,50 @@ func (ptr *QScriptClass) SupportsExtensionDefault(extension QScriptClass__Extens
 	return false
 }
 
+//export callbackQScriptClass_DestroyQScriptClass
+func callbackQScriptClass_DestroyQScriptClass(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QScriptClass::~QScriptClass")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptClass::~QScriptClass"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQScriptClassFromPointer(ptr).DestroyQScriptClassDefault()
+	}
+}
+
+func (ptr *QScriptClass) ConnectDestroyQScriptClass(f func()) {
+	defer qt.Recovering("connect QScriptClass::~QScriptClass")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptClass::~QScriptClass", f)
+	}
+}
+
+func (ptr *QScriptClass) DisconnectDestroyQScriptClass() {
+	defer qt.Recovering("disconnect QScriptClass::~QScriptClass")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptClass::~QScriptClass")
+	}
+}
+
 func (ptr *QScriptClass) DestroyQScriptClass() {
 	defer qt.Recovering("QScriptClass::~QScriptClass")
 
 	if ptr.Pointer() != nil {
 		C.QScriptClass_DestroyQScriptClass(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScriptClass) DestroyQScriptClassDefault() {
+	defer qt.Recovering("QScriptClass::~QScriptClass")
+
+	if ptr.Pointer() != nil {
+		C.QScriptClass_DestroyQScriptClassDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -1530,11 +1569,50 @@ func (ptr *QScriptEngine) UndefinedValue() *QScriptValue {
 	return nil
 }
 
+//export callbackQScriptEngine_DestroyQScriptEngine
+func callbackQScriptEngine_DestroyQScriptEngine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QScriptEngine::~QScriptEngine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngine::~QScriptEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQScriptEngineFromPointer(ptr).DestroyQScriptEngineDefault()
+	}
+}
+
+func (ptr *QScriptEngine) ConnectDestroyQScriptEngine(f func()) {
+	defer qt.Recovering("connect QScriptEngine::~QScriptEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngine::~QScriptEngine", f)
+	}
+}
+
+func (ptr *QScriptEngine) DisconnectDestroyQScriptEngine() {
+	defer qt.Recovering("disconnect QScriptEngine::~QScriptEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngine::~QScriptEngine")
+	}
+}
+
 func (ptr *QScriptEngine) DestroyQScriptEngine() {
 	defer qt.Recovering("QScriptEngine::~QScriptEngine")
 
 	if ptr.Pointer() != nil {
 		C.QScriptEngine_DestroyQScriptEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScriptEngine) DestroyQScriptEngineDefault() {
+	defer qt.Recovering("QScriptEngine::~QScriptEngine")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngine_DestroyQScriptEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -2529,11 +2607,50 @@ func (ptr *QScriptEngineAgent) SupportsExtensionDefault(extension QScriptEngineA
 	return false
 }
 
+//export callbackQScriptEngineAgent_DestroyQScriptEngineAgent
+func callbackQScriptEngineAgent_DestroyQScriptEngineAgent(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QScriptEngineAgent::~QScriptEngineAgent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineAgent::~QScriptEngineAgent"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQScriptEngineAgentFromPointer(ptr).DestroyQScriptEngineAgentDefault()
+	}
+}
+
+func (ptr *QScriptEngineAgent) ConnectDestroyQScriptEngineAgent(f func()) {
+	defer qt.Recovering("connect QScriptEngineAgent::~QScriptEngineAgent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineAgent::~QScriptEngineAgent", f)
+	}
+}
+
+func (ptr *QScriptEngineAgent) DisconnectDestroyQScriptEngineAgent() {
+	defer qt.Recovering("disconnect QScriptEngineAgent::~QScriptEngineAgent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScriptEngineAgent::~QScriptEngineAgent")
+	}
+}
+
 func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgent() {
 	defer qt.Recovering("QScriptEngineAgent::~QScriptEngineAgent")
 
 	if ptr.Pointer() != nil {
 		C.QScriptEngineAgent_DestroyQScriptEngineAgent(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScriptEngineAgent) DestroyQScriptEngineAgentDefault() {
+	defer qt.Recovering("QScriptEngineAgent::~QScriptEngineAgent")
+
+	if ptr.Pointer() != nil {
+		C.QScriptEngineAgent_DestroyQScriptEngineAgentDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

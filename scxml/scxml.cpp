@@ -673,6 +673,7 @@ class MyQScxmlEventFilter: public QScxmlEventFilter
 {
 public:
 	bool handle(QScxmlEvent * event, QScxmlStateMachine * stateMachine) { return callbackQScxmlEventFilter_Handle(this, event, stateMachine) != 0; };
+	 ~MyQScxmlEventFilter() { callbackQScxmlEventFilter_DestroyQScxmlEventFilter(this); };
 };
 
 char QScxmlEventFilter_Handle(void* ptr, void* event, void* stateMachine)
@@ -683,6 +684,11 @@ char QScxmlEventFilter_Handle(void* ptr, void* event, void* stateMachine)
 void QScxmlEventFilter_DestroyQScxmlEventFilter(void* ptr)
 {
 	static_cast<QScxmlEventFilter*>(ptr)->~QScxmlEventFilter();
+}
+
+void QScxmlEventFilter_DestroyQScxmlEventFilterDefault(void* ptr)
+{
+
 }
 
 class MyQScxmlNullDataModel: public QScxmlNullDataModel

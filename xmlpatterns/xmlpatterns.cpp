@@ -43,6 +43,7 @@
 class MyQAbstractMessageHandler: public QAbstractMessageHandler
 {
 public:
+	 ~MyQAbstractMessageHandler() { callbackQAbstractMessageHandler_DestroyQAbstractMessageHandler(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractMessageHandler_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractMessageHandler_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractMessageHandler_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -57,6 +58,11 @@ public:
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr)
 {
 	static_cast<QAbstractMessageHandler*>(ptr)->~QAbstractMessageHandler();
+}
+
+void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr)
+{
+
 }
 
 void QAbstractMessageHandler_TimerEvent(void* ptr, void* event)
@@ -154,6 +160,7 @@ class MyQAbstractUriResolver: public QAbstractUriResolver
 public:
 	MyQAbstractUriResolver(QObject *parent) : QAbstractUriResolver(parent) {};
 	QUrl resolve(const QUrl & relative, const QUrl & baseURI) const { return *static_cast<QUrl*>(callbackQAbstractUriResolver_Resolve(const_cast<MyQAbstractUriResolver*>(this), const_cast<QUrl*>(&relative), const_cast<QUrl*>(&baseURI))); };
+	 ~MyQAbstractUriResolver() { callbackQAbstractUriResolver_DestroyQAbstractUriResolver(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractUriResolver_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractUriResolver_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQAbstractUriResolver_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -178,6 +185,11 @@ void* QAbstractUriResolver_Resolve(void* ptr, void* relative, void* baseURI)
 void QAbstractUriResolver_DestroyQAbstractUriResolver(void* ptr)
 {
 	static_cast<QAbstractUriResolver*>(ptr)->~QAbstractUriResolver();
+}
+
+void QAbstractUriResolver_DestroyQAbstractUriResolverDefault(void* ptr)
+{
+
 }
 
 void QAbstractUriResolver_TimerEvent(void* ptr, void* event)
@@ -283,6 +295,7 @@ public:
 	QXmlNodeModelIndex root(const QXmlNodeModelIndex & n) const { return *static_cast<QXmlNodeModelIndex*>(callbackQAbstractXmlNodeModel_Root(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QString stringValue(const QXmlNodeModelIndex & n) const { return QString(callbackQAbstractXmlNodeModel_StringValue(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QVariant typedValue(const QXmlNodeModelIndex & node) const { return *static_cast<QVariant*>(callbackQAbstractXmlNodeModel_TypedValue(const_cast<MyQAbstractXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
+	 ~MyQAbstractXmlNodeModel() { callbackQAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(this); };
 };
 
 void* QAbstractXmlNodeModel_BaseUri(void* ptr, void* n)
@@ -357,6 +370,11 @@ void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(void* ptr)
 	static_cast<QAbstractXmlNodeModel*>(ptr)->~QAbstractXmlNodeModel();
 }
 
+void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(void* ptr)
+{
+
+}
+
 class MyQAbstractXmlReceiver: public QAbstractXmlReceiver
 {
 public:
@@ -373,6 +391,7 @@ public:
 	void startDocument() { callbackQAbstractXmlReceiver_StartDocument(this); };
 	void startElement(const QXmlName & name) { callbackQAbstractXmlReceiver_StartElement(this, const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQAbstractXmlReceiver_StartOfSequence(this); };
+	 ~MyQAbstractXmlReceiver() { callbackQAbstractXmlReceiver_DestroyQAbstractXmlReceiver(this); };
 };
 
 void* QAbstractXmlReceiver_NewQAbstractXmlReceiver()
@@ -445,12 +464,18 @@ void QAbstractXmlReceiver_DestroyQAbstractXmlReceiver(void* ptr)
 	static_cast<QAbstractXmlReceiver*>(ptr)->~QAbstractXmlReceiver();
 }
 
+void QAbstractXmlReceiver_DestroyQAbstractXmlReceiverDefault(void* ptr)
+{
+
+}
+
 class MyQSimpleXmlNodeModel: public QSimpleXmlNodeModel
 {
 public:
 	QUrl baseUri(const QXmlNodeModelIndex & node) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_BaseUri(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
 	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_ElementById(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlName*>(&id))); };
 	QString stringValue(const QXmlNodeModelIndex & node) const { return QString(callbackQSimpleXmlNodeModel_StringValue(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
+	 ~MyQSimpleXmlNodeModel() { callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(this); };
 	QXmlNodeModelIndex::DocumentOrder compareOrder(const QXmlNodeModelIndex & ni1, const QXmlNodeModelIndex & ni2) const { return static_cast<QXmlNodeModelIndex::DocumentOrder>(callbackQSimpleXmlNodeModel_CompareOrder(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&ni1), const_cast<QXmlNodeModelIndex*>(&ni2))); };
 	QUrl documentUri(const QXmlNodeModelIndex & n) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_DocumentUri(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&n))); };
 	QXmlNodeModelIndex::NodeKind kind(const QXmlNodeModelIndex & ni) const { return static_cast<QXmlNodeModelIndex::NodeKind>(callbackQSimpleXmlNodeModel_Kind(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&ni))); };
@@ -498,6 +523,11 @@ char* QSimpleXmlNodeModel_StringValueDefault(void* ptr, void* node)
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr)
 {
 	static_cast<QSimpleXmlNodeModel*>(ptr)->~QSimpleXmlNodeModel();
+}
+
+void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(void* ptr)
+{
+
 }
 
 long long QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2)
@@ -1064,9 +1094,16 @@ void QXmlQuery_DestroyQXmlQuery(void* ptr)
 	static_cast<QXmlQuery*>(ptr)->~QXmlQuery();
 }
 
+class MyQXmlResultItems: public QXmlResultItems
+{
+public:
+	MyQXmlResultItems() : QXmlResultItems() {};
+	 ~MyQXmlResultItems() { callbackQXmlResultItems_DestroyQXmlResultItems(this); };
+};
+
 void* QXmlResultItems_NewQXmlResultItems()
 {
-	return new QXmlResultItems();
+	return new MyQXmlResultItems();
 }
 
 void* QXmlResultItems_Current(void* ptr)
@@ -1087,6 +1124,11 @@ void* QXmlResultItems_Next(void* ptr)
 void QXmlResultItems_DestroyQXmlResultItems(void* ptr)
 {
 	static_cast<QXmlResultItems*>(ptr)->~QXmlResultItems();
+}
+
+void QXmlResultItems_DestroyQXmlResultItemsDefault(void* ptr)
+{
+
 }
 
 void* QXmlSchema_NewQXmlSchema()

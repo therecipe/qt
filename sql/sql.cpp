@@ -650,6 +650,7 @@ class MyQSqlDriverCreatorBase: public QSqlDriverCreatorBase
 {
 public:
 	QSqlDriver * createObject() const { return static_cast<QSqlDriver*>(callbackQSqlDriverCreatorBase_CreateObject(const_cast<MyQSqlDriverCreatorBase*>(this))); };
+	 ~MyQSqlDriverCreatorBase() { callbackQSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(this); };
 };
 
 void* QSqlDriverCreatorBase_CreateObject(void* ptr)
@@ -660,6 +661,11 @@ void* QSqlDriverCreatorBase_CreateObject(void* ptr)
 void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(void* ptr)
 {
 	static_cast<QSqlDriverCreatorBase*>(ptr)->~QSqlDriverCreatorBase();
+}
+
+void QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBaseDefault(void* ptr)
+{
+
 }
 
 class MyQSqlDriverPlugin: public QSqlDriverPlugin
@@ -1200,6 +1206,7 @@ public:
 	void clear() { callbackQSqlQueryModel_Clear(this); };
 	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_IndexInQuery(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&item))); };
 	void queryChange() { callbackQSqlQueryModel_QueryChange(this); };
+	 ~MyQSqlQueryModel() { callbackQSqlQueryModel_DestroyQSqlQueryModel(this); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Index(const_cast<MyQSqlQueryModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlQueryModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSqlQueryModel_Flags(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&index))); };
@@ -1350,6 +1357,11 @@ void QSqlQueryModel_SetQuery2(void* ptr, char* query, void* db)
 void QSqlQueryModel_DestroyQSqlQueryModel(void* ptr)
 {
 	static_cast<QSqlQueryModel*>(ptr)->~QSqlQueryModel();
+}
+
+void QSqlQueryModel_DestroyQSqlQueryModelDefault(void* ptr)
+{
+
 }
 
 void* QSqlQueryModel_Index(void* ptr, int row, int column, void* parent)
@@ -1863,6 +1875,7 @@ public:
 	void setRelation(int column, const QSqlRelation & relation) { callbackQSqlRelationalTableModel_SetRelation(this, column, const_cast<QSqlRelation*>(&relation)); };
 	void setTable(const QString & table) { callbackQSqlRelationalTableModel_SetTable(this, const_cast<char*>(table.toUtf8().constData())); };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlRelationalTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
+	 ~MyQSqlRelationalTableModel() { callbackQSqlRelationalTableModel_DestroyQSqlRelationalTableModel(this); };
 	bool deleteRowFromTable(int row) { return callbackQSqlRelationalTableModel_DeleteRowFromTable(this, row) != 0; };
 	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_IndexInQuery(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&item))); };
 	void revert() { callbackQSqlRelationalTableModel_Revert(this); };
@@ -2027,6 +2040,11 @@ char QSqlRelationalTableModel_UpdateRowInTableDefault(void* ptr, int row, void* 
 void QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(void* ptr)
 {
 	static_cast<QSqlRelationalTableModel*>(ptr)->~QSqlRelationalTableModel();
+}
+
+void QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(void* ptr)
+{
+
 }
 
 char QSqlRelationalTableModel_DeleteRowFromTable(void* ptr, int row)
@@ -2401,6 +2419,7 @@ public:
 	void setQuery(const QString & query) { callbackQSqlResult_SetQuery(this, const_cast<char*>(query.toUtf8().constData())); };
 	void setSelect(bool sele) { callbackQSqlResult_SetSelect(this, sele); };
 	int size() { return callbackQSqlResult_Size(this); };
+	 ~MyQSqlResult() { callbackQSqlResult_DestroyQSqlResult(this); };
 };
 
 void* QSqlResult_NewQSqlResult(void* db)
@@ -2678,6 +2697,11 @@ void QSqlResult_DestroyQSqlResult(void* ptr)
 	static_cast<QSqlResult*>(ptr)->~QSqlResult();
 }
 
+void QSqlResult_DestroyQSqlResultDefault(void* ptr)
+{
+
+}
+
 class MyQSqlTableModel: public QSqlTableModel
 {
 public:
@@ -2704,6 +2728,7 @@ public:
 	bool submit() { return callbackQSqlTableModel_Submit(this) != 0; };
 	bool submitAll() { return callbackQSqlTableModel_SubmitAll(this) != 0; };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
+	 ~MyQSqlTableModel() { callbackQSqlTableModel_DestroyQSqlTableModel(this); };
 	void queryChange() { callbackQSqlTableModel_QueryChange(this); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Index(const_cast<MyQSqlTableModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlTableModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -3086,6 +3111,11 @@ char QSqlTableModel_UpdateRowInTableDefault(void* ptr, int row, void* values)
 void QSqlTableModel_DestroyQSqlTableModel(void* ptr)
 {
 	static_cast<QSqlTableModel*>(ptr)->~QSqlTableModel();
+}
+
+void QSqlTableModel_DestroyQSqlTableModelDefault(void* ptr)
+{
+
 }
 
 void QSqlTableModel_QueryChange(void* ptr)

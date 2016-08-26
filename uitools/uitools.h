@@ -32,6 +32,7 @@ void QUiLoader_SetLanguageChangeEnabled(void* ptr, char enabled);
 void QUiLoader_SetWorkingDirectory(void* ptr, void* dir);
 void* QUiLoader_WorkingDirectory(void* ptr);
 void QUiLoader_DestroyQUiLoader(void* ptr);
+void QUiLoader_DestroyQUiLoaderDefault(void* ptr);
 void QUiLoader_TimerEvent(void* ptr, void* event);
 void QUiLoader_TimerEventDefault(void* ptr, void* event);
 void QUiLoader_ChildEvent(void* ptr, void* event);

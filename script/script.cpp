@@ -47,6 +47,7 @@ public:
 	QueryFlags queryProperty(const QScriptValue & object, const QScriptString & name, QScriptClass::QueryFlags flags, uint * id) { return static_cast<QScriptClass::QueryFlag>(callbackQScriptClass_QueryProperty(this, const_cast<QScriptValue*>(&object), const_cast<QScriptString*>(&name), flags, *id)); };
 	void setProperty(QScriptValue & object, const QScriptString & name, uint id, const QScriptValue & value) { callbackQScriptClass_SetProperty(this, new QScriptValue(object), const_cast<QScriptString*>(&name), id, const_cast<QScriptValue*>(&value)); };
 	bool supportsExtension(QScriptClass::Extension extension) const { return callbackQScriptClass_SupportsExtension(const_cast<MyQScriptClass*>(this), extension) != 0; };
+	 ~MyQScriptClass() { callbackQScriptClass_DestroyQScriptClass(this); };
 };
 
 void* QScriptClass_NewQScriptClass(void* engine)
@@ -152,6 +153,11 @@ char QScriptClass_SupportsExtensionDefault(void* ptr, long long extension)
 void QScriptClass_DestroyQScriptClass(void* ptr)
 {
 	static_cast<QScriptClass*>(ptr)->~QScriptClass();
+}
+
+void QScriptClass_DestroyQScriptClassDefault(void* ptr)
+{
+
 }
 
 void* QScriptContext_ActivationObject(void* ptr)
@@ -320,6 +326,7 @@ public:
 	MyQScriptEngine() : QScriptEngine() {};
 	MyQScriptEngine(QObject *parent) : QScriptEngine(parent) {};
 	void Signal_SignalHandlerException(const QScriptValue & exception) { callbackQScriptEngine_SignalHandlerException(this, const_cast<QScriptValue*>(&exception)); };
+	 ~MyQScriptEngine() { callbackQScriptEngine_DestroyQScriptEngine(this); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptEngine_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScriptEngine_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQScriptEngine_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -571,6 +578,11 @@ void QScriptEngine_DestroyQScriptEngine(void* ptr)
 	static_cast<QScriptEngine*>(ptr)->~QScriptEngine();
 }
 
+void QScriptEngine_DestroyQScriptEngineDefault(void* ptr)
+{
+
+}
+
 void QScriptEngine_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QScriptEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -676,6 +688,7 @@ public:
 	void scriptLoad(qint64 id, const QString & program, const QString & fileName, int baseLineNumber) { callbackQScriptEngineAgent_ScriptLoad(this, id, const_cast<char*>(program.toUtf8().constData()), const_cast<char*>(fileName.toUtf8().constData()), baseLineNumber); };
 	void scriptUnload(qint64 id) { callbackQScriptEngineAgent_ScriptUnload(this, id); };
 	bool supportsExtension(QScriptEngineAgent::Extension extension) const { return callbackQScriptEngineAgent_SupportsExtension(const_cast<MyQScriptEngineAgent*>(this), extension) != 0; };
+	 ~MyQScriptEngineAgent() { callbackQScriptEngineAgent_DestroyQScriptEngineAgent(this); };
 };
 
 void* QScriptEngineAgent_NewQScriptEngineAgent(void* engine)
@@ -801,6 +814,11 @@ char QScriptEngineAgent_SupportsExtensionDefault(void* ptr, long long extension)
 void QScriptEngineAgent_DestroyQScriptEngineAgent(void* ptr)
 {
 	static_cast<QScriptEngineAgent*>(ptr)->~QScriptEngineAgent();
+}
+
+void QScriptEngineAgent_DestroyQScriptEngineAgentDefault(void* ptr)
+{
+
 }
 
 class MyQScriptExtensionPlugin: public QScriptExtensionPlugin

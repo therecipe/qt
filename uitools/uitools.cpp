@@ -31,6 +31,7 @@ public:
 	QActionGroup * createActionGroup(QObject * parent, const QString & name) { return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, parent, const_cast<char*>(name.toUtf8().constData()))); };
 	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, const_cast<char*>(className.toUtf8().constData()), parent, const_cast<char*>(name.toUtf8().constData()))); };
 	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, const_cast<char*>(className.toUtf8().constData()), parent, const_cast<char*>(name.toUtf8().constData()))); };
+	 ~MyQUiLoader() { callbackQUiLoader_DestroyQUiLoader(this); };
 	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQUiLoader_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQUiLoader_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -145,6 +146,11 @@ void* QUiLoader_WorkingDirectory(void* ptr)
 void QUiLoader_DestroyQUiLoader(void* ptr)
 {
 	static_cast<QUiLoader*>(ptr)->~QUiLoader();
+}
+
+void QUiLoader_DestroyQUiLoaderDefault(void* ptr)
+{
+
 }
 
 void QUiLoader_TimerEvent(void* ptr, void* event)

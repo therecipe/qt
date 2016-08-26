@@ -19,6 +19,7 @@ void QmlBridge_RegisterToGo(void* ptr, void* object);
 void QmlBridge_DeregisterToGo(void* ptr, char* objectName);
 void* QmlBridge_NewQmlBridge(void* parent);
 void QmlBridge_DestroyQmlBridge(void* ptr);
+void QmlBridge_DestroyQmlBridgeDefault(void* ptr);
 void QmlBridge_TimerEvent(void* ptr, void* event);
 void QmlBridge_TimerEventDefault(void* ptr, void* event);
 void QmlBridge_ChildEvent(void* ptr, void* event);

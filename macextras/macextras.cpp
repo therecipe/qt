@@ -30,6 +30,7 @@ public:
 	int count(QMimeData * mimeData) { return callbackQMacPasteboardMime_Count(this, mimeData); };
 	QString flavorFor(const QString & mime) { return QString(callbackQMacPasteboardMime_FlavorFor(this, const_cast<char*>(mime.toUtf8().constData()))); };
 	QString mimeFor(QString flav) { return QString(callbackQMacPasteboardMime_MimeFor(this, const_cast<char*>(flav.toUtf8().constData()))); };
+	 ~MyQMacPasteboardMime() { callbackQMacPasteboardMime_DestroyQMacPasteboardMime(this); };
 };
 
 char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
@@ -69,6 +70,13 @@ char* QMacPasteboardMime_MimeFor(void* ptr, char* flav)
 void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr)
 {
 	static_cast<QMacPasteboardMime*>(ptr)->~QMacPasteboardMime();
+}
+
+void QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+
+#endif
 }
 
 void* QMacToolBar_NewQMacToolBar(void* parent)
@@ -230,6 +238,7 @@ class MyQMacToolBarItem: public QMacToolBarItem
 public:
 	MyQMacToolBarItem(QObject *parent) : QMacToolBarItem(parent) {};
 	void Signal_Activated() { callbackQMacToolBarItem_Activated(this); };
+	 ~MyQMacToolBarItem() { callbackQMacToolBarItem_DestroyQMacToolBarItem(this); };
 	void timerEvent(QTimerEvent * event) { callbackQMacToolBarItem_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQMacToolBarItem_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMacToolBarItem_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -264,6 +273,13 @@ void QMacToolBarItem_Activated(void* ptr)
 void QMacToolBarItem_DestroyQMacToolBarItem(void* ptr)
 {
 	static_cast<QMacToolBarItem*>(ptr)->~QMacToolBarItem();
+}
+
+void QMacToolBarItem_DestroyQMacToolBarItemDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+
+#endif
 }
 
 void* QMacToolBarItem_Icon(void* ptr)

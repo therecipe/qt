@@ -10,26 +10,25 @@ import (
 func GoHeaderName(f *parser.Function) (o string) {
 
 	if f.SignalMode == parser.CALLBACK {
-		return fmt.Sprintf("callback%v_%v%v", f.Class(), strings.Replace(strings.Title(f.Name), "~", "Destroy", -1), f.OverloadNumber)
+		return fmt.Sprintf("callback%v_%v%v", f.Class(), strings.Replace(strings.Title(f.Name), parser.TILDE, "Destroy", -1), f.OverloadNumber)
 	}
 
 	if f.Static {
 		o += fmt.Sprintf("%v_", strings.Split(f.Fullname, "::")[0])
 	}
 
+	o += f.SignalMode
+
 	switch f.Meta {
 	case parser.CONSTRUCTOR:
 		{
 			o += "New"
 		}
-
-	case parser.DESTRUCTOR:
-		{
-			o += "Destroy"
-		}
 	}
 
-	o += f.SignalMode
+	if f.Meta == parser.DESTRUCTOR || strings.HasPrefix(f.Name, parser.TILDE) {
+		o += "Destroy"
+	}
 
 	if f.TemplateMode == "String" || f.TemplateMode == "Object" {
 
@@ -54,7 +53,7 @@ func GoHeaderName(f *parser.Function) (o string) {
 		return f.Access
 	}
 
-	return strings.Replace(o, "~", "", -1)
+	return strings.Replace(o, parser.TILDE, "", -1)
 }
 
 func CppHeaderName(f *parser.Function) string {

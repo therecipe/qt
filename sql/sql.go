@@ -2368,11 +2368,50 @@ func (ptr *QSqlDriverCreatorBase) CreateObject() *QSqlDriver {
 	return nil
 }
 
+//export callbackQSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase
+func callbackQSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriverCreatorBase::~QSqlDriverCreatorBase"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSqlDriverCreatorBaseFromPointer(ptr).DestroyQSqlDriverCreatorBaseDefault()
+	}
+}
+
+func (ptr *QSqlDriverCreatorBase) ConnectDestroyQSqlDriverCreatorBase(f func()) {
+	defer qt.Recovering("connect QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlDriverCreatorBase::~QSqlDriverCreatorBase", f)
+	}
+}
+
+func (ptr *QSqlDriverCreatorBase) DisconnectDestroyQSqlDriverCreatorBase() {
+	defer qt.Recovering("disconnect QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
+	}
+}
+
 func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBase() {
 	defer qt.Recovering("QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
 
 	if ptr.Pointer() != nil {
 		C.QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBase(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlDriverCreatorBase) DestroyQSqlDriverCreatorBaseDefault() {
+	defer qt.Recovering("QSqlDriverCreatorBase::~QSqlDriverCreatorBase")
+
+	if ptr.Pointer() != nil {
+		C.QSqlDriverCreatorBase_DestroyQSqlDriverCreatorBaseDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -4175,11 +4214,50 @@ func (ptr *QSqlQueryModel) SetQuery2(query string, db QSqlDatabase_ITF) {
 	}
 }
 
+//export callbackQSqlQueryModel_DestroyQSqlQueryModel
+func callbackQSqlQueryModel_DestroyQSqlQueryModel(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlQueryModel::~QSqlQueryModel")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlQueryModel::~QSqlQueryModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSqlQueryModelFromPointer(ptr).DestroyQSqlQueryModelDefault()
+	}
+}
+
+func (ptr *QSqlQueryModel) ConnectDestroyQSqlQueryModel(f func()) {
+	defer qt.Recovering("connect QSqlQueryModel::~QSqlQueryModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlQueryModel::~QSqlQueryModel", f)
+	}
+}
+
+func (ptr *QSqlQueryModel) DisconnectDestroyQSqlQueryModel() {
+	defer qt.Recovering("disconnect QSqlQueryModel::~QSqlQueryModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlQueryModel::~QSqlQueryModel")
+	}
+}
+
 func (ptr *QSqlQueryModel) DestroyQSqlQueryModel() {
 	defer qt.Recovering("QSqlQueryModel::~QSqlQueryModel")
 
 	if ptr.Pointer() != nil {
 		C.QSqlQueryModel_DestroyQSqlQueryModel(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlQueryModel) DestroyQSqlQueryModelDefault() {
+	defer qt.Recovering("QSqlQueryModel::~QSqlQueryModel")
+
+	if ptr.Pointer() != nil {
+		C.QSqlQueryModel_DestroyQSqlQueryModelDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -6656,11 +6734,50 @@ func (ptr *QSqlRelationalTableModel) UpdateRowInTableDefault(row int, values QSq
 	return false
 }
 
+//export callbackQSqlRelationalTableModel_DestroyQSqlRelationalTableModel
+func callbackQSqlRelationalTableModel_DestroyQSqlRelationalTableModel(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalTableModel::~QSqlRelationalTableModel")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalTableModel::~QSqlRelationalTableModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSqlRelationalTableModelFromPointer(ptr).DestroyQSqlRelationalTableModelDefault()
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) ConnectDestroyQSqlRelationalTableModel(f func()) {
+	defer qt.Recovering("connect QSqlRelationalTableModel::~QSqlRelationalTableModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalTableModel::~QSqlRelationalTableModel", f)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DisconnectDestroyQSqlRelationalTableModel() {
+	defer qt.Recovering("disconnect QSqlRelationalTableModel::~QSqlRelationalTableModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalTableModel::~QSqlRelationalTableModel")
+	}
+}
+
 func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModel() {
 	defer qt.Recovering("QSqlRelationalTableModel::~QSqlRelationalTableModel")
 
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModel(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlRelationalTableModel) DestroyQSqlRelationalTableModelDefault() {
+	defer qt.Recovering("QSqlRelationalTableModel::~QSqlRelationalTableModel")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalTableModel_DestroyQSqlRelationalTableModelDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -9462,11 +9579,50 @@ func (ptr *QSqlResult) Size() int {
 	return 0
 }
 
+//export callbackQSqlResult_DestroyQSqlResult
+func callbackQSqlResult_DestroyQSqlResult(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlResult::~QSqlResult")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlResult::~QSqlResult"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSqlResultFromPointer(ptr).DestroyQSqlResultDefault()
+	}
+}
+
+func (ptr *QSqlResult) ConnectDestroyQSqlResult(f func()) {
+	defer qt.Recovering("connect QSqlResult::~QSqlResult")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::~QSqlResult", f)
+	}
+}
+
+func (ptr *QSqlResult) DisconnectDestroyQSqlResult() {
+	defer qt.Recovering("disconnect QSqlResult::~QSqlResult")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::~QSqlResult")
+	}
+}
+
 func (ptr *QSqlResult) DestroyQSqlResult() {
 	defer qt.Recovering("QSqlResult::~QSqlResult")
 
 	if ptr.Pointer() != nil {
 		C.QSqlResult_DestroyQSqlResult(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlResult) DestroyQSqlResultDefault() {
+	defer qt.Recovering("QSqlResult::~QSqlResult")
+
+	if ptr.Pointer() != nil {
+		C.QSqlResult_DestroyQSqlResultDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -10708,11 +10864,50 @@ func (ptr *QSqlTableModel) UpdateRowInTableDefault(row int, values QSqlRecord_IT
 	return false
 }
 
+//export callbackQSqlTableModel_DestroyQSqlTableModel
+func callbackQSqlTableModel_DestroyQSqlTableModel(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlTableModel::~QSqlTableModel")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlTableModel::~QSqlTableModel"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSqlTableModelFromPointer(ptr).DestroyQSqlTableModelDefault()
+	}
+}
+
+func (ptr *QSqlTableModel) ConnectDestroyQSqlTableModel(f func()) {
+	defer qt.Recovering("connect QSqlTableModel::~QSqlTableModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlTableModel::~QSqlTableModel", f)
+	}
+}
+
+func (ptr *QSqlTableModel) DisconnectDestroyQSqlTableModel() {
+	defer qt.Recovering("disconnect QSqlTableModel::~QSqlTableModel")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlTableModel::~QSqlTableModel")
+	}
+}
+
 func (ptr *QSqlTableModel) DestroyQSqlTableModel() {
 	defer qt.Recovering("QSqlTableModel::~QSqlTableModel")
 
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_DestroyQSqlTableModel(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlTableModel) DestroyQSqlTableModelDefault() {
+	defer qt.Recovering("QSqlTableModel::~QSqlTableModel")
+
+	if ptr.Pointer() != nil {
+		C.QSqlTableModel_DestroyQSqlTableModelDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

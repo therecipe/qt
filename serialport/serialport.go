@@ -846,11 +846,50 @@ func (ptr *QSerialPort) WriteData(data string, maxSize int64) int64 {
 	return 0
 }
 
+//export callbackQSerialPort_DestroyQSerialPort
+func callbackQSerialPort_DestroyQSerialPort(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSerialPort::~QSerialPort")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSerialPort::~QSerialPort"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSerialPortFromPointer(ptr).DestroyQSerialPortDefault()
+	}
+}
+
+func (ptr *QSerialPort) ConnectDestroyQSerialPort(f func()) {
+	defer qt.Recovering("connect QSerialPort::~QSerialPort")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSerialPort::~QSerialPort", f)
+	}
+}
+
+func (ptr *QSerialPort) DisconnectDestroyQSerialPort() {
+	defer qt.Recovering("disconnect QSerialPort::~QSerialPort")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSerialPort::~QSerialPort")
+	}
+}
+
 func (ptr *QSerialPort) DestroyQSerialPort() {
 	defer qt.Recovering("QSerialPort::~QSerialPort")
 
 	if ptr.Pointer() != nil {
 		C.QSerialPort_DestroyQSerialPort(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSerialPort) DestroyQSerialPortDefault() {
+	defer qt.Recovering("QSerialPort::~QSerialPort")
+
+	if ptr.Pointer() != nil {
+		C.QSerialPort_DestroyQSerialPortDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

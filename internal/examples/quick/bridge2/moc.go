@@ -134,11 +134,50 @@ func NewQmlBridge(parent core.QObject_ITF) *QmlBridge {
 	return tmpValue
 }
 
+//export callbackQmlBridge_DestroyQmlBridge
+func callbackQmlBridge_DestroyQmlBridge(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QmlBridge::~QmlBridge")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QmlBridge::~QmlBridge"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQmlBridgeFromPointer(ptr).DestroyQmlBridgeDefault()
+	}
+}
+
+func (ptr *QmlBridge) ConnectDestroyQmlBridge(f func()) {
+	defer qt.Recovering("connect QmlBridge::~QmlBridge")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QmlBridge::~QmlBridge", f)
+	}
+}
+
+func (ptr *QmlBridge) DisconnectDestroyQmlBridge() {
+	defer qt.Recovering("disconnect QmlBridge::~QmlBridge")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QmlBridge::~QmlBridge")
+	}
+}
+
 func (ptr *QmlBridge) DestroyQmlBridge() {
 	defer qt.Recovering("QmlBridge::~QmlBridge")
 
 	if ptr.Pointer() != nil {
 		C.QmlBridge_DestroyQmlBridge(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QmlBridge) DestroyQmlBridgeDefault() {
+	defer qt.Recovering("QmlBridge::~QmlBridge")
+
+	if ptr.Pointer() != nil {
+		C.QmlBridge_DestroyQmlBridgeDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

@@ -2508,11 +2508,50 @@ func (ptr *QScxmlEventFilter) Handle(event QScxmlEvent_ITF, stateMachine QScxmlS
 	return false
 }
 
+//export callbackQScxmlEventFilter_DestroyQScxmlEventFilter
+func callbackQScxmlEventFilter_DestroyQScxmlEventFilter(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QScxmlEventFilter::~QScxmlEventFilter")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEventFilter::~QScxmlEventFilter"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQScxmlEventFilterFromPointer(ptr).DestroyQScxmlEventFilterDefault()
+	}
+}
+
+func (ptr *QScxmlEventFilter) ConnectDestroyQScxmlEventFilter(f func()) {
+	defer qt.Recovering("connect QScxmlEventFilter::~QScxmlEventFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEventFilter::~QScxmlEventFilter", f)
+	}
+}
+
+func (ptr *QScxmlEventFilter) DisconnectDestroyQScxmlEventFilter() {
+	defer qt.Recovering("disconnect QScxmlEventFilter::~QScxmlEventFilter")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEventFilter::~QScxmlEventFilter")
+	}
+}
+
 func (ptr *QScxmlEventFilter) DestroyQScxmlEventFilter() {
 	defer qt.Recovering("QScxmlEventFilter::~QScxmlEventFilter")
 
 	if ptr.Pointer() != nil {
 		C.QScxmlEventFilter_DestroyQScxmlEventFilter(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QScxmlEventFilter) DestroyQScxmlEventFilterDefault() {
+	defer qt.Recovering("QScxmlEventFilter::~QScxmlEventFilter")
+
+	if ptr.Pointer() != nil {
+		C.QScxmlEventFilter_DestroyQScxmlEventFilterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}

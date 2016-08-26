@@ -397,6 +397,7 @@ void QHelpEngineCore_ConnectWarning(void* ptr);
 void QHelpEngineCore_DisconnectWarning(void* ptr);
 void QHelpEngineCore_Warning(void* ptr, char* msg);
 void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr);
+void QHelpEngineCore_DestroyQHelpEngineCoreDefault(void* ptr);
 void QHelpEngineCore_TimerEvent(void* ptr, void* event);
 void QHelpEngineCore_TimerEventDefault(void* ptr, void* event);
 void QHelpEngineCore_ChildEvent(void* ptr, void* event);

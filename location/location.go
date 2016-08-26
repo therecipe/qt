@@ -779,11 +779,50 @@ func (ptr *QGeoRouteReply) SetFinished(finished bool) {
 	}
 }
 
+//export callbackQGeoRouteReply_DestroyQGeoRouteReply
+func callbackQGeoRouteReply_DestroyQGeoRouteReply(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QGeoRouteReply::~QGeoRouteReply")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoRouteReply::~QGeoRouteReply"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQGeoRouteReplyFromPointer(ptr).DestroyQGeoRouteReplyDefault()
+	}
+}
+
+func (ptr *QGeoRouteReply) ConnectDestroyQGeoRouteReply(f func()) {
+	defer qt.Recovering("connect QGeoRouteReply::~QGeoRouteReply")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoRouteReply::~QGeoRouteReply", f)
+	}
+}
+
+func (ptr *QGeoRouteReply) DisconnectDestroyQGeoRouteReply() {
+	defer qt.Recovering("disconnect QGeoRouteReply::~QGeoRouteReply")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoRouteReply::~QGeoRouteReply")
+	}
+}
+
 func (ptr *QGeoRouteReply) DestroyQGeoRouteReply() {
 	defer qt.Recovering("QGeoRouteReply::~QGeoRouteReply")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRouteReply_DestroyQGeoRouteReply(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoRouteReply) DestroyQGeoRouteReplyDefault() {
+	defer qt.Recovering("QGeoRouteReply::~QGeoRouteReply")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRouteReply_DestroyQGeoRouteReplyDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -2611,11 +2650,50 @@ func (ptr *QGeoRoutingManagerEngine) UpdateRouteDefault(route QGeoRoute_ITF, pos
 	return nil
 }
 
+//export callbackQGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine
+func callbackQGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQGeoRoutingManagerEngineFromPointer(ptr).DestroyQGeoRoutingManagerEngineDefault()
+	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) ConnectDestroyQGeoRoutingManagerEngine(f func()) {
+	defer qt.Recovering("connect QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine", f)
+	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) DisconnectDestroyQGeoRoutingManagerEngine() {
+	defer qt.Recovering("disconnect QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
+	}
+}
+
 func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngine() {
 	defer qt.Recovering("QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
 
 	if ptr.Pointer() != nil {
 		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoRoutingManagerEngine) DestroyQGeoRoutingManagerEngineDefault() {
+	defer qt.Recovering("QGeoRoutingManagerEngine::~QGeoRoutingManagerEngine")
+
+	if ptr.Pointer() != nil {
+		C.QGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -3716,11 +3794,51 @@ func NewQGeoServiceProviderFactoryFromPointer(ptr unsafe.Pointer) *QGeoServicePr
 	n.SetPointer(ptr)
 	return n
 }
+
+//export callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory
+func callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoServiceProviderFactory::~QGeoServiceProviderFactory"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQGeoServiceProviderFactoryFromPointer(ptr).DestroyQGeoServiceProviderFactoryDefault()
+	}
+}
+
+func (ptr *QGeoServiceProviderFactory) ConnectDestroyQGeoServiceProviderFactory(f func()) {
+	defer qt.Recovering("connect QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::~QGeoServiceProviderFactory", f)
+	}
+}
+
+func (ptr *QGeoServiceProviderFactory) DisconnectDestroyQGeoServiceProviderFactory() {
+	defer qt.Recovering("disconnect QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
+	}
+}
+
 func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactory() {
 	defer qt.Recovering("QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
 
 	if ptr.Pointer() != nil {
 		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactoryDefault() {
+	defer qt.Recovering("QGeoServiceProviderFactory::~QGeoServiceProviderFactory")
+
+	if ptr.Pointer() != nil {
+		C.QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
