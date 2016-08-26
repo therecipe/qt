@@ -69,7 +69,7 @@ func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string) *QCanBusDe
 		defer C.free(unsafe.Pointer(interfaceNameC))
 		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBus_CreateDevice(ptr.Pointer(), pluginC, interfaceNameC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -81,7 +81,7 @@ func QCanBus_Instance() *QCanBus {
 
 	var tmpValue = NewQCanBusFromPointer(C.QCanBus_QCanBus_Instance())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -91,7 +91,7 @@ func (ptr *QCanBus) Instance() *QCanBus {
 
 	var tmpValue = NewQCanBusFromPointer(C.QCanBus_QCanBus_Instance())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -585,6 +585,7 @@ func NewQCanBusDeviceFromPointer(ptr unsafe.Pointer) *QCanBusDevice {
 
 func (ptr *QCanBusDevice) DestroyQCanBusDevice() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -611,7 +612,7 @@ func NewQCanBusDevice(parent core.QObject_ITF) *QCanBusDevice {
 
 	var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusDevice_NewQCanBusDevice(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1500,6 +1501,7 @@ func NewQCanBusFactoryFromPointer(ptr unsafe.Pointer) *QCanBusFactory {
 
 func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -1540,7 +1542,7 @@ func (ptr *QCanBusFactory) CreateDevice(interfaceName string) *QCanBusDevice {
 		defer C.free(unsafe.Pointer(interfaceNameC))
 		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusFactory_CreateDevice(ptr.Pointer(), interfaceNameC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1774,6 +1776,7 @@ func NewQModbusClientFromPointer(ptr unsafe.Pointer) *QModbusClient {
 
 func (ptr *QModbusClient) DestroyQModbusClient() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -1791,7 +1794,7 @@ func NewQModbusClient(parent core.QObject_ITF) *QModbusClient {
 
 	var tmpValue = NewQModbusClientFromPointer(C.QModbusClient_NewQModbusClient(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1811,7 +1814,7 @@ func (ptr *QModbusClient) SendRawRequest(request QModbusRequest_ITF, serverAddre
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendRawRequest(ptr.Pointer(), PointerFromQModbusRequest(request), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1824,7 +1827,7 @@ func (ptr *QModbusClient) SendReadRequest(read QModbusDataUnit_ITF, serverAddres
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendReadRequest(ptr.Pointer(), PointerFromQModbusDataUnit(read), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1837,7 +1840,7 @@ func (ptr *QModbusClient) SendReadWriteRequest(read QModbusDataUnit_ITF, write Q
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendReadWriteRequest(ptr.Pointer(), PointerFromQModbusDataUnit(read), PointerFromQModbusDataUnit(write), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1850,7 +1853,7 @@ func (ptr *QModbusClient) SendWriteRequest(write QModbusDataUnit_ITF, serverAddr
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendWriteRequest(ptr.Pointer(), PointerFromQModbusDataUnit(write), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2730,7 +2733,7 @@ func NewQModbusDevice(parent core.QObject_ITF) *QModbusDevice {
 
 	var tmpValue = NewQModbusDeviceFromPointer(C.QModbusDevice_NewQModbusDevice(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3580,6 +3583,7 @@ func NewQModbusExceptionResponseFromPointer(ptr unsafe.Pointer) *QModbusExceptio
 
 func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -3944,6 +3948,7 @@ func NewQModbusReplyFromPointer(ptr unsafe.Pointer) *QModbusReply {
 
 func (ptr *QModbusReply) DestroyQModbusReply() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -3952,7 +3957,7 @@ func NewQModbusReply(ty QModbusReply__ReplyType, serverAddress int, parent core.
 
 	var tmpValue = NewQModbusReplyFromPointer(C.QModbusReply_NewQModbusReply(C.longlong(ty), C.int(int32(serverAddress)), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4816,7 +4821,7 @@ func NewQModbusRtuSerialMaster(parent core.QObject_ITF) *QModbusRtuSerialMaster 
 
 	var tmpValue = NewQModbusRtuSerialMasterFromPointer(C.QModbusRtuSerialMaster_NewQModbusRtuSerialMaster(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5480,7 +5485,7 @@ func NewQModbusRtuSerialSlave(parent core.QObject_ITF) *QModbusRtuSerialSlave {
 
 	var tmpValue = NewQModbusRtuSerialSlaveFromPointer(C.QModbusRtuSerialSlave_NewQModbusRtuSerialSlave(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6342,6 +6347,7 @@ func NewQModbusServerFromPointer(ptr unsafe.Pointer) *QModbusServer {
 
 func (ptr *QModbusServer) DestroyQModbusServer() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -6350,7 +6356,7 @@ func NewQModbusServer(parent core.QObject_ITF) *QModbusServer {
 
 	var tmpValue = NewQModbusServerFromPointer(C.QModbusServer_NewQModbusServer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -7263,7 +7269,7 @@ func NewQModbusTcpClient(parent core.QObject_ITF) *QModbusTcpClient {
 
 	var tmpValue = NewQModbusTcpClientFromPointer(C.QModbusTcpClient_NewQModbusTcpClient(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -7919,7 +7925,7 @@ func NewQModbusTcpServer(parent core.QObject_ITF) *QModbusTcpServer {
 
 	var tmpValue = NewQModbusTcpServerFromPointer(C.QModbusTcpServer_NewQModbusTcpServer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

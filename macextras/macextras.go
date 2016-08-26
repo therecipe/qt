@@ -313,7 +313,7 @@ func NewQMacToolBar(parent core.QObject_ITF) *QMacToolBar {
 
 	var tmpValue = NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -325,7 +325,7 @@ func NewQMacToolBar2(identifier string, parent core.QObject_ITF) *QMacToolBar {
 	defer C.free(unsafe.Pointer(identifierC))
 	var tmpValue = NewQMacToolBarFromPointer(C.QMacToolBar_NewQMacToolBar2(identifierC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -338,7 +338,7 @@ func (ptr *QMacToolBar) AddAllowedItem(icon gui.QIcon_ITF, text string) *QMacToo
 		defer C.free(unsafe.Pointer(textC))
 		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddAllowedItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -353,7 +353,7 @@ func (ptr *QMacToolBar) AddItem(icon gui.QIcon_ITF, text string) *QMacToolBarIte
 		defer C.free(unsafe.Pointer(textC))
 		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_AddItem(ptr.Pointer(), gui.PointerFromQIcon(icon), textC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -858,7 +858,7 @@ func NewQMacToolBarItem(parent core.QObject_ITF) *QMacToolBarItem {
 
 	var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

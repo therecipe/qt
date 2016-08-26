@@ -339,7 +339,7 @@ func NewQBluetoothDeviceDiscoveryAgent(parent core.QObject_ITF) *QBluetoothDevic
 
 	var tmpValue = NewQBluetoothDeviceDiscoveryAgentFromPointer(C.QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -349,7 +349,7 @@ func NewQBluetoothDeviceDiscoveryAgent2(deviceAdapter QBluetoothAddress_ITF, par
 
 	var tmpValue = NewQBluetoothDeviceDiscoveryAgentFromPointer(C.QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent2(PointerFromQBluetoothAddress(deviceAdapter), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1745,7 +1745,7 @@ func NewQBluetoothLocalDevice(parent core.QObject_ITF) *QBluetoothLocalDevice {
 
 	var tmpValue = NewQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1755,7 +1755,7 @@ func NewQBluetoothLocalDevice2(address QBluetoothAddress_ITF, parent core.QObjec
 
 	var tmpValue = NewQBluetoothLocalDeviceFromPointer(C.QBluetoothLocalDevice_NewQBluetoothLocalDevice2(PointerFromQBluetoothAddress(address), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2328,7 +2328,7 @@ func NewQBluetoothServer(serverType QBluetoothServiceInfo__Protocol, parent core
 
 	var tmpValue = NewQBluetoothServerFromPointer(C.QBluetoothServer_NewQBluetoothServer(C.longlong(serverType), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2496,7 +2496,7 @@ func (ptr *QBluetoothServer) NextPendingConnection() *QBluetoothSocket {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQBluetoothSocketFromPointer(C.QBluetoothServer_NextPendingConnection(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3153,7 +3153,7 @@ func NewQBluetoothServiceDiscoveryAgent(parent core.QObject_ITF) *QBluetoothServ
 
 	var tmpValue = NewQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3163,7 +3163,7 @@ func NewQBluetoothServiceDiscoveryAgent2(deviceAdapter QBluetoothAddress_ITF, pa
 
 	var tmpValue = NewQBluetoothServiceDiscoveryAgentFromPointer(C.QBluetoothServiceDiscoveryAgent_NewQBluetoothServiceDiscoveryAgent2(PointerFromQBluetoothAddress(deviceAdapter), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4285,7 +4285,7 @@ func NewQBluetoothSocket(socketType QBluetoothServiceInfo__Protocol, parent core
 
 	var tmpValue = NewQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket(C.longlong(socketType), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4295,7 +4295,7 @@ func NewQBluetoothSocket2(parent core.QObject_ITF) *QBluetoothSocket {
 
 	var tmpValue = NewQBluetoothSocketFromPointer(C.QBluetoothSocket_NewQBluetoothSocket2(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5618,7 +5618,7 @@ func (ptr *QBluetoothTransferManager) Put(request QBluetoothTransferRequest_ITF,
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQBluetoothTransferReplyFromPointer(C.QBluetoothTransferManager_Put(ptr.Pointer(), PointerFromQBluetoothTransferRequest(request), core.PointerFromQIODevice(data)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5630,7 +5630,7 @@ func NewQBluetoothTransferManager(parent core.QObject_ITF) *QBluetoothTransferMa
 
 	var tmpValue = NewQBluetoothTransferManagerFromPointer(C.QBluetoothTransferManager_NewQBluetoothTransferManager(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6206,7 +6206,7 @@ func NewQBluetoothTransferReply(parent core.QObject_ITF) *QBluetoothTransferRepl
 
 	var tmpValue = NewQBluetoothTransferReplyFromPointer(C.QBluetoothTransferReply_NewQBluetoothTransferReply(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6441,7 +6441,7 @@ func (ptr *QBluetoothTransferReply) Manager() *QBluetoothTransferManager {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQBluetoothTransferManagerFromPointer(C.QBluetoothTransferReply_Manager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8621,7 +8621,7 @@ func (ptr *QLowEnergyController) AddService(service QLowEnergyServiceData_ITF, p
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQLowEnergyServiceFromPointer(C.QLowEnergyController_AddService(ptr.Pointer(), PointerFromQLowEnergyServiceData(service), core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8641,7 +8641,7 @@ func QLowEnergyController_CreateCentral(remoteDevice QBluetoothDeviceInfo_ITF, p
 
 	var tmpValue = NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreateCentral(PointerFromQBluetoothDeviceInfo(remoteDevice), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8651,7 +8651,7 @@ func (ptr *QLowEnergyController) CreateCentral(remoteDevice QBluetoothDeviceInfo
 
 	var tmpValue = NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreateCentral(PointerFromQBluetoothDeviceInfo(remoteDevice), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8661,7 +8661,7 @@ func QLowEnergyController_CreatePeripheral(parent core.QObject_ITF) *QLowEnergyC
 
 	var tmpValue = NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreatePeripheral(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8671,7 +8671,7 @@ func (ptr *QLowEnergyController) CreatePeripheral(parent core.QObject_ITF) *QLow
 
 	var tmpValue = NewQLowEnergyControllerFromPointer(C.QLowEnergyController_QLowEnergyController_CreatePeripheral(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8682,7 +8682,7 @@ func (ptr *QLowEnergyController) CreateServiceObject(serviceUuid QBluetoothUuid_
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQLowEnergyServiceFromPointer(C.QLowEnergyController_CreateServiceObject(ptr.Pointer(), PointerFromQBluetoothUuid(serviceUuid), core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

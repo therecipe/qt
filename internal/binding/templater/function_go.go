@@ -154,7 +154,7 @@ return tmpValue%v`, body,
 							if class, exists := parser.ClassMap[out]; exists && classIsSupported(class) && class.IsQObjectSubClass() {
 								return fmt.Sprintf(`var tmpValue = %v
 if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-tmpValue.ConnectDestroyed(func(%v){})
+tmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })
 }
 return tmpValue`, body, func() string {
 									if parser.ClassMap[function.Class()].Module == "QtCore" {

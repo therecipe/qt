@@ -1967,6 +1967,7 @@ func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
 
 func (ptr *QHelpContentWidget) DestroyQHelpContentWidget() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -7206,7 +7207,7 @@ func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine
 	defer C.free(unsafe.Pointer(collectionFileC))
 	var tmpValue = NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(collectionFileC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -7217,7 +7218,7 @@ func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpContentModelFromPointer(C.QHelpEngine_ContentModel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -7230,7 +7231,7 @@ func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpContentWidgetFromPointer(C.QHelpEngine_ContentWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -7243,7 +7244,7 @@ func (ptr *QHelpEngine) IndexModel() *QHelpIndexModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpIndexModelFromPointer(C.QHelpEngine_IndexModel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -7256,7 +7257,7 @@ func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpIndexWidgetFromPointer(C.QHelpEngine_IndexWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -7269,7 +7270,7 @@ func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpEngine_SearchEngine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -7798,7 +7799,7 @@ func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEn
 	defer C.free(unsafe.Pointer(collectionFileC))
 	var tmpValue = NewQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(collectionFileC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8672,6 +8673,7 @@ func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
 
 func (ptr *QHelpIndexModel) DestroyQHelpIndexModel() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -10667,6 +10669,7 @@ func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
 
 func (ptr *QHelpIndexWidget) DestroyQHelpIndexWidget() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -15341,7 +15344,7 @@ func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_IT
 
 	var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15505,7 +15508,7 @@ func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15554,7 +15557,7 @@ func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -16219,7 +16222,7 @@ func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidg
 
 	var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

@@ -102,7 +102,7 @@ func NewQScriptEngineDebugger(parent core.QObject_ITF) *QScriptEngineDebugger {
 
 	var tmpValue = NewQScriptEngineDebuggerFromPointer(C.QScriptEngineDebugger_NewQScriptEngineDebugger(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -113,7 +113,7 @@ func (ptr *QScriptEngineDebugger) Action(action QScriptEngineDebugger__DebuggerA
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QScriptEngineDebugger_Action(ptr.Pointer(), C.longlong(action)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -143,7 +143,7 @@ func (ptr *QScriptEngineDebugger) CreateStandardMenu(parent widgets.QWidget_ITF)
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQMenuFromPointer(C.QScriptEngineDebugger_CreateStandardMenu(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -156,7 +156,7 @@ func (ptr *QScriptEngineDebugger) CreateStandardToolBar(parent widgets.QWidget_I
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQToolBarFromPointer(C.QScriptEngineDebugger_CreateStandardToolBar(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -257,7 +257,7 @@ func (ptr *QScriptEngineDebugger) StandardWindow() *widgets.QMainWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQMainWindowFromPointer(C.QScriptEngineDebugger_StandardWindow(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -279,7 +279,7 @@ func (ptr *QScriptEngineDebugger) Widget(widget QScriptEngineDebugger__DebuggerW
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QScriptEngineDebugger_Widget(ptr.Pointer(), C.longlong(widget)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

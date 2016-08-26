@@ -7,6 +7,8 @@ package androidextras
 //#include "androidextras_android.h"
 import "C"
 import (
+	"fmt"
+	"github.com/therecipe/qt"
 	"unsafe"
 )
 
@@ -50,6 +52,7 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 

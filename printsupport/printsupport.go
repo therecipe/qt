@@ -83,6 +83,7 @@ func NewQAbstractPrintDialogFromPointer(ptr unsafe.Pointer) *QAbstractPrintDialo
 
 func (ptr *QAbstractPrintDialog) DestroyQAbstractPrintDialog() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -91,7 +92,7 @@ func NewQAbstractPrintDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *
 
 	var tmpValue = NewQAbstractPrintDialogFromPointer(C.QAbstractPrintDialog_NewQAbstractPrintDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3217,7 +3218,7 @@ func NewQPageSetupDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QPag
 
 	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3227,7 +3228,7 @@ func NewQPageSetupDialog2(parent widgets.QWidget_ITF) *QPageSetupDialog {
 
 	var tmpValue = NewQPageSetupDialogFromPointer(C.QPageSetupDialog_NewQPageSetupDialog2(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6178,7 +6179,7 @@ func NewQPrintDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QPrintDi
 
 	var tmpValue = NewQPrintDialogFromPointer(C.QPrintDialog_NewQPrintDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6188,7 +6189,7 @@ func NewQPrintDialog2(parent widgets.QWidget_ITF) *QPrintDialog {
 
 	var tmpValue = NewQPrintDialogFromPointer(C.QPrintDialog_NewQPrintDialog2(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -9406,7 +9407,7 @@ func NewQPrintPreviewDialog2(parent widgets.QWidget_ITF, flags core.Qt__WindowTy
 
 	var tmpValue = NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog2(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -9416,7 +9417,7 @@ func NewQPrintPreviewDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF, fl
 
 	var tmpValue = NewQPrintPreviewDialogFromPointer(C.QPrintPreviewDialog_NewQPrintPreviewDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -12401,7 +12402,7 @@ func NewQPrintPreviewWidget(printer QPrinter_ITF, parent widgets.QWidget_ITF, fl
 
 	var tmpValue = NewQPrintPreviewWidgetFromPointer(C.QPrintPreviewWidget_NewQPrintPreviewWidget(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -12411,7 +12412,7 @@ func NewQPrintPreviewWidget2(parent widgets.QWidget_ITF, flags core.Qt__WindowTy
 
 	var tmpValue = NewQPrintPreviewWidgetFromPointer(C.QPrintPreviewWidget_NewQPrintPreviewWidget2(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

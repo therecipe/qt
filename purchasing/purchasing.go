@@ -63,6 +63,7 @@ func NewQInAppProductFromPointer(ptr unsafe.Pointer) *QInAppProduct {
 
 func (ptr *QInAppProduct) DestroyQInAppProduct() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -605,7 +606,7 @@ func NewQInAppStore(parent core.QObject_ITF) *QInAppStore {
 
 	var tmpValue = NewQInAppStoreFromPointer(C.QInAppStore_NewQInAppStore(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -702,7 +703,7 @@ func (ptr *QInAppStore) RegisteredProduct(identifier string) *QInAppProduct {
 		defer C.free(unsafe.Pointer(identifierC))
 		var tmpValue = NewQInAppProductFromPointer(C.QInAppStore_RegisteredProduct(ptr.Pointer(), identifierC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1250,6 +1251,7 @@ func NewQInAppTransactionFromPointer(ptr unsafe.Pointer) *QInAppTransaction {
 
 func (ptr *QInAppTransaction) DestroyQInAppTransaction() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -1400,7 +1402,7 @@ func (ptr *QInAppTransaction) Product() *QInAppProduct {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQInAppProductFromPointer(C.QInAppTransaction_Product(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

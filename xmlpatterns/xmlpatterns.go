@@ -523,7 +523,7 @@ func NewQAbstractUriResolver(parent core.QObject_ITF) *QAbstractUriResolver {
 
 	var tmpValue = NewQAbstractUriResolverFromPointer(C.QAbstractUriResolver_NewQAbstractUriResolver(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2644,6 +2644,7 @@ func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
 
 func (ptr *QXmlFormatter) DestroyQXmlFormatter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -3858,7 +3859,7 @@ func (ptr *QXmlQuery) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlQuery_MessageHandler(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3882,7 +3883,7 @@ func (ptr *QXmlQuery) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlQuery_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4009,7 +4010,7 @@ func (ptr *QXmlQuery) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlQuery_UriResolver(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4219,7 +4220,7 @@ func (ptr *QXmlSchema) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchema_MessageHandler(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4243,7 +4244,7 @@ func (ptr *QXmlSchema) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchema_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4280,7 +4281,7 @@ func (ptr *QXmlSchema) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlSchema_UriResolver(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4355,7 +4356,7 @@ func (ptr *QXmlSchemaValidator) MessageHandler() *QAbstractMessageHandler {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractMessageHandlerFromPointer(C.QXmlSchemaValidator_MessageHandler(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4379,7 +4380,7 @@ func (ptr *QXmlSchemaValidator) NetworkAccessManager() *network.QNetworkAccessMa
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QXmlSchemaValidator_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4435,7 +4436,7 @@ func (ptr *QXmlSchemaValidator) UriResolver() *QAbstractUriResolver {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractUriResolverFromPointer(C.QXmlSchemaValidator_UriResolver(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4521,6 +4522,7 @@ func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) *QXmlSerializer {
 
 func (ptr *QXmlSerializer) DestroyQXmlSerializer() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -4911,7 +4913,7 @@ func (ptr *QXmlSerializer) OutputDevice() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QXmlSerializer_OutputDevice(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

@@ -53,6 +53,7 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 

@@ -322,7 +322,7 @@ func NewQSerialPort(parent core.QObject_ITF) *QSerialPort {
 
 	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -332,7 +332,7 @@ func NewQSerialPort3(serialPortInfo QSerialPortInfo_ITF, parent core.QObject_ITF
 
 	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort3(PointerFromQSerialPortInfo(serialPortInfo), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -344,7 +344,7 @@ func NewQSerialPort2(name string, parent core.QObject_ITF) *QSerialPort {
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = NewQSerialPortFromPointer(C.QSerialPort_NewQSerialPort2(nameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

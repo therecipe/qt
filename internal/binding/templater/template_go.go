@@ -119,11 +119,16 @@ return n
 			if classNeedsDestructor(class) {
 				fmt.Fprintf(bb, `
 func (ptr *%v) Destroy%v() {
-C.free(ptr.Pointer())
+C.free(ptr.Pointer())%v
 ptr.SetPointer(nil)
 }
 
-`, class.Name, class.Name)
+`, class.Name, class.Name, func() string {
+					if needsCallbackFunctions(class) {
+						return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
+					}
+					return ""
+				}())
 			}
 		}
 

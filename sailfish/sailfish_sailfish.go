@@ -67,7 +67,7 @@ func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {
 	defer C.free(unsafe.Pointer(argvC))
 	var tmpValue = gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -79,7 +79,7 @@ func (ptr *SailfishApp) Application(argc int, argv []string) *gui.QGuiApplicatio
 	defer C.free(unsafe.Pointer(argvC))
 	var tmpValue = gui.NewQGuiApplicationFromPointer(C.SailfishApp_SailfishApp_Application(C.int(int32(argc)), argvC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -105,7 +105,7 @@ func SailfishApp_CreateView() *quick.QQuickView {
 
 	var tmpValue = quick.NewQQuickViewFromPointer(C.SailfishApp_SailfishApp_CreateView())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -115,7 +115,7 @@ func (ptr *SailfishApp) CreateView() *quick.QQuickView {
 
 	var tmpValue = quick.NewQQuickViewFromPointer(C.SailfishApp_SailfishApp_CreateView())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

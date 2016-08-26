@@ -112,7 +112,7 @@ func (ptr *QQuickAsyncImageProvider) RequestImageResponse(id string, requestedSi
 		defer C.free(unsafe.Pointer(idC))
 		var tmpValue = NewQQuickImageResponseFromPointer(C.QQuickAsyncImageProvider_RequestImageResponse(ptr.Pointer(), idC, core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -266,7 +266,7 @@ func (ptr *QQuickAsyncImageProvider) RequestTexture(id string, size core.QSize_I
 		defer C.free(unsafe.Pointer(idC))
 		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickAsyncImageProvider_RequestTexture(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -281,7 +281,7 @@ func (ptr *QQuickAsyncImageProvider) RequestTextureDefault(id string, size core.
 		defer C.free(unsafe.Pointer(idC))
 		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickAsyncImageProvider_RequestTextureDefault(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -329,6 +329,7 @@ func NewQQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebuffe
 
 func (ptr *QQuickFramebufferObject) DestroyQQuickFramebufferObject() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -565,7 +566,7 @@ func (ptr *QQuickFramebufferObject) TextureProvider() *QSGTextureProvider {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureProviderFromPointer(C.QQuickFramebufferObject_TextureProvider(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -578,7 +579,7 @@ func (ptr *QQuickFramebufferObject) TextureProviderDefault() *QSGTextureProvider
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureProviderFromPointer(C.QQuickFramebufferObject_TextureProviderDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2344,7 +2345,7 @@ func (ptr *QQuickImageProvider) RequestTexture(id string, size core.QSize_ITF, r
 		defer C.free(unsafe.Pointer(idC))
 		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTexture(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2359,7 +2360,7 @@ func (ptr *QQuickImageProvider) RequestTextureDefault(id string, size core.QSize
 		defer C.free(unsafe.Pointer(idC))
 		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageProvider_RequestTextureDefault(ptr.Pointer(), idC, core.PointerFromQSize(size), core.PointerFromQSize(requestedSize)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2419,7 +2420,7 @@ func NewQQuickImageResponse() *QQuickImageResponse {
 
 	var tmpValue = NewQQuickImageResponseFromPointer(C.QQuickImageResponse_NewQQuickImageResponse())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2587,7 +2588,7 @@ func (ptr *QQuickImageResponse) TextureFactory() *QQuickTextureFactory {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickImageResponse_TextureFactory(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3107,7 +3108,7 @@ func NewQQuickItem(parent QQuickItem_ITF) *QQuickItem {
 
 	var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_NewQQuickItem(PointerFromQQuickItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3275,7 +3276,7 @@ func (ptr *QQuickItem) ParentItem() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_ParentItem(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3555,7 +3556,7 @@ func (ptr *QQuickItem) TextureProvider() *QSGTextureProvider {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureProviderFromPointer(C.QQuickItem_TextureProvider(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3568,7 +3569,7 @@ func (ptr *QQuickItem) TextureProviderDefault() *QSGTextureProvider {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureProviderFromPointer(C.QQuickItem_TextureProviderDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3644,7 +3645,7 @@ func (ptr *QQuickItem) ChildAt(x float64, y float64) *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_ChildAt(ptr.Pointer(), C.double(x), C.double(y)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4863,7 +4864,7 @@ func (ptr *QQuickItem) NextItemInFocusChain(forward bool) *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_NextItemInFocusChain(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(forward)))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4929,7 +4930,7 @@ func (ptr *QQuickItem) ScopedFocusItem() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_ScopedFocusItem(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5279,7 +5280,7 @@ func (ptr *QQuickItem) Window() *QQuickWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickWindowFromPointer(C.QQuickItem_Window(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5741,6 +5742,7 @@ func NewQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResul
 
 func (ptr *QQuickItemGrabResult) DestroyQQuickItemGrabResult() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -6378,7 +6380,7 @@ func NewQQuickPaintedItem(parent QQuickItem_ITF) *QQuickPaintedItem {
 
 	var tmpValue = NewQQuickPaintedItemFromPointer(C.QQuickPaintedItem_NewQQuickPaintedItem(PointerFromQQuickItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6766,7 +6768,7 @@ func (ptr *QQuickPaintedItem) TextureProvider() *QSGTextureProvider {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureProviderFromPointer(C.QQuickPaintedItem_TextureProvider(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6779,7 +6781,7 @@ func (ptr *QQuickPaintedItem) TextureProviderDefault() *QSGTextureProvider {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureProviderFromPointer(C.QQuickPaintedItem_TextureProviderDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8386,7 +8388,7 @@ func NewQQuickRenderControl(parent core.QObject_ITF) *QQuickRenderControl {
 
 	var tmpValue = NewQQuickRenderControlFromPointer(C.QQuickRenderControl_NewQQuickRenderControl(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8513,7 +8515,7 @@ func (ptr *QQuickRenderControl) RenderWindow(offset core.QPoint_ITF) *gui.QWindo
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQWindowFromPointer(C.QQuickRenderControl_RenderWindow(ptr.Pointer(), core.PointerFromQPoint(offset)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8526,7 +8528,7 @@ func (ptr *QQuickRenderControl) RenderWindowDefault(offset core.QPoint_ITF) *gui
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQWindowFromPointer(C.QQuickRenderControl_RenderWindowDefault(ptr.Pointer(), core.PointerFromQPoint(offset)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8538,7 +8540,7 @@ func QQuickRenderControl_RenderWindowFor(win QQuickWindow_ITF, offset core.QPoin
 
 	var tmpValue = gui.NewQWindowFromPointer(C.QQuickRenderControl_QQuickRenderControl_RenderWindowFor(PointerFromQQuickWindow(win), core.PointerFromQPoint(offset)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8548,7 +8550,7 @@ func (ptr *QQuickRenderControl) RenderWindowFor(win QQuickWindow_ITF, offset cor
 
 	var tmpValue = gui.NewQWindowFromPointer(C.QQuickRenderControl_QQuickRenderControl_RenderWindowFor(PointerFromQQuickWindow(win), core.PointerFromQPoint(offset)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -9072,7 +9074,7 @@ func NewQQuickTextDocument(parent QQuickItem_ITF) *QQuickTextDocument {
 
 	var tmpValue = NewQQuickTextDocumentFromPointer(C.QQuickTextDocument_NewQQuickTextDocument(PointerFromQQuickItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -9083,7 +9085,7 @@ func (ptr *QQuickTextDocument) TextDocument() *gui.QTextDocument {
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQTextDocumentFromPointer(C.QQuickTextDocument_TextDocument(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -9598,7 +9600,7 @@ func NewQQuickTextureFactory() *QQuickTextureFactory {
 
 	var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickTextureFactory_NewQQuickTextureFactory())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -9638,7 +9640,7 @@ func (ptr *QQuickTextureFactory) CreateTexture(window QQuickWindow_ITF) *QSGText
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QQuickTextureFactory_CreateTexture(ptr.Pointer(), PointerFromQQuickWindow(window)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -9688,7 +9690,7 @@ func QQuickTextureFactory_TextureFactoryForImage(image gui.QImage_ITF) *QQuickTe
 
 	var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickTextureFactory_QQuickTextureFactory_TextureFactoryForImage(gui.PointerFromQImage(image)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -9698,7 +9700,7 @@ func (ptr *QQuickTextureFactory) TextureFactoryForImage(image gui.QImage_ITF) *Q
 
 	var tmpValue = NewQQuickTextureFactoryFromPointer(C.QQuickTextureFactory_QQuickTextureFactory_TextureFactoryForImage(gui.PointerFromQImage(image)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -10255,7 +10257,7 @@ func NewQQuickView2(engine qml.QQmlEngine_ITF, parent gui.QWindow_ITF) *QQuickVi
 
 	var tmpValue = NewQQuickViewFromPointer(C.QQuickView_NewQQuickView2(qml.PointerFromQQmlEngine(engine), gui.PointerFromQWindow(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -10265,7 +10267,7 @@ func NewQQuickView(parent gui.QWindow_ITF) *QQuickView {
 
 	var tmpValue = NewQQuickViewFromPointer(C.QQuickView_NewQQuickView(gui.PointerFromQWindow(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -10275,7 +10277,7 @@ func NewQQuickView3(source core.QUrl_ITF, parent gui.QWindow_ITF) *QQuickView {
 
 	var tmpValue = NewQQuickViewFromPointer(C.QQuickView_NewQQuickView3(core.PointerFromQUrl(source), gui.PointerFromQWindow(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -10286,7 +10288,7 @@ func (ptr *QQuickView) Engine() *qml.QQmlEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = qml.NewQQmlEngineFromPointer(C.QQuickView_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -10350,7 +10352,7 @@ func (ptr *QQuickView) RootContext() *qml.QQmlContext {
 	if ptr.Pointer() != nil {
 		var tmpValue = qml.NewQQmlContextFromPointer(C.QQuickView_RootContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -10363,7 +10365,7 @@ func (ptr *QQuickView) RootObject() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickView_RootObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11134,7 +11136,7 @@ func (ptr *QQuickView) FocusObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQuickView_FocusObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11147,7 +11149,7 @@ func (ptr *QQuickView) FocusObjectDefault() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQuickView_FocusObjectDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -12394,7 +12396,7 @@ func NewQQuickWidget2(engine qml.QQmlEngine_ITF, parent widgets.QWidget_ITF) *QQ
 
 	var tmpValue = NewQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget2(qml.PointerFromQQmlEngine(engine), widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -12404,7 +12406,7 @@ func NewQQuickWidget(parent widgets.QWidget_ITF) *QQuickWidget {
 
 	var tmpValue = NewQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -12414,7 +12416,7 @@ func NewQQuickWidget3(source core.QUrl_ITF, parent widgets.QWidget_ITF) *QQuickW
 
 	var tmpValue = NewQQuickWidgetFromPointer(C.QQuickWidget_NewQQuickWidget3(core.PointerFromQUrl(source), widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -12605,7 +12607,7 @@ func (ptr *QQuickWidget) Engine() *qml.QQmlEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = qml.NewQQmlEngineFromPointer(C.QQuickWidget_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -13065,7 +13067,7 @@ func (ptr *QQuickWidget) QuickWindow() *QQuickWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickWindowFromPointer(C.QQuickWidget_QuickWindow(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -13078,7 +13080,7 @@ func (ptr *QQuickWidget) RootContext() *qml.QQmlContext {
 	if ptr.Pointer() != nil {
 		var tmpValue = qml.NewQQmlContextFromPointer(C.QQuickWidget_RootContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -13091,7 +13093,7 @@ func (ptr *QQuickWidget) RootObject() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickWidget_RootObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15527,7 +15529,7 @@ func (ptr *QQuickWindow) ActiveFocusItem() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickWindow_ActiveFocusItem(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15551,7 +15553,7 @@ func (ptr *QQuickWindow) ContentItem() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickWindow_ContentItem(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15571,7 +15573,7 @@ func NewQQuickWindow(parent gui.QWindow_ITF) *QQuickWindow {
 
 	var tmpValue = NewQQuickWindowFromPointer(C.QQuickWindow_NewQQuickWindow(gui.PointerFromQWindow(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15852,7 +15854,7 @@ func (ptr *QQuickWindow) CreateTextureFromId(id uint, size core.QSize_ITF, optio
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QQuickWindow_CreateTextureFromId(ptr.Pointer(), C.uint(uint32(id)), core.PointerFromQSize(size), C.longlong(options)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15865,7 +15867,7 @@ func (ptr *QQuickWindow) CreateTextureFromImage2(image gui.QImage_ITF) *QSGTextu
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QQuickWindow_CreateTextureFromImage2(ptr.Pointer(), gui.PointerFromQImage(image)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15878,7 +15880,7 @@ func (ptr *QQuickWindow) CreateTextureFromImage(image gui.QImage_ITF, options QQ
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QQuickWindow_CreateTextureFromImage(ptr.Pointer(), gui.PointerFromQImage(image), C.longlong(options)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -16060,7 +16062,7 @@ func (ptr *QQuickWindow) MouseGrabberItem() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickWindow_MouseGrabberItem(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -17075,7 +17077,7 @@ func (ptr *QQuickWindow) FocusObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQuickWindow_FocusObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -17088,7 +17090,7 @@ func (ptr *QQuickWindow) FocusObjectDefault() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQuickWindow_FocusObjectDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -18298,6 +18300,7 @@ func NewQSGAbstractRendererFromPointer(ptr unsafe.Pointer) *QSGAbstractRenderer 
 
 func (ptr *QSGAbstractRenderer) DestroyQSGAbstractRenderer() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -19247,6 +19250,7 @@ func NewQSGDynamicTextureFromPointer(ptr unsafe.Pointer) *QSGDynamicTexture {
 
 func (ptr *QSGDynamicTexture) DestroyQSGDynamicTexture() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -19534,7 +19538,7 @@ func (ptr *QSGDynamicTexture) RemovedFromAtlas() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGDynamicTexture_RemovedFromAtlas(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -19547,7 +19551,7 @@ func (ptr *QSGDynamicTexture) RemovedFromAtlasDefault() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGDynamicTexture_RemovedFromAtlasDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -20100,7 +20104,7 @@ func NewQSGEngine(parent core.QObject_ITF) *QSGEngine {
 
 	var tmpValue = NewQSGEngineFromPointer(C.QSGEngine_NewQSGEngine(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -20111,7 +20115,7 @@ func (ptr *QSGEngine) CreateRenderer() *QSGAbstractRenderer {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGAbstractRendererFromPointer(C.QSGEngine_CreateRenderer(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -20124,7 +20128,7 @@ func (ptr *QSGEngine) CreateTextureFromId(id uint, size core.QSize_ITF, options 
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGEngine_CreateTextureFromId(ptr.Pointer(), C.uint(uint32(id)), core.PointerFromQSize(size), C.longlong(options)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -20137,7 +20141,7 @@ func (ptr *QSGEngine) CreateTextureFromImage(image gui.QImage_ITF, options QSGEn
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGEngine_CreateTextureFromImage(ptr.Pointer(), gui.PointerFromQImage(image), C.longlong(options)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -21306,6 +21310,7 @@ func NewQSGMaterialFromPointer(ptr unsafe.Pointer) *QSGMaterial {
 
 func (ptr *QSGMaterial) DestroyQSGMaterial() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -21489,6 +21494,7 @@ func NewQSGMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGMaterialShader {
 
 func (ptr *QSGMaterialShader) DestroyQSGMaterialShader() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -22463,7 +22469,7 @@ func (ptr *QSGOpaqueTextureMaterial) Texture() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGOpaqueTextureMaterial_Texture(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -22485,7 +22491,7 @@ func (ptr *QSGOpaqueTextureMaterial) M_texture() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGOpaqueTextureMaterial_M_texture(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -22726,6 +22732,7 @@ func NewQSGSimpleMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGSimpleMateria
 
 func (ptr *QSGSimpleMaterialShader) DestroyQSGSimpleMaterialShader() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -23092,7 +23099,7 @@ func (ptr *QSGSimpleTextureNode) Texture() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGSimpleTextureNode_Texture(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -23269,7 +23276,7 @@ func NewQSGTexture() *QSGTexture {
 
 	var tmpValue = NewQSGTextureFromPointer(C.QSGTexture_NewQSGTexture())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -23557,7 +23564,7 @@ func (ptr *QSGTexture) RemovedFromAtlas() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGTexture_RemovedFromAtlas(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -23570,7 +23577,7 @@ func (ptr *QSGTexture) RemovedFromAtlasDefault() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGTexture_RemovedFromAtlasDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -24355,6 +24362,7 @@ func NewQSGTextureProviderFromPointer(ptr unsafe.Pointer) *QSGTextureProvider {
 
 func (ptr *QSGTextureProvider) DestroyQSGTextureProvider() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -24393,7 +24401,7 @@ func (ptr *QSGTextureProvider) Texture() *QSGTexture {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSGTextureFromPointer(C.QSGTextureProvider_Texture(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

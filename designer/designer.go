@@ -93,7 +93,7 @@ func (ptr *QAbstractExtensionFactory) Extension(object core.QObject_ITF, iid str
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -185,7 +185,7 @@ func (ptr *QAbstractExtensionManager) Extension(object core.QObject_ITF, iid str
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QAbstractExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -351,7 +351,7 @@ func (ptr *QAbstractFormBuilder) Load(device core.QIODevice_ITF, parent widgets.
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QAbstractFormBuilder_Load(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -364,7 +364,7 @@ func (ptr *QAbstractFormBuilder) LoadDefault(device core.QIODevice_ITF, parent w
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QAbstractFormBuilder_LoadDefault(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -505,7 +505,7 @@ func NewQDesignerActionEditorInterface(parent widgets.QWidget_ITF, flags core.Qt
 
 	var tmpValue = NewQDesignerActionEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -545,7 +545,7 @@ func (ptr *QDesignerActionEditorInterface) Core() *QDesignerFormEditorInterface 
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -558,7 +558,7 @@ func (ptr *QDesignerActionEditorInterface) CoreDefault() *QDesignerFormEditorInt
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerActionEditorInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3863,7 +3863,7 @@ func (ptr *QDesignerContainerExtension) Widget(index int) *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerContainerExtension_Widget(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4047,7 +4047,7 @@ func (ptr *QDesignerCustomWidgetInterface) CreateWidget(parent widgets.QWidget_I
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerCustomWidgetInterface_CreateWidget(ptr.Pointer(), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4756,7 +4756,7 @@ func NewQDesignerFormEditorInterface(parent core.QObject_ITF) *QDesignerFormEdit
 
 	var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_NewQDesignerFormEditorInterface(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4767,7 +4767,7 @@ func (ptr *QDesignerFormEditorInterface) ActionEditor() *QDesignerActionEditorIn
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerActionEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_ActionEditor(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4780,7 +4780,7 @@ func (ptr *QDesignerFormEditorInterface) ExtensionManager() *QExtensionManager {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQExtensionManagerFromPointer(C.QDesignerFormEditorInterface_ExtensionManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4793,7 +4793,7 @@ func (ptr *QDesignerFormEditorInterface) FormWindowManager() *QDesignerFormWindo
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormWindowManagerInterfaceFromPointer(C.QDesignerFormEditorInterface_FormWindowManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4806,7 +4806,7 @@ func (ptr *QDesignerFormEditorInterface) ObjectInspector() *QDesignerObjectInspe
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerFormEditorInterface_ObjectInspector(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4819,7 +4819,7 @@ func (ptr *QDesignerFormEditorInterface) PropertyEditor() *QDesignerPropertyEdit
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerFormEditorInterface_PropertyEditor(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4864,7 +4864,7 @@ func (ptr *QDesignerFormEditorInterface) TopLevel() *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormEditorInterface_TopLevel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4877,7 +4877,7 @@ func (ptr *QDesignerFormEditorInterface) WidgetBox() *QDesignerWidgetBoxInterfac
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerWidgetBoxInterfaceFromPointer(C.QDesignerFormEditorInterface_WidgetBox(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5405,7 +5405,7 @@ func (ptr *QDesignerFormWindowCursorInterface) Current() *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Current(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5447,7 +5447,7 @@ func (ptr *QDesignerFormWindowCursorInterface) FormWindow() *QDesignerFormWindow
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowCursorInterface_FormWindow(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5650,7 +5650,7 @@ func (ptr *QDesignerFormWindowCursorInterface) SelectedWidget(index int) *widget
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_SelectedWidget(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5842,7 +5842,7 @@ func (ptr *QDesignerFormWindowCursorInterface) Widget(index int) *widgets.QWidge
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowCursorInterface_Widget(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5959,7 +5959,7 @@ func QDesignerFormWindowInterface_FindFormWindow2(object core.QObject_ITF) *QDes
 
 	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5969,7 +5969,7 @@ func (ptr *QDesignerFormWindowInterface) FindFormWindow2(object core.QObject_ITF
 
 	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5979,7 +5979,7 @@ func QDesignerFormWindowInterface_FindFormWindow(widget widgets.QWidget_ITF) *QD
 
 	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(widgets.PointerFromQWidget(widget)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5989,7 +5989,7 @@ func (ptr *QDesignerFormWindowInterface) FindFormWindow(widget widgets.QWidget_I
 
 	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(widgets.PointerFromQWidget(widget)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6452,7 +6452,7 @@ func (ptr *QDesignerFormWindowInterface) Core() *QDesignerFormEditorInterface {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6465,7 +6465,7 @@ func (ptr *QDesignerFormWindowInterface) CoreDefault() *QDesignerFormEditorInter
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6769,7 +6769,7 @@ func (ptr *QDesignerFormWindowInterface) FormContainer() *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QDesignerFormWindowInterface_FormContainer(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11066,7 +11066,7 @@ func (ptr *QDesignerFormWindowManagerInterface) Action(action QDesignerFormWindo
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerFormWindowManagerInterface_Action(ptr.Pointer(), C.longlong(action)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11108,7 +11108,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ActionGroup(actionGroup QDesigne
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionGroupFromPointer(C.QDesignerFormWindowManagerInterface_ActionGroup(ptr.Pointer(), C.longlong(actionGroup)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11150,7 +11150,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ActiveFormWindow() *QDesignerFor
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_ActiveFormWindow(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11300,7 +11300,7 @@ func (ptr *QDesignerFormWindowManagerInterface) Core() *QDesignerFormEditorInter
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11342,7 +11342,7 @@ func (ptr *QDesignerFormWindowManagerInterface) CreateFormWindow(parent widgets.
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_CreateFormWindow(ptr.Pointer(), widgets.PointerFromQWidget(parent), C.longlong(flags)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11424,7 +11424,7 @@ func (ptr *QDesignerFormWindowManagerInterface) FormWindow(index int) *QDesigner
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowManagerInterface_FormWindow(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -12693,7 +12693,7 @@ func NewQDesignerObjectInspectorInterface(parent widgets.QWidget_ITF, flags core
 
 	var tmpValue = NewQDesignerObjectInspectorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -12733,7 +12733,7 @@ func (ptr *QDesignerObjectInspectorInterface) Core() *QDesignerFormEditorInterfa
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -12746,7 +12746,7 @@ func (ptr *QDesignerObjectInspectorInterface) CoreDefault() *QDesignerFormEditor
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerObjectInspectorInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15635,7 +15635,7 @@ func NewQDesignerPropertyEditorInterface(parent widgets.QWidget_ITF, flags core.
 
 	var tmpValue = NewQDesignerPropertyEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15675,7 +15675,7 @@ func (ptr *QDesignerPropertyEditorInterface) Core() *QDesignerFormEditorInterfac
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_Core(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15688,7 +15688,7 @@ func (ptr *QDesignerPropertyEditorInterface) CoreDefault() *QDesignerFormEditorI
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDesignerFormEditorInterfaceFromPointer(C.QDesignerPropertyEditorInterface_CoreDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15806,7 +15806,7 @@ func (ptr *QDesignerPropertyEditorInterface) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QDesignerPropertyEditorInterface_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -19498,7 +19498,7 @@ func (ptr *QDesignerTaskMenuExtension) PreferredEditAction() *widgets.QAction {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension_PreferredEditAction(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -19511,7 +19511,7 @@ func (ptr *QDesignerTaskMenuExtension) PreferredEditActionDefault() *widgets.QAc
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension_PreferredEditActionDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -22566,6 +22566,7 @@ func NewQExtensionFactoryFromPointer(ptr unsafe.Pointer) *QExtensionFactory {
 
 func (ptr *QExtensionFactory) DestroyQExtensionFactory() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -22574,7 +22575,7 @@ func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
 
 	var tmpValue = NewQExtensionFactoryFromPointer(C.QExtensionFactory_NewQExtensionFactory(PointerFromQExtensionManager(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -22616,7 +22617,7 @@ func (ptr *QExtensionFactory) CreateExtension(object core.QObject_ITF, iid strin
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtension(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -22631,7 +22632,7 @@ func (ptr *QExtensionFactory) CreateExtensionDefault(object core.QObject_ITF, ii
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_CreateExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC, core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -22675,7 +22676,7 @@ func (ptr *QExtensionFactory) Extension(object core.QObject_ITF, iid string) *co
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -22690,7 +22691,7 @@ func (ptr *QExtensionFactory) ExtensionDefault(object core.QObject_ITF, iid stri
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionFactory_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -22703,7 +22704,7 @@ func (ptr *QExtensionFactory) ExtensionManager() *QExtensionManager {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQExtensionManagerFromPointer(C.QExtensionFactory_ExtensionManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -23171,7 +23172,7 @@ func NewQExtensionManager(parent core.QObject_ITF) *QExtensionManager {
 
 	var tmpValue = NewQExtensionManagerFromPointer(C.QExtensionManager_NewQExtensionManager(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -23213,7 +23214,7 @@ func (ptr *QExtensionManager) Extension(object core.QObject_ITF, iid string) *co
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_Extension(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -23228,7 +23229,7 @@ func (ptr *QExtensionManager) ExtensionDefault(object core.QObject_ITF, iid stri
 		defer C.free(unsafe.Pointer(iidC))
 		var tmpValue = core.NewQObjectFromPointer(C.QExtensionManager_ExtensionDefault(ptr.Pointer(), core.PointerFromQObject(object), iidC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -23886,7 +23887,7 @@ func (ptr *QFormBuilder) Load(device core.QIODevice_ITF, parent widgets.QWidget_
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QFormBuilder_Load(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -23899,7 +23900,7 @@ func (ptr *QFormBuilder) LoadDefault(device core.QIODevice_ITF, parent widgets.Q
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QFormBuilder_LoadDefault(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

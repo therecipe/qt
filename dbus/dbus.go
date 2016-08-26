@@ -58,7 +58,7 @@ func NewQDBusAbstractAdaptor(obj core.QObject_ITF) *QDBusAbstractAdaptor {
 
 	var tmpValue = NewQDBusAbstractAdaptorFromPointer(C.QDBusAbstractAdaptor_NewQDBusAbstractAdaptor(core.PointerFromQObject(obj)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1730,7 +1730,7 @@ func (ptr *QDBusConnection) Interface() *QDBusConnectionInterface {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDBusConnectionInterfaceFromPointer(C.QDBusConnection_Interface(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1786,7 +1786,7 @@ func (ptr *QDBusConnection) ObjectRegisteredAt(path string) *core.QObject {
 		defer C.free(unsafe.Pointer(pathC))
 		var tmpValue = core.NewQObjectFromPointer(C.QDBusConnection_ObjectRegisteredAt(ptr.Pointer(), pathC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1942,6 +1942,7 @@ func NewQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnection
 
 func (ptr *QDBusConnectionInterface) DestroyQDBusConnectionInterface() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -2784,7 +2785,7 @@ func NewQDBusInterface(service string, path string, interfa string, connection Q
 	defer C.free(unsafe.Pointer(interfaC))
 	var tmpValue = NewQDBusInterfaceFromPointer(C.QDBusInterface_NewQDBusInterface(serviceC, pathC, interfaC, PointerFromQDBusConnection(connection), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3873,7 +3874,7 @@ func NewQDBusPendingCallWatcher(call QDBusPendingCall_ITF, parent core.QObject_I
 
 	var tmpValue = NewQDBusPendingCallWatcherFromPointer(C.QDBusPendingCallWatcher_NewQDBusPendingCallWatcher(PointerFromQDBusPendingCall(call), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4478,7 +4479,7 @@ func NewQDBusServer2(parent core.QObject_ITF) *QDBusServer {
 
 	var tmpValue = NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer2(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4490,7 +4491,7 @@ func NewQDBusServer(address string, parent core.QObject_ITF) *QDBusServer {
 	defer C.free(unsafe.Pointer(addressC))
 	var tmpValue = NewQDBusServerFromPointer(C.QDBusServer_NewQDBusServer(addressC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5071,7 +5072,7 @@ func NewQDBusServiceWatcher(parent core.QObject_ITF) *QDBusServiceWatcher {
 
 	var tmpValue = NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5083,7 +5084,7 @@ func NewQDBusServiceWatcher2(service string, connection QDBusConnection_ITF, wat
 	defer C.free(unsafe.Pointer(serviceC))
 	var tmpValue = NewQDBusServiceWatcherFromPointer(C.QDBusServiceWatcher_NewQDBusServiceWatcher2(serviceC, PointerFromQDBusConnection(connection), C.longlong(watchMode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -6059,7 +6060,7 @@ func NewQDBusVirtualObject(parent core.QObject_ITF) *QDBusVirtualObject {
 
 	var tmpValue = NewQDBusVirtualObjectFromPointer(C.QDBusVirtualObject_NewQDBusVirtualObject(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

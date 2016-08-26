@@ -57,6 +57,7 @@ func NewQScxmlCppDataModelFromPointer(ptr unsafe.Pointer) *QScxmlCppDataModel {
 
 func (ptr *QScxmlCppDataModel) DestroyQScxmlCppDataModel() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -705,6 +706,7 @@ func NewQScxmlDataModelFromPointer(ptr unsafe.Pointer) *QScxmlDataModel {
 
 func (ptr *QScxmlDataModel) DestroyQScxmlDataModel() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -882,7 +884,7 @@ func (ptr *QScxmlDataModel) StateMachine() *QScxmlStateMachine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlDataModel_StateMachine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1381,6 +1383,7 @@ func NewQScxmlEcmaScriptDataModelFromPointer(ptr unsafe.Pointer) *QScxmlEcmaScri
 
 func (ptr *QScxmlEcmaScriptDataModel) DestroyQScxmlEcmaScriptDataModel() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -1389,7 +1392,7 @@ func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptData
 
 	var tmpValue = NewQScxmlEcmaScriptDataModelFromPointer(C.QScxmlEcmaScriptDataModel_NewQScxmlEcmaScriptDataModel(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1400,7 +1403,7 @@ func (ptr *QScxmlEcmaScriptDataModel) Engine() *qml.QJSEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = qml.NewQJSEngineFromPointer(C.QScxmlEcmaScriptDataModel_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2556,6 +2559,7 @@ func NewQScxmlNullDataModelFromPointer(ptr unsafe.Pointer) *QScxmlNullDataModel 
 
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -2564,7 +2568,7 @@ func NewQScxmlNullDataModel(parent core.QObject_ITF) *QScxmlNullDataModel {
 
 	var tmpValue = NewQScxmlNullDataModelFromPointer(C.QScxmlNullDataModel_NewQScxmlNullDataModel(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3277,7 +3281,7 @@ func (ptr *QScxmlParser) InstantiateStateMachine() *QScxmlStateMachine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlParser_InstantiateStateMachine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3377,6 +3381,7 @@ func NewQScxmlStateMachineFromPointer(ptr unsafe.Pointer) *QScxmlStateMachine {
 
 func (ptr *QScxmlStateMachine) DestroyQScxmlStateMachine() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -3423,7 +3428,7 @@ func (ptr *QScxmlStateMachine) DataModel() *QScxmlDataModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScxmlDataModelFromPointer(C.QScxmlStateMachine_DataModel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3581,7 +3586,7 @@ func QScxmlStateMachine_FromData(data core.QIODevice_ITF, fileName string) *QScx
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromData(core.PointerFromQIODevice(data), fileNameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3593,7 +3598,7 @@ func (ptr *QScxmlStateMachine) FromData(data core.QIODevice_ITF, fileName string
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromData(core.PointerFromQIODevice(data), fileNameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3605,7 +3610,7 @@ func QScxmlStateMachine_FromFile(fileName string) *QScxmlStateMachine {
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromFile(fileNameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3617,7 +3622,7 @@ func (ptr *QScxmlStateMachine) FromFile(fileName string) *QScxmlStateMachine {
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromFile(fileNameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

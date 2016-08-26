@@ -59,7 +59,7 @@ func NewQMaskGenerator(parent core.QObject_ITF) *QMaskGenerator {
 
 	var tmpValue = NewQMaskGeneratorFromPointer(C.QMaskGenerator_NewQMaskGenerator(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -974,7 +974,7 @@ func (ptr *QWebSocket) MaskGenerator() *QMaskGenerator {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMaskGeneratorFromPointer(C.QWebSocket_MaskGenerator(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2085,7 +2085,7 @@ func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode
 	defer C.free(unsafe.Pointer(serverNameC))
 	var tmpValue = NewQWebSocketServerFromPointer(C.QWebSocketServer_NewQWebSocketServer(serverNameC, C.longlong(secureMode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2286,7 +2286,7 @@ func (ptr *QWebSocketServer) NextPendingConnection() *QWebSocket {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebSocketFromPointer(C.QWebSocketServer_NextPendingConnection(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2299,7 +2299,7 @@ func (ptr *QWebSocketServer) NextPendingConnectionDefault() *QWebSocket {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebSocketFromPointer(C.QWebSocketServer_NextPendingConnectionDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

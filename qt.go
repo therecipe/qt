@@ -26,7 +26,7 @@ func ExistsSignal(name, signal string) bool {
 }
 
 func GetSignal(name, signal string) interface{} {
-	if strings.HasSuffix(signal, ":destroyed") || strings.HasSuffix(signal, ":deleteLater") {
+	if strings.HasSuffix(signal, ":destroyed") || strings.HasSuffix(signal, ":deleteLater") || strings.Contains(signal, ":~") {
 		defer DisconnectAllSignals(name)
 	}
 	var s interface{}

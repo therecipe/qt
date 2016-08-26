@@ -79,6 +79,7 @@ func NewQQuickWebEngineProfileFromPointer(ptr unsafe.Pointer) *QQuickWebEnginePr
 
 func (ptr *QQuickWebEngineProfile) DestroyQQuickWebEngineProfile() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -250,7 +251,7 @@ func NewQQuickWebEngineProfile(parent core.QObject_ITF) *QQuickWebEngineProfile 
 
 	var tmpValue = NewQQuickWebEngineProfileFromPointer(C.QQuickWebEngineProfile_NewQQuickWebEngineProfile(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -305,7 +306,7 @@ func (ptr *QQuickWebEngineProfile) CookieStore() *QWebEngineCookieStore {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineCookieStoreFromPointer(C.QQuickWebEngineProfile_CookieStore(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -317,7 +318,7 @@ func QQuickWebEngineProfile_DefaultProfile() *QQuickWebEngineProfile {
 
 	var tmpValue = NewQQuickWebEngineProfileFromPointer(C.QQuickWebEngineProfile_QQuickWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -327,7 +328,7 @@ func (ptr *QQuickWebEngineProfile) DefaultProfile() *QQuickWebEngineProfile {
 
 	var tmpValue = NewQQuickWebEngineProfileFromPointer(C.QQuickWebEngineProfile_QQuickWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -672,7 +673,7 @@ func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUr
 		defer C.free(unsafe.Pointer(schemeC))
 		var tmpValue = NewQWebEngineUrlSchemeHandlerFromPointer(C.QQuickWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), schemeC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1985,6 +1986,7 @@ func NewQWebEngineDownloadItemFromPointer(ptr unsafe.Pointer) *QWebEngineDownloa
 
 func (ptr *QWebEngineDownloadItem) DestroyQWebEngineDownloadItem() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -3200,7 +3202,7 @@ func NewQWebEnginePage(parent core.QObject_ITF) *QWebEnginePage {
 
 	var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3258,7 +3260,7 @@ func (ptr *QWebEnginePage) Action(action QWebEnginePage__WebAction) *widgets.QAc
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QWebEnginePage_Action(ptr.Pointer(), C.longlong(action)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3395,7 +3397,7 @@ func (ptr *QWebEnginePage) CreateStandardContextMenu() *widgets.QMenu {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQMenuFromPointer(C.QWebEnginePage_CreateStandardContextMenu(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3437,7 +3439,7 @@ func (ptr *QWebEnginePage) CreateWindow(ty QWebEnginePage__WebWindowType) *QWebE
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_CreateWindow(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3450,7 +3452,7 @@ func (ptr *QWebEnginePage) CreateWindowDefault(ty QWebEnginePage__WebWindowType)
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_CreateWindowDefault(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3936,7 +3938,7 @@ func (ptr *QWebEnginePage) View() *widgets.QWidget {
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QWebEnginePage_View(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3967,7 +3969,7 @@ func NewQWebEnginePage2(profile QWebEngineProfile_ITF, parent core.QObject_ITF) 
 
 	var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage2(PointerFromQWebEngineProfile(profile), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4488,7 +4490,7 @@ func (ptr *QWebEnginePage) Profile() *QWebEngineProfile {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEnginePage_Profile(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4773,7 +4775,7 @@ func (ptr *QWebEnginePage) WebChannel() *webchannel.QWebChannel {
 	if ptr.Pointer() != nil {
 		var tmpValue = webchannel.NewQWebChannelFromPointer(C.QWebEnginePage_WebChannel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5243,6 +5245,7 @@ func NewQWebEngineProfileFromPointer(ptr unsafe.Pointer) *QWebEngineProfile {
 
 func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -5251,7 +5254,7 @@ func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
 
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5263,7 +5266,7 @@ func NewQWebEngineProfile2(storageName string, parent core.QObject_ITF) *QWebEng
 	defer C.free(unsafe.Pointer(storageNameC))
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(storageNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5299,7 +5302,7 @@ func (ptr *QWebEngineProfile) CookieStore() *QWebEngineCookieStore {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineCookieStoreFromPointer(C.QWebEngineProfile_CookieStore(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5311,7 +5314,7 @@ func QWebEngineProfile_DefaultProfile() *QWebEngineProfile {
 
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_QWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5321,7 +5324,7 @@ func (ptr *QWebEngineProfile) DefaultProfile() *QWebEngineProfile {
 
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_QWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5568,7 +5571,7 @@ func (ptr *QWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUrlSche
 		defer C.free(unsafe.Pointer(schemeC))
 		var tmpValue = NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineProfile_UrlSchemeHandler(ptr.Pointer(), schemeC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6715,6 +6718,7 @@ func NewQWebEngineUrlRequestInterceptorFromPointer(ptr unsafe.Pointer) *QWebEngi
 
 func (ptr *QWebEngineUrlRequestInterceptor) DestroyQWebEngineUrlRequestInterceptor() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -7691,7 +7695,7 @@ func NewQWebEngineUrlSchemeHandler(parent core.QObject_ITF) *QWebEngineUrlScheme
 
 	var tmpValue = NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8200,7 +8204,7 @@ func NewQWebEngineView(parent widgets.QWidget_ITF) *QWebEngineView {
 
 	var tmpValue = NewQWebEngineViewFromPointer(C.QWebEngineView_NewQWebEngineView(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -8276,7 +8280,7 @@ func (ptr *QWebEngineView) CreateWindow(ty QWebEnginePage__WebWindowType) *QWebE
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineViewFromPointer(C.QWebEngineView_CreateWindow(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8289,7 +8293,7 @@ func (ptr *QWebEngineView) CreateWindowDefault(ty QWebEnginePage__WebWindowType)
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineViewFromPointer(C.QWebEngineView_CreateWindowDefault(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8386,7 +8390,7 @@ func (ptr *QWebEngineView) Page() *QWebEnginePage {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEnginePageFromPointer(C.QWebEngineView_Page(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8399,7 +8403,7 @@ func (ptr *QWebEngineView) PageAction(action QWebEnginePage__WebAction) *widgets
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QWebEngineView_PageAction(ptr.Pointer(), C.longlong(action)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

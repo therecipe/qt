@@ -95,6 +95,7 @@ func NewQAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTex
 
 func (ptr *QAbstractTextDocumentLayout) DestroyQAbstractTextDocumentLayout() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -153,7 +154,7 @@ func (ptr *QAbstractTextDocumentLayout) Document() *QTextDocument {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextDocumentFromPointer(C.QAbstractTextDocumentLayout_Document(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1934,7 +1935,7 @@ func (ptr *QAccessibleEvent) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAccessibleEvent_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1974,7 +1975,7 @@ func (ptr *QAccessibleEvent) M_object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAccessibleEvent_M_object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2473,7 +2474,7 @@ func (ptr *QAccessibleInterface) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAccessibleInterface_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2743,7 +2744,7 @@ func (ptr *QAccessibleInterface) Window() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QAccessibleInterface_Window(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2756,7 +2757,7 @@ func (ptr *QAccessibleInterface) WindowDefault() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QAccessibleInterface_WindowDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2941,7 +2942,7 @@ func (ptr *QAccessibleObject) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAccessibleObject_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2954,7 +2955,7 @@ func (ptr *QAccessibleObject) ObjectDefault() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QAccessibleObject_ObjectDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3530,7 +3531,7 @@ func (ptr *QAccessibleObject) Window() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QAccessibleObject_Window(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3543,7 +3544,7 @@ func (ptr *QAccessibleObject) WindowDefault() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QAccessibleObject_WindowDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3593,7 +3594,7 @@ func NewQAccessiblePlugin(parent core.QObject_ITF) *QAccessiblePlugin {
 
 	var tmpValue = NewQAccessiblePluginFromPointer(C.QAccessiblePlugin_NewQAccessiblePlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -7518,7 +7519,7 @@ func (ptr *QBackingStore) Window() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QBackingStore_Window(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8072,6 +8073,7 @@ func NewQClipboardFromPointer(ptr unsafe.Pointer) *QClipboard {
 
 func (ptr *QClipboard) DestroyQClipboard() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -8089,7 +8091,7 @@ func (ptr *QClipboard) MimeData(mode QClipboard__Mode) *core.QMimeData {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQMimeDataFromPointer(C.QClipboard_MimeData(ptr.Pointer(), C.longlong(mode)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -10520,7 +10522,7 @@ func NewQDoubleValidator(parent core.QObject_ITF) *QDoubleValidator {
 
 	var tmpValue = NewQDoubleValidatorFromPointer(C.QDoubleValidator_NewQDoubleValidator(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -10530,7 +10532,7 @@ func NewQDoubleValidator2(bottom float64, top float64, decimals int, parent core
 
 	var tmpValue = NewQDoubleValidatorFromPointer(C.QDoubleValidator_NewQDoubleValidator2(C.double(bottom), C.double(top), C.int(int32(decimals)), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -11124,7 +11126,7 @@ func NewQDrag(dragSource core.QObject_ITF) *QDrag {
 
 	var tmpValue = NewQDragFromPointer(C.QDrag_NewQDrag(core.PointerFromQObject(dragSource)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -11232,7 +11234,7 @@ func (ptr *QDrag) MimeData() *core.QMimeData {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQMimeDataFromPointer(C.QDrag_MimeData(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11288,7 +11290,7 @@ func (ptr *QDrag) Source() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QDrag_Source(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11310,7 +11312,7 @@ func (ptr *QDrag) Target() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QDrag_Target(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -12091,7 +12093,7 @@ func (ptr *QDropEvent) MimeData() *core.QMimeData {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQMimeDataFromPointer(C.QDropEvent_MimeData(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -12151,7 +12153,7 @@ func (ptr *QDropEvent) Source() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QDropEvent_Source(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -12215,7 +12217,7 @@ func (ptr *QDropEvent) Mdata() *core.QMimeData {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQMimeDataFromPointer(C.QDropEvent_Mdata(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -14712,7 +14714,7 @@ func NewQGenericPlugin(parent core.QObject_ITF) *QGenericPlugin {
 
 	var tmpValue = NewQGenericPluginFromPointer(C.QGenericPlugin_NewQGenericPlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -14756,7 +14758,7 @@ func (ptr *QGenericPlugin) Create(key string, specification string) *core.QObjec
 		defer C.free(unsafe.Pointer(specificationC))
 		var tmpValue = core.NewQObjectFromPointer(C.QGenericPlugin_Create(ptr.Pointer(), keyC, specificationC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15240,7 +15242,7 @@ func QGenericPluginFactory_Create(key string, specification string) *core.QObjec
 	defer C.free(unsafe.Pointer(specificationC))
 	var tmpValue = core.NewQObjectFromPointer(C.QGenericPluginFactory_QGenericPluginFactory_Create(keyC, specificationC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15254,7 +15256,7 @@ func (ptr *QGenericPluginFactory) Create(key string, specification string) *core
 	defer C.free(unsafe.Pointer(specificationC))
 	var tmpValue = core.NewQObjectFromPointer(C.QGenericPluginFactory_QGenericPluginFactory_Create(keyC, specificationC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15763,7 +15765,7 @@ func QGuiApplication_PrimaryScreen() *QScreen {
 
 	var tmpValue = NewQScreenFromPointer(C.QGuiApplication_QGuiApplication_PrimaryScreen())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15773,7 +15775,7 @@ func (ptr *QGuiApplication) PrimaryScreen() *QScreen {
 
 	var tmpValue = NewQScreenFromPointer(C.QGuiApplication_QGuiApplication_PrimaryScreen())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15935,7 +15937,7 @@ func NewQGuiApplication(argc int, argv []string) *QGuiApplication {
 	defer C.free(unsafe.Pointer(argvC))
 	var tmpValue = NewQGuiApplicationFromPointer(C.QGuiApplication_NewQGuiApplication(C.int(int32(argc)), argvC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15993,7 +15995,7 @@ func QGuiApplication_Clipboard() *QClipboard {
 
 	var tmpValue = NewQClipboardFromPointer(C.QGuiApplication_QGuiApplication_Clipboard())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16003,7 +16005,7 @@ func (ptr *QGuiApplication) Clipboard() *QClipboard {
 
 	var tmpValue = NewQClipboardFromPointer(C.QGuiApplication_QGuiApplication_Clipboard())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16055,7 +16057,7 @@ func QGuiApplication_FocusObject() *core.QObject {
 
 	var tmpValue = core.NewQObjectFromPointer(C.QGuiApplication_QGuiApplication_FocusObject())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16065,7 +16067,7 @@ func (ptr *QGuiApplication) FocusObject() *core.QObject {
 
 	var tmpValue = core.NewQObjectFromPointer(C.QGuiApplication_QGuiApplication_FocusObject())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16111,7 +16113,7 @@ func QGuiApplication_FocusWindow() *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_FocusWindow())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16121,7 +16123,7 @@ func (ptr *QGuiApplication) FocusWindow() *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_FocusWindow())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16219,7 +16221,7 @@ func QGuiApplication_InputMethod() *QInputMethod {
 
 	var tmpValue = NewQInputMethodFromPointer(C.QGuiApplication_QGuiApplication_InputMethod())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16229,7 +16231,7 @@ func (ptr *QGuiApplication) InputMethod() *QInputMethod {
 
 	var tmpValue = NewQInputMethodFromPointer(C.QGuiApplication_QGuiApplication_InputMethod())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16359,7 +16361,7 @@ func QGuiApplication_ModalWindow() *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_ModalWindow())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16369,7 +16371,7 @@ func (ptr *QGuiApplication) ModalWindow() *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_ModalWindow())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16599,7 +16601,7 @@ func QGuiApplication_StyleHints() *QStyleHints {
 
 	var tmpValue = NewQStyleHintsFromPointer(C.QGuiApplication_QGuiApplication_StyleHints())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16609,7 +16611,7 @@ func (ptr *QGuiApplication) StyleHints() *QStyleHints {
 
 	var tmpValue = NewQStyleHintsFromPointer(C.QGuiApplication_QGuiApplication_StyleHints())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16631,7 +16633,7 @@ func QGuiApplication_TopLevelAt(pos core.QPoint_ITF) *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_TopLevelAt(core.PointerFromQPoint(pos)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16641,7 +16643,7 @@ func (ptr *QGuiApplication) TopLevelAt(pos core.QPoint_ITF) *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QGuiApplication_QGuiApplication_TopLevelAt(core.PointerFromQPoint(pos)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -18274,7 +18276,7 @@ func NewQIconEnginePlugin(parent core.QObject_ITF) *QIconEnginePlugin {
 
 	var tmpValue = NewQIconEnginePluginFromPointer(C.QIconEnginePlugin_NewQIconEnginePlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -19892,7 +19894,7 @@ func (ptr *QImageIOHandler) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QImageIOHandler_Device(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -20461,7 +20463,7 @@ func NewQImageIOPlugin(parent core.QObject_ITF) *QImageIOPlugin {
 
 	var tmpValue = NewQImageIOPluginFromPointer(C.QImageIOPlugin_NewQImageIOPlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -21133,7 +21135,7 @@ func (ptr *QImageReader) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QImageReader_Device(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -21594,7 +21596,7 @@ func (ptr *QImageWriter) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QImageWriter_Device(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -21961,6 +21963,7 @@ func NewQInputMethodFromPointer(ptr unsafe.Pointer) *QInputMethod {
 
 func (ptr *QInputMethod) DestroyQInputMethod() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -23337,7 +23340,7 @@ func NewQIntValidator(parent core.QObject_ITF) *QIntValidator {
 
 	var tmpValue = NewQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -23347,7 +23350,7 @@ func NewQIntValidator2(minimum int, maximum int, parent core.QObject_ITF) *QIntV
 
 	var tmpValue = NewQIntValidatorFromPointer(C.QIntValidator_NewQIntValidator2(C.int(int32(minimum)), C.int(int32(maximum)), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -25363,7 +25366,7 @@ func NewQMovie2(device core.QIODevice_ITF, format string, parent core.QObject_IT
 	defer C.free(unsafe.Pointer(formatC))
 	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie2(core.PointerFromQIODevice(device), formatC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -25373,7 +25376,7 @@ func NewQMovie(parent core.QObject_ITF) *QMovie {
 
 	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -25387,7 +25390,7 @@ func NewQMovie3(fileName string, format string, parent core.QObject_ITF) *QMovie
 	defer C.free(unsafe.Pointer(formatC))
 	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie3(fileNameC, formatC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -25440,7 +25443,7 @@ func (ptr *QMovie) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QMovie_Device(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -26698,7 +26701,7 @@ func NewQOffscreenSurface(targetScreen QScreen_ITF) *QOffscreenSurface {
 
 	var tmpValue = NewQOffscreenSurfaceFromPointer(C.QOffscreenSurface_NewQOffscreenSurface(PointerFromQScreen(targetScreen)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -26796,7 +26799,7 @@ func (ptr *QOffscreenSurface) Screen() *QScreen {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScreenFromPointer(C.QOffscreenSurface_Screen(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -31422,6 +31425,7 @@ func NewQPaintDeviceWindowFromPointer(ptr unsafe.Pointer) *QPaintDeviceWindow {
 
 func (ptr *QPaintDeviceWindow) DestroyQPaintDeviceWindow() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -32240,7 +32244,7 @@ func (ptr *QPaintDeviceWindow) FocusObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QPaintDeviceWindow_FocusObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -32253,7 +32257,7 @@ func (ptr *QPaintDeviceWindow) FocusObjectDefault() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QPaintDeviceWindow_FocusObjectDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -38316,7 +38320,7 @@ func NewQPdfWriter2(device core.QIODevice_ITF) *QPdfWriter {
 
 	var tmpValue = NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter2(core.PointerFromQIODevice(device)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -38328,7 +38332,7 @@ func NewQPdfWriter(filename string) *QPdfWriter {
 	defer C.free(unsafe.Pointer(filenameC))
 	var tmpValue = NewQPdfWriterFromPointer(C.QPdfWriter_NewQPdfWriter(filenameC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -40956,6 +40960,7 @@ func NewQPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemT
 
 func (ptr *QPlatformSystemTrayIcon) DestroyQPlatformSystemTrayIcon() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -41950,7 +41955,7 @@ func NewQRasterWindow(parent QWindow_ITF) *QRasterWindow {
 
 	var tmpValue = NewQRasterWindowFromPointer(C.QRasterWindow_NewQRasterWindow(PointerFromQWindow(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -42763,7 +42768,7 @@ func (ptr *QRasterWindow) FocusObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QRasterWindow_FocusObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -42776,7 +42781,7 @@ func (ptr *QRasterWindow) FocusObjectDefault() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QRasterWindow_FocusObjectDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -44958,7 +44963,7 @@ func NewQRegExpValidator(parent core.QObject_ITF) *QRegExpValidator {
 
 	var tmpValue = NewQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -44968,7 +44973,7 @@ func NewQRegExpValidator2(rx core.QRegExp_ITF, parent core.QObject_ITF) *QRegExp
 
 	var tmpValue = NewQRegExpValidatorFromPointer(C.QRegExpValidator_NewQRegExpValidator2(core.PointerFromQRegExp(rx), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -45898,7 +45903,7 @@ func NewQRegularExpressionValidator(parent core.QObject_ITF) *QRegularExpression
 
 	var tmpValue = NewQRegularExpressionValidatorFromPointer(C.QRegularExpressionValidator_NewQRegularExpressionValidator(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -45908,7 +45913,7 @@ func NewQRegularExpressionValidator2(re core.QRegularExpression_ITF, parent core
 
 	var tmpValue = NewQRegularExpressionValidatorFromPointer(C.QRegularExpressionValidator_NewQRegularExpressionValidator2(core.PointerFromQRegularExpression(re), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -49259,7 +49264,7 @@ func (ptr *QStandardItem) Model() *QStandardItemModel {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQStandardItemModelFromPointer(C.QStandardItem_Model(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -49780,7 +49785,7 @@ func NewQStandardItemModel(parent core.QObject_ITF) *QStandardItemModel {
 
 	var tmpValue = NewQStandardItemModelFromPointer(C.QStandardItemModel_NewQStandardItemModel(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -49790,7 +49795,7 @@ func NewQStandardItemModel2(rows int, columns int, parent core.QObject_ITF) *QSt
 
 	var tmpValue = NewQStandardItemModelFromPointer(C.QStandardItemModel_NewQStandardItemModel2(C.int(int32(rows)), C.int(int32(columns)), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -51465,6 +51470,7 @@ func NewQStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
 
 func (ptr *QStyleHints) DestroyQStyleHints() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -53004,7 +53010,7 @@ func NewQSyntaxHighlighter(parent core.QObject_ITF) *QSyntaxHighlighter {
 
 	var tmpValue = NewQSyntaxHighlighterFromPointer(C.QSyntaxHighlighter_NewQSyntaxHighlighter(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -53014,7 +53020,7 @@ func NewQSyntaxHighlighter2(parent QTextDocument_ITF) *QSyntaxHighlighter {
 
 	var tmpValue = NewQSyntaxHighlighterFromPointer(C.QSyntaxHighlighter_NewQSyntaxHighlighter2(PointerFromQTextDocument(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -53054,7 +53060,7 @@ func (ptr *QSyntaxHighlighter) Document() *QTextDocument {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextDocumentFromPointer(C.QSyntaxHighlighter_Document(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -54065,7 +54071,7 @@ func (ptr *QTextBlock) Document() *QTextDocument {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextDocumentFromPointer(C.QTextBlock_Document(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -54221,7 +54227,7 @@ func (ptr *QTextBlock) TextList() *QTextList {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextListFromPointer(C.QTextBlock_TextList(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -54549,7 +54555,7 @@ func NewQTextBlockGroup(document QTextDocument_ITF) *QTextBlockGroup {
 
 	var tmpValue = NewQTextBlockGroupFromPointer(C.QTextBlockGroup_NewQTextBlockGroup(PointerFromQTextDocument(document)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -55821,7 +55827,7 @@ func (ptr *QTextCursor) InsertTable2(rows int, columns int) *QTextTable {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextTableFromPointer(C.QTextCursor_InsertTable2(ptr.Pointer(), C.int(int32(rows)), C.int(int32(columns))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -55834,7 +55840,7 @@ func (ptr *QTextCursor) InsertTable(rows int, columns int, format QTextTableForm
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextTableFromPointer(C.QTextCursor_InsertTable(ptr.Pointer(), C.int(int32(rows)), C.int(int32(columns)), PointerFromQTextTableFormat(format)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -55996,7 +56002,7 @@ func (ptr *QTextCursor) CreateList2(style QTextListFormat__Style) *QTextList {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextListFromPointer(C.QTextCursor_CreateList2(ptr.Pointer(), C.longlong(style)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56009,7 +56015,7 @@ func (ptr *QTextCursor) CreateList(format QTextListFormat_ITF) *QTextList {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextListFromPointer(C.QTextCursor_CreateList(ptr.Pointer(), PointerFromQTextListFormat(format)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56022,7 +56028,7 @@ func (ptr *QTextCursor) CurrentFrame() *QTextFrame {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextFrameFromPointer(C.QTextCursor_CurrentFrame(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56035,7 +56041,7 @@ func (ptr *QTextCursor) CurrentList() *QTextList {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextListFromPointer(C.QTextCursor_CurrentList(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56048,7 +56054,7 @@ func (ptr *QTextCursor) CurrentTable() *QTextTable {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextTableFromPointer(C.QTextCursor_CurrentTable(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56077,7 +56083,7 @@ func (ptr *QTextCursor) Document() *QTextDocument {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextDocumentFromPointer(C.QTextCursor_Document(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56140,7 +56146,7 @@ func (ptr *QTextCursor) InsertFrame(format QTextFrameFormat_ITF) *QTextFrame {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextFrameFromPointer(C.QTextCursor_InsertFrame(ptr.Pointer(), PointerFromQTextFrameFormat(format)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56199,7 +56205,7 @@ func (ptr *QTextCursor) InsertList2(style QTextListFormat__Style) *QTextList {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextListFromPointer(C.QTextCursor_InsertList2(ptr.Pointer(), C.longlong(style)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56212,7 +56218,7 @@ func (ptr *QTextCursor) InsertList(format QTextListFormat_ITF) *QTextList {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextListFromPointer(C.QTextCursor_InsertList(ptr.Pointer(), PointerFromQTextListFormat(format)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56588,7 +56594,7 @@ func (ptr *QTextDocument) CreateObject(format QTextFormat_ITF) *QTextObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextObjectFromPointer(C.QTextDocument_CreateObject(ptr.Pointer(), PointerFromQTextFormat(format)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56601,7 +56607,7 @@ func (ptr *QTextDocument) CreateObjectDefault(format QTextFormat_ITF) *QTextObje
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextObjectFromPointer(C.QTextDocument_CreateObjectDefault(ptr.Pointer(), PointerFromQTextFormat(format)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -56830,7 +56836,7 @@ func NewQTextDocument(parent core.QObject_ITF) *QTextDocument {
 
 	var tmpValue = NewQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -56842,7 +56848,7 @@ func NewQTextDocument2(text string, parent core.QObject_ITF) *QTextDocument {
 	defer C.free(unsafe.Pointer(textC))
 	var tmpValue = NewQTextDocumentFromPointer(C.QTextDocument_NewQTextDocument2(textC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -57032,7 +57038,7 @@ func (ptr *QTextDocument) Clone(parent core.QObject_ITF) *QTextDocument {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextDocumentFromPointer(C.QTextDocument_Clone(ptr.Pointer(), core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -57184,7 +57190,7 @@ func (ptr *QTextDocument) DocumentLayout() *QAbstractTextDocumentLayout {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAbstractTextDocumentLayoutFromPointer(C.QTextDocument_DocumentLayout(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -57505,7 +57511,7 @@ func (ptr *QTextDocument) Object(objectIndex int) *QTextObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextObjectFromPointer(C.QTextDocument_Object(ptr.Pointer(), C.int(int32(objectIndex))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -57518,7 +57524,7 @@ func (ptr *QTextDocument) ObjectForFormat(f QTextFormat_ITF) *QTextObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextObjectFromPointer(C.QTextDocument_ObjectForFormat(ptr.Pointer(), PointerFromQTextFormat(f)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -57648,7 +57654,7 @@ func (ptr *QTextDocument) RootFrame() *QTextFrame {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextFrameFromPointer(C.QTextDocument_RootFrame(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -58535,7 +58541,7 @@ func (ptr *QTextDocumentWriter) Device() *core.QIODevice {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQIODeviceFromPointer(C.QTextDocumentWriter_Device(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -59295,7 +59301,7 @@ func NewQTextFrame(document QTextDocument_ITF) *QTextFrame {
 
 	var tmpValue = NewQTextFrameFromPointer(C.QTextFrame_NewQTextFrame(PointerFromQTextDocument(document)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -59346,7 +59352,7 @@ func (ptr *QTextFrame) ParentFrame() *QTextFrame {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextFrameFromPointer(C.QTextFrame_ParentFrame(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -62066,7 +62072,7 @@ func NewQTextObject(document QTextDocument_ITF) *QTextObject {
 
 	var tmpValue = NewQTextObjectFromPointer(C.QTextObject_NewQTextObject(PointerFromQTextDocument(document)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -62077,7 +62083,7 @@ func (ptr *QTextObject) Document() *QTextDocument {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextDocumentFromPointer(C.QTextObject_Document(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -64116,7 +64122,7 @@ func (ptr *QTouchEvent) Target() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QTouchEvent_Target(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -64138,7 +64144,7 @@ func (ptr *QTouchEvent) Window() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QTouchEvent_Window(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -64177,7 +64183,7 @@ func (ptr *QTouchEvent) _target() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QTouchEvent__target(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -64215,7 +64221,7 @@ func (ptr *QTouchEvent) _window() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QTouchEvent__window(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -64907,7 +64913,7 @@ func NewQValidator(parent core.QObject_ITF) *QValidator {
 
 	var tmpValue = NewQValidatorFromPointer(C.QValidator_NewQValidator(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -67108,7 +67114,7 @@ func NewQWindow(targetScreen QScreen_ITF) *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QWindow_NewQWindow(PointerFromQScreen(targetScreen)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -67118,7 +67124,7 @@ func NewQWindow2(parent QWindow_ITF) *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QWindow_NewQWindow2(PointerFromQWindow(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -67497,7 +67503,7 @@ func (ptr *QWindow) FocusObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QWindow_FocusObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -67510,7 +67516,7 @@ func (ptr *QWindow) FocusObjectDefault() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QWindow_FocusObjectDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -67687,7 +67693,7 @@ func QWindow_FromWinId(id uintptr) *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QWindow_QWindow_FromWinId(C.uintptr_t(id)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -67697,7 +67703,7 @@ func (ptr *QWindow) FromWinId(id uintptr) *QWindow {
 
 	var tmpValue = NewQWindowFromPointer(C.QWindow_QWindow_FromWinId(C.uintptr_t(id)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -68588,7 +68594,7 @@ func (ptr *QWindow) Parent() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QWindow_Parent(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -68792,7 +68798,7 @@ func (ptr *QWindow) Screen() *QScreen {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScreenFromPointer(C.QWindow_Screen(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -69437,7 +69443,7 @@ func (ptr *QWindow) TransientParent() *QWindow {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWindowFromPointer(C.QWindow_TransientParent(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

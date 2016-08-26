@@ -78,7 +78,7 @@ func (ptr *QAccelerometer) Reading() *QAccelerometerReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAccelerometerReadingFromPointer(C.QAccelerometer_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -90,7 +90,7 @@ func NewQAccelerometer(parent core.QObject_ITF) *QAccelerometer {
 
 	var tmpValue = NewQAccelerometerFromPointer(C.QAccelerometer_NewQAccelerometer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -709,6 +709,7 @@ func NewQAccelerometerFilterFromPointer(ptr unsafe.Pointer) *QAccelerometerFilte
 
 func (ptr *QAccelerometerFilter) DestroyQAccelerometerFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -1302,7 +1303,7 @@ func (ptr *QAltimeter) Reading() *QAltimeterReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAltimeterReadingFromPointer(C.QAltimeter_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1314,7 +1315,7 @@ func NewQAltimeter(parent core.QObject_ITF) *QAltimeter {
 
 	var tmpValue = NewQAltimeterFromPointer(C.QAltimeter_NewQAltimeter(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1886,6 +1887,7 @@ func NewQAltimeterFilterFromPointer(ptr unsafe.Pointer) *QAltimeterFilter {
 
 func (ptr *QAltimeterFilter) DestroyQAltimeterFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -2442,6 +2444,7 @@ func NewQAmbientLightFilterFromPointer(ptr unsafe.Pointer) *QAmbientLightFilter 
 
 func (ptr *QAmbientLightFilter) DestroyQAmbientLightFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -3013,7 +3016,7 @@ func (ptr *QAmbientLightSensor) Reading() *QAmbientLightReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAmbientLightReadingFromPointer(C.QAmbientLightSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3025,7 +3028,7 @@ func NewQAmbientLightSensor(parent core.QObject_ITF) *QAmbientLightSensor {
 
 	var tmpValue = NewQAmbientLightSensorFromPointer(C.QAmbientLightSensor_NewQAmbientLightSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3600,6 +3603,7 @@ func NewQAmbientTemperatureFilterFromPointer(ptr unsafe.Pointer) *QAmbientTemper
 
 func (ptr *QAmbientTemperatureFilter) DestroyQAmbientTemperatureFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -4159,7 +4163,7 @@ func (ptr *QAmbientTemperatureSensor) Reading() *QAmbientTemperatureReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQAmbientTemperatureReadingFromPointer(C.QAmbientTemperatureSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4171,7 +4175,7 @@ func NewQAmbientTemperatureSensor(parent core.QObject_ITF) *QAmbientTemperatureS
 
 	var tmpValue = NewQAmbientTemperatureSensorFromPointer(C.QAmbientTemperatureSensor_NewQAmbientTemperatureSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4746,7 +4750,7 @@ func (ptr *QCompass) Reading() *QCompassReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQCompassReadingFromPointer(C.QCompass_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4758,7 +4762,7 @@ func NewQCompass(parent core.QObject_ITF) *QCompass {
 
 	var tmpValue = NewQCompassFromPointer(C.QCompass_NewQCompass(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5333,6 +5337,7 @@ func NewQCompassFilterFromPointer(ptr unsafe.Pointer) *QCompassFilter {
 
 func (ptr *QCompassFilter) DestroyQCompassFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -5906,6 +5911,7 @@ func NewQDistanceFilterFromPointer(ptr unsafe.Pointer) *QDistanceFilter {
 
 func (ptr *QDistanceFilter) DestroyQDistanceFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -6465,7 +6471,7 @@ func (ptr *QDistanceSensor) Reading() *QDistanceReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDistanceReadingFromPointer(C.QDistanceSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6477,7 +6483,7 @@ func NewQDistanceSensor(parent core.QObject_ITF) *QDistanceSensor {
 
 	var tmpValue = NewQDistanceSensorFromPointer(C.QDistanceSensor_NewQDistanceSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -7052,7 +7058,7 @@ func (ptr *QGyroscope) Reading() *QGyroscopeReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQGyroscopeReadingFromPointer(C.QGyroscope_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -7064,7 +7070,7 @@ func NewQGyroscope(parent core.QObject_ITF) *QGyroscope {
 
 	var tmpValue = NewQGyroscopeFromPointer(C.QGyroscope_NewQGyroscope(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -7639,6 +7645,7 @@ func NewQGyroscopeFilterFromPointer(ptr unsafe.Pointer) *QGyroscopeFilter {
 
 func (ptr *QGyroscopeFilter) DestroyQGyroscopeFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -8229,6 +8236,7 @@ func NewQHolsterFilterFromPointer(ptr unsafe.Pointer) *QHolsterFilter {
 
 func (ptr *QHolsterFilter) DestroyQHolsterFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -8788,7 +8796,7 @@ func (ptr *QHolsterSensor) Reading() *QHolsterReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHolsterReadingFromPointer(C.QHolsterSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -8800,7 +8808,7 @@ func NewQHolsterSensor(parent core.QObject_ITF) *QHolsterSensor {
 
 	var tmpValue = NewQHolsterSensorFromPointer(C.QHolsterSensor_NewQHolsterSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -9372,6 +9380,7 @@ func NewQIRProximityFilterFromPointer(ptr unsafe.Pointer) *QIRProximityFilter {
 
 func (ptr *QIRProximityFilter) DestroyQIRProximityFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -9931,7 +9940,7 @@ func (ptr *QIRProximitySensor) Reading() *QIRProximityReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQIRProximityReadingFromPointer(C.QIRProximitySensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -9943,7 +9952,7 @@ func NewQIRProximitySensor(parent core.QObject_ITF) *QIRProximitySensor {
 
 	var tmpValue = NewQIRProximitySensorFromPointer(C.QIRProximitySensor_NewQIRProximitySensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -10518,6 +10527,7 @@ func NewQLightFilterFromPointer(ptr unsafe.Pointer) *QLightFilter {
 
 func (ptr *QLightFilter) DestroyQLightFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -11086,7 +11096,7 @@ func (ptr *QLightSensor) Reading() *QLightReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQLightReadingFromPointer(C.QLightSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11098,7 +11108,7 @@ func NewQLightSensor(parent core.QObject_ITF) *QLightSensor {
 
 	var tmpValue = NewQLightSensorFromPointer(C.QLightSensor_NewQLightSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -11720,7 +11730,7 @@ func (ptr *QMagnetometer) Reading() *QMagnetometerReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMagnetometerReadingFromPointer(C.QMagnetometer_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -11749,7 +11759,7 @@ func NewQMagnetometer(parent core.QObject_ITF) *QMagnetometer {
 
 	var tmpValue = NewQMagnetometerFromPointer(C.QMagnetometer_NewQMagnetometer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -12360,6 +12370,7 @@ func NewQMagnetometerFilterFromPointer(ptr unsafe.Pointer) *QMagnetometerFilter 
 
 func (ptr *QMagnetometerFilter) DestroyQMagnetometerFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -12967,6 +12978,7 @@ func NewQOrientationFilterFromPointer(ptr unsafe.Pointer) *QOrientationFilter {
 
 func (ptr *QOrientationFilter) DestroyQOrientationFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -13539,7 +13551,7 @@ func (ptr *QOrientationSensor) Reading() *QOrientationReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQOrientationReadingFromPointer(C.QOrientationSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -13551,7 +13563,7 @@ func NewQOrientationSensor(parent core.QObject_ITF) *QOrientationSensor {
 
 	var tmpValue = NewQOrientationSensorFromPointer(C.QOrientationSensor_NewQOrientationSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -14126,6 +14138,7 @@ func NewQPressureFilterFromPointer(ptr unsafe.Pointer) *QPressureFilter {
 
 func (ptr *QPressureFilter) DestroyQPressureFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -14702,7 +14715,7 @@ func (ptr *QPressureSensor) Reading() *QPressureReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQPressureReadingFromPointer(C.QPressureSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -14714,7 +14727,7 @@ func NewQPressureSensor(parent core.QObject_ITF) *QPressureSensor {
 
 	var tmpValue = NewQPressureSensorFromPointer(C.QPressureSensor_NewQPressureSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -15286,6 +15299,7 @@ func NewQProximityFilterFromPointer(ptr unsafe.Pointer) *QProximityFilter {
 
 func (ptr *QProximityFilter) DestroyQProximityFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -15845,7 +15859,7 @@ func (ptr *QProximitySensor) Reading() *QProximityReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQProximityReadingFromPointer(C.QProximitySensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -15857,7 +15871,7 @@ func NewQProximitySensor(parent core.QObject_ITF) *QProximitySensor {
 
 	var tmpValue = NewQProximitySensorFromPointer(C.QProximitySensor_NewQProximitySensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -16432,6 +16446,7 @@ func NewQRotationFilterFromPointer(ptr unsafe.Pointer) *QRotationFilter {
 
 func (ptr *QRotationFilter) DestroyQRotationFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -17018,7 +17033,7 @@ func (ptr *QRotationSensor) Reading() *QRotationReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQRotationReadingFromPointer(C.QRotationSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -17030,7 +17045,7 @@ func NewQRotationSensor(parent core.QObject_ITF) *QRotationSensor {
 
 	var tmpValue = NewQRotationSensorFromPointer(C.QRotationSensor_NewQRotationSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -17802,7 +17817,7 @@ func (ptr *QSensor) Reading() *QSensorReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSensorReadingFromPointer(C.QSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -17909,7 +17924,7 @@ func NewQSensor(ty string, parent core.QObject_ITF) *QSensor {
 	defer C.free(unsafe.Pointer(tyC))
 	var tmpValue = NewQSensorFromPointer(C.QSensor_NewQSensor(tyC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -19040,6 +19055,7 @@ func NewQSensorBackendFromPointer(ptr unsafe.Pointer) *QSensorBackend {
 
 func (ptr *QSensorBackend) DestroyQSensorBackend() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -19136,7 +19152,7 @@ func (ptr *QSensorBackend) Reading() *QSensorReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSensorReadingFromPointer(C.QSensorBackend_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -19149,7 +19165,7 @@ func (ptr *QSensorBackend) Sensor() *QSensor {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSensorFromPointer(C.QSensorBackend_Sensor(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -19709,6 +19725,7 @@ func NewQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) *QSensorBackendFact
 
 func (ptr *QSensorBackendFactory) DestroyQSensorBackendFactory() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -19747,7 +19764,7 @@ func (ptr *QSensorBackendFactory) CreateBackend(sensor QSensor_ITF) *QSensorBack
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSensorBackendFromPointer(C.QSensorBackendFactory_CreateBackend(ptr.Pointer(), PointerFromQSensor(sensor)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -19794,6 +19811,7 @@ func NewQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) *QSensorChangesIn
 
 func (ptr *QSensorChangesInterface) DestroyQSensorChangesInterface() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -19925,7 +19943,7 @@ func (ptr *QSensorFilter) M_sensor() *QSensor {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSensorFromPointer(C.QSensorFilter_M_sensor(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -19985,7 +20003,7 @@ func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
 	defer C.free(unsafe.Pointer(idsC))
 	var tmpValue = NewQSensorGestureFromPointer(C.QSensorGesture_NewQSensorGesture(idsC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -20548,7 +20566,7 @@ func NewQSensorGestureManager(parent core.QObject_ITF) *QSensorGestureManager {
 
 	var tmpValue = NewQSensorGestureManagerFromPointer(C.QSensorGestureManager_NewQSensorGestureManager(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -20625,7 +20643,7 @@ func QSensorGestureManager_SensorGestureRecognizer(id string) *QSensorGestureRec
 	defer C.free(unsafe.Pointer(idC))
 	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -20637,7 +20655,7 @@ func (ptr *QSensorGestureManager) SensorGestureRecognizer(id string) *QSensorGes
 	defer C.free(unsafe.Pointer(idC))
 	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureManager_QSensorGestureManager_SensorGestureRecognizer(idC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -21234,7 +21252,7 @@ func NewQSensorGestureRecognizer(parent core.QObject_ITF) *QSensorGestureRecogni
 
 	var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGestureRecognizer_NewQSensorGestureRecognizer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -21971,7 +21989,7 @@ func QSensorManager_CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 
 	var tmpValue = NewQSensorBackendFromPointer(C.QSensorManager_QSensorManager_CreateBackend(PointerFromQSensor(sensor)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -21981,7 +21999,7 @@ func (ptr *QSensorManager) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 
 	var tmpValue = NewQSensorBackendFromPointer(C.QSensorManager_QSensorManager_CreateBackend(PointerFromQSensor(sensor)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -22106,6 +22124,7 @@ func NewQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorPluginInte
 
 func (ptr *QSensorPluginInterface) DestroyQSensorPluginInterface() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -22680,6 +22699,7 @@ func NewQTapFilterFromPointer(ptr unsafe.Pointer) *QTapFilter {
 
 func (ptr *QTapFilter) DestroyQTapFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -23275,7 +23295,7 @@ func (ptr *QTapSensor) Reading() *QTapReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTapReadingFromPointer(C.QTapSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -23304,7 +23324,7 @@ func NewQTapSensor(parent core.QObject_ITF) *QTapSensor {
 
 	var tmpValue = NewQTapSensorFromPointer(C.QTapSensor_NewQTapSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -23915,6 +23935,7 @@ func NewQTiltFilterFromPointer(ptr unsafe.Pointer) *QTiltFilter {
 
 func (ptr *QTiltFilter) DestroyQTiltFilter() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -24490,7 +24511,7 @@ func NewQTiltSensor(parent core.QObject_ITF) *QTiltSensor {
 
 	var tmpValue = NewQTiltSensorFromPointer(C.QTiltSensor_NewQTiltSensor(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -24501,7 +24522,7 @@ func (ptr *QTiltSensor) Reading() *QTiltReading {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTiltReadingFromPointer(C.QTiltSensor_Reading(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

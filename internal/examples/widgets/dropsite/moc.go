@@ -91,7 +91,7 @@ func NewDropArea(parent widgets.QWidget_ITF, f core.Qt__WindowType) *DropArea {
 
 	var tmpValue = NewDropAreaFromPointer(C.DropArea_NewDropArea(widgets.PointerFromQWidget(parent), C.longlong(f)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3249,7 +3249,7 @@ func NewDropSiteWindow(parent widgets.QWidget_ITF, f core.Qt__WindowType) *DropS
 
 	var tmpValue = NewDropSiteWindowFromPointer(C.DropSiteWindow_NewDropSiteWindow(widgets.PointerFromQWidget(parent), C.longlong(f)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

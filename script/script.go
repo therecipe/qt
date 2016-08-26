@@ -82,7 +82,7 @@ func (ptr *QScriptClass) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScriptEngineFromPointer(C.QScriptClass_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -695,7 +695,7 @@ func (ptr *QScriptContext) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScriptEngineFromPointer(C.QScriptContext_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1048,7 +1048,7 @@ func NewQScriptEngine() *QScriptEngine {
 
 	var tmpValue = NewQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1058,7 +1058,7 @@ func NewQScriptEngine2(parent core.QObject_ITF) *QScriptEngine {
 
 	var tmpValue = NewQScriptEngineFromPointer(C.QScriptEngine_NewQScriptEngine2(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2105,7 +2105,7 @@ func (ptr *QScriptEngineAgent) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScriptEngineFromPointer(C.QScriptEngineAgent_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2586,7 +2586,7 @@ func NewQScriptExtensionPlugin(parent core.QObject_ITF) *QScriptExtensionPlugin 
 
 	var tmpValue = NewQScriptExtensionPluginFromPointer(C.QScriptExtensionPlugin_NewQScriptExtensionPlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3587,7 +3587,7 @@ func (ptr *QScriptValue) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScriptEngineFromPointer(C.QScriptValue_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3934,7 +3934,7 @@ func (ptr *QScriptValue) ToQObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QScriptValue_ToQObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4115,7 +4115,7 @@ func (ptr *QScriptable) Engine() *QScriptEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScriptEngineFromPointer(C.QScriptable_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}

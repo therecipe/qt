@@ -70,7 +70,7 @@ func NewQJSEngine() *QJSEngine {
 
 	var tmpValue = NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -80,7 +80,7 @@ func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
 
 	var tmpValue = NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine2(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -987,7 +987,7 @@ func (ptr *QJSValue) ToQObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QJSValue_ToQObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -1218,7 +1218,7 @@ func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
 
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1230,7 +1230,7 @@ func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlAp
 	defer C.free(unsafe.Pointer(filePathC))
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(filePathC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1240,7 +1240,7 @@ func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQml
 
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine2(core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1908,7 +1908,7 @@ func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlCompo
 
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1920,7 +1920,7 @@ func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponen
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent4(PointerFromQQmlEngine(engine), fileNameC, C.longlong(mode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1932,7 +1932,7 @@ func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObje
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), fileNameC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1942,7 +1942,7 @@ func NewQQmlComponent6(engine QQmlEngine_ITF, url core.QUrl_ITF, mode QQmlCompon
 
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent6(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), C.longlong(mode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1952,7 +1952,7 @@ func NewQQmlComponent5(engine QQmlEngine_ITF, url core.QUrl_ITF, parent core.QOb
 
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent5(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -1992,7 +1992,7 @@ func (ptr *QQmlComponent) BeginCreate(publicContext QQmlContext_ITF) *core.QObje
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_BeginCreate(ptr.Pointer(), PointerFromQQmlContext(publicContext)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2005,7 +2005,7 @@ func (ptr *QQmlComponent) BeginCreateDefault(publicContext QQmlContext_ITF) *cor
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_BeginCreateDefault(ptr.Pointer(), PointerFromQQmlContext(publicContext)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2092,7 +2092,7 @@ func (ptr *QQmlComponent) Create(context QQmlContext_ITF) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_Create(ptr.Pointer(), PointerFromQQmlContext(context)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2105,7 +2105,7 @@ func (ptr *QQmlComponent) CreateDefault(context QQmlContext_ITF) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_CreateDefault(ptr.Pointer(), PointerFromQQmlContext(context)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2126,7 +2126,7 @@ func (ptr *QQmlComponent) CreationContext() *QQmlContext {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlComponent_CreationContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2819,7 +2819,7 @@ func NewQQmlContext2(parentContext QQmlContext_ITF, parent core.QObject_ITF) *QQ
 
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlContext_NewQQmlContext2(PointerFromQQmlContext(parentContext), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2829,7 +2829,7 @@ func NewQQmlContext(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlContext
 
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlContext_NewQQmlContext(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -2851,7 +2851,7 @@ func (ptr *QQmlContext) ContextObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlContext_ContextObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2877,7 +2877,7 @@ func (ptr *QQmlContext) Engine() *QQmlEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlEngineFromPointer(C.QQmlContext_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -2908,7 +2908,7 @@ func (ptr *QQmlContext) ParentContext() *QQmlContext {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlContext_ParentContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3457,7 +3457,7 @@ func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
 
 	var tmpValue = NewQQmlEngineFromPointer(C.QQmlEngine_NewQQmlEngine(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3516,7 +3516,7 @@ func QQmlEngine_ContextForObject(object core.QObject_ITF) *QQmlContext {
 
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlEngine_QQmlEngine_ContextForObject(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3526,7 +3526,7 @@ func (ptr *QQmlEngine) ContextForObject(object core.QObject_ITF) *QQmlContext {
 
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlEngine_QQmlEngine_ContextForObject(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -3613,7 +3613,7 @@ func (ptr *QQmlEngine) NetworkAccessManager() *network.QNetworkAccessManager {
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QQmlEngine_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -3711,7 +3711,7 @@ func (ptr *QQmlEngine) RootContext() *QQmlContext {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlEngine_RootContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4281,7 +4281,7 @@ func (ptr *QQmlError) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlError_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4393,7 +4393,7 @@ func NewQQmlExpression() *QQmlExpression {
 
 	var tmpValue = NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4405,7 +4405,7 @@ func NewQQmlExpression2(ctxt QQmlContext_ITF, scope core.QObject_ITF, expression
 	defer C.free(unsafe.Pointer(expressionC))
 	var tmpValue = NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression2(PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), expressionC, core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4415,7 +4415,7 @@ func NewQQmlExpression3(script QQmlScriptString_ITF, ctxt QQmlContext_ITF, scope
 
 	var tmpValue = NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression3(PointerFromQQmlScriptString(script), PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -4443,7 +4443,7 @@ func (ptr *QQmlExpression) Context() *QQmlContext {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlExpression_Context(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4456,7 +4456,7 @@ func (ptr *QQmlExpression) Engine() *QQmlEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlEngineFromPointer(C.QQmlExpression_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -4527,7 +4527,7 @@ func (ptr *QQmlExpression) ScopeObject() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlExpression_ScopeObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -5073,6 +5073,7 @@ func NewQQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin 
 
 func (ptr *QQmlExtensionPlugin) DestroyQQmlExtensionPlugin() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -5130,7 +5131,7 @@ func NewQQmlExtensionPlugin(parent core.QObject_ITF) *QQmlExtensionPlugin {
 
 	var tmpValue = NewQQmlExtensionPluginFromPointer(C.QQmlExtensionPlugin_NewQQmlExtensionPlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5642,7 +5643,7 @@ func NewQQmlFileSelector(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlFi
 
 	var tmpValue = NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_NewQQmlFileSelector(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5652,7 +5653,7 @@ func QQmlFileSelector_Get(engine QQmlEngine_ITF) *QQmlFileSelector {
 
 	var tmpValue = NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_QQmlFileSelector_Get(PointerFromQQmlEngine(engine)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5662,7 +5663,7 @@ func (ptr *QQmlFileSelector) Get(engine QQmlEngine_ITF) *QQmlFileSelector {
 
 	var tmpValue = NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_QQmlFileSelector_Get(PointerFromQQmlEngine(engine)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
@@ -5673,7 +5674,7 @@ func (ptr *QQmlFileSelector) Selector() *core.QFileSelector {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQFileSelectorFromPointer(C.QQmlFileSelector_Selector(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6188,6 +6189,7 @@ func NewQQmlImageProviderBaseFromPointer(ptr unsafe.Pointer) *QQmlImageProviderB
 
 func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -6307,6 +6309,7 @@ func NewQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) *QQmlIncubationC
 
 func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -6324,7 +6327,7 @@ func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlEngineFromPointer(C.QQmlIncubationController_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6452,6 +6455,7 @@ func NewQQmlIncubatorFromPointer(ptr unsafe.Pointer) *QQmlIncubator {
 
 func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -6530,7 +6534,7 @@ func (ptr *QQmlIncubator) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlIncubator_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6755,7 +6759,7 @@ func (ptr *QQmlListReference) At(index int) *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlListReference_At(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6858,7 +6862,7 @@ func (ptr *QQmlListReference) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlListReference_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6938,7 +6942,7 @@ func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *net
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QQmlNetworkAccessManagerFactory_Create(ptr.Pointer(), core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -6995,6 +6999,7 @@ func NewQQmlParserStatusFromPointer(ptr unsafe.Pointer) *QQmlParserStatus {
 
 func (ptr *QQmlParserStatus) DestroyQQmlParserStatus() {
 	C.free(ptr.Pointer())
+	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 	ptr.SetPointer(nil)
 }
 
@@ -7329,7 +7334,7 @@ func (ptr *QQmlProperty) Object() *core.QObject {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlProperty_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-			tmpValue.ConnectDestroyed(func(*core.QObject) {})
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
 	}
@@ -7552,7 +7557,7 @@ func NewQQmlPropertyMap(parent core.QObject_ITF) *QQmlPropertyMap {
 
 	var tmpValue = NewQQmlPropertyMapFromPointer(C.QQmlPropertyMap_NewQQmlPropertyMap(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }

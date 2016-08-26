@@ -69,7 +69,7 @@ func NewQSignalSpy(object core.QObject_ITF, sign string) *QSignalSpy {
 	defer C.free(unsafe.Pointer(signC))
 	var tmpValue = NewQSignalSpyFromPointer(C.QSignalSpy_NewQSignalSpy(core.PointerFromQObject(object), signC))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
-		tmpValue.ConnectDestroyed(func(*core.QObject) {})
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
 }
