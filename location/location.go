@@ -3262,7 +3262,11 @@ func (ptr *QGeoServiceProvider) GeocodingManager() *QGeoCodingManager {
 	defer qt.Recovering("QGeoServiceProvider::geocodingManager")
 
 	if ptr.Pointer() != nil {
-		return NewQGeoCodingManagerFromPointer(C.QGeoServiceProvider_GeocodingManager(ptr.Pointer()))
+		var tmpValue = NewQGeoCodingManagerFromPointer(C.QGeoServiceProvider_GeocodingManager(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -3280,7 +3284,11 @@ func (ptr *QGeoServiceProvider) PlaceManager() *QPlaceManager {
 	defer qt.Recovering("QGeoServiceProvider::placeManager")
 
 	if ptr.Pointer() != nil {
-		return NewQPlaceManagerFromPointer(C.QGeoServiceProvider_PlaceManager(ptr.Pointer()))
+		var tmpValue = NewQPlaceManagerFromPointer(C.QGeoServiceProvider_PlaceManager(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
 }

@@ -16408,7 +16408,11 @@ func (ptr *QQuickWindow) OpenglContext() *gui.QOpenGLContext {
 	defer qt.Recovering("QQuickWindow::openglContext")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQOpenGLContextFromPointer(C.QQuickWindow_OpenglContext(ptr.Pointer()))
+		var tmpValue = gui.NewQOpenGLContextFromPointer(C.QQuickWindow_OpenglContext(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -22078,7 +22082,11 @@ func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {
 	defer qt.Recovering("QSGMaterialShader::program")
 
 	if ptr.Pointer() != nil {
-		return gui.NewQOpenGLShaderProgramFromPointer(C.QSGMaterialShader_Program(ptr.Pointer()))
+		var tmpValue = gui.NewQOpenGLShaderProgramFromPointer(C.QSGMaterialShader_Program(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
 }

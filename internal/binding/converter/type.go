@@ -139,7 +139,7 @@ func goType(f *parser.Function, value string) string {
 				if parser.ClassMap[f.Class()].WeakLink[c.Module] {
 					return "int64"
 				}
-				return module(c.Module) + "." + goEnum(f, value)
+				return fmt.Sprintf("%v.%v", module(c.Module), goEnum(f, value))
 			}
 			return goEnum(f, value)
 		}
@@ -150,7 +150,7 @@ func goType(f *parser.Function, value string) string {
 				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
 					return "unsafe.Pointer"
 				}
-				return m + "." + value
+				return fmt.Sprintf("%v.%v", m, value)
 			}
 
 			if f.TemplateMode == "String" {

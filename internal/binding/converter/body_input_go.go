@@ -19,7 +19,7 @@ func GoInputParametersForC(function *parser.Function) string {
 		for _, parameter := range function.Parameters {
 			var alloc = goInput(parameter.Name, parameter.Value, function)
 			if strings.Contains(alloc, "C.CString") {
-				input = append(input, cleanName(parameter.Name, parameter.Value)+"C")
+				input = append(input, fmt.Sprintf("%vC", cleanName(parameter.Name, parameter.Value)))
 			} else {
 				input = append(input, alloc)
 			}
@@ -37,7 +37,7 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 		for _, parameter := range function.Parameters {
 			var (
 				alloc = goInput(parameter.Name, parameter.Value, function)
-				name  = cleanName(parameter.Name, parameter.Value) + "C"
+				name  = fmt.Sprintf("%vC", cleanName(parameter.Name, parameter.Value))
 			)
 			if strings.Contains(alloc, "C.CString") {
 				input = append(input, fmt.Sprintf("var %v = %v\ndefer C.free(unsafe.Pointer(%v))\n", name, alloc, name))

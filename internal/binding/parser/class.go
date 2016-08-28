@@ -148,7 +148,7 @@ func (c *Class) fix() {
 
 		defFunction.Name = "standardPixmap"
 		defFunction.Output = "QPixmap"
-		defFunction.Fullname = c.Name + "::" + defFunction.Name
+		defFunction.Fullname = fmt.Sprintf("%v::%v", c.Name, defFunction.Name)
 
 		c.Functions = append(c.Functions, &defFunction)
 	}
@@ -269,7 +269,7 @@ func (c *Class) fixBases() {
 		case "QColumnView", "QLCDNumber", "QWebEngineUrlSchemeHandler", "QWebEngineUrlRequestInterceptor", "QWebEngineCookieStore", "QWebEngineUrlRequestInfo", "QWebEngineUrlRequestJob":
 			{
 				for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
-					m = "Qt" + m
+					m = fmt.Sprintf("Qt%v", m)
 					if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name)) {
 
 						c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v.h"), prefixPath, midfixPath, m, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
@@ -299,7 +299,7 @@ func (c *Class) fixBases() {
 
 		var found bool
 		for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
-			m = "Qt" + m
+			m = fmt.Sprintf("Qt%v", m)
 			if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name)) {
 
 				var f = utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name))
@@ -382,17 +382,18 @@ func getBasesFromHeader(f string, n string, m string) string {
 }
 
 func normalizedClassDeclaration(f string, is int) string {
+	var bb = new(bytes.Buffer)
+	defer bb.Reset()
 
-	var out string
 	for i, l := range strings.Split(f, "\n") {
 		if i >= is {
-			out += l
+			fmt.Fprint(bb, l)
 			if strings.Contains(l, "{") {
 				break
 			}
 		}
 	}
-	return out
+	return bb.String()
 }
 
 var LibDeps = map[string][]string{

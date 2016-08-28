@@ -88,7 +88,7 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 	return strings.Join(input, ", ")
 }
 
-func CppInputParametersForCallbackBody(function *parser.Function) (o string) {
+func CppInputParametersForCallbackBody(function *parser.Function) string {
 
 	var input = make([]string, len(function.Parameters)+1)
 

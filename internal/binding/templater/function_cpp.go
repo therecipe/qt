@@ -46,7 +46,7 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 				return fmt.Sprintf("Signal_%v", strings.Title(function.Name))
 			}
 			if strings.HasPrefix(function.Name, parser.TILDE) && parser.ClassMap[function.Class()].Module != parser.MOC {
-				return strings.Replace(function.Name, parser.TILDE, parser.TILDE+"My", -1)
+				return strings.Replace(function.Name, parser.TILDE, fmt.Sprintf("%vMy", parser.TILDE), -1)
 			}
 			return function.Name
 		}(),
@@ -100,20 +100,7 @@ func cppFunction(function *parser.Function) string {
 }
 
 func cppFunctionHeader(function *parser.Function) string {
-	var output = fmt.Sprintf("%v %v%v(%v)",
-		converter.CppHeaderOutput(function),
-
-		converter.CppHeaderName(function),
-
-		func() string {
-			if function.Default {
-				return "Default"
-			}
-			return ""
-		}(),
-
-		converter.CppHeaderInput(function))
-
+	var output = fmt.Sprintf("%v %v(%v)", converter.CppHeaderOutput(function), converter.CppHeaderName(function), converter.CppHeaderInput(function))
 	if functionIsSupported(nil, function) {
 		return output
 	}

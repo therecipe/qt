@@ -83,7 +83,7 @@ func cleanName(name, value string) string {
 
 	case "":
 		{
-			return "v" + strings.Replace(strings.ToLower(CleanValue(value)[:2]), ".", "", -1)
+			return fmt.Sprintf("v%v", strings.Replace(strings.ToLower(CleanValue(value)[:2]), ".", "", -1))
 		}
 	}
 
@@ -159,7 +159,7 @@ func findEnumH(e *parser.Enum, value string, byValue bool) (string, string) {
 
 	if byValue {
 		for _, v := range e.Values {
-			if outE, _ := findEnumHelper(value, class(e)+"::"+v.Name, ""); outE != "" {
+			if outE, _ := findEnumHelper(value, fmt.Sprintf("%v::%v", class(e), v.Name), ""); outE != "" {
 				return outE, ""
 			}
 		}
@@ -305,15 +305,14 @@ func IsPrivateSignal(f *parser.Function) bool {
 		}
 
 		if fData != "" {
-			if strings.Contains(fData, f.Name+"(") {
+			if strings.Contains(fData, fmt.Sprintf("%v(", f.Name)) {
 
-				return strings.Contains(strings.Split(strings.Split(fData, f.Name+"(")[1], ")")[0], "QPrivateSignal")
+				return strings.Contains(strings.Split(strings.Split(fData, fmt.Sprintf("%v(", f.Name))[1], ")")[0], "QPrivateSignal")
 			}
 
-			if strings.Contains(fData, f.Name+" (") {
-				return strings.Contains(strings.Split(strings.Split(fData, f.Name+" (")[1], ")")[0], "QPrivateSignal")
+			if strings.Contains(fData, fmt.Sprintf("%v (", f.Name)) {
+				return strings.Contains(strings.Split(strings.Split(fData, fmt.Sprintf("%v (", f.Name))[1], ")")[0], "QPrivateSignal")
 			}
-
 		}
 
 		fmt.Println("converter.IsPrivateSignal", f.Class())
