@@ -35,14 +35,14 @@
 ## Installation
 
 * Desktop
-	* [Windows](#windows)
-	* [macOS](#macos)
-	* [Linux](#linux)
+	* [Windows](#windows-1)
+	* [macOS](#macos-1)
+	* [Linux](#linux-1)
 
 * Mobile
-	* [Android](#android)
-	* [iOS](#ios)
-	* [Sailfish OS](#sailfish-os)
+	* [Android](#android-1)
+	* [iOS](#ios-1)
+	* [Sailfish OS](#sailfish-os-1)
 
 * Embedded
 	* [Raspberry Pi](#raspberry-pi)
@@ -177,7 +177,7 @@
 
 ## iOS
 
-1. Install the desktop version for [macOS](#macos)
+1. Install the desktop version for [macOS](#macos-1)
 
 2. Install and test
 
@@ -213,7 +213,7 @@
 
 ## Raspberry Pi
 
-1. Install the desktop version for [Linux](#linux)
+1. Install the desktop version for [Linux](#linux-1)
 
 2. Create a folder `[HOME]/raspi`
 
