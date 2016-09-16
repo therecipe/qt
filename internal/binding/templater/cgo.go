@@ -2,6 +2,7 @@ package templater
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -26,6 +27,7 @@ func CopyCgo(module string) {
 		cgoWindows(module)
 		cgoLinux(module)
 		cgoSailfish(module)
+		cgoRaspberry(module)
 
 		if runtime.GOOS == "darwin" {
 			cgoIos(module)
@@ -264,7 +266,7 @@ func cgoAndroidOnDarwinAndLinux(module string) {
 	}
 	tmp += "\n\n"
 
-	tmp += "#cgo LDFLAGS: --sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=/usr/local/Qt5.7.0/5.7/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n"
+	tmp += "#cgo LDFLAGS: --sysroot=/opt/android-ndk/platforms/android-9/arch-arm -Wl,-rpath=/usr/local/Qt5.7.0/5.7/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n"
 
 	tmp += "#cgo LDFLAGS: -L/opt/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android-ndk/platforms/android-9/arch-arm//usr/lib -L/usr/local/Qt5.7.0/5.7/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm//usr/lib"
 
@@ -317,7 +319,7 @@ func cgoAndroidOnWindows(module string) {
 	}
 	tmp += "\n\n"
 
-	tmp += "#cgo LDFLAGS: --sysroot=C:/android/android-ndk/platforms/android-9/arch-arm/ -Wl,-rpath=C:/Qt/Qt5.7.0/5.7/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n"
+	tmp += "#cgo LDFLAGS: --sysroot=C:/android/android-ndk/platforms/android-9/arch-arm -Wl,-rpath=C:/Qt/Qt5.7.0/5.7/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n"
 
 	tmp += "#cgo LDFLAGS: -LC:/android/android-ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android-ndk/platforms/android-9/arch-arm//usr/lib -LC:/Qt/Qt5.7.0/5.7/android_armv7/lib -LC:/android/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -LC:/android/android/ndk/platforms/android-9/arch-arm//usr/lib"
 	for _, m := range libs {
@@ -468,7 +470,7 @@ func cgoIos(module string) string {
 
 func cgoSailfish(module string) {
 	var (
-		tmp  = "// +build !android\n\n"
+		tmp  = "// +build !android,!rpi1,!rpi2,!rpi3\n\n"
 		libs = cleanLibs(module)
 	)
 
@@ -534,6 +536,72 @@ func cgoSailfish(module string) {
 		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_arm.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_arm.go"), tmp)
+	}
+}
+
+func cgoRaspberry(module string) {
+	var (
+		tmp  = "// +build rpi1\n\n"
+		libs = cleanLibs(module)
+	)
+
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
+	tmp += "/*\n"
+
+	tmp += "#cgo CFLAGS: -pipe -marm -mfpu=vfp -mtune=arm1176jzf-s -march=armv6zk -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n"
+	tmp += "#cgo CXXFLAGS: -pipe -marm -mfpu=vfp -mtune=arm1176jzf-s -march=armv6zk -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n"
+
+	tmp += "#cgo CXXFLAGS: -DQT_NO_EXCEPTIONS -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DQT_NO_DEBUG"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	tmp += "\n"
+
+	tmp += "#cgo CXXFLAGS: -I/usr/local/Qt5.7.0/5.7/rpi1/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -I/usr/local/Qt5.7.0/5.7/rpi1/mkspecs/devices/linux-rasp-pi-g++\n"
+
+	tmp += "#cgo CXXFLAGS:"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -I/usr/local/Qt5.7.0/5.7/rpi1/include/Qt%v", m)
+	}
+	tmp += "\n\n"
+
+	tmp += "#cgo LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/usr/local/Qt5.7.0/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n"
+
+	tmp += "#cgo LDFLAGS: -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L/usr/local/Qt5.7.0/5.7/rpi1/lib"
+	for _, m := range libs {
+		if m == "UiTools" || m == "PlatformHeaders" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
+	}
+	for _, m := range libs {
+		if m != "UiTools" && m != "PlatformHeaders" {
+			if m != "UiPlugin" {
+				tmp += fmt.Sprintf(" -lQt5%v", m)
+			}
+		}
+	}
+
+	tmp += " -lGLESv2 -lpthread\n"
+	tmp += "*/\n"
+
+	tmp += fmt.Sprintf("import \"C\"\n")
+
+	var username = os.Getenv("USERNAME")
+	if username == "" {
+		username = "user"
+	}
+
+	tmp = strings.Replace(tmp, "${USERNAME}", username, -1)
+
+	if module == parser.MOC {
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_rpi1.go"), tmp)
+	} else {
+		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_rpi1.go"), tmp)
 	}
 }
 

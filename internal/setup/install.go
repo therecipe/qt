@@ -48,7 +48,7 @@ func main() {
 							"CC":           filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
 							"CXX":          filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
 							"CGO_CPPFLAGS": "-isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include",
-							"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -llog",
+							"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm -llog",
 						}
 					}
 
@@ -160,6 +160,29 @@ func main() {
 				}
 				return
 			}
+
+		case "rpi1", "rpi2", "rpi3":
+			{
+				tagFlags = fmt.Sprintf("-tags=\"%v\"", buildTarget)
+
+				env = map[string]string{
+					"PATH":   os.Getenv("PATH"),
+					"GOPATH": os.Getenv("GOPATH"),
+					"GOROOT": runtime.GOROOT(),
+
+					"GOOS":   "linux",
+					"GOARCH": "arm",
+					"GOARM":  "7",
+
+					"CGO_ENABLED": "1",
+					"CC":          fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", os.Getenv("USERNAME")),
+					"CXX":         fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", os.Getenv("USERNAME")),
+				}
+
+				if buildTarget == "rpi1" {
+					env["GOARM"] = "6"
+				}
+			}
 		}
 
 		var cmd = exec.Command("go", "install")
@@ -192,7 +215,8 @@ func main() {
 	for _, m := range templater.GetLibs() {
 
 		if !(buildTarget == "android" && (m == "DBus" || m == "MacExtras" || m == "WebEngine" || m == "Designer")) &&
-			!((buildTarget == "ios" || buildTarget == "ios-simulator") && (m == "SerialPort" || m == "SerialBus" || m == "MacExtras" || m == "WebEngine" || m == "PrintSupport" || m == "Designer")) { //TODO: support for PrintSupport
+			!((buildTarget == "ios" || buildTarget == "ios-simulator") && (m == "SerialPort" || m == "SerialBus" || m == "MacExtras" || m == "WebEngine" || m == "PrintSupport" || m == "Designer")) && //TODO: support for PrintSupport
+			!((buildTarget == "rpi1" || buildTarget == "rpi2" || buildTarget == "rpi3") && (m == "WebEngine" || m == "Designer")) {
 
 			var before = time.Now()
 

@@ -46,698 +46,6 @@
 #include <QWheelEvent>
 #include <QWidget>
 
-class DropSiteWindow: public QWidget
-{
-Q_OBJECT
-public:
-	DropSiteWindow(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f) {};
-	void actionEvent(QActionEvent * event) { callbackDropSiteWindow_ActionEvent(this, event); };
-	void dragEnterEvent(QDragEnterEvent * event) { callbackDropSiteWindow_DragEnterEvent(this, event); };
-	void dragLeaveEvent(QDragLeaveEvent * event) { callbackDropSiteWindow_DragLeaveEvent(this, event); };
-	void dragMoveEvent(QDragMoveEvent * event) { callbackDropSiteWindow_DragMoveEvent(this, event); };
-	void dropEvent(QDropEvent * event) { callbackDropSiteWindow_DropEvent(this, event); };
-	void enterEvent(QEvent * event) { callbackDropSiteWindow_EnterEvent(this, event); };
-	void focusInEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusInEvent(this, event); };
-	void focusOutEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusOutEvent(this, event); };
-	void hideEvent(QHideEvent * event) { callbackDropSiteWindow_HideEvent(this, event); };
-	void leaveEvent(QEvent * event) { callbackDropSiteWindow_LeaveEvent(this, event); };
-	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_MinimumSizeHint(const_cast<DropSiteWindow*>(this))); };
-	void moveEvent(QMoveEvent * event) { callbackDropSiteWindow_MoveEvent(this, event); };
-	void paintEvent(QPaintEvent * event) { callbackDropSiteWindow_PaintEvent(this, event); };
-	void setEnabled(bool vbo) { callbackDropSiteWindow_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackDropSiteWindow_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
-	void setVisible(bool visible) { callbackDropSiteWindow_SetVisible(this, visible); };
-	void setWindowModified(bool vbo) { callbackDropSiteWindow_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackDropSiteWindow_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
-	void showEvent(QShowEvent * event) { callbackDropSiteWindow_ShowEvent(this, event); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_SizeHint(const_cast<DropSiteWindow*>(this))); };
-	void changeEvent(QEvent * event) { callbackDropSiteWindow_ChangeEvent(this, event); };
-	bool close() { return callbackDropSiteWindow_Close(this) != 0; };
-	void closeEvent(QCloseEvent * event) { callbackDropSiteWindow_CloseEvent(this, event); };
-	void contextMenuEvent(QContextMenuEvent * event) { callbackDropSiteWindow_ContextMenuEvent(this, event); };
-	bool focusNextPrevChild(bool next) { return callbackDropSiteWindow_FocusNextPrevChild(this, next) != 0; };
-	bool hasHeightForWidth() const { return callbackDropSiteWindow_HasHeightForWidth(const_cast<DropSiteWindow*>(this)) != 0; };
-	int heightForWidth(int w) const { return callbackDropSiteWindow_HeightForWidth(const_cast<DropSiteWindow*>(this), w); };
-	void hide() { callbackDropSiteWindow_Hide(this); };
-	void inputMethodEvent(QInputMethodEvent * event) { callbackDropSiteWindow_InputMethodEvent(this, event); };
-	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackDropSiteWindow_InputMethodQuery(const_cast<DropSiteWindow*>(this), query)); };
-	void keyPressEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyPressEvent(this, event); };
-	void keyReleaseEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyReleaseEvent(this, event); };
-	void lower() { callbackDropSiteWindow_Lower(this); };
-	void mouseDoubleClickEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseDoubleClickEvent(this, event); };
-	void mouseMoveEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseMoveEvent(this, event); };
-	void mousePressEvent(QMouseEvent * event) { callbackDropSiteWindow_MousePressEvent(this, event); };
-	void mouseReleaseEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropSiteWindow_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
-	void raise() { callbackDropSiteWindow_Raise(this); };
-	void repaint() { callbackDropSiteWindow_Repaint(this); };
-	void resizeEvent(QResizeEvent * event) { callbackDropSiteWindow_ResizeEvent(this, event); };
-	void setDisabled(bool disable) { callbackDropSiteWindow_SetDisabled(this, disable); };
-	void setFocus() { callbackDropSiteWindow_SetFocus2(this); };
-	void setHidden(bool hidden) { callbackDropSiteWindow_SetHidden(this, hidden); };
-	void show() { callbackDropSiteWindow_Show(this); };
-	void showFullScreen() { callbackDropSiteWindow_ShowFullScreen(this); };
-	void showMaximized() { callbackDropSiteWindow_ShowMaximized(this); };
-	void showMinimized() { callbackDropSiteWindow_ShowMinimized(this); };
-	void showNormal() { callbackDropSiteWindow_ShowNormal(this); };
-	void tabletEvent(QTabletEvent * event) { callbackDropSiteWindow_TabletEvent(this, event); };
-	void update() { callbackDropSiteWindow_Update(this); };
-	void updateMicroFocus() { callbackDropSiteWindow_UpdateMicroFocus(this); };
-	void wheelEvent(QWheelEvent * event) { callbackDropSiteWindow_WheelEvent(this, event); };
-	void timerEvent(QTimerEvent * event) { callbackDropSiteWindow_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackDropSiteWindow_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackDropSiteWindow_CustomEvent(this, event); };
-	void deleteLater() { callbackDropSiteWindow_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackDropSiteWindow_EventFilter(this, watched, event) != 0; };
-	
-signals:
-public slots:
-	void updateFormatsTable(QMimeData* mimeData) { callbackDropSiteWindow_UpdateFormatsTable(this, mimeData); };
-};
-
-void DropSiteWindow_UpdateFormatsTable(void* ptr, void* mimeData)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "updateFormatsTable", Q_ARG(QMimeData*, static_cast<QMimeData*>(mimeData)));
-}
-
-void* DropSiteWindow_NewDropSiteWindow(void* parent, long long f)
-{
-	return new DropSiteWindow(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
-}
-
-void DropSiteWindow_DestroyDropSiteWindow(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->~DropSiteWindow();
-}
-
-void DropSiteWindow_ActionEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->actionEvent(static_cast<QActionEvent*>(event));
-}
-
-void DropSiteWindow_ActionEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::actionEvent(static_cast<QActionEvent*>(event));
-}
-
-void DropSiteWindow_DragEnterEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-}
-
-void DropSiteWindow_DragEnterEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
-}
-
-void DropSiteWindow_DragLeaveEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-}
-
-void DropSiteWindow_DragLeaveEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
-}
-
-void DropSiteWindow_DragMoveEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-}
-
-void DropSiteWindow_DragMoveEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
-}
-
-void DropSiteWindow_DropEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->dropEvent(static_cast<QDropEvent*>(event));
-}
-
-void DropSiteWindow_DropEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::dropEvent(static_cast<QDropEvent*>(event));
-}
-
-void DropSiteWindow_EnterEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->enterEvent(static_cast<QEvent*>(event));
-}
-
-void DropSiteWindow_EnterEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::enterEvent(static_cast<QEvent*>(event));
-}
-
-void DropSiteWindow_FocusInEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
-}
-
-void DropSiteWindow_FocusInEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::focusInEvent(static_cast<QFocusEvent*>(event));
-}
-
-void DropSiteWindow_FocusOutEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
-}
-
-void DropSiteWindow_FocusOutEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
-}
-
-void DropSiteWindow_HideEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(event));
-}
-
-void DropSiteWindow_HideEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::hideEvent(static_cast<QHideEvent*>(event));
-}
-
-void DropSiteWindow_LeaveEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->leaveEvent(static_cast<QEvent*>(event));
-}
-
-void DropSiteWindow_LeaveEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::leaveEvent(static_cast<QEvent*>(event));
-}
-
-void* DropSiteWindow_MinimumSizeHint(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-void* DropSiteWindow_MinimumSizeHintDefault(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->QWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-void DropSiteWindow_MoveEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
-}
-
-void DropSiteWindow_MoveEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::moveEvent(static_cast<QMoveEvent*>(event));
-}
-
-void DropSiteWindow_PaintEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
-}
-
-void DropSiteWindow_PaintEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::paintEvent(static_cast<QPaintEvent*>(event));
-}
-
-void DropSiteWindow_SetEnabled(void* ptr, char vbo)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
-}
-
-void DropSiteWindow_SetEnabledDefault(void* ptr, char vbo)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setEnabled(vbo != 0);
-}
-
-void DropSiteWindow_SetStyleSheet(void* ptr, char* styleSheet)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
-}
-
-void DropSiteWindow_SetStyleSheetDefault(void* ptr, char* styleSheet)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setStyleSheet(QString(styleSheet));
-}
-
-void DropSiteWindow_SetVisible(void* ptr, char visible)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
-}
-
-void DropSiteWindow_SetVisibleDefault(void* ptr, char visible)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setVisible(visible != 0);
-}
-
-void DropSiteWindow_SetWindowModified(void* ptr, char vbo)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
-}
-
-void DropSiteWindow_SetWindowModifiedDefault(void* ptr, char vbo)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setWindowModified(vbo != 0);
-}
-
-void DropSiteWindow_SetWindowTitle(void* ptr, char* vqs)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
-}
-
-void DropSiteWindow_SetWindowTitleDefault(void* ptr, char* vqs)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setWindowTitle(QString(vqs));
-}
-
-void DropSiteWindow_ShowEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
-}
-
-void DropSiteWindow_ShowEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::showEvent(static_cast<QShowEvent*>(event));
-}
-
-void* DropSiteWindow_SizeHint(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-void* DropSiteWindow_SizeHintDefault(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->QWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-void DropSiteWindow_ChangeEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->changeEvent(static_cast<QEvent*>(event));
-}
-
-void DropSiteWindow_ChangeEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::changeEvent(static_cast<QEvent*>(event));
-}
-
-char DropSiteWindow_Close(void* ptr)
-{
-	bool returnArg;
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
-	return returnArg;
-}
-
-char DropSiteWindow_CloseDefault(void* ptr)
-{
-	return static_cast<DropSiteWindow*>(ptr)->QWidget::close();
-}
-
-void DropSiteWindow_CloseEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->closeEvent(static_cast<QCloseEvent*>(event));
-}
-
-void DropSiteWindow_CloseEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::closeEvent(static_cast<QCloseEvent*>(event));
-}
-
-void DropSiteWindow_ContextMenuEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-}
-
-void DropSiteWindow_ContextMenuEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
-}
-
-char DropSiteWindow_FocusNextPrevChild(void* ptr, char next)
-{
-	return static_cast<DropSiteWindow*>(ptr)->focusNextPrevChild(next != 0);
-}
-
-char DropSiteWindow_FocusNextPrevChildDefault(void* ptr, char next)
-{
-	return static_cast<DropSiteWindow*>(ptr)->QWidget::focusNextPrevChild(next != 0);
-}
-
-char DropSiteWindow_HasHeightForWidth(void* ptr)
-{
-	return static_cast<DropSiteWindow*>(ptr)->hasHeightForWidth();
-}
-
-char DropSiteWindow_HasHeightForWidthDefault(void* ptr)
-{
-	return static_cast<DropSiteWindow*>(ptr)->QWidget::hasHeightForWidth();
-}
-
-int DropSiteWindow_HeightForWidth(void* ptr, int w)
-{
-	return static_cast<DropSiteWindow*>(ptr)->heightForWidth(w);
-}
-
-int DropSiteWindow_HeightForWidthDefault(void* ptr, int w)
-{
-	return static_cast<DropSiteWindow*>(ptr)->QWidget::heightForWidth(w);
-}
-
-void DropSiteWindow_Hide(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "hide");
-}
-
-void DropSiteWindow_HideDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::hide();
-}
-
-void DropSiteWindow_InputMethodEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-}
-
-void DropSiteWindow_InputMethodEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
-}
-
-void* DropSiteWindow_InputMethodQuery(void* ptr, long long query)
-{
-	return new QVariant(static_cast<DropSiteWindow*>(ptr)->inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-}
-
-void* DropSiteWindow_InputMethodQueryDefault(void* ptr, long long query)
-{
-	return new QVariant(static_cast<DropSiteWindow*>(ptr)->QWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
-}
-
-void DropSiteWindow_KeyPressEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
-}
-
-void DropSiteWindow_KeyPressEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
-}
-
-void DropSiteWindow_KeyReleaseEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
-}
-
-void DropSiteWindow_KeyReleaseEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
-}
-
-void DropSiteWindow_Lower(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "lower");
-}
-
-void DropSiteWindow_LowerDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::lower();
-}
-
-void DropSiteWindow_MouseDoubleClickEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-}
-
-void DropSiteWindow_MouseDoubleClickEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
-}
-
-void DropSiteWindow_MouseMoveEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(event));
-}
-
-void DropSiteWindow_MouseMoveEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
-}
-
-void DropSiteWindow_MousePressEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(event));
-}
-
-void DropSiteWindow_MousePressEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
-}
-
-void DropSiteWindow_MouseReleaseEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-}
-
-void DropSiteWindow_MouseReleaseEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
-}
-
-char DropSiteWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
-{
-	return static_cast<DropSiteWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
-}
-
-char DropSiteWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
-{
-	return static_cast<DropSiteWindow*>(ptr)->QWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
-}
-
-void DropSiteWindow_Raise(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "raise");
-}
-
-void DropSiteWindow_RaiseDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::raise();
-}
-
-void DropSiteWindow_Repaint(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "repaint");
-}
-
-void DropSiteWindow_RepaintDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::repaint();
-}
-
-void DropSiteWindow_ResizeEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
-}
-
-void DropSiteWindow_ResizeEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::resizeEvent(static_cast<QResizeEvent*>(event));
-}
-
-void DropSiteWindow_SetDisabled(void* ptr, char disable)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
-}
-
-void DropSiteWindow_SetDisabledDefault(void* ptr, char disable)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setDisabled(disable != 0);
-}
-
-void DropSiteWindow_SetFocus2(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setFocus");
-}
-
-void DropSiteWindow_SetFocus2Default(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setFocus();
-}
-
-void DropSiteWindow_SetHidden(void* ptr, char hidden)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
-}
-
-void DropSiteWindow_SetHiddenDefault(void* ptr, char hidden)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::setHidden(hidden != 0);
-}
-
-void DropSiteWindow_Show(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "show");
-}
-
-void DropSiteWindow_ShowDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::show();
-}
-
-void DropSiteWindow_ShowFullScreen(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showFullScreen");
-}
-
-void DropSiteWindow_ShowFullScreenDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::showFullScreen();
-}
-
-void DropSiteWindow_ShowMaximized(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showMaximized");
-}
-
-void DropSiteWindow_ShowMaximizedDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::showMaximized();
-}
-
-void DropSiteWindow_ShowMinimized(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showMinimized");
-}
-
-void DropSiteWindow_ShowMinimizedDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::showMinimized();
-}
-
-void DropSiteWindow_ShowNormal(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showNormal");
-}
-
-void DropSiteWindow_ShowNormalDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::showNormal();
-}
-
-void DropSiteWindow_TabletEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(event));
-}
-
-void DropSiteWindow_TabletEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::tabletEvent(static_cast<QTabletEvent*>(event));
-}
-
-void DropSiteWindow_Update(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "update");
-}
-
-void DropSiteWindow_UpdateDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::update();
-}
-
-void DropSiteWindow_UpdateMicroFocus(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "updateMicroFocus");
-}
-
-void DropSiteWindow_UpdateMicroFocusDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::updateMicroFocus();
-}
-
-void DropSiteWindow_WheelEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(event));
-}
-
-void DropSiteWindow_WheelEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::wheelEvent(static_cast<QWheelEvent*>(event));
-}
-
-void DropSiteWindow_TimerEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void DropSiteWindow_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void DropSiteWindow_ChildEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
-}
-
-void DropSiteWindow_ChildEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::childEvent(static_cast<QChildEvent*>(event));
-}
-
-void DropSiteWindow_ConnectNotify(void* ptr, void* sign)
-{
-	static_cast<DropSiteWindow*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void DropSiteWindow_ConnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void DropSiteWindow_CustomEvent(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
-}
-
-void DropSiteWindow_CustomEventDefault(void* ptr, void* event)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::customEvent(static_cast<QEvent*>(event));
-}
-
-void DropSiteWindow_DeleteLater(void* ptr)
-{
-	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "deleteLater");
-}
-
-void DropSiteWindow_DeleteLaterDefault(void* ptr)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::deleteLater();
-}
-
-void DropSiteWindow_DisconnectNotify(void* ptr, void* sign)
-{
-	static_cast<DropSiteWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-void DropSiteWindow_DisconnectNotifyDefault(void* ptr, void* sign)
-{
-	static_cast<DropSiteWindow*>(ptr)->QWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-char DropSiteWindow_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<DropSiteWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char DropSiteWindow_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<DropSiteWindow*>(ptr)->QWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-
-
-
-
 class DropArea: public QLabel
 {
 Q_OBJECT
@@ -1512,6 +820,698 @@ char DropArea_EventFilter(void* ptr, void* watched, void* event)
 char DropArea_EventFilterDefault(void* ptr, void* watched, void* event)
 {
 	return static_cast<DropArea*>(ptr)->QLabel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+
+
+
+
+class DropSiteWindow: public QWidget
+{
+Q_OBJECT
+public:
+	DropSiteWindow(QWidget *parent, Qt::WindowFlags f) : QWidget(parent, f) {};
+	void actionEvent(QActionEvent * event) { callbackDropSiteWindow_ActionEvent(this, event); };
+	void dragEnterEvent(QDragEnterEvent * event) { callbackDropSiteWindow_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QDragLeaveEvent * event) { callbackDropSiteWindow_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QDragMoveEvent * event) { callbackDropSiteWindow_DragMoveEvent(this, event); };
+	void dropEvent(QDropEvent * event) { callbackDropSiteWindow_DropEvent(this, event); };
+	void enterEvent(QEvent * event) { callbackDropSiteWindow_EnterEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackDropSiteWindow_FocusOutEvent(this, event); };
+	void hideEvent(QHideEvent * event) { callbackDropSiteWindow_HideEvent(this, event); };
+	void leaveEvent(QEvent * event) { callbackDropSiteWindow_LeaveEvent(this, event); };
+	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_MinimumSizeHint(const_cast<DropSiteWindow*>(this))); };
+	void moveEvent(QMoveEvent * event) { callbackDropSiteWindow_MoveEvent(this, event); };
+	void paintEvent(QPaintEvent * event) { callbackDropSiteWindow_PaintEvent(this, event); };
+	void setEnabled(bool vbo) { callbackDropSiteWindow_SetEnabled(this, vbo); };
+	void setStyleSheet(const QString & styleSheet) { callbackDropSiteWindow_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setVisible(bool visible) { callbackDropSiteWindow_SetVisible(this, visible); };
+	void setWindowModified(bool vbo) { callbackDropSiteWindow_SetWindowModified(this, vbo); };
+	void setWindowTitle(const QString & vqs) { callbackDropSiteWindow_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void showEvent(QShowEvent * event) { callbackDropSiteWindow_ShowEvent(this, event); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackDropSiteWindow_SizeHint(const_cast<DropSiteWindow*>(this))); };
+	void changeEvent(QEvent * event) { callbackDropSiteWindow_ChangeEvent(this, event); };
+	bool close() { return callbackDropSiteWindow_Close(this) != 0; };
+	void closeEvent(QCloseEvent * event) { callbackDropSiteWindow_CloseEvent(this, event); };
+	void contextMenuEvent(QContextMenuEvent * event) { callbackDropSiteWindow_ContextMenuEvent(this, event); };
+	bool focusNextPrevChild(bool next) { return callbackDropSiteWindow_FocusNextPrevChild(this, next) != 0; };
+	bool hasHeightForWidth() const { return callbackDropSiteWindow_HasHeightForWidth(const_cast<DropSiteWindow*>(this)) != 0; };
+	int heightForWidth(int w) const { return callbackDropSiteWindow_HeightForWidth(const_cast<DropSiteWindow*>(this), w); };
+	void hide() { callbackDropSiteWindow_Hide(this); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackDropSiteWindow_InputMethodEvent(this, event); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackDropSiteWindow_InputMethodQuery(const_cast<DropSiteWindow*>(this), query)); };
+	void keyPressEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyPressEvent(this, event); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackDropSiteWindow_KeyReleaseEvent(this, event); };
+	void lower() { callbackDropSiteWindow_Lower(this); };
+	void mouseDoubleClickEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseDoubleClickEvent(this, event); };
+	void mouseMoveEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseMoveEvent(this, event); };
+	void mousePressEvent(QMouseEvent * event) { callbackDropSiteWindow_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QMouseEvent * event) { callbackDropSiteWindow_MouseReleaseEvent(this, event); };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackDropSiteWindow_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	void raise() { callbackDropSiteWindow_Raise(this); };
+	void repaint() { callbackDropSiteWindow_Repaint(this); };
+	void resizeEvent(QResizeEvent * event) { callbackDropSiteWindow_ResizeEvent(this, event); };
+	void setDisabled(bool disable) { callbackDropSiteWindow_SetDisabled(this, disable); };
+	void setFocus() { callbackDropSiteWindow_SetFocus2(this); };
+	void setHidden(bool hidden) { callbackDropSiteWindow_SetHidden(this, hidden); };
+	void show() { callbackDropSiteWindow_Show(this); };
+	void showFullScreen() { callbackDropSiteWindow_ShowFullScreen(this); };
+	void showMaximized() { callbackDropSiteWindow_ShowMaximized(this); };
+	void showMinimized() { callbackDropSiteWindow_ShowMinimized(this); };
+	void showNormal() { callbackDropSiteWindow_ShowNormal(this); };
+	void tabletEvent(QTabletEvent * event) { callbackDropSiteWindow_TabletEvent(this, event); };
+	void update() { callbackDropSiteWindow_Update(this); };
+	void updateMicroFocus() { callbackDropSiteWindow_UpdateMicroFocus(this); };
+	void wheelEvent(QWheelEvent * event) { callbackDropSiteWindow_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackDropSiteWindow_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackDropSiteWindow_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackDropSiteWindow_CustomEvent(this, event); };
+	void deleteLater() { callbackDropSiteWindow_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackDropSiteWindow_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackDropSiteWindow_EventFilter(this, watched, event) != 0; };
+	
+signals:
+public slots:
+	void updateFormatsTable(QMimeData* mimeData) { callbackDropSiteWindow_UpdateFormatsTable(this, mimeData); };
+};
+
+void DropSiteWindow_UpdateFormatsTable(void* ptr, void* mimeData)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "updateFormatsTable", Q_ARG(QMimeData*, static_cast<QMimeData*>(mimeData)));
+}
+
+void* DropSiteWindow_NewDropSiteWindow(void* parent, long long f)
+{
+	return new DropSiteWindow(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
+}
+
+void DropSiteWindow_DestroyDropSiteWindow(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->~DropSiteWindow();
+}
+
+void DropSiteWindow_ActionEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->actionEvent(static_cast<QActionEvent*>(event));
+}
+
+void DropSiteWindow_ActionEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::actionEvent(static_cast<QActionEvent*>(event));
+}
+
+void DropSiteWindow_DragEnterEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+}
+
+void DropSiteWindow_DragEnterEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::dragEnterEvent(static_cast<QDragEnterEvent*>(event));
+}
+
+void DropSiteWindow_DragLeaveEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+}
+
+void DropSiteWindow_DragLeaveEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
+}
+
+void DropSiteWindow_DragMoveEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+}
+
+void DropSiteWindow_DragMoveEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::dragMoveEvent(static_cast<QDragMoveEvent*>(event));
+}
+
+void DropSiteWindow_DropEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->dropEvent(static_cast<QDropEvent*>(event));
+}
+
+void DropSiteWindow_DropEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::dropEvent(static_cast<QDropEvent*>(event));
+}
+
+void DropSiteWindow_EnterEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->enterEvent(static_cast<QEvent*>(event));
+}
+
+void DropSiteWindow_EnterEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::enterEvent(static_cast<QEvent*>(event));
+}
+
+void DropSiteWindow_FocusInEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void DropSiteWindow_FocusInEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::focusInEvent(static_cast<QFocusEvent*>(event));
+}
+
+void DropSiteWindow_FocusOutEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void DropSiteWindow_FocusOutEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::focusOutEvent(static_cast<QFocusEvent*>(event));
+}
+
+void DropSiteWindow_HideEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void DropSiteWindow_HideEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void DropSiteWindow_LeaveEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->leaveEvent(static_cast<QEvent*>(event));
+}
+
+void DropSiteWindow_LeaveEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::leaveEvent(static_cast<QEvent*>(event));
+}
+
+void* DropSiteWindow_MinimumSizeHint(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* DropSiteWindow_MinimumSizeHintDefault(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->QWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void DropSiteWindow_MoveEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void DropSiteWindow_MoveEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void DropSiteWindow_PaintEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void DropSiteWindow_PaintEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void DropSiteWindow_SetEnabled(void* ptr, char vbo)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setEnabled", Q_ARG(bool, vbo != 0));
+}
+
+void DropSiteWindow_SetEnabledDefault(void* ptr, char vbo)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setEnabled(vbo != 0);
+}
+
+void DropSiteWindow_SetStyleSheet(void* ptr, char* styleSheet)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setStyleSheet", Q_ARG(QString, QString(styleSheet)));
+}
+
+void DropSiteWindow_SetStyleSheetDefault(void* ptr, char* styleSheet)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setStyleSheet(QString(styleSheet));
+}
+
+void DropSiteWindow_SetVisible(void* ptr, char visible)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+}
+
+void DropSiteWindow_SetVisibleDefault(void* ptr, char visible)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setVisible(visible != 0);
+}
+
+void DropSiteWindow_SetWindowModified(void* ptr, char vbo)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setWindowModified", Q_ARG(bool, vbo != 0));
+}
+
+void DropSiteWindow_SetWindowModifiedDefault(void* ptr, char vbo)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setWindowModified(vbo != 0);
+}
+
+void DropSiteWindow_SetWindowTitle(void* ptr, char* vqs)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setWindowTitle", Q_ARG(QString, QString(vqs)));
+}
+
+void DropSiteWindow_SetWindowTitleDefault(void* ptr, char* vqs)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setWindowTitle(QString(vqs));
+}
+
+void DropSiteWindow_ShowEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
+}
+
+void DropSiteWindow_ShowEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::showEvent(static_cast<QShowEvent*>(event));
+}
+
+void* DropSiteWindow_SizeHint(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* DropSiteWindow_SizeHintDefault(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<DropSiteWindow*>(ptr)->QWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void DropSiteWindow_ChangeEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->changeEvent(static_cast<QEvent*>(event));
+}
+
+void DropSiteWindow_ChangeEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::changeEvent(static_cast<QEvent*>(event));
+}
+
+char DropSiteWindow_Close(void* ptr)
+{
+	bool returnArg;
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
+	return returnArg;
+}
+
+char DropSiteWindow_CloseDefault(void* ptr)
+{
+	return static_cast<DropSiteWindow*>(ptr)->QWidget::close();
+}
+
+void DropSiteWindow_CloseEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+void DropSiteWindow_CloseEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+void DropSiteWindow_ContextMenuEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+void DropSiteWindow_ContextMenuEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char DropSiteWindow_FocusNextPrevChild(void* ptr, char next)
+{
+	return static_cast<DropSiteWindow*>(ptr)->focusNextPrevChild(next != 0);
+}
+
+char DropSiteWindow_FocusNextPrevChildDefault(void* ptr, char next)
+{
+	return static_cast<DropSiteWindow*>(ptr)->QWidget::focusNextPrevChild(next != 0);
+}
+
+char DropSiteWindow_HasHeightForWidth(void* ptr)
+{
+	return static_cast<DropSiteWindow*>(ptr)->hasHeightForWidth();
+}
+
+char DropSiteWindow_HasHeightForWidthDefault(void* ptr)
+{
+	return static_cast<DropSiteWindow*>(ptr)->QWidget::hasHeightForWidth();
+}
+
+int DropSiteWindow_HeightForWidth(void* ptr, int w)
+{
+	return static_cast<DropSiteWindow*>(ptr)->heightForWidth(w);
+}
+
+int DropSiteWindow_HeightForWidthDefault(void* ptr, int w)
+{
+	return static_cast<DropSiteWindow*>(ptr)->QWidget::heightForWidth(w);
+}
+
+void DropSiteWindow_Hide(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "hide");
+}
+
+void DropSiteWindow_HideDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::hide();
+}
+
+void DropSiteWindow_InputMethodEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void DropSiteWindow_InputMethodEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::inputMethodEvent(static_cast<QInputMethodEvent*>(event));
+}
+
+void* DropSiteWindow_InputMethodQuery(void* ptr, long long query)
+{
+	return new QVariant(static_cast<DropSiteWindow*>(ptr)->inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+}
+
+void* DropSiteWindow_InputMethodQueryDefault(void* ptr, long long query)
+{
+	return new QVariant(static_cast<DropSiteWindow*>(ptr)->QWidget::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
+}
+
+void DropSiteWindow_KeyPressEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void DropSiteWindow_KeyPressEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::keyPressEvent(static_cast<QKeyEvent*>(event));
+}
+
+void DropSiteWindow_KeyReleaseEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void DropSiteWindow_KeyReleaseEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::keyReleaseEvent(static_cast<QKeyEvent*>(event));
+}
+
+void DropSiteWindow_Lower(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "lower");
+}
+
+void DropSiteWindow_LowerDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::lower();
+}
+
+void DropSiteWindow_MouseDoubleClickEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+}
+
+void DropSiteWindow_MouseDoubleClickEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
+}
+
+void DropSiteWindow_MouseMoveEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(event));
+}
+
+void DropSiteWindow_MouseMoveEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::mouseMoveEvent(static_cast<QMouseEvent*>(event));
+}
+
+void DropSiteWindow_MousePressEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(event));
+}
+
+void DropSiteWindow_MousePressEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::mousePressEvent(static_cast<QMouseEvent*>(event));
+}
+
+void DropSiteWindow_MouseReleaseEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+}
+
+void DropSiteWindow_MouseReleaseEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
+}
+
+char DropSiteWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
+{
+	return static_cast<DropSiteWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+}
+
+char DropSiteWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+{
+	return static_cast<DropSiteWindow*>(ptr)->QWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+}
+
+void DropSiteWindow_Raise(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "raise");
+}
+
+void DropSiteWindow_RaiseDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::raise();
+}
+
+void DropSiteWindow_Repaint(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "repaint");
+}
+
+void DropSiteWindow_RepaintDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::repaint();
+}
+
+void DropSiteWindow_ResizeEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
+}
+
+void DropSiteWindow_ResizeEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::resizeEvent(static_cast<QResizeEvent*>(event));
+}
+
+void DropSiteWindow_SetDisabled(void* ptr, char disable)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
+}
+
+void DropSiteWindow_SetDisabledDefault(void* ptr, char disable)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setDisabled(disable != 0);
+}
+
+void DropSiteWindow_SetFocus2(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setFocus");
+}
+
+void DropSiteWindow_SetFocus2Default(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setFocus();
+}
+
+void DropSiteWindow_SetHidden(void* ptr, char hidden)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "setHidden", Q_ARG(bool, hidden != 0));
+}
+
+void DropSiteWindow_SetHiddenDefault(void* ptr, char hidden)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::setHidden(hidden != 0);
+}
+
+void DropSiteWindow_Show(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "show");
+}
+
+void DropSiteWindow_ShowDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::show();
+}
+
+void DropSiteWindow_ShowFullScreen(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showFullScreen");
+}
+
+void DropSiteWindow_ShowFullScreenDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::showFullScreen();
+}
+
+void DropSiteWindow_ShowMaximized(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showMaximized");
+}
+
+void DropSiteWindow_ShowMaximizedDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::showMaximized();
+}
+
+void DropSiteWindow_ShowMinimized(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showMinimized");
+}
+
+void DropSiteWindow_ShowMinimizedDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::showMinimized();
+}
+
+void DropSiteWindow_ShowNormal(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "showNormal");
+}
+
+void DropSiteWindow_ShowNormalDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::showNormal();
+}
+
+void DropSiteWindow_TabletEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(event));
+}
+
+void DropSiteWindow_TabletEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::tabletEvent(static_cast<QTabletEvent*>(event));
+}
+
+void DropSiteWindow_Update(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "update");
+}
+
+void DropSiteWindow_UpdateDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::update();
+}
+
+void DropSiteWindow_UpdateMicroFocus(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "updateMicroFocus");
+}
+
+void DropSiteWindow_UpdateMicroFocusDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::updateMicroFocus();
+}
+
+void DropSiteWindow_WheelEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(event));
+}
+
+void DropSiteWindow_WheelEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::wheelEvent(static_cast<QWheelEvent*>(event));
+}
+
+void DropSiteWindow_TimerEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void DropSiteWindow_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void DropSiteWindow_ChildEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void DropSiteWindow_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void DropSiteWindow_ConnectNotify(void* ptr, void* sign)
+{
+	static_cast<DropSiteWindow*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void DropSiteWindow_ConnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void DropSiteWindow_CustomEvent(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void DropSiteWindow_CustomEventDefault(void* ptr, void* event)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::customEvent(static_cast<QEvent*>(event));
+}
+
+void DropSiteWindow_DeleteLater(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<DropSiteWindow*>(ptr), "deleteLater");
+}
+
+void DropSiteWindow_DeleteLaterDefault(void* ptr)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::deleteLater();
+}
+
+void DropSiteWindow_DisconnectNotify(void* ptr, void* sign)
+{
+	static_cast<DropSiteWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void DropSiteWindow_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<DropSiteWindow*>(ptr)->QWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+char DropSiteWindow_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<DropSiteWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char DropSiteWindow_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<DropSiteWindow*>(ptr)->QWidget::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
 }
 
 

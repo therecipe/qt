@@ -1,4 +1,4 @@
-// +build !android
+// +build !android,!rpi1,!rpi2,!rpi3
 
 package sailfish
 

@@ -103,14 +103,14 @@ func args() {
 	case "build", "run", "test":
 		{
 			switch buildTarget {
-			case "desktop", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
+			case "desktop", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3":
 				{
 
 				}
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ] [ minimal ]", filepath.Join("path", "to", "project"))
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ] [ minimal ]", filepath.Join("path", "to", "project"))
 					os.Exit(1)
 				}
 			}
@@ -118,7 +118,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator ] [ minimal ]", filepath.Join("path", "to", "project"))
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ] [ minimal ]", filepath.Join("path", "to", "project"))
 			os.Exit(1)
 		}
 	}
@@ -129,7 +129,7 @@ func args() {
 	appName = filepath.Base(appPath)
 
 	switch buildTarget {
-	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator":
+	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3":
 		{
 			depPath = filepath.Join(appPath, "deploy", buildTarget)
 		}
@@ -205,7 +205,7 @@ func qrc() {
 			}
 		}
 
-	case "desktop", "sailfish", "sailfish-emulator":
+	case "desktop", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3":
 		{
 			switch runtime.GOOS {
 			case "darwin":
@@ -247,7 +247,12 @@ func qmlHeader() string {
 		return "/usr/local"
 	}()
 
-	return fmt.Sprintf(`package main
+	var username = os.Getenv("USERNAME")
+	if username == "" {
+		username = "user"
+	}
+
+	return strings.Replace(fmt.Sprintf(`package main
 
 /*
 #cgo +build windows,386 LDFLAGS: -LC:/Qt/Qt5.7.0/5.7/mingw53_32/lib -lQt5Core
@@ -270,10 +275,15 @@ func qmlHeader() string {
 #cgo +build darwin,arm LDFLAGS: -L/usr/local/Qt5.7.0/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L/usr/local/Qt5.7.0/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L/usr/local/Qt5.7.0/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
 
 
-#cgo +build linux,386 LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core
-#cgo +build linux,arm LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/lib -L/srv/mer/targets/SailfishOS-armv7hl/usr/lib -L/srv/mer/targets/SailfishOS-armv7hl/lib -lQt5Core
+#cgo +build linux,386,!android,!rpi1,!rpi2,!rpi3 LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core
+#cgo +build linux,arm,!android,!rpi1,!rpi2,!rpi3 LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/lib -L/srv/mer/targets/SailfishOS-armv7hl/usr/lib -L/srv/mer/targets/SailfishOS-armv7hl/lib -lQt5Core
+
+
+#cgo +build rpi1 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/usr/local/Qt5.7.0/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L/usr/local/Qt5.7.0/5.7/rpi1/lib -lQt5Core
+#cgo +build rpi2 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/usr/local/Qt5.7.0/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L/usr/local/Qt5.7.0/5.7/rpi1/lib -lQt5Core
+#cgo +build rpi3 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/usr/local/Qt5.7.0/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L/usr/local/Qt5.7.0/5.7/rpi1/lib -lQt5Core
 */
-import "C"`, hloc, appName, appName)
+import "C"`, hloc, appName, appName), "${USERNAME}", username, -1)
 }
 
 func build() {
@@ -314,7 +324,7 @@ func build() {
 						"CXX":          filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
 						"CGO_ENABLED":  "1",
 						"CGO_CPPFLAGS": "-isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include",
-						"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm/ -llog",
+						"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm -llog",
 					}
 				}
 
@@ -465,6 +475,31 @@ func build() {
 
 			return
 		}
+
+	case "rpi1", "rpi2", "rpi3":
+		{
+			ldFlags += "\"-s\" \"-w\""
+			outputFile = filepath.Join(depPath, appName)
+			tagFlags = fmt.Sprintf("-tags=\"%v\"", buildTarget)
+
+			env = map[string]string{
+				"PATH":   os.Getenv("PATH"),
+				"GOPATH": os.Getenv("GOPATH"),
+				"GOROOT": runtime.GOROOT(),
+
+				"GOOS":   "linux",
+				"GOARCH": "arm",
+				"GOARM":  "7",
+
+				"CGO_ENABLED": "1",
+				"CC":          fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", os.Getenv("USERNAME")),
+				"CXX":         fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", os.Getenv("USERNAME")),
+			}
+
+			if buildTarget == "rpi1" {
+				env["GOARM"] = "6"
+			}
+		}
 	}
 
 	var cmd = exec.Command("go", "build", ldFlags, "-o", outputFile+ending)
@@ -592,7 +627,7 @@ func predeploy() {
 			}{
 				Qt:  filepath.Join(qtPrefix, "Qt5.7.0", "5.7", "android_armv7"),
 				Sdk: filepath.Join(androidPrefix, "android-sdk"),
-				SdkBuildToolsRevision: "24.0.1",
+				SdkBuildToolsRevision: "24.0.2",
 				Ndk:                           filepath.Join(androidPrefix, "android-ndk"),
 				Toolchainprefix:               "arm-linux-androideabi",
 				Toolprefix:                    "arm-linux-androideabi",
@@ -670,7 +705,7 @@ func predeploy() {
 			runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
 		}
 
-	case "desktop":
+	case "desktop", "rpi1", "rpi2", "rpi3":
 		{
 			switch runtime.GOOS {
 			case "darwin":
@@ -800,7 +835,7 @@ func deploy() {
 			runCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), "deploy")
 		}
 
-	case "desktop":
+	case "desktop", "rpi1", "rpi2", "rpi3":
 		{
 			switch runtime.GOOS {
 			case "darwin":
@@ -816,30 +851,48 @@ func deploy() {
 
 			case "linux":
 				{
-					var libraryPath string
+					var (
+						libraryPath string
+						lddPath     = "ldd"
+						lddExtra    string
+						lddOutput   string
+					)
 
-					for _, dep := range strings.Split(runCmd(exec.Command("ldd", filepath.Join(depPath, appName)), "deploy.ldd"), "\n") {
+					if strings.HasPrefix(buildTarget, "rpi") {
+						libraryPath = fmt.Sprintf("/usr/local/Qt5.7.0/5.7/%v/lib/", buildTarget)
+						lddPath = fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", os.Getenv("USERNAME"))
+						lddExtra = "--root=/"
+						lddOutput = runCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), "deploy.ldd")
+					} else {
+						lddOutput = runCmd(exec.Command(lddPath, filepath.Join(depPath, appName)), "deploy.ldd")
+					}
+
+					for _, dep := range strings.Split(lddOutput, "\n") {
 						if strings.Contains(dep, "libQt5") || strings.Contains(dep, "libicu") {
-							var libraryP, libName = filepath.Split(strings.Split(dep, " ")[2])
-							libraryPath = libraryP
-							runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("deploy.%v", libName))
+							var libName string
+
+							if strings.HasPrefix(buildTarget, "rpi") {
+								libName = strings.TrimSpace(strings.Replace(strings.Split(dep, "=>")[0], "not found", "", -1))
+							} else {
+								libraryPath, libName = filepath.Split(strings.Split(dep, " ")[2])
+							}
+
+							if utils.Exists(filepath.Join(libraryPath, libName)) {
+								runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("deploy.%v", libName))
+							}
 						}
 					}
 
-					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets"} {
-						runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("deploy.%v", libName))
+					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "OpenGL"} {
+						if utils.Exists(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
+							runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("deploy.%v", libName))
+						}
 					}
 
 					libraryPath = strings.TrimSuffix(libraryPath, "lib/")
 
-					for _, libDir := range []string{"platforms", "platformthemes", "xcbglintegrations"} {
-						utils.MakeFolder(filepath.Join(depPath, libDir))
-					}
-
 					runCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), "deploy.qml")
-					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "platforms", "libqxcb.so"), filepath.Join(depPath, "platforms", "libqxcb.so")), "deploy.qxcb")
-					//runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "platformthemes", "libqgtk2.so"), filepath.Join(depPath, "platformthemes", "libqgtk2.so")), "deploy.qgtk2") //http://lists.qt-project.org/pipermail/development/2016-April/025626.html
-					runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "plugins", "xcbglintegrations", "libqxcb-glx-integration.so"), filepath.Join(depPath, "xcbglintegrations", "libqxcb-glx-integration.so")), "deploy.qxcb-glx-integration")
+					runCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), "deploy.plugins")
 				}
 
 			case "windows":
@@ -1102,6 +1155,14 @@ func linuxSH() string {
 	o += "if [ \"${dirname%$tmp}\" != \"/\" ]; then\n"
 	o += "dirname=$PWD/$dirname\n"
 	o += "fi\n"
+
+	if strings.HasPrefix(buildTarget, "rpi") {
+		o += "DISPLAY=:0\n"
+		o += "export DISPLAY\n"
+
+		o += "LD_PRELOAD=\"/opt/vc/lib/libGLESv2.so /opt/vc/lib/libEGL.so\"\n"
+		o += "export LD_PRELOAD\n"
+	}
 
 	o += "LD_LIBRARY_PATH=$dirname\n"
 	o += "export LD_LIBRARY_PATH\n"
