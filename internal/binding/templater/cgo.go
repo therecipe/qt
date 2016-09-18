@@ -27,7 +27,9 @@ func CopyCgo(module string) {
 		cgoWindows(module)
 		cgoLinux(module)
 		cgoSailfish(module)
-		cgoRaspberry(module)
+		cgoRaspberryPi1(module)
+		cgoRaspberryPi2(module)
+		cgoRaspberryPi3(module)
 
 		if runtime.GOOS == "darwin" {
 			cgoIos(module)
@@ -539,7 +541,7 @@ func cgoSailfish(module string) {
 	}
 }
 
-func cgoRaspberry(module string) {
+func cgoRaspberryPi1(module string) {
 	var (
 		tmp  = "// +build rpi1\n\n"
 		libs = cleanLibs(module)
@@ -602,6 +604,138 @@ func cgoRaspberry(module string) {
 		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_rpi1.go"), tmp)
 	} else {
 		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_rpi1.go"), tmp)
+	}
+}
+
+func cgoRaspberryPi2(module string) {
+	var (
+		tmp  = "// +build rpi2\n\n"
+		libs = cleanLibs(module)
+	)
+
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
+	tmp += "/*\n"
+
+	tmp += "#cgo CFLAGS: -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n"
+	tmp += "#cgo CXXFLAGS: -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n"
+
+	tmp += "#cgo CXXFLAGS: -DQT_NO_EXCEPTIONS -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DQT_NO_DEBUG"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	tmp += "\n"
+
+	tmp += "#cgo CXXFLAGS: -I/usr/local/Qt5.7.0/5.7/rpi2/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -I/usr/local/Qt5.7.0/5.7/rpi2/mkspecs/devices/linux-rasp-pi2-g++\n"
+
+	tmp += "#cgo CXXFLAGS:"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -I/usr/local/Qt5.7.0/5.7/rpi2/include/Qt%v", m)
+	}
+	tmp += "\n\n"
+
+	tmp += "#cgo LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/usr/local/Qt5.7.0/5.7/rpi2/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n"
+
+	tmp += "#cgo LDFLAGS: -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L/usr/local/Qt5.7.0/5.7/rpi2/lib"
+	for _, m := range libs {
+		if m == "UiTools" || m == "PlatformHeaders" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
+	}
+	for _, m := range libs {
+		if m != "UiTools" && m != "PlatformHeaders" {
+			if m != "UiPlugin" {
+				tmp += fmt.Sprintf(" -lQt5%v", m)
+			}
+		}
+	}
+
+	tmp += " -lGLESv2 -lpthread\n"
+	tmp += "*/\n"
+
+	tmp += fmt.Sprintf("import \"C\"\n")
+
+	var username = os.Getenv("USERNAME")
+	if username == "" {
+		username = "user"
+	}
+
+	tmp = strings.Replace(tmp, "${USERNAME}", username, -1)
+
+	if module == parser.MOC {
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_rpi2.go"), tmp)
+	} else {
+		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_rpi2.go"), tmp)
+	}
+}
+
+func cgoRaspberryPi3(module string) {
+	var (
+		tmp  = "// +build rpi3\n\n"
+		libs = cleanLibs(module)
+	)
+
+	tmp += fmt.Sprintf("package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
+	tmp += "/*\n"
+
+	tmp += "#cgo CFLAGS: -march=armv8-a+crc -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe -Os -mthumb -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n"
+	tmp += "#cgo CXXFLAGS: -march=armv8-a+crc -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe -Os -mthumb -std=c++1z -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n"
+
+	tmp += "#cgo CXXFLAGS: -DQT_NO_EXCEPTIONS -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DQT_NO_DEBUG"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	tmp += "\n"
+
+	tmp += "#cgo CXXFLAGS: -I/usr/local/Qt5.7.0/5.7/rpi3/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -I/usr/local/Qt5.7.0/5.7/rpi3/mkspecs/devices/linux-rpi3-g++\n"
+
+	tmp += "#cgo CXXFLAGS:"
+	for _, m := range libs {
+		tmp += fmt.Sprintf(" -I/usr/local/Qt5.7.0/5.7/rpi3/include/Qt%v", m)
+	}
+	tmp += "\n\n"
+
+	tmp += "#cgo LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,/usr/local/Qt5.7.0/5.7/rpi3/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n"
+
+	tmp += "#cgo LDFLAGS: -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L/usr/local/Qt5.7.0/5.7/rpi3/lib"
+	for _, m := range libs {
+		if m == "UiTools" || m == "PlatformHeaders" {
+			tmp += fmt.Sprintf(" -lQt5%v", m)
+		}
+	}
+	for _, m := range libs {
+		if m != "UiTools" && m != "PlatformHeaders" {
+			if m != "UiPlugin" {
+				tmp += fmt.Sprintf(" -lQt5%v", m)
+			}
+		}
+	}
+
+	tmp += " -lGLESv2 -lpthread\n"
+	tmp += "*/\n"
+
+	tmp += fmt.Sprintf("import \"C\"\n")
+
+	var username = os.Getenv("USERNAME")
+	if username == "" {
+		username = "user"
+	}
+
+	tmp = strings.Replace(tmp, "${USERNAME}", username, -1)
+
+	if module == parser.MOC {
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_linux_rpi3.go"), tmp)
+	} else {
+		utils.Save(utils.GetQtPkgPath(strings.ToLower(module), "cgo_linux_rpi3.go"), tmp)
 	}
 }
 

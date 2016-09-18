@@ -79,13 +79,13 @@
 
 	* https://storage.googleapis.com/golang/go1.7.1.darwin-amd64.pkg
 
-2. Prepare the Qt installation directory
-
-	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
-
-3. Prepare the go directory
+2. Prepare the go directory
 
 	* `sudo chown -R $USER /usr/local/go/`
+
+3. Prepare the Qt installation directory
+
+	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
 
 4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/`
 
@@ -112,13 +112,13 @@
 
 	* https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz
 
-2. Prepare the Qt installation directory
-
-	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
-
-3. Prepare the go directory
+2. Prepare the go directory
 
 	* `sudo chown -R $USER /usr/local/go/`
+
+3. Prepare the Qt installation directory
+
+	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
 
 4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/`
 
@@ -190,9 +190,9 @@
 1. Install the desktop version
 
 2. Install VirtualBox
-	* https://download.virtualbox.org/virtualbox/5.1.4/VirtualBox-5.1.4-110228-Win.exe
-	* https://download.virtualbox.org/virtualbox/5.1.4/VirtualBox-5.1.4-110228-OSX.dmg
-	* https://download.virtualbox.org/virtualbox/5.1.4/VirtualBox-5.1.4-110228-Linux_amd64.run
+	* https://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe
+	* https://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-OSX.dmg
+	* https://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Linux_amd64.run
 
 3. Install the Sailfish OS SDK in `C:\SailfishOS\` or `/opt/SailfishOS/`
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
@@ -235,10 +235,10 @@
 	* Raspberry Pi 1
 		* https://archlinuxarm.org/platforms/armv6/raspberry-pi
 
-	* Raspberry Pi 2 (**currently not working**)
+	* Raspberry Pi 2
 		* https://archlinuxarm.org/platforms/armv7/broadcom/raspberry-pi-2
 
-	* Raspberry Pi 3 (**currently not working**)
+	* Raspberry Pi 3
 		* https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3
 
 6. Start your Raspberry Pi
@@ -289,10 +289,10 @@
 	* Raspberry Pi 1
 		* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi1 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
-	* Raspberry Pi 2 (**currently not working**)
+	* Raspberry Pi 2
 		* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi2 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
-	* Raspberry Pi 3 (**currently not working**)
+	* Raspberry Pi 3
 		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi3 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* `make && sudo make install`
@@ -305,9 +305,11 @@
 
 	* Raspberry Pi 1
 		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi1`
-	* Raspberry Pi 2 (**currently not working**)
+
+	* Raspberry Pi 2
 		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi2`
-	* Raspberry Pi 3 (**currently not working**)
+
+	* Raspberry Pi 3
 		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi3`
 
 14. Notes

@@ -216,7 +216,7 @@ func main() {
 
 		if !(buildTarget == "android" && (m == "DBus" || m == "MacExtras" || m == "WebEngine" || m == "Designer")) &&
 			!((buildTarget == "ios" || buildTarget == "ios-simulator") && (m == "SerialPort" || m == "SerialBus" || m == "MacExtras" || m == "WebEngine" || m == "PrintSupport" || m == "Designer")) && //TODO: support for PrintSupport
-			!((buildTarget == "rpi1" || buildTarget == "rpi2" || buildTarget == "rpi3") && (m == "WebEngine" || m == "Designer")) {
+			!((buildTarget == "rpi1" || buildTarget == "rpi2" || buildTarget == "rpi3") && m == "Designer") && !(buildTarget == "rpi1" && m == "WebEngine") {
 
 			var before = time.Now()
 
