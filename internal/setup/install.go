@@ -103,8 +103,8 @@ func main() {
 					"GOARCH": GOARCH,
 
 					"CGO_ENABLED":  "1",
-					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
-					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v9.3.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
 				}
 			}
 
@@ -152,6 +152,7 @@ func main() {
 					env["GOARCH"] = "arm"
 					env["GOARM"] = "7"
 					var cmd = exec.Command("go", "install")
+					cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
 					cmd.Args = append(cmd.Args, "std")
 					for key, value := range env {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
@@ -189,6 +190,9 @@ func main() {
 		if tagFlags != "" {
 			cmd.Args = append(cmd.Args, tagFlags)
 		}
+		if buildTarget != "desktop" {
+			cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
+		}
 		cmd.Args = append(cmd.Args, "std")
 
 		for key, value := range env {
@@ -201,6 +205,9 @@ func main() {
 			var cmdiOS = exec.Command("go", "install")
 			if tagFlags != "" {
 				cmdiOS.Args = append(cmdiOS.Args, tagFlags)
+			}
+			if buildTarget != "desktop" {
+				cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
 			}
 			cmdiOS.Args = append(cmdiOS.Args, "std")
 			var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
@@ -216,7 +223,7 @@ func main() {
 
 		if !(buildTarget == "android" && (m == "DBus" || m == "MacExtras" || m == "WebEngine" || m == "Designer")) &&
 			!((buildTarget == "ios" || buildTarget == "ios-simulator") && (m == "SerialPort" || m == "SerialBus" || m == "MacExtras" || m == "WebEngine" || m == "PrintSupport" || m == "Designer")) && //TODO: support for PrintSupport
-			!((buildTarget == "rpi1" || buildTarget == "rpi2" || buildTarget == "rpi3") && m == "Designer") && !(buildTarget == "rpi1" && m == "WebEngine") {
+			!(strings.HasPrefix(buildTarget, "rpi") && (m == "WebEngine" || m == "Designer")) { //TODO: support for WebEngine (rpi2 + rpi3)
 
 			var before = time.Now()
 
@@ -226,6 +233,9 @@ func main() {
 				var cmd = exec.Command("go", "install")
 				if tagFlags != "" {
 					cmd.Args = append(cmd.Args, tagFlags)
+				}
+				if buildTarget != "desktop" {
+					cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
 				}
 				cmd.Args = append(cmd.Args, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(m)))
 
@@ -241,6 +251,9 @@ func main() {
 					var cmdiOS = exec.Command("go", "install")
 					if tagFlags != "" {
 						cmdiOS.Args = append(cmdiOS.Args, tagFlags)
+					}
+					if buildTarget != "desktop" {
+						cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
 					}
 					cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(m)))
 					var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)

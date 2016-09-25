@@ -53,7 +53,7 @@
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://storage.googleapis.com/golang/go1.7.1.windows-amd64.msi
+	* https://golang.org/doc/install?download=go1.7.1.windows-amd64.msi
 
 2. Install Qt 5.7.0 in `C:\Qt\Qt5.7.0\`
 
@@ -67,7 +67,7 @@
 
 	* `go get -d github.com/therecipe/qt`
 
-5. Generate, install and test
+5. Generate, install and test (~20 min)
 
 	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat` **(run as admin)**
 
@@ -77,7 +77,7 @@
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://storage.googleapis.com/golang/go1.7.1.darwin-amd64.pkg
+	* https://golang.org/doc/install?download=go1.7.1.darwin-amd64.pkg
 
 2. Prepare the go directory
 
@@ -100,7 +100,7 @@
 
 	* `go get -d github.com/therecipe/qt`
 
-7. Generate, install and test
+7. Generate, install and test (~20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
@@ -110,7 +110,7 @@
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://storage.googleapis.com/golang/go1.7.1.linux-amd64.tar.gz
+	* https://golang.org/doc/install?download=go1.7.1.linux-amd64.tar.gz
 
 2. Prepare the go directory
 
@@ -132,7 +132,7 @@
 
 	* `go get -d github.com/therecipe/qt`
 
-7. Generate, install and test
+7. Generate, install and test (~20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
@@ -165,7 +165,7 @@
 5. Install Java SE Development Kit (Linux: install in `/opt/jdk/`)
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-6. Install and test
+6. Install and test (~20 min)
 
 	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android` **(run as admin)**
 
@@ -179,7 +179,7 @@
 
 1. Install the desktop version for [macOS](#macos-1)
 
-2. Install and test
+2. Install and test (~20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
 
@@ -199,7 +199,7 @@
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
 
-4. Install and test
+4. Install and test (~20 min)
 
 	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator` **(run as admin)**
 
@@ -224,13 +224,19 @@
 	* `cd ~/raspi && wget https://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.tar.gz`
 	* `tar -xzf qt-everywhere-opensource-src-5.7.0.tar.gz qt-everywhere-opensource-src-5.7.0`
 
-4. Download the cross compiler
+4. Patch Qt Source
 
-	* `cd ~/raspi && git clone https://github.com/raspberrypi/tools.git`
+	* `cd ~/raspi/qt-everywhere-opensource-src-5.7.0/qtbase && sed -i 's/c++1z/c++11/' ./mkspecs/devices/linux-rpi3-g++/qmake.conf`
 
-5. Install Arch Linux on your SD card
+	* `cd ~/raspi/qt-everywhere-opensource-src-5.7.0/qtwayland && wget https://github.com/qtproject/qtwayland/commit/75294be3.patch && patch -p1 -i 75294be3.patch`
 
-	* `sudo apt-get -y install bsdtar`
+5. Download the cross compiler
+
+	* `cd ~/raspi && git clone --depth 1 https://github.com/raspberrypi/tools.git`
+
+6. Get dependencies and install Arch Linux on your SD card
+
+	* `sudo apt-get -y install bsdtar libwayland-dev flex bison gperf python`
 
 	* Raspberry Pi 1
 		* https://archlinuxarm.org/platforms/armv6/raspberry-pi
@@ -241,9 +247,9 @@
 	* Raspberry Pi 3
 		* https://archlinuxarm.org/platforms/armv8/broadcom/raspberry-pi-3
 
-6. Start your Raspberry Pi
+7. Start your Raspberry Pi
 
-7. Enable root login over ssh
+8. Enable root login over ssh
 
 	* `export RASPI_IP=192.168.XXX.XXX` (replace XXX.XXX with the valid ip ending)
 
@@ -253,19 +259,27 @@
 
 	* `sed -i 's/#PermitRootLogin/PermitRootLogin/' /etc/ssh/sshd_config && sed -i 's/prohibit-password/yes/' /etc/ssh/sshd_config && systemctl restart sshd.service`
 
-8. Update and install dependencies
+9. Update and install dependencies (~5 min)
 
-	* `pacman -Syu`
+	* `pacman -Syyu`
 
-	* `pacman -S fontconfig icu libinput libjpeg-turbo libproxy libsm libxi libxkbcommon-x11 libxrender tslib xcb-util-image xcb-util-keysyms xcb-util-wm freetds gtk3 libfbclient libmariadbclient mtdev postgresql-libs unixodbc assimp bluez-libs sdl2 jasper libmng libwebp gst-plugins-base-libs libpulse openal gst-plugins-bad hunspell libxcomposite wayland gst-plugins-base libxslt gst-plugins-good ffmpeg jsoncpp libevent libsrtp libvpx libxcursor libxrandr libxss libxtst nss opus protobuf snappy xcb-util xcb-util-cursor xcb-util-renderutil xcb-util-xrm libxfixes libxshmfence libxext libx11 libxcb libice weston ttf-freefont lxde gamin xorg-server xorg-xinit xorg-server-utils mesa xf86-video-fbdev xf86-video-vesa rsync`
+	* `pacman -S fontconfig icu libinput libjpeg-turbo libproxy libsm libxi libxkbcommon-x11 libxrender tslib xcb-util-image xcb-util-keysyms xcb-util-wm freetds gtk3 libfbclient libmariadbclient mtdev postgresql-libs unixodbc assimp bluez-libs sdl2 jasper libmng libwebp gst-plugins-base-libs libpulse openal gst-plugins-bad hunspell libxcomposite wayland gst-plugins-base libxslt gst-plugins-good ffmpeg jsoncpp libevent libsrtp libvpx libxcursor libxrandr libxss libxtst nss opus protobuf snappy xcb-util xcb-util-cursor xcb-util-renderutil xcb-util-xrm libxfixes libxshmfence libxext libx11 libxcb libice weston ttf-freefont lxde gamin xorg-server xorg-xinit xorg-server-utils mesa xf86-video-fbdev xf86-video-vesa xorg-server-xwayland xf86-input-libinput gst-plugins-ugly sqlite2 cups xorg-server-devel rsync`
 
 	* `pacman -Scc`
 
-	* `echo 'exec startlxde' >> ~/.xinitrc`
+	* Raspberry Pi 1
+		* `sed -i 's/gpu_mem=64/gpu_mem=128/' /boot/config.txt`
+		* `echo "exec startlxde" >> ~/.xinitrc && mkdir ~/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> ~/.config/weston.ini`
+		* `echo "dtoverlay=vc4-kms-v3d,cma-128" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' ~/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
 
-	* `startx & exit`
+	* Raspberry Pi 2 or 3
+		* `sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt`
+		* `echo "exec startlxde" >> ~/.xinitrc && mkdir ~/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> ~/.config/weston.ini`
+		* `echo "dtoverlay=vc4-kms-v3d,cma-256" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' ~/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
 
-9. Get sysroot for cross compiling (password: root)
+	* `reboot`
+
+10. Get sysroot for cross compiling (password: root) (~5 min)
 
 	* `cd ~/raspi && mkdir sysroot sysroot/usr sysroot/opt`
 
@@ -277,12 +291,12 @@
 
 	* `rsync -avz root@$RASPI_IP:/opt/vc sysroot/opt --delete`
 
-10. Fix sysroot
+11. Fix sysroot
 
 	* `cd ~/raspi && wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py`
 	* `chmod +x sysroot-relativelinks.py && ./sysroot-relativelinks.py sysroot`
 
-11. Build Qt
+12. Build Qt (~2 h)
 
 	* `cd ~/raspi/qt-everywhere-opensource-src-5.7.0`
 
@@ -295,13 +309,13 @@
 	* Raspberry Pi 3
 		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi3 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
-	* `make && sudo make install`
+	* `make -k -i && sudo make -k -i install`
 
-12. Prepare the Qt directory
+13. Prepare the Qt directory
 
 	* `sudo chown -R $USER /usr/local/Qt5.7.0/`
 
-13. Install the binding
+14. Install and test the binding (~20 min)
 
 	* Raspberry Pi 1
 		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi1`
@@ -312,15 +326,15 @@
 	* Raspberry Pi 3
 		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi3`
 
-14. Notes
+15. Notes
 
-	* run `startx` (if not already running) before starting an application with `-platform xcb`
+	* run `startx &` before starting an application with `-platform xcb` (qml/quick applications won't work; they may work with Qt 5.8)
 
-	* most examples in [examples/quick](https://github.com/therecipe/qt/tree/master/internal/examples/quick) won't work because they use `quick.NewQQuickView`; use `quick.NewQQuickWidget` or `qml.NewQQmlApplicationEngine` instead
+	* run `weston &` or `weston --tty=1 &` (via ssh) or create your own [compositor](https://doc.qt.io/qt-5/qtwaylandcompositor-index.html) before starting an application with `-platform wayland-egl` (qml/quick applications won't work; they may work with Qt 5.8)
 
 	* you can increase the available gpu memory by editing `/boot/config.txt`
 
-15. Create your first [application](#example)
+16. Create your first [application](#example)
 
 ---
 ---
@@ -371,4 +385,4 @@ func main() {
 
 5. Take a look at the [examples](https://github.com/therecipe/qt/tree/master/internal/examples)
 
-6. Make yourself familiar with the [qt documentation](https://doc.qt.io/qt-5/classes.html)
+6. Make yourself familiar with the [Qt documentation](https://doc.qt.io/qt-5/classes.html)
