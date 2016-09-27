@@ -32,8 +32,13 @@ func main() {
 	fmt.Println("------------------------test----------------------------")
 
 	//TODO:
-	runCmd(exec.Command("go", "build", "-o", filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
-	runCmd(exec.Command("go", "build", "-o", filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GetQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
+	gopath := os.Getenv("GOPATH")
+	if gopath != "" {
+		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
+		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GetQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
+	} else {
+		panic("GOPATH not found")
+	}
 
 	//TODO:
 	for _, example := range []string{filepath.Join("widgets", "line_edits"), filepath.Join("widgets", "video_player"), filepath.Join("widgets", "graphicsscene"), filepath.Join("widgets", "dropsite"), filepath.Join("widgets", "table"),
