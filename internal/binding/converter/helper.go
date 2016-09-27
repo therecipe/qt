@@ -280,27 +280,17 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.7.0/5.7/clang_64/lib/%v.framework/Versions/5/Headers/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				fData = utils.Load(fmt.Sprintf("%v/5.7/clang_64/lib/%v.framework/Versions/5/Headers/%v", utils.QtInstallDir(), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 			}
 
 		case "windows":
 			{
-				fData = utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32\\include\\%v\\%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				fData = utils.Load(fmt.Sprintf("%v\\5.7\\mingw53_32\\include\\%v\\%v", utils.QtInstallDir(), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 			}
 
 		case "linux":
 			{
-				switch runtime.GOARCH {
-				case "amd64":
-					{
-						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.7.0/5.7/gcc_64/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
-					}
-
-				case "386":
-					{
-						fData = utils.Load(fmt.Sprintf("/usr/local/Qt5.7.0/5.7/gcc/include/%v/%v", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
-					}
-				}
+				fData = utils.Load(fmt.Sprintf("%v/5.7/gcc_64/include/%v/%v", utils.QtInstallDir(), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 			}
 		}
 

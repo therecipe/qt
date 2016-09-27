@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"runtime"
 )
 
 func MakeFolder(dir string) {
@@ -58,4 +59,32 @@ func GetQtPkgPath(s ...string) string {
 func Exists(name string) bool {
 	var _, err = ioutil.ReadFile(name)
 	return err == nil
+}
+
+func QtInstallDir() string {
+	switch runtime.GOOS {
+	case "darwin", "linux":
+		{
+			return QtInstallDirDarwinAndLinux()
+		}
+
+	default:
+		{
+			return QtInstallDirWindows()
+		}
+	}
+}
+
+func QtInstallDirDarwinAndLinux() string {
+	if dir := os.Getenv("QT_INSTALL_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	return "/usr/local/Qt5.7.0"
+}
+
+func QtInstallDirWindows() string {
+	if dir := os.Getenv("QT_INSTALL_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	return "C:\\Qt\\Qt5.7.0"
 }

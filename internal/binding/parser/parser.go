@@ -52,12 +52,12 @@ func GetModule(s string) *Module {
 	switch runtime.GOOS {
 	case "darwin", "linux":
 		{
-			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("/usr/local/Qt5.7.0/Docs/Qt-5.7/qt%v/qt%v.index", s, s))), &m)
+			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("%v/Docs/Qt-5.7/qt%v/qt%v.index", utils.QtInstallDir(), s, s))), &m)
 		}
 
 	case "windows":
 		{
-			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("C:\\Qt\\Qt5.7.0\\Docs\\Qt-5.7\\qt%v\\qt%v.index", s, s))), &m)
+			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("%v\\Docs\\Qt-5.7\\qt%v\\qt%v.index", utils.QtInstallDir(), s, s))), &m)
 		}
 	}
 

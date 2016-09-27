@@ -1,3 +1,5 @@
+//author: https://github.com/5k3105
+
 package main
 
 import (

@@ -5,31 +5,28 @@ import (
 	"io/ioutil"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"runtime"
 	"strings"
+
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
 
-	//TODO: check android / ios / sailfish env
+	//TODO: check android / ios / sailfish / raspberry pi env
 
 	if os.Getenv("GOPATH") == "" {
-		fmt.Print("\nerror:\nGOPATH NOT SET\n\n")
+		fmt.Print("\nerror:\nGOPATH not set\n\n")
 		os.Exit(1)
 	}
 
 	if strings.Contains(os.Getenv("GOPATH"), runtime.GOROOT()) || strings.Contains(runtime.GOROOT(), os.Getenv("GOPATH")) {
-		fmt.Print("\nerror:\nGOPATH IS GOROOT\n\n")
+		fmt.Print("\nerror:\nGOPATH is GOROOT\n\n")
 		os.Exit(1)
 	}
 
-	var qtPath = filepath.Join("/usr", "local", "Qt5.7.0")
-	if runtime.GOOS == "windows" {
-		qtPath = filepath.Join("C:\\", "Qt", "Qt5.7.0")
-	}
-	if _, err := ioutil.ReadDir(qtPath); err != nil {
-		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in: \"%v\"\n\n", qtPath)
+	if _, err := ioutil.ReadDir(utils.QtInstallDir()); err != nil {
+		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in: \"%v\"\n\n", utils.QtInstallDir())
 		os.Exit(1)
 	}
 
@@ -45,7 +42,7 @@ func main() {
 	case "linux":
 		{
 			if _, err := exec.LookPath("g++"); err != nil {
-				fmt.Printf("\nerror: g++ not found\nsolution: sudo apt-get install g++\n\n")
+				fmt.Printf("\nerror: g++ not found\nsolution: sudo apt-get -y install build-essential\n\n")
 				os.Exit(1)
 			}
 		}

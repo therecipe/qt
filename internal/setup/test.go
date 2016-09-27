@@ -32,12 +32,40 @@ func main() {
 	fmt.Println("------------------------test----------------------------")
 
 	//TODO:
-	gopath := os.Getenv("GOPATH")
+	var gopath = os.Getenv("GOPATH")
 	if gopath != "" {
+
+		utils.MakeFolder(filepath.Join(gopath, "bin"))
+
 		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
 		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GetQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
+
+		//TODO: remove with update to 5.8
+		utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)))
+		utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtmoc%v", ending)))
+		//
+
+		switch runtime.GOOS {
+		case "darwin", "linux":
+			{
+				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), "/usr/local/bin/"), "symlink.qtdeploy")
+				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)), "/usr/local/bin/"), "symlink.qtmoc")
+			}
+
+		case "windows":
+			{
+				var cmdDeploy = exec.Command("cmd.exe", "/C", "mklink", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)))
+				cmdDeploy.Dir = filepath.Join(runtime.GOROOT(), "bin")
+				runCmd(cmdDeploy, "symlink.qtdeploy")
+
+				var cmdMoc = exec.Command("cmd.exe", "/C", "mklink", fmt.Sprintf("qtmoc%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)))
+				cmdMoc.Dir = filepath.Join(runtime.GOROOT(), "bin")
+				runCmd(cmdMoc, "symlink.qtmoc")
+			}
+		}
+
 	} else {
-		panic("GOPATH not found")
+		panic("GOPATH not set")
 	}
 
 	//TODO:
@@ -55,7 +83,7 @@ func main() {
 			fmt.Print(example)
 
 			//TODO:
-			runCmd(exec.Command(fmt.Sprintf("qtdeploy%v", ending), "test", buildTarget, filepath.Join(utils.GetQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
+			runCmd(exec.Command(filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), "test", buildTarget, filepath.Join(utils.GetQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
 
 			fmt.Println(strings.Repeat(" ", 30-len(example)), time.Since(before)/time.Second*time.Second)
 		}

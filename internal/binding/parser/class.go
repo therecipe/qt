@@ -214,36 +214,26 @@ func (c *Class) fixBases() {
 
 		var (
 			prefixPath string
-			midfixPath = "include"
+			infixPath  = "include"
 			suffixPath = string(filepath.Separator)
 		)
 
 		switch runtime.GOOS {
 		case "windows":
 			{
-				prefixPath = "C:\\Qt\\Qt5.7.0\\5.7\\mingw53_32"
+				prefixPath = fmt.Sprintf("%v\\5.7\\mingw53_32", utils.QtInstallDir())
 			}
 
 		case "darwin":
 			{
-				prefixPath = "/usr/local/Qt5.7.0/5.7/clang_64"
-				midfixPath = "lib"
+				prefixPath = fmt.Sprintf("%v/5.7/clang_64", utils.QtInstallDir())
+				infixPath = "lib"
 				suffixPath = ".framework/Versions/5/Headers/"
 			}
 
 		case "linux":
 			{
-				switch runtime.GOARCH {
-				case "amd64":
-					{
-						prefixPath = "/usr/local/Qt5.7.0/5.7/gcc_64"
-					}
-
-				case "386":
-					{
-						prefixPath = "/usr/local/Qt5.7.0/5.7/gcc"
-					}
-				}
+				prefixPath = fmt.Sprintf("%v/5.7/gcc_64", utils.QtInstallDir())
 			}
 		}
 
@@ -262,7 +252,7 @@ func (c *Class) fixBases() {
 
 		case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
 			{
-				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v5.7.0", "QtGui", "qpa", "%v.h"), prefixPath, midfixPath, c.Module, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v5.7.0", "QtGui", "qpa", "%v.h"), prefixPath, infixPath, c.Module, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
 				return
 			}
 
@@ -270,9 +260,9 @@ func (c *Class) fixBases() {
 			{
 				for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
 					m = fmt.Sprintf("Qt%v", m)
-					if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name)) {
+					if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name)) {
 
-						c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v.h"), prefixPath, midfixPath, m, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+						c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v.h"), prefixPath, infixPath, m, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
 						return
 					}
 				}
@@ -300,12 +290,12 @@ func (c *Class) fixBases() {
 		var found bool
 		for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
 			m = fmt.Sprintf("Qt%v", m)
-			if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name)) {
+			if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name)) {
 
-				var f = utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, midfixPath, m, suffixPath, c.Name))
+				var f = utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name))
 				if f != "" {
 					found = true
-					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v"), prefixPath, midfixPath, m, suffixPath), strings.Split(f, `"`)[1])), c.Name, m)
+					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v"), prefixPath, infixPath, m, suffixPath), strings.Split(f, `"`)[1])), c.Name, m)
 				}
 				break
 			}

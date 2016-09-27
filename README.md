@@ -34,6 +34,8 @@
 
 ## Installation
 
+**You will need at least 6gb ram to install this binding!**
+
 * Desktop
 	* [Windows](#windows-1)
 	* [macOS](#macos-1)
@@ -55,7 +57,7 @@
 
 	* https://golang.org/doc/install?download=go1.7.1.windows-amd64.msi
 
-2. Install Qt 5.7.0 in `C:\Qt\Qt5.7.0\`
+2. Install Qt 5.7.0 in `C:\Qt\Qt5.7.0\` or define the env variable `QT_INSTALL_DIR`
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
 
@@ -87,7 +89,7 @@
 
 	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
 
-4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/`
+4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
 
 	* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 	* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
@@ -120,7 +122,7 @@
 
 	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
 
-4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/`
+4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
@@ -304,10 +306,10 @@
 		* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi1 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* Raspberry Pi 2
-		* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi2 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi2 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* Raspberry Pi 3
-		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi3 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi3 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* `make -k -i && sudo make -k -i install`
 
