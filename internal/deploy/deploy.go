@@ -271,7 +271,7 @@ func qmlHeader() string {
 #cgo +build rpi2 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_INSTALL_DIR}/5.7/rpi2/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_INSTALL_DIR}/5.7/rpi2/lib -lQt5Core
 #cgo +build rpi3 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_INSTALL_DIR}/5.7/rpi3/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_INSTALL_DIR}/5.7/rpi3/lib -lQt5Core
 */
-import "C"`, utils.QtInstallDir(), appName, appName), "${USERNAME}", username, -1), "${QT_INSTALL_DIR}", utils.QtInstallDir(), -1), "${QT_INSTALL_DIR_WINDOWS}", utils.QtInstallDirWindows(), -1)
+import "C"`, utils.QtInstallDir(), appName, appName), "${USERNAME}", username, -1), "${QT_INSTALL_DIR}", utils.QtInstallDir(), -1), "${QT_INSTALL_DIR_WINDOWS}", strings.Replace(utils.QtInstallDirWindows(), "\\", "/", -1), -1)
 }
 
 func build() {
@@ -341,7 +341,7 @@ func build() {
 
 	case "ios", "ios-simulator":
 		{
-			ldFlags += "\"-s\" \"-w\""
+			ldFlags += "\"-w\""
 			tagFlags += "\"ios\""
 			outputFile = filepath.Join(depPath, "libgo.a")
 

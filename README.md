@@ -34,7 +34,7 @@
 
 ## Installation
 
-**You will need at least 6gb ram to install this binding!**
+**You will need at least 8gb ram to install this binding!**
 
 * Desktop
 	* [Windows](#windows-1)
@@ -217,7 +217,7 @@
 
 1. Install the desktop version for [Linux](#linux-1)
 
-2. Create a folder `[HOME]/raspi`
+2. Create a folder `~/raspi`
 
 	* `mkdir ~/raspi`
 
@@ -293,7 +293,7 @@
 
 	* `rsync -avz root@$RASPI_IP:/opt/vc sysroot/opt --delete`
 
-11. Fix sysroot
+11. Prepare sysroot
 
 	* `cd ~/raspi && wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py`
 	* `chmod +x sysroot-relativelinks.py && ./sysroot-relativelinks.py sysroot`
