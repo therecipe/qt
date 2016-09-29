@@ -54,11 +54,11 @@ func main() {
 
 		case "windows":
 			{
-				var cmdDeploy = exec.Command("cmd.exe", "/C", "mklink", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)))
+				var cmdDeploy = exec.Command("cmd.exe", "/C", "mklink", "/H", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)))
 				cmdDeploy.Dir = filepath.Join(runtime.GOROOT(), "bin")
 				runCmd(cmdDeploy, "symlink.qtdeploy")
 
-				var cmdMoc = exec.Command("cmd.exe", "/C", "mklink", fmt.Sprintf("qtmoc%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)))
+				var cmdMoc = exec.Command("cmd.exe", "/C", "mklink", "/H", fmt.Sprintf("qtmoc%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)))
 				cmdMoc.Dir = filepath.Join(runtime.GOROOT(), "bin")
 				runCmd(cmdMoc, "symlink.qtmoc")
 			}

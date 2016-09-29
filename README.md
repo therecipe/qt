@@ -90,7 +90,7 @@
 	* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 	* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
-4. Install **Xcode** >= 7.3.1
+4. Install **Xcode** >= 7.2.0
 
 	* https://itunes.apple.com/us/app/xcode/id497799835
 
