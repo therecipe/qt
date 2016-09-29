@@ -24,7 +24,7 @@ func main() {
 		buildTarget = os.Args[1]
 	}
 
-	if buildTarget != "desktop" || runtime.GOOS == "windows" {
+	if buildTarget != "desktop" || (runtime.GOOS == "windows" && buildTarget == "desktop") {
 
 		switch buildTarget {
 		case
@@ -58,6 +58,9 @@ func main() {
 							"PATH":   os.Getenv("PATH"),
 							"GOPATH": os.Getenv("GOPATH"),
 							"GOROOT": runtime.GOROOT(),
+
+							"TMP":  os.Getenv("TMP"),
+							"TEMP": os.Getenv("TEMP"),
 
 							"GOOS":   "android",
 							"GOARCH": "arm",
@@ -117,6 +120,9 @@ func main() {
 						"GOPATH": os.Getenv("GOPATH"),
 						"GOROOT": runtime.GOROOT(),
 
+						"TMP":  os.Getenv("TMP"),
+						"TEMP": os.Getenv("TEMP"),
+
 						"GOOS":   runtime.GOOS,
 						"GOARCH": "386",
 
@@ -136,6 +142,11 @@ func main() {
 
 						"GOOS":   "linux",
 						"GOARCH": "386",
+					}
+
+					if runtime.GOOS == "windows" {
+						env["TMP"] = os.Getenv("TMP")
+						env["TEMP"] = os.Getenv("TEMP")
 					}
 
 					var build = exec.Command(filepath.Join(runtime.GOROOT(), "src", func() string {
@@ -239,7 +250,7 @@ func main() {
 				}
 				cmd.Args = append(cmd.Args, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(m)))
 
-				if buildTarget != "desktop" || runtime.GOOS == "windows" {
+				if buildTarget != "desktop" || (runtime.GOOS == "windows" && buildTarget == "desktop") {
 					for key, value := range env {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 					}

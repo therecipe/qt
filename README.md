@@ -71,7 +71,7 @@
 
 5. Generate, install and test (~20 min)
 
-	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat` **(run as admin)**
+	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat`
 
 6. Create your first [application](#example)
 
@@ -81,32 +81,28 @@
 
 	* https://golang.org/doc/install?download=go1.7.1.darwin-amd64.pkg
 
-2. Prepare the go directory
-
-	* `sudo chown -R $USER /usr/local/go/`
-
-3. Prepare the Qt installation directory
+2. Prepare the Qt installation directory
 
 	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
 
-4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
+3. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
 
 	* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 	* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
-5. Install **Xcode** >= 7.3.1
+4. Install **Xcode** >= 7.3.1
 
 	* https://itunes.apple.com/us/app/xcode/id497799835
 
-6. Download the binding
+5. Download the binding
 
 	* `go get -d github.com/therecipe/qt`
 
-7. Generate, install and test (~20 min)
+6. Generate, install and test (~20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
-8. Create your first [application](#example)
+7. Create your first [application](#example)
 
 ## Linux
 
@@ -114,31 +110,27 @@
 
 	* https://golang.org/doc/install?download=go1.7.1.linux-amd64.tar.gz
 
-2. Prepare the go directory
-
-	* `sudo chown -R $USER /usr/local/go/`
-
-3. Prepare the Qt installation directory
+2. Prepare the Qt installation directory
 
 	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
 
-4. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
+3. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
-5. Install **g++** and **OpenGL** dependencies
+4. Install **g++** and **OpenGL** dependencies
 
 	* `sudo apt-get -y install build-essential mesa-common-dev`
 
-6. Download the binding
+5. Download the binding
 
 	* `go get -d github.com/therecipe/qt`
 
-7. Generate, install and test (~20 min)
+6. Generate, install and test (~20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
-8. Create your first [application](#example)
+7. Create your first [application](#example)
 
 ---
 
@@ -153,7 +145,7 @@
 
 3. Install the SDK dependencies with `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
-		* Android SDK Build-tools (24.0.2)
+		* Android SDK Build-tools (24.0.3)
 	* Android 7.0 (API 24)
 		* SDK Platform
 	* Extras (Windows only)
@@ -169,7 +161,7 @@
 
 6. Install and test (~20 min)
 
-	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android` **(run as admin)**
+	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android`
 
 		or
 
@@ -203,7 +195,7 @@
 
 4. Install and test (~20 min)
 
-	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator` **(run as admin)**
+	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator`
 
 		or
 

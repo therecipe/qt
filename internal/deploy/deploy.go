@@ -323,6 +323,9 @@ func build() {
 						"GOPATH": os.Getenv("GOPATH"),
 						"GOROOT": runtime.GOROOT(),
 
+						"TMP":  os.Getenv("TMP"),
+						"TEMP": os.Getenv("TEMP"),
+
 						"GOOS":   "android",
 						"GOARCH": "arm",
 						"GOARM":  "7",
@@ -400,6 +403,9 @@ func build() {
 						"PATH":   os.Getenv("PATH"),
 						"GOPATH": os.Getenv("GOPATH"),
 						"GOROOT": runtime.GOROOT(),
+
+						"TMP":  os.Getenv("TMP"),
+						"TEMP": os.Getenv("TEMP"),
 
 						"GOOS":   runtime.GOOS,
 						"GOARCH": "386",
@@ -500,7 +506,7 @@ func build() {
 		cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
 	}
 
-	if buildTarget != "desktop" || runtime.GOOS == "windows" {
+	if buildTarget != "desktop" || (runtime.GOOS == "windows" && buildTarget == "desktop") {
 		if buildTarget == "android" {
 			cmd.Args = append(cmd.Args, "-buildmode", "c-shared")
 		}
@@ -618,7 +624,7 @@ func predeploy() {
 			}{
 				Qt:  filepath.Join(utils.QtInstallDir(), "5.7", "android_armv7"),
 				Sdk: filepath.Join(androidPrefix, "android-sdk"),
-				SdkBuildToolsRevision: "24.0.2",
+				SdkBuildToolsRevision: "24.0.3",
 				Ndk:                           filepath.Join(androidPrefix, "android-ndk"),
 				Toolchainprefix:               "arm-linux-androideabi",
 				Toolprefix:                    "arm-linux-androideabi",
@@ -1006,7 +1012,7 @@ func run() {
 
 	case /*"ios",*/ "ios-simulator":
 		{
-			runCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 6s Plus (10.0)#"), "run.boot")
+			runCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.0)#"), "run.boot")
 			runCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "run.install")
 			runCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "run.install")
 			runCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), "run.launch")
