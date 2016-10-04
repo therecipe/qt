@@ -1,4 +1,4 @@
-// +build sailfish
+// +build sailfish sailfish_emulator
 
 #define protected public
 #define private public

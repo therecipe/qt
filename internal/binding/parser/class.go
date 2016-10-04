@@ -64,8 +64,8 @@ func (c *Class) Dump() {
 		fmt.Fprintln(bb, e)
 	}
 
-	utils.MakeFolder(utils.GetQtPkgPath("internal", "binding", "dump", c.Module))
-	utils.SaveBytes(utils.GetQtPkgPath("internal", "binding", "dump", c.Module, fmt.Sprintf("%v.txt", c.Name)), bb.Bytes())
+	utils.MakeFolder(utils.GoQtPkgPath("internal", "binding", "dump", c.Module))
+	utils.SaveBytes(utils.GoQtPkgPath("internal", "binding", "dump", c.Module, fmt.Sprintf("%v.txt", c.Name)), bb.Bytes())
 }
 
 func (c *Class) GetBases() []string {
@@ -221,19 +221,19 @@ func (c *Class) fixBases() {
 		switch runtime.GOOS {
 		case "windows":
 			{
-				prefixPath = fmt.Sprintf("%v\\5.7\\mingw53_32", utils.QtInstallDir())
+				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32")
 			}
 
 		case "darwin":
 			{
-				prefixPath = fmt.Sprintf("%v/5.7/clang_64", utils.QtInstallDir())
+				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "clang_64")
 				infixPath = "lib"
 				suffixPath = ".framework/Versions/5/Headers/"
 			}
 
 		case "linux":
 			{
-				prefixPath = fmt.Sprintf("%v/5.7/gcc_64", utils.QtInstallDir())
+				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64")
 			}
 		}
 
@@ -287,15 +287,22 @@ func (c *Class) fixBases() {
 			}
 		}
 
+		var libs = append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt"))
+		for i, v := range libs {
+			if v == "TestLib" {
+				libs[i] = "Test"
+			}
+		}
+
 		var found bool
-		for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
+		for _, m := range libs {
 			m = fmt.Sprintf("Qt%v", m)
 			if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name)) {
 
 				var f = utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name))
 				if f != "" {
 					found = true
-					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v"), prefixPath, infixPath, m, suffixPath), strings.Split(f, `"`)[1])), c.Name, m)
+					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v"), prefixPath, infixPath, m, suffixPath), strings.Split(f, "\"")[1])), c.Name, m)
 				}
 				break
 			}
@@ -326,6 +333,7 @@ func getBasesFromHeader(f string, n string, m string) string {
 
 	for i, l := range strings.Split(f, "\n") {
 
+		//TODO:
 		if strings.Contains(l, "class "+n) || strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_SDK_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT "+n) || strings.Contains(l, "class  "+n) || strings.Contains(l, "class Q_"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class Q"+strings.ToUpper(strings.TrimPrefix(m, "Qt"))+"_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_SDK_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_EXTENSION_EXPORT  "+n) || strings.Contains(l, "class QDESIGNER_UILIB_EXPORT  "+n) {
 
 			if strings.Contains(l, n+" ") || strings.Contains(l, n+":") || strings.HasSuffix(l, n) {
@@ -387,49 +395,47 @@ func normalizedClassDeclaration(f string, is int) string {
 }
 
 var LibDeps = map[string][]string{
-	"Core":              []string{"Gui", "Widgets"},
-	"AndroidExtras":     []string{"Core"},
-	"Gui":               []string{"Core", "Widgets"},
-	"Network":           []string{"Core"},
-	"Sql":               []string{"Core", "Widgets"},
-	"Xml":               []string{"Core", "XmlPatterns"},
-	"DBus":              []string{"Core"},
-	"Nfc":               []string{"Core"},
-	"Script":            []string{"Core"},
-	"Sensors":           []string{"Core"},
-	"Positioning":       []string{"Core"},
-	"Widgets":           []string{"Core", "Gui"},
-	"MacExtras":         []string{"Core", "Gui"},
-	"Qml":               []string{"Core", "Network"},
-	"WebSockets":        []string{"Core", "Network"},
-	"XmlPatterns":       []string{"Core", "Network"},
-	"Bluetooth":         []string{"Core", "Concurrent"},
-	"WebChannel":        []string{"Core", "Network", "Qml"},
-	"Svg":               []string{"Core", "Gui", "Widgets"},
-	"Multimedia":        []string{"Core", "Gui", "Network", "Widgets", "MultimediaWidgets"},
-	"Quick":             []string{"Core", "Gui", "Network", "Widgets", "Qml", "QuickWidgets"},
-	"Help":              []string{"Core", "Gui", "Network", "Sql", "CLucene", "Widgets"},
-	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},
-	"ScriptTools":       []string{"Core", "Gui", "Script", "Widgets"},
-	"MultimediaWidgets": []string{"Core", "Gui", "Network", "Widgets", "OpenGL", "Multimedia"},
-	"UiTools":           []string{"Core", "Gui", "Widgets"},
-	"X11Extras":         []string{"Core"},
-	"WinExtras":         []string{},
-	"WebEngine":         []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "WebEngineCore", "WebEngineWidgets"},
-	"WebKit":            []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "PrintSupport", "WebKitWidgets"},
-	"TestLib":           []string{"Core", "Gui", "Widgets", "Test"},
-	"SerialPort":        []string{"Core"},
-	"SerialBus":         []string{"Core"},
-	"PrintSupport":      []string{"Core", "Gui", "Widgets"},
-	"PlatformHeaders":   []string{"Core"},
-	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
-	"Scxml":             []string{"Core", "Network", "Qml"},
-	"Gamepad":           []string{"Core", "Gui"},
+	"Core":          []string{"Widgets", "Gui"}, //Widgets, Gui
+	"AndroidExtras": []string{"Core"},
+	"Gui":           []string{"Widgets", "Core"}, //Widgets
+	"Network":       []string{"Core"},
+	"Xml":           []string{"XmlPatterns", "Core"}, //XmlPatterns
+	"DBus":          []string{"Core"},
+	"Nfc":           []string{"Core"},
+	"Script":        []string{"Core"},
+	"Sensors":       []string{"Core"},
+	"Positioning":   []string{"Core"},
+	"Widgets":       []string{"Gui", "Core"},
+	"Sql":           []string{"Widgets", "Gui", "Core"}, //Widgets, Gui
+	"MacExtras":     []string{"Gui", "Core"},
+	"Qml":           []string{"Network", "Core"},
+	"WebSockets":    []string{"Network", "Core"},
+	"XmlPatterns":   []string{"Network", "Core"},
+	"Bluetooth":     []string{"Core"},
+	"WebChannel":    []string{"Network", "Qml", "Core"}, //Network (needed for static linking ios)
+	"Svg":           []string{"Widgets", "Gui", "Core"},
+	"Multimedia":    []string{"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
+	"Quick":         []string{"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
+	"Help":          []string{"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
+	"Location":      []string{"Positioning", "Quick", "Gui", "Core"},
+	"ScriptTools":   []string{"Script", "Widgets", "Core"}, //Script, Widgets
+	"UiTools":       []string{"Widgets", "Gui", "Core"},
+	"X11Extras":     []string{"Gui", "Core"},
+	"WinExtras":     []string{"Gui", "Core"},
+	"WebEngine":     []string{"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "Gui", "Qml", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
+	"TestLib":       []string{"Widgets", "Gui", "Core"},                                                                               //Widgets, Gui
+	"SerialPort":    []string{"Core"},
+	"SerialBus":     []string{"Core"},
+	"PrintSupport":  []string{"Widgets", "Gui", "Core"},
+	//"PlatformHeaders": []string{}, //TODO:
+	"Designer": []string{"UiPlugin", "Widgets", "Gui", "Xml", "Core"},
+	"Scxml":    []string{"Network", "Qml", "Core"}, //Network (needed for static linking ios)
+	"Gamepad":  []string{"Gui", "Core"},
 
-	"Purchasing":        []string{"Core"},
-	"DataVisualization": []string{"Core", "Gui"},
-	"Charts":            []string{"Core", "Gui", "Widgets"},
-	"Quick2DRenderer":   []string{"Core"},
+	"Purchasing": []string{"Core"},
+	//"DataVisualization": []string{"Gui", "Core"},
+	//"Charts":            []string{"Widgets", "Gui", "Core"},
+	//"Quick2DRenderer":   []string{}, //TODO:
 
 	"Sailfish": []string{"Core"},
 

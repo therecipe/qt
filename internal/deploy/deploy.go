@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -177,27 +178,12 @@ func qrc() {
 	switch buildTarget {
 	case "android":
 		{
-			switch runtime.GOOS {
-			case "darwin", "linux":
-				{
-					rccPath = fmt.Sprintf("%v/5.7/android_armv7/bin/rcc", utils.QtInstallDir())
-				}
-
-			case "windows":
-				{
-					rccPath = fmt.Sprintf("%v\\5.7\\android_armv7\\bin\\rcc.exe", utils.QtInstallDir())
-				}
-			}
+			rccPath = filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "bin", "rcc")
 		}
 
 	case "ios", "ios-simulator":
 		{
-			switch runtime.GOOS {
-			case "darwin":
-				{
-					rccPath = fmt.Sprintf("%v/5.7/ios/bin/rcc", utils.QtInstallDir())
-				}
-			}
+			rccPath = filepath.Join(utils.QT_DIR(), "5.7", "ios", "bin", "rcc")
 		}
 
 	case "desktop", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3":
@@ -205,17 +191,17 @@ func qrc() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					rccPath = fmt.Sprintf("%v/5.7/clang_64/bin/rcc", utils.QtInstallDir())
+					rccPath = filepath.Join(utils.QT_DIR(), "5.7", "clang_64", "bin", "rcc")
 				}
 
 			case "linux":
 				{
-					rccPath = fmt.Sprintf("%v/5.7/gcc_64/bin/rcc", utils.QtInstallDir())
+					rccPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "rcc")
 				}
 
 			case "windows":
 				{
-					rccPath = fmt.Sprintf("%v\\5.7\\mingw53_32\\bin\\rcc.exe", utils.QtInstallDir())
+					rccPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "rcc")
 				}
 			}
 		}
@@ -240,38 +226,45 @@ func qmlHeader() string {
 		username = "user"
 	}
 
-	return strings.Replace(strings.Replace(strings.Replace(fmt.Sprintf(`package main
+	return strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
-#cgo +build windows,386 LDFLAGS: -L${QT_INSTALL_DIR_WINDOWS}/5.7/mingw53_32/lib -lQt5Core
+#cgo +build windows,386 LDFLAGS: -L${QT_DIR}/5.7/mingw53_32/lib -lQt5Core
 
-#cgo +build darwin,amd64 LDFLAGS: -F${QT_INSTALL_DIR}/5.7/clang_64/lib -framework QtCore
+#cgo +build !ios,darwin,amd64 LDFLAGS: -F${QT_DIR}/5.7/clang_64/lib -framework QtCore
 
-#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,${QT_INSTALL_DIR}/5.7/gcc_64/lib -L${QT_INSTALL_DIR}/5.7/gcc_64/lib -lQt5Core
-
-
-#cgo +build android,arm LDFLAGS: -L%v/5.7/android_armv7/lib -lQt5Core
+#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,${QT_DIR}/5.7/gcc_64/lib -L${QT_DIR}/5.7/gcc_64/lib -lQt5Core
 
 
-#cgo +build darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch i386
-#cgo +build darwin,386 LDFLAGS: -L${QT_INSTALL_DIR}/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_INSTALL_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_INSTALL_DIR}/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Widgets_iphonesimulator -lQt5Core_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
-
-#cgo +build darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=7.0 -arch arm64
-#cgo +build darwin,arm64 LDFLAGS: -L${QT_INSTALL_DIR}/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_INSTALL_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_INSTALL_DIR}/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
-
-#cgo +build darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=7.0 -arch armv7
-#cgo +build darwin,arm LDFLAGS: -L${QT_INSTALL_DIR}/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_INSTALL_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_INSTALL_DIR}/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Widgets -lQt5Core -lQt5Gui -lQt5PlatformSupport
+#cgo +build android,linux,arm LDFLAGS: -L${QT_DIR}/5.7/android_armv7/lib -lQt5Core
 
 
-#cgo +build linux,386,!android,!rpi1,!rpi2,!rpi3 LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core
-#cgo +build linux,arm,!android,!rpi1,!rpi2,!rpi3 LDFLAGS: -Wl,-rpath,/usr/share/harbour-%v/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/lib -L/srv/mer/targets/SailfishOS-armv7hl/usr/lib -L/srv/mer/targets/SailfishOS-armv7hl/lib -lQt5Core
+#cgo +build ios,darwin,amd64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch x86_64
+#cgo +build ios,darwin,amd64 LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Core_iphonesimulator -lQt5Widgets_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
+
+#cgo +build ios,darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch i386
+#cgo +build ios,darwin,386 LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Core_iphonesimulator -lQt5Widgets_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
+
+#cgo +build ios,darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=7.0 -arch arm64
+#cgo +build ios,darwin,arm64 LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PlatformSupport
+
+#cgo +build ios,darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=7.0 -arch armv7
+#cgo +build ios,darwin,arm LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PlatformSupport
 
 
-#cgo +build rpi1 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_INSTALL_DIR}/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_INSTALL_DIR}/5.7/rpi1/lib -lQt5Core
-#cgo +build rpi2 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_INSTALL_DIR}/5.7/rpi2/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_INSTALL_DIR}/5.7/rpi2/lib -lQt5Core
-#cgo +build rpi3 LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_INSTALL_DIR}/5.7/rpi3/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_INSTALL_DIR}/5.7/rpi3/lib -lQt5Core
+#cgo +build sailfish_emulator,linux,386 LDFLAGS: -Wl,-rpath,/usr/share/harbour-${APPNAME}/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-i486/lib -L/srv/mer/targets/SailfishOS-i486/usr/lib -L/srv/mer/targets/SailfishOS-i486/lib -lQt5Core
+#cgo +build sailfish,linux,arm LDFLAGS: -Wl,-rpath,/usr/share/harbour-${APPNAME}/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/lib -L/srv/mer/targets/SailfishOS-armv7hl/usr/lib -L/srv/mer/targets/SailfishOS-armv7hl/lib -lQt5Core
+
+
+#cgo +build rpi1,linux,arm LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_DIR}/5.7/rpi1/lib -lQt5Core
+#cgo +build rpi2,linux,arm LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi2/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_DIR}/5.7/rpi2/lib -lQt5Core
+#cgo +build rpi3,linux,arm LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi3/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_DIR}/5.7/rpi3/lib -lQt5Core
 */
-import "C"`, utils.QtInstallDir(), appName, appName), "${USERNAME}", username, -1), "${QT_INSTALL_DIR}", utils.QtInstallDir(), -1), "${QT_INSTALL_DIR_WINDOWS}", strings.Replace(utils.QtInstallDirWindows(), "\\", "/", -1), -1)
+import "C"`,
+
+		"${QT_DIR}", strings.Replace(utils.QT_DIR(), "\\", "/", -1), -1),
+		"${USERNAME}", username, -1),
+		"${APPNAME}", appName, -1)
 }
 
 func build() {
@@ -286,14 +279,14 @@ func build() {
 	if buildMinimal {
 		minimal.BuildTarget = buildTarget
 		minimal.Minimal(appPath)
-		tagFlags += " \"minimal\""
+		tagFlags += "\"minimal\""
 	}
 
 	switch buildTarget {
 	case "android":
 		{
 			ldFlags += "\"-s\" \"-w\""
-			tagFlags += "\"android\""
+			tagFlags += fmt.Sprintf("\"%v\"", buildTarget)
 			outputFile = filepath.Join(depPath, "libgo_base.so")
 
 			switch runtime.GOOS {
@@ -308,11 +301,11 @@ func build() {
 						"GOARCH": "arm",
 						"GOARM":  "7",
 
-						"CC":           filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-						"CXX":          filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
 						"CGO_ENABLED":  "1",
-						"CGO_CPPFLAGS": "-isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include",
-						"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm -llog",
+						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
+						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
 					}
 				}
 
@@ -330,11 +323,11 @@ func build() {
 						"GOARCH": "arm",
 						"GOARM":  "7",
 
-						"CC":           "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-gcc.exe",
-						"CXX":          "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-g++.exe",
 						"CGO_ENABLED":  "1",
-						"CGO_CPPFLAGS": "-isystem C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\usr\\include",
-						"CGO_LDFLAGS":  "--sysroot=C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\ -llog",
+						"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+						"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+						"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
+						"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
 					}
 				}
 			}
@@ -346,6 +339,7 @@ func build() {
 		{
 			ldFlags += "\"-w\""
 			tagFlags += "\"ios\""
+
 			outputFile = filepath.Join(depPath, "libgo.a")
 
 			var (
@@ -353,14 +347,14 @@ func build() {
 					if buildTarget == "ios" {
 						return "arm64"
 					}
-					return "386"
+					return "amd64"
 				}()
 
 				CLANGARCH, CLANGDIR, CLANGFLAG = func() (string, string, string) {
 					if buildTarget == "ios" {
 						return "arm64", "iPhoneOS", "iphoneos"
 					}
-					return "i386", "iPhoneSimulator", "ios-simulator"
+					return "x86_64", "iPhoneSimulator", "ios-simulator"
 				}()
 			)
 
@@ -385,7 +379,7 @@ func build() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					ldFlags += fmt.Sprintf("\"-w\" \"-r=%v/5.7/clang_64/lib\"", utils.QtInstallDir())
+					ldFlags += fmt.Sprintf("\"-w\" \"-r=%v/5.7/clang_64/lib\"", utils.QT_DIR())
 					outputFile = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
 				}
 
@@ -423,22 +417,14 @@ func build() {
 				os.Exit(1)
 			}
 
-			switch runtime.GOOS {
-			case "windows":
-				{
-					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "registervm", "C:\\SailfishOS\\mersdk\\MerSDK\\MerSDK.vbox"), "buid.vboxRegisterSDK")
-					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
-					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
-					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
-				}
+			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "MerSDK", "MerSDK.vbox")), "buid.vboxRegisterSDK")
+			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
+			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
 
-			case "darwin", "linux":
-				{
-					runCmdOptional(exec.Command("vboxmanage", "registervm", "/opt/SailfishOS/mersdk/MerSDK/MerSDK.vbox"), "buid.vboxRegisterSDK")
-					runCmdOptional(exec.Command("vboxmanage", "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
-					runCmdOptional(exec.Command("vboxmanage", "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
-					runCmdOptional(exec.Command("nohup", "vboxmanage", "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
-				}
+			if runtime.GOOS == "windows" {
+				runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
+			} else {
+				runCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
 			}
 
 			time.Sleep(10 * time.Second)
@@ -448,7 +434,7 @@ func build() {
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-as", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/as")
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-ld", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/ld")
 
-				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", fmt.Sprintf("-installsuffix=%v", buildTarget), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
+				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
 				if errBuild != nil {
 					fmt.Println("build.Sailfish", errBuild)
 					cleanup()
@@ -473,8 +459,8 @@ func build() {
 	case "rpi1", "rpi2", "rpi3":
 		{
 			ldFlags += "\"-s\" \"-w\""
-			outputFile = filepath.Join(depPath, appName)
 			tagFlags += fmt.Sprintf("\"%v\"", buildTarget)
+			outputFile = filepath.Join(depPath, appName)
 
 			env = map[string]string{
 				"PATH":   os.Getenv("PATH"),
@@ -503,7 +489,7 @@ func build() {
 		cmd.Args = append(cmd.Args, tagFlags)
 	}
 	if buildTarget != "desktop" {
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
+		cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)))
 	}
 
 	if buildTarget != "desktop" || (runtime.GOOS == "windows" && buildTarget == "desktop") {
@@ -560,46 +546,23 @@ func predeploy() {
 			var libPath = filepath.Join(depPath, "build", "libs", "armeabi-v7a")
 			utils.MakeFolder(libPath)
 
-			var (
-				androidPrefix string
-				compiler      string
-			)
-
-			switch runtime.GOOS {
-			case "darwin", "linux":
-				{
-					androidPrefix = "/opt"
-					compiler = filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++")
-				}
-
-			case "windows":
-				{
-					androidPrefix = "C:\\android"
-					compiler = "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-g++.exe"
-				}
-			}
+			var compiler = filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++")
 
 			//add c_main_wrappers
 			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo_base.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
 
-			var cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", fmt.Sprintf("--sysroot=%v", filepath.Join(androidPrefix, "android-ndk", "platforms", "android-9", "arch-arm")), "-shared")
+			var cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", fmt.Sprintf("--sysroot=%v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")), "-shared")
 			cmd.Dir = depPath
 			runCmd(cmd, "predeploy.go_main_wrapper_1")
 
-			var strip = exec.Command(filepath.Join(filepath.Dir(compiler), fmt.Sprintf("arm-linux-androideabi-strip%v", func() string {
-				if runtime.GOOS == "windows" {
-					return ".exe"
-				}
-				return ""
-			}(),
-			)), "libgo.so")
+			var strip = exec.Command(filepath.Join(filepath.Dir(compiler), "arm-linux-androideabi-strip"), "libgo.so")
 			strip.Dir = depPath
 			runCmd(strip, "predeploy.strip_1")
 
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), "predeploy.cpBase")
 			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cpMain")
 
-			var qtLibPath = filepath.Join(utils.QtInstallDir(), "5.7", "android_armv7", "lib")
+			var qtLibPath = filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "lib")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), "predeploy.cpWidgets")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), "predeploy.cpQuickWidgets")
 			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), "predeploy.cpMultimediaWidgets")
@@ -622,10 +585,10 @@ func predeploy() {
 				Qmlrootpath                   string `json:"qml-root-path"`
 				Applicationbinary             string `json:"application-binary"`
 			}{
-				Qt:  filepath.Join(utils.QtInstallDir(), "5.7", "android_armv7"),
-				Sdk: filepath.Join(androidPrefix, "android-sdk"),
+				Qt:  filepath.Join(utils.QT_DIR(), "5.7", "android_armv7"),
+				Sdk: utils.ANDROID_SDK_DIR(),
 				SdkBuildToolsRevision: "24.0.3",
-				Ndk:                           filepath.Join(androidPrefix, "android-ndk"),
+				Ndk:                           utils.ANDROID_NDK_DIR(),
 				Toolchainprefix:               "arm-linux-androideabi",
 				Toolprefix:                    "arm-linux-androideabi",
 				Toolchainversion:              "4.9",
@@ -641,7 +604,7 @@ func predeploy() {
 				os.Exit(1)
 			}
 
-			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), strings.Replace(string(out), `\\`, `/`, -1))
+			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), strings.Replace(string(out), "\\", "/", -1))
 		}
 
 	case "ios", "ios-simulator":
@@ -696,7 +659,7 @@ func predeploy() {
 			utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), iosLaunchScreen())
 			utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), iosProject())
 
-			runCmd(exec.Command(copyCmd, fmt.Sprintf("%v/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QtInstallDir()), buildPath), "predeploy.cpIcon")
+			runCmd(exec.Command(copyCmd, fmt.Sprintf("%v/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QT_DIR()), buildPath), "predeploy.cpIcon")
 
 			//copy assets from buildTarget folder
 			runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
@@ -735,13 +698,13 @@ func predeploy() {
 
 			//copy assets from buildTarget folder
 			if runtime.GOOS == "windows" {
-				runCmd(exec.Command(copyCmd, "C:\\SailfishOS\\tutorials\\stocqt\\stocqt.png", filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
+				runCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png*", appName))), "predeploy.cpIcon")
 
 				var cmd = exec.Command(copyCmd, buildTarget, depPath)
 				cmd.Dir = appPath
 				runCmd(cmd, "predeploy.cpSailfish")
 			} else {
-				runCmd(exec.Command(copyCmd, "/opt/SailfishOS/tutorials/stocqt/stocqt.png", filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
+				runCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
 
 				runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), depPath), "predeploy.cpSailfish")
 			}
@@ -767,39 +730,13 @@ func deploy() {
 	case "android":
 		{
 
-			var (
-				jdkLib string
-				ending string
-			)
-
-			switch runtime.GOOS {
-			case "darwin", "linux":
-				{
-
-					if runtime.GOOS == "darwin" {
-						var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
-						jdkLib = fmt.Sprintf("/Library/Java/JavaVirtualMachines/jdk%v.jdk/Contents/Home", version)
-					} else {
-						jdkLib = "/opt/jdk"
-					}
-				}
-
-			case "windows":
-				{
-					var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
-					jdkLib = fmt.Sprintf("C:\\Program Files\\Java\\jdk%v", version)
-
-					ending = ".exe"
-				}
-			}
-
-			var deploy = exec.Command(filepath.Join(utils.QtInstallDir(), "5.7", "android_armv7", "bin", "androiddeployqt"+ending))
+			var deploy = exec.Command(filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "bin", "androiddeployqt"))
 			deploy.Args = append(deploy.Args,
 				"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 				"--output", filepath.Join(depPath, "build"),
 				"--deployment", "bundled",
 				"--android-platform", "android-24",
-				"--jdk", jdkLib,
+				"--jdk", utils.JDK_DIR(),
 				"--gradle",
 			)
 
@@ -811,11 +748,11 @@ func deploy() {
 				)
 			}
 
-			deploy.Dir = filepath.Join(utils.QtInstallDir(), "5.7", "android_armv7", "bin")
-			deploy.Env = append(deploy.Env, "JAVA_HOME="+jdkLib)
+			deploy.Dir = filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "bin")
+			deploy.Env = append(deploy.Env, "JAVA_HOME="+utils.JDK_DIR())
 
 			if runtime.GOOS == "windows" {
-				utils.Save(filepath.Join(depPath, "build.bat"), fmt.Sprintf("set JAVA_HOME=%v\r\n%v", jdkLib, strings.Join(deploy.Args, " ")))
+				utils.Save(filepath.Join(depPath, "build.bat"), fmt.Sprintf("set JAVA_HOME=%v\r\n%v", utils.JDK_DIR(), strings.Join(deploy.Args, " ")))
 				runCmd(exec.Command(filepath.Join(depPath, "build.bat")), "deploy")
 				utils.RemoveAll(filepath.Join(depPath, "build.bat"))
 			} else {
@@ -833,12 +770,12 @@ func deploy() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					var deploy = exec.Command(fmt.Sprintf("%v/5.7/clang_64/bin/macdeployqt", utils.QtInstallDir()))
+					var deploy = exec.Command(fmt.Sprintf("%v/5.7/clang_64/bin/macdeployqt", utils.QT_DIR()))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, fmt.Sprintf("%v.app/", appName)),
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-always-overwrite")
-					deploy.Dir = fmt.Sprintf("%v/5.7/clang_64/bin/", utils.QtInstallDir())
+					deploy.Dir = fmt.Sprintf("%v/5.7/clang_64/bin/", utils.QT_DIR())
 					runCmd(deploy, "deploy")
 				}
 
@@ -852,7 +789,7 @@ func deploy() {
 					)
 
 					if strings.HasPrefix(buildTarget, "rpi") {
-						libraryPath = fmt.Sprintf("%v/5.7/%v/lib/", utils.QtInstallDir(), buildTarget)
+						libraryPath = fmt.Sprintf("%v/5.7/%v/lib/", utils.QT_DIR(), buildTarget)
 						lddPath = fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", os.Getenv("USERNAME"))
 						lddExtra = "--root=/"
 						lddOutput = runCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), "deploy.ldd")
@@ -890,7 +827,7 @@ func deploy() {
 
 			case "windows":
 				{
-					var deploy = exec.Command(fmt.Sprintf("%v\\5.7\\mingw53_32\\bin\\windeployqt.exe", utils.QtInstallDir()))
+					var deploy = exec.Command(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "windeployqt"))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, appName+ending),
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
@@ -995,19 +932,10 @@ func run() {
 	switch buildTarget {
 	case "android":
 		{
-			switch runtime.GOOS {
-			case "darwin", "linux":
-				{
-					runCmdOptional(exec.Command("killall", "adb"), "run.killadb")
-					//runCmdOptional(exec.Command("/opt/android-sdk/platform-tools/adb", "logcat", "-c"), "run.adblogcat")
-					exec.Command("/opt/android-sdk/platform-tools/adb", "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
-				}
-
-			case "windows":
-				{
-					exec.Command("C:\\android\\android-sdk\\platform-tools\\adb.exe", "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
-				}
+			if runtime.GOOS != "windows" {
+				runCmdOptional(exec.Command("killall", "adb"), "run.killadb")
 			}
+			exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
 		}
 
 	case /*"ios",*/ "ios-simulator":
@@ -1040,20 +968,13 @@ func run() {
 
 	case /*"sailfish",*/ "sailfish-emulator":
 		{
-			switch runtime.GOOS {
-			case "windows":
-				{
-					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "registervm", "C:\\SailfishOS\\emulator\\SailfishOS Emulator\\SailfishOS Emulator.vbox"), "buid.vboxRegisterEmulator")
-					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
-					runCmdOptional(exec.Command(`C:\Program Files\Oracle\VirtualBox\vboxmanage.exe`, "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
-				}
+			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), "buid.vboxRegisterEmulator")
+			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
 
-			case "darwin", "linux":
-				{
-					runCmdOptional(exec.Command("vboxmanage", "registervm", "/opt/SailfishOS/emulator/SailfishOS Emulator/SailfishOS Emulator.vbox"), "buid.vboxRegisterEmulator")
-					runCmdOptional(exec.Command("vboxmanage", "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
-					runCmdOptional(exec.Command("nohup", "vboxmanage", "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
-				}
+			if runtime.GOOS == "windows" {
+				runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
+			} else {
+				runCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
 			}
 
 			time.Sleep(10 * time.Second)
@@ -1093,10 +1014,14 @@ func runCmdOptional(cmd *exec.Cmd, name string) {
 
 //darwin
 func darwinSH() string {
-	var o = "#!/bin/bash\n"
-	o += "cd \"${0%/*}\"\n"
-	o += fmt.Sprintf("./%v_app", appName)
-	return o
+	var bb = new(bytes.Buffer)
+	defer bb.Reset()
+
+	fmt.Fprint(bb, "#!/bin/bash\n")
+	fmt.Fprint(bb, "cd \"${0%/*}\"\n")
+	fmt.Fprintf(bb, "./%v_app", appName)
+
+	return bb.String()
 }
 
 func darwinPLIST() string {
@@ -1140,27 +1065,28 @@ func darwinPLIST() string {
 
 //linux
 func linuxSH() string {
+	var bb = new(bytes.Buffer)
+	defer bb.Reset()
 
-	var o = "#!/bin/sh\n"
-	o += "appname=`basename $0 | sed s,\\.sh$,,`\n\n"
-	o += "dirname=`dirname $0`\n"
-	o += "tmp=\"${dirname#?}\"\n\n"
-	o += "if [ \"${dirname%$tmp}\" != \"/\" ]; then\n"
-	o += "dirname=$PWD/$dirname\n"
-	o += "fi\n"
+	fmt.Fprint(bb, "#!/bin/sh\n")
+	fmt.Fprint(bb, "appname=`basename $0 | sed s,\\.sh$,,`\n\n")
+	fmt.Fprint(bb, "dirname=`dirname $0`\n")
+	fmt.Fprint(bb, "tmp=\"${dirname#?}\"\n\n")
+	fmt.Fprint(bb, "if [ \"${dirname%$tmp}\" != \"/\" ]; then\n")
+	fmt.Fprint(bb, "dirname=$PWD/$dirname\n")
+	fmt.Fprint(bb, "fi\n")
 
 	if strings.HasPrefix(buildTarget, "rpi") {
-		o += "export DISPLAY=:0\n"
-		o += "export LD_PRELOAD=\"/opt/vc/lib/libGLESv2.so /opt/vc/lib/libEGL.so\"\n"
+		fmt.Fprint(bb, "export DISPLAY=:0\n")
+		fmt.Fprint(bb, "export LD_PRELOAD=\"/opt/vc/lib/libGLESv2.so /opt/vc/lib/libEGL.so\"\n")
 	}
 
-	o += "export LD_LIBRARY_PATH=$dirname\n"
-	o += "export QML_IMPORT_PATH=$dirname/\"qml\"\n"
-	o += "export QML2_IMPORT_PATH=$dirname/\"qml\"\n"
+	fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname\n")
+	fmt.Fprint(bb, "export QML_IMPORT_PATH=$dirname/\"qml\"\n")
+	fmt.Fprint(bb, "export QML2_IMPORT_PATH=$dirname/\"qml\"\n")
+	fmt.Fprint(bb, "$dirname/$appname \"$@\"\n")
 
-	o += "$dirname/$appname \"$@\"\n"
-
-	return o
+	return bb.String()
 }
 
 //ios
@@ -1530,7 +1456,7 @@ func iosProject() string {
 	};
 	rootObject = 254BB8361B1FD08900C56DE9 /* Project object */;
 }
-`, depPath, utils.QtInstallDir())
+`, depPath, utils.QT_DIR())
 }
 
 const (
@@ -1678,14 +1604,7 @@ func sshCommand(port, login string, cmd ...string) error {
 		return "SailfishOS_Emulator"
 	}()
 
-	var keyPath = func() string {
-		if runtime.GOOS == "windows" {
-			return filepath.Join("C:\\", "SailfishOS", "vmshare", "ssh", "private_keys", emuType, login)
-		}
-		return filepath.Join("/opt", "SailfishOS", "vmshare", "ssh", "private_keys", emuType, login)
-	}()
-
-	var signer, errPrivKey = ssh.ParsePrivateKey([]byte(utils.Load(keyPath)))
+	var signer, errPrivKey = ssh.ParsePrivateKey([]byte(utils.Load(filepath.Join(utils.SAILFISH_DIR(), "vmshare", "ssh", "private_keys", emuType, login))))
 	if errPrivKey != nil {
 		return errPrivKey
 	}

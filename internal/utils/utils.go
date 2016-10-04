@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strings"
 )
 
 func MakeFolder(dir string) {
@@ -52,7 +54,7 @@ func GetAbsPath(appPath string) string {
 	return filepath.Clean(filepath.Join(wd, appPath))
 }
 
-func GetQtPkgPath(s ...string) string {
+func GoQtPkgPath(s ...string) string {
 	return filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", filepath.Join(s...))
 }
 
@@ -61,30 +63,107 @@ func Exists(name string) bool {
 	return err == nil
 }
 
-func QtInstallDir() string {
+func QT_DIR() string {
+	if dir := os.Getenv("QT_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	//TODO: remove with 5.8
+	if dir := os.Getenv("QT_INSTALL_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	//
+	if runtime.GOOS == "windows" {
+		return filepath.Join("C:\\", "Qt", "Qt5.7.0")
+	}
+	return filepath.Join(os.Getenv("HOME"), "Qt5.7.0")
+}
+
+func ANDROID_SDK_DIR() string {
+	if dir := os.Getenv("ANDROID_SDK_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	if runtime.GOOS == "windows" {
+		return filepath.Join("C:\\", "android-sdk")
+	}
+	return filepath.Join("/opt", "android-sdk")
+}
+
+func ANDROID_NDK_DIR() string {
+	if dir := os.Getenv("ANDROID_NDK_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	if runtime.GOOS == "windows" {
+		return filepath.Join("C:\\", "android-ndk")
+	}
+	return filepath.Join("/opt", "android-ndk")
+}
+
+func JDK_DIR() string {
+	if dir := os.Getenv("JDK_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+
 	switch runtime.GOOS {
-	case "darwin", "linux":
+	case "windows":
 		{
-			return QtInstallDirDarwinAndLinux()
+			var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
+			return filepath.Join("C:\\", "Program Files", "Java", fmt.Sprintf("jdk%v", version))
+		}
+
+	case "darwin":
+		{
+			var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
+			return filepath.Join("/Library", "Java", "JavaVirtualMachines", fmt.Sprintf("jdk%v.jdk", version), "Contents", "Home")
+		}
+
+	case "linux":
+		{
+			return filepath.Join("/opt", "jdk")
 		}
 
 	default:
 		{
-			return QtInstallDirWindows()
+			return ""
 		}
 	}
 }
 
-func QtInstallDirDarwinAndLinux() string {
-	if dir := os.Getenv("QT_INSTALL_DIR"); dir != "" {
+func VIRTUALBOX_DIR() string {
+	if dir := os.Getenv("VIRTUALBOX_DIR"); dir != "" {
 		return filepath.Clean(dir)
 	}
-	return "/usr/local/Qt5.7.0"
+
+	if runtime.GOOS == "windows" {
+		return filepath.Join("C:\\", "Program Files", "Oracle", "VirtualBox")
+	}
+
+	var path, err = exec.LookPath("vboxmanage")
+	if err != nil {
+		fmt.Println("VIRTUALBOX_DIR:", "vboxmanage not found")
+	}
+	path, err = filepath.Abs(filepath.Dir(path))
+	if err != nil {
+		fmt.Println("VIRTUALBOX_DIR:", "could not create absolute path")
+	}
+
+	return path
 }
 
-func QtInstallDirWindows() string {
-	if dir := os.Getenv("QT_INSTALL_DIR"); dir != "" {
+func SAILFISH_DIR() string {
+	if dir := os.Getenv("SAILFISH_DIR"); dir != "" {
 		return filepath.Clean(dir)
 	}
-	return "C:\\Qt\\Qt5.7.0"
+	if runtime.GOOS == "windows" {
+		return filepath.Join("C:\\", "SailfishOS")
+	}
+	return filepath.Join(os.Getenv("HOME"), "SailfishOS")
+}
+
+func runCmd(cmd *exec.Cmd, name string) string {
+	var out, err = cmd.CombinedOutput()
+	if err != nil {
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
+		os.Exit(1)
+	}
+	return string(out)
 }

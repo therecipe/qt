@@ -321,7 +321,7 @@ func preambleCpp(module string, input []byte) []byte {
 
 			case module == "QtSailfish":
 				{
-					return "// +build sailfish"
+					return "// +build sailfish sailfish_emulator"
 				}
 
 			default:

@@ -3,7 +3,7 @@ package parser
 import (
 	"encoding/xml"
 	"fmt"
-	"runtime"
+	"path/filepath"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -48,20 +48,7 @@ func GetModule(s string) *Module {
 	}
 
 	var m = new(Module)
-
-	switch runtime.GOOS {
-	case "darwin", "linux":
-		{
-			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("%v/Docs/Qt-5.7/qt%v/qt%v.index", utils.QtInstallDir(), s, s))), &m)
-		}
-
-	case "windows":
-		{
-			xml.Unmarshal([]byte(utils.Load(fmt.Sprintf("%v\\Docs\\Qt-5.7\\qt%v\\qt%v.index", utils.QtInstallDir(), s, s))), &m)
-		}
-	}
-
+	xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
 	m.Prepare()
-
 	return m
 }

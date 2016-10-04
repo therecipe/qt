@@ -46,7 +46,7 @@ extern "C" {
 
 			case module == "QtSailfish":
 				{
-					return "// +build sailfish"
+					return "// +build sailfish sailfish_emulator"
 				}
 
 			default:

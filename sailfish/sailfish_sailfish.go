@@ -1,4 +1,4 @@
-// +build sailfish
+// +build sailfish sailfish_emulator
 
 package sailfish
 

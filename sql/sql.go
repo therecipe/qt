@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/widgets"
 	"runtime"
 	"strings"
@@ -6093,10 +6094,11 @@ func (ptr *QSqlRelation) TableName() string {
 }
 
 type QSqlRelationalDelegate struct {
-	ptr unsafe.Pointer
+	widgets.QItemDelegate
 }
 
 type QSqlRelationalDelegate_ITF interface {
+	widgets.QItemDelegate_ITF
 	QSqlRelationalDelegate_PTR() *QSqlRelationalDelegate
 }
 
@@ -6106,14 +6108,14 @@ func (p *QSqlRelationalDelegate) QSqlRelationalDelegate_PTR() *QSqlRelationalDel
 
 func (p *QSqlRelationalDelegate) Pointer() unsafe.Pointer {
 	if p != nil {
-		return p.ptr
+		return p.QItemDelegate_PTR().Pointer()
 	}
 	return nil
 }
 
 func (p *QSqlRelationalDelegate) SetPointer(ptr unsafe.Pointer) {
 	if p != nil {
-		p.ptr = ptr
+		p.QItemDelegate_PTR().SetPointer(ptr)
 	}
 }
 
@@ -6133,7 +6135,9 @@ func NewQSqlRelationalDelegate(parent core.QObject_ITF) *QSqlRelationalDelegate 
 	defer qt.Recovering("QSqlRelationalDelegate::QSqlRelationalDelegate")
 
 	var tmpValue = NewQSqlRelationalDelegateFromPointer(C.QSqlRelationalDelegate_NewQSqlRelationalDelegate(core.PointerFromQObject(parent)))
-	runtime.SetFinalizer(tmpValue, (*QSqlRelationalDelegate).DestroyQSqlRelationalDelegate)
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
 	return tmpValue
 }
 
@@ -6163,8 +6167,886 @@ func (ptr *QSqlRelationalDelegate) DestroyQSqlRelationalDelegate() {
 
 	if ptr.Pointer() != nil {
 		C.QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+//export callbackQSqlRelationalDelegate_DrawCheck
+func callbackQSqlRelationalDelegate_DrawCheck(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, state C.longlong) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::drawCheck")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::drawCheck"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, core.Qt__CheckState))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), core.Qt__CheckState(state))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawCheckDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), core.Qt__CheckState(state))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectDrawCheck(f func(painter *gui.QPainter, option *widgets.QStyleOptionViewItem, rect *core.QRect, state core.Qt__CheckState)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::drawCheck")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawCheck", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectDrawCheck() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::drawCheck")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawCheck")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawCheck(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, state core.Qt__CheckState) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawCheck")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawCheck(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.longlong(state))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawCheckDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, state core.Qt__CheckState) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawCheck")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawCheckDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), C.longlong(state))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DrawDecoration
+func callbackQSqlRelationalDelegate_DrawDecoration(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, pixmap unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::drawDecoration")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::drawDecoration"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, *gui.QPixmap))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), gui.NewQPixmapFromPointer(pixmap))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawDecorationDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), gui.NewQPixmapFromPointer(pixmap))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectDrawDecoration(f func(painter *gui.QPainter, option *widgets.QStyleOptionViewItem, rect *core.QRect, pixmap *gui.QPixmap)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::drawDecoration")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawDecoration", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectDrawDecoration() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::drawDecoration")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawDecoration")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawDecoration(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, pixmap gui.QPixmap_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawDecoration")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawDecoration(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawDecorationDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, pixmap gui.QPixmap_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawDecoration")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawDecorationDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), gui.PointerFromQPixmap(pixmap))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DrawDisplay
+func callbackQSqlRelationalDelegate_DrawDisplay(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, text *C.char) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::drawDisplay")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::drawDisplay"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, string))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), C.GoString(text))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawDisplayDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), C.GoString(text))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectDrawDisplay(f func(painter *gui.QPainter, option *widgets.QStyleOptionViewItem, rect *core.QRect, text string)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::drawDisplay")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawDisplay", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectDrawDisplay() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::drawDisplay")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawDisplay")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawDisplay(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawDisplay")
+
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QSqlRelationalDelegate_DrawDisplay(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawDisplayDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF, text string) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawDisplay")
+
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		C.QSqlRelationalDelegate_DrawDisplayDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect), textC)
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DrawFocus
+func callbackQSqlRelationalDelegate_DrawFocus(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::drawFocus")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::drawFocus"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawFocusDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectDrawFocus(f func(painter *gui.QPainter, option *widgets.QStyleOptionViewItem, rect *core.QRect)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::drawFocus")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawFocus", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectDrawFocus() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::drawFocus")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::drawFocus")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawFocus(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawFocus")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawFocus(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DrawFocusDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, rect core.QRect_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::drawFocus")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DrawFocusDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQRect(rect))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_EditorEvent
+func callbackQSqlRelationalDelegate_EditorEvent(ptr unsafe.Pointer, event unsafe.Pointer, model unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
+	defer qt.Recovering("callback QSqlRelationalDelegate::editorEvent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::editorEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent, *core.QAbstractItemModel, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EditorEventDefault(core.NewQEventFromPointer(event), core.NewQAbstractItemModelFromPointer(model), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectEditorEvent(f func(event *core.QEvent, model *core.QAbstractItemModel, option *widgets.QStyleOptionViewItem, index *core.QModelIndex) bool) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::editorEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::editorEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectEditorEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::editorEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::editorEvent")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) EditorEvent(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QSqlRelationalDelegate::editorEvent")
+
+	if ptr.Pointer() != nil {
+		return C.QSqlRelationalDelegate_EditorEvent(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlRelationalDelegate) EditorEventDefault(event core.QEvent_ITF, model core.QAbstractItemModel_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QSqlRelationalDelegate::editorEvent")
+
+	if ptr.Pointer() != nil {
+		return C.QSqlRelationalDelegate_EditorEventDefault(ptr.Pointer(), core.PointerFromQEvent(event), core.PointerFromQAbstractItemModel(model), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+//export callbackQSqlRelationalDelegate_Paint
+func callbackQSqlRelationalDelegate_Paint(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::paint")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::paint"); signal != nil {
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).PaintDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectPaint(f func(painter *gui.QPainter, option *widgets.QStyleOptionViewItem, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::paint")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::paint", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectPaint() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::paint")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::paint")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) Paint(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::paint")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_Paint(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) PaintDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::paint")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_PaintDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_SetEditorData
+func callbackQSqlRelationalDelegate_SetEditorData(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::setEditorData")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::setEditorData"); signal != nil {
+		signal.(func(*widgets.QWidget, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).SetEditorDataDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectSetEditorData(f func(editor *widgets.QWidget, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::setEditorData")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::setEditorData", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectSetEditorData() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::setEditorData")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::setEditorData")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) SetEditorData(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::setEditorData")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_SetEditorData(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) SetEditorDataDefault(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::setEditorData")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_SetEditorDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_SizeHint
+func callbackQSqlRelationalDelegate_SizeHint(ptr unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QSqlRelationalDelegate::sizeHint")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::sizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func(*widgets.QStyleOptionViewItem, *core.QModelIndex) *core.QSize)(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
+	}
+
+	return core.PointerFromQSize(NewQSqlRelationalDelegateFromPointer(ptr).SizeHintDefault(widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectSizeHint(f func(option *widgets.QStyleOptionViewItem, index *core.QModelIndex) *core.QSize) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::sizeHint")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::sizeHint", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectSizeHint() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::sizeHint")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::sizeHint")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) SizeHint(option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
+	defer qt.Recovering("QSqlRelationalDelegate::sizeHint")
+
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QSqlRelationalDelegate_SizeHint(ptr.Pointer(), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSqlRelationalDelegate) SizeHintDefault(option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) *core.QSize {
+	defer qt.Recovering("QSqlRelationalDelegate::sizeHint")
+
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QSqlRelationalDelegate_SizeHintDefault(ptr.Pointer(), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQSqlRelationalDelegate_UpdateEditorGeometry
+func callbackQSqlRelationalDelegate_UpdateEditorGeometry(ptr unsafe.Pointer, editor unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::updateEditorGeometry")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::updateEditorGeometry"); signal != nil {
+		signal.(func(*widgets.QWidget, *widgets.QStyleOptionViewItem, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).UpdateEditorGeometryDefault(widgets.NewQWidgetFromPointer(editor), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectUpdateEditorGeometry(f func(editor *widgets.QWidget, option *widgets.QStyleOptionViewItem, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::updateEditorGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::updateEditorGeometry", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectUpdateEditorGeometry() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::updateEditorGeometry")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::updateEditorGeometry")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) UpdateEditorGeometry(editor widgets.QWidget_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::updateEditorGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_UpdateEditorGeometry(ptr.Pointer(), widgets.PointerFromQWidget(editor), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) UpdateEditorGeometryDefault(editor widgets.QWidget_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::updateEditorGeometry")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_UpdateEditorGeometryDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DestroyEditor
+func callbackQSqlRelationalDelegate_DestroyEditor(ptr unsafe.Pointer, editor unsafe.Pointer, index unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::destroyEditor")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::destroyEditor"); signal != nil {
+		signal.(func(*widgets.QWidget, *core.QModelIndex))(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DestroyEditorDefault(widgets.NewQWidgetFromPointer(editor), core.NewQModelIndexFromPointer(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectDestroyEditor(f func(editor *widgets.QWidget, index *core.QModelIndex)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::destroyEditor", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectDestroyEditor() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::destroyEditor")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DestroyEditor(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DestroyEditor(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DestroyEditorDefault(editor widgets.QWidget_ITF, index core.QModelIndex_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::destroyEditor")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DestroyEditorDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), core.PointerFromQModelIndex(index))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_HelpEvent
+func callbackQSqlRelationalDelegate_HelpEvent(ptr unsafe.Pointer, event unsafe.Pointer, view unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) C.char {
+	defer qt.Recovering("callback QSqlRelationalDelegate::helpEvent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::helpEvent"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*gui.QHelpEvent, *widgets.QAbstractItemView, *widgets.QStyleOptionViewItem, *core.QModelIndex) bool)(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).HelpEventDefault(gui.NewQHelpEventFromPointer(event), widgets.NewQAbstractItemViewFromPointer(view), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index)))))
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectHelpEvent(f func(event *gui.QHelpEvent, view *widgets.QAbstractItemView, option *widgets.QStyleOptionViewItem, index *core.QModelIndex) bool) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::helpEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::helpEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectHelpEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::helpEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::helpEvent")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) HelpEvent(event gui.QHelpEvent_ITF, view widgets.QAbstractItemView_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QSqlRelationalDelegate::helpEvent")
+
+	if ptr.Pointer() != nil {
+		return C.QSqlRelationalDelegate_HelpEvent(ptr.Pointer(), gui.PointerFromQHelpEvent(event), widgets.PointerFromQAbstractItemView(view), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlRelationalDelegate) HelpEventDefault(event gui.QHelpEvent_ITF, view widgets.QAbstractItemView_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) bool {
+	defer qt.Recovering("QSqlRelationalDelegate::helpEvent")
+
+	if ptr.Pointer() != nil {
+		return C.QSqlRelationalDelegate_HelpEventDefault(ptr.Pointer(), gui.PointerFromQHelpEvent(event), widgets.PointerFromQAbstractItemView(view), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index)) != 0
+	}
+	return false
+}
+
+//export callbackQSqlRelationalDelegate_TimerEvent
+func callbackQSqlRelationalDelegate_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::timerEvent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::timerEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectTimerEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::timerEvent")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) TimerEvent(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) TimerEventDefault(event core.QTimerEvent_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::timerEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_ChildEvent
+func callbackQSqlRelationalDelegate_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::childEvent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::childEvent"); signal != nil {
+		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).ChildEventDefault(core.NewQChildEventFromPointer(event))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectChildEvent(f func(event *core.QChildEvent)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::childEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectChildEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::childEvent")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ChildEvent(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ChildEventDefault(event core.QChildEvent_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::childEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_ConnectNotify
+func callbackQSqlRelationalDelegate_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::connectNotify")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::connectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).ConnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::connectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::connectNotify", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectConnectNotify() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::connectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::connectNotify")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectNotify(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::connectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::connectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_CustomEvent
+func callbackQSqlRelationalDelegate_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::customEvent")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::customEvent"); signal != nil {
+		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).CustomEventDefault(core.NewQEventFromPointer(event))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectCustomEvent(f func(event *core.QEvent)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::customEvent", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectCustomEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::customEvent")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) CustomEvent(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) CustomEventDefault(event core.QEvent_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::customEvent")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DeleteLater
+func callbackQSqlRelationalDelegate_DeleteLater(ptr unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::deleteLater")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::deleteLater"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DeleteLaterDefault()
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectDeleteLater(f func()) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::deleteLater")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::deleteLater", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectDeleteLater() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::deleteLater")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::deleteLater")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DeleteLater() {
+	defer qt.Recovering("QSqlRelationalDelegate::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DeleteLaterDefault() {
+	defer qt.Recovering("QSqlRelationalDelegate::deleteLater")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DeleteLaterDefault(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+//export callbackQSqlRelationalDelegate_DisconnectNotify
+func callbackQSqlRelationalDelegate_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
+	defer qt.Recovering("callback QSqlRelationalDelegate::disconnectNotify")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::disconnectNotify"); signal != nil {
+		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
+	} else {
+		NewQSqlRelationalDelegateFromPointer(ptr).DisconnectNotifyDefault(core.NewQMetaMethodFromPointer(sign))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::disconnectNotify", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectDisconnectNotify() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::disconnectNotify")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectNotify(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
+	defer qt.Recovering("QSqlRelationalDelegate::disconnectNotify")
+
+	if ptr.Pointer() != nil {
+		C.QSqlRelationalDelegate_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
+	}
+}
+
+//export callbackQSqlRelationalDelegate_Event
+func callbackQSqlRelationalDelegate_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+	defer qt.Recovering("callback QSqlRelationalDelegate::event")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSqlRelationalDelegateFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectEvent(f func(e *core.QEvent) bool) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::event")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::event", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectEvent() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::event")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::event")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) Event(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QSqlRelationalDelegate::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSqlRelationalDelegate_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlRelationalDelegate) EventDefault(e core.QEvent_ITF) bool {
+	defer qt.Recovering("QSqlRelationalDelegate::event")
+
+	if ptr.Pointer() != nil {
+		return C.QSqlRelationalDelegate_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+//export callbackQSqlRelationalDelegate_MetaObject
+func callbackQSqlRelationalDelegate_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
+	defer qt.Recovering("callback QSqlRelationalDelegate::metaObject")
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::metaObject"); signal != nil {
+		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
+	}
+
+	return core.PointerFromQMetaObject(NewQSqlRelationalDelegateFromPointer(ptr).MetaObjectDefault())
+}
+
+func (ptr *QSqlRelationalDelegate) ConnectMetaObject(f func() *core.QMetaObject) {
+	defer qt.Recovering("connect QSqlRelationalDelegate::metaObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::metaObject", f)
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) DisconnectMetaObject() {
+	defer qt.Recovering("disconnect QSqlRelationalDelegate::metaObject")
+
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalDelegate::metaObject")
+	}
+}
+
+func (ptr *QSqlRelationalDelegate) MetaObject() *core.QMetaObject {
+	defer qt.Recovering("QSqlRelationalDelegate::metaObject")
+
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSqlRelationalDelegate_MetaObject(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QSqlRelationalDelegate) MetaObjectDefault() *core.QMetaObject {
+	defer qt.Recovering("QSqlRelationalDelegate::metaObject")
+
+	if ptr.Pointer() != nil {
+		return core.NewQMetaObjectFromPointer(C.QSqlRelationalDelegate_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //QSqlRelationalTableModel::JoinMode

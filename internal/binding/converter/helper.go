@@ -280,17 +280,17 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				fData = utils.Load(fmt.Sprintf("%v/5.7/clang_64/lib/%v.framework/Versions/5/Headers/%v", utils.QtInstallDir(), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "clang_64", "lib", fmt.Sprintf("%v.framework", strings.Title(parser.ClassMap[f.Class()].DocModule)), "Versions", "5", "Headers", fPath))
 			}
 
 		case "windows":
 			{
-				fData = utils.Load(fmt.Sprintf("%v\\5.7\\mingw53_32\\include\\%v\\%v", utils.QtInstallDir(), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "include", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 			}
 
 		case "linux":
 			{
-				fData = utils.Load(fmt.Sprintf("%v/5.7/gcc_64/include/%v/%v", utils.QtInstallDir(), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "include", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
 			}
 		}
 

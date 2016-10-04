@@ -14,20 +14,15 @@ import (
 
 func main() {
 	var (
-		ending = func() string {
-			if runtime.GOOS == "windows" {
-				return ".exe"
-			}
-			return ""
-		}()
-
-		buildTarget = func() string {
-			if len(os.Args) > 1 {
-				return os.Args[1]
-			}
-			return "desktop"
-		}()
+		buildTarget = "desktop"
+		ending      string
 	)
+	if len(os.Args) > 1 {
+		buildTarget = os.Args[1]
+	}
+	if runtime.GOOS == "windows" {
+		ending = ".exe"
+	}
 
 	fmt.Println("------------------------test----------------------------")
 
@@ -37,28 +32,32 @@ func main() {
 
 		utils.MakeFolder(filepath.Join(gopath, "bin"))
 
-		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GetQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
-		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GetQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
+		utils.RemoveAll(filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)))
+		utils.RemoveAll(filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)))
 
-		//TODO: remove with update to 5.8
-		utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)))
-		utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtmoc%v", ending)))
-		//
+		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GoQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
+		runCmd(exec.Command("go", "build", "-o", filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GoQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
 
 		switch runtime.GOOS {
 		case "darwin", "linux":
 			{
-				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), "/usr/local/bin/"), "symlink.qtdeploy")
-				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)), "/usr/local/bin/"), "symlink.qtmoc")
+				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtdeploy"))
+				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtmoc"))
+
+				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
+				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
 			}
 
 		case "windows":
 			{
-				var cmdDeploy = exec.Command("cmd.exe", "/C", "mklink", "/H", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)))
+				utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)))
+				utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtmoc%v", ending)))
+
+				var cmdDeploy = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)))
 				cmdDeploy.Dir = filepath.Join(runtime.GOROOT(), "bin")
 				runCmd(cmdDeploy, "symlink.qtdeploy")
 
-				var cmdMoc = exec.Command("cmd.exe", "/C", "mklink", "/H", fmt.Sprintf("qtmoc%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)))
+				var cmdMoc = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtmoc%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)))
 				cmdMoc.Dir = filepath.Join(runtime.GOROOT(), "bin")
 				runCmd(cmdMoc, "symlink.qtmoc")
 			}
@@ -83,7 +82,7 @@ func main() {
 			fmt.Print(example)
 
 			//TODO:
-			runCmd(exec.Command(filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)), "test", buildTarget, filepath.Join(utils.GetQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
+			runCmd(exec.Command(filepath.Join(gopath, "bin", "qtdeploy"), "test", buildTarget, filepath.Join(utils.GoQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
 
 			fmt.Println(strings.Repeat(" ", 30-len(example)), time.Since(before)/time.Second*time.Second)
 		}

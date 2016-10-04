@@ -57,11 +57,11 @@
 
 	* https://golang.org/doc/install?download=go1.7.1.windows-amd64.msi
 
-2. Install Qt 5.7.0 in `C:\Qt\Qt5.7.0\` or define the env variable `QT_INSTALL_DIR`
+2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
 
-3. Add the directory that contains **gcc.exe** and **g++.exe** to your **PATH**
+3. Add the directory that contains **gcc** and **g++** to your **PATH**
 
 	* `C:\Qt\Qt5.7.0\Tools\mingw530_32\bin\`
 
@@ -81,28 +81,24 @@
 
 	* https://golang.org/doc/install?download=go1.7.1.darwin-amd64.pkg
 
-2. Prepare the Qt installation directory
-
-	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
-
-3. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
+2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**
 
 	* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 	* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
-4. Install **Xcode** >= 7.2.0
+3. Install **Xcode** >= 7.2.0
 
 	* https://itunes.apple.com/us/app/xcode/id497799835
 
-5. Download the binding
+4. Download the binding
 
 	* `go get -d github.com/therecipe/qt`
 
-6. Generate, install and test (~20 min)
+5. Generate, install and test (~20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
-7. Create your first [application](#example)
+6. Create your first [application](#example)
 
 ## Linux
 
@@ -110,40 +106,44 @@
 
 	* https://golang.org/doc/install?download=go1.7.1.linux-amd64.tar.gz
 
-2. Prepare the Qt installation directory
-
-	* `QT_INSTALL_DIR=/usr/local/Qt5.7.0/; sudo mkdir $QT_INSTALL_DIR && sudo chown $USER $QT_INSTALL_DIR`
-
-3. Install Qt 5.7.0 in `/usr/local/Qt5.7.0/` or define the env variable `QT_INSTALL_DIR`
+2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
-4. Install **g++** and **OpenGL** dependencies
+3. Install **g++** and **OpenGL** dependencies
 
-	* `sudo apt-get -y install build-essential mesa-common-dev`
+	* Debian/Ubuntu (apt-get)
+		* `sudo apt-get -y install build-essential libgl1-mesa-dev`
 
-5. Download the binding
+	* Fedora/RHEL/CentOS (yum)
+		* `sudo yum groupinstall "C Development Tools and Libraries"`
+		* `sudo yum install mesa-libGL-devel`
+
+	* openSUSE (zypper)
+		* `sudo zypper install -t pattern devel_basis`
+
+4. Download the binding
 
 	* `go get -d github.com/therecipe/qt`
 
-6. Generate, install and test (~20 min)
+5. Generate, install and test (~20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
-7. Create your first [application](#example)
+6. Create your first [application](#example)
 
 ---
 
 ## Android
 
-1. Install the desktop version
+1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
 
-2. Install the Android SDK in `C:\android\android-sdk\` or `/opt/android-sdk/`
+2. Install the Android SDK in `C:\android-sdk\` or `/opt/android-sdk/`; you can also define a custom location with **ANDROID_SDK_DIR**
 	* https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
 	* https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
 	* https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 
-3. Install the SDK dependencies with `C:\android\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
+3. Install the SDK dependencies with `C:\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
 	* Tools
 		* Android SDK Build-tools (24.0.3)
 	* Android 7.0 (API 24)
@@ -151,12 +151,12 @@
 	* Extras (Windows only)
 		* Google USB Driver
 
-4. Install the Android NDK in `C:\android\android-ndk\` or `/opt/android-ndk/`
+4. Install the Android NDK in `C:\android-ndk\` or `/opt/android-ndk/`; you can also define a custom location with **ANDROID_NDK_DIR**
 	* https://dl.google.com/android/repository/android-ndk-r12b-windows-x86_64.zip
 	* https://dl.google.com/android/repository/android-ndk-r12b-darwin-x86_64.zip
 	* https://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip
 
-5. Install Java SE Development Kit (Linux: install in `/opt/jdk/`)
+5. Install Java SE Development Kit (Linux: install in `/opt/jdk/`); you can also define a custom location with **JDK_DIR**
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 6. Install and test (~20 min)
@@ -181,14 +181,14 @@
 
 ## Sailfish OS
 
-1. Install the desktop version
+1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
 
-2. Install VirtualBox
-	* https://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe
-	* https://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-OSX.dmg
-	* https://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Linux_amd64.run
+2. Install VirtualBox; you can also define a custom location with **VIRTUALBOX_DIR**
+	* http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe
+	* http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-OSX.dmg
+	* http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Linux_amd64.run
 
-3. Install the Sailfish OS SDK in `C:\SailfishOS\` or `/opt/SailfishOS/`
+3. Install the Sailfish OS SDK; you can also define a custom location with **SAILFISH_DIR**
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run

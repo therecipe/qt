@@ -176,49 +176,49 @@ func ShouldBuild(module string) bool {
 }
 
 var Build = map[string]bool{
-	"Core":              false,
-	"AndroidExtras":     false,
-	"Gui":               false,
-	"Network":           false,
-	"Sql":               false,
-	"Xml":               false,
-	"DBus":              false,
-	"Nfc":               false,
-	"Script":            false,
-	"Sensors":           false,
-	"Positioning":       false,
-	"Widgets":           false,
-	"MacExtras":         false,
-	"Qml":               false,
-	"WebSockets":        false,
-	"XmlPatterns":       false,
-	"Bluetooth":         false,
-	"WebChannel":        false,
-	"Svg":               false,
-	"Multimedia":        false,
-	"Quick":             false,
-	"Help":              false,
-	"Location":          false,
-	"ScriptTools":       false,
-	"MultimediaWidgets": false,
-	"UiTools":           false,
-	"X11Extras":         false,
-	"WinExtras":         false,
-	"WebEngine":         false,
-	"WebKit":            false,
-	"TestLib":           false,
-	"SerialPort":        false,
-	"SerialBus":         false,
-	"PrintSupport":      false,
-	"PlatformHeaders":   false,
-	"Designer":          false,
-	"Scxml":             false,
-	"Gamepad":           false,
-	"Purchasing":        false,
-	"DataVisualization": false,
-	"Charts":            false,
-	"Quick2DRenderer":   false,
-	"Sailfish":          false,
+	"Core":          false,
+	"AndroidExtras": false,
+	"Gui":           false,
+	"Network":       false,
+	"Xml":           false,
+	"DBus":          false,
+	"Nfc":           false,
+	"Script":        false,
+	"Sensors":       false,
+	"Positioning":   false,
+	"Widgets":       false,
+	"Sql":           false,
+	"MacExtras":     false,
+	"Qml":           false,
+	"WebSockets":    false,
+	"XmlPatterns":   false,
+	"Bluetooth":     false,
+	"WebChannel":    false,
+	"Svg":           false,
+	"Multimedia":    false,
+	"Quick":         false,
+	"Help":          false,
+	"Location":      false,
+	"ScriptTools":   false,
+	"UiTools":       false,
+	"X11Extras":     false,
+	"WinExtras":     false,
+	"WebEngine":     false,
+	"TestLib":       false,
+	"SerialPort":    false,
+	"SerialBus":     false,
+	"PrintSupport":  false,
+	//"PlatformHeaders": false,
+	"Designer": false,
+	"Scxml":    false,
+	"Gamepad":  false,
+
+	"Purchasing": false,
+	//"DataVisualization": false,
+	//"Charts":            false,
+	//"Quick2DRenderer":   false,
+
+	"Sailfish": false,
 }
 
 var Libs = []string{
@@ -226,7 +226,6 @@ var Libs = []string{
 	"AndroidExtras",
 	"Gui",
 	"Network",
-	"Sql",
 	"Xml",
 	"DBus",
 	"Nfc",
@@ -234,6 +233,7 @@ var Libs = []string{
 	"Sensors",
 	"Positioning",
 	"Widgets",
+	"Sql",
 	"MacExtras",
 	"Qml",
 	"WebSockets",
@@ -246,12 +246,10 @@ var Libs = []string{
 	"Help",
 	"Location",
 	"ScriptTools", //depreached (planned) in 5.6
-	//"MultimediaWidgets", //depreached (merged) in 5.6
 	"UiTools",
-	//"X11Extras", //linux/android only
-	//"WinExtras", //windows only
+	"X11Extras",
+	"WinExtras",
 	"WebEngine",
-	//"WebKit", //depreached (full) in 5.6
 	"TestLib",
 	"SerialPort",
 	"SerialBus",
@@ -274,8 +272,9 @@ func GetLibs() []string {
 		switch {
 		case
 			!(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && Libs[i] == "WebEngine",
+			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
-			runtime.GOOS != "windows" && Libs[i] == "WinExtras":
+			runtime.GOOS != "linux" && Libs[i] == "X11Extras":
 			{
 				Libs = append(Libs[:i], Libs[i+1:]...)
 			}
@@ -286,49 +285,47 @@ func GetLibs() []string {
 }
 
 var LibDeps = map[string][]string{
-	"Core":              []string{"Gui", "Widgets"},
-	"AndroidExtras":     []string{"Core"},
-	"Gui":               []string{"Core", "Widgets"},
-	"Network":           []string{"Core"},
-	"Sql":               []string{"Core", "Widgets"},
-	"Xml":               []string{"Core", "XmlPatterns"},
-	"DBus":              []string{"Core"},
-	"Nfc":               []string{"Core"},
-	"Script":            []string{"Core"},
-	"Sensors":           []string{"Core"},
-	"Positioning":       []string{"Core"},
-	"Widgets":           []string{"Core", "Gui"},
-	"MacExtras":         []string{"Core", "Gui"},
-	"Qml":               []string{"Core", "Network"},
-	"WebSockets":        []string{"Core", "Network"},
-	"XmlPatterns":       []string{"Core", "Network"},
-	"Bluetooth":         []string{"Core", "Concurrent"},
-	"WebChannel":        []string{"Core", "Network", "Qml"},
-	"Svg":               []string{"Core", "Gui", "Widgets"},
-	"Multimedia":        []string{"Core", "Gui", "Network", "Widgets", "MultimediaWidgets"},
-	"Quick":             []string{"Core", "Gui", "Network", "Widgets", "Qml", "QuickWidgets"},
-	"Help":              []string{"Core", "Gui", "Network", "Sql", "CLucene", "Widgets"},
-	"Location":          []string{"Core", "Gui", "Network", "Positioning", "Qml", "Quick"},
-	"ScriptTools":       []string{"Core", "Gui", "Script", "Widgets"},
-	"MultimediaWidgets": []string{"Core", "Gui", "Network", "Widgets", "OpenGL", "Multimedia"},
-	"UiTools":           []string{"Core", "Gui", "Widgets"},
-	"X11Extras":         []string{"Core"},
-	"WinExtras":         []string{},
-	"WebEngine":         []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "WebEngineCore", "WebEngineWidgets"},
-	"WebKit":            []string{"Core", "Gui", "Network", "WebChannel", "Widgets", "PrintSupport", "WebKitWidgets"},
-	"TestLib":           []string{"Core", "Gui", "Widgets", "Test"},
-	"SerialPort":        []string{"Core"},
-	"SerialBus":         []string{"Core"},
-	"PrintSupport":      []string{"Core", "Gui", "Widgets"},
-	"PlatformHeaders":   []string{"Core"},
-	"Designer":          []string{"Core", "Gui", "Widgets", "UiPlugin", "DesignerComponents"},
-	"Scxml":             []string{"Core", "Network", "Qml"},
-	"Gamepad":           []string{"Core", "Gui"},
+	"Core":          []string{"Widgets", "Gui"}, //Widgets, Gui
+	"AndroidExtras": []string{"Core"},
+	"Gui":           []string{"Widgets", "Core"}, //Widgets
+	"Network":       []string{"Core"},
+	"Xml":           []string{"XmlPatterns", "Core"}, //XmlPatterns
+	"DBus":          []string{"Core"},
+	"Nfc":           []string{"Core"},
+	"Script":        []string{"Core"},
+	"Sensors":       []string{"Core"},
+	"Positioning":   []string{"Core"},
+	"Widgets":       []string{"Gui", "Core"},
+	"Sql":           []string{"Widgets", "Gui", "Core"}, //Widgets, Gui
+	"MacExtras":     []string{"Gui", "Core"},
+	"Qml":           []string{"Network", "Core"},
+	"WebSockets":    []string{"Network", "Core"},
+	"XmlPatterns":   []string{"Network", "Core"},
+	"Bluetooth":     []string{"Core"},
+	"WebChannel":    []string{"Network", "Qml", "Core"}, //Network (needed for static linking ios)
+	"Svg":           []string{"Widgets", "Gui", "Core"},
+	"Multimedia":    []string{"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
+	"Quick":         []string{"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
+	"Help":          []string{"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
+	"Location":      []string{"Positioning", "Quick", "Gui", "Core"},
+	"ScriptTools":   []string{"Script", "Widgets", "Core"}, //Script, Widgets
+	"UiTools":       []string{"Widgets", "Gui", "Core"},
+	"X11Extras":     []string{"Gui", "Core"},
+	"WinExtras":     []string{"Gui", "Core"},
+	"WebEngine":     []string{"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "Gui", "Qml", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
+	"TestLib":       []string{"Widgets", "Gui", "Core"},                                                                               //Widgets, Gui
+	"SerialPort":    []string{"Core"},
+	"SerialBus":     []string{"Core"},
+	"PrintSupport":  []string{"Widgets", "Gui", "Core"},
+	//"PlatformHeaders": []string{}, //TODO:
+	"Designer": []string{"UiPlugin", "Widgets", "Gui", "Xml", "Core"},
+	"Scxml":    []string{"Network", "Qml", "Core"}, //Network (needed for static linking ios)
+	"Gamepad":  []string{"Gui", "Core"},
 
-	"Purchasing":        []string{"Core"},
-	"DataVisualization": []string{"Core", "Gui"},
-	"Charts":            []string{"Core", "Gui", "Widgets"},
-	"Quick2DRenderer":   []string{"Core"},
+	"Purchasing": []string{"Core"},
+	//"DataVisualization": []string{"Gui", "Core"},
+	//"Charts":            []string{"Widgets", "Gui", "Core"},
+	//"Quick2DRenderer":   []string{}, //TODO:
 
 	"Sailfish": []string{"Core"},
 

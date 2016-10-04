@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
@@ -19,7 +20,6 @@ func main() {
 		tagFlags    string
 		env         map[string]string
 	)
-
 	if len(os.Args) > 1 {
 		buildTarget = os.Args[1]
 	}
@@ -30,7 +30,7 @@ func main() {
 		case
 			"android":
 			{
-				tagFlags = "-tags=\"android\""
+				tagFlags = fmt.Sprintf("-tags=\"%v\"", buildTarget)
 
 				switch runtime.GOOS {
 				case "darwin", "linux":
@@ -45,10 +45,10 @@ func main() {
 							"GOARM":  "7",
 
 							"CGO_ENABLED":  "1",
-							"CC":           filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
-							"CXX":          filepath.Join("/opt", "android-ndk", "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
-							"CGO_CPPFLAGS": "-isystem /opt/android-ndk/platforms/android-9/arch-arm/usr/include",
-							"CGO_LDFLAGS":  "--sysroot=/opt/android-ndk/platforms/android-9/arch-arm -llog",
+							"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+							"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+							"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
+							"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
 						}
 					}
 
@@ -67,10 +67,10 @@ func main() {
 							"GOARM":  "7",
 
 							"CGO_ENABLED":  "1",
-							"CC":           "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-gcc.exe",
-							"CXX":          "C:\\android\\android-ndk\\toolchains\\arm-linux-androideabi-4.9\\prebuilt\\windows-x86_64\\bin\\arm-linux-androideabi-g++.exe",
-							"CGO_CPPFLAGS": "-isystem C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\usr\\include",
-							"CGO_LDFLAGS":  "--sysroot=C:\\android\\android-ndk\\platforms\\android-9\\arch-arm\\ -llog",
+							"CC":           filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-gcc"),
+							"CXX":          filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++"),
+							"CGO_CPPFLAGS": fmt.Sprintf("-isystem %v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm", "usr", "include")),
+							"CGO_LDFLAGS":  fmt.Sprintf("--sysroot=%v -llog", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")),
 						}
 					}
 				}
@@ -86,14 +86,14 @@ func main() {
 						if buildTarget == "ios" {
 							return "arm64"
 						}
-						return "386"
+						return "amd64"
 					}()
 
 					CLANGARCH, CLANGDIR, CLANGFLAG = func() (string, string, string) {
 						if buildTarget == "ios" {
 							return "arm64", "iPhoneOS", "iphoneos"
 						}
-						return "i386", "iPhoneSimulator", "ios-simulator"
+						return "x86_64", "iPhoneSimulator", "ios-simulator"
 					}()
 				)
 
@@ -133,22 +133,25 @@ func main() {
 
 		case "sailfish", "sailfish-emulator":
 			{
+				tagFlags = fmt.Sprintf("-tags=\"%v\"", strings.Replace(buildTarget, "-", "_", -1))
+
+				env = map[string]string{
+					"PATH":   os.Getenv("PATH"),
+					"GOPATH": os.Getenv("GOPATH"),
+					"GOROOT": runtime.GOROOT(),
+
+					"GOOS":   "linux",
+					"GOARCH": "386",
+				}
+
+				if runtime.GOOS == "windows" {
+					env["TMP"] = os.Getenv("TMP")
+					env["TEMP"] = os.Getenv("TEMP")
+				}
+
+				//build linux,386 tools
 				var _, err = ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386"))
 				if err != nil {
-					env = map[string]string{
-						"PATH":   os.Getenv("PATH"),
-						"GOPATH": os.Getenv("GOPATH"),
-						"GOROOT": runtime.GOROOT(),
-
-						"GOOS":   "linux",
-						"GOARCH": "386",
-					}
-
-					if runtime.GOOS == "windows" {
-						env["TMP"] = os.Getenv("TMP")
-						env["TEMP"] = os.Getenv("TEMP")
-					}
-
 					var build = exec.Command(filepath.Join(runtime.GOROOT(), "src", func() string {
 						if runtime.GOOS == "windows" {
 							return "run.bat"
@@ -159,18 +162,12 @@ func main() {
 						build.Env = append(build.Env, fmt.Sprintf("%v=%v", key, value))
 					}
 					build.Run()
+				}
 
+				if buildTarget == "sailfish" {
 					env["GOARCH"] = "arm"
 					env["GOARM"] = "7"
-					var cmd = exec.Command("go", "install")
-					cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
-					cmd.Args = append(cmd.Args, "std")
-					for key, value := range env {
-						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
-					}
-					runCmd(cmd, "install.std")
 				}
-				return
 			}
 
 		case "rpi1", "rpi2", "rpi3":
@@ -202,14 +199,17 @@ func main() {
 			cmd.Args = append(cmd.Args, tagFlags)
 		}
 		if buildTarget != "desktop" {
-			cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
+			cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)))
 		}
 		cmd.Args = append(cmd.Args, "std")
-
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
 		runCmd(cmd, "install.std_1")
+
+		if strings.HasPrefix(buildTarget, "sailfish") {
+			return
+		}
 
 		//armv7
 		if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
@@ -232,9 +232,9 @@ func main() {
 
 	for _, m := range templater.GetLibs() {
 
-		if !(buildTarget == "android" && (m == "DBus" || m == "MacExtras" || m == "WebEngine" || m == "Designer")) &&
-			!((buildTarget == "ios" || buildTarget == "ios-simulator") && (m == "SerialPort" || m == "SerialBus" || m == "MacExtras" || m == "WebEngine" || m == "PrintSupport" || m == "Designer")) && //TODO: support for PrintSupport
-			!(strings.HasPrefix(buildTarget, "rpi") && (m == "WebEngine" || m == "Designer")) { //TODO: support for WebEngine (rpi2 + rpi3)
+		if !(buildTarget == "android" && (m == "DBus" || m == "WebEngine" || m == "Designer") || strings.HasSuffix(m, "Extras")) &&
+			!(strings.HasPrefix(buildTarget, "ios") && (m == "SerialPort" || m == "SerialBus" || m == "WebEngine" || m == "PrintSupport" || m == "Designer") || strings.HasSuffix(m, "Extras")) && //TODO: support for PrintSupport
+			!(strings.HasPrefix(buildTarget, "rpi") && (m == "WebEngine" || m == "Designer") || strings.HasSuffix(m, "Extras")) { //TODO: support for WebEngine (rpi2 + rpi3)
 
 			var before = time.Now()
 
@@ -246,7 +246,7 @@ func main() {
 					cmd.Args = append(cmd.Args, tagFlags)
 				}
 				if buildTarget != "desktop" {
-					cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
+					cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)))
 				}
 				cmd.Args = append(cmd.Args, fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(m)))
 

@@ -7,13 +7,18 @@
 #include "_cgo_export.h"
 
 #include <QAbstractItemModel>
+#include <QAbstractItemView>
 #include <QChildEvent>
 #include <QEvent>
+#include <QHelpEvent>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMimeData>
 #include <QModelIndex>
 #include <QObject>
+#include <QPainter>
+#include <QPixmap>
+#include <QRect>
 #include <QSize>
 #include <QSqlDatabase>
 #include <QSqlDriver>
@@ -1859,6 +1864,196 @@ void QSqlRelationalDelegate_SetModelData(void* ptr, void* editor, void* model, v
 void QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(void* ptr)
 {
 	static_cast<QSqlRelationalDelegate*>(ptr)->~QSqlRelationalDelegate();
+}
+
+void QSqlRelationalDelegate_DrawCheck(void* ptr, void* painter, void* option, void* rect, long long state)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
+}
+
+void QSqlRelationalDelegate_DrawCheckDefault(void* ptr, void* painter, void* option, void* rect, long long state)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawCheck(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), static_cast<Qt::CheckState>(state));
+}
+
+void QSqlRelationalDelegate_DrawDecoration(void* ptr, void* painter, void* option, void* rect, void* pixmap)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
+}
+
+void QSqlRelationalDelegate_DrawDecorationDefault(void* ptr, void* painter, void* option, void* rect, void* pixmap)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDecoration(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), *static_cast<QPixmap*>(pixmap));
+}
+
+void QSqlRelationalDelegate_DrawDisplay(void* ptr, void* painter, void* option, void* rect, char* text)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+}
+
+void QSqlRelationalDelegate_DrawDisplayDefault(void* ptr, void* painter, void* option, void* rect, char* text)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawDisplay(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect), QString(text));
+}
+
+void QSqlRelationalDelegate_DrawFocus(void* ptr, void* painter, void* option, void* rect)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
+}
+
+void QSqlRelationalDelegate_DrawFocusDefault(void* ptr, void* painter, void* option, void* rect)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::drawFocus(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QRect*>(rect));
+}
+
+char QSqlRelationalDelegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+char QSqlRelationalDelegate_EditorEventDefault(void* ptr, void* event, void* model, void* option, void* index)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::editorEvent(static_cast<QEvent*>(event), static_cast<QAbstractItemModel*>(model), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_Paint(void* ptr, void* painter, void* option, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->paint(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_PaintDefault(void* ptr, void* painter, void* option, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::paint(static_cast<QPainter*>(painter), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_SetEditorData(void* ptr, void* editor, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_SetEditorDataDefault(void* ptr, void* editor, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::setEditorData(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
+}
+
+void* QSqlRelationalDelegate_SizeHint(void* ptr, void* option, void* index)
+{
+	return ({ QSize tmpValue = static_cast<QSqlRelationalDelegate*>(ptr)->sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QSqlRelationalDelegate_SizeHintDefault(void* ptr, void* option, void* index)
+{
+	return ({ QSize tmpValue = static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::sizeHint(*static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index)); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void QSqlRelationalDelegate_UpdateEditorGeometry(void* ptr, void* editor, void* option, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->updateEditorGeometry(static_cast<QWidget*>(editor), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_UpdateEditorGeometryDefault(void* ptr, void* editor, void* option, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::updateEditorGeometry(static_cast<QWidget*>(editor), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_DestroyEditor(void* ptr, void* editor, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_DestroyEditorDefault(void* ptr, void* editor, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::destroyEditor(static_cast<QWidget*>(editor), *static_cast<QModelIndex*>(index));
+}
+
+char QSqlRelationalDelegate_HelpEvent(void* ptr, void* event, void* view, void* option, void* index)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->helpEvent(static_cast<QHelpEvent*>(event), static_cast<QAbstractItemView*>(view), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+char QSqlRelationalDelegate_HelpEventDefault(void* ptr, void* event, void* view, void* option, void* index)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::helpEvent(static_cast<QHelpEvent*>(event), static_cast<QAbstractItemView*>(view), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalDelegate_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSqlRelationalDelegate_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSqlRelationalDelegate_ChildEvent(void* ptr, void* event)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSqlRelationalDelegate_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QSqlRelationalDelegate_ConnectNotify(void* ptr, void* sign)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QSqlRelationalDelegate_ConnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::connectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QSqlRelationalDelegate_CustomEvent(void* ptr, void* event)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->customEvent(static_cast<QEvent*>(event));
+}
+
+void QSqlRelationalDelegate_CustomEventDefault(void* ptr, void* event)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::customEvent(static_cast<QEvent*>(event));
+}
+
+void QSqlRelationalDelegate_DeleteLater(void* ptr)
+{
+	QMetaObject::invokeMethod(static_cast<QSqlRelationalDelegate*>(ptr), "deleteLater");
+}
+
+void QSqlRelationalDelegate_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::deleteLater();
+}
+
+void QSqlRelationalDelegate_DisconnectNotify(void* ptr, void* sign)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+void QSqlRelationalDelegate_DisconnectNotifyDefault(void* ptr, void* sign)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+}
+
+char QSqlRelationalDelegate_Event(void* ptr, void* e)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QSqlRelationalDelegate_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::event(static_cast<QEvent*>(e));
+}
+
+void* QSqlRelationalDelegate_MetaObject(void* ptr)
+{
+	return const_cast<QMetaObject*>(static_cast<QSqlRelationalDelegate*>(ptr)->metaObject());
+}
+
+void* QSqlRelationalDelegate_MetaObjectDefault(void* ptr)
+{
+	return const_cast<QMetaObject*>(static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::metaObject());
 }
 
 class MyQSqlRelationalTableModel: public QSqlRelationalTableModel

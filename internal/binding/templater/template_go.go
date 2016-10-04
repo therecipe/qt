@@ -283,7 +283,7 @@ import (
 					if module == "androidextras" {
 						return "// +build !android"
 					}
-					return "// +build !sailfish"
+					return "// +build !sailfish,!sailfish_emulator"
 				}
 
 			case Minimal:
@@ -303,7 +303,7 @@ import (
 
 			case module == "sailfish":
 				{
-					return "// +build sailfish"
+					return "// +build sailfish sailfish_emulator"
 				}
 
 			default:

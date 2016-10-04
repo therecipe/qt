@@ -58,9 +58,11 @@ func main() {
 func moc(appPath string) {
 
 	for _, name := range []string{"moc.h", "moc.go", "moc.cpp", "moc_moc.h",
-		"moc_cgo_windows_386.go", "moc_cgo_linux_arm.go", "moc_cgo_linux_amd64.go", "moc_cgo_linux_386.go",
-		"moc_cgo_darwin_arm64.go", "moc_cgo_darwin_arm.go", "moc_cgo_darwin_arm.go", "moc_cgo_darwin_amd64.go",
-		"moc_cgo_darwin_386.go", "moc_cgo_android_arm.go"} {
+		"moc_cgo_desktop_darwin_amd64.go", "moc_cgo_desktop_windows_386.go", "moc_cgo_desktop_linux_amd64.go",
+		"moc_cgo_android_linux_arm.go",
+		"moc_cgo_ios_simulator_darwin_amd64.go", "moc_cgo_ios_simulator_darwin_386.go", "moc_cgo_ios_darwin_arm64.go", "moc_cgo_ios_darwin_arm.go",
+		"moc_cgo_sailfish_emulator_linux_386.go", "moc_cgo_sailfish_linux_arm.go",
+		"moc_cgo_rpi1_linux_arm.go", "moc_cgo_rpi2_linux_arm.go", "moc_cgo_rpi3_linux_arm.go"} {
 		if utils.Exists(filepath.Join(appPath, name)) {
 			utils.RemoveAll(filepath.Join(appPath, name))
 		}
@@ -226,21 +228,20 @@ func moc(appPath string) {
 			utils.SaveBytes(filepath.Join(appPath, "moc.go"), templater.GoTemplate(parser.MOC, false))
 
 			var mocPath string
-
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					mocPath = fmt.Sprintf("%v/5.7/clang_64/bin/moc", utils.QtInstallDir())
+					mocPath = filepath.Join(utils.QT_DIR(), "5.7", "clang_64", "bin", "moc")
 				}
 
 			case "linux":
 				{
-					mocPath = fmt.Sprintf("%v/5.7/gcc_64/bin/moc", utils.QtInstallDir())
+					mocPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "moc")
 				}
 
 			case "windows":
 				{
-					mocPath = fmt.Sprintf("%v\\5.7\\mingw53_32\\bin\\moc.exe", utils.QtInstallDir())
+					mocPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "moc")
 				}
 			}
 

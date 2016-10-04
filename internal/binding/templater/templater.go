@@ -25,15 +25,15 @@ func GenModule(name string) {
 
 		//cleanup
 		if !Minimal {
-			utils.RemoveAll(utils.GetQtPkgPath(pkgName))
-			utils.RemoveAll(utils.GetQtPkgPath("internal", "binding", "dump", name))
+			utils.RemoveAll(utils.GoQtPkgPath(pkgName))
+			utils.RemoveAll(utils.GoQtPkgPath("internal", "binding", "dump", name))
 		}
 
 		//prepare
-		utils.MakeFolder(utils.GetQtPkgPath(pkgName))
+		utils.MakeFolder(utils.GoQtPkgPath(pkgName))
 		CopyCgo(name)
 		if name == "AndroidExtras" && !Minimal {
-			utils.Save(utils.GetQtPkgPath(pkgName, "utils-androidextras_android.go"), utils.Load(utils.GetQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
+			utils.Save(utils.GoQtPkgPath(pkgName, "utils-androidextras_android.go"), utils.Load(utils.GoQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
 		}
 		manualWeakLink("Qt" + name)
 
@@ -44,23 +44,23 @@ func GenModule(name string) {
 		//generate
 		if Minimal {
 			if !(name == "AndroidExtras" || name == "Sailfish") {
-				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".cpp"), CppTemplate("Qt"+name))
-				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".h"), HTemplate("Qt"+name))
+				utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".cpp"), CppTemplate("Qt"+name))
+				utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".h"), HTemplate("Qt"+name))
 			}
 		} else {
-			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
-			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
+			utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
+			utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
 		}
 
 		if Minimal {
 			if !(name == "AndroidExtras" || name == "Sailfish") {
-				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+"-minimal.go"), GoTemplate("Qt"+name, false))
+				utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+"-minimal.go"), GoTemplate("Qt"+name, false))
 			}
 		} else {
 			if name == "AndroidExtras" || name == "Sailfish" {
-				utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+name, false))
+				utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+name, false))
 			}
-			utils.SaveBytes(utils.GetQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+name, name == "AndroidExtras" || name == "Sailfish"))
+			utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+name, name == "AndroidExtras" || name == "Sailfish"))
 		}
 	}
 }
