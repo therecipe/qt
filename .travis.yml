@@ -1,0 +1,24 @@
+language: go
+
+go:
+  - 1.6.3
+  - 1.7.1
+  - tip
+
+os:
+  - linux
+
+matrix:
+include:
+  - os: linux
+    dist: trusty
+    sudo: required
+
+install:
+  - sudo apt-get -qq update
+  - sudo apt-get -y install build-essential libgl1-mesa-dev
+  - curl -sL -o /tmp/qt-opensource-linux-x64-android-5.7.0.run https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
+  - chmod +x /tmp/qt-opensource-linux-x64-android-5.7.0.run && /tmp/qt-opensource-linux-x64-android-5.7.0.run --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
+
+script:
+  - $GOPATH/src/github.com/therecipe/qt/setup.sh
