@@ -15,6 +15,7 @@ include:
     sudo: required
 
 install:
+  - go env
   - sudo apt-get -qq update
   - sudo apt-get -y install build-essential libgl1-mesa-dev
   - curl -sL -o /tmp/qt-opensource-linux-x64-android-5.7.0.run https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
