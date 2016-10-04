@@ -44,8 +44,8 @@ func main() {
 				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtdeploy"))
 				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtmoc"))
 
-				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
-				runCmd(exec.Command("ln", "-s", filepath.Join(gopath, "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
+				runCmdOptional(exec.Command("ln", "-s", filepath.Join(gopath, "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
+				runCmdOptional(exec.Command("ln", "-s", filepath.Join(gopath, "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
 			}
 
 		case "windows":
@@ -55,11 +55,11 @@ func main() {
 
 				var cmdDeploy = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtdeploy%v", ending)))
 				cmdDeploy.Dir = filepath.Join(runtime.GOROOT(), "bin")
-				runCmd(cmdDeploy, "symlink.qtdeploy")
+				runCmdOptional(cmdDeploy, "symlink.qtdeploy")
 
 				var cmdMoc = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtmoc%v", ending), filepath.Join(gopath, "bin", fmt.Sprintf("qtmoc%v", ending)))
 				cmdMoc.Dir = filepath.Join(runtime.GOROOT(), "bin")
-				runCmd(cmdMoc, "symlink.qtmoc")
+				runCmdOptional(cmdMoc, "symlink.qtmoc")
 			}
 		}
 
@@ -93,5 +93,11 @@ func runCmd(cmd *exec.Cmd, name string) {
 	if out, err := cmd.CombinedOutput(); err != nil {
 		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
 		os.Exit(1)
+	}
+}
+
+func runCmdOptional(cmd *exec.Cmd, name string) {
+	if out, err := cmd.CombinedOutput(); err != nil {
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
 	}
 }
