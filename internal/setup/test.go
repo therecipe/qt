@@ -84,7 +84,7 @@ func main() {
 			//TODO:
 			runCmd(exec.Command(filepath.Join(gopath, "bin", "qtdeploy"), "test", buildTarget, filepath.Join(utils.GoQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
 
-			fmt.Println(strings.Repeat(" ", 30-len(example)), time.Since(before)/time.Second*time.Second)
+			fmt.Println(strings.Repeat(" ", 45-len(example)), time.Since(before)/time.Second*time.Second)
 		}
 	}
 }

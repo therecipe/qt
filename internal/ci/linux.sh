@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -ev
 
 #replace gcc4 with gcc5
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test

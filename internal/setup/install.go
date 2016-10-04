@@ -274,7 +274,7 @@ func main() {
 				}
 			}
 
-			fmt.Println(strings.Repeat(" ", 30-len(m)), time.Since(before)/time.Second*time.Second)
+			fmt.Println(strings.Repeat(" ", 45-len(m)), time.Since(before)/time.Second*time.Second)
 		}
 	}
 }

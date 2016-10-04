@@ -1,5 +1,6 @@
 #!/bin/sh
-set -e
+set -ev
+
 go get golang.org/x/crypto/ssh
 go get github.com/emirpasic/gods/lists/arraylist
 go run $GOPATH/src/github.com/therecipe/qt/internal/setup/check.go "$@"
