@@ -28,9 +28,9 @@ install:
 
     %TMP%\VirtualBox-5.1.6-110634-Win.exe --extract --silent
 
-    %TMP%\VirtualBox\VirtualBox-5.1.6-r110634-MultiArch_amd64.msi /passive -wait
-
 - ps: |
+    Start-Process powershell -Verb runAs
+
     Start-Process $env:tmp\VirtualBox\VirtualBox-5.1.6-r110634-MultiArch_amd64.msi /passive -wait
 
 - cmd: >-
