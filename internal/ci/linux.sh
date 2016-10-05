@@ -14,6 +14,8 @@ chmod +x /tmp/qt-opensource-linux-x64-android-5.7.0.run
 /tmp/qt-opensource-linux-x64-android-5.7.0.run --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
 rm -f /tmp/qt-opensource-linux-x64-android-5.7.0.run
 
+if [[ "$ANDROID" == "true" ]]
+then
 #download and install android sdk
 curl -sL --retry 3 -o /tmp/android-sdk_r24.4.1-linux.tgz https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 tar -xzf /tmp/android-sdk_r24.4.1-linux.tgz -C /tmp
@@ -26,7 +28,10 @@ echo "y" | /tmp/android-sdk-linux/tools/android -s update sdk -f -u -a -t 1,2,4,
 curl -sL --retry 3 -o /tmp/android-ndk-r12b-linux-x86_64.zip https://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip
 unzip -qq /tmp/android-ndk-r12b-linux-x86_64.zip -d /tmp
 rm -f /tmp/android-ndk-r12b-linux-x86_64.zip
+fi
 
+if [[ "$SAILFISH" == "true" ]]
+then
 #download and install virtualbox
 #curl -sL --retry 3 -o /tmp/VirtualBox-5.1.6-110634-Linux_amd64.run http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Linux_amd64.run
 #chmod +x /tmp/VirtualBox-5.1.6-110634-Linux_amd64.run
@@ -38,3 +43,4 @@ rm -f /tmp/android-ndk-r12b-linux-x86_64.zip
 #chmod +x /tmp/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
 #/tmp/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
 #rm -f /tmp/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
+fi

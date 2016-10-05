@@ -26,16 +26,8 @@ install:
     7z x %TMP%\android-ndk-r12b-windows-x86_64.zip -oC:\
 
     DEL %TMP%\android-ndk-r12b-windows-x86_64.zip /Q
-
-    curl -sL --retry 3 -o %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
-
-    %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
-
-    DEL %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe /Q
 build_script:
 - cmd: >-
-    %GOPATH%\src\github.com\therecipe\qt\setup.bat sailfish
+    %GOPATH%\src\github.com\therecipe\qt\setup.bat
 
     %GOPATH%\src\github.com\therecipe\qt\setup.bat android
-
-    %GOPATH%\src\github.com\therecipe\qt\setup.bat

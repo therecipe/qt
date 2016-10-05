@@ -5,14 +5,29 @@ sudo: required
 
 go: 1.7.1
 
+env: DESKTOP=true ANDROID=true IOS=false SAILFISH=false
+
 matrix:
   include:
     - os: osx
-      osx_image: xcode8
+      osx_image:
+        - xcode8
+        - xcode7.3
+        - xcode7.2
+      env: DESKTOP=true ANDROID=false IOS=false SAILFISH=false
+
     - os: osx
-      osx_image: xcode7.3
+      env: DESKTOP=false ANDROID=true IOS=false SAILFISH=false
+
     - os: osx
-      osx_image: xcode7.2
+      osx_image:
+        - xcode8
+        - xcode7.3
+        - xcode7.2
+      env: DESKTOP=false ANDROID=false IOS=true SAILFISH=false
+
+    - os: osx
+      env: DESKTOP=false ANDROID=false IOS=false SAILFISH=true
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export QT_QPA_PLATFORM=minimal; fi
@@ -29,9 +44,9 @@ before_script:
   - sudo chown $USER /usr/local/bin/
 
 script:
-  - $GOPATH/src/github.com/therecipe/qt/setup.sh
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios-simulator; fi
-  - $GOPATH/src/github.com/therecipe/qt/setup.sh android
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish-emulator; fi
+  - if [[ "$DESKTOP" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh; fi
+  - if [[ "$ANDROID" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh android; fi
+  - if [[ "$IOS" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios; fi
+  - if [[ "$IOS" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios-simulator; fi
+  - if [[ "$SAILFISH" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish; fi
+  - if [[ "$SAILFISH" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish-emulator; fi
