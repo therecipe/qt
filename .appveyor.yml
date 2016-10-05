@@ -1,0 +1,27 @@
+version: 1.0.{build}
+clone_depth: 1
+clone_folder: C:\work\src\github.com\therecipe\
+environment:
+  QT_DIR: C:\Qt
+  GOPATH: C:\work
+build_script:
+- cmd: >-
+    set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
+
+
+    @REM download and install android sdk
+
+
+    @REM install deps for android sdk
+
+
+    @REM download and install android ndk
+
+
+    @REM download and install virtualbox
+
+
+    @REM download and install sailfish sdk
+
+
+    %GOPATH%\src\github.com\therecipe\qt\setup.bat

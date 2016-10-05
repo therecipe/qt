@@ -228,7 +228,7 @@ func main() {
 		}
 	}
 
-	if os.Getenv("TRAVIS") == "true" {
+	if os.Getenv("CI") == "true" {
 		return
 	}
 

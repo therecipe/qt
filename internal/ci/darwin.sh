@@ -31,6 +31,6 @@ rm -f /tmp/VirtualBox-5.1.6-110634-OSX.dmg
 #download and install sailfish sdk
 curl -sL -o /tmp/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
 hdiutil attach -noverify -noautofsck -quiet /tmp/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
-/Volumes/SailfishOSSDK-mac-offline-160801/SailfishOSSDK-mac-offline-160801.app/Contents/MacOS/SailfishOSSDK-mac-offline-160801 --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscriptcd.qs
+/Volumes/SailfishOSSDK-mac-offline-160801/SailfishOSSDK-mac-offline-160801.app/Contents/MacOS/SailfishOSSDK-mac-offline-160801 --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
 diskutil unmountDisk disk1
 rm -f /tmp/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
