@@ -22,7 +22,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 45 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
 
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then killall "qtcreator"; fi
+# - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then killall "qtcreator"; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export ANDROID_SDK_DIR=/tmp/android-sdk-linux; fi
 
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then killall "Qt Creator"; fi

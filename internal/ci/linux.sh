@@ -28,7 +28,6 @@ unzip -qq /tmp/android-ndk-r12b-linux-x86_64.zip -d /tmp
 rm -f /tmp/android-ndk-r12b-linux-x86_64.zip
 
 #download and install virtualbox
-#sudo apt-get -y -qq install linux-headers-generic
 #curl -sL -o /tmp/VirtualBox-5.1.6-110634-Linux_amd64.run http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Linux_amd64.run
 #chmod +x /tmp/VirtualBox-5.1.6-110634-Linux_amd64.run
 #sudo /tmp/VirtualBox-5.1.6-110634-Linux_amd64.run
