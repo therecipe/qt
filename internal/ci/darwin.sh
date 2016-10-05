@@ -4,7 +4,7 @@ set -ev
 #download and install qt
 curl -sL -o /tmp/qt-opensource-mac-x64-android-ios-5.7.0.dmg https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 hdiutil attach -quiet /tmp/qt-opensource-mac-x64-android-ios-5.7.0.dmg
-/Volumes/qt-opensource-mac-x64-android-ios-5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.app/Contents/MacOS/qt-opensource-mac-x64-android-ios-5.7.0 --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
+travis_wait 20 /Volumes/qt-opensource-mac-x64-android-ios-5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.app/Contents/MacOS/qt-opensource-mac-x64-android-ios-5.7.0 --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
 diskutil unmountDisk disk2
 
 #download and install android sdk
