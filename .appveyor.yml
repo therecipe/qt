@@ -11,29 +11,41 @@ install:
     set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
 
     curl -sL --retry 3 -o %TMP%\android-sdk_r24.4.1-windows.zip https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
+
     7z x %TMP%\android-sdk_r24.4.1-windows.zip -oC:\
+
     DEL %TMP%\android-sdk_r24.4.1-windows.zip /Q
 
     echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -a -t 1,2,4,31
 
     curl -sL --retry 3 -o %TMP%\android-ndk-r12b-windows-x86_64.zip https://dl.google.com/android/repository/android-ndk-r12b-windows-x86_64.zip
+
     7z x %TMP%\android-ndk-r12b-windows-x86_64.zip -oC:\
+
     DEL %TMP%\android-ndk-r12b-windows-x86_64.zip /Q
 
     curl -sL --retry 3 -o %TMP%\VirtualBox-5.1.6-110634-Win.exe http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe
+
     %TMP%\VirtualBox-5.1.6-110634-Win.exe --extract --silent
+
 - ps: |
     Start-Process $env:tmp\VirtualBox\VirtualBox-5.1.6-r110634-MultiArch_amd64.msi /passive
+
 - cmd: >-
     DEL %TMP%\VirtualBox-5.1.6-110634-Win.exe /Q
+
     RMDIR %TMP%\VirtualBox /S /Q
 
     curl -sL --retry 3 -o %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
+
     %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
+
     DEL %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe /Q
+
 build_script:
 - cmd: >-
     %GOPATH%\src\github.com\therecipe\qt\setup.bat
 
     %GOPATH%\src\github.com\therecipe\qt\setup.bat sailfish
+
     %GOPATH%\src\github.com\therecipe\qt\setup.bat sailfish-emulator
