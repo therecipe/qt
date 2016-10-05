@@ -30,8 +30,8 @@ unzip -qq /tmp/android-ndk-r12b-linux-x86_64.zip -d /tmp
 rm -f /tmp/android-ndk-r12b-linux-x86_64.zip
 fi
 
-if [[ "$SAILFISH" == "true" ]]
-then
+#if [[ "$SAILFISH" == "true" ]]
+#then
 #download and install virtualbox
 #curl -sL --retry 3 -o /tmp/VirtualBox-5.1.6-110634-Linux_amd64.run http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Linux_amd64.run
 #chmod +x /tmp/VirtualBox-5.1.6-110634-Linux_amd64.run
@@ -43,4 +43,4 @@ then
 #chmod +x /tmp/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
 #/tmp/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
 #rm -f /tmp/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
-fi
+#fi
