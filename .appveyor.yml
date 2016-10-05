@@ -1,6 +1,6 @@
 version: 1.0.{build}
 clone_depth: 1
-clone_folder: C:\work\src\github.com\therecipe\
+clone_folder: C:\work\src\github.com\therecipe\qt
 environment:
   QT_DIR: C:\Qt
   GOPATH: C:\work
@@ -28,8 +28,10 @@ install:
 
     %TMP%\VirtualBox-5.1.6-110634-Win.exe --extract --silent
 
+    %TMP%\VirtualBox\VirtualBox-5.1.6-r110634-MultiArch_amd64.msi /passive -wait
+
 - ps: |
-    Start-Process $env:tmp\VirtualBox\VirtualBox-5.1.6-r110634-MultiArch_amd64.msi /passive
+    Start-Process $env:tmp\VirtualBox\VirtualBox-5.1.6-r110634-MultiArch_amd64.msi /passive -wait
 
 - cmd: >-
     DEL %TMP%\VirtualBox-5.1.6-110634-Win.exe /Q
@@ -37,8 +39,6 @@ install:
     RMDIR %TMP%\VirtualBox /S /Q
 
     curl -sL --retry 3 -o %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
-
-    DIR %GOPATH%\src\github.com\therecipe\
 
     %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
 
