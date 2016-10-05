@@ -228,6 +228,10 @@ func main() {
 		}
 	}
 
+	if os.Getenv("TRAVIS") == "true" {
+		return
+	}
+
 	fmt.Println("------------------------install-------------------------")
 
 	for _, m := range templater.GetLibs() {

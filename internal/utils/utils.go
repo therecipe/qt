@@ -102,6 +102,9 @@ func JDK_DIR() string {
 	if dir := os.Getenv("JDK_DIR"); dir != "" {
 		return filepath.Clean(dir)
 	}
+	if dir := os.Getenv("JAVA_HOME"); dir != "" {
+		return filepath.Clean(dir)
+	}
 
 	switch runtime.GOOS {
 	case "windows":

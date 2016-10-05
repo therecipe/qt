@@ -1,5 +1,10 @@
 function Controller()
 {
+  installer.wizardPageInsertionRequested.connect(function(widget, page)
+  {
+    installer.removeWizardPage(installer.components()[0], "WorkspaceWidget");
+  })
+
   installer.autoRejectMessageBoxes();
   installer.installationFinished.connect(function()
   {
