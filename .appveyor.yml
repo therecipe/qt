@@ -34,6 +34,8 @@ install:
     DEL %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe /Q
 build_script:
 - cmd: >-
-    %GOPATH%\src\github.com\therecipe\qt\setup.bat
+    %GOPATH%\src\github.com\therecipe\qt\setup.bat sailfish
 
     %GOPATH%\src\github.com\therecipe\qt\setup.bat android
+
+    %GOPATH%\src\github.com\therecipe\qt\setup.bat
