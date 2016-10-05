@@ -1,6 +1,6 @@
 version: 1.0.{build}
 clone_depth: 1
-clone_folder: C:\work\src\github.com\therecipe
+clone_folder: C:\work\src\github.com\therecipe\
 environment:
   QT_DIR: C:\Qt
   GOPATH: C:\work
@@ -37,6 +37,8 @@ install:
     RMDIR %TMP%\VirtualBox /S /Q
 
     curl -sL --retry 3 -o %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
+
+    DIR %GOPATH%\src\github.com\therecipe\
 
     %TMP%\SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
 
