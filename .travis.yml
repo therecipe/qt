@@ -30,6 +30,6 @@ script:
   - $GOPATH/src/github.com/therecipe/qt/setup.sh
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios-simulator; fi
-  #- $GOPATH/src/github.com/therecipe/qt/setup.sh android
+  - $GOPATH/src/github.com/therecipe/qt/setup.sh android
   - $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish
   - $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish-emulator
