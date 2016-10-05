@@ -11,16 +11,14 @@ rm -f /tmp/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 #download and install android sdk
 curl -sL -o /tmp/android-sdk_r24.4.1-macosx.zip https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
 unzip -qq /tmp/android-sdk_r24.4.1-macosx.zip -d /tmp
-export ANDROID_SDK_DIR=/tmp/android-sdk-macosx
 rm -f /tmp/android-sdk_r24.4.1-macosx.zip
 
 #install deps for android sdk
-echo "y" | $ANDROID_SDK_DIR/tools/android -s update sdk -f -u -a -t 1,2,4,31
+echo "y" | /tmp/android-sdk-macosx/tools/android -s update sdk -f -u -a -t 1,2,4,31
 
 #download and install android ndk
 curl -sL -o /tmp/android-ndk-r12b-darwin-x86_64.zip https://dl.google.com/android/repository/android-ndk-r12b-darwin-x86_64.zip
 unzip -qq /tmp/android-ndk-r12b-darwin-x86_64.zip -d /tmp
-export ANDROID_NDK_DIR=/tmp/android-ndk-r12b
 rm -f /tmp/android-ndk-r12b-darwin-x86_64.zip
 
 #download and install virtualbox
