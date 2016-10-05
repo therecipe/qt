@@ -96,7 +96,7 @@ func args() {
 		}
 	}
 
-	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" || os.Getenv("CI") == "true" {
+	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" || strings.ToLower(os.Getenv("CI")) == "true" {
 		buildMinimal = true
 	}
 

@@ -228,7 +228,7 @@ func main() {
 		}
 	}
 
-	if os.Getenv("CI") == "true" {
+	if strings.ToLower(os.Getenv("CI")) == "true" {
 		return
 	}
 
