@@ -2,9 +2,9 @@
 set -ev
 
 #replace gcc4 with gcc5
-sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-sudo apt-get update
-sudo apt-get -y install gcc-5 g++-5
+sudo add-apt-repository -y -qq ppa:ubuntu-toolchain-r/test
+sudo apt-get -qq update
+sudo apt-get -y -qq install gcc-5 g++-5
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 90
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
 
@@ -22,7 +22,7 @@ export ANDROID_SDK_DIR=/tmp/android-sdk-linux
 
 #download and install android ndk
 curl -sL -o /tmp/android-ndk-r12b-linux-x86_64.zip https://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip
-unzip /tmp/android-ndk-r12b-linux-x86_64.zip -d /tmp
+unzip -qq /tmp/android-ndk-r12b-linux-x86_64.zip -d /tmp
 export ANDROID_NDK_DIR=/tmp/android-ndk-r12b
 
 #download and install virtualbox
