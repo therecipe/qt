@@ -18,8 +18,8 @@ before_install:
   - export QT_QPA_PLATFORM=minimal
 
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
 
 before_script:
   - killall "Qt Creator"
