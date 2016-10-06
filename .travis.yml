@@ -10,20 +10,14 @@ env: DESKTOP=true ANDROID=true IOS=false SAILFISH=false
 matrix:
   include:
     - os: osx
-      osx_image:
-        - xcode8
-        - xcode7.3
-        - xcode7.2
+      osx_image: xcode8
       env: DESKTOP=true ANDROID=false IOS=false SAILFISH=false
 
     - os: osx
       env: DESKTOP=false ANDROID=true IOS=false SAILFISH=false
 
     - os: osx
-      osx_image:
-        - xcode8
-        - xcode7.3
-        - xcode7.2
+      osx_image: xcode8
       env: DESKTOP=false ANDROID=false IOS=true SAILFISH=false
 
     - os: osx
@@ -31,16 +25,15 @@ matrix:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export QT_QPA_PLATFORM=minimal; fi
-
-install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 20 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 45 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
-
-before_script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export ANDROID_SDK_DIR=/tmp/android-sdk-linux; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export ANDROID_SDK_DIR=/tmp/android-sdk-macosx; fi
   - export ANDROID_NDK_DIR=/tmp/android-ndk-r12b
 
+install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 20 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
+
+before_script:
   - sudo chown $USER /usr/local/bin/
 
 script:
