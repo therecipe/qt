@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"go/ast"
 	goparser "go/parser"
@@ -17,10 +18,16 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var modulesInited bool
+var (
+	modulesInited bool
+	tmpFiles      = make([]string, 0)
+)
 
 func main() {
-	var appPath string
+	var (
+		appPath string
+		cleanup bool
+	)
 
 	switch len(os.Args) {
 	case 1:
@@ -28,9 +35,10 @@ func main() {
 			appPath, _ = os.Getwd()
 		}
 
-	default:
+	case 2, 3:
 		{
 			appPath = os.Args[1]
+			cleanup = len(os.Args) == 3
 		}
 	}
 
@@ -39,7 +47,7 @@ func main() {
 	}
 
 	var walkFunc = func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() {
+		if info.IsDir() && !isBlacklisted(appPath, filepath.Join(path, info.Name())) {
 			moc(path)
 
 			for className, class := range parser.ClassMap {
@@ -53,6 +61,13 @@ func main() {
 	}
 
 	filepath.Walk(appPath, walkFunc)
+
+	if cleanup {
+		var b, err = json.Marshal(tmpFiles)
+		if err == nil {
+			utils.SaveBytes(filepath.Join(appPath, "cleanup.json"), b)
+		}
+	}
 }
 
 func moc(appPath string) {
@@ -66,6 +81,7 @@ func moc(appPath string) {
 		if utils.Exists(filepath.Join(appPath, name)) {
 			utils.RemoveAll(filepath.Join(appPath, name))
 		}
+		tmpFiles = append(tmpFiles, filepath.Join(appPath, name))
 	}
 
 	var module = &parser.Module{Project: parser.MOC, Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
@@ -227,6 +243,10 @@ func moc(appPath string) {
 			utils.SaveBytes(filepath.Join(appPath, "moc.h"), templater.HTemplate(parser.MOC))
 			utils.SaveBytes(filepath.Join(appPath, "moc.go"), templater.GoTemplate(parser.MOC, false))
 
+			tmpFiles = append(tmpFiles, filepath.Join(appPath, "moc.cpp"))
+			tmpFiles = append(tmpFiles, filepath.Join(appPath, "moc.h"))
+			tmpFiles = append(tmpFiles, filepath.Join(appPath, "moc.go"))
+
 			var mocPath string
 			switch runtime.GOOS {
 			case "darwin":
@@ -251,6 +271,8 @@ func moc(appPath string) {
 				"-o", filepath.Join(appPath, "moc_moc.h"))
 			moc.Dir = filepath.Join(appPath)
 			runCmd(moc, "moc.moc")
+
+			tmpFiles = append(tmpFiles, filepath.Join(appPath, "moc_moc.h"))
 
 			var gofmt = exec.Command("go", "fmt")
 			gofmt.Dir = appPath
@@ -398,4 +420,15 @@ func runCmd(cmd *exec.Cmd, n string) {
 		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", n, out, err)
 		os.Exit(1)
 	}
+}
+
+func isBlacklisted(appPath, currentPath string) bool {
+
+	for _, n := range []string{"deploy", "qml", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3"} {
+		if strings.Contains(filepath.Join(currentPath), filepath.Join(appPath, n)) {
+			return true
+		}
+	}
+
+	return false
 }

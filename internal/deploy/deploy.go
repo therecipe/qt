@@ -159,9 +159,7 @@ func args() {
 }
 
 func moc() {
-	var moc = exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"))
-	moc.Dir = appPath
-	runCmd(moc, "qtdeploy.moc")
+	runCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), appPath, "cleanup"), "qtdeploy.moc")
 }
 
 func qrc() {
@@ -933,6 +931,13 @@ func cleanup() {
 	utils.RemoveAll(filepath.Join(appPath, "qrc.qrc"))
 	utils.RemoveAll(filepath.Join(appPath, "qrc.cpp"))
 	utils.RemoveAll(filepath.Join(appPath, "cgo_main_wrapper.go"))
+
+	var tmpMocFiles []string
+	json.Unmarshal([]byte(utils.Load(filepath.Join(appPath, "cleanup.json"))), &tmpMocFiles)
+	for _, mf := range tmpMocFiles {
+		utils.RemoveAll(mf)
+	}
+	utils.RemoveAll(filepath.Join(appPath, "cleanup.json"))
 }
 
 func run() {
