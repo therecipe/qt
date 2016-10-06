@@ -5,23 +5,24 @@ sudo: required
 
 go: 1.7.1
 
-env: DESKTOP=true ANDROID=true IOS=false SAILFISH=false
+env: DESKTOP=true ANDROID=true IOS=false IOS_SIMULATOR=false
 
 matrix:
   include:
     - os: osx
       osx_image: xcode8
-      env: DESKTOP=true ANDROID=false IOS=false SAILFISH=false
+      env: DESKTOP=true ANDROID=false IOS=false IOS_SIMULATOR=false
 
     - os: osx
-      env: DESKTOP=false ANDROID=true IOS=false SAILFISH=false
+      env: DESKTOP=false ANDROID=true IOS=false IOS_SIMULATOR=false
 
     - os: osx
       osx_image: xcode8
-      env: DESKTOP=false ANDROID=false IOS=true SAILFISH=false
+      env: DESKTOP=false ANDROID=false IOS=true IOS_SIMULATOR=false
 
     - os: osx
-      env: DESKTOP=false ANDROID=false IOS=false SAILFISH=true
+      osx_image: xcode8
+      env: DESKTOP=false ANDROID=false IOS=false IOS_SIMULATOR=true
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
@@ -34,6 +35,4 @@ script:
   - if [[ "$DESKTOP" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh; else go run $GOPATH/src/github.com/therecipe/qt/internal/setup/generate.go; fi
   - if [[ "$ANDROID" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh android; fi
   - if [[ "$IOS" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios; fi
-  - if [[ "$IOS" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios-simulator; fi
-  - if [[ "$SAILFISH" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish; fi
-  - if [[ "$SAILFISH" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh sailfish-emulator; fi
+  - if [[ "$IOS_SIMULATOR" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios-simulator; fi

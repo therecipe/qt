@@ -419,21 +419,13 @@ func build() {
 			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
 			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
 
-			if strings.ToLower(os.Getenv("CI")) == "true" {
-				runCmd(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "modifyvm", "MerSDK", "--hwvirtex", "off"), "buid.vboxDisableHwVirtualization")
-			}
-
 			if runtime.GOOS == "windows" {
 				runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
 			} else {
 				runCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
 			}
 
-			if strings.ToLower(os.Getenv("CI")) == "true" {
-				time.Sleep(30 * time.Second)
-			} else {
-				time.Sleep(10 * time.Second)
-			}
+			time.Sleep(10 * time.Second)
 
 			if buildTarget == "sailfish-emulator" {
 
@@ -983,10 +975,6 @@ func run() {
 		{
 			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), "buid.vboxRegisterEmulator")
 			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
-
-			if strings.ToLower(os.Getenv("CI")) == "true" {
-				runCmd(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "modifyvm", "SailfishOS Emulator", "--hwvirtex", "off"), "buid.vboxDisableHwVirtualization")
-			}
 
 			if runtime.GOOS == "windows" {
 				runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
