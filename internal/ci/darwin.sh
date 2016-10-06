@@ -8,15 +8,15 @@ diskutil list
 #download and install qt
 if [ "$IOS" == "true" ]
 then
-QT=qt-opensource-mac-x64-android-ios-5.7.0.dmg
+QT=qt-opensource-mac-x64-android-ios-5.7.0
 else
-QT=qt-opensource-mac-x64-android-5.7.0.dmg
+QT=qt-opensource-mac-x64-android-5.7.0
 fi
-curl -sL --retry 3 -o /tmp/$QT https://download.qt.io/official_releases/qt/5.7/5.7.0/$QT
-hdiutil attach -noverify -noautofsck -quiet /tmp/$QT
-/Volumes/qt-opensource-mac-x64-android-ios-5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.app/Contents/MacOS/qt-opensource-mac-x64-android-ios-5.7.0 --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
+curl -sL --retry 3 -o /tmp/$QT.dmg https://download.qt.io/official_releases/qt/5.7/5.7.0/$QT.dmg
+hdiutil attach -noverify -noautofsck -quiet /tmp/$QT.dmg
+/Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
 diskutil unmountDisk disk1
-rm -f /tmp/$QT
+rm -f /tmp/$QT.dmg
 
 if [ "$ANDROID" == "true" ]
 then
@@ -54,3 +54,17 @@ hdiutil attach -noverify -noautofsck -quiet /tmp/$SFDK
 diskutil unmountDisk disk1
 rm -f /tmp/$SFDK
 fi
+
+#
+df -h
+diskutil list
+
+ls $HOME
+ls $HOME/*
+ls $HOME/$SDK
+ls $HOME/$NDK
+
+du -sh $HOME
+du -sh $HOME/*
+du -sh $HOME/$SDK
+du -sh $HOME/$NDK

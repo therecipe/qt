@@ -38,3 +38,16 @@ curl -sL --retry 3 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
 unzip -qq /tmp/$NDK -d $HOME
 rm -f /tmp/$NDK
 fi
+
+#
+df -h
+
+ls $HOME
+ls $HOME/*
+ls $HOME/$SDK
+ls $HOME/$NDK
+
+du -sh $HOME
+du -sh $HOME/*
+du -sh $HOME/$SDK
+du -sh $HOME/$NDK
