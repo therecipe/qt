@@ -14,16 +14,16 @@ then
 #download and install android sdk
 SDK=android-sdk_r24.4.1-macosx.zip
 curl -sL --retry 3 -o /tmp/$SDK https://dl.google.com/android/$SDK
-sudo unzip -qq /tmp/$SDK -d /opt
+unzip -qq /tmp/$SDK -d $HOME
 rm -f /tmp/$SDK
 
 #install deps for android sdk
-echo "y" | /tmp/android-sdk-macosx/tools/android -s update sdk -f -u -a -t 1,2,4,31
+echo "y" | $HOME/android-sdk-macosx/tools/android -s update sdk -f -u -a -t 1,2,4,31
 
 #download and install android ndk
 NDK=android-ndk-r12b-darwin-x86_64.zip
 curl -sL --retry 3 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
-sudo unzip -qq /tmp/$NDK -d /opt
+unzip -qq /tmp/$NDK -d $HOME
 rm -f /tmp/$NDK
 fi
 

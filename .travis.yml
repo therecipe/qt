@@ -31,9 +31,9 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
 
 before_script:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export ANDROID_SDK_DIR=/opt/android-sdk-linux; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export ANDROID_SDK_DIR=/opt/android-sdk-macosx; fi
-  - export ANDROID_NDK_DIR=/opt/android-ndk-r12b
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export ANDROID_SDK_DIR=$HOME/android-sdk-linux; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then export ANDROID_SDK_DIR=$HOME/android-sdk-macosx; fi
+  - export ANDROID_NDK_DIR=$HOME/android-ndk-r12b
   - sudo chown $USER /usr/local/bin/
 
 script:
