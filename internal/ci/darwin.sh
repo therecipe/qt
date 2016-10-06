@@ -18,7 +18,7 @@ unzip -qq /tmp/$SDK -d /tmp
 rm -f /tmp/$SDK
 
 #install deps for android sdk
-echo "y" | $ANDROID_NDK_DIR/tools/android -s update sdk -f -u -a -t 1,2,4,31
+echo "y" | /tmp/android-sdk-macosx/tools/android -s update sdk -f -u -a -t 1,2,4,31
 
 #download and install android ndk
 NDK=android-ndk-r12b-darwin-x86_64.zip
