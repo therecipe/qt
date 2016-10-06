@@ -69,7 +69,7 @@
 
 	* `go get -d github.com/therecipe/qt`
 
-5. Generate, install and test (~20 min)
+5. Generate, install and test (20 min)
 
 	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat`
 
@@ -94,7 +94,7 @@
 
 	* `go get -d github.com/therecipe/qt`
 
-5. Generate, install and test (~20 min)
+5. Generate, install and test (20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
@@ -126,7 +126,7 @@
 
 	* `go get -d github.com/therecipe/qt`
 
-5. Generate, install and test (~20 min)
+5. Generate, install and test (20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
@@ -138,12 +138,12 @@
 
 1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
 
-2. Install the Android SDK in `C:\android-sdk\` or `/opt/android-sdk/`; you can also define a custom location with **ANDROID_SDK_DIR**
+2. Unzip the Android SDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_SDK_DIR**
 	* https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
 	* https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
 	* https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 
-3. Install the SDK dependencies with `C:\android-sdk\tools\android.bat` or `/opt/android-sdk/tools/android`
+3. Install the SDK dependencies with `C:\android-sdk-windows\tools\android.bat` or `$HOME/android-sdk-{ macosx | linux }/tools/android`
 	* Tools
 		* Android SDK Build-tools (24.0.3)
 	* Android 7.0 (API 24)
@@ -151,15 +151,15 @@
 	* Extras (Windows only)
 		* Google USB Driver
 
-4. Install the Android NDK in `C:\android-ndk\` or `/opt/android-ndk/`; you can also define a custom location with **ANDROID_NDK_DIR**
+4. Unzip the Android NDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_NDK_DIR**
 	* https://dl.google.com/android/repository/android-ndk-r12b-windows-x86_64.zip
 	* https://dl.google.com/android/repository/android-ndk-r12b-darwin-x86_64.zip
 	* https://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip
 
-5. Install Java SE Development Kit (Linux: install in `/opt/jdk/`); you can also define a custom location with **JDK_DIR**
+5. Install Java SE Development Kit (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-6. Install and test (~20 min)
+6. Install and test (20 min)
 
 	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android`
 
@@ -173,7 +173,7 @@
 
 1. Install the desktop version for [macOS](#macos-1)
 
-2. Install and test (~20 min)
+2. Install and test (20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
 
@@ -193,7 +193,7 @@
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
 
-4. Install and test (~20 min)
+4. Install and test (20 min)
 
 	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator`
 
@@ -209,24 +209,24 @@
 
 1. Install the desktop version for [Linux](#linux-1)
 
-2. Create a folder `~/raspi`
+2. Create a folder `$HOME/raspi`
 
-	* `mkdir ~/raspi`
+	* `mkdir $HOME/raspi`
 
 3. Download and unpack the Qt 5.7.0 source
 
-	* `cd ~/raspi && wget https://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.tar.gz`
+	* `cd $HOME/raspi && wget https://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.tar.gz`
 	* `tar -xzf qt-everywhere-opensource-src-5.7.0.tar.gz qt-everywhere-opensource-src-5.7.0`
 
 4. Patch Qt Source
 
-	* `cd ~/raspi/qt-everywhere-opensource-src-5.7.0/qtbase && sed -i 's/c++1z/c++11/' ./mkspecs/devices/linux-rpi3-g++/qmake.conf`
+	* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0/qtbase && sed -i 's/c++1z/c++11/' ./mkspecs/devices/linux-rpi3-g++/qmake.conf`
 
-	* `cd ~/raspi/qt-everywhere-opensource-src-5.7.0/qtwayland && wget https://github.com/qtproject/qtwayland/commit/75294be3.patch && patch -p1 -i 75294be3.patch`
+	* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0/qtwayland && wget https://github.com/qtproject/qtwayland/commit/75294be3.patch && patch -p1 -i 75294be3.patch`
 
 5. Download the cross compiler
 
-	* `cd ~/raspi && git clone --depth 1 https://github.com/raspberrypi/tools.git`
+	* `cd $HOME/raspi && git clone --depth 1 https://github.com/raspberrypi/tools.git`
 
 6. Get dependencies and install Arch Linux on your SD card
 
@@ -253,7 +253,7 @@
 
 	* `sed -i 's/#PermitRootLogin/PermitRootLogin/' /etc/ssh/sshd_config && sed -i 's/prohibit-password/yes/' /etc/ssh/sshd_config && systemctl restart sshd.service`
 
-9. Update and install dependencies (~5 min)
+9. Update and install dependencies (5 min)
 
 	* `pacman -Syyu`
 
@@ -263,19 +263,19 @@
 
 	* Raspberry Pi 1
 		* `sed -i 's/gpu_mem=64/gpu_mem=128/' /boot/config.txt`
-		* `echo "exec startlxde" >> ~/.xinitrc && mkdir ~/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> ~/.config/weston.ini`
-		* `echo "dtoverlay=vc4-kms-v3d,cma-128" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' ~/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
+		* `echo "exec startlxde" >> $HOME/.xinitrc && mkdir $HOME/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> $HOME/.config/weston.ini`
+		* `echo "dtoverlay=vc4-kms-v3d,cma-128" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' $HOME/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
 
 	* Raspberry Pi 2 or 3
 		* `sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt`
-		* `echo "exec startlxde" >> ~/.xinitrc && mkdir ~/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> ~/.config/weston.ini`
-		* `echo "dtoverlay=vc4-kms-v3d,cma-256" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' ~/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
+		* `echo "exec startlxde" >> $HOME/.xinitrc && mkdir $HOME/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> $HOME/.config/weston.ini`
+		* `echo "dtoverlay=vc4-kms-v3d,cma-256" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' $HOME/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
 
 	* `reboot`
 
-10. Get sysroot for cross compiling (password: root) (~5 min)
+10. Get sysroot for cross compiling (password: root) (5 min)
 
-	* `cd ~/raspi && mkdir sysroot sysroot/usr sysroot/opt`
+	* `cd $HOME/raspi && mkdir sysroot sysroot/usr sysroot/opt`
 
 	* `rsync -avz root@$RASPI_IP:/lib sysroot --delete`
 
@@ -287,29 +287,29 @@
 
 11. Prepare sysroot
 
-	* `cd ~/raspi && wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py`
+	* `cd $HOME/raspi && wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py`
 	* `chmod +x sysroot-relativelinks.py && ./sysroot-relativelinks.py sysroot`
 
-12. Build Qt (~2 h)
+12. Build Qt (2 h)
 
-	* `cd ~/raspi/qt-everywhere-opensource-src-5.7.0`
+	* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0`
 
 	* Raspberry Pi 1
-		* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi1 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi1 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* Raspberry Pi 2
-		* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi2 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi2 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* Raspberry Pi 3
-		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=~/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot ~/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi3 -I ~/raspi/sysroot/opt/vc/include -I ~/raspi/sysroot/opt/vc/include/interface/vcos -I ~/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I ~/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi3 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* `make -k -i && sudo make -k -i install`
 
 13. Prepare the Qt directory
 
-	* `sudo chown -R $USER /usr/local/Qt5.7.0/`
+	* `sudo chown -R $USER $HOME/Qt5.7.0/`
 
-14. Install and test the binding (~20 min)
+14. Install and test the binding (20 min)
 
 	* Raspberry Pi 1
 		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi1`

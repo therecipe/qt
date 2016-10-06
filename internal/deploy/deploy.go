@@ -427,7 +427,11 @@ func build() {
 				runCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
 			}
 
-			time.Sleep(10 * time.Second)
+			if strings.ToLower(os.Getenv("CI")) == "true" {
+				time.Sleep(1 * time.Minute)
+			} else {
+				time.Sleep(10 * time.Second)
+			}
 
 			if buildTarget == "sailfish-emulator" {
 

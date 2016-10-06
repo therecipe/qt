@@ -1,6 +1,12 @@
 #!/bin/sh
 set -ev
 
+#
+df -h
+
+#needed for headless qt installation
+export QT_QPA_PLATFORM=minimal
+
 #replace gcc4 with gcc5
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get -qq update

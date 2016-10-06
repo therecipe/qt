@@ -1,8 +1,17 @@
 #!/bin/sh
 set -ev
 
+#
+df -h
+diskutil list
+
 #download and install qt
+if [ "$IOS" == "true" ]
+then
 QT=qt-opensource-mac-x64-android-ios-5.7.0.dmg
+else
+QT=qt-opensource-mac-x64-android-5.7.0.dmg
+fi
 curl -sL --retry 3 -o /tmp/$QT https://download.qt.io/official_releases/qt/5.7/5.7.0/$QT
 hdiutil attach -noverify -noautofsck -quiet /tmp/$QT
 /Volumes/qt-opensource-mac-x64-android-ios-5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.app/Contents/MacOS/qt-opensource-mac-x64-android-ios-5.7.0 --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs

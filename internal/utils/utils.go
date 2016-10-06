@@ -82,10 +82,23 @@ func ANDROID_SDK_DIR() string {
 	if dir := os.Getenv("ANDROID_SDK_DIR"); dir != "" {
 		return filepath.Clean(dir)
 	}
-	if runtime.GOOS == "windows" {
-		return filepath.Join("C:\\", "android-sdk")
+
+	switch runtime.GOOS {
+	case "windows":
+		{
+			return filepath.Join("C:\\", "android-sdk-windows")
+		}
+
+	case "darwin":
+		{
+			return filepath.Join(os.Getenv("HOME"), "android-sdk-macosx")
+		}
+
+	default:
+		{
+			return filepath.Join(os.Getenv("HOME"), "android-sdk-linux")
+		}
 	}
-	return filepath.Join("/opt", "android-sdk")
 }
 
 func ANDROID_NDK_DIR() string {
@@ -93,9 +106,9 @@ func ANDROID_NDK_DIR() string {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {
-		return filepath.Join("C:\\", "android-ndk")
+		return filepath.Join("C:\\", "android-ndk-r12b")
 	}
-	return filepath.Join("/opt", "android-ndk")
+	return filepath.Join(os.Getenv("HOME"), "android-ndk-r12b")
 }
 
 func JDK_DIR() string {
@@ -121,7 +134,7 @@ func JDK_DIR() string {
 
 	case "linux":
 		{
-			return filepath.Join("/opt", "jdk")
+			return filepath.Join(os.Getenv("HOME"), "jdk")
 		}
 
 	default:

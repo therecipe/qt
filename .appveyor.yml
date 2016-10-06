@@ -3,9 +3,6 @@ clone_depth: 1
 clone_folder: C:\work\src\github.com\therecipe\qt
 environment:
   GOPATH: C:\work
-  ANDROID_SDK_DIR: C:\android-sdk-windows
-  ANDROID_NDK_DIR: C:\android-ndk-r12b
-  QT_DIR: C:\Qt\Qt5.7.0
 install:
 - cmd: >-
     set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
