@@ -9,7 +9,7 @@ ls $HOME/*
 du -sh $HOME/*
 
 #download and install qt
-if [ "$IOS" == "true" || "$IOS_SIMULATOR" == "true" ]
+if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
 then
 QT=qt-opensource-mac-x64-android-ios-5.7.0
 else
