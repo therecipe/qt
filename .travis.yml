@@ -24,8 +24,8 @@ matrix:
       env: DESKTOP=false ANDROID=false IOS=false SAILFISH=true
 
 install:
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 20 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 25 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 45 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
 
 before_script:
   - sudo chown $USER /usr/local/bin/

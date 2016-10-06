@@ -1,9 +1,12 @@
 #!/bin/sh
 set -ev
 
-#
+#check env
 df -h
 diskutil list
+
+ls $HOME/*
+du -sh $HOME/*
 
 #download and install qt
 if [ "$IOS" == "true" ]
@@ -55,16 +58,9 @@ diskutil unmountDisk disk1
 rm -f /tmp/$SFDK
 fi
 
-#
+#check env
 df -h
 diskutil list
 
-ls $HOME
 ls $HOME/*
-ls $HOME/$SDK
-ls $HOME/$NDK
-
-du -sh $HOME
 du -sh $HOME/*
-du -sh $HOME/$SDK
-du -sh $HOME/$NDK
