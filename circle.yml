@@ -1,11 +1,7 @@
 machine:
-  override:
 checkout:
-  override:
 dependencies:
-  override:
 database:
-  override:
 test:
   override:
     - export OS=linux
