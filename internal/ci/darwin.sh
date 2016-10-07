@@ -41,7 +41,7 @@ fi
 
 #prepare env
 sudo chown $USER /usr/local/bin
-sudo chown -R $USER $GOPATH
+sudo chown $USER $GOROOT/pkg | true
 
 #check env
 df -h
