@@ -4,14 +4,12 @@ machine:
     CI: true
     DESKTOP: true
     ANDROID: true
-    GOPATH: /home/ubuntu/.go_project
+    GOPATH:
 dependencies:
   post:
-    - export GOPATH=/home/ubuntu/.go_project
-    - go get -d github.com/therecipe/qt
+    - go get -v -d github.com/therecipe/qt
     - if [[ "$OS" == "linux" ]]; then $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
 test:
   post:
-    - export GOPATH=/home/ubuntu/.go_project
     - if [[ "$DESKTOP" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh; else go run $GOPATH/src/github.com/therecipe/qt/internal/setup/generate.go; fi
     - if [[ "$ANDROID" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh android; fi

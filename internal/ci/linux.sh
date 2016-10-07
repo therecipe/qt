@@ -39,6 +39,11 @@ curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/
 unzip -qq /tmp/$NDK -d $HOME
 rm -f /tmp/$NDK
 
+#install openjdk8
+sudo add-apt-repository -y ppa:openjdk-r/ppa
+sudo apt-get -qq update
+sudo apt-get -y -qq install openjdk-8-jdk
+
 #prepare env
 sudo chown $USER /usr/local/bin
 sudo chown $USER $GOROOT/pkg | true
