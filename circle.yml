@@ -17,4 +17,3 @@ test:
     - if [[ "$ANDROID" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh android; fi
 deployment:
 notify:
-  override:
