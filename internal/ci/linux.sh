@@ -41,6 +41,7 @@ rm -f /tmp/$NDK
 
 #prepare env
 sudo chown $USER /usr/local/bin
+sudo chown -R $USER $GOPATH
 
 #check env
 df -h

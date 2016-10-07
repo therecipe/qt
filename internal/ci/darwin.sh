@@ -39,6 +39,10 @@ unzip -qq /tmp/$NDK -d $HOME
 rm -f /tmp/$NDK
 fi
 
+#prepare env
+sudo chown $USER /usr/local/bin
+sudo chown -R $USER $GOPATH
+
 #check env
 df -h
 diskutil list
