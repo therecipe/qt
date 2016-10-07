@@ -96,6 +96,10 @@ func args() {
 		}
 	}
 
+	if strings.ToLower(os.Getenv("CI")) == "true" {
+		buildMode = "build"
+	}
+
 	buildMinimal = true
 
 	switch buildMode {

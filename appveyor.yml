@@ -1,16 +1,16 @@
 version: 1.0.{build}
 clone_depth: 1
 clone_folder: C:\work\src\github.com\therecipe\qt
-environment:
-  GOPATH: C:\work
 install:
 - cmd: >-
     set PATH=%PATH%;C:\Qt\Qt5.7.0\Tools\mingw530_32\bin
 
+    set GOPATH=C:\work
+
 
     set QT=qt-opensource-windows-x86-android-5.7.0.exe
 
-    curl -sL --retry 6 --retry-delay 20 -o %TMP%\%QT% https://download.qt.io/official_releases/qt/5.7/5.7.0/%QT%
+    curl -sL --retry 10 --retry-delay 10 -o %TMP%\%QT% https://download.qt.io/official_releases/qt/5.7/5.7.0/%QT%
 
     %TMP%\%QT% --script %GOPATH%\src\github.com\therecipe\qt\internal\ci\iscript.qs
 
@@ -19,19 +19,19 @@ install:
 
     set SDK=android-sdk_r24.4.1-windows.zip
 
-    curl -sL --retry 6 --retry-delay 20 -o %TMP%\%SDK% https://dl.google.com/android/%SDK%
+    curl -sL --retry 10 --retry-delay 10 -o %TMP%\%SDK% https://dl.google.com/android/%SDK%
 
     7z x %TMP%\%SDK% -oC:\
 
     DEL %TMP%\%SDK% /Q
 
 
-    echo y | %ANDROID_SDK_DIR%\tools\android.bat -s update sdk -f -u -a -t 1,2,4,31
+    echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -a -t 1,2,4,31
 
 
-    SET NDK=android-ndk-r12b-windows-x86_64.zip
+    set NDK=android-ndk-r12b-windows-x86_64.zip
 
-    curl -sL --retry 6 --retry-delay 20 -o %TMP%\%NDK% https://dl.google.com/android/repository/%NDK%
+    curl -sL --retry 10 --retry-delay 10 -o %TMP%\%NDK% https://dl.google.com/android/repository/%NDK%
 
     7z x %TMP%\%NDK% -oC:\
 

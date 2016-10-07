@@ -15,7 +15,7 @@ QT=qt-opensource-mac-x64-android-ios-5.7.0
 else
 QT=qt-opensource-mac-x64-android-5.7.0
 fi
-curl -sL --retry 6 --retry-delay 20 -o /tmp/$QT.dmg https://download.qt.io/official_releases/qt/5.7/5.7.0/$QT.dmg
+curl -sL --retry 10 --retry-delay 10 -o /tmp/$QT.dmg https://download.qt.io/official_releases/qt/5.7/5.7.0/$QT.dmg
 hdiutil attach -noverify -noautofsck -quiet /tmp/$QT.dmg
 /Volumes/$QT/$QT.app/Contents/MacOS/$QT --script $GOPATH/src/github.com/therecipe/qt/internal/ci/iscript.qs
 diskutil unmountDisk disk1
@@ -25,7 +25,7 @@ if [ "$ANDROID" == "true" ]
 then
 #download and install android sdk
 SDK=android-sdk_r24.4.1-macosx.zip
-curl -sL --retry 6 --retry-delay 20 -o /tmp/$SDK https://dl.google.com/android/$SDK
+curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/$SDK
 unzip -qq /tmp/$SDK -d $HOME
 rm -f /tmp/$SDK
 
@@ -34,7 +34,7 @@ echo "y" | $HOME/android-sdk-macosx/tools/android -s update sdk -f -u -a -t 1,2,
 
 #download and install android ndk
 NDK=android-ndk-r12b-darwin-x86_64.zip
-curl -sL --retry 6 --retry-delay 20 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
+curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
 unzip -qq /tmp/$NDK -d $HOME
 rm -f /tmp/$NDK
 fi
