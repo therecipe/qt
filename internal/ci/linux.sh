@@ -14,8 +14,8 @@ export QT_QPA_PLATFORM=minimal
 sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 sudo apt-get -qq update
 sudo apt-get -y -qq install gcc-5 g++-5
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 90
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-5 90
+sudo rm /usr/bin/gcc; sudo ln -s /usr/bin/gcc-5 /usr/bin/gcc
+sudo rm /usr/bin/g++; sudo ln -s /usr/bin/g++-5 /usr/bin/g++
 
 #download and install qt
 QT=qt-opensource-linux-x64-android-5.7.0.run
