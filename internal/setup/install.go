@@ -184,8 +184,8 @@ func main() {
 					"GOARM":  "7",
 
 					"CGO_ENABLED": "1",
-					"CC":          fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", os.Getenv("USERNAME")),
-					"CXX":         fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", os.Getenv("USERNAME")),
+					"CC":          fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", utils.RPI_TOOLS_DIR()),
+					"CXX":         fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", utils.RPI_TOOLS_DIR()),
 				}
 
 				if buildTarget == "rpi1" {
@@ -207,10 +207,6 @@ func main() {
 		}
 		runCmd(cmd, "install.std_1")
 
-		if strings.HasPrefix(buildTarget, "sailfish") {
-			return
-		}
-
 		//armv7
 		if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
 			var cmdiOS = exec.Command("go", "install")
@@ -228,7 +224,7 @@ func main() {
 		}
 	}
 
-	if strings.ToLower(os.Getenv("CI")) == "true" {
+	if buildTarget != "desktop" || strings.ToLower(os.Getenv("CI")) == "true" {
 		return
 	}
 

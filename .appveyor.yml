@@ -3,11 +3,9 @@ clone_depth: 1
 clone_folder: C:\work\src\github.com\therecipe\qt
 environment:
   GOPATH: C:\work
+  PATH: C:\Qt\Qt5.7.0\Tools\mingw530_32\bin;%PATH%
 install:
 - cmd: >-
-    set PATH=%PATH%;C:\Qt\Tools\mingw530_32\bin
-
-
     set QT=qt-opensource-windows-x86-android-5.7.0.exe
 
     curl -sL --retry 3 -o %TMP%\%QT% https://download.qt.io/official_releases/qt/5.7/5.7.0/%QT%

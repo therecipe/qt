@@ -96,9 +96,7 @@ func args() {
 		}
 	}
 
-	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" || strings.ToLower(os.Getenv("CI")) == "true" {
-		buildMinimal = true
-	}
+	buildMinimal = true
 
 	switch buildMode {
 	case "build", "run", "test":
@@ -219,12 +217,7 @@ func qrc() {
 
 func qmlHeader() string {
 
-	var username = os.Getenv("USERNAME")
-	if username == "" {
-		username = "user"
-	}
-
-	return strings.Replace(strings.Replace(strings.Replace(`package main
+	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
 #cgo +build windows,386 LDFLAGS: -L${QT_DIR}/5.7/mingw53_32/lib -lQt5Core
@@ -254,15 +247,18 @@ func qmlHeader() string {
 #cgo +build sailfish,linux,arm LDFLAGS: -Wl,-rpath,/usr/share/harbour-${APPNAME}/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/usr/lib -Wl,-rpath-link,/srv/mer/targets/SailfishOS-armv7hl/lib -L/srv/mer/targets/SailfishOS-armv7hl/usr/lib -L/srv/mer/targets/SailfishOS-armv7hl/lib -lQt5Core
 
 
-#cgo +build rpi1,linux,arm LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_DIR}/5.7/rpi1/lib -lQt5Core
-#cgo +build rpi2,linux,arm LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi2/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_DIR}/5.7/rpi2/lib -lQt5Core
-#cgo +build rpi3,linux,arm LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi3/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L${QT_DIR}/5.7/rpi3/lib -lQt5Core
+#cgo +build rpi1,linux,arm LDFLAGS: -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi1/lib -mfloat-abi=hard --sysroot=${RPI1_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L${RPI1_SYSROOT_DIR}/opt/vc/lib -L${QT_DIR}/5.7/rpi1/lib -lQt5Core
+#cgo +build rpi2,linux,arm LDFLAGS: -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi2/lib -mfloat-abi=hard --sysroot=${RPI2_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L${RPI2_SYSROOT_DIR}/opt/vc/lib -L${QT_DIR}/5.7/rpi2/lib -lQt5Core
+#cgo +build rpi3,linux,arm LDFLAGS: -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi3/lib -mfloat-abi=hard --sysroot=${RPI3_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L${RPI3_SYSROOT_DIR}/opt/vc/lib -L${QT_DIR}/5.7/rpi3/lib -lQt5Core
 */
 import "C"`,
 
-		"${QT_DIR}", strings.Replace(utils.QT_DIR(), "\\", "/", -1), -1),
-		"${USERNAME}", username, -1),
-		"${APPNAME}", appName, -1)
+		"${QT_DIR}", utils.QT_DIR(), -1),
+		"${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1),
+		"${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1),
+		"${RPI3_SYSROOT_DIR}", utils.RPI3_SYSROOT_DIR(), -1),
+		"${APPNAME}", appName, -1),
+		"\\", "/", -1)
 }
 
 func build() {
@@ -470,8 +466,8 @@ func build() {
 				"GOARM":  "7",
 
 				"CGO_ENABLED": "1",
-				"CC":          fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", os.Getenv("USERNAME")),
-				"CXX":         fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", os.Getenv("USERNAME")),
+				"CC":          fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc", utils.RPI_TOOLS_DIR()),
+				"CXX":         fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-g++", utils.RPI_TOOLS_DIR()),
 			}
 
 			if buildTarget == "rpi1" {
@@ -788,7 +784,7 @@ func deploy() {
 
 					if strings.HasPrefix(buildTarget, "rpi") {
 						libraryPath = fmt.Sprintf("%v/5.7/%v/lib/", utils.QT_DIR(), buildTarget)
-						lddPath = fmt.Sprintf("/home/%v/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", os.Getenv("USERNAME"))
+						lddPath = fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", utils.RPI_TOOLS_DIR())
 						lddExtra = "--root=/"
 						lddOutput = runCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), "deploy.ldd")
 					} else {

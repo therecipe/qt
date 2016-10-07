@@ -83,6 +83,7 @@ func moc(appPath string) {
 		}
 		tmpFiles = append(tmpFiles, filepath.Join(appPath, name))
 	}
+	utils.RemoveAll(filepath.Join(appPath, "cleanup.json"))
 
 	var module = &parser.Module{Project: parser.MOC, Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
 

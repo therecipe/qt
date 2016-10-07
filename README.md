@@ -63,7 +63,7 @@
 
 3. Add the directory that contains **gcc** and **g++** to your **PATH**
 
-	* `C:\Qt\Qt5.7.0\Tools\mingw530_32\bin\`
+	* `C:\Qt\Qt5.7.0\Tools\mingw530_32\bin`
 
 4. Download the binding
 
@@ -224,7 +224,7 @@
 
 	* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0/qtwayland && wget https://github.com/qtproject/qtwayland/commit/75294be3.patch && patch -p1 -i 75294be3.patch`
 
-5. Download the cross compiler
+5. Download the cross compiler; you can also define a custom location with **RPI_TOOLS_DIR**
 
 	* `cd $HOME/raspi && git clone --depth 1 https://github.com/raspberrypi/tools.git`
 
@@ -285,7 +285,7 @@
 
 	* `rsync -avz root@$RASPI_IP:/opt/vc sysroot/opt --delete`
 
-11. Prepare sysroot
+11. Prepare sysroot; you can also define a custom location with **RPI1_SYSROOT_DIR**, **RPI2_SYSROOT_DIR** or **RPI3_SYSROOT_DIR**
 
 	* `cd $HOME/raspi && wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py`
 	* `chmod +x sysroot-relativelinks.py && ./sysroot-relativelinks.py sysroot`

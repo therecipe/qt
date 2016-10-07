@@ -3,7 +3,6 @@ package templater
 import (
 	"bytes"
 	"fmt"
-	"os"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -484,8 +483,8 @@ func cgoRaspberryPi1(module string) {
 	}())
 	fmt.Fprint(bb, "/*\n")
 
-	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -marm -mfpu=vfp -mtune=arm1176jzf-s -march=armv6zk -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -marm -mfpu=vfp -mtune=arm1176jzf-s -march=armv6zk -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
+	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -marm -mfpu=vfp -mtune=arm1176jzf-s -march=armv6zk -mabi=aapcs-linux -mfloat-abi=hard --sysroot=${RPI1_SYSROOT_DIR} -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -marm -mfpu=vfp -mtune=arm1176jzf-s -march=armv6zk -mabi=aapcs-linux -mfloat-abi=hard --sysroot=${RPI1_SYSROOT_DIR} -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS: -DQT_NO_EXCEPTIONS -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DQT_NO_DEBUG")
 	for _, m := range libs {
@@ -493,7 +492,7 @@ func cgoRaspberryPi1(module string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi1/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi1/mkspecs/devices/linux-rasp-pi-g++\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi1/include -I${RPI1_SYSROOT_DIR}/opt/vc/include -I${RPI1_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI1_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi1/mkspecs/devices/linux-rasp-pi-g++\n", utils.QT_DIR(), utils.QT_DIR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
@@ -501,9 +500,9 @@ func cgoRaspberryPi1(module string) {
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi1/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi1/lib -mfloat-abi=hard --sysroot=${RPI1_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L%v/5.7/rpi1/lib", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI1_SYSROOT_DIR}/opt/vc/lib -L%v/5.7/rpi1/lib", utils.QT_DIR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -515,12 +514,7 @@ func cgoRaspberryPi1(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	var username = os.Getenv("USERNAME")
-	if username == "" {
-		username = "user"
-	}
-
-	var tmp = strings.Replace(bb.String(), "${USERNAME}", username, -1)
+	var tmp = strings.Replace(bb.String(), "${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1)
 
 	if module == parser.MOC {
 		utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi1_linux_arm.go"), tmp)
@@ -545,8 +539,8 @@ func cgoRaspberryPi2(module string) {
 	}())
 	fmt.Fprint(bb, "/*\n")
 
-	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
+	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=${RPI2_SYSROOT_DIR} -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -march=armv7-a -marm -mthumb-interwork -mfpu=neon-vfpv4 -mtune=cortex-a7 -mabi=aapcs-linux -mfloat-abi=hard --sysroot=${RPI2_SYSROOT_DIR} -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS: -DQT_NO_EXCEPTIONS -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DQT_NO_DEBUG")
 	for _, m := range libs {
@@ -554,7 +548,7 @@ func cgoRaspberryPi2(module string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi2/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi2/mkspecs/devices/linux-rasp-pi2-g++\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi2/include -I${RPI2_SYSROOT_DIR}/opt/vc/include -I${RPI2_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI2_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi2/mkspecs/devices/linux-rasp-pi2-g++\n", utils.QT_DIR(), utils.QT_DIR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
@@ -562,9 +556,9 @@ func cgoRaspberryPi2(module string) {
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi2/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi2/lib -mfloat-abi=hard --sysroot=${RPI2_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L%v/5.7/rpi2/lib", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI2_SYSROOT_DIR}/opt/vc/lib -L%v/5.7/rpi2/lib", utils.QT_DIR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -576,12 +570,7 @@ func cgoRaspberryPi2(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	var username = os.Getenv("USERNAME")
-	if username == "" {
-		username = "user"
-	}
-
-	var tmp = strings.Replace(bb.String(), "${USERNAME}", username, -1)
+	var tmp = strings.Replace(bb.String(), "${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1)
 
 	if module == parser.MOC {
 		utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi2_linux_arm.go"), tmp)
@@ -606,8 +595,8 @@ func cgoRaspberryPi3(module string) {
 	}())
 	fmt.Fprint(bb, "/*\n")
 
-	fmt.Fprint(bb, "#cgo CFLAGS: -march=armv8-a+crc -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe -Os -mthumb -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -march=armv8-a+crc -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe -Os -mthumb -std=c++11 -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
+	fmt.Fprint(bb, "#cgo CFLAGS: -march=armv8-a+crc -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe -Os -mthumb -mfloat-abi=hard --sysroot=${RPI3_SYSROOT_DIR} -O2 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -march=armv8-a+crc -mtune=cortex-a53 -mfpu=crypto-neon-fp-armv8 -pipe -Os -mthumb -std=c++11 -mfloat-abi=hard --sysroot=${RPI3_SYSROOT_DIR} -O2 -std=gnu++11 -fno-exceptions -Wall -W -D_REENTRANT -fPIC\n")
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS: -DQT_NO_EXCEPTIONS -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -DQT_NO_DEBUG")
 	for _, m := range libs {
@@ -615,7 +604,7 @@ func cgoRaspberryPi3(module string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi3/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I/home/${USERNAME}/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi3/mkspecs/devices/linux-rpi3-g++\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi3/include -I${RPI3_SYSROOT_DIR}/opt/vc/include -I${RPI3_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI3_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi3/mkspecs/devices/linux-rpi3-g++\n", utils.QT_DIR(), utils.QT_DIR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
@@ -623,9 +612,9 @@ func cgoRaspberryPi3(module string) {
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/opt/vc/lib -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,/home/${USERNAME}/raspi/sysroot/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi3/lib -mfloat-abi=hard --sysroot=/home/${USERNAME}/raspi/sysroot -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi3/lib -mfloat-abi=hard --sysroot=${RPI3_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L/home/${USERNAME}/raspi/sysroot/opt/vc/lib -L%v/5.7/rpi3/lib", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI3_SYSROOT_DIR}/opt/vc/lib -L%v/5.7/rpi3/lib", utils.QT_DIR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -637,12 +626,7 @@ func cgoRaspberryPi3(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	var username = os.Getenv("USERNAME")
-	if username == "" {
-		username = "user"
-	}
-
-	var tmp = strings.Replace(bb.String(), "${USERNAME}", username, -1)
+	var tmp = strings.Replace(bb.String(), "${RPI3_SYSROOT_DIR}", utils.RPI3_SYSROOT_DIR(), -1)
 
 	if module == parser.MOC {
 		utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi3_linux_arm.go"), tmp)
