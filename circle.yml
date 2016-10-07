@@ -4,9 +4,9 @@ machine:
     CI: true
     DESKTOP: true
     ANDROID: true
-    GOPATH:
+    GOPATH: /home/ubuntu/.go_project
 dependencies:
-  post:
+  pre:
     - go get -v -d github.com/therecipe/qt
     - if [[ "$OS" == "linux" ]]; then $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
 test:
