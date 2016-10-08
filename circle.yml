@@ -7,9 +7,13 @@ machine:
     GOPATH: /home/ubuntu/.go_project
 dependencies:
   pre:
-    - go get -d github.com/therecipe/qt
-    - if [[ "$OS" == "linux" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
+  override:
+      - go get -d github.com/therecipe/qt
+      - if [[ "$OS" == "linux" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
+  post:
 test:
+  pre:
   override:
     - if [[ "$DESKTOP" == "true" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/setup.sh; else go run $GOPATH/src/github.com/therecipe/qt/internal/setup/generate.go; fi
     - if [[ "$ANDROID" == "true" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/setup.sh android; fi
+  post:
