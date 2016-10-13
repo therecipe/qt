@@ -46,7 +46,7 @@ public:
 	void Signal_ButtonYChanged(bool value) { callbackQGamepad_ButtonYChanged(this, value); };
 	void Signal_ConnectedChanged(bool value) { callbackQGamepad_ConnectedChanged(this, value); };
 	void Signal_DeviceIdChanged(int value) { callbackQGamepad_DeviceIdChanged(this, value); };
-	void Signal_NameChanged(QString value) { callbackQGamepad_NameChanged(this, const_cast<char*>(value.toUtf8().constData())); };
+	void Signal_NameChanged(QString value) { callbackQGamepad_NameChanged(this, const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepad_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGamepad_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGamepad_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -180,7 +180,7 @@ char QGamepad_IsConnected(void* ptr)
 
 char* QGamepad_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGamepad*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QGamepad*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QGamepad_SetDeviceId(void* ptr, int number)

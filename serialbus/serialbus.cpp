@@ -222,7 +222,7 @@ void QCanBusDevice_ErrorOccurred(void* ptr, long long error)
 
 char* QCanBusDevice_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCanBusDevice*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QCanBusDevice*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QCanBusDevice_ConnectFramesReceived(void* ptr)
@@ -262,7 +262,7 @@ char QCanBusDevice_HasOutgoingFrames(void* ptr)
 
 char* QCanBusDevice_InterpretErrorFrame(void* ptr, void* frame)
 {
-	return const_cast<char*>(static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(frame)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QCanBusDevice*>(ptr)->interpretErrorFrame(*static_cast<QCanBusFrame*>(frame)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QCanBusDevice_Open(void* ptr)
@@ -408,7 +408,7 @@ void* QCanBusDevice_MetaObjectDefault(void* ptr)
 class MyQCanBusFactory: public QCanBusFactory
 {
 public:
-	QCanBusDevice * createDevice(const QString & interfaceName) const { return static_cast<QCanBusDevice*>(callbackQCanBusFactory_CreateDevice(const_cast<MyQCanBusFactory*>(this), const_cast<char*>(interfaceName.toUtf8().constData()))); };
+	QCanBusDevice * createDevice(const QString & interfaceName) const { return static_cast<QCanBusDevice*>(callbackQCanBusFactory_CreateDevice(const_cast<MyQCanBusFactory*>(this), const_cast<char*>(interfaceName.toUtf8().prepend("WHITESPACE").constData()+10))); };
 };
 
 void* QCanBusFactory_CreateDevice(void* ptr, char* interfaceName)
@@ -508,7 +508,7 @@ char QCanBusFrame_IsValid(void* ptr)
 
 char* QCanBusFrame_Payload(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCanBusFrame*>(ptr)->payload().toHex().constData());
+	return const_cast<char*>(static_cast<QCanBusFrame*>(ptr)->payload().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QCanBusFrame_SetError(void* ptr, long long error)
@@ -866,7 +866,7 @@ void QModbusDevice_ErrorOccurred(void* ptr, long long error)
 
 char* QModbusDevice_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QModbusDevice*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QModbusDevice*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QModbusDevice_Open(void* ptr)
@@ -1041,7 +1041,7 @@ void QModbusDeviceIdentification_SetConformityLevel(void* ptr, long long level)
 
 char* QModbusDeviceIdentification_Value(void* ptr, unsigned int objectId)
 {
-	return const_cast<char*>(static_cast<QModbusDeviceIdentification*>(ptr)->value(objectId).toHex().constData());
+	return const_cast<char*>(static_cast<QModbusDeviceIdentification*>(ptr)->value(objectId).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 class MyQModbusExceptionResponse: public QModbusExceptionResponse
@@ -1115,7 +1115,7 @@ short QModbusPdu_DataSize(void* ptr)
 
 char* QModbusPdu_Data(void* ptr)
 {
-	return const_cast<char*>(static_cast<QModbusPdu*>(ptr)->data().toHex().constData());
+	return const_cast<char*>(static_cast<QModbusPdu*>(ptr)->data().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 long long QModbusPdu_ExceptionCode(void* ptr)
@@ -1212,7 +1212,7 @@ void QModbusReply_ErrorOccurred(void* ptr, long long error)
 
 char* QModbusReply_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QModbusReply*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QModbusReply*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QModbusReply_ConnectFinished(void* ptr)

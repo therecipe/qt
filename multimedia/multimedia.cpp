@@ -793,7 +793,7 @@ public:
 
 char* QAudioDecoder_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioDecoder*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioDecoder*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QAudioDecoder_State(void* ptr)
@@ -983,7 +983,7 @@ void* QAudioDecoder_SourceDevice(void* ptr)
 
 char* QAudioDecoder_SourceFilename(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioDecoder*>(ptr)->sourceFilename().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioDecoder*>(ptr)->sourceFilename().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioDecoder_Start(void* ptr)
@@ -1166,7 +1166,7 @@ public:
 	void Signal_BufferReady() { callbackQAudioDecoderControl_BufferReady(this); };
 	qint64 duration() const { return callbackQAudioDecoderControl_Duration(const_cast<MyQAudioDecoderControl*>(this)); };
 	void Signal_DurationChanged(qint64 duration) { callbackQAudioDecoderControl_DurationChanged(this, duration); };
-	void Signal_Error(int error, const QString & errorString) { callbackQAudioDecoderControl_Error(this, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Error(int error, const QString & errorString) { callbackQAudioDecoderControl_Error(this, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_Finished() { callbackQAudioDecoderControl_Finished(this); };
 	void Signal_FormatChanged(const QAudioFormat & format) { callbackQAudioDecoderControl_FormatChanged(this, const_cast<QAudioFormat*>(&format)); };
 	qint64 position() const { return callbackQAudioDecoderControl_Position(const_cast<MyQAudioDecoderControl*>(this)); };
@@ -1174,7 +1174,7 @@ public:
 	QAudioBuffer read() { return *static_cast<QAudioBuffer*>(callbackQAudioDecoderControl_Read(this)); };
 	void setAudioFormat(const QAudioFormat & format) { callbackQAudioDecoderControl_SetAudioFormat(this, const_cast<QAudioFormat*>(&format)); };
 	void setSourceDevice(QIODevice * device) { callbackQAudioDecoderControl_SetSourceDevice(this, device); };
-	void setSourceFilename(const QString & fileName) { callbackQAudioDecoderControl_SetSourceFilename(this, const_cast<char*>(fileName.toUtf8().constData())); };
+	void setSourceFilename(const QString & fileName) { callbackQAudioDecoderControl_SetSourceFilename(this, const_cast<char*>(fileName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_SourceChanged() { callbackQAudioDecoderControl_SourceChanged(this); };
 	QIODevice * sourceDevice() const { return static_cast<QIODevice*>(callbackQAudioDecoderControl_SourceDevice(const_cast<MyQAudioDecoderControl*>(this))); };
 	QString sourceFilename() const { return QString(callbackQAudioDecoderControl_SourceFilename(const_cast<MyQAudioDecoderControl*>(this))); };
@@ -1365,7 +1365,7 @@ void* QAudioDecoderControl_SourceDevice(void* ptr)
 
 char* QAudioDecoderControl_SourceFilename(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioDecoderControl*>(ptr)->sourceFilename().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioDecoderControl*>(ptr)->sourceFilename().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioDecoderControl_Start(void* ptr)
@@ -1515,7 +1515,7 @@ void* QAudioDeviceInfo_QAudioDeviceInfo_DefaultOutputDevice()
 
 char* QAudioDeviceInfo_DeviceName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioDeviceInfo*>(ptr)->deviceName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioDeviceInfo*>(ptr)->deviceName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QAudioDeviceInfo_IsFormatSupported(void* ptr, void* settings)
@@ -1540,7 +1540,7 @@ void* QAudioDeviceInfo_PreferredFormat(void* ptr)
 
 char* QAudioDeviceInfo_SupportedCodecs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioDeviceInfo*>(ptr)->supportedCodecs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioDeviceInfo_DestroyQAudioDeviceInfo(void* ptr)
@@ -1570,7 +1570,7 @@ int QAudioEncoderSettings_ChannelCount(void* ptr)
 
 char* QAudioEncoderSettings_Codec(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioEncoderSettings*>(ptr)->codec().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioEncoderSettings*>(ptr)->codec().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QAudioEncoderSettings_EncodingMode(void* ptr)
@@ -1642,7 +1642,7 @@ class MyQAudioEncoderSettingsControl: public QAudioEncoderSettingsControl
 {
 public:
 	QAudioEncoderSettings audioSettings() const { return *static_cast<QAudioEncoderSettings*>(callbackQAudioEncoderSettingsControl_AudioSettings(const_cast<MyQAudioEncoderSettingsControl*>(this))); };
-	QString codecDescription(const QString & codec) const { return QString(callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<MyQAudioEncoderSettingsControl*>(this), const_cast<char*>(codec.toUtf8().constData()))); };
+	QString codecDescription(const QString & codec) const { return QString(callbackQAudioEncoderSettingsControl_CodecDescription(const_cast<MyQAudioEncoderSettingsControl*>(this), const_cast<char*>(codec.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void setAudioSettings(const QAudioEncoderSettings & settings) { callbackQAudioEncoderSettingsControl_SetAudioSettings(this, const_cast<QAudioEncoderSettings*>(&settings)); };
 	QStringList supportedAudioCodecs() const { return QString(callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(const_cast<MyQAudioEncoderSettingsControl*>(this))).split("|", QString::SkipEmptyParts); };
 	 ~MyQAudioEncoderSettingsControl() { callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(this); };
@@ -1664,7 +1664,7 @@ void* QAudioEncoderSettingsControl_AudioSettings(void* ptr)
 
 char* QAudioEncoderSettingsControl_CodecDescription(void* ptr, char* codec)
 {
-	return const_cast<char*>(static_cast<QAudioEncoderSettingsControl*>(ptr)->codecDescription(QString(codec)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioEncoderSettingsControl*>(ptr)->codecDescription(QString(codec)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioEncoderSettingsControl_SetAudioSettings(void* ptr, void* settings)
@@ -1674,7 +1674,7 @@ void QAudioEncoderSettingsControl_SetAudioSettings(void* ptr, void* settings)
 
 char* QAudioEncoderSettingsControl_SupportedAudioCodecs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioEncoderSettingsControl*>(ptr)->supportedAudioCodecs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(void* ptr)
@@ -1814,7 +1814,7 @@ int QAudioFormat_ChannelCount(void* ptr)
 
 char* QAudioFormat_Codec(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioFormat*>(ptr)->codec().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioFormat*>(ptr)->codec().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QAudioFormat_DurationForBytes(void* ptr, int bytes)
@@ -2128,11 +2128,11 @@ class MyQAudioInputSelectorControl: public QAudioInputSelectorControl
 {
 public:
 	QString activeInput() const { return QString(callbackQAudioInputSelectorControl_ActiveInput(const_cast<MyQAudioInputSelectorControl*>(this))); };
-	void Signal_ActiveInputChanged(const QString & name) { callbackQAudioInputSelectorControl_ActiveInputChanged(this, const_cast<char*>(name.toUtf8().constData())); };
+	void Signal_ActiveInputChanged(const QString & name) { callbackQAudioInputSelectorControl_ActiveInputChanged(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_AvailableInputsChanged() { callbackQAudioInputSelectorControl_AvailableInputsChanged(this); };
 	QString defaultInput() const { return QString(callbackQAudioInputSelectorControl_DefaultInput(const_cast<MyQAudioInputSelectorControl*>(this))); };
-	QString inputDescription(const QString & name) const { return QString(callbackQAudioInputSelectorControl_InputDescription(const_cast<MyQAudioInputSelectorControl*>(this), const_cast<char*>(name.toUtf8().constData()))); };
-	void setActiveInput(const QString & name) { callbackQAudioInputSelectorControl_SetActiveInput(this, const_cast<char*>(name.toUtf8().constData())); };
+	QString inputDescription(const QString & name) const { return QString(callbackQAudioInputSelectorControl_InputDescription(const_cast<MyQAudioInputSelectorControl*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	void setActiveInput(const QString & name) { callbackQAudioInputSelectorControl_SetActiveInput(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	 ~MyQAudioInputSelectorControl() { callbackQAudioInputSelectorControl_DestroyQAudioInputSelectorControl(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioInputSelectorControl_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAudioInputSelectorControl_ChildEvent(this, event); };
@@ -2147,7 +2147,7 @@ public:
 
 char* QAudioInputSelectorControl_ActiveInput(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioInputSelectorControl*>(ptr)->activeInput().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioInputSelectorControl*>(ptr)->activeInput().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioInputSelectorControl_ConnectActiveInputChanged(void* ptr)
@@ -2182,12 +2182,12 @@ void QAudioInputSelectorControl_AvailableInputsChanged(void* ptr)
 
 char* QAudioInputSelectorControl_DefaultInput(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioInputSelectorControl*>(ptr)->defaultInput().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioInputSelectorControl*>(ptr)->defaultInput().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QAudioInputSelectorControl_InputDescription(void* ptr, char* name)
 {
-	return const_cast<char*>(static_cast<QAudioInputSelectorControl*>(ptr)->inputDescription(QString(name)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioInputSelectorControl*>(ptr)->inputDescription(QString(name)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioInputSelectorControl_SetActiveInput(void* ptr, char* name)
@@ -2334,7 +2334,7 @@ int QAudioOutput_BytesFree(void* ptr)
 
 char* QAudioOutput_Category(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioOutput*>(ptr)->category().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioOutput*>(ptr)->category().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QAudioOutput_ElapsedUSecs(void* ptr)
@@ -2541,11 +2541,11 @@ class MyQAudioOutputSelectorControl: public QAudioOutputSelectorControl
 {
 public:
 	QString activeOutput() const { return QString(callbackQAudioOutputSelectorControl_ActiveOutput(const_cast<MyQAudioOutputSelectorControl*>(this))); };
-	void Signal_ActiveOutputChanged(const QString & name) { callbackQAudioOutputSelectorControl_ActiveOutputChanged(this, const_cast<char*>(name.toUtf8().constData())); };
+	void Signal_ActiveOutputChanged(const QString & name) { callbackQAudioOutputSelectorControl_ActiveOutputChanged(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_AvailableOutputsChanged() { callbackQAudioOutputSelectorControl_AvailableOutputsChanged(this); };
 	QString defaultOutput() const { return QString(callbackQAudioOutputSelectorControl_DefaultOutput(const_cast<MyQAudioOutputSelectorControl*>(this))); };
-	QString outputDescription(const QString & name) const { return QString(callbackQAudioOutputSelectorControl_OutputDescription(const_cast<MyQAudioOutputSelectorControl*>(this), const_cast<char*>(name.toUtf8().constData()))); };
-	void setActiveOutput(const QString & name) { callbackQAudioOutputSelectorControl_SetActiveOutput(this, const_cast<char*>(name.toUtf8().constData())); };
+	QString outputDescription(const QString & name) const { return QString(callbackQAudioOutputSelectorControl_OutputDescription(const_cast<MyQAudioOutputSelectorControl*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	void setActiveOutput(const QString & name) { callbackQAudioOutputSelectorControl_SetActiveOutput(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	 ~MyQAudioOutputSelectorControl() { callbackQAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAudioOutputSelectorControl_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAudioOutputSelectorControl_ChildEvent(this, event); };
@@ -2560,7 +2560,7 @@ public:
 
 char* QAudioOutputSelectorControl_ActiveOutput(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioOutputSelectorControl*>(ptr)->activeOutput().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioOutputSelectorControl*>(ptr)->activeOutput().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioOutputSelectorControl_ConnectActiveOutputChanged(void* ptr)
@@ -2595,12 +2595,12 @@ void QAudioOutputSelectorControl_AvailableOutputsChanged(void* ptr)
 
 char* QAudioOutputSelectorControl_DefaultOutput(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioOutputSelectorControl*>(ptr)->defaultOutput().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioOutputSelectorControl*>(ptr)->defaultOutput().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QAudioOutputSelectorControl_OutputDescription(void* ptr, char* name)
 {
-	return const_cast<char*>(static_cast<QAudioOutputSelectorControl*>(ptr)->outputDescription(QString(name)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioOutputSelectorControl*>(ptr)->outputDescription(QString(name)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioOutputSelectorControl_SetActiveOutput(void* ptr, char* name)
@@ -2874,9 +2874,9 @@ class MyQAudioRecorder: public QAudioRecorder
 {
 public:
 	MyQAudioRecorder(QObject *parent) : QAudioRecorder(parent) {};
-	void Signal_AudioInputChanged(const QString & name) { callbackQAudioRecorder_AudioInputChanged(this, const_cast<char*>(name.toUtf8().constData())); };
+	void Signal_AudioInputChanged(const QString & name) { callbackQAudioRecorder_AudioInputChanged(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_AvailableAudioInputsChanged() { callbackQAudioRecorder_AvailableAudioInputsChanged(this); };
-	void setAudioInput(const QString & name) { callbackQAudioRecorder_SetAudioInput(this, const_cast<char*>(name.toUtf8().constData())); };
+	void setAudioInput(const QString & name) { callbackQAudioRecorder_SetAudioInput(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setMuted(bool muted) { callbackQAudioRecorder_SetMuted(this, muted); };
 	void setVolume(qreal volume) { callbackQAudioRecorder_SetVolume(this, volume); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQAudioRecorder_MediaObject(const_cast<MyQAudioRecorder*>(this))); };
@@ -2902,7 +2902,7 @@ void* QAudioRecorder_NewQAudioRecorder(void* parent)
 
 char* QAudioRecorder_AudioInput(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->audioInput().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->audioInput().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioRecorder_ConnectAudioInputChanged(void* ptr)
@@ -2922,12 +2922,12 @@ void QAudioRecorder_AudioInputChanged(void* ptr, char* name)
 
 char* QAudioRecorder_AudioInputDescription(void* ptr, char* name)
 {
-	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->audioInputDescription(QString(name)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->audioInputDescription(QString(name)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QAudioRecorder_AudioInputs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->audioInputs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->audioInputs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioRecorder_ConnectAvailableAudioInputsChanged(void* ptr)
@@ -2947,7 +2947,7 @@ void QAudioRecorder_AvailableAudioInputsChanged(void* ptr)
 
 char* QAudioRecorder_DefaultAudioInput(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->defaultAudioInput().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAudioRecorder*>(ptr)->defaultAudioInput().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAudioRecorder_SetAudioInput(void* ptr, char* name)
@@ -3395,7 +3395,7 @@ long long QCamera_Error(void* ptr)
 
 char* QCamera_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCamera*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QCamera*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QCamera_Exposure(void* ptr)
@@ -4016,7 +4016,7 @@ public:
 	bool canChangeProperty(QCameraControl::PropertyChangeType changeType, QCamera::Status status) const { return callbackQCameraControl_CanChangeProperty(const_cast<MyQCameraControl*>(this), changeType, status) != 0; };
 	QCamera::CaptureModes captureMode() const { return static_cast<QCamera::CaptureMode>(callbackQCameraControl_CaptureMode(const_cast<MyQCameraControl*>(this))); };
 	void Signal_CaptureModeChanged(QCamera::CaptureModes mode) { callbackQCameraControl_CaptureModeChanged(this, mode); };
-	void Signal_Error(int error, const QString & errorString) { callbackQCameraControl_Error(this, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Error(int error, const QString & errorString) { callbackQCameraControl_Error(this, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	bool isCaptureModeSupported(QCamera::CaptureModes mode) const { return callbackQCameraControl_IsCaptureModeSupported(const_cast<MyQCameraControl*>(this), mode) != 0; };
 	void setCaptureMode(QCamera::CaptureModes mode) { callbackQCameraControl_SetCaptureMode(this, mode); };
 	void setState(QCamera::State state) { callbackQCameraControl_SetState(this, state); };
@@ -4780,7 +4780,7 @@ public:
 	bool isEventFeedbackLocked(QCameraFeedbackControl::EventType event) const { return callbackQCameraFeedbackControl_IsEventFeedbackLocked(const_cast<MyQCameraFeedbackControl*>(this), event) != 0; };
 	void resetEventFeedback(QCameraFeedbackControl::EventType event) { callbackQCameraFeedbackControl_ResetEventFeedback(this, event); };
 	bool setEventFeedbackEnabled(QCameraFeedbackControl::EventType event, bool enabled) { return callbackQCameraFeedbackControl_SetEventFeedbackEnabled(this, event, enabled) != 0; };
-	bool setEventFeedbackSound(QCameraFeedbackControl::EventType event, const QString & filePath) { return callbackQCameraFeedbackControl_SetEventFeedbackSound(this, event, const_cast<char*>(filePath.toUtf8().constData())) != 0; };
+	bool setEventFeedbackSound(QCameraFeedbackControl::EventType event, const QString & filePath) { return callbackQCameraFeedbackControl_SetEventFeedbackSound(this, event, const_cast<char*>(filePath.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQCameraFeedbackControl_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQCameraFeedbackControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQCameraFeedbackControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -5578,14 +5578,14 @@ public:
 	MyQCameraImageCapture(QMediaObject *mediaObject, QObject *parent) : QCameraImageCapture(mediaObject, parent) {};
 	void Signal_BufferFormatChanged(QVideoFrame::PixelFormat format) { callbackQCameraImageCapture_BufferFormatChanged(this, format); };
 	void cancelCapture() { callbackQCameraImageCapture_CancelCapture(this); };
-	int capture(const QString & file) { return callbackQCameraImageCapture_Capture(this, const_cast<char*>(file.toUtf8().constData())); };
+	int capture(const QString & file) { return callbackQCameraImageCapture_Capture(this, const_cast<char*>(file.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_CaptureDestinationChanged(QCameraImageCapture::CaptureDestinations destination) { callbackQCameraImageCapture_CaptureDestinationChanged(this, destination); };
-	void Signal_Error2(int id, QCameraImageCapture::Error error, const QString & errorString) { callbackQCameraImageCapture_Error2(this, id, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Error2(int id, QCameraImageCapture::Error error, const QString & errorString) { callbackQCameraImageCapture_Error2(this, id, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_ImageAvailable(int id, const QVideoFrame & buffer) { callbackQCameraImageCapture_ImageAvailable(this, id, const_cast<QVideoFrame*>(&buffer)); };
 	void Signal_ImageCaptured(int id, const QImage & preview) { callbackQCameraImageCapture_ImageCaptured(this, id, const_cast<QImage*>(&preview)); };
 	void Signal_ImageExposed(int id) { callbackQCameraImageCapture_ImageExposed(this, id); };
-	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { callbackQCameraImageCapture_ImageMetadataAvailable(this, id, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
-	void Signal_ImageSaved(int id, const QString & fileName) { callbackQCameraImageCapture_ImageSaved(this, id, const_cast<char*>(fileName.toUtf8().constData())); };
+	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { callbackQCameraImageCapture_ImageMetadataAvailable(this, id, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
+	void Signal_ImageSaved(int id, const QString & fileName) { callbackQCameraImageCapture_ImageSaved(this, id, const_cast<char*>(fileName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQCameraImageCapture_MediaObject(const_cast<MyQCameraImageCapture*>(this))); };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCapture_ReadyForCaptureChanged(this, ready); };
 	bool setMediaObject(QMediaObject * mediaObject) { return callbackQCameraImageCapture_SetMediaObject(this, mediaObject) != 0; };
@@ -5694,7 +5694,7 @@ long long QCameraImageCapture_Error(void* ptr)
 
 char* QCameraImageCapture_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCameraImageCapture*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QCameraImageCapture*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QCameraImageCapture_ConnectImageAvailable(void* ptr)
@@ -5729,7 +5729,7 @@ void QCameraImageCapture_ImageCaptured(void* ptr, int id, void* preview)
 
 char* QCameraImageCapture_ImageCodecDescription(void* ptr, char* codec)
 {
-	return const_cast<char*>(static_cast<QCameraImageCapture*>(ptr)->imageCodecDescription(QString(codec)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QCameraImageCapture*>(ptr)->imageCodecDescription(QString(codec)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QCameraImageCapture_ConnectImageExposed(void* ptr)
@@ -5839,7 +5839,7 @@ char QCameraImageCapture_SetMediaObjectDefault(void* ptr, void* mediaObject)
 
 char* QCameraImageCapture_SupportedImageCodecs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QCameraImageCapture_DestroyQCameraImageCapture(void* ptr)
@@ -5942,14 +5942,14 @@ class MyQCameraImageCaptureControl: public QCameraImageCaptureControl
 public:
 	MyQCameraImageCaptureControl(QObject *parent) : QCameraImageCaptureControl(parent) {};
 	void cancelCapture() { callbackQCameraImageCaptureControl_CancelCapture(this); };
-	int capture(const QString & fileName) { return callbackQCameraImageCaptureControl_Capture(this, const_cast<char*>(fileName.toUtf8().constData())); };
+	int capture(const QString & fileName) { return callbackQCameraImageCaptureControl_Capture(this, const_cast<char*>(fileName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	QCameraImageCapture::DriveMode driveMode() const { return static_cast<QCameraImageCapture::DriveMode>(callbackQCameraImageCaptureControl_DriveMode(const_cast<MyQCameraImageCaptureControl*>(this))); };
-	void Signal_Error(int id, int error, const QString & errorString) { callbackQCameraImageCaptureControl_Error(this, id, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Error(int id, int error, const QString & errorString) { callbackQCameraImageCaptureControl_Error(this, id, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_ImageAvailable(int requestId, const QVideoFrame & buffer) { callbackQCameraImageCaptureControl_ImageAvailable(this, requestId, const_cast<QVideoFrame*>(&buffer)); };
 	void Signal_ImageCaptured(int requestId, const QImage & preview) { callbackQCameraImageCaptureControl_ImageCaptured(this, requestId, const_cast<QImage*>(&preview)); };
 	void Signal_ImageExposed(int requestId) { callbackQCameraImageCaptureControl_ImageExposed(this, requestId); };
-	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { callbackQCameraImageCaptureControl_ImageMetadataAvailable(this, id, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
-	void Signal_ImageSaved(int requestId, const QString & fileName) { callbackQCameraImageCaptureControl_ImageSaved(this, requestId, const_cast<char*>(fileName.toUtf8().constData())); };
+	void Signal_ImageMetadataAvailable(int id, const QString & key, const QVariant & value) { callbackQCameraImageCaptureControl_ImageMetadataAvailable(this, id, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
+	void Signal_ImageSaved(int requestId, const QString & fileName) { callbackQCameraImageCaptureControl_ImageSaved(this, requestId, const_cast<char*>(fileName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	bool isReadyForCapture() const { return callbackQCameraImageCaptureControl_IsReadyForCapture(const_cast<MyQCameraImageCaptureControl*>(this)) != 0; };
 	void Signal_ReadyForCaptureChanged(bool ready) { callbackQCameraImageCaptureControl_ReadyForCaptureChanged(this, ready); };
 	void setDriveMode(QCameraImageCapture::DriveMode mode) { callbackQCameraImageCaptureControl_SetDriveMode(this, mode); };
@@ -6540,12 +6540,12 @@ void* QCameraInfo_QCameraInfo_DefaultCamera()
 
 char* QCameraInfo_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCameraInfo*>(ptr)->description().toUtf8().constData());
+	return const_cast<char*>(static_cast<QCameraInfo*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QCameraInfo_DeviceName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCameraInfo*>(ptr)->deviceName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QCameraInfo*>(ptr)->deviceName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QCameraInfo_IsNull(void* ptr)
@@ -6572,8 +6572,8 @@ class MyQCameraInfoControl: public QCameraInfoControl
 {
 public:
 	MyQCameraInfoControl(QObject *parent) : QCameraInfoControl(parent) {};
-	int cameraOrientation(const QString & deviceName) const { return callbackQCameraInfoControl_CameraOrientation(const_cast<MyQCameraInfoControl*>(this), const_cast<char*>(deviceName.toUtf8().constData())); };
-	QCamera::Position cameraPosition(const QString & deviceName) const { return static_cast<QCamera::Position>(callbackQCameraInfoControl_CameraPosition(const_cast<MyQCameraInfoControl*>(this), const_cast<char*>(deviceName.toUtf8().constData()))); };
+	int cameraOrientation(const QString & deviceName) const { return callbackQCameraInfoControl_CameraOrientation(const_cast<MyQCameraInfoControl*>(this), const_cast<char*>(deviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	QCamera::Position cameraPosition(const QString & deviceName) const { return static_cast<QCamera::Position>(callbackQCameraInfoControl_CameraPosition(const_cast<MyQCameraInfoControl*>(this), const_cast<char*>(deviceName.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	 ~MyQCameraInfoControl() { callbackQCameraInfoControl_DestroyQCameraInfoControl(this); };
 	void timerEvent(QTimerEvent * event) { callbackQCameraInfoControl_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQCameraInfoControl_ChildEvent(this, event); };
@@ -6879,10 +6879,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQCameraViewfinder_LeaveEvent(this, event); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQCameraViewfinder_MinimumSizeHint(const_cast<MyQCameraViewfinder*>(this))); };
 	void setEnabled(bool vbo) { callbackQCameraViewfinder_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQCameraViewfinder_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setStyleSheet(const QString & styleSheet) { callbackQCameraViewfinder_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setVisible(bool visible) { callbackQCameraViewfinder_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQCameraViewfinder_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQCameraViewfinder_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void setWindowTitle(const QString & vqs) { callbackQCameraViewfinder_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void changeEvent(QEvent * event) { callbackQCameraViewfinder_ChangeEvent(this, event); };
 	bool close() { return callbackQCameraViewfinder_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQCameraViewfinder_CloseEvent(this, event); };
@@ -6900,7 +6900,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQCameraViewfinder_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQCameraViewfinder_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQCameraViewfinder_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCameraViewfinder_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCameraViewfinder_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
 	void raise() { callbackQCameraViewfinder_Raise(this); };
 	void repaint() { callbackQCameraViewfinder_Repaint(this); };
 	void setDisabled(bool disable) { callbackQCameraViewfinder_SetDisabled(this, disable); };
@@ -8696,7 +8696,7 @@ char QGraphicsVideoItem_SetMediaObjectDefault(void* ptr, void* object)
 class MyQImageEncoderControl: public QImageEncoderControl
 {
 public:
-	QString imageCodecDescription(const QString & codec) const { return QString(callbackQImageEncoderControl_ImageCodecDescription(const_cast<MyQImageEncoderControl*>(this), const_cast<char*>(codec.toUtf8().constData()))); };
+	QString imageCodecDescription(const QString & codec) const { return QString(callbackQImageEncoderControl_ImageCodecDescription(const_cast<MyQImageEncoderControl*>(this), const_cast<char*>(codec.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	QImageEncoderSettings imageSettings() const { return *static_cast<QImageEncoderSettings*>(callbackQImageEncoderControl_ImageSettings(const_cast<MyQImageEncoderControl*>(this))); };
 	void setImageSettings(const QImageEncoderSettings & settings) { callbackQImageEncoderControl_SetImageSettings(this, const_cast<QImageEncoderSettings*>(&settings)); };
 	QStringList supportedImageCodecs() const { return QString(callbackQImageEncoderControl_SupportedImageCodecs(const_cast<MyQImageEncoderControl*>(this))).split("|", QString::SkipEmptyParts); };
@@ -8714,7 +8714,7 @@ public:
 
 char* QImageEncoderControl_ImageCodecDescription(void* ptr, char* codec)
 {
-	return const_cast<char*>(static_cast<QImageEncoderControl*>(ptr)->imageCodecDescription(QString(codec)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QImageEncoderControl*>(ptr)->imageCodecDescription(QString(codec)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QImageEncoderControl_ImageSettings(void* ptr)
@@ -8729,7 +8729,7 @@ void QImageEncoderControl_SetImageSettings(void* ptr, void* settings)
 
 char* QImageEncoderControl_SupportedImageCodecs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QImageEncoderControl*>(ptr)->supportedImageCodecs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QImageEncoderControl_DestroyQImageEncoderControl(void* ptr)
@@ -8844,7 +8844,7 @@ void* QImageEncoderSettings_NewQImageEncoderSettings2(void* other)
 
 char* QImageEncoderSettings_Codec(void* ptr)
 {
-	return const_cast<char*>(static_cast<QImageEncoderSettings*>(ptr)->codec().toUtf8().constData());
+	return const_cast<char*>(static_cast<QImageEncoderSettings*>(ptr)->codec().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QImageEncoderSettings_EncodingOption(void* ptr, char* option)
@@ -9219,9 +9219,9 @@ class MyQMediaContainerControl: public QMediaContainerControl
 {
 public:
 	MyQMediaContainerControl(QObject *parent) : QMediaContainerControl(parent) {};
-	QString containerDescription(const QString & format) const { return QString(callbackQMediaContainerControl_ContainerDescription(const_cast<MyQMediaContainerControl*>(this), const_cast<char*>(format.toUtf8().constData()))); };
+	QString containerDescription(const QString & format) const { return QString(callbackQMediaContainerControl_ContainerDescription(const_cast<MyQMediaContainerControl*>(this), const_cast<char*>(format.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	QString containerFormat() const { return QString(callbackQMediaContainerControl_ContainerFormat(const_cast<MyQMediaContainerControl*>(this))); };
-	void setContainerFormat(const QString & format) { callbackQMediaContainerControl_SetContainerFormat(this, const_cast<char*>(format.toUtf8().constData())); };
+	void setContainerFormat(const QString & format) { callbackQMediaContainerControl_SetContainerFormat(this, const_cast<char*>(format.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	QStringList supportedContainers() const { return QString(callbackQMediaContainerControl_SupportedContainers(const_cast<MyQMediaContainerControl*>(this))).split("|", QString::SkipEmptyParts); };
 	 ~MyQMediaContainerControl() { callbackQMediaContainerControl_DestroyQMediaContainerControl(this); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaContainerControl_TimerEvent(this, event); };
@@ -9242,12 +9242,12 @@ void* QMediaContainerControl_NewQMediaContainerControl(void* parent)
 
 char* QMediaContainerControl_ContainerDescription(void* ptr, char* format)
 {
-	return const_cast<char*>(static_cast<QMediaContainerControl*>(ptr)->containerDescription(QString(format)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaContainerControl*>(ptr)->containerDescription(QString(format)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMediaContainerControl_ContainerFormat(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaContainerControl*>(ptr)->containerFormat().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaContainerControl*>(ptr)->containerFormat().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMediaContainerControl_SetContainerFormat(void* ptr, char* format)
@@ -9257,7 +9257,7 @@ void QMediaContainerControl_SetContainerFormat(void* ptr, char* format)
 
 char* QMediaContainerControl_SupportedContainers(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaContainerControl*>(ptr)->supportedContainers().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMediaContainerControl_DestroyQMediaContainerControl(void* ptr)
@@ -9867,7 +9867,7 @@ public:
 	bool isAvailable() const { return callbackQMediaObject_IsAvailable(const_cast<MyQMediaObject*>(this)) != 0; };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaObject_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaObject_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMediaObject_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMediaObject_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
 	void Signal_NotifyIntervalChanged(int milliseconds) { callbackQMediaObject_NotifyIntervalChanged(this, milliseconds); };
 	QMediaService * service() const { return static_cast<QMediaService*>(callbackQMediaObject_Service(const_cast<MyQMediaObject*>(this))); };
 	void unbind(QObject * object) { callbackQMediaObject_Unbind(this, object); };
@@ -9944,7 +9944,7 @@ void QMediaObject_AvailabilityChanged(void* ptr, char available)
 
 char* QMediaObject_AvailableMetaData(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaObject*>(ptr)->availableMetaData().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaObject*>(ptr)->availableMetaData().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QMediaObject_Bind(void* ptr, void* object)
@@ -10224,7 +10224,7 @@ long long QMediaPlayer_Duration(void* ptr)
 
 char* QMediaPlayer_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaPlayer*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaPlayer*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QMediaPlayer_IsAudioAvailable(void* ptr)
@@ -10768,7 +10768,7 @@ public:
 	void Signal_BufferStatusChanged(int progress) { callbackQMediaPlayerControl_BufferStatusChanged(this, progress); };
 	qint64 duration() const { return callbackQMediaPlayerControl_Duration(const_cast<MyQMediaPlayerControl*>(this)); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaPlayerControl_DurationChanged(this, duration); };
-	void Signal_Error(int error, const QString & errorString) { callbackQMediaPlayerControl_Error(this, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Error(int error, const QString & errorString) { callbackQMediaPlayerControl_Error(this, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	bool isAudioAvailable() const { return callbackQMediaPlayerControl_IsAudioAvailable(const_cast<MyQMediaPlayerControl*>(this)) != 0; };
 	bool isMuted() const { return callbackQMediaPlayerControl_IsMuted(const_cast<MyQMediaPlayerControl*>(this)) != 0; };
 	bool isSeekable() const { return callbackQMediaPlayerControl_IsSeekable(const_cast<MyQMediaPlayerControl*>(this)) != 0; };
@@ -11332,7 +11332,7 @@ long long QMediaPlaylist_Error(void* ptr)
 
 char* QMediaPlaylist_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaPlaylist*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaPlaylist*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QMediaPlaylist_InsertMedia(void* ptr, int pos, void* content)
@@ -11684,7 +11684,7 @@ public:
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQMediaRecorder_MediaObject(const_cast<MyQMediaRecorder*>(this))); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMediaRecorder_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMediaRecorder_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMediaRecorder_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMediaRecorder_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
 	void Signal_MetaDataWritableChanged(bool writable) { callbackQMediaRecorder_MetaDataWritableChanged(this, writable); };
 	void Signal_MutedChanged(bool muted) { callbackQMediaRecorder_MutedChanged(this, muted); };
 	void pause() { callbackQMediaRecorder_Pause(this); };
@@ -11777,7 +11777,7 @@ void QMediaRecorder_ActualLocationChanged(void* ptr, void* location)
 
 char* QMediaRecorder_AudioCodecDescription(void* ptr, char* codec)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->audioCodecDescription(QString(codec)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->audioCodecDescription(QString(codec)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QMediaRecorder_AudioSettings(void* ptr)
@@ -11822,17 +11822,17 @@ void QMediaRecorder_AvailabilityChanged(void* ptr, char available)
 
 char* QMediaRecorder_AvailableMetaData(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->availableMetaData().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMediaRecorder_ContainerDescription(void* ptr, char* format)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->containerDescription(QString(format)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->containerDescription(QString(format)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMediaRecorder_ContainerFormat(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->containerFormat().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->containerFormat().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMediaRecorder_ConnectDurationChanged(void* ptr)
@@ -11872,7 +11872,7 @@ long long QMediaRecorder_Error(void* ptr)
 
 char* QMediaRecorder_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QMediaRecorder_IsAvailable(void* ptr)
@@ -12052,22 +12052,22 @@ void QMediaRecorder_Stop(void* ptr)
 
 char* QMediaRecorder_SupportedAudioCodecs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->supportedAudioCodecs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMediaRecorder_SupportedContainers(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMediaRecorder_SupportedVideoCodecs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMediaRecorder_VideoCodecDescription(void* ptr, char* codec)
 {
-	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->videoCodecDescription(QString(codec)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaRecorder*>(ptr)->videoCodecDescription(QString(codec)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QMediaRecorder_VideoSettings(void* ptr)
@@ -12203,7 +12203,7 @@ public:
 	void applySettings() { callbackQMediaRecorderControl_ApplySettings(this); };
 	qint64 duration() const { return callbackQMediaRecorderControl_Duration(const_cast<MyQMediaRecorderControl*>(this)); };
 	void Signal_DurationChanged(qint64 duration) { callbackQMediaRecorderControl_DurationChanged(this, duration); };
-	void Signal_Error(int error, const QString & errorString) { callbackQMediaRecorderControl_Error(this, error, const_cast<char*>(errorString.toUtf8().constData())); };
+	void Signal_Error(int error, const QString & errorString) { callbackQMediaRecorderControl_Error(this, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	bool isMuted() const { return callbackQMediaRecorderControl_IsMuted(const_cast<MyQMediaRecorderControl*>(this)) != 0; };
 	void Signal_MutedChanged(bool muted) { callbackQMediaRecorderControl_MutedChanged(this, muted); };
 	QUrl outputLocation() const { return *static_cast<QUrl*>(callbackQMediaRecorderControl_OutputLocation(const_cast<MyQMediaRecorderControl*>(this))); };
@@ -12521,7 +12521,7 @@ int QMediaResource_AudioBitRate(void* ptr)
 
 char* QMediaResource_AudioCodec(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->audioCodec().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->audioCodec().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QMediaResource_ChannelCount(void* ptr)
@@ -12541,12 +12541,12 @@ char QMediaResource_IsNull(void* ptr)
 
 char* QMediaResource_Language(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->language().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->language().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMediaResource_MimeType(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->mimeType().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->mimeType().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QMediaResource_Request(void* ptr)
@@ -12626,7 +12626,7 @@ int QMediaResource_VideoBitRate(void* ptr)
 
 char* QMediaResource_VideoCodec(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->videoCodec().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaResource*>(ptr)->videoCodec().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMediaResource_DestroyQMediaResource(void* ptr)
@@ -12639,7 +12639,7 @@ class MyQMediaService: public QMediaService
 public:
 	MyQMediaService(QObject *parent) : QMediaService(parent) {};
 	void releaseControl(QMediaControl * control) { callbackQMediaService_ReleaseControl(this, control); };
-	QMediaControl * requestControl(const char * interfa) { return static_cast<QMediaControl*>(callbackQMediaService_RequestControl(this, const_cast<char*>(QString(interfa).toUtf8().constData()))); };
+	QMediaControl * requestControl(const char * interfa) { return static_cast<QMediaControl*>(callbackQMediaService_RequestControl(this, const_cast<char*>(QString(interfa).toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaService_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQMediaService_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMediaService_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -12769,8 +12769,8 @@ void* QMediaService_MetaObjectDefault(void* ptr)
 class MyQMediaServiceCameraInfoInterface: public QMediaServiceCameraInfoInterface
 {
 public:
-	int cameraOrientation(const QByteArray & device) const { return callbackQMediaServiceCameraInfoInterface_CameraOrientation(const_cast<MyQMediaServiceCameraInfoInterface*>(this), const_cast<char*>(device.toHex().constData())); };
-	QCamera::Position cameraPosition(const QByteArray & device) const { return static_cast<QCamera::Position>(callbackQMediaServiceCameraInfoInterface_CameraPosition(const_cast<MyQMediaServiceCameraInfoInterface*>(this), const_cast<char*>(device.toHex().constData()))); };
+	int cameraOrientation(const QByteArray & device) const { return callbackQMediaServiceCameraInfoInterface_CameraOrientation(const_cast<MyQMediaServiceCameraInfoInterface*>(this), const_cast<char*>(device.toHex().prepend("WHITESPACE").constData()+10)); };
+	QCamera::Position cameraPosition(const QByteArray & device) const { return static_cast<QCamera::Position>(callbackQMediaServiceCameraInfoInterface_CameraPosition(const_cast<MyQMediaServiceCameraInfoInterface*>(this), const_cast<char*>(device.toHex().prepend("WHITESPACE").constData()+10))); };
 	 ~MyQMediaServiceCameraInfoInterface() { callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(this); };
 };
 
@@ -12797,13 +12797,13 @@ void QMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterfaceDef
 class MyQMediaServiceDefaultDeviceInterface: public QMediaServiceDefaultDeviceInterface
 {
 public:
-	QByteArray defaultDevice(const QByteArray & service) const { return QByteArray::fromHex(QString(callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(const_cast<MyQMediaServiceDefaultDeviceInterface*>(this), const_cast<char*>(service.toHex().constData()))).toUtf8()); };
+	QByteArray defaultDevice(const QByteArray & service) const { return QByteArray::fromHex(QString(callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(const_cast<MyQMediaServiceDefaultDeviceInterface*>(this), const_cast<char*>(service.toHex().prepend("WHITESPACE").constData()+10))).toUtf8()); };
 	 ~MyQMediaServiceDefaultDeviceInterface() { callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(this); };
 };
 
 char* QMediaServiceDefaultDeviceInterface_DefaultDevice(void* ptr, char* service)
 {
-	return const_cast<char*>(static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->defaultDevice(QByteArray::fromHex(QString(service).toUtf8())).toHex().constData());
+	return const_cast<char*>(static_cast<QMediaServiceDefaultDeviceInterface*>(ptr)->defaultDevice(QByteArray::fromHex(QString(service).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(void* ptr)
@@ -12835,7 +12835,7 @@ void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterfaceDefault
 class MyQMediaServiceProviderPlugin: public QMediaServiceProviderPlugin
 {
 public:
-	QMediaService * create(const QString & key) { return static_cast<QMediaService*>(callbackQMediaServiceProviderPlugin_Create(this, const_cast<char*>(key.toUtf8().constData()))); };
+	QMediaService * create(const QString & key) { return static_cast<QMediaService*>(callbackQMediaServiceProviderPlugin_Create(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void release(QMediaService * service) { callbackQMediaServiceProviderPlugin_Release(this, service); };
 	void timerEvent(QTimerEvent * event) { callbackQMediaServiceProviderPlugin_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQMediaServiceProviderPlugin_ChildEvent(this, event); };
@@ -12951,13 +12951,13 @@ void* QMediaServiceProviderPlugin_MetaObjectDefault(void* ptr)
 class MyQMediaServiceSupportedDevicesInterface: public QMediaServiceSupportedDevicesInterface
 {
 public:
-	QString deviceDescription(const QByteArray & service, const QByteArray & device) { return QString(callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(this, const_cast<char*>(service.toHex().constData()), const_cast<char*>(device.toHex().constData()))); };
+	QString deviceDescription(const QByteArray & service, const QByteArray & device) { return QString(callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(this, const_cast<char*>(service.toHex().prepend("WHITESPACE").constData()+10), const_cast<char*>(device.toHex().prepend("WHITESPACE").constData()+10))); };
 	 ~MyQMediaServiceSupportedDevicesInterface() { callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(this); };
 };
 
 char* QMediaServiceSupportedDevicesInterface_DeviceDescription(void* ptr, char* service, char* device)
 {
-	return const_cast<char*>(static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(QByteArray::fromHex(QString(service).toUtf8()), QByteArray::fromHex(QString(device).toUtf8())).toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaServiceSupportedDevicesInterface*>(ptr)->deviceDescription(QByteArray::fromHex(QString(service).toUtf8()), QByteArray::fromHex(QString(device).toUtf8())).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(void* ptr)
@@ -12973,7 +12973,7 @@ void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevices
 class MyQMediaServiceSupportedFormatsInterface: public QMediaServiceSupportedFormatsInterface
 {
 public:
-	QMultimedia::SupportEstimate hasSupport(const QString & mimeType, const QStringList & codecs) const { return static_cast<QMultimedia::SupportEstimate>(callbackQMediaServiceSupportedFormatsInterface_HasSupport(const_cast<MyQMediaServiceSupportedFormatsInterface*>(this), const_cast<char*>(mimeType.toUtf8().constData()), const_cast<char*>(codecs.join("|").toUtf8().constData()))); };
+	QMultimedia::SupportEstimate hasSupport(const QString & mimeType, const QStringList & codecs) const { return static_cast<QMultimedia::SupportEstimate>(callbackQMediaServiceSupportedFormatsInterface_HasSupport(const_cast<MyQMediaServiceSupportedFormatsInterface*>(this), const_cast<char*>(mimeType.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(codecs.join("|").toUtf8().prepend("WHITESPACE").constData()+10))); };
 	QStringList supportedMimeTypes() const { return QString(callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(const_cast<MyQMediaServiceSupportedFormatsInterface*>(this))).split("|", QString::SkipEmptyParts); };
 	 ~MyQMediaServiceSupportedFormatsInterface() { callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(this); };
 };
@@ -12985,7 +12985,7 @@ long long QMediaServiceSupportedFormatsInterface_HasSupport(void* ptr, char* mim
 
 char* QMediaServiceSupportedFormatsInterface_SupportedMimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMediaServiceSupportedFormatsInterface*>(ptr)->supportedMimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(void* ptr)
@@ -13004,7 +13004,7 @@ public:
 	MyQMediaStreamsControl(QObject *parent) : QMediaStreamsControl(parent) {};
 	void Signal_ActiveStreamsChanged() { callbackQMediaStreamsControl_ActiveStreamsChanged(this); };
 	bool isActive(int stream) { return callbackQMediaStreamsControl_IsActive(this, stream) != 0; };
-	QVariant metaData(int stream, const QString & key) { return *static_cast<QVariant*>(callbackQMediaStreamsControl_MetaData(this, stream, const_cast<char*>(key.toUtf8().constData()))); };
+	QVariant metaData(int stream, const QString & key) { return *static_cast<QVariant*>(callbackQMediaStreamsControl_MetaData(this, stream, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void setActive(int stream, bool state) { callbackQMediaStreamsControl_SetActive(this, stream, state); };
 	int streamCount() { return callbackQMediaStreamsControl_StreamCount(this); };
 	StreamType streamType(int stream) { return static_cast<QMediaStreamsControl::StreamType>(callbackQMediaStreamsControl_StreamType(this, stream)); };
@@ -13470,10 +13470,10 @@ public:
 	MyQMetaDataReaderControl(QObject *parent) : QMetaDataReaderControl(parent) {};
 	QStringList availableMetaData() const { return QString(callbackQMetaDataReaderControl_AvailableMetaData(const_cast<MyQMetaDataReaderControl*>(this))).split("|", QString::SkipEmptyParts); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataReaderControl_IsMetaDataAvailable(const_cast<MyQMetaDataReaderControl*>(this)) != 0; };
-	QVariant metaData(const QString & key) const { return *static_cast<QVariant*>(callbackQMetaDataReaderControl_MetaData(const_cast<MyQMetaDataReaderControl*>(this), const_cast<char*>(key.toUtf8().constData()))); };
+	QVariant metaData(const QString & key) const { return *static_cast<QVariant*>(callbackQMetaDataReaderControl_MetaData(const_cast<MyQMetaDataReaderControl*>(this), const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataReaderControl_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMetaDataReaderControl_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMetaDataReaderControl_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMetaDataReaderControl_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
 	void timerEvent(QTimerEvent * event) { callbackQMetaDataReaderControl_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQMetaDataReaderControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMetaDataReaderControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -13492,7 +13492,7 @@ void* QMetaDataReaderControl_NewQMetaDataReaderControl(void* parent)
 
 char* QMetaDataReaderControl_AvailableMetaData(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMetaDataReaderControl*>(ptr)->availableMetaData().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QMetaDataReaderControl_IsMetaDataAvailable(void* ptr)
@@ -13652,11 +13652,11 @@ public:
 	QStringList availableMetaData() const { return QString(callbackQMetaDataWriterControl_AvailableMetaData(const_cast<MyQMetaDataWriterControl*>(this))).split("|", QString::SkipEmptyParts); };
 	bool isMetaDataAvailable() const { return callbackQMetaDataWriterControl_IsMetaDataAvailable(const_cast<MyQMetaDataWriterControl*>(this)) != 0; };
 	bool isWritable() const { return callbackQMetaDataWriterControl_IsWritable(const_cast<MyQMetaDataWriterControl*>(this)) != 0; };
-	QVariant metaData(const QString & key) const { return *static_cast<QVariant*>(callbackQMetaDataWriterControl_MetaData(const_cast<MyQMetaDataWriterControl*>(this), const_cast<char*>(key.toUtf8().constData()))); };
+	QVariant metaData(const QString & key) const { return *static_cast<QVariant*>(callbackQMetaDataWriterControl_MetaData(const_cast<MyQMetaDataWriterControl*>(this), const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void Signal_MetaDataAvailableChanged(bool available) { callbackQMetaDataWriterControl_MetaDataAvailableChanged(this, available); };
 	void Signal_MetaDataChanged() { callbackQMetaDataWriterControl_MetaDataChanged(this); };
-	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMetaDataWriterControl_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
-	void setMetaData(const QString & key, const QVariant & value) { callbackQMetaDataWriterControl_SetMetaData(this, const_cast<char*>(key.toUtf8().constData()), const_cast<QVariant*>(&value)); };
+	void Signal_MetaDataChanged2(const QString & key, const QVariant & value) { callbackQMetaDataWriterControl_MetaDataChanged2(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
+	void setMetaData(const QString & key, const QVariant & value) { callbackQMetaDataWriterControl_SetMetaData(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
 	void Signal_WritableChanged(bool writable) { callbackQMetaDataWriterControl_WritableChanged(this, writable); };
 	void timerEvent(QTimerEvent * event) { callbackQMetaDataWriterControl_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQMetaDataWriterControl_ChildEvent(this, event); };
@@ -13676,7 +13676,7 @@ void* QMetaDataWriterControl_NewQMetaDataWriterControl(void* parent)
 
 char* QMetaDataWriterControl_AvailableMetaData(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QMetaDataWriterControl*>(ptr)->availableMetaData().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QMetaDataWriterControl_IsMetaDataAvailable(void* ptr)
@@ -13863,11 +13863,11 @@ public:
 	void Signal_Error2(QRadioData::Error error) { callbackQRadioData_Error2(this, error); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQRadioData_MediaObject(const_cast<MyQRadioData*>(this))); };
 	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioData_ProgramTypeChanged(this, programType); };
-	void Signal_ProgramTypeNameChanged(QString programTypeName) { callbackQRadioData_ProgramTypeNameChanged(this, const_cast<char*>(programTypeName.toUtf8().constData())); };
-	void Signal_RadioTextChanged(QString radioText) { callbackQRadioData_RadioTextChanged(this, const_cast<char*>(radioText.toUtf8().constData())); };
+	void Signal_ProgramTypeNameChanged(QString programTypeName) { callbackQRadioData_ProgramTypeNameChanged(this, const_cast<char*>(programTypeName.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_RadioTextChanged(QString radioText) { callbackQRadioData_RadioTextChanged(this, const_cast<char*>(radioText.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	bool setMediaObject(QMediaObject * mediaObject) { return callbackQRadioData_SetMediaObject(this, mediaObject) != 0; };
-	void Signal_StationIdChanged(QString stationId) { callbackQRadioData_StationIdChanged(this, const_cast<char*>(stationId.toUtf8().constData())); };
-	void Signal_StationNameChanged(QString stationName) { callbackQRadioData_StationNameChanged(this, const_cast<char*>(stationName.toUtf8().constData())); };
+	void Signal_StationIdChanged(QString stationId) { callbackQRadioData_StationIdChanged(this, const_cast<char*>(stationId.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_StationNameChanged(QString stationName) { callbackQRadioData_StationNameChanged(this, const_cast<char*>(stationName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void timerEvent(QTimerEvent * event) { callbackQRadioData_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQRadioData_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQRadioData_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -13891,12 +13891,12 @@ long long QRadioData_ProgramType(void* ptr)
 
 char* QRadioData_ProgramTypeName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioData*>(ptr)->programTypeName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioData*>(ptr)->programTypeName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QRadioData_RadioText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioData*>(ptr)->radioText().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioData*>(ptr)->radioText().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QRadioData_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
@@ -13906,12 +13906,12 @@ void QRadioData_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
 
 char* QRadioData_StationId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioData*>(ptr)->stationId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioData*>(ptr)->stationId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QRadioData_StationName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioData*>(ptr)->stationName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioData*>(ptr)->stationName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QRadioData_NewQRadioData(void* mediaObject, void* parent)
@@ -13961,7 +13961,7 @@ long long QRadioData_Error(void* ptr)
 
 char* QRadioData_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioData*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioData*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QRadioData_MediaObject(void* ptr)
@@ -14166,14 +14166,14 @@ public:
 	QRadioData::ProgramType programType() const { return static_cast<QRadioData::ProgramType>(callbackQRadioDataControl_ProgramType(const_cast<MyQRadioDataControl*>(this))); };
 	void Signal_ProgramTypeChanged(QRadioData::ProgramType programType) { callbackQRadioDataControl_ProgramTypeChanged(this, programType); };
 	QString programTypeName() const { return QString(callbackQRadioDataControl_ProgramTypeName(const_cast<MyQRadioDataControl*>(this))); };
-	void Signal_ProgramTypeNameChanged(QString programTypeName) { callbackQRadioDataControl_ProgramTypeNameChanged(this, const_cast<char*>(programTypeName.toUtf8().constData())); };
+	void Signal_ProgramTypeNameChanged(QString programTypeName) { callbackQRadioDataControl_ProgramTypeNameChanged(this, const_cast<char*>(programTypeName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	QString radioText() const { return QString(callbackQRadioDataControl_RadioText(const_cast<MyQRadioDataControl*>(this))); };
-	void Signal_RadioTextChanged(QString radioText) { callbackQRadioDataControl_RadioTextChanged(this, const_cast<char*>(radioText.toUtf8().constData())); };
+	void Signal_RadioTextChanged(QString radioText) { callbackQRadioDataControl_RadioTextChanged(this, const_cast<char*>(radioText.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setAlternativeFrequenciesEnabled(bool enabled) { callbackQRadioDataControl_SetAlternativeFrequenciesEnabled(this, enabled); };
 	QString stationId() const { return QString(callbackQRadioDataControl_StationId(const_cast<MyQRadioDataControl*>(this))); };
-	void Signal_StationIdChanged(QString stationId) { callbackQRadioDataControl_StationIdChanged(this, const_cast<char*>(stationId.toUtf8().constData())); };
+	void Signal_StationIdChanged(QString stationId) { callbackQRadioDataControl_StationIdChanged(this, const_cast<char*>(stationId.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	QString stationName() const { return QString(callbackQRadioDataControl_StationName(const_cast<MyQRadioDataControl*>(this))); };
-	void Signal_StationNameChanged(QString stationName) { callbackQRadioDataControl_StationNameChanged(this, const_cast<char*>(stationName.toUtf8().constData())); };
+	void Signal_StationNameChanged(QString stationName) { callbackQRadioDataControl_StationNameChanged(this, const_cast<char*>(stationName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void timerEvent(QTimerEvent * event) { callbackQRadioDataControl_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQRadioDataControl_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQRadioDataControl_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -14227,7 +14227,7 @@ long long QRadioDataControl_Error(void* ptr)
 
 char* QRadioDataControl_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QRadioDataControl_IsAlternativeFrequenciesEnabled(void* ptr)
@@ -14257,7 +14257,7 @@ void QRadioDataControl_ProgramTypeChanged(void* ptr, long long programType)
 
 char* QRadioDataControl_ProgramTypeName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->programTypeName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->programTypeName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QRadioDataControl_ConnectProgramTypeNameChanged(void* ptr)
@@ -14277,7 +14277,7 @@ void QRadioDataControl_ProgramTypeNameChanged(void* ptr, char* programTypeName)
 
 char* QRadioDataControl_RadioText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->radioText().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->radioText().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QRadioDataControl_ConnectRadioTextChanged(void* ptr)
@@ -14302,7 +14302,7 @@ void QRadioDataControl_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
 
 char* QRadioDataControl_StationId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->stationId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->stationId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QRadioDataControl_ConnectStationIdChanged(void* ptr)
@@ -14322,7 +14322,7 @@ void QRadioDataControl_StationIdChanged(void* ptr, char* stationId)
 
 char* QRadioDataControl_StationName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->stationName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioDataControl*>(ptr)->stationName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QRadioDataControl_ConnectStationNameChanged(void* ptr)
@@ -14457,7 +14457,7 @@ public:
 	void Signal_SignalStrengthChanged(int strength) { callbackQRadioTuner_SignalStrengthChanged(this, strength); };
 	void start() { callbackQRadioTuner_Start(this); };
 	void Signal_StateChanged(QRadioTuner::State state) { callbackQRadioTuner_StateChanged(this, state); };
-	void Signal_StationFound(int frequency, QString stationId) { callbackQRadioTuner_StationFound(this, frequency, const_cast<char*>(stationId.toUtf8().constData())); };
+	void Signal_StationFound(int frequency, QString stationId) { callbackQRadioTuner_StationFound(this, frequency, const_cast<char*>(stationId.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTuner_StereoStatusChanged(this, stereo); };
 	void stop() { callbackQRadioTuner_Stop(this); };
 	void Signal_VolumeChanged(int volume) { callbackQRadioTuner_VolumeChanged(this, volume); };
@@ -14618,7 +14618,7 @@ long long QRadioTuner_Error(void* ptr)
 
 char* QRadioTuner_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioTuner*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioTuner*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QRadioTuner_ConnectFrequencyChanged(void* ptr)
@@ -14954,7 +14954,7 @@ public:
 	void start() { callbackQRadioTunerControl_Start(this); };
 	QRadioTuner::State state() const { return static_cast<QRadioTuner::State>(callbackQRadioTunerControl_State(const_cast<MyQRadioTunerControl*>(this))); };
 	void Signal_StateChanged(QRadioTuner::State state) { callbackQRadioTunerControl_StateChanged(this, state); };
-	void Signal_StationFound(int frequency, QString stationId) { callbackQRadioTunerControl_StationFound(this, frequency, const_cast<char*>(stationId.toUtf8().constData())); };
+	void Signal_StationFound(int frequency, QString stationId) { callbackQRadioTunerControl_StationFound(this, frequency, const_cast<char*>(stationId.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	QRadioTuner::StereoMode stereoMode() const { return static_cast<QRadioTuner::StereoMode>(callbackQRadioTunerControl_StereoMode(const_cast<MyQRadioTunerControl*>(this))); };
 	void Signal_StereoStatusChanged(bool stereo) { callbackQRadioTunerControl_StereoStatusChanged(this, stereo); };
 	void stop() { callbackQRadioTunerControl_Stop(this); };
@@ -15033,7 +15033,7 @@ long long QRadioTunerControl_Error(void* ptr)
 
 char* QRadioTunerControl_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QRadioTunerControl*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QRadioTunerControl*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QRadioTunerControl_Frequency(void* ptr)
@@ -15390,7 +15390,7 @@ void* QSound_NewQSound(char* filename, void* parent)
 
 char* QSound_FileName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSound*>(ptr)->fileName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSound*>(ptr)->fileName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSound_IsFinished(void* ptr)
@@ -15566,7 +15566,7 @@ void QSoundEffect_Stop(void* ptr)
 
 char* QSoundEffect_QSoundEffect_SupportedMimeTypes()
 {
-	return const_cast<char*>(QSoundEffect::supportedMimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(QSoundEffect::supportedMimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSoundEffect_NewQSoundEffect(void* parent)
@@ -15576,7 +15576,7 @@ void* QSoundEffect_NewQSoundEffect(void* parent)
 
 char* QSoundEffect_Category(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSoundEffect*>(ptr)->category().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSoundEffect*>(ptr)->category().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSoundEffect_ConnectCategoryChanged(void* ptr)
@@ -15874,7 +15874,7 @@ public:
 	QString deviceName(int index) const { return QString(callbackQVideoDeviceSelectorControl_DeviceName(const_cast<MyQVideoDeviceSelectorControl*>(this), index)); };
 	void Signal_DevicesChanged() { callbackQVideoDeviceSelectorControl_DevicesChanged(this); };
 	int selectedDevice() const { return callbackQVideoDeviceSelectorControl_SelectedDevice(const_cast<MyQVideoDeviceSelectorControl*>(this)); };
-	void Signal_SelectedDeviceChanged2(const QString & name) { callbackQVideoDeviceSelectorControl_SelectedDeviceChanged2(this, const_cast<char*>(name.toUtf8().constData())); };
+	void Signal_SelectedDeviceChanged2(const QString & name) { callbackQVideoDeviceSelectorControl_SelectedDeviceChanged2(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_SelectedDeviceChanged(int index) { callbackQVideoDeviceSelectorControl_SelectedDeviceChanged(this, index); };
 	void setSelectedDevice(int index) { callbackQVideoDeviceSelectorControl_SetSelectedDevice(this, index); };
 	 ~MyQVideoDeviceSelectorControl() { callbackQVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(this); };
@@ -15906,12 +15906,12 @@ int QVideoDeviceSelectorControl_DeviceCount(void* ptr)
 
 char* QVideoDeviceSelectorControl_DeviceDescription(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceDescription(index).toUtf8().constData());
+	return const_cast<char*>(static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceDescription(index).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QVideoDeviceSelectorControl_DeviceName(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceName(index).toUtf8().constData());
+	return const_cast<char*>(static_cast<QVideoDeviceSelectorControl*>(ptr)->deviceName(index).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QVideoDeviceSelectorControl_ConnectDevicesChanged(void* ptr)
@@ -16091,7 +16091,7 @@ int QVideoEncoderSettings_BitRate(void* ptr)
 
 char* QVideoEncoderSettings_Codec(void* ptr)
 {
-	return const_cast<char*>(static_cast<QVideoEncoderSettings*>(ptr)->codec().toUtf8().constData());
+	return const_cast<char*>(static_cast<QVideoEncoderSettings*>(ptr)->codec().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QVideoEncoderSettings_EncodingMode(void* ptr)
@@ -16169,7 +16169,7 @@ class MyQVideoEncoderSettingsControl: public QVideoEncoderSettingsControl
 public:
 	void setVideoSettings(const QVideoEncoderSettings & settings) { callbackQVideoEncoderSettingsControl_SetVideoSettings(this, const_cast<QVideoEncoderSettings*>(&settings)); };
 	QStringList supportedVideoCodecs() const { return QString(callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(const_cast<MyQVideoEncoderSettingsControl*>(this))).split("|", QString::SkipEmptyParts); };
-	QString videoCodecDescription(const QString & codec) const { return QString(callbackQVideoEncoderSettingsControl_VideoCodecDescription(const_cast<MyQVideoEncoderSettingsControl*>(this), const_cast<char*>(codec.toUtf8().constData()))); };
+	QString videoCodecDescription(const QString & codec) const { return QString(callbackQVideoEncoderSettingsControl_VideoCodecDescription(const_cast<MyQVideoEncoderSettingsControl*>(this), const_cast<char*>(codec.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	QVideoEncoderSettings videoSettings() const { return *static_cast<QVideoEncoderSettings*>(callbackQVideoEncoderSettingsControl_VideoSettings(const_cast<MyQVideoEncoderSettingsControl*>(this))); };
 	 ~MyQVideoEncoderSettingsControl() { callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(this); };
 	void timerEvent(QTimerEvent * event) { callbackQVideoEncoderSettingsControl_TimerEvent(this, event); };
@@ -16190,12 +16190,12 @@ void QVideoEncoderSettingsControl_SetVideoSettings(void* ptr, void* settings)
 
 char* QVideoEncoderSettingsControl_SupportedVideoCodecs(void* ptr)
 {
-	return const_cast<char*>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QVideoEncoderSettingsControl*>(ptr)->supportedVideoCodecs().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QVideoEncoderSettingsControl_VideoCodecDescription(void* ptr, char* codec)
 {
-	return const_cast<char*>(static_cast<QVideoEncoderSettingsControl*>(ptr)->videoCodecDescription(QString(codec)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QVideoEncoderSettingsControl*>(ptr)->videoCodecDescription(QString(codec)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QVideoEncoderSettingsControl_VideoSettings(void* ptr)
@@ -16341,22 +16341,22 @@ void* QVideoFrame_NewQVideoFrame3(int bytes, void* size, int bytesPerLine, long 
 
 char* QVideoFrame_Bits(void* ptr)
 {
-	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits())).toUtf8().constData());
+	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits())).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QVideoFrame_Bits2(void* ptr, int plane)
 {
-	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits(plane))).toUtf8().constData());
+	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits(plane))).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QVideoFrame_Bits3(void* ptr)
 {
-	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits())).toUtf8().constData());
+	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits())).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QVideoFrame_Bits4(void* ptr, int plane)
 {
-	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits(plane))).toUtf8().constData());
+	return const_cast<char*>(QString(QChar(*static_cast<QVideoFrame*>(ptr)->bits(plane))).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QVideoFrame_BytesPerLine(void* ptr)
@@ -16945,10 +16945,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQVideoWidget_LeaveEvent(this, event); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_MinimumSizeHint(const_cast<MyQVideoWidget*>(this))); };
 	void setEnabled(bool vbo) { callbackQVideoWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQVideoWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setStyleSheet(const QString & styleSheet) { callbackQVideoWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setVisible(bool visible) { callbackQVideoWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQVideoWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQVideoWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void setWindowTitle(const QString & vqs) { callbackQVideoWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void changeEvent(QEvent * event) { callbackQVideoWidget_ChangeEvent(this, event); };
 	bool close() { return callbackQVideoWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQVideoWidget_CloseEvent(this, event); };
@@ -16966,7 +16966,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQVideoWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQVideoWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQVideoWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQVideoWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQVideoWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
 	void raise() { callbackQVideoWidget_Raise(this); };
 	void repaint() { callbackQVideoWidget_Repaint(this); };
 	void setDisabled(bool disable) { callbackQVideoWidget_SetDisabled(this, disable); };

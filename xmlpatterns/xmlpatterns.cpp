@@ -357,7 +357,7 @@ void* QAbstractXmlNodeModel_SourceLocation(void* ptr, void* index)
 
 char* QAbstractXmlNodeModel_StringValue(void* ptr, void* n)
 {
-	return const_cast<char*>(static_cast<QAbstractXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(n)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QAbstractXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(n)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QAbstractXmlNodeModel_TypedValue(void* ptr, void* node)
@@ -382,12 +382,12 @@ public:
 	void atomicValue(const QVariant & value) { callbackQAbstractXmlReceiver_AtomicValue(this, const_cast<QVariant*>(&value)); };
 	void attribute(const QXmlName & name, const QStringRef & value) { callbackQAbstractXmlReceiver_Attribute(this, const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
 	void characters(const QStringRef & value) { callbackQAbstractXmlReceiver_Characters(this, const_cast<QStringRef*>(&value)); };
-	void comment(const QString & value) { callbackQAbstractXmlReceiver_Comment(this, const_cast<char*>(value.toUtf8().constData())); };
+	void comment(const QString & value) { callbackQAbstractXmlReceiver_Comment(this, const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void endDocument() { callbackQAbstractXmlReceiver_EndDocument(this); };
 	void endElement() { callbackQAbstractXmlReceiver_EndElement(this); };
 	void endOfSequence() { callbackQAbstractXmlReceiver_EndOfSequence(this); };
 	void namespaceBinding(const QXmlName & name) { callbackQAbstractXmlReceiver_NamespaceBinding(this, const_cast<QXmlName*>(&name)); };
-	void processingInstruction(const QXmlName & target, const QString & value) { callbackQAbstractXmlReceiver_ProcessingInstruction(this, const_cast<QXmlName*>(&target), const_cast<char*>(value.toUtf8().constData())); };
+	void processingInstruction(const QXmlName & target, const QString & value) { callbackQAbstractXmlReceiver_ProcessingInstruction(this, const_cast<QXmlName*>(&target), const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void startDocument() { callbackQAbstractXmlReceiver_StartDocument(this); };
 	void startElement(const QXmlName & name) { callbackQAbstractXmlReceiver_StartElement(this, const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQAbstractXmlReceiver_StartOfSequence(this); };
@@ -512,12 +512,12 @@ void* QSimpleXmlNodeModel_NamePool(void* ptr)
 
 char* QSimpleXmlNodeModel_StringValue(void* ptr, void* node)
 {
-	return const_cast<char*>(static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSimpleXmlNodeModel_StringValueDefault(void* ptr, void* node)
 {
-	return const_cast<char*>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr)
@@ -638,11 +638,11 @@ public:
 	void atomicValue(const QVariant & value) { callbackQXmlFormatter_AtomicValue(this, const_cast<QVariant*>(&value)); };
 	void attribute(const QXmlName & name, const QStringRef & value) { callbackQXmlFormatter_Attribute(this, const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
 	void characters(const QStringRef & value) { callbackQXmlFormatter_Characters(this, const_cast<QStringRef*>(&value)); };
-	void comment(const QString & value) { callbackQXmlFormatter_Comment(this, const_cast<char*>(value.toUtf8().constData())); };
+	void comment(const QString & value) { callbackQXmlFormatter_Comment(this, const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void endDocument() { callbackQXmlFormatter_EndDocument(this); };
 	void endElement() { callbackQXmlFormatter_EndElement(this); };
 	void endOfSequence() { callbackQXmlFormatter_EndOfSequence(this); };
-	void processingInstruction(const QXmlName & name, const QString & value) { callbackQXmlFormatter_ProcessingInstruction(this, const_cast<QXmlName*>(&name), const_cast<char*>(value.toUtf8().constData())); };
+	void processingInstruction(const QXmlName & name, const QString & value) { callbackQXmlFormatter_ProcessingInstruction(this, const_cast<QXmlName*>(&name), const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void startDocument() { callbackQXmlFormatter_StartDocument(this); };
 	void startElement(const QXmlName & name) { callbackQXmlFormatter_StartElement(this, const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQXmlFormatter_StartOfSequence(this); };
@@ -856,22 +856,22 @@ char QXmlName_IsNull(void* ptr)
 
 char* QXmlName_LocalName(void* ptr, void* namePool)
 {
-	return const_cast<char*>(static_cast<QXmlName*>(ptr)->localName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QXmlName*>(ptr)->localName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QXmlName_NamespaceUri(void* ptr, void* namePool)
 {
-	return const_cast<char*>(static_cast<QXmlName*>(ptr)->namespaceUri(*static_cast<QXmlNamePool*>(namePool)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QXmlName*>(ptr)->namespaceUri(*static_cast<QXmlNamePool*>(namePool)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QXmlName_Prefix(void* ptr, void* namePool)
 {
-	return const_cast<char*>(static_cast<QXmlName*>(ptr)->prefix(*static_cast<QXmlNamePool*>(namePool)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QXmlName*>(ptr)->prefix(*static_cast<QXmlNamePool*>(namePool)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QXmlName_ToClarkName(void* ptr, void* namePool)
 {
-	return const_cast<char*>(static_cast<QXmlName*>(ptr)->toClarkName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QXmlName*>(ptr)->toClarkName(*static_cast<QXmlNamePool*>(namePool)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QXmlNamePool_NewQXmlNamePool()
@@ -1288,12 +1288,12 @@ public:
 	void atomicValue(const QVariant & value) { callbackQXmlSerializer_AtomicValue(this, const_cast<QVariant*>(&value)); };
 	void attribute(const QXmlName & name, const QStringRef & value) { callbackQXmlSerializer_Attribute(this, const_cast<QXmlName*>(&name), const_cast<QStringRef*>(&value)); };
 	void characters(const QStringRef & value) { callbackQXmlSerializer_Characters(this, const_cast<QStringRef*>(&value)); };
-	void comment(const QString & value) { callbackQXmlSerializer_Comment(this, const_cast<char*>(value.toUtf8().constData())); };
+	void comment(const QString & value) { callbackQXmlSerializer_Comment(this, const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void endDocument() { callbackQXmlSerializer_EndDocument(this); };
 	void endElement() { callbackQXmlSerializer_EndElement(this); };
 	void endOfSequence() { callbackQXmlSerializer_EndOfSequence(this); };
 	void namespaceBinding(const QXmlName & nb) { callbackQXmlSerializer_NamespaceBinding(this, const_cast<QXmlName*>(&nb)); };
-	void processingInstruction(const QXmlName & name, const QString & value) { callbackQXmlSerializer_ProcessingInstruction(this, const_cast<QXmlName*>(&name), const_cast<char*>(value.toUtf8().constData())); };
+	void processingInstruction(const QXmlName & name, const QString & value) { callbackQXmlSerializer_ProcessingInstruction(this, const_cast<QXmlName*>(&name), const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void startDocument() { callbackQXmlSerializer_StartDocument(this); };
 	void startElement(const QXmlName & name) { callbackQXmlSerializer_StartElement(this, const_cast<QXmlName*>(&name)); };
 	void startOfSequence() { callbackQXmlSerializer_StartOfSequence(this); };

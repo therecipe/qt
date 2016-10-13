@@ -89,9 +89,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQAbstractPrintDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQAbstractPrintDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQAbstractPrintDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQAbstractPrintDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setStyleSheet(const QString & styleSheet) { callbackQAbstractPrintDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setWindowModified(bool vbo) { callbackQAbstractPrintDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQAbstractPrintDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void setWindowTitle(const QString & vqs) { callbackQAbstractPrintDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void changeEvent(QEvent * event) { callbackQAbstractPrintDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQAbstractPrintDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractPrintDialog_FocusNextPrevChild(this, next) != 0; };
@@ -106,7 +106,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQAbstractPrintDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQAbstractPrintDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQAbstractPrintDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractPrintDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
 	void raise() { callbackQAbstractPrintDialog_Raise(this); };
 	void repaint() { callbackQAbstractPrintDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQAbstractPrintDialog_SetDisabled(this, disable); };
@@ -1508,9 +1508,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQPrintDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQPrintDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPrintDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQPrintDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setStyleSheet(const QString & styleSheet) { callbackQPrintDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setWindowModified(bool vbo) { callbackQPrintDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQPrintDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void setWindowTitle(const QString & vqs) { callbackQPrintDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void changeEvent(QEvent * event) { callbackQPrintDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQPrintDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintDialog_FocusNextPrevChild(this, next) != 0; };
@@ -1525,7 +1525,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQPrintDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQPrintDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQPrintDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
 	void raise() { callbackQPrintDialog_Raise(this); };
 	void repaint() { callbackQPrintDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQPrintDialog_SetDisabled(this, disable); };
@@ -2322,9 +2322,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQPrintPreviewDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQPrintPreviewDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPrintPreviewDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQPrintPreviewDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setStyleSheet(const QString & styleSheet) { callbackQPrintPreviewDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setWindowModified(bool vbo) { callbackQPrintPreviewDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQPrintPreviewDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void setWindowTitle(const QString & vqs) { callbackQPrintPreviewDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void changeEvent(QEvent * event) { callbackQPrintPreviewDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQPrintPreviewDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintPreviewDialog_FocusNextPrevChild(this, next) != 0; };
@@ -2339,7 +2339,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQPrintPreviewDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQPrintPreviewDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQPrintPreviewDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
 	void raise() { callbackQPrintPreviewDialog_Raise(this); };
 	void repaint() { callbackQPrintPreviewDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQPrintPreviewDialog_SetDisabled(this, disable); };
@@ -3074,9 +3074,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQPrintPreviewWidget_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQPrintPreviewWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPrintPreviewWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQPrintPreviewWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setStyleSheet(const QString & styleSheet) { callbackQPrintPreviewWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setWindowModified(bool vbo) { callbackQPrintPreviewWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQPrintPreviewWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void setWindowTitle(const QString & vqs) { callbackQPrintPreviewWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void showEvent(QShowEvent * event) { callbackQPrintPreviewWidget_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQPrintPreviewWidget_SizeHint(const_cast<MyQPrintPreviewWidget*>(this))); };
 	void changeEvent(QEvent * event) { callbackQPrintPreviewWidget_ChangeEvent(this, event); };
@@ -3096,7 +3096,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQPrintPreviewWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQPrintPreviewWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQPrintPreviewWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPrintPreviewWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
 	void raise() { callbackQPrintPreviewWidget_Raise(this); };
 	void repaint() { callbackQPrintPreviewWidget_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQPrintPreviewWidget_ResizeEvent(this, event); };
@@ -3891,12 +3891,12 @@ int QPrinter_FromPage(void* ptr)
 
 char* QPrinter_OutputFileName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinter*>(ptr)->outputFileName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinter*>(ptr)->outputFileName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QPrinter_PrinterSelectionOption(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinter*>(ptr)->printerSelectionOption().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinter*>(ptr)->printerSelectionOption().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QPrinter_SetPrinterSelectionOption(void* ptr, char* option)
@@ -3936,12 +3936,12 @@ int QPrinter_CopyCount(void* ptr)
 
 char* QPrinter_Creator(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinter*>(ptr)->creator().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinter*>(ptr)->creator().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QPrinter_DocName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinter*>(ptr)->docName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinter*>(ptr)->docName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QPrinter_Duplex(void* ptr)
@@ -4011,7 +4011,7 @@ void* QPrinter_PrintEngine(void* ptr)
 
 char* QPrinter_PrintProgram(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinter*>(ptr)->printProgram().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinter*>(ptr)->printProgram().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QPrinter_PrintRange(void* ptr)
@@ -4021,7 +4021,7 @@ long long QPrinter_PrintRange(void* ptr)
 
 char* QPrinter_PrinterName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinter*>(ptr)->printerName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinter*>(ptr)->printerName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QPrinter_PrinterState(void* ptr)
@@ -4211,7 +4211,7 @@ void* QPrinterInfo_NewQPrinterInfo2(void* other)
 
 char* QPrinterInfo_QPrinterInfo_AvailablePrinterNames()
 {
-	return const_cast<char*>(QPrinterInfo::availablePrinterNames().join("|").toUtf8().constData());
+	return const_cast<char*>(QPrinterInfo::availablePrinterNames().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QPrinterInfo_DefaultDuplexMode(void* ptr)
@@ -4231,12 +4231,12 @@ void* QPrinterInfo_QPrinterInfo_DefaultPrinter()
 
 char* QPrinterInfo_QPrinterInfo_DefaultPrinterName()
 {
-	return const_cast<char*>(QPrinterInfo::defaultPrinterName().toUtf8().constData());
+	return const_cast<char*>(QPrinterInfo::defaultPrinterName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QPrinterInfo_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->description().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QPrinterInfo_IsDefault(void* ptr)
@@ -4256,12 +4256,12 @@ char QPrinterInfo_IsRemote(void* ptr)
 
 char* QPrinterInfo_Location(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->location().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->location().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QPrinterInfo_MakeAndModel(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->makeAndModel().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->makeAndModel().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QPrinterInfo_MaximumPhysicalPageSize(void* ptr)
@@ -4281,7 +4281,7 @@ void* QPrinterInfo_QPrinterInfo_PrinterInfo(char* printerName)
 
 char* QPrinterInfo_PrinterName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->printerName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QPrinterInfo*>(ptr)->printerName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QPrinterInfo_State(void* ptr)

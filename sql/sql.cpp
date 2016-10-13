@@ -94,17 +94,17 @@ char QSqlDatabase_Commit(void* ptr)
 
 char* QSqlDatabase_ConnectOptions(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->connectOptions().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->connectOptions().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDatabase_ConnectionName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->connectionName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->connectionName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDatabase_QSqlDatabase_ConnectionNames()
 {
-	return const_cast<char*>(QSqlDatabase::connectionNames().join("|").toUtf8().constData());
+	return const_cast<char*>(QSqlDatabase::connectionNames().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlDatabase_QSqlDatabase_Contains(char* connectionName)
@@ -119,7 +119,7 @@ void* QSqlDatabase_QSqlDatabase_Database(char* connectionName, char open)
 
 char* QSqlDatabase_DatabaseName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->databaseName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->databaseName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSqlDatabase_Driver(void* ptr)
@@ -129,12 +129,12 @@ void* QSqlDatabase_Driver(void* ptr)
 
 char* QSqlDatabase_DriverName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->driverName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->driverName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDatabase_QSqlDatabase_Drivers()
 {
-	return const_cast<char*>(QSqlDatabase::drivers().join("|").toUtf8().constData());
+	return const_cast<char*>(QSqlDatabase::drivers().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSqlDatabase_Exec(void* ptr, char* query)
@@ -144,7 +144,7 @@ void* QSqlDatabase_Exec(void* ptr, char* query)
 
 char* QSqlDatabase_HostName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->hostName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->hostName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlDatabase_QSqlDatabase_IsDriverAvailable(char* name)
@@ -184,7 +184,7 @@ char QSqlDatabase_Open2(void* ptr, char* user, char* password)
 
 char* QSqlDatabase_Password(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->password().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->password().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QSqlDatabase_Port(void* ptr)
@@ -254,7 +254,7 @@ char QSqlDatabase_Transaction(void* ptr)
 
 char* QSqlDatabase_UserName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->userName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->userName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSqlDatabase_DestroyQSqlDatabase(void* ptr)
@@ -264,7 +264,7 @@ void QSqlDatabase_DestroyQSqlDatabase(void* ptr)
 
 char* QSqlDatabase_QSqlDatabase_DefaultConnection()
 {
-	return const_cast<char*>(QString(QSqlDatabase::defaultConnection).toUtf8().constData());
+	return const_cast<char*>(QString(QSqlDatabase::defaultConnection).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 class MyQSqlDriver: public QSqlDriver
@@ -275,26 +275,26 @@ public:
 	void close() { callbackQSqlDriver_Close(this); };
 	bool commitTransaction() { return callbackQSqlDriver_CommitTransaction(this) != 0; };
 	QSqlResult * createResult() const { return static_cast<QSqlResult*>(callbackQSqlDriver_CreateResult(const_cast<MyQSqlDriver*>(this))); };
-	QString escapeIdentifier(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_EscapeIdentifier(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().constData()), ty)); };
+	QString escapeIdentifier(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_EscapeIdentifier(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10), ty)); };
 	QString formatValue(const QSqlField & field, bool trimStrings) const { return QString(callbackQSqlDriver_FormatValue(const_cast<MyQSqlDriver*>(this), const_cast<QSqlField*>(&field), trimStrings)); };
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQSqlDriver_Handle(const_cast<MyQSqlDriver*>(this))); };
 	bool hasFeature(QSqlDriver::DriverFeature feature) const { return callbackQSqlDriver_HasFeature(const_cast<MyQSqlDriver*>(this), feature) != 0; };
-	bool isIdentifierEscaped(const QString & identifier, QSqlDriver::IdentifierType ty) const { return callbackQSqlDriver_IsIdentifierEscaped(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().constData()), ty) != 0; };
+	bool isIdentifierEscaped(const QString & identifier, QSqlDriver::IdentifierType ty) const { return callbackQSqlDriver_IsIdentifierEscaped(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10), ty) != 0; };
 	bool isOpen() const { return callbackQSqlDriver_IsOpen(const_cast<MyQSqlDriver*>(this)) != 0; };
-	void Signal_Notification(const QString & name) { callbackQSqlDriver_Notification(this, const_cast<char*>(name.toUtf8().constData())); };
-	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { callbackQSqlDriver_Notification2(this, const_cast<char*>(name.toUtf8().constData()), source, const_cast<QVariant*>(&payload)); };
-	bool open(const QString & db, const QString & user, const QString & password, const QString & host, int port, const QString & options) { return callbackQSqlDriver_Open(this, const_cast<char*>(db.toUtf8().constData()), const_cast<char*>(user.toUtf8().constData()), const_cast<char*>(password.toUtf8().constData()), const_cast<char*>(host.toUtf8().constData()), port, const_cast<char*>(options.toUtf8().constData())) != 0; };
-	QSqlIndex primaryIndex(const QString & tableName) const { return *static_cast<QSqlIndex*>(callbackQSqlDriver_PrimaryIndex(const_cast<MyQSqlDriver*>(this), const_cast<char*>(tableName.toUtf8().constData()))); };
-	QSqlRecord record(const QString & tableName) const { return *static_cast<QSqlRecord*>(callbackQSqlDriver_Record(const_cast<MyQSqlDriver*>(this), const_cast<char*>(tableName.toUtf8().constData()))); };
+	void Signal_Notification(const QString & name) { callbackQSqlDriver_Notification(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { callbackQSqlDriver_Notification2(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10), source, const_cast<QVariant*>(&payload)); };
+	bool open(const QString & db, const QString & user, const QString & password, const QString & host, int port, const QString & options) { return callbackQSqlDriver_Open(this, const_cast<char*>(db.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(user.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(password.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(host.toUtf8().prepend("WHITESPACE").constData()+10), port, const_cast<char*>(options.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	QSqlIndex primaryIndex(const QString & tableName) const { return *static_cast<QSqlIndex*>(callbackQSqlDriver_PrimaryIndex(const_cast<MyQSqlDriver*>(this), const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QSqlRecord record(const QString & tableName) const { return *static_cast<QSqlRecord*>(callbackQSqlDriver_Record(const_cast<MyQSqlDriver*>(this), const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	bool rollbackTransaction() { return callbackQSqlDriver_RollbackTransaction(this) != 0; };
 	void setLastError(const QSqlError & error) { callbackQSqlDriver_SetLastError(this, const_cast<QSqlError*>(&error)); };
 	void setOpen(bool open) { callbackQSqlDriver_SetOpen(this, open); };
 	void setOpenError(bool error) { callbackQSqlDriver_SetOpenError(this, error); };
-	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { return QString(callbackQSqlDriver_SqlStatement(const_cast<MyQSqlDriver*>(this), ty, const_cast<char*>(tableName.toUtf8().constData()), const_cast<QSqlRecord*>(&rec), preparedStatement)); };
-	QString stripDelimiters(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_StripDelimiters(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().constData()), ty)); };
-	bool subscribeToNotification(const QString & name) { return callbackQSqlDriver_SubscribeToNotification(this, const_cast<char*>(name.toUtf8().constData())) != 0; };
+	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { return QString(callbackQSqlDriver_SqlStatement(const_cast<MyQSqlDriver*>(this), ty, const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QSqlRecord*>(&rec), preparedStatement)); };
+	QString stripDelimiters(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_StripDelimiters(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10), ty)); };
+	bool subscribeToNotification(const QString & name) { return callbackQSqlDriver_SubscribeToNotification(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	QStringList subscribedToNotifications() const { return QString(callbackQSqlDriver_SubscribedToNotifications(const_cast<MyQSqlDriver*>(this))).split("|", QString::SkipEmptyParts); };
-	bool unsubscribeFromNotification(const QString & name) { return callbackQSqlDriver_UnsubscribeFromNotification(this, const_cast<char*>(name.toUtf8().constData())) != 0; };
+	bool unsubscribeFromNotification(const QString & name) { return callbackQSqlDriver_UnsubscribeFromNotification(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriver_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSqlDriver_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriver_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -348,22 +348,22 @@ long long QSqlDriver_DbmsType(void* ptr)
 
 char* QSqlDriver_EscapeIdentifier(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDriver_EscapeIdentifierDefault(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDriver_FormatValue(void* ptr, void* field, char trimStrings)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDriver_FormatValueDefault(void* ptr, void* field, char trimStrings)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSqlDriver_Handle(void* ptr)
@@ -508,22 +508,22 @@ void QSqlDriver_SetOpenErrorDefault(void* ptr, char error)
 
 char* QSqlDriver_SqlStatement(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDriver_SqlStatementDefault(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDriver_StripDelimiters(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDriver_StripDelimitersDefault(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlDriver_SubscribeToNotification(void* ptr, char* name)
@@ -538,12 +538,12 @@ char QSqlDriver_SubscribeToNotificationDefault(void* ptr, char* name)
 
 char* QSqlDriver_SubscribedToNotifications(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlDriver_SubscribedToNotificationsDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::subscribedToNotifications().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::subscribedToNotifications().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlDriver_UnsubscribeFromNotification(void* ptr, char* name)
@@ -677,7 +677,7 @@ class MyQSqlDriverPlugin: public QSqlDriverPlugin
 {
 public:
 	MyQSqlDriverPlugin(QObject *parent) : QSqlDriverPlugin(parent) {};
-	QSqlDriver * create(const QString & key) { return static_cast<QSqlDriver*>(callbackQSqlDriverPlugin_Create(this, const_cast<char*>(key.toUtf8().constData()))); };
+	QSqlDriver * create(const QString & key) { return static_cast<QSqlDriver*>(callbackQSqlDriverPlugin_Create(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriverPlugin_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSqlDriverPlugin_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -806,12 +806,12 @@ void* QSqlError_NewQSqlError(char* driverText, char* databaseText, long long ty,
 
 char* QSqlError_DatabaseText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->databaseText().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlError*>(ptr)->databaseText().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlError_DriverText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->driverText().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlError*>(ptr)->driverText().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlError_IsValid(void* ptr)
@@ -821,12 +821,12 @@ char QSqlError_IsValid(void* ptr)
 
 char* QSqlError_NativeErrorCode(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->nativeErrorCode().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlError*>(ptr)->nativeErrorCode().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlError_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->text().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlError*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QSqlError_Type(void* ptr)
@@ -886,7 +886,7 @@ int QSqlField_Length(void* ptr)
 
 char* QSqlField_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlField*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlField*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QSqlField_Precision(void* ptr)
@@ -981,7 +981,7 @@ void QSqlIndex_Append2(void* ptr, void* field, char desc)
 
 char* QSqlIndex_CursorName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlIndex*>(ptr)->cursorName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlIndex*>(ptr)->cursorName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlIndex_IsDescending(void* ptr, int i)
@@ -991,7 +991,7 @@ char QSqlIndex_IsDescending(void* ptr, int i)
 
 char* QSqlIndex_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlIndex*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlIndex*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSqlIndex_SetCursorName(void* ptr, char* cursorName)
@@ -1076,7 +1076,7 @@ char QSqlQuery_ExecBatch(void* ptr, long long mode)
 
 char* QSqlQuery_ExecutedQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQuery*>(ptr)->executedQuery().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlQuery*>(ptr)->executedQuery().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSqlQuery_Finish(void* ptr)
@@ -1136,7 +1136,7 @@ void* QSqlQuery_LastInsertId(void* ptr)
 
 char* QSqlQuery_LastQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQuery*>(ptr)->lastQuery().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlQuery*>(ptr)->lastQuery().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlQuery_Next(void* ptr)
@@ -1451,12 +1451,12 @@ char QSqlQueryModel_InsertRowsDefault(void* ptr, int row, int count, void* paren
 
 char* QSqlQueryModel_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQueryModel*>(ptr)->mimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlQueryModel*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlQueryModel_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::mimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlQueryModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -1718,7 +1718,7 @@ void* QSqlRecord_Field(void* ptr, int index)
 
 char* QSqlRecord_FieldName(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QSqlRecord_IndexOf(void* ptr, char* name)
@@ -1828,12 +1828,12 @@ void* QSqlRelation_NewQSqlRelation2(char* tableName, char* indexColumn, char* di
 
 char* QSqlRelation_DisplayColumn(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->displayColumn().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->displayColumn().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlRelation_IndexColumn(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->indexColumn().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->indexColumn().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlRelation_IsValid(void* ptr)
@@ -1843,7 +1843,7 @@ char QSqlRelation_IsValid(void* ptr)
 
 char* QSqlRelation_TableName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->tableName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->tableName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
@@ -2068,7 +2068,7 @@ public:
 	bool select() { return callbackQSqlRelationalTableModel_Select(this) != 0; };
 	QString selectStatement() const { return QString(callbackQSqlRelationalTableModel_SelectStatement(const_cast<MyQSqlRelationalTableModel*>(this))); };
 	void setRelation(int column, const QSqlRelation & relation) { callbackQSqlRelationalTableModel_SetRelation(this, column, const_cast<QSqlRelation*>(&relation)); };
-	void setTable(const QString & table) { callbackQSqlRelationalTableModel_SetTable(this, const_cast<char*>(table.toUtf8().constData())); };
+	void setTable(const QString & table) { callbackQSqlRelationalTableModel_SetTable(this, const_cast<char*>(table.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlRelationalTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
 	 ~MyQSqlRelationalTableModel() { callbackQSqlRelationalTableModel_DestroyQSqlRelationalTableModel(this); };
 	bool deleteRowFromTable(int row) { return callbackQSqlRelationalTableModel_DeleteRowFromTable(this, row) != 0; };
@@ -2077,7 +2077,7 @@ public:
 	void revertAll() { callbackQSqlRelationalTableModel_RevertAll(this); };
 	bool selectRow(int row) { return callbackQSqlRelationalTableModel_SelectRow(this, row) != 0; };
 	void setEditStrategy(QSqlTableModel::EditStrategy strategy) { callbackQSqlRelationalTableModel_SetEditStrategy(this, strategy); };
-	void setFilter(const QString & filter) { callbackQSqlRelationalTableModel_SetFilter(this, const_cast<char*>(filter.toUtf8().constData())); };
+	void setFilter(const QString & filter) { callbackQSqlRelationalTableModel_SetFilter(this, const_cast<char*>(filter.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModel_SetSort(this, column, order); };
 	bool submit() { return callbackQSqlRelationalTableModel_Submit(this) != 0; };
 	bool submitAll() { return callbackQSqlRelationalTableModel_SubmitAll(this) != 0; };
@@ -2139,12 +2139,12 @@ char QSqlRelationalTableModel_InsertRowIntoTableDefault(void* ptr, void* values)
 
 char* QSqlRelationalTableModel_OrderByClause(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->orderByClause().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlRelationalTableModel_OrderByClauseDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::orderByClause().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSqlRelationalTableModel_RelationModel(void* ptr, int column)
@@ -2184,12 +2184,12 @@ char QSqlRelationalTableModel_SelectDefault(void* ptr)
 
 char* QSqlRelationalTableModel_SelectStatement(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->selectStatement().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlRelationalTableModel_SelectStatementDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::selectStatement().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlRelationalTableModel_SetData(void* ptr, void* index, void* value, int role)
@@ -2420,12 +2420,12 @@ char QSqlRelationalTableModel_HasChildrenDefault(void* ptr, void* parent)
 
 char* QSqlRelationalTableModel_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->mimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlRelationalTableModel_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::mimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlRelationalTableModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -2603,15 +2603,15 @@ public:
 	bool isNull(int index) { return callbackQSqlResult_IsNull(this, index) != 0; };
 	QVariant lastInsertId() const { return *static_cast<QVariant*>(callbackQSqlResult_LastInsertId(const_cast<MyQSqlResult*>(this))); };
 	int numRowsAffected() { return callbackQSqlResult_NumRowsAffected(this); };
-	bool prepare(const QString & query) { return callbackQSqlResult_Prepare(this, const_cast<char*>(query.toUtf8().constData())) != 0; };
+	bool prepare(const QString & query) { return callbackQSqlResult_Prepare(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	QSqlRecord record() const { return *static_cast<QSqlRecord*>(callbackQSqlResult_Record(const_cast<MyQSqlResult*>(this))); };
-	bool reset(const QString & query) { return callbackQSqlResult_Reset(this, const_cast<char*>(query.toUtf8().constData())) != 0; };
-	bool savePrepare(const QString & query) { return callbackQSqlResult_SavePrepare(this, const_cast<char*>(query.toUtf8().constData())) != 0; };
+	bool reset(const QString & query) { return callbackQSqlResult_Reset(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	bool savePrepare(const QString & query) { return callbackQSqlResult_SavePrepare(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void setActive(bool active) { callbackQSqlResult_SetActive(this, active); };
 	void setAt(int index) { callbackQSqlResult_SetAt(this, index); };
 	void setForwardOnly(bool forward) { callbackQSqlResult_SetForwardOnly(this, forward); };
 	void setLastError(const QSqlError & error) { callbackQSqlResult_SetLastError(this, const_cast<QSqlError*>(&error)); };
-	void setQuery(const QString & query) { callbackQSqlResult_SetQuery(this, const_cast<char*>(query.toUtf8().constData())); };
+	void setQuery(const QString & query) { callbackQSqlResult_SetQuery(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setSelect(bool sele) { callbackQSqlResult_SetSelect(this, sele); };
 	int size() { return callbackQSqlResult_Size(this); };
 	 ~MyQSqlResult() { callbackQSqlResult_DestroyQSqlResult(this); };
@@ -2649,7 +2649,7 @@ int QSqlResult_BoundValueCount(void* ptr)
 
 char* QSqlResult_BoundValueName(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->boundValueName(index).toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->boundValueName(index).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSqlResult_Clear(void* ptr)
@@ -2679,7 +2679,7 @@ char QSqlResult_ExecDefault(void* ptr)
 
 char* QSqlResult_ExecutedQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->executedQuery().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->executedQuery().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlResult_Fetch(void* ptr, int index)
@@ -2774,7 +2774,7 @@ void* QSqlResult_LastInsertIdDefault(void* ptr)
 
 char* QSqlResult_LastQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->lastQuery().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->lastQuery().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QSqlResult_NumRowsAffected(void* ptr)
@@ -2917,9 +2917,9 @@ public:
 	bool selectRow(int row) { return callbackQSqlTableModel_SelectRow(this, row) != 0; };
 	QString selectStatement() const { return QString(callbackQSqlTableModel_SelectStatement(const_cast<MyQSqlTableModel*>(this))); };
 	void setEditStrategy(QSqlTableModel::EditStrategy strategy) { callbackQSqlTableModel_SetEditStrategy(this, strategy); };
-	void setFilter(const QString & filter) { callbackQSqlTableModel_SetFilter(this, const_cast<char*>(filter.toUtf8().constData())); };
+	void setFilter(const QString & filter) { callbackQSqlTableModel_SetFilter(this, const_cast<char*>(filter.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlTableModel_SetSort(this, column, order); };
-	void setTable(const QString & tableName) { callbackQSqlTableModel_SetTable(this, const_cast<char*>(tableName.toUtf8().constData())); };
+	void setTable(const QString & tableName) { callbackQSqlTableModel_SetTable(this, const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	bool submit() { return callbackQSqlTableModel_Submit(this) != 0; };
 	bool submitAll() { return callbackQSqlTableModel_SubmitAll(this) != 0; };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
@@ -3042,7 +3042,7 @@ int QSqlTableModel_FieldIndex(void* ptr, char* fieldName)
 
 char* QSqlTableModel_Filter(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->filter().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->filter().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QSqlTableModel_Flags(void* ptr, void* index)
@@ -3097,12 +3097,12 @@ char QSqlTableModel_IsDirty(void* ptr, void* index)
 
 char* QSqlTableModel_OrderByClause(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->orderByClause().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlTableModel_OrderByClauseDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::orderByClause().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSqlTableModel_PrimaryKey(void* ptr)
@@ -3201,12 +3201,12 @@ char QSqlTableModel_SelectRowDefault(void* ptr, int row)
 
 char* QSqlTableModel_SelectStatement(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->selectStatement().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlTableModel_SelectStatementDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::selectStatement().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlTableModel_SetData(void* ptr, void* index, void* value, int role)
@@ -3290,7 +3290,7 @@ char QSqlTableModel_SubmitAll(void* ptr)
 
 char* QSqlTableModel_TableName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->tableName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->tableName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlTableModel_UpdateRowInTable(void* ptr, int row, void* values)
@@ -3385,12 +3385,12 @@ char QSqlTableModel_HasChildrenDefault(void* ptr, void* parent)
 
 char* QSqlTableModel_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->mimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSqlTableModel_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::mimeTypes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSqlTableModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)

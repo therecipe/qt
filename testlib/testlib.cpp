@@ -32,7 +32,7 @@ char QSignalSpy_IsValid(void* ptr)
 
 char* QSignalSpy_Signal(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSignalSpy*>(ptr)->signal().toHex().constData());
+	return const_cast<char*>(static_cast<QSignalSpy*>(ptr)->signal().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char QSignalSpy_Wait(void* ptr, int timeout)

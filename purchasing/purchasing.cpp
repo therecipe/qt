@@ -38,17 +38,17 @@ public:
 
 char* QInAppProduct_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->description().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QInAppProduct_Identifier(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->identifier().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->identifier().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QInAppProduct_Price(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->price().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->price().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QInAppProduct_ProductType(void* ptr)
@@ -58,7 +58,7 @@ long long QInAppProduct_ProductType(void* ptr)
 
 char* QInAppProduct_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->title().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QInAppProduct_Purchase(void* ptr)
@@ -161,7 +161,7 @@ class MyQInAppStore: public QInAppStore
 public:
 	MyQInAppStore(QObject *parent) : QInAppStore(parent) {};
 	void Signal_ProductRegistered(QInAppProduct * product) { callbackQInAppStore_ProductRegistered(this, product); };
-	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { callbackQInAppStore_ProductUnknown(this, productType, const_cast<char*>(identifier.toUtf8().constData())); };
+	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { callbackQInAppStore_ProductUnknown(this, productType, const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_TransactionReady(QInAppTransaction * transaction) { callbackQInAppStore_TransactionReady(this, transaction); };
 	void timerEvent(QTimerEvent * event) { callbackQInAppStore_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQInAppStore_ChildEvent(this, event); };
@@ -347,7 +347,7 @@ public:
 	QString orderId() const { return QString(callbackQInAppTransaction_OrderId(const_cast<MyQInAppTransaction*>(this))); };
 	QDateTime timestamp() const { return *static_cast<QDateTime*>(callbackQInAppTransaction_Timestamp(const_cast<MyQInAppTransaction*>(this))); };
 	void finalize() { callbackQInAppTransaction_Finalize(this); };
-	QString platformProperty(const QString & propertyName) const { return QString(callbackQInAppTransaction_PlatformProperty(const_cast<MyQInAppTransaction*>(this), const_cast<char*>(propertyName.toUtf8().constData()))); };
+	QString platformProperty(const QString & propertyName) const { return QString(callbackQInAppTransaction_PlatformProperty(const_cast<MyQInAppTransaction*>(this), const_cast<char*>(propertyName.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void timerEvent(QTimerEvent * event) { callbackQInAppTransaction_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQInAppTransaction_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQInAppTransaction_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -361,12 +361,12 @@ public:
 
 char* QInAppTransaction_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QInAppTransaction_ErrorStringDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QInAppTransaction_FailureReason(void* ptr)
@@ -381,12 +381,12 @@ long long QInAppTransaction_FailureReasonDefault(void* ptr)
 
 char* QInAppTransaction_OrderId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QInAppTransaction_OrderIdDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QInAppTransaction_Product(void* ptr)
@@ -416,12 +416,12 @@ void QInAppTransaction_Finalize(void* ptr)
 
 char* QInAppTransaction_PlatformProperty(void* ptr, char* propertyName)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->platformProperty(QString(propertyName)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->platformProperty(QString(propertyName)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QInAppTransaction_TimerEvent(void* ptr, void* event)

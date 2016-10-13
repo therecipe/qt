@@ -110,7 +110,7 @@
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
-3. Install **g++** and **OpenGL** dependencies
+3. Install **g++** >= 5 and **OpenGL** dependencies
 
 	* Debian/Ubuntu (apt-get)
 		* `sudo apt-get -y install build-essential libgl1-mesa-dev`
@@ -156,7 +156,7 @@
 	* https://dl.google.com/android/repository/android-ndk-r12b-darwin-x86_64.zip
 	* https://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip
 
-5. Install Java SE Development Kit (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
+5. Install Java SE Development Kit >= 8 (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
 6. Install and test (20 min)
@@ -213,7 +213,7 @@
 
 	* `mkdir $HOME/raspi`
 
-3. Download and unpack the Qt 5.7.0 source
+3. Download and unpack the Qt source
 
 	* `cd $HOME/raspi && wget https://download.qt.io/official_releases/qt/5.7/5.7.0/single/qt-everywhere-opensource-src-5.7.0.tar.gz`
 	* `tar -xzf qt-everywhere-opensource-src-5.7.0.tar.gz qt-everywhere-opensource-src-5.7.0`

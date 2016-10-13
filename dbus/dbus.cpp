@@ -178,7 +178,7 @@ void* QDBusAbstractInterface_Connection(void* ptr)
 
 char* QDBusAbstractInterface_Interface(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->interface().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->interface().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QDBusAbstractInterface_IsValid(void* ptr)
@@ -193,12 +193,12 @@ void* QDBusAbstractInterface_LastError(void* ptr)
 
 char* QDBusAbstractInterface_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->path().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDBusAbstractInterface_Service(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->service().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->service().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusAbstractInterface_SetTimeout(void* ptr, int timeout)
@@ -458,7 +458,7 @@ void* QDBusConnection_NewQDBusConnection(char* name)
 
 char* QDBusConnection_BaseService(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusConnection*>(ptr)->baseService().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusConnection*>(ptr)->baseService().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QDBusConnection_AsyncCall(void* ptr, void* message, int timeout)
@@ -548,12 +548,12 @@ void* QDBusConnection_LastError(void* ptr)
 
 char* QDBusConnection_QDBusConnection_LocalMachineId()
 {
-	return const_cast<char*>(QDBusConnection::localMachineId().toHex().constData());
+	return const_cast<char*>(QDBusConnection::localMachineId().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDBusConnection_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusConnection*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusConnection*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QDBusConnection_ObjectRegisteredAt(void* ptr, char* path)
@@ -605,8 +605,8 @@ class MyQDBusConnectionInterface: public QDBusConnectionInterface
 {
 public:
 	void Signal_CallWithCallbackFailed(const QDBusError & error, const QDBusMessage & call) { callbackQDBusConnectionInterface_CallWithCallbackFailed(this, const_cast<QDBusError*>(&error), const_cast<QDBusMessage*>(&call)); };
-	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceRegistered(this, const_cast<char*>(serviceName.toUtf8().constData())); };
-	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceUnregistered(this, const_cast<char*>(serviceName.toUtf8().constData())); };
+	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceRegistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceUnregistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusConnectionInterface_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusConnectionInterface_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDBusConnectionInterface_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -805,7 +805,7 @@ void* QDBusError_NewQDBusError(void* other)
 
 char* QDBusError_QDBusError_ErrorString(long long error)
 {
-	return const_cast<char*>(QDBusError::errorString(static_cast<QDBusError::ErrorType>(error)).toUtf8().constData());
+	return const_cast<char*>(QDBusError::errorString(static_cast<QDBusError::ErrorType>(error)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QDBusError_IsValid(void* ptr)
@@ -815,12 +815,12 @@ char QDBusError_IsValid(void* ptr)
 
 char* QDBusError_Message(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusError*>(ptr)->message().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusError*>(ptr)->message().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDBusError_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusError*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusError*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusError_Swap(void* ptr, void* other)
@@ -1000,17 +1000,17 @@ void* QDBusMessage_QDBusMessage_CreateTargetedSignal(char* service, char* path, 
 
 char* QDBusMessage_ErrorMessage(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->errorMessage().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->errorMessage().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDBusMessage_ErrorName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->errorName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->errorName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDBusMessage_Interface(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->interface().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->interface().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QDBusMessage_IsDelayedReply(void* ptr)
@@ -1025,17 +1025,17 @@ char QDBusMessage_IsReplyRequired(void* ptr)
 
 char* QDBusMessage_Member(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->member().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->member().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDBusMessage_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->path().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDBusMessage_Service(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->service().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->service().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusMessage_SetAutoStartService(void* ptr, char enable)
@@ -1050,7 +1050,7 @@ void QDBusMessage_SetDelayedReply(void* ptr, char enable)
 
 char* QDBusMessage_Signature(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->signature().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->signature().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusMessage_Swap(void* ptr, void* other)
@@ -1095,7 +1095,7 @@ void* QDBusObjectPath_NewQDBusObjectPath2(char* path)
 
 char* QDBusObjectPath_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusObjectPath*>(ptr)->path().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusObjectPath*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusObjectPath_SetPath(void* ptr, char* path)
@@ -1304,7 +1304,7 @@ void* QDBusServer_NewQDBusServer(char* address, void* parent)
 
 char* QDBusServer_Address(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusServer*>(ptr)->address().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusServer*>(ptr)->address().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QDBusServer_IsAnonymousAuthenticationAllowed(void* ptr)
@@ -1447,9 +1447,9 @@ class MyQDBusServiceWatcher: public QDBusServiceWatcher
 public:
 	MyQDBusServiceWatcher(QObject *parent) : QDBusServiceWatcher(parent) {};
 	MyQDBusServiceWatcher(const QString &service, const QDBusConnection &connection, WatchMode watchMode, QObject *parent) : QDBusServiceWatcher(service, connection, watchMode, parent) {};
-	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { callbackQDBusServiceWatcher_ServiceOwnerChanged(this, const_cast<char*>(serviceName.toUtf8().constData()), const_cast<char*>(oldOwner.toUtf8().constData()), const_cast<char*>(newOwner.toUtf8().constData())); };
-	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusServiceWatcher_ServiceRegistered(this, const_cast<char*>(serviceName.toUtf8().constData())); };
-	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusServiceWatcher_ServiceUnregistered(this, const_cast<char*>(serviceName.toUtf8().constData())); };
+	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { callbackQDBusServiceWatcher_ServiceOwnerChanged(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(oldOwner.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(newOwner.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusServiceWatcher_ServiceRegistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusServiceWatcher_ServiceUnregistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusServiceWatcher_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusServiceWatcher_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDBusServiceWatcher_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1553,7 +1553,7 @@ void QDBusServiceWatcher_SetWatchedServices(void* ptr, char* services)
 
 char* QDBusServiceWatcher_WatchedServices(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusServiceWatcher_DestroyQDBusServiceWatcher(void* ptr)
@@ -1683,7 +1683,7 @@ void QDBusSignature_SetSignature(void* ptr, char* signature)
 
 char* QDBusSignature_Signature(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusSignature*>(ptr)->signature().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusSignature*>(ptr)->signature().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusSignature_Swap(void* ptr, void* other)
@@ -1771,7 +1771,7 @@ class MyQDBusVirtualObject: public QDBusVirtualObject
 public:
 	MyQDBusVirtualObject(QObject *parent) : QDBusVirtualObject(parent) {};
 	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, const_cast<QDBusMessage*>(&message), const_cast<QDBusConnection*>(&connection)) != 0; };
-	QString introspect(const QString & path) const { return QString(callbackQDBusVirtualObject_Introspect(const_cast<MyQDBusVirtualObject*>(this), const_cast<char*>(path.toUtf8().constData()))); };
+	QString introspect(const QString & path) const { return QString(callbackQDBusVirtualObject_Introspect(const_cast<MyQDBusVirtualObject*>(this), const_cast<char*>(path.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	 ~MyQDBusVirtualObject() { callbackQDBusVirtualObject_DestroyQDBusVirtualObject(this); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusVirtualObject_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusVirtualObject_ChildEvent(this, event); };
@@ -1796,7 +1796,7 @@ char QDBusVirtualObject_HandleMessage(void* ptr, void* message, void* connection
 
 char* QDBusVirtualObject_Introspect(void* ptr, char* path)
 {
-	return const_cast<char*>(static_cast<QDBusVirtualObject*>(ptr)->introspect(QString(path)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QDBusVirtualObject*>(ptr)->introspect(QString(path)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDBusVirtualObject_DestroyQDBusVirtualObject(void* ptr)

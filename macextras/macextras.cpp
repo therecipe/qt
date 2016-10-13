@@ -25,11 +25,11 @@
 class MyQMacPasteboardMime: public QMacPasteboardMime
 {
 public:
-	bool canConvert(const QString & mime, QString flav) { return callbackQMacPasteboardMime_CanConvert(this, const_cast<char*>(mime.toUtf8().constData()), const_cast<char*>(flav.toUtf8().constData())) != 0; };
+	bool canConvert(const QString & mime, QString flav) { return callbackQMacPasteboardMime_CanConvert(this, const_cast<char*>(mime.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(flav.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	QString convertorName() { return QString(callbackQMacPasteboardMime_ConvertorName(this)); };
 	int count(QMimeData * mimeData) { return callbackQMacPasteboardMime_Count(this, mimeData); };
-	QString flavorFor(const QString & mime) { return QString(callbackQMacPasteboardMime_FlavorFor(this, const_cast<char*>(mime.toUtf8().constData()))); };
-	QString mimeFor(QString flav) { return QString(callbackQMacPasteboardMime_MimeFor(this, const_cast<char*>(flav.toUtf8().constData()))); };
+	QString flavorFor(const QString & mime) { return QString(callbackQMacPasteboardMime_FlavorFor(this, const_cast<char*>(mime.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QString mimeFor(QString flav) { return QString(callbackQMacPasteboardMime_MimeFor(this, const_cast<char*>(flav.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	 ~MyQMacPasteboardMime() { callbackQMacPasteboardMime_DestroyQMacPasteboardMime(this); };
 };
 
@@ -40,7 +40,7 @@ char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
 
 char* QMacPasteboardMime_ConvertorName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->convertorName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->convertorName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QMacPasteboardMime_Count(void* ptr, void* mimeData)
@@ -59,12 +59,12 @@ int QMacPasteboardMime_CountDefault(void* ptr, void* mimeData)
 
 char* QMacPasteboardMime_FlavorFor(void* ptr, char* mime)
 {
-	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString(mime)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->flavorFor(QString(mime)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QMacPasteboardMime_MimeFor(void* ptr, char* flav)
 {
-	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString(flav)).toUtf8().constData());
+	return const_cast<char*>(static_cast<QMacPasteboardMime*>(ptr)->mimeFor(QString(flav)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr)
@@ -319,7 +319,7 @@ long long QMacToolBarItem_StandardItem(void* ptr)
 
 char* QMacToolBarItem_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMacToolBarItem*>(ptr)->text().toUtf8().constData());
+	return const_cast<char*>(static_cast<QMacToolBarItem*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QMacToolBarItem_TimerEvent(void* ptr, void* event)

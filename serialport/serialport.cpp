@@ -312,7 +312,7 @@ long long QSerialPort_PinoutSignals(void* ptr)
 
 char* QSerialPort_PortName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPort*>(ptr)->portName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSerialPort*>(ptr)->portName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QSerialPort_ReadBufferSize(void* ptr)
@@ -552,7 +552,7 @@ void* QSerialPortInfo_NewQSerialPortInfo3(char* name)
 
 char* QSerialPortInfo_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->description().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSerialPortInfo_HasProductIdentifier(void* ptr)
@@ -572,12 +572,12 @@ char QSerialPortInfo_IsNull(void* ptr)
 
 char* QSerialPortInfo_Manufacturer(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->manufacturer().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->manufacturer().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSerialPortInfo_PortName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->portName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->portName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 unsigned short QSerialPortInfo_ProductIdentifier(void* ptr)
@@ -587,12 +587,12 @@ unsigned short QSerialPortInfo_ProductIdentifier(void* ptr)
 
 char* QSerialPortInfo_SerialNumber(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->serialNumber().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->serialNumber().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSerialPortInfo_SystemLocation(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->systemLocation().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->systemLocation().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 unsigned short QSerialPortInfo_VendorIdentifier(void* ptr)

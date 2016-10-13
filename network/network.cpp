@@ -240,7 +240,7 @@ class MyQAbstractSocket: public QAbstractSocket
 public:
 	MyQAbstractSocket(SocketType socketType, QObject *parent) : QAbstractSocket(socketType, parent) {};
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQAbstractSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQAbstractSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().constData()), port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQAbstractSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().prepend("WHITESPACE").constData()+10), port, openMode, protocol); };
 	void Signal_Connected() { callbackQAbstractSocket_Connected(this); };
 	void disconnectFromHost() { callbackQAbstractSocket_DisconnectFromHost(this); };
 	void Signal_Disconnected() { callbackQAbstractSocket_Disconnected(this); };
@@ -448,7 +448,7 @@ void* QAbstractSocket_PeerAddress(void* ptr)
 
 char* QAbstractSocket_PeerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAbstractSocket*>(ptr)->peerName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAbstractSocket*>(ptr)->peerName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 unsigned short QAbstractSocket_PeerPort(void* ptr)
@@ -803,12 +803,12 @@ void* QAuthenticator_Option(void* ptr, char* opt)
 
 char* QAuthenticator_Password(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAuthenticator*>(ptr)->password().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAuthenticator*>(ptr)->password().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QAuthenticator_Realm(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAuthenticator*>(ptr)->realm().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAuthenticator*>(ptr)->realm().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAuthenticator_SetOption(void* ptr, char* opt, void* value)
@@ -828,7 +828,7 @@ void QAuthenticator_SetUser(void* ptr, char* user)
 
 char* QAuthenticator_User(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAuthenticator*>(ptr)->user().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAuthenticator*>(ptr)->user().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QAuthenticator_DestroyQAuthenticator(void* ptr)
@@ -848,7 +848,7 @@ void* QDnsDomainNameRecord_NewQDnsDomainNameRecord2(void* other)
 
 char* QDnsDomainNameRecord_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsDomainNameRecord*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsDomainNameRecord*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDnsDomainNameRecord_Swap(void* ptr, void* other)
@@ -863,7 +863,7 @@ unsigned int QDnsDomainNameRecord_TimeToLive(void* ptr)
 
 char* QDnsDomainNameRecord_Value(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsDomainNameRecord*>(ptr)->value().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsDomainNameRecord*>(ptr)->value().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDnsDomainNameRecord_DestroyQDnsDomainNameRecord(void* ptr)
@@ -883,7 +883,7 @@ void* QDnsHostAddressRecord_NewQDnsHostAddressRecord2(void* other)
 
 char* QDnsHostAddressRecord_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsHostAddressRecord*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsHostAddressRecord*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDnsHostAddressRecord_Swap(void* ptr, void* other)
@@ -915,7 +915,7 @@ public:
 	void abort() { callbackQDnsLookup_Abort(this); };
 	void Signal_Finished() { callbackQDnsLookup_Finished(this); };
 	void lookup() { callbackQDnsLookup_Lookup(this); };
-	void Signal_NameChanged(const QString & name) { callbackQDnsLookup_NameChanged(this, const_cast<char*>(name.toUtf8().constData())); };
+	void Signal_NameChanged(const QString & name) { callbackQDnsLookup_NameChanged(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_NameserverChanged(const QHostAddress & nameserver) { callbackQDnsLookup_NameserverChanged(this, const_cast<QHostAddress*>(&nameserver)); };
 	void Signal_TypeChanged(QDnsLookup::Type ty) { callbackQDnsLookup_TypeChanged(this, ty); };
 	void timerEvent(QTimerEvent * event) { callbackQDnsLookup_TimerEvent(this, event); };
@@ -941,12 +941,12 @@ long long QDnsLookup_Error(void* ptr)
 
 char* QDnsLookup_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsLookup*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsLookup*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDnsLookup_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsLookup*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsLookup*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QDnsLookup_Nameserver(void* ptr)
@@ -1166,12 +1166,12 @@ void* QDnsMailExchangeRecord_NewQDnsMailExchangeRecord2(void* other)
 
 char* QDnsMailExchangeRecord_Exchange(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsMailExchangeRecord*>(ptr)->exchange().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsMailExchangeRecord*>(ptr)->exchange().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QDnsMailExchangeRecord_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsMailExchangeRecord*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsMailExchangeRecord*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 unsigned short QDnsMailExchangeRecord_Preference(void* ptr)
@@ -1206,7 +1206,7 @@ void* QDnsServiceRecord_NewQDnsServiceRecord2(void* other)
 
 char* QDnsServiceRecord_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsServiceRecord*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsServiceRecord*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 unsigned short QDnsServiceRecord_Port(void* ptr)
@@ -1226,7 +1226,7 @@ void QDnsServiceRecord_Swap(void* ptr, void* other)
 
 char* QDnsServiceRecord_Target(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsServiceRecord*>(ptr)->target().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsServiceRecord*>(ptr)->target().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 unsigned int QDnsServiceRecord_TimeToLive(void* ptr)
@@ -1256,7 +1256,7 @@ void* QDnsTextRecord_NewQDnsTextRecord2(void* other)
 
 char* QDnsTextRecord_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDnsTextRecord*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QDnsTextRecord*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QDnsTextRecord_Swap(void* ptr, void* other)
@@ -1331,7 +1331,7 @@ long long QHostAddress_Protocol(void* ptr)
 
 char* QHostAddress_ScopeId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QHostAddress*>(ptr)->scopeId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QHostAddress*>(ptr)->scopeId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QHostAddress_SetAddress6(void* ptr, char* address)
@@ -1366,7 +1366,7 @@ unsigned int QHostAddress_ToIPv4Address2(void* ptr, char ok)
 
 char* QHostAddress_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QHostAddress*>(ptr)->toString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QHostAddress*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QHostAddress_DestroyQHostAddress(void* ptr)
@@ -1376,7 +1376,7 @@ void QHostAddress_DestroyQHostAddress(void* ptr)
 
 char* QHostInfo_QHostInfo_LocalHostName()
 {
-	return const_cast<char*>(QHostInfo::localHostName().toUtf8().constData());
+	return const_cast<char*>(QHostInfo::localHostName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QHostInfo_NewQHostInfo2(void* other)
@@ -1401,7 +1401,7 @@ long long QHostInfo_Error(void* ptr)
 
 char* QHostInfo_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QHostInfo*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QHostInfo*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QHostInfo_QHostInfo_FromName(char* name)
@@ -1411,7 +1411,7 @@ void* QHostInfo_QHostInfo_FromName(char* name)
 
 char* QHostInfo_HostName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QHostInfo*>(ptr)->hostName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QHostInfo*>(ptr)->hostName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QHostInfo_QHostInfo_LookupHost(char* name, void* receiver, char* member)
@@ -1451,7 +1451,7 @@ void QHostInfo_DestroyQHostInfo(void* ptr)
 
 char* QHostInfo_QHostInfo_LocalDomainName()
 {
-	return const_cast<char*>(QHostInfo::localDomainName().toUtf8().constData());
+	return const_cast<char*>(QHostInfo::localDomainName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QHttpMultiPart_NewQHttpMultiPart2(long long contentType, void* parent)
@@ -1471,7 +1471,7 @@ void QHttpMultiPart_Append(void* ptr, void* httpPart)
 
 char* QHttpMultiPart_Boundary(void* ptr)
 {
-	return const_cast<char*>(static_cast<QHttpMultiPart*>(ptr)->boundary().toHex().constData());
+	return const_cast<char*>(static_cast<QHttpMultiPart*>(ptr)->boundary().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QHttpMultiPart_SetBoundary(void* ptr, char* boundary)
@@ -1655,12 +1655,12 @@ void QLocalServer_Close(void* ptr)
 
 char* QLocalServer_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLocalServer*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QLocalServer*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QLocalServer_FullServerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLocalServer*>(ptr)->fullServerName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QLocalServer*>(ptr)->fullServerName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QLocalServer_HasPendingConnections(void* ptr)
@@ -1735,7 +1735,7 @@ long long QLocalServer_ServerError(void* ptr)
 
 char* QLocalServer_ServerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLocalServer*>(ptr)->serverName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QLocalServer*>(ptr)->serverName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QLocalServer_SetMaxPendingConnections(void* ptr, int numConnections)
@@ -1862,10 +1862,10 @@ public:
 	qint64 bytesToWrite() const { return callbackQLocalSocket_BytesToWrite(const_cast<MyQLocalSocket*>(this)); };
 	bool canReadLine() const { return callbackQLocalSocket_CanReadLine(const_cast<MyQLocalSocket*>(this)) != 0; };
 	void close() { callbackQLocalSocket_Close(this); };
-	qint64 writeData(const char * data, qint64 c) { return callbackQLocalSocket_WriteData(this, const_cast<char*>(QString(data).toUtf8().constData()), c); };
+	qint64 writeData(const char * data, qint64 c) { return callbackQLocalSocket_WriteData(this, const_cast<char*>(QString(data).toUtf8().prepend("WHITESPACE").constData()+10), c); };
 	bool atEnd() const { return callbackQLocalSocket_AtEnd(const_cast<MyQLocalSocket*>(this)) != 0; };
 	qint64 pos() const { return callbackQLocalSocket_Pos(const_cast<MyQLocalSocket*>(this)); };
-	qint64 readLineData(char * data, qint64 maxSize) { return callbackQLocalSocket_ReadLineData(this, const_cast<char*>(QString(data).toUtf8().constData()), maxSize); };
+	qint64 readLineData(char * data, qint64 maxSize) { return callbackQLocalSocket_ReadLineData(this, const_cast<char*>(QString(data).toUtf8().prepend("WHITESPACE").constData()+10), maxSize); };
 	bool reset() { return callbackQLocalSocket_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQLocalSocket_Seek(this, pos) != 0; };
 	qint64 size() const { return callbackQLocalSocket_Size(const_cast<MyQLocalSocket*>(this)); };
@@ -1947,7 +1947,7 @@ void QLocalSocket_Error2(void* ptr, long long socketError)
 
 char* QLocalSocket_FullServerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLocalSocket*>(ptr)->fullServerName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QLocalSocket*>(ptr)->fullServerName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QLocalSocket_IsSequential(void* ptr)
@@ -1962,7 +1962,7 @@ char QLocalSocket_IsSequentialDefault(void* ptr)
 
 char* QLocalSocket_ServerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLocalSocket*>(ptr)->serverName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QLocalSocket*>(ptr)->serverName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QLocalSocket_SetServerName(void* ptr, char* name)
@@ -2515,14 +2515,14 @@ void QNetworkAccessManager_SetProxyFactory(void* ptr, void* factory)
 
 char* QNetworkAccessManager_SupportedSchemes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkAccessManager*>(ptr)->supportedSchemes().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkAccessManager*>(ptr)->supportedSchemes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QNetworkAccessManager_SupportedSchemesImplementation(void* ptr)
 {
 	QStringList returnArg;
 	QMetaObject::invokeMethod(static_cast<QNetworkAccessManager*>(ptr), "supportedSchemesImplementation", Q_RETURN_ARG(QStringList, returnArg));
-	return const_cast<char*>(returnArg.join("|").toUtf8().constData());
+	return const_cast<char*>(returnArg.join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkAccessManager_DestroyQNetworkAccessManager(void* ptr)
@@ -2767,12 +2767,12 @@ long long QNetworkConfiguration_BearerTypeFamily(void* ptr)
 
 char* QNetworkConfiguration_BearerTypeName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkConfiguration*>(ptr)->bearerTypeName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkConfiguration*>(ptr)->bearerTypeName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QNetworkConfiguration_Identifier(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkConfiguration*>(ptr)->identifier().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkConfiguration*>(ptr)->identifier().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QNetworkConfiguration_IsRoamingAvailable(void* ptr)
@@ -2787,7 +2787,7 @@ char QNetworkConfiguration_IsValid(void* ptr)
 
 char* QNetworkConfiguration_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkConfiguration*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkConfiguration*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QNetworkConfiguration_Purpose(void* ptr)
@@ -3054,7 +3054,7 @@ void* QNetworkCookie_NewQNetworkCookie2(void* other)
 
 char* QNetworkCookie_Domain(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->domain().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->domain().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QNetworkCookie_ExpirationDate(void* ptr)
@@ -3084,7 +3084,7 @@ char QNetworkCookie_IsSessionCookie(void* ptr)
 
 char* QNetworkCookie_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->name().toHex().constData());
+	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->name().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkCookie_Normalize(void* ptr, void* url)
@@ -3094,7 +3094,7 @@ void QNetworkCookie_Normalize(void* ptr, void* url)
 
 char* QNetworkCookie_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->path().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkCookie_SetDomain(void* ptr, char* domain)
@@ -3139,12 +3139,12 @@ void QNetworkCookie_Swap(void* ptr, void* other)
 
 char* QNetworkCookie_ToRawForm(void* ptr, long long form)
 {
-	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->toRawForm(static_cast<QNetworkCookie::RawForm>(form)).toHex().constData());
+	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->toRawForm(static_cast<QNetworkCookie::RawForm>(form)).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char* QNetworkCookie_Value(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->value().toHex().constData());
+	return const_cast<char*>(static_cast<QNetworkCookie*>(ptr)->value().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkCookie_DestroyQNetworkCookie(void* ptr)
@@ -3348,7 +3348,7 @@ void* QNetworkDiskCache_NewQNetworkDiskCache(void* parent)
 
 char* QNetworkDiskCache_CacheDirectory(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkDiskCache*>(ptr)->cacheDirectory().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkDiskCache*>(ptr)->cacheDirectory().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QNetworkDiskCache_CacheSize(void* ptr)
@@ -3573,12 +3573,12 @@ long long QNetworkInterface_Flags(void* ptr)
 
 char* QNetworkInterface_HardwareAddress(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkInterface*>(ptr)->hardwareAddress().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkInterface*>(ptr)->hardwareAddress().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QNetworkInterface_HumanReadableName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkInterface*>(ptr)->humanReadableName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkInterface*>(ptr)->humanReadableName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QNetworkInterface_Index(void* ptr)
@@ -3603,7 +3603,7 @@ int QNetworkInterface_QNetworkInterface_InterfaceIndexFromName(char* name)
 
 char* QNetworkInterface_QNetworkInterface_InterfaceNameFromIndex(int index)
 {
-	return const_cast<char*>(QNetworkInterface::interfaceNameFromIndex(index).toUtf8().constData());
+	return const_cast<char*>(QNetworkInterface::interfaceNameFromIndex(index).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QNetworkInterface_IsValid(void* ptr)
@@ -3613,7 +3613,7 @@ char QNetworkInterface_IsValid(void* ptr)
 
 char* QNetworkInterface_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkInterface*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkInterface*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkInterface_Swap(void* ptr, void* other)
@@ -3663,7 +3663,7 @@ void* QNetworkProxy_Header(void* ptr, long long header)
 
 char* QNetworkProxy_HostName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->hostName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->hostName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QNetworkProxy_IsCachingProxy(void* ptr)
@@ -3678,7 +3678,7 @@ char QNetworkProxy_IsTransparentProxy(void* ptr)
 
 char* QNetworkProxy_Password(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->password().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->password().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 unsigned short QNetworkProxy_Port(void* ptr)
@@ -3688,7 +3688,7 @@ unsigned short QNetworkProxy_Port(void* ptr)
 
 char* QNetworkProxy_RawHeader(void* ptr, char* headerName)
 {
-	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().constData());
+	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkProxy_QNetworkProxy_SetApplicationProxy(void* networkProxy)
@@ -3748,7 +3748,7 @@ long long QNetworkProxy_Type(void* ptr)
 
 char* QNetworkProxy_User(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->user().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkProxy*>(ptr)->user().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkProxy_DestroyQNetworkProxy(void* ptr)
@@ -3834,7 +3834,7 @@ void* QNetworkProxyQuery_NetworkConfiguration(void* ptr)
 
 char* QNetworkProxyQuery_PeerHostName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkProxyQuery*>(ptr)->peerHostName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkProxyQuery*>(ptr)->peerHostName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QNetworkProxyQuery_PeerPort(void* ptr)
@@ -3844,7 +3844,7 @@ int QNetworkProxyQuery_PeerPort(void* ptr)
 
 char* QNetworkProxyQuery_ProtocolTag(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkProxyQuery*>(ptr)->protocolTag().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkProxyQuery*>(ptr)->protocolTag().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QNetworkProxyQuery_QueryType(void* ptr)
@@ -3926,13 +3926,13 @@ public:
 	bool isSequential() const { return callbackQNetworkReply_IsSequential(const_cast<MyQNetworkReply*>(this)) != 0; };
 	bool open(QIODevice::OpenMode mode) { return callbackQNetworkReply_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQNetworkReply_Pos(const_cast<MyQNetworkReply*>(this)); };
-	qint64 readLineData(char * data, qint64 maxSize) { return callbackQNetworkReply_ReadLineData(this, const_cast<char*>(QString(data).toUtf8().constData()), maxSize); };
+	qint64 readLineData(char * data, qint64 maxSize) { return callbackQNetworkReply_ReadLineData(this, const_cast<char*>(QString(data).toUtf8().prepend("WHITESPACE").constData()+10), maxSize); };
 	bool reset() { return callbackQNetworkReply_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQNetworkReply_Seek(this, pos) != 0; };
 	qint64 size() const { return callbackQNetworkReply_Size(const_cast<MyQNetworkReply*>(this)); };
 	bool waitForBytesWritten(int msecs) { return callbackQNetworkReply_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForReadyRead(int msecs) { return callbackQNetworkReply_WaitForReadyRead(this, msecs) != 0; };
-	qint64 writeData(const char * data, qint64 maxSize) { return callbackQNetworkReply_WriteData(this, const_cast<char*>(QString(data).toUtf8().constData()), maxSize); };
+	qint64 writeData(const char * data, qint64 maxSize) { return callbackQNetworkReply_WriteData(this, const_cast<char*>(QString(data).toUtf8().prepend("WHITESPACE").constData()+10), maxSize); };
 	void timerEvent(QTimerEvent * event) { callbackQNetworkReply_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQNetworkReply_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQNetworkReply_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -4121,7 +4121,7 @@ void QNetworkReply_PreSharedKeyAuthenticationRequired(void* ptr, void* authentic
 
 char* QNetworkReply_RawHeader(void* ptr, char* headerName)
 {
-	return const_cast<char*>(static_cast<QNetworkReply*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().constData());
+	return const_cast<char*>(static_cast<QNetworkReply*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 long long QNetworkReply_ReadBufferSize(void* ptr)
@@ -4506,7 +4506,7 @@ long long QNetworkRequest_Priority(void* ptr)
 
 char* QNetworkRequest_RawHeader(void* ptr, char* headerName)
 {
-	return const_cast<char*>(static_cast<QNetworkRequest*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().constData());
+	return const_cast<char*>(static_cast<QNetworkRequest*>(ptr)->rawHeader(QByteArray::fromHex(QString(headerName).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkRequest_SetAttribute(void* ptr, long long code, void* value)
@@ -4671,7 +4671,7 @@ long long QNetworkSession_Error(void* ptr)
 
 char* QNetworkSession_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNetworkSession*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QNetworkSession*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QNetworkSession_Ignore(void* ptr)
@@ -4921,7 +4921,7 @@ void QSslCertificate_Clear(void* ptr)
 
 char* QSslCertificate_Digest(void* ptr, long long algorithm)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->digest(static_cast<QCryptographicHash::Algorithm>(algorithm)).toHex().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->digest(static_cast<QCryptographicHash::Algorithm>(algorithm)).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char QSslCertificate_IsBlacklisted(void* ptr)
@@ -4961,12 +4961,12 @@ char QSslCertificate_IsSelfSigned(void* ptr)
 
 char* QSslCertificate_IssuerInfo(void* ptr, long long subject)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->issuerInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->issuerInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificate_IssuerInfo2(void* ptr, char* attribute)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->issuerInfo(QByteArray::fromHex(QString(attribute).toUtf8())).join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->issuerInfo(QByteArray::fromHex(QString(attribute).toUtf8())).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSslCertificate_PublicKey(void* ptr)
@@ -4976,37 +4976,37 @@ void* QSslCertificate_PublicKey(void* ptr)
 
 char* QSslCertificate_SerialNumber(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->serialNumber().toHex().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->serialNumber().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificate_SubjectInfo(void* ptr, long long subject)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->subjectInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->subjectInfo(static_cast<QSslCertificate::SubjectInfo>(subject)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificate_SubjectInfo2(void* ptr, char* attribute)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->subjectInfo(QByteArray::fromHex(QString(attribute).toUtf8())).join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->subjectInfo(QByteArray::fromHex(QString(attribute).toUtf8())).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificate_ToDer(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->toDer().toHex().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->toDer().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificate_ToPem(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->toPem().toHex().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->toPem().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificate_ToText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->toText().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->toText().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificate_Version(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->version().toHex().constData());
+	return const_cast<char*>(static_cast<QSslCertificate*>(ptr)->version().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSslCertificateExtension_NewQSslCertificateExtension()
@@ -5031,12 +5031,12 @@ char QSslCertificateExtension_IsSupported(void* ptr)
 
 char* QSslCertificateExtension_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCertificateExtension*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCertificateExtension*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCertificateExtension_Oid(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCertificateExtension*>(ptr)->oid().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCertificateExtension*>(ptr)->oid().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSslCertificateExtension_Swap(void* ptr, void* other)
@@ -5071,12 +5071,12 @@ void* QSslCipher_NewQSslCipher2(char* name)
 
 char* QSslCipher_AuthenticationMethod(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->authenticationMethod().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->authenticationMethod().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCipher_EncryptionMethod(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->encryptionMethod().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->encryptionMethod().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSslCipher_IsNull(void* ptr)
@@ -5086,17 +5086,17 @@ char QSslCipher_IsNull(void* ptr)
 
 char* QSslCipher_KeyExchangeMethod(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->keyExchangeMethod().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->keyExchangeMethod().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCipher_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslCipher_ProtocolString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->protocolString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslCipher*>(ptr)->protocolString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QSslCipher_SupportedBits(void* ptr)
@@ -5151,7 +5151,7 @@ void* QSslConfiguration_LocalCertificate(void* ptr)
 
 char* QSslConfiguration_NextNegotiatedProtocol(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslConfiguration*>(ptr)->nextNegotiatedProtocol().toHex().constData());
+	return const_cast<char*>(static_cast<QSslConfiguration*>(ptr)->nextNegotiatedProtocol().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 long long QSslConfiguration_NextProtocolNegotiationStatus(void* ptr)
@@ -5186,7 +5186,7 @@ void* QSslConfiguration_SessionCipher(void* ptr)
 
 char* QSslConfiguration_SessionTicket(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslConfiguration*>(ptr)->sessionTicket().toHex().constData());
+	return const_cast<char*>(static_cast<QSslConfiguration*>(ptr)->sessionTicket().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 int QSslConfiguration_SessionTicketLifeTimeHint(void* ptr)
@@ -5251,12 +5251,12 @@ char QSslEllipticCurve_IsTlsNamedCurve(void* ptr)
 
 char* QSslEllipticCurve_LongName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslEllipticCurve*>(ptr)->longName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslEllipticCurve*>(ptr)->longName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslEllipticCurve_ShortName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslEllipticCurve*>(ptr)->shortName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslEllipticCurve*>(ptr)->shortName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSslError_NewQSslError()
@@ -5291,7 +5291,7 @@ long long QSslError_Error(void* ptr)
 
 char* QSslError_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslError*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslError*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSslError_Swap(void* ptr, void* other)
@@ -5336,12 +5336,12 @@ void QSslKey_Swap(void* ptr, void* other)
 
 char* QSslKey_ToDer(void* ptr, char* passPhrase)
 {
-	return const_cast<char*>(static_cast<QSslKey*>(ptr)->toDer(QByteArray::fromHex(QString(passPhrase).toUtf8())).toHex().constData());
+	return const_cast<char*>(static_cast<QSslKey*>(ptr)->toDer(QByteArray::fromHex(QString(passPhrase).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslKey_ToPem(void* ptr, char* passPhrase)
 {
-	return const_cast<char*>(static_cast<QSslKey*>(ptr)->toPem(QByteArray::fromHex(QString(passPhrase).toUtf8())).toHex().constData());
+	return const_cast<char*>(static_cast<QSslKey*>(ptr)->toPem(QByteArray::fromHex(QString(passPhrase).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QSslKey_DestroyQSslKey(void* ptr)
@@ -5361,12 +5361,12 @@ void* QSslPreSharedKeyAuthenticator_NewQSslPreSharedKeyAuthenticator2(void* auth
 
 char* QSslPreSharedKeyAuthenticator_Identity(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identity().toHex().constData());
+	return const_cast<char*>(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identity().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSslPreSharedKeyAuthenticator_IdentityHint(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identityHint().toHex().constData());
+	return const_cast<char*>(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->identityHint().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 int QSslPreSharedKeyAuthenticator_MaximumIdentityLength(void* ptr)
@@ -5381,7 +5381,7 @@ int QSslPreSharedKeyAuthenticator_MaximumPreSharedKeyLength(void* ptr)
 
 char* QSslPreSharedKeyAuthenticator_PreSharedKey(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->preSharedKey().toHex().constData());
+	return const_cast<char*>(static_cast<QSslPreSharedKeyAuthenticator*>(ptr)->preSharedKey().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QSslPreSharedKeyAuthenticator_SetIdentity(void* ptr, char* identity)
@@ -5423,7 +5423,7 @@ public:
 	bool waitForConnected(int msecs) { return callbackQSslSocket_WaitForConnected(this, msecs) != 0; };
 	bool waitForDisconnected(int msecs) { return callbackQSslSocket_WaitForDisconnected(this, msecs) != 0; };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQSslSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQSslSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().constData()), port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQSslSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().prepend("WHITESPACE").constData()+10), port, openMode, protocol); };
 	void disconnectFromHost() { callbackQSslSocket_DisconnectFromHost(this); };
 	bool open(QIODevice::OpenMode mode) { return callbackQSslSocket_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQSslSocket_Pos(const_cast<MyQSslSocket*>(this)); };
@@ -5608,7 +5608,7 @@ long long QSslSocket_PeerVerifyMode(void* ptr)
 
 char* QSslSocket_PeerVerifyName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSslSocket*>(ptr)->peerVerifyName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSslSocket*>(ptr)->peerVerifyName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSslSocket_ConnectPreSharedKeyAuthenticationRequired(void* ptr)
@@ -5718,7 +5718,7 @@ long QSslSocket_QSslSocket_SslLibraryBuildVersionNumber()
 
 char* QSslSocket_QSslSocket_SslLibraryBuildVersionString()
 {
-	return const_cast<char*>(QSslSocket::sslLibraryBuildVersionString().toUtf8().constData());
+	return const_cast<char*>(QSslSocket::sslLibraryBuildVersionString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long QSslSocket_QSslSocket_SslLibraryVersionNumber()
@@ -5728,7 +5728,7 @@ long QSslSocket_QSslSocket_SslLibraryVersionNumber()
 
 char* QSslSocket_QSslSocket_SslLibraryVersionString()
 {
-	return const_cast<char*>(QSslSocket::sslLibraryVersionString().toUtf8().constData());
+	return const_cast<char*>(QSslSocket::sslLibraryVersionString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSslSocket_StartClientEncryption(void* ptr)
@@ -6013,7 +6013,7 @@ void QTcpServer_Close(void* ptr)
 
 char* QTcpServer_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTcpServer*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QTcpServer*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QTcpServer_HasPendingConnections(void* ptr)
@@ -6217,7 +6217,7 @@ public:
 	MyQTcpSocket(QObject *parent) : QTcpSocket(parent) {};
 	 ~MyQTcpSocket() { callbackQTcpSocket_DestroyQTcpSocket(this); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQTcpSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQTcpSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().constData()), port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQTcpSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().prepend("WHITESPACE").constData()+10), port, openMode, protocol); };
 	void disconnectFromHost() { callbackQTcpSocket_DisconnectFromHost(this); };
 	void resume() { callbackQTcpSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQTcpSocket_SetReadBufferSize(this, size); };
@@ -6492,7 +6492,7 @@ public:
 	MyQUdpSocket(QObject *parent) : QUdpSocket(parent) {};
 	 ~MyQUdpSocket() { callbackQUdpSocket_DestroyQUdpSocket(this); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQUdpSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
-	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQUdpSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().constData()), port, openMode, protocol); };
+	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { callbackQUdpSocket_ConnectToHost(this, const_cast<char*>(hostName.toUtf8().prepend("WHITESPACE").constData()+10), port, openMode, protocol); };
 	void disconnectFromHost() { callbackQUdpSocket_DisconnectFromHost(this); };
 	void resume() { callbackQUdpSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQUdpSocket_SetReadBufferSize(this, size); };

@@ -32,9 +32,9 @@
 class MyQScxmlCppDataModel: public QScxmlCppDataModel
 {
 public:
-	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlCppDataModel_HasScxmlProperty(const_cast<MyQScxmlCppDataModel*>(this), const_cast<char*>(name.toUtf8().constData())) != 0; };
-	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlCppDataModel_ScxmlProperty(const_cast<MyQScxmlCppDataModel*>(this), const_cast<char*>(name.toUtf8().constData()))); };
-	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlCppDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().constData()), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().constData())) != 0; };
+	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlCppDataModel_HasScxmlProperty(const_cast<MyQScxmlCppDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlCppDataModel_ScxmlProperty(const_cast<MyQScxmlCppDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlCppDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQScxmlCppDataModel_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScxmlCppDataModel_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQScxmlCppDataModel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -184,10 +184,10 @@ void* QScxmlCppDataModel_MetaObjectDefault(void* ptr)
 class MyQScxmlDataModel: public QScxmlDataModel
 {
 public:
-	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlDataModel_HasScxmlProperty(const_cast<MyQScxmlDataModel*>(this), const_cast<char*>(name.toUtf8().constData())) != 0; };
-	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlDataModel_ScxmlProperty(const_cast<MyQScxmlDataModel*>(this), const_cast<char*>(name.toUtf8().constData()))); };
+	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlDataModel_HasScxmlProperty(const_cast<MyQScxmlDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlDataModel_ScxmlProperty(const_cast<MyQScxmlDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void setScxmlEvent(const QScxmlEvent & event) { callbackQScxmlDataModel_SetScxmlEvent(this, const_cast<QScxmlEvent*>(&event)); };
-	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().constData()), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().constData())) != 0; };
+	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void Signal_StateMachineChanged(QScxmlStateMachine * stateMachine) { callbackQScxmlDataModel_StateMachineChanged(this, stateMachine); };
 	void timerEvent(QTimerEvent * event) { callbackQScxmlDataModel_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScxmlDataModel_ChildEvent(this, event); };
@@ -339,10 +339,10 @@ class MyQScxmlEcmaScriptDataModel: public QScxmlEcmaScriptDataModel
 {
 public:
 	MyQScxmlEcmaScriptDataModel(QObject *parent) : QScxmlEcmaScriptDataModel(parent) {};
-	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(const_cast<MyQScxmlEcmaScriptDataModel*>(this), const_cast<char*>(name.toUtf8().constData())) != 0; };
-	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlEcmaScriptDataModel_ScxmlProperty(const_cast<MyQScxmlEcmaScriptDataModel*>(this), const_cast<char*>(name.toUtf8().constData()))); };
+	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(const_cast<MyQScxmlEcmaScriptDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlEcmaScriptDataModel_ScxmlProperty(const_cast<MyQScxmlEcmaScriptDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void setScxmlEvent(const QScxmlEvent & event) { callbackQScxmlEcmaScriptDataModel_SetScxmlEvent(this, const_cast<QScxmlEvent*>(&event)); };
-	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().constData()), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().constData())) != 0; };
+	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQScxmlEcmaScriptDataModel_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScxmlEcmaScriptDataModel_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQScxmlEcmaScriptDataModel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -521,12 +521,12 @@ int QScxmlError_Column(void* ptr)
 
 char* QScxmlError_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlError*>(ptr)->description().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlError*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QScxmlError_FileName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlError*>(ptr)->fileName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlError*>(ptr)->fileName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QScxmlError_IsValid(void* ptr)
@@ -541,7 +541,7 @@ int QScxmlError_Line(void* ptr)
 
 char* QScxmlError_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlError*>(ptr)->toString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlError*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QScxmlError_DestroyQScxmlError(void* ptr)
@@ -576,7 +576,7 @@ int QScxmlEvent_Delay(void* ptr)
 
 char* QScxmlEvent_ErrorMessage(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->errorMessage().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->errorMessage().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 long long QScxmlEvent_EventType(void* ptr)
@@ -586,7 +586,7 @@ long long QScxmlEvent_EventType(void* ptr)
 
 char* QScxmlEvent_InvokeId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->invokeId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->invokeId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QScxmlEvent_IsErrorEvent(void* ptr)
@@ -596,27 +596,27 @@ char QScxmlEvent_IsErrorEvent(void* ptr)
 
 char* QScxmlEvent_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QScxmlEvent_Origin(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->origin().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->origin().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QScxmlEvent_OriginType(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->originType().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->originType().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QScxmlEvent_ScxmlType(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->scxmlType().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->scxmlType().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QScxmlEvent_SendId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->sendId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlEvent*>(ptr)->sendId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QScxmlEvent_SetData(void* ptr, void* data)
@@ -695,10 +695,10 @@ class MyQScxmlNullDataModel: public QScxmlNullDataModel
 {
 public:
 	MyQScxmlNullDataModel(QObject *parent) : QScxmlNullDataModel(parent) {};
-	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlNullDataModel_HasScxmlProperty(const_cast<MyQScxmlNullDataModel*>(this), const_cast<char*>(name.toUtf8().constData())) != 0; };
-	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlNullDataModel_ScxmlProperty(const_cast<MyQScxmlNullDataModel*>(this), const_cast<char*>(name.toUtf8().constData()))); };
+	bool hasScxmlProperty(const QString & name) const { return callbackQScxmlNullDataModel_HasScxmlProperty(const_cast<MyQScxmlNullDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	QVariant scxmlProperty(const QString & name) const { return *static_cast<QVariant*>(callbackQScxmlNullDataModel_ScxmlProperty(const_cast<MyQScxmlNullDataModel*>(this), const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	void setScxmlEvent(const QScxmlEvent & event) { callbackQScxmlNullDataModel_SetScxmlEvent(this, const_cast<QScxmlEvent*>(&event)); };
-	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlNullDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().constData()), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().constData())) != 0; };
+	bool setScxmlProperty(const QString & name, const QVariant & value, const QString & context) { return callbackQScxmlNullDataModel_SetScxmlProperty(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value), const_cast<char*>(context.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQScxmlNullDataModel_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScxmlNullDataModel_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQScxmlNullDataModel_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -857,7 +857,7 @@ void QScxmlParser_AddError(void* ptr, char* msg)
 
 char* QScxmlParser_FileName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlParser*>(ptr)->fileName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlParser*>(ptr)->fileName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QScxmlParser_InstantiateDataModel(void* ptr, void* stateMachine)
@@ -904,7 +904,7 @@ public:
 	void Signal_Finished() { callbackQScxmlStateMachine_Finished(this); };
 	bool init() { return callbackQScxmlStateMachine_Init(this) != 0; };
 	void Signal_InitializedChanged(bool initialized) { callbackQScxmlStateMachine_InitializedChanged(this, initialized); };
-	void Signal_Log(const QString & label, const QString & msg) { callbackQScxmlStateMachine_Log(this, const_cast<char*>(label.toUtf8().constData()), const_cast<char*>(msg.toUtf8().constData())); };
+	void Signal_Log(const QString & label, const QString & msg) { callbackQScxmlStateMachine_Log(this, const_cast<char*>(label.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(msg.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void Signal_ReachedStableState() { callbackQScxmlStateMachine_ReachedStableState(this); };
 	void Signal_RunningChanged(bool running) { callbackQScxmlStateMachine_RunningChanged(this, running); };
 	void start() { callbackQScxmlStateMachine_Start(this); };
@@ -927,7 +927,7 @@ char QScxmlStateMachine_IsInitialized(void* ptr)
 
 char* QScxmlStateMachine_ActiveStateNames(void* ptr, char compress)
 {
-	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->activeStateNames(compress != 0).join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->activeStateNames(compress != 0).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QScxmlStateMachine_CancelDelayedEvent(void* ptr, char* sendId)
@@ -1017,7 +1017,7 @@ void* QScxmlStateMachine_QScxmlStateMachine_FromFile(char* fileName)
 
 char* QScxmlStateMachine_QScxmlStateMachine_GenerateSessionId(char* prefix)
 {
-	return const_cast<char*>(QScxmlStateMachine::generateSessionId(QString(prefix)).toUtf8().constData());
+	return const_cast<char*>(QScxmlStateMachine::generateSessionId(QString(prefix)).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QScxmlStateMachine_Init(void* ptr)
@@ -1079,7 +1079,7 @@ void QScxmlStateMachine_Log(void* ptr, char* label, char* msg)
 
 char* QScxmlStateMachine_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QScxmlStateMachine_ConnectReachedStableState(void* ptr)
@@ -1119,7 +1119,7 @@ void* QScxmlStateMachine_ScxmlEventFilter(void* ptr)
 
 char* QScxmlStateMachine_SessionId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->sessionId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->sessionId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QScxmlStateMachine_SetDataModel(void* ptr, void* model)
@@ -1149,7 +1149,7 @@ void QScxmlStateMachine_Start(void* ptr)
 
 char* QScxmlStateMachine_StateNames(void* ptr, char compress)
 {
-	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->stateNames(compress != 0).join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QScxmlStateMachine*>(ptr)->stateNames(compress != 0).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QScxmlStateMachine_Stop(void* ptr)

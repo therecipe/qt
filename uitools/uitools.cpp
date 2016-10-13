@@ -27,10 +27,10 @@ class MyQUiLoader: public QUiLoader
 {
 public:
 	MyQUiLoader(QObject *parent) : QUiLoader(parent) {};
-	QAction * createAction(QObject * parent, const QString & name) { return static_cast<QAction*>(callbackQUiLoader_CreateAction(this, parent, const_cast<char*>(name.toUtf8().constData()))); };
-	QActionGroup * createActionGroup(QObject * parent, const QString & name) { return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, parent, const_cast<char*>(name.toUtf8().constData()))); };
-	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, const_cast<char*>(className.toUtf8().constData()), parent, const_cast<char*>(name.toUtf8().constData()))); };
-	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, const_cast<char*>(className.toUtf8().constData()), parent, const_cast<char*>(name.toUtf8().constData()))); };
+	QAction * createAction(QObject * parent, const QString & name) { return static_cast<QAction*>(callbackQUiLoader_CreateAction(this, parent, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QActionGroup * createActionGroup(QObject * parent, const QString & name) { return static_cast<QActionGroup*>(callbackQUiLoader_CreateActionGroup(this, parent, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QLayout * createLayout(const QString & className, QObject * parent, const QString & name) { return static_cast<QLayout*>(callbackQUiLoader_CreateLayout(this, const_cast<char*>(className.toUtf8().prepend("WHITESPACE").constData()+10), parent, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QWidget * createWidget(const QString & className, QWidget * parent, const QString & name) { return static_cast<QWidget*>(callbackQUiLoader_CreateWidget(this, const_cast<char*>(className.toUtf8().prepend("WHITESPACE").constData()+10), parent, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10))); };
 	 ~MyQUiLoader() { callbackQUiLoader_DestroyQUiLoader(this); };
 	void timerEvent(QTimerEvent * event) { callbackQUiLoader_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQUiLoader_ChildEvent(this, event); };
@@ -55,12 +55,12 @@ void QUiLoader_AddPluginPath(void* ptr, char* path)
 
 char* QUiLoader_AvailableLayouts(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->availableLayouts().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->availableLayouts().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QUiLoader_AvailableWidgets(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->availableWidgets().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->availableWidgets().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QUiLoader_ClearPluginPaths(void* ptr)
@@ -110,7 +110,7 @@ void* QUiLoader_CreateWidgetDefault(void* ptr, char* className, void* parent, ch
 
 char* QUiLoader_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->errorString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QUiLoader_IsLanguageChangeEnabled(void* ptr)
@@ -125,7 +125,7 @@ void* QUiLoader_Load(void* ptr, void* device, void* parentWidget)
 
 char* QUiLoader_PluginPaths(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->pluginPaths().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QUiLoader*>(ptr)->pluginPaths().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QUiLoader_SetLanguageChangeEnabled(void* ptr, char enabled)

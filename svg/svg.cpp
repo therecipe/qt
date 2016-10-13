@@ -134,7 +134,7 @@ void* QGraphicsSvgItem_BoundingRectDefault(void* ptr)
 
 char* QGraphicsSvgItem_ElementId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGraphicsSvgItem*>(ptr)->elementId().toUtf8().constData());
+	return const_cast<char*>(static_cast<QGraphicsSvgItem*>(ptr)->elementId().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QGraphicsSvgItem_MaximumCacheSize(void* ptr)
@@ -564,12 +564,12 @@ void QGraphicsSvgItem_WheelEventDefault(void* ptr, void* event)
 
 char* QSvgGenerator_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSvgGenerator*>(ptr)->description().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSvgGenerator*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSvgGenerator_FileName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSvgGenerator*>(ptr)->fileName().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSvgGenerator*>(ptr)->fileName().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSvgGenerator_OutputDevice(void* ptr)
@@ -629,7 +629,7 @@ void* QSvgGenerator_Size(void* ptr)
 
 char* QSvgGenerator_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSvgGenerator*>(ptr)->title().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSvgGenerator*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QSvgGenerator_ViewBoxF(void* ptr)
@@ -670,11 +670,11 @@ public:
 	MyQSvgRenderer(const QByteArray &contents, QObject *parent) : QSvgRenderer(contents, parent) {};
 	MyQSvgRenderer(const QString &filename, QObject *parent) : QSvgRenderer(filename, parent) {};
 	bool load(QXmlStreamReader * contents) { return callbackQSvgRenderer_Load3(this, contents) != 0; };
-	bool load(const QByteArray & contents) { return callbackQSvgRenderer_Load2(this, const_cast<char*>(contents.toHex().constData())) != 0; };
-	bool load(const QString & filename) { return callbackQSvgRenderer_Load(this, const_cast<char*>(filename.toUtf8().constData())) != 0; };
+	bool load(const QByteArray & contents) { return callbackQSvgRenderer_Load2(this, const_cast<char*>(contents.toHex().prepend("WHITESPACE").constData()+10)) != 0; };
+	bool load(const QString & filename) { return callbackQSvgRenderer_Load(this, const_cast<char*>(filename.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
 	void render(QPainter * painter) { callbackQSvgRenderer_Render(this, painter); };
 	void render(QPainter * painter, const QRectF & bounds) { callbackQSvgRenderer_Render2(this, painter, const_cast<QRectF*>(&bounds)); };
-	void render(QPainter * painter, const QString & elementId, const QRectF & bounds) { callbackQSvgRenderer_Render3(this, painter, const_cast<char*>(elementId.toUtf8().constData()), const_cast<QRectF*>(&bounds)); };
+	void render(QPainter * painter, const QString & elementId, const QRectF & bounds) { callbackQSvgRenderer_Render3(this, painter, const_cast<char*>(elementId.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QRectF*>(&bounds)); };
 	void Signal_RepaintNeeded() { callbackQSvgRenderer_RepaintNeeded(this); };
 	void timerEvent(QTimerEvent * event) { callbackQSvgRenderer_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSvgRenderer_ChildEvent(this, event); };
@@ -913,8 +913,8 @@ class MyQSvgWidget: public QSvgWidget
 public:
 	MyQSvgWidget(QWidget *parent) : QSvgWidget(parent) {};
 	MyQSvgWidget(const QString &file, QWidget *parent) : QSvgWidget(file, parent) {};
-	void load(const QByteArray & contents) { callbackQSvgWidget_Load2(this, const_cast<char*>(contents.toHex().constData())); };
-	void load(const QString & file) { callbackQSvgWidget_Load(this, const_cast<char*>(file.toUtf8().constData())); };
+	void load(const QByteArray & contents) { callbackQSvgWidget_Load2(this, const_cast<char*>(contents.toHex().prepend("WHITESPACE").constData()+10)); };
+	void load(const QString & file) { callbackQSvgWidget_Load(this, const_cast<char*>(file.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void actionEvent(QActionEvent * event) { callbackQSvgWidget_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQSvgWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQSvgWidget_DragLeaveEvent(this, event); };
@@ -928,10 +928,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQSvgWidget_MinimumSizeHint(const_cast<MyQSvgWidget*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQSvgWidget_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQSvgWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQSvgWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().constData())); };
+	void setStyleSheet(const QString & styleSheet) { callbackQSvgWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void setVisible(bool visible) { callbackQSvgWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQSvgWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQSvgWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().constData())); };
+	void setWindowTitle(const QString & vqs) { callbackQSvgWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	void showEvent(QShowEvent * event) { callbackQSvgWidget_ShowEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQSvgWidget_ChangeEvent(this, event); };
 	bool close() { return callbackQSvgWidget_Close(this) != 0; };
@@ -950,7 +950,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQSvgWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQSvgWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQSvgWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSvgWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().constData()), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSvgWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
 	void raise() { callbackQSvgWidget_Raise(this); };
 	void repaint() { callbackQSvgWidget_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQSvgWidget_ResizeEvent(this, event); };

@@ -397,15 +397,15 @@ func cppOutput(name, value string, f *parser.Function) string {
 	case "QString":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("const_cast<char*>(%v->toUtf8().constData())", name)
+				return fmt.Sprintf("const_cast<char*>(%v->toUtf8().prepend(\"WHITESPACE\").constData()+10)", name)
 			}
 
-			return fmt.Sprintf("const_cast<char*>(%v.toUtf8().constData())", name)
+			return fmt.Sprintf("const_cast<char*>(%v.toUtf8().prepend(\"WHITESPACE\").constData()+10)", name)
 		}
 
 	case "QByteArray":
 		{
-			return fmt.Sprintf("const_cast<char*>(%v.toHex().constData())", name)
+			return fmt.Sprintf("const_cast<char*>(%v.toHex().prepend(\"WHITESPACE\").constData()+10)", name)
 		}
 
 	case "QStringList":

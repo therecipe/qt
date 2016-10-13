@@ -329,7 +329,7 @@ char QAndroidJniObject_IsValid(void* ptr)
 
 char* QAndroidJniObject_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8().constData());
+	return const_cast<char*>(static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void* QAndroidJniObject_Object(void* ptr)

@@ -148,7 +148,7 @@ void QAccelerometer_DestroyQAccelerometerDefault(void* ptr)
 
 char* QAccelerometer_QAccelerometer_Type()
 {
-	return const_cast<char*>(QString(QAccelerometer::type).toUtf8().constData());
+	return const_cast<char*>(QString(QAccelerometer::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QAccelerometer_Start(void* ptr)
@@ -411,7 +411,7 @@ void QAltimeter_DestroyQAltimeter(void* ptr)
 
 char* QAltimeter_QAltimeter_Type()
 {
-	return const_cast<char*>(QString(QAltimeter::type).toUtf8().constData());
+	return const_cast<char*>(QString(QAltimeter::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QAltimeter_Start(void* ptr)
@@ -788,7 +788,7 @@ void QAmbientLightSensor_DestroyQAmbientLightSensorDefault(void* ptr)
 
 char* QAmbientLightSensor_QAmbientLightSensor_Type()
 {
-	return const_cast<char*>(QString(QAmbientLightSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QAmbientLightSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QAmbientLightSensor_Start(void* ptr)
@@ -1031,7 +1031,7 @@ void QAmbientTemperatureSensor_DestroyQAmbientTemperatureSensor(void* ptr)
 
 char* QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type()
 {
-	return const_cast<char*>(QString(QAmbientTemperatureSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QAmbientTemperatureSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QAmbientTemperatureSensor_Start(void* ptr)
@@ -1186,7 +1186,7 @@ void QCompass_DestroyQCompassDefault(void* ptr)
 
 char* QCompass_QCompass_Type()
 {
-	return const_cast<char*>(QString(QCompass::type).toUtf8().constData());
+	return const_cast<char*>(QString(QCompass::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QCompass_Start(void* ptr)
@@ -1550,7 +1550,7 @@ void QDistanceSensor_DestroyQDistanceSensor(void* ptr)
 
 char* QDistanceSensor_QDistanceSensor_Type()
 {
-	return const_cast<char*>(QString(QDistanceSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QDistanceSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QDistanceSensor_Start(void* ptr)
@@ -1705,7 +1705,7 @@ void QGyroscope_DestroyQGyroscopeDefault(void* ptr)
 
 char* QGyroscope_QGyroscope_Type()
 {
-	return const_cast<char*>(QString(QGyroscope::type).toUtf8().constData());
+	return const_cast<char*>(QString(QGyroscope::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QGyroscope_Start(void* ptr)
@@ -2079,7 +2079,7 @@ void QHolsterSensor_DestroyQHolsterSensor(void* ptr)
 
 char* QHolsterSensor_QHolsterSensor_Type()
 {
-	return const_cast<char*>(QString(QHolsterSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QHolsterSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QHolsterSensor_Start(void* ptr)
@@ -2345,7 +2345,7 @@ void QIRProximitySensor_DestroyQIRProximitySensorDefault(void* ptr)
 
 char* QIRProximitySensor_QIRProximitySensor_Type()
 {
-	return const_cast<char*>(QString(QIRProximitySensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QIRProximitySensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QIRProximitySensor_Start(void* ptr)
@@ -2637,7 +2637,7 @@ void QLightSensor_DestroyQLightSensorDefault(void* ptr)
 
 char* QLightSensor_QLightSensor_Type()
 {
-	return const_cast<char*>(QString(QLightSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QLightSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QLightSensor_Start(void* ptr)
@@ -2818,7 +2818,7 @@ void QMagnetometer_DestroyQMagnetometerDefault(void* ptr)
 
 char* QMagnetometer_QMagnetometer_Type()
 {
-	return const_cast<char*>(QString(QMagnetometer::type).toUtf8().constData());
+	return const_cast<char*>(QString(QMagnetometer::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QMagnetometer_Start(void* ptr)
@@ -3225,7 +3225,7 @@ void QOrientationSensor_DestroyQOrientationSensorDefault(void* ptr)
 
 char* QOrientationSensor_QOrientationSensor_Type()
 {
-	return const_cast<char*>(QString(QOrientationSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QOrientationSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QOrientationSensor_Start(void* ptr)
@@ -3478,7 +3478,7 @@ void QPressureSensor_DestroyQPressureSensor(void* ptr)
 
 char* QPressureSensor_QPressureSensor_Type()
 {
-	return const_cast<char*>(QString(QPressureSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QPressureSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QPressureSensor_Start(void* ptr)
@@ -3744,7 +3744,7 @@ void QProximitySensor_DestroyQProximitySensorDefault(void* ptr)
 
 char* QProximitySensor_QProximitySensor_Type()
 {
-	return const_cast<char*>(QString(QProximitySensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QProximitySensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QProximitySensor_Start(void* ptr)
@@ -4046,7 +4046,7 @@ void QRotationSensor_DestroyQRotationSensorDefault(void* ptr)
 
 char* QRotationSensor_QRotationSensor_Type()
 {
-	return const_cast<char*>(QString(QRotationSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QRotationSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QRotationSensor_Start(void* ptr)
@@ -4215,7 +4215,7 @@ int QSensor_DataRate(void* ptr)
 
 char* QSensor_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensor*>(ptr)->description().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensor*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 int QSensor_EfficientBufferSize(void* ptr)
@@ -4230,7 +4230,7 @@ int QSensor_Error(void* ptr)
 
 char* QSensor_Identifier(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensor*>(ptr)->identifier().toHex().constData());
+	return const_cast<char*>(static_cast<QSensor*>(ptr)->identifier().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 char QSensor_IsActive(void* ptr)
@@ -4315,7 +4315,7 @@ char QSensor_SkipDuplicates(void* ptr)
 
 char* QSensor_Type(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensor*>(ptr)->type().toHex().constData());
+	return const_cast<char*>(static_cast<QSensor*>(ptr)->type().toHex().prepend("WHITESPACE").constData()+10);
 }
 
 int QSensor_UserOrientation(void* ptr)
@@ -4460,7 +4460,7 @@ void QSensor_DataRateChanged(void* ptr)
 
 char* QSensor_QSensor_DefaultSensorForType(char* ty)
 {
-	return const_cast<char*>(QSensor::defaultSensorForType(QByteArray::fromHex(QString(ty).toUtf8())).toHex().constData());
+	return const_cast<char*>(QSensor::defaultSensorForType(QByteArray::fromHex(QString(ty).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
 }
 
 void QSensor_ConnectEfficientBufferSizeChanged(void* ptr)
@@ -4931,7 +4931,7 @@ class MyQSensorGesture: public QSensorGesture
 public:
 	MyQSensorGesture(const QStringList &ids, QObject *parent) : QSensorGesture(ids, parent) {};
 	#ifdef Q_QDOC
-		void Signal_Detected(QString gestureId) { callbackQSensorGesture_Detected(this, const_cast<char*>(gestureId.toUtf8().constData())); };
+		void Signal_Detected(QString gestureId) { callbackQSensorGesture_Detected(this, const_cast<char*>(gestureId.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	#endif
 	void timerEvent(QTimerEvent * event) { callbackQSensorGesture_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSensorGesture_ChildEvent(this, event); };
@@ -4972,12 +4972,12 @@ void QSensorGesture_Detected(void* ptr, char* gestureId)
 
 char* QSensorGesture_GestureSignals(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGesture*>(ptr)->gestureSignals().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGesture*>(ptr)->gestureSignals().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSensorGesture_InvalidIds(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGesture*>(ptr)->invalidIds().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGesture*>(ptr)->invalidIds().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSensorGesture_IsActive(void* ptr)
@@ -4997,7 +4997,7 @@ void QSensorGesture_StopDetection(void* ptr)
 
 char* QSensorGesture_ValidIds(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGesture*>(ptr)->validIds().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGesture*>(ptr)->validIds().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSensorGesture_DestroyQSensorGesture(void* ptr)
@@ -5118,7 +5118,7 @@ void* QSensorGestureManager_NewQSensorGestureManager(void* parent)
 
 char* QSensorGestureManager_GestureIds(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGestureManager*>(ptr)->gestureIds().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSensorGestureManager_ConnectNewSensorGestureAvailable(void* ptr)
@@ -5138,7 +5138,7 @@ void QSensorGestureManager_NewSensorGestureAvailable(void* ptr)
 
 char* QSensorGestureManager_RecognizerSignals(void* ptr, char* gestureId)
 {
-	return const_cast<char*>(static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString(gestureId)).join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGestureManager*>(ptr)->recognizerSignals(QString(gestureId)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSensorGestureManager_RegisterSensorGestureRecognizer(void* ptr, void* recognizer)
@@ -5256,12 +5256,12 @@ public:
 
 char* QSensorGesturePluginInterface_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGesturePluginInterface*>(ptr)->name().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGesturePluginInterface*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSensorGesturePluginInterface_SupportedIds(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGesturePluginInterface*>(ptr)->supportedIds().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* ptr)
@@ -5279,7 +5279,7 @@ class MyQSensorGestureRecognizer: public QSensorGestureRecognizer
 public:
 	MyQSensorGestureRecognizer(QObject *parent) : QSensorGestureRecognizer(parent) {};
 	void create() { callbackQSensorGestureRecognizer_Create(this); };
-	void Signal_Detected(const QString & gestureId) { callbackQSensorGestureRecognizer_Detected(this, const_cast<char*>(gestureId.toUtf8().constData())); };
+	void Signal_Detected(const QString & gestureId) { callbackQSensorGestureRecognizer_Detected(this, const_cast<char*>(gestureId.toUtf8().prepend("WHITESPACE").constData()+10)); };
 	QString id() const { return QString(callbackQSensorGestureRecognizer_Id(const_cast<MyQSensorGestureRecognizer*>(this))); };
 	bool isActive() { return callbackQSensorGestureRecognizer_IsActive(this) != 0; };
 	bool start() { return callbackQSensorGestureRecognizer_Start(this) != 0; };
@@ -5328,12 +5328,12 @@ void QSensorGestureRecognizer_Detected(void* ptr, char* gestureId)
 
 char* QSensorGestureRecognizer_GestureSignals(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("|").toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGestureRecognizer*>(ptr)->gestureSignals().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char* QSensorGestureRecognizer_Id(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSensorGestureRecognizer*>(ptr)->id().toUtf8().constData());
+	return const_cast<char*>(static_cast<QSensorGestureRecognizer*>(ptr)->id().toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QSensorGestureRecognizer_IsActive(void* ptr)
@@ -5794,7 +5794,7 @@ void QTapSensor_DestroyQTapSensorDefault(void* ptr)
 
 char* QTapSensor_QTapSensor_Type()
 {
-	return const_cast<char*>(QString(QTapSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QTapSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QTapSensor_Start(void* ptr)
@@ -6052,7 +6052,7 @@ void QTiltSensor_Calibrate(void* ptr)
 
 char* QTiltSensor_QTiltSensor_Type()
 {
-	return const_cast<char*>(QString(QTiltSensor::type).toUtf8().constData());
+	return const_cast<char*>(QString(QTiltSensor::type).toUtf8().prepend("WHITESPACE").constData()+10);
 }
 
 char QTiltSensor_Start(void* ptr)
