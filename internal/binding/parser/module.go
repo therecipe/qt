@@ -22,13 +22,15 @@ type SubNamespace struct {
 func (m *Module) Prepare() {
 
 	//register namespace
-	for _, c := range m.Namespace.Classes {
-		c.register(m.Project)
-		for _, v := range c.Variables {
-			if !c.hasFunctionWithName(v.Name) {
-				c.Functions = append(c.Functions, v.toFunction(GETTER))
-				if !strings.Contains(v.Output, "const") {
-					c.Functions = append(c.Functions, v.toFunction(SETTER))
+	if m.Namespace != nil {
+		for _, c := range m.Namespace.Classes {
+			c.register(m.Project)
+			for _, v := range c.Variables {
+				if !c.hasFunctionWithName(v.Name) {
+					c.Functions = append(c.Functions, v.toFunction(GETTER))
+					if !strings.Contains(v.Output, "const") {
+						c.Functions = append(c.Functions, v.toFunction(SETTER))
+					}
 				}
 			}
 		}

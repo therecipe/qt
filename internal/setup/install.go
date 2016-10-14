@@ -205,7 +205,7 @@ func main() {
 		for key, value := range env {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
-		runCmd(cmd, "install.std_1")
+		utils.RunCmd(cmd, "install.std_1")
 
 		//armv7
 		if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
@@ -220,7 +220,7 @@ func main() {
 			var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
 			tmp = strings.Replace(tmp, "arm64", "arm", -1)
 			cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-			runCmd(cmdiOS, "install.std_2")
+			utils.RunCmd(cmdiOS, "install.std_2")
 		}
 	}
 
@@ -255,7 +255,7 @@ func main() {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 					}
 				}
-				runCmd(cmd, fmt.Sprintf("install.%v_1", m))
+				utils.RunCmd(cmd, fmt.Sprintf("install.%v_1", m))
 
 				//armv7
 				if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
@@ -270,18 +270,11 @@ func main() {
 					var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
 					tmp = strings.Replace(tmp, "arm64", "arm", -1)
 					cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-					runCmd(cmdiOS, fmt.Sprintf("install.%v_2", m))
+					utils.RunCmd(cmdiOS, fmt.Sprintf("install.%v_2", m))
 				}
 			}
 
 			fmt.Println(strings.Repeat(" ", 45-len(m)), time.Since(before)/time.Second*time.Second)
 		}
-	}
-}
-
-func runCmd(cmd *exec.Cmd, name string) {
-	if out, err := cmd.CombinedOutput(); err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
-		os.Exit(1)
 	}
 }

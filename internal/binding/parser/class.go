@@ -3,6 +3,7 @@ package parser
 import (
 	"bytes"
 	"fmt"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -53,6 +54,7 @@ func (c *Class) removeEnums() {
 
 func (c *Class) Dump() {
 	var bb = new(bytes.Buffer)
+	defer bb.Reset()
 
 	fmt.Fprintln(bb, "########################################\t\t\tFUNCTIONS\t\t\t########################################")
 	for _, f := range c.Functions {
@@ -101,7 +103,6 @@ func (c *Class) getAllBases(input []string) []string {
 			}
 			return input
 		}
-
 	}
 
 	for _, b := range bases {
@@ -233,7 +234,11 @@ func (c *Class) fixBases() {
 
 		case "linux":
 			{
-				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64")
+				if utils.UsePkgConfig() {
+					prefixPath = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
+				} else {
+					prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64")
+				}
 			}
 		}
 
@@ -246,13 +251,21 @@ func (c *Class) fixBases() {
 
 		case "QUiLoader", "QEGLNativeContext", "QWGLNativeContext", "QGLXNativeContext", "QEglFSFunctions", "QWindowsWindowFunctions", "QCocoaNativeContext", "QXcbWindowFunctions", "QCocoaWindowFunctions":
 			{
-				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "include", "%v", "%v.h"), prefixPath, c.Module, strings.ToLower(c.Name))), c.Name, c.Module)
+				if utils.UsePkgConfig() {
+					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, c.Module, fmt.Sprintf("%v.h", strings.ToLower(c.Name)))), c.Name, c.Module)
+				} else {
+					c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "include", "%v", "%v.h"), prefixPath, c.Module, strings.ToLower(c.Name))), c.Name, c.Module)
+				}
 				return
 			}
 
 		case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
 			{
-				c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v5.7.0", "QtGui", "qpa", "%v.h"), prefixPath, infixPath, c.Module, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+				if utils.UsePkgConfig() {
+					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, c.Module, "5.7.0", c.Module, "qpa", fmt.Sprintf("%v.h", strings.ToLower(c.Name)))), c.Name, c.Module)
+				} else {
+					c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v5.7.0", "QtGui", "qpa", "%v.h"), prefixPath, infixPath, c.Module, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+				}
 				return
 			}
 
@@ -260,10 +273,16 @@ func (c *Class) fixBases() {
 			{
 				for _, m := range append(LibDeps[strings.TrimPrefix(c.Module, "Qt")], strings.TrimPrefix(c.Module, "Qt")) {
 					m = fmt.Sprintf("Qt%v", m)
-					if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name)) {
-
-						c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v.h"), prefixPath, infixPath, m, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
-						return
+					if utils.UsePkgConfig() {
+						if utils.Exists(filepath.Join(prefixPath, m, fmt.Sprintf("%v.h", strings.ToLower(c.Name)))) {
+							c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, m, fmt.Sprintf("%v.h", strings.ToLower(c.Name)))), c.Name, c.Module)
+							return
+						}
+					} else {
+						if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name)) {
+							c.Bases = getBasesFromHeader(utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v.h"), prefixPath, infixPath, m, suffixPath, strings.ToLower(c.Name))), c.Name, c.Module)
+							return
+						}
 					}
 				}
 			}
@@ -297,14 +316,26 @@ func (c *Class) fixBases() {
 		var found bool
 		for _, m := range libs {
 			m = fmt.Sprintf("Qt%v", m)
-			if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name)) {
+			if utils.UsePkgConfig() {
+				if utils.Exists(filepath.Join(prefixPath, m, c.Name)) {
 
-				var f = utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name))
-				if f != "" {
-					found = true
-					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v"), prefixPath, infixPath, m, suffixPath), strings.Split(f, "\"")[1])), c.Name, m)
+					var f = utils.Load(filepath.Join(prefixPath, m, c.Name))
+					if f != "" {
+						found = true
+						c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, m, strings.Split(f, "\"")[1])), c.Name, m)
+					}
+					break
 				}
-				break
+			} else {
+				if utils.Exists(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name)) {
+
+					var f = utils.Load(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v%v"), prefixPath, infixPath, m, suffixPath, c.Name))
+					if f != "" {
+						found = true
+						c.Bases = getBasesFromHeader(utils.Load(filepath.Join(fmt.Sprintf(filepath.Join("%v", "%v", "%v%v"), prefixPath, infixPath, m, suffixPath), strings.Split(f, "\"")[1])), c.Name, m)
+					}
+					break
+				}
 			}
 		}
 

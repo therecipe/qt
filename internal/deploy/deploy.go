@@ -52,7 +52,7 @@ func main() {
 	}
 
 	if !buildMinimal {
-		runCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtdeploy"), []string{"build", buildTarget, appPath, "minimal"}...), "build.minimal")
+		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtdeploy"), []string{"build", buildTarget, appPath, "minimal"}...), "build.minimal")
 	}
 }
 
@@ -113,7 +113,7 @@ func args() {
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", filepath.Join("path", "to", "project"), "[ minimal ]")
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ minimal ]")
 					os.Exit(1)
 				}
 			}
@@ -121,7 +121,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", filepath.Join("path", "to", "project"), "[ minimal ]")
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ minimal ]")
 			os.Exit(1)
 		}
 	}
@@ -161,7 +161,7 @@ func args() {
 }
 
 func moc() {
-	runCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), appPath, "cleanup"), "qtdeploy.moc")
+	utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), appPath, "cleanup"), "qtdeploy.moc")
 }
 
 func qrc() {
@@ -196,7 +196,11 @@ func qrc() {
 
 			case "linux":
 				{
-					rccPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "rcc")
+					if utils.UsePkgConfig() {
+						rccPath = filepath.Join("/usr", "bin", "rcc")
+					} else {
+						rccPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "rcc")
+					}
 				}
 
 			case "windows":
@@ -211,24 +215,24 @@ func qrc() {
 
 	var rcc = exec.Command(rccPath, "-project", "-o", qmlQrc)
 	rcc.Dir = filepath.Join(appPath, "qml")
-	runCmd(rcc, "qrc.qrc")
+	utils.RunCmd(rcc, "qrc.qrc")
 
 	utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<file>./", "<file>qml/", -1))
 
 	rcc = exec.Command(rccPath, "-name", appName, "-o", qmlCpp, qmlQrc)
-	runCmd(rcc, "qrc.cpp")
+	utils.RunCmd(rcc, "qrc.cpp")
 }
 
 func qmlHeader() string {
 
-	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
+	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
 #cgo +build windows,386 LDFLAGS: -L${QT_DIR}/5.7/mingw53_32/lib -lQt5Core
 
 #cgo +build !ios,darwin,amd64 LDFLAGS: -F${QT_DIR}/5.7/clang_64/lib -framework QtCore
 
-#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,${QT_DIR}/5.7/gcc_64/lib -L${QT_DIR}/5.7/gcc_64/lib -lQt5Core
+#cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,${QT_LINUX_DIR} -L${QT_LINUX_DIR} -lQt5Core
 
 
 #cgo +build android,linux,arm LDFLAGS: -L${QT_DIR}/5.7/android_armv7/lib -lQt5Core
@@ -257,6 +261,12 @@ func qmlHeader() string {
 */
 import "C"`,
 
+		"${QT_LINUX_DIR}", func() string {
+			if utils.UsePkgConfig() {
+				return strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "qmlHeader.LinuxPkgConfig_libDir"))
+			}
+			return "${QT_DIR}/5.7/gcc_64/lib"
+		}(), -1),
 		"${QT_DIR}", utils.QT_DIR(), -1),
 		"${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1),
 		"${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1),
@@ -415,14 +425,14 @@ func build() {
 				os.Exit(1)
 			}
 
-			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "MerSDK", "MerSDK.vbox")), "buid.vboxRegisterSDK")
-			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
-			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "MerSDK", "MerSDK.vbox")), "buid.vboxRegisterSDK")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
 
 			if runtime.GOOS == "windows" {
-				runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
+				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
 			} else {
-				runCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
+				utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
 			}
 
 			time.Sleep(10 * time.Second)
@@ -501,12 +511,12 @@ func build() {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
 	}
-	runCmd(cmd, "build_1")
+	utils.RunCmd(cmd, "build_1")
 
 	if runtime.GOOS == "darwin" && buildTarget == "desktop" {
 		var strip = exec.Command("strip", outputFile)
 		strip.Dir = appPath
-		runCmd(strip, "build.strip")
+		utils.RunCmd(strip, "build.strip")
 	}
 
 	//armv7
@@ -523,7 +533,7 @@ func build() {
 		var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
 		tmp = strings.Replace(tmp, "arm64", "arm", -1)
 		cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-		runCmd(cmdiOS, "build_2")
+		utils.RunCmd(cmdiOS, "build_2")
 	}
 }
 
@@ -551,22 +561,22 @@ func predeploy() {
 
 			var cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", fmt.Sprintf("--sysroot=%v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")), "-shared")
 			cmd.Dir = depPath
-			runCmd(cmd, "predeploy.go_main_wrapper_1")
+			utils.RunCmd(cmd, "predeploy.go_main_wrapper_1")
 
 			var strip = exec.Command(filepath.Join(filepath.Dir(compiler), "arm-linux-androideabi-strip"), "libgo.so")
 			strip.Dir = depPath
-			runCmd(strip, "predeploy.strip_1")
+			utils.RunCmd(strip, "predeploy.strip_1")
 
-			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), "predeploy.cpBase")
-			runCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cpMain")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), "predeploy.cpBase")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cpMain")
 
 			var qtLibPath = filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "lib")
-			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), "predeploy.cpWidgets")
-			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), "predeploy.cpQuickWidgets")
-			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), "predeploy.cpMultimediaWidgets")
-			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Multimedia.so"), libPath), "predeploy.cpMultimedia")
-			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), "predeploy.cpNetwork")
-			runCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5AndroidExtras.so"), libPath), "predeploy.cpAndroidExtras")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), "predeploy.cpWidgets")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), "predeploy.cpQuickWidgets")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), "predeploy.cpMultimediaWidgets")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Multimedia.so"), libPath), "predeploy.cpMultimedia")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), "predeploy.cpNetwork")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5AndroidExtras.so"), libPath), "predeploy.cpAndroidExtras")
 
 			var out, err = json.Marshal(&struct {
 				Qt                            string `json:"qt"`
@@ -628,27 +638,27 @@ func predeploy() {
 			var cmd = exec.Command("xcrun", "clang++", "c_main_wrapper.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
 			cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "")...)
 			cmd.Dir = depPath
-			runCmd(cmd, "predeploy.go_main_wrapper_1")
+			utils.RunCmd(cmd, "predeploy.go_main_wrapper_1")
 
 			var strip = exec.Command("strip", "main")
 			strip.Dir = filepath.Join(depPath, "build")
-			runCmd(strip, "predeploy.strip_1")
+			utils.RunCmd(strip, "predeploy.strip_1")
 
 			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") || buildMinimal) {
 				//build armv7
 				cmd = exec.Command("xcrun", "clang++", "c_main_wrapper_armv7.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_armv7", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo_armv7")
 				cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "armv7")...)
 				cmd.Dir = depPath
-				runCmdOptional(cmd, "predeploy.go_main_wrapper_2")
+				utils.RunCmdOptional(cmd, "predeploy.go_main_wrapper_2")
 
 				strip = exec.Command("strip", "main_armv7")
 				strip.Dir = filepath.Join(depPath, "build")
-				runCmdOptional(strip, "predeploy.strip_2")
+				utils.RunCmdOptional(strip, "predeploy.strip_2")
 
 				//binary size limits	=> https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html
 				var lipo = exec.Command("xcrun", "lipo", "-create", "-arch", "arm64", "main", "-arch", "armv7", "main_armv7", "-output", "main")
 				lipo.Dir = filepath.Join(depPath, "build")
-				runCmdOptional(lipo, "predeploy.lipo")
+				utils.RunCmdOptional(lipo, "predeploy.lipo")
 			}
 
 			//create default assets
@@ -657,10 +667,10 @@ func predeploy() {
 			utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), iosLaunchScreen())
 			utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), iosProject())
 
-			runCmd(exec.Command(copyCmd, fmt.Sprintf("%v/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QT_DIR()), buildPath), "predeploy.cpIcon")
+			utils.RunCmd(exec.Command(copyCmd, fmt.Sprintf("%v/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QT_DIR()), buildPath), "predeploy.cpIcon")
 
 			//copy assets from buildTarget folder
-			runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
+			utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
 		}
 
 	case "desktop", "rpi1", "rpi2", "rpi3":
@@ -696,15 +706,15 @@ func predeploy() {
 
 			//copy assets from buildTarget folder
 			if runtime.GOOS == "windows" {
-				runCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png*", appName))), "predeploy.cpIcon")
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png*", appName))), "predeploy.cpIcon")
 
 				var cmd = exec.Command(copyCmd, buildTarget, depPath)
 				cmd.Dir = appPath
-				runCmd(cmd, "predeploy.cpSailfish")
+				utils.RunCmd(cmd, "predeploy.cpSailfish")
 			} else {
-				runCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
 
-				runCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), depPath), "predeploy.cpSailfish")
+				utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), depPath), "predeploy.cpSailfish")
 			}
 
 			var errClean = sshCommand("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", buildTarget+"_minimal")
@@ -751,16 +761,16 @@ func deploy() {
 
 			if runtime.GOOS == "windows" {
 				utils.Save(filepath.Join(depPath, "build.bat"), fmt.Sprintf("set JAVA_HOME=%v\r\n%v", utils.JDK_DIR(), strings.Join(deploy.Args, " ")))
-				runCmd(exec.Command(filepath.Join(depPath, "build.bat")), "deploy")
+				utils.RunCmd(exec.Command(filepath.Join(depPath, "build.bat")), "deploy")
 				utils.RemoveAll(filepath.Join(depPath, "build.bat"))
 			} else {
-				runCmd(deploy, "deploy")
+				utils.RunCmd(deploy, "deploy")
 			}
 		}
 
 	case "ios", "ios-simulator":
 		{
-			runCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), "deploy")
+			utils.RunCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), "deploy")
 		}
 
 	case "desktop", "rpi1", "rpi2", "rpi3":
@@ -774,11 +784,15 @@ func deploy() {
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-always-overwrite")
 					deploy.Dir = fmt.Sprintf("%v/5.7/clang_64/bin/", utils.QT_DIR())
-					runCmd(deploy, "deploy")
+					utils.RunCmd(deploy, "deploy")
 				}
 
 			case "linux":
 				{
+					if utils.UsePkgConfig() {
+						return
+					}
+
 					var (
 						libraryPath string
 						lddPath     = "ldd"
@@ -790,9 +804,9 @@ func deploy() {
 						libraryPath = fmt.Sprintf("%v/5.7/%v/lib/", utils.QT_DIR(), buildTarget)
 						lddPath = fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", utils.RPI_TOOLS_DIR())
 						lddExtra = "--root=/"
-						lddOutput = runCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), "deploy.ldd")
+						lddOutput = utils.RunCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), "deploy.ldd")
 					} else {
-						lddOutput = runCmd(exec.Command(lddPath, filepath.Join(depPath, appName)), "deploy.ldd")
+						lddOutput = utils.RunCmd(exec.Command(lddPath, filepath.Join(depPath, appName)), "deploy.ldd")
 					}
 
 					for _, dep := range strings.Split(lddOutput, "\n") {
@@ -806,21 +820,21 @@ func deploy() {
 							}
 
 							if utils.Exists(filepath.Join(libraryPath, libName)) {
-								runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("deploy.%v", libName))
+								utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("deploy.%v", libName))
 							}
 						}
 					}
 
 					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor"} {
 						if utils.Exists(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
-							runCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("deploy.%v", libName))
+							utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("deploy.%v", libName))
 						}
 					}
 
 					libraryPath = strings.TrimSuffix(libraryPath, "lib/")
 
-					runCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), "deploy.qml")
-					runCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), "deploy.plugins")
+					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), "deploy.qml")
+					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), "deploy.plugins")
 				}
 
 			case "windows":
@@ -830,7 +844,7 @@ func deploy() {
 						filepath.Join(depPath, appName+ending),
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-force")
-					runCmd(deploy, "deploy")
+					utils.RunCmd(deploy, "deploy")
 				}
 			}
 		}
@@ -881,9 +895,9 @@ func pastdeploy() {
 			}
 
 			if ks := utils.Load(filepath.Join(appPath, "android", appName+".keystore")); ks != "" {
-				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.release")
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.release")
 			} else {
-				runCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.debug")
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.debug")
 			}
 
 			//TODO: copy manifest to android folder and change mindSdkVersion >= 16
@@ -900,8 +914,8 @@ func pastdeploy() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					runCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_app", appName, appName))), "pastdeploy.moveApp")
-					runCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))), "pastdeploy.moveSh")
+					utils.RunCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_app", appName, appName))), "pastdeploy.moveApp")
+					utils.RunCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))), "pastdeploy.moveSh")
 				}
 			}
 		}
@@ -938,17 +952,17 @@ func run() {
 	case "android":
 		{
 			if runtime.GOOS != "windows" {
-				runCmdOptional(exec.Command("killall", "adb"), "run.killadb")
+				utils.RunCmdOptional(exec.Command("killall", "adb"), "run.killadb")
 			}
 			exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
 		}
 
 	case /*"ios",*/ "ios-simulator":
 		{
-			runCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.0)#"), "run.boot")
-			runCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "run.install")
-			runCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "run.install")
-			runCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), "run.launch")
+			utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.0)#"), "run.boot")
+			utils.RunCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "run.install")
+			utils.RunCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "run.install")
+			utils.RunCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), "run.launch")
 		}
 
 	case "desktop":
@@ -956,7 +970,7 @@ func run() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					runCmdOptional(exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app/", appName))), "run")
+					utils.RunCmdOptional(exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app/", appName))), "run")
 				}
 
 			case "linux":
@@ -973,13 +987,13 @@ func run() {
 
 	case /*"sailfish",*/ "sailfish-emulator":
 		{
-			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), "buid.vboxRegisterEmulator")
-			runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), "buid.vboxRegisterEmulator")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
 
 			if runtime.GOOS == "windows" {
-				runCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
+				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
 			} else {
-				runCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
+				utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
 			}
 
 			time.Sleep(10 * time.Second)
@@ -998,22 +1012,6 @@ func run() {
 				os.Exit(1)
 			}
 		}
-	}
-}
-
-func runCmd(cmd *exec.Cmd, name string) string {
-	var out, err = cmd.CombinedOutput()
-	if err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
-		cleanup()
-		os.Exit(1)
-	}
-	return string(out)
-}
-
-func runCmdOptional(cmd *exec.Cmd, name string) {
-	if out, err := cmd.CombinedOutput(); err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\n\n", name, out)
 	}
 }
 
@@ -1086,9 +1084,35 @@ func linuxSH() string {
 		fmt.Fprint(bb, "export LD_PRELOAD=\"/opt/vc/lib/libGLESv2.so /opt/vc/lib/libEGL.so\"\n")
 	}
 
-	fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname\n")
-	fmt.Fprint(bb, "export QML_IMPORT_PATH=$dirname/\"qml\"\n")
-	fmt.Fprint(bb, "export QML2_IMPORT_PATH=$dirname/\"qml\"\n")
+	if utils.UsePkgConfig() {
+
+		var (
+			libDir  = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "linux.sh_libDir"))
+			miscDir string
+		)
+
+		switch utils.LinuxDistro() {
+		case "arch":
+			{
+				miscDir = filepath.Join(libDir, "qt")
+			}
+
+		case "ubuntu":
+			{
+				miscDir = strings.TrimSuffix(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
+			}
+		}
+
+		fmt.Fprintf(bb, "export LD_LIBRARY_PATH=%v\n", libDir)
+		fmt.Fprintf(bb, "export QT_PLUGIN_PATH=$%v\n", filepath.Join(miscDir, "plugins"))
+		fmt.Fprintf(bb, "export QML_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
+		fmt.Fprintf(bb, "export QML2_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
+	} else {
+		fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname\n")
+		fmt.Fprint(bb, "export QT_PLUGIN_PATH=$dirname\n")
+		fmt.Fprint(bb, "export QML_IMPORT_PATH=$dirname/\"qml\"\n")
+		fmt.Fprint(bb, "export QML2_IMPORT_PATH=$dirname/\"qml\"\n")
+	}
 	fmt.Fprint(bb, "$dirname/$appname \"$@\"\n")
 
 	return bb.String()

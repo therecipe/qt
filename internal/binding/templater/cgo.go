@@ -3,6 +3,7 @@ package templater
 import (
 	"bytes"
 	"fmt"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -25,7 +26,11 @@ func CopyCgo(module string) {
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module)
 		cgoWindows(module)
-		cgoLinux(module)
+		if utils.UsePkgConfig() {
+			cgoLinuxPkgConfig(module)
+		} else {
+			cgoLinux(module)
+		}
 		cgoSailfish(module)
 		cgoRaspberryPi1(module)
 		cgoRaspberryPi2(module)
@@ -217,6 +222,77 @@ func cgoLinux(module string) {
 	}
 }
 
+func cgoLinuxPkgConfig(module string) {
+	var (
+		bb   = new(bytes.Buffer)
+		libs = cleanLibs(module)
+	)
+	defer bb.Reset()
+
+	fmt.Fprintf(bb, "package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
+	fmt.Fprint(bb, "/*\n")
+
+	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -O2 -Wall -W -D_REENTRANT -fPIC\n")
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -O2 -std=gnu++11 -Wall -W -D_REENTRANT -fPIC\n")
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -DQT_NO_DEBUG")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	fmt.Fprint(bb, "\n")
+
+	var (
+		includeDir = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "cgo.LinuxPkgConfig_includeDir"))
+		libDir     = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir"))
+		miscDir    string
+	)
+
+	switch utils.LinuxDistro() {
+	case "arch":
+		{
+			miscDir = filepath.Join(libDir, "qt")
+		}
+
+	case "ubuntu":
+		{
+			miscDir = strings.TrimSuffix(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
+		}
+	}
+
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v -I%v/mkspecs/linux-g++\n", includeDir, miscDir)
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS:")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -I%v/Qt%v", includeDir, m)
+	}
+	fmt.Fprint(bb, "\n\n")
+
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath,%v -Wl,-rpath,%v/lib\n", libDir, libDir)
+
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v -L/usr/lib64", libDir)
+	for _, m := range libs {
+		if m != "UiPlugin" {
+			fmt.Fprintf(bb, " -lQt5%v", m)
+		}
+	}
+
+	fmt.Fprint(bb, " -lpthread\n")
+	fmt.Fprint(bb, "*/\n")
+
+	fmt.Fprint(bb, "import \"C\"\n")
+
+	if module == parser.MOC {
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.String())
+	} else {
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_linux_amd64.go"), bb.String())
+	}
+}
+
 func cgoAndroid(module string) {
 	var (
 		bb              = new(bytes.Buffer)
@@ -255,7 +331,7 @@ func cgoAndroid(module string) {
 
 	fmt.Fprintf(bb, "#cgo LDFLAGS: --sysroot=%v/platforms/android-9/arch-arm -Wl,-rpath=%v/5.7/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n", ANDROID_NDK_DIR(), QT_DIR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L%v/platforms/android-9/arch-arm//usr/lib -L%v/5.7/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm//usr/lib", ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L%v/platforms/android-9/arch-arm/usr/lib -L%v/5.7/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm/usr/lib", ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR())
 
 	for _, m := range libs {
 		if m != "UiPlugin" {

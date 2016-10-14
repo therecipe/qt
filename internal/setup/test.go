@@ -31,8 +31,8 @@ func main() {
 	utils.RemoveAll(filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtdeploy%v", ending)))
 	utils.RemoveAll(filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtmoc%v", ending)))
 
-	runCmd(exec.Command("go", "build", "-o", filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GoQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
-	runCmd(exec.Command("go", "build", "-o", filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GoQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
+	utils.RunCmd(exec.Command("go", "build", "-o", filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtdeploy%v", ending)), utils.GoQtPkgPath("internal", "deploy", "deploy.go")), "qtdeploy")
+	utils.RunCmd(exec.Command("go", "build", "-o", filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtmoc%v", ending)), utils.GoQtPkgPath("internal", "moc", "moc.go")), "qtmoc")
 
 	switch runtime.GOOS {
 	case "darwin", "linux":
@@ -40,8 +40,8 @@ func main() {
 			utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtdeploy"))
 			utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtmoc"))
 
-			runCmdOptional(exec.Command("ln", "-s", filepath.Join(os.Getenv("GOPATH"), "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
-			runCmdOptional(exec.Command("ln", "-s", filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
+			utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(os.Getenv("GOPATH"), "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
+			utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
 		}
 
 	case "windows":
@@ -51,11 +51,11 @@ func main() {
 
 			var cmdDeploy = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtdeploy%v", ending)))
 			cmdDeploy.Dir = filepath.Join(runtime.GOROOT(), "bin")
-			runCmdOptional(cmdDeploy, "symlink.qtdeploy")
+			utils.RunCmdOptional(cmdDeploy, "symlink.qtdeploy")
 
 			var cmdMoc = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtmoc%v", ending), filepath.Join(os.Getenv("GOPATH"), "bin", fmt.Sprintf("qtmoc%v", ending)))
 			cmdMoc.Dir = filepath.Join(runtime.GOROOT(), "bin")
-			runCmdOptional(cmdMoc, "symlink.qtmoc")
+			utils.RunCmdOptional(cmdMoc, "symlink.qtmoc")
 		}
 	}
 
@@ -74,22 +74,9 @@ func main() {
 			fmt.Print(example)
 
 			//TODO:
-			runCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtdeploy"), "test", buildTarget, filepath.Join(utils.GoQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
+			utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtdeploy"), "test", buildTarget, filepath.Join(utils.GoQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
 
 			fmt.Println(strings.Repeat(" ", 45-len(example)), time.Since(before)/time.Second*time.Second)
 		}
-	}
-}
-
-func runCmd(cmd *exec.Cmd, name string) {
-	if out, err := cmd.CombinedOutput(); err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
-		os.Exit(1)
-	}
-}
-
-func runCmdOptional(cmd *exec.Cmd, name string) {
-	if out, err := cmd.CombinedOutput(); err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
 	}
 }

@@ -106,9 +106,15 @@
 
 	* https://golang.org/doc/install?download=go1.7.1.linux-amd64.tar.gz
 
-2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**
+2. Install Qt 5.7.0
 
-	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
+	* Install the official prebuild package from Qt; you can also define a custom location with **QT_DIR**
+		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
+
+	or
+
+	* Install the Qt-dev package with your system package manager; if you want to link against your system libs **(experimental)**
+		* add **export QT_PKG_CONFIG=true** to your .profile or .bash_profile
 
 3. Install **g++** >= 5 and **OpenGL** dependencies
 
@@ -116,8 +122,8 @@
 		* `sudo apt-get -y install build-essential libgl1-mesa-dev`
 
 	* Fedora/RHEL/CentOS (yum)
-		* `sudo yum groupinstall "C Development Tools and Libraries"`
-		* `sudo yum install mesa-libGL-devel`
+		* `sudo yum -y groupinstall "C Development Tools and Libraries"`
+		* `sudo yum -y install mesa-libGL-devel`
 
 	* openSUSE (zypper)
 		* `sudo zypper install -t pattern devel_basis`

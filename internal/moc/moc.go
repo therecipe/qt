@@ -257,7 +257,11 @@ func moc(appPath string) {
 
 			case "linux":
 				{
-					mocPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "moc")
+					if utils.UsePkgConfig() {
+						mocPath = filepath.Join("/usr", "bin", "moc")
+					} else {
+						mocPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "moc")
+					}
 				}
 
 			case "windows":
@@ -271,13 +275,13 @@ func moc(appPath string) {
 				filepath.Join(appPath, "moc.cpp"),
 				"-o", filepath.Join(appPath, "moc_moc.h"))
 			moc.Dir = filepath.Join(appPath)
-			runCmd(moc, "moc.moc")
+			utils.RunCmd(moc, "moc.moc")
 
 			tmpFiles = append(tmpFiles, filepath.Join(appPath, "moc_moc.h"))
 
 			var gofmt = exec.Command("go", "fmt")
 			gofmt.Dir = appPath
-			runCmd(gofmt, "moc.fmt")
+			utils.RunCmd(gofmt, "moc.fmt")
 
 			templater.MocAppPath = appPath
 			templater.CopyCgo(parser.MOC)
@@ -413,14 +417,6 @@ func getCppTypeFromGoType(t string) string {
 	}
 
 	return "void"
-}
-
-func runCmd(cmd *exec.Cmd, n string) {
-	var out, err = cmd.CombinedOutput()
-	if err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", n, out, err)
-		os.Exit(1)
-	}
 }
 
 func isBlacklisted(appPath, currentPath string) bool {

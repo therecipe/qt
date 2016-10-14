@@ -350,6 +350,9 @@ func preambleCpp(module string, input []byte) []byte {
 
 			default:
 				{
+					if Minimal {
+						return fmt.Sprintf("%v-minimal", shortModule(module))
+					}
 					return shortModule(module)
 				}
 			}

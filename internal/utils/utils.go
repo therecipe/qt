@@ -122,13 +122,13 @@ func JDK_DIR() string {
 	switch runtime.GOOS {
 	case "windows":
 		{
-			var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
+			var version = strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
 			return filepath.Join("C:\\", "Program Files", "Java", fmt.Sprintf("jdk%v", version))
 		}
 
 	case "darwin":
 		{
-			var version = strings.Split(runCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
+			var version = strings.Split(RunCmd(exec.Command("java", "-version"), "deploy.jdk"), "\"")[1]
 			return filepath.Join("/Library", "Java", "JavaVirtualMachines", fmt.Sprintf("jdk%v.jdk", version), "Contents", "Home")
 		}
 
@@ -175,15 +175,6 @@ func SAILFISH_DIR() string {
 	return filepath.Join(os.Getenv("HOME"), "SailfishOS")
 }
 
-func runCmd(cmd *exec.Cmd, name string) string {
-	var out, err = cmd.CombinedOutput()
-	if err != nil {
-		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
-		os.Exit(1)
-	}
-	return string(out)
-}
-
 func RPI_TOOLS_DIR() string {
 	if dir := os.Getenv("RPI_TOOLS_DIR"); dir != "" {
 		return filepath.Clean(dir)
@@ -210,4 +201,44 @@ func RPI3_SYSROOT_DIR() string {
 		return filepath.Clean(dir)
 	}
 	return filepath.Join(os.Getenv("HOME"), "raspi", "sysroot")
+}
+
+func UsePkgConfig() bool {
+	return strings.ToLower(os.Getenv("QT_PKG_CONFIG")) == "true"
+}
+
+func LinuxDistro() string {
+	switch out, _ := exec.Command("uname", "-a").Output(); {
+	case strings.Contains(strings.ToLower(string(out)), "arch"):
+		{
+			return "arch"
+		}
+
+	case strings.Contains(strings.ToLower(string(out)), "ubuntu"):
+		{
+			return "ubuntu"
+		}
+
+	default:
+		{
+			return "undefined"
+		}
+	}
+}
+
+func RunCmd(cmd *exec.Cmd, name string) string {
+	var out, err = cmd.CombinedOutput()
+	if err != nil {
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
+		os.Exit(1)
+	}
+	return string(out)
+}
+
+func RunCmdOptional(cmd *exec.Cmd, name string) string {
+	var out, err = cmd.CombinedOutput()
+	if err != nil {
+		fmt.Printf("\n\n%v\noutput:%s\nerror:%s\n\n", name, out, err)
+	}
+	return string(out)
 }

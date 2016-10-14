@@ -2,6 +2,7 @@ package converter
 
 import (
 	"fmt"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -290,7 +291,11 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 		case "linux":
 			{
-				fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "include", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				if utils.UsePkgConfig() {
+					fData = utils.Load(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				} else {
+					fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "include", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+				}
 			}
 		}
 

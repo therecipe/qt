@@ -48,7 +48,21 @@ func GetModule(s string) *Module {
 	}
 
 	var m = new(Module)
-	xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+	if utils.UsePkgConfig() {
+		switch utils.LinuxDistro() {
+		case "arch":
+			{
+				xml.Unmarshal([]byte(utils.Load(filepath.Join("/usr", "share", "doc", "qt", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+			}
+		case "ubuntu":
+			{
+				xml.Unmarshal([]byte(utils.Load(filepath.Join("/usr", "share", "qt5", "doc", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+			}
+		}
+	} else {
+		xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+	}
+
 	m.Prepare()
 	return m
 }
