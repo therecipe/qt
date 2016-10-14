@@ -1097,12 +1097,7 @@ func linuxSH() string {
 				miscDir = filepath.Join(libDir, "qt")
 			}
 
-		case "fedora":
-			{
-				miscDir = filepath.Join(libDir, "qt5")
-			}
-
-		case "ubuntu":
+		case "fedora", "suse", "ubuntu":
 			{
 				miscDir = strings.TrimSuffix(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
 			}

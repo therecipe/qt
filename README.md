@@ -126,7 +126,7 @@
 		* `sudo yum -y install mesa-libGL-devel`
 
 	* openSUSE (zypper)
-		* `sudo zypper install -t pattern devel_basis`
+		* `sudo zypper -n install -t pattern devel_basis`
 
 4. Download the binding
 

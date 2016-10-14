@@ -60,6 +60,11 @@ func GetModule(s string) *Module {
 				xml.Unmarshal([]byte(utils.Load(filepath.Join("/usr", "share", "doc", "qt5", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
 			}
 
+		case "suse":
+			{
+				xml.Unmarshal([]byte(utils.Load(filepath.Join("/usr", "share", "doc", "packages", "qt5", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+			}
+
 		case "ubuntu":
 			{
 				xml.Unmarshal([]byte(utils.Load(filepath.Join("/usr", "share", "qt5", "doc", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)

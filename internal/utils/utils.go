@@ -209,7 +209,7 @@ func UsePkgConfig() bool {
 
 func LinuxDistro() string {
 	switch out, _ := exec.Command("uname", "-a").Output(); {
-	case strings.Contains(strings.ToLower(string(out)), "arch"):
+	case strings.Contains(strings.ToLower(string(out)), "-arch "):
 		{
 			return "arch"
 		}
@@ -219,7 +219,12 @@ func LinuxDistro() string {
 			return "fedora"
 		}
 
-	case strings.Contains(strings.ToLower(string(out)), "ubuntu"):
+	case strings.Contains(strings.ToLower(string(out)), ".suse "):
+		{
+			return "suse"
+		}
+
+	case strings.Contains(strings.ToLower(string(out)), "-ubuntu "):
 		{
 			return "ubuntu"
 		}
