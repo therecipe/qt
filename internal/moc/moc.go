@@ -258,7 +258,7 @@ func moc(appPath string) {
 			case "linux":
 				{
 					if utils.UsePkgConfig() {
-						mocPath = filepath.Join("/usr", "bin", "moc")
+						mocPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "moc.LinuxPkgConfig_hostBins")), "moc")
 					} else {
 						mocPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "moc")
 					}

@@ -258,6 +258,11 @@ func cgoLinuxPkgConfig(module string) {
 			miscDir = filepath.Join(libDir, "qt")
 		}
 
+	case "fedora":
+		{
+			miscDir = filepath.Join(libDir, "qt5")
+		}
+
 	case "ubuntu":
 		{
 			miscDir = strings.TrimSuffix(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")

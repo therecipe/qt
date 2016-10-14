@@ -197,7 +197,7 @@ func qrc() {
 			case "linux":
 				{
 					if utils.UsePkgConfig() {
-						rccPath = filepath.Join("/usr", "bin", "rcc")
+						rccPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "qrc.LinuxPkgConfig_hostBins")), "rcc")
 					} else {
 						rccPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "rcc")
 					}
@@ -1095,6 +1095,11 @@ func linuxSH() string {
 		case "arch":
 			{
 				miscDir = filepath.Join(libDir, "qt")
+			}
+
+		case "fedora":
+			{
+				miscDir = filepath.Join(libDir, "qt5")
 			}
 
 		case "ubuntu":

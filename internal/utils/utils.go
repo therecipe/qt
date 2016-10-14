@@ -214,6 +214,11 @@ func LinuxDistro() string {
 			return "arch"
 		}
 
+	case strings.Contains(strings.ToLower(string(out)), ".fc2"):
+		{
+			return "fedora"
+		}
+
 	case strings.Contains(strings.ToLower(string(out)), "ubuntu"):
 		{
 			return "ubuntu"
