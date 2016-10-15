@@ -31,7 +31,7 @@ tar -xzf /tmp/$SDK -C $HOME
 rm -f /tmp/$SDK
 
 #install deps for android sdk
-echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -a -t 1,2,4,31
+echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -a -t 1,2,3,5
 
 #download and install android ndk
 NDK=android-ndk-r12b-linux-x86_64.zip

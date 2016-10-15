@@ -26,7 +26,7 @@ install:
     DEL %TMP%\%SDK% /Q
 
 
-    echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -a -t 1,2,4,31
+    echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -a -t 1,2,3,5
 
 
     set NDK=android-ndk-r12b-windows-x86_64.zip

@@ -255,7 +255,11 @@ func main() {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 					}
 				}
-				utils.RunCmd(cmd, fmt.Sprintf("install.%v_1", m))
+				if utils.UsePkgConfig() {
+					utils.RunCmdOptional(cmd, fmt.Sprintf("install.%v_1", m))
+				} else {
+					utils.RunCmd(cmd, fmt.Sprintf("install.%v_1", m))
+				}
 
 				//armv7
 				if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
@@ -270,7 +274,11 @@ func main() {
 					var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
 					tmp = strings.Replace(tmp, "arm64", "arm", -1)
 					cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-					utils.RunCmd(cmdiOS, fmt.Sprintf("install.%v_2", m))
+					if utils.UsePkgConfig() {
+						utils.RunCmdOptional(cmdiOS, fmt.Sprintf("install.%v_2", m))
+					} else {
+						utils.RunCmd(cmdiOS, fmt.Sprintf("install.%v_2", m))
+					}
 				}
 			}
 

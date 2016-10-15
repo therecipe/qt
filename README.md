@@ -108,7 +108,7 @@
 
 2. Install Qt 5.7.0
 
-	* Install the official prebuild package from Qt; you can also define a custom location with **QT_DIR**
+	* Install the official prebuild package; you can also define a custom location with **QT_DIR**
 		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
 	or
