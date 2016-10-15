@@ -249,20 +249,8 @@ func cgoLinuxPkgConfig(module string) {
 	var (
 		includeDir = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "cgo.LinuxPkgConfig_includeDir"))
 		libDir     = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir"))
-		miscDir    string
+		miscDir    = utils.QT_MISC_DIR()
 	)
-
-	switch utils.LinuxDistro() {
-	case "arch":
-		{
-			miscDir = filepath.Join(libDir, "qt")
-		}
-
-	case "fedora", "suse", "ubuntu":
-		{
-			miscDir = strings.TrimSuffix(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
-		}
-	}
 
 	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v -I%v/mkspecs/linux-g++\n", includeDir, miscDir)
 

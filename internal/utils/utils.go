@@ -207,35 +207,83 @@ func UsePkgConfig() bool {
 	return strings.ToLower(os.Getenv("QT_PKG_CONFIG")) == "true"
 }
 
-func LinuxDistro() string {
-	switch out, _ := exec.Command("uname", "-a").Output(); {
-	case strings.Contains(strings.ToLower(string(out)), "-arch "):
+func QT_DOC_DIR() string {
+	if dir := os.Getenv("QT_DOC_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+
+	switch LinuxDistro() {
+	case "arch":
 		{
-			return "arch"
+			return filepath.Join("/usr", "share", "doc", "qt")
 		}
 
-	case strings.Contains(strings.ToLower(string(out)), ".fc2"):
+	case "fedora":
 		{
-			return "fedora"
+			return filepath.Join("/usr", "share", "doc", "qt5")
 		}
 
-	case strings.Contains(strings.ToLower(string(out)), ".suse "):
+	case "suse":
 		{
-			return "suse"
+			return filepath.Join("/usr", "share", "doc", "packages", "qt5")
 		}
 
-	case strings.Contains(strings.ToLower(string(out)), "-ubuntu "):
+	case "ubuntu":
 		{
-			return "ubuntu"
+			return filepath.Join("/usr", "share", "qt5", "doc")
 		}
 
 	default:
 		{
-			fmt.Println("couldn't detect distro:", string(out))
-			os.Exit(1)
-			return "undefined"
+			return ""
 		}
 	}
+}
+
+func QT_MISC_DIR() string {
+	if dir := os.Getenv("QT_MISC_DIR"); dir != "" {
+		return filepath.Clean(dir)
+	}
+
+	switch LinuxDistro() {
+	case "arch":
+		{
+			return filepath.Join(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "cgo.LinuxPkgConfig_libDir")), "qt")
+		}
+
+	case "fedora", "suse", "ubuntu":
+		{
+			return strings.TrimSuffix(strings.TrimSpace(RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
+		}
+
+	default:
+		{
+			return ""
+		}
+	}
+}
+
+func LinuxDistro() string {
+
+	if _, err := exec.LookPath("pacman"); err == nil {
+		return "arch"
+	}
+
+	if _, err := exec.LookPath("yum"); err == nil {
+		return "fedora"
+	}
+
+	if _, err := exec.LookPath("zypper"); err == nil {
+		return "suse"
+	}
+
+	if _, err := exec.LookPath("apt-get"); err == nil {
+		return "ubuntu"
+	}
+
+	fmt.Println("couldn't detect distro")
+	os.Exit(1)
+	return ""
 }
 
 func RunCmd(cmd *exec.Cmd, name string) string {

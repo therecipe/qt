@@ -113,7 +113,7 @@ func args() {
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ minimal ]")
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
 					os.Exit(1)
 				}
 			}
@@ -121,7 +121,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ minimal ]")
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
 			os.Exit(1)
 		}
 	}
@@ -1085,24 +1085,10 @@ func linuxSH() string {
 	}
 
 	if utils.UsePkgConfig() {
-
 		var (
 			libDir  = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "linux.sh_libDir"))
-			miscDir string
+			miscDir = utils.QT_MISC_DIR()
 		)
-
-		switch utils.LinuxDistro() {
-		case "arch":
-			{
-				miscDir = filepath.Join(libDir, "qt")
-			}
-
-		case "fedora", "suse", "ubuntu":
-			{
-				miscDir = strings.TrimSuffix(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "cgo.LinuxPkgConfig_hostBins")), "/bin")
-			}
-		}
-
 		fmt.Fprintf(bb, "export LD_LIBRARY_PATH=%v\n", libDir)
 		fmt.Fprintf(bb, "export QT_PLUGIN_PATH=$%v\n", filepath.Join(miscDir, "plugins"))
 		fmt.Fprintf(bb, "export QML_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
