@@ -231,6 +231,8 @@ func LinuxDistro() string {
 
 	default:
 		{
+			fmt.Println("couldn't detect distro:", string(out))
+			os.Exit(1)
 			return "undefined"
 		}
 	}
