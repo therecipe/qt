@@ -65,8 +65,8 @@ func cgoDarwin(module string) {
 	}())
 	fmt.Fprint(bb, "/*\n")
 
-	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=10.8 -Wall -W -fPIC\n")
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -stdlib=libc++ -O2 -std=gnu++11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=10.8 -Wall -W -fPIC\n")
+	fmt.Fprintf(bb, "#cgo CFLAGS: -pipe -O2 -isysroot %v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v -mmacosx-version-min=10.8 -Wall -W -fPIC\n", utils.XCODE_DIR(), utils.MACOS_SDK_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -pipe -stdlib=libc++ -O2 -std=gnu++11 -isysroot %v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v -mmacosx-version-min=10.8 -Wall -W -fPIC\n", utils.XCODE_DIR(), utils.MACOS_SDK_DIR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS: -DQT_NO_DEBUG")
 	for _, m := range libs {
@@ -86,10 +86,10 @@ func cgoDarwin(module string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/AGL.framework/Headers\n")
-	fmt.Fprint(bb, "\n")
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v/System/Library/Frameworks/OpenGL.framework/Headers -I%v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v/System/Library/Frameworks/AGL.framework/Headers\n", utils.XCODE_DIR(), utils.MACOS_SDK_DIR(), utils.XCODE_DIR(), utils.MACOS_SDK_DIR())
+	fmt.Fprintf(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk -mmacosx-version-min=10.8 -Wl,-rpath,%v/5.7/clang_64/lib\n", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,%v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v -mmacosx-version-min=10.8 -Wl,-rpath,%v/5.7/clang_64/lib\n", utils.XCODE_DIR(), utils.MACOS_SDK_DIR(), utils.QT_DIR())
 
 	fmt.Fprintf(bb, "#cgo LDFLAGS: -F%v/5.7/clang_64/lib", utils.QT_DIR())
 
@@ -356,8 +356,8 @@ func cgoIos(module string) string {
 	}())
 	fmt.Fprint(bb, "/*\n")
 
-	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -O2 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch x86_64 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n")
-	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -stdlib=libc++ -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -fvisibility-inlines-hidden -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -O2 -std=gnu++11 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch x86_64 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n")
+	fmt.Fprintf(bb, "#cgo CFLAGS: -pipe -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -O2 -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=7.0 -arch x86_64 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -pipe -stdlib=libc++ -fpascal-strings -fmessage-length=0 -Wno-trigraphs -Wreturn-type -Wparentheses -Wswitch -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-shorten-64-to-32 -Wno-sign-conversion -fexceptions -fasm-blocks -Wno-missing-field-initializers -Wno-missing-prototypes -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wno-unused-function -Wno-unused-label -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wpointer-sign -Wno-newline-eof -Wdeprecated-declarations -Winvalid-offsetof -Wno-conversion -fvisibility-inlines-hidden -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -O2 -std=gnu++11 -isysroot %v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=7.0 -arch x86_64 -fobjc-nonfragile-abi -fobjc-legacy-dispatch -Wno-deprecated-implementations -Wprotocol -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wall -W -fPIC\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS: -DDARWIN_NO_CARBON -DQT_NO_PRINTER -DQT_NO_PRINTDIALOG -DQT_NO_DEBUG")
 	for _, m := range libs {
@@ -373,7 +373,7 @@ func cgoIos(module string) string {
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprint(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch x86_64\n")
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=7.0 -arch x86_64\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 
 	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L%v/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L%v/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm", utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR())
 	for _, m := range libs {
@@ -395,7 +395,7 @@ func cgoIos(module string) string {
 
 	case "TestLib":
 		{
-			fmt.Fprint(bb, " -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest")
+			fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
 		}
 
 	case "Qml", "WebChannel", "Quick":
@@ -414,7 +414,7 @@ func cgoIos(module string) string {
 
 	if module == "build_ios" {
 		fmt.Fprint(bb, " -lQt5OpenGL_iphonesimulator")
-		fmt.Fprint(bb, " -F/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest")
+		fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
 		fmt.Fprint(bb, " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator")
 		fmt.Fprintf(bb, " -L%v/5.7/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator", utils.QT_DIR())
 

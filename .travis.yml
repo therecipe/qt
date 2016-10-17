@@ -14,6 +14,14 @@ matrix:
       env: DESKTOP=true ANDROID=false IOS=false IOS_SIMULATOR=false
 
     - os: osx
+      osx_image: xcode7.3
+      env: DESKTOP=true ANDROID=false IOS=false IOS_SIMULATOR=false
+
+    - os: osx
+      osx_image: xcode7.2
+      env: DESKTOP=true ANDROID=false IOS=false IOS_SIMULATOR=false
+
+    - os: osx
       env: DESKTOP=false ANDROID=true IOS=false IOS_SIMULATOR=false
 
     - os: osx
@@ -21,7 +29,23 @@ matrix:
       env: DESKTOP=false ANDROID=false IOS=true IOS_SIMULATOR=false
 
     - os: osx
+      osx_image: xcode7.3
+      env: DESKTOP=false ANDROID=false IOS=true IOS_SIMULATOR=false
+
+    - os: osx
+      osx_image: xcode7.2
+      env: DESKTOP=false ANDROID=false IOS=true IOS_SIMULATOR=false
+
+    - os: osx
       osx_image: xcode8
+      env: DESKTOP=false ANDROID=false IOS=false IOS_SIMULATOR=true
+
+    - os: osx
+      osx_image: xcode7.3
+      env: DESKTOP=false ANDROID=false IOS=false IOS_SIMULATOR=true
+
+    - os: osx
+      osx_image: xcode7.2
       env: DESKTOP=false ANDROID=false IOS=false IOS_SIMULATOR=true
 
 install:

@@ -89,11 +89,11 @@ func main() {
 						return "amd64"
 					}()
 
-					CLANGARCH, CLANGDIR, CLANGFLAG = func() (string, string, string) {
+					CLANGARCH, CLANGDIR_BASE, CLANGDIR, CLANGFLAG = func() (string, string, string, string) {
 						if buildTarget == "ios" {
-							return "arm64", "iPhoneOS", "iphoneos"
+							return "arm64", "iPhoneOS", utils.IPHONEOS_SDK_DIR(), "iphoneos"
 						}
-						return "x86_64", "iPhoneSimulator", "ios-simulator"
+						return "x86_64", "iPhoneSimulator", utils.IPHONESIMULATOR_SDK_DIR(), "ios-simulator"
 					}()
 				)
 
@@ -106,8 +106,8 @@ func main() {
 					"GOARCH": GOARCH,
 
 					"CGO_ENABLED":  "1",
-					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
-					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
+					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
 				}
 			}
 

@@ -225,7 +225,7 @@ func qrc() {
 
 func qmlHeader() string {
 
-	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
+	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
 #cgo +build windows,386 LDFLAGS: -L${QT_DIR}/5.7/mingw53_32/lib -lQt5Core
@@ -238,16 +238,16 @@ func qmlHeader() string {
 #cgo +build android,linux,arm LDFLAGS: -L${QT_DIR}/5.7/android_armv7/lib -lQt5Core
 
 
-#cgo +build ios,darwin,amd64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch x86_64
+#cgo +build ios,darwin,amd64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/${IPHONESIMULATOR_SDK_DIR} -mios-simulator-version-min=7.0 -arch x86_64
 #cgo +build ios,darwin,amd64 LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Core_iphonesimulator -lQt5Widgets_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
 
-#cgo +build ios,darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk -mios-simulator-version-min=7.0 -arch i386
+#cgo +build ios,darwin,386 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/${IPHONESIMULATOR_SDK_DIR} -mios-simulator-version-min=7.0 -arch i386
 #cgo +build ios,darwin,386 LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm -lQt5Core_iphonesimulator -lQt5Widgets_iphonesimulator -lQt5Gui_iphonesimulator -lQt5PlatformSupport_iphonesimulator
 
-#cgo +build ios,darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=7.0 -arch arm64
+#cgo +build ios,darwin,arm64 LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/${IPHONEOS_SDK_DIR} -miphoneos-version-min=7.0 -arch arm64
 #cgo +build ios,darwin,arm64 LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PlatformSupport
 
-#cgo +build ios,darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk -miphoneos-version-min=7.0 -arch armv7
+#cgo +build ios,darwin,arm LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,${XCODE_DIR}/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/${IPHONEOS_SDK_DIR} -miphoneos-version-min=7.0 -arch armv7
 #cgo +build ios,darwin,arm LDFLAGS: -L${QT_DIR}/5.7/ios/plugins/platforms -lqios -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L${QT_DIR}/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype -framework Security -framework SystemConfiguration -framework CoreBluetooth -L${QT_DIR}/5.7/ios/plugins/imageformats -lqdds -lqicns -lqico -lqtga -lqtiff -lqwbmp -lqwebp -lqtharfbuzzng -lz -lqtpcre -lm -lQt5Core -lQt5Widgets -lQt5Gui -lQt5PlatformSupport
 
 
@@ -271,6 +271,9 @@ import "C"`,
 		"${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1),
 		"${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1),
 		"${RPI3_SYSROOT_DIR}", utils.RPI3_SYSROOT_DIR(), -1),
+		"${XCODE_DIR}", utils.XCODE_DIR(), -1),
+		"${IPHONEOS_SDK_DIR}", utils.IPHONEOS_SDK_DIR(), -1),
+		"${IPHONESIMULATOR_SDK_DIR}", utils.IPHONESIMULATOR_SDK_DIR(), -1),
 		"${APPNAME}", appName, -1),
 		"\\", "/", -1)
 }
@@ -358,11 +361,11 @@ func build() {
 					return "amd64"
 				}()
 
-				CLANGARCH, CLANGDIR, CLANGFLAG = func() (string, string, string) {
+				CLANGARCH, CLANGDIR_BASE, CLANGDIR, CLANGFLAG = func() (string, string, string, string) {
 					if buildTarget == "ios" {
-						return "arm64", "iPhoneOS", "iphoneos"
+						return "arm64", "iPhoneOS", utils.IPHONEOS_SDK_DIR(), "iphoneos"
 					}
-					return "x86_64", "iPhoneSimulator", "ios-simulator"
+					return "x86_64", "iPhoneSimulator", utils.IPHONESIMULATOR_SDK_DIR(), "ios-simulator"
 				}()
 			)
 
@@ -375,8 +378,8 @@ func build() {
 				"GOARCH": GOARCH,
 
 				"CGO_ENABLED":  "1",
-				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
-				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot /Applications/Xcode.app/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v.sdk -m%v-version-min=7.0 -arch %v", CLANGDIR, CLANGDIR, CLANGFLAG, CLANGARCH),
+				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
+				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
 			}
 
 			utils.Save(filepath.Join(appPath, "cgo_main_wrapper.go"), "package main\nimport \"C\"\n//export go_main_wrapper\nfunc go_main_wrapper() { main() }")
