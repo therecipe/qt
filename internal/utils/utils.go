@@ -295,13 +295,12 @@ func XCODE_DIR() string {
 
 func MACOS_SDK_DIR() string {
 
-	var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs")
-
-	if _, err := ioutil.ReadDir(filepath.Join(basePath, "MacOSX.sdk")); err == nil || runtime.GOROOT() != "darwin" {
+	if runtime.GOROOT() != "darwin" {
 		return "MacOSX.sdk"
 	}
 
-	for _, i := range []int{10, 11, 12} {
+	var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs")
+	for _, i := range []string{"12", "11", "10"} {
 		if _, err := ioutil.ReadDir(filepath.Join(basePath, fmt.Sprintf("MacOSX10.%v.sdk", i))); err == nil {
 			return fmt.Sprintf("MacOSX10.%v.sdk", i)
 		}
@@ -313,13 +312,13 @@ func MACOS_SDK_DIR() string {
 }
 
 func IPHONEOS_SDK_DIR() string {
-	var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs")
 
-	if _, err := ioutil.ReadDir(filepath.Join(basePath, "iPhoneOS.sdk")); err == nil || runtime.GOROOT() != "darwin" {
+	if runtime.GOROOT() != "darwin" {
 		return "iPhoneOS.sdk"
 	}
 
-	for _, i := range []string{"9.0", "9.1", "9.2", "9.3", "10.0", "10.1"} {
+	var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs")
+	for _, i := range []string{"10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
 		if _, err := ioutil.ReadDir(filepath.Join(basePath, fmt.Sprintf("iPhoneOS%v.sdk", i))); err == nil {
 			return fmt.Sprintf("iPhoneOS%v.sdk", i)
 		}
@@ -331,13 +330,13 @@ func IPHONEOS_SDK_DIR() string {
 }
 
 func IPHONESIMULATOR_SDK_DIR() string {
-	var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs")
 
-	if _, err := ioutil.ReadDir(filepath.Join(basePath, "iPhoneSimulator.sdk")); err == nil || runtime.GOROOT() != "darwin" {
+	if runtime.GOROOT() != "darwin" {
 		return "iPhoneSimulator.sdk"
 	}
 
-	for _, i := range []string{"9.0", "9.1", "9.2", "9.3", "10.0", "10.1"} {
+	var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs")
+	for _, i := range []string{"10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
 		if _, err := ioutil.ReadDir(filepath.Join(basePath, fmt.Sprintf("iPhoneSimulator%v.sdk", i))); err == nil {
 			return fmt.Sprintf("iPhoneSimulator%v.sdk", i)
 		}
