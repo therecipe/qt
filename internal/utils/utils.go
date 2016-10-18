@@ -295,7 +295,7 @@ func XCODE_DIR() string {
 
 func MACOS_SDK_DIR() string {
 
-	if runtime.GOROOT() != "darwin" {
+	if runtime.GOOS != "darwin" {
 		return "MacOSX.sdk"
 	}
 
@@ -313,7 +313,7 @@ func MACOS_SDK_DIR() string {
 
 func IPHONEOS_SDK_DIR() string {
 
-	if runtime.GOROOT() != "darwin" {
+	if runtime.GOOS != "darwin" {
 		return "iPhoneOS.sdk"
 	}
 
@@ -331,7 +331,7 @@ func IPHONEOS_SDK_DIR() string {
 
 func IPHONESIMULATOR_SDK_DIR() string {
 
-	if runtime.GOROOT() != "darwin" {
+	if runtime.GOOS != "darwin" {
 		return "iPhoneSimulator.sdk"
 	}
 

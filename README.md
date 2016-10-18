@@ -86,7 +86,7 @@
 	* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 	* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
-3. Install **Xcode** >= 7.2.0
+3. Install **Xcode** >= 7.2.0; you can also define a custom location with **XCODE_DIR**
 
 	* https://itunes.apple.com/us/app/xcode/id497799835
 
@@ -115,6 +115,7 @@
 
 	* Install the Qt-dev package with your system package manager; if you want to link against your system libs **(experimental)**
 		* add **export QT_PKG_CONFIG=true** to your .profile or .bash_profile
+		* if needed you can also define custom locations for the misc and doc dir with **QT_MISC_DIR** and/or **QT_DOC_DIR**
 
 3. Install **g++** >= 5 and **OpenGL** dependencies
 
@@ -386,3 +387,5 @@ func main() {
 5. Take a look at the [examples](https://github.com/therecipe/qt/tree/master/internal/examples)
 
 6. Make yourself familiar with the [Qt documentation](https://doc.qt.io/qt-5/classes.html)
+
+7. Join our Slack Channel [#qt-binding](https://gophers.slack.com/messages/qt-binding/details/)
