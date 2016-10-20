@@ -22,7 +22,7 @@ then
   #download and install qt
   sudo add-apt-repository -y ppa:beineri/opt-qt57-trusty
   sudo apt-get -qq update
-  sudo apt-get -y -qq install qt57*
+  sudo apt-get -y -qq install qt573d qt57base qt57canvas3d qt57charts-no-lgpl qt57connectivity qt57creator qt57datavis-no-lgpl qt57declarative qt57declarative-render2d-no-lgpl qt57doc qt57gamepad qt57graphicaleffects qt57imageformats qt57location qt57multimedia qt57qbs qt57quickcontrols qt57quickcontrols2 qt57script qt57scxml qt57sensors qt57serialbus qt57serialport qt57svg qt57tools qt57translations qt57virtualkeyboard-no-lgpl qt57webchannel qt57webengine qt57websockets qt57x11extras qt57xmlpatterns
 else
   #download and install qt
   QT=qt-opensource-linux-x64-android-5.7.0.run

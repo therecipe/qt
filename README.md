@@ -89,7 +89,7 @@
 
 	or
 
-	* Install the Qt-dev package with Homebrew and define **QT_HOMEBREW=true** or alternatively define the custom location with **QT_DIR** (usually: /usr/local/opt/qt5/)
+	* Install the Qt-dev package with Homebrew and define **QT_HOMEBREW=true** or define a custom Qt location with **QT_DIR** (usually: /usr/local/opt/qt5/); if you want to link against homebrews Qt libs **(experimental)**
 		* `brew install qt5`
 
 3. Install **Xcode** >= 7.2.0; you can also define a custom location with **XCODE_DIR**
@@ -119,7 +119,7 @@
 
 	or
 
-	* Install the Qt-dev package with your system package manager; if you want to link against your system libs **(experimental)**
+	* Install the Qt-dev package with your system package manager; if you want to link against your system Qt libs **(experimental)**
 		* add **export QT_PKG_CONFIG=true** to your .profile or .bash_profile
 		* if needed you can also define custom locations for the misc and doc dir with **QT_MISC_DIR** and/or **QT_DOC_DIR**
 		* and you may want to define a custom pkg-config search path with **PKG_CONFIG_PATH**, if the default path points to old Qt pkg-config files
@@ -159,8 +159,8 @@
 
 3. Install the SDK dependencies with `C:\android-sdk-windows\tools\android.bat` or `$HOME/android-sdk-{ macosx | linux }/tools/android`
 	* Tools
-		* Android SDK Build-tools (24.0.3)
-	* Android 7.0 (API 24)
+		* Android SDK Build-tools (25.0.0)
+	* Android 7.1.1 (API 25)
 		* SDK Platform
 	* Extras (Windows only)
 		* Google USB Driver

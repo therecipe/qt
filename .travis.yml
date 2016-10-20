@@ -10,7 +10,7 @@ env: DESKTOP=true ANDROID=true
 matrix:
   include:
     - os: linux
-      env: DESKTOP=true ANDROID=false PKG_CONFIG_PATH=/opt/qt57/lib/pkgconfig QT_PKG_CONFIG=true QT_DOC_DIR=/opt/qt57/doc QT_MISC_DIR=/opt/qt57
+      env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true
 
     - os: osx
       env: DESKTOP=true ANDROID=false
@@ -59,6 +59,8 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 45 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
 
 script:
+  - if [[ "$QT_PKG_CONFIG" == "true" ]]; then export QT_PKG_CONFIG=true; export PKG_CONFIG_PATH=/opt/qt57/lib/pkgconfig; export QT_DOC_DIR=/opt/qt57/doc; export QT_MISC_DIR=/opt/qt57; fi
+  - if [[ "$QT_HOMEBREW" == "true" ]]; then export QT_HOMEBREW=true; fi
   - if [[ "$DESKTOP" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh; else go run $GOPATH/src/github.com/therecipe/qt/internal/setup/generate.go; fi
   - if [[ "$ANDROID" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh android; fi
   - if [[ "$IOS" == "true" ]]; then $GOPATH/src/github.com/therecipe/qt/setup.sh ios; fi

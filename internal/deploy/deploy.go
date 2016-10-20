@@ -599,7 +599,7 @@ func predeploy() {
 			}{
 				Qt:  filepath.Join(utils.QT_DIR(), "5.7", "android_armv7"),
 				Sdk: utils.ANDROID_SDK_DIR(),
-				SdkBuildToolsRevision: "24.0.3",
+				SdkBuildToolsRevision: "25.0.0",
 				Ndk:                           utils.ANDROID_NDK_DIR(),
 				Toolchainprefix:               "arm-linux-androideabi",
 				Toolprefix:                    "arm-linux-androideabi",
@@ -747,7 +747,7 @@ func deploy() {
 				"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 				"--output", filepath.Join(depPath, "build"),
 				"--deployment", "bundled",
-				"--android-platform", "android-24",
+				"--android-platform", "android-25",
 				"--jdk", utils.JDK_DIR(),
 				"--gradle",
 			)
