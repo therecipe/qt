@@ -1,3 +1,29 @@
+[![GoDoc](https://godoc.org/github.com/therecipe/qt?status.svg)](https://godoc.org/github.com/therecipe/qt)
+[![GoCover](http://gocover.io/_badge/github.com/therecipe/qt)](http://gocover.io/github.com/therecipe/qt)
+[![GoReportCard](https://goreportcard.com/badge/github.com/therecipe/qt)](https://goreportcard.com/report/github.com/therecipe/qt)
+
+[![TravisCI](https://travis-ci.org/therecipe/qt.svg?branch=master)](https://travis-ci.org/therecipe/qt)
+[![AppveyorCI](https://ci.appveyor.com/api/projects/status/github/therecipe/qt?branch=master&svg=true)](https://ci.appveyor.com/project/therecipe/qt)
+[![SemaphoreCI](https://semaphoreci.com/api/v1/therecipe/qt/branches/master/shields_badge.svg)](https://semaphoreci.com/therecipe/qt)
+[![CircleCI](https://circleci.com/gh/therecipe/qt/tree/master.svg?style=svg)](https://circleci.com/gh/therecipe/qt/tree/master)
+
+## Overview
+
+[Qt](https://en.wikipedia.org/wiki/Qt_(software)) is a cross-platform application framework.
+
+[Go](https://en.wikipedia.org/wiki/Go_(programming_language)) (often referred to as golang) is a free and open source programming language created at Google.
+
+This binding aims to make it as simple as possible to write applications for all operating systems supported by Qt in Go.
+
+The project is pretty much a WIP and not recommended to be used in production yet.
+
+However the binding should already contain most open source modules and everything you need to build fully featured applications.
+
+Also the Qt API is brought as unaltered as possible from C++ to Go, which should make it simple to prototype applications.
+
+---
+---
+
 ## Screenshots
 
 ### Windows
@@ -35,6 +61,8 @@
 ## Installation
 
 **You will need at least 8gb ram to install this binding!**
+
+**If you define environment variables, export them in your .profile or .bash_profile!**
 
 * Desktop
 	* [Windows](#windows-1)

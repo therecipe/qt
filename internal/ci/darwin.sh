@@ -11,7 +11,9 @@ du -sh $HOME/*
 if [ "$QT_HOMEBREW" == "true" ]
 then
   #download and install qt with brew
+  brew update
   brew install qt5
+  brew outdated qt5 || brew upgrade qt5
 else
   #download and install qt
   if [ "$IOS" == "true" ] || [ "$IOS_SIMULATOR" == "true" ]
