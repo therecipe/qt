@@ -17,20 +17,29 @@ func main() {
 		buildTarget = os.Args[1]
 	}
 
-	if _, err := ioutil.ReadDir(os.Getenv("GOPATH")); err != nil {
+	gopaths := os.Getenv("GOPATH")
+	if len(gopaths) == 0 {
 		fmt.Print("\nerror:\nGOPATH not set\nsolution: define GOPATH\n\n")
 		os.Exit(1)
 	}
 
-	if strings.Contains(os.Getenv("GOPATH"), runtime.GOROOT()) {
-		fmt.Print("\nerror:\nGOPATH is or contains GOROOT\n\n")
-		os.Exit(1)
+	for _, path :=  range strings.Split(gopaths, ":") {
+		if _, err := ioutil.ReadDir(path); err != nil {
+			fmt.Printf("\nerror:\nInvalid GOPATH %q\nsolution: specify valid GOPATH\n\n", path)
+			os.Exit(1)
+		}
+
+		if strings.Contains(path, runtime.GOROOT()) {
+			fmt.Printf("\nerror:\nGOPATH %q is or contains GOROOT\n\n", path)
+			os.Exit(1)
+		}
+
+		if strings.Contains(runtime.GOROOT(), path) {
+			fmt.Printf("\nerror:\nGOROOT is or contains GOPATH %q\n\n", path)
+			os.Exit(1)
+		}
 	}
 
-	if strings.Contains(runtime.GOROOT(), os.Getenv("GOPATH")) {
-		fmt.Print("\nerror:\nGOROOT is or contains GOPATH\n\n")
-		os.Exit(1)
-	}
 
 	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !utils.UsePkgConfig() {
 		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in \"%v\" or define QT_DIR\n\n", utils.QT_DIR())
