@@ -50,7 +50,7 @@ func main() {
 	case "darwin":
 		{
 			if _, err := exec.LookPath("clang++"); err != nil {
-				fmt.Printf("\nerror: clang++ not found\nsolution: install Xcode\n\n")
+				fmt.Print("\nerror: clang++ not found\nsolution: install Xcode\n\n")
 				os.Exit(1)
 			}
 		}
@@ -58,7 +58,7 @@ func main() {
 	case "linux":
 		{
 			if _, err := exec.LookPath("g++"); err != nil {
-				fmt.Printf("\nerror: g++ not found\nsolution: sudo apt-get -y install build-essential\n\n")
+				fmt.Print("\nerror: g++ not found\nsolution: sudo apt-get -y install build-essential\n\n")
 				os.Exit(1)
 			}
 		}
@@ -66,7 +66,7 @@ func main() {
 	case "windows":
 		{
 			if _, err := exec.LookPath("g++"); err != nil {
-				fmt.Printf("\nerror: g++ not found\nsolution: add the directory that contains \"g++\" to your PATH\n\n")
+				fmt.Print("\nerror: g++ not found\nsolution: add the directory that contains \"g++\" to your PATH\n\n")
 				os.Exit(1)
 			}
 		}
