@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
-	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -17,27 +16,9 @@ func main() {
 		buildTarget = os.Args[1]
 	}
 
-	gopaths := os.Getenv("GOPATH")
-	if len(gopaths) == 0 {
-		fmt.Print("\nerror:\nGOPATH not set\nsolution: define GOPATH\n\n")
+	if _, err := utils.GoPath();  err != nil {
+		fmt.Printf("\nerror:\n%s\n\n", err.Error())
 		os.Exit(1)
-	}
-
-	for _, path :=  range strings.Split(gopaths, ":") {
-		if _, err := ioutil.ReadDir(path); err != nil {
-			fmt.Printf("\nerror:\nInvalid GOPATH %q\nsolution: specify valid GOPATH\n\n", path)
-			os.Exit(1)
-		}
-
-		if strings.Contains(path, runtime.GOROOT()) {
-			fmt.Printf("\nerror:\nGOPATH %q is or contains GOROOT\n\n", path)
-			os.Exit(1)
-		}
-
-		if strings.Contains(runtime.GOROOT(), path) {
-			fmt.Printf("\nerror:\nGOROOT is or contains GOPATH %q\n\n", path)
-			os.Exit(1)
-		}
 	}
 
 
