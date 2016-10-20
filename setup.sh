@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -ev
 
 go get golang.org/x/crypto/ssh

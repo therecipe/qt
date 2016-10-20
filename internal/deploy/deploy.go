@@ -1079,7 +1079,7 @@ func linuxSH() string {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	fmt.Fprint(bb, "#!/bin/sh\n")
+	fmt.Fprint(bb, "#!/bin/bash\n")
 	fmt.Fprint(bb, "appname=`basename $0 | sed s,\\.sh$,,`\n\n")
 	fmt.Fprint(bb, "dirname=`dirname $0`\n")
 	fmt.Fprint(bb, "tmp=\"${dirname#?}\"\n\n")

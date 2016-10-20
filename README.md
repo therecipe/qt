@@ -89,7 +89,7 @@
 
 	or
 
-	* Install the Qt-dev package with Homebrew **(experimental)** and define the custom location with **QT_DIR** (usually: /usr/local/opt/qt5/)
+	* Install the Qt-dev package with Homebrew and define **QT_HOMEBREW=true** or alternatively define the custom location with **QT_DIR** (usually: /usr/local/opt/qt5/)
 		* `brew install qt5`
 
 3. Install **Xcode** >= 7.2.0; you can also define a custom location with **XCODE_DIR**
