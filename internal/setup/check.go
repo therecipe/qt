@@ -32,7 +32,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !utils.UsePkgConfig() {
+	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !(utils.UsePkgConfig() || utils.UseHomeBrew()) {
 		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in \"%v\" or define QT_DIR\n\n", utils.QT_DIR())
 		os.Exit(1)
 	}
